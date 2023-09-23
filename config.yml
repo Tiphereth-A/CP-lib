@@ -1,12 +1,276 @@
 src_dir: src
 notebook_code_dir: code
-notebook_doc_dir: tex_doc
+notebook_doc_dir: doc_tex
 cheatsheet_dir: cheatsheet
-test_dir: test
+test_dir: test_tinplate
 notebook_file: notebook
 enable_test: false
 generate_test_in_notebook: false
 notebook:
+  chapters:
+    util: 杂项
+    bit: 位操作
+    ds: 数据结构
+    geo2d: 二维计算几何
+    graph: 图论
+    math: 数学
+    poly: 多项式
+    str: 字符串
+  sections:
+    util:
+    - main: 缺省源
+      code_ext: cpp
+      test_ext: cpp
+    - util: 共同依赖
+      code_ext: hpp
+      test_ext: cpp
+    bit:
+    - bceil: std::bit_ceil
+      code_ext: hpp
+      test_ext: cpp
+    - bfloor: std::bit_floor
+      code_ext: hpp
+      test_ext: cpp
+    - bwidth: std::bit_width
+      code_ext: hpp
+      test_ext: cpp
+    - cntl0: std::countl_zero
+      code_ext: hpp
+      test_ext: cpp
+    - cntl1: std::countl_one
+      code_ext: hpp
+      test_ext: cpp
+    - cntr0: std::countr_zero
+      code_ext: hpp
+      test_ext: cpp
+    - cntr1: std::countr_one
+      code_ext: hpp
+      test_ext: cpp
+    - popcnt: std::popcount
+      code_ext: hpp
+      test_ext: cpp
+    - rotl: std::rotl
+      code_ext: hpp
+      test_ext: cpp
+    - rotr: std::rotr
+      code_ext: hpp
+      test_ext: cpp
+    ds: null
+    geo2d:
+    - circle_class:
+      code_ext: hpp
+      test_ext: cpp
+    - circle:
+      code_ext: hpp
+      test_ext: cpp
+    - cvh_class:
+      code_ext: hpp
+      test_ext: cpp
+    - cvh:
+      code_ext: hpp
+      test_ext: cpp
+    - dcvh_class:
+      code_ext: hpp
+      test_ext: cpp
+    - dcvh:
+      code_ext: hpp
+      test_ext: cpp
+    - line_class:
+      code_ext: hpp
+      test_ext: cpp
+    - line:
+      code_ext: hpp
+      test_ext: cpp
+    - point_class:
+      code_ext: hpp
+      test_ext: cpp
+    - point:
+      code_ext: hpp
+      test_ext: cpp
+    - polygon_class:
+      code_ext: hpp
+      test_ext: cpp
+    - polygon:
+      code_ext: hpp
+      test_ext: cpp
+    - rel_cc:
+      code_ext: hpp
+      test_ext: cpp
+    - rel_cp:
+      code_ext: hpp
+      test_ext: cpp
+    - rel_cs:
+      code_ext: hpp
+      test_ext: cpp
+    - rel_poc:
+      code_ext: hpp
+      test_ext: cpp
+    - rel_pop:
+      code_ext: hpp
+      test_ext: cpp
+    - triangle_class:
+      code_ext: hpp
+      test_ext: cpp
+    - triangle:
+      code_ext: hpp
+      test_ext: cpp
+    - util:
+      code_ext: hpp
+      test_ext: cpp
+    graph: null
+    math:
+    - abs_constexpr:
+      code_ext: hpp
+      test_ext: cpp
+    - bsgs:
+      code_ext: hpp
+      test_ext: cpp
+    - crt_mod:
+      code_ext: hpp
+      test_ext: cpp
+    - crt:
+      code_ext: hpp
+      test_ext: cpp
+    - do_quot:
+      code_ext: hpp
+      test_ext: cpp
+    - euler_phi_u32:
+      code_ext: hpp
+      test_ext: cpp
+    - euler_phi_u64:
+      code_ext: hpp
+      test_ext: cpp
+    - exbsgs:
+      code_ext: hpp
+      test_ext: cpp
+    - exgcd:
+      code_ext: hpp
+      test_ext: cpp
+    - exlucas:
+      code_ext: hpp
+      test_ext: cpp
+    - fact_mod_gen:
+      code_ext: hpp
+      test_ext: cpp
+    - gauss_int:
+      code_ext: hpp
+      test_ext: cpp
+    - gcd_fp:
+      code_ext: hpp
+      test_ext: cpp
+    - ifact_mod_gen:
+      code_ext: hpp
+      test_ext: cpp
+    - inv_gcd:
+      code_ext: hpp
+      test_ext: cpp
+    - inv_mod_gen:
+      code_ext: hpp
+      test_ext: cpp
+    - inverse:
+      code_ext: hpp
+      test_ext: cpp
+    - invseq_mod_gen:
+      code_ext: hpp
+      test_ext: cpp
+    - is_prime:
+      code_ext: hpp
+      test_ext: cpp
+    - isqrt:
+      code_ext: hpp
+      test_ext: cpp
+    - leqs_solver:
+      code_ext: hpp
+      test_ext: cpp
+    - linear_mpf_seive:
+      code_ext: hpp
+      test_ext: cpp
+    - linear_mu_seive:
+      code_ext: hpp
+      test_ext: cpp
+    - linear_phi_seive:
+      code_ext: hpp
+      test_ext: cpp
+    - linear_seive:
+      code_ext: hpp
+      test_ext: cpp
+    - linear_sigma_seive:
+      code_ext: hpp
+      test_ext: cpp
+    - lucas_pp:
+      code_ext: hpp
+      test_ext: cpp
+    - lucas:
+      code_ext: hpp
+      test_ext: cpp
+    - matrix_bool:
+      code_ext: hpp
+      test_ext: cpp
+    - matrix_int:
+      code_ext: hpp
+      test_ext: cpp
+    - matrix_pow:
+      code_ext: hpp
+      test_ext: cpp
+    - matrix:
+      code_ext: hpp
+      test_ext: cpp
+    - mcn_mod:
+      code_ext: hpp
+      test_ext: cpp
+    - mint_d31:
+      code_ext: hpp
+      test_ext: cpp
+    - mint_d63:
+      code_ext: hpp
+      test_ext: cpp
+    - mint_s30:
+      code_ext: hpp
+      test_ext: cpp
+    - mint_s63:
+      code_ext: hpp
+      test_ext: cpp
+    - mul_mod_s:
+      code_ext: hpp
+      test_ext: cpp
+    - mul_mod_u:
+      code_ext: hpp
+      test_ext: cpp
+    - pfactors:
+      code_ext: hpp
+      test_ext: cpp
+    - proot_u32:
+      code_ext: hpp
+      test_ext: cpp
+    - proot_u64:
+      code_ext: hpp
+      test_ext: cpp
+    - qpow_mod:
+      code_ext: hpp
+      test_ext: cpp
+    - qpow:
+      code_ext: hpp
+      test_ext: cpp
+    - qresidue:
+      code_ext: hpp
+      test_ext: cpp
+    - qtetra_mod:
+      code_ext: hpp
+      test_ext: cpp
+    - rgcd:
+      code_ext: hpp
+      test_ext: cpp
+    - rpow:
+      code_ext: hpp
+      test_ext: cpp
+    - safe_mod:
+      code_ext: hpp
+      test_ext: cpp
+    poly:
+    - poly:
+      code_ext: hpp
+      test_ext: cpp
+    str: null
 cheatsheets:
   example: Euler formula
   example2: A sequence

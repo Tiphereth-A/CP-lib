@@ -1,0 +1,66 @@
+#ifndef TIFA_LIBS_MATH_PFACTORS
+#define TIFA_LIBS_MATH_PFACTORS
+
+#include "../bit/cntr0.hpp"
+#include "../util/util.hpp"
+
+#include "is_prime.hpp"
+#include "mul_mod_u.hpp"
+
+namespace tifa_libs::math {
+
+namespace pfactors_detail__ {
+
+class PollardRho {
+  std::mt19937_64 e;
+
+  u64 rho(u64 n) {
+    std::uniform_int_distribution<u64> u(2, n - 1);
+    auto f = [n, r = u(e)](u64 x) { return (mul_mod_u(x, x, n) + r) % n; };
+    u64 g = 1, x = 0, y = u(e), yy = 0;
+    const u32 LIM = 128;
+    for (u64 r = 1, q = 1; g == 1; r *= 2) {
+      x = y;
+      for (u64 i = 0; i < r; ++i) y = f(y);
+      for (u64 k = 0; g == 1 && k < r; k += LIM) {
+        yy = y;
+        for (u64 i = 0; i < LIM && i < r - k; ++i) q = mul_mod_u(q, (x + (n - (y = f(y)))) % n, n);
+        g = std::gcd(q, n);
+      }
+    }
+    if (g == n) do
+        g = std::gcd((x + (n - (yy = f(yy)))) % n, n);
+      while (g == 1);
+    return g == n ? rho(n) : g;
+  }
+
+public:
+  explicit PollardRho():
+    e(std::random_device{}()) {}
+
+  void operator()(u64 n, std::map<u64, u32> &ans) {
+    if (n < 2) return;
+    if (is_prime(n)) {
+      ++ans[n];
+      return;
+    }
+    auto g = rho(n);
+    (*this)(n / g, ans);
+    (*this)(g, ans);
+  }
+};
+
+}  // namespace pfactors_detail__
+
+inline std::map<u64, u32> pfactors(u64 n) {
+  std::map<u64, u32> ans;
+  if (n < 2) return ans;
+  if (~n & 1) n >>= (ans[2] = (u32)bit::cntr0(n));
+  using pfactors_detail__::PollardRho;
+  PollardRho()(n, ans);
+  return ans;
+}
+
+}  // namespace tifa_libs::math
+
+#endif

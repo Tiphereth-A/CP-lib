@@ -1,0 +1,98 @@
+#ifndef TIFA_LIBS_MATH_MINT_S30
+#define TIFA_LIBS_MATH_MINT_S30
+
+#include "../util/util.hpp"
+
+namespace tifa_libs::math {
+
+template <u32 MOD>
+class mint_s30 {
+  u32 v_{};
+
+  static constexpr u32 get_r() {
+    u32 t = 2, iv = MOD * (t - MOD * MOD);
+    iv *= t - MOD * iv, iv *= t - MOD * iv;
+    return iv * (MOD * iv - t);
+  }
+  static constexpr u32 redc(u64 x) {
+    return (u32)((x + (u64)((u32)(x)*R) * MOD) >> 32);
+  }
+  static constexpr u32 norm(u32 x) { return x - (MOD & -((MOD - 1 - x) >> 31)); }
+
+  static constexpr u32 MOD2 = MOD << 1;
+  static constexpr u32 R = get_r();
+  static constexpr u32 R2 = -(u64)(MOD) % MOD;
+  static constexpr i32 SMOD = (i32)(MOD);
+
+  static_assert(MOD & 1);
+  static_assert(-R * MOD == 1);
+  static_assert((MOD >> 30) == 0);
+  static_assert(MOD != 1);
+
+public:
+  static constexpr u32 mod() { return MOD; }
+  static constexpr i32 smod() { return SMOD; }
+  constexpr mint_s30() {}
+  template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
+  constexpr mint_s30(T v):
+    v_(redc((u64)(v % SMOD + SMOD) * R2)) {}
+  constexpr u32 val() const { return norm(redc(v_)); }
+  constexpr i32 sval() const { return (i32)norm(redc(v_)); }
+  constexpr bool is_zero() const { return v_ == 0 || v_ == MOD; }
+  template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
+  explicit constexpr operator T() const { return (T)(val()); }
+  constexpr mint_s30 operator-() const {
+    mint_s30 res;
+    res.v_ = (MOD2 & -(v_ != 0)) - v_;
+    return res;
+  }
+  constexpr mint_s30 inv() const {
+    i32 x1 = 1, x3 = 0, a = sval(), b = SMOD;
+    while (b != 0) {
+      i32 q = a / b, x1_old = x1, a_old = a;
+      x1 = x3, x3 = x1_old - x3 * q, a = b, b = a_old - b * q;
+    }
+    return mint_s30(x1);
+  }
+  constexpr mint_s30 &operator+=(const mint_s30 &rhs) {
+    v_ += rhs.v_ - MOD2, v_ += MOD2 & -(v_ >> 31);
+    return *this;
+  }
+  constexpr mint_s30 &operator-=(const mint_s30 &rhs) {
+    v_ -= rhs.v_, v_ += MOD2 & -(v_ >> 31);
+    return *this;
+  }
+  constexpr mint_s30 &operator*=(const mint_s30 &rhs) {
+    v_ = redc((u64)(v_)*rhs.v_);
+    return *this;
+  }
+  constexpr mint_s30 &operator/=(const mint_s30 &rhs) { return operator*=(rhs.inv()); }
+  constexpr mint_s30 pow(u64 e) const {
+    for (mint_s30 res(1), x(*this);; x *= x) {
+      if (e & 1) res *= x;
+      if ((e >>= 1) == 0) return res;
+    }
+  }
+  constexpr void swap(mint_s30 &rhs) {
+    auto v = v_;
+    v_ = rhs.v_, rhs.v_ = v;
+  }
+  friend constexpr mint_s30 operator+(const mint_s30 &lhs, const mint_s30 &rhs) { return mint_s30(lhs) += rhs; }
+  friend constexpr mint_s30 operator-(const mint_s30 &lhs, const mint_s30 &rhs) { return mint_s30(lhs) -= rhs; }
+  friend constexpr mint_s30 operator*(const mint_s30 &lhs, const mint_s30 &rhs) { return mint_s30(lhs) *= rhs; }
+  friend constexpr mint_s30 operator/(const mint_s30 &lhs, const mint_s30 &rhs) { return mint_s30(lhs) /= rhs; }
+  friend constexpr bool operator==(const mint_s30 &lhs, const mint_s30 &rhs) { return norm(lhs.v_) == norm(rhs.v_); }
+  friend constexpr bool operator!=(const mint_s30 &lhs, const mint_s30 &rhs) { return norm(lhs.v_) != norm(rhs.v_); }
+  friend std::istream &operator>>(std::istream &is, mint_s30 &rhs) {
+    i32 x;
+    is >> x;
+    rhs = mint_s30(x);
+    return is;
+  }
+  friend std::ostream &operator<<(std::ostream &os, const mint_s30 &rhs) { return os << rhs.val(); }
+  friend constexpr u32 abs(mint_s30 const &x) { return x.val(); }
+};
+
+}  // namespace tifa_libs::math
+
+#endif
