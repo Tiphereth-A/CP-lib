@@ -1,19 +1,12 @@
 src_dir: src
 notebook_code_dir: code
-notebook_doc_dir: doc
+notebook_doc_dir: tex_doc
 cheatsheet_dir: cheatsheet
 test_dir: test
 notebook_file: notebook
 enable_test: false
-generate_test_in_notebook: true
+generate_test_in_notebook: false
 notebook:
-  chapters:
-    example: Example
-  sections:
-    example:
-    - helloworld: Hello
-      code_ext: cpp
-      test_ext: cpp
 cheatsheets:
   example: Euler formula
   example2: A sequence
