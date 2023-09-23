@@ -54,7 +54,6 @@ notebook_file: notebook
 enable_test: false
 
 # Listing all test code before compiling if `true`
-#! Valid only when `enable_test` is `true`
 generate_test_in_notebook: false
 
 # Notebook config
