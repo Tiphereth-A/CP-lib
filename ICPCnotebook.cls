@@ -3,22 +3,17 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ICPCnotebook}[2022/05/15 v0.1 Template class of Tifa's ICPC Notebook]
 
-\LoadClass[a4paper,10pt,dvipsnames,svgnames,x11names]{report}
+\LoadClass[a4paper, twoside]{report}
 
-\RequirePackage[centering,scale=0.8]{geometry}
 \RequirePackage{longtable}
-\RequirePackage{multirow}
-\RequirePackage{multicol}
+\RequirePackage{multirow, multicol}
 \RequirePackage{pdflscape}
-\RequirePackage[titles]{tocloft}
+\RequirePackage{tocloft}
 
-\RequirePackage{xcolor}
+\RequirePackage{color, xcolor}
 \RequirePackage{algorithm}
 \RequirePackage{algpseudocode}
-\RequirePackage{amsfonts}
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
-\RequirePackage{amsthm}
+\RequirePackage{amsfonts, amsmath, amssymb, amsthm}
 \RequirePackage{bm}
 \RequirePackage{bigdelim}
 \RequirePackage{bigstrut}
@@ -28,7 +23,6 @@
 \RequirePackage{cprotect}
 \RequirePackage[UTF8]{ctex}
 \RequirePackage{extpfeil}
-\RequirePackage{fancyhdr}
 \RequirePackage{hyperref}
 \RequirePackage{ifthen}
 \RequirePackage{subcaption}
@@ -38,67 +32,87 @@
 \RequirePackage{xspace}
 \RequirePackage{mathtools}
 \RequirePackage{pgfplots}
+\RequirePackage{pdfpages}
+\RequirePackage{ucharclasses}
+
 \usepgfplotslibrary{dateplot}
 
 
-% Throrem
-\newtheorem{theorem}{定理}[section]
-\newtheorem{corollary}{推论}[theorem]
-\newtheorem{lemma}[theorem]{引理}
-
-\theoremstyle{definition}
-\newtheorem{definition}{定义}[section]
-
-\theoremstyle{remark}
-\newtheorem*{remark}{注意}
-
-\renewcommand\qedsymbol{$\blacksquare$}
-
-
 % Font setting
-\RequirePackage{eulervm}
 \RequirePackage{fontspec}
 \setsansfont{Fira Sans}
 \setmonofont{Fira Code}[Contextuals=Alternate]
-% \setsansfont[BoldFont={FiraSans-Bold.ttf}]{FiraSans-Light.ttf}
-% \setmonofont{FiraMono-Regular.ttf}
+\newfontfamily\cnfont{等线}
+\setTransitionsForChinese{\cnfont}{}
 
-% User defined math command
+% User defined command
 \newcommand{\lcm}{\operatorname{lcm}}
 \newcommand{\nequiv}{~{\equiv}\llap{/\,}~}
 \newcommand{\subjectto}{~s.t.~}
+\newcommand{\eulerian}[2]{{{#1} \atopwithdelims \langle \rangle {#2}}}
+\newcommand{\beulerian}[2]{\left\langle\!\!{\eulerian{#1}{#2}}\!\!\right\rangle}
+\newcommand{\stirlingfirst}[2]{{{#1} \brack {#2}}}
+\newcommand{\stirlingsecond}[2]{{{#1} \brace {#2}}}
+
+\newcommand{\fullref}[1]{\ref{#1}.\nameref{#1} (\pageref{#1} 页)}
+
+
+% Page style
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\setlength{\itemindent}{0em}
+\setlength\parindent{0em}
+\setlength{\columnsep}{13pt}
+
+\RequirePackage{fancyhdr}
+\RequirePackage[inner=1cm, outer=0.7cm, top=1.7cm, bottom=0.5cm]{geometry}
+
+\setlength{\headsep}{0.1cm}
+\setlength{\footskip}{0.7cm}
+
+\fancypagestyle{fancy} {
+    \fancyhead[L]{\nouppercase\leftmark}
+	\fancyhead[R]{\nouppercase\rightmark}
+	\fancyhead[C]{ICPC Notebook}
+    \fancyfoot[C]{\thepage}
+}
+
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
 
 
 % Code style
-\RequirePackage{listings}
-\RequirePackage{lstfiracode}
-\lstdefinestyle{common}{
-    style=FiraCodeStyle,
-    belowcaptionskip=1\baselineskip,
+\RequirePackage{minted}
+
+\setminted[cpp]{
+	style=default,
+	mathescape,
+	linenos,
+	autogobble,
+    breakanywhere,
+    baselinestretch=0.9,
+	tabsize=2,
+	fontsize=\normalsize,
+	frame=single,
+	framesep=1mm,
+	framerule=0.3pt,
+	numbersep=1mm,
     breaklines=true,
-    xleftmargin=\parindent,
-    showstringspaces=true,
-    numbers=left,
-    numberstyle=\ttfamily\small,
-    basicstyle=\ttfamily,
-    stepnumber=1,
-    frame=single
 }
 
-\lstdefinestyle{cpp}{
-    style=common,
-    language=C++,
-    keywordstyle=\bfseries\color{green!40!black},
-    commentstyle=\itshape\color{red!80!black},
-    identifierstyle=\color{blue},
-    stringstyle=\color{purple!40!black},
-}
-
-\lstdefinestyle{c}{
-    style=common,
-    language=C,
-    keywordstyle=\bfseries\color{green!40!black},
-    commentstyle=\itshape\color{red!80!black},
-    identifierstyle=\color{blue},
-    stringstyle=\color{purple!40!black},
+\setminted[python]{
+	style=default,
+	mathescape,
+	linenos,
+	autogobble,
+    breakanywhere,
+    baselinestretch=0.9,
+	tabsize=2,
+	fontsize=\normalsize,
+	frame=single,
+	framesep=0.8mm,
+	framerule=0.3pt,
+	numbersep=0.8mm,
+    breaklines=true,
 }

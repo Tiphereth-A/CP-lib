@@ -10,14 +10,27 @@
 
 \begin{document}
     \maketitle
-    \pagenumbering{roman}
-    \tableofcontents
-    \newpage
-    \pagenumbering{arabic}
 
-    \input{_gen/contents_notebook.tex}
+    \pagestyle{plain}
+
+	\pagenumbering{roman}
+	\setcounter{page}{1}
+
+    \begin{multicols}{2}
+        \tableofcontents
+    \end{multicols}
+
     \newpage
-    \input{_gen/contents_cheatsheet.tex}
-    ~\nocite{*}
+
+	\pagestyle{fancy}
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+
+    \begin{multicols}{2}
+        \input{_gen/contents_notebook.tex}
+        \input{_gen/contents_cheatsheet.tex}
+    \end{multicols}
+
+    \includepdf[pages=-,pagecommand={}]{src/src/cheat.pdf}
     \bibliography{notebook}
 \end{document}

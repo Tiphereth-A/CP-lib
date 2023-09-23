@@ -272,8 +272,10 @@ notebook:
       test_ext: cpp
     str: null
 cheatsheets:
-  example: Euler formula
-  example2: A sequence
+  nt-const: 初等数论常数表
+  seqences: 常见数列
+  oeis-seq: 常用 OEIS 数列
+  decimal: Python Decimal
 default_code_style: common
 code_styles:
   C: cpp

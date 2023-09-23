@@ -513,5 +513,4 @@ TSWLatexianTemp*
 _gen/
 _pdf_out/
 
-*.pdf
 /out.cpp
