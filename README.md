@@ -6,7 +6,4 @@
 ![Code Size](https://img.shields.io/github/languages/code-size/Tiphereth-A/CP-lib)
 ![Standard](https://img.shields.io/static/v1?label=standard&message=C%2B%2B17&color=green&logo=cplusplus)
 
-![GitHub repo file count (custom path)](https://img.shields.io/github/directory-file-count/Tiphereth-A/CP-lib/lib/geo2d?label=lib%2Fgeo2d%20files)
-![GitHub repo file count (custom path)](https://img.shields.io/github/directory-file-count/Tiphereth-A/CP-lib/lib/math?label=lib%2Fmath%20files)
-
 My code library for Competitive Programming, powered by [competitive-verifier/competitive-verifier](https://github.com/competitive-verifier/competitive-verifier) & [Tiphereth-A/TINplate](https://github.com/Tiphereth-A/TINplate).
