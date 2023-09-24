@@ -203,16 +203,43 @@ notebook:
     - lucas:
       code_ext: hpp
       test_ext: cpp
-    - matrix_bool:
+    - mat_det:
       code_ext: hpp
       test_ext: cpp
-    - matrix_int:
+    - mat_ge_basic:
       code_ext: hpp
       test_ext: cpp
-    - matrix_pow:
+    - mat_ge_euclid:
       code_ext: hpp
       test_ext: cpp
-    - matrix:
+    - mat_ge_swapr_:
+      code_ext: hpp
+      test_ext: cpp
+    - mat_ge_xor:
+      code_ext: hpp
+      test_ext: cpp
+    - mat_inv:
+      code_ext: hpp
+      test_ext: cpp
+    - mat_merge_lr:
+      code_ext: hpp
+      test_ext: cpp
+    - mat_merge_ud:
+      code_ext: hpp
+      test_ext: cpp
+    - mat_pow:
+      code_ext: hpp
+      test_ext: cpp
+    - mat_rk:
+      code_ext: hpp
+      test_ext: cpp
+    - mat_tr:
+      code_ext: hpp
+      test_ext: cpp
+    - mat_trans:
+      code_ext: hpp
+      test_ext: cpp
+    - mat:
       code_ext: hpp
       test_ext: cpp
     - mcn_mod:

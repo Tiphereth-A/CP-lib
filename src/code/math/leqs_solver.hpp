@@ -3,14 +3,16 @@
 
 #include "../util/util.hpp"
 
-#include "matrix.hpp"
-//
+#include "../util/abs_constexpr.hpp"
+#include "mat.hpp"
+#include "mat_merge_lr.hpp"
+#include "mat_merge_ud.hpp"
 
 namespace tifa_libs::math {
 
-template <class T, class Isz = std::function<bool(T)>>
+template <class T>
 class LeqsSolver {
-  using mat = matrix<T, Isz>;
+  using mat = matrix<T>;
 
   mat argmat;
   size_t rk;
@@ -18,25 +20,26 @@ class LeqsSolver {
 
 public:
   // using guass method to solve linear equations Ax=b
-  LeqsSolver(mat const &A, mat const &b):
+  template <class Ge>
+  LeqsSolver(mat const &A, mat const &b, Ge ge):
     argmat(merge_lr(A, b)) {
     assert(b.col_size() == 1 && A.row_size() == b.row_size());
     // std::cout << __LINE__ << ": \n"
     //           << argmat << std::endl;
-    rk = (size_t)std::abs(argmat.do_gauss());
+    rk = (u64)abs(ge(argmat, true));
     // std::cerr << __LINE__ << ": \n"
     //           << argmat << std::endl;
-    if (argmat.row_size() > argmat.col_size()) argmat = argmat.submatrix(0, rk - 1, 0, argmat.col_size());
+    if (argmat.row_size() > argmat.col_size()) argmat = argmat.submat(0, rk - 1, 0, argmat.col_size());
     // std::cerr << __LINE__ << ": \n"
     //           << argmat << std::endl;
     if (argmat.row_size() + 1 >= argmat.col_size()) {
-      argmat.col(argmat.col_size() - 1) /= argmat.diag_const(0);
+      argmat.col(argmat.col_size() - 1) /= argmat.cdiag(0);
       argmat.diag(0) = 1;
       return;
     }
     // std::cerr << __LINE__ << ": \n"
     //           << argmat << std::endl;
-    argmat = merge_ud(argmat, mat(argmat.col_size() - argmat.row_size() - 1, argmat.col_size(), argmat.iszero_func()));
+    argmat = merge_ud(argmat, mat(argmat.col_size() - argmat.row_size() - 1, argmat.col_size()));
     // std::cerr << __LINE__ << ": \n"
     //           << argmat << std::endl;
     for (size_t i = 0, j = rk; i < argmat.row_size(); ++i) {
@@ -47,8 +50,8 @@ public:
     }
     // std::cerr << __LINE__ << ": \n"
     //           << argmat << std::endl;
-    for (auto i : fe_list) argmat.col(i) /= argmat.diag_const(0);
-    argmat.col(argmat.col_size() - 1) /= argmat.diag_const(0);
+    for (auto i : fe_list) argmat.col(i) /= argmat.cdiag(0);
+    argmat.col(argmat.col_size() - 1) /= argmat.cdiag(0);
     argmat.diag(0) = 1;
     // std::cerr << __LINE__ << ": \n"
     //           << argmat << std::endl;
@@ -58,19 +61,20 @@ public:
   // @return -1 of no solution, else number of free elements
   constexpr ptrdiff_t fe_cnt() const { return (ptrdiff_t)(argmat.col_size() - rk) - 1; }
   // values of free elements is 0
-  mat solution() const { return argmat.submatrix(0, argmat.row_size(), argmat.col_size() - 1, argmat.col_size()); }
+  mat solution() const { return argmat.submat(0, argmat.row_size(), argmat.col_size() - 1, argmat.col_size()); }
   // only for infinite solution, need set values of free elements
-  mat solution(mat const &fe_val) const {
+  template <class Ge>
+  mat solution(mat const &fe_val, Ge ge) const {
     const size_t fec = (size_t)fe_cnt();
     assert(fe_val.col_size() == 1 && fe_val.row_size() == fec);
     mat _ = argmat;
     for (size_t i = 0; i < fec; ++i) _(fe_list[i], _.col_size() - 1) = fe_val(i, 0);
     // std::cerr << __LINE__ << ": \n"
     //           << _ << std::endl;
-    _.do_gauss();
+    ge(_, true);
     // std::cerr << __LINE__ << ": \n"
     //           << _ << std::endl;
-    return _.submatrix(0, _.row_size(), _.col_size() - 1, _.col_size());
+    return _.submat(0, _.row_size(), _.col_size() - 1, _.col_size());
   }
 };
 
