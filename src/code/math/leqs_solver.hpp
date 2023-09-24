@@ -24,37 +24,23 @@ public:
   LeqsSolver(mat const &A, mat const &b, Ge ge):
     argmat(merge_lr(A, b)) {
     assert(b.col_size() == 1 && A.row_size() == b.row_size());
-    // std::cout << __LINE__ << ": \n"
-    //           << argmat << std::endl;
     rk = (u64)abs(ge(argmat, true));
-    // std::cerr << __LINE__ << ": \n"
-    //           << argmat << std::endl;
     if (argmat.row_size() > argmat.col_size()) argmat = argmat.submat(0, rk - 1, 0, argmat.col_size());
-    // std::cerr << __LINE__ << ": \n"
-    //           << argmat << std::endl;
     if (argmat.row_size() + 1 >= argmat.col_size()) {
       argmat.col(argmat.col_size() - 1) /= argmat.cdiag(0);
       argmat.diag(0) = 1;
       return;
     }
-    // std::cerr << __LINE__ << ": \n"
-    //           << argmat << std::endl;
     argmat = merge_ud(argmat, mat(argmat.col_size() - argmat.row_size() - 1, argmat.col_size()));
-    // std::cerr << __LINE__ << ": \n"
-    //           << argmat << std::endl;
     for (size_t i = 0, j = rk; i < argmat.row_size(); ++i) {
       if (argmat(i, i) != 0) continue;
       if (j < argmat.row_size()) argmat.swap_row(i, j++);
       fe_list.push_back(i);
       argmat(i, i) = 1;
     }
-    // std::cerr << __LINE__ << ": \n"
-    //           << argmat << std::endl;
     for (auto i : fe_list) argmat.col(i) /= argmat.cdiag(0);
     argmat.col(argmat.col_size() - 1) /= argmat.cdiag(0);
     argmat.diag(0) = 1;
-    // std::cerr << __LINE__ << ": \n"
-    //           << argmat << std::endl;
   }
 
   constexpr size_t rank() const { return rk; }
@@ -69,11 +55,7 @@ public:
     assert(fe_val.col_size() == 1 && fe_val.row_size() == fec);
     mat _ = argmat;
     for (size_t i = 0; i < fec; ++i) _(fe_list[i], _.col_size() - 1) = fe_val(i, 0);
-    // std::cerr << __LINE__ << ": \n"
-    //           << _ << std::endl;
     ge(_, true);
-    // std::cerr << __LINE__ << ": \n"
-    //           << _ << std::endl;
     return _.submat(0, _.row_size(), _.col_size() - 1, _.col_size());
   }
 };
