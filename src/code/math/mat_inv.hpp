@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 
 template <class T, class Ge>
 inline std::optional<matrix<T>> inverse(matrix<T> const &mat, Ge ge) {
-  assert(mat.row_size() == mat.col_size());
+  if (mat.row_size() != mat.col_size()) return {};
   matrix<T> ret(mat.row_size(), mat.col_size());
   ret.diag(0) = 1;
   if ((u64)abs(ge(ret = merge_lr(mat, ret), true)) != mat.row_size()) return {};

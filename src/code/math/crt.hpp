@@ -25,7 +25,7 @@ constexpr std::optional<std::pair<i64, i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1
 
 // Returns (remainder, modular)
 inline std::optional<std::pair<u64, u64>> crt(const std::vector<i64> &a, const std::vector<u64> &m) {
-  assert(a.size() == m.size());
+  if (a.size() != m.size()) return {};
   const size_t n = a.size();
   i64 A = 0;
   u64 M = 1;

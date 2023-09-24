@@ -9,7 +9,7 @@
 namespace tifa_libs::math {
 
 inline std::optional<std::pair<u32, u32>> crt_mod(const std::vector<i32> &a, const std::vector<u32> &m, const u32 mod) {
-  assert(a.size() == m.size());
+  if (a.size() != m.size()) return {};
   const size_t n = a.size();
   std::vector<u32> m_cpy(m);
   for (size_t i = 0; i < n; ++i) {
