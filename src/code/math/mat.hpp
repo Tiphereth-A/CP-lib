@@ -35,13 +35,13 @@ public:
     return os;
   }
 
-  constexpr std::slice_array<T> &row(size_t r) { return d[std::slice(r * col_size(), col_size(), 1)]; }
+  constexpr std::slice_array<T> row(size_t r) { return d[std::slice(r * col_size(), col_size(), 1)]; }
   constexpr std::valarray<T> crow(size_t r) const { return d[std::slice(r * col_size(), col_size(), 1)]; }
 
-  constexpr std::slice_array<T> &col(size_t c) { return d[std::slice(c, row_size(), col_size())]; }
+  constexpr std::slice_array<T> col(size_t c) { return d[std::slice(c, row_size(), col_size())]; }
   constexpr std::valarray<T> ccol(size_t c) const { return d[std::slice(c, row_size(), col_size())]; }
 
-  constexpr std::slice_array<T> &diag(ptrdiff_t d) {
+  constexpr std::slice_array<T> diag(ptrdiff_t d) {
     if (d >= 0) {
       assert((size_t)d < col_size());
       return this->d[std::slice((size_t)d, std::min(row_size(), col_size() - (size_t)d), col_size() + 1)];
