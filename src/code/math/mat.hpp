@@ -111,7 +111,7 @@ public:
     assert(lhs.col_size() == rhs.row_size());
     matrix ret(lhs.row_size(), rhs.col_size());
     for (size_t i = 0; i < ret.row_size(); ++i) {
-      auto r_ = lhs.crow(i);
+      auto &&r_ = lhs.crow(i);
       for (size_t j = 0; j < ret.col_size(); ++j) ret(i, j) = (r_ * rhs.ccol(j)).sum();
     }
     return ret;
