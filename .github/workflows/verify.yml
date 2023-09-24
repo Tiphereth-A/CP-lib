@@ -34,8 +34,13 @@ jobs:
         with:
           output-path: verify_files.json
           # Specify patterns
-          # include: your-own-include/
-          # exclude: your-own-exclude/
+          include: |
+                src/code/
+                src/doc_md/
+                src/test_cpverifier/
+          exclude: |
+                libs/
+                .github/
           # If you have config.toml
           # config: .verify-helper/config.toml
       - name: parse-doxygen
