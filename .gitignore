@@ -512,5 +512,6 @@ TSWLatexianTemp*
 
 _gen/
 _pdf_out/
+.competitive-verifier/
 
 /out.cpp

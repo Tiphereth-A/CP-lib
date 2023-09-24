@@ -25,7 +25,7 @@ jobs:
       - name: Set up competitive-verifier
         uses: competitive-verifier/actions/setup@v1
         with:
-          python-version: "3.9"
+          python-version: "3.11"
           cache-pip: true
 
       # Initialize your own environment for resolving.
