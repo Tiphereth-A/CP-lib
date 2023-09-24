@@ -66,7 +66,7 @@
 \setlength{\columnsep}{13pt}
 
 \RequirePackage{fancyhdr}
-\RequirePackage[inner=1cm, outer=0.7cm, top=1.7cm, bottom=0.5cm]{geometry}
+\RequirePackage[inner=2cm, outer=1cm, top=1.7cm, bottom=0.5cm]{geometry}
 
 \setlength{\headsep}{0.1cm}
 \setlength{\footskip}{0.7cm}
