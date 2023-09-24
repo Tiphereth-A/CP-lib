@@ -3,6 +3,8 @@
 #include "../../code/math/linear_seive.hpp"
 
 int main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   tifa_libs::u32 n, a, b;
   std::cin >> n >> a >> b;
   auto prime = tifa_libs::math::linear_seive(

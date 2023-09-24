@@ -3,6 +3,8 @@
 #include "../../code/math/pfactors.hpp"
 
 int main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   tifa_libs::u64 n;
   std::cin >> n;
   auto ans = tifa_libs::math::pfactors(n);

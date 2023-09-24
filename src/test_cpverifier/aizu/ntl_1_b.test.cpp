@@ -5,6 +5,8 @@
 constexpr tifa_libs::i64 MOD = 1'000'000'007;
 
 int main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   tifa_libs::u64 m, n;
   std::cin >> m >> n;
   std::cout << tifa_libs::math::qpow_mod(m, n, MOD) << '\n';

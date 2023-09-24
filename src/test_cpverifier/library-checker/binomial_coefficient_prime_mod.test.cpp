@@ -4,6 +4,8 @@
 #include "../../code/math/mcn_mod.hpp"
 
 int main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   tifa_libs::u32 t, m;
   std::cin >> t >> m;
   if (m < 1e7) {

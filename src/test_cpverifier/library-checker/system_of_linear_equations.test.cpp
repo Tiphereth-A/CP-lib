@@ -10,6 +10,8 @@ using mat = tifa_libs::math::matrix<mint>;
 using leqssolver = tifa_libs::math::LeqsSolver<mint>;
 
 int main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   tifa_libs::u64 n, m;
   std::cin >> n >> m;
   mat a(n, m), b(n, 1);

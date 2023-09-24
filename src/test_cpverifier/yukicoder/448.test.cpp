@@ -3,6 +3,8 @@
 #include "../../code/math/crt_mod.hpp"
 
 int main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   size_t n;
   std::cin >> n;
   std::vector<tifa_libs::i32> r(n);

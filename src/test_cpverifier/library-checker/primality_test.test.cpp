@@ -3,6 +3,8 @@
 #include "../../code/math/is_prime.hpp"
 
 int main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   tifa_libs::i64 q;
   std::cin >> q;
   while (q--) {

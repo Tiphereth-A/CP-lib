@@ -3,6 +3,8 @@
 #include "../../code/math/qtetra_mod.hpp"
 
 int main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   tifa_libs::i64 t;
   std::cin >> t;
   while (t--) {

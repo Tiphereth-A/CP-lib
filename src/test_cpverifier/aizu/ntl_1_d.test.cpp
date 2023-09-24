@@ -3,6 +3,8 @@
 #include "../../code/math/euler_phi_u64.hpp"
 
 int main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   tifa_libs::u64 n;
   std::cin >> n;
   std::cout << tifa_libs::math::euler_phi_u64(n) << '\n';
