@@ -296,6 +296,12 @@ notebook:
     - spmat: 稀疏矩阵
       code_ext: hpp
       test_ext: cpp
+    - mat_charpoly: 矩阵的特征多项式
+      code_ext: hpp
+      test_ext: cpp
+    - mat_uhb: 将矩阵转为上 Hessenberg 矩阵
+      code_ext: hpp
+      test_ext: cpp
     poly:
     - poly: poly
       code_ext: hpp
