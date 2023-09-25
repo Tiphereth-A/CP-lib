@@ -27,7 +27,7 @@ std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0
     idxs.push_back(i + _);
   }
   for (size_t i = rk; i < r_; ++i)
-    if (is_0(Ab(i, c_))) return {};
+    if (!is_0(Ab(i, c_))) return {};
   matrix<T> sol(c_ - rk + 1, c_);
   {
     auto &v = sol.data()[0];
