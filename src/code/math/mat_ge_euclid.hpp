@@ -40,7 +40,7 @@ inline i64 ge_euclid(matrix<T> &mat, Is0 is0, Div div, size_t row_start, size_t 
   return neg ? -((i64)rk) : (i64)rk;
 }
 template <class T, class Is0, class Div>
-inline i64 ge_euclid(matrix<T> &mat, Is0 is_0, Div div, bool clear_u = true) { return ge_euclid(mat, is_0, div, 0, mat.row(), clear_u); }
+inline i64 ge_euclid(matrix<T> &mat, Is0 is0, Div div, bool clear_u = true) { return ge_euclid(mat, is0, div, 0, mat.row(), clear_u); }
 
 }  // namespace tifa_libs::math
 

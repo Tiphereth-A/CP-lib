@@ -12,27 +12,27 @@
 namespace tifa_libs::math {
 
 template <class T, class Is0, class Ge>
-std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0 is_0, Ge ge) {
+std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0 is0, Ge ge) {
   size_t r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
   matrix<T> Ab = merge_lr(A, b);
   u64 rk = (u64)abs(ge(Ab, false));
   if (rk > c_) return {};
-  if (!is_0(Ab(rk - 1, c_))) {
+  if (!is0(Ab(rk - 1, c_))) {
     bool f = true;
     for (size_t i = 0; i < c_; ++i)
-      if (!is_0(Ab(rk - 1, i))) {
+      if (!is0(Ab(rk - 1, i))) {
         f = false;
         break;
       }
     if (f) return {};
   }
   for (size_t i = rk; i < r_; ++i)
-    if (!is_0(Ab(i, c_))) return {};
+    if (!is0(Ab(i, c_))) return {};
   vec<bool> used(c_, false);
   vec<size_t> idxs;
   for (size_t i = 0, _ = 0; i < r_; ++i) {
-    while (i + _ < c_ && is_0(Ab(i, i + _))) ++_;
+    while (i + _ < c_ && is0(Ab(i, i + _))) ++_;
     if (i + _ >= c_) break;
     used[i + _] = true;
     idxs.push_back(i + _);

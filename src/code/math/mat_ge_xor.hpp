@@ -9,7 +9,7 @@
 namespace tifa_libs::math {
 
 template <class Is0>
-inline i64 ge_xor(matrix<bool> &mat, [[maybe_unused]] Is0 is_0, size_t row_start, size_t row_end, bool clear_u = true) {
+inline i64 ge_xor(matrix<bool> &mat, [[maybe_unused]] Is0 is0, size_t row_start, size_t row_end, bool clear_u = true) {
   assert(row_start < row_end && row_end <= mat.row());
   size_t r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);
   u64 rk = 0;
@@ -33,7 +33,7 @@ inline i64 ge_xor(matrix<bool> &mat, [[maybe_unused]] Is0 is_0, size_t row_start
 }
 
 template <class Is0>
-inline i64 ge_xor(matrix<bool> &mat, Is0 is_0, bool clear_u = true) { return ge_xor(mat, is_0, 0, mat.row(), clear_u); }
+inline i64 ge_xor(matrix<bool> &mat, Is0 is0, bool clear_u = true) { return ge_xor(mat, is0, 0, mat.row(), clear_u); }
 
 }  // namespace tifa_libs::math
 
