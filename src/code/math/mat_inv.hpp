@@ -8,13 +8,15 @@
 
 namespace tifa_libs::math {
 
-template <class T, class Ge>
-inline std::optional<matrix<T>> inverse(matrix<T> const &mat, Ge ge) {
+template <class T, class Is0, class Ge>
+inline std::optional<matrix<T>> inverse(matrix<T> const &mat, Is0 is0, Ge ge) {
   size_t n = mat.row();
   if (n != mat.col()) return {};
   matrix<T> ret(n, n);
   for (size_t i = 0; i < n; ++i) ret(i, i) = 1;
   if ((u64)abs(ge(ret = merge_lr(mat, ret), true)) != n) return {};
+  for (size_t i = 0; i < n; ++i)
+    if (is0(ret(i, i))) return {};
   ret.apply(0, n, n, n * 2, [&ret](size_t i, [[maybe_unused]] size_t j, T &val) { val /= ret(i, i); });
   return ret.submat(0, n, n, n * 2);
 }
