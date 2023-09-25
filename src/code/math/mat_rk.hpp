@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 template <class T, class Ge>
-inline u64 rank(matrix<T> const &mat, Ge ge) { return abs(ge(matrix<T>(mat), false)); }
+inline u64 rank(matrix<T> const &mat, Ge ge) { return (u64)abs(ge(matrix<T>(mat), false)); }
 
 }  // namespace tifa_libs::math
 

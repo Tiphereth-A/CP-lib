@@ -10,13 +10,13 @@ namespace tifa_libs::math {
 
 template <class T, class Ge>
 inline std::optional<matrix<T>> inverse(matrix<T> const &mat, Ge ge) {
-  if (mat.row_size() != mat.col_size()) return {};
-  matrix<T> ret(mat.row_size(), mat.col_size());
-  ret.diag(0) = 1;
-  if ((u64)abs(ge(ret = merge_lr(mat, ret), true)) != mat.row_size()) return {};
-  for (size_t i = 0; i < mat.row_size(); ++i) ret.data()[std::slice((i * 2 + 1) * mat.col_size(), mat.col_size(), 1)] /= std::valarray<T>(ret(i, i), mat.col_size());
-  ret = ret.submat(0, mat.row_size(), mat.col_size(), mat.col_size() * 2);
-  return ret;
+  size_t n = mat.row();
+  if (n != mat.col()) return {};
+  matrix<T> ret(n, n);
+  for (size_t i = 0; i < n; ++i) ret(i, i) = 1;
+  if ((u64)abs(ge(ret = merge_lr(mat, ret), true)) != n) return {};
+  ret.apply(0, n, n, n * 2, [](size_t i, [[maybe_unused]] size_t j, T &val) { val /= ret(i, i); });
+  return ret.submat(0, n, n, n * 2);
 }
 
 }  // namespace tifa_libs::math

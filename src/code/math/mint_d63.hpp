@@ -97,6 +97,7 @@ public:
   friend mint_d63 operator/(const mint_d63 &lhs, const mint_d63 &rhs) { return mint_d63(lhs) /= rhs; }
   friend bool operator==(const mint_d63 &lhs, const mint_d63 &rhs) { return lhs.v_ == rhs.v_; }
   friend bool operator!=(const mint_d63 &lhs, const mint_d63 &rhs) { return lhs.v_ != rhs.v_; }
+  friend constexpr bool operator<(const mint_d63 &lhs, const mint_d63 &rhs) { return lhs.val() < rhs.val(); }
   friend std::istream &operator>>(std::istream &is, mint_d63 &rhs) {
     i64 x;
     is >> x;

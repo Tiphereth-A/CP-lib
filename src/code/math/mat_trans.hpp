@@ -9,8 +9,9 @@ namespace tifa_libs::math {
 
 template <class T>
 inline matrix<T> transpose(matrix<T> const &mat) {
-  matrix<T> ret(mat.col_size(), mat.row_size());
-  for (size_t i = 0; i < mat.row_size(); ++i) ret.col(i) = mat.crow(i);
+  size_t r_ = mat.row(), c_ = mat.col();
+  matrix<T> ret(c_, r_);
+  ret.apply(0, c_, 0, r_, [&mat](size_t i, size_t j, T &val) { val = mat(j, i); });
   return ret;
 }
 

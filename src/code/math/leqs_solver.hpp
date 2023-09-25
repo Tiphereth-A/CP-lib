@@ -6,56 +6,49 @@
 #include "../util/abs_constexpr.hpp"
 #include "mat.hpp"
 #include "mat_merge_lr.hpp"
-#include "mat_merge_ud.hpp"
+#include "mat_trans.hpp"
+#include <valarray>
 
 namespace tifa_libs::math {
 
-template <class T>
-class LeqsSolver {
-  using mat = matrix<T>;
-
-  mat argmat;
-  size_t rk;
-  std::vector<size_t> fe_list;
-
-public:
-  // using guass method to solve linear equations Ax=b
-  template <class Ge>
-  LeqsSolver(mat const &A, mat const &b, Ge ge):
-    argmat(merge_lr(A, b)) {
-    assert(b.col_size() == 1);
-    rk = (u64)abs(ge(argmat, true));
-    argmat = argmat.submat(0, rk, 0, argmat.col_size());
-    if (rk + 1 < argmat.col_size()) {
-      argmat = merge_ud(argmat, mat(argmat.col_size() - rk - 1, argmat.col_size()));
-      for (size_t i = 0, j = rk; i < argmat.row_size(); ++i) {
-        if (argmat(i, i) != 0) continue;
-        if (j < argmat.row_size()) argmat.swap_row(i, j++);
-        fe_list.push_back(i);
-        argmat(i, i) = 1;
-      }
-      for (auto i : fe_list) argmat.col(i) /= argmat.cdiag(0);
+template <class T, class Is0, class Ge>
+std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0 is_0, Ge ge) {
+  size_t r_ = A.row(), c_ = A.col();
+  assert(b.col() == 1 && r_ == b.row());
+  matrix<T> Ab = merge_lr(A, b);
+  u64 rk = (u64)abs(ge(Ab, false));
+  vec<bool> used(c_, false);
+  vec<size_t> idxs;
+  for (size_t i = 0, _ = 0; i < r_; ++i) {
+    while (i + _ < c_ && is_0(Ab(i, i + _))) ++_;
+    if (i + _ >= c_) break;
+    used[i + _] = true;
+    idxs.push_back(i + _);
+  }
+  for (size_t i = rk; i < r_; ++i)
+    if (Ab(i, c_)) return {};
+  matrix<T> sol(c_ - rk + 1, c_);
+  {
+    auto &v = sol.data()[0];
+    for (size_t y = rk - 1; ~y; --y) {
+      size_t f = idxs[y];
+      v[f] = Ab(y, c_);
+      for (size_t x = f + 1; x < c_; x++) v[f] -= Ab(y, x) * v[x];
+      v[f] /= Ab(y, f);
     }
-    argmat.col(argmat.col_size() - 1) /= argmat.cdiag(0);
-    argmat.diag(0) = 1;
   }
-
-  constexpr size_t rank() const { return rk; }
-  // @return -1 of no solution, else number of free elements
-  constexpr ptrdiff_t fe_cnt() const { return (ptrdiff_t)(argmat.col_size() - rk) - 1; }
-  // values of free elements is 0
-  mat solution() const { return argmat.submat(0, argmat.row_size(), argmat.col_size() - 1, argmat.col_size()); }
-  // only for infinite solution, need set values of free elements
-  template <class Ge>
-  mat solution(mat const &fe_val, Ge ge) const {
-    const size_t fec = (size_t)fe_cnt();
-    assert(fe_val.col_size() == 1 && fe_val.row_size() == fec);
-    mat _ = argmat;
-    for (size_t i = 0; i < fec; ++i) _(fe_list[i], _.col_size() - 1) = fe_val(i, 0);
-    ge(_, true);
-    return _.submat(0, _.row_size(), _.col_size() - 1, _.col_size()) - solution();
+  for (size_t s = 0, _ = 0; s < c_; ++s) {
+    if (used[s]) continue;
+    auto &v = sol.data()[++_];
+    v[s] = 1;
+    for (size_t y = rk - 1; ~y; --y) {
+      size_t f = idxs[y];
+      for (size_t x = f + 1; x < c_; x++) v[f] -= Ab(y, x) * v[x];
+      v[f] /= Ab(y, f);
+    }
   }
-};
+  return transpose(sol);
+}
 
 }  // namespace tifa_libs::math
 

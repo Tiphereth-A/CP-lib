@@ -74,9 +74,8 @@ ForEachMacros:
   - foreach
   - Q_FOREACH
   - BOOST_FOREACH
-  - _for
-  - _rfor
-  - _for_graph
+  - FOR1_
+  - FOR2_
 IfMacros:
   - KJ_IF_MAYBE
 IncludeBlocks: Preserve

@@ -9,10 +9,10 @@
 namespace tifa_libs::math::ge_detail__ {
 
 template <class T>
-constexpr bool swapr__(matrix<T> &mat, size_t &r_, size_t r_pre_, size_t c_, size_t r_end) {
+constexpr bool swapr__(matrix<T> &mat, size_t &r_, size_t r_pre_, size_t r_end) {
   r_ = r_pre_;
   for (size_t j = r_ + 1; j < r_end; ++j)
-    if (abs(mat(j, c_)) > abs(mat(r_, c_))) r_ = j;
+    if (mat.data()[r_] < mat.data()[j]) r_ = j;
   if (r_ != r_pre_) {
     mat.swap_row(r_, r_pre_);
     return true;

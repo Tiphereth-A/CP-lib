@@ -8,7 +8,13 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline T trace(matrix<T> const &mat) { return mat.diag(0).sum(); }
+inline T trace(matrix<T> const &mat) {
+  size_t n = mat.row();
+  assert(n == mat.col());
+  T ret{};
+  for (size_t i = 0; i < n; ++i) ret += mat(i, i);
+  return ret;
+}
 
 }  // namespace tifa_libs::math
 

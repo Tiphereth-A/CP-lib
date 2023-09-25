@@ -83,6 +83,7 @@ public:
   friend constexpr mint_s30 operator/(const mint_s30 &lhs, const mint_s30 &rhs) { return mint_s30(lhs) /= rhs; }
   friend constexpr bool operator==(const mint_s30 &lhs, const mint_s30 &rhs) { return norm(lhs.v_) == norm(rhs.v_); }
   friend constexpr bool operator!=(const mint_s30 &lhs, const mint_s30 &rhs) { return norm(lhs.v_) != norm(rhs.v_); }
+  friend constexpr bool operator<(const mint_s30 &lhs, const mint_s30 &rhs) { return lhs.val() < rhs.val(); }
   friend std::istream &operator>>(std::istream &is, mint_s30 &rhs) {
     i32 x;
     is >> x;

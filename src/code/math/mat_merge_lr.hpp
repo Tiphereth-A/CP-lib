@@ -10,10 +10,12 @@ namespace tifa_libs::math {
 // [l] [r] -> [l r]
 template <class T>
 inline matrix<T> merge_lr(matrix<T> const &l, matrix<T> const &r) {
-  assert(l.row_size() == r.row_size());
-  matrix<T> ret(l.row_size(), l.col_size() + r.col_size());
-  ret.data()[std::gslice(0, {l.row_size(), l.col_size()}, {ret.col_size(), 1})] = l.data();
-  ret.data()[std::gslice(l.col_size(), {r.row_size(), r.col_size()}, {ret.col_size(), 1})] = r.data();
+  size_t r_ = l.row();
+  assert(r_ == r.row());
+  size_t lc_ = l.col(), rc_ = r.col(), c_ = lc_ + rc_;
+  matrix<T> ret(r_, c_);
+  ret.apply(0, r_, 0, lc_, [&l](size_t i, size_t j, T &val) { val = l(i, j); });
+  ret.apply(0, r_, lc_, c_, [lc_, &r](size_t i, size_t j, T &val) { val = r(i, j - lc_); });
   return ret;
 }
 

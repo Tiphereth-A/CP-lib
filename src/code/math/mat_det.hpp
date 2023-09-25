@@ -9,13 +9,13 @@ namespace tifa_libs::math {
 
 template <class T, class Ge>
 T det(matrix<T> const &mat, Ge ge) {
-  assert(mat.row_size() == mat.col_size());
-  if (mat.row_size() == 0) return 1;
+  size_t n = mat.row();
+  assert(n == mat.col());
   matrix<T> _ = mat;
   i64 rk_ = ge(_, false);
-  if ((u64)abs(rk_) != mat.row_size()) return T{};
+  if ((u64)abs(rk_) != n) return T{};
   T ret = _(0, 0);
-  for (size_t i = 1; i < mat.row_size(); ++i) ret *= _(i, i);
+  for (size_t i = 1; i < n; ++i) ret *= _(i, i);
   return rk_ < 0 ? -ret : ret;
 }
 

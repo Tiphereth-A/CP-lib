@@ -5,119 +5,111 @@
 
 namespace tifa_libs::math {
 
+#define FOR1_(i, l, r) for (size_t i = (l), i##ed__ = (r); i < i##ed__; ++i)
+#define FOR2_(i, row_l, row_r, j, col_l, col_r) \
+  FOR1_(i, row_l, row_r)                        \
+    FOR1_(j, col_l, col_r)
+
 template <class T>
 class matrix {
-  size_t r_sz, c_sz;
-  std::valarray<T> d;
+  vec<vec<T>> d;
 
 public:
-  matrix(size_t row, size_t col):
-    r_sz(row), c_sz(col), d(T{}, row * col) { assert(row > 0 && col > 0); }
-  matrix(size_t row, size_t col, std::valarray<T> const &data):
-    r_sz(row), c_sz(col), d(data) { assert(row > 0 && col > 0 && data.size() == row * col); }
+  matrix(size_t row, size_t col, T const &v = T{}):
+    d(row, vec<T>(col, v)) { assert(row > 0 && col > 0); }
 
-  constexpr size_t row_size() const { return r_sz; }
-  constexpr size_t col_size() const { return c_sz; }
-  constexpr std::valarray<T> data() const { return d; }
-  constexpr std::valarray<T> &data() { return d; }
-  constexpr T &operator()(size_t r, size_t c) { return d[r * col_size() + c]; }
-  constexpr T operator()(size_t r, size_t c) const { return d[r * col_size() + c]; }
+  constexpr size_t row() const { return d.size(); }
+  constexpr size_t col() const { return d[0].size(); }
+  constexpr vec<vec<T>> data() const { return d; }
+  constexpr vec<vec<T>> &data() { return d; }
+  constexpr typename vec<T>::reference operator()(size_t r, size_t c) { return d[r][c]; }
+  constexpr typename vec<T>::const_reference operator()(size_t r, size_t c) const { return d[r][c]; }
+
+  template <class F>
+  void apply(size_t row_l, size_t row_r, size_t col_l, size_t col_r, F f) {
+    assert(row_l < row_r && row_r <= row());
+    assert(col_l < col_r && col_r <= col());
+    FOR2_(i, row_l, row_r, j, col_l, col_r) f(i, j, (*this)(i, j));
+  }
 
   friend std::istream &operator>>(std::istream &is, matrix &mat) {
-    for (auto &i : mat.data()) is >> i;
+    size_t r_ = mat.row(), c_ = mat.col();
+    FOR2_(i, 0, r_, j, 0, c_) is >> mat(i, j);
     return is;
   }
   friend std::ostream &operator<<(std::ostream &os, matrix const &mat) {
-    for (size_t i = 0; i < mat.row_size() - 1; ++i)
-      for (size_t j = 0; j < mat.col_size(); ++j) os << mat(i, j) << " \n"[j == mat.col_size() - 1];
-    os << mat(mat.row_size() - 1, 0);
-    for (size_t j = 1; j < mat.col_size(); ++j) os << ' ' << mat(mat.row_size() - 1, j);
+    size_t r_ = mat.row(), c_ = mat.col();
+    FOR2_(i, 0, r_ - 1, j, 0, c_) os << mat(i, j) << " \n"[j + 1 == c_];
+    os << mat(r_ - 1, 0);
+    FOR1_(j, 1, c_) os << ' ' << mat(r_ - 1, j);
     return os;
   }
 
-  constexpr std::slice_array<T> row(size_t r) { return d[std::slice(r * col_size(), col_size(), 1)]; }
-  constexpr std::valarray<T> crow(size_t r) const { return d[std::slice(r * col_size(), col_size(), 1)]; }
-
-  constexpr std::slice_array<T> col(size_t c) { return d[std::slice(c, row_size(), col_size())]; }
-  constexpr std::valarray<T> ccol(size_t c) const { return d[std::slice(c, row_size(), col_size())]; }
-
-  constexpr std::slice_array<T> diag(ptrdiff_t d) {
-    if (d >= 0) {
-      assert((size_t)d < col_size());
-      return this->d[std::slice((size_t)d, std::min(row_size(), col_size() - (size_t)d), col_size() + 1)];
-    } else {
-      assert((size_t)(-d) < row_size());
-      return this->d[std::slice((size_t)(-d) * row_size(), std::min(col_size(), row_size() - (size_t)(-d)), col_size() + 1)];
-    }
+  matrix submat(size_t row_l, size_t row_r, size_t col_l, size_t col_r) const {
+    assert(row_l < row_r && row_r <= row());
+    assert(col_l < col_r && col_r <= col());
+    matrix ret(row_r - row_l, col_r - col_l);
+    ret.apply(0, ret.row(), 0, ret.col(), [this, row_l, row_r](size_t i, size_t j, T &v) { v = (*this)(i + row_l, j + row_r); });
+    return ret;
   }
-  constexpr std::valarray<T> cdiag(ptrdiff_t d) const {
-    if (d >= 0) {
-      assert((size_t)d < col_size());
-      return this->d[std::slice((size_t)d, std::min(row_size(), col_size() - (size_t)d), col_size() + 1)];
-    } else {
-      assert((size_t)(-d) < row_size());
-      return this->d[std::slice((size_t)(-d) * row_size(), std::min(col_size(), row_size() - (size_t)(-d)), col_size() + 1)];
-    }
-  }
-
-  matrix submat(size_t row_l, size_t row_r, size_t col_l, size_t col_r) const { return matrix(row_r - row_l, col_r - col_l, d[std::gslice(row_l * col_size() + col_l, {row_r - row_l, col_r - col_l}, {col_size(), 1})]); }
 
   constexpr void swap_row(size_t r1, size_t r2) {
+    assert(r1 < row() && r2 < row());
     if (r1 == r2) return;
-    auto __ = crow(r1);
-    row(r1) = row(r2);
-    row(r2) = __;
+    std::swap(d[r1], d[r2]);
   }
   constexpr void swap_col(size_t c1, size_t c2) {
+    assert(c1 < col() && c2 < col());
     if (c1 == c2) return;
-    auto __ = ccol(c1);
-    col(c1) = col(c2);
-    col(c2) = __;
+    FOR1_(i, 0, row()) std::swap((*this)(i, c1), (*this)(i, c2));
   }
 
   constexpr friend matrix operator+(matrix l, const T &v) { return l += v; }
+  constexpr friend matrix operator+(const T &v, matrix l) { return l += v; }
   constexpr matrix &operator+=(const T &v) {
-    d += v;
+    apply(0, row(), 0, col(), [&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val += v; });
+    return *this;
+  }
+  constexpr friend matrix operator-(matrix l, const T &v) { return l -= v; }
+  constexpr friend matrix operator-(const T &v, matrix l) { return l -= v; }
+  constexpr matrix &operator-=(const T &v) {
+    apply(0, row(), 0, col(), [&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val -= v; });
+    return *this;
+  }
+  constexpr friend matrix operator*(matrix l, const T &v) { return l *= v; }
+  constexpr friend matrix operator*(const T &v, matrix l) { return l *= v; }
+  constexpr matrix &operator*=(const T &v) {
+    apply(0, row(), 0, col(), [&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val *= v; });
     return *this;
   }
 
   constexpr friend matrix operator+(matrix l, const matrix &r) { return l += r; }
   constexpr matrix &operator+=(const matrix &r) {
-    assert(row_size() == r.row_size() && col_size() == r.col_size());
-    d += r.d;
+    assert(row() == r.row() && col() == r.col());
+    apply(0, row(), 0, col(), [&r](size_t i, size_t j, T &val) { val += r(i, j); });
     return *this;
   }
-
-  constexpr friend matrix operator-(matrix l, const T &v) { return l -= v; }
-  constexpr matrix &operator-=(const T &v) {
-    d -= v;
-    return *this;
-  }
-
   constexpr friend matrix operator-(matrix l, const matrix &r) { return l -= r; }
   constexpr matrix &operator-=(const matrix &r) {
-    assert(row_size() == r.row_size() && col_size() == r.col_size());
-    d -= r.d;
-    return *this;
-  }
-
-  constexpr friend matrix operator*(matrix l, const T &v) { return l *= v; }
-  constexpr matrix &operator*=(const T &v) {
-    d *= v;
+    assert(row() == r.row() && col() == r.col());
+    apply(0, row(), 0, col(), [&r](size_t i, size_t j, T &val) { val -= r(i, j); });
     return *this;
   }
 
   constexpr friend matrix operator*(const matrix &l, const matrix &r) {
-    assert(l.col_size() == r.row_size());
-    matrix ret(l.row_size(), r.col_size());
-    for (size_t i = 0; i < ret.row_size(); ++i) {
-      auto &&r_ = l.crow(i);
-      for (size_t j = 0; j < ret.col_size(); ++j) ret(i, j) = (r_ * r.ccol(j)).sum();
-    }
+    assert(l.col() == r.row());
+    matrix ret(l.row(), r.col());
+    size_t i_ = l.row(), j_ = l.col(), k_ = r.col();
+    FOR1_(i, 0, i_)
+      FOR1_(j, 0, j_)
+        FOR1_(k, 0, k_) ret(i, k) += l(i, j) * r(j, k);
     return ret;
   }
   constexpr matrix &operator*=(const matrix &r) { return *this = *this * r; }
 };
+
+#undef FOR1_
+#undef FOR2_
 
 }  // namespace tifa_libs::math
 
