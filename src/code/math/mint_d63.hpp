@@ -19,8 +19,8 @@ class mint_d63 {
   }
   static inline u64 norm(i64 x) { return x + (MOD & -(x < 0)); }
 
-  static u64 MOD, R, R2;
-  static i64 SMOD;
+  static inline u64 MOD, R, R2;
+  static inline i64 SMOD;
 
 public:
   static inline bool set_mod(u64 m) {

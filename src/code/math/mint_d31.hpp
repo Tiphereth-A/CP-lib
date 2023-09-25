@@ -9,15 +9,15 @@ template <int>
 class mint_d31 {
   u32 v_{};
 
-  static inline u32 norm(i32 x) { return x + (-(x < 0) & MOD); }
+  static inline u32 norm(i32 x) { return (u32)(x + (-(x < 0) & (i32)MOD)); }
   static inline u32 redc(u64 x) {
-    u32 t = (x + (u64)((u32)(x)*R) * MOD_ODD) >> 32;
+    u32 t = (u32)((x + (u64)((u32)(x)*R) * MOD_ODD) >> 32);
     return t - (MOD_ODD & -((MOD_ODD - 1 - t) >> 31));
   }
   static inline u32 tsf(u32 x) { return redc((u64)(x % MOD_ODD) * R2) << OFFSET | (x & MASK); }
 
-  static u32 R, R2, MOD, MOD_ODD, OFFSET, MASK;
-  static i32 SMOD;
+  static inline u32 R, R2, MOD, MOD_ODD, OFFSET, MASK;
+  static inline i32 SMOD;
 
 public:
   static inline bool set_mod(u32 m) {
@@ -29,7 +29,7 @@ public:
       iv *= t - MOD_ODD * iv, iv *= t - MOD_ODD * iv;
       R = iv * (MOD_ODD * iv - t);
     }
-    R2 = -(u64)(MOD_ODD) % MOD_ODD;
+    R2 = (u32)(-(u64)(MOD_ODD) % MOD_ODD);
     return true;
   }
   static inline u32 mod() { return MOD; }
@@ -37,7 +37,7 @@ public:
   mint_d31() {}
   template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
   mint_d31(T v):
-    v_(tsf(norm(v % SMOD))) {}
+    v_(tsf(norm((i32)(v % (T)SMOD)))) {}
   u32 val() const {
     u32 h = redc(v_ >> OFFSET);
     return ((h - v_) * R & MASK) * MOD_ODD + h;

@@ -14,7 +14,7 @@ int main() {
   std::cin >> n;
   mat a(n, n);
   std::cin >> a;
-  auto is_0 = [](mint const &x) { return x == 0; };
+  auto is_0 = [](mint const &x) { return x.val() == 0; };
   auto ge = [&is_0](mat &m, bool f) { return tifa_libs::math::ge_basic(m, is_0, f); };
   std::cout << det(a, ge);
   return 0;

@@ -4,6 +4,7 @@
 #include "../util/util.hpp"
 
 #include "mat.hpp"
+#include "../util/abs_constexpr.hpp"
 
 namespace tifa_libs::math {
 
@@ -13,7 +14,7 @@ T det(matrix<T> const &mat, Ge ge) {
   assert(n == mat.col());
   matrix<T> _ = mat;
   i64 rk_ = ge(_, false);
-  if ((u64)abs(rk_) != n) return T{};
+  if ((size_t)abs(rk_) != n) return T{};
   T ret = _(0, 0);
   for (size_t i = 1; i < n; ++i) ret *= _(i, i);
   return rk_ < 0 ? -ret : ret;

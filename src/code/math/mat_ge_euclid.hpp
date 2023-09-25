@@ -8,8 +8,8 @@
 
 namespace tifa_libs::math {
 
-template <class T, class Is0>
-inline i64 ge_euclid(matrix<T> &mat, Is0 is_0, size_t row_start, size_t row_end, bool clear_u = true) {
+template <class T, class Is0, class Div>
+inline i64 ge_euclid(matrix<T> &mat, Is0 is0, Div div, size_t row_start, size_t row_end, bool clear_u = true) {
   assert(row_start < row_end && row_end <= mat.row());
   size_t r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);
   u64 rk = 0;
@@ -17,26 +17,30 @@ inline i64 ge_euclid(matrix<T> &mat, Is0 is_0, size_t row_start, size_t row_end,
   for (size_t i = row_start, now_row = row_start, j_ = i; i < row_end; ++i) {
     neg ^= ge_detail__::swapr__(mat, now_row, rk, row_end);
     j_ = std::max(j_, i);
-    while (j_ < c_ && is_0(mat(rk, j_))) ++j_;
+    while (j_ < c_ && is0(mat(rk, j_))) ++j_;
     if (j_ == c_) break;
-    for (u64 j = clear_u ? 0 : rk; j < row_end; ++j) {
-      if (j == rk || is_0(mat(j, j_))) continue;
+    for (u64 j = rk + 1; j < row_end; ++j) {
+      if (is0(mat(j, j_))) continue;
       while (true) {
-        T _ = mat(j, j_) / mat(rk, j_);
-        for (size_t k = 0; k < c_; ++k) mat(j, k) -= mat(rk, k);
-        if (!is_0(mat(j, j_))) {
-          mat.swap_row(rk, j);
-          neg ^= 1;
-        } else
-          break;
+        if (is0(mat(j, j_))) break;
+        T _ = div(mat(rk, j_), mat(j, j_));
+        for (size_t k = j_; k < c_; ++k) mat(rk, k) -= _ * mat(j, k);
+        mat.swap_row(rk, j);
+        neg ^= 1;
       }
     }
+    if (clear_u && !is0(mat(rk, j_)))
+      for (u64 j = 0; j < rk; ++j) {
+        if (is0(mat(j, j_))) continue;
+        if (T _ = div(mat(j, j_), mat(rk, j_)); !is0(_))
+          for (size_t k = j_; k < c_; ++k) mat(j, k) -= _ * mat(rk, k);
+      }
     if (++rk >= rk_max) break;
   }
   return neg ? -((i64)rk) : (i64)rk;
 }
-template <class T, class Is0>
-inline i64 ge_euclid(matrix<T> &mat, Is0 is_0, bool clear_u = true) { return ge_euclid(mat, is_0, 0, mat.row(), clear_u); }
+template <class T, class Is0, class Div>
+inline i64 ge_euclid(matrix<T> &mat, Is0 is_0, Div div, bool clear_u = true) { return ge_euclid(mat, is_0, div, 0, mat.row(), clear_u); }
 
 }  // namespace tifa_libs::math
 
