@@ -18,7 +18,15 @@ std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0
   matrix<T> Ab = merge_lr(A, b);
   u64 rk = (u64)abs(ge(Ab, false));
   if (rk > c_) return {};
-  if (is_0(Ab(rk - 1, c_ - 1)) && !is_0(Ab(rk - 1, c_))) return {};
+  if (!is_0(Ab(rk - 1, c_))) {
+    bool f = true;
+    for (size_t i = 0; i < c_; ++i)
+      if (!is_0(Ab(rk - 1, i))) {
+        f = false;
+        break;
+      }
+    if (f) return {};
+  }
   for (size_t i = rk; i < r_; ++i)
     if (!is_0(Ab(i, c_))) return {};
   vec<bool> used(c_, false);
