@@ -57,244 +57,247 @@ notebook:
       test_ext: cpp
     ds: null
     geo2d:
-    - circle_class:
+    - circle_class: circle_class
       code_ext: hpp
       test_ext: cpp
-    - circle:
+    - circle: circle
       code_ext: hpp
       test_ext: cpp
-    - cvh_class:
+    - cvh_class: cvh_class
       code_ext: hpp
       test_ext: cpp
-    - cvh:
+    - cvh: cvh
       code_ext: hpp
       test_ext: cpp
-    - dcvh_class:
+    - dcvh_class: dcvh_class
       code_ext: hpp
       test_ext: cpp
-    - dcvh:
+    - dcvh: dcvh
       code_ext: hpp
       test_ext: cpp
-    - line_class:
+    - line_class: line_class
       code_ext: hpp
       test_ext: cpp
-    - line:
+    - line: line
       code_ext: hpp
       test_ext: cpp
-    - point_class:
+    - point_class: point_class
       code_ext: hpp
       test_ext: cpp
-    - point:
+    - point: point
       code_ext: hpp
       test_ext: cpp
-    - polygon_class:
+    - polygon_class: polygon_class
       code_ext: hpp
       test_ext: cpp
-    - polygon:
+    - polygon: polygon
       code_ext: hpp
       test_ext: cpp
-    - rel_cc:
+    - rel_cc: rel_cc
       code_ext: hpp
       test_ext: cpp
-    - rel_cp:
+    - rel_cp: rel_cp
       code_ext: hpp
       test_ext: cpp
-    - rel_cs:
+    - rel_cs: rel_cs
       code_ext: hpp
       test_ext: cpp
-    - rel_poc:
+    - rel_poc: rel_poc
       code_ext: hpp
       test_ext: cpp
-    - rel_pop:
+    - rel_pop: rel_pop
       code_ext: hpp
       test_ext: cpp
-    - triangle_class:
+    - triangle_class: triangle_class
       code_ext: hpp
       test_ext: cpp
-    - triangle:
+    - triangle: triangle
       code_ext: hpp
       test_ext: cpp
-    - util:
+    - util: util
       code_ext: hpp
       test_ext: cpp
     graph: null
     math:
-    - abs_constexpr:
+    - abs_constexpr: abs_constexpr
       code_ext: hpp
       test_ext: cpp
-    - bsgs:
+    - bsgs: bsgs
       code_ext: hpp
       test_ext: cpp
-    - crt_mod:
+    - crt_mod: crt_mod
       code_ext: hpp
       test_ext: cpp
-    - crt:
+    - crt: crt
       code_ext: hpp
       test_ext: cpp
-    - do_quot:
+    - do_quot: do_quot
       code_ext: hpp
       test_ext: cpp
-    - euler_phi_u32:
+    - euler_phi_u32: euler_phi_u32
       code_ext: hpp
       test_ext: cpp
-    - euler_phi_u64:
+    - euler_phi_u64: euler_phi_u64
       code_ext: hpp
       test_ext: cpp
-    - exbsgs:
+    - exbsgs: exbsgs
       code_ext: hpp
       test_ext: cpp
-    - exgcd:
+    - exgcd: exgcd
       code_ext: hpp
       test_ext: cpp
-    - exlucas:
+    - exlucas: exlucas
       code_ext: hpp
       test_ext: cpp
-    - fact_mod_gen:
+    - fact_mod_gen: fact_mod_gen
       code_ext: hpp
       test_ext: cpp
-    - gauss_int:
+    - gauss_int: gauss_int
       code_ext: hpp
       test_ext: cpp
-    - gcd_fp:
+    - gcd_fp: gcd_fp
       code_ext: hpp
       test_ext: cpp
-    - ifact_mod_gen:
+    - ifact_mod_gen: ifact_mod_gen
       code_ext: hpp
       test_ext: cpp
-    - inv_gcd:
+    - inv_gcd: inv_gcd
       code_ext: hpp
       test_ext: cpp
-    - inv_mod_gen:
+    - inv_mod_gen: inv_mod_gen
       code_ext: hpp
       test_ext: cpp
-    - inverse:
+    - inverse: inverse
       code_ext: hpp
       test_ext: cpp
-    - invseq_mod_gen:
+    - invseq_mod_gen: invseq_mod_gen
       code_ext: hpp
       test_ext: cpp
-    - is_prime:
+    - is_prime: is_prime
       code_ext: hpp
       test_ext: cpp
-    - isqrt:
+    - isqrt: isqrt
       code_ext: hpp
       test_ext: cpp
-    - leqs_solver:
+    - leqs_solver: leqs_solver
       code_ext: hpp
       test_ext: cpp
-    - linear_mpf_seive:
+    - linear_mpf_seive: linear_mpf_seive
       code_ext: hpp
       test_ext: cpp
-    - linear_mu_seive:
+    - linear_mu_seive: linear_mu_seive
       code_ext: hpp
       test_ext: cpp
-    - linear_phi_seive:
+    - linear_phi_seive: linear_phi_seive
       code_ext: hpp
       test_ext: cpp
-    - linear_seive:
+    - linear_seive: linear_seive
       code_ext: hpp
       test_ext: cpp
-    - linear_sigma_seive:
+    - linear_sigma_seive: linear_sigma_seive
       code_ext: hpp
       test_ext: cpp
-    - lucas_pp:
+    - lucas_pp: lucas_pp
       code_ext: hpp
       test_ext: cpp
-    - lucas:
+    - lucas: lucas
       code_ext: hpp
       test_ext: cpp
-    - mat_det:
+    - mat_det: mat_det
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_basic:
+    - mat_ge_basic: mat_ge_basic
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_euclid:
+    - mat_ge_euclid: mat_ge_euclid
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_swapr_:
+    - mat_ge_swapr_: mat_ge_swapr_
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_xor:
+    - mat_ge_xor: mat_ge_xor
       code_ext: hpp
       test_ext: cpp
-    - mat_inv:
+    - mat_inv: mat_inv
       code_ext: hpp
       test_ext: cpp
-    - mat_merge_lr:
+    - mat_merge_lr: mat_merge_lr
       code_ext: hpp
       test_ext: cpp
-    - mat_merge_ud:
+    - mat_merge_ud: mat_merge_ud
       code_ext: hpp
       test_ext: cpp
-    - mat_pow:
+    - mat_pow: mat_pow
       code_ext: hpp
       test_ext: cpp
-    - mat_rk:
+    - mat_rk: mat_rk
       code_ext: hpp
       test_ext: cpp
-    - mat_tr:
+    - mat_tr: mat_tr
       code_ext: hpp
       test_ext: cpp
-    - mat_trans:
+    - mat_trans: mat_trans
       code_ext: hpp
       test_ext: cpp
-    - mat:
+    - mat: mat
       code_ext: hpp
       test_ext: cpp
-    - mcn_mod:
+    - mcn_mod: mcn_mod
       code_ext: hpp
       test_ext: cpp
-    - mint_d31:
+    - mint_d31: mint_d31
       code_ext: hpp
       test_ext: cpp
-    - mint_d63:
+    - mint_d63: mint_d63
       code_ext: hpp
       test_ext: cpp
-    - mint_s30:
+    - mint_s30: mint_s30
       code_ext: hpp
       test_ext: cpp
-    - mint_s63:
+    - mint_s63: mint_s63
       code_ext: hpp
       test_ext: cpp
-    - mul_mod_s:
+    - mul_mod_s: mul_mod_s
       code_ext: hpp
       test_ext: cpp
-    - mul_mod_u:
+    - mul_mod_u: mul_mod_u
       code_ext: hpp
       test_ext: cpp
-    - pfactors:
+    - pfactors: pfactors
       code_ext: hpp
       test_ext: cpp
-    - proot_u32:
+    - proot_u32: proot_u32
       code_ext: hpp
       test_ext: cpp
-    - proot_u64:
+    - proot_u64: proot_u64
       code_ext: hpp
       test_ext: cpp
-    - qpow_mod:
+    - qpow_mod: qpow_mod
       code_ext: hpp
       test_ext: cpp
-    - qpow:
+    - qpow: qpow
       code_ext: hpp
       test_ext: cpp
-    - qresidue:
+    - qresidue: qresidue
       code_ext: hpp
       test_ext: cpp
-    - qtetra_mod:
+    - qtetra_mod: qtetra_mod
       code_ext: hpp
       test_ext: cpp
-    - rgcd:
+    - rgcd: rgcd
       code_ext: hpp
       test_ext: cpp
-    - rpow:
+    - rpow: rpow
       code_ext: hpp
       test_ext: cpp
-    - safe_mod:
+    - safe_mod: safe_mod
+      code_ext: hpp
+      test_ext: cpp
+    - spmat: 稀疏矩阵
       code_ext: hpp
       test_ext: cpp
     poly:
-    - poly:
+    - poly: poly
       code_ext: hpp
       test_ext: cpp
     str: null
