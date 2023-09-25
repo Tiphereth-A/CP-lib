@@ -3,20 +3,19 @@
 
 #include "../util/util.hpp"
 
-#include "mat.hpp"
 #include "../util/abs_constexpr.hpp"
+#include "mat.hpp"
 
 namespace tifa_libs::math {
 
 template <class T, class Ge>
-T det(matrix<T> const &mat, Ge ge) {
+T det(matrix<T> mat, Ge ge) {
   size_t n = mat.row();
   assert(n == mat.col());
-  matrix<T> _ = mat;
-  i64 rk_ = ge(_, false);
+   i64 rk_ = ge(mat, false);
   if ((size_t)abs(rk_) != n) return T{};
-  T ret = _(0, 0);
-  for (size_t i = 1; i < n; ++i) ret *= _(i, i);
+  T ret = mat(0, 0);
+  for (size_t i = 1; i < n; ++i) ret *= mat(i, i);
   return rk_ < 0 ? -ret : ret;
 }
 
