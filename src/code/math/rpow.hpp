@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 class rpow {
   u64 b_;
   u64 m_;
-  std::vector<u64> b0, b1;
+  vec<u64> b0, b1;
 
 public:
   explicit rpow() = default;

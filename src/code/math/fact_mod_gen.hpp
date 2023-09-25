@@ -8,9 +8,9 @@
 namespace tifa_libs::math {
 
 // i!
-inline std::vector<u64> fact_mod_gen(size_t sz, u64 mod) {
+inline vec<u64> fact_mod_gen(size_t sz, u64 mod) {
   assert(sz > 1 && mod >= sz);
-  std::vector<u64> ans(sz, 1);
+  vec<u64> ans(sz, 1);
   for (size_t i = 2; i < sz; ++i) ans[i] = mul_mod_u(ans[i - 1], i, mod);
   return ans;
 }

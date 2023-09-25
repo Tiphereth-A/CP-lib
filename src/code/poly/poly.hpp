@@ -13,7 +13,7 @@ namespace detail__ {
 using namespace ::tifa_libs::math;
 
 struct FFT_INFO_ {
-  static inline std::vector<size_t> root;
+  static inline vec<size_t> root;
 
   static void init(size_t n) {
     assert((n & (n - 1)) == 0);
@@ -26,7 +26,7 @@ struct FFT_INFO_ {
 template <u32 MOD>
 struct NTT_ {
   constexpr NTT_() = default;
-  constexpr void operator()(std::vector<u32> &g, bool inv = false) {
+  constexpr void operator()(vec<u32> &g, bool inv = false) {
     size_t n = g.size();
     FFT_INFO_::init(n);
     f.resize(n);
@@ -55,7 +55,7 @@ struct NTT_ {
 private:
   constexpr static u32 G = proot_u32(MOD), IG = inverse(G, MOD);
 
-  static inline std::vector<u64> f, w;
+  static inline vec<u64> f, w;
 };
 
 template <class DBL>
@@ -65,7 +65,7 @@ struct FFT_ {
   using comp = std::complex<DBL>;
 
   constexpr FFT_() = default;
-  constexpr void operator()(std::vector<comp> &g, bool inv = false) {
+  constexpr void operator()(vec<comp> &g, bool inv = false) {
     size_t n = g.size();
     FFT_INFO_::init(n);
     w.resize(n);
@@ -89,13 +89,13 @@ struct FFT_ {
 private:
   constexpr static DBL TAU = DBL(std::acos((DBL)1) * 2);
 
-  static inline std::vector<comp> w;
+  static inline vec<comp> w;
 };
 
 struct PolyBase__ {
-  static std::vector<u32> naive_conv(std::vector<u32> const &lhs, std::vector<u32> const &rhs, u32 mod) {
+  static vec<u32> naive_conv(vec<u32> const &lhs, vec<u32> const &rhs, u32 mod) {
     size_t n = lhs.size(), m = rhs.size();
-    std::vector<u32> ans(n + m - 1);
+    vec<u32> ans(n + m - 1);
     if (n < m)
       for (size_t j = 0; j < m; j++)
         for (size_t i = 0; i < n; i++) ans[i + j] = (u32)((ans[i + j] + (u64)lhs[i] * rhs[j]) % mod);
@@ -113,13 +113,13 @@ struct SmodPolyBase_: public PolyBase__ {
 
   static inline NTT_<MOD> ntt;
 
-  std::vector<u32> data;
+  vec<u32> data;
 
   explicit constexpr SmodPolyBase_(size_t sz = 1):
     data(std::max((size_t)1, sz)) {}
   explicit constexpr SmodPolyBase_(std::initializer_list<u32> v):
     data(v) {}
-  explicit constexpr SmodPolyBase_(std::vector<u32> const &v):
+  explicit constexpr SmodPolyBase_(vec<u32> const &v):
     data(v) {}
 
   constexpr static u32 mod() { return MOD; }
@@ -133,7 +133,7 @@ struct SmodPolyBase_: public PolyBase__ {
       data = naive_conv(data, rhs.data, MOD);
       return *this;
     }
-    std::vector<u32> a__(data), b__(rhs.data);
+    vec<u32> a__(data), b__(rhs.data);
     data.resize(data.size() + rhs.data.size() - 1);
     size_t n = (size_t)(1) << (size_t)std::max(1., std::ceil(std::log2(data.size())));
     a__.resize(n);
@@ -163,13 +163,13 @@ struct DmodPolyBase_: public PolyBase__ {
   static inline FFT_<DBL> fft;
   using comp = typename decltype(fft)::comp;
 
-  std::vector<u32> data;
+  vec<u32> data;
 
   explicit DmodPolyBase_(size_t sz = 1):
     data(std::max((size_t)1, sz)) { assert(1 <= mod_); }
   explicit DmodPolyBase_(std::initializer_list<u32> v):
     data(v) { assert(1 <= mod_); }
-  explicit DmodPolyBase_(std::vector<u32> const &v):
+  explicit DmodPolyBase_(vec<u32> const &v):
     data(v) { assert(1 <= mod_); }
 
 #define OOCR_(op, ...) \
@@ -180,7 +180,7 @@ struct DmodPolyBase_: public PolyBase__ {
       data = naive_conv(data, rhs.data, mod());
       return *this;
     }
-    std::vector<comp> a__(data.size()), b__(rhs.data.size());
+    vec<comp> a__(data.size()), b__(rhs.data.size());
     for (size_t i = 0; i < data.size(); ++i) a__[i].real(data[i] & 0x7fff), a__[i].imag(data[i] >> 15);
     for (size_t i = 0; i < rhs.data.size(); ++i) b__[i].real(rhs.data[i] & 0x7fff), b__[i].imag(rhs.data[i] >> 15);
     data.resize(data.size() + rhs.data.size() - 1);
@@ -189,7 +189,7 @@ struct DmodPolyBase_: public PolyBase__ {
     b__.resize(n);
     fft(a__);
     fft(b__);
-    std::vector<comp> p__(n), q__(n);
+    vec<comp> p__(n), q__(n);
     for (size_t i = 0; i < n; ++i) p__[i] = b__[i] * (a__[i] + conj(a__[(n - i) % n])) * comp{.5, 0};
     for (size_t i = 0; i < n; ++i) q__[i] = b__[i] * (a__[i] - conj(a__[(n - i) % n])) * comp{0, -.5};
     fft(p__, true);
@@ -283,7 +283,7 @@ public:
     p(sz) {}
   explicit constexpr Poly(std::initializer_list<u32> v):
     p(v) {}
-  explicit constexpr Poly(std::vector<u32> const &v):
+  explicit constexpr Poly(vec<u32> const &v):
     p(v) {}
 
   constexpr friend std::istream &operator>>(std::istream &is, Poly &poly) {
@@ -529,7 +529,7 @@ constexpr POLYT_ czt(POLYT_ const &f, u32 c, size_t m) {
 template <class T>
 constexpr POLYT_ mpe(POLYT_ f, POLYT_ a) {
   class SegTree {
-    std::vector<POLYT_> t;
+    vec<POLYT_> t;
 
     constexpr void init_(POLYT_ const &a, size_t k, size_t l, size_t r) {
       if (l == r) {
@@ -595,7 +595,7 @@ constexpr POLYT_ interp(POLYT_ const &x, POLYT_ const &y) {
     }
 
   public:
-    std::vector<POLYT_> t;
+    vec<POLYT_> t;
 
     explicit constexpr SegTree(POLYT_ const &a):
       t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }

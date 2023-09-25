@@ -11,7 +11,7 @@ int main() {
     tifa_libs::u64 a;
     std::cin >> a;
     auto ans = tifa_libs::math::pfactors(a);
-    std::vector<tifa_libs::u64> pf;
+    tifa_libs::vec<tifa_libs::u64> pf;
     for (auto [k, v] : ans)
       for (tifa_libs::u32 i = 0; i < v; ++i) pf.push_back(k);
     std::cout << pf.size();

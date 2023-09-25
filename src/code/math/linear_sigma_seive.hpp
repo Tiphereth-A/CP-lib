@@ -7,8 +7,8 @@
 
 namespace tifa_libs::math {
 
-inline std::vector<u64> linear_sigma_seive(u32 n) {
-  std::vector<u64> pw(n), sigma(n);
+inline vec<u64> linear_sigma_seive(u32 n) {
+  vec<u64> pw(n), sigma(n);
   sigma[1] = 1;
   linear_seive(
     n,

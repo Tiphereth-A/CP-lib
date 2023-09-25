@@ -15,8 +15,8 @@ class RGCD {
       a(_a), b(_b), c(_c) {}
   };
 
-  std::vector<F3> fs;
-  std::vector<std::vector<u32>> g_;
+  vec<F3> fs;
+  vec<vec<u32>> g_;
 
 public:
   explicit RGCD(u32 n):

@@ -13,7 +13,7 @@ namespace tifa_libs::math {
 class MCN {
   u64 m_;
 
-  std::vector<u64> fact, ifact;
+  vec<u64> fact, ifact;
 
 public:
   MCN(u64 mod, size_t max_m):

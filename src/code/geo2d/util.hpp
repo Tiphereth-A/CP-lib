@@ -1,11 +1,13 @@
 #ifndef TIFA_LIBS_GEO2D_UTIL
 #define TIFA_LIBS_GEO2D_UTIL
 
+#include "../util/util.hpp"
+
 namespace tifa_libs::geo2d {
 using data_t = double;
 using uint_data_t = uint64_t;
 template <typename Tp>
-using cont_t = std::vector<Tp>;
+using cont_t = vec<Tp>;
 template <typename Tp>
 using cont_set_t = std::set<Tp>;
 

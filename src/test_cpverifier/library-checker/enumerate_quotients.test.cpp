@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr);
   tifa_libs::u64 n;
   std::cin >> n;
-  std::vector<tifa_libs::u64> ans;
+  tifa_libs::vec<tifa_libs::u64> ans;
   tifa_libs::math::do_quot(n, [&ans]([[maybe_unused]] tifa_libs::u64 l, [[maybe_unused]] tifa_libs::u64 r, tifa_libs::u64 q) { ans.push_back(q); });
   std::sort(ans.begin(), ans.end());
   std::cout << ans.size() << '\n';

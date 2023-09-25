@@ -8,10 +8,10 @@
 
 namespace tifa_libs::math {
 
-inline std::optional<std::pair<u32, u32>> crt_mod(const std::vector<i32> &a, const std::vector<u32> &m, const u32 mod) {
+inline std::optional<std::pair<u32, u32>> crt_mod(const vec<i32> &a, const vec<u32> &m, const u32 mod) {
   if (a.size() != m.size()) return {};
   const size_t n = a.size();
-  std::vector<u32> m_cpy(m);
+  vec<u32> m_cpy(m);
   for (size_t i = 0; i < n; ++i) {
     u32 &mi = m_cpy[i];
     for (size_t j = 0; j < i; ++j) {
@@ -29,7 +29,7 @@ inline std::optional<std::pair<u32, u32>> crt_mod(const std::vector<i32> &a, con
     }
   }
   m_cpy.push_back(mod);
-  std::vector<i32> pp(n + 1, 1), res(n + 1);
+  vec<i32> pp(n + 1, 1), res(n + 1);
   for (size_t i = 0; i < n; ++i) {
     i64 u = safe_mod((safe_mod(a[i], m_cpy[i]) - res[i]) * (i64)inverse((u64)pp[i], m_cpy[i]), m_cpy[i]);
     for (size_t j = i + 1; j <= n; ++j) {

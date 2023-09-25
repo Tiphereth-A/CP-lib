@@ -7,8 +7,8 @@
 
 namespace tifa_libs::math {
 
-inline std::vector<i32> linear_mpf_seive(u32 n) {
-  std::vector<i32> mu(n);
+inline vec<i32> linear_mpf_seive(u32 n) {
+  vec<i32> mu(n);
   mu[1] = 1;
   linear_seive(
     n,

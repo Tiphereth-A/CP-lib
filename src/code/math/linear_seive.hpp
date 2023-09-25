@@ -6,9 +6,9 @@
 namespace tifa_libs::math {
 
 template <class F1, class F2, class F3>
-inline std::vector<u32> linear_seive(u32 n, F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime) {
-  std::vector<bool> vis(n);
-  std::vector<u32> p;
+inline vec<u32> linear_seive(u32 n, F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime) {
+  vec<bool> vis(n);
+  vec<u32> p;
   p.reserve(n <= 55 ? 16 : n / 10);
   for (u32 i = 2; i < n; ++i) {
     if (!vis[i]) {

@@ -12,7 +12,7 @@ class LucasPP {
   u32 p, q;
   u64 m_;
   bool no_proot;
-  std::vector<u64> facp, ifacp;
+  vec<u64> facp, ifacp;
 
 public:
   // mod = p ** q

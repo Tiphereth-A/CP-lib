@@ -9,10 +9,10 @@
 namespace tifa_libs::math {
 
 // i^{-1} for i in v
-inline std::vector<u64> invseq_mod_gen(const std::vector<u64> &v, u64 mod) {
+inline vec<u64> invseq_mod_gen(const vec<u64> &v, u64 mod) {
   assert(mod > 1);
   size_t sz = v.size();
-  std::vector<u64> ans(sz);
+  vec<u64> ans(sz);
   ans[0] = v[1];
   for (size_t i = 1; i < sz; ++i) ans[i] = mul_mod_u(ans[i - 1], v[i], mod);
   u64 _ = inverse(ans.back(), mod);

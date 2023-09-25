@@ -7,8 +7,8 @@ int main() {
   std::cin.tie(nullptr);
   size_t n;
   std::cin >> n;
-  std::vector<tifa_libs::i32> r(n);
-  std::vector<tifa_libs::u32> m(n);
+  tifa_libs::vec<tifa_libs::i32> r(n);
+  tifa_libs::vec<tifa_libs::u32> m(n);
   for (size_t i = 0; i < n; ++i) std::cin >> r[i] >> m[i];
   auto res = tifa_libs::math::crt_mod(r, m, 1'000'000'007);
   if (!res) {

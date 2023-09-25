@@ -12,8 +12,8 @@ namespace tifa_libs::math {
 // Calculate binom(m, n) mod p, p can be ANY INTEGER
 class ExLucas {
   u32 m_;
-  std::vector<u64> ms;
-  std::vector<LucasPP> cs;
+  vec<u64> ms;
+  vec<LucasPP> cs;
 
 public:
   explicit ExLucas(u32 md):
@@ -38,7 +38,7 @@ public:
 
   u64 operator()(i64 m, i64 n) const {
     if (m_ == 1 || m < n || n < 0) return 0;
-    std::vector<i64> b;
+    vec<i64> b;
     b.reserve(cs.size());
     for (const auto &i : cs) b.push_back((i64)i(m, n));
     return crt(b, ms)->first;

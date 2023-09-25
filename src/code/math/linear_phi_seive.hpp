@@ -7,8 +7,8 @@
 
 namespace tifa_libs::math {
 
-inline std::vector<u32> linear_phi_seive(u32 n) {
-  std::vector<u32> phi(n);
+inline vec<u32> linear_phi_seive(u32 n) {
+  vec<u32> phi(n);
   phi[1] = 1;
   linear_seive(
     n,
