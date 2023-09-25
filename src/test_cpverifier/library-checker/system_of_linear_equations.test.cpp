@@ -25,13 +25,12 @@ int main() {
     std::cout << "-1\n";
   else {
     std::cout << leqs.fe_cnt() << '\n';
-    auto _ = tifa_libs::math::transpose(leqs.solution());
-    std::cout << _ << '\n';
+    std::cout << tifa_libs::math::transpose(leqs.solution()) << '\n';
     if (size_t fec = (size_t)leqs.fe_cnt(); fec > 0) {
       mat fe(fec, 1);
       for (size_t i = 0; i < fec; ++i) {
         fe(i, 0) = 1;
-        std::cout << tifa_libs::math::transpose(leqs.solution(fe, ge)) - _ << '\n';
+        std::cout << tifa_libs::math::transpose(leqs.solution(fe, ge)) << '\n';
         fe(i, 0) = 0;
       }
     }
