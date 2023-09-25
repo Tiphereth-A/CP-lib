@@ -14,9 +14,9 @@ inline i64 ge_euclid(matrix<T> &mat, Is0 is_0, size_t row_start, size_t row_end,
   size_t r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);
   u64 rk = 0;
   bool neg = false;
-  for (size_t i = row_start, now_row = row_start; i < row_end; ++i) {
+  for (size_t i = row_start, now_row = row_start, j_ = i; i < row_end; ++i) {
     neg ^= ge_detail__::swapr__(mat, now_row, rk, row_end);
-    size_t j_ = i;
+    j_ = std::max(j_, i);
     while (j_ < c_ && is_0(mat(rk, j_))) ++j_;
     if (j_ == c_) break;
     for (u64 j = clear_u ? 0 : rk; j < row_end; ++j) {
