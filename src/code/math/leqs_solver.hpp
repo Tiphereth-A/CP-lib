@@ -7,7 +7,6 @@
 #include "mat.hpp"
 #include "mat_merge_lr.hpp"
 #include "mat_trans.hpp"
-#include <valarray>
 
 namespace tifa_libs::math {
 

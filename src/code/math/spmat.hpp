@@ -2,7 +2,6 @@
 #define TIFA_LIBS_SPARSE_MAT
 
 #include "../util/util.hpp"
-#include <iterator>
 
 namespace tifa_libs::math {
 
