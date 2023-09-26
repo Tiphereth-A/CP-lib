@@ -12,36 +12,32 @@ class spmat {
   using data_t = vec<vec<node>>;
 
   size_t r, c;
-  T initv_;
   data_t d;
 
 public:
   using value_type = T;
 
-  spmat(size_t row, size_t col, T const &v = T{}):
-    r(row), c(col), initv_(v), d(r) { assert(row > 0 && col > 0); }
+  spmat(size_t row, size_t col):
+    r(row), c(col), d(r) { assert(row > 0 && col > 0); }
 
   constexpr size_t row() const { return r; }
   constexpr size_t col() const { return c; }
-  constexpr const T &init_val() const { return initv_; }
-  constexpr T &init_val() { return initv_; }
   constexpr data_t data() const { return d; }
   constexpr data_t &data() { return d; }
   constexpr node &operator()(size_t r, size_t c) {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
-    d[r].emplace_back(c, initv_);
+    d[r].emplace_back(c, T{});
     return d[r].back().second;
   }
   constexpr const node &operator()(size_t r, size_t c) const {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
-    return initv_;
+    return T{};
   }
 
-  constexpr void shrink() {
-    for (auto &r : d)
-      if (!d.empty()) d.erase(std::remove_if(d.begin(), d.end(), [](node const &x) { return x.second == T{}; }), d.end());
+  constexpr void shrink_row(size_t r) {
+    if (!d[r].empty()) d[r].erase(std::remove_if(d[r].begin(), d[r].end(), [](node const &x) { return x.second == T{}; }), d[r].end());
   }
   constexpr void sort_row(size_t r) {
     if (!d[r].empty()) std::sort(d[r].begin(), d[r].end());
@@ -122,6 +118,21 @@ public:
   constexpr spmat &operator+=(spmat const &r) { return *this = *this + r; }
   constexpr friend spmat operator-(spmat l, const spmat &r) { return l + (-r); }
   constexpr spmat &operator-=(const spmat &r) { return *this = *this - r; }
+  constexpr friend spmat operator*(spmat l, const spmat &r) {
+    size_t i_ = l.row(), j_ = l.col(), k_ = r.col();
+    assert(j_ == r.row());
+    spmat ret(i_, k_);
+    for (size_t i = 0; i < i_; ++i) {
+      if (l.d[i].empty()) continue;
+      for (size_t j = 0; j < j_; ++j) {
+        if (r.d[j].empty()) continue;
+        for (size_t k = 0; k < k_; ++k) ret(i, k) += l(i, j) * r(j, k);
+      }
+      ret.shrink_row(i);
+    }
+    return ret;
+  }
+  constexpr spmat &operator*=(const spmat &r) { return *this = *this - r; }
 };
 
 }  // namespace tifa_libs::math

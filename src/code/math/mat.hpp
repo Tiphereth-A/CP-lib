@@ -107,9 +107,9 @@ public:
   }
 
   constexpr friend matrix operator*(const matrix &l, const matrix &r) {
-    assert(l.col() == r.row());
-    matrix ret(l.row(), r.col());
     size_t i_ = l.row(), j_ = l.col(), k_ = r.col();
+    assert(j_ == r.row());
+    matrix ret(i_, k_);
     FOR1_(i, 0, i_)
       FOR1_(j, 0, j_)
         FOR1_(k, 0, k_) ret(i, k) += l(i, j) * r(j, k);
