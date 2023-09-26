@@ -24,6 +24,12 @@ notebook:
     - util: 共同依赖
       code_ext: hpp
       test_ext: cpp
+    - abs_constexpr: abs_constexpr
+      code_ext: hpp
+      test_ext: cpp
+    - base64: Base64
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
