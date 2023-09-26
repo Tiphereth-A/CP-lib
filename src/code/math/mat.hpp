@@ -64,6 +64,12 @@ public:
     FOR1_(i, 0, row()) std::swap((*this)(i, c1), (*this)(i, c2));
   }
 
+  constexpr matrix operator-() const {
+    matrix ret = *this;
+    ret.apply(0, row(), 0, col(), []([[maybe_unused]] size_t r, [[maybe_unused]] size_t c, T &v) { v = -v; });
+    return ret;
+  }
+
   constexpr friend matrix operator+(matrix l, const T &v) { return l += v; }
   constexpr friend matrix operator+(const T &v, matrix l) { return l += v; }
   constexpr matrix &operator+=(const T &v) {
