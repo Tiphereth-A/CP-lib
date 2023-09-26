@@ -3,9 +3,9 @@
 #include "../../code/math/leqs_solver.hpp"
 #include "../../code/math/mat_ge_basic.hpp"
 #include "../../code/math/mat_trans.hpp"
-#include "../../code/math/mint_s30.hpp"
+#include "../../code/math/mint_s63.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mint = tifa_libs::math::mint_s63<998244353>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
@@ -16,7 +16,7 @@ int main() {
   mat a(n, m), b(n, 1);
   std::cin >> a >> b;
 
-  auto is_0 = [](mint const &x) { return x == 0; };
+  auto is_0 = [](mint const &x) { return x.val() == 0; };
   auto ge = [&is_0](mat &m, bool f) { return tifa_libs::math::ge_basic(m, is_0, f); };
 
   auto res_ = tifa_libs::math::leqs_solver(a, b, is_0, ge);
