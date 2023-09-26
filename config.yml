@@ -293,6 +293,12 @@ notebook:
     - spmat: 稀疏矩阵
       code_ext: hpp
       test_ext: cpp
+    - spmat_merge_lr: spmat_merge_lr
+      code_ext: hpp
+      test_ext: cpp
+    - spmat_merge_ud: spmat_merge_ud
+      code_ext: hpp
+      test_ext: cpp
     - mat_charpoly: 矩阵的特征多项式
       code_ext: hpp
       test_ext: cpp

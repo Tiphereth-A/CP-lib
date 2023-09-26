@@ -17,7 +17,7 @@ int main() {
   std::cin >> a;
   auto is_0 = [](mint const &x) { return x.val() == 0; };
   auto ge = [&is_0](mat &m, bool f) { return tifa_libs::math::ge_basic(m, is_0, f); };
-  auto res = tifa_libs::math::inverse(a, is_0, ge);
+  auto res = tifa_libs::math::mat_inv(a, is_0, ge);
   if (res)
     std::cout << res.value();
   else

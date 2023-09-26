@@ -19,7 +19,7 @@ public:
   using value_type = T;
 
   spmat(size_t row, size_t col, T const &v = T{}):
-    r(row), c(col), initv_(v), d() { assert(row > 0 && col > 0); }
+    r(row), c(col), initv_(v), d(r) { assert(row > 0 && col > 0); }
 
   constexpr size_t row() const { return r; }
   constexpr size_t col() const { return c; }
