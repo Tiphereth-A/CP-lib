@@ -4,7 +4,6 @@
 #include "util.hpp"
 
 #include "../bit/cntl0.hpp"
-#include <corecrt.h>
 
 namespace tifa_libs::util {
 
