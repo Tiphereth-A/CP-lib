@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 
+#include "../../code/math/mat.hpp"
 #include "../../code/math/mat_det.hpp"
 #include "../../code/math/mat_ge_basic.hpp"
 #include "../../code/math/mint_s30.hpp"

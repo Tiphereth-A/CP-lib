@@ -14,7 +14,7 @@ template <class T, class Is0, class Ge>
 std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0 is0, Ge ge) {
   size_t r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
-  matrix<T> Ab = merge_lr(A, b);
+  matrix<T> Ab = mat_merge_lr(A, b);
   u64 rk = (u64)abs(ge(Ab, false));
   if (rk > c_) return {};
   if (!is0(Ab(rk - 1, c_))) {

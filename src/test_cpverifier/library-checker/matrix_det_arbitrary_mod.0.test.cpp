@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod"
 
+#include "../../code/math/mat.hpp"
 #include "../../code/math/mat_det.hpp"
 #include "../../code/math/mat_ge_euclid.hpp"
 #include "../../code/math/mint_d31.hpp"
