@@ -56,14 +56,15 @@ public:
   }
   template <class F>
   friend spmat merge(spmat l, spmat r, F f) {
-    spmat ret(std::max(l.row(), r.row()), std::max(l.col(), r.col()));
-    size_t r_ = ret.row(), lr_ = l.row(), rr_ = r.row();
+    size_t r_ = l.row(), c_ = l.col();
+    assert(r_ == r.row() && c_ == r.col());
+    spmat ret(r_, c_);
     for (size_t i = 0; i < r_; ++i) {
-      if (i >= lr_ || (i < rr_ && l[i].empty())) {
+      if (i >= r_ || (i < r_ && l[i].empty())) {
         if (!r[i].empty()) ret[i] = r[i];
         continue;
       }
-      if (i >= rr_ || (i < lr_ && r[i].empty())) {
+      if (i >= r_ || (i < r_ && r[i].empty())) {
         if (!l[i].empty()) ret[i] = l[i];
         continue;
       }
