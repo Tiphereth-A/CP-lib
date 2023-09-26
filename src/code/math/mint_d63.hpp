@@ -17,7 +17,7 @@ class mint_d63 {
     u64 res = mul_high(x, y) - mul_high(x * y * R, MOD);
     return res + (MOD & -(res >> 63));
   }
-  static inline u64 norm(i64 x) { return x + (MOD & -(x < 0)); }
+  static inline u64 norm(i64 x) { return (u64)(x + (i64)(MOD & (u64)(-(x < 0)))); }
 
   static inline u64 MOD, R, R2;
   static inline i64 SMOD;
