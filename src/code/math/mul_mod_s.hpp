@@ -3,8 +3,8 @@
 
 #include "../util/util.hpp"
 
-#include "../util/abs_constexpr.hpp"
 #include "../bit/bwidth.hpp"
+#include "../util/abs_constexpr.hpp"
 #include "safe_mod.hpp"
 
 namespace tifa_libs::math {

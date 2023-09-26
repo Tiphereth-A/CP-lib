@@ -1,0 +1,26 @@
+\subsection{线性代数}
+
+\subsubsection{行列式}
+
+\[
+    \operatorname{det}(A):=\sum_{\sigma\in S_n}\prod_{i=1}^n \operatorname{sgn}(\sigma) a_{i,\sigma(i)}
+\]
+
+\subsubsection{积和式}
+
+\[
+    \operatorname{per}(A):=\sum_{\sigma\in S_n}\prod_{i=1}^n a_{i,\sigma(i)}
+\]
+
+可用于完美匹配中
+
+\paragraph{性质}
+
+\[
+    \operatorname{per}(A)=\operatorname{haf}\begin{bmatrix}
+        & A\\
+    A^T &
+    \end{bmatrix}
+\]
+
+\(\operatorname{haf}(A)\) 的定义参见 \fullref{sec:矩阵的-hafnian-（图的完美匹配计数）}

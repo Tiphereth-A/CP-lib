@@ -1,0 +1,21 @@
+矩阵的 hafnian 即为对应图的完美匹配数量
+
+对 \(2n\times 2n\) 的对称矩阵 \(A\), 其 hafnian \(\operatorname{haf}(A)\) 定义为
+
+\[
+    \operatorname{haf}(A):=\frac{1}{n!2^n}\sum_{\sigma\in S_{2n}}\prod_{i=1}^n a_{\sigma(2j-1),\sigma(2j)}
+\]
+
+其中 \(S_{2n}\) 为 \(2n\) 阶对称群
+
+\subsubsection*{输入}
+
+\verb|mat|: \(2n\times 2n\) 对称矩阵
+
+\subsubsection*{输出}
+
+\verb|mat| 的 hafnian
+
+\subsubsection*{复杂度}
+
+\(\mathcal{O}(n^32^n)\)

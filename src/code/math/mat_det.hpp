@@ -12,7 +12,7 @@ template <class T, class Ge>
 T det(matrix<T> mat, Ge ge) {
   size_t n = mat.row();
   assert(n == mat.col());
-   i64 rk_ = ge(mat, false);
+  i64 rk_ = ge(mat, false);
   if ((size_t)abs(rk_) != n) return T{};
   T ret = mat(0, 0);
   for (size_t i = 1; i < n; ++i) ret *= mat(i, i);

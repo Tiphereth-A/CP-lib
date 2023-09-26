@@ -119,9 +119,6 @@ notebook:
       test_ext: cpp
     graph: null
     math:
-    - abs_constexpr: abs_constexpr
-      code_ext: hpp
-      test_ext: cpp
     - bsgs: bsgs
       code_ext: hpp
       test_ext: cpp
@@ -302,6 +299,9 @@ notebook:
     - mat_uhb: 将矩阵转为上 Hessenberg 矩阵
       code_ext: hpp
       test_ext: cpp
+    - mat_hafnian: 矩阵的 hafnian （图的完美匹配计数）
+      code_ext: hpp
+      test_ext: cpp
     poly:
     - poly: poly
       code_ext: hpp
@@ -312,6 +312,7 @@ cheatsheets:
   seqences: 常见数列
   oeis-seq: 常用 OEIS 数列
   decimal: Python Decimal
+  formula: 常用公式
 default_code_style: common
 code_styles:
   C: cpp
