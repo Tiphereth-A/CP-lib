@@ -19,6 +19,7 @@ class spmat {
   vec<spmat_node<T>> d;
 
 public:
+  using value_type = T;
   using node = spmat_node<T>;
 
   explicit spmat() {}

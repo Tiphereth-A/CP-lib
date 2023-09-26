@@ -3,12 +3,10 @@
 
 #include "../util/util.hpp"
 
-#include "mat.hpp"
-
 namespace tifa_libs::math {
 
-template <class T, class Is0>
-inline void uhb(matrix<T> &mat, Is0 is0) {
+template <class Mat, class Is0, class T = typename Mat::value_type>
+inline void uhb(Mat &mat, Is0 is0) {
   size_t n = mat.row();
   assert(n == mat.col());
   if (n <= 2) return;

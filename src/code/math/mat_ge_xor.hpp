@@ -3,13 +3,13 @@
 
 #include "../util/util.hpp"
 
-#include "mat.hpp"
 #include "mat_ge_swapr_.hpp"
 
 namespace tifa_libs::math {
 
-template <class Is0>
-inline i64 ge_xor(matrix<bool> &mat, [[maybe_unused]] Is0 is0, size_t row_start, size_t row_end, bool clear_u = true) {
+template <class Mat, class Is0>
+inline i64 ge_xor(Mat &mat, [[maybe_unused]] Is0 is0, size_t row_start, size_t row_end, bool clear_u = true) {
+  static_assert(std::is_same_v<typename Mat::value_type, bool>);
   assert(row_start < row_end && row_end <= mat.row());
   size_t r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);
   u64 rk = 0;
@@ -32,8 +32,8 @@ inline i64 ge_xor(matrix<bool> &mat, [[maybe_unused]] Is0 is0, size_t row_start,
   return neg ? -((i64)rk) : (i64)rk;
 }
 
-template <class Is0>
-inline i64 ge_xor(matrix<bool> &mat, Is0 is0, bool clear_u = true) { return ge_xor(mat, is0, 0, mat.row(), clear_u); }
+template <class Mat, class Is0>
+inline i64 ge_xor(Mat &mat, Is0 is0, bool clear_u = true) { return ge_xor(mat, is0, 0, mat.row(), clear_u); }
 
 }  // namespace tifa_libs::math
 

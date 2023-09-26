@@ -3,12 +3,10 @@
 
 #include "../util/util.hpp"
 
-#include "mat.hpp"
-
 namespace tifa_libs::math {
 
-template <class T>
-inline T trace(matrix<T> const &mat) {
+template <class Mat, class T = typename Mat::value_type>
+inline T trace(Mat const &mat) {
   size_t n = mat.row();
   assert(n == mat.col());
   T ret{};

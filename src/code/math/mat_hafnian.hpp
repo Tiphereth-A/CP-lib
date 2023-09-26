@@ -3,12 +3,10 @@
 
 #include "../util/util.hpp"
 
-#include "mat.hpp"
-
 namespace tifa_libs::math {
 
-template <class T>
-T hafnian(matrix<T> const &mat) {
+template <class Mat, class T = typename Mat::value_type>
+T hafnian(Mat const &mat) {
   size_t n = mat.row(), h = n / 2 + 1;
   assert(n == mat.col() && !(n & 1));
 

@@ -3,12 +3,10 @@
 
 #include "../util/util.hpp"
 
-#include "mat.hpp"
-
 namespace tifa_libs::math {
 
-template <class T, class Ge>
-inline u64 rank(matrix<T> const &mat, Ge ge) { return (u64)abs(ge(matrix<T>(mat), false)); }
+template <class Mat, class Ge>
+inline u64 rank(Mat const &mat, Ge ge) { return (u64)abs(ge(Mat(mat), false)); }
 
 }  // namespace tifa_libs::math
 

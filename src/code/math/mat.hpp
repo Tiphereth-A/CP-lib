@@ -15,6 +15,8 @@ class matrix {
   vec<vec<T>> d;
 
 public:
+  using value_type = T;
+
   matrix(size_t row, size_t col, T const &v = T{}):
     d(row, vec<T>(col, v)) { assert(row > 0 && col > 0); }
 
@@ -26,7 +28,9 @@ public:
   constexpr typename vec<T>::const_reference operator()(size_t r, size_t c) const { return d[r][c]; }
 
   template <class F>
-  void apply(size_t row_l, size_t row_r, size_t col_l, size_t col_r, F f) {
+  void apply(F f) { apply_range(0, row(), 0, col(), f); }
+  template <class F>
+  void apply_range(size_t row_l, size_t row_r, size_t col_l, size_t col_r, F f) {
     assert(row_l < row_r && row_r <= row());
     assert(col_l < col_r && col_r <= col());
     FOR2_(i, row_l, row_r, j, col_l, col_r) f(i, j, (*this)(i, j));
@@ -49,7 +53,7 @@ public:
     assert(row_l < row_r && row_r <= row());
     assert(col_l < col_r && col_r <= col());
     matrix ret(row_r - row_l, col_r - col_l);
-    ret.apply(0, ret.row(), 0, ret.col(), [this, row_l, row_r](size_t i, size_t j, T &v) { v = (*this)(i + row_l, j + row_r); });
+    ret.apply_range(0, ret.row(), 0, ret.col(), [this, row_l, row_r](size_t i, size_t j, T &v) { v = (*this)(i + row_l, j + row_r); });
     return ret;
   }
 
@@ -66,39 +70,39 @@ public:
 
   constexpr matrix operator-() const {
     matrix ret = *this;
-    ret.apply(0, row(), 0, col(), []([[maybe_unused]] size_t r, [[maybe_unused]] size_t c, T &v) { v = -v; });
+    ret.apply_range(0, row(), 0, col(), []([[maybe_unused]] size_t r, [[maybe_unused]] size_t c, T &v) { v = -v; });
     return ret;
   }
 
   constexpr friend matrix operator+(matrix l, const T &v) { return l += v; }
   constexpr friend matrix operator+(const T &v, matrix l) { return l += v; }
   constexpr matrix &operator+=(const T &v) {
-    apply(0, row(), 0, col(), [&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val += v; });
+    apply_range(0, row(), 0, col(), [&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val += v; });
     return *this;
   }
   constexpr friend matrix operator-(matrix l, const T &v) { return l -= v; }
   constexpr friend matrix operator-(const T &v, matrix l) { return l -= v; }
   constexpr matrix &operator-=(const T &v) {
-    apply(0, row(), 0, col(), [&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val -= v; });
+    apply_range(0, row(), 0, col(), [&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val -= v; });
     return *this;
   }
   constexpr friend matrix operator*(matrix l, const T &v) { return l *= v; }
   constexpr friend matrix operator*(const T &v, matrix l) { return l *= v; }
   constexpr matrix &operator*=(const T &v) {
-    apply(0, row(), 0, col(), [&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val *= v; });
+    apply_range(0, row(), 0, col(), [&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val *= v; });
     return *this;
   }
 
   constexpr friend matrix operator+(matrix l, const matrix &r) { return l += r; }
   constexpr matrix &operator+=(const matrix &r) {
     assert(row() == r.row() && col() == r.col());
-    apply(0, row(), 0, col(), [&r](size_t i, size_t j, T &val) { val += r(i, j); });
+    apply_range(0, row(), 0, col(), [&r](size_t i, size_t j, T &val) { val += r(i, j); });
     return *this;
   }
   constexpr friend matrix operator-(matrix l, const matrix &r) { return l -= r; }
   constexpr matrix &operator-=(const matrix &r) {
     assert(row() == r.row() && col() == r.col());
-    apply(0, row(), 0, col(), [&r](size_t i, size_t j, T &val) { val -= r(i, j); });
+    apply_range(0, row(), 0, col(), [&r](size_t i, size_t j, T &val) { val -= r(i, j); });
     return *this;
   }
 

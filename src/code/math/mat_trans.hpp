@@ -3,14 +3,12 @@
 
 #include "../util/util.hpp"
 
-#include "mat.hpp"
-
 namespace tifa_libs::math {
 
-template <class T>
-inline matrix<T> transpose(matrix<T> const &mat) {
+template <class Mat, class T = typename Mat::value_type>
+inline Mat transpose(Mat const &mat) {
   size_t r_ = mat.row(), c_ = mat.col();
-  matrix<T> ret(c_, r_);
+  Mat ret(c_, r_);
   ret.apply(0, c_, 0, r_, [&mat](size_t i, size_t j, T &val) { val = mat(j, i); });
   return ret;
 }

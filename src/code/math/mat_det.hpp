@@ -4,12 +4,11 @@
 #include "../util/util.hpp"
 
 #include "../util/abs_constexpr.hpp"
-#include "mat.hpp"
 
 namespace tifa_libs::math {
 
-template <class T, class Ge>
-T det(matrix<T> mat, Ge ge) {
+template <class Mat, class T = typename Mat::value_type, class Ge>
+T det(Mat mat, Ge ge) {
   size_t n = mat.row();
   assert(n == mat.col());
   i64 rk_ = ge(mat, false);

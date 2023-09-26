@@ -3,13 +3,12 @@
 
 #include "../util/util.hpp"
 
-#include "mat.hpp"
 #include "mat_ge_swapr_.hpp"
 
 namespace tifa_libs::math {
 
-template <class T, class Is0, class Div>
-inline i64 ge_euclid(matrix<T> &mat, Is0 is0, Div div, size_t row_start, size_t row_end, bool clear_u = true) {
+template <class Mat, class Is0, class Div, class T = typename Mat::value_type>
+inline i64 ge_euclid(Mat &mat, Is0 is0, Div div, size_t row_start, size_t row_end, bool clear_u = true) {
   assert(row_start < row_end && row_end <= mat.row());
   size_t r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);
   u64 rk = 0;
@@ -39,8 +38,8 @@ inline i64 ge_euclid(matrix<T> &mat, Is0 is0, Div div, size_t row_start, size_t 
   }
   return neg ? -((i64)rk) : (i64)rk;
 }
-template <class T, class Is0, class Div>
-inline i64 ge_euclid(matrix<T> &mat, Is0 is0, Div div, bool clear_u = true) { return ge_euclid(mat, is0, div, 0, mat.row(), clear_u); }
+template <class Mat, class Is0, class Div, class T = typename Mat::value_type>
+inline i64 ge_euclid(Mat &mat, Is0 is0, Div div, bool clear_u = true) { return ge_euclid<Mat, Is0, Div, T>(mat, is0, div, 0, mat.row(), clear_u); }
 
 }  // namespace tifa_libs::math
 
