@@ -36,18 +36,14 @@ public:
   }
 
   constexpr void shrink_row(size_t r) {
-    if (!d[r].empty()) d[r].erase(std::remove_if(d[r].begin(), d[r].end(), [](node const &x) { return x.second == T{}; }), d[r].end());
+    d[r].erase(std::remove_if(d[r].begin(), d[r].end(), [](node const &x) { return x.second == T{}; }), d[r].end());
   }
-  constexpr void sort_row(size_t r) {
-    if (!d[r].empty()) std::sort(d[r].begin(), d[r].end());
-  }
+  constexpr void sort_row(size_t r) { std::sort(d[r].begin(), d[r].end()); }
 
   template <class F>
   void apply(F f) {
-    for (size_t i = 0; i < r; ++i) {
-      if (d[i].empty()) continue;
+    for (size_t i = 0; i < r; ++i)
       for (auto &[j, v] : d[i]) f(i, j, v);
-    }
   }
   template <class F>
   friend spmat merge(spmat l, spmat r, F f) {
