@@ -16,8 +16,8 @@ T det_rd(Mat mat, Gn &gen, Is0 is0) {
     std::generate(v.begin(), v.end(), gen);
     return v;
   };
-  std::vector<T> u = gen2(n), v = gen2(n), diag = gen2(n), _(n << 1);
-  for (size_t i = 0; i < (n << 1); ++i) {
+  std::vector<T> u = gen2(n), v = gen2(n), diag = gen2(n), _(n * 2);
+  for (size_t i = 0; i < n * 2; ++i) {
     _[i] = std::transform_reduce(u.begin(), u.end(), v.begin(), T{});
     for (size_t i = 0; i < n; ++i) v[i] *= diag[i];
     v = mat.lproj(v);
