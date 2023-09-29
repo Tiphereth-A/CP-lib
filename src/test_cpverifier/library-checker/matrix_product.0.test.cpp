@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_product"
 
-#include "../../code/math/mat.hpp"
 #include "../../code/math/mint_s30.hpp"
+#include "../../code/matrix/mat.hpp"
 
 using mint = tifa_libs::math::mint_s30<998244353>;
 using mat = tifa_libs::math::matrix<mint>;

@@ -3,8 +3,6 @@
 
 #include "../util/util.hpp"
 
-#include "../util/abs_constexpr.hpp"
-
 namespace tifa_libs::math::ge_detail__ {
 
 template <class Mat>

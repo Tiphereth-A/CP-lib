@@ -14,6 +14,7 @@ notebook:
     geo2d: 二维计算几何
     graph: 图论
     math: 数学
+    matrix: 矩阵
     poly: 多项式
     str: 字符串
     rand: 随机数与随机化算法
@@ -207,45 +208,6 @@ notebook:
     - lucas: lucas
       code_ext: hpp
       test_ext: cpp
-    - mat_det: mat_det
-      code_ext: hpp
-      test_ext: cpp
-    - mat_ge_basic: mat_ge_basic
-      code_ext: hpp
-      test_ext: cpp
-    - mat_ge_euclid: mat_ge_euclid
-      code_ext: hpp
-      test_ext: cpp
-    - mat_ge_swapr_: mat_ge_swapr_
-      code_ext: hpp
-      test_ext: cpp
-    - mat_ge_xor: mat_ge_xor
-      code_ext: hpp
-      test_ext: cpp
-    - mat_inv: mat_inv
-      code_ext: hpp
-      test_ext: cpp
-    - mat_merge_lr: mat_merge_lr
-      code_ext: hpp
-      test_ext: cpp
-    - mat_merge_ud: mat_merge_ud
-      code_ext: hpp
-      test_ext: cpp
-    - mat_pow: mat_pow
-      code_ext: hpp
-      test_ext: cpp
-    - mat_rk: mat_rk
-      code_ext: hpp
-      test_ext: cpp
-    - mat_tr: mat_tr
-      code_ext: hpp
-      test_ext: cpp
-    - mat_trans: mat_trans
-      code_ext: hpp
-      test_ext: cpp
-    - mat: mat
-      code_ext: hpp
-      test_ext: cpp
     - mcn_mod: mcn_mod
       code_ext: hpp
       test_ext: cpp
@@ -297,13 +259,47 @@ notebook:
     - safe_mod: safe_mod
       code_ext: hpp
       test_ext: cpp
+    matrix:
+    - mat: mat
+      code_ext: hpp
+      test_ext: cpp
     - spmat: 稀疏矩阵
       code_ext: hpp
       test_ext: cpp
-    - spmat_merge_lr: spmat_merge_lr
+    - mat_det: mat_det
       code_ext: hpp
       test_ext: cpp
-    - spmat_merge_ud: spmat_merge_ud
+    - mat_ge_basic: mat_ge_basic
+      code_ext: hpp
+      test_ext: cpp
+    - mat_ge_euclid: mat_ge_euclid
+      code_ext: hpp
+      test_ext: cpp
+    - mat_ge_swapr_: mat_ge_swapr_
+      code_ext: hpp
+      test_ext: cpp
+    - mat_ge_xor: mat_ge_xor
+      code_ext: hpp
+      test_ext: cpp
+    - mat_inv: mat_inv
+      code_ext: hpp
+      test_ext: cpp
+    - mat_merge_lr: mat_merge_lr
+      code_ext: hpp
+      test_ext: cpp
+    - mat_merge_ud: mat_merge_ud
+      code_ext: hpp
+      test_ext: cpp
+    - mat_pow: mat_pow
+      code_ext: hpp
+      test_ext: cpp
+    - mat_rk: mat_rk
+      code_ext: hpp
+      test_ext: cpp
+    - mat_tr: mat_tr
+      code_ext: hpp
+      test_ext: cpp
+    - mat_trans: mat_trans
       code_ext: hpp
       test_ext: cpp
     - mat_charpoly: 矩阵的特征多项式
@@ -322,6 +318,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - mat_det_rd: 求矩阵的行列式（随机化算法）
+      code_ext: hpp
+      test_ext: cpp
+    - spmat_merge_lr: spmat_merge_lr
+      code_ext: hpp
+      test_ext: cpp
+    - spmat_merge_ud: spmat_merge_ud
       code_ext: hpp
       test_ext: cpp
     poly:

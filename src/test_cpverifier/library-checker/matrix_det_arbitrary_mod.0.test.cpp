@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod"
 
-#include "../../code/math/mat.hpp"
-#include "../../code/math/mat_det.hpp"
-#include "../../code/math/mat_ge_euclid.hpp"
 #include "../../code/math/mint_d31.hpp"
+#include "../../code/matrix/mat.hpp"
+#include "../../code/matrix/mat_det.hpp"
+#include "../../code/matrix/mat_ge_euclid.hpp"
 
 using mint = tifa_libs::math::mint_d31<-1>;
 using mat = tifa_libs::math::matrix<mint>;
