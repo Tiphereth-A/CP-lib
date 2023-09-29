@@ -36,7 +36,7 @@ struct FFT {
   }
 
 private:
-  constexpr static FP TAU = FP(std::acos((FP)1) * 2);
+  const FP TAU = FP(std::acos((FP)1) * 2);
 
   static inline vec<comp> w;
 };
