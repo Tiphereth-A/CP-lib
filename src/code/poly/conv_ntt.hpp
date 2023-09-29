@@ -17,7 +17,7 @@ inline vec<mint> conv_ntt(vec<mint> l, vec<mint> r, size_t ans_size) {
   ntt(l);
   ntt(r);
   for (size_t i = 0; i < n; ++i) l[i] *= r[i];
-  ntt<true>(l);
+  ntt(l, true);
   l.resize(ans_size);
   return l;
 }

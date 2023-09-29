@@ -23,12 +23,12 @@ inline vec<mint> conv_mtt(vec<mint> l, vec<mint> const &r, size_t ans_size) {
   b.resize(n);
   fft(a);
   fft(b);
-  vec<C> p__(n), q__(n);
-  for (size_t i = 0; i < n; ++i) p__[i] = b[i] * (a[i] + conj(a[(n - i) % n])) * C{.5, 0};
-  for (size_t i = 0; i < n; ++i) q__[i] = b[i] * (a[i] - conj(a[(n - i) % n])) * C{0, -.5};
-  fft<true>(p__);
-  fft<true>(q__);
-  for (size_t i = 0; i < ans_size; ++i) l[i] = (u64)(p__[i].real() / (DBL)n + .5) % mint::mod() + (((u64)((p__[i].imag() + q__[i].real()) / (DBL)n + .5) % mint::mod()) << 15) + (((u64)(q__[i].imag() / (DBL)n + .5) % mint::mod()) << 30);
+  vec<C> p(n), q(n);
+  for (size_t i = 0; i < n; ++i) p[i] = b[i] * (a[i] + conj(a[(n - i) % n])) * C{.5, 0};
+  for (size_t i = 0; i < n; ++i) q[i] = b[i] * (a[i] - conj(a[(n - i) % n])) * C{0, -.5};
+  fft(p, true);
+  fft(q, true);
+  for (size_t i = 0; i < ans_size; ++i) l[i] = (u64)(p[i].real() / (DBL)n + .5) % mint::mod() + (((u64)((p[i].imag() + q[i].real()) / (DBL)n + .5) % mint::mod()) << 15) + (((u64)(q[i].imag() / (DBL)n + .5) % mint::mod()) << 30);
   return l;
 }
 template <class mint>

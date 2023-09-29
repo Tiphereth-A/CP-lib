@@ -14,9 +14,8 @@ struct NTT {
   static constexpr u64 MOD = mint::mod();
   static_assert((MOD & 3) == 1, "MOD must be prime with 4k+1");
 
-  constexpr NTT() = default;
-  template <bool inv = false>
-  constexpr void operator()(vec<mint> &g) {
+  constexpr NTT() {}
+  constexpr void operator()(vec<mint> &g, bool inv = false) {
     size_t n = g.size();
     FFT_INFO::init(n);
     f.resize(n);
@@ -24,9 +23,7 @@ struct NTT {
     w[0] = 1;
     for (size_t i = 0; i < n; ++i) f[i] = (MOD << 5) + g[FFT_INFO::root[i]];
     for (size_t l = 1; l < n; l <<= 1) {
-      mint tG;
-      if constexpr (inv) tG = qpow(IG, (MOD - 1) / (l + l));
-      else tG = qpow(G, (MOD - 1) / (l + l));
+      mint tG = qpow(inv ? IG : G, (MOD - 1) / (l + l));
       for (size_t i = 1; i < l; ++i) w[i] = w[i - 1] * tG;
       for (size_t k = 0; k < n; k += l + l)
         for (size_t p = 0; p < l; ++p) {
@@ -35,14 +32,14 @@ struct NTT {
           f[k | p] += _;
         }
     }
-    mint in;
-    if constexpr (inv) in = mint(n).inv();
-    else in = 1;
-    for (size_t i = 0; i < n; ++i) g[i] = in * f[i];
+    if (inv) {
+      const mint in = mint(n).inv();
+      for (size_t i = 0; i < n; ++i) g[i] = in * f[i];
+    } else g = f;
   }
 
 private:
-  constexpr static mint G = proot_u64(MOD), IG = G.inv();
+  const mint G = proot_u64(MOD), IG = G.inv();
 
   static inline vec<mint> f, w;
 };
