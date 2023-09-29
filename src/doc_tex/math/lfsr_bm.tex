@@ -1,0 +1,17 @@
+寻找最短线性递推 Berlekamp–Massey 算法
+
+\paragraph{参考文献} \cite{massey1969shift}
+
+\paragraph{要求} \verb|T| 必须为域且有除法
+
+\paragraph{注意} 仅当 \(2L \leq N\) 时唯一
+
+\paragraph{输入}
+
+\verb|s|: 序列 \(s_0, s_1, \dots, s_{n-1}\)
+
+\verb|is0|: 判断是否为 \(0\) 的一元谓词
+
+\paragraph{输出}
+
+\(C(x)=1+c_{1}x+c_{2}x^{2}+\dots+c_{L}x^{L}\), 满足 \(s_{i} + c_{1}s_{i-1} + c_{2}s_{i-2} + \dots + c_{L}s_{i-L} = 0,\quad\forall i\geq L\)

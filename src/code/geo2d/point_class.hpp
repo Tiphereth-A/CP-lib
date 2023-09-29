@@ -33,12 +33,12 @@ struct Point {
 
 #undef SCALA_OP
 
-#define VEC_OP(op)                                    \
-  constexpr Point &operator op##=(const Point &rhs) { \
-    this->x op## = rhs.x;                             \
-    this->y op## = rhs.y;                             \
-    return *this;                                     \
-  }                                                   \
+#define VEC_OP(op)                                     \
+  constexpr Point &operator op##=(const Point & rhs) { \
+    this->x op## = rhs.x;                              \
+    this->y op## = rhs.y;                              \
+    return *this;                                      \
+  }                                                    \
   constexpr Point operator op(const Point &rhs) const { return Point(*this) op## = rhs; }
 
   VEC_OP(+)

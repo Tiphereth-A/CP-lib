@@ -314,6 +314,9 @@ notebook:
     - mat_hafnian: 矩阵的 hafnian （图的完美匹配计数）
       code_ext: hpp
       test_ext: cpp
+    - lfsr_bm: 寻找最短 LFSR
+      code_ext: hpp
+      test_ext: cpp
     poly:
     - poly: poly
       code_ext: hpp
