@@ -16,6 +16,7 @@ notebook:
     math: 数学
     poly: 多项式
     str: 字符串
+    rand: 随机数与随机化算法
   sections:
     util:
     - main: 缺省源
@@ -317,11 +318,21 @@ notebook:
     - lfsr_bm: 寻找最短 LFSR
       code_ext: hpp
       test_ext: cpp
+    - mat_minpoly_rd: 求矩阵的最小多项式（随机化算法）
+      code_ext: hpp
+      test_ext: cpp
+    - mat_det_rd: 求矩阵的行列式（随机化算法）
+      code_ext: hpp
+      test_ext: cpp
     poly:
     - poly: poly
       code_ext: hpp
       test_ext: cpp
     str: null
+    rand:
+    - gen: 随机数生成辅助类
+      code_ext: hpp
+      test_ext: cpp
 cheatsheets:
   nt-const: 初等数论常数表
   seqences: 常见数列

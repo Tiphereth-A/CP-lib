@@ -116,6 +116,14 @@ public:
     return ret;
   }
   constexpr matrix &operator*=(const matrix &r) { return *this = *this * r; }
+
+  vec<T> lproj(vec<T> const &x) const {
+    size_t r_ = row(), c_ = col();
+    assert(r_ == x.size());
+    vec<T> ret(c_);
+    for (size_t i = 0; i < c_; ++i) ret[i] = std::transform_reduce(d[i].begin(), d[i].end(), x.begin(), T{});
+    return ret;
+  }
 };
 
 #undef FOR1_

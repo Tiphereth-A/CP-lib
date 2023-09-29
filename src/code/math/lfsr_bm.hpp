@@ -24,7 +24,7 @@ inline vec<T> lfsr_bm(vec<T> const &s, Is0 is0) {
       T _ = d / b;
       for (size_t i = x, ie = B.size() + x; i < ie; ++i) C[i] -= _ * B[i - x];
       l = n + 1 - l;
-      B = std::move(t);
+      B = t;
       b = d;
       x = 1;
     }

@@ -23,13 +23,13 @@ public:
   constexpr size_t col() const { return c; }
   constexpr data_t data() const { return d; }
   constexpr data_t &data() { return d; }
-  constexpr node &operator()(size_t r, size_t c) {
+  constexpr T &operator()(size_t r, size_t c) {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
     d[r].emplace_back(c, T{});
     return d[r].back().second;
   }
-  constexpr const node &operator()(size_t r, size_t c) const {
+  constexpr T operator()(size_t r, size_t c) const {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
     return T{};
@@ -128,6 +128,15 @@ public:
     return ret;
   }
   constexpr spmat &operator*=(const spmat &r) { return *this = *this - r; }
+
+  vec<T> lproj(vec<T> const &x) const {
+    size_t r_ = row(), c_ = col();
+    assert(r_ == x.size());
+    vec<T> ret(c_);
+    for (size_t i = 0; i < c_; ++i)
+      for (auto &&[pos, v] : d[i]) ret[i] += x[pos] * v;
+    return ret;
+  }
 };
 
 }  // namespace tifa_libs::math
