@@ -4,6 +4,7 @@
 #include "util.hpp"
 
 #include "../bit/cntl0.hpp"
+#include <algorithm>
 
 namespace tifa_libs::util {
 
@@ -21,12 +22,8 @@ class Base64 {
   }
 
 public:
-  static std::string encode(vec<size_t> &a) {
-    size_t x = a[0], y = a[0];
-    for (auto &z : a) {
-      x = std::max(x, z);
-      y = std::min(y, z);
-    }
+  static std::string encode(vec<size_t> const &a) {
+    size_t x = *std::max_element(a.begin(), a.end()), y = *std::min_element(a.begin(), a.end());
     size_t N = a.size(), B = std::max(size_t(6), (sizeof(size_t) * 8 - (size_t)(y < 0 ? 0 : bit::cntl0(x))));
     std::string S((B * N + 11) / 6, 0);
     S[0] = (char)B;
