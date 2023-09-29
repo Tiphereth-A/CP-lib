@@ -11,8 +11,9 @@ template <class T>
 inline poly<T> poly_ln(poly<T> const &p) {
   assert(p[0] == 1);
   size_t n = p.size();
-  auto _ = p;
-  return poly_int(poly_deriv(p).conv(poly_inv(p), n));
+  auto _ = poly_deriv(p);
+  _.conv(poly_inv(p), n);
+  return poly_int(_);
 }
 
 }  // namespace tifa_libs::math
