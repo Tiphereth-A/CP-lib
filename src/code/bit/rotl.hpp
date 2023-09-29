@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_BIT_ROTL
 #define TIFA_LIBS_BIT_ROTL
 
-#include "../util/util.hpp"
-
 namespace tifa_libs::bit {
 
 // From GCC lib

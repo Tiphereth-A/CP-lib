@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_BIT_BWIDTH
 #define TIFA_LIBS_BIT_BWIDTH
 
-#include "../util/util.hpp"
-
 #include "cntl0.hpp"
 
 namespace tifa_libs::bit {

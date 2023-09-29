@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_BIT_BFLOOR
 #define TIFA_LIBS_BIT_BFLOOR
 
-#include "../util/util.hpp"
-
 #include "cntl0.hpp"
 
 namespace tifa_libs::bit {

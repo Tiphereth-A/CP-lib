@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_BIT_CNTR1
 #define TIFA_LIBS_BIT_CNTR1
 
-#include "../util/util.hpp"
-
 #include "cntr0.hpp"
 
 namespace tifa_libs::bit {
