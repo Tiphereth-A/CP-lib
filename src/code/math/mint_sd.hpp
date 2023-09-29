@@ -90,6 +90,7 @@ public:
   constexpr friend mint_sd operator/(mint_sd l, const mint_sd &r) { return l /= r; }
   constexpr friend bool operator==(const mint_sd &l, const mint_sd &r) { return l.v_ == r.v_; }
   constexpr friend bool operator!=(const mint_sd &l, const mint_sd &r) { return l.v_ != r.v_; }
+  constexpr friend bool operator<(const mint_sd &l, const mint_sd &r) { return l.v_ < r.v_; }
 };
 
 }  // namespace tifa_libs::math

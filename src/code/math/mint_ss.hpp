@@ -83,6 +83,7 @@ public:
   constexpr friend mint_ss operator/(mint_ss l, const mint_ss &r) { return l /= r; }
   constexpr friend bool operator==(const mint_ss &l, const mint_ss &r) { return l.v_ == r.v_; }
   constexpr friend bool operator!=(const mint_ss &l, const mint_ss &r) { return l.v_ != r.v_; }
+  constexpr friend bool operator<(const mint_ss &l, const mint_ss &r) { return l.v_ < r.v_; }
 };
 
 }  // namespace tifa_libs::math
