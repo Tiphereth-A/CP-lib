@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_LINEAR_SIGMA_SEIVE
 #define TIFA_LIBS_MATH_LINEAR_SIGMA_SEIVE
 
-#include "../util/util.hpp"
-
 #include "linear_seive.hpp"
 
 namespace tifa_libs::math {

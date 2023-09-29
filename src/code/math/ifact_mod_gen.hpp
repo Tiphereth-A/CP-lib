@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_IFACT_MOD_GEN
 #define TIFA_LIBS_MATH_IFACT_MOD_GEN
 
-#include "../util/util.hpp"
-
 #include "inv_mod_gen.hpp"
 
 namespace tifa_libs::math {

@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_EULER_PHI_U32
 #define TIFA_LIBS_MATH_EULER_PHI_U32
 
-#include "../util/util.hpp"
-
 #include "isqrt.hpp"
 
 namespace tifa_libs::math {

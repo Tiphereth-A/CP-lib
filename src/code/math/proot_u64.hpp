@@ -1,9 +1,6 @@
 #ifndef TIFA_LIBS_MATH_PROOT_U64
 #define TIFA_LIBS_MATH_PROOT_U64
 
-#include "../bit/cntr0.hpp"
-#include "../util/util.hpp"
-
 #include "pfactors.hpp"
 #include "proot_u32.hpp"
 #include "qpow_mod.hpp"

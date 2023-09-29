@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_BSGS
 #define TIFA_LIBS_MATH_BSGS
 
-#include "../util/util.hpp"
-
 #include "isqrt.hpp"
 #include "qpow_mod.hpp"
 

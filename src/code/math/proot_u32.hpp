@@ -2,7 +2,6 @@
 #define TIFA_LIBS_MATH_PROOT_U32
 
 #include "../bit/cntr0.hpp"
-#include "../util/util.hpp"
 
 #include "isqrt.hpp"
 #include "qpow_mod.hpp"

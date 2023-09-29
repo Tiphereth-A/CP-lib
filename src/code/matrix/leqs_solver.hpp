@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_LEQS_SOLVER
 #define TIFA_LIBS_MATH_LEQS_SOLVER
 
-#include "../util/util.hpp"
-
 #include "../util/abs_constexpr.hpp"
 #include "mat.hpp"
 #include "mat_merge_lr.hpp"

@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_INVSEQ_MOD_GEN
 #define TIFA_LIBS_MATH_INVSEQ_MOD_GEN
 
-#include "../util/util.hpp"
-
 #include "inverse.hpp"
 #include "mul_mod_u.hpp"
 

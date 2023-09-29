@@ -184,9 +184,6 @@ notebook:
     - isqrt: isqrt
       code_ext: hpp
       test_ext: cpp
-    - leqs_solver: leqs_solver
-      code_ext: hpp
-      test_ext: cpp
     - linear_mpf_seive: linear_mpf_seive
       code_ext: hpp
       test_ext: cpp
@@ -311,6 +308,9 @@ notebook:
     - mat_hafnian: 矩阵的 hafnian （图的完美匹配计数）
       code_ext: hpp
       test_ext: cpp
+    - leqs_solver: 求线性方程组的解和解空间
+      code_ext: hpp
+      test_ext: cpp
     - lfsr_bm: 寻找最短 LFSR
       code_ext: hpp
       test_ext: cpp
@@ -327,7 +327,94 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     poly:
-    - poly: poly
+    - conv_mtt: conv_mtt
+      code_ext: hpp
+      test_ext: cpp
+    - conv_naive: conv_naive
+      code_ext: hpp
+      test_ext: cpp
+    - conv_ntt: conv_ntt
+      code_ext: hpp
+      test_ext: cpp
+    - fft: fft
+      code_ext: hpp
+      test_ext: cpp
+    - fft_info: fft_info
+      code_ext: hpp
+      test_ext: cpp
+    - ntt: ntt
+      code_ext: hpp
+      test_ext: cpp
+    - polydata_d: polydata_d
+      code_ext: hpp
+      test_ext: cpp
+    - polydata_s: polydata_s
+      code_ext: hpp
+      test_ext: cpp
+    - poly_acos: poly_acos
+      code_ext: hpp
+      test_ext: cpp
+    - poly_asin: poly_asin
+      code_ext: hpp
+      test_ext: cpp
+    - poly_atan: poly_atan
+      code_ext: hpp
+      test_ext: cpp
+    - poly_cos: poly_cos
+      code_ext: hpp
+      test_ext: cpp
+    - poly_czt: poly_czt
+      code_ext: hpp
+      test_ext: cpp
+    - poly_deriv: poly_deriv
+      code_ext: hpp
+      test_ext: cpp
+    - poly_div: poly_div
+      code_ext: hpp
+      test_ext: cpp
+    - poly_divmod: poly_divmod
+      code_ext: hpp
+      test_ext: cpp
+    - poly_dq_: poly_dq_
+      code_ext: hpp
+      test_ext: cpp
+    - poly_exp: poly_exp
+      code_ext: hpp
+      test_ext: cpp
+    - poly_int: poly_int
+      code_ext: hpp
+      test_ext: cpp
+    - poly_interp: poly_interp
+      code_ext: hpp
+      test_ext: cpp
+    - poly_inv: poly_inv
+      code_ext: hpp
+      test_ext: cpp
+    - poly_ln: poly_ln
+      code_ext: hpp
+      test_ext: cpp
+    - poly_mod: poly_mod
+      code_ext: hpp
+      test_ext: cpp
+    - poly_mpe: poly_mpe
+      code_ext: hpp
+      test_ext: cpp
+    - poly_pow: poly_pow
+      code_ext: hpp
+      test_ext: cpp
+    - poly_shl: poly_shl
+      code_ext: hpp
+      test_ext: cpp
+    - poly_shr: poly_shr
+      code_ext: hpp
+      test_ext: cpp
+    - poly_sin: poly_sin
+      code_ext: hpp
+      test_ext: cpp
+    - poly_sqrt: poly_sqrt
+      code_ext: hpp
+      test_ext: cpp
+    - poly_tan: poly_tan
       code_ext: hpp
       test_ext: cpp
     str: null

@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_EULER_PHI_U64
 #define TIFA_LIBS_MATH_EULER_PHI_U64
 
-#include "../util/util.hpp"
-
 #include "euler_phi_u32.hpp"
 #include "pfactors.hpp"
 

@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_SPMAT_MERGE_UD
 #define TIFA_LIBS_MATH_SPMAT_MERGE_UD
 
-#include "../util/util.hpp"
-
 #include "spmat.hpp"
 
 namespace tifa_libs::math {

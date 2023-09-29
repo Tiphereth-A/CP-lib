@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_MAT_MERGE_LR
 #define TIFA_LIBS_MATH_MAT_MERGE_LR
 
-#include "../util/util.hpp"
-
 #include "mat.hpp"
 
 namespace tifa_libs::math {

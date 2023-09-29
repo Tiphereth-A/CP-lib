@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_RGCD
 #define TIFA_LIBS_MATH_RGCD
 
-#include "../util/util.hpp"
-
 #include "isqrt.hpp"
 #include "linear_seive.hpp"
 

@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_MAT_CHARPOLY
 #define TIFA_LIBS_MATH_MAT_CHARPOLY
 
-#include "../util/util.hpp"
-
 #include "mat.hpp"
 #include "mat_uhb.hpp"
 

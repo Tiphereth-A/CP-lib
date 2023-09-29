@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_QTETRA
 #define TIFA_LIBS_MATH_QTETRA
 
-#include "../util/util.hpp"
-
 #include "euler_phi_u64.hpp"
 
 namespace tifa_libs::math {

@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_CRT_MOD
 #define TIFA_LIBS_MATH_CRT_MOD
 
-#include "../util/util.hpp"
-
 #include "inverse.hpp"
 #include "safe_mod.hpp"
 

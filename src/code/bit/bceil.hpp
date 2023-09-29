@@ -1,8 +1,7 @@
 #ifndef TIFA_LIBS_BIT_BCEIL
 #define TIFA_LIBS_BIT_BCEIL
 
-#include "../util/util.hpp"
-
+ 
 #include "cntl0.hpp"
 
 namespace tifa_libs::bit {

@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_LUCAS
 #define TIFA_LIBS_MATH_LUCAS
 
-#include "../util/util.hpp"
-
 #include "mcn_mod.hpp"
 
 namespace tifa_libs::math {

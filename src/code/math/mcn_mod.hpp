@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_MCN_MOD
 #define TIFA_LIBS_MATH_MCN_MOD
 
-#include "../util/util.hpp"
-
 #include "fact_mod_gen.hpp"
 #include "ifact_mod_gen.hpp"
 #include "mul_mod_u.hpp"

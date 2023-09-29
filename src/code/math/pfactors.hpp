@@ -2,8 +2,6 @@
 #define TIFA_LIBS_MATH_PFACTORS
 
 #include "../bit/cntr0.hpp"
-#include "../util/util.hpp"
-
 #include "is_prime.hpp"
 #include "mul_mod_u.hpp"
 

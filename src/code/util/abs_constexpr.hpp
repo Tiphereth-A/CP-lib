@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_UTIL_ABS_CONSTEXPR
 #define TIFA_LIBS_UTIL_ABS_CONSTEXPR
 
-#include "util.hpp"
-
 namespace tifa_libs {
 
 template <class T>

@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_LUCAS_PP
 #define TIFA_LIBS_MATH_LUCAS_PP
 
-#include "../util/util.hpp"
-
 #include "invseq_mod_gen.hpp"
 #include "qpow_mod.hpp"
 

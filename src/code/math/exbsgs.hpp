@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_EXBSGS
 #define TIFA_LIBS_MATH_EXBSGS
 
-#include "../util/util.hpp"
-
 #include "bsgs.hpp"
 #include "inverse.hpp"
 

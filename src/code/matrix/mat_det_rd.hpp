@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_MAT_DET
 #define TIFA_LIBS_MATH_MAT_DET
 
-#include "../util/util.hpp"
-
 #include "lfsr_bm.hpp"
 
 namespace tifa_libs::math {

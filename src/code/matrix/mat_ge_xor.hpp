@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_MAT_GE_XOR
 #define TIFA_LIBS_MATH_MAT_GE_XOR
 
-#include "../util/util.hpp"
-
 #include "mat_ge_swapr_.hpp"
 
 namespace tifa_libs::math {

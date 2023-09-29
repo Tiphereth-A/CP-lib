@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_INV_GCD
 #define TIFA_LIBS_MATH_INV_GCD
 
-#include "../util/util.hpp"
-
 #include "exgcd.hpp"
 #include "safe_mod.hpp"
 

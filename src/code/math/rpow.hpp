@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_RPOW
 #define TIFA_LIBS_MATH_RPOW
 
-#include "../util/util.hpp"
-
 #include "mul_mod_u.hpp"
 
 namespace tifa_libs::math {

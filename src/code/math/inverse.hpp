@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_MATH_INVERSE
 #define TIFA_LIBS_MATH_INVERSE
 
-#include "../util/util.hpp"
-
 #include "inv_gcd.hpp"
 
 namespace tifa_libs::math {
