@@ -22,7 +22,7 @@ inline vec<mint> conv_ntt(vec<mint> l, vec<mint> r, size_t ans_size) {
   return l;
 }
 template <class mint>
-inline vec<mint> conv_ntt(vec<mint> l, vec<mint> r) { return conv_ntt(l, r, l.size() + r.size() - 1); }
+inline vec<mint> conv_ntt(vec<mint> const &l, vec<mint> const &r) { return conv_ntt(l, r, l.size() + r.size() - 1); }
 
 }  // namespace tifa_libs::math
 
