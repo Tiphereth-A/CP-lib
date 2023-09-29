@@ -10,8 +10,8 @@ class poly {
   Pldt p;
 
 public:
-  using data_type = Pldt;
-  using value_type = typename data_type::value_type;
+  using value_type = typename Pldt::value_type;
+  using data_type = vec<value_type>;
 
   explicit constexpr poly(size_t sz = 1):
     p(sz) {}
@@ -43,7 +43,7 @@ public:
 
   template <class F>
   void apply_range(size_t l, size_t r, F f) {
-    assert(l <= r && r < size());
+    assert(l < r && r <= size());
     for (size_t i = l; i < r; ++i) f(i, p.d[i]);
   }
   template <class F>
@@ -55,8 +55,8 @@ public:
   }
   constexpr void reverse() { std::reverse(p.d.begin(), p.d.end()); }
 
-  void conv(poly const &r, size_t ans_size) { p.conv(r, ans_size); }
-  void conv(poly const &r) { p.conv(r); }
+  void conv(poly const &r, size_t ans_size) { p.conv(r.p, ans_size); }
+  void conv(poly const &r) { p.conv(r.p); }
 
   constexpr poly operator-() const {
     poly ret = *this;

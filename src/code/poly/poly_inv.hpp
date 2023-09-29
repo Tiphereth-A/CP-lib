@@ -17,7 +17,7 @@ inline poly<T> poly_inv(poly<T> const &p) {
       --n;
       mint _ = 0;
       for (size_t i = 0; i < n; ++i) _ += ans[i] * p[n - i];
-      ans.p.data().push_back(_ * (-p[0]).inv());
+      ans.data().push_back(_ * (-p[0]).inv());
     },
     [&p](poly<T> &ans, size_t n) {
       auto sA = p;

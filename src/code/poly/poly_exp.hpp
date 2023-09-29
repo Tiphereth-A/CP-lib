@@ -18,7 +18,7 @@ inline poly<T> poly_exp(poly<T> const &p) {
       n -= 2;
       mint _ = 0;
       for (size_t i = 0; i <= n; ++i) _ += (i + 1) * p[i + 1] * ans[n - i];
-      ans.p.data().push_back(_ * mint(n + 1).inv());
+      ans.data().push_back(_ * mint(n + 1).inv());
     },
     [&p](poly<T> &ans, size_t n) -> void {
       auto ans_ln = ans;

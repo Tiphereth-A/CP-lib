@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T, class Fodd, class Feven>
-inline void poly_dq_(poly<T> &ans, size_t n, u32 v0, Fodd fodd, Feven feven) {
+inline void poly_dq_(poly<T> &ans, size_t n, typename T::value_type v0, Fodd fodd, Feven feven) {
   if (n == 1) {
     ans[0] = v0;
     return;
