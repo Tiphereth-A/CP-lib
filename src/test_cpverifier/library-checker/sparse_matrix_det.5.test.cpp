@@ -1,14 +1,15 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sparse_matrix_det"
 
-#include "../../code/math/mint_s63.hpp"
+#include "../../code/math/mint_d63.hpp"
 #include "../../code/matrix/mat_det_rd.hpp"
 #include "../../code/matrix/spmat.hpp"
 #include "../../code/rand/gen.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+using mint = tifa_libs::math::mint_d63<-1>;
 using mat = tifa_libs::math::spmat<mint>;
 
 int main() {
+  mint::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   tifa_libs::u64 n, k;

@@ -73,7 +73,7 @@ public:
     v_ = (u32)((i64)v_ * r.v_ % mod());
     return *this;
   }
-  constexpr mint_ss &operator/=(const mint_ss &r) { return *this = *this * inverse(r); }
+  constexpr mint_ss &operator/=(const mint_ss &r) { return *this = *this * inv(r); }
   constexpr mint_ss operator+() const { return *this; }
   constexpr mint_ss operator-() const { return mint_ss() - *this; }
   constexpr friend mint_ss inv(const mint_ss &x) { return inverse(x.v_, mod()); }
