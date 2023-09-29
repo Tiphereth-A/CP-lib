@@ -80,10 +80,10 @@ public:
     v_ = bt_.mul(v_, r.v_);
     return *this;
   }
-  constexpr mint_sd &operator/=(const mint_sd &r) { return *this = *this * inv(r); }
+  constexpr mint_sd &operator/=(const mint_sd &r) { return *this = *this * r.inv(); }
   constexpr mint_sd operator+() const { return *this; }
   constexpr mint_sd operator-() const { return mint_sd() - *this; }
-  constexpr friend mint_sd inv(const mint_sd &x) { return inverse(x.v_, mod()); }
+  constexpr mint_sd inv() const { return inverse(v_, mod()); }
   constexpr friend mint_sd operator+(mint_sd l, const mint_sd &r) { return l += r; }
   constexpr friend mint_sd operator-(mint_sd l, const mint_sd &r) { return l -= r; }
   constexpr friend mint_sd operator*(mint_sd l, const mint_sd &r) { return l *= r; }
