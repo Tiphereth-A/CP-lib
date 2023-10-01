@@ -65,7 +65,7 @@ public:
   }
 
   constexpr poly &operator*=(value_type c) {
-    apply([c]([[maybe_unused]] size_t i, auto &v) { v *= c; });
+    apply([&c]([[maybe_unused]] size_t i, auto &v) { v *= c; });
     return *this;
   }
   constexpr friend poly operator*(poly p, value_type c) { return p *= c; }

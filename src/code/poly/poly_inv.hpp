@@ -21,9 +21,9 @@ inline poly<T> poly_inv(poly<T> const &p) {
     },
     [&p](poly<T> &ans, size_t n) {
       auto sA = p;
+      sA.conv(ans);
+      sA.conv(ans);
       sA.resize(n);
-      sA.conv(ans, n);
-      sA.conv(ans, n);
       ans = ans * 2 - sA;
     });
   return ans;
