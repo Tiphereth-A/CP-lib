@@ -3,6 +3,8 @@
 
 #include "../math/qresidue.hpp"
 #include "poly_inv.hpp"
+#include "poly_shl.hpp"
+#include "poly_shr.hpp"
 
 namespace tifa_libs::math {
 
@@ -11,12 +13,12 @@ template <class T>
 constexpr bool sqrt_(poly<T> const &p, poly<T> &ans, size_t n) {
   using mint = typename T::value_type;
   if (n == 1) {
-    auto qres = qresidue(p.d[0], p.mod());
-    if (!qres.has_value() || qres.value() <= 0) return false;
+    auto qres = qresidue(p[0].val(), mint::mod());
+    if (!qres.has_value()) return false;
     ans[0] = std::min<i64>(qres.value(), mint::mod() - qres.value());
     return true;
   }
-  if (!sqrt_(ans, (n + 1) / 2)) return false;
+  if (!sqrt_(p, ans, (n + 1) / 2)) return false;
   poly<T> sA = p;
   sA.resize(n);
   ans.resize(ans.size() * 2);
@@ -24,14 +26,20 @@ constexpr bool sqrt_(poly<T> const &p, poly<T> &ans, size_t n) {
   ans.conv(ans, n);
   ans += sA;
   ans.conv(_, n);
+  return true;
 }
 }  // namespace polysqrt_detail_
 
 template <class T>
-inline std::optional<poly<T>> poly_sqrt(poly<T> const &p) {
+inline std::optional<poly<T>> poly_sqrt(poly<T> p) {
   poly<T> ans;
-  if (bool _ = polysqrt_detail_::sqrt_(p, ans, p.size()); !_) return {};
-  return ans;
+  size_t n = p.size();
+  size_t cnt = std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x.val() > 0; }) - p.data().begin();
+  if (cnt & 1) return {};
+  if (cnt == n) return p;
+  p = poly_shl(p, cnt);
+  if (bool _ = polysqrt_detail_::sqrt_(p, ans, n); !_) return {};
+  return poly_shr(ans, cnt / 2);
 }
 
 }  // namespace tifa_libs::math
