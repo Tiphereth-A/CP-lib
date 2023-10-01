@@ -13,8 +13,8 @@ inline vec<mint> conv_mtt(vec<mint> l, vec<mint> const &r, size_t ans_size) {
   static FFT<DBL> fft;
   using C = typename FFT<DBL>::C;
   vec<C> a(l.size()), b(r.size());
-  for (size_t i = 0; i < l.size(); ++i) a[i].real(l[i].val() & 0x7fff), a[i].imag(l[i].val() >> 15);
-  for (size_t i = 0; i < r.size(); ++i) b[i].real(r[i].val() & 0x7fff), b[i].imag(r[i].val() >> 15);
+  for (size_t i = 0; i < l.size(); ++i) a[i].real((DBL)(l[i].val() & 0x7fff)), a[i].imag((DBL)(l[i].val() >> 15));
+  for (size_t i = 0; i < r.size(); ++i) b[i].real((DBL)(r[i].val() & 0x7fff)), b[i].imag((DBL)(r[i].val() >> 15));
   l.resize(ans_size);
   size_t n = bit::bceil(ans_size);
   a.resize(n);
@@ -26,7 +26,7 @@ inline vec<mint> conv_mtt(vec<mint> l, vec<mint> const &r, size_t ans_size) {
   for (size_t i = 0; i < n; ++i) q[i] = b[i] * (a[i] - conj(a[i ? n - i : 0])) * C{0, -.5};
   fft(p, true);
   fft(q, true);
-  for (size_t i = 0; i < l.size(); ++i) l[i] = ((u64)(p[i].real() / (DBL)n + .5) % mint::mod() + (((u64)((p[i].imag() + q[i].real()) / (DBL)n + .5) % mint::mod()) << 15) + (((u64)(q[i].imag() / (DBL)n + .5) % mint::mod()) << 30)) % mint::mod();
+  for (size_t i = 0; i < l.size(); ++i) l[i] = ((u64)(p[i].real() / (DBL)n + .5) + (((u64)((p[i].imag() + q[i].real()) / (DBL)n + .5)) << 15) + (((u64)(q[i].imag() / (DBL)n + .5)) << 30)) % mint::mod();
   return l;
 }
 template <class mint>
