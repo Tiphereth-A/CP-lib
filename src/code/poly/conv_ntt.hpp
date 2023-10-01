@@ -11,7 +11,7 @@ namespace tifa_libs::math {
 template <class mint>
 inline vec<mint> conv_ntt(vec<mint> l, vec<mint> r, size_t ans_size) {
   static NTT<mint> ntt;
-  size_t n = bit::bceil(ans_size);
+  size_t n = bit::bceil(std::min(l.size() + r.size() - 1, ans_size));
   l.resize(n);
   r.resize(n);
   ntt(l);

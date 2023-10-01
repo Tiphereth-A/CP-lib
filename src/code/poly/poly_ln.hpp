@@ -12,8 +12,10 @@ inline poly<T> poly_ln(poly<T> const &p) {
   assert(p[0] == 1);
   size_t n = p.size();
   auto _ = poly_deriv(p);
-  _.conv(poly_inv(p), n);
-  return poly_int(_);
+  _.conv(poly_inv(p));
+  _ = poly_int(_);
+  _.resize(n);
+  return _;
 }
 
 }  // namespace tifa_libs::math

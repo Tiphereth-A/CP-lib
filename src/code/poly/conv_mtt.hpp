@@ -16,7 +16,7 @@ inline vec<mint> conv_mtt(vec<mint> l, vec<mint> const &r, size_t ans_size) {
   for (size_t i = 0; i < l.size(); ++i) a[i].real((DBL)(l[i].val() & 0x7fff)), a[i].imag((DBL)(l[i].val() >> 15));
   for (size_t i = 0; i < r.size(); ++i) b[i].real((DBL)(r[i].val() & 0x7fff)), b[i].imag((DBL)(r[i].val() >> 15));
   l.resize(ans_size);
-  size_t n = bit::bceil(ans_size);
+  size_t n = bit::bceil(std::min(l.size() + r.size() - 1, ans_size));
   a.resize(n);
   b.resize(n);
   fft(a);
