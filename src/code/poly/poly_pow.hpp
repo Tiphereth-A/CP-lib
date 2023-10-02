@@ -13,9 +13,9 @@ template <class T>
 inline poly<T> poly_pow(poly<T> const &p, u64 y) {
   using mint = typename T::value_type;
   if (y == 1) return p;
-  size_t  n = p.size();
+  size_t n = p.size();
   size_t l0 = std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x != 0; }) - p.data().begin();
-  if (l0 > 0 && y > n / l0) return poly<T>(n);
+  if ((u128)l0 * y >= n) return poly<T>(n);
   auto _ = p;
   if (y == 0) {
     std::fill(_.data().begin() + 1, _.data().end(), 0);
@@ -29,8 +29,7 @@ inline poly<T> poly_pow(poly<T> const &p, u64 y) {
   _ = poly_exp(poly_ln(_) * y);
   if (_0 != 1) _ *= qpow(_0, y);
   _.resize(n);
-  poly_shr(_, l0 * y);
-  return _;
+  return poly_shr(_, l0 * y);
 }
 
 }  // namespace tifa_libs::math
