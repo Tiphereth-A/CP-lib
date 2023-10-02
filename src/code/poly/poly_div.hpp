@@ -11,7 +11,8 @@ inline poly<T> poly_div(poly<T> p, poly<T> q) {
   p.reverse();
   q.reverse();
   q.resize(n - m + 1);
-  p.conv(poly_inv(q), n - m + 1);
+  p.conv(poly_inv(q));
+  p.resize(n - m + 1);
   p.reverse();
   return p;
 }
