@@ -17,11 +17,11 @@ struct NTT {
   constexpr NTT() {}
   constexpr void operator()(vec<mint> &g, bool inv = false) {
     size_t n = g.size();
-    FFT_INFO::init(n);
+    info.set(n);
     f.resize(n);
     w.resize(n);
     w[0] = 1;
-    for (size_t i = 0; i < n; ++i) f[i] = (MOD << 5) + g[FFT_INFO::root[i]];
+    for (size_t i = 0; i < n; ++i) f[i] = (MOD << 5) + g[info.root[i]];
     for (size_t l = 1; l < n; l <<= 1) {
       mint tG = qpow(inv ? IG : G, (MOD - 1) / (l + l));
       for (size_t i = 1; i < l; ++i) w[i] = w[i - 1] * tG;
@@ -41,6 +41,7 @@ struct NTT {
 private:
   const mint G = proot_u64(MOD), IG = G.inv();
 
+  FFT_INFO info;
   vec<mint> f, w;
 };
 

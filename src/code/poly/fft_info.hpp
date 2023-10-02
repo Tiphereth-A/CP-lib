@@ -6,13 +6,15 @@
 namespace tifa_libs::math {
 
 struct FFT_INFO {
-  static inline vec<size_t> root;
+  vec<size_t> root;
 
-  static void init(size_t n) {
+  FFT_INFO() {}
+
+  void set(size_t n) {
     assert((n & (n - 1)) == 0);
     if (root.size() == n) return;
     root.resize(n);
-    for (size_t i = 0; i < n; ++i) root[i] = (root[i >> 1] >> 1) | ((i & 1) * (n >> 1));
+    for (size_t i = 0; i < n; ++i) root[i] = (root[i / 2] / 2) | ((i & 1) * (n / 2));
   }
 };
 
