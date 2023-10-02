@@ -13,7 +13,7 @@ inline poly<T> poly_acos(poly<T> const &p) {
   size_t n = p.size();
   poly<T> _ = -p;
   _.conv(p);
-  _.resize(_);
+  _.resize(n);
   _[0] = _[0] + 1;
   _ = -poly_inv(poly_sqrt(_));
   _.conv(poly_deriv(p));
