@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series"
+#define PROBLEM "https://judge.yosupo.jp/problem/sqrt_of_formal_power_series"
 
 #include "../../code/math/mint_s63.hpp"
 #include "../../code/poly/poly.hpp"
