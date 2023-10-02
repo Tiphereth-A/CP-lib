@@ -25,6 +25,7 @@ inline poly<T> poly_pow(poly<T> const &p, u64 y) {
   if (u64 phi = euler_phi_u64(mint::mod()); y > phi) y = y % phi + phi;
   _ = poly_shl(_, l0);
   _.strip();
+  if (_[0] != 1) _ *= _[0].inv();
   _ = poly_exp(poly_ln(_) * y);
   _.resize(n);
   poly_shr(_, l0 * y_);

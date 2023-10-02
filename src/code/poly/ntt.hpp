@@ -15,15 +15,18 @@ struct NTT {
   static_assert((MOD & 3) == 1, "MOD must be prime with 4k+1");
 
   constexpr NTT() {}
-  constexpr void operator()(vec<mint> &g, bool inv = false) {
+  template <bool inv = false>
+  constexpr void run(vec<mint> &g) {
     size_t n = g.size();
     info.set(n);
     f.resize(n);
     w.resize(n);
     w[0] = 1;
-    for (size_t i = 0; i < n; ++i) f[i] = (MOD << 5) + g[info.root[i]];
+    for (size_t i = 0; i < n; ++i) f[i] = g[info.root[i]];
     for (size_t l = 1; l < n; l <<= 1) {
-      mint tG = qpow(inv ? IG : G, (MOD - 1) / (l + l));
+      mint tG;
+      if constexpr (inv) tG = qpow(IG, (MOD - 1) / (l + l));
+      else tG = qpow(G, (MOD - 1) / (l + l));
       for (size_t i = 1; i < l; ++i) w[i] = w[i - 1] * tG;
       for (size_t k = 0; k < n; k += l + l)
         for (size_t p = 0; p < l; ++p) {
@@ -32,7 +35,7 @@ struct NTT {
           f[k | p] += _;
         }
     }
-    if (inv) {
+    if constexpr (inv) {
       const mint in = mint(n).inv();
       for (size_t i = 0; i < n; ++i) g[i] = in * f[i];
     } else g = f;

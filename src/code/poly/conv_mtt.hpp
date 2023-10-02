@@ -19,13 +19,13 @@ inline vec<mint> conv_mtt(vec<mint> l, vec<mint> const &r, size_t ans_size) {
   size_t n = bit::bceil(std::min(l.size() + r.size() - 1, ans_size));
   a.resize(n);
   b.resize(n);
-  fft(a);
-  fft(b);
+  fft.run(a);
+  fft.run(b);
   vec<C> p(n), q(n);
   for (size_t i = 0; i < n; ++i) p[i] = b[i] * (a[i] + conj(a[i ? n - i : 0])) * C{.5, 0};
   for (size_t i = 0; i < n; ++i) q[i] = b[i] * (a[i] - conj(a[i ? n - i : 0])) * C{0, -.5};
-  fft(p, true);
-  fft(q, true);
+  fft.template run<true>(p);
+  fft.template run<true>(q);
   for (size_t i = 0; i < l.size(); ++i) l[i] = ((u64)(p[i].real() / (DBL)n + .5) + (((u64)((p[i].imag() + q[i].real()) / (DBL)n + .5)) << 15) + (((u64)(q[i].imag() / (DBL)n + .5)) << 30)) % mint::mod();
   return l;
 }

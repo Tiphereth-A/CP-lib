@@ -14,10 +14,10 @@ inline vec<mint> conv_ntt(vec<mint> l, vec<mint> r, size_t ans_size) {
   size_t n = bit::bceil(std::min(l.size() + r.size() - 1, ans_size));
   l.resize(n);
   r.resize(n);
-  ntt(l);
-  ntt(r);
+  ntt.run(l);
+  ntt.run(r);
   for (size_t i = 0; i < n; ++i) l[i] *= r[i];
-  ntt(l, true);
+  ntt.template run<true>(l);
   l.resize(ans_size);
   return l;
 }

@@ -76,7 +76,7 @@ public:
   constexpr poly &operator+=(poly const &r) {
     if (!r.size()) return *this;
     resize(std::max(size(), r.size()));
-    apply_range(0, r.size(), [&r]([[maybe_unused]] size_t i, auto &v) { v += r[i]; });
+    apply_range(0, r.size(), [&r](size_t i, auto &v) { v += r[i]; });
     return *this;
   }
   friend poly operator+(poly l, poly const &r) { return l += r; }
@@ -84,7 +84,7 @@ public:
   constexpr poly &operator-=(poly const &r) {
     if (!r.size()) return *this;
     resize(std::max(size(), r.size()));
-    apply_range(0, r.size(), [&r]([[maybe_unused]] size_t i, auto &v) { v -= r[i]; });
+    apply_range(0, r.size(), [&r](size_t i, auto &v) { v -= r[i]; });
     return *this;
   }
   friend poly operator-(poly l, poly const &r) { return l -= r; }
