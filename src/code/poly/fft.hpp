@@ -13,7 +13,7 @@ struct FFT {
 
   using C = std::complex<FP>;
 
-  constexpr FFT() = default;
+  constexpr FFT() {}
   constexpr void operator()(vec<C> &g, bool inv = false) {
     size_t n = g.size();
     FFT_INFO::init(n);
@@ -38,7 +38,7 @@ struct FFT {
 private:
   const FP TAU = std::acos((FP)1.) * 2;
 
-  static inline vec<C> w;
+  vec<C> w;
 };
 
 }  // namespace tifa_libs::math

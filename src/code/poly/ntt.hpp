@@ -41,7 +41,7 @@ struct NTT {
 private:
   const mint G = proot_u64(MOD), IG = G.inv();
 
-  static inline vec<mint> f, w;
+  vec<mint> f, w;
 };
 
 }  // namespace tifa_libs::math
