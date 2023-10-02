@@ -23,9 +23,10 @@ constexpr bool sqrt_(poly<T> const &p, poly<T> &ans, size_t n) {
   sA.resize(n);
   ans.resize(ans.size() * 2);
   auto _ = poly_inv(ans * 2);
-  ans.conv(ans, n);
-  ans += sA;
-  ans.conv(_, n);
+  ans.conv(ans);
+  ans.resize(n);
+  (ans += sA).conv(_);
+  ans.resize(n);
   return true;
 }
 }  // namespace polysqrt_detail_
@@ -35,11 +36,14 @@ inline std::optional<poly<T>> poly_sqrt(poly<T> p) {
   poly<T> ans;
   size_t n = p.size();
   size_t cnt = std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x.val() > 0; }) - p.data().begin();
-  if (cnt & 1) return {};
   if (cnt == n) return p;
+  if (cnt & 1) return {};
   p = poly_shl(p, cnt);
-  if (bool _ = polysqrt_detail_::sqrt_(p, ans, n); !_) return {};
-  return poly_shr(ans, cnt / 2);
+  p.strip();
+  if (bool _ = polysqrt_detail_::sqrt_(p, ans, p.size()); !_) return {};
+  ans.resize(n);
+  ans = poly_shr(ans, cnt / 2);
+  return ans;
 }
 
 }  // namespace tifa_libs::math

@@ -50,7 +50,9 @@ public:
   void apply(F f) { apply_range(0, size(), f); }
   constexpr void resize(size_t size) { p.d.resize(size); }
   constexpr void strip() {
-    while (!p.d.empty() && !p.d.back()) p.d.pop_back();
+    auto it = p.d.rbegin();
+    while (it != p.d.rend() && it->val() == 0) ++it;
+    p.d.resize(p.d.rend() - it);
     if (p.d.empty()) p.d.push_back(value_type(0));
   }
   constexpr void reverse() { std::reverse(p.d.begin(), p.d.end()); }
