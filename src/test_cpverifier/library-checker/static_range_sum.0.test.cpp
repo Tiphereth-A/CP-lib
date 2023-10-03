@@ -7,13 +7,16 @@ int main() {
   std::cin.tie(nullptr);
   tifa_libs::u32 n, q;
   std::cin >> n >> q;
-  tifa_libs::ds::fenwick<tifa_libs::i64> fw1(n + 1);
-  tifa_libs::i64 x;
-  for(size_t i = 1; i <= n; ++ i) std::cin >> x, fw1.add(i, x);
-  for(size_t i = 1; i <= q; ++ i) {
+  tifa_libs::ds::fenwick<tifa_libs::u64> fw1(n + 1);
+  tifa_libs::u64 x;
+  for (size_t i = 1; i <= n; ++i) {
+    std::cin >> x;
+    fw1.add(i, x);
+  }
+  for (size_t i = 1; i <= q; ++i) {
     size_t l, r;
     std::cin >> l >> r;
-    std::cout << fw1.sum(r) - fw1.sum(l) <<'\n';
+    std::cout << fw1.sum(r) - fw1.sum(l) << '\n';
   }
   return 0;
 }
