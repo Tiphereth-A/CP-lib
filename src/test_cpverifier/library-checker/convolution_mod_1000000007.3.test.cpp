@@ -14,7 +14,7 @@ int main() {
   tifa_libs::vec<mint> a(n), b(m);
   for (auto &i : a) std::cin >> i;
   for (auto &i : b) std::cin >> i;
-  auto c = tifa_libs::math::conv_mtt(a, b);
+  auto c = tifa_libs::math::conv_mtt<mint, long double>(a, b);
   for (size_t i = 0; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
   return 0;
 }
