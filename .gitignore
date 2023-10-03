@@ -510,6 +510,8 @@ TSWLatexianTemp*
 
 # Custom
 
+*.stackdump
+
 _gen/
 _pdf_out/
 .competitive-verifier/
