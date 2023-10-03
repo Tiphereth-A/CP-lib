@@ -3,34 +3,42 @@
 
 #include "../util/util.hpp"
 
-#include "../bit/bceil.hpp"
 #include "fft.hpp"
 
 namespace tifa_libs::math {
 
-template <class mint, class DBL = double>
-inline vec<mint> conv_mtt(vec<mint> l, vec<mint> const &r, size_t ans_size) {
-  static FFT<DBL> fft;
-  using C = typename FFT<DBL>::C;
-  vec<C> a(l.size()), b(r.size());
-  for (size_t i = 0; i < l.size(); ++i) a[i].real((DBL)(l[i].val() & 0x7fff)), a[i].imag((DBL)(l[i].val() >> 15));
-  for (size_t i = 0; i < r.size(); ++i) b[i].real((DBL)(r[i].val() & 0x7fff)), b[i].imag((DBL)(r[i].val() >> 15));
-  l.resize(ans_size);
-  size_t n = bit::bceil(std::min(l.size() + r.size() - 1, ans_size));
-  a.resize(n);
-  b.resize(n);
-  fft.run(a);
-  fft.run(b);
-  vec<C> p(n), q(n);
-  for (size_t i = 0; i < n; ++i) p[i] = b[i] * (a[i] + conj(a[i ? n - i : 0])) * C{.5, 0};
-  for (size_t i = 0; i < n; ++i) q[i] = b[i] * (a[i] - conj(a[i ? n - i : 0])) * C{0, -.5};
-  fft.template run<true>(p);
-  fft.template run<true>(q);
-  for (size_t i = 0; i < l.size(); ++i) l[i] = ((u64)(p[i].real() / (DBL)n + .5) + (((u64)((p[i].imag() + q[i].real()) / (DBL)n + .5)) << 15) + (((u64)(q[i].imag() / (DBL)n + .5)) << 30)) % mint::mod();
-  return l;
+template <class mint, class FP = double>
+inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, size_t ans_size) {
+  using C = typename FFT<FP>::C;
+  static FFT<FP> fft;
+  fft.bzr(std::min(l.size() + r.size() - 1, ans_size));
+  size_t n = fft.size();
+  constexpr int OFS = ((int)sizeof(decltype(mint::mod())) * 8 - bit::cntl0(mint::mod() - 1) + 1) / 2;
+  constexpr u32 MSK = ((1u << OFS) - 1);
+  vec<mint> ans(ans_size);
+  vec<C> a(n), b(n);
+  for (size_t i = 0; i < l.size(); ++i) a[i] = {(FP)(l[i].val() & MSK), (FP)(l[i].val() >> OFS)};
+  for (size_t i = 0; i < r.size(); ++i) b[i] = {(FP)(r[i].val() & MSK), (FP)(r[i].val() >> OFS)};
+  fft.dif(a);
+  fft.dif(b);
+  {
+    vec<C> p(n), q(n);
+    for (size_t i = 0, j; i < n; ++i) {
+      j = (n - i) & (n - 1);
+      C da = (a[i] + std::conj(a[j])) * C(.5, 0), db = (a[i] - std::conj(a[j])) * C(0, -.5), dc = (b[i] + std::conj(b[j])) * C(.5, 0), dd = (b[i] - std::conj(b[j])) * C(.5, .5);
+      p[j] = da * dc + da * dd;
+      q[j] = db * dc + db * dd;
+    }
+    a = p;
+    b = q;
+  }
+  fft.dit(a);
+  fft.dit(b);
+  for (size_t i = 0; i < ans_size; ++i) ans[i] = (u64)(a[i].real() + .5) + ((u64)((a[i].imag() + b[i].real()) + .5) << OFS) + ((u64)(b[i].imag() + .5) << (OFS * 2));
+  return ans;
 }
-template <class mint>
-inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r) { return conv_mtt(l, r, l.size() + r.size() - 1); }
+template <class mint, class FP = double>
+inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r) { return conv_mtt<mint, FP>(l, r, l.size() + r.size() - 1); }
 
 }  // namespace tifa_libs::math
 

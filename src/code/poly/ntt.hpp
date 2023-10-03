@@ -3,9 +3,9 @@
 
 #include "../util/util.hpp"
 
+#include "../bit/bceil.hpp"
 #include "../math/proot_u64.hpp"
 #include "../math/qpow.hpp"
-#include "fft_info.hpp"
 
 namespace tifa_libs::math {
 
@@ -14,38 +14,56 @@ struct NTT {
   static constexpr u64 MOD = mint::mod();
   static_assert((MOD & 3) == 1, "MOD must be prime with 4k+1");
 
-  constexpr NTT() {}
-  template <bool inv = false>
-  constexpr void run(vec<mint> &g) {
-    size_t n = g.size();
-    info.set(n);
+  NTT():
+    root() {}
+
+  size_t size() const { return root.size(); }
+  void bzr(size_t len) {
+    size_t n = bit::bceil(len);
+    assert((MOD - 1) % n == 0);
+    if (n == size()) return;
+    root.resize(n);
+    root[0] = 1;
+    mint w = qpow(G, (MOD - 1) / n);
+    for (size_t i = 1; i < n; ++i) root[i] = root[i - 1] * w;
+  }
+
+  void dif(vec<mint> &f) const {
+    size_t n = size();
+    assert(f.size() <= n);
     f.resize(n);
-    w.resize(n);
-    w[0] = 1;
-    for (size_t i = 0; i < n; ++i) f[i] = g[info.root[i]];
-    for (size_t l = 1; l < n; l <<= 1) {
-      mint tG;
-      if constexpr (inv) tG = qpow(IG, (MOD - 1) / (l + l));
-      else tG = qpow(G, (MOD - 1) / (l + l));
-      for (size_t i = 1; i < l; ++i) w[i] = w[i - 1] * tG;
-      for (size_t k = 0; k < n; k += l + l)
-        for (size_t p = 0; p < l; ++p) {
-          mint _ = w[p] * f[k | l | p];
-          f[k | l | p] = f[k | p] - _;
-          f[k | p] += _;
+    for (size_t i = n / 2, d = 1; i; i /= 2, d *= 2)
+      for (size_t j = 0; j < n; j += i * 2) {
+        auto w = root.begin();
+        mint u, t;
+        for (size_t k = 0; k < i; ++k, w += d) {
+          f[j | k] = (u = f[j | k]) + (t = f[i | j | k]);
+          f[i | j | k] = (u - t) * (*w);
         }
-    }
-    if constexpr (inv) {
-      const mint in = mint(n).inv();
-      for (size_t i = 0; i < n; ++i) g[i] = in * f[i];
-    } else g = f;
+      }
+  }
+  void dit(vec<mint> &f) const {
+    size_t n = size();
+    assert(f.size() <= n);
+    f.resize(n);
+    for (size_t i = 1, d = n / 2; d; i *= 2, d /= 2)
+      for (size_t j = 0; j < n; j += i * 2) {
+        auto w = root.begin();
+        mint t;
+        for (size_t k = 0; k < i; ++k, w += d) {
+          f[i | j | k] = f[j | k] - (t = f[i | j | k] * (*w));
+          f[j | k] += t;
+        }
+      }
+    std::reverse(f.begin() + 1, f.end());
+    mint t = mint(n).inv();
+    for (size_t i = 0; i < n; ++i) f[i] *= t;
   }
 
 private:
-  const mint G = proot_u64(MOD), IG = G.inv();
+  const mint G = proot_u64(MOD);
 
-  FFT_INFO info;
-  vec<mint> f, w;
+  vec<mint> root;
 };
 
 }  // namespace tifa_libs::math

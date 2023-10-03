@@ -1,54 +1,61 @@
 #ifndef TIFALIBS_POLY_FFT
 #define TIFALIBS_POLY_FFT
 
-#include "../util/util.hpp"
-
-#include "fft_info.hpp"
+#include "../bit/bceil.hpp"
+#include <cstddef>
 
 namespace tifa_libs::math {
 
 template <class FP>
 struct FFT {
   static_assert(std::is_floating_point_v<FP>);
-
   using C = std::complex<FP>;
 
-  constexpr FFT() {}
-  template <bool inv = false>
-  constexpr void run(vec<C> &g) {
-    size_t n = g.size();
-    info.set(n);
+  constexpr FFT():
+    rev(), w() {}
+
+  size_t size() const { return rev.size(); }
+  void bzr(size_t len) {
+    size_t n = bit::bceil(len);
+    int k = (int)sizeof(size_t) * 8 - bit::cntl0(n - 1);
+    if (n == size()) return;
+    rev.resize(n, 0);
+    for (size_t i = 0; i < n; ++i) rev[i] = (rev[i / 2] / 2) | ((i & 1) << (k - 1));
     w.resize(n);
-    w[0] = 1;
-    for (size_t i = 1; i < n; ++i) {
-      w[i].real(std::cos(TAU * (FP)i / (FP)n));
-      if constexpr (inv) w[i].imag(-std::sin(TAU * (FP)i / (FP)n));
-      else w[i].imag(std::sin(TAU * (FP)i / (FP)n));
-    }
-    for (size_t i = 0; i < n; ++i)
-      if (i < info.root[i]) std::swap(g[i], g[info.root[i]]);
-    for (size_t i = 2; i <= n; i *= 2) {
-      for (size_t j = 1; j < i / 2; ++j) {
-        w[j].real(std::cos(TAU / (FP)i * (FP)j));
-        if constexpr (inv) w[j].imag(-std::sin(TAU / (FP)i * (FP)j));
-        else w[j].imag(std::sin(TAU / (FP)i * (FP)j));
-      }
-      for (size_t j = 0; j < n; j += i) {
-        auto f = g.begin() + j, h = g.begin() + j + i / 2;
-        for (size_t k = 0; k < i / 2; ++k) {
-          C p = f[k], q = h[k] * w[k];
-          f[k] = p + q;
-          h[k] = p - q;
-        }
-      }
-    }
+    w[0].real(1);
+    for (size_t i = 1; i < n; ++i) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
   }
 
-private:
-  const FP TAU = std::acos((FP)1.) * 2;
+  void
+  dif(vec<C> &f) const { difdit(f); }
+  void dit(vec<C> &f) const { difdit<true>(f); }
 
-  FFT_INFO info;
+private:
+  const FP TAU = std::acos((FP)-1.) * 2;
+
+  vec<size_t> rev;
   vec<C> w;
+
+  template <bool inv = false>
+  void difdit(vec<C> &f) const {
+    size_t n = size();
+    assert(f.size() <= n);
+    f.resize(n);
+    for (size_t i = 0; i < n; ++i)
+      if (i < rev[i]) std::swap(f[rev[i]], f[i]);
+    for (size_t i = 2, d = n / 2; i <= n; i *= 2, d /= 2)
+      for (size_t j = 0; j < n; j += i) {
+        auto l = f.begin() + j, r = f.begin() + j + i / 2;
+        auto p = w.begin();
+        for (size_t k = 0; k < i / 2; ++k, ++l, ++r, p += d) {
+          C tmp = *r * *p;
+          *r = *l - tmp;
+          *l = *l + tmp;
+        }
+      }
+    if constexpr (inv)
+      for (size_t i = 0; i < n; ++i) f[i] /= (FP)n;
+  }
 };
 
 }  // namespace tifa_libs::math
