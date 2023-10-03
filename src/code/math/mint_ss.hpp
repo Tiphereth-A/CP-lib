@@ -70,7 +70,7 @@ public:
     return *this;
   }
   constexpr mint_ss &operator*=(const mint_ss &r) {
-    v_ = (u32)((i64)v_ * r.v_ % mod());
+    v_ = (u32)((u64)v_ * r.v_ % mod());
     return *this;
   }
   constexpr mint_ss &operator/=(const mint_ss &r) { return *this = *this * r.inv(); }
