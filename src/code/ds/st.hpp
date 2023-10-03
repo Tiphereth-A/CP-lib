@@ -20,7 +20,7 @@ public:
     size_t m = size_t(bit::log2(N)) + 1;
     for (size_t j = 1; j < m; ++j)
       for (size_t i = 0; i < n; ++i) {
-        st[i][j] = f(st[i][j - 1], st[f(n - 1, i + (1 << (j - 1)))][j - 1]);
+        st[i][j] = f(st[i][j - 1], st[std::min(n - 1, i + (1 << (j - 1)))][j - 1]);
       }
   }
   T query(size_t l, size_t r) {

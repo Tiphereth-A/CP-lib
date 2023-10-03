@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "../../code/ds/st_0.hpp"
+#include "../../code/ds/st.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);
