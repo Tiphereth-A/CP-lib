@@ -26,8 +26,8 @@ inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, size_t ans_siz
   }
   fft.bzr(std::min(l.size() + r.size() - 1, ans_size));
   size_t n = fft.size();
-  constexpr int OFS = ((int)sizeof(decltype(mint::mod())) * 8 - bit::cntl0(mint::mod() - 1) + 1) / 2;
-  constexpr u32 MSK = ((1u << OFS) - 1);
+  const int OFS = ((int)sizeof(decltype(mint::mod())) * 8 - bit::cntl0(mint::mod() - 1) + 1) / 2;
+  const u32 MSK = ((1u << OFS) - 1);
   vec<mint> ans(ans_size);
   vec<C> a(n), b(n);
   for (size_t i = 0; i < l.size(); ++i) a[i] = {(FP)(l[i].val() & MSK), (FP)(l[i].val() >> OFS)};
@@ -45,9 +45,15 @@ inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, size_t ans_siz
     a = p;
     b = q;
   }
-  fft.dit(a);
-  fft.dit(b);
-  for (size_t i = 0; i < ans_size; ++i) ans[i] = (u64)(a[i].real() + .5) + ((u64)((a[i].imag() + b[i].real()) + .5) << OFS) + ((u64)(b[i].imag() + .5) << (OFS * 2));
+  fft.dif(a);
+  fft.dif(b);
+  for (size_t i = 0; i < ans_size; ++i) {
+    i64 da = (i64)(a[i].real() / (FP)n + .5) % mint::mod(),
+        db = (i64)(a[i].imag() / (FP)n + .5) % mint::mod(),
+        dc = (i64)(b[i].real() / (FP)n + .5) % mint::mod(),
+        dd = (i64)(b[i].imag() / (FP)n + .5) % mint::mod();
+    ans[i] = da + ((db + dc) << OFS) + (dd << (OFS * 2));
+  }
   return ans;
 }
 template <class mint, class FP = double>

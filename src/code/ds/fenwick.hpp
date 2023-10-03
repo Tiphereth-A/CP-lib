@@ -3,6 +3,7 @@
 
 #include "../bit/cntr0.hpp"
 #include "../util/util.hpp"
+#include <algorithm>
 
 namespace tifa_libs::ds {
 
@@ -12,16 +13,18 @@ class fenwick {
   constexpr size_t lowbit(size_t x) { return (size_t)1 << bit::cntr0(x); }
 
 public:
-  explicit constexpr fenwick(size_t sz = 0):
-    a(sz) {}
+  //! [1, sz)
+  explicit constexpr fenwick(size_t sz):
+    a(sz) { assert(sz > 1); }
+  //! [1, pos)
   constexpr void add(size_t pos, T const &x) {
-    assert(pos && pos < a.size());
-    for (; pos < a.size(); pos += lowbit(pos)) a[pos] += x;
+    if (!pos) return;
+    for (pos = std::clamp(pos, size_t(1), a.size() - 1); pos < a.size(); pos += lowbit(pos)) a[pos] += x;
   }
+  //! [1, pos)
   constexpr T sum(size_t pos) {
-    assert(pos && pos < a.size());
     T ret = 0;
-    for (; pos; pos -= lowbit(pos)) ret += a[pos];
+    for (pos = std::clamp(pos, size_t(0), a.size() - 1); pos; pos -= lowbit(pos)) ret += a[pos];
     return ret;
   }
 };
