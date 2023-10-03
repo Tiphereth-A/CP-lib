@@ -38,7 +38,7 @@ inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, size_t ans_siz
     vec<C> p(n), q(n);
     for (size_t i = 0, j; i < n; ++i) {
       j = (n - i) & (n - 1);
-      C da = (a[i] + std::conj(a[j])) * C(.5, 0), db = (a[i] - std::conj(a[j])) * C(0, -.5), dc = (b[i] + std::conj(b[j])) * C(.5, 0), dd = (b[i] - std::conj(b[j])) * C(.5, .5);
+      C da = (a[i] + std::conj(a[j])) * C(.5, 0), db = (a[i] - std::conj(a[j])) * C(0, -.5), dc = (b[i] + std::conj(b[j])) * C(.5, 0), dd = (b[i] - std::conj(b[j])) * C(.5, 0);
       p[j] = da * dc + da * dd;
       q[j] = db * dc + db * dd;
     }
