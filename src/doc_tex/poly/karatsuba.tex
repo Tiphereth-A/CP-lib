@@ -1,0 +1,13 @@
+计算 \(\mathbb{Z}/2^{64}\mathbb{Z}\) 下的卷积
+
+\paragraph{输入}
+
+\verb|l|, \verb|r|: 序列 \(l_0, l_1, \dots, l_{n-1}\), \(r_0, r_1, \dots, r_{m-1}\)
+
+\paragraph{输出}
+
+序列 \(l_0, l_1, \dots, l_{n+m-1}\) 满足 \(l_k\equiv \sum_{i+j=k}l_ir_j\pmod{2^{64}}\)
+
+\paragraph{复杂度}
+
+\(O\left(n^{\log_2 3}\right)\approx O\left(n^{1.58}\right)\)
