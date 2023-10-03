@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -167,7 +170,7 @@ jobs:
         with:
           verify-result: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
   deploy:
-    if: always() && github.ref == 'refs/heads/master' && needs.docs-and-check.outputs.upload-pages == 'true'
+    if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }} && github.ref == 'refs/heads/master' && needs.docs-and-check.outputs.upload-pages == 'true'
     needs: docs-and-check
     environment:
       name: github-pages
