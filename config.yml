@@ -54,6 +54,9 @@ notebook:
     - cntr1: std::countr_one
       code_ext: hpp
       test_ext: cpp
+    - log2: log2
+      code_ext: hpp
+      test_ext: cpp
     - popcnt: std::popcount
       code_ext: hpp
       test_ext: cpp

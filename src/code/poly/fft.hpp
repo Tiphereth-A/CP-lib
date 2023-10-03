@@ -2,7 +2,7 @@
 #define TIFALIBS_POLY_FFT
 
 #include "../bit/bceil.hpp"
-#include <cstddef>
+#include "../bit/log2.hpp"
 
 namespace tifa_libs::math {
 
@@ -17,7 +17,7 @@ struct FFT {
   size_t size() const { return rev.size(); }
   void bzr(size_t len) {
     size_t n = bit::bceil(len);
-    int k = (int)sizeof(size_t) * 8 - bit::cntl0(n - 1);
+    int k = bit::log2(n);
     if (n == size()) return;
     rev.resize(n, 0);
     for (size_t i = 0; i < n; ++i) rev[i] = (rev[i / 2] / 2) | ((i & 1) << (k - 1));
