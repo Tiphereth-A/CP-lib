@@ -14,12 +14,12 @@ class fenwick {
 public:
   explicit constexpr fenwick(size_t sz = 0):
     a(sz) {}
-  constexpr void add(size_t pos, T x) {
-    assert(pos > 1 && pos < a.size());
+  constexpr void add(size_t pos, T const &x) {
+    assert(pos >= 1 && pos < a.size());
     for (; pos < a.size(); pos += lowbit(pos)) a[pos] += x;
   }
   constexpr T sum(size_t pos) {
-    assert(pos > 1 && pos < a.size());
+    assert(pos >= 1 && pos < a.size());
     T ret = 0;
     for (; pos; pos -= lowbit(pos)) ret += a[pos];
     return ret;
