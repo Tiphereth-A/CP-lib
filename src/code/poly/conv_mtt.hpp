@@ -4,6 +4,7 @@
 #include "../util/util.hpp"
 
 #include "fft.hpp"
+#include <cstddef>
 
 namespace tifa_libs::math {
 
@@ -11,6 +12,18 @@ template <class mint, class FP = double>
 inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, size_t ans_size) {
   using C = typename FFT<FP>::C;
   static FFT<FP> fft;
+  if (l.size() == 1) {
+    vec<mint> ans = r;
+    ans.resize(ans_size);
+    for (auto &i : ans) i *= l[0];
+    return ans;
+  }
+  if (r.size() == 1) {
+    vec<mint> ans = l;
+    ans.resize(ans_size);
+    for (auto &i : ans) i *= r[0];
+    return ans;
+  }
   fft.bzr(std::min(l.size() + r.size() - 1, ans_size));
   size_t n = fft.size();
   constexpr int OFS = ((int)sizeof(decltype(mint::mod())) * 8 - bit::cntl0(mint::mod() - 1) + 1) / 2;
