@@ -2,7 +2,6 @@
 #define TIFA_LIBS_DS_DSU_BASIC
 
 #include "../util/util.hpp"
-#include <cstddef>
 
 namespace tifa_libs::ds {
 

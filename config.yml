@@ -73,6 +73,9 @@ notebook:
     - dsu_basic: 并查集
       code_ext: hpp
       test_ext: cpp
+    - st: st表-数列
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - circle_class: circle_class
       code_ext: hpp
