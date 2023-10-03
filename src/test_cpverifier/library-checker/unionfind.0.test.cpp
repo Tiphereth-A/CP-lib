@@ -1,4 +1,3 @@
-#include <iostream>
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
 #include "../../code/ds/dsu_basic.hpp"

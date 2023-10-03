@@ -9,7 +9,7 @@ int main() {
   std::cin >> n >> q;
   tifa_libs::ds::fenwick<tifa_libs::i64> fw1(n + 1);
   tifa_libs::i64 x;
-  for(size_t i = 1; i <= n; ++ i) std::cin >> x, fw1.update(i, x);
+  for(size_t i = 1; i <= n; ++ i) std::cin >> x, fw1.add(i, x);
   for(size_t i = 1; i <= q; ++ i) {
     size_t l, r;
     std::cin >> l >> r;
