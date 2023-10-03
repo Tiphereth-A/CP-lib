@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 // Multi-point evaluation based on Tellegen's Principle
 // @return {f(a[0]), f(a[1]), ..., f(a.back())}
 template <class T>
-inline poly<T> poly_mpe(poly<T> const &f, poly<T> const &a) {
+inline poly<T> poly_mpe(poly<T> f, poly<T> a) {
   class SegTree {
     vec<poly<T>> t;
 

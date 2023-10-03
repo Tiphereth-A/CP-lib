@@ -19,6 +19,8 @@ struct polydata_d {
 
   explicit constexpr polydata_d(size_t sz = 1):
     d(std::max((size_t)1, sz)) {}
+  explicit constexpr polydata_d(std::initializer_list<mint> v):
+    d(v) {}
   explicit constexpr polydata_d(vec<mint> const &v):
     d(v) {}
 

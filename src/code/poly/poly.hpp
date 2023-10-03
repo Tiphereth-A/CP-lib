@@ -2,6 +2,7 @@
 #define TIFALIBS_POLY_POLY
 
 #include "../util/util.hpp"
+#include <initializer_list>
 
 namespace tifa_libs::math {
 
@@ -15,6 +16,8 @@ public:
 
   explicit constexpr poly(size_t sz = 1):
     p(sz) {}
+  explicit constexpr poly(std::initializer_list<value_type> v):
+    p(v) {}
   template <class T>
   explicit constexpr poly(vec<T> const &v):
     p(v) {}
@@ -94,7 +97,7 @@ public:
       p.d[0] = 0;
       return *this;
     }
-    p.conv(r);
+    conv(r);
     return *this;
   }
   friend poly operator*(poly l, poly const &r) { return l *= r; }
