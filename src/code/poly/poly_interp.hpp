@@ -2,6 +2,7 @@
 #define TIFALIBS_POLY_INTERP
 
 #include "poly_deriv.hpp"
+#include "poly_mpe.hpp"
 
 namespace tifa_libs::math {
 
@@ -38,7 +39,7 @@ inline poly<T> poly_interp(poly<T> const &x, poly<T> const &y) {
   assert(x.size() == y.size());
   size_t n = x.size();
   SegTree sgt(x);
-  poly<T> t = mpe(poly_deriv(sgt.t[1]), x);
+  poly<T> t = poly_mpe(poly_deriv(sgt.t[1]), x);
   for (size_t i = 0; i < n; ++i) t[i] = y[i] * t[i].inv();
   return sgt(t);
 }
