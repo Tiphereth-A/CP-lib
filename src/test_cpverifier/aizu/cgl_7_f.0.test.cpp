@@ -14,9 +14,11 @@ int main() {
   std::cout << std::fixed << std::setprecision(12);
   circ c;
   point p;
-  std::cin >> c >> p;
+  std::cin >> p >> c;
   auto [x, y] = tifa_libs::geo2d::tan_CP(c, p).value();
-  if (x < y) std::cout << x << '\n' << y << '\n';
-  else std::cout << y << '\n' << x << '\n';
+  if (x < y) std::cout << x << '\n'
+                       << y << '\n';
+  else std::cout << y << '\n'
+                 << x << '\n';
   return 0;
 }
