@@ -1,7 +1,8 @@
 #ifndef TIFA_LIBS_GEO2D
 #define TIFA_LIBS_GEO2D
 
-#include "point.hpp"
+#include "cross.hpp"
+#include "dot.hpp"
 
 namespace tifa_libs::geo2d {
 

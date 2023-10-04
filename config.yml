@@ -185,10 +185,40 @@ notebook:
     - min_cover_c: min_cover_c
       code_ext: hpp
       test_ext: cpp
-    - point_class: point_class
+    - point: point
       code_ext: hpp
       test_ext: cpp
-    - point: point
+    - ang2pi_pp: ang2pi_pp
+      code_ext: hpp
+      test_ext: cpp
+    - ang_pp: ang_pp
+      code_ext: hpp
+      test_ext: cpp
+    - cross: cross
+      code_ext: hpp
+      test_ext: cpp
+    - dist_pp: dist_pp
+      code_ext: hpp
+      test_ext: cpp
+    - dist_pp_ch: dist_pp_ch
+      code_ext: hpp
+      test_ext: cpp
+    - dist_pp_ma: dist_pp_ma
+      code_ext: hpp
+      test_ext: cpp
+    - dot: dot
+      code_ext: hpp
+      test_ext: cpp
+    - make_p_polar: make_p_polar
+      code_ext: hpp
+      test_ext: cpp
+    - max_cover_ps: max_cover_ps
+      code_ext: hpp
+      test_ext: cpp
+    - min_dist_ps: min_dist_ps
+      code_ext: hpp
+      test_ext: cpp
+    - point_is_in_middle: point_is_in_middle
       code_ext: hpp
       test_ext: cpp
     - poly_cnt_intp: poly_cnt_intp

@@ -2,7 +2,7 @@
 #define TIFA_LIBS_GEO2D_REL_CP
 
 #include "circle.hpp"
-#include "point.hpp"
+#include "dist_pp.hpp"
 
 namespace tifa_libs::geo2d {
 

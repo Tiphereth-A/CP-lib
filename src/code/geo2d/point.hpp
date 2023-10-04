@@ -1,93 +1,122 @@
 #ifndef TIFA_LIBS_GEO2D_POINT
 #define TIFA_LIBS_GEO2D_POINT
 
-#include "point_class.hpp"
+#include "util.hpp"
 
 namespace tifa_libs::geo2d {
 
 template <class FP>
-constexpr point<FP> make_P_polar(FP r, FP theta) { return point{r * std::cos(theta), r * std::sin(theta)}; }
+struct point {
+  FP x, y;
+  constexpr point(FP x = FP{}, FP y = FP{}):
+    x(x), y(y) {}
 
-// distance of two points (Euclidian)
-template <class FP>
-constexpr FP dist_PP(point<FP> const &lhs, point<FP> const &rhs) { return std::hypot(lhs.x - rhs.x, lhs.y - rhs.y); }
-// distance of two points (Manhattan)
-template <class FP>
-constexpr FP dist_MaPP(point<FP> const &lhs, point<FP> const &rhs) { return std::abs(lhs.x - rhs.x) + std::abs(lhs.y - rhs.y); }
-// distance of two points (Chebyshev)
-template <class FP>
-constexpr FP dist_ChPP(point<FP> const &lhs, point<FP> const &rhs) { return std::max(std::abs(lhs.x - rhs.x), std::abs(lhs.y - rhs.y)); }
+  friend std::istream &operator>>(std::istream &is, point &rhs) { return is >> rhs.x >> rhs.y; }
+  friend std::ostream &operator<<(std::ostream &os, point const &rhs) { return os << rhs.x << ' ' << rhs.y; }
 
-// (p2 - p1) ^  (p3 - p1)
-template <class FP>
-constexpr FP cross(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return (p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y); }
-template <class FP>
-constexpr int sgn_cross(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return sgn(cross(p1, p2, p3)); }
+  // lhs * coord + rhs * (1 -coord)
+  friend constexpr point lerp(point const &lhs, point const &rhs, FP coord) { return lhs * coord + rhs * (1 - coord); }
 
-// (p2 - p1) * (p3 - p1)
-template <class FP>
-constexpr FP dot(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return (p2.x - p1.x) * (p3.x - p1.x) + (p2.y - p1.y) * (p3.y - p1.y); }
-template <class FP>
-constexpr int sgn_dot(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return sgn(dot(p1, p2, p3)); }
+  friend constexpr point mid_point(point const &lhs, point const &rhs) { return lerp(lhs, rhs, 0.5); }
 
-//! containing endpoints
-template <class FP>
-constexpr bool is_in_middle(point<FP> a, point<FP> m, point<FP> b) { return is_in_middle(a.x, m.x, b.x) && is_in_middle(a.y, m.y, b.y); }
-
-// clamp angle of two points
-template <class FP>
-constexpr FP ang_PP(point<FP> const &p1, point<FP> const &p2) { return std::atan2(p1 ^ p2, p1 * p2); }
-// clamp angle of two points, result in [0,2 pi)
-template <class FP>
-constexpr FP ang2pi_PP(point<FP> const &p1, point<FP> const &p2) {
-  FP res = ang_PP(p1, p2);
-  return is_neg(res) ? res + 2 * PI : res;
-}
-
-// min distance of a set of points
-//! need to sort `vp` first by the ascending order of x
-template <class FP>
-FP min_dist_Ps(vec<point<FP>> const &vp, size_t l, size_t r) {
-  FP ret = std::numeric_limits<FP>::max();
-  if (r - l <= 5) {
-    for (size_t i = l; i < r; ++i)
-      for (size_t j = l; j < i; ++j) ret = std::min(ret, dist_PP(vp[i], vp[j]));
-    return ret;
+  constexpr point &operator+=(FP n) {
+    this->x += n;
+    this->y += n;
+    return *this;
   }
-  size_t mid = r - (r - l) / 2;
-  ret = std::min(min_dist_Ps(vp, l, mid), min_dist_Ps(vp, mid, r));
-  vec<point<FP>> q;
-  for (size_t i = l; i < r; ++i)
-    if (std::abs(vp[i].x - vp[mid].x) <= ret) q.push_back(vp[i]);
-  std::stable_sort(q.begin(), q.end(), [](auto const &lhs, auto const &rhs) -> bool { return lhs.y < rhs.y; });
-  for (size_t i = 1; i < q.size(); ++i)
-    for (size_t j = i - 1; ~j && q[j].y >= q[i].y - ret; --j) ret = std::min(ret, dist_PP(q[i], q[j]));
-  return ret;
-}
-
-// max number of points covered by a circle with radius @r
-template <class FP>
-u64 max_cover_Ps(vec<point<FP>> const &vp, const FP r) {
-  if (is_neg(r)) return 0;
-  if (is_zero(r)) return 1;
-  const FP diam = r * 2;
-  u64 ans = 1;
-  vec<std::pair<FP, i64>> angles;
-  FP dist;
-  for (size_t i = 0; i < vp.size(); ++i) {
-    angles.clear();
-    for (size_t j = 0; j < vp.size(); ++j) {
-      if (i == j || is_ge(dist = dist_PP(vp[i], vp[j]), diam)) continue;
-      FP delta = std::acos(dist / diam), polar = ang2pi_PP(vp[i], vp[j]);
-      angles.emplace_back(polar - delta, 1);
-      angles.emplace_back(polar + delta, -1);
-    }
-    std::sort(angles.begin(), angles.end());
-    u64 sum = 0;
-    for (size_t j = 0; j < angles.size(); ++j) ans = std::max(ans, sum += angles[j].second);
+  constexpr point operator+(FP n) const { return point(*this) += n; }
+  constexpr point &operator-=(FP n) {
+    this->x -= n;
+    this->y -= n;
+    return *this;
   }
-  return ans;
-}
+  constexpr point operator-(FP n) const { return point(*this) -= n; }
+  constexpr point &operator*=(FP n) {
+    this->x *= n;
+    this->y *= n;
+    return *this;
+  }
+  constexpr point operator*(FP n) const { return point(*this) *= n; }
+  constexpr point &operator/=(FP n) {
+    this->x /= n;
+    this->y /= n;
+    return *this;
+  }
+  constexpr point operator/(FP n) const { return point(*this) /= n; }
+
+  constexpr point &operator+=(point const &rhs) {
+    this->x += rhs.x;
+    this->y += rhs.y;
+    return *this;
+  }
+  constexpr point operator+(point const &rhs) const { return point(*this) += rhs; }
+  constexpr point &operator-=(point const &rhs) {
+    this->x -= rhs.x;
+    this->y -= rhs.y;
+    return *this;
+  }
+  constexpr point operator-(point const &rhs) const { return point(*this) -= rhs; }
+
+  constexpr point operator-() const { return point{-x, -y}; }
+  constexpr bool operator<(point const &rhs) const {
+    auto c = comp(x, rhs.x);
+    if (c) return c >> 1;
+    return comp(y, rhs.y) >> 1;
+  }
+  constexpr bool operator==(point const &rhs) const { return is_eq(x, rhs.x) && is_eq(y, rhs.y); }
+  constexpr bool operator!=(point const &rhs) const { return !(*this == rhs); }
+
+  constexpr FP operator*(point const &rhs) const { return x * rhs.x + y * rhs.y; }
+  constexpr FP operator^(point const &rhs) const { return x * rhs.y - y * rhs.x; }
+
+  constexpr auto arg() const { return std::atan2(y, x); }
+  friend constexpr auto arg(point const &lhs) { return lhs.arg(); }
+
+  // result in [0, 2pi)
+  constexpr auto arg2pi() const {
+    FP tmp_ = arg();
+    return is_neg(tmp_) ? tmp_ + 2 * PI : tmp_;
+  }
+  // result in [0, 2pi)
+  friend constexpr auto arg2pi(point const &lhs) { return lhs.arg2pi(); }
+
+  constexpr auto norm2() const { return x * x + y * y; }
+  friend constexpr auto norm2(point const &lhs) { return lhs.norm2(); }
+
+  constexpr auto norm() const { return std::sqrt(norm2()); }
+  friend constexpr auto norm(point const &lhs) { return lhs.norm(); }
+
+  constexpr static int QUAD__[9] = {5, 6, 7, 4, 0, 0, 3, 2, 1};
+  constexpr auto quad() const { return QUAD__[(sgn(y) + 1) * 3 + sgn(x) + 1]; }
+  friend constexpr auto quad(point const &lhs) { return lhs.quad(); }
+
+  constexpr point &do_rot90() {
+    FP tmp = x;
+    x = -y;
+    y = tmp;
+    return *this;
+  }
+  friend constexpr point rot90(point lhs) { return lhs.do_rot90(); }
+
+  constexpr point &do_rot270() {
+    FP tmp = y;
+    y = -x;
+    x = tmp;
+    return *this;
+  }
+  friend constexpr point rot270(point lhs) { return lhs.do_rot270(); }
+
+  constexpr point &do_unit() { return *this /= norm(); }
+  friend constexpr point unit(point lhs) { return lhs.do_unit(); }
+
+  constexpr point &do_rot(FP theta) {
+    FP _x = x, _y = y;
+    x = _x * std::cos(theta) - _y * std::sin(theta);
+    y = _x * std::sin(theta) + _y * std::cos(theta);
+    return *this;
+  }
+  friend constexpr point rot(point lhs, FP theta) { return lhs.do_rot(theta); }
+};
 
 }  // namespace tifa_libs::geo2d
 

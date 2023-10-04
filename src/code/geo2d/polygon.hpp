@@ -1,8 +1,8 @@
 #ifndef TIFA_LIBS_GEO2D_POLYGON
 #define TIFA_LIBS_GEO2D_POLYGON
 
-#include "point.hpp"
-#include "util.hpp"
+#include "cross.hpp"
+#include "dist_pp.hpp"
 
 namespace tifa_libs::geo2d {
 
