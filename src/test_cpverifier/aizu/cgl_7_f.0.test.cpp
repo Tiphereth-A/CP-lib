@@ -16,7 +16,7 @@ int main() {
   point p;
   std::cin >> c >> p;
   auto [x, y] = tifa_libs::geo2d::tan_CP(c, p).value();
-  if (x < y) std::cout << x << ' ' << y << '\n';
-  else std::cout << y << ' ' << x << '\n';
+  if (x < y) std::cout << x << '\n' << y << '\n';
+  else std::cout << y << '\n' << x << '\n';
   return 0;
 }

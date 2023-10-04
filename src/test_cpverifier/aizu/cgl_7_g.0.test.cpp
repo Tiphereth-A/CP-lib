@@ -4,9 +4,9 @@
 #include "../../code/geo2d/circle.hpp"
 #include "../../code/geo2d/extan_cc.hpp"
 #include "../../code/geo2d/intan_cc.hpp"
-#include "../../code/geo2d/line.hpp"
+#include "../../code/geo2d/point.hpp"
 
-using line = tifa_libs::geo2d::line<double>;
+using point = tifa_libs::geo2d::point<double>;
 using circ = tifa_libs::geo2d::circle<double>;
 
 int main() {
@@ -16,14 +16,14 @@ int main() {
   circ c1, c2;
   std::cin >> c1 >> c2;
   auto exl = extan_CC(c1, c2), inl = intan_CC(c1, c2);
-  tifa_libs::vec<line> ans;
+  tifa_libs::vec<point> ans;
   if (exl.has_value()) {
-    ans.push_back(exl.value().first);
-    ans.push_back(exl.value().second);
+    ans.push_back(exl.value().first.l);
+    ans.push_back(exl.value().second.l);
   }
   if (inl.has_value()) {
-    ans.push_back(inl.value().first);
-    ans.push_back(inl.value().second);
+    ans.push_back(inl.value().first.l);
+    ans.push_back(inl.value().second.l);
   }
   std::sort(ans.begin(), ans.end());
   ans.erase(std::unique(ans.begin(), ans.end()), ans.end());
