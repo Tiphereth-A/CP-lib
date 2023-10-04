@@ -3,6 +3,7 @@
 
 #include "circle.hpp"
 #include "polygon.hpp"
+#include "sarea_ct.hpp"
 
 namespace tifa_libs::geo2d {
 

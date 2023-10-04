@@ -15,7 +15,7 @@ std::optional<ptt<point<FP>>> tan_CP(circle<FP> const &c, point<FP> const &p) {
   point q1 = c.o + v * (c.r * c.r / x);
   point q2 = v.do_rot90() * (c.r * std::sqrt(d) / x);
   // counter clock-wise
-  return {q1 - q2, q1 + q2};
+  return ptt<point<FP>>{q1 - q2, q1 + q2};
 }
 
 }  // namespace tifa_libs::geo2d

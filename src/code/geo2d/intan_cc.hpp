@@ -16,7 +16,7 @@ std::optional<ptt<line<FP>>> intan_CC(circle<FP> const &c1, circle<FP> const &c2
   auto ps = tan_CP(c1, p), qs = tan_CP(c2, p);
   if (!ps.has_value() || !qs.has_value()) return {};
   // c1 counter-clock wise
-  return {{ps[0], qs[0]}, {ps[1], qs[1]}};
+  return ptt<line<FP>>{{ps.value().first, qs.value().first}, {ps.value().second, qs.value().second}};
 }
 
 }  // namespace tifa_libs::geo2d

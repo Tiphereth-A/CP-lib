@@ -1,8 +1,8 @@
 #ifndef TIFA_LIBS_GEO2D_SAREA_CT
 #define TIFA_LIBS_GEO2D_SAREA_CT
 
-#include "circle.hpp"
-#include "util.hpp"
+#include "ang_pp.hpp"
+#include "ins_cl.hpp"
 
 namespace tifa_libs::geo2d {
 

@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_GEO2D_TCENTER_O
 #define TIFA_LIBS_GEO2D_TCENTER_O
 
+#include "dist_pp.hpp"
 #include "ins_ll.hpp"
 #include "triangle.hpp"
 
@@ -17,7 +18,7 @@ constexpr FP radius_O(triangle<FP> const &t) {
 template <class FP>
 constexpr point<FP> center_O(triangle<FP> const &t) {
   point<FP> p1 = mid_point(t.B, t.C), p2 = mid_point(t.C, t.A);
-  return ins_LL({p1, p1 + (t.B - t.C).do_rot90()}, {p2, p2 + (t.C - t.A).do_rot90()});
+  return ins_LL(line{p1, p1 + (t.B - t.C).do_rot90()}, line{p2, p2 + (t.C - t.A).do_rot90()});
 }
 
 }  // namespace tifa_libs::geo2d
