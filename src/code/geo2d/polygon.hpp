@@ -48,18 +48,17 @@ struct polygon {
   size_t prev(size_t idx) const { return idx == 0 ? vs.size() - 1 : idx - 1; }
   size_t next(size_t idx) const { return idx + 1 == vs.size() ? 0 : idx + 1; }
 
-  auto circum() const {
+  FP circum() const {
     FP ret = dist_PP(vs.back(), vs.front());
     for (size_t i = 0; i < vs.size() - 1; ++i) ret += dist_PP(vs[i], vs[i + 1]);
     return ret;
   }
-  friend auto circum(const polygon &lhs) { return lhs.circum(); }
-  auto area() const {
+  FP area() const {
+    if (vs.size() < 3) return 0;
     FP ret = vs.back() ^ vs.front();
     for (size_t i = 0; i < vs.size() - 1; ++i) ret += vs[i] ^ vs[i + 1];
     return ret / 2;
   }
-  friend auto area(const polygon &lhs) { return lhs.area(); }
 
   bool is_convex() const {
     bool flag[2] = {false, false};
