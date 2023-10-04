@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_GEO2D_TCENTER_H
 #define TIFA_LIBS_GEO2D_TCENTER_H
 
-#include "line.hpp"
+#include "ins_ll.hpp"
 #include "triangle.hpp"
 
 namespace tifa_libs::geo2d {

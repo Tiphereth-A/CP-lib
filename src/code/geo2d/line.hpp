@@ -1,68 +1,71 @@
 #ifndef TIFA_LIBS_GEO2D_LINE
 #define TIFA_LIBS_GEO2D_LINE
 
-#include "line_class.hpp"
+#include "point.hpp"
 
 namespace tifa_libs::geo2d {
 
-// judge if two lines are intersected or not
 template <class FP>
-constexpr bool is_ins_LL(line<FP> const &l1, line<FP> const &l2) { return !is_zero(cross(l2.l, l2.r, l1.l) - cross(l2.l, l2.r, l1.r)); }
-// intersection point of two lines
-template <class FP>
-constexpr point<FP> ins_LL(line<FP> const &l1, line<FP> const &l2) {
-  FP a1 = cross(l2.l, l2.r, l1.l), a2 = -cross(l2.l, l2.r, l1.r);
-  return (l1.l * a2 + l1.r * a1) / (a1 + a2);
-}
+struct line {
+  point<FP> l, r;
+  line() {}
+  constexpr line(point<FP> const &start_, point<FP> const &end_):
+    l(start_), r(end_) {}
+  constexpr line(const FP &start_x, const FP &start_y, const FP &end_x, const FP &end_y):
+    l(start_x, start_y), r(end_x, end_y) {}
+  friend std::istream &operator>>(std::istream &is, line &rhs) { return is >> rhs.l >> rhs.r; }
+  friend std::ostream &operator<<(std::ostream &os, line const &rhs) { return os << rhs.l << ' ' << rhs.r; }
 
-// judge if two segments are intersected or not
-//! containing endpoints
-template <class FP>
-constexpr bool is_ins_SS(line<FP> const &l1, line<FP> const &l2) { return is_intersect(l1.l.x, l1.r.x, l2.l.x, l2.r.x) && is_intersect(l1.l.y, l1.r.y, l2.l.y, l2.r.y) && sgn_cross(l1.l, l1.r, l2.l) * sgn_cross(l1.l, l1.r, l2.r) <= 0 && sgn_cross(l2.l, l2.r, l1.l) * sgn_cross(l2.l, l2.r, l1.r) <= 0; }
-// judge if two segments are intersected or not
-//! NOT containing endpoints
-template <class FP>
-constexpr bool is_ins_SS_strict(line<FP> const &s1, line<FP> const &s2) { return sgn_cross(s1.l, s1.r, s2.l) * sgn_cross(s1.l, s1.r, s2.r) < 0 && sgn_cross(s2.l, s2.r, s1.l) * sgn_cross(s2.l, s2.r, s1.r) < 0; }
+  constexpr point<FP> direction() const { return r - l; }
 
-// projection to a line
-template <class FP>
-constexpr point<FP> proj(line<FP> const &l1, point<FP> const &p) {
-  point dir = l1.direction();
-  return l1.l + dir * (dir * (p - l1.l) / dir.norm2());
-}
-// reflection about a line
-template <class FP>
-constexpr point<FP> reflect(line<FP> const &l1, point<FP> const &p) { return proj(l1, p) * 2 - p; }
-template <class FP>
-constexpr bool is_on_same_L(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return is_zero(cross(p1, p2, p3)); }
+  constexpr auto is_parallel(line const &rhs) const { return is_zero(direction() ^ rhs.direction()); }
+  friend constexpr auto is_parallel(line const &lhs, line const &rhs) { return lhs.is_parallel(rhs); }
 
-//! containing endpoints
-template <class FP>
-constexpr bool is_on_S(line<FP> const &s1, point<FP> const &p) { return is_on_same_L(s1.l, s1.r, p) && is_in_middle(s1.l, p, s1.r); }
-//! NOT containing endpoints
-template <class FP>
-constexpr bool is_on_S_strict(line<FP> const &s1, point<FP> const &p) { return sgn_cross(s1.l, s1.r, p) == 0 && sgn((p - s1.l) * (s1.l - s1.r)) * sgn((p - s1.r) * (s1.l - s1.r)) < 0; }
+  constexpr auto is_same_dir(line const &rhs) const { return is_parallel(rhs) && is_pos(direction() * rhs.direction()); }
+  friend constexpr auto is_same_dir(line const &lhs, line const &rhs) { return lhs.is_same_dir(rhs); }
 
-// min dist_PP from a point to a line
-template <class FP>
-constexpr FP dist_PL(point<FP> const &p, line<FP> const &s1) {
-  if (s1.l == s1.r) return dist_PP(s1.l, p);
-  return dist_PP(p, proj(s1, p));
-}
-// min dist_PP from a point to another point which belongs to a segment
-template <class FP>
-constexpr FP dist_PS(point<FP> const &p, line<FP> const &s1) {
-  if (s1.l == s1.r) return dist_PP(s1.l, p);
-  point h = proj(s1, p);
-  if (is_in_middle(s1.l, h, s1.r)) return dist_PP(p, h);
-  return std::min(dist_PP(s1.l, p), dist_PP(s1.r, p));
-}
-// dist_PP of two segments
-template <class FP>
-constexpr FP dist_SS(line<FP> const &s1, line<FP> const &s2) {
-  if (is_ins_SS(s1, s2)) return 0;
-  return std::min({dist_PS(s1.l, s2), dist_PS(s1.r, s2), dist_PS(s2.l, s1), dist_PS(s2.r, s1)});
-}
+  constexpr friend bool operator<(line const &lhs, line const &rhs) {
+    if (lhs.is_same_dir(rhs)) return rhs.is_include_strict(lhs.l);
+    auto vl = lhs.direction(), vr = rhs.direction();
+    if (vl.quad() != vr.quad()) return vl.quad() < vr.quad();
+    return is_pos(vl ^ vr);
+  }
+  friend bool operator==(line const &lhs, line const &rhs) { return lhs.l == rhs.l && lhs.r == rhs.r; }
+
+  constexpr auto slope() const { return (r.y - l.y) / (r.x - l.x); }
+  friend constexpr auto slope(line const &lhs) { return lhs.slope(); }
+
+  constexpr auto slope_inv() const { return (r.x - l.x) / (r.y - l.y); }
+  friend constexpr auto slope_inv(line const &lhs) { return lhs.slope_inv(); }
+
+  constexpr auto intercept_v() const { return r.y - r.x * slope(); }
+  friend constexpr auto intercept_v(line const &lhs) { return lhs.intercept_v(); }
+
+  constexpr auto intercept_h() const { return r.x - r.y * slope_inv(); }
+  friend constexpr auto intercept_h(line const &lhs) { return lhs.intercept_h(); }
+
+  constexpr auto lerp_y(FP x) const { return l.y + (x - l.x) * slope(); }
+  friend constexpr auto lerp_y(line const &lhs, FP x) { return lhs.lerp_y(x); }
+
+  constexpr auto lerp_x(FP y) const { return l.x + (y - l.y) * slope_inv(); }
+  friend constexpr auto lerp_x(line const &lhs, FP y) { return lhs.lerp_x(y); }
+
+  // half plane
+  constexpr bool is_include_strict(point<FP> const &p) const { return is_pos(cross(l, r, p)); }
+  // half plane
+  constexpr bool is_include(point<FP> const &p) const { return !is_neg(cross(l, r, p)); }
+
+  // translate @dist along the direction of half plane
+  constexpr line &do_push(FP dist) {
+    point delta = direction().do_rot90().do_unit();
+    delta *= dist;
+    l += delta;
+    r += delta;
+    return *this;
+  }
+  // translate @dist along the direction of half plane
+  friend constexpr line push(line lhs, FP dist) { return lhs.do_push(dist); }
+};
 
 }  // namespace tifa_libs::geo2d
 

@@ -2,7 +2,7 @@
 #define TIFA_LIBS_GEO2D_INS_CL
 
 #include "circle.hpp"
-#include "line_class.hpp"
+#include "line.hpp"
 
 namespace tifa_libs::geo2d {
 

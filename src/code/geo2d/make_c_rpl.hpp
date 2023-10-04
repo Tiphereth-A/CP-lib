@@ -2,7 +2,6 @@
 #define TIFA_LIBS_GEO2D_MAKE_C_RPL
 
 #include "ins_cl.hpp"
-#include "line.hpp"
 
 namespace tifa_libs::geo2d {
 

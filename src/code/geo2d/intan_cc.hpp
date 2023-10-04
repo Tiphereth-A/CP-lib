@@ -2,7 +2,7 @@
 #define TIFA_LIBS_GEO2D_INTAN_CC
 
 #include "circle.hpp"
-#include "line_class.hpp"
+#include "line.hpp"
 #include "tan_cp.hpp"
 
 namespace tifa_libs::geo2d {

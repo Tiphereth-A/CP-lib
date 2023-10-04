@@ -140,10 +140,31 @@ notebook:
     - inv_p2p: inv_p2p
       code_ext: hpp
       test_ext: cpp
-    - line_class: line_class
+    - line: line
       code_ext: hpp
       test_ext: cpp
-    - line: line
+    - dist_pl: dist_pl
+      code_ext: hpp
+      test_ext: cpp
+    - dist_ps: dist_ps
+      code_ext: hpp
+      test_ext: cpp
+    - dist_ss: dist_ss
+      code_ext: hpp
+      test_ext: cpp
+    - ins_ll: ins_ll
+      code_ext: hpp
+      test_ext: cpp
+    - is_ins_ss: is_ins_ss
+      code_ext: hpp
+      test_ext: cpp
+    - is_on_s: is_on_s
+      code_ext: hpp
+      test_ext: cpp
+    - is_on_same_l: is_on_same_l
+      code_ext: hpp
+      test_ext: cpp
+    - proj: proj
       code_ext: hpp
       test_ext: cpp
     - make_c_ppp: make_c_ppp
