@@ -6,7 +6,7 @@
 namespace tifa_libs::geo2d {
 
 constexpr double EPS = 1e-8;
-const double PI = std::acos((double)-1.);
+const double PI = std::acos(-1.);
 
 // #define RELATIVE_ERR__
 
