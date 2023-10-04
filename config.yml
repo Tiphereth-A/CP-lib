@@ -577,6 +577,9 @@ notebook:
     - z_func: Z 函数（扩展 KMP）
       code_ext: hpp
       test_ext: cpp
+    - manacher: Manacher
+      code_ext: hpp
+      test_ext: cpp
     rand:
     - gen: 随机数生成辅助类
       code_ext: hpp
