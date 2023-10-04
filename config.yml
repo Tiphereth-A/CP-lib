@@ -418,6 +418,9 @@ notebook:
     - romberg: Romberg 积分
       code_ext: hpp
       test_ext: cpp
+    - kahan: Kahan 求和
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
