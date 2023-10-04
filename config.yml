@@ -98,9 +98,6 @@ notebook:
     - cvh: cvh
       code_ext: hpp
       test_ext: cpp
-    - dcvh_class: dcvh_class
-      code_ext: hpp
-      test_ext: cpp
     - dcvh: dcvh
       code_ext: hpp
       test_ext: cpp
