@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_2_B"
 
-#include "../../code/geo2d/ins_ll.hpp"
+#include "../../code/geo2d/is_ins_ss.hpp"
 #include "../../code/geo2d/line.hpp"
 #include "../../code/geo2d/point.hpp"
 
@@ -15,7 +15,7 @@ int main() {
   for (size_t i = 0; i < q; ++i) {
     line l1, l2;
     std::cin >> l1 >> l2;
-    std::cout << tifa_libs::geo2d::is_ins_LL(l1, l2) << '\n';
+    std::cout << tifa_libs::geo2d::is_ins_SS(l1, l2) << '\n';
   }
   return 0;
 }
