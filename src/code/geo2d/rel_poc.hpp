@@ -1,9 +1,8 @@
 #ifndef TIFA_LIBS_GEO2D_REL_POC
 #define TIFA_LIBS_GEO2D_REL_POC
 
-#include "circle_class.hpp"
+#include "circle.hpp"
 #include "polygon.hpp"
-
 #include "rel_cs.hpp"
 #include "rel_pop.hpp"
 

@@ -1,8 +1,7 @@
 #ifndef TIFA_LIBS_GEO2D_REL_CS
 #define TIFA_LIBS_GEO2D_REL_CS
 
-#include "circle_class.hpp"
-
+#include "circle.hpp"
 #include "line.hpp"
 
 namespace tifa_libs::geo2d {

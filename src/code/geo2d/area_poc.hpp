@@ -1,9 +1,8 @@
 #ifndef TIFA_LIBS_GEO2D_AREA_POC
 #define TIFA_LIBS_GEO2D_AREA_POC
 
-#include "polygon.hpp"
-
 #include "circle.hpp"
+#include "polygon.hpp"
 
 namespace tifa_libs::geo2d {
 

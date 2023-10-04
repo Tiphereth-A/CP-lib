@@ -1,8 +1,7 @@
 #ifndef TIFA_LIBS_GEO2D_REL_CC
 #define TIFA_LIBS_GEO2D_REL_CC
 
-#include "circle_class.hpp"
-
+#include "circle.hpp"
 #include "point.hpp"
 
 namespace tifa_libs::geo2d {

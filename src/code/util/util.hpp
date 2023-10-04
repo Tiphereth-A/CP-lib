@@ -19,6 +19,11 @@ using u128 = __uint128_t;
 template <class T>
 using vec = std::vector<T>;
 
+template <class T>
+using ptt = std::pair<T, T>;
+template <class T>
+using pt4 = std::tuple<T, T, T, T>;
+
 }  // namespace tifa_libs
 
 #endif

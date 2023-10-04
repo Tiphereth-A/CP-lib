@@ -80,13 +80,13 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     geo2d:
+    - area_cc: area_cc
+      code_ext: hpp
+      test_ext: cpp
     - area_poc: area_poc
       code_ext: hpp
       test_ext: cpp
     - area_triedges: area_triedges
-      code_ext: hpp
-      test_ext: cpp
-    - circle_class: circle_class
       code_ext: hpp
       test_ext: cpp
     - circle: circle
@@ -104,10 +104,52 @@ notebook:
     - dcvh: dcvh
       code_ext: hpp
       test_ext: cpp
+    - extan_cc: extan_cc
+      code_ext: hpp
+      test_ext: cpp
+    - ins_cc: ins_cc
+      code_ext: hpp
+      test_ext: cpp
+    - ins_cl: ins_cl
+      code_ext: hpp
+      test_ext: cpp
+    - intan_cc: intan_cc
+      code_ext: hpp
+      test_ext: cpp
+    - inv_c2c: inv_c2c
+      code_ext: hpp
+      test_ext: cpp
+    - inv_c2l: inv_c2l
+      code_ext: hpp
+      test_ext: cpp
+    - inv_l2c: inv_l2c
+      code_ext: hpp
+      test_ext: cpp
+    - inv_p2p: inv_p2p
+      code_ext: hpp
+      test_ext: cpp
     - line_class: line_class
       code_ext: hpp
       test_ext: cpp
     - line: line
+      code_ext: hpp
+      test_ext: cpp
+    - make_c_ppp: make_c_ppp
+      code_ext: hpp
+      test_ext: cpp
+    - make_c_rcc_ex: make_c_rcc_ex
+      code_ext: hpp
+      test_ext: cpp
+    - make_c_rll: make_c_rll
+      code_ext: hpp
+      test_ext: cpp
+    - make_c_rpl: make_c_rpl
+      code_ext: hpp
+      test_ext: cpp
+    - make_c_rpp: make_c_rpp
+      code_ext: hpp
+      test_ext: cpp
+    - min_cover_c: min_cover_c
       code_ext: hpp
       test_ext: cpp
     - point_class: point_class
@@ -141,6 +183,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - rel_pop: rel_pop
+      code_ext: hpp
+      test_ext: cpp
+    - sarea_ct: sarea_ct
+      code_ext: hpp
+      test_ext: cpp
+    - tan_cp: tan_cp
       code_ext: hpp
       test_ext: cpp
     - tcenter_ea: tcenter_ea
