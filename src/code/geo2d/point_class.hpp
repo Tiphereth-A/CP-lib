@@ -83,7 +83,7 @@ struct point {
   constexpr auto norm2() const { return x * x + y * y; }
   friend constexpr auto norm2(point const &lhs) { return lhs.norm2(); }
 
-  constexpr auto norm() const { return sqrt(norm2()); }
+  constexpr auto norm() const { return std::sqrt(norm2()); }
   friend constexpr auto norm(point const &lhs) { return lhs.norm(); }
 
   constexpr static int QUAD__[9] = {5, 6, 7, 4, 0, 0, 3, 2, 1};

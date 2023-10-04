@@ -36,12 +36,6 @@ template <class FP>
 constexpr bool is_ge(FP l, FP r) { return is_pos(DIFF__(l, r)); }
 #undef DIFF__
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wfloat-conversion"
-template <class FP>
-constexpr u64 f2uint(FP x) { return x + EPS; }
-#pragma GCC diagnostic pop
-
 //! containing endpoints
 template <class FP>
 constexpr bool is_intersect(FP l1, FP r1, FP l2, FP r2) {
@@ -52,11 +46,6 @@ constexpr bool is_intersect(FP l1, FP r1, FP l2, FP r2) {
 //! containing endpoints
 template <class FP>
 constexpr bool is_in_middle(FP l, FP mid, FP r) { return is_eq(l, mid) || is_eq(r, mid) || ((l < mid) ^ (r < mid)); }
-
-// calculate area of triangle by the length of 3 edges
-// numerical stability improved
-template <class FP>
-constexpr FP area_T_abc(FP a, FP b, FP c) { return std::sqrt((a + (b + c)) * (c - (a - b)) * (c + (a - b)) * (a + (b - c))) / 4; }
 
 }  // namespace tifa_libs::geo2d
 

@@ -2,7 +2,7 @@
 #define TIFA_LIBS_GEO2D_CVH
 
 #include "cvh_class.hpp"
-#include "triangle_class.hpp"
+#include "triangle.hpp"
 #include "util.hpp"
 
 namespace tifa_libs::geo2d {

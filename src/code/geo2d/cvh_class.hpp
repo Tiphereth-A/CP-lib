@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_GEO2D_CVH_CLASS
 #define TIFA_LIBS_GEO2D_CVH_CLASS
 
-#include "polygon_class.hpp"
+#include "polygon.hpp"
 #include "util.hpp"
 
 #include "line.hpp"

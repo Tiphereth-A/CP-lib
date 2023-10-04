@@ -2,7 +2,8 @@
 #define TIFA_LIBS_GEO2D_CIRCLE
 
 #include "circle_class.hpp"
-#include "triangle_class.hpp"
+#include "line.hpp"
+#include "triangle.hpp"
 #include "util.hpp"
 
 #include "rel_cc.hpp"
@@ -16,7 +17,7 @@ template <class FP>
 vec<point<FP>> ins_CL(circle<FP> const &c, line<FP> const &l1) {
   if (is_ge(std::abs((c.o - l1.l) ^ (l1.r - l1.l) / dist_PP(l1.l, l1.r)), c.r)) return {};
   FP x = (l1.l - c.o) * (l1.r - l1.l), y = l1.direction().norm2(), d = std::max(x * x - y * ((l1.l - c.o).norm2() - c.r * c.r), FP{});
-  point m = l1.l - l1.direction() * (x / y), dr = l1.direction() * (sqrt(d) / y);
+  point m = l1.l - l1.direction() * (x / y), dr = l1.direction() * (std::sqrt(d) / y);
   return {m - dr, m + dr};
 }
 // intersection point of two circles
@@ -26,9 +27,9 @@ template <class FP>
 vec<point<FP>> ins_CC(circle<FP> const &c1, circle<FP> const &c2) {
   assert(!is_eq(c1.o.x, c2.o.x) || !is_eq(c1.o.y, c2.o.y) || !is_eq(c1.r, c2.r));
   auto state = relation_CC(c1, c2);
-  if (state == RELA_CC::lyingin_cc || state == RELA_CC::lyingout_cc) return {};
+  if (state == RELCC::lyingin_cc || state == RELCC::lyingout_cc) return {};
   FP d = std::min(dist_PP(c1.o, c2.o), c1.r + c2.r);
-  FP y = (c1.r * c1.r - c2.r * c2.r + d * d) / (2 * d), x = sqrt(c1.r * c1.r - y * y);
+  FP y = (c1.r * c1.r - c2.r * c2.r + d * d) / (2 * d), x = std::sqrt(c1.r * c1.r - y * y);
   point dr = (c2.o - c1.o).do_unit();
   point q1 = c1.o + dr * y, q2 = dr.do_rot90() * x;
   return {q1 - q2, q1 + q2};
@@ -84,7 +85,7 @@ vec<circle<FP>> make_C_rLL(FP r, line<FP> const &l1, line<FP> const &l2) {
 // maybe 0, 2 (maybe duplicate)
 template <class FP>
 vec<circle<FP>> make_C_rCC_ex(FP r, circle<FP> const &c1, circle<FP> const &c2) {
-  if (relation_CC(c1, c2) == RELA_CC::lyingin_cc) return {};
+  if (relation_CC(c1, c2) == RELCC::lyingin_cc) return {};
   vec<point<FP>> ps = ins_CC({c1.o, c1.r + r}, {c2.o, c2.r + r});
   vec<circle<FP>> ret;
   for (size_t i = 0; i < ps.size(); ++i) ret.emplace_back(ps[i], r);
@@ -124,7 +125,7 @@ vec<point<FP>> tan_CP(circle<FP> const &c, point<FP> const &p) {
   FP x = v.norm2(), d = x - c.r * c.r;
   if (is_neg(d)) return {};
   point q1 = c.o + v * (c.r * c.r / x);
-  point q2 = v.do_rot90() * (c.r * sqrt(d) / x);
+  point q2 = v.do_rot90() * (c.r * std::sqrt(d) / x);
   // counter clock-wise
   return {q1 - q2, q1 + q2};
 }
@@ -178,8 +179,8 @@ FP sarea_CT(circle<FP> const &c, point<FP> const &p1, point<FP> const &p2) {
 template <class FP>
 constexpr FP area_CC(circle<FP> const &lhs, circle<FP> const &rhs) {
   auto relation = relation_CC(lhs, rhs);
-  if (relation == RELA_CC::lyingout_cc || relation == RELA_CC::touchex_cc) return FP{};
-  if (relation == RELA_CC::lyingin_cc || relation == RELA_CC::touchin_cc) return std::min(
+  if (relation == RELCC::lyingout_cc || relation == RELCC::touchex_cc) return FP{};
+  if (relation == RELCC::lyingin_cc || relation == RELCC::touchin_cc) return std::min(
     lhs.area(), rhs.area());
   FP d = dist_PP(lhs.o, rhs.o);
   return lhs.crown_area(std::acos((lhs.r * lhs.r - rhs.r * rhs.r + d * d) / (2 * lhs.r * d)) * 2) + rhs.crown_area(std::acos((rhs.r * rhs.r - lhs.r * lhs.r + d * d) / (2 * rhs.r * d)) * 2);
@@ -192,13 +193,13 @@ circle<FP> min_cover_C(vec<point<FP>> const &vp) {
   circle ret{vp.front(), 0};
   size_t sz = vp.size();
   for (size_t i = 1; i < sz; ++i) {
-    if (relation_CP(ret, vp[i]) != RELA_CP::outside_cp) continue;
+    if (relation_CP(ret, vp[i]) != RELCP::outside_cp) continue;
     ret = circle{vp[i], 0};
     for (size_t j = 0; j < i; ++j) {
-      if (relation_CP(ret, vp[j]) != RELA_CP::outside_cp) continue;
+      if (relation_CP(ret, vp[j]) != RELCP::outside_cp) continue;
       ret = circle{mid_point(vp[i], vp[j]), dist_PP(vp[i], vp[j]) / 2};
       for (size_t k = 0; k < j; ++k) {
-        if (relation_CP(ret, vp[k]) != RELA_CP::outside_cp) continue;
+        if (relation_CP(ret, vp[k]) != RELCP::outside_cp) continue;
         ret = make_C_PPP(vp[i], vp[j], vp[k]);
       }
     }

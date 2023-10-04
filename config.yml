@@ -32,6 +32,9 @@ notebook:
     - base64: Base64
       code_ext: hpp
       test_ext: cpp
+    - fp2uint: fp2uint
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
@@ -77,6 +80,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     geo2d:
+    - area_poc: area_poc
+      code_ext: hpp
+      test_ext: cpp
+    - area_triedges: area_triedges
+      code_ext: hpp
+      test_ext: cpp
     - circle_class: circle_class
       code_ext: hpp
       test_ext: cpp
@@ -107,7 +116,13 @@ notebook:
     - point: point
       code_ext: hpp
       test_ext: cpp
-    - polygon_class: polygon_class
+    - poly_cnt_intp: poly_cnt_intp
+      code_ext: hpp
+      test_ext: cpp
+    - poly_fermatp: poly_fermatp
+      code_ext: hpp
+      test_ext: cpp
+    - poly_massp: poly_massp
       code_ext: hpp
       test_ext: cpp
     - polygon: polygon
@@ -128,7 +143,25 @@ notebook:
     - rel_pop: rel_pop
       code_ext: hpp
       test_ext: cpp
-    - triangle_class: triangle_class
+    - tcenter_ea: tcenter_ea
+      code_ext: hpp
+      test_ext: cpp
+    - tcenter_g: tcenter_g
+      code_ext: hpp
+      test_ext: cpp
+    - tcenter_h: tcenter_h
+      code_ext: hpp
+      test_ext: cpp
+    - tcenter_i: tcenter_i
+      code_ext: hpp
+      test_ext: cpp
+    - tcenter_n: tcenter_n
+      code_ext: hpp
+      test_ext: cpp
+    - tcenter_o: tcenter_o
+      code_ext: hpp
+      test_ext: cpp
+    - tcenter_x: tcenter_x
       code_ext: hpp
       test_ext: cpp
     - triangle: triangle
@@ -351,9 +384,6 @@ notebook:
     - fft: fft
       code_ext: hpp
       test_ext: cpp
-    - fft_info: fft_info
-      code_ext: hpp
-      test_ext: cpp
     - ntt: ntt
       code_ext: hpp
       test_ext: cpp
@@ -387,9 +417,6 @@ notebook:
     - poly_divmod: poly_divmod
       code_ext: hpp
       test_ext: cpp
-    - poly_dq_: poly_dq_
-      code_ext: hpp
-      test_ext: cpp
     - poly_exp: poly_exp
       code_ext: hpp
       test_ext: cpp
@@ -403,9 +430,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - poly_ln: poly_ln
-      code_ext: hpp
-      test_ext: cpp
-    - poly_mod: poly_mod
       code_ext: hpp
       test_ext: cpp
     - poly_mpe: poly_mpe
