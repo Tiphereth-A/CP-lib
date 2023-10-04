@@ -1,4 +1,3 @@
-#include <iostream>
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_4_C"
 #define ERROR 0.00001
 

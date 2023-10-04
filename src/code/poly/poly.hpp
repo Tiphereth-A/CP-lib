@@ -2,7 +2,6 @@
 #define TIFALIBS_POLY_POLY
 
 #include "../util/util.hpp"
-#include <initializer_list>
 
 namespace tifa_libs::math {
 

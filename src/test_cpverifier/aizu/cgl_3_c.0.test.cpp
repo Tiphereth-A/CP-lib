@@ -1,4 +1,3 @@
-#include <iostream>
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_C"
 
 #include "../../code/geo2d/point.hpp"

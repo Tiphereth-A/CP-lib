@@ -4,7 +4,6 @@
 #include "../util/util.hpp"
 
 #include "fft.hpp"
-#include <cstddef>
 
 namespace tifa_libs::math {
 
