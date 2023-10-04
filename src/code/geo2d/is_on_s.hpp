@@ -1,7 +1,9 @@
 #ifndef TIFA_LIBS_GEO2D_IS_ON_S
 #define TIFA_LIBS_GEO2D_IS_ON_S
 
+#include "is_on_same_l.hpp"
 #include "line.hpp"
+#include "point_is_in_middle.hpp"
 
 namespace tifa_libs::geo2d {
 
