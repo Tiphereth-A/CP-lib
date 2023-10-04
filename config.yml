@@ -92,10 +92,25 @@ notebook:
     - circle: circle
       code_ext: hpp
       test_ext: cpp
-    - cvh_class: cvh_class
+    - cvh: cvh
       code_ext: hpp
       test_ext: cpp
-    - cvh: cvh
+    - coverage_rect_with_min_area: coverage_rect_with_min_area
+      code_ext: hpp
+      test_ext: cpp
+    - coverage_rect_with_min_circum: coverage_rect_with_min_circum
+      code_ext: hpp
+      test_ext: cpp
+    - ins_hp: ins_hp
+      code_ext: hpp
+      test_ext: cpp
+    - max_area_t: max_area_t
+      code_ext: hpp
+      test_ext: cpp
+    - max_dis_cvh: max_dis_cvh
+      code_ext: hpp
+      test_ext: cpp
+    - min_dis_cvh: min_dis_cvh
       code_ext: hpp
       test_ext: cpp
     - dcvh: dcvh

@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_GEO2D_REL_POP
 #define TIFA_LIBS_GEO2D_REL_POP
 
-#include "cvh_class.hpp"
+#include "cvh.hpp"
 
 namespace tifa_libs::geo2d {
 
