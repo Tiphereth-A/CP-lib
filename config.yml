@@ -412,6 +412,12 @@ notebook:
     - safe_mod: safe_mod
       code_ext: hpp
       test_ext: cpp
+    - simpson: 自适应 Simpson 积分
+      code_ext: hpp
+      test_ext: cpp
+    - romberg: Romberg 积分
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
