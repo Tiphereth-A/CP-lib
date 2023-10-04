@@ -11,7 +11,7 @@ inline vec<T> charpoly(matrix<T> mat, Is0 is0) {
   size_t n = mat.row();
   assert(n == mat.col());
   uhb(mat, is0);
-  vec<vec<T>> p(n + 1);
+  vvec<T> p(n + 1);
   p[0].resize(1);
   p[0][0] = 1;
   p[1].resize(2);

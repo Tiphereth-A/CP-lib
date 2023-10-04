@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 template <class T>
 class spmat {
   using node = std::pair<size_t, T>;
-  using data_t = vec<vec<node>>;
+  using data_t = vvec<node>;
 
   size_t r, c;
   data_t d;

@@ -12,7 +12,7 @@ namespace tifa_libs::math {
 
 template <class T>
 class matrix {
-  vec<vec<T>> d;
+  vvec<T> d;
 
 public:
   using value_type = T;
@@ -22,8 +22,8 @@ public:
 
   constexpr size_t row() const { return d.size(); }
   constexpr size_t col() const { return d[0].size(); }
-  constexpr vec<vec<T>> data() const { return d; }
-  constexpr vec<vec<T>> &data() { return d; }
+  constexpr vvec<T> data() const { return d; }
+  constexpr vvec<T> &data() { return d; }
   constexpr typename vec<T>::reference operator()(size_t r, size_t c) { return d[r][c]; }
   constexpr typename vec<T>::const_reference operator()(size_t r, size_t c) const { return d[r][c]; }
 

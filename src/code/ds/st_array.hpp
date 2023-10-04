@@ -9,7 +9,7 @@ namespace tifa_libs::ds {
 
 template <class T, class F>
 class st_array {
-  vec<vec<T>> st;
+  vvec<T> st;
   F f;
 
 public:

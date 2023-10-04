@@ -14,7 +14,7 @@ class RGCD {
   };
 
   vec<F3> fs;
-  vec<vec<u32>> g_;
+  vvec<u32> g_;
 
 public:
   explicit RGCD(u32 n):

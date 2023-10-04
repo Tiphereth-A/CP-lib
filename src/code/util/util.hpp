@@ -18,6 +18,8 @@ using u128 = __uint128_t;
 
 template <class T>
 using vec = std::vector<T>;
+template <class T>
+using vvec = vec<vec<T>>;
 
 template <class T>
 using ptt = std::pair<T, T>;
