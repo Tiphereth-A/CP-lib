@@ -1,6 +1,8 @@
 #ifndef TIFA_LIBS_GEO2D_DIST_PS
 #define TIFA_LIBS_GEO2D_DIST_PS
 
+#include "dist_pp.hpp"
+#include "point_is_in_middle.hpp"
 #include "proj.hpp"
 
 namespace tifa_libs::geo2d {
