@@ -1,7 +1,6 @@
 #ifndef TIFA_LIBS_GEO2D_REL_POC
 #define TIFA_LIBS_GEO2D_REL_POC
 
-#include "../util/util.hpp"
 #include "circle_class.hpp"
 #include "polygon_class.hpp"
 
@@ -17,7 +16,8 @@ enum RELA_PoC {
   covered_poc
 };
 
-RELA_PoC relation_PoC(const Polygon &poly, const Circle &c) {
+template <class FP>
+RELA_PoC relation_PoC(polygon<FP> const &poly, circle<FP> const &c) {
   auto x = RELA_PoC::covered_poc;
   if (relation_PoP(poly, c.o) != RELA_PoP::inside_pop) return RELA_PoC::otherwise_poc;
   for (size_t i = 0; i < poly.vs.size(); ++i) {
@@ -27,6 +27,7 @@ RELA_PoC relation_PoC(const Polygon &poly, const Circle &c) {
   }
   return x;
 }
+
 }  // namespace tifa_libs::geo2d
 
 #endif

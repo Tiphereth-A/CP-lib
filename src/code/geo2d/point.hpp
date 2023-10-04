@@ -4,76 +4,91 @@
 #include "point_class.hpp"
 
 namespace tifa_libs::geo2d {
-constexpr Point make_P_polar(data_t r, data_t theta) { return Point{r * std::cos(theta), r * std::sin(theta)}; }
+
+template <class FP>
+constexpr point<FP> make_P_polar(FP r, FP theta) { return point{r * std::cos(theta), r * std::sin(theta)}; }
 
 // distance of two points (Euclidian)
-constexpr data_t dist_PP(const Point &lhs, const Point &rhs) { return std::hypot(lhs.x - rhs.x, lhs.y - rhs.y); }
+template <class FP>
+constexpr FP dist_PP(point<FP> const &lhs, point<FP> const &rhs) { return std::hypot(lhs.x - rhs.x, lhs.y - rhs.y); }
 // distance of two points (Manhattan)
-constexpr data_t dist_MaPP(const Point &lhs, const Point &rhs) { return std::abs(lhs.x - rhs.x) + std::abs(lhs.y - rhs.y); }
+template <class FP>
+constexpr FP dist_MaPP(point<FP> const &lhs, point<FP> const &rhs) { return std::abs(lhs.x - rhs.x) + std::abs(lhs.y - rhs.y); }
 // distance of two points (Chebyshev)
-constexpr data_t dist_ChPP(const Point &lhs, const Point &rhs) { return std::max(std::abs(lhs.x - rhs.x), std::abs(lhs.y - rhs.y)); }
+template <class FP>
+constexpr FP dist_ChPP(point<FP> const &lhs, point<FP> const &rhs) { return std::max(std::abs(lhs.x - rhs.x), std::abs(lhs.y - rhs.y)); }
 
-// (p2 -p1) ^  (p3 -p1)
-constexpr data_t cross(const Point &p1, const Point &p2, const Point &p3) { return (p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y); }
-constexpr ptrdiff_t sgn_cross(const Point &p1, const Point &p2, const Point &p3) { return sgn(cross(p1, p2, p3)); }
+// (p2 - p1) ^  (p3 - p1)
+template <class FP>
+constexpr FP cross(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return (p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y); }
+template <class FP>
+constexpr int sgn_cross(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return sgn(cross(p1, p2, p3)); }
 
-// (p2 -p1) * (p3 -p1)
-constexpr data_t dot(const Point &p1, const Point &p2, const Point &p3) { return (p2.x - p1.x) * (p3.x - p1.x) + (p2.y - p1.y) * (p3.y - p1.y); }
-constexpr ptrdiff_t sgn_dot(const Point &p1, const Point &p2, const Point &p3) { return sgn(dot(p1, p2, p3)); }
+// (p2 - p1) * (p3 - p1)
+template <class FP>
+constexpr FP dot(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return (p2.x - p1.x) * (p3.x - p1.x) + (p2.y - p1.y) * (p3.y - p1.y); }
+template <class FP>
+constexpr int sgn_dot(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return sgn(dot(p1, p2, p3)); }
 
 //! containing endpoints
-constexpr bool is_in_middle(Point a, Point m, Point b) { return is_in_middle(a.x, m.x, b.x) && is_in_middle(a.y, m.y, b.y); }
+template <class FP>
+constexpr bool is_in_middle(point<FP> a, point<FP> m, point<FP> b) { return is_in_middle(a.x, m.x, b.x) && is_in_middle(a.y, m.y, b.y); }
 
 // clamp angle of two points
-constexpr data_t ang_PP(const Point &p1, const Point &p2) { return std::atan2(p1 ^ p2, p1 * p2); }
+template <class FP>
+constexpr FP ang_PP(point<FP> const &p1, point<FP> const &p2) { return std::atan2(p1 ^ p2, p1 * p2); }
 // clamp angle of two points, result in [0,2 pi)
-constexpr data_t ang2pi_PP(const Point &p1, const Point &p2) {
-  data_t res = ang_PP(p1, p2);
-  return is_negative(res) ? res + 2 * PI : res;
+template <class FP>
+constexpr FP ang2pi_PP(point<FP> const &p1, point<FP> const &p2) {
+  FP res = ang_PP(p1, p2);
+  return is_neg(res) ? res + 2 * PI : res;
 }
 
 // min distance of a set of points
 //! need to sort `vp` first by the ascending order of x
-data_t min_dist_Ps(const cont_t<Point> &vp, ptrdiff_t l, ptrdiff_t r) {
-  data_t ret = DATA_MAX;
+template <class FP>
+FP min_dist_Ps(vec<point<FP>> const &vp, size_t l, size_t r) {
+  FP ret = std::numeric_limits<FP>::max();
   if (r - l <= 5) {
-    for (ptrdiff_t i = l; i < r; ++i)
-      for (ptrdiff_t j = l; j < i; ++j) ret = std::min(ret, dist_PP(vp[i], vp[j]));
+    for (size_t i = l; i < r; ++i)
+      for (size_t j = l; j < i; ++j) ret = std::min(ret, dist_PP(vp[i], vp[j]));
     return ret;
   }
-  ptrdiff_t mid = r - (r - l) / 2;
+  size_t mid = r - (r - l) / 2;
   ret = std::min(min_dist_Ps(vp, l, mid), min_dist_Ps(vp, mid, r));
-  cont_t<Point> q;
-  for (ptrdiff_t i = l; i < r; ++i)
+  vec<point<FP>> q;
+  for (size_t i = l; i < r; ++i)
     if (std::abs(vp[i].x - vp[mid].x) <= ret) q.push_back(vp[i]);
-  std::stable_sort(q.begin(), q.end(), [](const Point &lhs, const Point &rhs) -> bool { return lhs.y < rhs.y; });
-  for (ptrdiff_t i = 1; i < (ptrdiff_t)q.size(); ++i)
-    for (ptrdiff_t j = i - 1; ~j && q[j].y >= q[i].y - ret; --j) ret = std::min(ret, dist_PP(q[i], q[j]));
+  std::stable_sort(q.begin(), q.end(), [](auto const &lhs, auto const &rhs) -> bool { return lhs.y < rhs.y; });
+  for (size_t i = 1; i < q.size(); ++i)
+    for (size_t j = i - 1; ~j && q[j].y >= q[i].y - ret; --j) ret = std::min(ret, dist_PP(q[i], q[j]));
   return ret;
 }
 
 // max number of points covered by a circle with radius @r
-uint_data_t max_cover_Ps(const cont_t<Point> &vp, const data_t r) {
-  if (is_negative(r)) return uint_data_t{0};
-  if (is_zero(r)) return uint_data_t{1};
-  const data_t diam = r * 2;
-  uint_data_t ans = 1;
-  cont_t<std::pair<data_t, int_data_t>> angles;
-  data_t dist;
+template <class FP>
+u64 max_cover_Ps(vec<point<FP>> const &vp, const FP r) {
+  if (is_neg(r)) return 0;
+  if (is_zero(r)) return 1;
+  const FP diam = r * 2;
+  u64 ans = 1;
+  vec<std::pair<FP, i64>> angles;
+  FP dist;
   for (size_t i = 0; i < vp.size(); ++i) {
     angles.clear();
     for (size_t j = 0; j < vp.size(); ++j) {
-      if (i == j || is_greater(dist = dist_PP(vp[i], vp[j]), diam)) continue;
-      data_t delta = std::acos(dist / diam), polar = ang2pi_PP(vp[i], vp[j]);
+      if (i == j || is_ge(dist = dist_PP(vp[i], vp[j]), diam)) continue;
+      FP delta = std::acos(dist / diam), polar = ang2pi_PP(vp[i], vp[j]);
       angles.emplace_back(polar - delta, 1);
       angles.emplace_back(polar + delta, -1);
     }
     std::sort(angles.begin(), angles.end());
-    uint_data_t sum = 0;
-    for (size_t j = 0; i < angles.size(); ++j) ans = std::max(ans, sum += angles[i].second);
+    u64 sum = 0;
+    for (size_t j = 0; j < angles.size(); ++j) ans = std::max(ans, sum += angles[j].second);
   }
   return ans;
 }
+
 }  // namespace tifa_libs::geo2d
 
 #endif
