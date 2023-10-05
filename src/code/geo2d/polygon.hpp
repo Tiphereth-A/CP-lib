@@ -26,12 +26,6 @@ struct polygon {
     std::sort(vs.begin(), vs.end());
     return *this;
   }
-  void resort_in_clockwise() {
-    std::sort(vs.begin(), vs.end(), [](point<FP> const &lhs, point<FP> const &rhs) { return lhs.quad() == rhs.quad() ? is_neg(lhs ^ rhs) : lhs.quad() > rhs.quad(); });
-  }
-  void resort_in_counterclockwise() {
-    std::sort(vs.begin(), vs.end(), [](point<FP> const &lhs, point<FP> const &rhs) { return lhs.quad() == rhs.quad() ? is_pos(lhs ^ rhs) : lhs.quad() < rhs.quad(); });
-  }
   polygon &reunique() {
     resort();
     vs.erase(std::unique(vs.begin(), vs.end()), vs.end());
