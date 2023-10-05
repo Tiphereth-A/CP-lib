@@ -16,7 +16,7 @@ class dsu_basic {
     size_t fx = find(x), fy = find(y);
     fa[fx] = fy;
   }
-  bool same_group(size_t x, size_t y) { return find(x) == find(y); }
+  bool in_same_group(size_t x, size_t y) { return find(x) == find(y); }
 };
 
 }  // namespace tifa_libs::ds
