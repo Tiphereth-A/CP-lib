@@ -69,19 +69,19 @@ struct point {
   constexpr auto arg() const { return std::atan2(y, x); }
 
   // result in [0, 2pi)
-  constexpr auto arg2pi() const {
+  constexpr FP arg2pi() const {
     FP _ = arg();
     return is_neg(_) ? _ + 2 * PI<FP> : _;
   }
 
-  constexpr auto norm2() const { return x * x + y * y; }
-  constexpr auto norm() const { return std::hypot(x, y); }
+  constexpr FP norm2() const { return x * x + y * y; }
+  constexpr FP norm() const { return std::hypot(x, y); }
 
   constexpr static u32 QUAD__[9] = {6, 7, 8, 5, 0, 1, 4, 3, 2};
   // 4 3 2
   // 5 0 1
   // 6 7 8
-  constexpr auto quad() const { return QUAD__[(sgn(y) + 1) * 3 + sgn(x) + 1]; }
+  constexpr u32 quad() const { return QUAD__[(sgn(y) + 1) * 3 + sgn(x) + 1]; }
 
   constexpr point &do_rot90() {
     FP tmp = x;

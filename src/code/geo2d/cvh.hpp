@@ -92,10 +92,8 @@ struct cvh : public polygon<FP> {
     this->vs = result;
     return *this;
   }
-  friend cvh minkowski_sum_nonstrict(cvh l, cvh<FP> const &r) { return l.do_minkowski_sum_nonstrict(r); }
 
   cvh &do_minkowski_sum(cvh<FP> const &r) { return do_minkowski_sum_nonstrict(r).init(); }
-  friend cvh minkowski_sum(cvh l, cvh<FP> const &r) { return l.do_minkowski_sum(r); }
 
   cvh &do_ins_CVHhP(line<FP> const &l) {
     size_t n = this->vs.size();
@@ -109,7 +107,6 @@ struct cvh : public polygon<FP> {
     this->vs = cvc;
     return *this;
   }
-  friend cvh ins_CVHhP(cvh ch, line<FP> const &l) { return ch.do_ins_CVHhP(l); }
 };
 
 }  // namespace tifa_libs::geo

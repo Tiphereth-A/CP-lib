@@ -16,11 +16,11 @@ struct line {
 
   constexpr point<FP> direction() const { return r - l; }
 
-  constexpr auto is_parallel(line const &r) const { return is_zero(direction() ^ r.direction()); }
-  friend constexpr auto is_parallel(line const &l, line const &r) { return l.is_parallel(r); }
+  constexpr bool is_parallel(line const &r) const { return is_zero(direction() ^ r.direction()); }
+  friend constexpr bool is_parallel(line const &l, line const &r) { return l.is_parallel(r); }
 
-  constexpr auto is_same_dir(line const &r) const { return is_parallel(r) && is_pos(direction() * r.direction()); }
-  friend constexpr auto is_same_dir(line const &l, line const &r) { return l.is_same_dir(r); }
+  constexpr bool is_same_dir(line const &r) const { return is_parallel(r) && is_pos(direction() * r.direction()); }
+  friend constexpr bool is_same_dir(line const &l, line const &r) { return l.is_same_dir(r); }
 
   constexpr friend bool operator<(line const &l, line const &r) {
     if (l.is_same_dir(r)) return r.is_include_strict(l.l);
@@ -30,23 +30,14 @@ struct line {
   }
   friend bool operator==(line const &l, line const &r) { return l.l == r.l && l.r == r.r; }
 
-  constexpr auto slope() const { return (r.y - l.y) / (r.x - l.x); }
-  friend constexpr auto slope(line const &l) { return l.slope(); }
+  constexpr FP slope() const { return (r.y - l.y) / (r.x - l.x); }
+  constexpr FP slope_inv() const { return (r.x - l.x) / (r.y - l.y); }
 
-  constexpr auto slope_inv() const { return (r.x - l.x) / (r.y - l.y); }
-  friend constexpr auto slope_inv(line const &l) { return l.slope_inv(); }
+  constexpr FP intercept_v() const { return r.y - r.x * slope(); }
+  constexpr FP intercept_h() const { return r.x - r.y * slope_inv(); }
 
-  constexpr auto intercept_v() const { return r.y - r.x * slope(); }
-  friend constexpr auto intercept_v(line const &l) { return l.intercept_v(); }
-
-  constexpr auto intercept_h() const { return r.x - r.y * slope_inv(); }
-  friend constexpr auto intercept_h(line const &l) { return l.intercept_h(); }
-
-  constexpr auto lerp_y(FP x) const { return l.y + (x - l.x) * slope(); }
-  friend constexpr auto lerp_y(line const &l, FP x) { return l.lerp_y(x); }
-
-  constexpr auto lerp_x(FP y) const { return l.x + (y - l.y) * slope_inv(); }
-  friend constexpr auto lerp_x(line const &l, FP y) { return l.lerp_x(y); }
+  constexpr FP lerp_y(FP x) const { return l.y + (x - l.x) * slope(); }
+  constexpr FP lerp_x(FP y) const { return l.x + (y - l.y) * slope_inv(); }
 
   // half plane
   constexpr bool is_include_strict(point<FP> const &p) const { return is_pos(cross(l, r, p)); }
@@ -61,8 +52,6 @@ struct line {
     r += delta;
     return *this;
   }
-  // translate @dist along the direction of half plane
-  friend constexpr line push(line l, FP dist) { return l.do_push(dist); }
 };
 
 }  // namespace tifa_libs::geo
