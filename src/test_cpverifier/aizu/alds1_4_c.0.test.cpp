@@ -9,14 +9,25 @@ int main() {
   std::cout << std::fixed << std::setprecision(10);
   tifa_libs::u32 n;
   std::cin >> n;
-  tifa_libs::util::hset<std::string> dict;
+  tifa_libs::util::hset<tifa_libs::u64> dict;
   for (size_t i = 0; i < n; ++i) {
     std::string s, t;
     std::cin >> s >> t;
+    tifa_libs::u64 x = 0;
+    for (char c : t) switch (c) {
+        case 'A':
+          ++x;
+        case 'C':
+          ++x;
+        case 'G':
+          ++x;
+        default:
+          x *= 4;
+      }
     if (s[0] == 'i')
-      dict.insert(t);
+      dict.insert(x);
     else
-      std::cout << (dict.count(t) ? "yes\n" : "no\n");
+      std::cout << (dict.count(x) ? "yes\n" : "no\n");
   }
   return 0;
 }
