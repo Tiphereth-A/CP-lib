@@ -59,8 +59,7 @@ struct point {
 
   constexpr point operator-() const { return point{-x, -y}; }
   constexpr bool operator<(point const &rhs) const {
-    auto c = comp(x, rhs.x);
-    if (c) return c >> 1;
+    if (auto c = comp(x, rhs.x); c) return c >> 1;
     return comp(y, rhs.y) >> 1;
   }
   constexpr bool operator==(point const &rhs) const { return is_eq(x, rhs.x) && is_eq(y, rhs.y); }
@@ -83,7 +82,7 @@ struct point {
   constexpr auto norm2() const { return x * x + y * y; }
   friend constexpr auto norm2(point const &lhs) { return lhs.norm2(); }
 
-  constexpr auto norm() const { return std::sqrt(norm2()); }
+  constexpr auto norm() const { return std::hypot(x, y); }
   friend constexpr auto norm(point const &lhs) { return lhs.norm(); }
 
   constexpr static int QUAD__[9] = {5, 6, 7, 4, 0, 0, 3, 2, 1};

@@ -282,7 +282,10 @@ notebook:
     - triangle: triangle
       code_ext: hpp
       test_ext: cpp
-    geo3d: null
+    geo3d:
+    - point: 点
+      code_ext: hpp
+      test_ext: cpp
     graph: null
     math:
     - bsgs: bsgs
