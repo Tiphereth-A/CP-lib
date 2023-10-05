@@ -2,7 +2,6 @@
 #define TIFA_LIBS_GEO2D_DCVH
 
 #include "cvh.hpp"
-#include "util.hpp"
 
 namespace tifa_libs::geo2d {
 
