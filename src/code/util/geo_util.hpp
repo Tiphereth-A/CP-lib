@@ -1,7 +1,7 @@
-#ifndef TIFA_LIBS_GEO2D_UTIL
-#define TIFA_LIBS_GEO2D_UTIL
+#ifndef TIFA_LIBS_UTIL_GEO_UTIL
+#define TIFA_LIBS_UTIL_GEO_UTIL
 
-#include "../util/util.hpp"
+#include "util.hpp"
 
 namespace tifa_libs::geo2d {
 

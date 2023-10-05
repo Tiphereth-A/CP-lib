@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_GEO2D_POINT
 #define TIFA_LIBS_GEO2D_POINT
 
-#include "util.hpp"
+#include "../util/geo_util.hpp"
 
 namespace tifa_libs::geo2d {
 
