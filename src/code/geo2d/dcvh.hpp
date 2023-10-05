@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_GEO2D_DCVH
 #define TIFA_LIBS_GEO2D_DCVH
 
-#include "argsort_counterclockwise.hpp"
+#include "argsort.hpp"
 #include "cvh.hpp"
 
 namespace tifa_libs::geo {
@@ -61,7 +61,7 @@ class dcvh {
     cvh<FP> ret;
     for (auto it = hcvh_up.vs.begin(); it != hcvh_up.vs.end(); ++it) ret.vs.push_back(*it);
     for (auto it = hcvh_down.vs.begin(); it != hcvh_down.vs.end(); ++it) ret.vs.push_back(*it);
-    argsort_counterclockwise(ret.vs);
+    argsort(ret.vs);
     return ret;
   }
 };
