@@ -3,7 +3,7 @@
 
 #include "dist_pp.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // min distance of a set of points in range [l, r)
 //! need to sort `vp` first by the ascending order of x
@@ -26,6 +26,6 @@ FP min_dis_Ps(vec<point<FP>> const &vp, size_t l, size_t r) {
   return ret;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

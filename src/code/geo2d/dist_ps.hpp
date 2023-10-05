@@ -5,7 +5,7 @@
 #include "point_is_in_middle.hpp"
 #include "proj.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // min dist_PP from a point to another point which belongs to a segment
 template <class FP>
@@ -16,6 +16,6 @@ constexpr FP dist_PS(point<FP> const &p, line<FP> const &s1) {
   return std::min(dist_PP(s1.l, p), dist_PP(s1.r, p));
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

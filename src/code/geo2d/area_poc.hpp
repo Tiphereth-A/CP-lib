@@ -5,7 +5,7 @@
 #include "polygon.hpp"
 #include "sarea_ct.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 template <class FP>
 FP area_PoC(polygon<FP> const &poly, circle<FP> const &c) {
@@ -16,6 +16,6 @@ FP area_PoC(polygon<FP> const &poly, circle<FP> const &c) {
   return std::abs(ans);
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

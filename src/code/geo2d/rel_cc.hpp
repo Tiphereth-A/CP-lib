@@ -4,7 +4,7 @@
 #include "circle.hpp"
 #include "dist_pp.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // relation between circle and circle
 enum RELCC {
@@ -25,6 +25,6 @@ constexpr RELCC relation_CC(circle<FP> const &c, circle<FP> const &c2) {
   return RELCC::lyingin_cc;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

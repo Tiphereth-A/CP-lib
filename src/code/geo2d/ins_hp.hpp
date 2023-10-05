@@ -3,7 +3,7 @@
 
 #include "cvh.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 template <class FP>
 cvh<FP> ins_hP(vec<line<FP>> vl) {
@@ -25,6 +25,6 @@ cvh<FP> ins_hP(vec<line<FP>> vl) {
   return cvh{ret, true};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

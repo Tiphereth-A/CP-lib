@@ -5,7 +5,7 @@
 #include "line.hpp"
 #include "tan_cp.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // external tagante lines of 2 circles
 // maybe duplicate
@@ -23,6 +23,6 @@ std::optional<ptt<line<FP>>> extan_CC(circle<FP> const &c1, circle<FP> const &c2
   return ptt<line<FP>>{{ps.value().first, qs.value().first}, {ps.value().second, qs.value().second}};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

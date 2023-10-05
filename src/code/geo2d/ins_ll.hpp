@@ -3,7 +3,7 @@
 
 #include "line.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // judge if two lines are intersected or not
 template <class FP>
@@ -15,6 +15,6 @@ constexpr point<FP> ins_LL(line<FP> const &l1, line<FP> const &l2) {
   return (l1.l * a2 + l1.r * a1) / (a1 + a2);
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

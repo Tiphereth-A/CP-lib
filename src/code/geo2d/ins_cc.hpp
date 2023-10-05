@@ -3,7 +3,7 @@
 
 #include "rel_cc.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // intersection point of two circles
 //! need to check whether two circles are the same
@@ -20,6 +20,6 @@ std::optional<ptt<point<FP>>> ins_CC(circle<FP> const &c1, circle<FP> const &c2)
   return ptt<point<FP>>{q1 - q2, q1 + q2};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

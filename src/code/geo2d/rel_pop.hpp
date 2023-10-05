@@ -4,7 +4,7 @@
 #include "cvh.hpp"
 #include "is_on_s.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // relation between polygon/convex hull and point
 enum RELPoP {
@@ -45,6 +45,6 @@ RELPoP relation_CvhP(cvh<FP> const &cvh, point<FP> const &p) {
   return !res && !is_pos(dot(p, *it, *next_it)) ? RELPoP::inside_pop : RELPoP::outside_pop;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

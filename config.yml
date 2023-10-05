@@ -283,7 +283,7 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     geo3d:
-    - point: 点
+    - point3d: 点
       code_ext: hpp
       test_ext: cpp
     graph: null

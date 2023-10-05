@@ -4,7 +4,7 @@
 #include "ang2pi_pp.hpp"
 #include "dist_pp.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // max number of points covered by a circle with radius @r
 template <class FP>
@@ -30,6 +30,6 @@ u64 max_cover_Ps(vec<point<FP>> const &vp, const FP r) {
   return ans;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

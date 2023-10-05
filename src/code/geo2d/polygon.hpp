@@ -4,7 +4,7 @@
 #include "cross.hpp"
 #include "dist_pp.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 template <class FP>
 struct polygon {
@@ -73,6 +73,6 @@ struct polygon {
   }
 };
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

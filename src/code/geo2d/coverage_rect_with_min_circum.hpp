@@ -3,7 +3,7 @@
 
 #include "cvh.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // Coverage rectangle with min circum
 template <class FP>
@@ -35,6 +35,6 @@ polygon<FP> coverage_rect_with_min_circum(cvh<FP> const &lhs) {
   return ret;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

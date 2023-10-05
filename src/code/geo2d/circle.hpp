@@ -4,7 +4,7 @@
 #include "../util/geo_util.hpp"
 #include "point.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 template <class FP>
 struct circle {
@@ -24,6 +24,6 @@ struct circle {
   constexpr FP arc(FP angle = PI * 2) const { return angle * r; }
 };
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

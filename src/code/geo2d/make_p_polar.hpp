@@ -3,11 +3,11 @@
 
 #include "point.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 template <class FP>
 constexpr point<FP> make_P_polar(FP r, FP theta) { return point{r * std::cos(theta), r * std::sin(theta)}; }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "line.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // projection to a line
 template <class FP>
@@ -15,6 +15,6 @@ constexpr point<FP> proj(line<FP> const &l1, point<FP> const &p) {
 template <class FP>
 constexpr point<FP> reflect(line<FP> const &l1, point<FP> const &p) { return proj(l1, p) * 2 - p; }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

@@ -4,7 +4,7 @@
 #include "inv_p2p.hpp"
 #include "make_c_ppp.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // geometry inverse of a line
 template <class FP>
@@ -13,6 +13,6 @@ constexpr circle<FP> inv_L2C(circle<FP> const &c, line<FP> const &l) {
   return make_C_PPP(p1, p2, c.o);
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

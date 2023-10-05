@@ -3,7 +3,7 @@
 
 #include "ang_pp.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // clamp angle of two points, result in [0,2 pi)
 template <class FP>
@@ -12,6 +12,6 @@ constexpr FP ang2pi_PP(point<FP> const &p1, point<FP> const &p2) {
   return is_neg(res) ? res + 2 * PI : res;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

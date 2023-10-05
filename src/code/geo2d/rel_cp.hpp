@@ -4,7 +4,7 @@
 #include "circle.hpp"
 #include "dist_pp.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // relation between circle and point
 enum RELCP {
@@ -21,6 +21,6 @@ constexpr RELCP relation_CP(circle<FP> const &c, point<FP> const &p) {
   return RELCP::outside_cp;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

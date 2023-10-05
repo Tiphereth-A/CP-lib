@@ -4,7 +4,7 @@
 #include "ins_ll.hpp"
 #include "polygon.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 template <class FP>
 struct cvh: public polygon<FP> {
@@ -114,6 +114,6 @@ struct cvh: public polygon<FP> {
   friend cvh ins_CVHhP(cvh lhs, line<FP> const &l) { return lhs.do_ins_CVHhP(l); }
 };
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

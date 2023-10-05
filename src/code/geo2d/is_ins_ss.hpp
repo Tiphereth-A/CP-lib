@@ -3,7 +3,7 @@
 
 #include "line.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // judge if two segments are intersected or not
 //! containing endpoints
@@ -14,6 +14,6 @@ constexpr bool is_ins_SS(line<FP> const &l1, line<FP> const &l2) { return is_int
 template <class FP>
 constexpr bool is_ins_SS_strict(line<FP> const &s1, line<FP> const &s2) { return sgn_cross(s1.l, s1.r, s2.l) * sgn_cross(s1.l, s1.r, s2.r) < 0 && sgn_cross(s2.l, s2.r, s1.l) * sgn_cross(s2.l, s2.r, s1.r) < 0; }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

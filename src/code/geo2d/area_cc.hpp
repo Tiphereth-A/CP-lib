@@ -4,7 +4,7 @@
 #include "circle.hpp"
 #include "rel_cc.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 template <class FP>
 constexpr FP area_CC(circle<FP> const &lhs, circle<FP> const &rhs) {
@@ -16,6 +16,6 @@ constexpr FP area_CC(circle<FP> const &lhs, circle<FP> const &rhs) {
   return lhs.crown_area(std::acos((lhs.r * lhs.r - rhs.r * rhs.r + d * d) / (2 * lhs.r * d)) * 2) + rhs.crown_area(std::acos((rhs.r * rhs.r - lhs.r * lhs.r + d * d) / (2 * rhs.r * d)) * 2);
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

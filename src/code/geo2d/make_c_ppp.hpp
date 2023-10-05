@@ -4,7 +4,7 @@
 #include "circle.hpp"
 #include "tcenter_o.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // make circle by 3 point passed through
 template <class FP>
@@ -13,6 +13,6 @@ constexpr circle<FP> make_C_PPP(point<FP> const &p1, point<FP> const &p2, point<
   return {o, dist_PP(o, p1)};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "ins_cl.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // make circle by radius, a point passed through and a tagante lines
 // maybe duplicate
@@ -22,6 +22,6 @@ std::optional<ptt<circle<FP>>> make_C_rPL(FP r, point<FP> const &p, line<FP> con
   return {{ps.value().first, r}, {ps.value().second, r}};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

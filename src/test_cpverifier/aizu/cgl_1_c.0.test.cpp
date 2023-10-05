@@ -5,7 +5,7 @@
 #include "../../code/geo2d/point.hpp"
 #include "../../code/geo2d/point_is_in_middle.hpp"
 
-using point = tifa_libs::geo2d::point<double>;
+using point = tifa_libs::geo::point<double>;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -17,10 +17,10 @@ int main() {
   for (size_t i = 0; i < q; ++i) {
     point p;
     std::cin >> p;
-    if (tifa_libs::geo2d::is_pos(tifa_libs::geo2d::cross(p0, p1, p))) std::cout << "COUNTER_CLOCKWISE\n";
-    else if (tifa_libs::geo2d::is_neg(tifa_libs::geo2d::cross(p0, p1, p))) std::cout << "CLOCKWISE\n";
-    else if (tifa_libs::geo2d::is_neg(tifa_libs::geo2d::dot(p0, p1, p))) std::cout << "ONLINE_BACK\n";
-    else if (tifa_libs::geo2d::is_in_middle(p0, p, p1)) std::cout << "ON_SEGMENT\n";
+    if (tifa_libs::geo::is_pos(tifa_libs::geo::cross(p0, p1, p))) std::cout << "COUNTER_CLOCKWISE\n";
+    else if (tifa_libs::geo::is_neg(tifa_libs::geo::cross(p0, p1, p))) std::cout << "CLOCKWISE\n";
+    else if (tifa_libs::geo::is_neg(tifa_libs::geo::dot(p0, p1, p))) std::cout << "ONLINE_BACK\n";
+    else if (tifa_libs::geo::is_in_middle(p0, p, p1)) std::cout << "ON_SEGMENT\n";
     else std::cout << "ONLINE_FRONT\n";
   }
   return 0;

@@ -4,7 +4,7 @@
 #include "ins_cc.hpp"
 #include "rel_cc.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // make circle by radius and 2 external tagante circle
 // maybe duplicate
@@ -16,6 +16,6 @@ std::optional<ptt<circle<FP>>> make_C_rCC_ex(FP r, circle<FP> const &c1, circle<
   return {{ps.value().first, r}, {ps.value().second, r}};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

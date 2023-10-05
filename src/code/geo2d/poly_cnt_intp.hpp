@@ -4,7 +4,7 @@
 #include "../util/fp2uint.hpp"
 #include "polygon.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // Count of integer point on the border of polygon
 template <class FP>
@@ -17,6 +17,6 @@ u64 poly_cnt_intP_border(polygon<FP> const &poly) {
 template <class FP>
 u64 poly_cnt_intP_inner(polygon<FP> const &poly) { return fp2uint(poly.area(), EPS) - cnt_intP_border(poly) / 2 + 1; }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

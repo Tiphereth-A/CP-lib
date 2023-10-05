@@ -4,7 +4,7 @@
 #include "circle.hpp"
 #include "ins_ll.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // make circle by radius and 2 tagante lines
 template <class FP>
@@ -18,6 +18,6 @@ std::optional<pt4<circle<FP>>> make_C_rLL(FP r, line<FP> const &l1, line<FP> con
   return {{ins_LL(u1, v1), r}, {ins_LL(u1, v2), r}, {ins_LL(u2, v1), r}, {ins_LL(u2, v2), r}};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "circle.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // tagante points of point to circle
 // maybe duplicate
@@ -18,6 +18,6 @@ std::optional<ptt<point<FP>>> tan_CP(circle<FP> const &c, point<FP> const &p) {
   return ptt<point<FP>>{q1 - q2, q1 + q2};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

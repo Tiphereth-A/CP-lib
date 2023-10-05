@@ -5,8 +5,8 @@
 #include "../../code/geo2d/ins_cl.hpp"
 #include "../../code/geo2d/line.hpp"
 
-using circ = tifa_libs::geo2d::circle<double>;
-using line = tifa_libs::geo2d::line<double>;
+using circ = tifa_libs::geo::circle<double>;
+using line = tifa_libs::geo::line<double>;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -19,7 +19,7 @@ int main() {
   for (size_t i = 0; i < q; ++i) {
     line l;
     std::cin >> l;
-    auto [x, y] = tifa_libs::geo2d::ins_CL(c, l).value();
+    auto [x, y] = tifa_libs::geo::ins_CL(c, l).value();
     if (x < y) std::cout << x << ' ' << y << '\n';
     else std::cout << y << ' ' << x << '\n';
   }

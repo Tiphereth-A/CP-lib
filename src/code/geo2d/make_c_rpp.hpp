@@ -3,7 +3,7 @@
 
 #include "ins_cc.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // make circle by radius and 2 point passed through
 // maybe duplicate
@@ -14,6 +14,6 @@ std::optional<ptt<circle<FP>>> make_C_rPP(FP r, point<FP> const &p1, point<FP> c
   return {{ps.value().first, r}, {ps.value().second, r}};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

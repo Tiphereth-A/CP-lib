@@ -5,7 +5,7 @@
 #include "line.hpp"
 #include "point_is_in_middle.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 //! containing endpoints
 template <class FP>
@@ -14,6 +14,6 @@ constexpr bool is_on_S(line<FP> const &s1, point<FP> const &p) { return is_on_sa
 template <class FP>
 constexpr bool is_on_S_strict(line<FP> const &s1, point<FP> const &p) { return sgn_cross(s1.l, s1.r, p) == 0 && sgn((p - s1.l) * (s1.l - s1.r)) * sgn((p - s1.r) * (s1.l - s1.r)) < 0; }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

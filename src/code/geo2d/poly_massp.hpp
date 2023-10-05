@@ -3,7 +3,7 @@
 
 #include "polygon.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 template <class FP>
 point<FP> poly_massp(polygon<FP> const &poly) {
@@ -21,6 +21,6 @@ point<FP> poly_massp(polygon<FP> const &poly) {
   return ret;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

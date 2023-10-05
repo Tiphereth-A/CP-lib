@@ -3,7 +3,7 @@
 
 #include "util.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 constexpr double EPS = 1e-8;
 const double PI = std::acos(-1.);
@@ -47,6 +47,6 @@ constexpr bool is_intersect(FP l1, FP r1, FP l2, FP r2) {
 template <class FP>
 constexpr bool is_in_middle(FP l, FP mid, FP r) { return is_eq(l, mid) || is_eq(r, mid) || ((l < mid) ^ (r < mid)); }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

@@ -3,8 +3,8 @@
 #include "../../code/geo2d/line.hpp"
 #include "../../code/geo2d/point.hpp"
 
-using point = tifa_libs::geo2d::point<double>;
-using line = tifa_libs::geo2d::line<double>;
+using point = tifa_libs::geo::point<double>;
+using line = tifa_libs::geo::line<double>;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -14,7 +14,7 @@ int main() {
   for (size_t i = 0; i < q; ++i) {
     line l1, l2;
     std::cin >> l1 >> l2;
-    if (tifa_libs::geo2d::is_zero(l1.direction() * l2.direction())) std::cout << "1\n";
+    if (tifa_libs::geo::is_zero(l1.direction() * l2.direction())) std::cout << "1\n";
     else if (l1.is_parallel(l2)) std::cout << "2\n";
     else std::cout << "0\n";
   }

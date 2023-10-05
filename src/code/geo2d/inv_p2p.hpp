@@ -3,7 +3,7 @@
 
 #include "circle.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // geometry inverse of a point
 template <class FP>
@@ -12,6 +12,6 @@ constexpr point<FP> inv_P2P(circle<FP> const &c, point<FP> const &p) {
   return c.o + v * (c.r * c.r / v.norm2());
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

@@ -4,8 +4,8 @@
 #include "../../code/geo2d/area_poc.hpp"
 #include "../../code/geo2d/polygon.hpp"
 
-using poly = tifa_libs::geo2d::polygon<double>;
-using circ = tifa_libs::geo2d::circle<double>;
+using poly = tifa_libs::geo::polygon<double>;
+using circ = tifa_libs::geo::circle<double>;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -16,6 +16,6 @@ int main() {
   std::cin >> n >> r;
   poly pl(n);
   std::cin >> pl;
-  std::cout << tifa_libs::geo2d::area_PoC(pl, {{0, 0}, r}) << '\n';
+  std::cout << tifa_libs::geo::area_PoC(pl, {{0, 0}, r}) << '\n';
   return 0;
 }

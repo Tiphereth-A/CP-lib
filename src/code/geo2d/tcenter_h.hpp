@@ -4,12 +4,12 @@
 #include "ins_ll.hpp"
 #include "triangle.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // orthocenter (X4)
 template <class FP>
 constexpr point<FP> center_H(triangle<FP> const &t) { return ins_LL({t.A, t.A + (t.B - t.C).do_rot90()}, {t.B, t.B + (t.C - t.A).do_rot90()}); }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

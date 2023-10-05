@@ -3,7 +3,7 @@
 
 #include "proj.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // min dist_PP from a point to a line
 template <class FP>
@@ -12,6 +12,6 @@ constexpr FP dist_PL(point<FP> const &p, line<FP> const &s1) {
   return dist_PP(p, proj(s1, p));
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

@@ -5,7 +5,7 @@
 #include "dot.hpp"
 #include "ins_cl.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // area of intersection of circle and triangle
 //! WITH DIRECTION, sgn is cross(c.o, p1, p2)
@@ -26,6 +26,6 @@ FP sarea_CT(circle<FP> const &c, point<FP> const &p1, point<FP> const &p2) {
   return cross(c.o, p1, p2) / 2;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "cross.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 template <class FP>
 struct line {
@@ -67,6 +67,6 @@ struct line {
   friend constexpr line push(line lhs, FP dist) { return lhs.do_push(dist); }
 };
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

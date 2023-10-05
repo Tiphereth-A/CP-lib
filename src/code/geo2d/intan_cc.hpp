@@ -5,7 +5,7 @@
 #include "line.hpp"
 #include "tan_cp.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // internal tagante lines of 2 disjoint circles
 // maybe 0, 2 (maybe duplicate)
@@ -19,6 +19,6 @@ std::optional<ptt<line<FP>>> intan_CC(circle<FP> const &c1, circle<FP> const &c2
   return ptt<line<FP>>{{ps.value().first, qs.value().first}, {ps.value().second, qs.value().second}};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

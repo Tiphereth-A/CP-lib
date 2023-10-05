@@ -5,7 +5,7 @@
 #include "dist_pp.hpp"
 #include "line.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // intersection point of circle and line
 // maybe duplicate
@@ -17,6 +17,6 @@ std::optional<ptt<point<FP>>> ins_CL(circle<FP> const &c, line<FP> const &l1) {
   return ptt<point<FP>>{m - dr, m + dr};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

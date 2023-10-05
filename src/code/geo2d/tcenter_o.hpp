@@ -5,7 +5,7 @@
 #include "ins_ll.hpp"
 #include "triangle.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // radius of circumscribed circle
 template <class FP>
@@ -21,6 +21,6 @@ constexpr point<FP> center_O(triangle<FP> const &t) {
   return ins_LL(line{p1, p1 + (t.B - t.C).do_rot90()}, line{p2, p2 + (t.C - t.A).do_rot90()});
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

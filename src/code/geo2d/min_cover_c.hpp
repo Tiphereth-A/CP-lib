@@ -4,7 +4,7 @@
 #include "make_c_ppp.hpp"
 #include "rel_cp.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // min coverage circle of a set of points
 //! accuracy maybe reduced without shuffling `vp` first
@@ -27,6 +27,6 @@ circle<FP> min_cover_C(vec<point<FP>> const &vp) {
   return ret;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

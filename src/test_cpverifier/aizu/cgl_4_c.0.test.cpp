@@ -4,8 +4,8 @@
 #include "../../code/geo2d/cvh.hpp"
 #include "../../code/geo2d/line.hpp"
 
-using cvh = tifa_libs::geo2d::cvh<double>;
-using line = tifa_libs::geo2d::line<double>;
+using cvh = tifa_libs::geo::cvh<double>;
+using line = tifa_libs::geo::line<double>;
 
 int main() {
   std::ios::sync_with_stdio(false);

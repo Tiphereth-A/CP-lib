@@ -3,12 +3,12 @@
 
 #include "../util/geo_util.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 template <class FP>
 struct point {
   FP x, y;
-  constexpr point(FP x = FP{}, FP y = FP{}):
+  explicit constexpr point(FP x = FP{}, FP y = FP{}):
     x(x), y(y) {}
 
   friend std::istream &operator>>(std::istream &is, point &rhs) { return is >> rhs.x >> rhs.y; }
@@ -117,6 +117,6 @@ struct point {
   friend constexpr point rot(point lhs, FP theta) { return lhs.do_rot(theta); }
 };
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

@@ -4,7 +4,7 @@
 #include "../../code/geo2d/min_dis_ps.hpp"
 #include "../../code/geo2d/point.hpp"
 
-using point = tifa_libs::geo2d::point<double>;
+using point = tifa_libs::geo::point<double>;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -15,6 +15,6 @@ int main() {
   tifa_libs::vec<point> vp(n);
   for (auto &i : vp) std::cin >> i;
   std::sort(vp.begin(), vp.end());
-  std::cout << tifa_libs::geo2d::min_dis_Ps(vp, 0, n) << '\n';
+  std::cout << tifa_libs::geo::min_dis_Ps(vp, 0, n) << '\n';
   return 0;
 }

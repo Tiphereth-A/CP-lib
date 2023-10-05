@@ -6,7 +6,7 @@
 #include "rel_cs.hpp"
 #include "rel_pop.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // relation between polygon/convex hull and circle
 enum RELPoC {
@@ -27,6 +27,6 @@ RELPoC relation_PoC(polygon<FP> const &poly, circle<FP> const &c) {
   return x;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

@@ -5,8 +5,8 @@
 #include "../../code/geo2d/point.hpp"
 #include "../../code/geo2d/tan_cp.hpp"
 
-using point = tifa_libs::geo2d::point<double>;
-using circ = tifa_libs::geo2d::circle<double>;
+using point = tifa_libs::geo::point<double>;
+using circ = tifa_libs::geo::circle<double>;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -15,7 +15,7 @@ int main() {
   circ c;
   point p;
   std::cin >> p >> c;
-  auto [x, y] = tifa_libs::geo2d::tan_CP(c, p).value();
+  auto [x, y] = tifa_libs::geo::tan_CP(c, p).value();
   if (x < y) std::cout << x << '\n'
                        << y << '\n';
   else std::cout << y << '\n'

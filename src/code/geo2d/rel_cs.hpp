@@ -4,7 +4,7 @@
 #include "circle.hpp"
 #include "line.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // relation between circle and segment/line
 enum RELCS {
@@ -21,6 +21,6 @@ constexpr RELCS relation_CS(circle<FP> const &c, line<FP> const &s) {
   return RELCS::otherwise_cs;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

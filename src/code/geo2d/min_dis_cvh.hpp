@@ -3,7 +3,7 @@
 
 #include "cvh.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // Min distance between two convex hulls
 template <class FP>
@@ -22,6 +22,6 @@ FP min_dis_CVH(cvh<FP> const &cvhl, cvh<FP> const &cvhr) {
   return ans;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

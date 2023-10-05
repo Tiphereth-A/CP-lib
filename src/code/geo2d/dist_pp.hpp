@@ -3,12 +3,12 @@
 
 #include "point.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // distance of two points (Euclidian)
 template <class FP>
-constexpr FP dist_PP(point<FP> const &lhs, point<FP> const &rhs) { return std::hypot(lhs.x - rhs.x, lhs.y - rhs.y); }
+constexpr FP dist_PP(point<FP> const &lhs, point<FP> const &rhs) { return (lhs - rhs).norm(); }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

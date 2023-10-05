@@ -5,8 +5,8 @@
 #include "../../code/geo2d/point.hpp"
 #include "../../code/geo2d/proj.hpp"
 
-using point = tifa_libs::geo2d::point<double>;
-using line = tifa_libs::geo2d::line<double>;
+using point = tifa_libs::geo::point<double>;
+using line = tifa_libs::geo::line<double>;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -19,7 +19,7 @@ int main() {
   for (size_t i = 0; i < q; ++i) {
     point p;
     std::cin >> p;
-    std::cout << tifa_libs::geo2d::reflect(l, p) << '\n';
+    std::cout << tifa_libs::geo::reflect(l, p) << '\n';
   }
   return 0;
 }

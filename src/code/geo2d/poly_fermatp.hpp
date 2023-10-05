@@ -3,7 +3,7 @@
 
 #include "polygon.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // simulated annealing
 template <class FP, class Re>
@@ -29,6 +29,6 @@ point<FP> fermatp(polygon<FP> const &poly, Re &engine, const FP begin = 1e10, co
   return ret;
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

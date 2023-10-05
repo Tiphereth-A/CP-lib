@@ -6,8 +6,8 @@
 #include "../../code/geo2d/intan_cc.hpp"
 #include "../../code/geo2d/point.hpp"
 
-using point = tifa_libs::geo2d::point<double>;
-using circ = tifa_libs::geo2d::circle<double>;
+using point = tifa_libs::geo::point<double>;
+using circ = tifa_libs::geo::circle<double>;
 
 int main() {
   std::ios::sync_with_stdio(false);

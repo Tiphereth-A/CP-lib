@@ -4,7 +4,7 @@
 #include "cvh.hpp"
 #include "triangle.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // Triangle inside with max area
 template <class FP>
@@ -50,6 +50,6 @@ triangle<FP> max_area_T(cvh<FP> const &cvh) {
   return triangle{cvh.vs[is], cvh.vs[js], cvh.vs[ks]};
 }
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif

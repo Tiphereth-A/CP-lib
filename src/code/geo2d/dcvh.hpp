@@ -3,7 +3,7 @@
 
 #include "cvh.hpp"
 
-namespace tifa_libs::geo2d {
+namespace tifa_libs::geo {
 
 // Dynamic Convex Hull
 template <class FP>
@@ -66,6 +66,6 @@ public:
   }
 };
 
-}  // namespace tifa_libs::geo2d
+}  // namespace tifa_libs::geo
 
 #endif
