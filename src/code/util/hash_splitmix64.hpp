@@ -18,7 +18,6 @@ class hash_splitmix64 {
  public:
   explicit hash_splitmix64() {}
 
-  // 
   static constexpr void set_seed(u64 s) { seed = s; }
   size_t operator()(uint64_t x) const { return splitmix64(x + seed); }
 

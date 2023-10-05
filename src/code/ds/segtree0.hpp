@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_FENWICK
-#define TIFA_LIBS_DS_FENWICK
+#ifndef TIFA_LIBS_DS_SEGTREE0
+#define TIFA_LIBS_DS_SEGTREE0
 
 #include "../util/util.hpp"
 

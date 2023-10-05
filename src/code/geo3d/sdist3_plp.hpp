@@ -7,7 +7,7 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-constexpr FP sdist3_PlP(plane<FP> const &pl, point3d<FP> const &p) {return (p - pl.u) * pl.normal() / pl.normal().norm(); }
+constexpr FP sdist3_PlP(plane<FP> const &pl, point3d<FP> const &p) { return (p - pl.u) * pl.normal() / pl.normal().norm(); }
 
 }  // namespace tifa_libs::geo
 

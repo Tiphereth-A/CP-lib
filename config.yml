@@ -83,10 +83,13 @@ notebook:
     - dsu_basic: 并查集
       code_ext: hpp
       test_ext: cpp
+    - dsu_weighted: 带权并查集
+      code_ext: hpp
+      test_ext: cpp
     - st_array: ST 表 - 数列
       code_ext: hpp
       test_ext: cpp
-    - dsu_weighted: 带权并查集
+    - segtree0: 线段树（区间加、区间和、区间最值）
       code_ext: hpp
       test_ext: cpp
     geo2d:
