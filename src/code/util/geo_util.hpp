@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_UTIL_GEO_UTIL
 #define TIFA_LIBS_UTIL_GEO_UTIL
 
-#include <type_traits>
-
 #include "util.hpp"
 
 namespace tifa_libs::geo {
