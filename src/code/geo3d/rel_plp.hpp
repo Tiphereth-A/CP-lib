@@ -6,7 +6,7 @@
 
 namespace tifa_libs::geo {
 
-// relation between circle and circle
+// relation between plane and point3d
 enum RELPLP {
   above_plp,
   in_plp,
