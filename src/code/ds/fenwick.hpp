@@ -17,12 +17,12 @@ class fenwick {
   //! [1, pos)
   constexpr void add(size_t pos, T const &x) {
     if (!pos) return;
-    for (pos = std::clamp(pos, size_t(1), a.size() - 1); pos < a.size(); pos += lowbit(pos)) a[pos] += x;
+    for (; pos < a.size(); pos += lowbit(pos)) a[pos] += x;
   }
   //! [1, pos)
   constexpr T sum(size_t pos) {
     T ret = 0;
-    for (pos = std::clamp(pos, size_t(0), a.size() - 1); pos; pos -= lowbit(pos)) ret += a[pos];
+    for (pos = std::min(pos, a.size() - 1); pos; pos -= lowbit(pos)) ret += a[pos];
     return ret;
   }
 };
