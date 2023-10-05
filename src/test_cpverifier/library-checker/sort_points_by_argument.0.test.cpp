@@ -12,7 +12,7 @@ int main() {
   std::cin >> n;
   tifa_libs::vec<point> vp(n);
   for (auto& i : vp) std::cin >> i;
-  tifa_libs::geo::argsort(vp, 5);
+  tifa_libs::geo::argsort(vp);
   for (auto& i : vp) std::cout << i << '\n';
   return 0;
 }
