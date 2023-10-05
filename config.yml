@@ -86,6 +86,9 @@ notebook:
     - st_array: ST 表 - 数列
       code_ext: hpp
       test_ext: cpp
+    - dsu_weighted: 带权并查集
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - area_cc: area_cc
       code_ext: hpp

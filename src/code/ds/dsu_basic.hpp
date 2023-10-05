@@ -12,10 +12,7 @@ class dsu_basic {
   explicit dsu_basic(size_t sz) : fa(sz) { std::iota(fa.begin(), fa.end(), 0); }
 
   size_t find(size_t x) { return x == fa[x] ? fa[x] : fa[x] = find(fa[x]); }
-  void merge(size_t x, size_t y) {
-    size_t fx = find(x), fy = find(y);
-    fa[fx] = fy;
-  }
+  void merge(size_t x, size_t y) { fa[find(x)] = find(y); }
   bool in_same_group(size_t x, size_t y) { return find(x) == find(y); }
 };
 
