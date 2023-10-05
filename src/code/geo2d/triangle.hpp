@@ -12,13 +12,13 @@ struct triangle {
   triangle() {}
   constexpr triangle(point<FP> const &a, point<FP> const &b, point<FP> const &c):
     A(a), B(b), C(c) {}
-  constexpr triangle(const FP &a_x, const FP &a_y, const FP &b_x, const FP &b_y, const FP &c_x, const FP &c_y):
+  constexpr triangle(FP a_x, FP a_y, FP b_x, FP b_y, FP c_x, FP c_y):
     A(a_x, a_y), B(b_x, b_y), C(c_x, c_y) {}
 
-  friend std::istream &operator>>(std::istream &is, triangle &rhs) { return is >> rhs.A >> rhs.B >> rhs.C; }
-  friend std::ostream &operator<<(std::ostream &os, triangle const &rhs) { return os << rhs.A << ' ' << rhs.B << ' ' << rhs.C; }
+  friend std::istream &operator>>(std::istream &is, triangle &t) { return is >> t.A >> t.B >> t.C; }
+  friend std::ostream &operator<<(std::ostream &os, triangle const &t) { return os << t.A << ' ' << t.B << ' ' << t.C; }
 
-  friend bool operator==(triangle const &lhs, triangle const &rhs) { return lhs.A == rhs.A && lhs.B == rhs.B && lhs.C == rhs.C; }
+  friend bool operator==(triangle const &l, triangle const &r) { return l.A == r.A && l.B == r.B && l.C == r.C; }
 
   constexpr FP area() const { return std::abs(cross(A, B, C)) / 2; }
 

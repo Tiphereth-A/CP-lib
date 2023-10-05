@@ -6,16 +6,16 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-point<FP> poly_massp(polygon<FP> const &poly) {
+point<FP> poly_massp(polygon<FP> const &po) {
   point<FP> ret{};
   FP area{};
-  if (poly.vs.size() == 0) return ret;
-  if (poly.vs.size() == 1) return poly.vs[0];
-  for (size_t i = 1; i < poly.vs.size() - 1; ++i) {
-    FP tmp = cross(poly.vs[0], poly.vs[i], poly.vs[i + 1]);
+  if (po.vs.size() == 0) return ret;
+  if (po.vs.size() == 1) return po.vs[0];
+  for (size_t i = 1; i < po.vs.size() - 1; ++i) {
+    FP tmp = cross(po.vs[0], po.vs[i], po.vs[i + 1]);
     if (is_zero(tmp)) continue;
     area += tmp;
-    ret += (poly.vs[0] + poly.vs[i] + poly.vs[i + 1]) * (tmp / 3);
+    ret += (po.vs[0] + po.vs[i] + po.vs[i + 1]) * (tmp / 3);
   }
   if (!is_zero(area)) ret /= area;
   return ret;

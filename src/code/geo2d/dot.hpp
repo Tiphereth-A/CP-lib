@@ -5,11 +5,11 @@
 
 namespace tifa_libs::geo {
 
-// (p2 - p1) * (p3 - p1)
+// (a - o) * (b - o)
 template <class FP>
-constexpr FP dot(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return (p2.x - p1.x) * (p3.x - p1.x) + (p2.y - p1.y) * (p3.y - p1.y); }
+constexpr FP dot(point<FP> const &o, point<FP> const &a, point<FP> const &b) { return (a.x - o.x) * (b.x - o.x) + (a.y - o.y) * (b.y - o.y); }
 template <class FP>
-constexpr int sgn_dot(point<FP> const &p1, point<FP> const &p2, point<FP> const &p3) { return sgn(dot(p1, p2, p3)); }
+constexpr int sgn_dot(point<FP> const &o, point<FP> const &a, point<FP> const &b) { return sgn(dot(o, a, b)); }
 
 }  // namespace tifa_libs::geo
 

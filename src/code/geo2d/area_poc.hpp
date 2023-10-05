@@ -8,11 +8,11 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-FP area_PoC(polygon<FP> const &poly, circle<FP> const &c) {
+FP area_PoC(polygon<FP> const &po, circle<FP> const &c) {
   FP ans{};
-  size_t sz = poly.vs.size();
+  size_t sz = po.vs.size();
   if (sz < 3) return ans;
-  for (size_t i = 0; i < sz; ++i) ans += sarea_CT(c, poly[i], poly[poly.next(i)]);
+  for (size_t i = 0; i < sz; ++i) ans += sarea_CT(c, po[i], po[po.next(i)]);
   return std::abs(ans);
 }
 

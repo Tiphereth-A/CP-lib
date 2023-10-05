@@ -9,11 +9,11 @@ namespace tifa_libs::geo {
 
 // min dist_PP from a point to another point which belongs to a segment
 template <class FP>
-constexpr FP dist_PS(point<FP> const &p, line<FP> const &s1) {
-  if (s1.l == s1.r) return dist_PP(s1.l, p);
-  point h = proj(s1, p);
-  if (is_in_middle(s1.l, h, s1.r)) return dist_PP(p, h);
-  return std::min(dist_PP(s1.l, p), dist_PP(s1.r, p));
+constexpr FP dist_PS(point<FP> const &p, line<FP> const &s) {
+  if (s.l == s.r) return dist_PP(s.l, p);
+  point h = proj(s, p);
+  if (is_in_middle(s.l, h, s.r)) return dist_PP(p, h);
+  return std::min(dist_PP(s.l, p), dist_PP(s.r, p));
 }
 
 }  // namespace tifa_libs::geo

@@ -8,14 +8,14 @@ namespace tifa_libs::geo {
 
 // Count of integer point on the border of polygon
 template <class FP>
-u64 poly_cnt_intP_border(polygon<FP> const &poly) {
+u64 poly_cnt_intP_border(polygon<FP> const &po) {
   u64 ret = 0;
-  for (size_t i = 0; i < poly.vs.size(); ++i) ret += std::gcd(fp2uint(std::abs(poly.vs[i].x - poly.vs[poly.next(i)].x), EPS), fp2uint(std::abs(poly.vs[i].y - poly.vs[poly.next(i)].y), EPS));
+  for (size_t i = 0; i < po.vs.size(); ++i) ret += std::gcd(fp2uint(std::abs(po.vs[i].x - po.vs[po.next(i)].x), EPS), fp2uint(std::abs(po.vs[i].y - po.vs[po.next(i)].y), EPS));
   return ret;
 }
 // Count of integer point in the polygon, based on Pick theorem
 template <class FP>
-u64 poly_cnt_intP_inner(polygon<FP> const &poly) { return fp2uint(poly.area(), EPS) - cnt_intP_border(poly) / 2 + 1; }
+u64 poly_cnt_intP_inner(polygon<FP> const &po) { return fp2uint(po.area(), EPS) - cnt_intP_border(po) / 2 + 1; }
 
 }  // namespace tifa_libs::geo
 

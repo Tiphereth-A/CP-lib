@@ -9,46 +9,46 @@ template <class FP>
 struct line {
   point<FP> l, r;
   line() {}
-  constexpr line(point<FP> const &start_, point<FP> const &end_):
-    l(start_), r(end_) {}
-  constexpr line(const FP &start_x, const FP &start_y, const FP &end_x, const FP &end_y):
-    l(start_x, start_y), r(end_x, end_y) {}
-  friend std::istream &operator>>(std::istream &is, line &rhs) { return is >> rhs.l >> rhs.r; }
-  friend std::ostream &operator<<(std::ostream &os, line const &rhs) { return os << rhs.l << ' ' << rhs.r; }
+  constexpr line(point<FP> const &s, point<FP> const &t):
+    l(s), r(t) {}
+  constexpr line(FP s_x, FP s_y, FP t_x, FP t_y):
+    l(s_x, s_y), r(t_x, t_y) {}
+  friend std::istream &operator>>(std::istream &is, line &l) { return is >> l.l >> l.r; }
+  friend std::ostream &operator<<(std::ostream &os, line const &l) { return os << l.l << ' ' << l.r; }
 
   constexpr point<FP> direction() const { return r - l; }
 
-  constexpr auto is_parallel(line const &rhs) const { return is_zero(direction() ^ rhs.direction()); }
-  friend constexpr auto is_parallel(line const &lhs, line const &rhs) { return lhs.is_parallel(rhs); }
+  constexpr auto is_parallel(line const &r) const { return is_zero(direction() ^ r.direction()); }
+  friend constexpr auto is_parallel(line const &l, line const &r) { return l.is_parallel(r); }
 
-  constexpr auto is_same_dir(line const &rhs) const { return is_parallel(rhs) && is_pos(direction() * rhs.direction()); }
-  friend constexpr auto is_same_dir(line const &lhs, line const &rhs) { return lhs.is_same_dir(rhs); }
+  constexpr auto is_same_dir(line const &r) const { return is_parallel(r) && is_pos(direction() * r.direction()); }
+  friend constexpr auto is_same_dir(line const &l, line const &r) { return l.is_same_dir(r); }
 
-  constexpr friend bool operator<(line const &lhs, line const &rhs) {
-    if (lhs.is_same_dir(rhs)) return rhs.is_include_strict(lhs.l);
-    auto vl = lhs.direction(), vr = rhs.direction();
+  constexpr friend bool operator<(line const &l, line const &r) {
+    if (l.is_same_dir(r)) return r.is_include_strict(l.l);
+    auto vl = l.direction(), vr = r.direction();
     if (vl.quad() != vr.quad()) return vl.quad() < vr.quad();
     return is_pos(vl ^ vr);
   }
-  friend bool operator==(line const &lhs, line const &rhs) { return lhs.l == rhs.l && lhs.r == rhs.r; }
+  friend bool operator==(line const &l, line const &r) { return l.l == r.l && l.r == r.r; }
 
   constexpr auto slope() const { return (r.y - l.y) / (r.x - l.x); }
-  friend constexpr auto slope(line const &lhs) { return lhs.slope(); }
+  friend constexpr auto slope(line const &l) { return l.slope(); }
 
   constexpr auto slope_inv() const { return (r.x - l.x) / (r.y - l.y); }
-  friend constexpr auto slope_inv(line const &lhs) { return lhs.slope_inv(); }
+  friend constexpr auto slope_inv(line const &l) { return l.slope_inv(); }
 
   constexpr auto intercept_v() const { return r.y - r.x * slope(); }
-  friend constexpr auto intercept_v(line const &lhs) { return lhs.intercept_v(); }
+  friend constexpr auto intercept_v(line const &l) { return l.intercept_v(); }
 
   constexpr auto intercept_h() const { return r.x - r.y * slope_inv(); }
-  friend constexpr auto intercept_h(line const &lhs) { return lhs.intercept_h(); }
+  friend constexpr auto intercept_h(line const &l) { return l.intercept_h(); }
 
   constexpr auto lerp_y(FP x) const { return l.y + (x - l.x) * slope(); }
-  friend constexpr auto lerp_y(line const &lhs, FP x) { return lhs.lerp_y(x); }
+  friend constexpr auto lerp_y(line const &l, FP x) { return l.lerp_y(x); }
 
   constexpr auto lerp_x(FP y) const { return l.x + (y - l.y) * slope_inv(); }
-  friend constexpr auto lerp_x(line const &lhs, FP y) { return lhs.lerp_x(y); }
+  friend constexpr auto lerp_x(line const &l, FP y) { return l.lerp_x(y); }
 
   // half plane
   constexpr bool is_include_strict(point<FP> const &p) const { return is_pos(cross(l, r, p)); }
@@ -64,7 +64,7 @@ struct line {
     return *this;
   }
   // translate @dist along the direction of half plane
-  friend constexpr line push(line lhs, FP dist) { return lhs.do_push(dist); }
+  friend constexpr line push(line l, FP dist) { return l.do_push(dist); }
 };
 
 }  // namespace tifa_libs::geo

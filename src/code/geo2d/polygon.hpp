@@ -10,18 +10,18 @@ template <class FP>
 struct polygon {
   vec<point<FP>> vs;
   polygon() {}
-  explicit polygon(size_t size_):
-    vs(size_) {}
+  explicit polygon(size_t sz):
+    vs(sz) {}
   explicit polygon(vec<point<FP>> const &vs_):
     vs(vs_) {}
-  friend std::istream &operator>>(std::istream &is, polygon &rhs) {
-    for (auto &i : rhs.vs) is >> i;
+  friend std::istream &operator>>(std::istream &is, polygon &p) {
+    for (auto &i : p.vs) is >> i;
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, polygon const &rhs) {
-    if (rhs.vs.empty()) return os;
-    for (auto it = rhs.vs.begin(); it != rhs.vs.end() - 1; ++it) os << *it << ' ';
-    return os << rhs.vs.back();
+  friend std::ostream &operator<<(std::ostream &os, polygon const &p) {
+    if (p.vs.empty()) return os;
+    for (auto it = p.vs.begin(); it != p.vs.end() - 1; ++it) os << *it << ' ';
+    return os << p.vs.back();
   }
 
   polygon &resort() {
@@ -62,9 +62,9 @@ struct polygon {
 
   bool is_convex() const {
     bool flag[2] = {false, false};
-    size_t sz = vs.size();
-    if (sz < 3) return true;
-    for (size_t i = 0, j = next(i), k = next(j); i < sz; ++i, j = next(j), k = next(k)) {
+    size_t n = vs.size();
+    if (n < 3) return true;
+    for (size_t i = 0, j = next(i), k = next(j); i < n; ++i, j = next(j), k = next(k)) {
       auto sgn = sgn_cross(vs[i], vs[j], vs[k]);
       if (sgn) flag[(sgn + 1) / 2] = true;
       if (flag[0] && flag[1]) return false;

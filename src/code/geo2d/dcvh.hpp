@@ -34,8 +34,8 @@ protected:
     }
     DHCVH &insert(point<FP> const &p) {
       if (contains(p)) return *this;
-      auto tmp = vs.lower_bound({p.x, -std::numeric_limits<FP>::max()});
-      if (tmp != vs.end() && tmp->x == p.x) vs.erase(tmp);
+      auto _ = vs.lower_bound({p.x, -std::numeric_limits<FP>::max()});
+      if (_ != vs.end() && _->x == p.x) vs.erase(_);
       vs.insert(p);
       auto i = vs.find(p), j = i;
       if (i != vs.begin()) {

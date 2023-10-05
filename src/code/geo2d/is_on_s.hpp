@@ -9,10 +9,10 @@ namespace tifa_libs::geo {
 
 //! containing endpoints
 template <class FP>
-constexpr bool is_on_S(line<FP> const &s1, point<FP> const &p) { return is_on_same_L(s1.l, s1.r, p) && is_in_middle(s1.l, p, s1.r); }
+constexpr bool is_on_S(line<FP> const &s, point<FP> const &p) { return is_on_same_L(s.l, s.r, p) && is_in_middle(s.l, p, s.r); }
 //! NOT containing endpoints
 template <class FP>
-constexpr bool is_on_S_strict(line<FP> const &s1, point<FP> const &p) { return sgn_cross(s1.l, s1.r, p) == 0 && sgn((p - s1.l) * (s1.l - s1.r)) * sgn((p - s1.r) * (s1.l - s1.r)) < 0; }
+constexpr bool is_on_S_strict(line<FP> const &s, point<FP> const &p) { return sgn_cross(s.l, s.r, p) == 0 && sgn((p - s.l) * (s.l - s.r)) * sgn((p - s.r) * (s.l - s.r)) < 0; }
 
 }  // namespace tifa_libs::geo
 

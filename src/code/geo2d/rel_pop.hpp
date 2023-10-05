@@ -15,12 +15,12 @@ enum RELPoP {
 };
 
 template <class FP>
-RELPoP relation_PoP(polygon<FP> const &poly, point<FP> const &p) {
-  for (auto &&now : poly.vs)
+RELPoP relation_PoP(polygon<FP> const &po, point<FP> const &p) {
+  for (auto &&now : po.vs)
     if (now == p) return RELPoP::onendpoint_pop;
   bool result = false;
-  for (size_t i = 0; i < poly.vs.size(); ++i) {
-    point now_p = poly.vs[i], next_p = poly.vs[poly.next(i)];
+  for (size_t i = 0; i < po.vs.size(); ++i) {
+    point now_p = po.vs[i], next_p = po.vs[po.next(i)];
     if (is_on_S({now_p, next_p}, p)) return RELPoP::onborder_pop;
     if (!is_ge(now_p.y, next_p.y)) std::swap(now_p, next_p);
     if (is_ge(p.y, now_p.y) || !is_ge(p.y, next_p.y)) continue;
