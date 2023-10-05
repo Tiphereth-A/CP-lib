@@ -16,6 +16,6 @@ int main() {
   std::cin >> n >> r;
   poly pl(n);
   std::cin >> pl;
-  std::cout << tifa_libs::geo::area_PoC(pl, {{0, 0}, r}) << '\n';
+  std::cout << tifa_libs::geo::area_PoC(pl, {0, 0, r}) << '\n';
   return 0;
 }
