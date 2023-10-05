@@ -12,11 +12,7 @@ int main() {
   std::cin >> n;
   tifa_libs::vec<point> vp(n);
   for (auto& i : vp) std::cin >> i;
-  tifa_libs::geo::argsort(vp);
-  size_t idx = 0;
-  for (size_t i = 0; i < n; ++i)
-    if (vp[i] < vp[idx]) idx = i;
-  for (size_t i = idx; i < n; ++i) std::cout << vp[i] << '\n';
-  for (size_t i = 0; i < idx; ++i) std::cout << vp[i] << '\n';
+  tifa_libs::geo::argsort(vp, 5);
+  for (auto& i : vp) std::cout << i << '\n';
   return 0;
 }

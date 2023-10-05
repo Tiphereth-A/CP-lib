@@ -84,7 +84,10 @@ struct point {
   constexpr auto norm() const { return std::hypot(x, y); }
   friend constexpr auto norm(point const &p) { return p.norm(); }
 
-  constexpr static int QUAD__[9] = {5, 6, 7, 4, 0, 0, 3, 2, 1};
+  constexpr static u32 QUAD__[9] = {6, 7, 8, 5, 0, 1, 4, 3, 2};
+  // 4 3 2
+  // 5 0 1
+  // 6 7 8
   constexpr auto quad() const { return QUAD__[(sgn(y) + 1) * 3 + sgn(x) + 1]; }
   friend constexpr auto quad(point const &p) { return p.quad(); }
 
