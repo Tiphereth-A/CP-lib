@@ -22,7 +22,7 @@ int main() {
         case 'G':
           ++x;
         default:
-          (++x) *= 4;
+          (++x) *= 5;
       }
     if (s[0] == 'i')
       dict.insert(x);
