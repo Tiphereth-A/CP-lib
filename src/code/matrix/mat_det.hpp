@@ -1,9 +1,8 @@
 #ifndef TIFA_LIBS_MATH_MAT_DET
 #define TIFA_LIBS_MATH_MAT_DET
 
-#include "../util/util.hpp"
-
 #include "../util/abs_constexpr.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 

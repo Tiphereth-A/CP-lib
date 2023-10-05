@@ -9,10 +9,8 @@ template <class FP>
 struct line {
   point<FP> l, r;
   line() {}
-  constexpr line(point<FP> const &s, point<FP> const &t):
-    l(s), r(t) {}
-  constexpr line(FP s_x, FP s_y, FP t_x, FP t_y):
-    l(s_x, s_y), r(t_x, t_y) {}
+  constexpr line(point<FP> const &s, point<FP> const &t) : l(s), r(t) {}
+  constexpr line(FP s_x, FP s_y, FP t_x, FP t_y) : l(s_x, s_y), r(t_x, t_y) {}
   friend std::istream &operator>>(std::istream &is, line &l) { return is >> l.l >> l.r; }
   friend std::ostream &operator<<(std::ostream &os, line const &l) { return os << l.l << ' ' << l.r; }
 

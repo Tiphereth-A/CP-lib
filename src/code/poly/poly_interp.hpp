@@ -27,11 +27,10 @@ inline poly<T> poly_interp(poly<T> const &x, poly<T> const &y) {
       return calc_(f, k * 2, l, m) * t[2 * k + 1] + calc_(f, k * 2 + 1, m + 1, r) * t[2 * k];
     }
 
-  public:
+   public:
     vec<poly<T>> t;
 
-    explicit constexpr SegTree(poly<T> const &a):
-      t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
+    explicit constexpr SegTree(poly<T> const &a) : t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
 
     constexpr poly<T> operator()(poly<T> const &f) const { return calc_(f, 1, 0, t.size() / 4 - 1); }
   };

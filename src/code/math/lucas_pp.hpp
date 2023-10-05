@@ -12,11 +12,10 @@ class LucasPP {
   bool no_proot;
   vec<u64> facp, ifacp;
 
-public:
+ public:
   // mod = p ** q
   // @param p MUSU be prime
-  LucasPP(u32 p, u32 q):
-    p(p), q(q) {
+  LucasPP(u32 p, u32 q) : p(p), q(q) {
     assert(p <= 100'000'000 && q > 0);
     m_ = 1;
     while (q--) {

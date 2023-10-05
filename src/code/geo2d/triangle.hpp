@@ -10,10 +10,8 @@ template <class FP>
 struct triangle {
   point<FP> A, B, C;
   triangle() {}
-  constexpr triangle(point<FP> const &a, point<FP> const &b, point<FP> const &c):
-    A(a), B(b), C(c) {}
-  constexpr triangle(FP a_x, FP a_y, FP b_x, FP b_y, FP c_x, FP c_y):
-    A(a_x, a_y), B(b_x, b_y), C(c_x, c_y) {}
+  constexpr triangle(point<FP> const &a, point<FP> const &b, point<FP> const &c) : A(a), B(b), C(c) {}
+  constexpr triangle(FP a_x, FP a_y, FP b_x, FP b_y, FP c_x, FP c_y) : A(a_x, a_y), B(b_x, b_y), C(c_x, c_y) {}
 
   friend std::istream &operator>>(std::istream &is, triangle &t) { return is >> t.A >> t.B >> t.C; }
   friend std::ostream &operator<<(std::ostream &os, triangle const &t) { return os << t.A << ' ' << t.B << ' ' << t.C; }

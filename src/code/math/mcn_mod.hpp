@@ -13,9 +13,8 @@ class MCN {
 
   vec<u64> fact, ifact;
 
-public:
-  MCN(u64 mod, size_t max_m):
-    m_(mod), fact(fact_mod_gen(max_m, mod)), ifact(ifact_mod_gen(max_m, mod)) {}
+ public:
+  MCN(u64 mod, size_t max_m) : m_(mod), fact(fact_mod_gen(max_m, mod)), ifact(ifact_mod_gen(max_m, mod)) {}
 
   constexpr u64 mod() const { return m_; }
 

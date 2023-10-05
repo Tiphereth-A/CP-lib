@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 // Func = FP(FP)
 template <class FP, class Func>
 class romberg_impl {
-private:
+ private:
   Func f;
   FP ctqf(FP a, FP b, FP h) const {
     FP ans = 0;
@@ -16,9 +16,8 @@ private:
     return ans;
   }
 
-public:
-  explicit romberg_impl(Func func):
-    f(func) {}
+ public:
+  explicit romberg_impl(Func func) : f(func) {}
   FP operator()(FP a, FP b, FP eps) const {
     FP h = b - a;
     FP T1 = (f(a) + f(b)) * h * .5, T2 = 0, S1 = 0, S2 = 0, C1 = 0, C2 = 0, R1 = 0, R2 = 0;

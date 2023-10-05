@@ -13,9 +13,8 @@ class ExLucas {
   vec<u64> ms;
   vec<LucasPP> cs;
 
-public:
-  explicit ExLucas(u32 md):
-    m_(md) {
+ public:
+  explicit ExLucas(u32 md) : m_(md) {
     assert(md < 100'000'000);
     for (u32 i = 2, ed_ = isqrt(md); i <= ed_; ++i)
       if (md % i == 0) {

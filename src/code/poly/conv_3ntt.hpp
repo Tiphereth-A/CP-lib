@@ -1,9 +1,8 @@
 #ifndef TIFALIBS_POLY_CONV_3NTT
 #define TIFALIBS_POLY_CONV_3NTT
 
-#include "../util/util.hpp"
-
 #include "../math/mul_mod_u.hpp"
+#include "../util/util.hpp"
 #include "conv_ntt.hpp"
 
 namespace tifa_libs::math {

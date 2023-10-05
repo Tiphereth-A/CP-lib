@@ -42,9 +42,8 @@ inline poly<T> poly_mpe(poly<T> f, poly<T> a) {
       calc_(mult(f, t[k * 2]), res, k * 2 + 1, m + 1, r);
     }
 
-  public:
-    explicit constexpr SegTree(poly<T> const &a):
-      t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
+   public:
+    explicit constexpr SegTree(poly<T> const &a) : t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
 
     constexpr poly<T> operator()(poly<T> const &f) const {
       poly<T> res(f.size());

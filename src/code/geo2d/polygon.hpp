@@ -10,10 +10,8 @@ template <class FP>
 struct polygon {
   vec<point<FP>> vs;
   polygon() {}
-  explicit polygon(size_t sz):
-    vs(sz) {}
-  explicit polygon(vec<point<FP>> const &vs_):
-    vs(vs_) {}
+  explicit polygon(size_t sz) : vs(sz) {}
+  explicit polygon(vec<point<FP>> const &vs_) : vs(vs_) {}
   friend std::istream &operator>>(std::istream &is, polygon &p) {
     for (auto &i : p.vs) is >> i;
     return is;

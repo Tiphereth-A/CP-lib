@@ -1,11 +1,10 @@
 #ifndef TIFALIBS_POLY_NTT
 #define TIFALIBS_POLY_NTT
 
-#include "../util/util.hpp"
-
 #include "../bit/bceil.hpp"
 #include "../math/proot_u64.hpp"
 #include "../math/qpow.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 
@@ -14,8 +13,7 @@ struct NTT {
   static constexpr u64 MOD = mint::mod();
   static_assert((MOD & 3) == 1, "MOD must be prime with 4k+1");
 
-  NTT():
-    root() {}
+  NTT() : root() {}
 
   size_t size() const { return root.size(); }
   void bzr(size_t len) {
@@ -60,7 +58,7 @@ struct NTT {
     for (size_t i = 0; i < n; ++i) f[i] *= t;
   }
 
-private:
+ private:
   const mint G = proot_u64(MOD);
 
   vec<mint> root;

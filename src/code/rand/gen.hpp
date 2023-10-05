@@ -10,13 +10,12 @@ class Gen {
   Re re;
   Distri dist;
 
-public:
+ public:
   using random_engine = Re;
   using distribution = Distri;
   using result_type = typename Distri::result_type;
 
-  Gen(Re &&re_, Distri &&dist_):
-    re(std::move(re_)), dist(std::move(dist_)) {}
+  Gen(Re &&re_, Distri &&dist_) : re(std::move(re_)), dist(std::move(dist_)) {}
 
   Re &rand_eng() { return re; }
   Re rand_eng() const { return re; }

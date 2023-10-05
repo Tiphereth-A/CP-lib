@@ -7,12 +7,10 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-struct cvh: public polygon<FP> {
+struct cvh : public polygon<FP> {
   cvh() {}
-  explicit cvh(size_t sz):
-    polygon<FP>(sz) {}
-  explicit cvh(vec<point<FP>> const &vs_, bool inited = false, bool strict = true):
-    polygon<FP>(vs_) {
+  explicit cvh(size_t sz) : polygon<FP>(sz) {}
+  explicit cvh(vec<point<FP>> const &vs_, bool inited = false, bool strict = true) : polygon<FP>(vs_) {
     if (!inited) strict ? init() : init_nonstrict();
   }
 

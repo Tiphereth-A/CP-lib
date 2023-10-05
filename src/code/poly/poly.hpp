@@ -9,17 +9,14 @@ template <class Pldt>
 class poly {
   Pldt p;
 
-public:
+ public:
   using value_type = typename Pldt::value_type;
   using data_type = vec<value_type>;
 
-  explicit constexpr poly(size_t sz = 1):
-    p(sz) {}
-  explicit constexpr poly(std::initializer_list<value_type> v):
-    p(v) {}
+  explicit constexpr poly(size_t sz = 1) : p(sz) {}
+  explicit constexpr poly(std::initializer_list<value_type> v) : p(v) {}
   template <class T>
-  explicit constexpr poly(vec<T> const &v):
-    p(v) {}
+  explicit constexpr poly(vec<T> const &v) : p(v) {}
 
   constexpr friend std::istream &operator>>(std::istream &is, poly &poly) {
     for (auto &val : poly.p.d) is >> val;

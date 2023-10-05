@@ -8,11 +8,11 @@ namespace tifa_libs::math {
 
 template <ptrdiff_t ID = -1>
 class mint_sd {
-protected:
+ protected:
   u32 v_;
   static inline barrett bt_;
 
-public:
+ public:
   constexpr static u32 mod() { return bt_.umod(); }
   //! MUST be called first
   //! set module with same ID
@@ -25,17 +25,14 @@ public:
     x.v_ = v;
     return x;
   }
-  constexpr mint_sd():
-    v_(0) {}
+  constexpr mint_sd() : v_(0) {}
   template <class T, std::enable_if_t<std::is_integral<T>::value && std::is_signed<T>::value> * = nullptr>
-  constexpr mint_sd(T v):
-    mint_sd() {
+  constexpr mint_sd(T v) : mint_sd() {
     i64 x = (i64)(v % (i64)mod());
     v_ = (u32)(x + (x < 0 ? mod() : 0));
   }
   template <class T, std::enable_if_t<std::is_integral<T>::value && std::is_unsigned<T>::value> * = nullptr>
-  constexpr mint_sd(T v):
-    v_((u32)(v % mod())) {}
+  constexpr mint_sd(T v) : v_((u32)(v % mod())) {}
   friend std::istream &operator>>(std::istream &is, mint_sd &x) {
     i64 xx;
     is >> xx;

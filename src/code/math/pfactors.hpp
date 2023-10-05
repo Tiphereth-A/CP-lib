@@ -32,9 +32,8 @@ class PollardRho {
     return g == n ? rho(n) : g;
   }
 
-public:
-  explicit PollardRho():
-    e(std::random_device{}()) {}
+ public:
+  explicit PollardRho() : e(std::random_device{}()) {}
 
   void operator()(u64 n, std::map<u64, u32> &ans) {
     if (n < 2) return;

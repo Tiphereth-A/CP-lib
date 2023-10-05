@@ -8,8 +8,7 @@ namespace tifa_libs::geo {
 template <class FP>
 struct point {
   FP x, y;
-  explicit constexpr point(FP x = FP{}, FP y = FP{}):
-    x(x), y(y) {}
+  explicit constexpr point(FP x = FP{}, FP y = FP{}) : x(x), y(y) {}
 
   friend std::istream &operator>>(std::istream &is, point &p) { return is >> p.x >> p.y; }
   friend std::ostream &operator<<(std::ostream &os, point const &p) { return os << p.x << ' ' << p.y; }

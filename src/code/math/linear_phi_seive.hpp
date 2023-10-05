@@ -9,10 +9,10 @@ inline vec<u32> linear_phi_seive(u32 n) {
   vec<u32> phi(n);
   phi[1] = 1;
   linear_seive(
-    n,
-    [&](u32 p) { phi[p] = p - 1; },
-    [&](u32 i, u32 j) { phi[i * j] = phi[i] * (j - 1); },
-    [&](u32 i, u32 j) { phi[i * j] = phi[i] * j; });
+      n,
+      [&](u32 p) { phi[p] = p - 1; },
+      [&](u32 i, u32 j) { phi[i * j] = phi[i] * (j - 1); },
+      [&](u32 i, u32 j) { phi[i * j] = phi[i] * j; });
   return phi;
 }
 

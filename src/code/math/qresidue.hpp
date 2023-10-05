@@ -2,7 +2,6 @@
 #define TIFA_LIBS_MATH_QRESIDUE
 
 #include "../bit/cntr0.hpp"
-
 #include "inverse.hpp"
 #include "qpow_mod.hpp"
 

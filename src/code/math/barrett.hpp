@@ -9,8 +9,7 @@ struct barrett {
   u32 m_;
   u64 im;
   // @param m `1 <= m < 2^31`
-  constexpr explicit barrett(u32 m = 998244353):
-    m_(m), im((u64)(-1) / m + 1) {}
+  constexpr explicit barrett(u32 m = 998244353) : m_(m), im((u64)(-1) / m + 1) {}
   // @return m
   constexpr u32 umod() const { return m_; }
   constexpr u32 mul(u32 a, u32 b) const {

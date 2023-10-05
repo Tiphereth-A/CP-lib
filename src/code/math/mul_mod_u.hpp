@@ -1,9 +1,8 @@
 #ifndef TIFA_LIBS_MATH_MUL_MOD_U
 #define TIFA_LIBS_MATH_MUL_MOD_U
 
-#include "../util/util.hpp"
-
 #include "../bit/bwidth.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 

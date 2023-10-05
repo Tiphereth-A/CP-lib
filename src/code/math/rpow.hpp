@@ -10,10 +10,9 @@ class rpow {
   u64 m_;
   vec<u64> b0, b1;
 
-public:
+ public:
   explicit rpow() = default;
-  rpow(u64 base_, u32 mod_):
-    b_(base_ % mod_), m_(mod_), b0(65536), b1(65536) {
+  rpow(u64 base_, u32 mod_) : b_(base_ % mod_), m_(mod_), b0(65536), b1(65536) {
     b0[0] = b1[0] = 1;
     for (size_t i = 1; i < 65536; i++) b0[i] = mul_mod_u(b0[i - 1], b_, m_);
     u64 _(mul_mod_u(b0.back(), b_, m_));

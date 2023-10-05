@@ -11,10 +11,9 @@ class fenwick {
   vec<T> a;
   constexpr size_t lowbit(size_t x) { return (size_t)1 << bit::cntr0(x); }
 
-public:
+ public:
   //! [1, sz)
-  explicit constexpr fenwick(size_t sz):
-    a(sz) { assert(sz > 1); }
+  explicit constexpr fenwick(size_t sz) : a(sz) { assert(sz > 1); }
   //! [1, pos)
   constexpr void add(size_t pos, T const &x) {
     if (!pos) return;

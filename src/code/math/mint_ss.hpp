@@ -11,24 +11,21 @@ class mint_ss {
 
   u32 v_;
 
-public:
+ public:
   constexpr static u32 mod() { return MOD; }
   constexpr static mint_ss raw(u32 v) {
     mint_ss x;
     x.v_ = v;
     return x;
   }
-  constexpr mint_ss():
-    v_(0) {}
+  constexpr mint_ss() : v_(0) {}
   template <class T, std::enable_if_t<std::is_integral<T>::value && std::is_signed<T>::value> * = nullptr>
-  constexpr mint_ss(T v):
-    mint_ss() {
+  constexpr mint_ss(T v) : mint_ss() {
     i64 x = (i64)(v % (i64)mod());
     v_ = (u32)(x + (x < 0 ? mod() : 0));
   }
   template <class T, std::enable_if_t<std::is_integral<T>::value && std::is_unsigned<T>::value> * = nullptr>
-  constexpr mint_ss(T v):
-    v_((u32)(v % mod())) {}
+  constexpr mint_ss(T v) : v_((u32)(v % mod())) {}
   friend std::istream &operator>>(std::istream &is, mint_ss &x) {
     i64 xx;
     is >> xx;

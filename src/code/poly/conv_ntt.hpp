@@ -2,7 +2,6 @@
 #define TIFALIBS_POLY_CONV_NTT
 
 #include "../util/util.hpp"
-
 #include "ntt.hpp"
 
 namespace tifa_libs::math {

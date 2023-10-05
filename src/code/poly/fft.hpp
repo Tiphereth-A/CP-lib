@@ -11,8 +11,7 @@ struct FFT {
   static_assert(std::is_floating_point_v<FP>);
   using C = std::complex<FP>;
 
-  constexpr FFT():
-    rev(), w() {}
+  constexpr FFT() : rev(), w() {}
 
   size_t size() const { return rev.size(); }
   void bzr(size_t len) {
@@ -30,7 +29,7 @@ struct FFT {
   dif(vec<C> &f) const { difdit(f); }
   void dit(vec<C> &f) const { difdit<true>(f); }
 
-private:
+ private:
   const FP TAU = std::acos((FP)-1.) * 2;
 
   vec<size_t> rev;

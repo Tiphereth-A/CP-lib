@@ -8,9 +8,8 @@ namespace tifa_libs::ds {
 class dsu_basic {
   vec<size_t> fa;
 
-public:
-  explicit dsu_basic(size_t sz):
-    fa(sz) { std::iota(fa.begin(), fa.end(), 0); }
+ public:
+  explicit dsu_basic(size_t sz) : fa(sz) { std::iota(fa.begin(), fa.end(), 0); }
 
   size_t find(size_t x) { return x == fa[x] ? fa[x] : fa[x] = find(fa[x]); }
   void merge(size_t x, size_t y) {

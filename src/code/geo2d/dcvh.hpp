@@ -8,15 +8,14 @@ namespace tifa_libs::geo {
 // Dynamic Convex Hull
 template <class FP>
 class dcvh {
-protected:
+ protected:
   // Dynamic half Convex Hull
   struct DHCVH {
     int sgn_ = 1;
     std::set<point<FP>> vs;
 
     DHCVH() {}
-    explicit DHCVH(int sgn_):
-      sgn_(sgn_) {}
+    explicit DHCVH(int sgn_) : sgn_(sgn_) {}
 
     bool contains(point<FP> const &p) const {
       auto it = vs.lower_bound({p.x, -std::numeric_limits<FP>::max()});
@@ -48,7 +47,7 @@ protected:
     }
   } hcvh_up{1}, hcvh_down{-1};
 
-public:
+ public:
   dcvh() {}
 
   bool contains(point<FP> const &p) const { return hcvh_up.contains(p) && hcvh_down.contains(p); }

@@ -13,11 +13,10 @@ class spmat {
   size_t r, c;
   data_t d;
 
-public:
+ public:
   using value_type = T;
 
-  spmat(size_t row, size_t col):
-    r(row), c(col), d(r) { assert(row > 0 && col > 0); }
+  spmat(size_t row, size_t col) : r(row), c(col), d(r) { assert(row > 0 && col > 0); }
 
   constexpr size_t row() const { return r; }
   constexpr size_t col() const { return c; }

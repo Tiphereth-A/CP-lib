@@ -1,9 +1,8 @@
 #ifndef TIFA_LIBS_UTIL_BASE64
 #define TIFA_LIBS_UTIL_BASE64
 
-#include "util.hpp"
-
 #include "../bit/cntl0.hpp"
+#include "util.hpp"
 
 namespace tifa_libs::util {
 
@@ -12,15 +11,16 @@ class Base64 {
 
   static constexpr char base[66] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/.";
   static constexpr char ibase(char c) {
+    // clang-format off
     return 'a' <= c ? 0x1A + c - 'a' :
            'A' <= c ? 0x00 + c - 'A' :
            '0' <= c ? 0x34 + c - '0' :
            '+' == c ? 0x3E :
-           '/' == c ? 0x3F :
-                      0x40;
+           '/' == c ? 0x3F : 0x40;
+    // clang-format on
   }
 
-public:
+ public:
   static std::string encode(vec<size_t> const &a) {
     size_t x = *std::max_element(a.begin(), a.end()), y = *std::min_element(a.begin(), a.end());
     size_t N = a.size(), B = std::max(size_t(6), (sizeof(size_t) * 8 - (size_t)(y < 0 ? 0 : bit::cntl0(x))));

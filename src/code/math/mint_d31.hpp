@@ -19,10 +19,11 @@ class mint_d31 {
   static inline u32 R, R2, MOD, MOD_ODD, OFFSET, MASK;
   static inline i32 SMOD;
 
-public:
+ public:
   static inline bool set_mod(u32 m) {
     if (m == 1 || m >> 31 != 0) return false;
-    for (MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD >>= 1) {}
+    for (MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD >>= 1) {
+    }
     MASK = (1 << OFFSET) - 1, SMOD = (i32)(MOD);
     {
       u32 t = 2, iv = MOD_ODD * (t - MOD_ODD * MOD_ODD);
@@ -36,8 +37,7 @@ public:
   static inline i32 smod() { return SMOD; }
   mint_d31() {}
   template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
-  mint_d31(T v):
-    v_(tsf(norm((i32)(v % (T)SMOD)))) {}
+  mint_d31(T v) : v_(tsf(norm((i32)(v % (T)SMOD)))) {}
   u32 val() const {
     u32 h = redc(v_ >> OFFSET);
     return ((h - v_) * R & MASK) * MOD_ODD + h;

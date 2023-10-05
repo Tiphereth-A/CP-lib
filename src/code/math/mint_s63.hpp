@@ -40,13 +40,12 @@ class mint_s63 {
   static_assert((MOD >> 63) == 0);
   static_assert(MOD != 1);
 
-public:
+ public:
   static constexpr u64 mod() { return MOD; }
   static constexpr i64 smod() { return SMOD; }
   constexpr mint_s63() {}
   template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
-  constexpr mint_s63(T v):
-    v_(redc_mul(norm(v % SMOD), R2)) {}
+  constexpr mint_s63(T v) : v_(redc_mul(norm(v % SMOD), R2)) {}
   constexpr u64 val() const {
     u64 res = -mul_high(v_ * R, MOD);
     return res + (MOD & -(res >> 63));

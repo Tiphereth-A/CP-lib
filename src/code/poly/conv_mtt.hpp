@@ -2,7 +2,6 @@
 #define TIFALIBS_POLY_CONV_MTT
 
 #include "../util/util.hpp"
-
 #include "fft.hpp"
 
 namespace tifa_libs::math {

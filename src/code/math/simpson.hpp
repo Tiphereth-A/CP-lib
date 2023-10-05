@@ -20,9 +20,8 @@ class simpson_impl {
     return asr(l, mid, ls, eps * .5, dep - 1) + asr(mid, r, rs, eps * .5, dep - 1);
   }
 
-public:
-  explicit simpson_impl(Func func):
-    f(func) {}
+ public:
+  explicit simpson_impl(Func func) : f(func) {}
   FP operator()(FP l, FP r, FP eps, i64 min_dep) const { return asr(l, r, simpson(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, min_dep); }
   FP operator()(FP l, FP r, FP eps) const { return asr(l, r, simpson(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, -1); }
 };
