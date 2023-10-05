@@ -286,6 +286,9 @@ notebook:
     - point3d: 点
       code_ext: hpp
       test_ext: cpp
+    - plane: 平面
+      code_ext: hpp
+      test_ext: cpp
     graph: null
     math:
     - bsgs: bsgs
