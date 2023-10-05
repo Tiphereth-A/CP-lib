@@ -16,9 +16,9 @@ enum RELCP {
 template <class FP>
 constexpr RELCP relation_CP(circle<FP> const &c, point<FP> const &p) {
   FP d = dist_PP(c.o, p);
-  if (is_le(d, c.r)) return RELCP::inside_cp;
-  if (is_eq(d, c.r)) return RELCP::onborder_cp;
-  return RELCP::outside_cp;
+  if (is_le(d, c.r)) return inside_cp;
+  if (is_eq(d, c.r)) return onborder_cp;
+  return outside_cp;
 }
 
 }  // namespace tifa_libs::geo

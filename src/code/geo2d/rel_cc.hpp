@@ -18,11 +18,11 @@ enum RELCC {
 template <class FP>
 constexpr RELCC relation_CC(circle<FP> const &c1, circle<FP> const &c2) {
   FP d = dist_PP(c1.o, c2.o);
-  if (is_ge(d, c1.r + c2.r)) return RELCC::lyingout_cc;
-  if (is_eq(d, c1.r + c2.r)) return RELCC::touchex_cc;
-  if (is_ge(d, std::abs(c1.r - c2.r))) return RELCC::intersect_cc;
-  if (is_eq(d, std::abs(c1.r - c2.r))) return RELCC::touchin_cc;
-  return RELCC::lyingin_cc;
+  if (is_ge(d, c1.r + c2.r)) return lyingout_cc;
+  if (is_eq(d, c1.r + c2.r)) return touchex_cc;
+  if (is_ge(d, std::abs(c1.r - c2.r))) return intersect_cc;
+  if (is_eq(d, std::abs(c1.r - c2.r))) return touchin_cc;
+  return lyingin_cc;
 }
 
 }  // namespace tifa_libs::geo
