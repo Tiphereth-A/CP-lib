@@ -219,7 +219,7 @@ notebook:
     - max_cover_ps: max_cover_ps
       code_ext: hpp
       test_ext: cpp
-    - min_dist_ps: min_dist_ps
+    - min_dis_ps: min_dis_ps
       code_ext: hpp
       test_ext: cpp
     - point_is_in_middle: point_is_in_middle
@@ -282,11 +282,23 @@ notebook:
     - triangle: triangle
       code_ext: hpp
       test_ext: cpp
+    - argsort_clockwise: argsort_clockwise
+      code_ext: hpp
+      test_ext: cpp
+    - argsort_counterclockwise: argsort_counterclockwise
+      code_ext: hpp
+      test_ext: cpp
     geo3d:
     - point3d: 点
       code_ext: hpp
       test_ext: cpp
     - plane: 平面
+      code_ext: hpp
+      test_ext: cpp
+    - dist_plp: dist_plp
+      code_ext: hpp
+      test_ext: cpp
+    - rel_plp: rel_plp
       code_ext: hpp
       test_ext: cpp
     graph: null
