@@ -5,14 +5,14 @@
 
 namespace tifa_libs::str {
 
-class HashStr2 {
+class hash_substr2 {
   const u64 m1, m2;
   u32 b;
   vec<ptt<u64>> p, hash;
   bool need_reset;
 
  public:
-  HashStr2(u64 mod1, u64 mod2, u32 base) : m1(mod1), m2(mod2) { set_base(base); }
+  hash_substr2(u64 mod1, u64 mod2, u32 base) : m1(mod1), m2(mod2) { set_base(base); }
   constexpr void set_base(u32 base) {
     assert(base > 128);
     b = base;
