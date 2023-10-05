@@ -10,15 +10,9 @@ class Base64 {
   static_assert(std::is_integral_v<size_t>);
 
   static constexpr char base[66] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/.";
-  static constexpr char ibase(char c) {
-    // clang-format off
-    return 'a' <= c ? 0x1A + c - 'a' :
-           'A' <= c ? 0x00 + c - 'A' :
-           '0' <= c ? 0x34 + c - '0' :
-           '+' == c ? 0x3E :
-           '/' == c ? 0x3F : 0x40;
-    // clang-format on
-  }
+  // clang-format off
+  static constexpr char ibase(char c) { return 'a' <= c ? c - 0x47 : 'A' <= c ? c - 0x41 : '0' <= c ? c + 0x04 : '+' == c ? 0x3E : '/' == c ? 0x3F : 0x40; }
+  // clang-format on
 
  public:
   static std::string encode(vec<size_t> const &a) {
