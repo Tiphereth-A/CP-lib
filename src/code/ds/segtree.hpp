@@ -1,12 +1,12 @@
-#ifndef TIFA_LIBS_DS_SEGTREE0
-#define TIFA_LIBS_DS_SEGTREE0
+#ifndef TIFA_LIBS_DS_SEGTREE
+#define TIFA_LIBS_DS_SEGTREE
 
 #include "../util/util.hpp"
 
 namespace tifa_libs::ds {
 
 template <class T, class F>
-class segtree0 {
+class segtree {
   struct YYZ {
     T w, sign, _min, _max;
   };
@@ -63,7 +63,7 @@ class segtree0 {
     if (R <= mid) return querym(x << 1, l, mid, L, R, f);
     return f(querym(x << 1, l, mid, L, R, f), querym(x << 1 | 1, mid + 1, r, L, R, f));
   }
-  explicit constexpr segtree0(vec<T> const &a) : t(a.size() * 4) { build(a, 1, 0, a.size() - 1); }
+  explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4) { build(a, 1, 0, a.size() - 1); }
 };
 
 }  // namespace tifa_libs::ds
