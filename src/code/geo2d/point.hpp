@@ -73,7 +73,7 @@ struct point {
   // result in [0, 2pi)
   constexpr auto arg2pi() const {
     FP _ = arg();
-    return is_neg(_) ? _ + 2 * PI : _;
+    return is_neg(_) ? _ + 2 * PI<FP> : _;
   }
   // result in [0, 2pi)
   friend constexpr auto arg2pi(point const &p) { return p.arg2pi(); }

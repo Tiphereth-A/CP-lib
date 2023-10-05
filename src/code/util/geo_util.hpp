@@ -1,24 +1,23 @@
 #ifndef TIFA_LIBS_UTIL_GEO_UTIL
 #define TIFA_LIBS_UTIL_GEO_UTIL
 
+#include <type_traits>
+
 #include "util.hpp"
 
 namespace tifa_libs::geo {
 
-constexpr double EPS = 1e-8;
-const double PI = std::acos(-1.);
+template <class FP>
+constexpr FP EPS = 1e-8;
+template <class FP>
+const FP PI = std::acos((FP)-1);
 
 // #define RELATIVE_ERR__
 
-#ifdef RELATIVE_ERR__
-#define DIFF__(x, y) (((x) - (y)) / std::abs(x))
-#undef RELATIVE_ERR__
-#else
-#define DIFF__(x, y) ((x) - (y))
-#endif
-
-template <class FP>
-constexpr int sgn(FP x) { return x < -EPS ? -1 : x > EPS; }
+template <class FP, std::enable_if_t<std::is_integral_v<FP>>* = nullptr>
+constexpr int sgn(FP x) { return x < 0 ? -1 : x > 0; }
+template <class FP, std::enable_if_t<std::is_floating_point_v<FP>>* = nullptr>
+constexpr int sgn(FP x) { return x < -EPS<FP> ? -1 : x > EPS<FP>; }
 template <class FP>
 constexpr bool is_neg(FP x) { return sgn(x) < 0; }
 template <class FP>
@@ -27,14 +26,13 @@ template <class FP>
 constexpr bool is_pos(FP x) { return sgn(x) > 0; }
 
 template <class FP>
-constexpr int comp(FP l, FP r) { return sgn(DIFF__(l, r)); }
+constexpr int comp(FP l, FP r) { return sgn(l - r); }
 template <class FP>
-constexpr bool is_le(FP l, FP r) { return is_neg(DIFF__(l, r)); }
+constexpr bool is_le(FP l, FP r) { return is_neg(l - r); }
 template <class FP>
-constexpr bool is_eq(FP l, FP r) { return is_zero(DIFF__(l, r)); }
+constexpr bool is_eq(FP l, FP r) { return is_zero(l - r); }
 template <class FP>
-constexpr bool is_ge(FP l, FP r) { return is_pos(DIFF__(l, r)); }
-#undef DIFF__
+constexpr bool is_ge(FP l, FP r) { return is_pos(l - r); }
 
 //! containing endpoints
 template <class FP>

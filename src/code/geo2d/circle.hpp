@@ -17,9 +17,9 @@ struct circle {
   friend std::ostream &operator<<(std::ostream &os, circle const &c) { return os << c.o << ' ' << c.r; }
   friend bool operator==(circle const &l, circle const &r) { return l.o == r.o && l.r == r.r; }
 
-  constexpr FP area(FP angle = PI * 2) const { return angle * r * r / 2; }
-  constexpr FP crown_area(FP angle = PI * 2) const { return (angle - std::sin(angle)) * r * r / 2; }
-  constexpr FP arc(FP angle = PI * 2) const { return angle * r; }
+  constexpr FP area(FP angle = PI<FP> * 2) const { return angle * r * r / 2; }
+  constexpr FP crown_area(FP angle = PI<FP> * 2) const { return (angle - std::sin(angle)) * r * r / 2; }
+  constexpr FP arc(FP angle = PI<FP> * 2) const { return angle * r; }
 };
 
 }  // namespace tifa_libs::geo
