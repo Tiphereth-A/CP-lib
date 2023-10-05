@@ -621,6 +621,9 @@ notebook:
     - hash_substr_1mod: 单模子串 Hash
       code_ext: hpp
       test_ext: cpp
+    - hash_substr_2mod: 双模子串 Hash
+      code_ext: hpp
+      test_ext: cpp
     rand:
     - gen: 随机数生成辅助类
       code_ext: hpp
