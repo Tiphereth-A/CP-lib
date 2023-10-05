@@ -102,9 +102,9 @@ struct point {
   constexpr point &do_unit() { return *this /= norm(); }
 
   constexpr point &do_rot(FP theta) {
-    FP _x = x, _y = y;
-    x = _x * std::cos(theta) - _y * std::sin(theta);
-    y = _x * std::sin(theta) + _y * std::cos(theta);
+    FP x0 = x, y0 = y, ct = std::cos(theta), st = std::sin(theta);
+    x = x0 * ct - y0 * st;
+    y = x0 * st + y0 * ct;
     return *this;
   }
 };
