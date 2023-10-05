@@ -14,6 +14,18 @@ struct plane {
   friend std::ostream &operator<<(std::ostream &os, plane const &pl) { return os << pl.u << ' ' << pl.v << ' ' << pl.w; }
 
   point3d<FP> normal() const { return (v - u) ^ (w - u); }
+  FP area() const { return normal().norm() / 2; }
+
+  point3d<FP> &get(size_t i) {
+    if (i == 0) return u;
+    if (i == 1) return v;
+    if (i == 2) return w;
+  }
+  point3d<FP> get(size_t i) const {
+    if (i == 0) return u;
+    if (i == 1) return v;
+    if (i == 2) return w;
+  }
 };
 
 }  // namespace tifa_libs::geo

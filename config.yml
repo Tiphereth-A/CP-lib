@@ -289,13 +289,22 @@ notebook:
     - point3d: 点
       code_ext: hpp
       test_ext: cpp
+    - line3d: 线
+      code_ext: hpp
+      test_ext: cpp
     - plane: 平面
       code_ext: hpp
       test_ext: cpp
-    - dist_plp: dist_plp
+    - dist3_pl: dist3_pl
+      code_ext: hpp
+      test_ext: cpp
+    - sdist3_plp: sdist3_plp
       code_ext: hpp
       test_ext: cpp
     - rel_plp: rel_plp
+      code_ext: hpp
+      test_ext: cpp
+    - polyhedron: 多面体
       code_ext: hpp
       test_ext: cpp
     graph: null
