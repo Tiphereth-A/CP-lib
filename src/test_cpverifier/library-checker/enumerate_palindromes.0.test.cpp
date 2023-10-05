@@ -8,6 +8,6 @@ int main() {
   std::string s;
   std::cin >> s;
   auto ans = tifa_libs::str::manacher(s);
-  for (size_t i = 1; i < ans.size(); ++i) std::cout << ans[i] - 1 << " \n"[i + 1 == ans.size()];
+  for (size_t i = 0; i < ans.size(); ++i) std::cout << ans[i] << " \n"[i + 1 == ans.size()];
   return 0;
 }

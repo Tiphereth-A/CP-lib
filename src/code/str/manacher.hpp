@@ -15,7 +15,8 @@ inline vec<size_t> manacher(std::string_view t) {
     while (s[i - p[i]] == s[i + p[i]]) ++p[i];
     if (i + p[i] > j + p[j]) j = i;
   }
-  return vec<size_t>(p.begin() + 1, p.end() - 1);
+  for (auto &i : p) --i;
+  return vec<size_t>(p.begin() + 2, p.end() - 2);
 }
 
 }  // namespace tifa_libs::str
