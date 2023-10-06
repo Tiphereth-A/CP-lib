@@ -42,6 +42,9 @@ notebook:
     - hash_splitmix64: Hash splitmix64
       code_ext: hpp
       test_ext: cpp
+    - huffman_tree: Huffman 树
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
