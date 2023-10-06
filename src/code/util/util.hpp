@@ -21,6 +21,8 @@ using vec = std::vector<T>;
 template <class T>
 using vvec = vec<vec<T>>;
 template <class T>
+using vvvec = vec<vvec<T>>;
+template <class T>
 using pq = std::priority_queue<T>;
 template <class T>
 using pqg = std::priority_queue<T, vec<T>, std::greater<T>>;
