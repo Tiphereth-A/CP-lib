@@ -1,7 +1,3 @@
-#include <algorithm>
-#include <climits>
-#include <cstddef>
-#include <iostream>
 #define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 
 #include "../../code/ds/lichao_segtree.hpp"

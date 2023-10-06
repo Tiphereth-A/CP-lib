@@ -1,11 +1,6 @@
 #ifndef TIFA_LIBS_DS_LICHAO_SEGTREE
 #define TIFA_LIBS_DS_LICHAO_SEGTREE
 
-#include <algorithm>
-#include <climits>
-#include <cstddef>
-#include <cstdint>
-
 #include "../util/util.hpp"
 
 namespace tifa_libs::ds {
