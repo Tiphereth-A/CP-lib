@@ -12,15 +12,15 @@ class st_array {
   F f;
 
  public:
-  st_array(vec<T> const &a, F func) : st(a.size(), vec<T>(size_t(bit::log2(a.size())) + 1)), f(func) {
+  st_array(vec<T> const &a, F func) : st((size_t)bit::log2(a.size()) + 1, vec<T>(a.size())), f(func) {
     size_t n = a.size();
-    for (size_t i = 0; i < n; ++i) st[i][0] = a[i];
+    st[0] = a;
     for (size_t j = 1, m = (size_t)bit::log2(n) + 1; j < m; ++j)
-      for (size_t i = 0; i < n; ++i) st[i][j] = f(st[i][j - 1], st[std::min(n - 1, i + (1 << (j - 1)))][j - 1]);
+      for (size_t i = 0; i < n; ++i) st[j][i] = f(st[j - 1][i], st[j - 1][std::min(n - 1, i + (1 << (j - 1)))]);
   }
   T query(size_t l, size_t r) const {
     size_t k = (size_t)bit::log2(1 + r - l);
-    return f(st[l][k], st[r - (1 << k) + 1][k]);
+    return f(st[k][l], st[k][r - (1 << k) + 1]);
   }
 };
 
