@@ -95,6 +95,9 @@ notebook:
     - segtree0: 线段树（区间加、区间和、区间最值）
       code_ext: hpp
       test_ext: cpp
+    - st_array_2d: 二维 ST 表
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - area_cc: area_cc
       code_ext: hpp

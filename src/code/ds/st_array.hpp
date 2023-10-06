@@ -18,9 +18,10 @@ class st_array {
     for (size_t j = 1, m = (size_t)bit::log2(n) + 1; j < m; ++j)
       for (size_t i = 0; i < n; ++i) st[j][i] = f(st[j - 1][i], st[j - 1][std::min(n - 1, i + (1 << (j - 1)))]);
   }
+  //! [l, r]
   T query(size_t l, size_t r) const {
     size_t k = (size_t)bit::log2(1 + r - l);
-    return f(st[k][l], st[k][r - (1 << k) + 1]);
+    return f(st[k][l], st[k][r + 1 - (1 << k)]);
   }
 };
 
