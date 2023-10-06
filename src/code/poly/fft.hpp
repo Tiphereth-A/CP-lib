@@ -25,8 +25,7 @@ struct FFT {
     for (size_t i = 1; i < n; ++i) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
   }
 
-  void
-  dif(vec<C> &f) const { difdit(f); }
+  void dif(vec<C> &f) const { difdit(f); }
   void dit(vec<C> &f) const { difdit<true>(f); }
 
  private:

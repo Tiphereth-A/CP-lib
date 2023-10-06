@@ -42,6 +42,9 @@ notebook:
     - hash_splitmix64: Hash splitmix64
       code_ext: hpp
       test_ext: cpp
+    - huffman_tree: Huffman 树
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
@@ -93,6 +96,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - lichao_segtree: 李超线段树(线段添加, 定点最值)
+      code_ext: hpp
+      test_ext: cpp
+    - st_array_2d: 二维 ST 表
       code_ext: hpp
       test_ext: cpp
     geo2d:
@@ -459,6 +465,12 @@ notebook:
     - kahan: Kahan 求和
       code_ext: hpp
       test_ext: cpp
+    - real_basis: 实数线性基
+      code_ext: hpp
+      test_ext: cpp
+    - xor_basis: 异或线性基
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
@@ -621,8 +633,17 @@ notebook:
     - manacher: Manacher
       code_ext: hpp
       test_ext: cpp
+    - hash_substr_1mod: 单模子串 Hash
+      code_ext: hpp
+      test_ext: cpp
+    - hash_substr_2mod: 双模子串 Hash
+      code_ext: hpp
+      test_ext: cpp
     rand:
     - gen: 随机数生成辅助类
+      code_ext: hpp
+      test_ext: cpp
+    - simulated_annealing: 模拟退火
       code_ext: hpp
       test_ext: cpp
 cheatsheets:

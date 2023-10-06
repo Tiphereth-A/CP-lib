@@ -6,31 +6,25 @@
 namespace tifa_libs::ds {
 
 struct dsu_weighted {
-  struct node {
-    size_t fa, dep, sz;
-    explicit node(size_t fa) : fa(fa), dep(0), sz(1) {}
-  };
+  vec<u64> fa, dep, sz;
 
-  vec<node> data;
-
-  explicit dsu_weighted(size_t n) : data(n) {
-    for (size_t i = 0; i < n; ++i) data[i].fa = i;
-  }
+  explicit dsu_weighted(size_t n) : fa(n), dep(n), sz(n, 1) { std::iota(fa.begin(), fa.end(), 0); }
 
   size_t find(size_t x) {
-    if (x == data[x].fa) return x;
-    size_t fx = find(data[x].fa);
-    data[x].dep += data[data[x].fa].dep;
-    return data[x].fa = fx;
-  }
-  void merge(size_t x, size_t y) {
-    if (data[x = find(x)].sz > data[y = find(y)].sz) std::swap(x, y);
-    data[x].dep += data[y].sz;
-    data[y].sz += data[x].sz;
-    data[x].sz = 0;
-    data[x].fa = y;
+    if (x == fa[x]) return x;
+    size_t fx = find(fa[x]);
+    dep[x] += dep[fa[x]];
+    return fa[x] = fx;
   }
   bool in_same_group(size_t x, size_t y) { return find(x) == find(y); }
+  void merge(size_t x, size_t y) {
+    if (in_same_group(x = find(x), y = find(y))) return;
+    if (sz[x] > sz[y]) std::swap(x, y);
+    dep[x] += sz[y];
+    sz[y] += sz[x];
+    sz[x] = 0;
+    fa[x] = y;
+  }
 };
 
 }  // namespace tifa_libs::ds
