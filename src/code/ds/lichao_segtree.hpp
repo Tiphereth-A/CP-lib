@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <climits>
 #include <cstddef>
+#include <cstdint>
 
 #include "../util/util.hpp"
 
@@ -46,7 +47,8 @@ class lichao_segtree {
     if (R > mid) add(x << 1 | 1, mid + 1, r, L, R, k);
   }
   T query(size_t x, size_t l, size_t r, T pos) {
-    T ret = t[x].id ? t[x].w(pos) : (pd(INT64_MIN, INT64_MAX) ? INT64_MAX : INT64_MIN);  // 怎么根据T来求最大（小）值
+    T MIN = std::numeric_limits<T>::lowest(), MAX = std::numeric_limits<T>::max();
+    T ret = t[x].id ? t[x].w(pos) : (pd(MIN, MAX) ? MAX : MIN);
     if (l == r) return ret;
     size_t mid = l + (r - l) / 2;
     if (pos <= lsh[mid])
