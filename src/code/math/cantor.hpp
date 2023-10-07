@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 
 //! [0, n)
 //! a \in [1, n], a_i == a_j \iff i == j
-inline u64 cantor(vec<u32> const &a, u64 mod) {
+inline u64 cantor(vec<u32> const &a, u64 mod = (u64)-1) {
   size_t n = a.size();
   ds::fenwick<u64> tr(n + 1);
   vec<u64> fact = fact_mod_gen(n + 1, mod);
