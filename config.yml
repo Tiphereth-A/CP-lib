@@ -489,6 +489,9 @@ notebook:
     - xor_basis: 异或线性基
       code_ext: hpp
       test_ext: cpp
+    - cantor: Cantor 展开
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
