@@ -58,7 +58,6 @@ class segtree {
 
  public:
   void add(size_t x, size_t l, size_t r, size_t L, size_t R, T k) {
-    // std::cout << "dba:" << x << ' ' << l << ' '  << r << ' ' << t[x].w << std::endl;
     if (L <= l && R >= r) {
       t[x].w += i64(r - l + 1) * k, t[x].sign += k;
       t[x]._min += k, t[x]._max += k;
@@ -72,7 +71,6 @@ class segtree {
     pushup(x);
   }
   void mul(size_t x, size_t l, size_t r, size_t L, size_t R, T k) {
-    // std::cout << "dbm:" << x << ' ' << l << ' '  << r << ' ' << t[x].w << std::endl;
     if (L <= l && R >= r) {
       t[x].w *= k;
       t[x].sign *= k, t[x].sign1 *= k;
@@ -87,7 +85,6 @@ class segtree {
     pushup(x);
   }
   T querys(size_t x, size_t l, size_t r, size_t L, size_t R) {
-    // std::cout << "db:" << x << ' ' << l << ' '  << r << ' ' << t[x].w << std::endl;
     if (L <= l && R >= r) return t[x].w;
     pushdown(x, l, r);
     size_t mid = l + (r - l) / 2;
