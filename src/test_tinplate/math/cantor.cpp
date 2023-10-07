@@ -7,7 +7,7 @@ void solve() {
   std::cin >> n;
   tifa_libs::vec<tifa_libs::u32> a(n);
   for (auto& i : a) std::cin >> i;
-  std::cout << tifa_libs::math::cantor(a, 998244353) << '\n';
+  std::cout << tifa_libs::math::cantor_val(a, 998244353) << '\n';
 }
 
 int main() {
