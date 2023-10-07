@@ -18,9 +18,7 @@ class Gen {
   Gen(Re &&re_, Distri &&dist_) : re(std::move(re_)), dist(std::move(dist_)) {}
 
   Re &rand_eng() { return re; }
-  Re rand_eng() const { return re; }
   Distri &distrib() { return dist; }
-  Distri distrib() const { return dist; }
 
   result_type operator()() { return dist(re); }
 };

@@ -14,7 +14,7 @@ T hafnian(Mat const &mat) {
     for (size_t i = 0; i < h - 1; ++i)
       for (size_t j = 0; j < h - 1 - i; ++j) x[i + j + 1] += a[i] * b[j];
   };
-  auto solve = [&](auto &&f, vec<vec<vec<T>>> const &v) -> vec<T> {
+  auto solve = [&](auto &&f, vvvec<T> const &v) -> vec<T> {
     vec<T> ans(h);
     if (v.empty()) {
       ans[0] = 1;
@@ -35,7 +35,7 @@ T hafnian(Mat const &mat) {
     return ans;
   };
 
-  vec<vec<vec<T>>> v(n);
+  vvvec<T> v(n);
   for (size_t i = 0; i < n; ++i) {
     v[i].resize(i, vec<T>(h));
     for (size_t j = 0; j < i; ++j) v[i][j][0] = mat(i, j);
