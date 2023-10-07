@@ -3,91 +3,46 @@
 
 #include "../util/util.hpp"
 
-
 namespace tifa_libs::ds {
 
-template <class T, class F>
+// template <class T, T (*op)(T, T), T (*e)(), class F, T (*mapping)(F, T), F (*composition)(F, F), F (*id)()>
+template <class T, auto op, auto e, class F, auto mapping, auto composition, auto id>
 class segtree {
-  struct YYZ {
-    T w, sign, sign1, _min, _max;
-  };
-  vec<YYZ> t;
-  void pushup(size_t x) {
-    t[x].w = t[x << 1].w + t[x << 1 | 1].w;
-    t[x]._min = std::min(t[x << 1]._min, t[x << 1 | 1]._min);
-    t[x]._max = std::max(t[x << 1]._max, t[x << 1 | 1]._max);
-  }
+  vec<T> t;
+  vec<F> sign;
+  size_t n;
+  void pushup(size_t x) { t[x] = op(t[x << 1], t[x << 1 | 1]); }
+  void all_update(size_t x, F f) { t[x] = mapping(f, t[x]), sign[x] = composition(f, sign[x]); }
+  void pushdown(size_t x) { all_update(x << 1, sign[x]), all_update(x << 1 | 1, sign[x]), sign[x] = id(); }
   void build(vec<T> const &a, size_t x, size_t l, size_t r) {
-    t[x].sign1 = 1;
-    if (l == r) return void(t[x].w = a[l]);
+    sign[x] = id();
+    if (l == r) return void(t[x] = a[l]);
     size_t mid = l + (r - l) / 2;
     build(a, x << 1, l, mid), build(a, x << 1 | 1, mid + 1, r);
     pushup(x);
   }
-  void pushdown(size_t x, size_t l, size_t r) {  // sign1(*) must be pushdowned before sign(+)
-    if (t[x].sign1 != 1) {
-      t[x << 1].w *= t[x].sign1;
-      t[x << 1].sign *= t[x].sign1, t[x << 1].sign1 *= t[x].sign1;
-      t[x << 1]._min *= t[x].sign1, t[x << 1]._max *= t[x].sign1;
-      t[x << 1 | 1].w *= t[x].sign1;
-      t[x << 1 | 1].sign *= t[x].sign1, t[x << 1 | 1].sign1 *= t[x].sign1;
-      t[x << 1 | 1]._min *= t[x].sign1, t[x << 1 | 1]._max *= t[x].sign1;
-      t[x].sign1 = 1;
-    }
-    if (t[x].sign) {
-      size_t mid = l + (r - l) / 2;
-      t[x << 1].w += i64(mid - l + 1) * t[x].sign, t[x << 1].sign += t[x].sign;
-      t[x << 1]._min += t[x].sign, t[x << 1]._max += t[x].sign;
-      t[x << 1 | 1].w += i64(r - mid) * t[x].sign, t[x << 1 | 1].sign += t[x].sign;
-      t[x << 1 | 1]._min += t[x].sign, t[x << 1 | 1]._max += t[x].sign;
-      t[x].sign = 0;
-    }
-  }
 
  public:
-  void add(size_t x, size_t l, size_t r, size_t L, size_t R, T k) {
-    if (L <= l && R >= r) {
-      t[x].w += i64(r - l + 1) * k, t[x].sign += k;
-      t[x]._min += k, t[x]._max += k;
-      return;
-    }
-    pushdown(x, l, r);
+  void update(size_t x, size_t l, size_t r, size_t L, size_t R, F f) {
+    if (L <= l && R >= r) return void(all_update(x, f));
+    pushdown(x);
     size_t mid = l + (r - l) / 2;
-    if (L <= mid) add(x << 1, l, mid, L, R, k);
-    if (R > mid) add(x << 1 | 1, mid + 1, r, L, R, k);
+    if (L <= mid) update(x << 1, l, mid, L, R, f);
+    if (R > mid) update(x << 1 | 1, mid + 1, r, L, R, f);
     pushup(x);
   }
-  void mul(size_t x, size_t l, size_t r, size_t L, size_t R, T k) {
-    if (L <= l && R >= r) {
-      t[x].w *= k;
-      t[x].sign *= k, t[x].sign1 *= k;
-      t[x]._min *= k, t[x]._max *= k;
-      return;
-    }
-    pushdown(x, l, r);
+  T query(size_t x, size_t l, size_t r, size_t L, size_t R) {
+    if (L <= l && R >= r) return t[x];
+    pushdown(x);
     size_t mid = l + (r - l) / 2;
-    if (L <= mid) mul(x << 1, l, mid, L, R, k);
-    if (R > mid) mul(x << 1 | 1, mid + 1, r, L, R, k);
-    pushup(x);
-  }
-  T querys(size_t x, size_t l, size_t r, size_t L, size_t R) {
-    if (L <= l && R >= r) return t[x].w;
-    pushdown(x, l, r);
-    size_t mid = l + (r - l) / 2;
-    T ret = 0;
-    if (L <= mid) ret = querys(x << 1, l, mid, L, R);
-    if (R > mid) ret += querys(x << 1 | 1, mid + 1, r, L, R);
+    T ret = e();
+    if (L <= mid) ret = op(ret, query(x << 1, l, mid, L, R));
+    if (R > mid) ret = op(ret, query(x << 1 | 1, mid + 1, r, L, R));
     return ret;
   }
-  T querym(size_t x, size_t l, size_t r, size_t L, size_t R, F f) {
-    if (L <= l && R >= r) return f(t[x]._min, t[x]._max);
-    pushdown(x, l, r);
-    size_t mid = l + (r - l) / 2;
-    if (L > mid) return querym(x << 1 | 1, mid + 1, r, L, R, f);
-    if (R <= mid) return querym(x << 1, l, mid, L, R, f);
-    return f(querym(x << 1, l, mid, L, R, f), querym(x << 1 | 1, mid + 1, r, L, R, f));
-  }
-  explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4) { build(a, 1, 0, a.size() - 1); }
+  T query(size_t x, size_t l, size_t r, size_t pos) { return query(x, l, r, pos, pos); }
+  explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4), sign(a.size() * 4), n(a.size()) { build(a, 1, 0, n - 1); }
+  explicit constexpr segtree(std::size_t N) : t(N * 4), sign(N * 4), n(N) { build(vec<T>(n - 1, e()), 1, 0, n - 1); }
 };
 
 }  // namespace tifa_libs::ds
