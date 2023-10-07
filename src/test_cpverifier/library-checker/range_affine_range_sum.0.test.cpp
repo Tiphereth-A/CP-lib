@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
-#include "../../code/ds/segtree.hpp"
+#include "../../code/ds/segtree_old.hpp"
 #include "../../code/math/mint_s30.hpp"
 
 int main() {
@@ -11,7 +11,7 @@ int main() {
   tifa_libs::vec<tifa_libs::math::mint_s30<998244353>> a(n);
   for(auto &x: a) std::cin >> x;
   auto min = [](tifa_libs::math::mint_s30<998244353> a, tifa_libs::math::mint_s30<998244353> b) { return std::min(a, b); };
-  tifa_libs::ds::segtree<tifa_libs::math::mint_s30<998244353>, decltype(min)> segt(a);
+  tifa_libs::ds::segtree_old<tifa_libs::math::mint_s30<998244353>, decltype(min)> segt(a);
   for (size_t i = 1; i <= q; ++i) {
     size_t opt, l, r;
     std::cin >> opt >> l >> r;
