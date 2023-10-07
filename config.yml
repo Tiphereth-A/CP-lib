@@ -334,7 +334,10 @@ notebook:
     - polyhedron: 多面体
       code_ext: hpp
       test_ext: cpp
-    graph: null
+    graph:
+    - dijkstra: Dijkstra
+      code_ext: hpp
+      test_ext: cpp
     math:
     - barrett: Barrett 模乘法
       code_ext: hpp
