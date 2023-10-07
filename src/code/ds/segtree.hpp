@@ -21,7 +21,7 @@ class segtree {
   T mod;
   vec<YYZ> t;
   void pushup(size_t x) {
-    t[x].w = t[x << 1].w + t[x << 1 | 1].w;
+    t[x].w = (t[x << 1].w + t[x << 1 | 1].w) % mod;
     t[x]._min = std::min(t[x << 1]._min, t[x << 1 | 1]._min);
     t[x]._max = std::max(t[x << 1]._max, t[x << 1 | 1]._max);
   }
