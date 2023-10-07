@@ -5,8 +5,9 @@
 
 namespace tifa_libs::geo {
 
+// const FP EPS = std::sqrt(std::numeric_limits<FP>::epsilon());
 template <class FP>
-constexpr FP EPS = std::sqrt(std::numeric_limits<FP>::epsilon());
+constexpr FP EPS = 1e-8;
 template <class FP>
 const FP PI = std::acos((FP)-1);
 
