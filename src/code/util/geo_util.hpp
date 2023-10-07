@@ -11,8 +11,6 @@ constexpr FP EPS = 1e-8;
 template <class FP>
 const FP PI = std::acos((FP)-1);
 
-// #define RELATIVE_ERR__
-
 template <class FP, std::enable_if_t<std::is_integral_v<FP>>* = nullptr>
 constexpr int sgn(FP x) { return x < 0 ? -1 : x > 0; }
 template <class FP, std::enable_if_t<std::is_floating_point_v<FP>>* = nullptr>
