@@ -16,7 +16,7 @@ int main() {
   std::cout << p.vs.size() << '\n';
   size_t now = 0;
   for (size_t i = 1; i < p.vs.size(); ++i)
-    if (tifa_libs::geo::is_le(p[i].y, p[now].y) || (tifa_libs::geo::is_eq(p[i].y, p[now].y) && tifa_libs::geo::is_le(p[i].x, p[now].x))) now = i;
+    if (tifa_libs::is_lt(p[i].y, p[now].y) || (tifa_libs::is_eq(p[i].y, p[now].y) && tifa_libs::is_lt(p[i].x, p[now].x))) now = i;
   for (size_t i = now; i < p.vs.size(); ++i) std::cout << p[i] << '\n';
   if (now)
     for (size_t i = 0; i < now; ++i) std::cout << p[i] << '\n';

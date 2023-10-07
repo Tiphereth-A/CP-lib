@@ -16,7 +16,7 @@ triangle<FP> max_area_T(cvh<FP> const &ch) {
   for (size_t i = 0; i < ch.vs.size(); ++i) {
     if (i == j) j = ch.next(j);
     if (j == k) k = ch.next(k);
-    if (is_ge(tmp = cross(ch.vs[i], ch.vs[j], ch.vs[k]), ans)) {
+    if (is_gt(tmp = cross(ch.vs[i], ch.vs[j], ch.vs[k]), ans)) {
       ans = tmp;
       is = i;
       js = j;
@@ -25,9 +25,9 @@ triangle<FP> max_area_T(cvh<FP> const &ch) {
     bool f = true;
     while (f) {
       f = false;
-      if (is_ge(new_tmp = cross(ch.vs[i], ch.vs[j], ch.vs[ch.next(k)]), tmp)) {
+      if (is_gt(new_tmp = cross(ch.vs[i], ch.vs[j], ch.vs[ch.next(k)]), tmp)) {
         k = ch.next(k);
-        if (is_ge(tmp = new_tmp, ans)) {
+        if (is_gt(tmp = new_tmp, ans)) {
           ans = tmp;
           is = i;
           js = j;
@@ -35,9 +35,9 @@ triangle<FP> max_area_T(cvh<FP> const &ch) {
         }
         f = true;
       }
-      if (is_ge(new_tmp = cross(ch.vs[i], ch.vs[ch.next(j)], ch.vs[k]), tmp)) {
+      if (is_gt(new_tmp = cross(ch.vs[i], ch.vs[ch.next(j)], ch.vs[k]), tmp)) {
         j = ch.next(j);
-        if (is_ge(tmp = new_tmp, ans)) {
+        if (is_gt(tmp = new_tmp, ans)) {
           ans = tmp;
           is = i;
           js = j;

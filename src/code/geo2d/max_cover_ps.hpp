@@ -18,7 +18,7 @@ u64 max_cover_Ps(vec<point<FP>> const &vp, FP r) {
   for (size_t i = 0; i < vp.size(); ++i) {
     angles.clear();
     for (size_t j = 0; j < vp.size(); ++j) {
-      if (i == j || is_ge(dist = dist_PP(vp[i], vp[j]), diam)) continue;
+      if (i == j || is_gt(dist = dist_PP(vp[i], vp[j]), diam)) continue;
       FP delta = std::acos(dist / diam), polar = ang2pi_PP(vp[i], vp[j]);
       angles.emplace_back(polar - delta, 1);
       angles.emplace_back(polar + delta, -1);

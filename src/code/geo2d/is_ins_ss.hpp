@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_GEO2D_IS_INS_SS
 #define TIFA_LIBS_GEO2D_IS_INS_SS
 
+#include "../util/fp_range_is_intersect.hpp"
 #include "line.hpp"
 
 namespace tifa_libs::geo {

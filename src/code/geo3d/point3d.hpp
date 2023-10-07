@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_GEO3D_POINT3D
 #define TIFA_LIBS_GEO3D_POINT3D
 
-#include "../util/geo_util.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::geo {
 

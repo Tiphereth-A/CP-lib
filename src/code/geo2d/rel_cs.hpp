@@ -16,7 +16,7 @@ enum RELCS {
 template <class FP>
 constexpr RELCS relation_CS(circle<FP> const &c, line<FP> const &s) {
   FP d = dist_PL(c.o, s);
-  if (is_le(d, c.r)) return intersect_cs;
+  if (is_lt(d, c.r)) return intersect_cs;
   if (is_eq(d, c.r)) return tagante_cs;
   return otherwise_cs;
 }

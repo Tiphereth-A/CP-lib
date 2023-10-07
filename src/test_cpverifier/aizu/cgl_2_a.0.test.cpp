@@ -14,7 +14,7 @@ int main() {
   for (size_t i = 0; i < q; ++i) {
     line l1, l2;
     std::cin >> l1 >> l2;
-    if (tifa_libs::geo::is_zero(l1.direction() * l2.direction())) std::cout << "1\n";
+    if (tifa_libs::is_zero(l1.direction() * l2.direction())) std::cout << "1\n";
     else if (l1.is_parallel(l2)) std::cout << "2\n";
     else std::cout << "0\n";
   }
