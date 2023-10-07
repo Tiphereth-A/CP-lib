@@ -27,6 +27,9 @@ using pq = std::priority_queue<T>;
 template <class T>
 using pqg = std::priority_queue<T, vec<T>, std::greater<T>>;
 
+template <class U, class T>
+using vvp = vvec<std::pair<U, T>>;
+
 template <class T>
 using ptt = std::pair<T, T>;
 template <class T>

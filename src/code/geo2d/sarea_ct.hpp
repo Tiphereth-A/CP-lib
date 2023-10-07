@@ -15,7 +15,7 @@ FP sarea_CT(circle<FP> const &c, point<FP> const &p1, point<FP> const &p2) {
   if (is_zero(cross(c.o, p1, p2))) return FP{};
   auto is = ins_CL(c, {p1, p2});
   if (!is.has_value()) return c.area(ang_PP(p1 - c.o, p2 - c.o));
-  bool b1 = is_ge(dist_PP(p1, c.o), c.r), b2 = is_ge(dist_PP(p2, c.o), c.r);
+  bool b1 = is_gt(dist_PP(p1, c.o), c.r), b2 = is_gt(dist_PP(p2, c.o), c.r);
   if (b1 && b2) {
     FP res = c.area(ang_PP(p1 - c.o, p2 - c.o));
     if (!is_pos(dot(is.value().first, p1, p2))) res -= c.crown_area(ang_PP(is.value().first - c.o, is.value().second - c.o));

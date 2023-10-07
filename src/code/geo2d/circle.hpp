@@ -1,7 +1,6 @@
 #ifndef TIFA_LIBS_GEO2D_CIRCLE
 #define TIFA_LIBS_GEO2D_CIRCLE
 
-#include "../util/geo_util.hpp"
 #include "point.hpp"
 
 namespace tifa_libs::geo {
