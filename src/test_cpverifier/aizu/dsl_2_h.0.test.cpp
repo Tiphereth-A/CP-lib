@@ -19,7 +19,6 @@ int main() {
       segt.add(1, 0, n - 1, l, r, x);
     } else {
       std::cout << segt.querym(1, 0, n - 1, l, r, min) << '\n';
-      // std::cout << std::endl;
     }
   }
   return 0;
