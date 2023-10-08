@@ -5,6 +5,7 @@ ColumnLimit: 0
 ForEachMacros:
   - FOR1_
   - FOR2_
+  - dlxfor_
 SortIncludes: CaseSensitive
 SpacesBeforeTrailingComments: 2
 SpacesInLineCommentPrefix:
