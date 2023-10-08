@@ -42,7 +42,7 @@ class segtree {
   }
   T query(size_t x, size_t l, size_t r, size_t pos) { return query(x, l, r, pos, pos); }
   explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4), sign(a.size() * 4), n(a.size()) { build(a, 1, 0, n - 1); }
-  explicit constexpr segtree(std::size_t N) : t(N * 4), sign(N * 4), n(N) { build(vec<T>(n - 1, e()), 1, 0, n - 1); }
+  explicit constexpr segtree(std::size_t N) : t(N * 4), sign(N * 4), n(N) { build(vec<T>(n, e()), 1, 0, n - 1); }
 };
 
 }  // namespace tifa_libs::ds

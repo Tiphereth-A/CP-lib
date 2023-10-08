@@ -120,6 +120,9 @@ notebook:
     - st_array_2d: 二维 ST 表
       code_ext: hpp
       test_ext: cpp
+    - segtree_beats: 吉如一线段树(区间chmax,区间chmin,区间加,区间和,区间max,区间历史max 其中区间历史max与区间chmax可能不能共存)
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - area_cc: area_cc
       code_ext: hpp
