@@ -4,7 +4,7 @@ T (*mapping)(F, T) f(x)即修改怎么应用于数据    F (*composition)(F, F) 
 维护：区间min, 操作：区间加
 T = {int _min} 区间和，长度
 op(T a, T b) = return T{min(a._min, b._min)}
-e() = return T{INT_MAX, INT_MAX}
+e() = return T{INT_MAX}
 F() = {int add}
 mapping(F f, T a) = return T{a.s + f.add * a.l, a.l}
 composition(F f, F g) = return F{f.add + g.add}
