@@ -104,6 +104,9 @@ notebook:
     - segtree: 线段树（区间加、区间和、区间最值）
       code_ext: hpp
       test_ext: cpp
+    - segtree_old: 旧版线段树（区间加、区间和、区间最值）
+      code_ext: hpp
+      test_ext: cpp
     - lichao_segtree: 李超线段树(线段添加, 定点最值)
       code_ext: hpp
       test_ext: cpp
