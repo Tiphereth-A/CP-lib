@@ -12,12 +12,9 @@ constexpr T rotl(T x, int s) {
     const unsigned r = (unsigned)s;
     return (x << (r % und)) | (x >> ((-r) % und));
   }
-  if (const int r = s % nd; r == 0)
-    return x;
-  else if (r > 0)
-    return (x << r) | (x >> ((nd - r) % nd));
-  else
-    return (x >> -r) | (x << ((nd + r) % nd));
+  if (const int r = s % nd; r == 0) return x;
+  else if (r > 0) return (x << r) | (x >> ((nd - r) % nd));
+  else return (x >> -r) | (x << ((nd + r) % nd));
 }
 
 }  // namespace tifa_libs::bit

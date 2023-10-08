@@ -30,8 +30,7 @@ class LucasPP {
         facp[i] = facp[i - 1];
         facp[i + 1] = facp[i - 1] * (i + 1) % m_;
         ++i;
-      } else
-        facp[i] = facp[i - 1] * i % m_;
+      } else facp[i] = facp[i - 1] * i % m_;
     ifacp = invseq_mod_gen(facp, m_);
   }
 

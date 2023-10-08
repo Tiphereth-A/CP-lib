@@ -46,10 +46,7 @@ inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, size_t ans_siz
   fft.dif(a);
   fft.dif(b);
   for (size_t i = 0; i < ans_size; ++i) {
-    i64 da = (i64)(a[i].real() / (FP)n + .5) % mint::mod(),
-        db = (i64)(a[i].imag() / (FP)n + .5) % mint::mod(),
-        dc = (i64)(b[i].real() / (FP)n + .5) % mint::mod(),
-        dd = (i64)(b[i].imag() / (FP)n + .5) % mint::mod();
+    i64 da = (i64)(a[i].real() / (FP)n + .5) % mint::mod(), db = (i64)(a[i].imag() / (FP)n + .5) % mint::mod(), dc = (i64)(b[i].real() / (FP)n + .5) % mint::mod(), dd = (i64)(b[i].imag() / (FP)n + .5) % mint::mod();
     ans[i] = da + ((db + dc) << OFS) + (dd << (OFS * 2));
   }
   return ans;

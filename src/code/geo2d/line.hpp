@@ -46,8 +46,7 @@ struct line {
 
   // translate @dist along the direction of half plane
   constexpr line &do_push(FP dist) {
-    point delta = direction().do_rot90().do_unit();
-    delta *= dist;
+    point delta = direction().do_rot90().do_unit() * dist;
     l += delta;
     r += delta;
     return *this;

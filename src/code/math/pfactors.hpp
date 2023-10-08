@@ -26,9 +26,9 @@ class PollardRho {
         g = std::gcd(q, n);
       }
     }
-    if (g == n) do
+    if (g == n) do {
         g = std::gcd((x + (n - (yy = f(yy)))) % n, n);
-      while (g == 1);
+      } while (g == 1);
     return g == n ? rho(n) : g;
   }
 

@@ -30,10 +30,8 @@ class simuanl {
         x = u_idx(g.rand_eng()), y = u_idx(g.rand_eng());
       } while (x == y);
       std::swap(ans_seq[x], ans_seq[y]);
-      if (fT now_ans = fit(ans_seq); chk(now_ans - ans, t))
-        ans = now_ans;
-      else
-        std::swap(ans_seq[x], ans_seq[y]);
+      if (fT now_ans = fit(ans_seq); chk(now_ans - ans, t)) ans = now_ans;
+      else std::swap(ans_seq[x], ans_seq[y]);
     }
     return {ans, ans_seq};
   }

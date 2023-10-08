@@ -82,8 +82,7 @@ struct cvh : public polygon<FP> {
     for (size_t i = 1; i < m; ++i) midxr = r[i] < r[midxr] ? i : midxr;
     bool fl = false, fr = false;
     for (size_t idxl = midxl, idxr = midxr; !(idxl == midxl && fl) || !(idxr == midxr && fr);) {
-      point diffl = this->vs[this->next(idxl)] - this->vs[idxl];
-      point diffr = r[r.next(idxr)] - r[idxr];
+      point diffl = this->vs[this->next(idxl)] - this->vs[idxl], diffr = r[r.next(idxr)] - r[idxr];
       bool f = !(idxl == midxl && fl) && ((idxr == midxr && fr) || is_pos(diffl ^ diffr));
       result.push_back(this->vs[idxl] + r[idxr] + (f ? diffl : diffr));
       (f ? idxl : idxr) = (f ? this->next(idxl) : r.next(idxr));

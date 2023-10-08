@@ -3,7 +3,6 @@
 
 #include "../util/util.hpp"
 
-
 namespace tifa_libs::ds {
 
 template <class T, class F>

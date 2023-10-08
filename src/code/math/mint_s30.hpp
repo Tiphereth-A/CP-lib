@@ -14,9 +14,7 @@ class mint_s30 {
     iv *= t - MOD * iv, iv *= t - MOD * iv;
     return iv * (MOD * iv - t);
   }
-  static constexpr u32 redc(u64 x) {
-    return (u32)((x + (u64)((u32)(x)*R) * MOD) >> 32);
-  }
+  static constexpr u32 redc(u64 x) { return (u32)((x + (u64)((u32)(x)*R) * MOD) >> 32); }
   static constexpr u32 norm(u32 x) { return x - (MOD & -((MOD - 1 - x) >> 31)); }
 
   static constexpr u32 MOD2 = MOD << 1;

@@ -52,27 +52,20 @@ class segtree_beats {
   }
   void all_update(size_t x, size_t l, size_t r, T add1, T add2, T add3, T maxadd1, T maxadd2, T maxadd3) {
     if (t[x]._min == t[x]._max) {
-      if (add1 == add3)
-        add1 = add2;
-      else
-        add2 = add1;
+      if (add1 == add3) add1 = add2;
+      else add2 = add1;
       t[x].sum += T1(add1) * t[x].cntmin;
-    } else
-      t[x].sum += T1(add1) * t[x].cntmin + T1(add2) * t[x].cntmax + T1(add3) * (T1(r - l + 1) - t[x].cntmin - t[x].cntmax);
+    } else t[x].sum += T1(add1) * t[x].cntmin + T1(add2) * t[x].cntmax + T1(add3) * (T1(r - l + 1) - t[x].cntmin - t[x].cntmax);
     // t[x].hismax = std::max(t[x].hismax, t[x]._min + maxadd1);
     t[x].hismax = std::max(t[x].hismax, t[x]._max + maxadd2);
     sign[x].maxadd1 = std::max(sign[x].maxadd1, sign[x].add1 + maxadd1);
     sign[x].maxadd2 = std::max(sign[x].maxadd2, sign[x].add2 + maxadd2);
     sign[x].maxadd3 = std::max(sign[x].maxadd3, sign[x].add3 + maxadd3);
-    if (t[x].secmin == t[x]._max)
-      t[x].secmin += add2;
-    else if (t[x].secmin != INF)
-      t[x].secmin += add3;
+    if (t[x].secmin == t[x]._max) t[x].secmin += add2;
+    else if (t[x].secmin != INF) t[x].secmin += add3;
 
-    if (t[x].secmax == t[x]._min)
-      t[x].secmax += add1;
-    else if (t[x].secmax != -INF)
-      t[x].secmax += add3;
+    if (t[x].secmax == t[x]._min) t[x].secmax += add1;
+    else if (t[x].secmax != -INF) t[x].secmax += add3;
 
     t[x]._min += add1, t[x]._max += add2;
     sign[x].add1 += add1, sign[x].add2 += add2, sign[x].add3 += add3;
@@ -82,25 +75,17 @@ class segtree_beats {
       size_t mid = l + (r - l) / 2;
       T _min = std::min(t[x << 1]._min, t[x << 1 | 1]._min);
       T _max = std::max(t[x << 1]._max, t[x << 1 | 1]._max);
-      if (t[x << 1]._min == _min)
-        if (t[x << 1]._max == _max)
-          all_update(x << 1, l, mid, sign[x].add1, sign[x].add2, sign[x].add3, sign[x].maxadd1, sign[x].maxadd2, sign[x].maxadd3);
-        else
-          all_update(x << 1, l, mid, sign[x].add1, sign[x].add3, sign[x].add3, sign[x].maxadd1, sign[x].maxadd3, sign[x].maxadd3);
-      else if (t[x << 1]._max == _max)
-        all_update(x << 1, l, mid, sign[x].add3, sign[x].add2, sign[x].add3, sign[x].maxadd3, sign[x].maxadd2, sign[x].maxadd3);
-      else
-        all_update(x << 1, l, mid, sign[x].add3, sign[x].add3, sign[x].add3, sign[x].maxadd3, sign[x].maxadd3, sign[x].maxadd3);
+      if (t[x << 1]._min == _min) {
+        if (t[x << 1]._max == _max) all_update(x << 1, l, mid, sign[x].add1, sign[x].add2, sign[x].add3, sign[x].maxadd1, sign[x].maxadd2, sign[x].maxadd3);
+        else all_update(x << 1, l, mid, sign[x].add1, sign[x].add3, sign[x].add3, sign[x].maxadd1, sign[x].maxadd3, sign[x].maxadd3);
+      } else if (t[x << 1]._max == _max) all_update(x << 1, l, mid, sign[x].add3, sign[x].add2, sign[x].add3, sign[x].maxadd3, sign[x].maxadd2, sign[x].maxadd3);
+      else all_update(x << 1, l, mid, sign[x].add3, sign[x].add3, sign[x].add3, sign[x].maxadd3, sign[x].maxadd3, sign[x].maxadd3);
 
-      if (t[x << 1 | 1]._min == _min)
-        if (t[x << 1 | 1]._max == _max)
-          all_update(x << 1 | 1, mid + 1, r, sign[x].add1, sign[x].add2, sign[x].add3, sign[x].maxadd1, sign[x].maxadd2, sign[x].maxadd3);
-        else
-          all_update(x << 1 | 1, mid + 1, r, sign[x].add1, sign[x].add3, sign[x].add3, sign[x].maxadd1, sign[x].maxadd3, sign[x].maxadd3);
-      else if (t[x << 1 | 1]._max == _max)
-        all_update(x << 1 | 1, mid + 1, r, sign[x].add3, sign[x].add2, sign[x].add3, sign[x].maxadd3, sign[x].maxadd2, sign[x].maxadd3);
-      else
-        all_update(x << 1 | 1, mid + 1, r, sign[x].add3, sign[x].add3, sign[x].add3, sign[x].maxadd3, sign[x].maxadd3, sign[x].maxadd3);
+      if (t[x << 1 | 1]._min == _min) {
+        if (t[x << 1 | 1]._max == _max) all_update(x << 1 | 1, mid + 1, r, sign[x].add1, sign[x].add2, sign[x].add3, sign[x].maxadd1, sign[x].maxadd2, sign[x].maxadd3);
+        else all_update(x << 1 | 1, mid + 1, r, sign[x].add1, sign[x].add3, sign[x].add3, sign[x].maxadd1, sign[x].maxadd3, sign[x].maxadd3);
+      } else if (t[x << 1 | 1]._max == _max) all_update(x << 1 | 1, mid + 1, r, sign[x].add3, sign[x].add2, sign[x].add3, sign[x].maxadd3, sign[x].maxadd2, sign[x].maxadd3);
+      else all_update(x << 1 | 1, mid + 1, r, sign[x].add3, sign[x].add3, sign[x].add3, sign[x].maxadd3, sign[x].maxadd3, sign[x].maxadd3);
 
       sign[x] = {0, 0, 0, 0, 0, 0};
     }

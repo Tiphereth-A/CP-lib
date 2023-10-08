@@ -22,8 +22,8 @@ class mint_d31 {
  public:
   static inline bool set_mod(u32 m) {
     if (m == 1 || m >> 31 != 0) return false;
-    for (MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD >>= 1) {
-    }
+    for (MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD >>= 1)
+      ;
     MASK = (1 << OFFSET) - 1, SMOD = (i32)(MOD);
     {
       u32 t = 2, iv = MOD_ODD * (t - MOD_ODD * MOD_ODD);

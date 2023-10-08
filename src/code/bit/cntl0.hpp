@@ -12,12 +12,9 @@ constexpr int cntl0(T x) {
   constexpr int nd_ull = sizeof(unsigned long long) * 8;
   constexpr int nd_ul = sizeof(unsigned long) * 8;
   constexpr int nd_u = sizeof(unsigned) * 8;
-  if constexpr (nd <= nd_u)
-    return __builtin_clz(x) - (nd_u - nd);
-  else if constexpr (nd <= nd_ul)
-    return __builtin_clzl(x) - (nd_ul - nd);
-  else if constexpr (nd <= nd_ull)
-    return __builtin_clzll(x) - (nd_ull - nd);
+  if constexpr (nd <= nd_u) return __builtin_clz(x) - (nd_u - nd);
+  else if constexpr (nd <= nd_ul) return __builtin_clzl(x) - (nd_ul - nd);
+  else if constexpr (nd <= nd_ull) return __builtin_clzll(x) - (nd_ull - nd);
   else {
     unsigned long long hi = x >> nd_ull;
     if (hi != 0) return __builtin_clzll(hi) - ((2 * nd_ull) - nd);

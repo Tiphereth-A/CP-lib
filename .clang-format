@@ -1,6 +1,7 @@
 ---
 Language: Cpp
 BasedOnStyle: Google
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 ColumnLimit: 0
 ForEachMacros:
   - FOR1_

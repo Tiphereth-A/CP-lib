@@ -29,8 +29,7 @@ class huffman {
         if (next_child < cnt_l) {
           if (next_child < cnt_w) ret[next_child] = operate(now_code, i);
           continue;
-        } else
-          q.emplace(next_child, operate(now_code, i));
+        } else q.emplace(next_child, operate(now_code, i));
       }
     }
     return ret;

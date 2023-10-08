@@ -21,8 +21,7 @@ class mint_s63 {
     return iv;
   }
   static constexpr u64 mul_high(u64 x, u64 y) {
-    u64 a = x >> 32, b = (u32)(x), c = y >> 32, d = (u32)(y), ad = a * d,
-        bc = b * c;
+    u64 a = x >> 32, b = (u32)(x), c = y >> 32, d = (u32)(y), ad = a * d, bc = b * c;
     return a * c + (ad >> 32) + (bc >> 32) + (((ad & 0xFFFFFFFF) + (bc & 0xFFFFFFFF) + (b * d >> 32)) >> 32);
   }
   static constexpr u64 redc_mul(u64 x, u64 y) {
@@ -103,9 +102,7 @@ class mint_s63 {
     rhs = mint_s63(x);
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, const mint_s63 &rhs) {
-    return os << rhs.val();
-  }
+  friend std::ostream &operator<<(std::ostream &os, const mint_s63 &rhs) { return os << rhs.val(); }
   friend constexpr u64 abs(mint_s63 const &x) { return x.val(); }
 };
 
