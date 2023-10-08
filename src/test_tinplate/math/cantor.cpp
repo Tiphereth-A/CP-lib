@@ -1,4 +1,4 @@
-// https://www.luogu.com.cn/problem/P5367
+#define PROBLEM "https://www.luogu.com.cn/problem/P5367"
 
 #include "../../code/math/cantor.hpp"
 
