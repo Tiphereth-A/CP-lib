@@ -5,17 +5,23 @@
 
 namespace tifa_libs::ds {
 
-template <class W, auto INF = std::numeric_limits<W>::max() / 2 - 1>
-vec<W> dijkstra(vvp<size_t, W> const &g, size_t s) {
+template <class W, class F, auto INF = std::numeric_limits<W>::max() / 2 - 1>
+vec<W> dijkstra(vvp<size_t, W> const &g, size_t s, F cb_relax) {
   vec<W> dis(g.size(), INF);
+  vec<bool> vis(g.size());
   pqg<std::pair<W, size_t>> q;
   q.emplace(dis[s] = 0, s);
   while (!q.empty()) {
     auto [dis_now, now] = q.top();
     q.pop();
-    if (dis[now] < dis_now) continue;
+    if (vis[now]) continue;
+    vis[now] = true;
     for (auto [to, w] : g[now])
-      if (dis[to] > dis[now] + w) q.emplace(dis[to] = dis[now] + w, to);
+      if (dis[now] + w < dis[to]) {
+        cb_relax(now, to);
+        dis[to] = dis[now] + w;
+        if (!vis[to]) q.emplace(dis[to], to);
+      }
   }
   return dis;
 }

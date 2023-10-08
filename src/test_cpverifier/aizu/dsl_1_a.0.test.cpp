@@ -8,10 +8,11 @@ int main() {
   size_t n, q;
   std::cin >> n >> q;
   tifa_libs::ds::dsu_basic dsu(n);
-  for (size_t i = 0, op, u, v; i < q; ++i) {
+  for (size_t i = 0; i < q; ++i) {
+    tifa_libs::u32 op, u, v;
     std::cin >> op >> u >> v;
     if (op)
-      std::cout << dsu.in_same_group(u, v) << '\n';
+      std::cout << dsu.same(u, v) << '\n';
     else
       dsu.merge(u, v);
   }

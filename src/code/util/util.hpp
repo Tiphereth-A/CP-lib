@@ -33,7 +33,14 @@ using vvp = vvec<std::pair<U, T>>;
 template <class T>
 using ptt = std::pair<T, T>;
 template <class T>
+using pt3 = std::tuple<T, T, T>;
+template <class T>
 using pt4 = std::tuple<T, T, T, T>;
+
+#ifdef ONLINE_JUDGE
+#undef assert
+#define assert(x) 42
+#endif
 
 }  // namespace tifa_libs
 

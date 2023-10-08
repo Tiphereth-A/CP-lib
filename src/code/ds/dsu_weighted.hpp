@@ -5,25 +5,33 @@
 
 namespace tifa_libs::ds {
 
-struct dsu_weighted {
-  vec<u64> fa, dep, sz;
+class dsu_weighted {
+  vec<i32> p;
+  vec<i64> dep;
 
-  explicit dsu_weighted(size_t n) : fa(n), dep(n), sz(n, 1) { std::iota(fa.begin(), fa.end(), 0); }
+ public:
+  explicit dsu_weighted(size_t n) : p(n, -1), dep(n) {}
 
-  size_t find(size_t x) {
-    if (x == fa[x]) return x;
-    size_t fx = find(fa[x]);
-    dep[x] += dep[fa[x]];
-    return fa[x] = fx;
+  i32 find(u32 x) {
+    if (p[x] < 0) return (i32)x;
+    auto _ = find((u32)p[x]);
+    dep[x] += dep[(u32)p[x]];
+    return p[x] = _;
   }
-  bool in_same_group(size_t x, size_t y) { return find(x) == find(y); }
-  void merge(size_t x, size_t y) {
-    if (in_same_group(x = find(x), y = find(y))) return;
-    if (sz[x] > sz[y]) std::swap(x, y);
-    dep[x] += sz[y];
-    sz[y] += sz[x];
-    sz[x] = 0;
-    fa[x] = y;
+  u32 size(u32 x) { return (u32)-p[(u32)find(x)]; }
+  i64 depth(u32 x) { return find(x), dep[x]; }
+  bool same(u32 x, u32 y) { return find(x) == find(y); }
+  bool merge(u32 x, u32 y, i64 d = 1) {
+    (d += depth(y) - depth(x)) *= -1;
+    if ((x = (u32)find(x)) == (y = (u32)find(y))) return false;
+    if (p[x] > p[y]) {
+      std::swap(x, y);
+      d *= -1;
+    }
+    p[x] += p[y];
+    p[y] = (i32)x;
+    dep[y] = d;
+    return true;
   }
 };
 
