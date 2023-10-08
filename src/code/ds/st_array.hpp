@@ -6,22 +6,21 @@
 
 namespace tifa_libs::ds {
 
-template <class T, class F>
+template <class T, T (*op)(T, T)>
 class st_array {
   vvec<T> st;
-  F f;
 
  public:
-  st_array(vec<T> const &a, F func) : st((size_t)bit::log2(a.size()) + 1, vec<T>(a.size())), f(func) {
+  st_array(vec<T> const &a) : st((size_t)bit::log2(a.size()) + 1, vec<T>(a.size())) {
     size_t n = a.size();
     st[0] = a;
     for (size_t j = 1, m = (size_t)bit::log2(n) + 1; j < m; ++j)
-      for (size_t i = 0; i < n; ++i) st[j][i] = f(st[j - 1][i], st[j - 1][std::min(n - 1, i + (1 << (j - 1)))]);
+      for (size_t i = 0; i < n; ++i) st[j][i] = op(st[j - 1][i], st[j - 1][std::min(n - 1, i + (1 << (j - 1)))]);
   }
   //! [l, r]
   T query(size_t l, size_t r) const {
     size_t k = (size_t)bit::log2(1 + r - l);
-    return f(st[k][l], st[k][r + 1 - (1 << k)]);
+    return op(st[k][l], st[k][r + 1 - (1 << k)]);
   }
 };
 
