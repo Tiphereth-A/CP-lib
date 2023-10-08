@@ -95,6 +95,9 @@ notebook:
     - dsu_basic: 并查集
       code_ext: hpp
       test_ext: cpp
+    - dsu_pd: 离线可持久化并查集
+      code_ext: hpp
+      test_ext: cpp
     - dsu_weighted: 带权并查集
       code_ext: hpp
       test_ext: cpp
