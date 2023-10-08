@@ -39,7 +39,7 @@ using pt4 = std::tuple<T, T, T, T>;
 
 #ifdef ONLINE_JUDGE
 #undef assert
-#define assert(x) 42;
+#define assert(x) 42
 #endif
 
 }  // namespace tifa_libs
