@@ -11,7 +11,7 @@ int main() {
   for (size_t i = 1, t, u, v; i <= q; ++i) {
     std::cin >> t >> u >> v;
     if (t == 0) dsu.merge(u, v);
-    else std::cout << dsu.in_same_group(u, v) << '\n';
+    else std::cout << dsu.same(u, v) << '\n';
   }
   return 0;
 }
