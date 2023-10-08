@@ -17,11 +17,11 @@ point<FP> fermatp(polygon<FP> const &po, Re &engine, const FP begin = 1e10, cons
     now = pre + make_P_polar(T, u_angle(engine));
     dis_now = 0;
     for (size_t i = 0; i < po.vs.size(); ++i) dis_now += dist_PP(po.vs[i], now);
-    if (is_le(dis_now, dis_ret)) {
+    if (is_lt(dis_now, dis_ret)) {
       ret = now;
       dis_ret = dis_now;
     }
-    if (!is_ge(dis_now, dis_pre) || std::exp((dis_pre - dis_now) / T) > u_angle(engine) / u_angle.max()) {
+    if (!is_gt(dis_now, dis_pre) || std::exp((dis_pre - dis_now) / T) > u_angle(engine) / u_angle.max()) {
       pre = now;
       dis_pre = dis_now;
     }

@@ -27,10 +27,19 @@ notebook:
     - util: 共同依赖
       code_ext: hpp
       test_ext: cpp
-    - geo_util: 计算几何共同依赖
+    - abs_constexpr: abs_constexpr
       code_ext: hpp
       test_ext: cpp
-    - abs_constexpr: abs_constexpr
+    - fp_const: 一些浮点常数
+      code_ext: hpp
+      test_ext: cpp
+    - fp_comp: 浮点数比较
+      code_ext: hpp
+      test_ext: cpp
+    - fp_range_is_intersect: 判断浮点数区间是否相交
+      code_ext: hpp
+      test_ext: cpp
+    - fp_range_is_in_middle: 判断浮点数是否在浮点数区间中
       code_ext: hpp
       test_ext: cpp
     - base64: Base64
@@ -325,8 +334,14 @@ notebook:
     - polyhedron: 多面体
       code_ext: hpp
       test_ext: cpp
-    graph: null
+    graph:
+    - dijkstra: Dijkstra
+      code_ext: hpp
+      test_ext: cpp
     math:
+    - barrett: Barrett 模乘法
+      code_ext: hpp
+      test_ext: cpp
     - bsgs: bsgs
       code_ext: hpp
       test_ext: cpp
@@ -414,10 +429,16 @@ notebook:
     - mint_d63: mint_d63
       code_ext: hpp
       test_ext: cpp
+    - mint_sd: 不固定模数 modint 的简单实现
+      code_ext: hpp
+      test_ext: cpp
     - mint_s30: mint_s30
       code_ext: hpp
       test_ext: cpp
     - mint_s63: mint_s63
+      code_ext: hpp
+      test_ext: cpp
+    - mint_ss: 固定模数 modint 的简单实现
       code_ext: hpp
       test_ext: cpp
     - mul_mod_s: mul_mod_s
@@ -469,6 +490,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - xor_basis: 异或线性基
+      code_ext: hpp
+      test_ext: cpp
+    - cantor: Cantor 展开
       code_ext: hpp
       test_ext: cpp
     matrix:
@@ -542,13 +566,16 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     poly:
-    - conv_mtt: conv_mtt
+    - conv_3ntt: 卷积（三模 NTT）
       code_ext: hpp
       test_ext: cpp
-    - conv_naive: conv_naive
+    - conv_mtt: 卷积（MTT）
       code_ext: hpp
       test_ext: cpp
-    - conv_ntt: conv_ntt
+    - conv_naive: 卷积（暴力）
+      code_ext: hpp
+      test_ext: cpp
+    - conv_ntt: 卷积（NTT）
       code_ext: hpp
       test_ext: cpp
     - fft: fft
@@ -561,6 +588,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - polydata_s: polydata_s
+      code_ext: hpp
+      test_ext: cpp
+    - poly: poly
       code_ext: hpp
       test_ext: cpp
     - poly_acos: poly_acos

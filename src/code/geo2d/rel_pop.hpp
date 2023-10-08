@@ -22,8 +22,8 @@ RELPoP relation_PoP(polygon<FP> const &po, point<FP> const &p) {
   for (size_t i = 0; i < po.vs.size(); ++i) {
     point now_p = po.vs[i], next_p = po.vs[po.next(i)];
     if (is_on_S({now_p, next_p}, p)) return onborder_pop;
-    if (!is_ge(now_p.y, next_p.y)) std::swap(now_p, next_p);
-    if (is_ge(p.y, now_p.y) || !is_ge(p.y, next_p.y)) continue;
+    if (!is_gt(now_p.y, next_p.y)) std::swap(now_p, next_p);
+    if (is_gt(p.y, now_p.y) || !is_gt(p.y, next_p.y)) continue;
     result ^= sgn_cross(p, now_p, next_p) > 0;
   }
   return result ? inside_pop : outside_pop;

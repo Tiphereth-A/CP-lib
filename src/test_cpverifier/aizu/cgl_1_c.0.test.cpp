@@ -17,9 +17,9 @@ int main() {
   for (size_t i = 0; i < q; ++i) {
     point p;
     std::cin >> p;
-    if (tifa_libs::geo::is_pos(tifa_libs::geo::cross(p0, p1, p))) std::cout << "COUNTER_CLOCKWISE\n";
-    else if (tifa_libs::geo::is_neg(tifa_libs::geo::cross(p0, p1, p))) std::cout << "CLOCKWISE\n";
-    else if (tifa_libs::geo::is_neg(tifa_libs::geo::dot(p0, p1, p))) std::cout << "ONLINE_BACK\n";
+    if (tifa_libs::is_pos(tifa_libs::geo::cross(p0, p1, p))) std::cout << "COUNTER_CLOCKWISE\n";
+    else if (tifa_libs::is_neg(tifa_libs::geo::cross(p0, p1, p))) std::cout << "CLOCKWISE\n";
+    else if (tifa_libs::is_neg(tifa_libs::geo::dot(p0, p1, p))) std::cout << "ONLINE_BACK\n";
     else if (tifa_libs::geo::is_in_middle(p0, p, p1)) std::cout << "ON_SEGMENT\n";
     else std::cout << "ONLINE_FRONT\n";
   }
