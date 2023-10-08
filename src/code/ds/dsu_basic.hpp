@@ -15,9 +15,7 @@ class dsu_basic {
   u32 size(u32 x) { return (u32)-p[(u32)find(x)]; }
   bool same(u32 x, u32 y) { return find(x) == find(y); }
   bool merge(u32 x, u32 y) {
-    x = (u32)find(x);
-    y = (u32)find(y);
-    if (x == y) return false;
+    if ((x = (u32)find(x)) == (y = (u32)find(y))) return false;
     if (p[x] > p[y]) std::swap(x, y);
     p[x] += p[y];
     p[y] = (i32)x;

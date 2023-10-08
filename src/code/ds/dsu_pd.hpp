@@ -17,9 +17,7 @@ class dsu_pd {
   u32 time() { return (u32)joins.size(); }
   bool same(u32 x, u32 y) { return find(x) == find(y); }
   bool merge(u32 x, u32 y) {
-    x = (u32)find(x);
-    y = (u32)find(y);
-    if (x == y) return false;
+    if ((x = (u32)find(x)) == (y = (u32)find(y))) return false;
     if (p[x] > p[y]) std::swap(x, y);
     joins.emplace_back(y, p[y]);
     p[x] += p[y];
