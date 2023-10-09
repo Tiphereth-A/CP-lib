@@ -108,10 +108,10 @@ notebook:
     - st_array: ST 表 - 数列
       code_ext: hpp
       test_ext: cpp
-    - segtree: 线段树（区间加、区间和、区间最值）
+    - segtree: 线段树
       code_ext: hpp
       test_ext: cpp
-    - segtree_old: 旧版线段树（区间加、区间和、区间最值）
+    - segtree_old: 旧版线段树
       code_ext: hpp
       test_ext: cpp
     - lichao_segtree: 李超线段树（线段添加、定点最值）
