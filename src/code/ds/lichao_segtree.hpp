@@ -47,6 +47,8 @@ class lichao_segtree {
   }
 
  public:
+  explicit constexpr lichao_segtree(const vec<T>& LSH, F func) : lsh(LSH), t(LSH.size() * 4), f(func) { sz = lsh.size(); }
+
   void add(T a, T b, T l, T r, size_t id = 1) {
     seg k = {id, a, b, l, r};
     l = std::lower_bound(lsh.begin(), lsh.end(), l) - lsh.begin();
@@ -54,7 +56,6 @@ class lichao_segtree {
     add(1, 0, sz - 1, l, r, k);
   }
   T query(T pos) { return query(1, 0, sz - 1, pos); }
-  explicit constexpr lichao_segtree(const vec<T>& LSH, F func) : lsh(LSH), t(LSH.size() * 4), f(func) { sz = lsh.size(); }
 };
 }  // namespace tifa_libs::ds
 

@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-template <std::size_t N = 64>
+template <size_t N = 64>
 class basis_Z2 {
   vec<std::bitset<N>> base;
 

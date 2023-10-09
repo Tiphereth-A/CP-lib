@@ -166,7 +166,7 @@ class segtree_beats {
     return ret;
   }
   explicit constexpr segtree_beats(vec<T> const& a) : n(a.size()), t(a.size() * 4), sign(a.size() * 4), INF(std::numeric_limits<T>::max()) { build(a, 1, 0, n - 1); }
-  explicit constexpr segtree_beats(std::size_t N) : n(N), t(N * 4), sign(N * 4), INF(std::numeric_limits<T>::max()) { build(vec<T>(n, 0), 1, 0, n - 1); }
+  explicit constexpr segtree_beats(size_t N) : n(N), t(N * 4), sign(N * 4), INF(std::numeric_limits<T>::max()) { build(vec<T>(n, 0), 1, 0, n - 1); }
 };
 
 }  // namespace tifa_libs::ds

@@ -58,6 +58,9 @@ notebook:
     - dlx: DLX
       code_ext: hpp
       test_ext: cpp
+    - discretization: 离散化
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
@@ -512,6 +515,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - derange_mod_gen: derange_mod_gen
+      code_ext: hpp
+      test_ext: cpp
+    - cantor_inv: 逆 Cantor 展开
       code_ext: hpp
       test_ext: cpp
     matrix:

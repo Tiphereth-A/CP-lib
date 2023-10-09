@@ -44,6 +44,8 @@ class segtree_old {
   }
 
  public:
+  explicit constexpr segtree_old(vec<T> const &a) : t(a.size() * 4) { build(a, 1, 0, a.size() - 1); }
+  
   void add(size_t x, size_t l, size_t r, size_t L, size_t R, T k) {
     if (L <= l && R >= r) {
       t[x].w += i64(r - l + 1) * k, t[x].sign += k;
@@ -86,7 +88,6 @@ class segtree_old {
     if (R <= mid) return querym(x << 1, l, mid, L, R, f);
     return f(querym(x << 1, l, mid, L, R, f), querym(x << 1 | 1, mid + 1, r, L, R, f));
   }
-  explicit constexpr segtree_old(vec<T> const &a) : t(a.size() * 4) { build(a, 1, 0, a.size() - 1); }
 };
 
 }  // namespace tifa_libs::ds
