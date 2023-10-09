@@ -520,6 +520,21 @@ notebook:
     - cantor_inv: 逆 Cantor 展开
       code_ext: hpp
       test_ext: cpp
+    - stirling1_row_gen: 第一类 Stirling 数序列（行）
+      code_ext: hpp
+      test_ext: cpp
+    - stirling1_col_gen: 第一类 Stirling 数序列（列）
+      code_ext: hpp
+      test_ext: cpp
+    - stirling2_row_gen: 第二类 Stirling 数序列（行）
+      code_ext: hpp
+      test_ext: cpp
+    - stirling2_col_gen: 第二类 Stirling 数序列（列）
+      code_ext: hpp
+      test_ext: cpp
+    - bell_gen: Bell 数序列
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
@@ -679,6 +694,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - karatsuba: Karatsuba 乘法
+      code_ext: hpp
+      test_ext: cpp
+    - poly_tsh: Taylor shift
       code_ext: hpp
       test_ext: cpp
     str:
