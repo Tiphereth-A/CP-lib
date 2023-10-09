@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/montmort_number_mod"
 
-#include "../../code/math/derange_mod_gen.hpp"
+#include "../../code/comb/derange_mod_gen.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

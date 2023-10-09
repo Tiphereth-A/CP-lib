@@ -14,6 +14,7 @@ notebook:
     geo2d: 二维计算几何
     geo3d: 三维计算几何
     graph: 图论
+    comb: 组合数学
     math: 数学
     matrix: 矩阵
     poly: 多项式
@@ -357,6 +358,52 @@ notebook:
     - dijkstra: Dijkstra
       code_ext: hpp
       test_ext: cpp
+    comb:
+    - exlucas: exlucas
+      code_ext: hpp
+      test_ext: cpp
+    - derange_mod_gen: 错排数序列
+      code_ext: hpp
+      test_ext: cpp
+    - stirling1_row_gen: 第一类 Stirling 数序列（行）
+      code_ext: hpp
+      test_ext: cpp
+    - stirling1_col_gen: 第一类 Stirling 数序列（列）
+      code_ext: hpp
+      test_ext: cpp
+    - stirling2_row_gen: 第二类 Stirling 数序列（行）
+      code_ext: hpp
+      test_ext: cpp
+    - stirling2_col_gen: 第二类 Stirling 数序列（列）
+      code_ext: hpp
+      test_ext: cpp
+    - bell_gen: Bell 数序列
+      code_ext: hpp
+      test_ext: cpp
+    - fact_mod_gen: fact_mod_gen
+      code_ext: hpp
+      test_ext: cpp
+    - mcn_mod: mcn_mod
+      code_ext: hpp
+      test_ext: cpp
+    - ifact_mod_gen: ifact_mod_gen
+      code_ext: hpp
+      test_ext: cpp
+    - inv_mod_gen: inv_mod_gen
+      code_ext: hpp
+      test_ext: cpp
+    - lucas_pp: lucas_pp
+      code_ext: hpp
+      test_ext: cpp
+    - lucas: lucas
+      code_ext: hpp
+      test_ext: cpp
+    - invseq_mod_gen: invseq_mod_gen
+      code_ext: hpp
+      test_ext: cpp
+    - pows_mod_gen: pows_mod_gen
+      code_ext: hpp
+      test_ext: cpp
     math:
     - barrett: Barrett 模乘法
       code_ext: hpp
@@ -385,31 +432,16 @@ notebook:
     - exgcd: exgcd
       code_ext: hpp
       test_ext: cpp
-    - exlucas: exlucas
-      code_ext: hpp
-      test_ext: cpp
-    - fact_mod_gen: fact_mod_gen
-      code_ext: hpp
-      test_ext: cpp
     - gauss_int: gauss_int
       code_ext: hpp
       test_ext: cpp
     - gcd_fp: gcd_fp
       code_ext: hpp
       test_ext: cpp
-    - ifact_mod_gen: ifact_mod_gen
-      code_ext: hpp
-      test_ext: cpp
     - inv_gcd: inv_gcd
       code_ext: hpp
       test_ext: cpp
-    - inv_mod_gen: inv_mod_gen
-      code_ext: hpp
-      test_ext: cpp
     - inverse: inverse
-      code_ext: hpp
-      test_ext: cpp
-    - invseq_mod_gen: invseq_mod_gen
       code_ext: hpp
       test_ext: cpp
     - is_prime: is_prime
@@ -431,15 +463,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - linear_sigma_seive: linear_sigma_seive
-      code_ext: hpp
-      test_ext: cpp
-    - lucas_pp: lucas_pp
-      code_ext: hpp
-      test_ext: cpp
-    - lucas: lucas
-      code_ext: hpp
-      test_ext: cpp
-    - mcn_mod: mcn_mod
       code_ext: hpp
       test_ext: cpp
     - mint_d31: mint_d31
@@ -514,25 +537,7 @@ notebook:
     - cantor: Cantor 展开
       code_ext: hpp
       test_ext: cpp
-    - derange_mod_gen: derange_mod_gen
-      code_ext: hpp
-      test_ext: cpp
     - cantor_inv: 逆 Cantor 展开
-      code_ext: hpp
-      test_ext: cpp
-    - stirling1_row_gen: 第一类 Stirling 数序列（行）
-      code_ext: hpp
-      test_ext: cpp
-    - stirling1_col_gen: 第一类 Stirling 数序列（列）
-      code_ext: hpp
-      test_ext: cpp
-    - stirling2_row_gen: 第二类 Stirling 数序列（行）
-      code_ext: hpp
-      test_ext: cpp
-    - stirling2_col_gen: 第二类 Stirling 数序列（列）
-      code_ext: hpp
-      test_ext: cpp
-    - bell_gen: Bell 数序列
       code_ext: hpp
       test_ext: cpp
     matrix:

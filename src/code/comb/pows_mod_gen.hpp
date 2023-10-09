@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_MATH_POWS_MOD_GEN
 #define TIFA_LIBS_MATH_POWS_MOD_GEN
 
-#include "qpow_mod.hpp"
+#include "../math/qpow_mod.hpp"
 
 namespace tifa_libs::math {
 

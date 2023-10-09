@@ -2,7 +2,7 @@
 #define TIFA_LIBS_MATH_LUCAS_PP
 
 #include "invseq_mod_gen.hpp"
-#include "qpow_mod.hpp"
+#include "../math/qpow_mod.hpp"
 
 namespace tifa_libs::math {
 

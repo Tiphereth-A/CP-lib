@@ -1,8 +1,8 @@
 #ifndef TIFA_LIBS_MATH_INVSEQ_MOD_GEN
 #define TIFA_LIBS_MATH_INVSEQ_MOD_GEN
 
-#include "inverse.hpp"
-#include "mul_mod_u.hpp"
+#include "../math/inverse.hpp"
+#include "../math/mul_mod_u.hpp"
 
 namespace tifa_libs::math {
 

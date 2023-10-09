@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod"
 
-#include "../../code/math/lucas.hpp"
-#include "../../code/math/mcn_mod.hpp"
+#include "../../code/comb/lucas.hpp"
+#include "../../code/comb/mcn_mod.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

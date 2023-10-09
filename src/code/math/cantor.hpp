@@ -2,7 +2,7 @@
 #define TIFA_LIBS_MATH_CANTOR
 
 #include "../ds/fenwick.hpp"
-#include "fact_mod_gen.hpp"
+#include "../comb/fact_mod_gen.hpp"
 
 namespace tifa_libs::math {
 

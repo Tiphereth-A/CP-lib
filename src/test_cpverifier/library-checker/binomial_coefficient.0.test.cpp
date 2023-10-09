@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient"
 
-#include "../../code/math/exlucas.hpp"
+#include "../../code/comb/exlucas.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

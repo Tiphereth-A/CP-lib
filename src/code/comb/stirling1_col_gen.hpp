@@ -1,11 +1,11 @@
 #ifndef TIFA_LIBS_MATH_STIRLING1_COL_GEN
 #define TIFA_LIBS_MATH_STIRLING1_COL_GEN
 
+#include "../math/inverse.hpp"
 #include "../poly/poly.hpp"
 #include "../poly/poly_ln.hpp"
 #include "../poly/poly_pow.hpp"
 #include "fact_mod_gen.hpp"
-#include "inverse.hpp"
 
 namespace tifa_libs::math {
 

@@ -1,8 +1,8 @@
 #ifndef TIFA_LIBS_MATH_EXLUCAS
 #define TIFA_LIBS_MATH_EXLUCAS
 
-#include "crt.hpp"
-#include "isqrt.hpp"
+#include "../math/crt.hpp"
+#include "../math/isqrt.hpp"
 #include "lucas_pp.hpp"
 
 namespace tifa_libs::math {

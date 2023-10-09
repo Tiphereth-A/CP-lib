@@ -3,7 +3,7 @@
 
 #include "fact_mod_gen.hpp"
 #include "ifact_mod_gen.hpp"
-#include "mul_mod_u.hpp"
+#include "../math/mul_mod_u.hpp"
 
 namespace tifa_libs::math {
 
