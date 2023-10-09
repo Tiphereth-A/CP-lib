@@ -123,6 +123,9 @@ notebook:
     - segtree_beats: 吉如一线段树
       code_ext: hpp
       test_ext: cpp
+    - weighted_segtree: 权值线段树
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - area_cc: area_cc
       code_ext: hpp
