@@ -32,8 +32,8 @@ class weighted_segtree {
   size_t kth_max_(size_t x, size_t l, size_t r, size_t k) const {
     if (l == r) return l;
     size_t mid = l + (r - l) / 2;
-    if (k <= t[x << 1 | 1]) return kth_min_(x << 1 | 1, mid + 1, r, k);
-    return kth_min_(x << 1, l, mid, k - t[x << 1 | 1]);
+    if (k <= t[x << 1 | 1]) return kth_max_(x << 1 | 1, mid + 1, r, k);
+    return kth_max_(x << 1, l, mid, k - t[x << 1 | 1]);
   }
   size_t frequency_(size_t x, size_t l, size_t r, size_t k) const {
     if (l == r) return t[x];

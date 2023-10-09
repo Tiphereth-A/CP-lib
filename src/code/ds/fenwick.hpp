@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_DS_FENWICK
 #define TIFA_LIBS_DS_FENWICK
 
+#include "../bit/bceil.hpp"
 #include "../bit/cntr0.hpp"
 #include "../util/util.hpp"
 
@@ -24,6 +25,20 @@ class fenwick {
     T ret = 0;
     for (pos = std::min(pos, a.size() - 1); pos; pos -= lowbit(pos)) ret += a[pos];
     return ret;
+  }
+  //! for weighted fenwick
+  constexpr T kth_max(size_t k) {
+    size_t now = 0, n = bit::bceil(a.size());
+    T s{};
+    while (n) {
+      size_t to = now | n;
+      if (to >= a.size()) continue;
+      if (T x = s + a[to]; x < k) {
+        now = to;
+        s = x;
+      }
+    }
+    return now + 1;
   }
 };
 
