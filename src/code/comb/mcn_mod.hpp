@@ -1,9 +1,9 @@
 #ifndef TIFA_LIBS_MATH_MCN_MOD
 #define TIFA_LIBS_MATH_MCN_MOD
 
+#include "../math/mul_mod_u.hpp"
 #include "fact_mod_gen.hpp"
 #include "ifact_mod_gen.hpp"
-#include "../math/mul_mod_u.hpp"
 
 namespace tifa_libs::math {
 

@@ -1,8 +1,8 @@
 #ifndef TIFA_LIBS_MATH_CANTOR
 #define TIFA_LIBS_MATH_CANTOR
 
-#include "../ds/fenwick.hpp"
 #include "../comb/fact_mod_gen.hpp"
+#include "../ds/fenwick.hpp"
 
 namespace tifa_libs::math {
 

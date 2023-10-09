@@ -1,5 +1,3 @@
-#include <cstddef>
-#include <iostream>
 #define PROBLEM "https://www.luogu.com.cn/problem/P6242"
 
 #include "../../code/ds/segtree_beats.hpp"

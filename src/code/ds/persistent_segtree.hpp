@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_DS_PERSISTENT_SEGTREE
 #define TIFA_LIBS_DS_PERSISTENT_SEGTREE
 
-#include <cstddef>
-
 #include "../util/util.hpp"
 
 namespace tifa_libs::ds {
@@ -11,7 +9,7 @@ class persistent_segtree {
   size_t n, cnt;
   struct YYZ {
     i32 w, ls, rs;
-    YYZ(i32 W = 0, i32 LS = -1, i32 RS = -1): w(W), ls(LS), rs(RS) {}
+    YYZ(i32 W = 0, i32 LS = -1, i32 RS = -1) : w(W), ls(LS), rs(RS) {}
   };
   vec<YYZ> t;
   vec<i32> root;
@@ -22,7 +20,7 @@ class persistent_segtree {
     if (t[x].rs != -1) t[x].w += t[t[x].rs].w;
   }
   void build(i32& x, size_t l, size_t r, size_t pos) {
-    x = cnt ++;
+    x = cnt++;
     if (l == r) {
       if (l == pos) ++t[x].w;
       return;
@@ -32,8 +30,8 @@ class persistent_segtree {
     pushup(x);
   }
   void add_(i32 old_x, i32& x, size_t l, size_t r, size_t pos) {
-    t[x = cnt ++] = t[old_x];
-    if(l == r) return void(++t[x].w);
+    t[x = cnt++] = t[old_x];
+    if (l == r) return void(++t[x].w);
     size_t mid = l + (r - l) / 2;
     if (pos <= mid) add_(t[old_x].ls, t[x].ls, l, mid, pos);
     else add_(t[old_x].rs, t[x].rs, mid + 1, r, pos);

@@ -3,8 +3,8 @@
 
 #include "../poly/poly.hpp"
 #include "../poly/poly_inv.hpp"
-#include "../poly/poly_tsh.hpp"
 #include "../poly/poly_shr.hpp"
+#include "../poly/poly_tsh.hpp"
 #include "fact_mod_gen.hpp"
 #include "ifact_mod_gen.hpp"
 
