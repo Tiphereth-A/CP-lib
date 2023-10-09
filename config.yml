@@ -508,6 +508,9 @@ notebook:
     - cantor: Cantor 展开
       code_ext: hpp
       test_ext: cpp
+    - derange_mod_gen: derange_mod_gen
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
