@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_UTIL_DISCRETIZATION
 #define TIFA_LIBS_UTIL_DISCRETIZATION
 
+#include <cstddef>
 #include "util.hpp"
 
 namespace tifa_libs::util {
@@ -13,10 +14,11 @@ T uniq(T const &v) {
   return _;
 }
 template <class T = vec<int>>
-T gen_id(T const &v) {
+std::pair<T, vec<size_t>> gen_id(T const &v) {
   T _ = uniq(v);
-  for (auto &i : v) i = std::lower_bound(_.begin(), _.end(), i) - _.begin();
-  return _;
+  vec<size_t> _1;
+  for(size_t i = 0 ; i < v.size(); ++ i) _1.push_back(size_t(std::lower_bound(_.begin(), _.end(), v[i]) - _.begin()));
+  return {_, _1};
 }
 
 }  // namespace tifa_libs::util
