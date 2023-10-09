@@ -35,22 +35,12 @@ class weighted_segtree {
     if (k <= t[x << 1 | 1]) return kth_max_(x << 1 | 1, mid + 1, r, k);
     return kth_max_(x << 1, l, mid, k - t[x << 1 | 1]);
   }
-  size_t frequency_(size_t x, size_t l, size_t r, size_t k) const {
-    if (l == r) return t[x];
-    else {
-      size_t mid = l + (r - l) / 2;
-      if (k <= mid) return frequency_(x << 1, l, mid, k);
-      return frequency_(x << 1 | 1, mid + 1, r, k);
-    }
-  }
   size_t frequency_(size_t x, size_t l, size_t r, size_t L, size_t R) const {
-    if (l == r) return t[x];
-    else {
-      size_t mid = l + (r - l) / 2, ret = size_t(0);
-      if (L <= mid) ret = frequency_(x << 1, l, mid, L, R);
-      if (R > mid) ret += frequency_(x << 1 | 1, mid + 1, r, L, R);
-      return ret;
-    }
+    if (L <= l && R >= r) return t[x];
+    size_t mid = l + (r - l) / 2, ret = size_t(0);
+    if (L <= mid) ret = frequency_(x << 1, l, mid, L, R);
+    if (R > mid) ret += frequency_(x << 1 | 1, mid + 1, r, L, R);
+    return ret;
   }
 
  public:
@@ -60,7 +50,7 @@ class weighted_segtree {
   void del(size_t pos) { del_(1, 0, n - 1, pos); }
   size_t kth_min(size_t k) { return kth_min_(1, 0, n - 1, k); }
   size_t kth_max(size_t k) { return kth_max_(1, 0, n - 1, k); }
-  size_t frequency(size_t k) { return frequency_(1, 0, n - 1, k); }
+  size_t frequency(size_t k) { return frequency_(1, 0, n - 1, k, k); }
   size_t frequency(size_t l, size_t r) { return frequency_(1, 0, n - 1, l, r); }
 };
 }  // namespace tifa_libs::ds

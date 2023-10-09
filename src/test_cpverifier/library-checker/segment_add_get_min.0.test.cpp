@@ -28,7 +28,7 @@ int main() {
     else
       std::cin >> qu[i].k.l >> qu[i].k.r >> qu[i].k.a >> qu[i].k.b, qu[i].k.r -= 1, lsh.push_back(qu[i].k.l), lsh.push_back(qu[i].k.r);
   }
-  lsh = tifa_libs::util::uniq(lsh);
+  lsh = tifa_libs::util::uniq<tifa_libs::vec<tifa_libs::i64>>(lsh);
   auto _min = [](tifa_libs::i64 a, tifa_libs::i64 b) { return std::min(a, b); };
   tifa_libs::ds::lichao_segtree<tifa_libs::i64, decltype(_min)> tr(lsh, _min);
   for (size_t i = 0; i < n; ++i)
