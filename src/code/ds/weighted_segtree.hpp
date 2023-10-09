@@ -11,7 +11,7 @@ class weighted_segtree {
 
  public:
   void add(size_t x, size_t l, size_t r, size_t pos) {
-    if (l == r) t[x] += 1;
+    if (l == r) return void(t[x] += 1);
     size_t mid = l + (r - l) / 2;
     if (pos <= mid) add(x << 1, l, mid, pos);
     else add(x << 1 | 1, mid + 1, r, pos);
