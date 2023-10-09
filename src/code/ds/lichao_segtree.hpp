@@ -12,10 +12,11 @@ class lichao_segtree {
     T a, b, l, r;  // y = ax + b(where x in [l, r])
     T w(T x) { return a * x + b; }
   };
-  F f;
-  size_t sz;
   vec<T> lsh;
   vec<seg> t;
+  F f;
+  const size_t sz;
+
   bool pd(T a, T b) {  // min: <=   max: >=
     return f(a, b) == a;
   }
@@ -47,7 +48,7 @@ class lichao_segtree {
   }
 
  public:
-  explicit constexpr lichao_segtree(const vec<T>& LSH, F func) : lsh(LSH), t(LSH.size() * 4), f(func) { sz = lsh.size(); }
+  explicit constexpr lichao_segtree(vec<T> const& LSH, F func) : lsh(LSH), t(LSH.size() * 4), f(func), sz(lsh.size()) {}
 
   void add(T a, T b, T l, T r, size_t id = 1) {
     seg k = {id, a, b, l, r};
