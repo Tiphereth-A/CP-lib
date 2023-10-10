@@ -24,7 +24,7 @@ class tree {
       }
   }
   void dfs_top(size_t u, size_t _top) {
-    top[u] = _top;
+    top[u] = _top, dfn[u] = cnt++;
     if(maxson[u] == e.size()) return;
     dfs_top(maxson[u], _top);
     for(auto v: e[u]) if(top[v] != e.size()) dfs_top(v, _top); 
@@ -45,34 +45,35 @@ class tree {
   }
 
  public:
-  vec<size_t> getdfn() {
+  vec<size_t> get_dfn() {//dfn
     dfn = vec<size_t>(e.size()), cnt = 0;
     dfs_dfn(root, e.size());
     return dfn;
   }
-  vec<size_t> getsubsz() {
+  vec<size_t> get_sz() {//sz
     sz = vec<size_t>(e.size());
     dfs_sz(root, e.size());
     return sz;
   }
-  ptt<vec<size_t>> getmaxson() {
+  ptt<vec<size_t>> get_sz_and_maxson() {//sz maxson
     sz = vec<size_t>(e.size());
     maxson = vec<size_t>(e.size(), e.size());
     dfs_maxson(root, e.size());
     return {sz, maxson};
   }
-  vec<size_t> gettop() {
+  ptt<vec<size_t>>get_top_dfn() {//top dfn
     assert(maxson.size());
     top = vec<size_t>(e.size(), e.size());
+    dfn = vec<size_t>(e.size()), cnt = 0;
     dfs_top(root, root);
-    return top;
+    return {top, dfn};
   }
-  vec<size_t> getfa() {
+  vec<size_t> get_fa() {
     f = vec<size_t>(e.size());
     dfs_fa(root, e.size());
     return f;
   }
-  vec<size_t> getdep() {
+  vec<size_t> get_dep() {
     dep = vec<size_t>(e.size());
     dfs_dep(root, e.size());
     return dep;
