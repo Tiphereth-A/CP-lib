@@ -40,8 +40,8 @@ class segtree {
   }
 
  public:
-  explicit constexpr segtree(vec<T> const &a) : n(a.size()), t(a.size() * 4), sign(a.size() * 4) { build(a, 1, 0, n - 1); }
-  explicit constexpr segtree(size_t N) : n(N), t(N * 4), sign(N * 4) { build(vec<T>(n, e()), 1, 0, n - 1); }
+  explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4), sign(a.size() * 4), n(a.size()) { build(a, 1, 0, n - 1); }
+  explicit constexpr segtree(size_t N) : t(N * 4), sign(N * 4), n(N) { build(vec<T>(n, e()), 1, 0, n - 1); }
   void update(size_t L, size_t R, F f) { update(1, 0, n - 1, L, R, f); }
   T query(size_t L, size_t R) { return query(1, 0, n - 1, L, R); }
   T query(size_t pos) { return query(1, 0, n - 1, pos, pos); }
