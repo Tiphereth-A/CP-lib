@@ -31,14 +31,13 @@ int main() {
   for (size_t i = 1; i <= q; ++i) {
     size_t opt, l, r;
     std::cin >> opt >> l >> r;
-    -- r;
+    --r;
     if (opt == 0) {
       tifa_libs::math::mint_s30<998244353> x, y;
       std::cin >> x >> y;
-      segt.update(1, 0, n - 1, l, r, F{x, y});
+      segt.update(l, r, F{x, y});
     } else
-      std::cout << segt.query(1, 0, n - 1, l, r).first << '\n';
-
+      std::cout << segt.query(l, r).first << '\n';
   }
   return 0;
 }

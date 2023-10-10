@@ -35,9 +35,9 @@ int main() {
       tifa_libs::math::mint_s30<998244353> x, y;
       std::cin >> r >> x >> y;
       --r;
-      segt.update(1, 0, n - 1, l, r, F{x, y});
+      segt.update(l, r, F{x, y});
     } else
-      std::cout << segt.query(1, 0, n - 1, l).first << '\n';
+      std::cout << segt.query(l).first << '\n';
   }
   return 0;
 }
