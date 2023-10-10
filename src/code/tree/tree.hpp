@@ -1,9 +1,6 @@
 #ifndef TIFA_LIBS_DS_TREE
 #define TIFA_LIBS_DS_TREE
 
-#include <cassert>
-#include <cstddef>
-
 #include "../util/util.hpp"
 
 namespace tifa_libs::tree {
