@@ -21,6 +21,7 @@ notebook:
     str: 字符串
     rand: 随机数与随机化算法
     game: 游戏
+    tree: tree
   sections:
     util:
     - main: 缺省源
@@ -729,6 +730,10 @@ notebook:
       test_ext: cpp
     game:
     - sudoku: 数独求解
+      code_ext: hpp
+      test_ext: cpp
+    tree:
+    - tree: 树
       code_ext: hpp
       test_ext: cpp
 cheatsheets:
