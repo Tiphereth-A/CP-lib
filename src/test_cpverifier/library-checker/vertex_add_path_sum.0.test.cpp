@@ -1,6 +1,3 @@
-#include <cstddef>
-#include <iostream>
-#include <utility>
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
 #include "../../code/ds/heavy_chain_subdivision.hpp"

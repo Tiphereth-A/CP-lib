@@ -1,9 +1,6 @@
 #ifndef TIFA_LIBS_DS_HEAVY_CHAIN_SUBDIVISION
 #define TIFA_LIBS_DS_HEAVY_CHAIN_SUBDIVISION
 
-#include <cassert>
-#include <cstddef>
-
 #include "../ds/segtree.hpp"
 #include "../tree/tree.hpp"
 #include "../util/util.hpp"
