@@ -1,10 +1,7 @@
 #ifndef TIFA_LIBS_DS_SEGTREE
 #define TIFA_LIBS_DS_SEGTREE
 
-#include <cstddef>
-
 #include "../util/util.hpp"
-
 
 namespace tifa_libs::ds {
 
