@@ -23,8 +23,8 @@ int main() {
   tifa_libs::vec<T> a(n);
   for (auto& x : b) std::cin >> x;
   tifa_libs::ds::heavy_chain_s<T, op, e, F, mapping, composition, id> tr(n);
-  for (size_t i = 1, p; i < n; ++i) std::cin >> p, tr.add(p, i);
-  tr.subt_req();
+  for (size_t i = 1, u, v; i < n; ++i) std::cin >> u >> v, tr.add(u, v);
+  tr.s_req();
   for (size_t i = 0; i < n; ++i) a[tr.dfn[i]].first = b[i], a[tr.dfn[i]].second = 1;
   tr.build(a);
   for (size_t i = 0, opt, u; i < q; ++i) {
