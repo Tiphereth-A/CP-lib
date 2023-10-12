@@ -7,18 +7,24 @@
 
 namespace tifa_libs::math {
 
-// \binom{m}{n}
-class MCN {
+class Binom {
   u64 m_;
 
  public:
   const vec<u64> fact, ifact;
 
-  MCN(u64 mod, size_t max_m) : m_(mod), fact(fact_mod_gen(max_m, mod)), ifact(ifact_mod_gen(max_m, mod)) {}
+  Binom(u64 mod, size_t max_m) : m_(mod), fact(fact_mod_gen(max_m, mod)), ifact(ifact_mod_gen(max_m, mod)) {}
 
   constexpr u64 mod() const { return m_; }
 
-  u64 operator()(i64 m, i64 n) const { return m < n || n < 0 ? 0 : mul_mod_u(mul_mod_u(fact[(size_t)m], ifact[(size_t)n], m_), ifact[(size_t)(m - n)], m_); }
+  // \binom{m}{n}
+  u64 mCn(i64 m, i64 n) const { return m < n || n < 0 ? 0 : mul_mod_u(mul_mod_u(fact[(size_t)m], ifact[(size_t)n], m_), ifact[(size_t)(m - n)], m_); }
+
+  // \binom{m}{n} * n!
+  u64 mPn(i64 m, i64 n) const { return m < n || n < 0 ? 0 : mul_mod_u(fact[(size_t)m], ifact[(size_t)(m - n)], m_); }
+
+  // [x^n] 1 / (1-x)^m
+  u64 mHn(i64 m, i64 n) const { return m < 0 || n <= 0 ? n == 0 : mCn(m + n - 1, n); }
 };
 
 }  // namespace tifa_libs::math

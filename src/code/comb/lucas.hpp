@@ -6,11 +6,11 @@
 namespace tifa_libs::math {
 
 class Lucas {
-  MCN mCn;
+  Binom mCn;
 
-  u64 lucas__(const MCN &mCn, u64 m, u64 n) const {
+  u64 lucas__(const Binom &mCn, u64 m, u64 n) const {
     const u64 mod = mCn.mod();
-    return n == 0 ? 1 : mCn((i64)(m % mod), (i64)(n % mod)) * lucas__(mCn, m / mod, n / mod) % mod;
+    return n == 0 ? 1 : mCn.mCn((i64)(m % mod), (i64)(n % mod)) * lucas__(mCn, m / mod, n / mod) % mod;
   }
 
  public:
