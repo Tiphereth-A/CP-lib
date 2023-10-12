@@ -7,7 +7,9 @@ namespace tifa_libs::math {
 
 // i^{n} from 0 to m
 inline vec<u64> pows_mod_gen(u64 sz, u64 n, u64 mod) {
+  if (!sz) return {};
   vec<u64> ans(sz, 1);
+  ans[0] = 0;
   for (size_t i = 2; i < sz; ++i) ans[i] = qpow_mod(i, n, mod);
   return ans;
 }
