@@ -23,7 +23,7 @@ inline poly<T> stirling1_row_gen(u64 n, vec<u64> const& fact, vec<u64> const& if
     if (_ & 1) f = poly_shl(f, 1) + f * (_ - 1);
   }
   f.resize(n + 1);
-  for (size_t i = 2; i <= n; i += 2) f[i] = -f[i];
+  for (size_t i = 1 + (n & 1); i <= n; i += 2) f[i] = -f[i];
   return f;
 }
 // stirling1[i] = {n \\brace i}, i=0,1,...,n

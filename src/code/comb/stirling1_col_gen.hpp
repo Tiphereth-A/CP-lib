@@ -17,7 +17,7 @@ inline poly<T> stirling1_col_gen(u64 n, u64 k, vec<u64> const& fact, vec<u64> co
   for (size_t i = 1; i <= n; ++i) f[i] = inv[i];
   f = poly_pow(f, k) * inverse(fact[k], T::value_type::mod());
   for (size_t i = k; i <= n; ++i) f[i] *= fact[i];
-  for (size_t i = k; i <= n; ++i) f[i] *= ((i ^ k) & 1 ? -1 : 1);
+  for (size_t i = k ^ 1; i <= n; i += 2) f[i] = -f[i];
   return f;
 }
 // stirling1[i] = {i \\brack k}, i=0,1,...,n
