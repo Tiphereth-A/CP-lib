@@ -3,7 +3,7 @@
 
 #include "../util/util.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs::graph {
 
 template <class W, class F, auto INF = std::numeric_limits<W>::max() / 2 - 1>
 vec<W> dijkstra(vvp<size_t, W> const &g, size_t s, F cb_relax) {

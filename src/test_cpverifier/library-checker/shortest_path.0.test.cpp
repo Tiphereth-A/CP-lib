@@ -13,7 +13,7 @@ int main() {
     g[a].emplace_back(b, c);
   }
   tifa_libs::vec<tifa_libs::i32> pre(n, -1);
-  auto dis = tifa_libs::ds::dijkstra(g, s, [&pre](size_t now, size_t to) { pre[to] = (tifa_libs::i32)now; });
+  auto dis = tifa_libs::graph::dijkstra(g, s, [&pre](size_t now, size_t to) { pre[to] = (tifa_libs::i32)now; });
   tifa_libs::vec<tifa_libs::i32> ans;
   for (tifa_libs::i32 now = pre[t]; ~now; now = pre[(size_t)now]) ans.push_back(now);
   if (ans.empty()) {
