@@ -11,9 +11,9 @@ namespace tifa_libs::math {
 class MCN {
   u64 m_;
 
-  vec<u64> fact, ifact;
-
  public:
+  const vec<u64> fact, ifact;
+
   MCN(u64 mod, size_t max_m) : m_(mod), fact(fact_mod_gen(max_m, mod)), ifact(ifact_mod_gen(max_m, mod)) {}
 
   constexpr u64 mod() const { return m_; }

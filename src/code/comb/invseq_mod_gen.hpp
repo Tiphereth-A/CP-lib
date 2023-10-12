@@ -8,7 +8,6 @@ namespace tifa_libs::math {
 
 // i^{-1} for i in v
 inline vec<u64> invseq_mod_gen(const vec<u64> &v, u64 mod) {
-  assert(mod > 1);
   size_t sz = v.size();
   vec<u64> ans(sz);
   ans[0] = v[1];
