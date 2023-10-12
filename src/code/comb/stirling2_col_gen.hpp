@@ -38,16 +38,16 @@ void solve(poly<T>& f, size_t n, vec<u64> const& fact, vec<u64> const& ifact) {
 template <class T>
 inline poly<T> stirling2_col_gen(u64 n, u64 k, vec<u64> const& fact, vec<u64> const& ifact) {
   if (k > n) return poly<T>(n + 1);
-  poly<T> ans;
-  stirling2_col_gen_detail_::solve(ans, k + 1, fact, ifact);
-  ans.resize(k + 1);
-  ans.reverse();
-  for (size_t i = n - k + 1; i < k + 1; ++i) ans[i] = 0;
-  for (size_t i = k + 1; i < n - k + 1; ++i) ans[i] = 0;
-  ans.resize(n - k + 1);
-  ans = poly_inv(ans);
-  ans.resize(n + 1);
-  return poly_shr(ans, k);
+  poly<T> f;
+  stirling2_col_gen_detail_::solve(f, k + 1, fact, ifact);
+  f.resize(k + 1);
+  f.reverse();
+  for (size_t i = n - k + 1; i < k + 1; ++i) f[i] = 0;
+  for (size_t i = k + 1; i < n - k + 1; ++i) f[i] = 0;
+  f.resize(n - k + 1);
+  f = poly_inv(f);
+  f.resize(n + 1);
+  return poly_shr(f, k);
 }
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class T>

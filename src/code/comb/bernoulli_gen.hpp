@@ -12,11 +12,11 @@ namespace tifa_libs::math {
 template <class T>
 inline poly<T> bernoulli_gen(u64 n, vec<u64> const& fact, vec<u64> const& ifact) {
   if (!n) return poly<T>{1};
-  poly<T> a(n + 1);
-  for (size_t i = 0; i <= n; ++i) a[i] = ifact[i + 1];
-  a = poly_inv(a);
-  for (size_t i = 1; i <= n; ++i) a[i] *= fact[i];
-  return a;
+  poly<T> b(n + 1);
+  for (size_t i = 0; i <= n; ++i) b[i] = ifact[i + 1];
+  b = poly_inv(b);
+  for (size_t i = 1; i <= n; ++i) b[i] *= fact[i];
+  return b;
 }
 // bernoulli[i] = B_i, i=0,1,...,n
 template <class T>

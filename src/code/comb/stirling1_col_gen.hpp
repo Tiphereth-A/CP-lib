@@ -14,11 +14,11 @@ template <class T>
 inline poly<T> stirling1_col_gen(u64 n, u64 k, vec<u64> const& fact) {
   if (k > n) return poly<T>(n + 1);
   u64 mod = T::value_type::mod();
-  poly<T> a(n + 1);
-  a[0] = a[1] = 1;
-  a = poly_pow(poly_ln(a), k) * inverse(fact[k], mod);
-  for (size_t i = 0; i <= n; ++i) a[i] *= ((i - k) & 1 ? mod - fact[i] : fact[i]);
-  return a;
+  poly<T> f(n + 1);
+  f[0] = f[1] = 1;
+  f = poly_pow(poly_ln(f), k) * inverse(fact[k], mod);
+  for (size_t i = 0; i <= n; ++i) f[i] *= ((i - k) & 1 ? mod - fact[i] : fact[i]);
+  return f;
 }
 // stirling1[i] = {i \\brack k}, i=0,1,...,n
 template <class T>

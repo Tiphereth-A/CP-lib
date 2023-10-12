@@ -11,11 +11,11 @@ namespace tifa_libs::math {
 // bell[i] = B_i, i=0,1,...,n
 template <class T>
 inline poly<T> bell_gen(u64 n, vec<u64> const& fact, vec<u64> const& ifact) {
-  poly<T> a(n + 1);
-  for (size_t i = 1; i <= n; ++i) a[i] = ifact[i];
-  a = poly_exp(a);
-  for (size_t i = 1; i <= n; ++i) a[i] *= fact[i];
-  return a;
+  poly<T> b(n + 1);
+  for (size_t i = 1; i <= n; ++i) b[i] = ifact[i];
+  b = poly_exp(b);
+  for (size_t i = 1; i <= n; ++i) b[i] *= fact[i];
+  return b;
 }
 // bell[i] = B_i, i=0,1,...,n
 template <class T>
