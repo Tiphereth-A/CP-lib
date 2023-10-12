@@ -711,7 +711,7 @@ notebook:
     - karatsuba: Karatsuba 乘法
       code_ext: hpp
       test_ext: cpp
-    - poly_tsh: Taylor shift
+    - poly_tsh: 多项式单点平移
       code_ext: hpp
       test_ext: cpp
     str:
