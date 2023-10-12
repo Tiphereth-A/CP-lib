@@ -414,6 +414,9 @@ notebook:
     - pows_mod_gen: pows_mod_gen
       code_ext: hpp
       test_ext: cpp
+    - bernoulli_gen: Bernoulli 数序列
+      code_ext: hpp
+      test_ext: cpp
     math:
     - barrett: Barrett 模乘法
       code_ext: hpp
