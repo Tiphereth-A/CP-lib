@@ -7,7 +7,6 @@ namespace tifa_libs::math {
 
 // (i!)^{-1}
 inline vec<u64> ifact_mod_gen(size_t sz, u64 mod) {
-  assert(sz > 1 && mod >= sz);
   vec<u64> ans = inv_mod_gen(sz, mod);
   for (size_t i = 2; i < sz; ++i) ans[i] = mul_mod_u(ans[i], ans[i - 1], mod);
   return ans;
