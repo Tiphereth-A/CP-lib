@@ -137,6 +137,9 @@ notebook:
     - heavy_chain_subdivision: 重链剖分
       code_ext: hpp
       test_ext: cpp
+    - fhq_treap: 非旋treap
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - area_cc: area_cc
       code_ext: hpp
