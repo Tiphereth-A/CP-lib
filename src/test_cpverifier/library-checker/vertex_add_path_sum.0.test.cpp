@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
+#define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 
 #include "../../code/ds/heavy_chain_subdivision.hpp"
 
