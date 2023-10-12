@@ -11,6 +11,7 @@ namespace tifa_libs::math {
 template <class T>
 inline poly<T> stirling2_row_gen(u64 m, u64 n, vec<u64> const& pows, vec<u64> const& ifact) {
   assert(m <= n);
+  if (!m) return poly<T>{1};
   u64 mod = T::value_type::mod();
   poly<T> a(m + 1), b(m + 1);
   for (size_t i = 1; i <= m; ++i) a[i] = mul_mod_u(pows[i], ifact[i], mod);
