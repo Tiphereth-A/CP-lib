@@ -25,17 +25,7 @@ struct FFT {
     for (size_t i = 1; i < n; ++i) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
   }
 
-  void dif(vec<C> &f) const { difdit(f); }
-  void dit(vec<C> &f) const { difdit<true>(f); }
-
- private:
-  const FP TAU = std::acos((FP)-1.) * 2;
-
-  vec<size_t> rev;
-  vec<C> w;
-
-  template <bool inv = false>
-  void difdit(vec<C> &f) const {
+  void dif(vec<C> &f) const {
     size_t n = size();
     assert(f.size() <= n);
     f.resize(n);
@@ -51,9 +41,18 @@ struct FFT {
           *l = *l + tmp;
         }
       }
-    if constexpr (inv)
-      for (size_t i = 0; i < n; ++i) f[i] /= (FP)n;
   }
+  void dit(vec<C> &f) const {
+    size_t n = size();
+    dif(f);
+    for (size_t i = 0; i < n; ++i) f[i] /= (FP)n;
+  }
+
+ private:
+  const FP TAU = std::acos((FP)-1.) * 2;
+
+  vec<size_t> rev;
+  vec<C> w;
 };
 
 }  // namespace tifa_libs::math
