@@ -3,8 +3,8 @@
 
 #include "../math/qresidue.hpp"
 #include "poly_inv.hpp"
-#include "poly_shl.hpp"
 #include "poly_shr.hpp"
+#include "poly_shl.hpp"
 
 namespace tifa_libs::math {
 
@@ -38,11 +38,11 @@ inline std::optional<poly<T>> poly_sqrt(poly<T> p) {
   size_t cnt = std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x.val() > 0; }) - p.data().begin();
   if (cnt == n) return p;
   if (cnt & 1) return {};
-  p = poly_shl(p, cnt);
+  p = poly_shr(p, cnt);
   p.strip();
   if (bool _ = polysqrt_detail_::sqrt_(p, ans, p.size()); !_) return {};
   ans.resize(n);
-  ans = poly_shr(ans, cnt / 2);
+  ans = poly_shl(ans, cnt / 2);
   return ans;
 }
 

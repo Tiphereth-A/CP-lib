@@ -3,7 +3,7 @@
 
 #include "../poly/poly.hpp"
 #include "../poly/poly_inv.hpp"
-#include "../poly/poly_shr.hpp"
+#include "../poly/poly_shl.hpp"
 #include "../poly/poly_tsh.hpp"
 #include "fact_mod_gen.hpp"
 #include "ifact_mod_gen.hpp"
@@ -47,7 +47,7 @@ inline poly<T> stirling2_col_gen(u64 n, u64 k, vec<u64> const& fact, vec<u64> co
   f.resize(n - k + 1);
   f = poly_inv(f);
   f.resize(n + 1);
-  return poly_shr(f, k);
+  return poly_shl(f, k);
 }
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class T>

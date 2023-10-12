@@ -4,8 +4,8 @@
 #include "../math/qpow.hpp"
 #include "poly_exp.hpp"
 #include "poly_ln.hpp"
-#include "poly_shl.hpp"
 #include "poly_shr.hpp"
+#include "poly_shl.hpp"
 
 namespace tifa_libs::math {
 
@@ -22,14 +22,14 @@ inline poly<T> poly_pow(poly<T> const &p, u64 y) {
     _[0] = 1;
     return _;
   }
-  _ = poly_shl(_, l0);
+  _ = poly_shr(_, l0);
   _.strip();
   mint _0 = _[0];
   if (_0 != 1) _ *= _0.inv();
   _ = poly_exp(poly_ln(_) * y);
   if (_0 != 1) _ *= qpow(_0, y);
   _.resize(n);
-  return poly_shr(_, l0 * y);
+  return poly_shl(_, l0 * y);
 }
 
 }  // namespace tifa_libs::math

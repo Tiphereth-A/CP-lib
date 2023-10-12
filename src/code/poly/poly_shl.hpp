@@ -9,11 +9,11 @@ template <class T>
 inline poly<T> poly_shl(poly<T> const &p, size_t x) {
   if (!x) return p;
   auto _ = p;
-  if (x >= p.size()) {
+  if (x >= _.size()) {
     std::fill(_.data().begin(), _.data().end(), 0);
     return _;
   }
-  std::fill(std::move(_.data().begin() + x, _.data().end(), _.data().begin()), _.data().end(), 0);
+  std::fill(_.data().begin(), std::move_backward(_.data().begin(), _.data().end() - x, _.data().end()), 0);
   return _;
 }
 

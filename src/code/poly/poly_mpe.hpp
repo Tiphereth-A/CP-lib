@@ -2,7 +2,7 @@
 #define TIFALIBS_POLY_MPE
 
 #include "poly_inv.hpp"
-#include "poly_shl.hpp"
+#include "poly_shr.hpp"
 
 namespace tifa_libs::math {
 
@@ -27,7 +27,7 @@ inline poly<T> poly_mpe(poly<T> f, poly<T> a) {
       size_t m = g.size();
       g.reverse();
       g.conv(f);
-      g = poly_shl(g, m - 1);
+      g = poly_shr(g, m - 1);
       g.resize(f.size());
       return g;
     }
