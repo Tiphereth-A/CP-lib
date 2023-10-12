@@ -3,8 +3,8 @@
 
 #include "../math/qresidue.hpp"
 #include "poly_inv.hpp"
-#include "poly_shr.hpp"
 #include "poly_shl.hpp"
+#include "poly_shr.hpp"
 
 namespace tifa_libs::math {
 

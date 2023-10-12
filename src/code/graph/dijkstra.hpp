@@ -26,6 +26,6 @@ vec<W> dijkstra(vvp<size_t, W> const &g, size_t s, F cb_relax) {
   return dis;
 }
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs::graph
 
 #endif

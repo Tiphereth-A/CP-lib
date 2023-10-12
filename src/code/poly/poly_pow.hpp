@@ -4,8 +4,8 @@
 #include "../math/qpow.hpp"
 #include "poly_exp.hpp"
 #include "poly_ln.hpp"
-#include "poly_shr.hpp"
 #include "poly_shl.hpp"
+#include "poly_shr.hpp"
 
 namespace tifa_libs::math {
 

@@ -58,7 +58,7 @@ class tree {
   }
   void subt_req() {
     if (!sz.size()) get_sz();
-    if(!dfn.size()) get_dfn();
+    if (!dfn.size()) get_dfn();
   }
   void add(size_t u, size_t v) { e_[u].push_back(v), e_[v].push_back(u); }
   vec<size_t> get_dfn() {  // dfn
