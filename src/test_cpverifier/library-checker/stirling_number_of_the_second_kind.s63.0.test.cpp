@@ -12,6 +12,6 @@ int main() {
   std::cin.tie(nullptr);
   tifa_libs::u32 n;
   std::cin >> n;
-  std::cout << tifa_libs::math::stirling2_row_gen<polyd>(n, n);
+  std::cout << tifa_libs::math::stirling2_row_gen<polyd>(n);
   return 0;
 }
