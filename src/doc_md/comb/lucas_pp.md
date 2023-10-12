@@ -1,4 +1,4 @@
 ---
 title: Binomial coeff with prime power modulo
-documentation_of: //src/code/math/lucas_pp.hpp
+documentation_of: //src/code/comb/lucas_pp.hpp
 ---

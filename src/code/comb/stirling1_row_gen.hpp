@@ -32,17 +32,17 @@ void solve(poly<T>& f, size_t n, vec<u64> const& fact, vec<u64> const& ifact) {
 
 }  // namespace stirling1_row_gen_detail_
 
-// stirling1[i] = {n \\brace i}, i=0,1,...,m
+// stirling1[i] = {n \\brace i}, i=0,1,...,n
 template <class T>
-inline poly<T> stirling1_row_gen(u64 m, u64 n, vec<u64> const& fact, vec<u64> const& ifact) {
+inline poly<T> stirling1_row_gen(u64 n, vec<u64> const& fact, vec<u64> const& ifact) {
+  if (!n) return poly<T>{1};
   poly<T> ans;
   stirling1_row_gen_detail_::solve(ans, n, fact, ifact);
-  ans.resize(m + 1);
   return ans;
 }
-// stirling1[i] = {n \\brace i}, i=0,1,...,m
+// stirling1[i] = {n \\brace i}, i=0,1,...,n
 template <class T>
-inline poly<T> stirling1_row_gen(u64 m, u64 n) { return stirling1_row_gen<T>(m, n, fact_mod_gen(n + 1, T::value_type::mod()), ifact_mod_gen(n + 1, T::value_type::mod())); }
+inline poly<T> stirling1_row_gen(u64 n) { return stirling1_row_gen<T>(n, fact_mod_gen(n + 1, T::value_type::mod()), ifact_mod_gen(n + 1, T::value_type::mod())); }
 
 }  // namespace tifa_libs::math
 

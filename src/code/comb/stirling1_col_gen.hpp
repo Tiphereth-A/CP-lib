@@ -20,6 +20,7 @@ inline poly<T> stirling1_col_gen(u64 n, u64 k, vec<u64> const& fact) {
   for (size_t i = 0; i <= n; ++i) a[i] *= ((i - k) & 1 ? mod - fact[i] : fact[i]);
   return a;
 }
+// stirling1[i] = {i \\brack k}, i=0,1,...,n
 template <class T>
 inline poly<T> stirling1_col_gen(u64 n, u64 k) { return stirling1_col_gen<T>(n, k, fact_mod_gen(n + 1, T::value_type::mod())); }
 

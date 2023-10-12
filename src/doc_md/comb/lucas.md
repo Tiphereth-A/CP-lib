@@ -1,6 +1,6 @@
 ---
 title: Binomial coeff with prime modulo
-documentation_of: //src/code/math/lucas.hpp
+documentation_of: //src/code/comb/lucas.hpp
 ---
 
 Lucas theorem:
