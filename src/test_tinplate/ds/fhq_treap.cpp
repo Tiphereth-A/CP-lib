@@ -1,4 +1,3 @@
-#include <cstddef>
 #define PROBLEM "https://www.luogu.com.cn/problem/P3369"
 
 #include "../../code/ds/fhq_treap.hpp"
