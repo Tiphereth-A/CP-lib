@@ -390,6 +390,9 @@ notebook:
     - bell_gen: Bell 数序列
       code_ext: hpp
       test_ext: cpp
+    - partition_gen: 划分数序列
+      code_ext: hpp
+      test_ext: cpp
     - fact_mod_gen: fact_mod_gen
       code_ext: hpp
       test_ext: cpp
