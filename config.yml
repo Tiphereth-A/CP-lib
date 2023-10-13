@@ -660,70 +660,85 @@ notebook:
     - poly: poly
       code_ext: hpp
       test_ext: cpp
-    - poly_acos: poly_acos
+    - poly_acos: 多项式 acos
       code_ext: hpp
       test_ext: cpp
-    - poly_asin: poly_asin
+    - poly_asin: 多项式 asin
       code_ext: hpp
       test_ext: cpp
-    - poly_atan: poly_atan
+    - poly_atan: 多项式 atan
       code_ext: hpp
       test_ext: cpp
-    - poly_cos: poly_cos
+    - poly_cos: 多项式 cos
       code_ext: hpp
       test_ext: cpp
-    - poly_czt: poly_czt
+    - poly_czt: 多项式 Chirp-Z 变换
       code_ext: hpp
       test_ext: cpp
-    - poly_deriv: poly_deriv
+    - poly_deriv: 多项式导数
       code_ext: hpp
       test_ext: cpp
-    - poly_div: poly_div
+    - poly_div: 多项式整除
       code_ext: hpp
       test_ext: cpp
-    - poly_divmod: poly_divmod
+    - poly_divmod: 多项式除法 & 取模
       code_ext: hpp
       test_ext: cpp
-    - poly_exp: poly_exp
+    - poly_exp: 多项式 exp
       code_ext: hpp
       test_ext: cpp
-    - poly_int: poly_int
+    - poly_int: 多项式积分
       code_ext: hpp
       test_ext: cpp
-    - poly_interp: poly_interp
+    - poly_interp: 快速插值
       code_ext: hpp
       test_ext: cpp
-    - poly_inv: poly_inv
+    - poly_inv: 多项式逆函数
       code_ext: hpp
       test_ext: cpp
-    - poly_ln: poly_ln
+    - poly_ln: 多项式 ln
       code_ext: hpp
       test_ext: cpp
-    - poly_mpe: poly_mpe
+    - poly_mpe: 多项式多点求值
       code_ext: hpp
       test_ext: cpp
-    - poly_pow: poly_pow
+    - poly_pow: 多项式 pow
       code_ext: hpp
       test_ext: cpp
-    - poly_shl: poly_shl
+    - poly_shl: 多项式左移
       code_ext: hpp
       test_ext: cpp
-    - poly_shr: poly_shr
+    - poly_shr: 多项式右移
       code_ext: hpp
       test_ext: cpp
-    - poly_sin: poly_sin
+    - poly_sin: 多项式 sin
       code_ext: hpp
       test_ext: cpp
-    - poly_sqrt: poly_sqrt
+    - poly_sqrt: 多项式 sqrt
       code_ext: hpp
       test_ext: cpp
-    - poly_tan: poly_tan
+    - poly_tan: 多项式 tan
       code_ext: hpp
       test_ext: cpp
     - karatsuba: Karatsuba 乘法
       code_ext: hpp
       test_ext: cpp
     - poly_tsh: 多项式单点平移
+      code_ext: hpp
+      test_ext: cpp
+    - polysp: 多项式转稀疏多项式
+      code_ext: hpp
+      test_ext: cpp
+    - polysp_inv: 稀疏多项式逆函数
+      code_ext: hpp
+      test_ext: cpp
+    - polysp_ln: 稀疏多项式 ln
+      code_ext: hpp
+      test_ext: cpp
+    - polysp_exp: 稀疏多项式 exp
+      code_ext: hpp
+      test_ext: cpp
+    - polysp_pow: 稀疏多项式 pow
       code_ext: hpp
       test_ext: cpp
     str:
