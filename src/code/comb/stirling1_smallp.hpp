@@ -25,6 +25,7 @@ class Stirling1 {
   }
 
   constexpr u32 mod() const { return (u32)mCn.mod(); }
+  template <bool with_sgn = true>
   u32 operator()(i64 m_, i64 n_) const {
     if (n_ < 0 || n_ > m_) return 0;
     u32 p = mod();
@@ -40,7 +41,8 @@ class Stirling1 {
     }
     if (i < a || b > j) return 0;
     u32 x = (u32)mCn((i64)i, (i64)a), y = s[j][b], res = x * y % p;
-    if (((i + a) & 1) && res) res = p - res;
+    if constexpr (with_sgn)
+      if (((i + a) & 1) && res) res = p - res;
     return res;
   }
 };
