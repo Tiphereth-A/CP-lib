@@ -8,14 +8,12 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> poly_ln(poly<T> const &p) {
+inline poly<T> poly_ln(poly<T> const &p, size_t n = 0) {
   assert(p[0] == 1);
-  size_t n = p.size();
-  auto _ = poly_deriv(p);
+  if (!n) n = p.size();
+  auto _ = poly_deriv(p).do_resize(n);
   _.conv(poly_inv(p));
-  _ = poly_int(_);
-  _.resize(n);
-  return _;
+  return poly_int(_).do_resize(n);
 }
 
 }  // namespace tifa_libs::math

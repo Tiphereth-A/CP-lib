@@ -48,6 +48,10 @@ class poly {
   template <class F>
   void apply(F f) { apply_range(0, size(), f); }
   constexpr void resize(size_t size) { p.d.resize(size); }
+  constexpr poly &do_resize(size_t size) {
+    resize(size);
+    return *this;
+  }
   constexpr void strip() {
     auto it = std::find_if(p.d.rbegin(), p.d.rend(), [](auto const &x) { return x != 0; });
     p.d.resize(p.d.rend() - it);

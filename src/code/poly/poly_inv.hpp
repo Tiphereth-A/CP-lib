@@ -5,36 +5,13 @@
 
 namespace tifa_libs::math {
 
-namespace polyinv_detail_ {
 template <class T>
-constexpr void inv_(poly<T> const &p, poly<T> &ans, size_t n) {
-  using mint = typename T::value_type;
-  if (n == 1) {
-    ans[0] = p[0].inv();
-    return;
-  }
-  if (n & 1) {
-    inv_(p, ans, n - 1);
-    --n;
-    mint _ = 0;
-    for (size_t i = 0; i < n; ++i) _ += ans[i] * p[n - i];
-    ans.data().push_back(_ * (-p[0]).inv());
-    return;
-  }
-  inv_(p, ans, n / 2);
-  auto sA = p;
-  sA.conv(ans);
-  sA.conv(ans);
-  sA.resize(n);
-  ans = ans * 2 - sA;
-}
-}  // namespace polyinv_detail_
-
-template <class T>
-inline poly<T> poly_inv(poly<T> const &p) {
-  poly<T> ans;
-  polyinv_detail_::inv_(p, ans, p.size());
-  return ans;
+inline poly<T> poly_inv(poly<T> const &p, size_t n = 0) {
+  assert(p[0] != 0);
+  if (!n) n = p.size();
+  poly<T> a{p[0].inv()};
+  for (size_t i = 1; i < n; i *= 2) a = (a * 2 - (a * a * p).do_resize(i * 2)).do_resize(i * 2);
+  return a.do_resize(n);
 }
 
 }  // namespace tifa_libs::math
