@@ -5,20 +5,21 @@
 
 namespace tifa_libs::rand {
 
-template <class Re, class Distri>
+template <class Distri>
 class Gen {
-  Re re;
+  std::conditional_t<sizeof(typename Distri::result_type) <= 4, std::mt19937, std::mt19937_64> re;
   Distri dist;
 
  public:
-  using random_engine = Re;
+  using random_engine = decltype(re);
   using distribution = Distri;
   using result_type = typename Distri::result_type;
 
-  Gen(Re &&re_, Distri &&dist_) : re(std::move(re_)), dist(std::move(dist_)) {}
+  Gen() : re(std::random_device{}()), dist() {}
 
-  Re &rand_eng() { return re; }
-  Distri &distrib() { return dist; }
+  void set_range(result_type a, result_type b) { dist = Distri(a, b); }
+  random_engine& rand_eng() { return re; }
+  Distri& distrib() { return dist; }
 
   result_type operator()() { return dist(re); }
 };

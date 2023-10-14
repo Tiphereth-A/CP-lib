@@ -20,7 +20,8 @@ int main() {
     a(x, y) = z;
   }
   auto is0 = [](mint const &x) { return x.val() == 0; };
-  tifa_libs::rand::Gen gen(std::mt19937(), std::uniform_int_distribution<tifa_libs::u32>(1, mint::mod() - 1));
+  tifa_libs::rand::Gen<std::uniform_int_distribution<tifa_libs::u32>> gen;
+  gen.set_range(1, mint::mod() - 1);
   std::cout << tifa_libs::math::det_rd(a, gen, is0) << '\n';
   return 0;
 }

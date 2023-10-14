@@ -14,7 +14,7 @@ class fhq_treap {
     i32 rad;
     YYZ(Ty VAL = 0, size_t SZ = 0, i32 RAD = 0, size_t LS = 0, size_t RS = 0) : val(VAL), sz(SZ), ls(LS), rs(RS), rad(RAD) {}
   };
-  rand::Gen<std::mt19937, std::uniform_int_distribution<i32>> gen;
+  rand::Gen<std::uniform_int_distribution<i32>> gen;
   vec<YYZ> t;
   vec<size_t> sta;
   size_t cnt;
@@ -29,7 +29,7 @@ class fhq_treap {
 
  public:
   size_t root;
-  explicit constexpr fhq_treap(size_t MAX_N) : gen(std::mt19937(), std::uniform_int_distribution<i32>()), t(MAX_N + 1), sta(), cnt(0), root(0) {
+  explicit constexpr fhq_treap(size_t MAX_N) : gen(), t(MAX_N + 1), sta(), cnt(0), root(0) {
     if (recovery) sta.reserve(MAX_N + 1);
   }
   void split(size_t u, Ty k, size_t& x, size_t& y) {
@@ -121,7 +121,7 @@ class fhq_treap_w {
     bool rev;
     YYZ(T W = e(), T VAL = e(), size_t SZ = 0, i32 RAD = 0, F SIGN = id()) : w(W), val(VAL), sign(SIGN), sz(SZ), ls(0), rs(0), rad(RAD), rev(0) {}
   };
-  rand::Gen<std::mt19937, std::uniform_int_distribution<i32>> gen;
+  rand::Gen<std::uniform_int_distribution<i32>> gen;
   vec<YYZ> t;
   vec<size_t> sta;
   size_t cnt;
@@ -152,7 +152,7 @@ class fhq_treap_w {
 
  public:
   size_t root;
-  explicit constexpr fhq_treap_w(size_t MAX_N) : gen(std::mt19937(), std::uniform_int_distribution<i32>()), t(MAX_N + 1), sta(), cnt(0), root(0) {
+  explicit constexpr fhq_treap_w(size_t MAX_N) : gen(), t(MAX_N + 1), sta(), cnt(0), root(0) {
     if (recovery) sta.reserve(MAX_N + 1);
   }
   void split(size_t u, size_t k, size_t& x, size_t& y) {

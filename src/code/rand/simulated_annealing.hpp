@@ -5,17 +5,16 @@
 
 namespace tifa_libs::rand {
 
-template <class T, class Re, class fT = double, class Tt = double>
+template <class T, class fT = double, class Tt = double>
 class simuanl {
   const Tt Tmax, Tmin, dT;
-  using Distri = std::uniform_real_distribution<Tt>;
-  Gen<Re, Distri> g;
+  Gen<std::uniform_real_distribution<Tt>> g;
 
   //? Metropolis acceptance criteria
   bool chk(fT dfit, Tt now_T) { return dfit <= 0 || std::exp(-dfit / now_T) > g(); }
 
  public:
-  explicit simuanl(Re &&re, Tt Tmax = 1e10, Tt Tmin = 1e-10, Tt dT = 1 - 1e-5) : Tmax(Tmax), Tmin(Tmin), dT(dT), g(re, Distri(0, 1)) {}
+  explicit simuanl(Tt Tmax = 1e10, Tt Tmin = 1e-10, Tt dT = 1 - 1e-5) : Tmax(Tmax), Tmin(Tmin), dT(dT), g() { g.set_range(0, 1); }
 
   // Find minimum for fitness(sequence), which sequence is a permutation of initial_sequence
   // F: fT(vec<T> const &)

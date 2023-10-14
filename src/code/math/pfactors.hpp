@@ -2,6 +2,7 @@
 #define TIFA_LIBS_MATH_PFACTORS
 
 #include "../bit/cntr0.hpp"
+#include "../rand/gen.hpp"
 #include "is_prime.hpp"
 #include "mul_mod_u.hpp"
 
@@ -10,12 +11,12 @@ namespace tifa_libs::math {
 namespace pfactors_detail__ {
 
 class PollardRho {
-  std::mt19937_64 e;
+  rand::Gen<std::uniform_int_distribution<u64>> e;
 
   u64 rho(u64 n) {
-    std::uniform_int_distribution<u64> u(2, n - 1);
-    auto f = [n, r = u(e)](u64 x) { return (mul_mod_u(x, x, n) + r) % n; };
-    u64 g = 1, x = 0, y = u(e), yy = 0;
+    e.set_range(2, n - 1);
+    auto f = [n, r = e()](u64 x) { return (mul_mod_u(x, x, n) + r) % n; };
+    u64 g = 1, x = 0, y = e(), yy = 0;
     const u32 LIM = 128;
     for (u64 r = 1, q = 1; g == 1; r *= 2) {
       x = y;
@@ -33,7 +34,7 @@ class PollardRho {
   }
 
  public:
-  explicit PollardRho() : e(std::random_device{}()) {}
+  explicit PollardRho() : e() {}
 
   void operator()(u64 n, std::map<u64, u32> &ans) {
     if (n < 2) return;
