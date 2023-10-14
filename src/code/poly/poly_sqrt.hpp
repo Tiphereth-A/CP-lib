@@ -18,7 +18,7 @@ inline std::optional<poly<T>> poly_sqrt(poly<T> p, size_t n = 0) {
   poly<T> ans{0};
   p = poly_shr(p, cnt);
   if (auto qres = qresidue(p[0].val(), mint::mod()); !qres.has_value()) return {};
-  else ans[0] = std::min<i64>(qres.value(), mint::mod() - qres.value());
+  else ans[0] = std::min(qres.value(), mint::mod() - qres.value());
   mint i2 = mint(2).inv();
   for (size_t i = 1; i < n; i *= 2) ans = (ans + p.pre(i * 2) * poly_inv(ans, i * 2)) * i2;
   ans.resize(n);

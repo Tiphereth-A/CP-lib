@@ -532,7 +532,7 @@ notebook:
     - qpow: qpow
       code_ext: hpp
       test_ext: cpp
-    - qresidue: qresidue
+    - qresidue: 二次剩余
       code_ext: hpp
       test_ext: cpp
     - qtetra_mod: qtetra_mod
