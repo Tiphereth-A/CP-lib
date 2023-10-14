@@ -69,6 +69,17 @@ class poly {
     return ret;
   }
 
+  friend poly operator+(poly p, value_type c) {
+    p[0] += c;
+    return p;
+  }
+  friend poly operator+(value_type c, poly const &p) { return p + c; }
+  friend poly operator-(poly p, value_type c) {
+    p[0] -= c;
+    return p;
+  }
+  friend poly operator-(value_type c, poly const &p) { return p - c; }
+
   constexpr poly &operator*=(value_type c) {
     apply([&c]([[maybe_unused]] size_t i, auto &v) { v *= c; });
     return *this;

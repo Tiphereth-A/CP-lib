@@ -732,6 +732,9 @@ notebook:
     - poly_tsh: 多项式单点平移
       code_ext: hpp
       test_ext: cpp
+    - poly_ode: 多项式 ODE
+      code_ext: hpp
+      test_ext: cpp
     - polysp: 多项式转稀疏多项式
       code_ext: hpp
       test_ext: cpp

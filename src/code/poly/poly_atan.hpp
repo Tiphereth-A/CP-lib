@@ -13,8 +13,7 @@ inline poly<T> poly_atan(poly<T> const &p) {
   poly<T> _ = p;
   _.conv(p);
   _.resize(n);
-  _[0] = _[0] + 1;
-  _ = -poly_inv(_);
+  _ = -poly_inv(_ + 1);
   _.conv(poly_deriv(p));
   _.resize(n);
   return poly_int(_);

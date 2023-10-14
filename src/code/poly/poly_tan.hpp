@@ -12,9 +12,7 @@ template <class T>
 inline poly<T> poly_tan(poly<T> const &p) {
   using mint = typename T::value_type;
   mint i = -qpow(mint(proot_u64(mint::mod())), (mint::mod() - 1) / 4);
-  auto _ = poly_exp(p * i), _0 = _, _1 = _;
-  _0[0] = _0[0] - 1;
-  _1[0] = _1[0] + 1;
+  auto _ = poly_exp(p * i), _0 = _ - 1, _1 = _ + 1;
   _0 = _0.conv(poly_inv(_1) * i);
   _0.resize(p.size());
   return _0;
