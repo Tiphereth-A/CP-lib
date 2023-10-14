@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
 
-#include "../../code/ds/fhq_treap.hpp"
+#include "../../code/ds/fhq_treap_w.hpp"
 #include "../../code/math/mint_s30.hpp"
 
 using mint = tifa_libs::math::mint_s30<998244353>;
