@@ -14,6 +14,7 @@ class suffix_automaton {
     tifa_libs::i64 sz;
     tifa_libs::i32 times;
   };
+
  public:
   size_t sz;
   vec<YYZ> st;
@@ -62,7 +63,7 @@ class suffix_automaton {
   void getsz(size_t u = 0) {
     st[u].sz = 1;
     for (auto [c, v] : st[u].nex) {
-      if(!st[v].sz) getsz(v);
+      if (!st[v].sz) getsz(v);
       st[u].sz += st[v].sz;
     }
   }

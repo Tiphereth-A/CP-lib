@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_CONV_NAIVE
-#define TIFALIBS_POLY_CONV_NAIVE
+#ifndef TIFALIBS_CONV_CONV_NAIVE
+#define TIFALIBS_CONV_CONV_NAIVE
 
 #include "../util/util.hpp"
 

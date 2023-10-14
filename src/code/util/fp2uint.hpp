@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_FP2UINT
-#define TIFA_LIBS_GEO2D_FP2UINT
+#ifndef TIFA_LIBS_UTIL_FP2UINT
+#define TIFA_LIBS_UTIL_FP2UINT
 
 #include "util.hpp"
 

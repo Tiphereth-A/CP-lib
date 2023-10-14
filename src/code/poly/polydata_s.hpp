@@ -1,9 +1,9 @@
 #ifndef TIFALIBS_POLY_POLYDATA_S
 #define TIFALIBS_POLY_POLYDATA_S
 
+#include "../conv/conv_naive.hpp"
+#include "../conv/conv_ntt.hpp"
 #include "../util/util.hpp"
-#include "conv_naive.hpp"
-#include "conv_ntt.hpp"
 
 namespace tifa_libs::math {
 

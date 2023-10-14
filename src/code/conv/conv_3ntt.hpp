@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_CONV_3NTT
-#define TIFALIBS_POLY_CONV_3NTT
+#ifndef TIFALIBS_CONV_CONV_3NTT
+#define TIFALIBS_CONV_CONV_3NTT
 
 #include "../math/mul_mod_u.hpp"
 #include "../util/util.hpp"

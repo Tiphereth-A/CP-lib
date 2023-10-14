@@ -17,6 +17,7 @@ notebook:
     comb: 组合数学
     math: 数学
     matrix: 矩阵
+    conv: 卷积
     poly: 多项式
     str: 字符串
     rand: 随机数与随机化算法
@@ -568,7 +569,7 @@ notebook:
     - cantor_inv: 逆 Cantor 展开
       code_ext: hpp
       test_ext: cpp
-    - kth-root: K 次剩余
+    - kth_root: K 次剩余
       code_ext: hpp
       test_ext: cpp
     matrix:
@@ -641,7 +642,7 @@ notebook:
     - spmat_merge_ud: spmat_merge_ud
       code_ext: hpp
       test_ext: cpp
-    poly:
+    conv:
     - conv_3ntt: 卷积（三模 NTT）
       code_ext: hpp
       test_ext: cpp
@@ -660,6 +661,10 @@ notebook:
     - ntt: ntt
       code_ext: hpp
       test_ext: cpp
+    - karatsuba: Karatsuba 乘法
+      code_ext: hpp
+      test_ext: cpp
+    poly:
     - polydata_d: polydata_d
       code_ext: hpp
       test_ext: cpp
@@ -727,9 +732,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - poly_tan: 多项式 tan
-      code_ext: hpp
-      test_ext: cpp
-    - karatsuba: Karatsuba 乘法
       code_ext: hpp
       test_ext: cpp
     - poly_tsh: 多项式单点平移

@@ -27,7 +27,7 @@ inline ptt<vec<size_t>> suffixsort(std::string s) {
     p = 0;
     for (size_t i = 1; i <= n; ++i) {
       size_t x = sa[i], y = sa[i - 1];
-      rk[x] = oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w] ? p : ++ p;
+      rk[x] = oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w] ? p : ++p;
     }
     if (p == n) break;
   }

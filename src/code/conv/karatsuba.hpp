@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_KARATSUBA
-#define TIFALIBS_POLY_KARATSUBA
+#ifndef TIFALIBS_CONV_KARATSUBA
+#define TIFALIBS_CONV_KARATSUBA
 
 #include "conv_naive.hpp"
 

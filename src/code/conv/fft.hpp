@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_FFT
-#define TIFALIBS_POLY_FFT
+#ifndef TIFALIBS_CONV_FFT
+#define TIFALIBS_CONV_FFT
 
 #include "../bit/bceil.hpp"
 #include "../bit/log2.hpp"

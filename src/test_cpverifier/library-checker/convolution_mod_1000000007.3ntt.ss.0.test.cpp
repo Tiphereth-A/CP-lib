@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
+#include "../../code/conv/conv_3ntt.hpp"
 #include "../../code/math/mint_ss.hpp"
-#include "../../code/poly/conv_3ntt.hpp"
 
 using mint0 = tifa_libs::math::mint_ss<167772161>;
 using mint1 = tifa_libs::math::mint_ss<469762049>;

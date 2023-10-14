@@ -2,7 +2,6 @@
 
 #include "../../code/str/suffix_automaton.hpp"
 
-
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);

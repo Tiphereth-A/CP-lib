@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_2_64"
 
-#include "../../code/poly/karatsuba.hpp"
+#include "../../code/conv/karatsuba.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

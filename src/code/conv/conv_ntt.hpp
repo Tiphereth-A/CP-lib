@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_CONV_NTT
-#define TIFALIBS_POLY_CONV_NTT
+#ifndef TIFALIBS_CONV_CONV_NTT
+#define TIFALIBS_CONV_CONV_NTT
 
 #include "../util/util.hpp"
 #include "ntt.hpp"

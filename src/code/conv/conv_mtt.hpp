@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_CONV_MTT
-#define TIFALIBS_POLY_CONV_MTT
+#ifndef TIFALIBS_CONV_CONV_MTT
+#define TIFALIBS_CONV_CONV_MTT
 
 #include "../util/util.hpp"
 #include "fft.hpp"

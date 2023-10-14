@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_NTT
-#define TIFALIBS_POLY_NTT
+#ifndef TIFALIBS_CONV_NTT
+#define TIFALIBS_CONV_NTT
 
 #include "../bit/bceil.hpp"
 #include "../math/proot_u64.hpp"
