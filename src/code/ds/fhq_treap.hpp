@@ -3,6 +3,7 @@
 
 #include "../rand/gen.hpp"
 #include "../util/util.hpp"
+
 namespace tifa_libs::ds {
 
 template <class Ty, bool recovery = false>
