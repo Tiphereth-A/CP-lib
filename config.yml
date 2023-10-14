@@ -766,6 +766,9 @@ notebook:
     - suffix_array: 后缀数组
       code_ext: hpp
       test_ext: cpp
+    - suffix_automaton: 后缀自动机
+      code_ext: hpp
+      test_ext: cpp
     rand:
     - gen: 随机数生成辅助类
       code_ext: hpp
