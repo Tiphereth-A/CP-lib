@@ -12,7 +12,7 @@ inline poly<T> polysp_ln(poly<T> const& p, vec<u64> const& inv, size_t n = 0) {
   if (!n) n = p.size();
   polysp<T> ps = poly2sp(p, n);
   poly<T> g(n);
-  for (size_t k = 0; k < n - 1; k++) {
+  for (size_t k = 0; k < n - 1; ++k) {
     for (auto& [j, pj] : ps) {
       if (k < j) break;
       size_t i = k - j + 1;

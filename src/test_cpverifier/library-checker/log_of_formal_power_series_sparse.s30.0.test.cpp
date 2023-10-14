@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse"
+#define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse"
 
 #include "../../code/math/mint_s30.hpp"
 #include "../../code/poly/polydata_s.hpp"

@@ -1,8 +1,8 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse"
+#define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse"
 
 #include "../../code/math/mint_s63.hpp"
 #include "../../code/poly/polydata_s.hpp"
-#include "../../code/poly/polysp_ln.hpp"
+#include "../../code/poly/polysp_exp.hpp"
 
 using mint = tifa_libs::math::mint_s63<998244353>;
 using pldt_t = tifa_libs::math::polydata_s<mint>;
@@ -15,6 +15,6 @@ int main() {
   std::cin >> n >> k;
   poly_t p(n);
   for (size_t i = 0, x; i < k; ++i) std::cin >> x >> p[x];
-  std::cout << tifa_libs::math::polysp_ln(p);
+  std::cout << tifa_libs::math::polysp_exp(p);
   return 0;
 }
