@@ -8,42 +8,21 @@
 
 namespace tifa_libs::math {
 
-namespace polysqrt_detail_ {
 template <class T>
-constexpr bool sqrt_(poly<T> const &p, poly<T> &ans, size_t n) {
+inline std::optional<poly<T>> poly_sqrt(poly<T> p, size_t n = 0) {
   using mint = typename T::value_type;
-  if (n == 1) {
-    auto qres = qresidue(p[0].val(), mint::mod());
-    if (!qres.has_value()) return false;
-    ans[0] = std::min<i64>(qres.value(), mint::mod() - qres.value());
-    return true;
-  }
-  if (!sqrt_(p, ans, (n + 1) / 2)) return false;
-  poly<T> sA = p;
-  sA.resize(n);
-  ans.resize(ans.size() * 2);
-  auto _ = poly_inv(ans * 2);
-  ans.conv(ans);
-  ans.resize(n);
-  (ans += sA).conv(_);
-  ans.resize(n);
-  return true;
-}
-}  // namespace polysqrt_detail_
-
-template <class T>
-inline std::optional<poly<T>> poly_sqrt(poly<T> p) {
-  poly<T> ans;
-  size_t n = p.size();
-  size_t cnt = std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x.val() > 0; }) - p.data().begin();
-  if (cnt == n) return p;
+  if (!n) n = p.size();
+  size_t cnt = std::find_if(p.data().begin(), p.data().begin() + n, [](auto const &x) { return x.val() > 0; }) - p.data().begin();
+  if (cnt == n) return p.pre(n);
   if (cnt & 1) return {};
+  poly<T> ans{0};
   p = poly_shr(p, cnt);
-  p.strip();
-  if (bool _ = polysqrt_detail_::sqrt_(p, ans, p.size()); !_) return {};
+  if (auto qres = qresidue(p[0].val(), mint::mod()); !qres.has_value()) return {};
+  else ans[0] = std::min<i64>(qres.value(), mint::mod() - qres.value());
+  mint i2 = mint(2).inv();
+  for (size_t i = 1; i < n; i *= 2) ans = (ans + p.pre(i * 2) * poly_inv(ans, i * 2)) * i2;
   ans.resize(n);
-  ans = poly_shl(ans, cnt / 2);
-  return ans;
+  return poly_shl(ans, cnt / 2);
 }
 
 }  // namespace tifa_libs::math
