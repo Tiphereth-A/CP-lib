@@ -66,6 +66,9 @@ notebook:
     - gray_code: Gray 码
       code_ext: hpp
       test_ext: cpp
+    - simd: SIMD
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
