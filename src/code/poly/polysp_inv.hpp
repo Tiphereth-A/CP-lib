@@ -22,9 +22,9 @@ inline poly<T> polysp_inv(polysp<T> const& ps, size_t n) {
 }
 template <class T>
 inline poly<T> polysp_inv(poly<T> const& p, size_t n = 0) {
-  assert(!p.empty() && p[0] != 0);
+  assert(!p.data().empty() && p[0] != 0);
   if (!n) n = p.size();
-  return polysp_inv(poly2sp(p, n), n);
+  return polysp_inv<T>(poly2sp(p, n), n);
 }
 
 }  // namespace tifa_libs::math

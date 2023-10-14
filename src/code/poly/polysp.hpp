@@ -10,7 +10,7 @@ using polysp = vec<std::pair<size_t, typename poly<T>::value_type>>;
 
 template <class T>
 inline polysp<T> poly2sp(poly<T> const& p, size_t n = 0) {
-  assert(p.empty() == false && p[0] != 0);
+  assert(!p.data().empty() && p[0] != 0);
   if (!n) n = p.size();
   polysp<T> fs;
   for (size_t i = 1; i < p.size(); ++i)
