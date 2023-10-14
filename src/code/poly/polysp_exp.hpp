@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 
 template <class T>
 inline poly<T> polysp_exp(poly<T> const& p, vec<u64> const& inv, size_t n = 0) {
-  if (p.data().empty()) return {};
+  if (p.data().empty()) return p;
   assert(p[0] == 0);
   if (!n) n = p.size();
   polysp<T> ps = poly2sp(p, n);
