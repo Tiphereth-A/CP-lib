@@ -655,13 +655,40 @@ notebook:
     - conv_ntt: 卷积（NTT）
       code_ext: hpp
       test_ext: cpp
-    - fft: fft
+    - fft: 快速 Fourier 变换
       code_ext: hpp
       test_ext: cpp
-    - ntt: ntt
+    - ntt: 数论变换
       code_ext: hpp
       test_ext: cpp
     - karatsuba: Karatsuba 乘法
+      code_ext: hpp
+      test_ext: cpp
+    - wht: Walsh Hadamard 变换
+      code_ext: hpp
+      test_ext: cpp
+    - zt_subset: 子集 Zeta 变换
+      code_ext: hpp
+      test_ext: cpp
+    - zt_supset: 超集 Zeta 变换
+      code_ext: hpp
+      test_ext: cpp
+    - mt_subset: 子集 Mobius 变换
+      code_ext: hpp
+      test_ext: cpp
+    - mt_supset: 超集 Mobius 变换
+      code_ext: hpp
+      test_ext: cpp
+    - conv_subset: 子集卷积
+      code_ext: hpp
+      test_ext: cpp
+    - conv_and: 卷积（并）
+      code_ext: hpp
+      test_ext: cpp
+    - conv_or: 卷积（交）
+      code_ext: hpp
+      test_ext: cpp
+    - conv_xor: 卷积（异或）
       code_ext: hpp
       test_ext: cpp
     poly:
