@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_ISQRT
-#define TIFA_LIBS_MATH_ISQRT
+#ifndef TIFA_LIBS_MATH_KAHAN
+#define TIFA_LIBS_MATH_KAHAN
 
 #include "../util/util.hpp"
 
