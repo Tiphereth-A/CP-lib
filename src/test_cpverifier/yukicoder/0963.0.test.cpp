@@ -17,6 +17,6 @@ int main() {
   auto dg = [](poly_t const& f, size_t n) { return f.pre(n); };
   mint ans = tifa_libs::math::poly_ode<pldt_t>(g, dg, 1, n + 1)[n] * 2;
   for (size_t i = 2; i <= n; ++i) ans *= i;
-  std::cout << ans;
+  std::cout << ans << '\n';
   return 0;
 }
