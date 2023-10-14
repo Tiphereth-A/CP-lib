@@ -10,26 +10,29 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> poly_pow(poly<T> const &p, u64 y) {
+inline poly<T> poly_pow(poly<T> const &p, u64 y, size_t n = 0) {
   using mint = typename T::value_type;
-  if (y == 1) return p;
-  size_t n = p.size();
-  size_t l0 = std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x != 0; }) - p.data().begin();
-  if ((u128)l0 * y >= n) return poly<T>(n);
-  auto _ = p;
+  if (!n) n = p.size();
   if (y == 0) {
-    std::fill(_.data().begin() + 1, _.data().end(), 0);
-    _[0] = 1;
+    poly<T> _(n);
+    if (n) _[0] = 1;
     return _;
   }
-  _ = poly_shr(_, l0);
-  _.strip();
-  mint _0 = _[0];
+  if (y == 1) return p;
+  size_t l0 = std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x != 0; }) - p.data().begin();
+  if ((u128)l0 * y >= n) return poly<T>(n);
+  if (l0) {
+    auto _ = poly_shr(p, l0), g = poly_pow(_, y, n - l0 * y);
+    g.resize(n);
+    return poly_shl(g, l0 * y);
+  }
+  auto _ = p;
+  mint _0 = p[0];
   if (_0 != 1) _ *= _0.inv();
   _ = poly_exp(poly_ln(_) * y);
   if (_0 != 1) _ *= qpow(_0, y);
   _.resize(n);
-  return poly_shl(_, l0 * y);
+  return _;
 }
 
 }  // namespace tifa_libs::math
