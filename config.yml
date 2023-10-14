@@ -63,6 +63,9 @@ notebook:
     - discretization: 离散化
       code_ext: hpp
       test_ext: cpp
+    - gray_code: Gray 码
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
