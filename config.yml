@@ -67,6 +67,12 @@ notebook:
     - gray_code: Gray 码
       code_ext: hpp
       test_ext: cpp
+    - enum_subset: 枚举子集
+      code_ext: hpp
+      test_ext: cpp
+    - enum_supset: 枚举超集
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
