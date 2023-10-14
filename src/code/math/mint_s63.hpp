@@ -17,7 +17,7 @@ class mint_s63 {
   static constexpr u64 get_r2() {
     u64 iv = -MOD % MOD;
     for (int i = 0; i != 64; ++i)
-      if ((iv <<= 1) >= MOD) iv -= MOD;
+      if ((iv *= 2) >= MOD) iv -= MOD;
     return iv;
   }
   static constexpr u64 mul_high(u64 x, u64 y) {

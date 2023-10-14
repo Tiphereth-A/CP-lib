@@ -18,7 +18,7 @@ constexpr bool is_prime(u64 n) {
       u64 t = d, y = qpow_mod(i, t, n);
       while (t != n - 1 && y != 1 && y != n - 1) {
         y = mul_mod_u(y, y, n);
-        t <<= 1;
+        t *= 2;
       }
       if (y != n - 1 && (~t & 1)) return false;
     }

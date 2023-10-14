@@ -34,7 +34,7 @@ class mint_d63 {
     {
       R2 = -MOD % MOD;
       for (int i = 0; i != 64; ++i)
-        if ((R2 <<= 1) >= MOD) R2 -= MOD;
+        if ((R2 *= 2) >= MOD) R2 -= MOD;
     }
     SMOD = (i64)(MOD);
     return true;

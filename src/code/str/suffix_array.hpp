@@ -13,7 +13,7 @@ inline ptt<vec<size_t>> suffixsort(std::string s) {
   for (size_t i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
   for (size_t i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
 
-  for (size_t w = 1;; w <<= 1, m = p) {
+  for (size_t w = 1;; w *= 2, m = p) {
     p = 0;
     for (size_t i = n; i > n - w; --i) id[++p] = i;
     for (size_t i = 1; i <= n; ++i)
