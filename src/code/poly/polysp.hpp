@@ -13,7 +13,7 @@ inline polysp<T> poly2sp(poly<T> const& p, size_t n = 0) {
   assert(!p.data().empty() && p[0] != 0);
   if (!n) n = p.size();
   polysp<T> fs;
-  for (size_t i = 1; i < p.size(); ++i)
+  for (size_t i = 0; i < p.size(); ++i)
     if (p[i] != 0) fs.emplace_back(i, p[i]);
   return fs;
 }
