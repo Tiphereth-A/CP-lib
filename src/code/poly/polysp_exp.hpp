@@ -17,7 +17,7 @@ inline poly<T> polysp_exp(poly<T> const& p, vec<u64> const& inv, size_t n = 0) {
   for (size_t k = 0; k < n - 1; ++k) {
     for (auto& [j, pj] : ps) {
       size_t i = j - 1;
-      if (k < j - 1) break;
+      if (k < i) break;
       g[k + 1] += pj * g[k - i] * j;
     }
     g[k + 1] *= inv[k + 1];
