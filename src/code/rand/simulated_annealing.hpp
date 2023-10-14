@@ -14,7 +14,7 @@ class simuanl {
   bool chk(fT dfit, Tt now_T) { return dfit <= 0 || std::exp(-dfit / now_T) > g(); }
 
  public:
-  explicit simuanl(Tt Tmax = 1e10, Tt Tmin = 1e-10, Tt dT = 1 - 1e-5) : Tmax(Tmax), Tmin(Tmin), dT(dT), g() { g.set_range(0, 1); }
+  explicit simuanl(Tt Tmax = 1e10, Tt Tmin = 1e-10, Tt dT = 1 - 1e-5) : Tmax(Tmax), Tmin(Tmin), dT(dT), g(0, 1) {}
 
   // Find minimum for fitness(sequence), which sequence is a permutation of initial_sequence
   // F: fT(vec<T> const &)

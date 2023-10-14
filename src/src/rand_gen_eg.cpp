@@ -3,6 +3,7 @@
 int main() {
   // 初始化
   tifa_libs::rand::Gen<std::uniform_int_distribution<int>> gen;
+  tifa_libs::rand::Gen<std::uniform_int_distribution<int>> gen2(0, 114514);
   // 设置范围
   gen.set_range(0, 114514);
   // 访问随机数生成器

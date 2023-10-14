@@ -16,6 +16,7 @@ class Gen {
   using result_type = typename Distri::result_type;
 
   Gen() : re(std::random_device{}()), dist() {}
+  Gen(result_type a, result_type b) : re(std::random_device{}()), dist(a, b) {}
 
   void set_range(result_type a, result_type b) { dist = Distri(a, b); }
   random_engine& rand_eng() { return re; }
