@@ -502,7 +502,7 @@ notebook:
     - mint_d63: mint_d63
       code_ext: hpp
       test_ext: cpp
-    - mint_sd: 不固定模数 modint 的简单实现
+    - mint_ds: 不固定模数 modint 的简单实现
       code_ext: hpp
       test_ext: cpp
     - mint_s30: mint_s30

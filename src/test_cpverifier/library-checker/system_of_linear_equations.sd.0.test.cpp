@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/system_of_linear_equations"
 
-#include "../../code/math/mint_sd.hpp"
+#include "../../code/math/mint_ds.hpp"
 #include "../../code/matrix/leqs_solver.hpp"
 #include "../../code/matrix/mat_ge_basic.hpp"
 #include "../../code/matrix/mat_trans.hpp"
 
-using mint = tifa_libs::math::mint_sd<-1>;
+using mint = tifa_libs::math::mint_ds<-1>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {

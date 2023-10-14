@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sparse_matrix_det"
 
-#include "../../code/math/mint_sd.hpp"
+#include "../../code/math/mint_ds.hpp"
 #include "../../code/matrix/mat_det_rd.hpp"
 #include "../../code/matrix/spmat.hpp"
 #include "../../code/rand/gen.hpp"
 
-using mint = tifa_libs::math::mint_sd<-1>;
+using mint = tifa_libs::math::mint_ds<-1>;
 using mat = tifa_libs::math::spmat<mint>;
 
 int main() {

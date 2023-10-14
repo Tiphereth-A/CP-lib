@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod"
 
-#include "../../code/math/mint_sd.hpp"
+#include "../../code/math/mint_ds.hpp"
 #include "../../code/matrix/mat.hpp"
 #include "../../code/matrix/mat_det.hpp"
 #include "../../code/matrix/mat_ge_euclid.hpp"
 
-using mint = tifa_libs::math::mint_sd<-1>;
+using mint = tifa_libs::math::mint_ds<-1>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {

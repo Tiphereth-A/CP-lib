@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
-#include "../../code/math/mint_sd.hpp"
+#include "../../code/math/mint_ds.hpp"
 #include "../../code/poly/conv_mtt.hpp"
 
-using mint = tifa_libs::math::mint_sd<-1>;
+using mint = tifa_libs::math::mint_ds<-1>;
 
 int main() {
   mint::set_mod(1000000007);

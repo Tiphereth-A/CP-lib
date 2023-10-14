@@ -1,10 +1,10 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_B"
 
-#include "../../code/math/mint_sd.hpp"
+#include "../../code/math/mint_ds.hpp"
 #include "../../code/math/qpow.hpp"
 
 constexpr tifa_libs::u64 MOD = 1'000'000'007;
-using mint = tifa_libs::math::mint_sd<-1>;
+using mint = tifa_libs::math::mint_ds<-1>;
 
 int main() {
   mint::set_mod(MOD);
