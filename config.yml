@@ -587,6 +587,9 @@ notebook:
     - ikth_root: k 次根下取整
       code_ext: hpp
       test_ext: cpp
+    - mpi: 高精度整数
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
