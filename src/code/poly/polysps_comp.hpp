@@ -14,6 +14,7 @@ inline vec<typename T::value_type> polysps_comp(size_t n, poly<T> f, vec<typenam
   assert(n <= N);
   using mint = typename T::value_type;
   static conv_subset<mint, N> ss;
+  if (!f.size()) return vec<mint>(1 << n);
   if (g[0] != 0) {
     f = poly_tsh(f, g[0], fact, ifact);
     g[0] = 0;

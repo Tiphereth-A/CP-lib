@@ -16,7 +16,7 @@ struct polydata_s {
 
   vec<mint> d;
 
-  explicit constexpr polydata_s(size_t sz = 1) : d(std::max((size_t)1, sz)) {}
+  explicit constexpr polydata_s(size_t sz = 1) : d(sz) {}
   explicit constexpr polydata_s(std::initializer_list<mint> v) : d(v) {}
   explicit constexpr polydata_s(vec<mint> const &v) : d(v) {}
 
