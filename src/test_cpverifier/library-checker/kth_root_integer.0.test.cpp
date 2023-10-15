@@ -8,9 +8,9 @@ int main() {
   tifa_libs::i64 t;
   std::cin >> t;
   while (t--) {
-    tifa_libs::u64 k, y, p;
-    std::cin >> k >> y >> p;
-    std::cout << tifa_libs::math::ikth_root(y, k) << '\n';
+    tifa_libs::u64 x, k;
+    std::cin >> x >> k;
+    std::cout << tifa_libs::math::ikth_root(x, k) << '\n';
   }
   return 0;
 }
