@@ -7,8 +7,6 @@
 namespace tifa_libs::util {
 
 class Base64 {
-  static_assert(std::is_integral_v<size_t>);
-
   static constexpr char base[66] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/.";
   // clang-format off
   static constexpr char ibase(char c) { return 'a' <= c ? c - 0x47 : 'A' <= c ? c - 0x41 : '0' <= c ? c + 0x04 : '+' == c ? 0x3E : '/' == c ? 0x3F : 0x40; }

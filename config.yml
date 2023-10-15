@@ -73,6 +73,9 @@ notebook:
     - enum_supset: 枚举超集
       code_ext: hpp
       test_ext: cpp
+    - traits: traits
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp

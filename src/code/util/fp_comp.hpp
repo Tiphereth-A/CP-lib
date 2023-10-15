@@ -2,10 +2,11 @@
 #define TIFA_LIBS_UTIL_FP_COMP
 
 #include "fp_const.hpp"
+#include "traits.hpp"
 
 namespace tifa_libs {
 
-template <class FP, std::enable_if_t<std::is_integral_v<FP>>* = nullptr>
+template <class FP, std::enable_if_t<is_int<FP>::value>* = nullptr>
 constexpr int sgn(FP x) { return x < 0 ? -1 : x > 0; }
 template <class FP, std::enable_if_t<std::is_floating_point_v<FP>>* = nullptr>
 constexpr int sgn(FP x) { return x < -EPS<FP> ? -1 : x > EPS<FP>; }
