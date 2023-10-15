@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-namespace crt_detail__ {
+namespace crt_impl_ {
 
 constexpr std::optional<std::pair<i64, i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1) {
   if (m0 < m1) return crt2(a1, m1, a0, m0);
@@ -19,7 +19,7 @@ constexpr std::optional<std::pair<i64, i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1
   return std::make_pair((u64)(a0 + k0 * (i64)m0), m0 * (u64)m1_d);
 }
 
-}  // namespace crt_detail__
+}  // namespace crt_impl_
 
 // Returns (remainder, modular)
 inline std::optional<std::pair<u64, u64>> crt(const vec<i64> &a, const vec<u64> &m) {
@@ -28,7 +28,7 @@ inline std::optional<std::pair<u64, u64>> crt(const vec<i64> &a, const vec<u64> 
   i64 A = 0;
   u64 M = 1;
   for (size_t i = 0; i < n; ++i) {
-    auto res = crt_detail__::crt2(safe_mod(a[i], m[i]), m[i], A, M);
+    auto res = crt_impl_::crt2(safe_mod(a[i], m[i]), m[i], A, M);
     if (!res) return {};
     std::tie(A, M) = res.value();
   }

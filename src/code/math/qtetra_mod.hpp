@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-namespace qtetra_mod_detail__ {
+namespace qtetra_mod_impl_ {
 
 constexpr u64 mpow(u64 a, u64 b, u64 m, u64 &f) {
   if (a == 1 || b == 0) return 1;
@@ -39,11 +39,11 @@ inline u64 qtetra(u64 a, u64 b, u64 m, u64 &f) {
   return r + f * m;
 }
 
-}  // namespace qtetra_mod_detail__
+}  // namespace qtetra_mod_impl_
 
 inline u64 qtetra_mod(u64 a, u64 b, u64 m) {
   u64 f = 0;
-  return qtetra_mod_detail__::qtetra(a, b, m, f) % m;
+  return qtetra_mod_impl_::qtetra(a, b, m, f) % m;
 }
 
 }  // namespace tifa_libs::math

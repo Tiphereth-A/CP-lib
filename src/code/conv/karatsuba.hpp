@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-namespace karatsuba_detail_ {
+namespace karatsuba_impl_ {
 template <typename T>
 void add(vec<T> &a, vec<T> const &b) {
   if (a.size() < b.size()) a.resize(b.size());
@@ -16,7 +16,7 @@ void sub(vec<T> &a, vec<T> const &b) {
   if (a.size() < b.size()) a.resize(b.size());
   for (size_t i = 0; i < b.size(); ++i) a[i] -= b[i];
 }
-}  // namespace karatsuba_detail_
+}  // namespace karatsuba_impl_
 
 inline vec<u64> karatsuba(vec<u64> const &a, vec<u64> const &b) {
   if (a.empty() && b.empty()) return {};
@@ -34,15 +34,15 @@ inline vec<u64> karatsuba(vec<u64> const &a, vec<u64> const &b) {
   }
   vec<u64> bl(b.begin(), b.begin() + d), bu(b.begin() + d, b.end());
   vec<u64> alu{al}, blu{bl};
-  karatsuba_detail_::add(alu, au);
-  karatsuba_detail_::add(blu, bu);
+  karatsuba_impl_::add(alu, au);
+  karatsuba_impl_::add(blu, bu);
   vec<u64> cll = karatsuba(al, bl), cuu = karatsuba(au, bu), clu = karatsuba(alu, blu);
-  karatsuba_detail_::sub(clu, cll);
-  karatsuba_detail_::sub(clu, cuu);
+  karatsuba_impl_::sub(clu, cll);
+  karatsuba_impl_::sub(clu, cuu);
   vec<u64> c(d);
   std::copy(clu.begin(), clu.end(), std::back_inserter(c));
   c.resize(a.size() + b.size() - 1);
-  karatsuba_detail_::add(c, cll);
+  karatsuba_impl_::add(c, cll);
   for (size_t i = 0; i < cuu.size(); ++i) c[i + 2 * d] += cuu[i];
   c.resize(a.size() + b.size() - 1);
   return c;

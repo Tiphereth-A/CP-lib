@@ -3,7 +3,7 @@
 
 #include "../util/util.hpp"
 
-namespace tifa_libs::math::ge_detail__ {
+namespace tifa_libs::math::ge_impl_ {
 
 template <class Mat>
 constexpr bool swapr__(Mat &mat, size_t &r_, size_t r_pre_, size_t r_end) {
@@ -17,6 +17,6 @@ constexpr bool swapr__(Mat &mat, size_t &r_, size_t r_pre_, size_t r_end) {
   return false;
 }
 
-}  // namespace tifa_libs::math::ge_detail__
+}  // namespace tifa_libs::math::ge_impl_
 
 #endif

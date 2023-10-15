@@ -12,7 +12,7 @@ inline i64 ge_basic(Mat &mat, Is0 is0, size_t row_start, size_t row_end, bool cl
   u64 rk = 0;
   bool neg = false;
   for (size_t i = row_start, now_row = row_start, j_ = i; i < row_end; ++i) {
-    neg ^= ge_detail__::swapr__(mat, now_row, rk, row_end);
+    neg ^= ge_impl_::swapr__(mat, now_row, rk, row_end);
     j_ = std::max(j_, i);
     while (j_ < c_ && is0(mat(rk, j_))) ++j_;
     if (j_ == c_) break;

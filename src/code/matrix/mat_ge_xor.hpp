@@ -15,7 +15,7 @@ inline i64 ge_xor(Mat &mat, [[maybe_unused]] Is0 is0, size_t row_start, size_t r
   for (size_t i = row_start, now_row = row_start, j_ = i; i < row_end; ++i) {
     j_ = std::max(j_, i);
     if (!mat(rk, i)) {
-      neg ^= ge_detail__::swapr__(mat, now_row, rk, row_end);
+      neg ^= ge_impl_::swapr__(mat, now_row, rk, row_end);
       while (j_ < c_ && !mat(rk, j_)) ++j_;
       if (j_ == c_) break;
     }
