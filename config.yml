@@ -581,6 +581,9 @@ notebook:
     - kth_root: K 次剩余
       code_ext: hpp
       test_ext: cpp
+    - ikth_root: k 次根下取整
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
