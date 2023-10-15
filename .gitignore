@@ -516,6 +516,6 @@ _gen/
 _pdf_out/
 .competitive-verifier/
 
-/out.cpp
+/out*.cpp
 tempCodeRunnerFile.cpp
 in.in
