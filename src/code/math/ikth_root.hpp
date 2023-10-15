@@ -6,8 +6,9 @@
 namespace tifa_libs::math {
 
 constexpr u64 ikth_root(u64 a, u64 k) {
-  if (!k || k >= 64) return 1;
+  assert(k);
   if (a <= 1 || k == 1) return a;
+  if (k >= 64) return 1;
   auto chk = [&](u128 n) {
     u128 x = 1, m = n;
     for (u64 p = k; p; p /= 2, m *= m)
