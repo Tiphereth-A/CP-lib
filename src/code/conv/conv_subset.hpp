@@ -25,14 +25,19 @@ struct conv_subset {
   }
 
   void zeta(vec<arr>& a) const {
-    u32 n = a.size();
-    for (u32 w = 1; w < n; w *= 2)
-      for (u32 k = 0; k < n; k += w * 2)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
+    for (u32 w = 1; w < a.size(); w *= 2)
+      for (u32 k = 0; k < a.size(); k += w * 2)
+#pragma GCC diagnostic pop
         for (u32 i = 0; i < w; ++i) add(a[k + w + i], a[k + i], pc[k + w + i]);
   }
 
   void mobius(vec<arr>& a) const {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
     u32 n = a.size();
+#pragma GCC diagnostic pop
     for (u32 w = n >> 1; w; w /= 2)
       for (u32 k = 0; k < n; k += w * 2)
         for (u32 i = 0; i < w; ++i) sub(a[k + w + i], a[k + i], pc[k + w + i]);
@@ -54,7 +59,10 @@ struct conv_subset {
   }
 
   void prod(vec<arr>& A, vec<arr> const& B) const {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
     u32 n = A.size(), d = (u32)bit::cntr0(n);
+#pragma GCC diagnostic pop
     for (u32 i = 0; i < n; ++i) {
       arr c;
       for (u32 j = 0; j <= d; ++j)

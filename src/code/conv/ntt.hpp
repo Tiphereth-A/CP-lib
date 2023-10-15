@@ -26,6 +26,8 @@ struct NTT {
     for (size_t i = 1; i < n; ++i) root[i] = root[i - 1] * w;
   }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wsign-conversion"
   void dif(vec<mint> &f) const {
     size_t n = size();
     assert(f.size() <= n);
@@ -57,6 +59,7 @@ struct NTT {
     mint t = mint(n).inv();
     for (size_t i = 0; i < n; ++i) f[i] *= t;
   }
+#pragma GCC diagnostic pop
 
  private:
   const mint G = proot_u64(MOD);

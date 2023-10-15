@@ -31,6 +31,8 @@ struct FFT {
     f.resize(n);
     for (size_t i = 0; i < n; ++i)
       if (i < rev[i]) std::swap(f[rev[i]], f[i]);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wsign-conversion"
     for (size_t i = 2, d = n / 2; i <= n; i *= 2, d /= 2)
       for (size_t j = 0; j < n; j += i) {
         auto l = f.begin() + j, r = f.begin() + j + i / 2;
@@ -41,6 +43,7 @@ struct FFT {
           *l = *l + tmp;
         }
       }
+#pragma GCC diagnostic pop
   }
   void dit(vec<C> &f) const {
     size_t n = size();

@@ -791,6 +791,9 @@ notebook:
     - polysp_pow: 稀疏多项式 pow
       code_ext: hpp
       test_ext: cpp
+    - polysps_comp: 集合幂级数复合
+      code_ext: hpp
+      test_ext: cpp
     str:
     - z_func: Z 函数（扩展 KMP）
       code_ext: hpp
