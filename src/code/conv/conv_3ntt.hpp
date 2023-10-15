@@ -15,9 +15,6 @@ inline vec<u64> conv_3ntt(vec<u64> const &l, vec<u64> const &r, u64 mod, size_t 
   static const u32 r01 = mint1(m0).inv().val(), r02 = mint2(m0).inv().val(), r12 = mint2(m1).inv().val(), r02r12 = (u32)mul_mod_u(r02, r12, m2);
   static const u64 w1 = m0 % mod, w2 = mul_mod_u(m0, m1, mod);
 
-  if (l.empty() && r.empty()) return {};
-  if (std::min(l.size(), r.size()) < 128) return conv_naive(l, r);
-
   vec<mint0> d0 = conv_ntt<mint0>(l, r, ans_size);
   vec<mint1> d1 = conv_ntt<mint1>(l, r, ans_size);
   vec<mint2> d2 = conv_ntt<mint2>(l, r, ans_size);

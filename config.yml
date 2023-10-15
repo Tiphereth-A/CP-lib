@@ -661,6 +661,15 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     conv:
+    - fft: 快速 Fourier 变换
+      code_ext: hpp
+      test_ext: cpp
+    - ntt: 数论变换
+      code_ext: hpp
+      test_ext: cpp
+    - ntt32: 数论变换（u32）
+      code_ext: hpp
+      test_ext: cpp
     - conv_3ntt: 卷积（三模 NTT）
       code_ext: hpp
       test_ext: cpp
@@ -673,13 +682,10 @@ notebook:
     - conv_ntt: 卷积（NTT）
       code_ext: hpp
       test_ext: cpp
+    - conv_ntt32: 卷积（NTT u32）
+      code_ext: hpp
+      test_ext: cpp
     - conv_u128: 卷积（高精度整数用）
-      code_ext: hpp
-      test_ext: cpp
-    - fft: 快速 Fourier 变换
-      code_ext: hpp
-      test_ext: cpp
-    - ntt: 数论变换
       code_ext: hpp
       test_ext: cpp
     - karatsuba: Karatsuba 乘法
@@ -807,6 +813,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - polysps_exp: 集合幂级数 exp
+      code_ext: hpp
+      test_ext: cpp
+    - polydata_s32: polydata_s32
       code_ext: hpp
       test_ext: cpp
     str:

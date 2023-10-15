@@ -9,8 +9,7 @@ namespace tifa_libs::math {
 
 template <class mint>
 struct polydata_d {
-  static constexpr u64 MOD = mint::mod();
-  static_assert(MOD > 1);
+  static_assert(mint::mod() > 1);
 
   using value_type = mint;
 

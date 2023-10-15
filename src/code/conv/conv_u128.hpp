@@ -4,7 +4,7 @@
 #include "../math/mint_s30.hpp"
 #include "../util/util.hpp"
 #include "conv_naive.hpp"
-#include "conv_ntt.hpp"
+#include "conv_ntt32.hpp"
 
 namespace tifa_libs::math {
 
@@ -20,9 +20,9 @@ inline vec<u128> conv_u128(vec<T> const &l, vec<T> const &r, size_t ans_size) {
   if (l.empty() && r.empty()) return {};
   if (std::min(l.size(), r.size()) < 128) return conv_naive<T, u128>(l, r);
 
-  vec<mint0> d0 = conv_ntt<mint0>(l, r, ans_size);
-  vec<mint1> d1 = conv_ntt<mint1>(l, r, ans_size);
-  vec<mint2> d2 = conv_ntt<mint2>(l, r, ans_size);
+  vec<mint0> d0 = conv_ntt32<mint0>(l, r, ans_size);
+  vec<mint1> d1 = conv_ntt32<mint1>(l, r, ans_size);
+  vec<mint2> d2 = conv_ntt32<mint2>(l, r, ans_size);
 
   vec<u128> ret(ans_size);
   for (size_t i = 0; i < ans_size; ++i) {

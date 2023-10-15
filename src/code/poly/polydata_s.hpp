@@ -9,8 +9,7 @@ namespace tifa_libs::math {
 
 template <class mint>
 struct polydata_s {
-  static constexpr u64 MOD = mint::mod();
-  static_assert(MOD > 1 && (MOD & 3) == 1, "MOD must be prime with 4k+1");
+  static_assert(mint::mod() > 1 && (mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
 
   using value_type = mint;
 
