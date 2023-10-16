@@ -9,7 +9,7 @@ template <class F1, class F2, class F3>
 inline vec<u32> linear_seive(u32 n, F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime) {
   vec<bool> vis(n);
   vec<u32> p;
-  p.reserve(n <= 55 ? 16 : n / 10);
+  p.reserve(n <= 170 ? 16 : n / 10);
   for (u32 i = 2; i < n; ++i) {
     if (!vis[i]) {
       p.push_back(i);

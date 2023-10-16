@@ -596,6 +596,9 @@ notebook:
     - gcd_mpi: 高精度整数 GCD
       code_ext: hpp
       test_ext: cpp
+    - mex: mex
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
