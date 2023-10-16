@@ -79,6 +79,12 @@ notebook:
     - os128: 128 位整数的 IO
       code_ext: hpp
       test_ext: cpp
+    - rsort32: 32 位整数基数排序
+      code_ext: hpp
+      test_ext: cpp
+    - inversion: 逆序对计数
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
