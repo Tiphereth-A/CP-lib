@@ -76,6 +76,9 @@ notebook:
     - traits: traits
       code_ext: hpp
       test_ext: cpp
+    - os128: 128 位整数的 IO
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
