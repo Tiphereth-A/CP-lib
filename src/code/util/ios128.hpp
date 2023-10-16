@@ -20,19 +20,17 @@ inline std::istream &operator>>(std::istream &is, tifa_libs::u128 &n) {
   while (isdigit(is.peek())) (n *= 10) += is.get() & 15;
   return is;
 }
+inline std::ostream &operator<<(std::ostream &os, tifa_libs::u128 n) {
+  if (n > 9) os << n / 10;
+  os << (uint_fast32_t)(n % 10);
+  return os;
+}
 inline std::ostream &operator<<(std::ostream &os, tifa_libs::i128 n) {
   if (n < 0) {
     os << '-';
     n = -n;
   }
-  if (n > 9) os << n / 10;
-  os << (uint_fast32_t)(n % 10);
-  return os;
-}
-inline std::ostream &operator<<(std::ostream &os, tifa_libs::u128 n) {
-  if (n > 9) os << n / 10;
-  os << (uint_fast32_t)(n % 10);
-  return os;
+  return os << (tifa_libs::u128)n;
 }
 
 #endif
