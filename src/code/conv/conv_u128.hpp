@@ -8,6 +8,7 @@
 
 namespace tifa_libs::math {
 
+// max = 167772161 * 469762049 * 754974721 \approx 5.95e25
 template <class T>
 inline vec<u128> conv_u128(vec<T> const &l, vec<T> const &r, size_t ans_size) {
   static constexpr u32 m0 = 167772161, m1 = 469762049, m2 = 754974721;

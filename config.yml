@@ -590,6 +590,12 @@ notebook:
     - mpi: 高精度整数
       code_ext: hpp
       test_ext: cpp
+    - gcd128: gcd_128
+      code_ext: hpp
+      test_ext: cpp
+    - gcd_mpi: 高精度整数 GCD
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
