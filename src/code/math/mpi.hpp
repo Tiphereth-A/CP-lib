@@ -2,9 +2,7 @@
 #define TIFA_LIBS_MATH_MPI
 
 #include "../conv/conv_u128.hpp"
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 #include "../fast/str2uint_1e8.hpp"
-#endif
 #include "../util/traits.hpp"
 
 namespace tifa_libs::math {
@@ -26,13 +24,18 @@ class mpi {
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
   mpi(std::string s) : neg(false) {
     assert(!s.empty());
-    if (s.size() == 1u && s[0] == '0') return;
+    if (s.size() == 1u) {
+      if (s[0] == '0') return;
+      assert(isdigit(s[0]));
+      dt.push_back(s[0] & 15);
+      return;
+    }
     size_t l = 0;
     if (s[0] == '-') ++l, neg = true;
     u32 _ = 0;
-    if (s.size() & 7) {
-      for (size_t i = l; i < (s.size() & 7); ++i) _ = _ * 10 + (s[i] & 15);
-      l = s.size() & 7;
+    if ((s.size() - l) & 7) {
+      for (size_t i = l; i < l + ((s.size() - l) & 7); ++i) _ = _ * 10 + (s[i] & 15);
+      l += (s.size() - l) & 7;
     }
     if (l) s = s.substr(l);
     for (size_t ie = s.size(); ie >= lgD; ie -= lgD)
