@@ -85,6 +85,12 @@ notebook:
     - inversion: 逆序对计数
       code_ext: hpp
       test_ext: cpp
+    - str2uint_1e8: 快速字符串转整数（1e8）
+      code_ext: hpp
+      test_ext: cpp
+    - str2uint_mod: 快速字符串转整数（取模）
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
