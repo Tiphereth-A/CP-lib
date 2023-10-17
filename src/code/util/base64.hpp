@@ -4,7 +4,7 @@
 #include "../bit/cntl0.hpp"
 #include "util.hpp"
 
-namespace tifa_libs::util {
+namespace tifa_libs {
 
 class Base64 {
   static constexpr char base[66] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/.";
@@ -35,6 +35,6 @@ class Base64 {
   }
 };
 
-}  // namespace tifa_libs::util
+}  // namespace tifa_libs
 
 #endif

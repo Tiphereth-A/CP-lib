@@ -3,7 +3,7 @@
 
 #include "util.hpp"
 
-namespace tifa_libs::util {
+namespace tifa_libs {
 
 template <class T>
 inline void rsort32(vec<T>& a) {
@@ -35,6 +35,6 @@ inline void rsort32(vec<T>& a) {
   }
 }
 
-}  // namespace tifa_libs::util
+}  // namespace tifa_libs
 
 #endif

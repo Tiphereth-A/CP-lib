@@ -3,7 +3,7 @@
 
 #include "util.hpp"
 
-namespace tifa_libs::util {
+namespace tifa_libs {
 
 class hash_splitmix64 {
   static inline u64 seed;

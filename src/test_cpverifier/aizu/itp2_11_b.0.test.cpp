@@ -12,7 +12,7 @@ int main() {
     std::cin >> x;
     b |= 1 << x;
   }
-  for (auto i : tifa_libs::util::enum_supset(b, n)) {
+  for (auto i : tifa_libs::enum_supset(b, n)) {
     std::cout << i << ":";
     for (size_t j = 0; j < n; ++j)
       if ((i >> j) & 1) std::cout << ' ' << j;

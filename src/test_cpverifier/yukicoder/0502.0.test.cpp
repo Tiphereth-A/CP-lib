@@ -9,7 +9,7 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
 
-  auto a = tifa_libs::util::Base64::decode(S);
+  auto a = tifa_libs::Base64::decode(S);
   tifa_libs::u64 n;
   std::cin >> n;
   n = std::min(n, mod);

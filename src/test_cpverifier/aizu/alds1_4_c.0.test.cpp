@@ -3,12 +3,12 @@
 #include "../../code/util/hash_splitmix64.hpp"
 
 int main() {
-  tifa_libs::util::hash_splitmix64::set_seed((tifa_libs::u64)std::chrono::steady_clock::now().time_since_epoch().count());
+  tifa_libs::hash_splitmix64::set_seed((tifa_libs::u64)std::chrono::steady_clock::now().time_since_epoch().count());
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   tifa_libs::u32 n;
   std::cin >> n;
-  tifa_libs::util::hset<tifa_libs::u64> dict;
+  tifa_libs::hset<tifa_libs::u64> dict;
   for (size_t i = 0; i < n; ++i) {
     std::string s, t;
     std::cin >> s >> t;

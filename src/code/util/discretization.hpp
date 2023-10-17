@@ -3,7 +3,7 @@
 
 #include "util.hpp"
 
-namespace tifa_libs::util {
+namespace tifa_libs {
 
 template <class T = vec<int>>
 T uniq(T const &v) {
@@ -20,6 +20,6 @@ std::pair<T, vec<size_t>> gen_id(T const &v) {
   return {_, _1};
 }
 
-}  // namespace tifa_libs::util
+}  // namespace tifa_libs
 
 #endif

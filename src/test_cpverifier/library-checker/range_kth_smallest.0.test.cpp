@@ -10,7 +10,7 @@ int main() {
   std::cin >> n >> q;
   tifa_libs::vec<tifa_libs::i32> _(n);
   for(auto &x: _) std::cin >> x;
-  auto [b, a] = tifa_libs::util::gen_id(_);
+  auto [b, a] = tifa_libs::gen_id(_);
   tifa_libs::ds::persistent_segtree seg(a, b.size() + 1);
   for(size_t i = 0, l, r, k; i < q; ++ i) {
     std::cin >> l >> r >> k;

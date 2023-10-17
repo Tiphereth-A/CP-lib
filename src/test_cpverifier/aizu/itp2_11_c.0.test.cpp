@@ -12,7 +12,7 @@ int main() {
     std::cin >> x;
     b |= 1 << x;
   }
-  auto _ = tifa_libs::util::enum_subset(b);
+  auto _ = tifa_libs::enum_subset(b);
   std::reverse(_.begin(), _.end());
   for (auto i : _) {
     std::cout << i << ":";

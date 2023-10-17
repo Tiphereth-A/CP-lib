@@ -3,7 +3,7 @@
 
 #include "util.hpp"
 
-namespace tifa_libs::util {
+namespace tifa_libs {
 
 // enumerate x : x \subset b
 inline vec<u32> enum_subset(u32 b) {
@@ -12,6 +12,6 @@ inline vec<u32> enum_subset(u32 b) {
   return res;
 }
 
-}  // namespace tifa_libs::util
+}  // namespace tifa_libs
 
 #endif

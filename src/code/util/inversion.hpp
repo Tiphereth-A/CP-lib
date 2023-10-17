@@ -5,7 +5,7 @@
 #include "discretization.hpp"
 #include "util.hpp"
 
-namespace tifa_libs::util {
+namespace tifa_libs {
 
 template <class T>
 inline u64 inversion(vec<T> const& v) {
@@ -19,6 +19,6 @@ inline u64 inversion(vec<T> const& v) {
   return ans;
 }
 
-}  // namespace tifa_libs::util
+}  // namespace tifa_libs
 
 #endif

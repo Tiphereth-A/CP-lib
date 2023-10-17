@@ -9,7 +9,7 @@ int main() {
   std::cin >> n;
   tifa_libs::vec<tifa_libs::u32> a(n);
   for (auto& i : a) std::cin >> i;
-  tifa_libs::util::rsort32(a);
+  tifa_libs::rsort32(a);
   for (size_t i = 0; i < n; ++i) std::cout << a[i] << " \n"[i == n - 1];
   return 0;
 }
