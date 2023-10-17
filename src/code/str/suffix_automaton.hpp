@@ -1,7 +1,8 @@
-#ifndef TIFA_LIBS_STR_SAM
-#define TIFA_LIBS_STR_SAM
+#ifndef TIFA_LIBS_STR_SUFFIX_AUTOMATON
+#define TIFA_LIBS_STR_SUFFIX_AUTOMATON
 
 #include "../util/util.hpp"
+#pragma GCC diagnostic ignored "-Wsign-conversion"
 
 namespace tifa_libs::str {
 
@@ -38,8 +39,9 @@ class suffix_automaton {
       if (st[p].len + 1 == st[q].len) st[cur].link = q;
       else {
         i32 clone = sz++;
-        st[clone].len = st[p].len + 1;
         st[clone].nex = st[q].nex;
+
+        st[clone].len = st[p].len + 1;
         st[clone].link = st[q].link;
 
         while (p != -1 && st[p].nex[c] == q) {
