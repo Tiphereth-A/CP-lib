@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 class mpi {
-  static constexpr u32 D = 100000000, logD = 8;
+  static constexpr u32 D = 100000000, lgD = 8;
   bool neg;
   vec<u32> dt;
 
@@ -26,14 +26,14 @@ class mpi {
     if (s.size() == 1u && s[0] == '0') return;
     size_t l = 0;
     if (s[0] == '-') ++l, neg = true;
-    for (size_t ie = s.size(); l + logD <= ie; l += logD) dt.push_back(str2uint_1e8(s.data() + l));
+    for (size_t ie = s.size(); l + lgD <= ie; l += lgD) dt.push_back(str2uint_1e8(s.data() + l));
     if (l == s.size()) return;
     dt.push_back(0);
     for (; l < s.size(); ++l) dt.back() = dt.back() * 10 + (s[l] & 15);
   }
 
   constexpr static u32 digit() { return D; }
-  constexpr static u32 log_digit() { return logD; }
+  constexpr static u32 log_digit() { return lgD; }
   void set_neg(bool s) { neg = s; }
   bool is_neg() const { return neg; }
   vec<u32>& data() { return dt; }
@@ -296,7 +296,7 @@ class mpi {
   static std::string itos_(u32 x, bool zero_padding) {
     assert(x < D);
     std::string res;
-    for (u32 i = 0; i < logD; ++i) res.push_back(char(48 + x % 10)), x /= 10;
+    for (u32 i = 0; i < lgD; ++i) res.push_back(char(48 + x % 10)), x /= 10;
     if (!zero_padding) {
       while (res.size() && res.back() == '0') res.pop_back();
       assert(!res.empty());
