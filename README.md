@@ -1,4 +1,4 @@
-# CP-libs
+# CP-lib
 
 ![GitHub](https://img.shields.io/github/license/Tiphereth-A/CP-lib)
 [![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/Tiphereth-A/CP-lib/verify.yml?logo=github)](https://github.com/Tiphereth-A/CP-lib/actions)
