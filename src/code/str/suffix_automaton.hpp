@@ -40,7 +40,6 @@ class suffix_automaton {
       else {
         i32 clone = sz++;
         st[clone].nex = st[q].nex;
-
         st[clone].len = st[p].len + 1;
         st[clone].link = st[q].link;
 
