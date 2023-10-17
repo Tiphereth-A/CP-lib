@@ -878,10 +878,16 @@ notebook:
     - rsort32: 32 位整数基数排序
       code_ext: hpp
       test_ext: cpp
-    - str2uint_1e8: 快速字符串转整数（1e8）
+    - str2uint_1e8: 字符串转整数（1e8）
       code_ext: hpp
       test_ext: cpp
-    - str2uint_mod: 快速字符串转整数（取模）
+    - str2uint_mod: 字符串转整数（取模）
+      code_ext: hpp
+      test_ext: cpp
+    - strhex2uint_1e8: 16 进制字符串转整数（1e8）
+      code_ext: hpp
+      test_ext: cpp
+    - uint2str_32: 32 整数转字符串
       code_ext: hpp
       test_ext: cpp
 cheatsheets:

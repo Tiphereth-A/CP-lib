@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_STR2UINT_1E8
-#define TIFA_LIBS_UTIL_STR2UINT_1E8
+#ifndef TIFA_LIBS_FAST_STR2UINT_1E8
+#define TIFA_LIBS_FAST_STR2UINT_1E8
 
 #include "../util/util.hpp"
 
