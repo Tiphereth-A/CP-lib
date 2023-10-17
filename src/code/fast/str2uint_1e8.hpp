@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_UTIL_STR2UINT_1E8
 #define TIFA_LIBS_UTIL_STR2UINT_1E8
 
-#include "util.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs {
 

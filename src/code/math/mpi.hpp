@@ -2,7 +2,7 @@
 #define TIFA_LIBS_MATH_MPI
 
 #include "../conv/conv_u128.hpp"
-#include "../util/str2uint_1e8.hpp"
+#include "../fast/str2uint_1e8.hpp"
 #include "../util/traits.hpp"
 
 namespace tifa_libs::math {

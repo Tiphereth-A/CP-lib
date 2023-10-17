@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../code/util/str2uint_mod.hpp"
+#include "../../code/fast/str2uint_mod.hpp"
 
 constexpr tifa_libs::u64 MOD = tifa_libs::u64(1e9) + 1;
 
