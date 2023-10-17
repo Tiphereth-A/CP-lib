@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_STR_SAM
-#define TIFA_LIBS_STR_SAM
+#ifndef TIFA_LIBS_STR_SUFFIX_AUTOMATON
+#define TIFA_LIBS_STR_SUFFIX_AUTOMATON
 
 #include "../util/util.hpp"
 
