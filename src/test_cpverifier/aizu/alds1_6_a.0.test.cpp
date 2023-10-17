@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_6_A"
 
-#include "../../code/util/rsort32.hpp"
+#include "../../code/fast/rsort32.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);
