@@ -21,15 +21,20 @@ class mpi {
       if (x < 0) neg = true, x = -x;
     while (x) dt.push_back(x % D), x /= D;
   }
-  mpi(std::string_view s) : neg(false) {
+  mpi(std::string s) : neg(false) {
     assert(!s.empty());
     if (s.size() == 1u && s[0] == '0') return;
     size_t l = 0;
     if (s[0] == '-') ++l, neg = true;
-    for (size_t ie = s.size(); l + lgD <= ie; l += lgD) dt.push_back(str2uint_1e8(s.data() + l));
-    if (l == s.size()) return;
-    dt.push_back(0);
-    for (; l < s.size(); ++l) dt.back() = dt.back() * 10 + (s[l] & 15);
+    u32 _ = 0;
+    if (s.size() & 7) {
+      for (size_t i = l; i <= (s.size() & 7); ++i) _ = _ * 10 + (s[i] & 15);
+      l = s.size() & 7;
+    }
+    if (l) s = s.substr(l);
+    for (size_t ie = s.size(); ie >= lgD; ie -= lgD)
+      dt.push_back(str2uint_1e8(s.data() + ie - lgD));
+    if (_) dt.push_back(_);
   }
 
   constexpr static u32 digit() { return D; }
