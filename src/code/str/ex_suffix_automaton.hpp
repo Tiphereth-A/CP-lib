@@ -6,67 +6,52 @@
 
 namespace tifa_libs::str {
 
+template <u32 SZ = 26>
 class ex_suffix_automaton {
   // super root is 0
   struct YYZ {
-    tifa_libs::i32 len, link;
-    std::map<char, tifa_libs::i32> nex;
-    tifa_libs::i64 sz;
+    tifa_libs::u32 len, link;
+    std::array<u32, SZ> nex{};
   };
 
  public:
-  i32 sz;
+  u32 sz;
   vec<YYZ> st;
-  ex_suffix_automaton() : sz(1) {
-    st.push_back(YYZ()), st[0].len = 0, st[0].link = -1;
-  }
-  i32 extend(i32 last, char c) {
-    i32 cur = st[last].nex[c];
-    if (st[cur].len) return cur;
-    st[cur].len = st[last].len + 1;
-    i32 p = st[last].link;
-
-    while (p != -1 && !st[p].nex[c]) {
-      st[p].nex[c] = cur;
-      p = st[p].link;
-    }
-    if (p == -1) st[cur].link = 0;
-    else {
-      i32 q = st[p].nex[c];
-      if (st[p].len + 1 == st[q].len) st[cur].link = q;
+  ex_suffix_automaton() : sz(1), st(1) { st[0].len = 0, st[0].link = -1; }
+  u32 extend(u32 last, char c) {
+    if (st[last].nex[c]) {
+      u32 p = last, q = st[p].nex[c];
+      if (st[p].len + 1 == st[q].len) return q;
       else {
-        i32 clone = sz++;
+        u32 clone = sz++;
         st.push_back(YYZ());
-        for (auto [x, y] : st[q].nex) if(st[y].len) st[clone].nex[x] = y;
-
         st[clone].len = st[p].len + 1;
         st[clone].link = st[q].link;
-
-        while (p != -1 && st[p].nex[c] == q) {
-          st[p].nex[c] = clone;
-          p = st[p].link;
-        }
+        st[clone].nex = st[q].nex;
+        while (p != -1u && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
+        st[q].link = clone;
+        return clone;
+      }
+    }
+    u32 cur = sz++, p = last;
+    st.push_back(YYZ());
+    st[cur].len = st[last].len + 1;
+    while (p != -1u && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
+    if (p == -1u) st[cur].link = 0;
+    else {
+      u32 q = st[p].nex[c];
+      if (st[p].len + 1 == st[q].len) st[cur].link = q;
+      else {
+        u32 clone = sz++;
+        st.push_back(YYZ());
+        st[clone].len = st[p].len + 1;
+        st[clone].link = st[q].link;
+        st[clone].nex = st[q].nex;
+        while (p != -1u && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
         st[q].link = st[cur].link = clone;
       }
     }
     return cur;
-  }
-  void insert(std::string s) {
-    i32 u = 0;
-    for (auto c : s) {
-      if (!st[u].nex[c]) st[u].nex[c] = sz++, st.push_back(YYZ());
-      u = st[u].nex[c];
-    }
-  }
-  void build() {
-    std::queue<std::pair<i32, char>> q;
-    for (auto [x, y] : st[0].nex) q.push({0, x});
-    while (q.size()) {
-      auto [last, c] = q.front();
-      q.pop();
-      last = extend(last, c);
-      for (auto [x, y] : st[last].nex) q.push({last, x});
-    }
   }
 };
 
