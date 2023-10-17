@@ -28,7 +28,7 @@ class mpi {
     if (s[0] == '-') ++l, neg = true;
     u32 _ = 0;
     if (s.size() & 7) {
-      for (size_t i = l; i <= (s.size() & 7); ++i) _ = _ * 10 + (s[i] & 15);
+      for (size_t i = l; i < (s.size() & 7); ++i) _ = _ * 10 + (s[i] & 15);
       l = s.size() & 7;
     }
     if (l) s = s.substr(l);
