@@ -5,7 +5,6 @@
 
 namespace tifa_libs::bit {
 
-// From GCC lib
 template <typename T>
 constexpr int log2(T x) { return bwidth(x) - 1; }
 
