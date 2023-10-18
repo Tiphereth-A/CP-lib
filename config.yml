@@ -22,7 +22,8 @@ notebook:
     str: 字符串
     rand: 随机数与随机化算法
     game: 游戏
-    tree: tree
+    tree: 树
+    fast: 卡常用算法
   sections:
     util:
     - main: 缺省源
@@ -79,16 +80,7 @@ notebook:
     - os128: 128 位整数的 IO
       code_ext: hpp
       test_ext: cpp
-    - rsort32: 32 位整数基数排序
-      code_ext: hpp
-      test_ext: cpp
     - inversion: 逆序对计数
-      code_ext: hpp
-      test_ext: cpp
-    - str2uint_1e8: 快速字符串转整数（1e8）
-      code_ext: hpp
-      test_ext: cpp
-    - str2uint_mod: 快速字符串转整数（取模）
       code_ext: hpp
       test_ext: cpp
     bit:
@@ -396,6 +388,10 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - polyhedron: 多面体
+      code_ext: hpp
+      test_ext: cpp
+    tree:
+    - tree: 树
       code_ext: hpp
       test_ext: cpp
     graph:
@@ -861,6 +857,9 @@ notebook:
     - suffix_automaton: 后缀自动机
       code_ext: hpp
       test_ext: cpp
+    - orthodox_ex_suffix_automaton: (离线)广义后缀自动机
+      code_ext: hpp
+      test_ext: cpp
     - ex_suffix_automaton: 广义后缀自动机
       code_ext: hpp
       test_ext: cpp
@@ -875,8 +874,23 @@ notebook:
     - sudoku: 数独求解
       code_ext: hpp
       test_ext: cpp
-    tree:
-    - tree: 树
+    fast:
+    - rsort32: 32 位整数基数排序
+      code_ext: hpp
+      test_ext: cpp
+    - str2uint_1e8: 字符串转整数（1e8）
+      code_ext: hpp
+      test_ext: cpp
+    - str2uint_mod: 字符串转整数（取模）
+      code_ext: hpp
+      test_ext: cpp
+    - strhex2uint_1e8: 16 进制字符串转整数（1e8）
+      code_ext: hpp
+      test_ext: cpp
+    - uint2str_32: 32 整数转字符串
+      code_ext: hpp
+      test_ext: cpp
+    - uint2strhex_32: 32 整数转 16 进制字符串
       code_ext: hpp
       test_ext: cpp
 cheatsheets:

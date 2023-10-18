@@ -1,7 +1,7 @@
-#ifndef TIFA_LIBS_UTIL_RSORT32
-#define TIFA_LIBS_UTIL_RSORT32
+#ifndef TIFA_LIBS_FAST_RSORT32
+#define TIFA_LIBS_FAST_RSORT32
 
-#include "util.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs {
 
