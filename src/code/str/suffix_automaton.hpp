@@ -55,7 +55,7 @@ class suffix_automaton {
     }
     last = cur;
   }
-  i32 search(std::string t) {
+  i32 search(std::string t) { // application 0
     u32 u = 0, i = 0;
     while(i < t.size()) {
       if(!st[u].nex[t[i]]) return 0;
