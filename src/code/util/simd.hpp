@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_UTIL_SIMD
 #define TIFA_LIBS_UTIL_SIMD
 
-#pragma GCC target("avx2,avx512f,avx512vl")
+#pragma GCC target("avx2")
 #pragma GCC optimize("O3,unroll-loops")
 #include <immintrin.h>
 
