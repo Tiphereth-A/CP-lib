@@ -48,7 +48,6 @@ inline poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64> co
 template <class T>
 inline poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, usz m = 0) {
   usz n = f.size();
-  if (n == 1) return f;
   return poly_ctsh(f, c, ifact_mod_gen(n, T::value_type::mod()), m);
 }
 
