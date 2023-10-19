@@ -105,9 +105,6 @@ notebook:
     - cntr1: std::countr_one
       code_ext: hpp
       test_ext: cpp
-    - log2: log2
-      code_ext: hpp
-      test_ext: cpp
     - popcnt: std::popcount
       code_ext: hpp
       test_ext: cpp
@@ -115,6 +112,15 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - rotr: std::rotr
+      code_ext: hpp
+      test_ext: cpp
+    - bswap: std::byteswap
+      code_ext: hpp
+      test_ext: cpp
+    - endian: std::endian
+      code_ext: hpp
+      test_ext: cpp
+    - log2: log2
       code_ext: hpp
       test_ext: cpp
     - ispow2: 是否为 2 的整数次幂
