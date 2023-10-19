@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/963"
+#define PROBLEM "https://yukicoder.me/problems/no/502"
 
 #include "../../code/math/fact_mint.hpp"
 #include "../../code/math/mint_d31.hpp"
