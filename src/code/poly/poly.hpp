@@ -58,7 +58,7 @@ class poly {
     p.d.resize(p.d.rend() - it);
     if (p.d.empty()) p.d.push_back(value_type(0));
   }
-  constexpr void reverse() { std::reverse(p.d.begin(), p.d.end()); }
+  constexpr void reverse(size_t n = 0) { std::reverse(p.d.begin(), p.d.begin() + (n ? n : size())); }
 
   void conv(poly const &r, size_t ans_size) { p.conv(r.p, ans_size); }
   void conv(poly const &r) { p.conv(r.p); }
