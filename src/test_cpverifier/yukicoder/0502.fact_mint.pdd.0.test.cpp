@@ -15,6 +15,6 @@ int main() {
   std::cin.tie(nullptr);
   tifa_libs::u64 n;
   std::cin >> n;
-  std::cout << tifa_libs::math::fact_mint<pldt_t>(n);
+  std::cout << tifa_libs::math::fact_mint<pldt_t>(n) << '\n';
   return 0;
 }
