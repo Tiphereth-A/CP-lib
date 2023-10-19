@@ -42,7 +42,7 @@ class mint_d31 {
     u32 h = redc(v_ >> OFFSET);
     return ((h - v_) * R & MASK) * MOD_ODD + h;
   }
-  i32 sval() const { return val(); }
+  i32 sval() const { return (i32)val(); }
   bool is_zero() const { return v_ == 0; }
   template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
   explicit operator T() const { return (T)(val()); }

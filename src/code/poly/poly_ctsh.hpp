@@ -10,9 +10,8 @@ template <class T>
 inline poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64> const &ifact, usz m = 0) {
   usz n = f.size(), k = f.size() - 1;
   if (!m) m = n;
-  u64 t = c.val();
   using mint = typename T::value_type;
-  t %= mint::mod();
+  u64 t = c.val();
   if (t <= k) {
     poly<T> ret(m);
     usz ptr = 0;

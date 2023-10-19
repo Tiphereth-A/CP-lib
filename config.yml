@@ -754,7 +754,13 @@ notebook:
     - polydata_d: polydata_d
       code_ext: hpp
       test_ext: cpp
+    - polydata_d3ntt: polydata_d3ntt
+      code_ext: hpp
+      test_ext: cpp
     - polydata_s: polydata_s
+      code_ext: hpp
+      test_ext: cpp
+    - polydata_s32: polydata_s32
       code_ext: hpp
       test_ext: cpp
     - poly: poly
@@ -848,9 +854,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - polysps_exp: 集合幂级数 exp
-      code_ext: hpp
-      test_ext: cpp
-    - polydata_s32: polydata_s32
       code_ext: hpp
       test_ext: cpp
     str:

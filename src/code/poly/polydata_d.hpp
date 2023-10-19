@@ -9,8 +9,6 @@ namespace tifa_libs::math {
 
 template <class mint>
 struct polydata_d {
-  static_assert(mint::mod() > 1);
-
   using value_type = mint;
 
   vec<mint> d;
