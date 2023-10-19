@@ -517,6 +517,9 @@ notebook:
     - linear_mu_seive: linear_mu_seive
       code_ext: hpp
       test_ext: cpp
+    - linear_p_seive: linear_p_seive
+      code_ext: hpp
+      test_ext: cpp
     - linear_phi_seive: linear_phi_seive
       code_ext: hpp
       test_ext: cpp
@@ -620,6 +623,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - fact_mint: 阶乘取模
+      code_ext: hpp
+      test_ext: cpp
+    - pi_34log: pi(n) 实现一
+      code_ext: hpp
+      test_ext: cpp
+    - pi_23: pi(n) 实现二
       code_ext: hpp
       test_ext: cpp
     matrix:
