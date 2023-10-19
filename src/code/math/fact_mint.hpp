@@ -13,8 +13,8 @@ inline mint fact_mint(u64 n) {
   while (v * v < n) v *= 2;
   mint iv = mint(v).inv();
   poly_t g{1, v + 1};
-  for (u64 d = 1; d != v; d <<= 1) {
-    poly_t g1 = poly_ctsh(g, mint(d) * iv), g2 = poly_ctsh(g, mint(d + 1) * v * iv), g3 = poly_ctsh(g, (mint(d + 1) * v + d) * iv);
+  for (u64 d = 1; d != v; d *= 2) {
+    poly_t g1 = poly_ctsh(g, mint(d) * iv), g2 = poly_ctsh(g, mint(d * v + v) * iv), g3 = poly_ctsh(g, mint(d * v + d + v) * iv);
     for (u64 i = 0; i <= d; ++i) g[i] *= g1[i], g2[i] *= g3[i];
     std::copy(g2.data().begin(), g2.data().end() - 1, std::back_inserter(g.data()));
   }

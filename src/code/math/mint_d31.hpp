@@ -20,8 +20,8 @@ class mint_d31 {
   static inline i32 SMOD;
 
  public:
-  static inline bool set_mod(u32 m) {
-    if (m == 1 || m >> 31 != 0) return false;
+  static inline void set_mod(u32 m) {
+    assert(!(m == 1 || m >> 31));
     for (MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD >>= 1)
       ;
     MASK = (1 << OFFSET) - 1, SMOD = (i32)(MOD);
@@ -31,7 +31,6 @@ class mint_d31 {
       R = iv * (MOD_ODD * iv - t);
     }
     R2 = (u32)(-(u64)(MOD_ODD) % MOD_ODD);
-    return true;
   }
   static inline u32 mod() { return MOD; }
   static inline i32 smod() { return SMOD; }

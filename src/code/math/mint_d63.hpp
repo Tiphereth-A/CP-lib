@@ -23,8 +23,8 @@ class mint_d63 {
   static inline i64 SMOD;
 
  public:
-  static inline bool set_mod(u64 m) {
-    if ((m & 1) == 0 || m == 1 || m >> 63 != 0) return false;
+  static inline void set_mod(u64 m) {
+    assert(!((m & 1) == 0 || m == 1 || m >> 63));
     MOD = m;
     {
       u64 t = 2, iv = MOD * (t - MOD * MOD);
@@ -37,7 +37,6 @@ class mint_d63 {
         if ((R2 *= 2) >= MOD) R2 -= MOD;
     }
     SMOD = (i64)(MOD);
-    return true;
   }
   static inline u64 mod() { return MOD; }
   static inline i64 smod() { return SMOD; }
