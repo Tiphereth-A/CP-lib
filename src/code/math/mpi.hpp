@@ -2,7 +2,7 @@
 #define TIFA_LIBS_MATH_MPI
 
 #include "../conv/conv_u128.hpp"
-#include "../fast/str2uint_1e8.hpp"
+#include "../fast/str2uint_si64.hpp"
 #include "../util/traits.hpp"
 
 namespace tifa_libs::math {
@@ -21,7 +21,6 @@ class mpi {
       if (x < 0) neg = true, x = -x;
     while (x) dt.push_back(x % D), x /= D;
   }
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
   mpi(std::string s) : neg(false) {
     assert(!s.empty());
     if (s.size() == 1u) {
@@ -39,23 +38,9 @@ class mpi {
     }
     if (l) s = s.substr(l);
     for (size_t ie = s.size(); ie >= lgD; ie -= lgD)
-      dt.push_back(str2uint_1e8(s.data() + ie - lgD));
+      dt.push_back(str2uint_si64(s.data() + ie - lgD));
     if (_) dt.push_back(_);
   }
-#else
-  mpi(std::string_view s) : neg(false) {
-    assert(!s.empty());
-    if (s.size() == 1u && s[0] == '0') return;
-    i32 l = 0;
-    if (s[0] == '-') ++l, neg = true;
-    for (i32 ie = (i32)s.size(); l < ie; ie -= lgD) {
-      i32 is = std::max(l, ie - (i32)lgD);
-      u64 x = 0;
-      for (i32 i = is; i < ie; ++i) x = x * 10 + (s[(size_t)i] & 15);
-      dt.push_back((u32)x);
-    }
-  }
-#endif
 
   constexpr static u32 digit() { return D; }
   constexpr static u32 log_digit() { return lgD; }

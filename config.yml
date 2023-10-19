@@ -83,6 +83,9 @@ notebook:
     - inversion: 逆序对计数
       code_ext: hpp
       test_ext: cpp
+    - simd: SIMD 共同依赖
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
@@ -105,9 +108,6 @@ notebook:
     - cntr1: std::countr_one
       code_ext: hpp
       test_ext: cpp
-    - log2: log2
-      code_ext: hpp
-      test_ext: cpp
     - popcnt: std::popcount
       code_ext: hpp
       test_ext: cpp
@@ -115,6 +115,15 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - rotr: std::rotr
+      code_ext: hpp
+      test_ext: cpp
+    - bswap: std::byteswap
+      code_ext: hpp
+      test_ext: cpp
+    - endian: std::endian
+      code_ext: hpp
+      test_ext: cpp
+    - log2: log2
       code_ext: hpp
       test_ext: cpp
     - ispow2: 是否为 2 的整数次幂
@@ -769,7 +778,7 @@ notebook:
     - poly_div: 多项式整除
       code_ext: hpp
       test_ext: cpp
-    - poly_divmod: 多项式除法 & 取模
+    - poly_divmod: 多项式除法与取模
       code_ext: hpp
       test_ext: cpp
     - poly_exp: 多项式 exp
@@ -878,19 +887,19 @@ notebook:
     - rsort32: 32 位整数基数排序
       code_ext: hpp
       test_ext: cpp
-    - str2uint_1e8: 字符串转整数（1e8）
+    - str2uint_si64: 字符串转 u32
       code_ext: hpp
       test_ext: cpp
     - str2uint_mod: 字符串转整数（取模）
       code_ext: hpp
       test_ext: cpp
-    - strhex2uint_1e8: 16 进制字符串转整数（1e8）
+    - strhex2uint_si64: 16 进制字符串转 u32
       code_ext: hpp
       test_ext: cpp
-    - uint2str_32: 32 整数转字符串
+    - u32tostr: u32 转字符串
       code_ext: hpp
       test_ext: cpp
-    - uint2strhex_32: 32 整数转 16 进制字符串
+    - u32tostrhex: u32 转 16 进制字符串
       code_ext: hpp
       test_ext: cpp
 cheatsheets:

@@ -62,10 +62,11 @@ class suffix_automaton {
   }
   void getsz(u32 u = 0) {
     st[u].sz = 1;
-    for (auto v : st[u].nex) if(v) {
-      if (!st[v].sz) getsz(v);
-      st[u].sz += st[v].sz;
-    }
+    for (auto v : st[u].nex)
+      if (v) {
+        if (!st[v].sz) getsz(v);
+        st[u].sz += st[v].sz;
+      }
   }
 };
 
