@@ -2,7 +2,7 @@
 #define TIFA_LIBS_MATH_MPI
 
 #include "../conv/conv_u128.hpp"
-#include "../fast/str2uint_1e8.hpp"
+#include "../fast/str2uint_si64.hpp"
 #include "../util/traits.hpp"
 
 namespace tifa_libs::math {
@@ -38,7 +38,7 @@ class mpi {
     }
     if (l) s = s.substr(l);
     for (size_t ie = s.size(); ie >= lgD; ie -= lgD)
-      dt.push_back(str2uint_1e8(s.data() + ie - lgD));
+      dt.push_back(str2uint_si64(s.data() + ie - lgD));
     if (_) dt.push_back(_);
   }
 

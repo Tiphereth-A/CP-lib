@@ -5,7 +5,7 @@
 
 namespace tifa_libs {
 
-constexpr u32 uint2strhex_32(u64 num, char *s, bool lowerAlpha = true) {
+constexpr u32 u32tostrhex(u32 x, char *s, bool lowerAlpha = true) {
   constexpr char digits[513] =
       "000102030405060708090A0B0C0D0E0F"
       "101112131415161718191A1B1C1D1E1F"
@@ -40,7 +40,6 @@ constexpr u32 uint2strhex_32(u64 num, char *s, bool lowerAlpha = true) {
       "d0d1d2d3d4d5d6d7d8d9dadbdcdddedf"
       "e0e1e2e3e4e5e6e7e8e9eaebecedeeef"
       "f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff";
-  u32 x = (u32)num;
   int i = 3;
   char *lut = (char *)(lowerAlpha ? digitsLowerAlpha : digits);
   while (i >= 0) {

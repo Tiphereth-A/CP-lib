@@ -7,7 +7,7 @@
 
 namespace tifa_libs {
 
-constexpr u32 strhex2uint_1e8(const char* const s) {
+constexpr u32 strhex2uint_si64(const char* const s) {
   static_assert(__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__);
   u64 _ = *((u64*)(s));
   if (bit::endian::native == bit::endian::big) _ = bit::bswap(_);

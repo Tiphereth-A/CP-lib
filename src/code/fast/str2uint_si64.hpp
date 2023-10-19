@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_FAST_STR2UINT_1E8
-#define TIFA_LIBS_FAST_STR2UINT_1E8
+#ifndef TIFA_LIBS_FAST_STR2UINT_SI64
+#define TIFA_LIBS_FAST_STR2UINT_SI64
 
 #include "../bit/bswap.hpp"
 #include "../bit/endian.hpp"
@@ -7,7 +7,7 @@
 
 namespace tifa_libs {
 
-constexpr u32 str2uint_1e8(const char* const s) {
+constexpr u32 str2uint_si64(const char* const s) {
   u64 _ = *((u64*)(s));
   if (bit::endian::native == bit::endian::big) _ = bit::bswap(_);
   _ = (_ & 0x0F0F0F0F0F0F0F0F) * 2561 >> 8;
