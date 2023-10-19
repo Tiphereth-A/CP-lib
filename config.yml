@@ -778,7 +778,7 @@ notebook:
     - poly_div: 多项式整除
       code_ext: hpp
       test_ext: cpp
-    - poly_divmod: 多项式除法 & 取模
+    - poly_divmod: 多项式除法与取模
       code_ext: hpp
       test_ext: cpp
     - poly_exp: 多项式 exp
