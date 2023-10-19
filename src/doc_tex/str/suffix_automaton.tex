@@ -1,0 +1,28 @@
+\begin{itemize}
+
+    \item application 0\\
+          检查字符串t是否出现, 如果未出现返回{出现的最大前缀长度len, false},如果出现则返回{该串所对应状态u, true}
+
+    \item application 1\\
+          求不同子串个数, 答案即sam.st.sz[0] - 1
+
+    \item application 2\\
+          求每一个endpos内部串的出现次数, 答案即sam.st.times[i]
+
+    \item application 3\\
+          求每个状态的第一次出现这个状态的末端的位置sam.st.firstpos
+
+          对于字符串t, 调用search(t)后, 第一次出现的位置即sam.st.firstpos[u] - |P| + 1
+
+          t的每一个出现位置: 遍历所有以状态u为后缀的状态v, 答案即{sam.st.firstpos[v] - |P| + 1}
+
+    \item application 4\\
+          求s与t的最长公共子串, 其中sam由s建立
+
+    \item application others 0\\
+          所有不同子串的总长度, 字典序第k大子串, 最短的没有出现的字符串(给定字符集):dp
+
+    \item application others 1\\
+          多个字符串间的最长公共子串, 见拓展后缀自动机
+
+\end{itemize}

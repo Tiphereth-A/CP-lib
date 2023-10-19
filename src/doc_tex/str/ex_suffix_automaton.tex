@@ -1,0 +1,13 @@
+多个字符串间的最长公共子串, 对每个状态建立一个集合pos, 每次插入第i个串的一个字符后st.pos[last].push_back(i), 则对于每个状态u
+
+$$\forall a,b \in st[u].pos then lcs(a, b) is str(u)$$
+
+$$\forall a\in st[u].pos, b\in st[st[u].link].pos then lcs(a, b) in str(u, st[u].link)$$
+
+其中lcs(a,b)表示串a,b的最长公共子串, str(u)表示状态u表示的串, str(u, v)表示在后缀链接中u, v这条边的表示状态表示的串
+
+然后按照len递减的顺序遍历,通过后缀链接将当前状态的pos与其他状态的合并, 遍历所有的状态,找到一个len最大且满足当前pos的size为n的状态的len即为解
+
+两两之间的最长公共子串也可这么求
+
+复杂度$O(|\sigma| log|\sigma|)$

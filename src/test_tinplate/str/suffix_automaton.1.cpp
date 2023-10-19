@@ -5,14 +5,10 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  std::string s;
-  std::cin >> s;
+  std::string s, t;
+  std::cin >> s >> t;
   tifa_libs::str::suffix_automaton sam;
   for (auto c : s) sam.extend(tifa_libs::u32(c - 'a'));
-  tifa_libs::u64 ans = 0;
-  sam.build(), sam.gettimes();
-  for (size_t i = 1; i < sam.sz; ++i)
-    if (sam.st[i].times > 1) ans = std::max(ans, (tifa_libs::u64)sam.st[i].times * sam.st[i].len);
-  std::cout << ans;
+  std::cout << sam.lcs(t).second;
   return 0;
 }
