@@ -41,6 +41,6 @@ using hset = std::unordered_set<Tp, Hash>;
 template <class Key, class Tp, class Hash = hash_splitmix64>
 using hmap = std::unordered_map<Key, Tp, Hash>;
 
-}  // namespace tifa_libs::util
+}  // namespace tifa_libs
 
 #endif

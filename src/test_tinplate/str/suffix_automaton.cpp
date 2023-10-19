@@ -8,7 +8,7 @@ int main() {
   std::string s;
   std::cin >> s;
   tifa_libs::str::suffix_automaton sam;
-  for(auto c: s) sam.extend(c - 'a');
+  for (auto c : s) sam.extend(c - 'a');
   tifa_libs::u64 ans = 0;
   sam.buildparenttree(), sam.gettimes();
   for (size_t i = 1; i < sam.sz; ++i)
