@@ -619,6 +619,9 @@ notebook:
     - mex: mex
       code_ext: hpp
       test_ext: cpp
+    - fact_mint: 阶乘取模
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
@@ -818,6 +821,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - poly_tsh: 多项式单点平移
+      code_ext: hpp
+      test_ext: cpp
+    - poly_ctsh: 多项式连续点值平移
       code_ext: hpp
       test_ext: cpp
     - poly_ode: 多项式 ODE
