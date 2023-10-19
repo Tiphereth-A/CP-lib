@@ -28,6 +28,18 @@ inline vec<u64> conv_3ntt(vec<u64> const &l, vec<u64> const &r, u64 mod, size_t 
 }
 template <class mint0, class mint1, class mint2>
 inline vec<u64> conv_3ntt(vec<u64> const &l, vec<u64> const &r, u64 mod) { return conv_3ntt<mint0, mint1, mint2>(l, r, mod, l.size() + r.size() - 1); }
+template <class mint, class mint0, class mint1, class mint2>
+inline vec<mint> conv_3ntt(vec<mint> const &l, vec<mint> const &r, size_t ans_size) {
+  vec<u64> l_(l.size()), r_(r.size());
+  for (size_t i = 0; i < l.size(); ++i) l_[i] = l[i].val();
+  for (size_t i = 0; i < r.size(); ++i) r_[i] = r[i].val();
+  vec<u64> _ = conv_3ntt<mint0, mint1, mint2>(l_, r_, mint::mod(), ans_size);
+  vec<mint> res(_.size());
+  for (size_t i = 0; i < _.size(); ++i) res[i] = _[i];
+  return res;
+}
+template <class mint, class mint0, class mint1, class mint2>
+inline vec<mint> conv_3ntt(vec<mint> const &l, vec<mint> const &r) { return conv_3ntt<mint, mint0, mint1, mint2>(l, r, l.size() + r.size() - 1); }
 
 }  // namespace tifa_libs::math
 
