@@ -517,7 +517,7 @@ notebook:
     - linear_mu_seive: linear_mu_seive
       code_ext: hpp
       test_ext: cpp
-    - linear_p_seive: linear_p_seive
+    - prime_seq: prime_seq
       code_ext: hpp
       test_ext: cpp
     - linear_phi_seive: linear_phi_seive

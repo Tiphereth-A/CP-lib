@@ -3,7 +3,7 @@
 
 #include "ikth_root.hpp"
 #include "isqrt.hpp"
-#include "linear_p_seive.hpp"
+#include "prime_seq.hpp"
 
 namespace tifa_libs::math {
 
@@ -11,7 +11,7 @@ inline u64 pi_23(u64 n) {
   if (n < 2) return 0;
   static auto div = [](u64 n, u64 p) -> u64 { return (u64)((double)n / (double)p); };
   u64 n2 = isqrt(n), n3 = ikth_root(n, 3), n6 = ikth_root(n, 6), n23 = n / n3;
-  auto prime = linear_p_seive((u32)n2 + 1000);
+  auto prime = prime_seq((u32)n2 + 1000);
   u32 pidx = 0;
   u64 pi = 0;
   vec<u64> ns;

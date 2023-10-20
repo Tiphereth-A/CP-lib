@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 template <class T>
 inline vec<T> conv_lcm(vec<T> l, vec<T> r) {
   assert(l.size() == r.size());
-  auto pf = linear_p_seive((u32)l.size() - 1);
+  auto pf = prime_seq((u32)l.size() - 1);
   zt_divisor(l, pf);
   zt_divisor(r, pf);
   for (usz i = 0; i < l.size(); ++i) l[i] *= r[i];
