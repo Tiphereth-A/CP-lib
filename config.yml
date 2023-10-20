@@ -574,6 +574,9 @@ notebook:
     - qpow: qpow
       code_ext: hpp
       test_ext: cpp
+    - jacobi_sym: Jacobi 符号
+      code_ext: hpp
+      test_ext: cpp
     - qresidue: 二次剩余
       code_ext: hpp
       test_ext: cpp
