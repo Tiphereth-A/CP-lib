@@ -11,7 +11,7 @@ void solve() {
       std::cin >> x;
       maps[i][j] = x;
     }
-  auto res = tifa_libs::util::DLX(maps).dance([]([[maybe_unused]] auto const &x) {});
+  auto res = tifa_libs::util::DLX(maps).dance([](auto const&) {});
   if (res.has_value())
     for (auto i : res.value()) std::cout << i << ' ';
   else

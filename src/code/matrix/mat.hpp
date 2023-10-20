@@ -69,26 +69,26 @@ class matrix {
 
   constexpr matrix operator-() const {
     matrix ret = *this;
-    ret.apply_range(0, row(), 0, col(), []([[maybe_unused]] usz r, [[maybe_unused]] usz c, T &v) { v = -v; });
+    ret.apply_range(0, row(), 0, col(), [](usz, usz, T &v) { v = -v; });
     return ret;
   }
 
   constexpr friend matrix operator+(matrix l, const T &v) { return l += v; }
   constexpr friend matrix operator+(const T &v, matrix l) { return l += v; }
   constexpr matrix &operator+=(const T &v) {
-    apply_range(0, row(), 0, col(), [&v]([[maybe_unused]] usz i, [[maybe_unused]] usz j, T &val) { val += v; });
+    apply_range(0, row(), 0, col(), [&v](usz, usz, T &val) { val += v; });
     return *this;
   }
   constexpr friend matrix operator-(matrix l, const T &v) { return l -= v; }
   constexpr friend matrix operator-(const T &v, matrix l) { return l -= v; }
   constexpr matrix &operator-=(const T &v) {
-    apply_range(0, row(), 0, col(), [&v]([[maybe_unused]] usz i, [[maybe_unused]] usz j, T &val) { val -= v; });
+    apply_range(0, row(), 0, col(), [&v](usz, usz, T &val) { val -= v; });
     return *this;
   }
   constexpr friend matrix operator*(matrix l, const T &v) { return l *= v; }
   constexpr friend matrix operator*(const T &v, matrix l) { return l *= v; }
   constexpr matrix &operator*=(const T &v) {
-    apply_range(0, row(), 0, col(), [&v]([[maybe_unused]] usz i, [[maybe_unused]] usz j, T &val) { val *= v; });
+    apply_range(0, row(), 0, col(), [&v](usz, usz, T &val) { val *= v; });
     return *this;
   }
 

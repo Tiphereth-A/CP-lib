@@ -27,7 +27,7 @@ class RGCD {
           if ((now.a *= j) > now.b) std::swap(now.a, now.b);
           if (now.b > now.c) std::swap(now.b, now.c);
         },
-        [this]([[maybe_unused]] u32 i, [[maybe_unused]] u32 j) {
+        [this](u32 i, u32 j) {
           F3 &now = fs[i * j];
           now = fs[i];
           if ((now.a *= j) > now.b) std::swap(now.a, now.b);

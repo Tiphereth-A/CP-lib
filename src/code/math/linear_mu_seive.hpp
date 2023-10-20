@@ -12,7 +12,7 @@ inline vec<i32> linear_mu_seive(u32 n) {
       n,
       [&](u32 p) { mu[p] = -1; },
       [&](u32 i, u32 j) { mu[i * j] = -mu[i]; },
-      []([[maybe_unused]] u32 i, [[maybe_unused]] u32 j) {});
+      [](u32, u32) {});
   return mu;
 }
 

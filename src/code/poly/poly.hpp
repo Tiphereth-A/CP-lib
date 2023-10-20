@@ -65,7 +65,7 @@ class poly {
 
   constexpr poly operator-() const {
     poly ret = *this;
-    ret.apply([]([[maybe_unused]] usz i, auto &v) { v = -v; });
+    ret.apply([](usz, auto &v) { v = -v; });
     return ret;
   }
 
@@ -81,7 +81,7 @@ class poly {
   friend poly operator-(value_type c, poly const &p) { return p - c; }
 
   constexpr poly &operator*=(value_type c) {
-    apply([&c]([[maybe_unused]] usz i, auto &v) { v *= c; });
+    apply([&c](usz, auto &v) { v *= c; });
     return *this;
   }
   constexpr friend poly operator*(poly p, value_type c) { return p *= c; }

@@ -83,31 +83,31 @@ class spmat {
 
   constexpr spmat operator-() const {
     spmat ret = *this;
-    ret.apply([]([[maybe_unused]] usz r, [[maybe_unused]] usz c, T &v) { v = -v; });
+    ret.apply([](usz, usz, T &v) { v = -v; });
     return ret;
   }
 
   constexpr friend spmat operator+(spmat l, const T &v) { return l += v; }
   constexpr friend spmat operator+(const T &v, spmat l) { return l += v; }
   constexpr spmat &operator+=(const T &v) {
-    apply([&v]([[maybe_unused]] usz i, [[maybe_unused]] usz j, T &val) { val += v; });
+    apply([&v](usz, usz, T &val) { val += v; });
     return *this;
   }
   constexpr friend spmat operator-(spmat l, const T &v) { return l -= v; }
   constexpr friend spmat operator-(const T &v, spmat l) { return l -= v; }
   constexpr spmat &operator-=(const T &v) {
-    apply([&v]([[maybe_unused]] usz i, [[maybe_unused]] usz j, T &val) { val -= v; });
+    apply([&v](usz, usz, T &val) { val -= v; });
     return *this;
   }
   constexpr friend spmat operator*(spmat l, const T &v) { return l *= v; }
   constexpr friend spmat operator*(const T &v, spmat l) { return l *= v; }
   constexpr spmat &operator*=(const T &v) {
-    apply([&v]([[maybe_unused]] usz i, [[maybe_unused]] usz j, T &val) { val *= v; });
+    apply([&v](usz, usz, T &val) { val *= v; });
     return *this;
   }
 
   constexpr friend spmat operator+(spmat const &l, spmat const &r) {
-    return merge(l, r, []([[maybe_unused]] usz r, [[maybe_unused]] usz c, T const &lv, T const &rv) { return lv + rv; });
+    return merge(l, r, [](usz, usz, T const &lv, T const &rv) { return lv + rv; });
   }
   constexpr spmat &operator+=(spmat const &r) { return *this = *this + r; }
   constexpr friend spmat operator-(spmat l, const spmat &r) { return l + (-r); }
