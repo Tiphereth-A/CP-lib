@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_MATH_PI_23
 #define TIFA_LIBS_MATH_PI_23
 
+#include "div64.hpp"
 #include "ikth_root.hpp"
 #include "isqrt.hpp"
 #include "prime_seq.hpp"
@@ -9,7 +10,6 @@ namespace tifa_libs::math {
 
 inline u64 pi_23(u64 n) {
   if (n < 2) return 0;
-  static auto div = [](u64 n, u64 p) -> u64 { return u64((f64)n / (f64)p); };
   u64 n2 = isqrt(n), n3 = ikth_root(n, 3), n6 = ikth_root(n, 6), n23 = n / n3;
   auto prime = prime_seq((u32)n2 + 1000);
   u32 pidx = 0;
@@ -17,7 +17,7 @@ inline u64 pi_23(u64 n) {
   vec<u64> ns;
   ns.reserve(n2 * 2 + 2);
   ns.push_back(0);
-  for (usz i = 1; i <= n2; ++i) ns.push_back(div(n, i));
+  for (usz i = 1; i <= n2; ++i) ns.push_back(div_u64d(n, i));
   for (usz i = ns.back() - 1; i; --i) ns.push_back(i);
   usz nsz = ns.size();
   vec<u64> h = ns;
@@ -25,13 +25,13 @@ inline u64 pi_23(u64 n) {
   while (prime[pidx] <= n6) {
     u32 p = prime[pidx];
     u64 p2 = (u64)p * p;
-    for (u64 i = 1, n = ns[i]; i < nsz && n >= p2; n = ns[++i]) h[i] -= h[i * p <= n2 ? i * p : nsz - div(n, p)] - pi;
+    for (u64 i = 1, n = ns[i]; i < nsz && n >= p2; n = ns[++i]) h[i] -= h[i * p <= n2 ? i * p : nsz - div_u64d(n, p)] - pi;
     ++pidx, ++pi;
   }
   vec<i32> bit(nsz - n3);
   auto dfs = [&](auto &&rec, u64 cur, u32 pid, bool flag) -> void {
     if (flag)
-      if (u64 id = cur <= n2 ? nsz - cur : div(n, cur); id > n3)
+      if (u64 id = cur <= n2 ? nsz - cur : div_u64d(n, cur); id > n3)
         for (id -= n3; id; id -= id & -id) --bit[id];
     for (u32 dst = pid; cur * prime[dst] < n23; ++dst) rec(rec, cur * prime[dst], dst, true);
   };
@@ -40,7 +40,7 @@ inline u64 pi_23(u64 n) {
     u64 p2 = (u64)p * p;
     for (u64 i = 1; i <= n3; ++i) {
       if (p2 > ns[i]) break;
-      u64 id = i * p <= n2 ? i * p : nsz - div(ns[i], p);
+      u64 id = i * p <= n2 ? i * p : nsz - div_u64d(ns[i], p);
       i64 _ = (i64)h[id];
       if (id > n3)
         for (id -= n3; id < bit.size(); id += id & -id) _ += bit[id];
@@ -55,7 +55,7 @@ inline u64 pi_23(u64 n) {
   while (prime[pidx] <= n2) {
     u32 p = prime[pidx];
     u64 p2 = (u64)p * p;
-    for (u64 i = 1, n = ns[i]; i < nsz && n >= p2; n = ns[++i]) h[i] -= h[i * p <= n2 ? i * p : nsz - div(n, p)] - pi;
+    for (u64 i = 1, n = ns[i]; i < nsz && n >= p2; n = ns[++i]) h[i] -= h[i * p <= n2 ? i * p : nsz - div_u64d(n, p)] - pi;
     ++pidx, ++pi;
   }
   return h[1];

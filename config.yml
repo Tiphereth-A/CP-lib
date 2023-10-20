@@ -478,6 +478,9 @@ notebook:
     - crt: crt
       code_ext: hpp
       test_ext: cpp
+    - div64: 64 位整数除法
+      code_ext: hpp
+      test_ext: cpp
     - do_quot: do_quot
       code_ext: hpp
       test_ext: cpp
@@ -632,6 +635,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - pi_23: pi(n) 实现二
+      code_ext: hpp
+      test_ext: cpp
+    - du_seive: 杜教筛
       code_ext: hpp
       test_ext: cpp
     matrix:
