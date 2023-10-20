@@ -726,13 +726,16 @@ notebook:
     - conv_ntt32: 卷积（NTT u32）
       code_ext: hpp
       test_ext: cpp
-    - conv_u128: 卷积（高精度整数用）
+    - conv_u128: 卷积（三模 NTT，高精度整数用）
       code_ext: hpp
       test_ext: cpp
     - karatsuba: Karatsuba 乘法
       code_ext: hpp
       test_ext: cpp
     - wht: Walsh Hadamard 变换
+      code_ext: hpp
+      test_ext: cpp
+    - conv_xor: 卷积（异或）
       code_ext: hpp
       test_ext: cpp
     - zmt_subset: Zeta–M\"obius 变换（子集）
@@ -750,7 +753,16 @@ notebook:
     - conv_or: 卷积（交）
       code_ext: hpp
       test_ext: cpp
-    - conv_xor: 卷积（异或）
+    - zmt_divisor: Zeta–M\"obius 变换（因数）
+      code_ext: hpp
+      test_ext: cpp
+    - zmt_multiple: Zeta–M\"obius 变换（倍数）
+      code_ext: hpp
+      test_ext: cpp
+    - conv_gcd: 卷积（GCD）
+      code_ext: hpp
+      test_ext: cpp
+    - conv_lcm: 卷积（LCM）
       code_ext: hpp
       test_ext: cpp
     poly:
