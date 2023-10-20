@@ -42,7 +42,7 @@
 \RequirePackage{fontspec}
 \setsansfont{Fira Sans}
 \setmonofont{Fira Code}[Contextuals=Alternate]
-\newfontfamily\cnfont{等线}
+\newfontfamily\cnfont{Noto Sans CJK SC}
 \setTransitionsForChinese{\cnfont}{}
 
 % User defined command
