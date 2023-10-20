@@ -27,7 +27,7 @@ class lichao_segtree {
       T tl = t[x].w(lsh[l]), tr = t[x].w(lsh[r]), kl = k.w(lsh[l]), kr = k.w(lsh[r]);
       if (pd(tl, kl) && pd(tr, kr)) return;
       if (!pd(tl, kl) && !pd(tr, kr)) return void(t[x] = k);
-      double in = (t[x].b - k.b) / (k.a - t[x].a);
+      f64 in = (t[x].b - k.b) / (k.a - t[x].a);
       if (pd(kl, tl)) {
         if (in <= lsh[mid]) add(x << 1, l, mid, L, R, k);
         else add(x << 1 | 1, mid + 1, r, L, R, t[x]), t[x] = k;

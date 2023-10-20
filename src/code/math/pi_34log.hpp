@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 inline u64 pi_34log(u64 n) {
   if (n < 2) return 0;
-  static auto div = [](u64 n, u64 p) -> u64 { return (u64)((double)n / (double)p); };
+  static auto div = [](u64 n, u64 p) -> u64 { return u64((f64)n / (f64)p); };
   u64 n2 = isqrt(n), ndn2 = div(n, n2);
   vec<u64> hl(ndn2);
   for (usz i = 1; i < ndn2; ++i) hl[i] = div(n, i) - 1;

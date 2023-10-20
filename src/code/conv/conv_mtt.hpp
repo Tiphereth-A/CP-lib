@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-template <class mint, class FP = double>
+template <class mint, class FP = f64>
 inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, usz ans_size) {
   using C = typename FFT<FP>::C;
   static FFT<FP> fft;
@@ -51,7 +51,7 @@ inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, usz ans_size) 
   }
   return ans;
 }
-template <class mint, class FP = double>
+template <class mint, class FP = f64>
 inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r) { return conv_mtt<mint, FP>(l, r, l.size() + r.size() - 1); }
 
 }  // namespace tifa_libs::math

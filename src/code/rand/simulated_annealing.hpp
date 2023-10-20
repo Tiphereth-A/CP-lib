@@ -5,7 +5,7 @@
 
 namespace tifa_libs::rand {
 
-template <class T, class fT = double, class Tt = double>
+template <class T, class fT = f64, class Tt = f64>
 class simuanl {
   const Tt Tmax, Tmin, dT;
   Gen<std::uniform_real_distribution<Tt>> g;
