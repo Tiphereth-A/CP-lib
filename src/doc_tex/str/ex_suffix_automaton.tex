@@ -1,13 +1,21 @@
-多个字符串间的最长公共子串, 对每个状态建立一个集合pos, 每次插入第i个串的一个字符后st.pos[last].push_back(i), 则对于每个状态u
+多个字符串间的最长公共子串, 对每个状态建立一个集合 \verb|pos|, 每次插入第 \verb|i| 个串的一个字符后
 
-$$\forall a,b \in st[u].pos then lcs(a, b) is str(u)$$
+\verb|st.pos[last].push_back(i)|, 则对于每个状态 \verb|u|
 
-$$\forall a\in st[u].pos, b\in st[st[u].link].pos then lcs(a, b) in str(u, st[u].link)$$
+\[
+    \forall a,b \in \texttt{st[u].pos}~\text{then}~\texttt{lcs(a, b)}~\text{is}~\texttt{str(u)}
+\]
 
-其中lcs(a,b)表示串a,b的最长公共子串, str(u)表示状态u表示的串, str(u, v)表示在后缀链接中u, v这条边的表示状态表示的串
+\[
+    \forall a\in \texttt{st[u].pos}, b\in \texttt{st[st[u].link].pos}~\text{then}~\texttt{lcs(a, b)} ~\text{in}~ \texttt{str(u, st[u].link)}
+\]
 
-然后按照len递减的顺序遍历,通过后缀链接将当前状态的pos与其他状态的合并, 遍历所有的状态,找到一个len最大且满足当前pos的size为n的状态的len即为解
+其中 \verb|lcs(a,b)| 表示串 \verb|a|, \verb|b| 的最长公共子串, \verb|str(u)| 表示状态 \verb|u| 表示的串, \verb|str(u, v)| 表示在后缀链接中 \verb|u|, \verb|v| 这条边的表示状态表示的串
+
+然后按照 \verb|len| 递减的顺序遍历, 通过后缀链接将当前状态的 \verb|pos| 与其他状态的合并, 遍历所有的状态, 找到一个 \verb|len| 最大且满足当前 \verb|pos| 的 \verb|size| 为 \verb|n| 的状态的 \verb|len| 即为解
 
 两两之间的最长公共子串也可这么求
 
-复杂度$O(|\sigma| log|\sigma|)$
+\paragraph{复杂度}
+
+\(O(|\sigma| \log|\sigma|)\)
