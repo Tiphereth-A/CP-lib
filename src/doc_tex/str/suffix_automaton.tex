@@ -11,9 +11,9 @@
     \item application 3\\
           求每个状态的第一次出现这个状态的末端的位置 \verb|sam.st.firstpos|
 
-          对于字符串 \verb|t|, 调用 \verb|search(t)| 后, 第一次出现的位置即 \verb{sam.st.firstpos[u] - |P| + 1}
+          对于字符串 \verb|t|, 调用 \verb|search(t)| 后, 第一次出现的位置即 \begin{verbatim}sam.st.firstpos[u] - |P| + 1\end{verbatim}
 
-          \verb|t| 的每一个出现位置: 遍历所有以状态 \verb|u| 为后缀的状态 \verb|v|, 答案即 \{\verb{sam.st.firstpos[v] - |P| + 1}\}
+          \verb|t| 的每一个出现位置: 遍历所有以状态 \verb|u| 为后缀的状态 \verb|v|, 答案即 \{\begin{verbatim}sam.st.firstpos[v] - |P| + 1\end{verbatim}\}
 
     \item application 4\\
           求 \verb|s| 与 \verb|t| 的最长公共子串, 其中 \verb|sam| 由 \verb|s| 建立
