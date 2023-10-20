@@ -4,7 +4,7 @@
 namespace tifa_libs::bit {
 
 // From GCC lib
-template <typename T>
+template <class T>
 constexpr T bswap(T x) {
   if constexpr (sizeof(T) == 2) return __builtin_bswap16(x);
   if constexpr (sizeof(T) == 4) return __builtin_bswap32(x);

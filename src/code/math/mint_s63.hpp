@@ -43,7 +43,7 @@ class mint_s63 {
   static constexpr u64 mod() { return MOD; }
   static constexpr i64 smod() { return SMOD; }
   constexpr mint_s63() {}
-  template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
+  template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   constexpr mint_s63(T v) : v_(redc_mul(norm(v % SMOD), R2)) {}
   constexpr u64 val() const {
     u64 res = -mul_high(v_ * R, MOD);
@@ -51,7 +51,7 @@ class mint_s63 {
   }
   constexpr i64 sval() const { return val(); }
   constexpr bool is_zero() const { return v_ == 0; }
-  template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
+  template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit constexpr operator T() const { return (T)(val()); }
   constexpr mint_s63 operator-() const {
     mint_s63 res;

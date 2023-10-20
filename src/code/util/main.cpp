@@ -27,9 +27,9 @@ using pqg = std::priority_queue<Tp, std::vector<Tp>, std::greater<Tp>>;
 #define rfors_(i, r, l, s, v...) for (ll i = (r), i##e = (l), ##v; i >= i##e; i -= s)
 #define Rep for_
 #define rep rfor_
-template <typename... Ts>
+template <class... Ts>
 void dec(Ts &...x) { ((--x), ...); }
-template <typename... Ts>
+template <class... Ts>
 void inc(Ts &...x) { ((++x), ...); }
 
 template <class Tp>

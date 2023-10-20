@@ -100,7 +100,7 @@ class tree {
     return dep[u] > dep[v] ? v : u;
   }
 };
-template <typename T>
+template <class T>
 class tree_w {
   vec<vec<std::pair<usz, T>>> e_;
 

@@ -7,7 +7,7 @@
 namespace tifa_libs::bit {
 
 // From GCC lib
-template <typename T>
+template <class T>
 constexpr T bceil(T x) {
   if (x == 0 || x == 1) return 1;
   constexpr int nd = sizeof(T) * 8;

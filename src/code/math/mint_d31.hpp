@@ -35,7 +35,7 @@ class mint_d31 {
   static inline u32 mod() { return MOD; }
   static inline i32 smod() { return SMOD; }
   mint_d31() {}
-  template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
+  template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   mint_d31(T v) : v_(tsf(norm((i32)(v % (T)SMOD)))) {}
   u32 val() const {
     u32 h = redc(v_ >> OFFSET);
@@ -43,7 +43,7 @@ class mint_d31 {
   }
   i32 sval() const { return (i32)val(); }
   bool is_zero() const { return v_ == 0; }
-  template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
+  template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit operator T() const { return (T)(val()); }
   mint_d31 operator-() const {
     mint_d31 res;

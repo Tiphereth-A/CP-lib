@@ -31,12 +31,12 @@ class mint_s30 {
   static constexpr u32 mod() { return MOD; }
   static constexpr i32 smod() { return SMOD; }
   constexpr mint_s30() {}
-  template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
+  template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   constexpr mint_s30(T v) : v_(redc((u64)(v % SMOD + SMOD) * R2)) {}
   constexpr u32 val() const { return norm(redc(v_)); }
   constexpr i32 sval() const { return (i32)norm(redc(v_)); }
   constexpr bool is_zero() const { return v_ == 0 || v_ == MOD; }
-  template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
+  template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit constexpr operator T() const { return (T)(val()); }
   constexpr mint_s30 operator-() const {
     mint_s30 res;

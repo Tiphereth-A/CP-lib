@@ -6,7 +6,7 @@
 namespace tifa_libs::bit {
 
 // From GCC lib
-template <typename T>
+template <class T>
 constexpr int cntl1(T x) { return cntl0(~x); }
 
 }  // namespace tifa_libs::bit

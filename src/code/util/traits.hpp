@@ -5,7 +5,7 @@
 
 namespace tifa_libs {
 
-template <typename T>
+template <class T>
 using remove_cvref_t = typename std::remove_cv_t<typename std::remove_reference_t<T>>;
 
 template <class T>

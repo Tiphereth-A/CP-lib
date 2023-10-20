@@ -6,7 +6,7 @@
 namespace tifa_libs::bit {
 
 // From GCC lib
-template <typename T>
+template <class T>
 constexpr T bfloor(T x) {
   if (x == 0) return 0;
   return (T)1u << (sizeof(T) * 8 - cntl0(x >> 1));

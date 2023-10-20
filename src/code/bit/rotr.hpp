@@ -4,7 +4,7 @@
 namespace tifa_libs::bit {
 
 // From GCC lib
-template <typename T>
+template <class T>
 constexpr T rotr(T x, int s) {
   constexpr int nd = sizeof(T) * 8;
   if constexpr ((nd & (nd - 1)) == 0) {

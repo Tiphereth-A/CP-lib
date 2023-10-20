@@ -4,7 +4,7 @@
 namespace tifa_libs::bit {
 
 // From GCC lib
-template <typename T>
+template <class T>
 constexpr int cntl0(T x) {
   constexpr int nd = sizeof(T) * 8;
   if (x == 0) return nd;

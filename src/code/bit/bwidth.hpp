@@ -6,7 +6,7 @@
 namespace tifa_libs::bit {
 
 // From GCC lib
-template <typename T>
+template <class T>
 constexpr int bwidth(T x) { return (int)sizeof(T) * 8 - cntl0(x); }
 
 }  // namespace tifa_libs::bit

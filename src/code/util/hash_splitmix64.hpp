@@ -23,7 +23,7 @@ class hash_splitmix64 {
 
   template <class Tp, class Up>
   usz operator()(std::pair<Tp, Up> const &p) const { return append((*this)(p.first), (*this)(p.second)); }
-  template <typename... Ts>
+  template <class... Ts>
   usz operator()(std::tuple<Ts...> const &tp) const {
     usz ret = 0;
     std::apply([&](Ts const &...targs) { ((ret = append(ret, (*this)(targs))), ...); }, tp);

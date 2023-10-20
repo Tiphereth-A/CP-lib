@@ -6,16 +6,18 @@
 namespace tifa_libs::math {
 
 namespace karatsuba_impl_ {
-template <typename T>
+
+template <class T>
 void add(vec<T> &a, vec<T> const &b) {
   if (a.size() < b.size()) a.resize(b.size());
   for (usz i = 0; i < b.size(); ++i) a[i] += b[i];
 }
-template <typename T>
+template <class T>
 void sub(vec<T> &a, vec<T> const &b) {
   if (a.size() < b.size()) a.resize(b.size());
   for (usz i = 0; i < b.size(); ++i) a[i] -= b[i];
 }
+
 }  // namespace karatsuba_impl_
 
 inline vec<u64> karatsuba(vec<u64> const &a, vec<u64> const &b) {
