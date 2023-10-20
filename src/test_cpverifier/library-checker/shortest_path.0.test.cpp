@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr);
   tifa_libs::u32 n, m, s, t;
   std::cin >> n >> m >> s >> t;
-  tifa_libs::vvec<std::pair<size_t, tifa_libs::u64>> g(n);
+  tifa_libs::vvp<size_t, tifa_libs::u64> g(n);
   for (tifa_libs::u32 i = 0, a, b, c; i < m; ++i) {
     std::cin >> a >> b >> c;
     g[a].emplace_back(b, c);
