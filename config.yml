@@ -511,13 +511,13 @@ notebook:
     - isqrt: isqrt
       code_ext: hpp
       test_ext: cpp
+    - prime_seq: prime_seq
+      code_ext: hpp
+      test_ext: cpp
     - linear_mpf_seive: linear_mpf_seive
       code_ext: hpp
       test_ext: cpp
     - linear_mu_seive: linear_mu_seive
-      code_ext: hpp
-      test_ext: cpp
-    - prime_seq: prime_seq
       code_ext: hpp
       test_ext: cpp
     - linear_phi_seive: linear_phi_seive
@@ -527,6 +527,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - linear_sigma_seive: linear_sigma_seive
+      code_ext: hpp
+      test_ext: cpp
+    - linear_tau_seive: linear_tau_seive
       code_ext: hpp
       test_ext: cpp
     - mint_d31: mint_d31
