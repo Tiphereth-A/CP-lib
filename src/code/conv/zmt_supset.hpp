@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_CONV_ZT_SUPSET
-#define TIFALIBS_CONV_ZT_SUPSET
+#ifndef TIFALIBS_CONV_ZMT_SUPSET
+#define TIFALIBS_CONV_ZMT_SUPSET
 
 #include "../bit/ispow2.hpp"
 #include "../util/util.hpp"
@@ -13,6 +13,15 @@ void zt_supset(vec<T>& f) {
   for (size_t i = 1; i < n; i *= 2)
     for (size_t j = 0; j < n; ++j)
       if (!(j & i)) f[j] += f[j | i];
+}
+
+template <class T>
+void mt_supset(vec<T>& f) {
+  size_t n = f.size();
+  assert(bit::ispow2(n));
+  for (size_t i = 1; i < n; i *= 2)
+    for (size_t j = 0; j < n; ++j)
+      if (!(j & i)) f[j] -= f[j | i];
 }
 
 }  // namespace tifa_libs::math

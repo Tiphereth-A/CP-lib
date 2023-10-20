@@ -735,19 +735,13 @@ notebook:
     - wht: Walsh Hadamard 变换
       code_ext: hpp
       test_ext: cpp
-    - zt_subset: 子集 Zeta 变换
+    - zmt_subset: Zeta–M\"obius 变换（子集）
       code_ext: hpp
       test_ext: cpp
-    - zt_supset: 超集 Zeta 变换
+    - zmt_supset: Zeta–M\"obius 变换（超集）
       code_ext: hpp
       test_ext: cpp
-    - mt_subset: 子集 Mobius 变换
-      code_ext: hpp
-      test_ext: cpp
-    - mt_supset: 超集 Mobius 变换
-      code_ext: hpp
-      test_ext: cpp
-    - conv_subset: 子集卷积
+    - conv_subset: 卷积（子集）
       code_ext: hpp
       test_ext: cpp
     - conv_and: 卷积（并）

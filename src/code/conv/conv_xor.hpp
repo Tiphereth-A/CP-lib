@@ -7,10 +7,10 @@ namespace tifa_libs::math {
 
 template <class T>
 inline vec<T> conv_xor(vec<T> l, vec<T> r) {
-  wht_dif(l);
-  wht_dif(r);
+  wht(l);
+  wht(r);
   for (size_t i = 0; i < l.size(); ++i) l[i] *= r[i];
-  wht_dit(l);
+  iwht(l);
   return l;
 }
 

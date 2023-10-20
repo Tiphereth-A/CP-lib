@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-void wht_dif(vec<T>& f) {
+void wht(vec<T>& f) {
   size_t n = f.size();
   for (size_t i = 1; i < n; i *= 2)
     for (size_t j = 0; j < n; ++j)
@@ -18,9 +18,9 @@ void wht_dif(vec<T>& f) {
 }
 
 template <class T>
-void wht_dit(vec<T>& f) {
+void iwht(vec<T>& f) {
   size_t n = f.size();
-  wht_dif(f);
+  wht(f);
   if constexpr (std::is_integral_v<T>)
     for (auto& x : f) x /= n;
   else {
