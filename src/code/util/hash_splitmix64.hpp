@@ -13,25 +13,25 @@ class hash_splitmix64 {
     x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
     return x ^ (x >> 31);
   }
-  static constexpr size_t append(size_t x, size_t y) { return x ^ (y >> 1) ^ ((y & 1) << (sizeof(size_t) * 8 - 1)); }
+  static constexpr usz append(usz x, usz y) { return x ^ (y >> 1) ^ ((y & 1) << (sizeof(usz) * 8 - 1)); }
 
  public:
   explicit hash_splitmix64() {}
 
   static constexpr void set_seed(u64 s) { seed = s; }
-  size_t operator()(uint64_t x) const { return splitmix64(x + seed); }
+  usz operator()(uint64_t x) const { return splitmix64(x + seed); }
 
   template <class Tp, class Up>
-  size_t operator()(std::pair<Tp, Up> const &p) const { return append((*this)(p.first), (*this)(p.second)); }
+  usz operator()(std::pair<Tp, Up> const &p) const { return append((*this)(p.first), (*this)(p.second)); }
   template <typename... Ts>
-  size_t operator()(std::tuple<Ts...> const &tp) const {
-    size_t ret = 0;
+  usz operator()(std::tuple<Ts...> const &tp) const {
+    usz ret = 0;
     std::apply([&](Ts const &...targs) { ((ret = append(ret, (*this)(targs))), ...); }, tp);
     return ret;
   }
   template <class Tp, std::enable_if_t<std::is_same_v<decltype(std::declval<Tp>().begin()), typename Tp::iterator>> * = nullptr>
-  size_t operator()(Tp const &tp) const {
-    size_t ret = 0;
+  usz operator()(Tp const &tp) const {
+    usz ret = 0;
     for (auto &&i : tp) ret = append(ret, (*this)(i));
     return ret;
   }

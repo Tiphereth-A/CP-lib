@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-template <ptrdiff_t>
+template <isz>
 class mint_ds {
  protected:
   u32 v_;

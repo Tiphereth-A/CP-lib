@@ -15,49 +15,49 @@ struct NTT {
 
   NTT() : root() {}
 
-  size_t size() const { return root.size(); }
-  void bzr(size_t len) {
-    size_t n = bit::bceil(len);
+  usz size() const { return root.size(); }
+  void bzr(usz len) {
+    usz n = bit::bceil(len);
     assert((MOD - 1) % n == 0);
     if (n == size()) return;
     root.resize(n);
     root[0] = 1;
     mint w = qpow(G, (MOD - 1) / n);
-    for (size_t i = 1; i < n; ++i) root[i] = root[i - 1] * w;
+    for (usz i = 1; i < n; ++i) root[i] = root[i - 1] * w;
   }
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-conversion"
   void dif(vec<mint> &f) const {
-    size_t n = size();
+    usz n = size();
     assert(f.size() <= n);
     f.resize(n);
-    for (size_t i = n / 2, d = 1; i; i /= 2, d *= 2)
-      for (size_t j = 0; j < n; j += i * 2) {
+    for (usz i = n / 2, d = 1; i; i /= 2, d *= 2)
+      for (usz j = 0; j < n; j += i * 2) {
         auto w = root.begin();
         mint u, t;
-        for (size_t k = 0; k < i; ++k, w += d) {
+        for (usz k = 0; k < i; ++k, w += d) {
           f[j | k] = (u = f[j | k]) + (t = f[i | j | k]);
           f[i | j | k] = (u - t) * (*w);
         }
       }
   }
   void dit(vec<mint> &f) const {
-    size_t n = size();
+    usz n = size();
     assert(f.size() <= n);
     f.resize(n);
-    for (size_t i = 1, d = n / 2; d; i *= 2, d /= 2)
-      for (size_t j = 0; j < n; j += i * 2) {
+    for (usz i = 1, d = n / 2; d; i *= 2, d /= 2)
+      for (usz j = 0; j < n; j += i * 2) {
         auto w = root.begin();
         mint t;
-        for (size_t k = 0; k < i; ++k, w += d) {
+        for (usz k = 0; k < i; ++k, w += d) {
           f[i | j | k] = f[j | k] - (t = f[i | j | k] * (*w));
           f[j | k] += t;
         }
       }
     std::reverse(f.begin() + 1, f.end());
     mint t = mint(n).inv();
-    for (size_t i = 0; i < n; ++i) f[i] *= t;
+    for (usz i = 0; i < n; ++i) f[i] *= t;
   }
 #pragma GCC diagnostic pop
 

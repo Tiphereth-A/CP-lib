@@ -7,12 +7,12 @@
 namespace tifa_libs::math {
 
 template <class mint>
-inline vec<mint> conv_ntt(vec<mint> l, vec<mint> r, size_t ans_size) {
+inline vec<mint> conv_ntt(vec<mint> l, vec<mint> r, usz ans_size) {
   static NTT<mint> ntt;
   ntt.bzr(std::min(l.size() + r.size() - 1, ans_size));
   ntt.dif(l);
   ntt.dif(r);
-  for (size_t i = 0; i < ntt.size(); ++i) l[i] *= r[i];
+  for (usz i = 0; i < ntt.size(); ++i) l[i] *= r[i];
   ntt.dit(l);
   l.resize(ans_size);
   return l;
@@ -21,7 +21,7 @@ template <class mint>
 inline vec<mint> conv_ntt(vec<mint> const &l, vec<mint> const &r) { return conv_ntt(l, r, l.size() + r.size() - 1); }
 
 template <class mint, class T = u64>
-inline vec<mint> conv_ntt(vec<T> const &l, vec<T> const &r, size_t ans_size) {
+inline vec<mint> conv_ntt(vec<T> const &l, vec<T> const &r, usz ans_size) {
   vec<mint> l_, r_;
   l_.reserve(l.size());
   r_.reserve(r.size());

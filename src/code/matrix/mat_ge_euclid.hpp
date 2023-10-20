@@ -6,12 +6,12 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0, class Div, class T = typename Mat::value_type>
-inline i64 ge_euclid(Mat &mat, Is0 is0, Div div, size_t row_start, size_t row_end, bool clear_u = true) {
+inline i64 ge_euclid(Mat &mat, Is0 is0, Div div, usz row_start, usz row_end, bool clear_u = true) {
   assert(row_start < row_end && row_end <= mat.row());
-  size_t r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);
+  usz r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);
   u64 rk = 0;
   bool neg = false;
-  for (size_t i = row_start, now_row = row_start, j_ = i; i < row_end; ++i) {
+  for (usz i = row_start, now_row = row_start, j_ = i; i < row_end; ++i) {
     neg ^= ge_impl_::swapr__(mat, now_row, rk, row_end);
     j_ = std::max(j_, i);
     while (j_ < c_ && is0(mat(rk, j_))) ++j_;
@@ -21,7 +21,7 @@ inline i64 ge_euclid(Mat &mat, Is0 is0, Div div, size_t row_start, size_t row_en
       while (true) {
         if (is0(mat(j, j_))) break;
         T _ = div(mat(rk, j_), mat(j, j_));
-        for (size_t k = j_; k < c_; ++k) mat(rk, k) -= _ * mat(j, k);
+        for (usz k = j_; k < c_; ++k) mat(rk, k) -= _ * mat(j, k);
         mat.swap_row(rk, j);
         neg ^= 1;
       }
@@ -30,7 +30,7 @@ inline i64 ge_euclid(Mat &mat, Is0 is0, Div div, size_t row_start, size_t row_en
       for (u64 j = 0; j < rk; ++j) {
         if (is0(mat(j, j_))) continue;
         if (T _ = div(mat(j, j_), mat(rk, j_)); !is0(_))
-          for (size_t k = j_; k < c_; ++k) mat(j, k) -= _ * mat(rk, k);
+          for (usz k = j_; k < c_; ++k) mat(j, k) -= _ * mat(rk, k);
       }
     if (++rk >= rk_max) break;
   }

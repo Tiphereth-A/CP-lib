@@ -7,10 +7,10 @@ namespace tifa_libs::math {
 
 template <class Mat, class T = typename Mat::value_type>
 inline T trace(Mat const &mat) {
-  size_t n = mat.row();
+  usz n = mat.row();
   assert(n == mat.col());
   T ret{};
-  for (size_t i = 0; i < n; ++i) ret += mat(i, i);
+  for (usz i = 0; i < n; ++i) ret += mat(i, i);
   return ret;
 }
 

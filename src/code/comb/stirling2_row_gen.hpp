@@ -13,8 +13,8 @@ inline poly<T> stirling2_row_gen(u64 n, vec<u64> const& pows, vec<u64> const& if
   if (!n) return poly<T>{1};
   u64 mod = T::value_type::mod();
   poly<T> a(n + 1), b(n + 1);
-  for (size_t i = 1; i <= n; ++i) a[i] = mul_mod_u(pows[i], ifact[i], mod);
-  for (size_t i = 0; i <= n; ++i) b[i] = ((i & 1) ? mod - ifact[i] : ifact[i]);
+  for (usz i = 1; i <= n; ++i) a[i] = mul_mod_u(pows[i], ifact[i], mod);
+  for (usz i = 0; i <= n; ++i) b[i] = ((i & 1) ? mod - ifact[i] : ifact[i]);
   a *= b;
   a.resize(n + 1);
   return a;

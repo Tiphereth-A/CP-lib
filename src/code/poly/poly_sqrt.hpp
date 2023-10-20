@@ -9,10 +9,10 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline std::optional<poly<T>> poly_sqrt(poly<T> p, size_t n = 0) {
+inline std::optional<poly<T>> poly_sqrt(poly<T> p, usz n = 0) {
   using mint = typename T::value_type;
   if (!n) n = p.size();
-  size_t cnt = std::find_if(p.data().begin(), p.data().begin() + n, [](auto const &x) { return x.val() > 0; }) - p.data().begin();
+  usz cnt = std::find_if(p.data().begin(), p.data().begin() + n, [](auto const &x) { return x.val() > 0; }) - p.data().begin();
   if (cnt == n) return p.pre(n);
   if (cnt & 1) return {};
   poly<T> ans{0};
@@ -20,7 +20,7 @@ inline std::optional<poly<T>> poly_sqrt(poly<T> p, size_t n = 0) {
   if (auto qres = qresidue(p[0].val(), mint::mod()); !qres.has_value()) return {};
   else ans[0] = std::min(qres.value(), mint::mod() - qres.value());
   mint i2 = mint(2).inv();
-  for (size_t i = 1; i < n; i *= 2) ans = (ans + p.pre(i * 2) * poly_inv(ans, i * 2)) * i2;
+  for (usz i = 1; i < n; i *= 2) ans = (ans + p.pre(i * 2) * poly_inv(ans, i * 2)) * i2;
   ans.resize(n);
   return poly_shl(ans, cnt / 2);
 }

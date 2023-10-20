@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class FP = double>
-inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, size_t ans_size) {
+inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, usz ans_size) {
   using C = typename FFT<FP>::C;
   static FFT<FP> fft;
   if (l.size() == 1) {
@@ -23,18 +23,18 @@ inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, size_t ans_siz
     return ans;
   }
   fft.bzr(std::min(l.size() + r.size() - 1, ans_size));
-  size_t n = fft.size();
+  usz n = fft.size();
   const int OFS = ((int)sizeof(decltype(mint::mod())) * 8 - bit::cntl0(mint::mod() - 1) + 1) / 2;
   const u32 MSK = ((1u << OFS) - 1);
   vec<mint> ans(ans_size);
   vec<C> a(n), b(n);
-  for (size_t i = 0; i < l.size(); ++i) a[i] = {(FP)(l[i].val() & MSK), (FP)(l[i].val() >> OFS)};
-  for (size_t i = 0; i < r.size(); ++i) b[i] = {(FP)(r[i].val() & MSK), (FP)(r[i].val() >> OFS)};
+  for (usz i = 0; i < l.size(); ++i) a[i] = {(FP)(l[i].val() & MSK), (FP)(l[i].val() >> OFS)};
+  for (usz i = 0; i < r.size(); ++i) b[i] = {(FP)(r[i].val() & MSK), (FP)(r[i].val() >> OFS)};
   fft.dif(a);
   fft.dif(b);
   {
     vec<C> p(n), q(n);
-    for (size_t i = 0, j; i < n; ++i) {
+    for (usz i = 0, j; i < n; ++i) {
       j = (n - i) & (n - 1);
       C da = (a[i] + std::conj(a[j])) * C(.5, 0), db = (a[i] - std::conj(a[j])) * C(0, -.5), dc = (b[i] + std::conj(b[j])) * C(.5, 0), dd = (b[i] - std::conj(b[j])) * C(.5, 0);
       p[j] = da * dc + da * dd;
@@ -45,7 +45,7 @@ inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, size_t ans_siz
   }
   fft.dif(a);
   fft.dif(b);
-  for (size_t i = 0; i < ans_size; ++i) {
+  for (usz i = 0; i < ans_size; ++i) {
     i64 da = (i64)(a[i].real() / (FP)n + .5) % mint::mod(), db = (i64)(a[i].imag() / (FP)n + .5) % mint::mod(), dc = (i64)(b[i].real() / (FP)n + .5) % mint::mod(), dd = (i64)(b[i].imag() / (FP)n + .5) % mint::mod();
     ans[i] = da + ((db + dc) << OFS) % mint::mod() + (dd << (OFS * 2)) % mint::mod();
   }

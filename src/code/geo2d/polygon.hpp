@@ -10,7 +10,7 @@ template <class FP>
 struct polygon {
   vec<point<FP>> vs;
   polygon() {}
-  explicit polygon(size_t sz) : vs(sz) {}
+  explicit polygon(usz sz) : vs(sz) {}
   explicit polygon(vec<point<FP>> const &vs_) : vs(vs_) {}
   friend std::istream &operator>>(std::istream &is, polygon &p) {
     for (auto &i : p.vs) is >> i;
@@ -32,31 +32,31 @@ struct polygon {
     return *this;
   }
 
-  point<FP> &operator[](size_t x) { return vs[x]; }
-  point<FP> const &operator[](size_t x) const { return vs[x]; }
+  point<FP> &operator[](usz x) { return vs[x]; }
+  point<FP> const &operator[](usz x) const { return vs[x]; }
 
   auto prev(typename vec<point<FP>>::const_iterator it) const { return --(it == vs.begin() ? it = vs.end() : it); }
   auto next(typename vec<point<FP>>::const_iterator it) const { return ++it == vs.end() ? vs.begin() : it; }
-  size_t prev(size_t idx) const { return idx == 0 ? vs.size() - 1 : idx - 1; }
-  size_t next(size_t idx) const { return idx + 1 == vs.size() ? 0 : idx + 1; }
+  usz prev(usz idx) const { return idx == 0 ? vs.size() - 1 : idx - 1; }
+  usz next(usz idx) const { return idx + 1 == vs.size() ? 0 : idx + 1; }
 
   FP circum() const {
     FP ret = dist_PP(vs.back(), vs.front());
-    for (size_t i = 0; i < vs.size() - 1; ++i) ret += dist_PP(vs[i], vs[i + 1]);
+    for (usz i = 0; i < vs.size() - 1; ++i) ret += dist_PP(vs[i], vs[i + 1]);
     return ret;
   }
   FP area() const {
     if (vs.size() < 3) return 0;
     FP ret = vs.back() ^ vs.front();
-    for (size_t i = 0; i < vs.size() - 1; ++i) ret += vs[i] ^ vs[i + 1];
+    for (usz i = 0; i < vs.size() - 1; ++i) ret += vs[i] ^ vs[i + 1];
     return ret / 2;
   }
 
   bool is_convex() const {
     bool flag[2] = {false, false};
-    size_t n = vs.size();
+    usz n = vs.size();
     if (n < 3) return true;
-    for (size_t i = 0, j = next(i), k = next(j); i < n; ++i, j = next(j), k = next(k)) {
+    for (usz i = 0, j = next(i), k = next(j); i < n; ++i, j = next(j), k = next(k)) {
       auto sgn = sgn_cross(vs[i], vs[j], vs[k]);
       if (sgn) flag[(sgn + 1) / 2] = true;
       if (flag[0] && flag[1]) return false;

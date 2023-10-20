@@ -10,7 +10,7 @@ inline vec<u64> pows_mod_gen(u64 sz, u64 n, u64 mod) {
   vec<u64> ans(sz);
   if (sz < 2) return {};
   ans[1] = 1;
-  for (size_t i = 2; i < sz; ++i) ans[i] = qpow_mod(i, n, mod);
+  for (usz i = 2; i < sz; ++i) ans[i] = qpow_mod(i, n, mod);
   return ans;
 }
 

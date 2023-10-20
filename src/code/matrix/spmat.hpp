@@ -7,49 +7,49 @@ namespace tifa_libs::math {
 
 template <class T>
 class spmat {
-  using node = std::pair<size_t, T>;
+  using node = std::pair<usz, T>;
   using data_t = vvec<node>;
 
-  size_t r, c;
+  usz r, c;
   data_t d;
 
  public:
   using value_type = T;
 
-  spmat(size_t row, size_t col) : r(row), c(col), d(r) { assert(row > 0 && col > 0); }
+  spmat(usz row, usz col) : r(row), c(col), d(r) { assert(row > 0 && col > 0); }
 
-  constexpr size_t row() const { return r; }
-  constexpr size_t col() const { return c; }
+  constexpr usz row() const { return r; }
+  constexpr usz col() const { return c; }
   constexpr data_t data() const { return d; }
   constexpr data_t &data() { return d; }
-  constexpr T &operator()(size_t r, size_t c) {
+  constexpr T &operator()(usz r, usz c) {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
     d[r].emplace_back(c, T{});
     return d[r].back().second;
   }
-  constexpr T operator()(size_t r, size_t c) const {
+  constexpr T operator()(usz r, usz c) const {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
     return T{};
   }
 
-  constexpr void shrink_row(size_t r) {
+  constexpr void shrink_row(usz r) {
     d[r].erase(std::remove_if(d[r].begin(), d[r].end(), [](node const &x) { return x.second == T{}; }), d[r].end());
   }
-  constexpr void sort_row(size_t r) { std::sort(d[r].begin(), d[r].end()); }
+  constexpr void sort_row(usz r) { std::sort(d[r].begin(), d[r].end()); }
 
   template <class F>
   void apply(F f) {
-    for (size_t i = 0; i < r; ++i)
+    for (usz i = 0; i < r; ++i)
       for (auto &[j, v] : d[i]) f(i, j, v);
   }
   template <class F>
   friend spmat merge(spmat l, spmat r, F f) {
-    size_t r_ = l.row(), c_ = l.col();
+    usz r_ = l.row(), c_ = l.col();
     assert(r_ == r.row() && c_ == r.col());
     spmat ret(r_, c_);
-    for (size_t i = 0; i < r_; ++i) {
+    for (usz i = 0; i < r_; ++i) {
       if (i >= r_ || (i < r_ && l[i].empty())) {
         if (!r[i].empty()) ret[i] = r[i];
         continue;
@@ -70,7 +70,7 @@ class spmat {
           *d = *f1;
           ++f1;
         } else {
-          size_t j = std::distance(f1, l.begin());
+          usz j = std::distance(f1, l.begin());
           *d = f(i, j, *f1, *f2);
           ++f1;
           ++f2;
@@ -83,44 +83,44 @@ class spmat {
 
   constexpr spmat operator-() const {
     spmat ret = *this;
-    ret.apply([]([[maybe_unused]] size_t r, [[maybe_unused]] size_t c, T &v) { v = -v; });
+    ret.apply([]([[maybe_unused]] usz r, [[maybe_unused]] usz c, T &v) { v = -v; });
     return ret;
   }
 
   constexpr friend spmat operator+(spmat l, const T &v) { return l += v; }
   constexpr friend spmat operator+(const T &v, spmat l) { return l += v; }
   constexpr spmat &operator+=(const T &v) {
-    apply([&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val += v; });
+    apply([&v]([[maybe_unused]] usz i, [[maybe_unused]] usz j, T &val) { val += v; });
     return *this;
   }
   constexpr friend spmat operator-(spmat l, const T &v) { return l -= v; }
   constexpr friend spmat operator-(const T &v, spmat l) { return l -= v; }
   constexpr spmat &operator-=(const T &v) {
-    apply([&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val -= v; });
+    apply([&v]([[maybe_unused]] usz i, [[maybe_unused]] usz j, T &val) { val -= v; });
     return *this;
   }
   constexpr friend spmat operator*(spmat l, const T &v) { return l *= v; }
   constexpr friend spmat operator*(const T &v, spmat l) { return l *= v; }
   constexpr spmat &operator*=(const T &v) {
-    apply([&v]([[maybe_unused]] size_t i, [[maybe_unused]] size_t j, T &val) { val *= v; });
+    apply([&v]([[maybe_unused]] usz i, [[maybe_unused]] usz j, T &val) { val *= v; });
     return *this;
   }
 
   constexpr friend spmat operator+(spmat const &l, spmat const &r) {
-    return merge(l, r, []([[maybe_unused]] size_t r, [[maybe_unused]] size_t c, T const &lv, T const &rv) { return lv + rv; });
+    return merge(l, r, []([[maybe_unused]] usz r, [[maybe_unused]] usz c, T const &lv, T const &rv) { return lv + rv; });
   }
   constexpr spmat &operator+=(spmat const &r) { return *this = *this + r; }
   constexpr friend spmat operator-(spmat l, const spmat &r) { return l + (-r); }
   constexpr spmat &operator-=(const spmat &r) { return *this = *this - r; }
   constexpr friend spmat operator*(spmat l, const spmat &r) {
-    size_t i_ = l.row(), j_ = l.col(), k_ = r.col();
+    usz i_ = l.row(), j_ = l.col(), k_ = r.col();
     assert(j_ == r.row());
     spmat ret(i_, k_);
-    for (size_t i = 0; i < i_; ++i) {
+    for (usz i = 0; i < i_; ++i) {
       if (l.d[i].empty()) continue;
-      for (size_t j = 0; j < j_; ++j) {
+      for (usz j = 0; j < j_; ++j) {
         if (r.d[j].empty()) continue;
-        for (size_t k = 0; k < k_; ++k) ret(i, k) += l(i, j) * r(j, k);
+        for (usz k = 0; k < k_; ++k) ret(i, k) += l(i, j) * r(j, k);
       }
       ret.shrink_row(i);
     }
@@ -129,10 +129,10 @@ class spmat {
   constexpr spmat &operator*=(const spmat &r) { return *this = *this - r; }
 
   vec<T> lproj(vec<T> const &x) const {
-    size_t r_ = row(), c_ = col();
+    usz r_ = row(), c_ = col();
     assert(r_ == x.size());
     vec<T> ret(c_);
-    for (size_t i = 0; i < c_; ++i)
+    for (usz i = 0; i < c_; ++i)
       for (auto &&[pos, v] : d[i]) ret[i] += x[pos] * v;
     return ret;
   }

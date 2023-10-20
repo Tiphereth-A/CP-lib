@@ -6,13 +6,13 @@
 namespace tifa_libs::math {
 
 template <class T>
-using polysp = vec<std::pair<size_t, typename poly<T>::value_type>>;
+using polysp = vec<std::pair<usz, typename poly<T>::value_type>>;
 
 template <class T>
-inline polysp<T> poly2sp(poly<T> const& p, size_t n = 0) {
+inline polysp<T> poly2sp(poly<T> const& p, usz n = 0) {
   if (!n) n = p.size();
   polysp<T> fs;
-  for (size_t i = 0; i < p.size(); ++i)
+  for (usz i = 0; i < p.size(); ++i)
     if (p[i] != 0) fs.emplace_back(i, p[i]);
   return fs;
 }

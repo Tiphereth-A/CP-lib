@@ -13,24 +13,24 @@ class Base64 {
   // clang-format on
 
  public:
-  static std::string encode(vec<size_t> const &a) {
-    size_t x = *std::max_element(a.begin(), a.end()), y = *std::min_element(a.begin(), a.end());
-    size_t N = a.size(), B = std::max(size_t(6), (sizeof(size_t) * 8 - (size_t)(y < 0 ? 0 : bit::cntl0(x))));
+  static std::string encode(vec<usz> const &a) {
+    usz x = *std::max_element(a.begin(), a.end()), y = *std::min_element(a.begin(), a.end());
+    usz N = a.size(), B = std::max(usz(6), (sizeof(usz) * 8 - (usz)(y < 0 ? 0 : bit::cntl0(x))));
     std::string S((B * N + 11) / 6, 0);
     S[0] = (char)B;
-    for (size_t i = 0; i < N; ++i)
-      for (size_t j = 0; j < B; ++j)
+    for (usz i = 0; i < N; ++i)
+      for (usz j = 0; j < B; ++j)
         if ((a[i] >> j) & 1) S[(i * B + j) / 6 + 1] |= 1 << ((i * B + j) % 6);
-    for (auto &c : S) c = base[(size_t)c];
+    for (auto &c : S) c = base[(usz)c];
     return S;
   }
-  static vec<size_t> decode(std::string S) {
+  static vec<usz> decode(std::string S) {
     for (auto &c : S) c = ibase(c);
-    size_t B = (size_t)S[0], M = (size_t)S.size() - 1;
-    vec<size_t> a(6 * M / B, 0);
-    for (size_t i = 0; i < M; ++i)
-      for (size_t j = 0; j < 6; ++j)
-        if ((S[i + 1] >> j) & 1) a[(i * 6 + j) / B] |= size_t(1) << ((i * 6 + j) % B);
+    usz B = (usz)S[0], M = (usz)S.size() - 1;
+    vec<usz> a(6 * M / B, 0);
+    for (usz i = 0; i < M; ++i)
+      for (usz j = 0; j < 6; ++j)
+        if ((S[i + 1] >> j) & 1) a[(i * 6 + j) / B] |= usz(1) << ((i * 6 + j) % B);
     return a;
   }
 };

@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> poly_shr(poly<T> const &p, size_t x) {
+inline poly<T> poly_shr(poly<T> const &p, usz x) {
   if (!x) return p;
   auto _ = p;
   if (x >= p.size()) {

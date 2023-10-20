@@ -7,11 +7,11 @@
 namespace tifa_libs {
 
 constexpr u64 str2uint_mod(std::string_view s, u64 mod) {
-  size_t n = s.size();
+  usz n = s.size();
   if (!n) return 0;
   u64 ans = 0;
-  for (size_t i = 0; i + 8 <= n; i += 8) ans = (math::mul_mod_u(ans, 100000000, mod) + str2uint_si64(s.data() + i)) % mod;
-  for (auto _ = s.data() + (n & size_t(-8)); _ < s.data() + n; ++_) ans = (math::mul_mod_u(ans, 10, mod) + (*_ & 15)) % mod;
+  for (usz i = 0; i + 8 <= n; i += 8) ans = (math::mul_mod_u(ans, 100000000, mod) + str2uint_si64(s.data() + i)) % mod;
+  for (auto _ = s.data() + (n & usz(-8)); _ < s.data() + n; ++_) ans = (math::mul_mod_u(ans, 10, mod) + (*_ & 15)) % mod;
   return ans;
 }
 

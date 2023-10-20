@@ -19,7 +19,7 @@ RELPoP relation_PoP(polygon<FP> const &po, point<FP> const &p) {
   for (auto &&now : po.vs)
     if (now == p) return onendpoint_pop;
   bool result = false;
-  for (size_t i = 0; i < po.vs.size(); ++i) {
+  for (usz i = 0; i < po.vs.size(); ++i) {
     point now_p = po.vs[i], next_p = po.vs[po.next(i)];
     if (is_on_S({now_p, next_p}, p)) return onborder_pop;
     if (!is_gt(now_p.y, next_p.y)) std::swap(now_p, next_p);
@@ -33,8 +33,8 @@ template <class FP>
 RELPoP relation_CvhP(cvh<FP> const &cvh, point<FP> const &p) {
   for (auto &&now : cvh.vs)
     if (now == p) return onendpoint_pop;
-  size_t sz = cvh.vs.size();
-  for (size_t i = 0; i < sz; ++i)
+  usz sz = cvh.vs.size();
+  for (usz i = 0; i < sz; ++i)
     if (is_on_S({cvh.vs[i], cvh.vs[cvh.next(i)]}, p)) return onborder_pop;
   if (sz < 3) return outside_pop;
   if (is_pos(cross(cvh.vs.front(), p, cvh.vs[1])) || is_pos(cross(cvh.vs.front(), cvh.vs.back(), p))) return outside_pop;

@@ -8,12 +8,12 @@ namespace tifa_libs::math {
 
 template <class Mat, class T = typename Mat::value_type, class Ge>
 T det(Mat mat, Ge ge) {
-  size_t n = mat.row();
+  usz n = mat.row();
   assert(n == mat.col());
   i64 rk_ = ge(mat, false);
-  if ((size_t)abs(rk_) != n) return T{};
+  if ((usz)abs(rk_) != n) return T{};
   T ret = mat(0, 0);
-  for (size_t i = 1; i < n; ++i) ret *= mat(i, i);
+  for (usz i = 1; i < n; ++i) ret *= mat(i, i);
   return rk_ < 0 ? -ret : ret;
 }
 

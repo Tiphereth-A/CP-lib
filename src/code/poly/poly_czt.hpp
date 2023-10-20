@@ -12,7 +12,7 @@ template <class T, class mint = typename T::value_type>
 inline poly<T> poly_czt(poly<T> const &f, mint c, u64 m) {
   constexpr static u64 mod = mint::mod();
   static rpow rp(c, mod);
-  size_t n = f.size();
+  usz n = f.size();
   poly<T> cc(n + m - 1), g(n);
   for (u64 i = 0; i < n + m - 1; ++i) cc[n + m - 2 - i] = rp((i - 1) * i / 2 % (mod - 1));
   for (u64 i = 0; i < n; ++i) g[i] = rp(mod - 1 - (i * (i - 1) / 2) % (mod - 1)) * f[i];

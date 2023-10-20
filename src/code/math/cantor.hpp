@@ -9,10 +9,10 @@ namespace tifa_libs::math {
 //! [0, n)
 //! p \in [1, n], a_i == a_j \iff i == j
 inline vec<u32> cantor_seq(vec<u32> const &p) {
-  size_t n = p.size();
+  usz n = p.size();
   ds::fenwick<u32> tr(n + 1);
   vec<u32> s(n);
-  for (size_t i = n - 1; ~i; --i) {
+  for (usz i = n - 1; ~i; --i) {
     s[i] = tr.sum(p[i]);
     tr.add(p[i], 1);
   }
@@ -22,7 +22,7 @@ inline vec<u32> cantor_seq(vec<u32> const &p) {
 //! [0, n)
 //! p \in [1, n], a_i == a_j \iff i == j
 inline u64 cantor_val(vec<u32> const &p, u64 mod = (u64)-1) {
-  size_t n = p.size();
+  usz n = p.size();
   vec<u64> fact = fact_mod_gen(n + 1, mod);
   vec<u32> s = cantor_seq(p);
   u64 ret = 1;

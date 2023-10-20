@@ -5,10 +5,10 @@
 
 namespace tifa_libs::str {
 
-inline vec<size_t> z_function(std::string_view s) {
-  size_t n = s.size();
-  vec<size_t> z(n);
-  for (size_t i = 1, l = 0, r = 0; i < n; ++i) {
+inline vec<usz> z_function(std::string_view s) {
+  usz n = s.size();
+  vec<usz> z(n);
+  for (usz i = 1, l = 0, r = 0; i < n; ++i) {
     if (i <= r && z[i - l] < r - i + 1) z[i] = z[i - l];
     else {
       if (i <= r) z[i] = r - i + 1;

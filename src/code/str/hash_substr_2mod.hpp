@@ -26,12 +26,12 @@ class hash_substr2 {
     if (need_reset) {
       p.resize(1, {1, 1});
       p.reserve(s.size() + 1);
-      for (size_t i = 0; i < s.size(); ++i) p.emplace_back(p.back().first * b % m1, p.back().second * b % m2);
+      for (usz i = 0; i < s.size(); ++i) p.emplace_back(p.back().first * b % m1, p.back().second * b % m2);
       need_reset = false;
     }
   }
   constexpr u32 base() const { return b; }
-  ptt<u64> get(size_t pos, size_t len = SIZE_MAX) const {
+  ptt<u64> get(usz pos, usz len = SIZE_MAX) const {
     assert(!need_reset && pos < hash.size());
     auto end_ = hash[pos + std::min(len, hash.size() - 1 - pos)];
     return {(end_.first + m1 - hash[pos].first * p[len].first % m1) % m1, (end_.second + m2 - hash[pos].second * p[len].second % m2) % m2};

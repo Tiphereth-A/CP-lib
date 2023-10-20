@@ -10,29 +10,29 @@ template <class T, auto op, auto e, class F, auto mapping, auto composition, aut
 class segtree {
   vec<T> t;
   vec<F> sign;
-  size_t n;
-  void pushup(size_t x) { t[x] = op(t[x << 1], t[x << 1 | 1]); }
-  void all_update(size_t x, F f) { t[x] = mapping(f, t[x]), sign[x] = composition(f, sign[x]); }
-  void pushdown(size_t x) { all_update(x << 1, sign[x]), all_update(x << 1 | 1, sign[x]), sign[x] = id(); }
-  void build(vec<T> const &a, size_t x, size_t l, size_t r) {
+  usz n;
+  void pushup(usz x) { t[x] = op(t[x << 1], t[x << 1 | 1]); }
+  void all_update(usz x, F f) { t[x] = mapping(f, t[x]), sign[x] = composition(f, sign[x]); }
+  void pushdown(usz x) { all_update(x << 1, sign[x]), all_update(x << 1 | 1, sign[x]), sign[x] = id(); }
+  void build(vec<T> const &a, usz x, usz l, usz r) {
     sign[x] = id();
     if (l == r) return void(t[x] = a[l]);
-    size_t mid = l + (r - l) / 2;
+    usz mid = l + (r - l) / 2;
     build(a, x << 1, l, mid), build(a, x << 1 | 1, mid + 1, r);
     pushup(x);
   }
-  void update(size_t x, size_t l, size_t r, size_t L, size_t R, F f) {
+  void update(usz x, usz l, usz r, usz L, usz R, F f) {
     if (L <= l && R >= r) return void(all_update(x, f));
     pushdown(x);
-    size_t mid = l + (r - l) / 2;
+    usz mid = l + (r - l) / 2;
     if (L <= mid) update(x << 1, l, mid, L, R, f);
     if (R > mid) update(x << 1 | 1, mid + 1, r, L, R, f);
     pushup(x);
   }
-  T query(size_t x, size_t l, size_t r, size_t L, size_t R) {
+  T query(usz x, usz l, usz r, usz L, usz R) {
     if (L <= l && R >= r) return t[x];
     pushdown(x);
-    size_t mid = l + (r - l) / 2;
+    usz mid = l + (r - l) / 2;
     T ret = e();
     if (L <= mid) ret = op(ret, query(x << 1, l, mid, L, R));
     if (R > mid) ret = op(ret, query(x << 1 | 1, mid + 1, r, L, R));
@@ -41,13 +41,13 @@ class segtree {
 
  public:
   explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4), sign(a.size() * 4), n(a.size()) { build(a, 1, 0, n - 1); }
-  explicit constexpr segtree(size_t N = 0) : t(N * 4), sign(N * 4), n(N) {
+  explicit constexpr segtree(usz N = 0) : t(N * 4), sign(N * 4), n(N) {
     if (n) build(vec<T>(n, e()), 1, 0, n - 1);
   }
-  void update(size_t L, size_t R, F f) { update(1, 0, n - 1, L, R, f); }
-  void update(size_t pos, F f) { update(1, 0, n - 1, pos, pos, f); }
-  T query(size_t L, size_t R) { return query(1, 0, n - 1, L, R); }
-  T query(size_t pos) { return query(1, 0, n - 1, pos, pos); }
+  void update(usz L, usz R, F f) { update(1, 0, n - 1, L, R, f); }
+  void update(usz pos, F f) { update(1, 0, n - 1, pos, pos, f); }
+  T query(usz L, usz R) { return query(1, 0, n - 1, L, R); }
+  T query(usz pos) { return query(1, 0, n - 1, pos, pos); }
 };
 
 }  // namespace tifa_libs::ds

@@ -13,10 +13,10 @@ T uniq(T const &v) {
   return _;
 }
 template <class T = vec<int>>
-std::pair<T, vec<size_t>> gen_id(T const &v) {
+std::pair<T, vec<usz>> gen_id(T const &v) {
   T _ = uniq(v);
-  vec<size_t> _1;
-  for (size_t i = 0; i < v.size(); ++i) _1.push_back(size_t(std::lower_bound(_.begin(), _.end(), v[i]) - _.begin()));
+  vec<usz> _1;
+  for (usz i = 0; i < v.size(); ++i) _1.push_back(usz(std::lower_bound(_.begin(), _.end(), v[i]) - _.begin()));
   return {_, _1};
 }
 

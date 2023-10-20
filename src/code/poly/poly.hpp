@@ -13,7 +13,7 @@ class poly {
   using value_type = typename Pldt::value_type;
   using data_type = vec<value_type>;
 
-  explicit constexpr poly(size_t sz = 1) : p(sz) {}
+  explicit constexpr poly(usz sz = 1) : p(sz) {}
   explicit constexpr poly(std::initializer_list<value_type> v) : p(v) {}
   template <class T>
   explicit constexpr poly(vec<T> const &v) : p(v) {}
@@ -24,31 +24,31 @@ class poly {
   }
   constexpr friend std::ostream &operator<<(std::ostream &os, const poly &poly) {
     if (!poly.size()) return os;
-    for (size_t i = 1; i < poly.size(); ++i) os << poly[i - 1] << ' ';
+    for (usz i = 1; i < poly.size(); ++i) os << poly[i - 1] << ' ';
     return os << poly.p.d.back();
   }
 
-  constexpr size_t size() const { return p.d.size(); }
+  constexpr usz size() const { return p.d.size(); }
   constexpr data_type &data() { return p.d; }
   constexpr data_type const &data() const { return p.d; }
 
-  constexpr value_type &operator[](size_t x) { return p.d[x]; }
-  constexpr value_type operator[](size_t x) const { return p.d[x]; }
+  constexpr value_type &operator[](usz x) { return p.d[x]; }
+  constexpr value_type operator[](usz x) const { return p.d[x]; }
   constexpr value_type operator()(value_type x) const {
     value_type ans = 0;
-    for (size_t i = size() - 1; ~i; --i) ans = ans * x + p.d[i];
+    for (usz i = size() - 1; ~i; --i) ans = ans * x + p.d[i];
     return ans;
   }
 
   template <class F>
-  void apply_range(size_t l, size_t r, F f) {
+  void apply_range(usz l, usz r, F f) {
     assert(l < r && r <= size());
-    for (size_t i = l; i < r; ++i) f(i, p.d[i]);
+    for (usz i = l; i < r; ++i) f(i, p.d[i]);
   }
   template <class F>
   void apply(F f) { apply_range(0, size(), f); }
-  constexpr void resize(size_t size) { p.d.resize(size); }
-  constexpr poly pre(size_t size) const {
+  constexpr void resize(usz size) { p.d.resize(size); }
+  constexpr poly pre(usz size) const {
     poly _ = *this;
     _.resize(size);
     return _;
@@ -58,14 +58,14 @@ class poly {
     p.d.resize(p.d.rend() - it);
     if (p.d.empty()) p.d.push_back(value_type(0));
   }
-  constexpr void reverse(size_t n = 0) { std::reverse(p.d.begin(), p.d.begin() + (n ? n : size())); }
+  constexpr void reverse(usz n = 0) { std::reverse(p.d.begin(), p.d.begin() + (n ? n : size())); }
 
-  void conv(poly const &r, size_t ans_size) { p.conv(r.p, ans_size); }
+  void conv(poly const &r, usz ans_size) { p.conv(r.p, ans_size); }
   void conv(poly const &r) { p.conv(r.p); }
 
   constexpr poly operator-() const {
     poly ret = *this;
-    ret.apply([]([[maybe_unused]] size_t i, auto &v) { v = -v; });
+    ret.apply([]([[maybe_unused]] usz i, auto &v) { v = -v; });
     return ret;
   }
 
@@ -81,7 +81,7 @@ class poly {
   friend poly operator-(value_type c, poly const &p) { return p - c; }
 
   constexpr poly &operator*=(value_type c) {
-    apply([&c]([[maybe_unused]] size_t i, auto &v) { v *= c; });
+    apply([&c]([[maybe_unused]] usz i, auto &v) { v *= c; });
     return *this;
   }
   constexpr friend poly operator*(poly p, value_type c) { return p *= c; }
@@ -90,7 +90,7 @@ class poly {
   constexpr poly &operator+=(poly const &r) {
     if (!r.size()) return *this;
     resize(std::max(size(), r.size()));
-    apply_range(0, r.size(), [&r](size_t i, auto &v) { v += r[i]; });
+    apply_range(0, r.size(), [&r](usz i, auto &v) { v += r[i]; });
     return *this;
   }
   friend poly operator+(poly l, poly const &r) { return l += r; }
@@ -98,7 +98,7 @@ class poly {
   constexpr poly &operator-=(poly const &r) {
     if (!r.size()) return *this;
     resize(std::max(size(), r.size()));
-    apply_range(0, r.size(), [&r](size_t i, auto &v) { v -= r[i]; });
+    apply_range(0, r.size(), [&r](usz i, auto &v) { v -= r[i]; });
     return *this;
   }
   friend poly operator-(poly l, poly const &r) { return l -= r; }

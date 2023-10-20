@@ -11,7 +11,7 @@ point<FP> poly_massp(polygon<FP> const &po) {
   FP area{};
   if (po.vs.size() == 0) return ret;
   if (po.vs.size() == 1) return po.vs[0];
-  for (size_t i = 1; i < po.vs.size() - 1; ++i) {
+  for (usz i = 1; i < po.vs.size() - 1; ++i) {
     FP tmp = cross(po.vs[0], po.vs[i], po.vs[i + 1]);
     if (is_zero(tmp)) continue;
     area += tmp;

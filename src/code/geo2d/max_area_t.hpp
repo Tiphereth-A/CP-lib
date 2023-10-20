@@ -10,10 +10,10 @@ namespace tifa_libs::geo {
 template <class FP>
 triangle<FP> max_area_T(cvh<FP> const &ch) {
   if (ch.vs.size() < 3) return triangle<FP>{ch.vs[0], ch.vs[0], ch.vs[0]};
-  size_t j = 1, k = 2;
+  usz j = 1, k = 2;
   FP ans = 0, tmp, new_tmp;
-  size_t is = 0, js = 1, ks = 2;
-  for (size_t i = 0; i < ch.vs.size(); ++i) {
+  usz is = 0, js = 1, ks = 2;
+  for (usz i = 0; i < ch.vs.size(); ++i) {
     if (i == j) j = ch.next(j);
     if (j == k) k = ch.next(k);
     if (is_gt(tmp = cross(ch.vs[i], ch.vs[j], ch.vs[k]), ans)) {

@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> poly_ln(poly<T> const &p, size_t n = 0) {
+inline poly<T> poly_ln(poly<T> const &p, usz n = 0) {
   assert(p[0] == 1);
   if (!n) n = p.size();
   auto _ = poly_deriv(p).pre(n);

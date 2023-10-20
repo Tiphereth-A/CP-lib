@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 template <class T>
 inline std::pair<poly<T>, poly<T>> poly_divmod(poly<T> const &p, poly<T> const &q) {
-  size_t n = p.size(), m = q.size();
+  usz n = p.size(), m = q.size();
   if (n < m) return {poly<T>(), p};
   auto d = poly_div(p, q);
   d.strip();

@@ -24,10 +24,10 @@ constexpr std::optional<std::pair<i64, i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1
 // Returns (remainder, modular)
 inline std::optional<std::pair<u64, u64>> crt(const vec<i64> &a, const vec<u64> &m) {
   if (a.size() != m.size()) return {};
-  const size_t n = a.size();
+  const usz n = a.size();
   i64 A = 0;
   u64 M = 1;
-  for (size_t i = 0; i < n; ++i) {
+  for (usz i = 0; i < n; ++i) {
     auto res = crt_impl_::crt2(safe_mod(a[i], m[i]), m[i], A, M);
     if (!res) return {};
     std::tie(A, M) = res.value();

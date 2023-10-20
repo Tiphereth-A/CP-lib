@@ -9,7 +9,7 @@ namespace tifa_libs::geo {
 template <class FP>
 struct cvh : public polygon<FP> {
   cvh() {}
-  explicit cvh(size_t sz) : polygon<FP>(sz) {}
+  explicit cvh(usz sz) : polygon<FP>(sz) {}
   explicit cvh(vec<point<FP>> const &vs_, bool inited = false, bool strict = true) : polygon<FP>(vs_) {
     if (!inited) strict ? init() : init_nonstrict();
   }
@@ -25,14 +25,14 @@ struct cvh : public polygon<FP> {
   }
 
   cvh &init() {
-    size_t n = this->vs.size();
+    usz n = this->vs.size();
     if (n <= 1) return *this;
     this->resort();
     vec<point<FP>> cvh(n * 2);
-    size_t sz_cvh = 0;
-    for (size_t i = 0; i < n; cvh[sz_cvh++] = this->vs[i++])
+    usz sz_cvh = 0;
+    for (usz i = 0; i < n; cvh[sz_cvh++] = this->vs[i++])
       while (sz_cvh > 1 && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) <= 0) --sz_cvh;
-    for (size_t i = n - 2, t = sz_cvh; ~i; cvh[sz_cvh++] = this->vs[i--])
+    for (usz i = n - 2, t = sz_cvh; ~i; cvh[sz_cvh++] = this->vs[i--])
       while (sz_cvh > t && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) <= 0) --sz_cvh;
     cvh.resize(sz_cvh - 1);
     this->vs = cvh;
@@ -40,13 +40,13 @@ struct cvh : public polygon<FP> {
   }
   cvh &init_nonstrict() {
     this->reunique();
-    size_t n = this->vs.size();
+    usz n = this->vs.size();
     if (n <= 1) return *this;
     vec<point<FP>> cvh(n * 2);
-    size_t sz_cvh = 0;
-    for (size_t i = 0; i < n; cvh[sz_cvh++] = this->vs[i++])
+    usz sz_cvh = 0;
+    for (usz i = 0; i < n; cvh[sz_cvh++] = this->vs[i++])
       while (sz_cvh > 1 && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) < 0) --sz_cvh;
-    for (size_t i = n - 2, t = sz_cvh; ~i; cvh[sz_cvh++] = this->vs[i--])
+    for (usz i = n - 2, t = sz_cvh; ~i; cvh[sz_cvh++] = this->vs[i--])
       while (sz_cvh > t && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) < 0) --sz_cvh;
     cvh.resize(sz_cvh - 1);
     this->vs = cvh;
@@ -54,14 +54,14 @@ struct cvh : public polygon<FP> {
   }
 
   FP diameter() const {
-    size_t n = this->vs.size();
+    usz n = this->vs.size();
     if (n <= 1) return FP{};
-    size_t is = 0, js = 0;
-    for (size_t k = 1; k < n; ++k) {
+    usz is = 0, js = 0;
+    for (usz k = 1; k < n; ++k) {
       is = this->vs[k] < this->vs[is] ? k : is;
       js = this->vs[js] < this->vs[k] ? k : js;
     }
-    size_t i = is, j = js;
+    usz i = is, j = js;
     FP ret = dist_PP(this->vs[i], this->vs[j]);
     do {
       (++(((this->vs[this->next(i)] - this->vs[i]) ^ (this->vs[this->next(j)] - this->vs[j])) >= 0 ? j : i)) %= n;
@@ -71,17 +71,17 @@ struct cvh : public polygon<FP> {
   }
 
   cvh &do_minkowski_sum_nonstrict(cvh<FP> const &r) {
-    size_t n = this->vs.size(), m = r.vs.size();
+    usz n = this->vs.size(), m = r.vs.size();
     if (!m) return *this;
     if (!n) return *this = r;
     vec<point<FP>> result;
     result.reserve(n + m);
-    size_t midxl = 0;
-    for (size_t i = 1; i < n; ++i) midxl = this->vs[i] < this->vs[midxl] ? i : midxl;
-    size_t midxr = 0;
-    for (size_t i = 1; i < m; ++i) midxr = r[i] < r[midxr] ? i : midxr;
+    usz midxl = 0;
+    for (usz i = 1; i < n; ++i) midxl = this->vs[i] < this->vs[midxl] ? i : midxl;
+    usz midxr = 0;
+    for (usz i = 1; i < m; ++i) midxr = r[i] < r[midxr] ? i : midxr;
     bool fl = false, fr = false;
-    for (size_t idxl = midxl, idxr = midxr; !(idxl == midxl && fl) || !(idxr == midxr && fr);) {
+    for (usz idxl = midxl, idxr = midxr; !(idxl == midxl && fl) || !(idxr == midxr && fr);) {
       point diffl = this->vs[this->next(idxl)] - this->vs[idxl], diffr = r[r.next(idxr)] - r[idxr];
       bool f = !(idxl == midxl && fl) && ((idxr == midxr && fr) || is_pos(diffl ^ diffr));
       result.push_back(this->vs[idxl] + r[idxr] + (f ? diffl : diffr));
@@ -95,9 +95,9 @@ struct cvh : public polygon<FP> {
   cvh &do_minkowski_sum(cvh<FP> const &r) { return do_minkowski_sum_nonstrict(r).init(); }
 
   cvh &do_ins_CVHhP(line<FP> const &l) {
-    size_t n = this->vs.size();
+    usz n = this->vs.size();
     vec<point<FP>> cvc;
-    for (size_t i = 0; i < n; ++i) {
+    for (usz i = 0; i < n; ++i) {
       point p1 = this->vs[i], p2 = this->vs[this->next(i)];
       int d1 = sgn_cross(l.l, l.r, p1), d2 = sgn_cross(l.l, l.r, p2);
       if (d1 >= 0) cvc.push_back(p1);

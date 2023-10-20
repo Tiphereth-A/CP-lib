@@ -13,9 +13,9 @@ class heavy_chain_s : public tree::tree {
   segtree<T, op, e, F, mapping, composition, id> t;
 
  public:
-  explicit constexpr heavy_chain_s(size_t N = 0, size_t ROOT = 0) : tree(N, ROOT) {}
+  explicit constexpr heavy_chain_s(usz N = 0, usz ROOT = 0) : tree(N, ROOT) {}
   void build(const vec<T>& a) { t = segtree<T, op, e, F, mapping, composition, id>(a); }
-  void chain_update(size_t u, size_t v, F f) {
+  void chain_update(usz u, usz v, F f) {
     assert(dep.size() && f.size() && maxson.size() && top.size());
     while (top[u] != top[v]) {
       if (dep[top[u]] < dep[top[v]]) std::swap(u, v);
@@ -24,14 +24,14 @@ class heavy_chain_s : public tree::tree {
     if (dfn[u] < dfn[v]) std::swap(u, v);
     t.update(dfn[v], dfn[u], f);
   }
-  void subtree_update(size_t u, F f) {
+  void subtree_update(usz u, F f) {
     assert(sz.size() && dfn.size());
     t.update(dfn[u], dfn[u] + sz[u] - 1, f);
   }
-  void node_update(size_t u, F f) {
+  void node_update(usz u, F f) {
     t.update(dfn[u], f);
   }
-  T chain_query(size_t u, size_t v) {
+  T chain_query(usz u, usz v) {
     assert(dep.size() && f.size() && maxson.size() && top.size());
     T ret = e();
     while (top[u] != top[v]) {
@@ -41,11 +41,11 @@ class heavy_chain_s : public tree::tree {
     if (dfn[u] < dfn[v]) std::swap(u, v);
     return op(ret, t.query(dfn[v], dfn[u]));
   }
-  T subtree_query(size_t u) {
+  T subtree_query(usz u) {
     assert(sz.size() && dfn.size());
     return t.query(dfn[u], dfn[u] + sz[u] - 1);
   }
-  T node_query(size_t u) {
+  T node_query(usz u) {
     return t.query(dfn[u]);
   }
 };

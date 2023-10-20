@@ -37,7 +37,7 @@ inline poly<T> stirling2_col_gen(u64 n, u64 k, vec<u64> const& fact, vec<u64> co
   poly<T> f{0, 1};
   stirling2_col_gen_impl_::solve(f, k + 1, fact, ifact);
   f.resize(k + 2);
-  for (size_t i = 0; i < k + 1; ++i) f[i] = f[i + 1];
+  for (usz i = 0; i < k + 1; ++i) f[i] = f[i + 1];
   f.reverse(k + 1);
   f[k + 1] = 0;
   f.resize(n - k + 1);

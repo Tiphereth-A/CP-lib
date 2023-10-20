@@ -13,31 +13,31 @@ inline poly<T> poly_mpe(poly<T> f, poly<T> a) {
   class SegTree {
     vec<poly<T>> t;
 
-    constexpr void init_(poly<T> const &a, size_t k, size_t l, size_t r) {
+    constexpr void init_(poly<T> const &a, usz k, usz l, usz r) {
       if (l == r) {
         t[k] = poly<T>{1, -a[l]};
         return;
       }
-      size_t m = l + (r - l) / 2;
+      usz m = l + (r - l) / 2;
       init_(a, k * 2, l, m);
       init_(a, k * 2 + 1, m + 1, r);
       t[k] = t[k * 2] * t[k * 2 + 1];
     }
     constexpr static poly<T> mult(poly<T> const &f, poly<T> g) {
-      size_t m = g.size();
+      usz m = g.size();
       g.reverse();
       g.conv(f);
       g = poly_shr(g, m - 1);
       g.resize(f.size());
       return g;
     }
-    constexpr void calc_(poly<T> f, poly<T> &res, size_t k, size_t l, size_t r) const {
+    constexpr void calc_(poly<T> f, poly<T> &res, usz k, usz l, usz r) const {
       f.resize(r - l + 1);
       if (l == r) {
         res[l] = f[0];
         return;
       }
-      size_t m = l + (r - l) / 2;
+      usz m = l + (r - l) / 2;
       calc_(mult(f, t[k * 2 + 1]), res, k * 2, l, m);
       calc_(mult(f, t[k * 2]), res, k * 2 + 1, m + 1, r);
     }
@@ -52,7 +52,7 @@ inline poly<T> poly_mpe(poly<T> f, poly<T> a) {
     }
   };
 
-  size_t n = f.size(), m = a.size();
+  usz n = f.size(), m = a.size();
   f.resize(std::max(n, m));
   a.resize(std::max(n, m));
   auto _ = SegTree(a)(f);

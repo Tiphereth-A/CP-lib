@@ -5,18 +5,18 @@
 
 namespace tifa_libs::str {
 
-inline vec<size_t> manacher(std::string_view t) {
+inline vec<usz> manacher(std::string_view t) {
   std::string s{'\001', '\002'};
   for (char c : t) (s += c) += '\002';
   s += '\003';
-  vec<size_t> p(s.size());
-  for (size_t i = 1, j = 0; i + 1 < s.size(); ++i) {
+  vec<usz> p(s.size());
+  for (usz i = 1, j = 0; i + 1 < s.size(); ++i) {
     if (j + p[j] >= i) p[i] = std::min(j + p[j] - i, p[2 * j - i]);
     while (s[i - p[i]] == s[i + p[i]]) ++p[i];
     if (i + p[i] > j + p[j]) j = i;
   }
   for (auto &i : p) --i;
-  return vec<size_t>(p.begin() + 2, p.end() - 2);
+  return vec<usz>(p.begin() + 2, p.end() - 2);
 }
 
 }  // namespace tifa_libs::str

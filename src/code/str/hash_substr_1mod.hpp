@@ -6,12 +6,9 @@
 namespace tifa_libs::str {
 
 class hash_substr {
-  constexpr static u64 mod = (1ull << 61) - 1;
-  constexpr static u64 _2e30n1 = (1ul << 30) - 1, _2e31n1 = (1ul << 31) - 1;
+  constexpr static u64 mod = (1ull << 61) - 1, _2e30n1 = (1ul << 30) - 1, _2e31n1 = (1ul << 31) - 1;
   constexpr static u64 mul_(u64 a, u64 b) {
-    u64 au = a >> 31, ad = a & _2e31n1;
-    u64 bu = b >> 31, bd = b & _2e31n1;
-    u64 _ = ad * bu + au * bd;
+    u64 au = a >> 31, ad = a & _2e31n1, bu = b >> 31, bd = b & _2e31n1, _ = ad * bu + au * bd;
     return ((au * bu) << 1) + ad * bd + ((_ & _2e30n1) << 31) + (_ >> 30);
   }
   constexpr static u64 mod_(u64 a) {
@@ -38,12 +35,12 @@ class hash_substr {
     if (need_reset) {
       p.resize(1, 1);
       p.reserve(s.size() + 1);
-      for (size_t i = 0; i < s.size(); ++i) p.push_back(mod_(mul_(p.back(), b)));
+      for (usz i = 0; i < s.size(); ++i) p.push_back(mod_(mul_(p.back(), b)));
       need_reset = false;
     }
   }
   constexpr u32 base() const { return b; }
-  u64 get(size_t pos, size_t len = SIZE_MAX) const {
+  u64 get(usz pos, usz len = SIZE_MAX) const {
     assert(!need_reset && pos < hash.size());
     auto end_ = hash[pos + std::min(len, hash.size() - 1 - pos)];
     return mod_(end_ + mod * 7 - mul_(hash[pos], p[len]));

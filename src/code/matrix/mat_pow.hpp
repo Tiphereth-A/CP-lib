@@ -6,11 +6,11 @@
 namespace tifa_libs::math {
 
 template <class Mat>
-inline Mat pow(Mat mat, size_t b) {
-  size_t n = mat.row();
+inline Mat pow(Mat mat, usz b) {
+  usz n = mat.row();
   assert(n == mat.col());
   Mat res(n, n);
-  for (size_t i = 0; i < n; ++i) res(i, i) = 1;
+  for (usz i = 0; i < n; ++i) res(i, i) = 1;
   for (; b; b >>= 1, mat *= mat)
     if (b & 1) res *= mat;
   return res;

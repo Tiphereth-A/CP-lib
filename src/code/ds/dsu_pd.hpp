@@ -10,7 +10,7 @@ class dsu_pd {
   vec<std::pair<u32, i32>> edges;
 
  public:
-  explicit dsu_pd(size_t sz) : p(sz, -1) {}
+  explicit dsu_pd(usz sz) : p(sz, -1) {}
 
   i32 find(u32 x) { return p[x] < 0 ? (i32)x : find((u32)p[x]); }
   u32 size(u32 x) { return (u32)-p[(u32)find(x)]; }

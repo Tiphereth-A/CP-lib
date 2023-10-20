@@ -29,15 +29,15 @@ class mpi {
       dt.push_back(s[0] & 15);
       return;
     }
-    size_t l = 0;
+    usz l = 0;
     if (s[0] == '-') ++l, neg = true;
     u32 _ = 0;
     if ((s.size() - l) & 7) {
-      for (size_t i = l; i < l + ((s.size() - l) & 7); ++i) _ = _ * 10 + (s[i] & 15);
+      for (usz i = l; i < l + ((s.size() - l) & 7); ++i) _ = _ * 10 + (s[i] & 15);
       l += (s.size() - l) & 7;
     }
     if (l) s = s.substr(l);
-    for (size_t ie = s.size(); ie >= lgD; ie -= lgD)
+    for (usz ie = s.size(); ie >= lgD; ie -= lgD)
       dt.push_back(str2uint_si64(s.data() + ie - lgD));
     if (_) dt.push_back(_);
   }
@@ -92,14 +92,14 @@ class mpi {
   friend bool operator>(mpi const& lhs, mpi const& rhs) { return lhs == rhs ? false : neq_lt_(rhs, lhs); }
   friend bool operator>=(mpi const& lhs, mpi const& rhs) { return lhs == rhs ? true : neq_lt_(rhs, lhs); }
 
-  size_t size() const { return dt.size(); }
+  usz size() const { return dt.size(); }
   void shrink() { shrink_(dt); }
 
   std::string to_str() const {
     if (is_zero()) return "0";
     std::string res;
     if (neg) res.push_back('-');
-    for (size_t i = size() - 1; ~i; --i) res += itos_((u32)dt[i], i != size() - 1);
+    for (usz i = size() - 1; ~i; --i) res += itos_((u32)dt[i], i != size() - 1);
     return res;
   }
   i64 to_i64() const {
@@ -108,7 +108,7 @@ class mpi {
   }
   i128 to_i128() const {
     i128 res = 0;
-    for (size_t i = dt.size() - 1; ~i; --i) res = res * D + dt[i];
+    for (usz i = dt.size() - 1; ~i; --i) res = res * D + dt[i];
     return neg ? -res : res;
   }
 
@@ -123,7 +123,7 @@ class mpi {
  private:
   static bool lt_(vec<u32> const& a, vec<u32> const& b) {
     if (a.size() != b.size()) return a.size() < b.size();
-    for (size_t i = a.size() - 1; ~i; --i)
+    for (usz i = a.size() - 1; ~i; --i)
       if (a[i] != b[i]) return a[i] < b[i];
     return false;
   }
@@ -142,9 +142,9 @@ class mpi {
 
   static vec<u32> add_(vec<u32> const& a, vec<u32> const& b) {
     vec<u32> c(std::max(a.size(), b.size()) + 1);
-    for (size_t i = 0; i < a.size(); ++i) c[i] += a[i];
-    for (size_t i = 0; i < b.size(); ++i) c[i] += b[i];
-    for (size_t i = 0; i < c.size() - 1; ++i)
+    for (usz i = 0; i < a.size(); ++i) c[i] += a[i];
+    for (usz i = 0; i < b.size(); ++i) c[i] += b[i];
+    for (usz i = 0; i < c.size() - 1; ++i)
       if (c[i] >= D) c[i] -= D, c[i + 1]++;
     shrink_(c);
     return c;
@@ -153,7 +153,7 @@ class mpi {
     assert(leq_(b, a));
     vec<u32> c = a;
     u32 borrow = 0;
-    for (size_t i = 0; i < a.size(); ++i) {
+    for (usz i = 0; i < a.size(); ++i) {
       if (i < b.size()) borrow += b[i];
       c[i] -= borrow;
       borrow = 0;
@@ -169,7 +169,7 @@ class mpi {
     vec<u32> c;
     c.reserve(m.size() + 3);
     u128 x = 0;
-    for (size_t i = 0;; ++i) {
+    for (usz i = 0;; ++i) {
       if (i >= m.size() && !x) break;
       if (i < m.size()) x += m[i];
       c.push_back(u32(x % D));
@@ -181,12 +181,12 @@ class mpi {
   static vec<u32> mul_bf_(vec<u32> const& a, vec<u32> const& b) {
     if (a.empty() || b.empty()) return {};
     vec<u64> prod(a.size() + b.size() - 1 + 1);
-    for (size_t i = 0; i < a.size(); ++i)
-      for (size_t j = 0; j < b.size(); ++j)
+    for (usz i = 0; i < a.size(); ++i)
+      for (usz j = 0; j < b.size(); ++j)
         if ((prod[i + j] += (u64)a[i] * b[j]) >= (u64)4 * D * D) prod[i + j] -= (u64)4 * D * D, prod[i + j + 1] += (u64)4 * D;
     vec<u32> c(prod.size() + 1);
     u64 x = 0;
-    size_t i = 0;
+    usz i = 0;
     for (; i < prod.size(); ++i) x += prod[i], c[i] = u32(x % D), x /= D;
     while (x) c[i] = u32(x % D), x /= D, ++i;
     shrink_(c);
@@ -220,7 +220,7 @@ class mpi {
     vec<u32> quo(a.size());
     u64 d = 0;
     u32 b0 = b[0];
-    for (size_t i = a.size() - 1; ~i; --i) {
+    for (usz i = a.size() - 1; ~i; --i) {
       d = d * D + a[i];
       assert(d < (u64)D * b0);
       quo[i] = u32(d / b0);
@@ -240,7 +240,7 @@ class mpi {
     vec<u32> x = mul_(a, {norm}), y = mul_(b, {norm});
     u32 yb = y.back();
     vec<u32> quo(x.size() - y.size() + 1), rem(x.end() - (int)y.size(), x.end());
-    for (size_t i = quo.size() - 1; ~i; --i) {
+    for (usz i = quo.size() - 1; ~i; --i) {
       if (rem.size() == y.size()) {
         if (leq_(y, rem)) quo[i] = 1, rem = sub_(rem, y);
       } else if (rem.size() > y.size()) {
@@ -265,7 +265,7 @@ class mpi {
     assert(!a.empty() && D / 2 <= a.back() and a.back() < D);
     u32 k = deg, c = (u32)a.size();
     while (k > 64) k = (k + 1) / 2;
-    vec<u32> z(size_t(c + k + 1));
+    vec<u32> z(usz(c + k + 1));
     z.back() = 1;
     z = divmod_bf_(z, a).first;
     while (k < deg) {
@@ -274,7 +274,7 @@ class mpi {
       u32 d = std::min(c, 2 * k + 1);
       vec<u32> t{a.end() - d, a.end()}, u = mul_(s, t);
       u.erase(u.begin(), u.begin() + d);
-      vec<u32> w(size_t(k + 1)), w2 = add_(z, z);
+      vec<u32> w(usz(k + 1)), w2 = add_(z, z);
       std::copy(w2.begin(), w2.end(), std::back_inserter(w));
       (z = sub_(w, u)).erase(z.begin());
       k *= 2;
@@ -323,7 +323,7 @@ class mpi {
   }
   static i64 to_i64_(vec<u32> const& a) {
     i64 res = 0;
-    for (size_t i = a.size() - 1; ~i; --i) res = res * D + a[i];
+    for (usz i = a.size() - 1; ~i; --i) res = res * D + a[i];
     return res;
   }
 };

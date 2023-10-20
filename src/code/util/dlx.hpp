@@ -7,11 +7,11 @@ namespace tifa_libs::util {
 
 class DLX {
   struct node {
-    size_t l, r, u, d, row, col;
-    constexpr node(size_t l = 0, size_t r = 0, size_t u = 0, size_t d = 0, size_t row = 0, size_t col = 0) : l(l), r(r), u(u), d(d), row(row), col(col) {}
+    usz l, r, u, d, row, col;
+    constexpr node(usz l = 0, usz r = 0, usz u = 0, usz d = 0, usz row = 0, usz col = 0) : l(l), r(r), u(u), d(d), row(row), col(col) {}
   };
   vec<node> data;
-  vec<size_t> cnt_col;
+  vec<usz> cnt_col;
   const bool mans;
 
 #define l_(x) data[x].l
@@ -20,9 +20,9 @@ class DLX {
 #define d_(x) data[x].d
 #define row_(x) data[x].row
 #define col_(x) data[x].col
-#define dlxfor_(i, l, dir) for (size_t ied__ = (l), i = dir##_(ied__); i != ied__; i = dir##_(i))
+#define dlxfor_(i, l, dir) for (usz ied__ = (l), i = dir##_(ied__); i != ied__; i = dir##_(i))
 
-  void remove_(size_t col) {
+  void remove_(usz col) {
     r_(l_(col)) = r_(col);
     l_(r_(col)) = l_(col);
     dlxfor_ (i, col, d)
@@ -32,7 +32,7 @@ class DLX {
         --cnt_col[col_(j)];
       }
   }
-  void resume_(size_t col) {
+  void resume_(usz col) {
     r_(l_(col)) = l_(r_(col)) = col;
     dlxfor_ (i, col, u)
       dlxfor_ (j, i, r) {
@@ -41,8 +41,8 @@ class DLX {
       }
   }
   template <class F>
-  bool dance_(vec<size_t> &ans, F cb) {
-    size_t now = r_(0);
+  bool dance_(vec<usz> &ans, F cb) {
+    usz now = r_(0);
     if (now == 0) return cb(ans), true;
     dlxfor_ (i, 0, r)
       if (cnt_col[i] < cnt_col[now]) now = i;
@@ -59,10 +59,10 @@ class DLX {
     resume_(now);
     return ret;
   }
-  void ins_row_(size_t row, vec<size_t> const &cols) {
+  void ins_row_(usz row, vec<usz> const &cols) {
     assert(row > 0);
-    size_t n = data.size();
-    for (size_t i = 0; i < cols.size(); ++i) {
+    usz n = data.size();
+    for (usz i = 0; i < cols.size(); ++i) {
       data.emplace_back(n + i - 1, n + i + 1, u_(cols[i]), cols[i], row, cols[i]);
       u_(cols[i]) = d_(u_(cols[i])) = n + i;
       ++cnt_col[cols[i]];
@@ -73,16 +73,16 @@ class DLX {
 
  public:
   explicit DLX(vvec<bool> const &grid, bool multi_ans = false) : data(), cnt_col(), mans(multi_ans) {
-    size_t col = grid[0].size();
+    usz col = grid[0].size();
     assert(col > 0);
     cnt_col.resize(col + 1);
     data.reserve(col + 1);
-    for (size_t i = 0; i <= col; ++i) data.emplace_back(i - 1, i + 1, i, i, 0, i);
+    for (usz i = 0; i <= col; ++i) data.emplace_back(i - 1, i + 1, i, i, 0, i);
     r_(l_(0) = col) = 0;
-    for (size_t i = 0; i < grid.size(); ++i) {
-      vec<size_t> _;
+    for (usz i = 0; i < grid.size(); ++i) {
+      vec<usz> _;
       _.reserve(col);
-      for (size_t j = 0; j < col; ++j)
+      for (usz j = 0; j < col; ++j)
         if (grid[i][j]) _.push_back(j + 1);
       _.shrink_to_fit();
       if (!_.empty()) ins_row_(i + 1, _);
@@ -90,8 +90,8 @@ class DLX {
   }
 
   template <class F>
-  std::optional<vec<size_t>> dance(F cb) {
-    vec<size_t> ans;
+  std::optional<vec<usz>> dance(F cb) {
+    vec<usz> ans;
     if (!dance_(ans, cb)) return {};
     return ans;
   }

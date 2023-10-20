@@ -15,11 +15,11 @@ struct polydata_s {
 
   vec<mint> d;
 
-  explicit constexpr polydata_s(size_t sz = 1) : d(sz) {}
+  explicit constexpr polydata_s(usz sz = 1) : d(sz) {}
   explicit constexpr polydata_s(std::initializer_list<mint> v) : d(v) {}
   explicit constexpr polydata_s(vec<mint> const &v) : d(v) {}
 
-  void conv(polydata_s const &r, size_t ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_ntt(d, r.d, ans_size); }
+  void conv(polydata_s const &r, usz ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_ntt(d, r.d, ans_size); }
   void conv(polydata_s const &r) { conv(r, d.size() + r.d.size() - 1); }
 };
 

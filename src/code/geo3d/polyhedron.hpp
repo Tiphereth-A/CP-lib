@@ -14,7 +14,7 @@ struct polyhedron {
 
     explicit constexpr phd_face(plane<FP> const &pl, u32 n1 = 0, u32 n2 = 0, u32 n3 = 0) : pl(pl), nid{n1, n2, n3} {}
 
-    void bind(size_t n1, size_t n2, size_t n3) {
+    void bind(usz n1, usz n2, usz n3) {
       nid[0] = n1;
       nid[1] = n2;
       nid[2] = n3;
@@ -24,11 +24,11 @@ struct polyhedron {
   struct phd_edge {
     point3d<FP> p;
     // 邻接面 ID
-    size_t fid;
+    usz fid;
 
-    explicit constexpr phd_edge(point3d<FP> const &p, size_t f = 0) : p(p), fid(f) {}
+    explicit constexpr phd_edge(point3d<FP> const &p, usz f = 0) : p(p), fid(f) {}
 
-    void bind(size_t f) { fid = f; }
+    void bind(usz f) { fid = f; }
   };
 
   vec<phd_face> vphn;
