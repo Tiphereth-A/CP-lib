@@ -9,8 +9,8 @@ using tifa_libs::u64;
 using tifa_libs::math::mpi;
 
 mpi sumik_mpi(u64 k, u64 n) {
-  mpi ret = 1;
-  for (u64 i = 2; i <= n; ++i) ret += qpow(mpi(i), k);
+  mpi ret = 0;
+  for (u64 i = 1; i <= n; ++i) ret += qpow(mpi(i), k);
   return ret;
 }
 
