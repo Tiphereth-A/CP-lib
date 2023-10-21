@@ -74,7 +74,7 @@ notebook:
     - traits: traits
       code_ext: hpp
       test_ext: cpp
-    - os128: 128 位整数的 IO
+    - ios128: 128 位整数的 IO
       code_ext: hpp
       test_ext: cpp
     - inversion: 逆序对计数

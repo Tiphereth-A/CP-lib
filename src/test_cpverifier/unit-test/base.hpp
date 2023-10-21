@@ -24,15 +24,15 @@ inline void check_(const char pretty_func[], T const& got, T const& want, Ts... 
 
 }  // namespace detail__
 
-inline void post_test() {
-  std::cout << "2000000000\n";
+inline void post_test(u32 a = 1000000000, u32 b = 1000000000) {
+  std::cout << a + b << '\n';
   exit(0);
 }
 
 inline void pre_test() {
   u32 a, b;
   std::cin >> a >> b;
-  if (a != 1000000000 || b != 1000000000) post_test();
+  if (a != 1000000000 || b != 1000000000) post_test(a, b);
 }
 
 #define CHECK_(got, want, ...) ::tifa_libs::unittest::detail__::check_(__PRETTY_FUNCTION__, got, want, __VA_ARGS__)
