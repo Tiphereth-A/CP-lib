@@ -1,4 +1,5 @@
 #define UNITTEST
+#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/math/sum_ik_flist.hpp"
 

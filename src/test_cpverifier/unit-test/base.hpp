@@ -1,8 +1,6 @@
 #ifndef TIFA_LIBS_UNITTEST_BASE
 #define TIFA_LIBS_UNITTEST_BASE
 
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
-
 #include "../../code/util/util.hpp"
 
 namespace tifa_libs::unittest {
