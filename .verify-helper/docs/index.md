@@ -6,3 +6,5 @@
 ![Standard](https://img.shields.io/static/v1?label=standard&message=C%2B%2B17&color=green&logo=cplusplus)
 
 My code library for Competitive Programming, powered by [competitive-verifier/competitive-verifier](https://github.com/competitive-verifier/competitive-verifier) & [Tiphereth-A/TINplate](https://github.com/Tiphereth-A/TINplate).
+
+[PDF release](https://github.com/Tiphereth-A/CP-lib/releases/latest) (Chinese)
