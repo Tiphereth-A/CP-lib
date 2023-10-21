@@ -643,6 +643,9 @@ notebook:
     - min25_seive: min25 筛
       code_ext: hpp
       test_ext: cpp
+    - sum_ik_flist: 简单的自然数幂和函数列表
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp

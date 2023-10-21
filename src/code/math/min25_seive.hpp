@@ -3,6 +3,8 @@
 
 #include "div64.hpp"
 #include "prime_seq.hpp"
+#include "qpow.hpp"
+#include "sum_ik_flist.hpp"
 
 namespace tifa_libs::math {
 
@@ -26,47 +28,20 @@ class min25_seive {
     }
   }
 
-  vec<T> pi_table() const {
-    if (!m) return {};
-    u64 hls = div_u64d(m, sqm);
-    if (hls != 1 && div_u64d(m, hls - 1) == sqm) --hls;
-    vec<u64> hl(hls);
-    for (usz i = 1; i < hls; ++i) hl[i] = div_u64d(m, i) - 1;
-    vec<i32> hs(sqm + 1);
-    std::iota(hs.begin(), hs.end(), -1);
-    i32 pi = 0;
-    for (u32 x : p) {
-      u64 x2 = u64(x) * x, imax = std::min(hls, div_u64d(m, x2) + 1);
-      for (u64 i = 1, ix = x; i < imax; ++i, ix += x) hl[i] -= u64((ix < hls ? (i64)hl[ix] : (i64)hs[div_u64d(m, ix)]) - pi);
-      for (u64 n = sqm; n >= x2; n--) hs[n] -= hs[div_u64d(n, x)] - pi;
-      ++pi;
-    }
-    vec<T> res;
-    res.reserve(2 * sqm + 10);
-    for (u64 x : hl) res.push_back(x);
-    for (usz i = hs.size(); --i;) res.push_back(hs[i]);
-    assert(res.size() == s);
-    return res;
-  }
-
-  vec<T> prime_sum_table() const {
+  vec<T> sum_pk(u32 k) const {
+    auto sik = sum_ik<T>[k];
     if (!m) return {};
     u64 hls = div_u64d(m, sqm);
     if (hls != 1 && div_u64d(m, hls - 1) == sqm) --hls;
     vec<T> h(s);
-    for (u64 i = 1; i < hls; ++i) {
-      T _ = div_u64d(m, i);
-      h[i] = _ * (_ + 1) / 2 - 1;
-    }
-    for (u64 i = 1; i <= sqm; ++i) {
-      T _ = i;
-      h[s - i] = _ * (_ + 1) / 2 - 1;
-    }
+    for (u64 i = 1; i < hls; ++i) h[i] = sik(div_u64d(m, i)) - 1;
+    for (u64 i = 1; i <= sqm; ++i) h[s - i] = sik(i) - 1;
     for (u32 x : p) {
       T _ = x, pi = h[s - x + 1];
-      u64 x2 = u64(x) * x, mx = std::min(hls, div_u64d(m, x2) + 1), ix = x;
-      for (u64 i = 1; i < mx; ++i, ix += x) h[i] -= ((ix < hls ? h[ix] : h[s - div_u64d(m, ix)]) - pi) * _;
-      for (u32 n = (u32)sqm; n >= x2; --n) h[s - n] -= (h[s - div_u64d(n, x)] - pi) * _;
+      _ = qpow(_, k);
+      u64 x2 = u64(x) * x, mx = std::min(hls, div_u64d(m, x2) + 1);
+      for (u64 i = 1, ix = x; i < mx; ++i, ix += x) h[i] -= ((ix < hls ? h[ix] : h[s - div_u64d(m, ix)]) - pi) * _;
+      for (u64 n = sqm; n >= x2; --n) h[s - n] -= (h[s - div_u64d(n, x)] - pi) * _;
     }
     assert(h.size() == s);
     return h;
