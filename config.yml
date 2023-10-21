@@ -26,9 +26,6 @@ notebook:
     fast: 卡常用算法
   sections:
     util:
-    - main: 缺省源
-      code_ext: cpp
-      test_ext: cpp
     - util: 共同依赖
       code_ext: hpp
       test_ext: cpp
