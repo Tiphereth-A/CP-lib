@@ -643,6 +643,9 @@ notebook:
     - du_seive: 杜教筛
       code_ext: hpp
       test_ext: cpp
+    - min25_seive: min25 筛
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
