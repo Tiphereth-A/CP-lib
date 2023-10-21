@@ -66,22 +66,17 @@ constexpr u32 u32tostr(u64 x, char *s) {
   ll = ((low & 0x00F000F000F000F0) >> 4) | (low & 0x000F000F000F000F) << 8;
   ll = (ll >> 32) | (ll << 32) | 0x3030303030303030;
 
-  if (digits >= 8)
-    *(u64 *)(s + digits - 8) = ll;  //! maybe misaligned
+  if (digits >= 8) memcpy(s + digits - 8, (u8 *)&ll, 64);
   else {
     u32 d = digits;
     char *s1 = s, *pll = &(((char *)&ll)[8 - digits]);
     if (d >= 4) {
       *(u32 *)s1 = *(u32 *)pll;
-      s1 += 4;
-      pll += 4;
-      d -= 4;
+      s1 += 4, pll += 4, d -= 4;
     }
     if (d >= 2) {
       *(u16 *)s1 = *(u16 *)pll;
-      s1 += 2;
-      pll += 2;
-      d -= 2;
+      s1 += 2, pll += 2, d -= 2;
     }
     if (d > 0) *(u8 *)s1 = *(u8 *)pll;
   }
