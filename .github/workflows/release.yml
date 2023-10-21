@@ -36,13 +36,15 @@ jobs:
           pre_compile: |
             wget -q -O fira.zip "https://github.com/mozilla/Fira/archive/refs/tags/4.106.zip"
             wget -q -O firacode.zip "https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip"
+            wget -q -O notosans.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"
             wget -q -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
             unzip -q fira.zip -d fira
             unzip -q firacode.zip -d firacode
+            unzip -q notosans.zip -d notosans
             unzip -q notosanscjk.zip -d notosanscjk
             for i in woff2 ttf; do cp -r fira/Fira-4.106/$i /usr/share/fonts/$i; done
             for i in woff2 ttf; do cp -r firacode/$i /usr/share/fonts/$i; done
-            cp -r notosanscjk /usr/share/fonts
+            cp -r notosans notosanscjk /usr/share/fonts
             fc-cache -f
           root_file: notebook.tex
       - name: Upload Artifacts

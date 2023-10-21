@@ -40,6 +40,7 @@
 
 % Font setting
 \RequirePackage{fontspec}
+\setmainfont{Noto Sans}
 \setsansfont{Fira Sans}
 \setmonofont{Fira Code}[Contextuals=Alternate]
 \newfontfamily\cnfont{Noto Sans CJK SC}
