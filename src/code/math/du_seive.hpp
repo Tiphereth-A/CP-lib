@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class T, class SF, class SG, class SH>
-struct du_seive {
+class du_seive {
   const u64 sf_max;
   SF sf;
   SG sg;
