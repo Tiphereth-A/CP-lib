@@ -18,7 +18,7 @@ mpi sumik_mpi(u64 k, u64 n) {
 void test_sum_ik_flist(u64 n) {
   u64 k = 0;
   for (auto f : tifa_libs::math::sum_ik<mpi>) {
-    tifa_libs::unittest::check(f(n), sumik_mpi(k, n), "k = " + std::to_string(k), "n = " + std::to_string(n));
+    check(f(n), sumik_mpi(k, n), check_param(k), check_param(n));
     ++k;
   }
 }
@@ -27,5 +27,7 @@ int main() {
   for (u64 i = 0; i < 10; ++i) test_sum_ik_flist(i);
   test_sum_ik_flist(42);
   test_sum_ik_flist(114514);
+
+  tifa_libs::unittest::post_test();
   return 0;
 }
