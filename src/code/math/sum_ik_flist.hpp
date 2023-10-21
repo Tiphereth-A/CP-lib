@@ -19,7 +19,10 @@ constexpr T sum_i4(T n) { return sum_i2(n) * (sum_i1(n) * 6 - 1) / 5; }
 template <class T>
 constexpr T sum_i5(T n) { return sum_i3(n) * (sum_i1(n) * 4 - 1) / 3; }
 template <class T>
-constexpr T sum_i6(T n) { return (sum_i2(n) * sum_i1(n) * 12 - sum_i4(n) * 5) / 7; }
+constexpr T sum_i6(T n) {
+  auto _ = sum_i1(n);
+  return sum_i2(n) * (_ * (_ * 2 - 1) * 6 + 1) / 7;
+}
 template <class T>
 constexpr T sum_i7(T n) {
   auto _ = sum_i3(n);

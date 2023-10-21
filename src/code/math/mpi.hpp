@@ -19,7 +19,7 @@ class mpi {
   mpi(T x) : neg(false) {
     if constexpr (is_sint<T>::value)
       if (x < 0) neg = true, x = -x;
-    while (x) dt.push_back(x % D), x /= D;
+    while (x) dt.push_back(u32(typename to_uint<T>::type(x) % D)), x /= D;
   }
   mpi(std::string s) : neg(false) {
     assert(!s.empty());

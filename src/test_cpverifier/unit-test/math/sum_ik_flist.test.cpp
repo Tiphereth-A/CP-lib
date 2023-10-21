@@ -4,6 +4,7 @@
 
 #include "../../../code/math/mpi.hpp"
 #include "../../../code/math/qpow.hpp"
+#include "../base.hpp"
 
 using tifa_libs::u64;
 using tifa_libs::math::mpi;
@@ -17,15 +18,13 @@ mpi sumik_mpi(u64 k, u64 n) {
 void test_sum_ik_flist(u64 n) {
   u64 k = 0;
   for (auto f : tifa_libs::math::sum_ik<mpi>) {
-    auto got = f(n), want = sumik_mpi(k, n);
-    if (got != want) throw std::runtime_error("WA at k = " + std::to_string(k) + ", n = " + std::to_string(n) + ", got " + got.to_str() + ", want " + want.to_str());
+    tifa_libs::unittest::check(f(n), sumik_mpi(k, n), "k = " + std::to_string(k), "n = " + std::to_string(n));
     ++k;
   }
 }
 
 int main() {
-  test_sum_ik_flist(0);
-  test_sum_ik_flist(1);
+  for (u64 i = 0; i < 10; ++i) test_sum_ik_flist(i);
   test_sum_ik_flist(42);
   test_sum_ik_flist(114514);
   return 0;
