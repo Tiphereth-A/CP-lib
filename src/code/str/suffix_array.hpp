@@ -5,9 +5,10 @@
 
 namespace tifa_libs::str {
 
+template <u32 MAXCHAR = u32('z')>
 // s must start from 1
 inline ptt<vec<usz>> suffixsort(std::string s) {
-  usz n = s.size() - 1, m = usz('z'), p;
+  usz n = s.size() - 1, m = MAXCHAR, p;
   vec<usz> sa(n + 1), rk(n + 1), oldrk(n + n + 1), id(n + 1), cnt(m + 1, 0);
   for (usz i = 1; i <= n; ++i) ++cnt[rk[i] = usz(s[i])];
   for (usz i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];

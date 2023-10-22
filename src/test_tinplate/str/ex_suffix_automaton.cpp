@@ -13,7 +13,7 @@ int main() {
     std::cin >> s;
     tifa_libs::u32 last = 0;
     for (auto c : s)
-      last = sam.extend(last, c);
+      last = sam.extend(last, tifa_libs::u32(c - 'a'));
   }
   tifa_libs::u64 ans = 0;
   for (tifa_libs::u32 i = 1; i < sam.sz; ++i) ans += sam.st[i].len - sam.st[sam.st[i].link].len;

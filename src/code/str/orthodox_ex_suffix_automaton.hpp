@@ -20,7 +20,7 @@ class orthodox_ex_suffix_automaton {
   orthodox_ex_suffix_automaton() : sz(1) {
     st.push_back(YYZ()), st[0].len = 0, st[0].link = -1;
   }
-  u32 extend(u32 last, char c) {
+  u32 extend(u32 last, u32 c) {
     u32 cur = st[last].nex[c];
     if (st[cur].len) return cur;
     st[cur].len = st[last].len + 1;
