@@ -17,7 +17,7 @@ class ex_suffix_automaton {
   u32 sz;
   vec<YYZ> st;
   ex_suffix_automaton() : sz(1), st(1) { st[0].len = 0, st[0].link = -1; }
-  u32 extend(u32 last, char c) {
+  u32 extend(u32 last, u32 c) {
     if (st[last].nex[c]) {
       u32 p = last, q = st[p].nex[c];
       if (st[p].len + 1 == st[q].len) return q;
