@@ -34,6 +34,19 @@ inline ptt<vec<usz>> suffixsort(std::string s) {
   return {sa, rk};
 }
 
+inline pt3<vec<usz>> suffixsort_height(std::string s) {
+  auto [sa, rk] = suffixsort(s);
+  usz n = s.size() - 1;
+  vec<usz> height(n + 1);
+  for (usz i = 1, k = 0; i <= n; ++i) {
+    if (rk[i] == 1) continue;
+    if (k) --k;
+    while (i + k <= n && s[i + k] == s[sa[rk[i] - 1] + k]) ++k;
+    height[rk[i]] = k;
+  }
+  return {sa, rk, height};
+}
+
 }  // namespace tifa_libs::str
 
 #endif
