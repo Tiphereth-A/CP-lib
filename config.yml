@@ -911,6 +911,9 @@ notebook:
     - ex_suffix_automaton: 广义后缀自动机
       code_ext: hpp
       test_ext: cpp
+    - aho_corasick_automaton: ac自动机
+      code_ext: hpp
+      test_ext: cpp
     rand:
     - gen: 随机数生成辅助类
       code_ext: hpp
