@@ -18,6 +18,7 @@ class matrix {
   using value_type = T;
 
   matrix(usz row, usz col, T const &v = T{}) : d(row, vec<T>(col, v)) { assert(row > 0 && col > 0); }
+  explicit matrix(vvec<T> const &data) : d(data) { assert(data.size() > 0 && data[0].size > 0); }
 
   constexpr usz row() const { return d.size(); }
   constexpr usz col() const { return d[0].size(); }

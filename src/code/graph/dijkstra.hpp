@@ -1,14 +1,14 @@
 #ifndef TIFA_LIBS_GRAPH_DIJKSTRA
 #define TIFA_LIBS_GRAPH_DIJKSTRA
 
-#include "../util/util.hpp"
+#include "adjlist.hpp"
 
 namespace tifa_libs::graph {
 
 template <class W, class F, auto INF = std::numeric_limits<W>::max() / 2 - 1>
-vec<W> dijkstra(vvp<usz, W> const &g, usz s, F cb_relax) {
-  vec<W> dis(g.size(), INF);
-  vec<bool> vis(g.size());
+vec<W> dijkstra(adjlist<W> const &g, usz s, F cb_relax) {
+  vec<W> dis(g.v_size(), INF);
+  vec<bool> vis(g.v_size());
   pqg<std::pair<W, usz>> q;
   q.emplace(dis[s] = 0, s);
   while (!q.empty()) {

@@ -401,6 +401,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     graph:
+    - adjlist: 邻接表
+      code_ext: hpp
+      test_ext: cpp
+    - adjmat: 邻接矩阵
+      code_ext: hpp
+      test_ext: cpp
     - dijkstra: Dijkstra
       code_ext: hpp
       test_ext: cpp

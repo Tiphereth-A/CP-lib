@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 
+#include "../../code/graph/adjlist.hpp"
 #include "../../code/graph/dijkstra.hpp"
 
 int main() {
@@ -7,10 +8,10 @@ int main() {
   std::cin.tie(nullptr);
   tifa_libs::u32 n, m, s, t;
   std::cin >> n >> m >> s >> t;
-  tifa_libs::vvp<size_t, tifa_libs::u64> g(n);
+  tifa_libs::graph::adjlist<tifa_libs::u64> g(n);
   for (tifa_libs::u32 i = 0, a, b, c; i < m; ++i) {
     std::cin >> a >> b >> c;
-    g[a].emplace_back(b, c);
+    g.add_arc(a, b, c);
   }
   tifa_libs::vec<tifa_libs::i32> pre(n, -1);
   auto dis = tifa_libs::graph::dijkstra(g, s, [&pre](size_t now, size_t to) { pre[to] = (tifa_libs::i32)now; });
