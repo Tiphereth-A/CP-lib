@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_2_64"
 
 #include "../../code/conv/karatsuba.hpp"
+#include "../../code/util/ios_container.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -10,7 +11,6 @@ int main() {
   tifa_libs::vec<tifa_libs::u64> a(n), b(m);
   for (auto &i : a) std::cin >> i;
   for (auto &i : b) std::cin >> i;
-  auto c = tifa_libs::math::karatsuba(a, b);
-  for (size_t i = 0; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
+  std::cout << tifa_libs::math::karatsuba(a, b) << '\n';
   return 0;
 }

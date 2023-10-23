@@ -2,6 +2,7 @@
 
 #include "../../code/conv/conv_3ntt.hpp"
 #include "../../code/math/mint_ss.hpp"
+#include "../../code/util/ios_container.hpp"
 
 using mint0 = tifa_libs::math::mint_ss<167772161>;
 using mint1 = tifa_libs::math::mint_ss<469762049>;
@@ -15,7 +16,6 @@ int main() {
   tifa_libs::vec<tifa_libs::u64> a(n), b(m);
   for (auto &i : a) std::cin >> i;
   for (auto &i : b) std::cin >> i;
-  auto c = tifa_libs::math::conv_3ntt<mint0, mint1, mint2>(a, b, 1000000007);
-  for (size_t i = 0; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
+  std::cout << tifa_libs::math::conv_3ntt<mint0, mint1, mint2>(a, b, 1000000007) << '\n';
   return 0;
 }

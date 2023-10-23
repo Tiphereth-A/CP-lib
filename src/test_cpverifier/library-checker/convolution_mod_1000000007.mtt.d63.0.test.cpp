@@ -2,6 +2,7 @@
 
 #include "../../code/conv/conv_mtt.hpp"
 #include "../../code/math/mint_d63.hpp"
+#include "../../code/util/ios_container.hpp"
 
 using mint = tifa_libs::math::mint_d63<-1>;
 
@@ -14,7 +15,6 @@ int main() {
   tifa_libs::vec<mint> a(n), b(m);
   for (auto &i : a) std::cin >> i;
   for (auto &i : b) std::cin >> i;
-  auto c = tifa_libs::math::conv_mtt<mint, long double>(a, b);
-  for (size_t i = 0; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
+  std::cout << tifa_libs::math::conv_mtt<mint, long double>(a, b) << '\n';
   return 0;
 }

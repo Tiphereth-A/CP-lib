@@ -2,6 +2,7 @@
 
 #include "../../code/conv/conv_xor.hpp"
 #include "../../code/math/mint_d31.hpp"
+#include "../../code/util/ios_container.hpp"
 
 using mint = tifa_libs::math::mint_d31<-1>;
 
@@ -14,7 +15,6 @@ int main() {
   tifa_libs::vec<mint> a(1 << n), b(1 << n);
   for (auto &i : a) std::cin >> i;
   for (auto &i : b) std::cin >> i;
-  auto c = tifa_libs::math::conv_xor(a, b);
-  for (size_t i = 0; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
+  std::cout << tifa_libs::math::conv_xor(a, b) << '\n';
   return 0;
 }
