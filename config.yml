@@ -89,6 +89,12 @@ notebook:
     - ios_tuple: tuple IO
       code_ext: hpp
       test_ext: cpp
+    - ios_container: 容器 IO
+      code_ext: hpp
+      test_ext: cpp
+    - ndvec: 高维 vector
+      code_ext: hpp
+      test_ext: cpp
     - huffman_tree: Huffman 树
       code_ext: hpp
       test_ext: cpp
@@ -99,9 +105,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - texas_holdem: 德州扑克
-      code_ext: hpp
-      test_ext: cpp
-    - ndvec: 高维 vector
       code_ext: hpp
       test_ext: cpp
     bit:
