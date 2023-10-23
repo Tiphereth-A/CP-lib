@@ -31,7 +31,7 @@ class adjlist {
 
  public:
   //! vertex ID: [0, n)
-  explicit adjlist(u32 n) : m(0), g(n + 1) {}
+  explicit adjlist(u32 n) : m(0), g(n) {}
 
   template <class... Ts>
   E<T>& add_arc(u32 u, Ts&&... args) {

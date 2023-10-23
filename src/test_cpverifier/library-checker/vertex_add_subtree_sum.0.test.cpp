@@ -22,7 +22,7 @@ int main() {
   tifa_libs::graph::tree tr_(n);
   for (size_t i = 1, u, v; i < n; ++i) std::cin >> u >> v, tr_.add_edge((tifa_libs::u32)u, (tifa_libs::u32)v);
   tifa_libs::ds::heavy_chain_s<T, op, e, F, mapping, composition, id> tr(tr_);
-  for (size_t i = 0; i < n; ++i) a[tr.dfn[i]].first = b[i], a[tr.dfn[i]].second = 1;
+  for (size_t i = 0; i < n; ++i) a[tr_.dfn[i]].first = b[i], a[tr_.dfn[i]].second = 1;
   tr.build(a);
   for (size_t i = 0, opt, u; i < q; ++i) {
     std::cin >> opt >> u;

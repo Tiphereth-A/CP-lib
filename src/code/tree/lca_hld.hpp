@@ -1,23 +1,23 @@
 #ifndef TIFA_LIBS_TREE_LCA_HLD
 #define TIFA_LIBS_TREE_LCA_HLD
 
-#include "tree_dfs.hpp"
+#include "tree.hpp"
 
 namespace tifa_libs::graph {
 
+template <class T = void>
 class lca_hld {
-  vec<u32> fa, dep, top, maxson;
+  tree<T>& tr;
 
  public:
-  template <class T>
-  lca_hld(tree<T> const& tr) {
-    tree_dfs<T, dfs_state::fa | dfs_state::dep | dfs_state::maxson>(tr, top, top, fa, dep, maxson);
-    tree_dfs_top(tr, maxson, top);
+  lca_hld(tree<T>& tr) : tr(tr) {
+    tr.template reset_dfs_info<s_dep | s_fa>();
+    tr.template reset_top<true>();
   }
 
   u32 operator()(u32 u, u32 v) const {
-    while (top[u] != top[v]) dep[top[u]] < dep[top[v]] ? v = fa[top[v]] : u = fa[top[u]];
-    return dep[u] > dep[v] ? v : u;
+    while (tr.top[u] != tr.top[v]) tr.dep[tr.top[u]] < tr.dep[tr.top[v]] ? v = tr.fa[tr.top[v]] : u = tr.fa[tr.top[u]];
+    return tr.dep[u] > tr.dep[v] ? v : u;
   }
 };
 
