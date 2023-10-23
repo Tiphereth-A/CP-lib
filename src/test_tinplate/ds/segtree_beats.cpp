@@ -5,12 +5,12 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  size_t n, m;
+  usz n, m;
   std::cin >> n >> m;
   vec<i32> a(n);
   for (auto& x : a) std::cin >> x;
   tifa_libs::ds::segtree_beats<i32, i64> seg(a);
-  for (size_t i = 0, opt, l, r; i < m; ++i) {
+  for (usz i = 0, opt, l, r; i < m; ++i) {
     std::cin >> opt >> l >> r;
     --l, --r;
     if (opt <= 2) {

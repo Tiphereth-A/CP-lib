@@ -4,7 +4,7 @@
 #include "../../code/math/mint_s30.hpp"
 
 using mint = tifa_libs::math::mint_s30<998244353>;
-using T = std::pair<mint, size_t>;  // sum len
+using T = std::pair<mint, usz>;  // sum len
 using F = std::pair<mint, mint>;    // mul add
 
 auto op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
@@ -24,13 +24,13 @@ auto id() { return F(1, 0); }
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  size_t n, q;
+  usz n, q;
   mint x, y;
   std::cin >> n >> q;
   tifa_libs::ds::fhq_treap_w<mint, T, op, e, F, mapping, composition, id, true> tr(n + q);
-  for (size_t i = 0; i < n; ++i)
+  for (usz i = 0; i < n; ++i)
     std::cin >> x, tr.insert(T{x, 1});
-  for (size_t i = 0, opt, l, r; i < q; ++i) {
+  for (usz i = 0, opt, l, r; i < q; ++i) {
     std::cin >> opt >> l;
     if (opt == 0) std::cin >> x, tr.insert(T{x, 1}, l);
     else if(opt == 1) tr.erase(l);

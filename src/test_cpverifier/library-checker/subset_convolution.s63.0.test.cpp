@@ -15,6 +15,6 @@ int main() {
   for (auto &i : b) std::cin >> i;
   tifa_libs::math::conv_subset<mint, 20> cvs;
   auto c = cvs.conv(a, b);
-  for (size_t i = 0; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
+  for (usz i = 0; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
   return 0;
 }

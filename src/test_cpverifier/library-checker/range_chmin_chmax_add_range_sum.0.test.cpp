@@ -6,12 +6,12 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  size_t n, q;
+  usz n, q;
   std::cin >> n >> q;
   vec<i64> a(n);
   for(auto& x: a) std::cin >> x;
   tifa_libs::ds::segtree_beats<i64> seg(a);
-  for(size_t i = 0, opt, l, r; i < q; ++ i) {
+  for(usz i = 0, opt, l, r; i < q; ++ i) {
     std::cin >> opt >> l >> r;
     -- r;
     if(opt == 3) std::cout << seg.querys(1, 0, n - 1, l, r)<< '\n';

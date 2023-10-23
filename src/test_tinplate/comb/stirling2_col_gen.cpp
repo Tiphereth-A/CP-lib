@@ -14,6 +14,6 @@ int main() {
   u32 n, k;
   std::cin >> n >> k;
   auto ans = tifa_libs::math::stirling2_col_gen<polyd>(n, k);
-  for (size_t i = 0; i <= n; ++i) std::cout << ans[i] << " \n"[i == n];
+  for (usz i = 0; i <= n; ++i) std::cout << ans[i] << " \n"[i == n];
   return 0;
 }

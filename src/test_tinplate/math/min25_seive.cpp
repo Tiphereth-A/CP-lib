@@ -20,7 +20,7 @@ int main() {
 
   tifa_libs::math::min25_seive<mint, f> min25(n);
   auto h1 = min25.sum_pk(1), h2 = min25.sum_pk(2);
-  for (size_t i = 1; i < h2.size(); ++i) h2[i] -= h1[i];
+  for (usz i = 1; i < h2.size(); ++i) h2[i] -= h1[i];
   std::cout << min25.run(h2) << '\n';
   return 0;
 }

@@ -10,9 +10,9 @@ int main() {
   u32 n, q;
   std::cin >> n >> q;
   vec<i32> a(n);
-  for (size_t i = 0; i < n; ++i) std::cin >> a[i];
+  for (usz i = 0; i < n; ++i) std::cin >> a[i];
   tifa_libs::ds::st_array<i32, f> st(a);
-  for (size_t i = 1, u, v; i <= q; ++i) {
+  for (usz i = 1, u, v; i <= q; ++i) {
     std::cin >> u >> v;
     std::cout << st.query(u, v - 1) << '\n';
   }

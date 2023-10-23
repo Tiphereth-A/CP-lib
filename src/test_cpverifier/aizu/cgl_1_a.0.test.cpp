@@ -16,7 +16,7 @@ int main() {
   std::cin >> l;
   u32 q;
   std::cin >> q;
-  for (size_t i = 0; i < q; ++i) {
+  for (usz i = 0; i < q; ++i) {
     point p;
     std::cin >> p;
     std::cout << tifa_libs::geo::proj(l, p) << '\n';

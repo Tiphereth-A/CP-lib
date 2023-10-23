@@ -8,7 +8,7 @@ void solve() {
   vec<u32> a(n);
   for (auto& i : a) std::cin >> i;
   auto p = tifa_libs::math::cantor_inv_seq(a);
-  for (size_t i = 0; i < n; ++i) std::cout << p[i] << " \n"[i == n - 1];
+  for (usz i = 0; i < n; ++i) std::cout << p[i] << " \n"[i == n - 1];
 }
 
 int main() {

@@ -3,7 +3,7 @@
 #include "../../code/ds/segtree.hpp"
 #include "../../code/math/mint_s30.hpp"
 
-using T = std::pair<tifa_libs::math::mint_s30<998244353>, size_t>;                                // sum len
+using T = std::pair<tifa_libs::math::mint_s30<998244353>, usz>;                                // sum len
 using F = std::pair<tifa_libs::math::mint_s30<998244353>, tifa_libs::math::mint_s30<998244353>>;  // mul add
 
 auto op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
@@ -23,13 +23,13 @@ auto id() { return F(1, 0); }
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  size_t n, q;
+  usz n, q;
   std::cin >> n >> q;
   vec<T> a(n);
   for (auto &x : a) std::cin >> x.first, x.second = 1;
   tifa_libs::ds::segtree<T, op, e, F, mapping, composition, id> segt(a);
-  for (size_t i = 1; i <= q; ++i) {
-    size_t opt, l, r;
+  for (usz i = 1; i <= q; ++i) {
+    usz opt, l, r;
     std::cin >> opt >> l >> r;
     --r;
     if (opt == 0) {

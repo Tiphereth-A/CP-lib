@@ -12,7 +12,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 q;
   std::cin >> q;
-  for (size_t i = 0; i < q; ++i) {
+  for (usz i = 0; i < q; ++i) {
     line l1, l2;
     std::cin >> l1 >> l2;
     std::cout << tifa_libs::geo::is_ins_SS(l1, l2) << '\n';

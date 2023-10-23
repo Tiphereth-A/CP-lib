@@ -14,15 +14,15 @@ int main() {
     g.add_arc(a, b, c);
   }
   vec<i32> pre(n, -1);
-  auto dis = tifa_libs::graph::dijkstra(g, s, [&pre](size_t now, size_t to) { pre[to] = (i32)now; });
+  auto dis = tifa_libs::graph::dijkstra(g, s, [&pre](usz now, usz to) { pre[to] = (i32)now; });
   vec<i32> ans;
-  for (i32 now = pre[t]; ~now; now = pre[(size_t)now]) ans.push_back(now);
+  for (i32 now = pre[t]; ~now; now = pre[(usz)now]) ans.push_back(now);
   if (ans.empty()) {
     std::cout << "-1\n";
     return 0;
   }
   std::cout << dis[t] << ' ' << ans.size() << '\n';
-  for (size_t i = ans.size() - 1; i; --i) std::cout << ans[i] << ' ' << ans[i - 1] << '\n';
+  for (usz i = ans.size() - 1; i; --i) std::cout << ans[i] << ' ' << ans[i - 1] << '\n';
   std::cout << ans[0] << ' ' << t << '\n';
   return 0;
 }

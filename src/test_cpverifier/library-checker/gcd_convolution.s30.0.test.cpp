@@ -11,9 +11,9 @@ int main() {
   u32 n;
   std::cin >> n;
   vec<mint> a(n + 1), b(n + 1);
-  for (size_t i = 1; i <= n; ++i) std::cin >> a[i];
-  for (size_t i = 1; i <= n; ++i) std::cin >> b[i];
+  for (usz i = 1; i <= n; ++i) std::cin >> a[i];
+  for (usz i = 1; i <= n; ++i) std::cin >> b[i];
   auto c = tifa_libs::math::conv_gcd(a, b);
-  for (size_t i = 1; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
+  for (usz i = 1; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
   return 0;
 }

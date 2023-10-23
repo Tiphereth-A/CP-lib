@@ -16,7 +16,7 @@ int main() {
   std::cin >> c;
   u32 q;
   std::cin >> q;
-  for (size_t i = 0; i < q; ++i) {
+  for (usz i = 0; i < q; ++i) {
     line l;
     std::cin >> l;
     auto [x, y] = tifa_libs::geo::ins_CL(c, l).value();

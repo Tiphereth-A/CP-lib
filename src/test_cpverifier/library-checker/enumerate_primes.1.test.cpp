@@ -9,6 +9,6 @@ int main() {
   std::cin >> n >> a >> b;
   auto prime = tifa_libs::math::prime_seq(n);
   std::cout << prime.size() << ' ' << (prime.size() + a - 1 - b) / a << '\n';
-  for (size_t i = b; i < prime.size(); i += a) std::cout << prime[i] << " \n"[i + a >= prime.size()];
+  for (usz i = b; i < prime.size(); i += a) std::cout << prime[i] << " \n"[i + a >= prime.size()];
   return 0;
 }

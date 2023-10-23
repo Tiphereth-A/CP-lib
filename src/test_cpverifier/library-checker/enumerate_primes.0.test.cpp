@@ -10,6 +10,6 @@ int main() {
   auto prime = tifa_libs::math::linear_seive(
     n + 1, [](u32) {}, [](u32, u32) {}, [](u32, u32) {});
   std::cout << prime.size() << ' ' << (prime.size() + a - 1 - b) / a << '\n';
-  for (size_t i = b; i < prime.size(); i += a) std::cout << prime[i] << " \n"[i + a >= prime.size()];
+  for (usz i = b; i < prime.size(); i += a) std::cout << prime[i] << " \n"[i + a >= prime.size()];
   return 0;
 }

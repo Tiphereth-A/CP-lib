@@ -8,7 +8,7 @@ int main() {
   u32 n, q;
   std::cin >> n >> q;
   tifa_libs::ds::dsu_basic dsu(n + 1);
-  for (size_t i = 1; i <= q; ++i) {
+  for (usz i = 1; i <= q; ++i) {
     u32 t, u, v;
     std::cin >> t >> u >> v;
     if (t == 0)

@@ -14,7 +14,7 @@ int main() {
   u32 n, k;
   std::cin >> n >> k;
   poly_t p(n);
-  for (size_t i = 0, x; i < k; ++i) std::cin >> x >> p[x];
+  for (usz i = 0, x; i < k; ++i) std::cin >> x >> p[x];
   std::cout << tifa_libs::math::polysp_exp(p);
   return 0;
 }

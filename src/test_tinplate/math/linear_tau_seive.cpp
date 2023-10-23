@@ -4,7 +4,7 @@ void solve() {
   u32 n;
   std::cin >> n;
   auto _ = tifa_libs::math::linear_tau_seive(n);
-  for (size_t i = 0; i < n; ++i) std::cout << _[i] << " \n"[i + 1 == n];
+  for (usz i = 0; i < n; ++i) std::cout << _[i] << " \n"[i + 1 == n];
 }
 
 int main() {

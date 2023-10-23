@@ -5,13 +5,13 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  size_t n, q;
+  usz n, q;
   std::cin >> n >> q;
   vec<i32> a(n);
   auto min = [](i32 a, i32 b) { return std::min(a, b); };
   tifa_libs::ds::segtree_old<i32, decltype(min)> segt(a);
-  for (size_t i = 1; i <= q; ++i) {
-    size_t opt, l, r;
+  for (usz i = 1; i <= q; ++i) {
+    usz opt, l, r;
     std::cin >> opt >> l >> r;
     if (opt == 0) {
       i32 x;

@@ -6,8 +6,8 @@ void solve() {
   u32 n, m;
   std::cin >> n >> m;
   vvec<bool> maps(n, vec<bool>(m));
-  for (size_t i = 0, x; i < n; ++i)
-    for (size_t j = 0; j < m; ++j) {
+  for (usz i = 0, x; i < n; ++i)
+    for (usz j = 0; j < m; ++j) {
       std::cin >> x;
       maps[i][j] = x;
     }

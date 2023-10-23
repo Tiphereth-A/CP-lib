@@ -8,6 +8,6 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   auto ans = tifa_libs::math::derange_mod_gen(n, m);
-  for (size_t i = 0; i < n; ++i) std::cout << ans[i] << " \n"[i == n - 1];
+  for (usz i = 0; i < n; ++i) std::cout << ans[i] << " \n"[i == n - 1];
   return 0;
 }

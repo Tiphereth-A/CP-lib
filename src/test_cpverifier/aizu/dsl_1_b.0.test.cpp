@@ -5,10 +5,10 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  size_t n, q;
+  usz n, q;
   std::cin >> n >> q;
   tifa_libs::ds::dsu_weighted dsu(n);
-  for (size_t i = 0; i < q; ++i) {
+  for (usz i = 0; i < q; ++i) {
     u32 op, u, v;
     std::cin >> op >> u >> v;
     if (op) {
