@@ -7,7 +7,6 @@
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
 
-using u64;
 using tifa_libs::math::mpi;
 
 void test_sum_ik_flist(u64 n) {

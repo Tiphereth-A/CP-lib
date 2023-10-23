@@ -11,7 +11,7 @@ int main() {
   std::string s, t;
   std::cin >> s >> t;
   char ans[16] = {0};
-  u32tostr(tifa_libs::str2uint_mod(s, MOD) + tifa_libs::str2uint_mod(t, MOD), ans);
+  tifa_libs::u32tostr(tifa_libs::str2uint_mod(s, MOD) + tifa_libs::str2uint_mod(t, MOD), ans);
   std::cout << ans;
   return 0;
 }
