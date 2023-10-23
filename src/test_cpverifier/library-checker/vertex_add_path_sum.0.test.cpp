@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 
-#include "../../code/ds/heavy_chain_subdivision.hpp"
+#include "../../code/ds/hld.hpp"
 
 using T = std::pair<tifa_libs::i64, tifa_libs::i32>;
 using F = tifa_libs::i64;

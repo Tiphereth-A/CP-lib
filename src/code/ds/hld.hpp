@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_HEAVY_CHAIN_SUBDIVISION
-#define TIFA_LIBS_DS_HEAVY_CHAIN_SUBDIVISION
+#ifndef TIFA_LIBS_DS_HLD
+#define TIFA_LIBS_DS_HLD
 
 #include "../tree/tree.hpp"
 #include "segtree.hpp"

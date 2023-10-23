@@ -163,7 +163,7 @@ notebook:
     - persistent_segtree: 可持久化线段树
       code_ext: hpp
       test_ext: cpp
-    - heavy_chain_subdivision: 重链剖分
+    - hld: 重链剖分
       code_ext: hpp
       test_ext: cpp
     - fhq_treap: 非旋treap
