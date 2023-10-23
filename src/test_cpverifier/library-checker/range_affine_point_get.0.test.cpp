@@ -3,7 +3,7 @@
 #include "../../code/ds/segtree.hpp"
 #include "../../code/math/mint_s30.hpp"
 
-using T = std::pair<tifa_libs::math::mint_s30<998244353>, usz>;                                // sum len
+using T = std::pair<tifa_libs::math::mint_s30<998244353>, usz>;                                   // sum len
 using F = std::pair<tifa_libs::math::mint_s30<998244353>, tifa_libs::math::mint_s30<998244353>>;  // mul add
 
 auto op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }

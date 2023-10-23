@@ -1,15 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_primes"
 
 #include "../../code/math/linear_seive.hpp"
+#include "../../code/util/fastio.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   u32 n, a, b;
-  std::cin >> n >> a >> b;
+  tifa_libs::fin >> n >> a >> b;
   auto prime = tifa_libs::math::linear_seive(
-    n + 1, [](u32) {}, [](u32, u32) {}, [](u32, u32) {});
-  std::cout << prime.size() << ' ' << (prime.size() + a - 1 - b) / a << '\n';
-  for (usz i = b; i < prime.size(); i += a) std::cout << prime[i] << " \n"[i + a >= prime.size()];
+      n + 1, [](u32) {}, [](u32, u32) {}, [](u32, u32) {});
+  tifa_libs::fout << prime.size() << ' ' << (prime.size() + a - 1 - b) / a << '\n';
+  for (usz i = b; i < prime.size(); i += a) tifa_libs::fout << prime[i] << " \n"[i + a >= prime.size()];
   return 0;
 }

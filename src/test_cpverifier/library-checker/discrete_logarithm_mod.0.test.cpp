@@ -1,17 +1,16 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/discrete_logarithm_mod"
 
 #include "../../code/math/exbsgs.hpp"
+#include "../../code/util/fastio.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   i64 t;
-  std::cin >> t;
+  tifa_libs::fin >> t;
   while (t--) {
     u64 x, y, m;
-    std::cin >> x >> y >> m;
+    tifa_libs::fin >> x >> y >> m;
     auto res = tifa_libs::math::exbsgs(x, y, m);
-    std::cout << (res ? (i64)res.value() : -1) << '\n';
+    tifa_libs::fout << (res ? (i64)res.value() : -1) << '\n';
   }
   return 0;
 }

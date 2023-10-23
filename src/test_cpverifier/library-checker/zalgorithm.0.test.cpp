@@ -1,13 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
 #include "../../code/str/z_func.hpp"
+#include "../../code/util/fastio.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   std::string s;
-  std::cin >> s;
-  auto ans = tifa_libs::str::z_function(s);
-  for (usz i = 0; i < ans.size(); ++i) std::cout << ans[i] << " \n"[i + 1 == ans.size()];
+  tifa_libs::fin >> s;
+  tifa_libs::fout << tifa_libs::str::z_function(s) << '\n';
   return 0;
 }

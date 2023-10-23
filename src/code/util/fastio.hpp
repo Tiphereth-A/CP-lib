@@ -157,8 +157,7 @@ class fastout {
     usz len = strlen(n), l_;
     const char *n_ = n;
     while (now_ + len >= end_) {
-      l_ = usz(end_ - now_);
-      memcpy(now_, n_, l_);
+      memcpy(now_, n_, l_ = usz(end_ - now_));
       now_ += l_;
       n_ += l_;
       len -= l_;

@@ -2,12 +2,11 @@
 
 #include "../../code/ds/lichao_segtree.hpp"
 #include "../../code/util/discretization.hpp"
+#include "../../code/util/fastio.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   usz n, q;
-  std::cin >> n >> q;
+  tifa_libs::fin >> n >> q;
   vec<i64> lsh;
   struct seg {
     i64 a, b, l, r;
@@ -20,13 +19,13 @@ int main() {
   };
   vec<que> qu(q);
   for (usz i = 0; i < n; ++i)
-    std::cin >> se[i].l >> se[i].r >> se[i].a >> se[i].b, se[i].r -= 1, lsh.push_back(se[i].l), lsh.push_back(se[i].r);
+    tifa_libs::fin >> se[i].l >> se[i].r >> se[i].a >> se[i].b, se[i].r -= 1, lsh.push_back(se[i].l), lsh.push_back(se[i].r);
   for (usz i = 0; i < q; ++i) {
-    std::cin >> qu[i].opt;
+    tifa_libs::fin >> qu[i].opt;
     if (qu[i].opt)
-      std::cin >> qu[i].pos, lsh.push_back(qu[i].pos);
+      tifa_libs::fin >> qu[i].pos, lsh.push_back(qu[i].pos);
     else
-      std::cin >> qu[i].k.l >> qu[i].k.r >> qu[i].k.a >> qu[i].k.b, qu[i].k.r -= 1, lsh.push_back(qu[i].k.l), lsh.push_back(qu[i].k.r);
+      tifa_libs::fin >> qu[i].k.l >> qu[i].k.r >> qu[i].k.a >> qu[i].k.b, qu[i].k.r -= 1, lsh.push_back(qu[i].k.l), lsh.push_back(qu[i].k.r);
   }
   lsh = tifa_libs::uniq<vec<i64>>(lsh);
   auto _min = [](i64 a, i64 b) { return std::min(a, b); };
@@ -36,8 +35,8 @@ int main() {
   for (usz i = 0; i < q; ++i)
     if (qu[i].opt) {
       i64 ret = tr.query(qu[i].pos);
-      if (ret == INT64_MAX) std::cout << "INFINITY\n";
-      else std::cout << ret << '\n';
+      if (ret == INT64_MAX) tifa_libs::fout << "INFINITY\n";
+      else tifa_libs::fout << ret << '\n';
     } else
       tr.add(qu[i].k.a, qu[i].k.b, qu[i].k.l, qu[i].k.r);
   return 0;
