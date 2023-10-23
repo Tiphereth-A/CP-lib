@@ -14,21 +14,17 @@ enum state_tdfs {
 };
 
 template <class T = void>
-class tree : public adjlist<T> {
-
- public:
+struct tree : public adjlist<T> {
   u32 rt;
   vec<u32> dfn, sz, fa, dep, maxson, top;
 
   explicit tree(u32 n, u32 root = 0) : adjlist<T>(n), rt(root) {}
 
   void clear(u32 u = 0, u32 fa = 0) {
-    for(auto v : this->g[u]) if(v.to != fa) clear(v.to, u);
+    for (auto v : this->g[u])
+      if (v.to != fa) clear(v.to, u);
     this->g[u].clear();
   }
-
-  u32& root() { return rt; }
-  u32 root() const { return rt; }
 
   template <int state>
   inline void reset_dfs_info() {
@@ -54,7 +50,7 @@ class tree : public adjlist<T> {
         if (maxson[u] == n || sz[ev.to] > sz[maxson[u]]) maxson[u] = ev.to;
     };
 
-    dfs_(root(), n, before, pre_dfs, post_dfs);
+    dfs_(rt, n, before, pre_dfs, post_dfs);
   }
 
   template <bool need_dfn = false>
@@ -69,7 +65,7 @@ class tree : public adjlist<T> {
       if constexpr (need_dfn) dfn[u] = cnt++;
       top[u] = top_;
     };
-    dfs_top_(root(), root(), before);
+    dfs_top_(rt, rt, before);
   }
 
  private:
