@@ -218,7 +218,7 @@ class fastout {
 }  // namespace fastio_impl_
 
 inline fastio_impl_::fastin<0x200005> fin;
-inline fastio_impl_::fastout<0x200005, 21> fout;
+inline fastio_impl_::fastout<0x200005, 39> fout;
 
 }  // namespace tifa_libs
 
