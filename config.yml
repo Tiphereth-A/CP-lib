@@ -53,16 +53,7 @@ notebook:
     - hash_splitmix64: Hash splitmix64
       code_ext: hpp
       test_ext: cpp
-    - huffman_tree: Huffman 树
-      code_ext: hpp
-      test_ext: cpp
-    - dlx: DLX
-      code_ext: hpp
-      test_ext: cpp
     - discretization: 离散化
-      code_ext: hpp
-      test_ext: cpp
-    - gray_code: Gray 码
       code_ext: hpp
       test_ext: cpp
     - enum_subset: 枚举子集
@@ -96,6 +87,18 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - ios_tuple: tuple IO
+      code_ext: hpp
+      test_ext: cpp
+    - huffman_tree: Huffman 树
+      code_ext: hpp
+      test_ext: cpp
+    - gray_code: Gray 码
+      code_ext: hpp
+      test_ext: cpp
+    - dlx: DLX
+      code_ext: hpp
+      test_ext: cpp
+    - texas_holdem: 德州扑克
       code_ext: hpp
       test_ext: cpp
     bit:
