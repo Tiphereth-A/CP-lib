@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 
 #include "../../code/str/manacher.hpp"
+#include "../../code/util/ios_container.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   std::string s;
   std::cin >> s;
-  auto ans = tifa_libs::str::manacher(s);
-  for (size_t i = 0; i < ans.size(); ++i) std::cout << ans[i] << " \n"[i + 1 == ans.size()];
+  std::cout << tifa_libs::str::manacher(s) << '\n';
   return 0;
 }
