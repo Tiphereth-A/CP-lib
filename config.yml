@@ -682,6 +682,9 @@ notebook:
     - sum_ik_flist: 简单的自然数幂和函数列表
       code_ext: hpp
       test_ext: cpp
+    - interp_newton_n2: Newton 插值（朴素实现）
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp
