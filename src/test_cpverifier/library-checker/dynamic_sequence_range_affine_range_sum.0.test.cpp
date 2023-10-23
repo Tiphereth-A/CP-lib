@@ -4,8 +4,8 @@
 #include "../../code/math/mint_s30.hpp"
 
 using mint = tifa_libs::math::mint_s30<998244353>;
-using T = std::pair<mint, usz>;  // sum len
-using F = std::pair<mint, mint>;    // mul add
+using T = std::pair<mint, usz>;   // sum len
+using F = std::pair<mint, mint>;  // mul add
 
 auto op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
 auto e() { return T{0, 0}; }
@@ -33,9 +33,9 @@ int main() {
   for (usz i = 0, opt, l, r; i < q; ++i) {
     std::cin >> opt >> l;
     if (opt == 0) std::cin >> x, tr.insert(T{x, 1}, l);
-    else if(opt == 1) tr.erase(l);
-    else if(opt == 2) std::cin >> r, tr.reverse(l, r - 1);
-    else if(opt == 3) std::cin >> r >> x >> y, tr.update(l, r - 1, T(x, y));
+    else if (opt == 1) tr.erase(l);
+    else if (opt == 2) std::cin >> r, tr.reverse(l, r - 1);
+    else if (opt == 3) std::cin >> r >> x >> y, tr.update(l, r - 1, T(x, y));
     else std::cin >> r, std::cout << tr.query(l, r - 1).first << '\n';
   }
   return 0;
