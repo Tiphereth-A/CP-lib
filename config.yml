@@ -400,6 +400,12 @@ notebook:
     - tree: 树
       code_ext: hpp
       test_ext: cpp
+    - tree_dfs: DFS
+      code_ext: hpp
+      test_ext: cpp
+    - lca_hld: LCA（树链剖分）
+      code_ext: hpp
+      test_ext: cpp
     graph:
     - adjlist: 邻接表
       code_ext: hpp

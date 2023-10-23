@@ -25,6 +25,7 @@ struct E<T, true> {
 
 template <class T = void>
 class adjlist {
+ protected:
   u32 m;
   vvec<E<T>> g;
 
@@ -32,12 +33,14 @@ class adjlist {
   //! vertex ID: [0, n)
   explicit adjlist(u32 n) : m(0), g(n + 1) {}
 
-  template <class... Args>
-  E<T>& add_arc(u32 u, Args&&... args) {
+  template <class... Ts>
+  E<T>& add_arc(u32 u, Ts&&... args) {
     ++m;
     g[u].emplace_back(args...);
     return g[u].back();
   }
+  template <class... Ts>
+  ptt<E<T>&> add_edge(u32 u, u32 v, Ts&&... args) { return {add_arc(u, v, args...), add_arc(v, u, args...)}; }
 
   auto& operator[](usz u) { return g[u]; }
   auto operator[](usz u) const { return g[u]; }
