@@ -3,8 +3,6 @@
 
 #include "tuple_push_pop.hpp"
 
-namespace tifa_libs {
-
 namespace tuple_op_impl_ {
 
 template <class Tpl, class Op2, usz... Is>
@@ -35,7 +33,5 @@ OO_PTEQ_(<<)
 OO_PTEQ_(>>)
 
 #undef OO_PTEQ_
-
-}  // namespace tifa_libs
 
 #endif
