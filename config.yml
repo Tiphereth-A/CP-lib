@@ -110,6 +110,9 @@ notebook:
     - enumerate: enumerate
       code_ext: hpp
       test_ext: cpp
+    - fastio: 快速 IO
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
