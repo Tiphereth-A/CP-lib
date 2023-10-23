@@ -83,6 +83,12 @@ notebook:
     - simd: SIMD 共同依赖
       code_ext: hpp
       test_ext: cpp
+    - pair_op: pair 运算
+      code_ext: hpp
+      test_ext: cpp
+    - ios_pair: pair IO
+      code_ext: hpp
+      test_ext: cpp
     - tuple_push_pop: tuple push 与 pop
       code_ext: hpp
       test_ext: cpp
@@ -90,12 +96,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - ios_tuple: tuple IO
-      code_ext: hpp
-      test_ext: cpp
-    - ios_pair: pair IO
-      code_ext: hpp
-      test_ext: cpp
-    - pair_op: pair 运算
       code_ext: hpp
       test_ext: cpp
     bit:
