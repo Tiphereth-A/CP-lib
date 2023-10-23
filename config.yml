@@ -101,6 +101,9 @@ notebook:
     - texas_holdem: 德州扑克
       code_ext: hpp
       test_ext: cpp
+    - ndvec: 高维 vector
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
