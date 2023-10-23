@@ -22,12 +22,12 @@ int main() {
   while (!q.empty()) {
     tifa_libs::u32 u = q.front();
     q.pop();
-    for(auto x: acam.t[u].end) ans[x] = sz[u];
+    for (auto x : acam.t[u].end) ans[x] = sz[u];
     tifa_libs::u32 v = acam.t[u].fail;
     sz[v] += sz[u];
-    -- in[v];   
-    if(!in[v]) q.push(v);
+    --in[v];
+    if (!in[v]) q.push(v);
   }
-  for(auto x: ans) std::cout << x << ' ';
+  for (auto x : ans) std::cout << x << ' ';
   return 0;
 }
