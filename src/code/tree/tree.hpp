@@ -15,12 +15,17 @@ enum state_tdfs {
 
 template <class T = void>
 class tree : public adjlist<T> {
-  u32 rt;
 
  public:
+  u32 rt;
   vec<u32> dfn, sz, fa, dep, maxson, top;
 
   explicit tree(u32 n, u32 root = 0) : adjlist<T>(n), rt(root) {}
+
+  void clear(u32 u = 0, u32 fa = 0) {
+    for(auto v : this->g[u]) if(v.to != fa) clear(v.to, u);
+    this->g[u].clear();
+  }
 
   u32& root() { return rt; }
   u32 root() const { return rt; }
