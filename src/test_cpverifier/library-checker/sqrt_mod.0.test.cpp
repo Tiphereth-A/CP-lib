@@ -5,13 +5,13 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::i64 t;
+  i64 t;
   std::cin >> t;
   while (t--) {
-    tifa_libs::u64 y, p;
+    u64 y, p;
     std::cin >> y >> p;
     auto res = tifa_libs::math::qresidue(y, p);
-    std::cout << (res ? (tifa_libs::i64)res.value() : -1) << '\n';
+    std::cout << (res ? (i64)res.value() : -1) << '\n';
   }
   return 0;
 }

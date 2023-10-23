@@ -5,10 +5,10 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::i64 t;
+  i64 t;
   std::cin >> t;
   while (t--) {
-    tifa_libs::u64 a, b, m;
+    u64 a, b, m;
     std::cin >> a >> b >> m;
     std::cout << tifa_libs::math::qtetra_mod(a, b, m) << '\n';
   }

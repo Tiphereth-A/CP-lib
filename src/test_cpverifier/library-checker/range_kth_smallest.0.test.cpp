@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr);
   size_t n, q;
   std::cin >> n >> q;
-  tifa_libs::vec<tifa_libs::i32> _(n);
+  vec<i32> _(n);
   for(auto &x: _) std::cin >> x;
   auto [b, a] = tifa_libs::gen_id(_);
   tifa_libs::ds::persistent_segtree seg(a, b.size() + 1);

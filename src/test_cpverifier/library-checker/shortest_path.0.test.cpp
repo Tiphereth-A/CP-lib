@@ -6,17 +6,17 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 n, m, s, t;
+  u32 n, m, s, t;
   std::cin >> n >> m >> s >> t;
-  tifa_libs::graph::adjlist<tifa_libs::u64> g(n);
-  for (tifa_libs::u32 i = 0, a, b, c; i < m; ++i) {
+  tifa_libs::graph::adjlist<u64> g(n);
+  for (u32 i = 0, a, b, c; i < m; ++i) {
     std::cin >> a >> b >> c;
     g.add_arc(a, b, c);
   }
-  tifa_libs::vec<tifa_libs::i32> pre(n, -1);
-  auto dis = tifa_libs::graph::dijkstra(g, s, [&pre](size_t now, size_t to) { pre[to] = (tifa_libs::i32)now; });
-  tifa_libs::vec<tifa_libs::i32> ans;
-  for (tifa_libs::i32 now = pre[t]; ~now; now = pre[(size_t)now]) ans.push_back(now);
+  vec<i32> pre(n, -1);
+  auto dis = tifa_libs::graph::dijkstra(g, s, [&pre](size_t now, size_t to) { pre[to] = (i32)now; });
+  vec<i32> ans;
+  for (i32 now = pre[t]; ~now; now = pre[(size_t)now]) ans.push_back(now);
   if (ans.empty()) {
     std::cout << "-1\n";
     return 0;

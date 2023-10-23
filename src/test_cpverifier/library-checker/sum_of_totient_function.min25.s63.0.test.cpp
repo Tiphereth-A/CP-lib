@@ -5,8 +5,8 @@
 
 using mint = tifa_libs::math::mint_s63<998244353>;
 
-mint f(tifa_libs::u64 p, tifa_libs::u64 c) {
-  tifa_libs::u64 res = 1;
+mint f(u64 p, u64 c) {
+  u64 res = 1;
   while (--c) res = res * p;
   return res * (p - 1);
 }
@@ -14,7 +14,7 @@ mint f(tifa_libs::u64 p, tifa_libs::u64 c) {
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u64 n;
+  u64 n;
   std::cin >> n;
 
   tifa_libs::math::min25_seive<mint, f> min25(n);

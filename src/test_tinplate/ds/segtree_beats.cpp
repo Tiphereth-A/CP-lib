@@ -7,14 +7,14 @@ int main() {
   std::cin.tie(nullptr);
   size_t n, m;
   std::cin >> n >> m;
-  tifa_libs::vec<tifa_libs::i32> a(n);
+  vec<i32> a(n);
   for (auto& x : a) std::cin >> x;
-  tifa_libs::ds::segtree_beats<tifa_libs::i32, tifa_libs::i64> seg(a);
+  tifa_libs::ds::segtree_beats<i32, i64> seg(a);
   for (size_t i = 0, opt, l, r; i < m; ++i) {
     std::cin >> opt >> l >> r;
     --l, --r;
     if (opt <= 2) {
-      tifa_libs::i32 k;
+      i32 k;
       std::cin >> k;
       if (opt == 1)
         seg.add(1, 0, n - 1, l, r, k);

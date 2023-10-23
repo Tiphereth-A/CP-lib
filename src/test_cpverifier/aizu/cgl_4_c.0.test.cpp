@@ -11,12 +11,12 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   std::cout << std::fixed << std::setprecision(8);
-  tifa_libs::u32 n;
+  u32 n;
   std::cin >> n;
   cvh p(n);
   std::cin >> p;
   p.init();
-  tifa_libs::u32 q;
+  u32 q;
   std::cin >> q;
   for (size_t i = 0; i < q; ++i) {
     line l;

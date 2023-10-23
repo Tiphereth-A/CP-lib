@@ -5,7 +5,7 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 t;
+  u32 t;
   std::cin >> t;
   while (t--) {
     tifa_libs::math::mpi a, b;

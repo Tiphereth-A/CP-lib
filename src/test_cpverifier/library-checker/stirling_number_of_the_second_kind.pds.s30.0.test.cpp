@@ -10,7 +10,7 @@ using polyd = tifa_libs::math::polydata_s<mint>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 n;
+  u32 n;
   std::cin >> n;
   std::cout << tifa_libs::math::stirling2_row_gen<polyd>(n);
   return 0;

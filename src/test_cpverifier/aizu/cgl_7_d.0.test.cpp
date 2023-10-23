@@ -14,7 +14,7 @@ int main() {
   std::cout << std::fixed << std::setprecision(12);
   circ c;
   std::cin >> c;
-  tifa_libs::u32 q;
+  u32 q;
   std::cin >> q;
   for (size_t i = 0; i < q; ++i) {
     line l;

@@ -7,10 +7,10 @@ int main() {
   std::cin.tie(nullptr);
   std::string s;
   std::cin >> s;
-  std::map<char, tifa_libs::u32> mp;
+  std::map<char, u32> mp;
   for (char c : s) ++mp[c];
-  tifa_libs::vec<char> dict;
-  tifa_libs::vec<tifa_libs::u32> w;
+  vec<char> dict;
+  vec<u32> w;
   for (auto [k, v] : mp) {
     dict.push_back(k);
     w.push_back(v);
@@ -22,9 +22,9 @@ int main() {
       std::cout << w[0] + w[1] << "\n";
     return 0;
   }
-  tifa_libs::util::huffman<tifa_libs::u32> hf(w);
+  tifa_libs::util::huffman<u32> hf(w);
   auto x = hf.encode();
-  tifa_libs::u64 ans = 0;
+  u64 ans = 0;
   for (size_t i = 0; i < w.size(); ++i) ans += w[i] * x[i].size();
   std::cout << ans << '\n';
   return 0;

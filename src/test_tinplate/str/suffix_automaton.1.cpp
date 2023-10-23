@@ -8,7 +8,7 @@ int main() {
   std::string s, t;
   std::cin >> s >> t;
   tifa_libs::str::suffix_automaton sam;
-  for (auto c : s) sam.extend(tifa_libs::u32(c - 'a'));
+  for (auto c : s) sam.extend(u32(c - 'a'));
   std::cout << sam.lcs(t).second;
   return 0;
 }

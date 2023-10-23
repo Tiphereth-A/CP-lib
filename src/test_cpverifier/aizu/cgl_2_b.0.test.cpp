@@ -10,7 +10,7 @@ using line = tifa_libs::geo::line<double>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 q;
+  u32 q;
   std::cin >> q;
   for (size_t i = 0; i < q; ++i) {
     line l1, l2;

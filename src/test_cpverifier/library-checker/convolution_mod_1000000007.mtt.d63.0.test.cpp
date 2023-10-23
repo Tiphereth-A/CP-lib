@@ -10,9 +10,9 @@ int main() {
   mint::set_mod(1000000007);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 n, m;
+  u32 n, m;
   std::cin >> n >> m;
-  tifa_libs::vec<mint> a(n), b(m);
+  vec<mint> a(n), b(m);
   for (auto &i : a) std::cin >> i;
   for (auto &i : b) std::cin >> i;
   std::cout << tifa_libs::math::conv_mtt<mint, long double>(a, b) << '\n';

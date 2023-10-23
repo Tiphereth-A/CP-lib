@@ -12,7 +12,7 @@ using poly_t = tifa_libs::math::poly<polyd>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 n, m, c;
+  u32 n, m, c;
   std::cin >> n >> m >> c;
   poly_t a(n);
   std::cin >> a;

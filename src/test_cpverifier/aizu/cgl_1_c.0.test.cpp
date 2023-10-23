@@ -12,7 +12,7 @@ int main() {
   std::cin.tie(nullptr);
   point p0, p1;
   std::cin >> p0 >> p1;
-  tifa_libs::u32 q;
+  u32 q;
   std::cin >> q;
   for (size_t i = 0; i < q; ++i) {
     point p;

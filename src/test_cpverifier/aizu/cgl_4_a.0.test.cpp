@@ -8,7 +8,7 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   std::cout << std::fixed << std::setprecision(0);
-  tifa_libs::u32 n;
+  u32 n;
   std::cin >> n;
   cvh p(n);
   std::cin >> p;

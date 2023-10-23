@@ -4,14 +4,14 @@
 #include "../../code/util/fastio.hpp"
 
 int main() {
-  tifa_libs::u32 t, m;
+  u32 t, m;
   tifa_libs::fin >> t >> m;
   if (m == 1) {
     while (t--) tifa_libs::fout << "0\n";
   } else {
     tifa_libs::math::ExLucas mCn(m);
     while (t--) {
-      tifa_libs::i64 n, k;
+      i64 n, k;
       tifa_libs::fin >> n >> k;
       tifa_libs::fout << mCn(n, k) << '\n';
     }

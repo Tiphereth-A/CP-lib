@@ -2,8 +2,8 @@
 
 #include "../../code/ds/hld.hpp"
 
-using T = std::pair<tifa_libs::i64, tifa_libs::i32>;
-using F = tifa_libs::i64;
+using T = std::pair<i64, i32>;
+using F = i64;
 
 T op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
 T e() { return T{0, 0}; }
@@ -16,18 +16,18 @@ int main() {
   std::cin.tie(nullptr);
   size_t n, q;
   std::cin >> n >> q;
-  tifa_libs::vec<tifa_libs::i64> b(n);
-  tifa_libs::vec<T> a(n);
+  vec<i64> b(n);
+  vec<T> a(n);
   for (auto& x : b) std::cin >> x;
   tifa_libs::graph::tree<void> tr_(n);
-  for (size_t i = 1, u, v; i < n; ++i) std::cin >> u >> v, tr_.add_edge((tifa_libs::u32)u, (tifa_libs::u32)v);
+  for (size_t i = 1, u, v; i < n; ++i) std::cin >> u >> v, tr_.add_edge((u32)u, (u32)v);
   tifa_libs::ds::heavy_chain_s<T, op, e, F, mapping, composition, id> tr(tr_);
   for (size_t i = 0; i < n; ++i) a[tr_.dfn[i]].first = b[i], a[tr_.dfn[i]].second = 1;
   tr.build(a);
   for (size_t i = 0, opt, u; i < q; ++i) {
     std::cin >> opt >> u;
     if (opt == 0) {
-      tifa_libs::i64 x;
+      i64 x;
       std::cin >> x;
       tr.node_update(u, x);
     } else {

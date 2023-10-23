@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr);
   size_t n, q;
   std::cin >> n >> q;
-  tifa_libs::vec<tifa_libs::math::mint_s30<998244353>> a(n);
+  vec<tifa_libs::math::mint_s30<998244353>> a(n);
   for(auto &x: a) std::cin >> x;
   auto min = [](tifa_libs::math::mint_s30<998244353> a, tifa_libs::math::mint_s30<998244353> b) { return std::min(a, b); };
   tifa_libs::ds::segtree_old<tifa_libs::math::mint_s30<998244353>, decltype(min)> segt(a);

@@ -9,7 +9,7 @@ template <u32 SZ = 26>
 class ex_suffix_automaton {
   // super root is 0
   struct YYZ {
-    tifa_libs::u32 len, link;
+    u32 len, link;
     std::array<u32, SZ> nex{};
   };
 

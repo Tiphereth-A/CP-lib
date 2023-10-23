@@ -87,7 +87,7 @@ class suffix_automaton {
   }
 
   //!!! default: each character of t is lowercase English letters.
-  tifa_libs::ptt<u32> lcs(std::string_view t) {  // application 4
+  ptt<u32> lcs(std::string_view t) {  // application 4
     u32 v = 0, len = 0, ret = 0, end = 0, base = u32('a');
     for (u32 i = 0; i < t.size(); ++i) {
       while (v && !st[v].nex[u32(t[i]) - base]) v = st[v].link, len = st[v].len;

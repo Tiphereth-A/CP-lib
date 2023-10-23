@@ -2,8 +2,8 @@
 
 #include "../../code/ds/hld.hpp"
 
-using T = std::pair<tifa_libs::i64, tifa_libs::i32>;
-using F = tifa_libs::i64;
+using T = std::pair<i64, i32>;
+using F = i64;
 
 T op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
 T e() { return T{0, 0}; }
@@ -16,8 +16,8 @@ int main() {
   std::cin.tie(nullptr);
   size_t n, q;
   std::cin >> n >> q;
-  tifa_libs::vec<tifa_libs::i64> b(n);
-  tifa_libs::vec<T> a(n);
+  vec<i64> b(n);
+  vec<T> a(n);
   for (auto& x : b) std::cin >> x;
   tifa_libs::graph::tree tr_(n);
   for (size_t i = 1, p; i < n; ++i) std::cin >> p, tr_.add_arc(p, i);
@@ -27,7 +27,7 @@ int main() {
   for (size_t i = 0, opt, u; i < q; ++i) {
     std::cin >> opt >> u;
     if (opt == 0) {
-      tifa_libs::i64 x;
+      i64 x;
       std::cin >> x;
       tr.node_update(u, x);
     } else std::cout << tr.subtree_query(u).first << '\n';

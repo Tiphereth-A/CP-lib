@@ -6,9 +6,9 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 n, m;
+  u32 n, m;
   std::cin >> n >> m;
-  tifa_libs::vec<tifa_libs::u64> a(n), b(m);
+  vec<u64> a(n), b(m);
   for (auto &i : a) std::cin >> i;
   for (auto &i : b) std::cin >> i;
   std::cout << tifa_libs::math::karatsuba(a, b) << '\n';

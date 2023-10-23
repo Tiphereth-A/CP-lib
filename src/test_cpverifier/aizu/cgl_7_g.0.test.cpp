@@ -16,7 +16,7 @@ int main() {
   circ c1, c2;
   std::cin >> c1 >> c2;
   auto exl = extan_CC(c1, c2), inl = intan_CC(c1, c2);
-  tifa_libs::vec<point> ans;
+  vec<point> ans;
   if (exl.has_value()) {
     ans.push_back(exl.value().first.l);
     ans.push_back(exl.value().second.l);

@@ -5,7 +5,7 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::i64 a, b;
+  i64 a, b;
   std::cin >> a >> b;
   auto [g, x, y] = tifa_libs::math::exgcd(a, b);
   std::cout << x << ' ' << y << '\n';

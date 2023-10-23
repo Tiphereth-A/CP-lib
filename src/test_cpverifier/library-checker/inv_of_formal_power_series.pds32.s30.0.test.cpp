@@ -11,7 +11,7 @@ using poly_t = tifa_libs::math::poly<tifa_libs::math::polydata_s32<mint>>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 n;
+  u32 n;
   std::cin >> n;
   poly_t p(n);
   std::cin >> p;

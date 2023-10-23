@@ -7,9 +7,9 @@ int main() {
   std::cin.tie(nullptr);
   size_t n;
   std::cin >> n;
-  tifa_libs::ds::fhq_treap<tifa_libs::i32> treap(n);
+  tifa_libs::ds::fhq_treap<i32> treap(n);
   for (size_t i = 0, opt; i < n; ++i) {
-    tifa_libs::i32 x;
+    i32 x;
     std::cin >> opt >> x;
     if (opt == 1) treap.insert(x);
     else if (opt == 2) treap.erase(x);

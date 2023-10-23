@@ -3,9 +3,9 @@
 #include "../../code/util/dlx.hpp"
 
 void solve() {
-  tifa_libs::u32 n, m;
+  u32 n, m;
   std::cin >> n >> m;
-  tifa_libs::vvec<bool> maps(n, tifa_libs::vec<bool>(m));
+  vvec<bool> maps(n, vec<bool>(m));
   for (size_t i = 0, x; i < n; ++i)
     for (size_t j = 0; j < m; ++j) {
       std::cin >> x;

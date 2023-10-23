@@ -6,9 +6,9 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 n;
+  u32 n;
   std::cin >> n;
-  tifa_libs::vec<tifa_libs::u32> a(n);
+  vec<u32> a(n);
   std::cin >> a;
   tifa_libs::rsort32(a);
   std::cout << a << '\n';

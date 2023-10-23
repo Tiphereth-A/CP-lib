@@ -8,17 +8,17 @@ int main() {
   std::cin.tie(nullptr);
   size_t n, q;
   std::cin >> n >> q;
-  tifa_libs::vec<tifa_libs::i64> lsh;
+  vec<i64> lsh;
   struct seg {
-    tifa_libs::i64 a, b, l, r;
+    i64 a, b, l, r;
   };
-  tifa_libs::vec<seg> se(n);
+  vec<seg> se(n);
   struct que {
     size_t opt;
-    tifa_libs::i64 pos;
+    i64 pos;
     seg k;
   };
-  tifa_libs::vec<que> qu(q);
+  vec<que> qu(q);
   for (size_t i = 0; i < n; ++i)
     std::cin >> se[i].l >> se[i].r >> se[i].a >> se[i].b, se[i].r -= 1, lsh.push_back(se[i].l), lsh.push_back(se[i].r);
   for (size_t i = 0; i < q; ++i) {
@@ -28,14 +28,14 @@ int main() {
     else
       std::cin >> qu[i].k.l >> qu[i].k.r >> qu[i].k.a >> qu[i].k.b, qu[i].k.r -= 1, lsh.push_back(qu[i].k.l), lsh.push_back(qu[i].k.r);
   }
-  lsh = tifa_libs::uniq<tifa_libs::vec<tifa_libs::i64>>(lsh);
-  auto _min = [](tifa_libs::i64 a, tifa_libs::i64 b) { return std::min(a, b); };
-  tifa_libs::ds::lichao_segtree<tifa_libs::i64, decltype(_min)> tr(lsh, _min);
+  lsh = tifa_libs::uniq<vec<i64>>(lsh);
+  auto _min = [](i64 a, i64 b) { return std::min(a, b); };
+  tifa_libs::ds::lichao_segtree<i64, decltype(_min)> tr(lsh, _min);
   for (size_t i = 0; i < n; ++i)
     tr.add(se[i].a, se[i].b, se[i].l, se[i].r);
   for (size_t i = 0; i < q; ++i)
     if (qu[i].opt) {
-      tifa_libs::i64 ret = tr.query(qu[i].pos);
+      i64 ret = tr.query(qu[i].pos);
       if (ret == INT64_MAX) std::cout << "INFINITY\n";
       else std::cout << ret << '\n';
     } else

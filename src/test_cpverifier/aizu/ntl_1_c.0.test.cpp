@@ -2,17 +2,17 @@
 
 #include "../../code/math/rgcd.hpp"
 
-constexpr tifa_libs::u32 LIMIT = 1e7;
+constexpr u32 LIMIT = 1e7;
 
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u64 n;
+  u64 n;
   std::cin >> n;
-  tifa_libs::u32 ans;
+  u32 ans;
   std::cin >> ans;
   tifa_libs::math::RGCD rgcd(LIMIT);
-  for (tifa_libs::u32 i = 0, x; i < n; ++i) {
+  for (u32 i = 0, x; i < n; ++i) {
     std::cin >> x;
     if (ans < LIMIT) (ans /= rgcd(ans, x)) *= x;
     else ans = std::lcm(ans, x);

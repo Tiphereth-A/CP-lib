@@ -8,9 +8,9 @@ using mint = tifa_libs::math::mint_ss<998244353>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 n;
+  u32 n;
   std::cin >> n;
-  tifa_libs::vec<mint> a(1 << n), b(1 << n);
+  vec<mint> a(1 << n), b(1 << n);
   for (auto &i : a) std::cin >> i;
   for (auto &i : b) std::cin >> i;
   tifa_libs::math::conv_subset<mint, 20> cvs;

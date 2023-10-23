@@ -25,7 +25,7 @@ int main() {
   std::cin.tie(nullptr);
   size_t n, q;
   std::cin >> n >> q;
-  tifa_libs::vec<T> a(n);
+  vec<T> a(n);
   for (auto &x : a) std::cin >> x.first, x.second = 1;
   tifa_libs::ds::segtree<T, op, e, F, mapping, composition, id> segt(a);
   for (size_t i = 1; i <= q; ++i) {

@@ -5,10 +5,10 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 n, k;
+  u32 n, k;
   std::cin >> n >> k;
-  tifa_libs::u32 b = 0;
-  for (tifa_libs::u32 i = 0, x; i < k; ++i) {
+  u32 b = 0;
+  for (u32 i = 0, x; i < k; ++i) {
     std::cin >> x;
     b |= 1 << x;
   }

@@ -3,8 +3,6 @@
 
 #include <bits/stdc++.h>
 
-namespace tifa_libs {
-
 using i8 = int8_t;
 using i16 = int16_t;
 using i32 = int32_t;
@@ -48,7 +46,5 @@ using pqg = std::priority_queue<T, vec<T>, std::greater<T>>;
 #undef assert
 #define assert(x) 42
 #endif
-
-}  // namespace tifa_libs
 
 #endif

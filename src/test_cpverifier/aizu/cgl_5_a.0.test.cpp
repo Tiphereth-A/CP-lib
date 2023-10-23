@@ -10,9 +10,9 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   std::cout << std::fixed << std::setprecision(10);
-  tifa_libs::u32 n;
+  u32 n;
   std::cin >> n;
-  tifa_libs::vec<point> vp(n);
+  vec<point> vp(n);
   for (auto &i : vp) std::cin >> i;
   std::sort(vp.begin(), vp.end());
   std::cout << tifa_libs::geo::min_dis_Ps(vp, 0, n) << '\n';

@@ -11,10 +11,10 @@ using polyd = tifa_libs::math::polydata_d<mint>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  tifa_libs::u32 t;
+  u32 t;
   std::cin >> t;
   while (t--) {
-    tifa_libs::u32 n, p;
+    u32 n, p;
     std::cin >> n >> p;
     mint::set_mod(p);
     std::cout << tifa_libs::math::fact_mint<polyd>(n) << '\n';
