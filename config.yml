@@ -479,6 +479,9 @@ notebook:
     - path: 求两点间的一条简单路径
       code_ext: hpp
       test_ext: cpp
+    - chrom_num: 点染色数
+      code_ext: hpp
+      test_ext: cpp
     comb:
     - exlucas: exlucas
       code_ext: hpp
