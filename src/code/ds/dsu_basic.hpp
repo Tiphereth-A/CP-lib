@@ -4,7 +4,7 @@
 #include "../util/util.hpp"
 
 namespace tifa_libs::ds {
-template<bool RANK_ = false>
+template <bool RANK_ = false>
 class dsu_basic {
   vec<i32> p;
 
@@ -16,7 +16,8 @@ class dsu_basic {
   bool same(u32 x, u32 y) { return find(x) == find(y); }
   bool merge(u32 x, u32 y) {
     if ((x = (u32)find(x)) == (y = (u32)find(y))) return false;
-    if (RANK_ && p[x] > p[y]) std::swap(x, y);
+    if constexpr (RANK_)
+      if (p[x] > p[y]) std::swap(x, y);
     p[x] += p[y];
     p[y] = (i32)x;
     return true;
