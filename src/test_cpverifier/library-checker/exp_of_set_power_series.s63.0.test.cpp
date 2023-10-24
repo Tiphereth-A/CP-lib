@@ -12,7 +12,7 @@ int main() {
   u32 n;
   std::cin >> n;
   vec<mint> b(1 << n);
-  for (auto &i : b) std::cin >> i;
+  std::cin >> b;
   std::cout << tifa_libs::math::polysps_exp(n, b) << '\n';
   return 0;
 }

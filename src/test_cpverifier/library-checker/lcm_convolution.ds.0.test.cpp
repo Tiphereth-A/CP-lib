@@ -2,7 +2,6 @@
 
 #include "../../code/conv/conv_lcm.hpp"
 #include "../../code/math/mint_ds.hpp"
-#include "../../code/util/ios_container.hpp"
 
 using mint = tifa_libs::math::mint_ds<-1>;
 
@@ -15,6 +14,7 @@ int main() {
   vec<mint> a(n + 1), b(n + 1);
   for (usz i = 1; i <= n; ++i) std::cin >> a[i];
   for (usz i = 1; i <= n; ++i) std::cin >> b[i];
-  std::cout << tifa_libs::math::conv_lcm(a, b) << '\n';
+  auto c = tifa_libs::math::conv_lcm(a, b);
+  for (usz i = 1; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
   return 0;
 }

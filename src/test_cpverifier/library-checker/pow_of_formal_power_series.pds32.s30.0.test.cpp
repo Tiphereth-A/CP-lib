@@ -14,7 +14,7 @@ int main() {
   u64 m;
   tifa_libs::fin >> n >> m;
   poly_t a(n);
-  tifa_libs::fin >> a;
+  tifa_libs::fin >> a.data();
   tifa_libs::fout << tifa_libs::math::poly_pow(a, m).data() << '\n';
   return 0;
 }
