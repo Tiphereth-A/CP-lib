@@ -443,6 +443,12 @@ notebook:
     - dijkstra: Dijkstra
       code_ext: hpp
       test_ext: cpp
+    - kruskal: 最小生成树-kruskal
+      code_ext: hpp
+      test_ext: cpp
+    - kruskal_reconstruction_tree: kruskal重构树
+      code_ext: hpp
+      test_ext: cpp
     - bm: Bellman–Ford
       code_ext: hpp
       test_ext: cpp
