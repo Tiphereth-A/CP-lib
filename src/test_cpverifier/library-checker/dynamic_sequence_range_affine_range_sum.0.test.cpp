@@ -2,6 +2,7 @@
 
 #include "../../code/ds/fhq_treap_w.hpp"
 #include "../../code/math/mint_s30.hpp"
+#include "../../code/util/fastio.hpp"
 
 using mint = tifa_libs::math::mint_s30<998244353>;
 using T = std::pair<mint, usz>;   // sum len
@@ -22,21 +23,19 @@ auto composition(F f, F g) {
 auto id() { return F(1, 0); }
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   usz n, q;
   mint x, y;
-  std::cin >> n >> q;
+  tifa_libs::fin >> n >> q;
   tifa_libs::ds::fhq_treap_w<mint, T, op, e, F, mapping, composition, id, true> tr(n + q);
   for (usz i = 0; i < n; ++i)
-    std::cin >> x, tr.insert(T{x, 1});
+    tifa_libs::fin >> x, tr.insert(T{x, 1});
   for (usz i = 0, opt, l, r; i < q; ++i) {
-    std::cin >> opt >> l;
-    if (opt == 0) std::cin >> x, tr.insert(T{x, 1}, l);
+    tifa_libs::fin >> opt >> l;
+    if (opt == 0) tifa_libs::fin >> x, tr.insert(T{x, 1}, l);
     else if (opt == 1) tr.erase(l);
-    else if (opt == 2) std::cin >> r, tr.reverse(l, r - 1);
-    else if (opt == 3) std::cin >> r >> x >> y, tr.update(l, r - 1, T(x, y));
-    else std::cin >> r, std::cout << tr.query(l, r - 1).first << '\n';
+    else if (opt == 2) tifa_libs::fin >> r, tr.reverse(l, r - 1);
+    else if (opt == 3) tifa_libs::fin >> r >> x >> y, tr.update(l, r - 1, T(x, y));
+    else tifa_libs::fin >> r, tifa_libs::fout << tr.query(l, r - 1).first << '\n';
   }
   return 0;
 }

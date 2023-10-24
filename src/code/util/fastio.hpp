@@ -52,6 +52,13 @@ class fastin {
     }
     return *this;
   }
+  template <class T, std::enable_if_t<is_mint<T>::value> * = nullptr>
+  fastin &read(T &n) {
+    decltype(std::declval<T>().sval()) x;
+    read(x);
+    n = T(x);
+    return *this;
+  }
   //! ignore cntrl and space
   template <class T, std::enable_if_t<is_char<T>::value> * = nullptr>
   fastin &read(T &n) {
@@ -183,6 +190,8 @@ class fastout {
     } while (n /= 10);
     return write(now_ib_);
   }
+  template <class T, std::enable_if_t<is_mint<T>::value> * = nullptr>
+  fastout &write(T n) { return write(n.val()); }
   fastout &write(std::string const &str) { return write(str.c_str()); }
   template <class T, class U>
   fastout &write(std::pair<T, U> const &p) { return write(p.first).space().write(p.second); }

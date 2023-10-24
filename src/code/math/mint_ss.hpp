@@ -35,6 +35,7 @@ class mint_ss {
   }
   friend std::ostream &operator<<(std::ostream &os, const mint_ss &x) { return os << x.v_; }
   constexpr const u32 &val() const { return v_; }
+  constexpr i32 sval() const { return (i32)v_; }
   constexpr explicit operator u32() const { return val(); }
   constexpr u32 &data() { return v_; }
   constexpr mint_ss &operator++() {

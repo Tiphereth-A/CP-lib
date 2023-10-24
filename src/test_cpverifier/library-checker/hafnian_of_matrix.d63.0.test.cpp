@@ -3,18 +3,17 @@
 #include "../../code/math/mint_d63.hpp"
 #include "../../code/matrix/mat.hpp"
 #include "../../code/matrix/mat_hafnian.hpp"
+#include "../../code/util/fastio.hpp"
 
 using mint = tifa_libs::math::mint_d63<-1>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
   mint::set_mod(998244353);
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   u64 n;
-  std::cin >> n;
+  tifa_libs::fin >> n;
   mat a(n, n);
-  std::cin >> a;
-  std::cout << tifa_libs::math::hafnian(a);
+  tifa_libs::fin >> a;
+  tifa_libs::fout << tifa_libs::math::hafnian(a);
   return 0;
 }
