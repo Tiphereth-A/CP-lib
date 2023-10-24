@@ -13,7 +13,7 @@ inline poly<T> poly_shl(poly<T> const &p, usz x) {
     std::fill(_.data().begin(), _.data().end(), 0);
     return _;
   }
-  std::fill(_.data().begin(), std::move_backward(_.data().begin(), _.data().end() - x, _.data().end()), 0);
+  std::fill(_.data().begin(), std::move_backward(_.data().begin(), std::prev(_.data().end(), (isz)x), _.data().end()), 0);
   return _;
 }
 

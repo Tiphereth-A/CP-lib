@@ -12,7 +12,7 @@ template <class T>
 inline std::optional<poly<T>> poly_sqrt(poly<T> p, usz n = 0) {
   using mint = typename T::value_type;
   if (!n) n = p.size();
-  usz cnt = std::find_if(p.data().begin(), p.data().begin() + n, [](auto const &x) { return x.val() > 0; }) - p.data().begin();
+  usz cnt = (usz)std::distance(p.data().begin(), std::find_if(p.data().begin(), std::next(p.data().begin(), (isz)n), [](auto const &x) { return x.val() > 0; }));
   if (cnt == n) return p.pre(n);
   if (cnt & 1) return {};
   poly<T> ans{0};

@@ -13,7 +13,7 @@ inline poly<T> poly_shr(poly<T> const &p, usz x) {
     std::fill(_.data().begin(), _.data().end(), 0);
     return _;
   }
-  std::fill(std::move(_.data().begin() + x, _.data().end(), _.data().begin()), _.data().end(), 0);
+  std::fill(std::move(std::next(_.data().begin(), (isz)x), _.data().end(), _.data().begin()), _.data().end(), 0);
   return _;
 }
 
