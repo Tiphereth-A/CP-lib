@@ -186,8 +186,7 @@ class fastout {
   template <class T, std::enable_if_t<is_uint<T>::value && !is_char<T>::value> * = nullptr>
   fastout &write(T n) {
     if constexpr (sizeof(T) <= 4) {
-      // *(u128 *)(now_ib_ = int_bf_) = 0;
-      memset(now_ib_ = int_bf_, 0, 10);
+      memset(now_ib_ = int_bf_, 0, 11);
       u32tostr(n, now_ib_);
       return write(now_ib_);
     }
@@ -233,7 +232,7 @@ class fastout {
 }  // namespace fastio_impl_
 
 inline fastio_impl_::fastin<0x200005> fin;
-inline fastio_impl_::fastout<0x200005, 39> fout;
+inline fastio_impl_::fastout<0x200005, 41> fout;
 
 }  // namespace tifa_libs
 
