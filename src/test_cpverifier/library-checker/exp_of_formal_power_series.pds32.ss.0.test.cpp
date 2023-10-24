@@ -13,7 +13,7 @@ int main() {
   u32 n;
   tifa_libs::fin >> n;
   poly_t p(n);
-  tifa_libs::fin >> p.data();
-  tifa_libs::fout << tifa_libs::math::poly_exp(p);
+  for (auto& i : p.data()) tifa_libs::fin >> i;
+  tifa_libs::fout << tifa_libs::math::poly_exp(p).data();
   return 0;
 }

@@ -13,7 +13,7 @@ int main() {
   u64 n;
   tifa_libs::fin >> n;
   mat a(n, n);
-  tifa_libs::fin >> a;
+  for (auto& i : a.data()) tifa_libs::fin >> i;
   tifa_libs::fout << tifa_libs::math::hafnian(a);
   return 0;
 }
