@@ -14,7 +14,9 @@ class adjmat {
 
  public:
   //! vertex ID: [0, n)
-  explicit adjmat(u32 n) : m(0), g(n, vec<T>(n)) {}
+  explicit adjmat(u32 n, T val = T{}) : m(0), g(n, vec<T>(n, val)) {
+    for (u32 i = 0; i < n; ++i) g[i][i] = 0;
+  }
 
   T& add_arc(u32 u, u32 v, T const& w) {
     ++m;

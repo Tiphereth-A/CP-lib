@@ -446,6 +446,9 @@ notebook:
     - bm: Bellman–Ford
       code_ext: hpp
       test_ext: cpp
+    - floyd: Floyd
+      code_ext: hpp
+      test_ext: cpp
     - scc: 强连通分量
       code_ext: hpp
       test_ext: cpp
