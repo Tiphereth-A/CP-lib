@@ -54,7 +54,7 @@ class lichao_segtree {
     seg k = {id, a, b, l, r};
     l = std::lower_bound(lsh.begin(), lsh.end(), l) - lsh.begin();
     r = std::lower_bound(lsh.begin(), lsh.end(), r) - lsh.begin();
-    add(1, 0, sz - 1, l, r, k);
+    add(1, 0, sz - 1, k);
   }
   T query(T pos) { return query(1, 0, sz - 1, pos); }
 };
