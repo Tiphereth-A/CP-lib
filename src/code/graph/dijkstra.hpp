@@ -5,11 +5,12 @@
 
 namespace tifa_libs::graph {
 
+// cb_relax(now, to)
 template <class W, class F, auto INF = std::numeric_limits<W>::max() / 2 - 1>
-vec<W> dijkstra(adjlist<W> const &g, usz s, F cb_relax) {
+vec<W> dijkstra(adjlist<W> const &g, u32 s, F cb_relax) {
   vec<W> dis(g.v_size(), INF);
   vec<bool> vis(g.v_size());
-  pqg<std::pair<W, usz>> q;
+  pqg<std::pair<W, u32>> q;
   q.emplace(dis[s] = 0, s);
   while (!q.empty()) {
     auto [dis_now, now] = q.top();
