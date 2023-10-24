@@ -22,7 +22,7 @@ struct tree : public adjlist<T> {
   vec<u64> sum_node_w;
   vec<vec<u32>> go;
 
-  explicit tree(u32 n, vec<u32> NODE_W = vec<u32>(), u32 root = 0) : adjlist<T>(n), rt(root), node_w(NODE_W) {}
+  explicit tree(u32 n, u32 root = 0, vec<u32> NODE_W = vec<u32>()) : adjlist<T>(n), rt(root), node_w(NODE_W) {}
 
   void clear(u32 u = 0, u32 fa = 0) {
     for (auto v : this->g[u])
