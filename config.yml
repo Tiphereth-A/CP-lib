@@ -455,6 +455,9 @@ notebook:
     - adjlist_rev: 反图（邻接表）
       code_ext: hpp
       test_ext: cpp
+    - kruskal: 最小生成树-kruskal
+      code_ext: hpp
+      test_ext: cpp
     comb:
     - exlucas: exlucas
       code_ext: hpp
