@@ -1,4 +1,15 @@
-求积性函数 \(f\) 的前缀和
+求积性函数 \(f\) 的前缀和, 要求
+
+\begin{enumerate}
+    \item \(f(p)\) 是关于 \(p\) 的稀疏多项式, 其中 \(p\) 为素数
+    \item \(f\left(p^c\right)\) 容易计算, 其中 \(p\) 为素数
+\end{enumerate}
+
+\paragraph{用法}
+
+\verb|f(p, c)| 为 \(f\left(p^c\right)\), 构造函数传 \(n\), 最终计算的是 \(\sum_{i=1}^n f(i)\)
+
+调用 \verb|run| 时需要传入 \(F_{\text{prime}}(n)\), \(n=1,2,\dots,\lfloor\sqrt{n}\rfloor,\lfloor n/\sqrt{n}\rfloor,\dots,\lfloor n/2\rfloor,n\), 可用 \verb|sum_pk| 组合出来, 如若 \(f(p)=p^2-p\), 则 \verb|run| 只需传入 \verb|sum_pk(2) - sum_pk(1)|
 
 \paragraph{复杂度}
 
