@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 
 #include "../../code/math/pfactors.hpp"
+#include "../../code/util/ios_container.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -15,8 +16,7 @@ int main() {
     for (auto [k, v] : ans)
       for (u32 i = 0; i < v; ++i) pf.push_back(k);
     std::cout << pf.size();
-    if (!pf.empty())
-      for (auto i : pf) std::cout << ' ' << i;
+    if (!pf.empty()) std::cout << ' ' << pf << '\n';
     std::cout << '\n';
   }
   return 0;

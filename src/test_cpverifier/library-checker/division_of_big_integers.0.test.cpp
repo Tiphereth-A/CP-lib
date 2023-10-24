@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/division_of_big_integers"
 
 #include "../../code/math/mpi.hpp"
+#include "../../code/util/ios_pair.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -10,8 +11,7 @@ int main() {
   while (t--) {
     tifa_libs::math::mpi a, b;
     std::cin >> a >> b;
-    auto [q, r] = divmod(a, b);
-    std::cout << q << ' ' << r << '\n';
+    std::cout << divmod(a, b) << '\n';
   }
   return 0;
 }

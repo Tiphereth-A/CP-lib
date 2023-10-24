@@ -2,6 +2,7 @@
 
 #include "../../code/geo2d/argsort.hpp"
 #include "../../code/geo2d/point.hpp"
+#include "../../code/util/ios_container.hpp"
 
 using point = tifa_libs::geo::point<i64>;
 
@@ -11,8 +12,8 @@ int main() {
   usz n;
   std::cin >> n;
   vec<point> vp(n);
-  for (auto& i : vp) std::cin >> i;
+  std::cin >> vp;
   tifa_libs::geo::argsort(vp);
-  for (auto& i : vp) std::cout << i << '\n';
+  std::cout << vp << '\n';
   return 0;
 }

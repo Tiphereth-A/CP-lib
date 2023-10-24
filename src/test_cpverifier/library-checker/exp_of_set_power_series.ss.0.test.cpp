@@ -2,6 +2,7 @@
 
 #include "../../code/math/mint_ss.hpp"
 #include "../../code/poly/polysps_exp.hpp"
+#include "../../code/util/ios_container.hpp"
 
 using mint = tifa_libs::math::mint_ss<998244353>;
 
@@ -12,7 +13,6 @@ int main() {
   std::cin >> n;
   vec<mint> b(1 << n);
   for (auto &i : b) std::cin >> i;
-  auto c = tifa_libs::math::polysps_exp(n, b);
-  for (usz i = 0; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
+  std::cout << tifa_libs::math::polysps_exp(n, b) << '\n';
   return 0;
 }

@@ -15,7 +15,6 @@ int main() {
   std::cin >> n;
   poly_t a(n), b(n);
   std::cin >> a >> b;
-  auto c = tifa_libs::math::poly_interp(a, b);
-  for (usz i = 0; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
+  std::cout << tifa_libs::math::poly_interp(a, b) << '\n';
   return 0;
 }

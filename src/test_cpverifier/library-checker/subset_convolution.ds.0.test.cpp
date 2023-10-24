@@ -2,6 +2,7 @@
 
 #include "../../code/conv/conv_subset.hpp"
 #include "../../code/math/mint_ds.hpp"
+#include "../../code/util/ios_container.hpp"
 
 using mint = tifa_libs::math::mint_ds<-1>;
 
@@ -15,7 +16,6 @@ int main() {
   for (auto &i : a) std::cin >> i;
   for (auto &i : b) std::cin >> i;
   tifa_libs::math::conv_subset<mint, 20> cvs;
-  auto c = cvs.conv(a, b);
-  for (usz i = 0; i < c.size(); ++i) std::cout << c[i] << " \n"[i + 1 == c.size()];
+  std::cout << cvs.conv(a, b) << '\n';
   return 0;
 }
