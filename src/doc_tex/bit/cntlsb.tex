@@ -1,0 +1,11 @@
+类似 \verb|__builtin_clz|, 但可以传 \(0\)
+
+\begin{verbatim}
+    cntlsb(-10) == 27 ; __builtin_clz(-10) == 0
+    cntlsb(-5)  == 28 ; __builtin_clz(-5) == 0
+    cntlsb(-1)  == 31 ; __builtin_clz(-1) == 0
+    cntlsb(0)   == 31 ; __builtin_clz(0) is UB
+    cntlsb(1)   == 30 ; __builtin_clz(1) == 31
+    cntlsb(5)   == 28 ; __builtin_clz(5) == 29
+    cntlsb(10)  == 27 ; __builtin_clz(10) == 28
+\end{verbatim}

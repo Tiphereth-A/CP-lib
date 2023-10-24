@@ -7,13 +7,13 @@
 namespace tifa_libs {
 
 template <class FP, std::enable_if_t<is_int<FP>::value>* = nullptr>
-constexpr int sgn(FP x) { return x < 0 ? -1 : x > 0; }
+constexpr int sgn(FP x) { return !!x | (x >> (sizeof(FP) * 8 - 1)); }
 template <class FP, std::enable_if_t<std::is_floating_point_v<FP>>* = nullptr>
-constexpr int sgn(FP x) { return x < -EPS<FP> ? -1 : x > EPS<FP>; }
+constexpr int sgn(FP x) { return (x > EPS<FP>)-(x < -EPS<FP>); }
 template <class FP>
 constexpr bool is_neg(FP x) { return sgn(x) < 0; }
 template <class FP>
-constexpr bool is_zero(FP x) { return sgn(x) == 0; }
+constexpr bool is_zero(FP x) { return !sgn(x); }
 template <class FP>
 constexpr bool is_pos(FP x) { return sgn(x) > 0; }
 

@@ -129,6 +129,9 @@ notebook:
     - cntl1: std::countl_one
       code_ext: hpp
       test_ext: cpp
+    - cntlsb: 与符号位相同的高位长度
+      code_ext: hpp
+      test_ext: cpp
     - cntr0: std::countr_zero
       code_ext: hpp
       test_ext: cpp
@@ -157,6 +160,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - parity: popcount 奇偶性
+      code_ext: hpp
+      test_ext: cpp
+    - ffs: 末尾 1 的位置
       code_ext: hpp
       test_ext: cpp
     ds:
