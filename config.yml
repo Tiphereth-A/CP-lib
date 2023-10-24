@@ -156,6 +156,9 @@ notebook:
     - ispow2: 是否为 2 的整数次幂
       code_ext: hpp
       test_ext: cpp
+    - parity: popcount 奇偶性
+      code_ext: hpp
+      test_ext: cpp
     ds:
     - fenwick: 树状数组
       code_ext: hpp
