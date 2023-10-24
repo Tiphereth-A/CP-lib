@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
-  constexpr i32 INF = std::numeric_limits<i32>::max() / 2 - 1;
+  constexpr i64 INF = std::numeric_limits<i64>::max() / 2 - 1;
   tifa_libs::graph::adjmat<i64> g(n, INF);
   for (u32 i = 0; i < m; ++i) {
     u32 u, v;
@@ -15,7 +15,7 @@ int main() {
     std::cin >> u >> v >> w;
     g.add_arc(u, v, w);
   }
-  auto d = tifa_libs::graph::floyd(g);
+  auto d = tifa_libs::graph::floyd(g, INF);
   if (!d.has_value()) {
     std::cout << "NEGATIVE CYCLE\n";
     return 0;
