@@ -71,11 +71,11 @@ constexpr u32 u32tostr(u64 x, char *s) {
     u32 d = digits;
     char *s1 = s, *pll = &(((char *)&ll)[8 - digits]);
     if (d >= 4) {
-      *(u32 *)s1 = *(u32 *)pll;
+      memcpy(s1, pll, 4);
       s1 += 4, pll += 4, d -= 4;
     }
     if (d >= 2) {
-      *(u16 *)s1 = *(u16 *)pll;
+      memcpy(s1, pll, 2);
       s1 += 2, pll += 2, d -= 2;
     }
     if (d > 0) *(u8 *)s1 = *(u8 *)pll;

@@ -186,7 +186,8 @@ class fastout {
   template <class T, std::enable_if_t<is_uint<T>::value && !is_char<T>::value> * = nullptr>
   fastout &write(T n) {
     if constexpr (sizeof(T) <= 4) {
-      *(u64 *)(now_ib_ = int_bf_) = 0;
+      // *(u128 *)(now_ib_ = int_bf_) = 0;
+      memset(now_ib_ = int_bf_, 0, 10);
       u32tostr(n, now_ib_);
       return write(now_ib_);
     }
