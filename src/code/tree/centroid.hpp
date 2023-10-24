@@ -22,7 +22,7 @@ void dfs_(tree<T> &tr, vec<u32> &ans, u32 now, u32 fa) {
 
 template <class T>
 vec<u32> tree_centroid(tree<T> &tr) {
-  tr.sz.resize(tr.v_size());
+  tr.sz = vec<u32>(tr.v_size());
   vec<u32> ans;
   dfs_(tr, ans, tr.rt, tr.rt);
   return ans;
