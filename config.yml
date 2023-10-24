@@ -433,6 +433,18 @@ notebook:
     - lca_hld: LCA（树链剖分）
       code_ext: hpp
       test_ext: cpp
+    - centroid: 重心
+      code_ext: hpp
+      test_ext: cpp
+    - tree_dis: 到根的距离
+      code_ext: hpp
+      test_ext: cpp
+    - diameter: 直径（无边权）
+      code_ext: hpp
+      test_ext: cpp
+    - diameter_w: 直径（有边权）
+      code_ext: hpp
+      test_ext: cpp
     graph:
     - adjlist: 邻接表
       code_ext: hpp
@@ -461,10 +473,7 @@ notebook:
     - adjlist_rev: 反图（邻接表）
       code_ext: hpp
       test_ext: cpp
-    - kruskal: 最小生成树-kruskal
-      code_ext: hpp
-      test_ext: cpp
-    - kruskal_reconstruction_tree: kruskal重构树
+    - path: 求两点间的一条简单路径
       code_ext: hpp
       test_ext: cpp
     comb:
