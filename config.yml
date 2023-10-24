@@ -443,6 +443,12 @@ notebook:
     - dijkstra: Dijkstra
       code_ext: hpp
       test_ext: cpp
+    - scc: 强连通分量
+      code_ext: hpp
+      test_ext: cpp
+    - adjlist_rev: 反图（邻接表）
+      code_ext: hpp
+      test_ext: cpp
     comb:
     - exlucas: exlucas
       code_ext: hpp

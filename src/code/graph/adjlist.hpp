@@ -31,7 +31,10 @@ class adjlist {
 
  public:
   //! vertex ID: [0, n)
-  explicit adjlist(u32 n) : m(0), g(n) {}
+  explicit adjlist(u32 n = 0) : m(0), g(n) {}
+  void reset_v_size(u32 n) { g.resize(n); }
+  void clear() { g.clear(); }
+  void shrink() { g.shrink_to_fit(); }
 
   template <class... Ts>
   E<T>& add_arc(u32 u, Ts&&... args) {
@@ -42,11 +45,11 @@ class adjlist {
   template <class... Ts>
   ptt<E<T>&> add_edge(u32 u, u32 v, Ts&&... args) { return {add_arc(u, v, args...), add_arc(v, u, args...)}; }
 
-  auto& operator[](usz u) { return g[u]; }
-  auto operator[](usz u) const { return g[u]; }
+  auto& operator[](u32 u) { return g[u]; }
+  auto operator[](u32 u) const { return g[u]; }
 
-  usz v_size() const { return g.size(); }
-  usz arc_size() const { return m; }
+  u32 v_size() const { return (u32)g.size(); }
+  u32 arc_size() const { return m; }
 };
 
 }  // namespace adjlist_impl_
