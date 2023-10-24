@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_UTIL_FASTIO
 #define TIFA_LIBS_UTIL_FASTIO
 
+#include "../fast/u32tostr.hpp"
 #include "traits.hpp"
 
 namespace tifa_libs {
@@ -18,7 +19,7 @@ class fastin {
 
   char get() { return now_ == end_ && (end_ = (now_ = bf_) + fread(bf_, 1, BUF, f_), now_ == end_) ? EOF : *(now_)++; }
   char peek() { return now_ == end_ && (end_ = (now_ = bf_) + fread(bf_, 1, BUF, f_), now_ == end_) ? EOF : *(now_); }
-  void set_file(FILE *f) {
+  void rebind(FILE *f) {
     f_ = f;
     now_ = end_ = bf_;
   }
@@ -184,6 +185,11 @@ class fastout {
   }
   template <class T, std::enable_if_t<is_uint<T>::value && !is_char<T>::value> * = nullptr>
   fastout &write(T n) {
+    if constexpr (sizeof(T) <= 4) {
+      *(u64 *)(now_ib_ = int_bf_) = 0;
+      u32tostr(n, now_ib_);
+      return write(now_ib_);
+    }
     now_ib_ = int_bf_ + INTBUF - 1;
     do {
       *(--(now_ib_)) = char(n % 10) | '0';
