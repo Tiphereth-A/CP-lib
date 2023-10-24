@@ -20,23 +20,23 @@ class lichao_segtree {
   bool pd(T a, T b) {  // min: <=   max: >=
     return f(a, b) == a;
   }
-  void add(usz x, usz l, usz r, usz L, usz R, seg k) {
+  void add(usz x, usz l, usz r, seg k) {
     usz mid = l + (r - l) / 2;
-    if (L <= l && R >= r) {
+    if (k.l <= l && k.r >= r) {
       if (!t[x].id) return void(t[x] = k);
       T tl = t[x].w(lsh[l]), tr = t[x].w(lsh[r]), kl = k.w(lsh[l]), kr = k.w(lsh[r]);
       if (pd(tl, kl) && pd(tr, kr)) return;
       if (!pd(tl, kl) && !pd(tr, kr)) return void(t[x] = k);
       f64 in = (t[x].b - k.b) / (k.a - t[x].a);
       if (pd(kl, tl)) {
-        if (in <= lsh[mid]) add(x << 1, l, mid, L, R, k);
-        else add(x << 1 | 1, mid + 1, r, L, R, t[x]), t[x] = k;
-      } else if (in > lsh[mid]) add(x << 1 | 1, mid + 1, r, L, R, k);
-      else add(x << 1, l, mid, L, R, t[x]), t[x] = k;
+        if (in <= lsh[mid]) add(x << 1, l, mid, k.l, k.r, k);
+        else add(x << 1 | 1, mid + 1, r, k.l, k.r, t[x]), t[x] = k;
+      } else if (in > lsh[mid]) add(x << 1 | 1, mid + 1, r, k.l, k.r, k);
+      else add(x << 1, l, mid, k.l, k.r, t[x]), t[x] = k;
       return;
     }
-    if (L <= mid) add(x << 1, l, mid, L, R, k);
-    if (R > mid) add(x << 1 | 1, mid + 1, r, L, R, k);
+    if (k.l <= mid) add(x << 1, l, mid, k.l, k.r, k);
+    if (k.r > mid) add(x << 1 | 1, mid + 1, r, k.l, k.r, k);
   }
   T query(usz x, usz l, usz r, T pos) {
     T MIN = std::numeric_limits<T>::lowest(), MAX = std::numeric_limits<T>::max();
@@ -54,7 +54,7 @@ class lichao_segtree {
     seg k = {id, a, b, l, r};
     l = std::lower_bound(lsh.begin(), lsh.end(), l) - lsh.begin();
     r = std::lower_bound(lsh.begin(), lsh.end(), r) - lsh.begin();
-    add(1, 0, sz - 1, l, r, k);
+    add(1, 0, sz - 1, k);
   }
   T query(T pos) { return query(1, 0, sz - 1, pos); }
 };
