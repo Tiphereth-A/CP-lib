@@ -433,6 +433,9 @@ notebook:
     - lca_hld: LCA（树链剖分）
       code_ext: hpp
       test_ext: cpp
+    - centroid: 重心
+      code_ext: hpp
+      test_ext: cpp
     graph:
     - adjlist: 邻接表
       code_ext: hpp
