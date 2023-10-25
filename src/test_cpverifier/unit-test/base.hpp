@@ -22,9 +22,9 @@ inline std::string to_str(T const &x) {
 
 template <class T, class... Ts>
 inline void check_(std::string const &pretty_func, T const &got, T const &want, Ts... param) {
-  if constexpr (std::tuple_size_v<std::tuple<Ts...>> == 0) {
+  if constexpr (sizeof...(param) == 0) {
     if (got != want) throw std::runtime_error(pretty_func + "got " + to_str(got) + ", want " + to_str(want));
-  } else if constexpr (std::tuple_size_v<std::tuple<Ts...>> == 1) {
+  } else if constexpr (sizeof...(param) == 1) {
     if (got != want) throw std::runtime_error(pretty_func + (param + ...) + std::string(", ") + "got " + to_str(got) + ", want " + to_str(want));
   } else if (got != want) throw std::runtime_error(pretty_func + ((param + std::string(", ")) + ...) + "got " + to_str(got) + ", want " + to_str(want));
 }
