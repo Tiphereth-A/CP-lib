@@ -34,6 +34,7 @@
 \RequirePackage{pgfplots}
 \RequirePackage{pdfpages}
 \RequirePackage{ucharclasses}
+\RequirePackage{svg}
 
 \usepgfplotslibrary{dateplot}
 

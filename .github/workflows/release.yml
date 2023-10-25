@@ -37,6 +37,12 @@ jobs:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
           args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -8bit"
+          extra_system_packages: |
+            unzip
+            wget
+            python3
+            py3-pygments
+            inkscape
           pre_compile: |
             wget -q -O fira.zip "https://github.com/mozilla/Fira/archive/refs/tags/4.106.zip"
             wget -q -O firacode.zip "https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip"
