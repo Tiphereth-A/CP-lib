@@ -89,6 +89,9 @@ notebook:
     - ios_tuple: tuple IO
       code_ext: hpp
       test_ext: cpp
+    - vec_op: vec 运算
+      code_ext: hpp
+      test_ext: cpp
     - ios_container: 容器 IO
       code_ext: hpp
       test_ext: cpp

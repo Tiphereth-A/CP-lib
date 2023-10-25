@@ -28,7 +28,7 @@ class mint_s63 {
     u64 res = mul_high(x, y) - mul_high(x * y * R, MOD);
     return res + (MOD & -(res >> 63));
   }
-  static constexpr u64 norm(i64 x) { return x + (MOD & -(x < 0)); }
+  static constexpr u64 norm(i64 x) { return (u64)x + (MOD & -(x < 0)); }
 
   static constexpr u64 R = get_r();
   static constexpr u64 R2 = get_r2();

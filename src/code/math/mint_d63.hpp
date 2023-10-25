@@ -42,7 +42,7 @@ class mint_d63 {
   static inline i64 smod() { return SMOD; }
   mint_d63() {}
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
-  mint_d63(T v) : v_(redc_mul(norm(v % SMOD), R2)) {}
+  mint_d63(T v) : v_(redc_mul(norm(i64(v % (T)SMOD)), R2)) {}
   u64 val() const {
     u64 res = -mul_high(v_ * R, MOD);
     return res + (MOD & -(res >> 63));

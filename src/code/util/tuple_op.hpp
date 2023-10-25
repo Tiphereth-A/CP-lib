@@ -11,7 +11,7 @@ constexpr auto apply2_impl_(Op2 f, Tpl &&lhs, Tpl &&rhs, std::index_sequence<Is.
 }  // namespace tuple_op_impl_
 
 template <class Tpl, class Op2>
-constexpr auto tuple_apply2(Op2 f, Tpl &&lhs, Tpl &&rhs) { return tuple_op_impl_::apply2_impl_(f, lhs, rhs, std::make_index_sequence<tuple_size<Tpl>>()); }
+constexpr auto tuple_apply2(Op2 f, Tpl &&lhs, Tpl &&rhs) { return tuple_op_impl_::apply2_impl_(f, lhs, rhs, std::make_index_sequence<tifa_libs::tuple_size<Tpl>>()); }
 
 #define OO_PTEQ_(op)                                                                       \
   template <class... Ts>                                                                   \
