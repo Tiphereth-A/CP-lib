@@ -733,6 +733,12 @@ notebook:
     - interp_newton_n2: Newton 插值（朴素实现）
       code_ext: hpp
       test_ext: cpp
+    - nimber: Nim 积
+      code_ext: hpp
+      test_ext: cpp
+    - nim_prod: Nim 积
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp

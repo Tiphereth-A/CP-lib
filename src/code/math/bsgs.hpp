@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_MATH_BSGS
 #define TIFA_LIBS_MATH_BSGS
 
+#include "../util/hash_splitmix64.hpp"
 #include "isqrt.hpp"
 #include "qpow_mod.hpp"
 
@@ -10,7 +11,7 @@ namespace tifa_libs::math {
 //! gcd(a, m) == 1 required
 inline std::optional<u64> bsgs(u64 a, u64 b, u64 m) {
   a %= m;
-  std::map<u64, u64> hmp;
+  hmap<u64, u64> hmp;
   u64 sqrt_m = isqrt(m), s = mul_mod_u(a, b, m);
   if (sqrt_m * sqrt_m < m) ++sqrt_m;
   for (u64 i = 1; i <= sqrt_m; ++i, s = mul_mod_u(s, a, m)) hmp[s] = i;
