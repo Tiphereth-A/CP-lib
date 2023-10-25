@@ -18,8 +18,8 @@ struct FFT {
     usz n = bit::bceil(len);
     if (n == size()) return;
     rev.resize(n, 0);
-    int k = bit::log2(n);
-    for (usz i = 0; i < n; ++i) rev[i] = (rev[i / 2] / 2) | ((i & 1) << (k - 1));
+    u32 k = (u32)bit::log2(n);
+    for (u32 i = 0; i < n; ++i) rev[i] = (rev[i / 2] / 2) | ((i & 1) << (k - 1));
     w.resize(n);
     w[0].real(1);
     for (usz i = 1; i < n; ++i) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
