@@ -104,6 +104,7 @@ class segtree_beats {
 
  public:
   void add(usz x, usz l, usz r, usz L, usz R, T k) {
+    assert(R >= l && L <= r);
     if (L <= l && r <= R) {
       all_update(x, l, r, k, k, k, k, k, k);
       return;
@@ -115,6 +116,7 @@ class segtree_beats {
     pushup(x);
   }
   void chmax(usz x, usz l, usz r, usz L, usz R, T k) {
+    assert(R >= l && L <= r);
     if (k <= t[x]._min) return;
     if (L <= l && r <= R && k < t[x].secmin) {
       all_update(x, l, r, k - t[x]._min, 0, 0, k - t[x]._min, 0, 0);
@@ -127,6 +129,7 @@ class segtree_beats {
     pushup(x);
   }
   void chmin(usz x, usz l, usz r, usz L, usz R, T k) {
+    assert(R >= l && L <= r);
     if (k >= t[x]._max) return;
     if (L <= l && r <= R && k > t[x].secmax) {
       all_update(x, l, r, 0, k - t[x]._max, 0, 0, k - t[x]._max, 0);
@@ -139,6 +142,7 @@ class segtree_beats {
     pushup(x);
   }
   T1 querys(usz x, usz l, usz r, usz L, usz R) {
+    assert(R >= l && L <= r);
     if (L <= l && r <= R) return t[x].sum;
     pushdown(x, l, r);
     usz mid = l + (r - l) / 2;
@@ -148,6 +152,7 @@ class segtree_beats {
     return ret;
   }
   T querymax(usz x, usz l, usz r, usz L, usz R) {
+    assert(R >= l && L <= r);
     if (L <= l && r <= R) return t[x]._max;
     pushdown(x, l, r);
     usz mid = l + (r - l) / 2;
@@ -157,6 +162,7 @@ class segtree_beats {
     return ret;
   }
   T queryhismax(usz x, usz l, usz r, usz L, usz R) {
+    assert(R >= l && L <= r);
     if (L <= l && r <= R) return t[x].hismax;
     pushdown(x, l, r);
     usz mid = l + (r - l) / 2;

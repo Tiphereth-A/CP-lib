@@ -22,6 +22,7 @@ class segtree {
     pushup(x);
   }
   void update(usz x, usz l, usz r, usz L, usz R, F f) {
+    assert(R >= l && L <= r);
     if (L <= l && R >= r) return void(all_update(x, f));
     pushdown(x);
     usz mid = l + (r - l) / 2;
@@ -30,6 +31,7 @@ class segtree {
     pushup(x);
   }
   T query(usz x, usz l, usz r, usz L, usz R) {
+    assert(R >= l && L <= r);
     if (L <= l && R >= r) return t[x];
     pushdown(x);
     usz mid = l + (r - l) / 2;
