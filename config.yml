@@ -736,10 +736,10 @@ notebook:
     - interp_newton_n2: Newton 插值（朴素实现）
       code_ext: hpp
       test_ext: cpp
-    - nimber: Nim 积
+    - nim_prod: Nim 积
       code_ext: hpp
       test_ext: cpp
-    - nim_prod: Nim 积
+    - nimber: Nimber
       code_ext: hpp
       test_ext: cpp
     matrix:
@@ -819,6 +819,9 @@ notebook:
     - ntt: 数论变换
       code_ext: hpp
       test_ext: cpp
+    - cntt: 扩域 NTT
+      code_ext: hpp
+      test_ext: cpp
     - ntt32: 数论变换（u32）
       code_ext: hpp
       test_ext: cpp
@@ -838,6 +841,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - conv_u128: 卷积（三模 NTT，高精度整数用）
+      code_ext: hpp
+      test_ext: cpp
+    - conv_cntt: 卷积（扩域 NTT）
       code_ext: hpp
       test_ext: cpp
     - karatsuba: Karatsuba 乘法

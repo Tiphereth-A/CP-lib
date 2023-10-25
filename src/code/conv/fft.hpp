@@ -16,9 +16,9 @@ struct FFT {
   usz size() const { return rev.size(); }
   void bzr(usz len) {
     usz n = bit::bceil(len);
-    int k = bit::log2(n);
     if (n == size()) return;
     rev.resize(n, 0);
+    int k = bit::log2(n);
     for (usz i = 0; i < n; ++i) rev[i] = (rev[i / 2] / 2) | ((i & 1) << (k - 1));
     w.resize(n);
     w[0].real(1);
@@ -54,7 +54,7 @@ struct FFT {
  private:
   const FP TAU = std::acos((FP)-1.) * 2;
 
-  vec<usz> rev;
+  vec<u32> rev;
   vec<C> w;
 };
 
