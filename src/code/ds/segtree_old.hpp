@@ -47,6 +47,7 @@ class segtree_old {
   explicit constexpr segtree_old(vec<T> const &a) : t(a.size() * 4) { build(a, 1, 0, a.size() - 1); }
 
   void add(usz x, usz l, usz r, usz L, usz R, T k) {
+    assert(R >= l && L <= r);
     if (L <= l && R >= r) {
       t[x].w += i64(r - l + 1) * k, t[x].sign += k;
       t[x]._min += k, t[x]._max += k;
@@ -59,6 +60,7 @@ class segtree_old {
     pushup(x);
   }
   void mul(usz x, usz l, usz r, usz L, usz R, T k) {
+    assert(R >= l && L <= r);
     if (L <= l && R >= r) {
       t[x].w *= k;
       t[x].sign *= k, t[x].sign1 *= k;
@@ -72,6 +74,7 @@ class segtree_old {
     pushup(x);
   }
   T querys(usz x, usz l, usz r, usz L, usz R) {
+    assert(R >= l && L <= r);
     if (L <= l && R >= r) return t[x].w;
     pushdown(x, l, r);
     usz mid = l + (r - l) / 2;
@@ -81,6 +84,7 @@ class segtree_old {
     return ret;
   }
   T querym(usz x, usz l, usz r, usz L, usz R, F f) {
+    assert(R >= l && L <= r);
     if (L <= l && R >= r) return f(t[x]._min, t[x]._max);
     pushdown(x, l, r);
     usz mid = l + (r - l) / 2;

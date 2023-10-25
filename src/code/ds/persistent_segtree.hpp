@@ -31,6 +31,7 @@ class persistent_segtree {
     pushup(x);
   }
   void add_(usz old_x, usz& x, usz l, usz r, usz pos) {
+    assert(pos >= l && pos <= r);
     t[x = (++cnt)] = t[old_x];
     if (l == r) return void(++t[x].w);
     usz mid = l + (r - l) / 2;
@@ -51,6 +52,7 @@ class persistent_segtree {
     return kth_max_(t[x].ls, t[y].ls, l, mid, k - kk);
   }
   usz frequency_(usz x, usz y, usz l, usz r, usz L, usz R) {
+    assert(R >= l && L <= r);
     if (L <= l && R >= r) return t[y].w - t[x].w;
     usz mid = l + (r - l) / 2, ret = usz(0);
     if (L <= mid) ret = frequency_(t[x].ls, t[y].rs, l, mid, L, R);
@@ -70,6 +72,7 @@ class persistent_segtree {
     return kth_max_(t[y].ls, l, mid, k - kk);
   }
   usz frequency_(usz y, usz l, usz r, usz L, usz R) {
+    assert(R >= l && L <= r);
     if (L <= l && R >= r) return t[y].w;
     usz mid = l + (r - l) / 2, ret = usz(0);
     if (L <= mid) ret = frequency_(t[y].rs, l, mid, L, R);
