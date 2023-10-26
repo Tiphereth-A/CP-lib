@@ -3,31 +3,21 @@
 
 #include "../bit/bceil.hpp"
 #include "../bit/log2.hpp"
+#include "../math/proot_gint.hpp"
 #include "../math/qpow.hpp"
 
 namespace tifa_libs::math {
 
-namespace CNTT_impl_ {
-
-template <class mint>
-constexpr std::complex<mint> omega(u32 mod) {
-  if (mod == 65537) return {4, 17573};
-  if (mod == 998244353) return {1, 1};
-  if (mod == 999292927) return {1, 8};
-}
-
-}  // namespace CNTT_impl_
-
-template <class mint>
+template <class mint, i64 M = -1>
 struct CNTT {
-  using Zpi = std::complex<mint>;
+  using Zpi = GaussInt<mint, M>;
   static constexpr u32 MOD = mint::mod();
 
   CNTT() {}
 
   usz size() const { return rev.size(); }
   void bzr(usz len) {
-    usz n = bit::bceil(len);
+    usz n = std::max(bit::bceil(len), (usz)2);
     if (n == size()) return;
     rev.resize(n, 0);
     u32 k = (u32)bit::log2(n);
@@ -43,7 +33,7 @@ struct CNTT {
 
  private:
   vec<u32> rev;
-  const Zpi W = CNTT_impl_::omega<mint>(MOD);
+  const Zpi W = proot_gint<mint>();
   vec<Zpi> Wn, IWn;
 
   template <bool inv = false>

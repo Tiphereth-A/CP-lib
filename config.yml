@@ -748,6 +748,9 @@ notebook:
     - is_proot_minber: is_proot_nimber
       code_ext: hpp
       test_ext: cpp
+    - proot_gint: 原根（Gauss 整数）
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp

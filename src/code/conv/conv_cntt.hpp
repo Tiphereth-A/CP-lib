@@ -6,11 +6,11 @@
 
 namespace tifa_libs::math {
 
-template <class mint>
+template <class mint, i64 M = -1>
 inline vec<mint> conv_cntt(vec<mint> const &l, vec<mint> const &r, usz ans_size) {
   static CNTT<mint> cntt;
   cntt.bzr(std::min(l.size() + r.size() - 1, ans_size));
-  vec<std::complex<mint>> v(cntt.size());
+  vec<GaussInt<mint, M>> v(cntt.size());
   for (usz i = 0, ie = std::min(l.size(), cntt.size()); i < ie; ++i) v[i].real(l[i]);
   for (usz i = 0, ie = std::min(r.size(), cntt.size()); i < ie; ++i) v[i].imag(r[i]);
   cntt.dif(v);

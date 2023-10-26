@@ -61,7 +61,10 @@ class GaussInt {
 template <class mint>
 class GaussInt<mint, -1> : public std::complex<mint> {
  public:
+  constexpr GaussInt(std::complex<mint> const &&c) : std::complex<mint>(c) {}
   constexpr GaussInt(mint const &real = mint(), mint const &imag = mint()) : std::complex<mint>(real, imag) {}
+
+  operator std::complex<mint>() { return *this; }
 };
 
 }  // namespace tifa_libs::math
