@@ -2,8 +2,8 @@
 #define TIFA_LIBS_MATH_PROOT_U32
 
 #include "../bit/cntr0.hpp"
+#include "is_proot.hpp"
 #include "isqrt.hpp"
-#include "qpow_mod.hpp"
 
 namespace tifa_libs::math {
 
@@ -23,12 +23,7 @@ constexpr u32 proot_u32(u32 m) {
     }
   if (x > 1) divs[cnt++] = x;
   for (u32 g = 2;; ++g) {
-    bool ok = true;
-    for (u32 i = 0; i < cnt; ++i)
-      if (qpow_mod(g, (m - 1) / divs[i], m) == 1) {
-        ok = false;
-        break;
-      }
+    bool ok = is_proot(g, m, divs, divs + cnt);
     if (ok) return g;
   }
 }

@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 template <class mint, i64 M = -1>
 inline GaussInt<mint, M> proot_gint() {
   using gint = GaussInt<mint, M>;
-  const u32 m = mint::mod();
+  const auto m = mint::mod();
   if (m == 998244353) return {1, 1};
   if (m == 999292927) return {1, 8};
   if (m == 1000000007) return {1, 4};

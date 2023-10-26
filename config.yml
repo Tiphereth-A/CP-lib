@@ -745,7 +745,10 @@ notebook:
     - bsgs_nimber: bsgs_nimber
       code_ext: hpp
       test_ext: cpp
-    - is_proot_minber: is_proot_nimber
+    - is_proot: 是否为原根
+      code_ext: hpp
+      test_ext: cpp
+    - is_proot_minber: 是否为原根（Nimber）
       code_ext: hpp
       test_ext: cpp
     - proot_gint: 原根（Gauss 整数）

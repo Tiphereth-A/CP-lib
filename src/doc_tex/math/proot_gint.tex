@@ -1,1 +1,23 @@
 保证结果的实部为 \(1\)
+
+以下假设 \(m\) 为素数
+
+考虑 \(\mathbf{Z}_m[\mathrm{i}]\), 注意到
+
+\[
+    \left(1+b\mathrm{i}\right)^{m+1}\equiv 1+b^2 \pmod m
+\]
+
+所以对 \(\mathbf{Z}_m[\mathrm{i}]\) 来说, 若 \(m=4k-1\), \(1+b\mathrm{i}\) 为 \(m^2-1\) 阶根, 则 \(1+b^2\) 必为模 \(m\) 的原根
+
+若 \(m=4k+1\), 则 \(-1\) 是模 \(m\) 的二次剩余, 从而 \(1+b\mathrm{i}\in\mathbf{Z}_m\), 进而 \(\{1+b\mathrm{i}:b\in \mathbf{Z}_m\}=\mathbf{Z}_m\), 此时求 Gauss 整数的原根退化为求整数的原根
+
+类似地, 考虑 \(\mathbf{Z}_m\left[\sqrt{k}\right],~k\not\equiv 0\pmod m\), 若 \(k\) 是模 \(m\) 的二次剩余, 则由上述讨论可知求 Gauss 整数的原根退化为求整数的原根
+
+若 \(k\) 不是模 \(m\) 的二次剩余, 则
+
+\[
+    \left(1+b\sqrt{k}\right)^{m+1}\equiv 1+b^2 k^{(m+1)/2} \pmod m
+\]
+
+所以若 \(1+b\sqrt{k}\) 为 \(m^2-1\) 阶根, 则 \(1+b^2 k^{(m+1)/2}\) 是模 \(m\) 的原根

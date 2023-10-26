@@ -3,7 +3,6 @@
 
 #include "pfactors.hpp"
 #include "proot_u32.hpp"
-#include "qpow_mod.hpp"
 
 namespace tifa_libs::math {
 

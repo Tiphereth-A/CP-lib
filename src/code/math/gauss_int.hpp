@@ -57,6 +57,12 @@ class GaussInt {
   constexpr friend GaussInt operator/(GaussInt x, GaussInt const &y) { return x /= y; }
   constexpr friend GaussInt conj(GaussInt const &x) { return GaussInt{x.r_, -x.i_}; }
   constexpr friend mint norm(GaussInt const &x) { return x.r_ * x.r_ + x.i_ * x.i_ * M; }
+
+  constexpr friend bool operator==(GaussInt const &x, GaussInt const &y) { return x.real() == y.real() && x.imag() == y.imag(); }
+  constexpr friend bool operator!=(GaussInt const &x, GaussInt const &y) { return !(x == y); }
+
+  friend std::istream &operator>>(std::istream &is, GaussInt &x) { return is >> x.r_ >> x.i_; }
+  friend std::ostream &operator<<(std::ostream &os, GaussInt const &x) { return os << '(' << x.real() << ',' << x.imag() << ')'; }
 };
 template <class mint>
 class GaussInt<mint, -1> : public std::complex<mint> {
