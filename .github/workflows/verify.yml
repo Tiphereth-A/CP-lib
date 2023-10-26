@@ -82,7 +82,7 @@ jobs:
            "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
     steps:
       - uses: actions/checkout@v4
-          with:
+        with:
           fetch-depth: 2147483647
 
       - name: Restore cached results
@@ -114,7 +114,7 @@ jobs:
           split-size: ${{ env.SPLIT_SIZE }}
           split-index: ${{ matrix.index }}
           timeout: 1800
-            prev-result: ${{ steps.restore-cached-results.outputs.cache-hit && 'merged-result.json' || ''}}
+          prev-result: ${{ steps.restore-cached-results.outputs.cache-hit && 'merged-result.json' || ''}}
 
       - name: Upload result artifact
         uses: actions/upload-artifact@v3
