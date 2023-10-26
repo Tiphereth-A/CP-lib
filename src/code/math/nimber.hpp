@@ -9,8 +9,6 @@ template <class uint, uint (*prod)(uint, uint)>
 struct nimber {
   uint x;
   constexpr nimber(uint _x = 0) : x(_x) {}
-  static nimber id0() { return {}; }
-  static nimber id1() { return {1}; }
 
   constexpr nimber& operator+=(nimber const& p) {
     x ^= p.x;
