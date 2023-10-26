@@ -11,7 +11,6 @@ namespace tifa_libs::math {
 template <class mint, i64 M = -1>
 struct CNTT {
   using Zpi = GaussInt<mint, M>;
-  static constexpr u32 MOD = mint::mod();
 
   CNTT() {}
 
@@ -24,8 +23,8 @@ struct CNTT {
     for (u32 i = 0; i < n; ++i) rev[i] = (rev[i / 2] / 2) | ((i & 1) << (k - 1));
     Wn.resize(k);
     IWn.resize(k);
-    for (u32 i = 0, mid = 1; i < k; mid <<= 1, ++i) Wn[i] = qpow(W, ((((MOD + 1) & 3) ? (u64)MOD : (u64)MOD * MOD) - 1) / 2 / mid);
-    for (u32 i = 0; i < k; ++i) IWn[i] = qpow(Wn[i], (((MOD + 1) & 3) ? (u64)MOD : (u64)MOD * MOD) - 2);
+    for (u32 i = 0, mid = 1; i < k; mid <<= 1, ++i) Wn[i] = qpow(W, ((((mint::mod() + 1) & 3) ? (u64)mint::mod() : (u64)mint::mod() * mint::mod()) - 1) / 2 / mid);
+    for (u32 i = 0; i < k; ++i) IWn[i] = qpow(Wn[i], (((mint::mod() + 1) & 3) ? (u64)mint::mod() : (u64)mint::mod() * mint::mod()) - 2);
   }
 
   void dif(vec<Zpi> &f) const { difdit(f); }

@@ -10,19 +10,18 @@ namespace tifa_libs::math {
 
 template <class mint>
 struct NTT {
-  static constexpr u64 MOD = mint::mod();
-  static_assert((MOD & 3) == 1, "MOD must be prime with 4k+1");
+  static_assert((mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
 
   NTT() : root() {}
 
   usz size() const { return root.size(); }
   void bzr(usz len) {
     usz n = bit::bceil(len);
-    assert((MOD - 1) % n == 0);
+    assert((mint::mod() - 1) % n == 0);
     if (n == size()) return;
     root.resize(n);
     root[0] = 1;
-    mint w = qpow(G, (MOD - 1) / n);
+    mint w = qpow(G, (mint::mod() - 1) / n);
     for (usz i = 1; i < n; ++i) root[i] = root[i - 1] * w;
   }
 
@@ -62,8 +61,7 @@ struct NTT {
 #pragma GCC diagnostic pop
 
  private:
-  const mint G = proot_u64(MOD);
-
+  const mint G = proot_u64(mint::mod());
   vec<mint> root;
 };
 
