@@ -18,7 +18,7 @@ using mint64 = tifa_libs::math::mint_s63<MOD>;
 template <class mint, i64 M>
 void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> const& pf_v) {
   mint mint_M = mint{M};
-  if (mint_M == 1) return;
+  if (mint_M.val() <= 1) return;
   auto g = tifa_libs::math::proot_gint<mint, M>();
   check_bool(g.real() == 1, check_param(g));
 
