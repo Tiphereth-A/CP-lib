@@ -8,19 +8,16 @@ namespace tifa_libs::math {
 
 inline u64 proot_u64(u64 m) {
   if (m <= (u32)(-1)) return proot_u32((u32)m);
-  u64 r = 1;
-  auto pf = pfactors(m - 1);
-  while (true) {
-    bool ok = 1;
-    for (auto [q, k] : pf)
-      if (qpow_mod(r, (m - 1) / q, m) == 1) {
-        ok = 0;
-        break;
-      }
-    if (ok) break;
-    ++r;
+  vec<u64> pf;
+  {
+    auto _ = pfactors(m - 1);
+    pf.reserve(_.size());
+    for (auto [k, v] : _) pf.push_back(k);
   }
-  return r;
+  u64 g = 2;
+  for (;; ++g)
+    if (is_proot(g, m, pf.begin(), pf.end())) break;
+  return g;
 }
 
 }  // namespace tifa_libs::math

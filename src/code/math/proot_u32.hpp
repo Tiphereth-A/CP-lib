@@ -22,10 +22,8 @@ constexpr u32 proot_u32(u32 m) {
       while (x % i == 0) x /= i;
     }
   if (x > 1) divs[cnt++] = x;
-  for (u32 g = 2;; ++g) {
-    bool ok = is_proot(g, m, divs, divs + cnt);
-    if (ok) return g;
-  }
+  for (u32 g = 2;; ++g)
+    if (is_proot(g, m, divs, divs + cnt)) return g;
 }
 
 }  // namespace tifa_libs::math
