@@ -742,6 +742,12 @@ notebook:
     - nimber: Nimber
       code_ext: hpp
       test_ext: cpp
+    - bsgs_nimber: bsgs_nimber
+      code_ext: hpp
+      test_ext: cpp
+    - is_proot_minber: is_proot_nimber
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: mat
       code_ext: hpp

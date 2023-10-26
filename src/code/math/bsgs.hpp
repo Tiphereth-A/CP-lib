@@ -18,7 +18,7 @@ inline std::optional<u64> bsgs(u64 a, u64 b, u64 m) {
   u64 _ = qpow_mod(a, sqrt_m, m);
   s = _;
   for (u64 i = 1; i <= sqrt_m; ++i, s = mul_mod_u(s, _, m))
-    if (hmp[s] && i * sqrt_m >= hmp[s]) return (i64)(i * sqrt_m - hmp[s]);
+    if (hmp[s] && i * sqrt_m >= hmp[s]) return i * sqrt_m - hmp[s];
   return {};
 }
 
