@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m, l;
   std::cin >> n >> m >> l;
-  tifa_libs::math::matrix<u32> a(n, m), b(m, l);
+  tifa_libs::math::matrix<u64> a(n, m), b(m, l);
   std::cin >> a >> b;
   std::cout << a * b << '\n';
   return 0;
