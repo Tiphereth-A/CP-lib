@@ -17,17 +17,18 @@ using mint64 = tifa_libs::math::mint_s63<MOD>;
 template <class mint, i64 M>
 void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> const& pf_v) {
   mint mint_M = mint{M};
+  using gint = tifa_libs::math::GaussInt<mint, M>;
   if (mint_M.val() <= 1) return;
-  auto g = tifa_libs::math::proot_gint<mint, M>();
+  gint g = tifa_libs::math::proot_gint<mint, M>();
   check_bool(g.real() == 1, check_param(g));
-  auto g_qpow = tifa_libs::math::qpow(g, mod + 1);
+  gint g_qpow = tifa_libs::math::qpow(g, mod + 1);
 
   if (tifa_libs::math::is_proot(mint_M.val(), mod, pf_v.begin(), pf_v.end())) {
-    auto g_mp1 = 1 - g.imag() * g.imag() * mint_M;
-    check_bool(g_qpow == decltype(g){g_mp1}, check_param(g), check_param(g_qpow), check_param(g_mp1), check_param(mod), check_param(pf_v));
+    gint g_mp1{1 - g.imag() * g.imag() * mint_M, 0};
+    check_bool(g_qpow == g_mp1, check_param(g), check_param(g_qpow), check_param(g_mp1), check_param(mod), check_param(pf_v));
   } else {
-    auto g_mp1 = 1 + g.imag() * g.imag() * mint_M;
-    check_bool(g_qpow == decltype(g){g_mp1, g.imag() * 2}, check_param(g), check_param(g_qpow), check_param(g_mp1), check_param(mod), check_param(pf_v));
+    gint g_mp1{1 + g.imag() * g.imag() * mint_M, g.imag() * 2};
+    check_bool(g_qpow == g_mp1, check_param(g), check_param(g_qpow), check_param(g_mp1), check_param(mod), check_param(pf_v));
   }
 }
 
