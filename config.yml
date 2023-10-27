@@ -700,6 +700,12 @@ notebook:
     - cantor_inv: 逆 Cantor 展开
       code_ext: hpp
       test_ext: cpp
+    - cantor_seq2val: Cantor 展开序列转整数
+      code_ext: hpp
+      test_ext: cpp
+    - cantor_val2seq: Cantor 展开整数转序列
+      code_ext: hpp
+      test_ext: cpp
     - kth_root: K 次剩余
       code_ext: hpp
       test_ext: cpp

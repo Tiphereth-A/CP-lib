@@ -2,12 +2,14 @@
 
 #include "../../code/math/cantor.hpp"
 
+#include "../../code/math/cantor_seq2val.hpp"
+
 void solve() {
   u32 n;
   std::cin >> n;
   vec<u32> a(n);
   for (auto& i : a) std::cin >> i;
-  std::cout << tifa_libs::math::cantor_val(a, 998244353) << '\n';
+  std::cout << tifa_libs::math::cantor_seq2val(tifa_libs::math::cantor_seq(a), 998244353) << '\n';
 }
 
 int main() {
