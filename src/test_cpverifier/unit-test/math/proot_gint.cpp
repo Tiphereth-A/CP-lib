@@ -20,13 +20,14 @@ void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> const& 
   if (mint_M.val() <= 1) return;
   auto g = tifa_libs::math::proot_gint<mint, M>();
   check_bool(g.real() == 1, check_param(g));
+  auto g_qpow = tifa_libs::math::qpow(g, mod + 1);
 
   if (tifa_libs::math::is_proot(mint_M.val(), mod, pf_v.begin(), pf_v.end())) {
     auto g_mp1 = 1 - g.imag() * g.imag() * mint_M;
-    check_bool(tifa_libs::math::qpow(g, mod + 1) == decltype(g){g_mp1}, check_param(g), check_param(g_mp1), check_param(mod), check_param(pf_v));
+    check_bool(g_qpow == decltype(g){g_mp1}, check_param(g), check_param(g_qpow), check_param(g_mp1), check_param(mod), check_param(pf_v));
   } else {
     auto g_mp1 = 1 + g.imag() * g.imag() * mint_M;
-    check_bool(tifa_libs::math::qpow(g, mod + 1) == decltype(g){g_mp1, g.imag() * 2}, check_param(g), check_param(g_mp1), check_param(mod), check_param(pf_v));
+    check_bool(g_qpow == decltype(g){g_mp1, g.imag() * 2}, check_param(g), check_param(g_qpow), check_param(g_mp1), check_param(mod), check_param(pf_v));
   }
 }
 
