@@ -3,7 +3,6 @@
 
 #include "../../../code/math/proot_gint.hpp"
 
-#include "../../../code/math/is_proot.hpp"
 #include "../../../code/math/mint_s63.hpp"
 #include "../../../code/math/mint_ss.hpp"
 #include "../../../code/math/qpow.hpp"
