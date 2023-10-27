@@ -3,10 +3,10 @@
 
 #include "../../../code/math/proot_gint.hpp"
 
+#include "../../../code/math/is_proot.hpp"
 #include "../../../code/math/mint_s63.hpp"
 #include "../../../code/math/mint_ss.hpp"
 #include "../../../code/math/qpow.hpp"
-#include "../../../code/math/qresidue.hpp"
 #include "../base.hpp"
 
 template <u32 MOD>
@@ -21,13 +21,12 @@ void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> const& 
   auto g = tifa_libs::math::proot_gint<mint, M>();
   check_bool(g.real() == 1, check_param(g));
 
-  auto qres = tifa_libs::math::qresidue(mint_M.val(), mod);
-  if (!qres.has_value()) {
-    auto norm_g = 1 + g.imag() * g.imag() * tifa_libs::math::qpow(mint_M, (mod + 1) / 2);
-    check_bool(tifa_libs::math::qpow(g, mod + 1) == decltype(g){norm_g}, check_param(g), check_param(norm_g), check_param(mod), check_param(pf_v));
+  if (tifa_libs::math::is_proot(mint_M.val(), mod, pf_v.begin(), pf_v.end())) {
+    auto g_mp1 = 1 - g.imag() * g.imag() * mint_M;
+    check_bool(tifa_libs::math::qpow(g, mod + 1) == decltype(g){g_mp1}, check_param(g), check_param(g_mp1), check_param(mod), check_param(pf_v));
   } else {
-    auto g_zm = (1 + g.imag() * g.imag() * qres.value()).val();
-    check_bool(tifa_libs::math::qpow(g, mod + 1) == decltype(g){g_zm}, check_param(g), check_param(g_zm), check_param(mod), check_param(pf_v));
+    auto g_mp1 = 1 + g.imag() * g.imag() * mint_M;
+    check_bool(tifa_libs::math::qpow(g, mod + 1) == decltype(g){g_mp1, g.imag() * 2}, check_param(g), check_param(g_mp1), check_param(mod), check_param(pf_v));
   }
 }
 

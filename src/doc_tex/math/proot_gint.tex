@@ -5,13 +5,17 @@
 考虑 \(\mathbf{Z}_m\left[\sqrt{k}\right],~\sqrt{k}\notin \mathbf{Z}\), 若 \(k\) 不是模 \(m\) 的二次剩余, 则
 
 \[
-    \left(1+b\sqrt{k}\right)^{m+1}\equiv 1+b^2 k^{(m+1)/2} \pmod m
+    \left(1+b\sqrt{k}\right)^{m+1}\equiv 1+b^2 k^{(m+1)/2} + b\left(1+k^{(m-1)/2}\right)\sqrt{k} \equiv\begin{cases}
+        1-b^2 k,              & k ~\text{is primitive root modolu}~ m \\
+        1+b^2 k + 2b\sqrt{k}, & \text{otherwise}                      \\
+    \end{cases} \pmod m
 \]
-
-从而 \(\left(1+b\sqrt{k}\right)^{m+1}\in\mathbf{Z}_m\)
 
 若 \(k\) 是模 \(m\) 的二次剩余, 设 \(x^2\equiv k\pmod m\), 则 \(\mathbf{Z}_m\mathrm{\sqrt{k}}\) 中有零因子 \(x\pm\sqrt{k}\), 从而不是域, 但上式仍旧成立, 即
 
 \[
-    \left(1+b\sqrt{k}\right)^{m+1}\equiv 1+b^2 k^{(m+1)/2}\equiv 1+b^2k \pmod m
+    \left(1+b\sqrt{k}\right)^{m+1}\equiv\begin{cases}
+        1-b^2 k,              & k ~\text{is primitive root modolu}~ m \\
+        1+b^2 k + 2b\sqrt{k}, & \text{otherwise}                      \\
+    \end{cases} \pmod m
 \]
