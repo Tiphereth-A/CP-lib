@@ -27,8 +27,8 @@ void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> const& 
     auto norm_g = 1 + g.imag() * g.imag() * tifa_libs::math::qpow(mint_M, (mod + 1) / 2);
     check_bool(tifa_libs::math::qpow(g, mod + 1) == decltype(g){norm_g}, check_param(g), check_param(norm_g), check_param(mod), check_param(pf_v));
   } else {
-    auto g_zm = (1 + g.imag() * qres.value()).val();
-    check_bool(tifa_libs::math::is_proot(g_zm, mod, pf_v.begin(), pf_v.end()), check_param(g), check_param(g_zm), check_param(mod), check_param(pf_v));
+    auto g_zm = (1 + g.imag() * g.imag() * qres.value()).val();
+    check_bool(tifa_libs::math::qpow(g, mod + 1) == decltype(g){g_zm}, check_param(g), check_param(g_zm), check_param(mod), check_param(pf_v));
   }
 }
 
