@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_MATH_LUCAS
 #define TIFA_LIBS_MATH_LUCAS
 
-#include "mcn_mod.hpp"
+#include "binom.hpp"
 
 namespace tifa_libs::math {
 

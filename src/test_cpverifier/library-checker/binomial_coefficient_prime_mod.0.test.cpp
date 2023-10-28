@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod"
 
 #include "../../code/comb/lucas.hpp"
-#include "../../code/comb/mcn_mod.hpp"
+#include "../../code/comb/binom.hpp"
 #include "../../code/util/fastio.hpp"
 
 int main() {

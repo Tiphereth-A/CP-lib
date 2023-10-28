@@ -498,7 +498,16 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     comb:
-    - exlucas: exlucas
+    - binom: 组合数
+      code_ext: hpp
+      test_ext: cpp
+    - lucas: Lucas（模素数）
+      code_ext: hpp
+      test_ext: cpp
+    - lucas_pp: Lucas（模素数幂次）
+      code_ext: hpp
+      test_ext: cpp
+    - exlucas: Lucas（任意模数）
       code_ext: hpp
       test_ext: cpp
     - derange_mod_gen: 错排数序列
@@ -522,28 +531,19 @@ notebook:
     - partition_gen: 划分数序列
       code_ext: hpp
       test_ext: cpp
-    - fact_mod_gen: fact_mod_gen
+    - fact_mod_gen: 阶乘模序列
       code_ext: hpp
       test_ext: cpp
-    - mcn_mod: mcn_mod
+    - ifact_mod_gen: 阶乘逆模序列
       code_ext: hpp
       test_ext: cpp
-    - ifact_mod_gen: ifact_mod_gen
+    - inv_mod_gen: 逆元序列
       code_ext: hpp
       test_ext: cpp
-    - inv_mod_gen: inv_mod_gen
+    - invseq_mod_gen: 序列逆元
       code_ext: hpp
       test_ext: cpp
-    - lucas_pp: lucas_pp
-      code_ext: hpp
-      test_ext: cpp
-    - lucas: lucas
-      code_ext: hpp
-      test_ext: cpp
-    - invseq_mod_gen: invseq_mod_gen
-      code_ext: hpp
-      test_ext: cpp
-    - pows_mod_gen: pows_mod_gen
+    - pows_mod_gen: 幂次模序列
       code_ext: hpp
       test_ext: cpp
     - bernoulli_gen: Bernoulli 数序列
@@ -553,6 +553,45 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - stirling2_smallp: 第二类 Stirling 数（小模数）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_ii_gen: 球与盒（球全部相同，盒全部相同）序列
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_dda: 球与盒（球互不相同，盒互不相同）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_ddm: 球与盒（球互不相同，盒互不相同，至多装一个球）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_ddl: 球与盒（球互不相同，盒互不相同，至少装一个球）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_ida: 球与盒（球全部相同，盒互不相同）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_idm: 球与盒（球全部相同，盒互不相同，至多装一个球）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_idl: 球与盒（球全部相同，盒互不相同，至少装一个球）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_dia: 球与盒（球互不相同，盒全部相同）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_dim: 球与盒（球互不相同，盒全部相同，至多装一个球）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_dil: 球与盒（球互不相同，盒全部相同，至少装一个球）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_iia: 球与盒（球全部相同，盒全部相同）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_iim: 球与盒（球全部相同，盒全部相同，至多装一个球）
+      code_ext: hpp
+      test_ext: cpp
+    - ball_box_iil: 球与盒（球全部相同，盒全部相同，至少装一个球）
       code_ext: hpp
       test_ext: cpp
     math:
