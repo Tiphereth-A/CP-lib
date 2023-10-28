@@ -2,25 +2,198 @@
 
 \subsubsection{行列式}
 
-\[
+\begin{equation}
     \operatorname{det}(A):=\sum_{\sigma\in S_n}\prod_{i=1}^n \operatorname{sgn}(\sigma) a_{i,\sigma(i)}
-\]
+\end{equation}
 
 \subsubsection{积和式}
 
-\[
+\begin{equation}
     \operatorname{per}(A):=\sum_{\sigma\in S_n}\prod_{i=1}^n a_{i,\sigma(i)}
-\]
+\end{equation}
 
 可用于完美匹配中
 
 \paragraph{性质}
 
-\[
+\begin{equation}
     \operatorname{per}(A)=\operatorname{haf}\begin{bmatrix}
-        & A\\
-    A^T &
+            & A \\
+        A^T &
     \end{bmatrix}
-\]
+\end{equation}
 
-\(\operatorname{haf}(A)\) 的定义参见 \fullref{sec:矩阵的-hafnian-（图的完美匹配计数）}
+\(\operatorname{haf}(A)\) 的定义参见 \fullref{sec:图的完美匹配计数}
+
+\subsection{组合数学}
+
+\subsubsection{组合数相关公式}
+
+\begin{equation}
+    \binom{n}{m}=\binom{n}{n-m}
+\end{equation}
+
+\begin{equation}
+    \binom{n}{k} = \frac{n}{k} \binom{n-1}{k-1}
+\end{equation}
+
+\begin{equation}
+    \binom{n}{m}=\binom{n-1}{m}+\binom{n-1}{m-1}
+\end{equation}
+
+\begin{equation}
+    \sum_{i=0}^n\binom{n}{i}=2^n
+\end{equation}
+
+\begin{equation}
+    \sum_{i=0}^n(-1)^i\binom{n}{i}=[n=0]
+\end{equation}
+
+\begin{equation}
+    \sum_{i=0}^m \binom{n}{i}\binom{m}{m-i} = \binom{m+n}{m}\qquad(n \geq m)
+\end{equation}
+
+\begin{equation}
+    \sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}
+\end{equation}
+
+\begin{equation}
+    \sum_{i=0}^ni\binom{n}{i}=n2^{n-1}
+\end{equation}
+
+\begin{equation}
+    \sum_{i=0}^ni^2\binom{n}{i}=n(n+1)2^{n-2}
+\end{equation}
+
+\begin{equation}
+    \sum_{l=0}^n\binom{l}{k} = \binom{n+1}{k+1}
+\end{equation}
+
+\begin{equation}
+    \binom{n}{r}\binom{r}{k} = \binom{n}{k}\binom{n-k}{r-k}
+\end{equation}
+
+\begin{equation}
+    \sum_{i=0}^n\binom{n-i}{i}=F_{n+1}
+\end{equation}
+
+其中 \(F\) 是 Fibonacci 数列
+
+\begin{equation}
+    g_n = \sum_{i = 0}^{n} \binom{n}{i} f_i \iff f_n = \sum_{i = 0}^{n} \binom{n}{i} (-1)^{n-i} g_i
+\end{equation}
+
+\subsubsection{Stirling 数相关公式}
+
+\begin{equation}
+    \stirlingfirst{n}{m}=(n-1)\stirlingfirst{n-1}{m}+\stirlingfirst{n-1}{m-1}
+\end{equation}
+
+\begin{equation}
+    \stirlingsecond{n}{m}=m\stirlingsecond{n-1}{m}+\stirlingsecond{n-1}{m-1}
+\end{equation}
+
+\begin{equation}
+    \sum_{n\geq k}\frac{x^n}{n!}\stirlingfirst{n}{k}=\frac{\left(-\ln(1-x)\right)^k}{k!}
+\end{equation}
+
+\begin{equation}
+    \sum_{n\geq k}\frac{x^n}{n!}\stirlingsecond{n}{k}=\frac{\left(\mathrm{e}^x-1\right)^k}{k!}
+\end{equation}
+
+\begin{equation}
+    \sum_{n\geq k}x^n\stirlingsecond{n}{k}=\prod_{i=1}^k\frac{x}{1-\mathrm{i}x}
+\end{equation}
+
+\begin{equation}
+    f_n=\sum_{k=0}^n\stirlingfirst{n}{k}g_k \iff g_n=\sum_{k=0}^n\stirlingsecond{n}{k}(-1)^{n-k}f_k
+\end{equation}
+
+\begin{equation}
+    \stirlingfirst{n}{k}=\frac{n!}{k!}\frac{k}{n}\left[x^{n-k}\right]\left(\frac{x}{\mathrm{e}^x-1}\right)^n
+\end{equation}
+
+\begin{equation}
+    \stirlingsecond{n}{k}=\frac{n!}{k!}\frac{k}{n}\left[x^{n-k}\right]\left(\frac{x}{\ln(1+x)}\right)^n
+\end{equation}
+
+\begin{equation}
+    \stirlingsecond{n+1}{m+1}=\sum_{k=0}^n\binom{n}{k}\stirlingsecond{k}{m}
+\end{equation}
+
+\begin{equation}
+    \stirlingfirst{n+1}{m+1}=\sum_{k=0}^n\stirlingfirst{n}{k}\binom{k}{m}
+\end{equation}
+
+\begin{equation}
+    \stirlingsecond{n+1}{m+1}=\sum_{k=0}^n\stirlingsecond{k}{m}(m+1)^{n-k}
+\end{equation}
+
+\begin{equation}
+    \stirlingfirst{n+1}{m+1}=\sum_{k=0}^n\stirlingfirst{k}{m}\frac{n!}{k!}
+\end{equation}
+
+\begin{equation}
+    \stirlingsecond{n+m+1}{m}=\sum_{k=0}^mk\stirlingsecond{k+n}{k}
+\end{equation}
+
+\begin{equation}
+    \stirlingfirst{n+m+1}{m}=\sum_{k=0}^m(n+k)\stirlingfirst{k+n}{k}
+\end{equation}
+
+\begin{equation}
+    \binom{n}{m}=\sum_{k=0}^n\stirlingsecond{n+1}{k+1}\stirlingfirst{k}{m}(-1)^{m-k}
+\end{equation}
+
+\begin{equation}
+    n^{\underline{n-m}}[n\geq m]=\sum_{k=0}^n\stirlingfirst{n+1}{k+1}\stirlingsecond{k}{m}(-1)^{m-k}
+\end{equation}
+
+\begin{equation}
+    \stirlingsecond{n}{n-m}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingfirst{m+k}{k}
+\end{equation}
+
+\begin{equation}
+    \stirlingfirst{n}{n-m}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingsecond{m+k}{k}
+\end{equation}
+
+\begin{equation}
+    \stirlingsecond{-n+m}{-n}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingfirst{-k}{-k-m}
+\end{equation}
+
+\begin{equation}
+    \stirlingsecond{n}{l+m}\binom{l+m}{l}=\sum_k\binom{n}{k}\stirlingsecond{k}{l}\stirlingsecond{n-k}{m}
+\end{equation}
+
+\begin{equation}
+    \stirlingfirst{n}{l+m}\binom{l+m}{l}=\sum_k\binom{n}{k}\stirlingfirst{k}{l}\stirlingfirst{n-k}{m}
+\end{equation}
+
+\subsection{初等数论}
+
+\subsubsection{Dirichlet 卷积相关公式}
+
+\begin{equation}
+    \sum_{i=1}^n\sum_{j=1}^m(i,j)^k=\sum_{D=1}^{\min\{n,m\}}\left\lfloor\frac{n}{D}\right\rfloor\left\lfloor\frac{m}{D}\right\rfloor\{\operatorname{id}_k*\mu\}(D)
+\end{equation}
+
+\begin{equation}
+    \{\operatorname{id}_k*\mu\}(p^s)=p^{ks}-p^{k(s-1)}
+\end{equation}
+
+\subsection{杂项}
+
+\begin{equation}
+    \lfloor x\rfloor=\begin{cases}
+        \displaystyle x+\frac{\arctan\cot\pi x}{\pi}-\frac{1}{2}, & x\notin\mathrm{Z} \\
+        x,                                                        & x\in\mathrm{Z}
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \varphi(xy)=\varphi(x)\varphi(y)\frac{(x,y)}{\varphi((x,y))}
+\end{equation}
+
+\begin{equation}
+    \mathrm{e}(\mathrm{e}+\pi)^\mathrm{e}(2e + \pi)^\mathrm{e}+\frac{\mathrm{e}}{(\pi^\mathrm{e}-\mathrm{e})(\mathrm{e}+\mathrm{e}^\pi-\pi^\mathrm{e})}\approx 114514.1919810
+\end{equation}

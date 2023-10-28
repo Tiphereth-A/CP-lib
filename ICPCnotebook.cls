@@ -28,13 +28,14 @@
 \RequirePackage{subcaption}
 \RequirePackage{tabularx}
 \RequirePackage{tikz}
-\RequirePackage{url}
 \RequirePackage{xspace}
 \RequirePackage{mathtools}
 \RequirePackage{pgfplots}
 \RequirePackage{pdfpages}
 \RequirePackage{ucharclasses}
 \RequirePackage{svg}
+\RequirePackage{seqsplit}
+\RequirePackage{xurl}
 
 \usepgfplotslibrary{dateplot}
 
@@ -64,7 +65,7 @@
 \XeTeXlinebreakskip = 0pt plus 1pt
 
 \setlength{\itemindent}{0em}
-\setlength\parindent{0em}
+\setlength{\parindent}{0em}
 \setlength{\columnsep}{13pt}
 
 \RequirePackage{fancyhdr}
@@ -76,7 +77,6 @@
 \fancypagestyle{fancy} {
     \fancyhead[L]{\nouppercase\leftmark}
 	\fancyhead[R]{\nouppercase\rightmark}
-	\fancyhead[C]{ICPC Notebook}
     \fancyfoot[C]{\thepage}
 }
 
