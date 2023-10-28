@@ -9,7 +9,7 @@ namespace tifa_libs::graph {
 // cb_relax(now, to)
 template <class W, class F>
 vec<W> dijkstra(adjlist<W> const &g, u32 s, F cb_relax, W INF = std::numeric_limits<W>::max() / 2 - 1) {
-  static_assert(is_uint<W>::value);
+  static_assert(!is_sint<W>::value);
   vec<W> dis(g.v_size(), INF);
   vec<bool> vis(g.v_size());
   pqg<std::pair<W, u32>> q;

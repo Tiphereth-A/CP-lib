@@ -9,7 +9,7 @@ namespace tifa_libs::graph {
 // cb_relax(now, to)
 template <class W, class F>
 std::optional<vec<W>> bellman_ford(adjlist<W> const &g, u32 s, F cb_relax, W INF = std::numeric_limits<W>::max() / 2 - 1) {
-  static_assert(is_sint<W>::value);
+  static_assert(!is_uint<W>::value);
   vec<W> dis(g.v_size(), INF);
   vec<bool> vis(g.v_size());
   vec<u32> dep(g.v_size());
