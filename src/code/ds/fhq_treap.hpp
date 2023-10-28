@@ -12,7 +12,7 @@ class fhq_treap {
   struct YYZ {
     T val;
     usz sz;
-    std::array<usz, 2> son;
+    std::array<usz, 2> son{};
     i32 rad;
     YYZ(T VAL = 0, usz SZ = 0, i32 RAD = 0) : val(VAL), sz(SZ), rad(RAD) {}
   };

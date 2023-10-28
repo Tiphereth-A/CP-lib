@@ -24,7 +24,7 @@ class fhq_treap_w {
     T val;
     F sign;
     usz sz;
-    std::array<usz, 2> son;
+    std::array<usz, 2> son{};
     i32 rad;
     bool rev;
     YYZ(T W = e(), T VAL = e(), usz SZ = 0, i32 RAD = 0, F SIGN = id()) : w(W), val(VAL), sign(SIGN), sz(SZ), rad(RAD), rev(0) {}
