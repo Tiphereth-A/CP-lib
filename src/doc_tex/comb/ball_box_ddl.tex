@@ -1,0 +1,19 @@
+设有 \(n\) 个球, \(m\) 个盒子
+
+考虑二项式反演
+
+设
+
+\begin{enumerate}
+    \item \(f(n,m)\) 为 \(n\) 个球和 \(m\) 个盒子, 球之间互不相同, 盒子之间互不相同, 每个盒子至少装一个球的方案数
+    \item \(g(n,m)\) 为 \(n\) 个球和 \(m\) 个盒子, 球之间互不相同, 盒子之间互不相同的方案数
+\end{enumerate}
+
+则
+
+\[
+    \begin{aligned}
+                 & m^n=g(n,m)=\sum_{i=0}^m\binom{m}{i}f(n,i)                                             \\
+        \implies & f(n,m)=\sum_{i=0}^m\binom{m}{i}(-1)^{m-i}g(n,i)=\sum_{i=0}^m\binom{m}{i}(-1)^{m-i}i^n
+    \end{aligned}
+\]

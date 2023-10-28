@@ -1,0 +1,22 @@
+设有 \(n\) 个球, \(m\) 个盒子
+
+设 \(f(n,m)\) 为所求, 则
+
+\[
+    f(n,m)=f(n,m-1)+f(n-m,m)
+\]
+
+考虑 OGF
+
+\[
+    \begin{aligned}
+                 & F_m(x) =\sum_{i=0}^{\infty}f(i,m)x^i =F_{m-1}(x)+x^m F_m(x)                     \\
+        \implies & F_m(x)=\frac{1}{1-x^m}F_{m-1}(x)                                                \\
+        \implies & F_m(x)=\prod_{i=1}^{\infty}\frac{1}{1-x^i}                                      \\
+        \implies & \ln F_m(x)=-\sum_{i=1}^{\infty}\ln(1-x^i)                                       \\
+        \implies & \ln F_m(x)=\sum_{i=1}^{\infty}\sum_{j=1}^{\infty} \frac{x^{ij}}{j}              \\
+        \implies & F_m(x)=\exp\left(\sum_{i=1}^{\infty}\sum_{j=1}^{\infty} \frac{x^{ij}}{j}\right)
+    \end{aligned}
+\]
+
+求 \(F_m(x)\) 的代码参见 \fullref{sec:球与盒（球全部相同，盒全部相同）序列}
