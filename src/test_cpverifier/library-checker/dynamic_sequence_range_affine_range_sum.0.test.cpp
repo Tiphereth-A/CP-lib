@@ -26,7 +26,7 @@ int main() {
   usz n, q;
   mint x, y;
   tifa_libs::fin >> n >> q;
-  tifa_libs::ds::fhq_treap_w<mint, T, op, e, F, mapping, composition, id, true> tr(n + q);
+  tifa_libs::ds::fhq_treap_w<T, op, e, F, mapping, composition, id, true> tr(n + q);
   for (usz i = 0; i < n; ++i)
     tifa_libs::fin >> x, tr.insert(T{x, 1});
   for (usz i = 0, opt, l, r; i < q; ++i) {

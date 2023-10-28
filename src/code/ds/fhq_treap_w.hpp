@@ -8,7 +8,6 @@ namespace tifa_libs::ds {
 
 // template <class T, T (*op)(T, T), T (*e)(), class F, T (*mapping)(F, T), F (*composition)(F, F), F (*id)()>
 template <
-    class Ty,
     class T,
     auto op,
     auto e,
