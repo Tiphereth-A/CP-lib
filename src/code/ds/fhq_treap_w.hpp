@@ -17,7 +17,6 @@ template <
     auto id,
     bool reverse_ = false,
     bool recovery = false>
-// default range add range sum
 class fhq_treap_w {
   //!!! initial cnt = 1;
   struct YYZ {

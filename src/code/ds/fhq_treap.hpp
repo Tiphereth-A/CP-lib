@@ -6,20 +6,20 @@
 
 namespace tifa_libs::ds {
 
-template <class Ty, bool recovery = false>
+template <class T, bool recovery = false>
 class fhq_treap {
   //!!! initial cnt = 1;
   struct YYZ {
-    Ty val;
+    T val;
     usz sz, ls, rs;
     i32 rad;
-    YYZ(Ty VAL = 0, usz SZ = 0, i32 RAD = 0, usz LS = 0, usz RS = 0) : val(VAL), sz(SZ), ls(LS), rs(RS), rad(RAD) {}
+    YYZ(T VAL = 0, usz SZ = 0, i32 RAD = 0, usz LS = 0, usz RS = 0) : val(VAL), sz(SZ), ls(LS), rs(RS), rad(RAD) {}
   };
   rand::Gen<std::uniform_int_distribution<i32>> gen;
   vec<YYZ> t;
   vec<usz> sta;
   usz cnt;
-  usz newnode(Ty val) {
+  usz newnode(T val) {
     usz ret;
     if (recovery && sta.size()) ret = *sta.rbegin(), sta.pop_back(), t[ret] = YYZ(val, 1, gen());
     else ret = ++cnt, t[ret] = YYZ(val, 1, gen());
@@ -33,7 +33,7 @@ class fhq_treap {
   explicit constexpr fhq_treap(usz MAX_N) : gen(), t(MAX_N + 1), sta(), cnt(0), root(0) {
     if (recovery) sta.reserve(MAX_N + 1);
   }
-  void split(usz u, Ty k, usz& x, usz& y) {
+  void split(usz u, T k, usz& x, usz& y) {
     if (!u) x = y = 0;
     else {
       if (t[u].val <= k) x = u, split(t[u].rs, k, t[u].rs, y), update(x);
@@ -51,12 +51,12 @@ class fhq_treap {
       }
     } else return x + y;
   }
-  void insert(Ty w) {
+  void insert(T w) {
     usz x, y;
     split(root, w, x, y);
     root = merge(merge(x, newnode(w)), y);
   }
-  void erase(Ty w) {
+  void erase(T w) {
     usz x, y, z;
     split(root, w, x, y);
     split(x, w - 1, x, z);
@@ -64,14 +64,14 @@ class fhq_treap {
     z = merge(t[z].ls, t[z].rs);
     root = merge(merge(x, z), y);
   }
-  usz w_que_rk(Ty w) {
+  usz w_que_rk(T w) {
     usz x, y, ret;
     split(root, w - 1, x, y);
     ret = t[x].sz + 1;
     root = merge(x, y);
     return ret;
   }
-  Ty rk_que_w(usz u, usz k) {
+  T rk_que_w(usz u, usz k) {
     while (1) {
       if (t[t[u].ls].sz >= k) u = t[u].ls;
       else {
@@ -80,17 +80,17 @@ class fhq_treap {
       }
     }
   }
-  Ty pre_w(Ty w) {
+  T pre_w(T w) {
     usz x, y;
-    Ty ret;
+    T ret;
     split(root, w - 1, x, y);
     ret = rk_que_w(x, t[x].sz);
     root = merge(x, y);
     return ret;
   }
-  Ty suf_w(Ty w) {
+  T suf_w(T w) {
     usz x, y;
-    Ty ret;
+    T ret;
     split(root, w, x, y);
     ret = rk_que_w(y, 1);
     root = merge(x, y);
