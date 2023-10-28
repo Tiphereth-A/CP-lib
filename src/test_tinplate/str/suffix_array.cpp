@@ -8,7 +8,7 @@ int main() {
   std::string s;
   std::cin >> s;
   s = " " + s;
-  auto [sa, rk] = tifa_libs::str::suffixsort(s);
-  for (usz i = 1; i < s.size(); ++i) std::cout << sa[i] << " \n"[i + 1 == s.size()];
+  tifa_libs::str::suffixarray sa(s);
+  for (usz i = 1; i < s.size(); ++i) std::cout << sa.sa[i] << " \n"[i + 1 == s.size()];
   return 0;
 }

@@ -9,7 +9,7 @@ int main() {
   std::cin >> s;
   usz n = s.size();
   s = " " + s;
-  auto [sa, rk] = tifa_libs::str::suffixsort(s);
-  for (usz i = 1; i <= n; ++i) std::cout << sa[i] - 1 << " \n"[i == n];
+  tifa_libs::str::suffixarray sa(s);
+  for (usz i = 1; i <= n; ++i) std::cout << sa.sa[i] - 1 << " \n"[i == n];
   return 0;
 }
