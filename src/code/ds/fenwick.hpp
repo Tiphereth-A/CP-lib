@@ -2,7 +2,7 @@
 #define TIFA_LIBS_DS_FENWICK
 
 #include "../bit/bceil.hpp"
-#include "../bit/cntr0.hpp"
+#include "../bit/lowbit.hpp"
 #include "../util/util.hpp"
 
 namespace tifa_libs::ds {
@@ -10,20 +10,19 @@ namespace tifa_libs::ds {
 template <class T>
 class fenwick {
   vec<T> a;
-  constexpr usz lowbit(usz x) { return (usz)1 << bit::cntr0(x); }
 
  public:
   //! [1, sz)
   explicit constexpr fenwick(usz sz) : a(sz) { assert(sz > 1); }
-  //! [1, pos)
+  //! [pos, sz), pos > 0
   constexpr void add(usz pos, T const &x) {
     if (!pos) return;
-    for (; pos < a.size(); pos += lowbit(pos)) a[pos] += x;
+    for (; pos < a.size(); pos += bit::lowbit(pos)) a[pos] += x;
   }
   //! [1, pos)
   constexpr T sum(usz pos) {
     T ret = 0;
-    for (pos = std::min(pos, a.size() - 1); pos; pos -= lowbit(pos)) ret += a[pos];
+    for (pos = std::min(pos, a.size() - 1); pos; pos -= bit::lowbit(pos)) ret += a[pos];
     return ret;
   }
   //! for weighted fenwick

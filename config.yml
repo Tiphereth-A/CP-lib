@@ -171,6 +171,9 @@ notebook:
     - ffs: 末尾 1 的位置
       code_ext: hpp
       test_ext: cpp
+    - lowbit: lowbit
+      code_ext: hpp
+      test_ext: cpp
     ds:
     - fenwick: 树状数组
       code_ext: hpp
@@ -218,6 +221,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - link_cut_tree: 动态树（LCT）
+      code_ext: hpp
+      test_ext: cpp
+    - fenwick_2d: 二维树状数组
       code_ext: hpp
       test_ext: cpp
     geo2d:
