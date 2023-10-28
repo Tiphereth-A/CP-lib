@@ -7,7 +7,11 @@ int main() {
   std::cin.tie(nullptr);
   std::string s, p, _;
   std::cin >> p;
-  while (std::getline(std::cin, _), _ != "END_OF_TEXT") s += _;
+  while (std::cin >> _, _ != "END_OF_TEXT") {
+    for (char &c : _)
+      if (isalpha(c)) c = (char)tolower(c);
+    (s += _) += ' ';
+  }
   std::cout << tifa_libs::str::kmp(p, s).size() << '\n';
   return 0;
 }
