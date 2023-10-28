@@ -10,7 +10,7 @@ class Lucas {
 
   u64 lucas__(const Binom &mCn, u64 m, u64 n) const {
     const u64 m_ = mod();
-    return n == 0 ? 1 : mCn.mCn((i64)(m % m_), (i64)(n % m_)) * lucas__(mCn, m / m_, n / m_) % m_;
+    return n == 0 ? 1 : mCn.mCn(m % m_, n % m_) * lucas__(mCn, m / m_, n / m_) % m_;
   }
 
  public:
