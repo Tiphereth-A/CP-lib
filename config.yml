@@ -501,13 +501,13 @@ notebook:
     - binom: 组合数
       code_ext: hpp
       test_ext: cpp
-    - lucas: Lucas（模素数）
+    - lucas: Lucas （模素数）
       code_ext: hpp
       test_ext: cpp
-    - lucas_pp: Lucas（模素数幂次）
+    - lucas_pp: Lucas （模素数幂次）
       code_ext: hpp
       test_ext: cpp
-    - exlucas: Lucas（任意模数）
+    - exlucas: Lucas （任意模数）
       code_ext: hpp
       test_ext: cpp
     - derange_mod_gen: 错排数序列
