@@ -62,8 +62,7 @@ def __latex_command_with_option_(command: str, option: str, *args) -> str:
 
 @withlog
 def latex_input(path: PathLaTeX, **kwargs) -> list[str]:
-    return [__latex_command_('input', path.get()),
-            '\n']
+    return [__latex_command_('input', path.get()), '\n']
 
 
 @withlog
@@ -83,4 +82,4 @@ def latex_section(name: NameLaTeX, **kwargs) -> list[str]:
 
 @withlog
 def latex_listing_code(path: PathLaTeX, code_style: str, **kwargs) -> list[str]:
-    return [__latex_command_('inputminted', code_style, path.get()), '\n']
+    return [rf'Path: \verb|{path.get()}|', '\n\n', __latex_command_('inputminted', code_style, path.get())]
