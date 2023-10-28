@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
   workflow_dispatch:
       inputs:
       ignore_prev_result:
@@ -45,8 +48,7 @@ jobs:
           exclude: |
                 libs/
                 .github/
-          # If you have config.toml
-          # config: .verify-helper/config.toml
+          config: .verify-helper/config.toml
       - name: parse-doxygen
         uses: competitive-verifier/actions/parse-doxygen@v1
         with:
@@ -171,6 +173,7 @@ jobs:
           destination: _jekyll
           write-summary: true
       - name: Save result
+        if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
         uses: actions/cache/save@v3
         with:
           path: ${{github.workspace}}/merged-result.json
@@ -195,7 +198,7 @@ jobs:
           verify-result: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
 
   deploy:
-    if: (success() || failure()) && github.ref == 'refs/heads/master' && needs.docs-and-check.outputs.upload-pages == 'true'
+    if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && (success() || failure()) && github.ref == 'refs/heads/master' && needs.docs-and-check.outputs.upload-pages == 'true' }}
     needs: docs-and-check
     environment:
       name: github-pages
