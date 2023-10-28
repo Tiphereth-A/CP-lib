@@ -8,7 +8,6 @@ namespace tifa_libs::ds {
 
 // template <class T, T (*op)(T, T), T (*e)(), class F, T (*mapping)(F, T), F (*composition)(F, F), F (*id)()>
 template <
-    class Ty,
     class T,
     auto op,
     auto e,
@@ -18,17 +17,17 @@ template <
     auto id,
     bool reverse_ = false,
     bool recovery = false>
-// default range add range sum
 class fhq_treap_w {
   //!!! initial cnt = 1;
   struct YYZ {
     T w;
     T val;
     F sign;
-    usz sz, ls, rs;
+    usz sz;
+    std::array<usz, 2> son;
     i32 rad;
     bool rev;
-    YYZ(T W = e(), T VAL = e(), usz SZ = 0, i32 RAD = 0, F SIGN = id()) : w(W), val(VAL), sign(SIGN), sz(SZ), ls(0), rs(0), rad(RAD), rev(0) {}
+    YYZ(T W = e(), T VAL = e(), usz SZ = 0, i32 RAD = 0, F SIGN = id()) : w(W), val(VAL), sign(SIGN), sz(SZ), rad(RAD), rev(0) {}
   };
   rand::Gen<std::uniform_int_distribution<i32>> gen;
   vec<YYZ> t;
@@ -42,20 +41,20 @@ class fhq_treap_w {
   }
   constexpr void rm(usz u) { sta.push_back(u); }
   constexpr void update(usz u) {
-    t[u].w = op(t[t[u].ls].w, op(t[u].val, t[t[u].rs].w));
-    t[u].sz = t[t[u].ls].sz + t[t[u].rs].sz + 1;
+    t[u].w = op(t[t[u].son[0]].w, op(t[u].val, t[t[u].son[1]].w));
+    t[u].sz = t[t[u].son[0]].sz + t[t[u].son[1]].sz + 1;
   }
   constexpr void reverse__(usz u) {
     assert(reverse_);
-    std::swap(t[u].ls, t[u].rs), t[u].rev ^= 1;
+    std::swap(t[u].son[0], t[u].son[1]), t[u].rev ^= 1;
   }
   constexpr void all_update(usz u, F f) {
     if (u) t[u].val = mapping(f, t[u].val), t[u].w = mapping(f, t[u].w), t[u].sign = composition(f, t[u].sign);
   }
   constexpr void pushdown(usz u) {
     if (u) {
-      all_update(t[u].ls, t[u].sign), all_update(t[u].rs, t[u].sign), t[u].sign = id();
-      if (reverse_ && t[u].rev) reverse__(t[u].ls), reverse__(t[u].rs), t[u].rev = 0;
+      all_update(t[u].son[0], t[u].sign), all_update(t[u].son[1], t[u].sign), t[u].sign = id();
+      if (reverse_ && t[u].rev) reverse__(t[u].son[0]), reverse__(t[u].son[1]), t[u].rev = 0;
     }
   }
 
@@ -68,18 +67,18 @@ class fhq_treap_w {
     if (!u) x = y = 0;
     else {
       pushdown(u);
-      if (t[t[u].ls].sz < k) x = u, split(t[u].rs, k - t[t[u].ls].sz - 1, t[x].rs, y), update(x);
-      else y = u, split(t[u].ls, k, x, t[y].ls), update(y);
+      if (t[t[u].son[0]].sz < k) x = u, split(t[u].son[1], k - t[t[u].son[0]].sz - 1, t[x].son[1], y), update(x);
+      else y = u, split(t[u].son[0], k, x, t[y].son[0]), update(y);
     }
   }
   usz merge(usz x, usz y) {
     pushdown(x), pushdown(y);
     if (x && y) {
       if (t[x].rad <= t[y].rad) {
-        t[x].rs = merge(t[x].rs, y), update(x);
+        t[x].son[1] = merge(t[x].son[1], y), update(x);
         return x;
       } else {
-        t[y].ls = merge(x, t[y].ls), update(y);
+        t[y].son[0] = merge(x, t[y].son[0]), update(y);
         return y;
       }
     } else return x + y;
