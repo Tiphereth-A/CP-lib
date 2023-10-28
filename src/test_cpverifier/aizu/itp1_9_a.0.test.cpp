@@ -12,6 +12,6 @@ int main() {
       if (isalpha(c)) c = (char)tolower(c);
     (s += _) += ' ';
   }
-  std::cout << tifa_libs::str::kmp(p, s).size() << '\n';
+  std::cout << tifa_libs::str::kmp(' ' + p + ' ', ' ' + s + ' ').size() << '\n';
   return 0;
 }
