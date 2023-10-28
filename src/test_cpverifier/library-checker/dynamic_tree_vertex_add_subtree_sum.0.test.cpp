@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum"
+#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum/"
 
 #include "../../code/ds/link_cut_tree.hpp"
 
@@ -22,7 +22,7 @@ int main() {
       std::cin >> p >> q;
       lct.cut(u, v), lct.link(p, q);
     } else if (opt == 1) lct.node_add(u, v);
-    else std::cout << lct.query_path(u, v) << '\n';
+    else std::cout << lct.query_subtree(u, v).first << '\n';
   }
   return 0;
 }
