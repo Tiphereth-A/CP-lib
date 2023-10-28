@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_GRAPH_DIJKSTRA
 #define TIFA_LIBS_GRAPH_DIJKSTRA
 
+#include "../util/traits.hpp"
 #include "adjlist.hpp"
 
 namespace tifa_libs::graph {
@@ -8,6 +9,7 @@ namespace tifa_libs::graph {
 // cb_relax(now, to)
 template <class W, class F>
 vec<W> dijkstra(adjlist<W> const &g, u32 s, F cb_relax, W INF = std::numeric_limits<W>::max() / 2 - 1) {
+  static_assert(is_uint<W>::value);
   vec<W> dis(g.v_size(), INF);
   vec<bool> vis(g.v_size());
   pqg<std::pair<W, u32>> q;

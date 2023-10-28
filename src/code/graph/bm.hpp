@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_GRAPH_BM
 #define TIFA_LIBS_GRAPH_BM
 
+#include "../util/traits.hpp"
 #include "adjlist.hpp"
 
 namespace tifa_libs::graph {
@@ -8,7 +9,7 @@ namespace tifa_libs::graph {
 // cb_relax(now, to)
 template <class W, class F>
 std::optional<vec<W>> bellman_ford(adjlist<W> const &g, u32 s, F cb_relax, W INF = std::numeric_limits<W>::max() / 2 - 1) {
-  static_assert(!std::is_unsigned_v<W>, "Use Dijkstra's algorithm with non-negative weight graph");
+  static_assert(is_sint<W>::value);
   vec<W> dis(g.v_size(), INF);
   vec<bool> vis(g.v_size());
   vec<u32> dep(g.v_size());
