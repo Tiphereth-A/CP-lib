@@ -17,7 +17,7 @@ inline mint ball_box_ddl(u64, u64 box, vec<u64> const& pows, Binom const& binom)
   return ans;
 }
 template <class mint>
-inline mint ball_box_ddl(u64 ball, u64 box, Binom const& binom) { return ball_box_ddl(ball, box, pows_mod_gen(box + 1, ball, mint::mod()), binom); }
+inline mint ball_box_ddl(u64 ball, u64 box, Binom const& binom) { return ball_box_ddl<mint>(ball, box, pows_mod_gen(box + 1, ball, mint::mod()), binom); }
 
 }  // namespace tifa_libs::math
 

@@ -12,6 +12,6 @@ int main() {
   std::cin >> nv;
   u32 i, j;
   std::cin >> i >> j;
-  std::cout << nv[i][j];
+  std::cout << nv[i][j] << '\n';
   return 0;
 }
