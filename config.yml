@@ -217,6 +217,9 @@ notebook:
     - fhq_treap_w: 维护区间操作的非旋treap
       code_ext: hpp
       test_ext: cpp
+    - link_cut_tree: 动态树（LCT）
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - area_cc: area_cc
       code_ext: hpp
