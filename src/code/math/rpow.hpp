@@ -10,10 +10,11 @@ class rpow {
   u64 b_, m_;
 
  public:
-  explicit rpow() : b0(65536), b1(65536) {}
+  explicit rpow() : b0(65536), b1(65536), b_(), m_() {}
   rpow(u64 base_, u32 mod_) : rpow() { reset(base_, mod_); }
 
   void reset(u64 base, u64 mod) {
+    if (b_ == base && m_ == mod) return;
     b_ = base % mod;
     m_ = mod;
     b0[0] = b1[0] = 1;

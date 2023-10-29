@@ -13,7 +13,8 @@ class poly {
   using value_type = typename Pldt::value_type;
   using data_type = vec<value_type>;
 
-  explicit constexpr poly(usz sz = 1) : p(sz) {}
+  explicit constexpr poly(usz sz = 1, value_type const &val = value_type{}) : p(sz, val) {}
+  constexpr poly(typename data_type::const_iterator begin, typename data_type::const_iterator end) : p(begin, end) {}
   explicit constexpr poly(std::initializer_list<value_type> v) : p(v) {}
   template <class T>
   explicit constexpr poly(vec<T> const &v) : p(v) {}

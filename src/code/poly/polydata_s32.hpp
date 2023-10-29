@@ -15,7 +15,8 @@ struct polydata_s32 {
 
   vec<mint> d;
 
-  explicit constexpr polydata_s32(usz sz = 1) : d(sz) {}
+  explicit constexpr polydata_s32(usz sz = 1, value_type const &val = value_type{}) : d(sz, val) {}
+  constexpr polydata_s32(typename vec<mint>::const_iterator begin, typename vec<mint>::const_iterator end) : d(begin, end) {}
   explicit constexpr polydata_s32(std::initializer_list<mint> v) : d(v) {}
   explicit constexpr polydata_s32(vec<mint> const &v) : d(v) {}
 
