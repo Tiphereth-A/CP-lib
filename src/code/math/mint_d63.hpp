@@ -48,6 +48,7 @@ class mint_d63 {
     return res + (MOD & -(res >> 63));
   }
   i64 sval() const { return val(); }
+  constexpr u64 &data() { return v_; }
   bool is_zero() const { return v_ == 0; }
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit operator T() const { return (T)(val()); }
@@ -78,16 +79,6 @@ class mint_d63 {
   }
   mint_d63 &operator/=(const mint_d63 &rhs) {
     return operator*=(rhs.inv());
-  }
-  mint_d63 pow(u64 e) const {
-    for (mint_d63 res(1), x(*this);; x *= x) {
-      if (e & 1) res *= x;
-      if ((e >>= 1) == 0) return res;
-    }
-  }
-  void swap(mint_d63 &rhs) {
-    auto v = v_;
-    v_ = rhs.v_, rhs.v_ = v;
   }
   friend mint_d63 operator+(const mint_d63 &lhs, const mint_d63 &rhs) { return mint_d63(lhs) += rhs; }
   friend mint_d63 operator-(const mint_d63 &lhs, const mint_d63 &rhs) { return mint_d63(lhs) -= rhs; }

@@ -1124,6 +1124,9 @@ notebook:
     - u32tostrhex: u32 转 16 进制字符串
       code_ext: hpp
       test_ext: cpp
+    - montgomery_simd: SIMD Montgomery 乘法
+      code_ext: hpp
+      test_ext: cpp
 cheatsheets:
   nt-const: 初等数论常数表
   seqences: 常见数列

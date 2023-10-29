@@ -14,7 +14,9 @@ class mint_s30 {
     iv *= t - MOD * iv, iv *= t - MOD * iv;
     return iv * (MOD * iv - t);
   }
-  static constexpr u32 redc(u64 x) { return (u32)((x + (u64)((u32)(x)*R) * MOD) >> 32); }
+
+ public:
+  static constexpr u32 reduce(u64 x) { return (u32)((x + (u64)((u32)(x)*R) * MOD) >> 32); }
   static constexpr u32 norm(u32 x) { return x - (MOD & -((MOD - 1 - x) >> 31)); }
 
   static constexpr u32 MOD2 = MOD << 1;
@@ -27,14 +29,14 @@ class mint_s30 {
   static_assert((MOD >> 30) == 0);
   static_assert(MOD != 1);
 
- public:
   static constexpr u32 mod() { return MOD; }
   static constexpr i32 smod() { return SMOD; }
   constexpr mint_s30() {}
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
-  constexpr mint_s30(T v) : v_(redc((u64)(v % SMOD + SMOD) * R2)) {}
-  constexpr u32 val() const { return norm(redc(v_)); }
-  constexpr i32 sval() const { return (i32)norm(redc(v_)); }
+  constexpr mint_s30(T v) : v_(reduce((u64)(v % SMOD + SMOD) * R2)) {}
+  constexpr u32 val() const { return norm(reduce(v_)); }
+  constexpr i32 sval() const { return (i32)norm(reduce(v_)); }
+  constexpr u32 &data() { return v_; }
   constexpr bool is_zero() const { return v_ == 0 || v_ == MOD; }
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit constexpr operator T() const { return (T)(val()); }
@@ -60,20 +62,10 @@ class mint_s30 {
     return *this;
   }
   constexpr mint_s30 &operator*=(const mint_s30 &rhs) {
-    v_ = redc((u64)(v_)*rhs.v_);
+    v_ = reduce((u64)(v_)*rhs.v_);
     return *this;
   }
   constexpr mint_s30 &operator/=(const mint_s30 &rhs) { return operator*=(rhs.inv()); }
-  constexpr mint_s30 pow(u64 e) const {
-    for (mint_s30 res(1), x(*this);; x *= x) {
-      if (e & 1) res *= x;
-      if ((e >>= 1) == 0) return res;
-    }
-  }
-  constexpr void swap(mint_s30 &rhs) {
-    auto v = v_;
-    v_ = rhs.v_, rhs.v_ = v;
-  }
   friend constexpr mint_s30 operator+(const mint_s30 &lhs, const mint_s30 &rhs) { return mint_s30(lhs) += rhs; }
   friend constexpr mint_s30 operator-(const mint_s30 &lhs, const mint_s30 &rhs) { return mint_s30(lhs) -= rhs; }
   friend constexpr mint_s30 operator*(const mint_s30 &lhs, const mint_s30 &rhs) { return mint_s30(lhs) *= rhs; }

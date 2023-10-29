@@ -42,6 +42,7 @@ class mint_d31 {
     return ((h - v_) * R & MASK) * MOD_ODD + h;
   }
   i32 sval() const { return (i32)val(); }
+  constexpr u32 &data() { return v_; }
   bool is_zero() const { return v_ == 0; }
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit operator T() const { return (T)(val()); }
@@ -74,16 +75,6 @@ class mint_d31 {
     return *this;
   }
   mint_d31 &operator/=(const mint_d31 &rhs) { return operator*=(rhs.inv()); }
-  mint_d31 pow(u64 e) const {
-    for (mint_d31 res(1), x(*this);; x *= x) {
-      if (e & 1) res *= x;
-      if ((e >>= 1) == 0) return res;
-    }
-  }
-  void swap(mint_d31 &rhs) {
-    auto v = v_;
-    v_ = rhs.v_, rhs.v_ = v;
-  }
   friend mint_d31 operator+(const mint_d31 &lhs, const mint_d31 &rhs) { return mint_d31(lhs) += rhs; }
   friend mint_d31 operator-(const mint_d31 &lhs, const mint_d31 &rhs) { return mint_d31(lhs) -= rhs; }
   friend mint_d31 operator*(const mint_d31 &lhs, const mint_d31 &rhs) { return mint_d31(lhs) *= rhs; }

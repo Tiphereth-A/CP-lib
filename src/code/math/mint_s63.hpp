@@ -20,16 +20,19 @@ class mint_s63 {
       if ((iv *= 2) >= MOD) iv -= MOD;
     return iv;
   }
+
   static constexpr u64 mul_high(u64 x, u64 y) {
     u64 a = x >> 32, b = (u32)(x), c = y >> 32, d = (u32)(y), ad = a * d, bc = b * c;
     return a * c + (ad >> 32) + (bc >> 32) + (((ad & 0xFFFFFFFF) + (bc & 0xFFFFFFFF) + (b * d >> 32)) >> 32);
   }
+
   static constexpr u64 redc_mul(u64 x, u64 y) {
     u64 res = mul_high(x, y) - mul_high(x * y * R, MOD);
     return res + (MOD & -(res >> 63));
   }
   static constexpr u64 norm(i64 x) { return (u64)x + (MOD & -(x < 0)); }
 
+ public:
   static constexpr u64 R = get_r();
   static constexpr u64 R2 = get_r2();
   static constexpr i64 SMOD = (i64)(MOD);
@@ -39,7 +42,6 @@ class mint_s63 {
   static_assert((MOD >> 63) == 0);
   static_assert(MOD != 1);
 
- public:
   static constexpr u64 mod() { return MOD; }
   static constexpr i64 smod() { return SMOD; }
   constexpr mint_s63() {}
@@ -50,6 +52,7 @@ class mint_s63 {
     return res + (MOD & -(res >> 63));
   }
   constexpr i64 sval() const { return val(); }
+  constexpr u64 &data() { return v_; }
   constexpr bool is_zero() const { return v_ == 0; }
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit constexpr operator T() const { return (T)(val()); }
@@ -79,16 +82,6 @@ class mint_s63 {
     return *this;
   }
   constexpr mint_s63 &operator/=(const mint_s63 &rhs) { return operator*=(rhs.inv()); }
-  constexpr mint_s63 pow(u64 e) const {
-    for (mint_s63 res(1), x(*this);; x *= x) {
-      if (e & 1) res *= x;
-      if ((e >>= 1) == 0) return res;
-    }
-  }
-  constexpr void swap(mint_s63 &rhs) {
-    auto v = v_;
-    v_ = rhs.v_, rhs.v_ = v;
-  }
   friend constexpr mint_s63 operator+(const mint_s63 &lhs, const mint_s63 &rhs) { return mint_s63(lhs) += rhs; }
   friend constexpr mint_s63 operator-(const mint_s63 &lhs, const mint_s63 &rhs) { return mint_s63(lhs) -= rhs; }
   friend constexpr mint_s63 operator*(const mint_s63 &lhs, const mint_s63 &rhs) { return mint_s63(lhs) *= rhs; }
