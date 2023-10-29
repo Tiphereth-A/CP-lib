@@ -197,3 +197,16 @@
 \begin{equation}
     \mathrm{e}(\mathrm{e}+\pi)^\mathrm{e}(2e + \pi)^\mathrm{e}+\frac{\mathrm{e}}{(\pi^\mathrm{e}-\mathrm{e})(\mathrm{e}+\mathrm{e}^\pi-\pi^\mathrm{e})}\approx 114514.1919810
 \end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        \sum_{i=0}^n(a+di)r^i & =\begin{cases}
+                                     na+\dfrac{n(n-1)}{2}d,                                        & r=1    \\
+                                     \dfrac{a(1-r^n)-(n-1)r^nd}{1-r}+\dfrac{1-r^{n-1}}{(1-r)^2}rd, & r\ne 1 \\
+                                 \end{cases} \\
+                              & \to\begin{cases}
+                                       \infty,                             & |r|\geq 1 \\
+                                       \dfrac{a}{1-r}+\dfrac{rd}{(1-r)^2}, & |r|<1
+                                   \end{cases}\qquad(n\to+\infty)
+    \end{aligned}
+\end{equation}
