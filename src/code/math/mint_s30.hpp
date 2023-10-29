@@ -37,6 +37,7 @@ class mint_s30 {
   constexpr u32 val() const { return norm(reduce(v_)); }
   constexpr i32 sval() const { return (i32)norm(reduce(v_)); }
   constexpr u32 &data() { return v_; }
+  constexpr u32 data() const { return v_; }
   constexpr bool is_zero() const { return v_ == 0 || v_ == MOD; }
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit constexpr operator T() const { return (T)(val()); }
