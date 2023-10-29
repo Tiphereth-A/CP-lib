@@ -1,0 +1,20 @@
+考虑直线 \(s=\frac{px+r}{q},~x\in (0,l]\), 以及所有的竖线 \(x=k,~k\in\mathbf{Z}\) 与横线 \(y=h,~h\in\mathbf{Z}\)
+
+从左向右扫描直线 \(s\), 若遇到与横线的交点, 则执行操作 \(a\), 若遇到与竖线的交点, 则执行操作 \(b\), 若同时遇到横线与竖线的交点, 则先执行操作 \(a\) 再执行操作 \(b\)
+
+用 \(F(p,q,r,l,a,b)\) 表示上述操作的序列, 如 \(F(3,5,2,6,a,b)=abbabbabab\)
+
+则迭代方式如下:
+
+\begin{enumerate}
+    \item \(p\geq q\) 时, 令 \(b'=a^{p/q}b\), 则 \(F(p,q,r,l,a,b)=F(p\bmod q,q,r,l,a,b')\)
+    \item \(p<q\) 时, 交换 \(p,q\) 并回到上一步
+
+          注意到第 \(d\) 个 \(b\) 前有 \(\left\lfloor\frac{pd+r}{q}\right\rfloor\) 个 \(a\), 设第 \(\alpha\) 个 \(a\) 在第 \(\beta\) 个 \(b\) 之前, 则
+
+          \[
+              \beta > \left\lfloor\frac{p\alpha+r}{q}\right\rfloor \implies \alpha \leq \left\lfloor\frac{q\beta-r-1}{p}\right\rfloor
+          \]
+
+          即第 \(\beta\) 个 \(b\) 之前有 \(\left\lfloor\frac{q\beta-r-1}{p}\right\rfloor\) 个 \(a\)
+\end{enumerate}

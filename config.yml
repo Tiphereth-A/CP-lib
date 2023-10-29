@@ -817,6 +817,9 @@ notebook:
     - bsgs_nimber: Nimber BSGS
       code_ext: hpp
       test_ext: cpp
+    - exeuclid: 类 Euclid 算法
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: 矩阵
       code_ext: hpp
