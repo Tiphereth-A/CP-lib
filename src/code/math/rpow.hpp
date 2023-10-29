@@ -33,7 +33,7 @@ class rpow {
   constexpr u64 base() const { return b_; }
   constexpr u64 mod() const { return m_; }
 
-  u64 operator()(u32 x) const { return mul_mod_u(b0[x & 0xff], b1[x >> 16], m_); }
+  u64 operator()(u32 x) const { return mul_mod_u(b0[x & 65535], b1[x >> 16], m_); }
 };
 
 }  // namespace tifa_libs::math
