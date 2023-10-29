@@ -14,8 +14,7 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   vec<u64> a(n), b(m);
-  for (auto &i : a) std::cin >> i;
-  for (auto &i : b) std::cin >> i;
+  std::cin >> a >> b;
   std::cout << tifa_libs::math::conv_3ntt<mint0, mint1, mint2>(a, b, 1000000007) << '\n';
   return 0;
 }

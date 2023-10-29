@@ -13,8 +13,7 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   vec<mint> a(n), b(m);
-  for (auto &i : a) std::cin >> i;
-  for (auto &i : b) std::cin >> i;
+  std::cin >> a >> b;
   std::cout << tifa_libs::math::conv_mtt<mint, long double>(a, b) << '\n';
   return 0;
 }

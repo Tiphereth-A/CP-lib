@@ -1,18 +1,20 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#include "../../code/conv/conv_ntt32.hpp"
+#include "../../code/conv/conv_czt.hpp"
 #include "../../code/math/mint_s30.hpp"
-#include "../../code/util/ios_container.hpp"
+#include "../../code/poly/polydata_s32.hpp"
 
 using mint = tifa_libs::math::mint_s30<998244353>;
+using polyd = tifa_libs::math::polydata_s32<mint>;
+using poly = tifa_libs::math::poly<polyd>;
 
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
-  vec<mint> a(n), b(m);
+  poly a(n), b(m);
   std::cin >> a >> b;
-  std::cout << tifa_libs::math::conv_ntt32(a, b) << '\n';
+  std::cout << tifa_libs::math::conv_czt(a, b) << '\n';
   return 0;
 }

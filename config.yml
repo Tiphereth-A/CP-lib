@@ -954,6 +954,9 @@ notebook:
     - conv_lcm: 卷积（LCM）
       code_ext: hpp
       test_ext: cpp
+    - conv_czt: 卷积（Chirp-Z 变换）
+      code_ext: hpp
+      test_ext: cpp
     poly:
     - polydata_d: 多项式数据类（基于 MTT）
       code_ext: hpp
