@@ -18,7 +18,7 @@ inline vec<mint> conv_ntt(vec<mint> l, vec<mint> r, usz ans_size) {
   return l;
 }
 template <class mint>
-inline vec<mint> conv_ntt(vec<mint> const &l, vec<mint> const &r) { return conv_ntt<mint>(l, r, l.size() + r.size() - 1); }
+inline vec<mint> conv_ntt(vec<mint> const &l, vec<mint> const &r) { return conv_ntt(l, r, l.size() + r.size() - 1); }
 
 template <class mint, class T = u64>
 inline vec<mint> conv_ntt(vec<T> const &l, vec<T> const &r, usz ans_size) {
