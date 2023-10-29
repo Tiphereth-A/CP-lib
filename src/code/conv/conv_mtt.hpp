@@ -22,7 +22,7 @@ inline vec<mint> conv_mtt(vec<mint> const &l, vec<mint> const &r, usz ans_size) 
     for (auto &i : ans) i *= r[0];
     return ans;
   }
-  fft.bzr(std::min(l.size() + r.size() - 1, ans_size));
+  fft.bzr(std::max({l.size(), r.size(), std::min(l.size() + r.size() - 1, ans_size)}));
   usz n = fft.size();
   const int OFS = ((int)sizeof(decltype(mint::mod())) * 8 - bit::cntl0(mint::mod() - 1) + 1) / 2;
   const u32 MSK = ((1u << OFS) - 1);

@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 template <class mint>
 inline vec<mint> conv_ntt32(vec<mint> l, vec<mint> r, usz ans_size) {
   static NTT32<mint> ntt;
-  ntt.bzr(std::min(l.size() + r.size() - 1, ans_size));
+  ntt.bzr(std::max({l.size(), r.size(), std::min(l.size() + r.size() - 1, ans_size)}));
   ntt.dif(l);
   ntt.dif(r);
   for (usz i = 0; i < ntt.size(); ++i) l[i] *= r[i];

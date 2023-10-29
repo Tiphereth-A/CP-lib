@@ -18,18 +18,19 @@ inline poly<T> poly_czt(poly<T> f, mint c, mint a = 1, u64 m = (u64)-1) {
   }
   if (c == 0) {
     poly<T> ans(m, f[0]);
-    for (u64 i = 1; i < n; ++i) ans[0] += f[i];
+    ans[0] = std::reduce(f.data().begin(), f.data().end(), mint{});
     return ans;
   }
-  poly<T> wc(m + n), iwc(std::max(m, n));
-  mint ws = 1, iW = c.inv(), iws = 1;
-  wc[0] = iwc[0] = 1;
-  for (u64 i = 1; i < m + n; ++i) wc[i] = ws * wc[i - 1], ws *= c;
-  for (u64 i = 1; i < std::max(m, n); ++i) iwc[i] = iws * iwc[i - 1], iws *= iW;
-  for (u64 i = 0; i < n; ++i) f[i] *= iwc[i];
+  poly<T> cc(m + n), icc(std::max(m, n));
+  mint ic = c.inv(), cs = 1, ics = 1;
+  cc[0] = icc[0] = 1;
+  for (u64 i = 1; i < m + n; ++i) cc[i] = cs * cc[i - 1], cs *= c;
+  for (u64 i = 1; i < std::max(m, n); ++i) icc[i] = ics * icc[i - 1], ics *= ic;
+  for (u64 i = 0; i < n; ++i) f[i] *= icc[i];
   std::reverse(f.data().begin(), f.data().end());
-  poly<T> g = f * wc, ans(std::next(g.data().begin(), (isz)n - 1), std::next(g.data().begin(), isz(n + m) - 1));
-  for (u64 i = 0; i < m; ++i) ans[i] *= iwc[i];
+  f.conv(cc, n + m);
+  poly<T> ans(std::next(f.data().begin(), (isz)n - 1), std::next(f.data().begin(), isz(n + m) - 1));
+  for (u64 i = 0; i < m; ++i) ans[i] *= icc[i];
   return ans;
 }
 
