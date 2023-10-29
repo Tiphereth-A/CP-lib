@@ -41,10 +41,13 @@
 
 
 % Font setting
-\RequirePackage{fontspec}
+\RequirePackage{fontspec,unicode-math}
 \setmainfont{Noto Sans}
-\setsansfont{Fira Sans}
-\setmonofont{Fira Code}[Contextuals=Alternate]
+% \setsansfont{Fira Sans}
+\setmonofont[Contextuals=Alternate]{Fira Code}
+\setmathfont{CMU Serif}
+\setmathrm{CMU Serif}
+\setmathsf{CMU Sans Serif}
 \newfontfamily\cnfont{Noto Sans CJK SC}
 \setTransitionsForChinese{\cnfont}{}
 
