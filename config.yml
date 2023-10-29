@@ -607,6 +607,9 @@ notebook:
     - barrett: Barrett 模乘法
       code_ext: hpp
       test_ext: cpp
+    - montgomery: Montgomery 乘法（32 位）
+      code_ext: hpp
+      test_ext: cpp
     - bsgs: BSGS
       code_ext: hpp
       test_ext: cpp
@@ -1124,7 +1127,10 @@ notebook:
     - u32tostrhex: u32 转 16 进制字符串
       code_ext: hpp
       test_ext: cpp
-    - montgomery_simd: SIMD Montgomery 乘法
+    - montgomery_simd: Montgomery 乘法（32 位，SIMD）
+      code_ext: hpp
+      test_ext: cpp
+    - ntt_simd: NTT SIMD
       code_ext: hpp
       test_ext: cpp
 cheatsheets:
