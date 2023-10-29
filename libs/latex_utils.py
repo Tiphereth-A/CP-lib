@@ -82,4 +82,4 @@ def latex_section(name: NameLaTeX, **kwargs) -> list[str]:
 
 @withlog
 def latex_listing_code(path: PathLaTeX, code_style: str, **kwargs) -> list[str]:
-    return [rf'Path: \verb|{path.get()}|', '\n\n', __latex_command_('inputminted', code_style, path.get())]
+    return [rf'Path: \verb|{path.get()}|', '\n\n', __latex_command_('inputminted', code_style, path.get()), '\n']
