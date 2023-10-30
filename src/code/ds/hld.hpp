@@ -8,15 +8,20 @@ namespace tifa_libs::ds {
 
 // template <class T, T (*op)(T, T), T (*e)(), class F, T (*mapping)(F, T), F (*composition)(F, F), F (*id)()>
 template <class T, auto op, auto e, class F, auto mapping, auto composition, auto id>
-class heavy_chain_s {
+class hld {
   segtree<T, op, e, F, mapping, composition, id> t;
 
  public:
   graph::tree<void>& tr;
 
-  explicit heavy_chain_s(graph::tree<void>& tr) : t(), tr(tr) {
+  explicit hld(graph::tree<void>& tr) : t(), tr(tr) {
     tr.template reset_dfs_info<graph::s_dep | graph::s_fa>();
     tr.template reset_top<true>();
+  }  
+  explicit hld(graph::tree<void>& tr, const vec<T>& a) : t(), tr(tr) {
+    tr.template reset_dfs_info<graph::s_dep | graph::s_fa>();
+    tr.template reset_top<true>();
+    build(a);
   }
 
   void build(const vec<T>& a) { t = segtree<T, op, e, F, mapping, composition, id>(a); }
@@ -30,6 +35,16 @@ class heavy_chain_s {
   }
   void subtree_update(usz u, F f) { t.update(tr.dfn[u], tr.dfn[u] + tr.sz[u] - 1, f); }
   void node_update(usz u, F f) { t.update(tr.dfn[u], f); }
+  void chain_set(usz u, usz v, T f) {
+    while (tr.top[u] != tr.top[v]) {
+      if (tr.dep[tr.top[u]] < tr.dep[tr.top[v]]) std::swap(u, v);
+      t.set(tr.dfn[tr.top[u]], tr.dfn[u], f), u = tr.fa[tr.top[u]];
+    }
+    if (tr.dfn[u] < tr.dfn[v]) std::swap(u, v);
+    t.set(tr.dfn[v], tr.dfn[u], f);
+  }
+  void subtree_set(usz u, T f) { t.set(tr.dfn[u], tr.dfn[u] + tr.sz[u] - 1, f); }
+  void node_set(usz u, T f) { t.set(tr.dfn[u], f); }
   T chain_query(usz u, usz v) {
     T ret = e();
     while (tr.top[u] != tr.top[v]) {
