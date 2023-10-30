@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
+#define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
 #include "../../code/ds/segtree.hpp"
 #include "../../code/math/mint_s30.hpp"
@@ -19,7 +19,7 @@ auto composition(F f, F g) { return F(1, 0); }
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  usz n, q;
+  u32 n, q;
   std::cin >> n >> q;
   vec<T> a(n);
   for (auto& x : a) std::cin >> x.first >> x.second;
