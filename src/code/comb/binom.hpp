@@ -13,17 +13,23 @@ class Binom {
  public:
   const vec<u64> fact, ifact;
 
-  Binom(u64 mod, usz max_m) : m_(mod), fact(fact_mod_gen(max_m, mod)), ifact(ifact_mod_gen(max_m, mod)) {}
+  Binom(u64 mod, usz max_m, bool init_fact = true, bool init_ifact = true) : m_(mod), fact(init_fact ? fact_mod_gen(max_m, mod) : vec<u64>()), ifact(init_ifact ? ifact_mod_gen(max_m, mod) : vec<u64>()) {}
 
   constexpr u64 mod() const { return m_; }
 
   // \binom{m}{n}
-  u64 mCn(u64 m, u64 n) const { return m < n ? 0 : mul_mod_u(mul_mod_u(fact[(usz)m], ifact[(usz)n], m_), ifact[(usz)(m - n)], m_); }
+  u64 mCn(u64 m, u64 n) const {
+    assert(!fact.empty() && !ifact.empty());
+    return m < n ? 0 : mul_mod_u(mPn(m, n), ifact[(usz)n], m_);
+  }
   // \binom{m}{n}
   u64 mCn(i64 m, i64 n) const { return m < n || n < 0 ? 0 : mCn((u64)m, (u64)n); }
 
   // \binom{m}{n} * n!
-  u64 mPn(u64 m, u64 n) const { return m < n ? 0 : mul_mod_u(fact[(usz)m], ifact[(usz)(m - n)], m_); }
+  u64 mPn(u64 m, u64 n) const {
+    assert(!fact.empty() && !ifact.empty());
+    return m < n ? 0 : mul_mod_u(fact[(usz)m], ifact[(usz)(m - n)], m_);
+  }
   // \binom{m}{n} * n!
   u64 mPn(i64 m, i64 n) const { return m < n || n < 0 ? 0 : mPn((u64)m, (u64)n); }
 
