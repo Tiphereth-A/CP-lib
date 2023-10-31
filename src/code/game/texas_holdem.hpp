@@ -82,11 +82,10 @@ class th_hand {
   int mpc[5] = {};
 
  public:
-  th_hand() {}
+  th_hand() : cds(5) {}
   // Set first 5 element as hand
-  th_hand &reset(vec<th_card> const &cards) {
+  void reset(vec<th_card> const &cards) {
     assert(cards.size() >= 5);
-    cds.resize(5);
     std::copy(cards.begin(), cards.begin() + 5, cds.begin());
     for (auto &&card : cds) {
       auto r = card.get_rank(), s = card.get_suit();
@@ -94,7 +93,6 @@ class th_hand {
       ++cnt[r];
     }
     for (int r = 2; r < 15; ++r) mpc[cnt[r]] |= 1 << r;
-    return *this;
   }
   // Returns the best poker hand with the tie-breaker in [0, 2^20)
   std::pair<th_category, int> parse() const {
@@ -103,9 +101,17 @@ class th_hand {
       if (auto [valid, cat, ans] = func(*this); valid) return {cat, ans};
     exit(1);
   }
+
+  th_card &operator[](usz x) { return cds[x]; }
+  th_card operator[](usz x) const { return cds[x]; }
+
+  friend std::istream &operator>>(std::istream &is, th_hand &hands) {
+    for (usz i = 0; i < 5; ++i) is >> hands.cds[i];
+    return is;
+  }
   friend std::ostream &operator<<(std::ostream &os, th_hand const &hands) {
-    for (size_t i = 0; i < 5 - 1; ++i) os << hands.cds[i] << ' ';
-    return os << hands.cds[5 - 1];
+    for (usz i = 0; i < 4; ++i) os << hands.cds[i] << ' ';
+    return os << hands.cds[4];
   }
 
  private:
