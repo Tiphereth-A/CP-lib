@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/montmort_number_mod"
 
-#include "../../code/comb/derange_mod_gen.hpp"
+#include "../../code/comb/gen_derange.hpp"
 #include "../../code/util/ios_container.hpp"
 
 int main() {
@@ -8,6 +8,6 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
-  std::cout << tifa_libs::math::derange_mod_gen(n, m) << '\n';
+  std::cout << tifa_libs::math::gen_derange(n, m) << '\n';
   return 0;
 }

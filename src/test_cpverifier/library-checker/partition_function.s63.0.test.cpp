@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/partition_function"
 
-#include "../../code/comb/partition_gen.hpp"
+#include "../../code/comb/gen_partition.hpp"
 #include "../../code/math/mint_s63.hpp"
 #include "../../code/poly/polydata_s.hpp"
 
@@ -12,6 +12,6 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  std::cout << tifa_libs::math::partition_gen<polyd>(n);
+  std::cout << tifa_libs::math::gen_partition<polyd>(n);
   return 0;
 }

@@ -2,8 +2,8 @@
 #define TIFA_LIBS_MATH_BINOM
 
 #include "../math/mul_mod_u.hpp"
-#include "fact_mod_gen.hpp"
-#include "ifact_mod_gen.hpp"
+#include "gen_fact.hpp"
+#include "gen_ifact.hpp"
 
 namespace tifa_libs::math {
 
@@ -13,7 +13,7 @@ class Binom {
  public:
   const vec<u64> fact, ifact;
 
-  Binom(u64 mod, usz max_m, bool init_fact = true, bool init_ifact = true) : m_(mod), fact(init_fact ? fact_mod_gen(max_m, mod) : vec<u64>()), ifact(init_ifact ? ifact_mod_gen(max_m, mod) : vec<u64>()) {}
+  Binom(u64 mod, usz max_m, bool init_fact = true, bool init_ifact = true) : m_(mod), fact(init_fact ? gen_fact(max_m, mod) : vec<u64>()), ifact(init_ifact ? gen_ifact(max_m, mod) : vec<u64>()) {}
 
   constexpr u64 mod() const { return m_; }
 

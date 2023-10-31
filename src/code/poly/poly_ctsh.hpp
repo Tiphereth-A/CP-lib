@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_POLY_CTSH
 #define TIFALIBS_POLY_CTSH
 
-#include "../comb/ifact_mod_gen.hpp"
+#include "../comb/gen_ifact.hpp"
 #include "poly.hpp"
 
 namespace tifa_libs::math {
@@ -48,7 +48,7 @@ inline poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64> co
 template <class T>
 inline poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, usz m = 0) {
   usz n = f.size();
-  return poly_ctsh(f, c, ifact_mod_gen(n, T::value_type::mod()), m);
+  return poly_ctsh(f, c, gen_ifact(n, T::value_type::mod()), m);
 }
 
 }  // namespace tifa_libs::math

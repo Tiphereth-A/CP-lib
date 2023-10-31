@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind"
 
-#include "../../code/comb/stirling2_row_gen.hpp"
+#include "../../code/comb/gen_stirling2_row.hpp"
 #include "../../code/math/mint_s63.hpp"
 #include "../../code/poly/polydata_s.hpp"
 
@@ -12,6 +12,6 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  std::cout << tifa_libs::math::stirling2_row_gen<polyd>(n);
+  std::cout << tifa_libs::math::gen_stirling2_row<polyd>(n);
   return 0;
 }

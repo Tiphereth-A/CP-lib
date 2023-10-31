@@ -1,8 +1,8 @@
 #ifndef TIFALIBS_POLYSPS_COMP
 #define TIFALIBS_POLYSPS_COMP
 
-#include "../comb/fact_mod_gen.hpp"
-#include "../comb/ifact_mod_gen.hpp"
+#include "../comb/gen_fact.hpp"
+#include "../comb/gen_ifact.hpp"
 #include "../conv/conv_subset.hpp"
 #include "poly.hpp"
 #include "poly_tsh.hpp"
@@ -40,7 +40,7 @@ inline vec<typename T::value_type> polysps_comp(usz n, poly<T> f, vec<typename T
   return h[n][0];
 }
 template <class T, usz N = 21>
-inline auto polysps_comp(usz n, poly<T> const &f, vec<typename T::value_type> const &g) { return polysps_comp<T, N>(n, f, g, fact_mod_gen(f.size(), T::value_type::mod()), ifact_mod_gen(f.size(), T::value_type::mod())); }
+inline auto polysps_comp(usz n, poly<T> const &f, vec<typename T::value_type> const &g) { return polysps_comp<T, N>(n, f, g, gen_fact(f.size(), T::value_type::mod()), gen_ifact(f.size(), T::value_type::mod())); }
 
 }  // namespace tifa_libs::math
 

@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_MATH_LAGRANGE_INTERP0
 #define TIFA_LIBS_MATH_LAGRANGE_INTERP0
 
-#include "../comb/ifact_mod_gen.hpp"
+#include "../comb/gen_ifact.hpp"
 #include "mul_mod_s.hpp"
 #include "mul_mod_u.hpp"
 
@@ -28,7 +28,7 @@ inline i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod, vec<u64> const &i
   }
   return ans;
 }
-inline i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod) { return lagrange_interp0(v, x, mod, ifact_mod_gen((u32)v.size(), mod)); }
+inline i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod) { return lagrange_interp0(v, x, mod, gen_ifact((u32)v.size(), mod)); }
 
 }  // namespace tifa_libs::math
 

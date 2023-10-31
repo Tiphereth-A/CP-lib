@@ -531,43 +531,43 @@ notebook:
     - exlucas: Lucas 定理（任意模数）
       code_ext: hpp
       test_ext: cpp
-    - derange_mod_gen: 错排数序列
+    - gen_derange: 错排数序列
       code_ext: hpp
       test_ext: cpp
-    - stirling1_row_gen: 第一类 Stirling 数序列（行）
+    - gen_stirling1_row: 第一类 Stirling 数序列（行）
       code_ext: hpp
       test_ext: cpp
-    - stirling1_col_gen: 第一类 Stirling 数序列（列）
+    - gen_stirling1_col: 第一类 Stirling 数序列（列）
       code_ext: hpp
       test_ext: cpp
-    - stirling2_row_gen: 第二类 Stirling 数序列（行）
+    - gen_stirling2_row: 第二类 Stirling 数序列（行）
       code_ext: hpp
       test_ext: cpp
-    - stirling2_col_gen: 第二类 Stirling 数序列（列）
+    - gen_stirling2_col: 第二类 Stirling 数序列（列）
       code_ext: hpp
       test_ext: cpp
-    - bell_gen: Bell 数序列
+    - gen_bell: Bell 数序列
       code_ext: hpp
       test_ext: cpp
-    - partition_gen: 划分数序列
+    - gen_partition: 划分数序列
       code_ext: hpp
       test_ext: cpp
-    - fact_mod_gen: 阶乘模序列
+    - gen_fact: 阶乘模序列
       code_ext: hpp
       test_ext: cpp
-    - ifact_mod_gen: 阶乘逆模序列
+    - gen_ifact: 阶乘逆模序列
       code_ext: hpp
       test_ext: cpp
-    - inv_mod_gen: 逆元序列
+    - gen_inv: 逆元序列
       code_ext: hpp
       test_ext: cpp
-    - invseq_mod_gen: 序列逆元
+    - gen_invseq: 序列逆元
       code_ext: hpp
       test_ext: cpp
-    - pows_mod_gen: 幂次模序列
+    - gen_pows: 幂次模序列
       code_ext: hpp
       test_ext: cpp
-    - bernoulli_gen: Bernoulli 数序列
+    - gen_bernoulli: Bernoulli 数序列
       code_ext: hpp
       test_ext: cpp
     - stirling1_smallp: 第一类 Stirling 数（小模数）
@@ -576,7 +576,7 @@ notebook:
     - stirling2_smallp: 第二类 Stirling 数（小模数）
       code_ext: hpp
       test_ext: cpp
-    - ball_box_ii_gen: 球与盒（球全部相同，盒全部相同）序列
+    - gen_ball_box_ii: 球与盒（球全部相同，盒全部相同）序列
       code_ext: hpp
       test_ext: cpp
     - ball_box_dda: 球与盒（球互不相同，盒互不相同）

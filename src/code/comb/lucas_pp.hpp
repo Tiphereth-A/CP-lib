@@ -2,7 +2,7 @@
 #define TIFA_LIBS_MATH_LUCAS_PP
 
 #include "../math/qpow_mod.hpp"
-#include "invseq_mod_gen.hpp"
+#include "gen_invseq.hpp"
 
 namespace tifa_libs::math {
 
@@ -31,7 +31,7 @@ class LucasPP {
         facp[i + 1] = facp[i - 1] * (i + 1) % m_;
         ++i;
       } else facp[i] = facp[i - 1] * i % m_;
-    ifacp = invseq_mod_gen(facp, m_);
+    ifacp = gen_invseq(facp, m_);
   }
 
   constexpr u64 mod() const { return m_; }

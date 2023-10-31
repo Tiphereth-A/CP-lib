@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_POLYSP_POW
 #define TIFALIBS_POLYSP_POW
 
-#include "../comb/inv_mod_gen.hpp"
+#include "../comb/gen_inv.hpp"
 #include "../math/qpow.hpp"
 #include "poly_shl.hpp"
 #include "poly_shr.hpp"
@@ -37,7 +37,7 @@ inline poly<T> polysp_pow(poly<T> const& p, u64 y, vec<u64> const& inv, usz n = 
 template <class T>
 inline poly<T> polysp_pow(poly<T> const& p, u64 y, usz n = 0) {
   if (!n) n = p.size();
-  return polysp_pow(p, y, inv_mod_gen(n, T::value_type::mod()), n);
+  return polysp_pow(p, y, gen_inv(n, T::value_type::mod()), n);
 }
 
 }  // namespace tifa_libs::math

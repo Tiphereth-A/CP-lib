@@ -1,8 +1,8 @@
 #ifndef TIFALIBS_POLY_TSH
 #define TIFALIBS_POLY_TSH
 
-#include "../comb/fact_mod_gen.hpp"
-#include "../comb/ifact_mod_gen.hpp"
+#include "../comb/gen_fact.hpp"
+#include "../comb/gen_ifact.hpp"
 #include "poly.hpp"
 
 namespace tifa_libs::math {
@@ -25,7 +25,7 @@ template <class T>
 inline poly<T> poly_tsh(poly<T> const &f, typename T::value_type c) {
   usz n = f.size();
   if (n == 1) return f;
-  return poly_tsh(f, c, fact_mod_gen(n, T::value_type::mod()), ifact_mod_gen(n, T::value_type::mod()));
+  return poly_tsh(f, c, gen_fact(n, T::value_type::mod()), gen_ifact(n, T::value_type::mod()));
 }
 
 }  // namespace tifa_libs::math

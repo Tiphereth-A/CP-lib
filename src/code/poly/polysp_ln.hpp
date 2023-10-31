@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_POLYSP_LN
 #define TIFALIBS_POLYSP_LN
 
-#include "../comb/inv_mod_gen.hpp"
+#include "../comb/gen_inv.hpp"
 #include "polysp.hpp"
 
 namespace tifa_libs::math {
@@ -26,7 +26,7 @@ inline poly<T> polysp_ln(poly<T> const& p, vec<u64> const& inv, usz n = 0) {
 template <class T>
 inline poly<T> polysp_ln(poly<T> const& p, usz n = 0) {
   if (!n) n = p.size();
-  return polysp_ln(p, inv_mod_gen(n, T::value_type::mod()), n);
+  return polysp_ln(p, gen_inv(n, T::value_type::mod()), n);
 }
 
 }  // namespace tifa_libs::math
