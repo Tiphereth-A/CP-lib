@@ -1106,6 +1106,9 @@ notebook:
     - aho_corasick_automaton: ac自动机
       code_ext: hpp
       test_ext: cpp
+    - lyndon: Lyndon 分解
+      code_ext: hpp
+      test_ext: cpp
     rand:
     - gen: 随机数生成辅助类
       code_ext: hpp
