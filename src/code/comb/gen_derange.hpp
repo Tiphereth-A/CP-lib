@@ -16,6 +16,13 @@ inline vec<u64> gen_derange(u32 n, u64 mod) {
   for (u32 i = 2; i < n; ++i) d.push_back(mul_mod_u(i, d[i - 1] + d[i - 2], mod));
   return d;
 }
+template <class mint>
+inline vec<mint> gen_derange(u32 n) {
+  vec<mint> d(n);
+  auto _ = gen_derange(n, mint::mod());
+  for (u32 i = 0; i < n; ++i) d[i] = _[i];
+  return d;
+}
 
 }  // namespace tifa_libs::math
 

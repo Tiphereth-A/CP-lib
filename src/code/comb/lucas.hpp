@@ -5,20 +5,18 @@
 
 namespace tifa_libs::math {
 
+template <class mint>
 class Lucas {
-  Binom mCn;
+  Binom<mint> mCn;
 
-  u64 lucas__(const Binom &mCn, u64 m, u64 n) const {
-    const u64 m_ = mod();
-    return n == 0 ? 1 : mCn.mCn(m % m_, n % m_) * lucas__(mCn, m / m_, n / m_) % m_;
-  }
+  mint lucas__(u64 m, u64 n) const { return n == 0 ? 1 : mCn.mCn(m % mod(), n % mod()) * lucas__(m / mod(), n / mod()); }
 
  public:
   // @param p MUSU be prime
-  explicit Lucas(u32 p) : mCn(p, p) { assert(p > 1 && p < 10'000'000); }
+  explicit Lucas() : mCn(mint::mod()) { assert(mint::mod() > 1 && mint::mod() < 10'000'000); }
 
-  constexpr u64 mod() const { return mCn.mod(); }
-  u64 operator()(i64 m, i64 n) const { return m < n || n < 0 ? 0 : lucas__(mCn, (u64)m, (u64)n); }
+  constexpr static u64 mod() { return mint::mod(); }
+  mint operator()(i64 m, i64 n) const { return m < n || n < 0 ? 0 : lucas__(mCn, (u64)m, (u64)n); }
 };
 
 }  // namespace tifa_libs::math

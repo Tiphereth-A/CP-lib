@@ -5,13 +5,15 @@
 
 namespace tifa_libs::math {
 
+template <class mint>
 class Stirling1 {
-  Lucas mCn;
-  vvec<u32> s;
+  Lucas<mint> mCn;
+  vvec<mint> s;
 
  public:
   //! @param p MUST be prime
-  explicit Stirling1(u32 p) : mCn(p), s(p) {
+  explicit Stirling1() : mCn(), s(mint::mod()) {
+    u32 p = mint::mod();
     assert(p < 32768);
     s[0] = {1};
     for (u32 i = 1; i < p; ++i) {
@@ -19,14 +21,13 @@ class Stirling1 {
       for (u32 j = 0; j <= i; ++j) {
         if (j) s[i][j] += s[i - 1][j - 1];
         if (j < i) s[i][j] += s[i - 1][j] * (p - i + 1);
-        s[i][j] %= p;
       }
     }
   }
 
-  constexpr u32 mod() const { return (u32)mCn.mod(); }
+  constexpr static u32 mod() { return mint::mod(); }
   template <bool with_sgn = true>
-  u32 operator()(i64 m_, i64 n_) const {
+  mint operator()(i64 m_, i64 n_) const {
     if (n_ < 0 || n_ > m_) return 0;
     u32 p = mod();
     u64 m = (u64)m_, n = (u64)n_;

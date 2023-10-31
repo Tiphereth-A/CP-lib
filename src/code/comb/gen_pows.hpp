@@ -15,6 +15,14 @@ inline vec<u64> gen_pows(u32 n, u64 b, u64 mod) {
   for (u32 i = 2; i < n; ++i) ans[i] = qpow_mod(i, b, mod);
   return ans;
 }
+// i^{b} from i=0..n-1
+template <class mint>
+inline vec<mint> gen_pows(u32 n, u64 b) {
+  vec<mint> ans(n);
+  auto _ = gen_pows(n, b, mint::mod());
+  for (u32 i = 0; i < n; ++i) ans[i] = _[i];
+  return ans;
+}
 
 }  // namespace tifa_libs::math
 

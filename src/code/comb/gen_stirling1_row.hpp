@@ -11,13 +11,13 @@
 namespace tifa_libs::math {
 
 // stirling1[i] = {n \\brace i}, i=0,1,...,n
-template <class T, bool with_sgn = true>
-inline poly<T> gen_stirling1_row(u64 n, vec<u64> const& fact, vec<u64> const& ifact) {
+template <class T, bool with_sgn = true, class mint = typename T::value_type>
+inline poly<T> gen_stirling1_row(u32 n, vec<mint> const& fact, vec<mint> const& ifact) {
   if (!n) return poly<T>{1};
   poly<T> f{0, 1};
   if (n == 1) return f;
-  for (int i = 62 - bit::cntl0(n); ~i; --i) {
-    u64 _ = n >> i;
+  for (int i = 30 - bit::cntl0(n); ~i; --i) {
+    u32 _ = n >> i;
     f *= poly_tsh(f, _ / 2, fact, ifact);
     f.resize(f.size() + 1);
     if (_ & 1) f = poly_shl(f, 1) + f * (_ - 1);
@@ -28,8 +28,8 @@ inline poly<T> gen_stirling1_row(u64 n, vec<u64> const& fact, vec<u64> const& if
   return f;
 }
 // stirling1[i] = {n \\brace i}, i=0,1,...,n
-template <class T, bool with_sgn = true>
-inline poly<T> gen_stirling1_row(u64 n) { return gen_stirling1_row<T, with_sgn>(n, gen_fact(n + 1, T::value_type::mod()), gen_ifact(n + 1, T::value_type::mod())); }
+template <class T, bool with_sgn = true, class mint = typename T::value_type>
+inline poly<T> gen_stirling1_row(u32 n) { return gen_stirling1_row<T, with_sgn, mint>(n, gen_fact<mint>(n + 1), gen_ifact<mint>(n + 1)); }
 
 }  // namespace tifa_libs::math
 
