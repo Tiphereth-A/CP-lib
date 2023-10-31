@@ -20,7 +20,7 @@ int main() {
   for (auto& x : b) tifa_libs::fin >> x;
   tifa_libs::graph::tree tr_(n);
   for (usz i = 1, p; i < n; ++i) tifa_libs::fin >> p, tr_.add_arc(p, i);
-  tifa_libs::ds::heavy_chain_s<T, op, e, F, mapping, composition, id> tr(tr_);
+  tifa_libs::ds::hld<T, op, e, F, mapping, composition, id> tr(tr_);
   for (usz i = 0; i < n; ++i) a[tr_.dfn[i]].first = b[i], a[tr_.dfn[i]].second = 1;
   tr.build(a);
   for (usz i = 0, opt, u; i < q; ++i) {

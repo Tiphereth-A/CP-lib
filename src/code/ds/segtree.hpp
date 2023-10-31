@@ -10,10 +10,15 @@ template <class T, auto op, auto e, class F, auto mapping, auto composition, aut
 class segtree {
   vec<T> t;
   vec<F> sign;
+  vec<bool> set_sign;
   usz n;
   void pushup(usz x) { t[x] = op(t[x << 1], t[x << 1 | 1]); }
   void all_update(usz x, F f) { t[x] = mapping(f, t[x]), sign[x] = composition(f, sign[x]); }
-  void pushdown(usz x) { all_update(x << 1, sign[x]), all_update(x << 1 | 1, sign[x]), sign[x] = id(); }
+  void all_set(usz x, T f) { t[x] = f, sign[x] = id(), set_sign[x] = 1; }
+  void pushdown(usz x) {
+    if(set_sign[x]) all_set(x << 1, t[x]), all_set(x << 1 | 1, t[x]), set_sign[x] = 0;
+    else all_update(x << 1, sign[x]), all_update(x << 1 | 1, sign[x]), sign[x] = id();
+  }
   void build(vec<T> const &a, usz x, usz l, usz r) {
     sign[x] = id();
     if (l == r) return void(t[x] = a[l]);
@@ -30,6 +35,15 @@ class segtree {
     if (R > mid) update(x << 1 | 1, mid + 1, r, L, R, f);
     pushup(x);
   }
+  void set(usz x, usz l, usz r, usz L, usz R, T f) {
+    assert(R >= l && L <= r);
+    if (L <= l && R >= r) return void(all_set(x, f));
+    pushdown(x);
+    usz mid = l + (r - l) / 2;
+    if (L <= mid) set(x << 1, l, mid, L, R, f);
+    if (R > mid) set(x << 1 | 1, mid + 1, r, L, R, f);
+    pushup(x);
+  }
   T query(usz x, usz l, usz r, usz L, usz R) {
     assert(R >= l && L <= r);
     if (L <= l && R >= r) return t[x];
@@ -42,12 +56,14 @@ class segtree {
   }
 
  public:
-  explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4), sign(a.size() * 4), n(a.size()) { build(a, 1, 0, n - 1); }
-  explicit constexpr segtree(usz N = 0) : t(N * 4), sign(N * 4), n(N) {
+  explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4), sign(a.size() * 4), set_sign(a.size() * 4), n(a.size()) { build(a, 1, 0, n - 1); }
+  explicit constexpr segtree(usz N = 0) : t(N * 4), sign(N * 4), set_sign(N * 4), n(N) {
     if (n) build(vec<T>(n, e()), 1, 0, n - 1);
   }
   void update(usz L, usz R, F f) { update(1, 0, n - 1, L, R, f); }
   void update(usz pos, F f) { update(1, 0, n - 1, pos, pos, f); }
+  void set(usz L, usz R, T f) { set(1, 0, n - 1, L, R, f); }
+  void set(usz pos, T f) { set(1, 0, n - 1, pos, pos, f); }
   T query(usz L, usz R) { return query(1, 0, n - 1, L, R); }
   T query(usz pos) { return query(1, 0, n - 1, pos, pos); }
 };
