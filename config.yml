@@ -826,6 +826,9 @@ notebook:
     - exeuclid: 类 Euclid 算法
       code_ext: hpp
       test_ext: cpp
+    - min_mod_linear: 模线性变换最小值
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: 矩阵
       code_ext: hpp
