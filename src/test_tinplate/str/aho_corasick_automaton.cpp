@@ -1,5 +1,3 @@
-//! WA
-
 #define PROBLEM "https://www.luogu.com.cn/problem/P5357"
 
 #include "../../code/str/aho_corasick_automaton.hpp"
