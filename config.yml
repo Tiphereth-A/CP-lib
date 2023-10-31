@@ -481,6 +481,12 @@ notebook:
     - tree_hash_rooted: 有根树 Hash
       code_ext: hpp
       test_ext: cpp
+    - prufer: Pr\"ufer 序列
+      code_ext: hpp
+      test_ext: cpp
+    - prufer_inv: Pr\"ufer 序列逆
+      code_ext: hpp
+      test_ext: cpp
     graph:
     - adjlist: 邻接表
       code_ext: hpp
