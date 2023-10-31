@@ -478,6 +478,9 @@ notebook:
     - virtual_tree: 虚树
       code_ext: hpp
       test_ext: cpp
+    - tree_hash_rooted: 有根树 Hash
+      code_ext: hpp
+      test_ext: cpp
     graph:
     - adjlist: 邻接表
       code_ext: hpp
