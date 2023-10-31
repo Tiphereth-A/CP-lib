@@ -1,5 +1,3 @@
-//! WA
-
 #define PROBLEM "https://www.luogu.com.cn/problem/P5357"
 
 #include "../../code/str/aho_corasick_automaton.hpp"
@@ -30,7 +28,7 @@ int main() {
     --in[v];
     if (!in[v]) q.push(v);
   }
-  for (auto x : ans) std::cout << x << ' ';
+  for (auto x : ans) std::cout << x << '\n';
   return 0;
 }
 

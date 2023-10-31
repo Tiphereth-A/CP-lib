@@ -1,5 +1,3 @@
-//! CE
-
 #define PROBLEM "https://www.luogu.com.cn/problem/P6139"
 
 #include "../../code/str/orthodox_ex_suffix_automaton.hpp"
