@@ -40,7 +40,7 @@ inline vec<typename T::value_type> polysps_comp(usz n, poly<T> f, vec<typename T
   return h[n][0];
 }
 template <class T, usz N = 21>
-inline auto polysps_comp(usz n, poly<T> const &f, vec<typename T::value_type> const &g) { return polysps_comp<T, N>(n, f, g, gen_fact(f.size(), T::value_type::mod()), gen_ifact(f.size(), T::value_type::mod())); }
+inline auto polysps_comp(usz n, poly<T> const &f, vec<typename T::value_type> const &g) { return polysps_comp<T, N>(n, f, g, gen_fact((u32)f.size() + 1, T::value_type::mod()), gen_ifact((u32)f.size() + 1, T::value_type::mod())); }
 
 }  // namespace tifa_libs::math
 
