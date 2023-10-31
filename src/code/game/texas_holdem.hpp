@@ -1,9 +1,9 @@
 #ifndef TIFA_LIBS_UTIL_TEXAS_HOLDEM
 #define TIFA_LIBS_UTIL_TEXAS_HOLDEM
 
-#include "util.hpp"
+#include "../util/util.hpp"
 
-namespace tifa_libs {
+namespace tifa_libs::game {
 
 namespace texas_holdem_impl_ {
 
@@ -26,9 +26,9 @@ class th_card {
  public:
   constexpr static char RANKS[16] = "0123456789TJQKA";
   constexpr static char SUITS[5] = "CDHS";
-  th_card() = default;
+  th_card() {}
   th_card(char rank, char suit) { encode(rank, suit); }
-  explicit th_card(const std::string &str) : th_card(str[0], str[1]) { assert(str.size() == 2); }
+  explicit th_card(std::string_view str) : th_card(str[0], str[1]) { assert(str.size() == 2); }
   // Parses a card in a format as "2C"
   // @return: 4 * (rank - 2) + suit  (2 <= rank <= 14)
   constexpr void encode(char rank, char suit) {
@@ -44,14 +44,14 @@ class th_card {
   constexpr int get_rank() const { return (data >> 2) + 2; }
   constexpr int get_suit() const { return data & 3; }
   // @return: {rank_char, suit_char}
-  constexpr std::pair<char, char> decode() const { return {RANKS[get_rank()], SUITS[get_suit()]}; }
+  constexpr ptt<char> decode() const { return {RANKS[get_rank()], SUITS[get_suit()]}; }
   friend std::istream &operator>>(std::istream &is, th_card &card) {
     char rk, st;
     is >> rk >> st;
     card.encode(rk, st);
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, const th_card &card) {
+  friend std::ostream &operator<<(std::ostream &os, th_card const &card) {
     auto &&_ = card.decode();
     return os << _.first << _.second;
   }
@@ -70,7 +70,7 @@ enum th_category {
 };
 
 class th_hand {
-  std::vector<th_card> cds;
+  vec<th_card> cds;
   // ranks for all
   int rka = 0;
   // suit -> rank
@@ -81,9 +81,9 @@ class th_hand {
   int mpc[5] = {};
 
  public:
-  th_hand() = default;
+  th_hand() {}
   // Set first 5 element as hand _
-  th_hand &reset(const std::vector<th_card> &_) {
+  th_hand &reset(vec<th_card> const &_) {
     assert(_.size() >= 5);
     cds.clear();
     for (size_t i = 0; i < 5; ++i) cds.push_back(_[i]);
@@ -99,21 +99,21 @@ class th_hand {
   std::pair<th_category, int> parse() const {
     assert(cds.size() == 5);
     //! The judger of all the categories
-    const static std::function<std::tuple<bool, th_category, int>(const th_hand &)> checks[8] = {
+    const static std::function<std::tuple<bool, th_category, int>(th_hand const &)> checks[8] = {
         // 8. STRAIGHT_FLUSH: highest (5 for A2345)
-        [](const th_hand &h) -> std::tuple<bool, th_category, int> {
+        [](th_hand const &h) -> std::tuple<bool, th_category, int> {
           int f = 0;
           for (int s = 0; s < 4; ++s) f |= h.mps[s] & h.mps[s] << 1 & h.mps[s] << 2 & h.mps[s] << 3 & (h.mps[s] << 4 | h.mps[s] >> 14 << 5);
           return {!!f, STRAIGHT_FLUSH, bsr(f)};
         },
         // 7. FOUR_OF_A_KIND: quadruple, other card
-        [](const th_hand &h) -> std::tuple<bool, th_category, int> {
+        [](th_hand const &h) -> std::tuple<bool, th_category, int> {
           if (!h.mpc[4]) return {false, FOUR_OF_A_KIND, 0};
           const int r4 = bsr(h.mpc[4]);
           return {true, FOUR_OF_A_KIND, r4 << 4 | bsr(h.rka ^ 1 << r4)};
         },
         // 6. FULL_HOUSE: triple, pair
-        [](const th_hand &h) -> std::tuple<bool, th_category, int> {
+        [](th_hand const &h) -> std::tuple<bool, th_category, int> {
           if (!h.mpc[3]) return {false, FULL_HOUSE, 0};
           const int r3 = bsr(h.mpc[3]), d = (h.mpc[3] ^ 1 << r3) | h.mpc[2];
           if (!d) return {false, FULL_HOUSE, 1};
@@ -121,26 +121,26 @@ class th_hand {
           return {true, FULL_HOUSE, r3 << 4 | r2};
         },
         // 5. FLUSH: 5 highest cards
-        [](const th_hand &h) -> std::tuple<bool, th_category, int> {
+        [](th_hand const &h) -> std::tuple<bool, th_category, int> {
           int flush = -1;
           for (int s = 0, _; s < 4; ++s)
             if (flush < (_ = hbits(h.mps[s], 5))) flush = _;
           return {flush >= 0, FLUSH, flush};
         },
         // 4. STRAIGHT: highest (5 for A2345)
-        [](const th_hand &h) -> std::tuple<bool, th_category, int> {
+        [](th_hand const &h) -> std::tuple<bool, th_category, int> {
           const int f = h.rka & h.rka << 1 & h.rka << 2 & h.rka << 3 & (h.rka << 4 | h.rka >> 14 << 5);
           return {!!f, STRAIGHT, bsr(f)};
         },
         // 3. THREE_OF_A_KIND: triple, 2 highest other cards
-        [](const th_hand &h) -> std::tuple<bool, th_category, int> {
+        [](th_hand const &h) -> std::tuple<bool, th_category, int> {
           if (!h.mpc[3]) return {false, THREE_OF_A_KIND, 0};
           const int r3 = bsr(h.mpc[3]);
           return {true, THREE_OF_A_KIND, r3 << 16 | hbits(h.rka ^ 1 << r3, 2)};
         },
         // 2. TWO_PAIR: larger pair, smaller pair, other card
         // 1. ONE_PAIR: pair, 3 highest other cards
-        [](const th_hand &h) -> std::tuple<bool, th_category, int> {
+        [](th_hand const &h) -> std::tuple<bool, th_category, int> {
           if (!h.mpc[2]) return {false, ONE_PAIR, 0};
           const int r2 = bsr(h.mpc[2]);
           const int d = h.mpc[2] ^ 1 << r2;
@@ -149,7 +149,7 @@ class th_hand {
           return {true, TWO_PAIR, r2 << 8 | r22 << 4 | bsr(h.rka ^ 1 << r2 ^ 1 << r22)};
         },
         // 0. HIGH_CARD: 5 highest cards
-        [](const th_hand &h) -> std::tuple<bool, th_category, int> { return {true, HIGH_CARD, hbits(h.rka, 5)}; }};
+        [](th_hand const &h) -> std::tuple<bool, th_category, int> { return {true, HIGH_CARD, hbits(h.rka, 5)}; }};
     for (auto &&func : checks) {
       auto ret = func(*this);
       if (std::get<0>(ret)) return {std::get<1>(ret), std::get<2>(ret)};
@@ -157,7 +157,7 @@ class th_hand {
     //? Should be never reached
     exit(114);
   }
-  friend std::ostream &operator<<(std::ostream &os, const th_hand &hands) {
+  friend std::ostream &operator<<(std::ostream &os, th_hand const &hands) {
     for (size_t i = 0; i < 5 - 1; ++i) os << hands.cds[i] << ' ';
     return os << hands.cds[5 - 1];
   }
@@ -167,6 +167,6 @@ class th_hand {
 
 using texas_holdem_impl_::th_category, texas_holdem_impl_::th_card, texas_holdem_impl_::th_hand;
 
-}  // namespace tifa_libs
+}  // namespace tifa_libs::game
 
 #endif

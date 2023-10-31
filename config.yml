@@ -107,9 +107,6 @@ notebook:
     - dlx: DLX
       code_ext: hpp
       test_ext: cpp
-    - texas_holdem: 德州扑克
-      code_ext: hpp
-      test_ext: cpp
     - enumerate: enumerate
       code_ext: hpp
       test_ext: cpp
@@ -1130,6 +1127,9 @@ notebook:
       test_ext: cpp
     game:
     - sudoku: 数独求解
+      code_ext: hpp
+      test_ext: cpp
+    - texas_holdem: 德州扑克
       code_ext: hpp
       test_ext: cpp
     fast:
