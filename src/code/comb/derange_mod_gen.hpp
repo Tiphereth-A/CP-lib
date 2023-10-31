@@ -5,15 +5,15 @@
 
 namespace tifa_libs::math {
 
-// (derangement) !i
-inline vec<u64> derange_mod_gen(usz sz, u64 mod) {
+// (derangement) !i for i=0..n-1
+inline vec<u64> derange_mod_gen(u32 n, u64 mod) {
   vec<u64> d{0, mod > 1};
-  if (sz > 2) d.reserve(sz);
+  if (n > 2) d.reserve(n);
   else {
-    d.resize(sz);
+    d.resize(n);
     return d;
   }
-  for (usz i = 2; i < sz; ++i) d.push_back(mul_mod_u(i, d[i - 1] + d[i - 2], mod));
+  for (u32 i = 2; i < n; ++i) d.push_back(mul_mod_u(i, d[i - 1] + d[i - 2], mod));
   return d;
 }
 

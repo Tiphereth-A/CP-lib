@@ -28,7 +28,7 @@ inline i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod, vec<u64> const &i
   }
   return ans;
 }
-inline i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod) { return lagrange_interp0(v, x, mod, ifact_mod_gen(v.size(), mod)); }
+inline i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod) { return lagrange_interp0(v, x, mod, ifact_mod_gen((u32)v.size(), mod)); }
 
 }  // namespace tifa_libs::math
 

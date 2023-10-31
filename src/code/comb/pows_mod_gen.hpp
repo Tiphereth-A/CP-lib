@@ -5,14 +5,14 @@
 
 namespace tifa_libs::math {
 
-// i^{n} from 0 to m
-inline vec<u64> pows_mod_gen(u64 sz, u64 n, u64 mod) {
-  vec<u64> ans(sz);
-  if (!sz) return {};
-  if (!n) ans[0] = 1;
-  if (sz == 1) return ans;
+// i^{b} from i=0..n-1
+inline vec<u64> pows_mod_gen(u32 n, u64 b, u64 mod) {
+  vec<u64> ans(n);
+  if (!n) return {};
+  if (!b) ans[0] = 1;
+  if (n == 1) return ans;
   ans[1] = 1;
-  for (usz i = 2; i < sz; ++i) ans[i] = qpow_mod(i, n, mod);
+  for (u32 i = 2; i < n; ++i) ans[i] = qpow_mod(i, b, mod);
   return ans;
 }
 

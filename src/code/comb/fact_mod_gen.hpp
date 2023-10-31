@@ -5,10 +5,11 @@
 
 namespace tifa_libs::math {
 
-// i!
-inline vec<u64> fact_mod_gen(usz sz, u64 mod) {
-  vec<u64> ans(sz, 1);
-  for (usz i = 2; i < sz; ++i) ans[i] = mul_mod_u(ans[i - 1], i, mod);
+// i! from i=0..n-1
+inline vec<u64> fact_mod_gen(u32 n, u64 mod) {
+  vec<u64> ans(n);
+  ans[0] = ans[1] = 1;
+  for (u32 i = 2; i < n; ++i) ans[i] = mul_mod_u(ans[i - 1], i, mod);
   return ans;
 }
 
