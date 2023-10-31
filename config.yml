@@ -178,6 +178,15 @@ notebook:
     - fenwick: 树状数组
       code_ext: hpp
       test_ext: cpp
+    - fenwick_rr: 树状数组（区间修改、区间查询）
+      code_ext: hpp
+      test_ext: cpp
+    - fenwick_2d: 二维树状数组
+      code_ext: hpp
+      test_ext: cpp
+    - fenwick_2d_rr: 二维树状数组（区间修改、区间查询）
+      code_ext: hpp
+      test_ext: cpp
     - dsu_basic: 并查集
       code_ext: hpp
       test_ext: cpp
@@ -221,9 +230,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - link_cut_tree: 动态树（LCT）
-      code_ext: hpp
-      test_ext: cpp
-    - fenwick_2d: 二维树状数组
       code_ext: hpp
       test_ext: cpp
     geo2d:
