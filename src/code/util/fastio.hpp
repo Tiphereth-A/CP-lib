@@ -188,7 +188,7 @@ class fastout {
       write('-');
       n = -n;
     }
-    return write(typename to_uint<T>::type(n));
+    return write(to_uint_t<T>(n));
   }
   template <class T, std::enable_if_t<is_uint<T>::value && !is_char<T>::value> * = nullptr>
   fastout &write(T n) {

@@ -36,7 +36,7 @@ template <class T>
 using is_uint = typename std::conditional_t<is_u128<T>::value || (is_int<T>::value && std::is_unsigned_v<T>), std::true_type, std::false_type>;
 
 template <class T>
-using to_uint = typename std::conditional_t<std::is_same_v<T, i128>, to_u128<T>, typename std::conditional_t<std::is_signed_v<T>, std::make_unsigned<T>, std::common_type<T>>>;
+using to_uint_t = typename std::conditional_t<std::is_same_v<T, i128>, to_u128<T>, typename std::conditional_t<std::is_signed_v<T>, std::make_unsigned<T>, std::common_type<T>>>::type;
 
 template <class T>
 using is_mint = typename std::conditional_t<is_uint<decltype(std::declval<remove_cvref_t<T>>().mod())>::value && is_uint<decltype(std::declval<remove_cvref_t<T>>().val())>::value && is_sint<decltype(std::declval<remove_cvref_t<T>>().sval())>::value, std::true_type, std::false_type>;
