@@ -40,9 +40,9 @@ class Stirling2 {
       else return 0;
     }
     if (j > b) return 0;
-    if (b < p - 1) return (u32)mul_mod_u(mCn((i64)a, (i64)i), S[b][j], p);
-    if (!j) return (u32)mCn((i64)a, (i64)i - 1);
-    return (u32)mul_mod_u(mCn((i64)a, (i64)i), S[p - 1][j], p);
+    if (b < p - 1) return mCn((i64)a, (i64)i) * S[b][j];
+    if (!j) return mCn((i64)a, (i64)i - 1);
+    return mCn((i64)a, (i64)i) * S[p - 1][j];
   }
 };
 
