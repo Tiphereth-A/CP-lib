@@ -521,6 +521,12 @@ notebook:
     - chrom_num: 点染色数
       code_ext: hpp
       test_ext: cpp
+    - ringenum3: 无向图三元环枚举
+      code_ext: hpp
+      test_ext: cpp
+    - ringcnt4: 无向图四元环计数
+      code_ext: hpp
+      test_ext: cpp
     comb:
     - binom: 组合数
       code_ext: hpp
