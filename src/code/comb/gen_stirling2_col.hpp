@@ -12,8 +12,8 @@ namespace tifa_libs::math {
 
 namespace gen_stirling2_col_impl_ {
 
-template <class T, class mint = typename T::value_type>
-void solve(poly<T>& f, u32 n, vec<mint> const& fact, vec<mint> const& ifact) {
+template <class T>
+void solve(poly<T>& f, u32 n, vec<u64> const& fact, vec<u64> const& ifact) {
   if (n == 1) return;
   if (n & 1) {
     solve(f, n - 1, fact, ifact);
@@ -31,8 +31,8 @@ void solve(poly<T>& f, u32 n, vec<mint> const& fact, vec<mint> const& ifact) {
 }  // namespace gen_stirling2_col_impl_
 
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
-template <class T, class mint = typename T::value_type>
-inline poly<T> gen_stirling2_col(u32 n, u32 k, vec<mint> const& fact, vec<mint> const& ifact) {
+template <class T>
+inline poly<T> gen_stirling2_col(u32 n, u32 k, vec<u64> const& fact, vec<u64> const& ifact) {
   if (k > n) return poly<T>(n + 1);
   poly<T> f{0, 1};
   gen_stirling2_col_impl_::solve(f, k + 1, fact, ifact);
@@ -45,8 +45,8 @@ inline poly<T> gen_stirling2_col(u32 n, u32 k, vec<mint> const& fact, vec<mint> 
   return poly_shl(f, k);
 }
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
-template <class T, class mint = typename T::value_type>
-inline poly<T> gen_stirling2_col(u32 n, u32 k) { return gen_stirling2_col<T, mint>(n, k, gen_fact<mint>(n + 1), gen_ifact<mint>(n + 1)); }
+template <class T>
+inline poly<T> gen_stirling2_col(u32 n, u32 k) { return gen_stirling2_col<T>(n, k, gen_fact(n + 1, T::value_type::mod()), gen_ifact(n + 1, T::value_type::mod())); }
 
 }  // namespace tifa_libs::math
 

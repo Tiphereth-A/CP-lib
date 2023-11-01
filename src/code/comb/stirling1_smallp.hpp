@@ -41,9 +41,9 @@ class Stirling1 {
       else return 0;
     }
     if (i < a || b > j) return 0;
-    mint x = mCn((i64)i, (i64)a), y = s[j][b], res = x * y;
+    mint res = mCn((i64)i, (i64)a) * s[j][b];
     if constexpr (with_sgn)
-      if (((i + a) & 1) && res) res = -res;
+      if ((i + a) & 1) res = -res;
     return res;
   }
 };
