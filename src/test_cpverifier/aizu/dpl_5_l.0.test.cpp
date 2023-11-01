@@ -12,7 +12,7 @@ int main() {
   mint::set_mod(MOD);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  u64 n, k;
+  u32 n, k;
   std::cin >> n >> k;
   std::cout << tifa_libs::math::ball_box_iil<pdata>(n, k) << '\n';
   return 0;

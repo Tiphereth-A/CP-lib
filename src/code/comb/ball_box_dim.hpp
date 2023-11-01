@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class mint>
-constexpr mint ball_box_dim(u64 ball, u64 box) { return box >= ball; }
+constexpr mint ball_box_dim(u32 ball, u32 box) { return box >= ball; }
 
 }  // namespace tifa_libs::math
 

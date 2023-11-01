@@ -9,7 +9,7 @@ using mint = tifa_libs::math::mint_s30<MOD>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  u64 n, k;
+  u32 n, k;
   std::cin >> n >> k;
   std::cout << tifa_libs::math::ball_box_dda<mint>(n, k) << '\n';
   return 0;

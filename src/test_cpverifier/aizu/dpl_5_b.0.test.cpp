@@ -10,9 +10,9 @@ using mint = tifa_libs::math::mint_s30<MOD>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  u64 n, k;
+  u32 n, k;
   std::cin >> n >> k;
-  tifa_libs::math::Binom binom(MOD, 2001);
+  tifa_libs::math::Binom<mint> binom(2001);
   std::cout << tifa_libs::math::ball_box_ddm<mint>(n, k, binom) << '\n';
   return 0;
 }
