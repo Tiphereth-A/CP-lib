@@ -229,6 +229,9 @@ notebook:
     - link_cut_tree: 动态树（LCT）
       code_ext: hpp
       test_ext: cpp
+    - leftist_tree: 可并堆(左偏树)
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - point: 点
       code_ext: hpp
