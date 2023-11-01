@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_triangles"
 
-// clang-format off
 #include "../../code/graph/ringenum3.hpp"
+// clang-format off
 #include "../../code/util/ios_pair.hpp"
 #include "../../code/util/ios_container.hpp"
 // clang-format on
