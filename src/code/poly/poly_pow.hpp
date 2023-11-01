@@ -19,7 +19,7 @@ inline poly<T> poly_pow(poly<T> const &p, u64 y, usz n = 0) {
     return _;
   }
   if (y == 1) return p;
-  usz l0 = std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x != 0; }) - p.data().begin();
+  usz l0 = usz(std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x != 0; }) - p.data().begin());
   if ((u128)l0 * y >= n) return poly<T>(n);
   if (l0) {
     auto _ = poly_shr(p, l0), g = poly_pow(_, y, n - l0 * y);
