@@ -183,7 +183,7 @@ class mpi {
     vec<u64> prod(a.size() + b.size() - 1 + 1);
     for (usz i = 0; i < a.size(); ++i)
       for (usz j = 0; j < b.size(); ++j)
-        if ((prod[i + j] += (u64)a[i] * b[j]) >= (u64)4 * D * D) prod[i + j] -= (u64)4 * D * D, prod[i + j + 1] += (u64)4 * D;
+        if ((prod[i + j] += (u64)a[i] * b[j]) >= 4_u64 * D * D) prod[i + j] -= 4_u64 * D * D, prod[i + j + 1] += 4_u64 * D;
     vec<u32> c(prod.size() + 1);
     u64 x = 0;
     usz i = 0;

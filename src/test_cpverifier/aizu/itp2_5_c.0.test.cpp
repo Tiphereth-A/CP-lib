@@ -14,7 +14,7 @@ int main() {
   vec<u32> p(n);
   std::cin >> p;
   auto s = tifa_libs::math::cantor_seq(p);
-  auto fact = tifa_libs::math::gen_fact(s.size(), (u64)-1);
+  auto fact = tifa_libs::math::gen_fact((u32)s.size(), -1_u64);
   u64 v = tifa_libs::math::cantor_seq2val(s, fact);
   if (v > 1) std::cout << tifa_libs::math::cantor_inv_seq(tifa_libs::math::cantor_val2seq(v - 1, fact)) << '\n';
   std::cout << p << '\n';

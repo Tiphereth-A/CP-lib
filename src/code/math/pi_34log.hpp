@@ -12,7 +12,7 @@ inline u64 pi_34log(u64 n) {
   vec<u64> hl(ndn2);
   for (usz i = 1; i < ndn2; ++i) hl[i] = div_u64d(n, i) - 1;
   vec<u32> hs(n2 + 1);
-  std::iota(hs.begin(), hs.end(), (u32)-1);
+  std::iota(hs.begin(), hs.end(), -1_u32);
   for (u64 x = 2, pi = 0; x <= n2; ++x) {
     if (hs[x] == hs[x - 1]) continue;
     u64 x2 = x * x, mx = std::min(ndn2, div_u64d(n, x2) + 1), ix = x;

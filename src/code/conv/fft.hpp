@@ -15,7 +15,7 @@ struct FFT {
 
   usz size() const { return rev.size(); }
   void bzr(usz len) {
-    usz n = std::max(bit::bceil(len), (usz)2);
+    usz n = std::max(bit::bceil(len), 2_uz);
     if (n == size()) return;
     rev.resize(n, 0);
     u32 k = (u32)bit::log2(n);

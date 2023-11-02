@@ -9,10 +9,10 @@ namespace tifa_libs::math {
 // @brief Chirp Z-Transform
 // @return {f(a*c^0), f(a*c^1), ..., f(a*c^{m-1})}
 template <class T>
-inline poly<T> poly_czt(poly<T> f, typename T::value_type c, u64 m = (u64)-1, typename T::value_type a = 1) {
+inline poly<T> poly_czt(poly<T> f, typename T::value_type c, u64 m = -1_u64, typename T::value_type a = 1) {
   using mint = typename T::value_type;
   static rpow rp, irp;
-  if (m == (u64)-1) m = f.size();
+  if (m == -1_u64) m = f.size();
   if (f.data().empty() || !m) return poly<T>{};
   usz n = f.size();
   if (a != 1) {

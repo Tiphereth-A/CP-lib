@@ -32,7 +32,7 @@ class SCC {
     };
     for (u32 i = 0; i < g.v_size(); ++i) dfs(dfs, i);
     std::reverse(ord.begin(), ord.end());
-    scc_id.resize(g.v_size(), (u32)-1);
+    scc_id.resize(g.v_size(), -1_u32);
     u32 cnt = 0;
     for (u32 i : ord)
       if (!~scc_id[i]) rdfs(rdfs, i, cnt++);
