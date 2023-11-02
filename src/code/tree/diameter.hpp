@@ -2,18 +2,22 @@
 #define TIFA_LIBS_TREE_DIAMETER
 
 #include "tree.hpp"
+#include "tree_dis.hpp"
 
 namespace tifa_libs::graph {
 
 // {u, v, diam}
-inline pt3<u32> tree_diameter(tree<void> &tr) {
+template <class VW, class EW>
+inline std::tuple<u32, u32, EW> tree_diameter(tree<VW, EW> &tr) {
   auto _ = tr.rt;
-  tr.template reset_dfs_info<s_dep>();
-  u32 u = tr.rt = (u32)std::distance(tr.dep.begin(), std::max_element(tr.dep.begin(), tr.dep.end()));
-  tr.template reset_dfs_info<s_dep>();
-  u32 v = (u32)std::distance(tr.dep.begin(), std::max_element(tr.dep.begin(), tr.dep.end()));
+  vec<u32> d;
+  if constexpr (std::is_void_v<EW>) d.resize(tr.v_size(), 1);
+  else d = tree_dis(tr);
+  u32 u = tr.rt = (u32)std::distance(d.begin(), std::max_element(d.begin(), d.end()));
+  d = tree_dis(tr);
+  u32 v = (u32)std::distance(d.begin(), std::max_element(d.begin(), d.end()));
   tr.rt = _;
-  return {u, v, tr.dep[v]};
+  return {u, v, d[v]};
 }
 
 }  // namespace tifa_libs::graph

@@ -469,10 +469,10 @@ notebook:
     - tree_dis: 到根的距离
       code_ext: hpp
       test_ext: cpp
-    - diameter: 直径（无边权）
+    - tree_sumvw: 子树点权和
       code_ext: hpp
       test_ext: cpp
-    - diameter_w: 直径（有边权）
+    - diameter: 直径
       code_ext: hpp
       test_ext: cpp
     - virtual_tree: 虚树
@@ -509,7 +509,7 @@ notebook:
     - floyd: Floyd
       code_ext: hpp
       test_ext: cpp
-    - scc: 强连通分量
+    - kosaraju: 强连通分量（Kosaraju）
       code_ext: hpp
       test_ext: cpp
     - adjlist_rev: 反图（邻接表）

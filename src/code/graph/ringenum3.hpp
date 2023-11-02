@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 namespace ringenum3_impl_ {
 
 template <class F>
-inline void run(adjlist<void> const& dg, F func) {
+inline void run(adjlist<> const& dg, F func) {
   u32 n = dg.v_size();
   vec<bool> vis(n);
   for (u32 u = 0; u < n; ++u) {

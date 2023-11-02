@@ -6,10 +6,10 @@
 
 namespace tifa_libs::graph {
 
-template <class T = void>
+template <class EW = void>
 class virtual_tree {
-  tree<T>& tr;
-  lca_hld<T> lca_;
+  tree<void, EW>& tr;
+  lca_hld<void, EW> lca_;
   vec<u32> st;
   void insert(u32 x) {
     u32 lca = lca_(x, st.back());
@@ -25,8 +25,8 @@ class virtual_tree {
   }
 
  public:
-  tree<void> vt;
-  virtual_tree(tree<T>& tr) : tr(tr), lca_(tr), vt(tr.v_size()) {}
+  tree<> vt;
+  virtual_tree(tree<void, EW>& tr) : tr(tr), lca_(tr), vt(tr.v_size()) {}
   void build(vec<u32>& a) {
     sort(a.begin(), a.end(), [&](u32 a, u32 b) { return tr.dfn[a] < tr.dfn[b]; }), vt.clear();
     st.push_back(tr.rt);

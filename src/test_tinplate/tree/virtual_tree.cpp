@@ -9,7 +9,7 @@ int main() {
   std::cin >> n;
   vec<u32> sign(n), min_(n);
   using Tw = u32;
-  tifa_libs::graph::tree<Tw> tr(n);
+  tifa_libs::graph::tree<void, Tw> tr(n);
   for (u32 i = 1, u, v, w; i < n; ++i) std::cin >> u >> v >> w, --u, --v, tr.add_edge(u, v, w);
   auto dfs = [&](auto&& dfs, u32 u, u32 fa, u32 min__) -> void {
     min_[u] = min__;

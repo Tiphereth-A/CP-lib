@@ -5,12 +5,12 @@
 
 namespace tifa_libs::graph {
 
-template <class T = void>
+template <class VW = void, class EW = void>
 class lca_hld {
-  tree<T>& tr;
+  tree<VW, EW>& tr;
 
  public:
-  lca_hld(tree<T>& tr) : tr(tr) {
+  lca_hld(tree<VW, EW>& tr) : tr(tr) {
     tr.template reset_dfs_info<s_dep | s_fa>();
     tr.template reset_top<true>();
   }
@@ -29,7 +29,7 @@ class lca_hld {
     while (tr.top[v] != tr.top[lca]) {
       retv.emplace_back(tr.top[v], v), v = tr.fa[tr.top[v]];
     }
-    if(v != lca) retv.emplace_back(tr.maxson[lca], v);
+    if (v != lca) retv.emplace_back(tr.maxson[lca], v);
     std::reverse(retv.begin(), retv.end());
     return {retu, retv};
   }

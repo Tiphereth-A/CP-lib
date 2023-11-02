@@ -23,9 +23,9 @@ int main() {
     vec<ptt<u32>> edges(m);
     std::cin >> edges;
     for (auto &[u, v] : edges) --u, --v;
-    tifa_libs::graph::adjlist<void> g(n);
+    tifa_libs::graph::adjlist g(n);
     for (auto [u, v] : edges) g.add_edge(u, v);
-    tifa_libs::graph::adjlist<void> dg(n), dgv(n);
+    tifa_libs::graph::adjlist dg(n), dgv(n);
     for (u32 u = 0; u < n; ++u)
       for (auto [v] : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[v].size(), v) ? dg : dgv).add_arc(u, v);
     // 菊花图

@@ -11,18 +11,16 @@ enum state_tdfs {
   s_fa = 4,
   s_dep = 8,
   s_maxson = 16,
-  s_go = 32,
-  s_sum_node_w = 64
+  s_go = 32
 };
 
-template <class T = void>
-struct tree : public adjlist<T> {
+template <class VW = void, class EW = void>
+struct tree : public adjlist<VW, EW> {
   u32 rt;
-  vec<u32> node_w, dfn, sz, fa, dep, maxson, top;
-  vec<u64> sum_node_w;
-  vec<vec<u32>> go;
+  vec<u32> dfn, sz, fa, dep, maxson, top;
+  vvec<u32> go;
 
-  explicit tree(u32 n, u32 root = 0, vec<u32> NODE_W = vec<u32>()) : adjlist<T>(n), rt(root), node_w(NODE_W) {}
+  explicit tree(u32 n, u32 root = 0) : adjlist<VW, EW>(n), rt(root) {}
 
   void clear(u32 u = 0, u32 fa = 0) {
     for (auto v : this->g[u])
@@ -39,7 +37,6 @@ struct tree : public adjlist<T> {
     if constexpr (state & s_dep) dep = vec<u32>(n);
     if constexpr (state & s_maxson) maxson = vec<u32>(n, n);
     if constexpr (state & s_go) go = vec<vec<u32>>(n, vec<u32>(21u, n));
-    if constexpr (state & s_sum_node_w) sum_node_w = vec<u64>(n);
 
     u32 cnt = 0;
     auto before = [&](u32 u, u32 f) {
@@ -50,7 +47,6 @@ struct tree : public adjlist<T> {
         go[u][0] = f;
         for (u32 i = 1; i <= 20u && go[u][i - 1] < n; i++) go[u][i] = go[go[u][i - 1]][i - 1];
       }
-      if constexpr (state & s_sum_node_w) sum_node_w[u] = node_w[u];
     };
     auto pre_dfs = [&](auto const& ev, u32 u) {
       if constexpr (state & s_dep) dep[ev.to] = dep[u] + 1;
@@ -59,7 +55,6 @@ struct tree : public adjlist<T> {
       if constexpr (state & (s_sz | s_maxson)) sz[u] += sz[ev.to];
       if constexpr (state & s_maxson)
         if (maxson[u] == n || sz[ev.to] > sz[maxson[u]]) maxson[u] = ev.to;
-      if constexpr (state & s_sum_node_w) sum_node_w[u] += sum_node_w[ev.to];
     };
 
     dfs_(rt, n, before, pre_dfs, post_dfs);

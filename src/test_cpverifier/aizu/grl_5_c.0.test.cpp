@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  tifa_libs::graph::tree<void> tr(n);
+  tifa_libs::graph::tree tr(n);
   for (u32 i = 0, k; i < n; ++i) {
     std::cin >> k;
     for (u32 j = 0, x; j < k; ++j) {

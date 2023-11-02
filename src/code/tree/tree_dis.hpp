@@ -7,8 +7,8 @@ namespace tifa_libs::graph {
 
 namespace tree_dis_impl_ {
 
-template <class T>
-void dfs_(tree<T> const &tr, vec<T> &dis, u32 now, u32 fa) {
+template <class VW, class EW>
+void dfs_(tree<VW, EW> const &tr, vec<EW> &dis, u32 now, u32 fa) {
   for (auto [to, w] : tr[now])
     if (to != fa) {
       dis[to] = dis[now] + w;
@@ -16,17 +16,15 @@ void dfs_(tree<T> const &tr, vec<T> &dis, u32 now, u32 fa) {
     }
 }
 
-template <class T>
-inline vec<T> tree_dis(tree<T> const &tr) {
-  static_assert(!std::is_void_v<T>);
-  vec<T> dis(tr.v_size());
-  dfs_(tr, dis, tr.rt, tr.v_size());
-  return dis;
-}
-
 }  // namespace tree_dis_impl_
 
-using tree_dis_impl_::tree_dis;
+template <class VW, class EW>
+inline vec<EW> tree_dis(tree<VW, EW> const &tr) {
+  static_assert(!std::is_void_v<EW>);
+  vec<EW> dis(tr.v_size());
+  tree_dis_impl_::dfs_(tr, dis, tr.rt, tr.v_size());
+  return dis;
+}
 
 }  // namespace tifa_libs::graph
 

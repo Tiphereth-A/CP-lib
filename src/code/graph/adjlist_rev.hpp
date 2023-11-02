@@ -5,12 +5,13 @@
 
 namespace tifa_libs::graph {
 
-template <class T>
-inline adjlist<T> adjlist_rev(adjlist<T> const& g) {
-  adjlist<T> ret(g.v_size());
+template <class VW, class EW>
+adjlist<VW, EW> adjlist_rev(adjlist<VW, EW> const& g) {
+  adjlist<EW, VW> ret(g.v_size());
+  if constexpr (!std::is_void_v<VW>) ret.v_weight() = g.v_weight();
   for (u32 i = 0; i < g.v_size(); ++i)
     for (auto e : g[i])
-      if constexpr (std::is_void_v<T>) ret.add_arc(e.to, i);
+      if constexpr (std::is_void_v<EW>) ret.add_arc(e.to, i);
       else ret.add_arc(e.to, i, -e.w);
   return ret;
 }

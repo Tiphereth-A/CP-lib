@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 namespace ringcnt4_impl_ {
 
-inline u64 run_(adjlist<void> const& dg, adjlist<void> const& dgv) {
+inline u64 run_(adjlist<> const& dg, adjlist<> const& dgv) {
   u64 ans = 0;
   u32 n = dg.v_size();
   vec<u64> cnt1(n), cnt2(n);
@@ -35,9 +35,9 @@ inline u64 run_(adjlist<void> const& dg, adjlist<void> const& dgv) {
 }  // namespace ringcnt4_impl_
 
 //! should be simple undirected graph
-inline u64 ringcnt4(adjlist<void> const& g) {
+inline u64 ringcnt4(adjlist<> const& g) {
   u32 n = (u32)g.v_size();
-  adjlist<void> dg(n), dgv(n);
+  adjlist<> dg(n), dgv(n);
   for (u32 u = 0; u < n; ++u)
     for (auto [v] : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[v].size(), v) ? dg : dgv).add_arc(u, v);
   return ringcnt4_impl_::run_(dg, dgv);
@@ -45,7 +45,7 @@ inline u64 ringcnt4(adjlist<void> const& g) {
 //! vertex ID: 0..n-1
 //! should be simple undirected graph
 inline u64 ringcnt4(u32 n, vec<ptt<u32>> const& edges) {
-  adjlist<void> g(n);
+  adjlist<> g(n);
   for (auto [u, v] : edges) g.add_edge(u, v);
   return ringcnt4(g);
 }

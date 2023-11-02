@@ -7,15 +7,15 @@
 namespace tifa_libs::graph {
 
 //!! edge: w u v
-template <class T>
-inline tree<T> kruskal(vec<std::tuple<T, u32, u32>> a, u32 n, u32 root = 0) {
-  std::sort(a.begin(), a.end());
-  tree<T> tr(n, root);
+//! MUST be sorted
+template <class EW>
+inline tree<void, EW> kruskal(vec<std::tuple<EW, u32, u32>> sorted_a, u32 n, u32 root = 0) {
+  tree<void, EW> tr(n, root);
   ds::dsu_basic dsu(n);
   u32 m = n - 1;
-  for (auto [w, u, v] : a) {
+  for (auto [w, u, v] : sorted_a) {
     if (dsu.merge(u, v)) tr.add_edge(u, v, w), --m;
-    if (m == 0) break;
+    if (!m) break;
   }
   return tr;
 }

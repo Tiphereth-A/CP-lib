@@ -7,12 +7,12 @@
 namespace tifa_libs::graph {
 
 // cb_relax(now, to)
-template <class W, class F>
-vec<W> dijkstra(adjlist<W> const &g, u32 s, F cb_relax, W INF = std::numeric_limits<W>::max() / 2 - 1) {
-  static_assert(!is_sint<W>::value);
-  vec<W> dis(g.v_size(), INF);
+template <class VW, class EW, class F>
+vec<EW> dijkstra(adjlist<VW, EW> const &g, u32 s, F cb_relax, EW INF = std::numeric_limits<EW>::max() / 2 - 1) {
+  static_assert(!is_sint<EW>::value);
+  vec<EW> dis(g.v_size(), INF);
   vec<bool> vis(g.v_size());
-  pqg<std::pair<W, u32>> q;
+  pqg<std::pair<EW, u32>> q;
   q.emplace(dis[s] = 0, s);
   while (!q.empty()) {
     auto [dis_now, now] = q.top();

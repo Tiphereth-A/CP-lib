@@ -15,6 +15,7 @@ int main() {
       if (i == j || !~x) continue;
       edges.emplace_back(x, i, j);
     }
+  std::sort(edges.begin(), edges.end());
   auto res = tifa_libs::graph::kruskal(edges, n);
   u64 w = 0;
   for (u32 i = 0; i < n; ++i)

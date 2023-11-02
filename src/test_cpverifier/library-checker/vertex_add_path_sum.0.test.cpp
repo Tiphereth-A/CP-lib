@@ -18,7 +18,7 @@ int main() {
   vec<i64> b(n);
   vec<T> a(n);
   for (auto& x : b) tifa_libs::fin >> x;
-  tifa_libs::graph::tree<void> tr_(n);
+  tifa_libs::graph::tree tr_(n);
   for (usz i = 1, u, v; i < n; ++i) tifa_libs::fin >> u >> v, tr_.add_edge((u32)u, (u32)v);
   tifa_libs::ds::hld<T, op, e, F, mapping, composition, id> tr(tr_);
   for (usz i = 0; i < n; ++i) a[tr_.dfn[i]].first = b[i], a[tr_.dfn[i]].second = 1;

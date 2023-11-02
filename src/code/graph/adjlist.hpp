@@ -8,6 +8,26 @@ namespace tifa_libs::graph {
 namespace adjlist_impl_ {
 
 template <class T, bool isv = std::is_void_v<T>>
+class V;
+template <class T>
+class V<T, false> {
+  vec<T> v;
+
+ public:
+  V() {}
+  V(u32 n) : v(n) {}
+  vec<T>& get() { return v; }
+  vec<T> get() const { return v; }
+};
+template <class T>
+class V<T, true> {
+ public:
+  V(u32 = 0) {}
+  void get() {}
+  void get() const {}
+};
+
+template <class T, bool isv = std::is_void_v<T>>
 struct E;
 template <class T>
 struct E<T, false> {
@@ -23,27 +43,30 @@ struct E<T, true> {
   explicit E(u32 v) : to(v) {}
 };
 
-template <class T = void>
+template <class VW = void, class EW = void>
 class adjlist {
  protected:
   u32 m;
-  vvec<E<T>> g;
+  vvec<E<EW>> g;
+  V<VW> v;
 
  public:
   //! vertex ID: [0, n)
-  explicit adjlist(u32 n = 0) : m(0), g(n) {}
+  explicit adjlist(u32 n = 0) : m(0), g(n), v(n) {}
   void reset_v_size(u32 n) { g.resize(n); }
   void clear() { g.clear(); }
   void shrink() { g.shrink_to_fit(); }
+  auto& v_weight() { return v.get(); }
+  auto v_weight() const { return v.get(); }
 
   template <class... Ts>
-  E<T>& add_arc(u32 u, Ts&&... args) {
+  E<EW>& add_arc(u32 u, Ts&&... args) {
     ++m;
     g[u].emplace_back(args...);
     return g[u].back();
   }
   template <class... Ts>
-  ptt<E<T>&> add_edge(u32 u, u32 v, Ts&&... args) { return {add_arc(u, v, args...), add_arc(v, u, args...)}; }
+  ptt<E<EW>&> add_edge(u32 u, u32 v, Ts&&... args) { return {add_arc(u, v, args...), add_arc(v, u, args...)}; }
 
   auto& operator[](u32 u) { return g[u]; }
   auto operator[](u32 u) const { return g[u]; }

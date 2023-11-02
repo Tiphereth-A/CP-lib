@@ -12,13 +12,13 @@ class hld {
   segtree<T, op, e, F, mapping, composition, id> t;
 
  public:
-  graph::tree<void>& tr;
+  graph::tree<>& tr;
 
-  explicit hld(graph::tree<void>& tr) : t(), tr(tr) {
+  explicit hld(graph::tree<>& tr) : t(), tr(tr) {
     tr.template reset_dfs_info<graph::s_dep | graph::s_fa>();
     tr.template reset_top<true>();
   }
-  explicit hld(graph::tree<void>& tr, const vec<T>& a) : t(), tr(tr) {
+  explicit hld(graph::tree<>& tr, const vec<T>& a) : t(), tr(tr) {
     tr.template reset_dfs_info<graph::s_dep | graph::s_fa>();
     tr.template reset_top<true>();
     vec<T> b(a.size());

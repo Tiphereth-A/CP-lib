@@ -1,19 +1,19 @@
-#ifndef TIFA_LIBS_GRAPH_SCC
-#define TIFA_LIBS_GRAPH_SCC
+#ifndef TIFA_LIBS_GRAPH_KOSARAJU
+#define TIFA_LIBS_GRAPH_KOSARAJU
 
 #include "adjlist.hpp"
 
 namespace tifa_libs::graph {
 
-class SCC {
-  const adjlist<void> &g, &rev_g;
+class kosaraju {
+  const adjlist<> &g, &rev_g;
 
  public:
-  adjlist<void> dag;
+  adjlist<> dag;
   vec<u32> scc_id;
   vvec<u32> belongs;
 
-  SCC(adjlist<void> const &g, adjlist<void> const &rev_g) : g(g), rev_g(rev_g) { build(); }
+  kosaraju(adjlist<> const &g, adjlist<> const &rev_g) : g(g), rev_g(rev_g) { build(); }
 
  private:
   void build() {

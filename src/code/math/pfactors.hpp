@@ -54,8 +54,7 @@ inline std::map<u64, u32> pfactors(u64 n) {
   std::map<u64, u32> ans;
   if (n < 2) return ans;
   if (~n & 1) n >>= (ans[2] = (u32)bit::cntr0(n));
-  using pfactors_impl_::PollardRho;
-  PollardRho()(n, ans);
+  pfactors_impl_::PollardRho()(n, ans);
   return ans;
 }
 

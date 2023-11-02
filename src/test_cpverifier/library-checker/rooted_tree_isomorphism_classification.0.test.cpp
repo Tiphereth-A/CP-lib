@@ -10,7 +10,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  tifa_libs::graph::tree<> tr(n);
+  tifa_libs::graph::tree tr(n);
   for (u32 i = 1, p; i < n; ++i) {
     std::cin >> p;
     tr.add_edge(i, p);

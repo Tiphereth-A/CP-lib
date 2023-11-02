@@ -28,11 +28,10 @@ class iter_ {
   std::pair<usz, iter_t> operator*() const { return {sz_, now_}; }
 };
 
+}  // namespace enumerate_impl_
 //! Usage: for(auto [index, iter] : enumerate(container)) {...}
 template <typename T>
-iter_<T> enumerate(T &&container) { return {std::forward<T>(container)}; }
-}  // namespace enumerate_impl_
-using enumerate_impl_::enumerate;
+enumerate_impl_::iter_<T> enumerate(T &&container) { return {std::forward<T>(container)}; }
 
 }  // namespace tifa_libs::util
 

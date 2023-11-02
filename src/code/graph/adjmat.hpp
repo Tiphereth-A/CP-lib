@@ -5,8 +5,6 @@
 
 namespace tifa_libs::graph {
 
-namespace adjmat_impl_ {
-
 template <class T = u32>
 class adjmat {
   u32 m;
@@ -34,10 +32,6 @@ class adjmat {
   usz v_size() const { return g.size(); }
   usz arc_size() const { return m; }
 };
-
-}  // namespace adjmat_impl_
-
-using adjmat_impl_::adjmat;
 
 }  // namespace tifa_libs::graph
 

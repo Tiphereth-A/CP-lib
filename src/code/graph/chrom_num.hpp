@@ -22,8 +22,8 @@ u32 calc(u32 n, vec<ptt<i32>> hist) {
 
 }  // namespace chrom_num_impl_
 
-template <class T>
-inline u32 chrom_num(adjlist<T> const& g) {
+template <class VW, class EW>
+u32 chrom_num(adjlist<VW, EW> const& g) {
   u32 n = g.v_size();
   vec<u32> adj(n), dp(1 << n);
   for (u32 i = 0; i < n; ++i)

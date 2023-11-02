@@ -5,8 +5,8 @@
 
 namespace tifa_libs::graph {
 
-template <class T>
-std::optional<vec<u32>> path(adjlist<T> const &g, u32 from, u32 to) {
+template <class VW, class EW>
+std::optional<vec<u32>> path(adjlist<VW, EW> const &g, u32 from, u32 to) {
   vec<u32> ret;
   bool failed = true;
   auto dfs = [&](auto &&dfs, u32 now, u32 fa) -> void {
