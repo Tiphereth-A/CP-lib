@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/counting_primes"
+#define PROBLEM "https://judge.yosupo.jp/problem/deque_operate_all_composite"
 
 #include "../../code/ds/deque_with_w.hpp"
 #include "../../code/math/mint_s30.hpp"
