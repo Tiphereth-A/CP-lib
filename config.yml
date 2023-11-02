@@ -232,6 +232,9 @@ notebook:
     - leftist_tree: 可并堆(左偏树)
       code_ext: hpp
       test_ext: cpp
+    - deque_with_w: 带权双端队列
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - point: 点
       code_ext: hpp
