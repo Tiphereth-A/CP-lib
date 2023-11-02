@@ -5,10 +5,10 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  u32 q;
+  u64 q;
   std::cin >> q;
-  tifa_libs::hmap<u32, u32> hm;
-  for (u32 i = 0, op, k, v; i < q; ++i) {
+  tifa_libs::hmap<u64, u64> hm;
+  for (u64 i = 0, op, k, v; i < q; ++i) {
     std::cin >> op >> k;
     if (op) std::cout << hm[k] << '\n';
     else {
