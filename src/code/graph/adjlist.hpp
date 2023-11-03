@@ -8,23 +8,17 @@ namespace tifa_libs::graph {
 namespace adjlist_impl_ {
 
 template <class T, bool isv = std::is_void_v<T>>
-class V;
+struct V;
 template <class T>
-class V<T, false> {
+struct V<T, false> {
   vec<T> v;
-
- public:
   V() {}
-  V(u32 n) : v(n) {}
-  vec<T>& get() { return v; }
-  vec<T> get() const { return v; }
+  template <class... Ts>
+  V(Ts&&... args) : v(args...) {}
 };
 template <class T>
-class V<T, true> {
- public:
-  V(u32 = 0) {}
-  void get() {}
-  void get() const {}
+struct V<T, true> {
+  V() {}
 };
 
 template <class T, bool isv = std::is_void_v<T>>
@@ -51,13 +45,14 @@ class adjlist {
   V<VW> v;
 
  public:
+  constexpr static bool HAS_VW = !std::is_void_v<VW>, HAS_EW = !std::is_void_v<EW>;
   //! vertex ID: [0, n)
-  explicit adjlist(u32 n = 0) : m(0), g(n), v(n) {}
+  template <class... Ts>
+  explicit adjlist(u32 n = 0, Ts&&... args_vw) : m(0), g(n), v(args_vw...) {}
   void reset_v_size(u32 n) { g.resize(n); }
   void clear() { g.clear(); }
-  void shrink() { g.shrink_to_fit(); }
-  auto& v_weight() { return v.get(); }
-  auto v_weight() const { return v.get(); }
+  auto& v_weight() { return v.v; }
+  auto v_weight() const { return v.v; }
 
   template <class... Ts>
   E<EW>& add_arc(u32 u, Ts&&... args) {

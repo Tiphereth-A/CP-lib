@@ -20,7 +20,8 @@ struct tree : public adjlist<VW, EW> {
   vec<u32> dfn, sz, fa, dep, maxson, top;
   vvec<u32> go;
 
-  explicit tree(u32 n, u32 root = 0) : adjlist<VW, EW>(n), rt(root) {}
+  template <class... Ts>
+  explicit tree(u32 n, u32 root = 0, Ts&&... args_vw) : adjlist<VW, EW>(n, args_vw...), rt(root) {}
 
   void clear(u32 u = 0, u32 fa = 0) {
     for (auto v : this->g[u])

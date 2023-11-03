@@ -10,11 +10,10 @@ namespace tree_sumvw_impl_ {
 template <class VW, class EW>
 void dfs_(tree<VW, EW> const &tr, vec<VW> &sumvw, u32 now, u32 fa) {
   sumvw[now] = tr.v_weight()[now];
-  for (auto [to, w] : tr[now])
-    if (to != fa) {
-      sumvw[to] = sumvw[now] + w;
-      dfs_(tr, sumvw, to, now);
-      sumvw[now] += sumvw[to];
+  for (auto v : tr[now])
+    if (v.to != fa) {
+      dfs_(tr, sumvw, v.to, now);
+      sumvw[now] += sumvw[v.to];
     }
 }
 

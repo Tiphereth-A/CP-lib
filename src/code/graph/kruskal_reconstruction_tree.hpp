@@ -9,13 +9,13 @@ namespace tifa_libs::graph {
 namespace kruskal_re_tree_impl_ {
 
 template <class VW, class EW>
-std::pair<tree<VW>, vec<EW>> run_(tree<VW, EW>& tr, vec<std::tuple<EW, u32, u32>> const& sorted_a) {
+std::pair<tree<VW>, vec<EW>> run_(tree<VW>& tr, vec<std::tuple<EW, u32, u32>> const& sorted_a) {
   u32 n = (tr.v_size() + 1) / 2;
   vec<EW> w_(2 * n - 1);
   ds::dsu_basic dsu(2 * n - 1);
   u32 m = n - 1, cnt = n;
   for (auto [w, u, v] : sorted_a) {
-    u = dsu.find(u), v = dsu.find(v);
+    u = (u32)dsu.find(u), v = (u32)dsu.find(v);
     if (u != v) {
       u32 t = cnt++;
       w_[t] = w;
@@ -35,8 +35,7 @@ std::pair<tree<VW>, vec<EW>> run_(tree<VW, EW>& tr, vec<std::tuple<EW, u32, u32>
 //! MUST be sorted
 template <class VW, class EW>
 std::pair<tree<VW>, vec<EW>> kruskal_re_tree(vec<std::tuple<EW, u32, u32>> const& sorted_a, u32 n, vec<VW> node_w) {
-  tree<VW> tr(2 * n - 1, 2 * n - 1);
-  tr.v_weight() = node_w;
+  tree<VW> tr(2 * n - 1, 2 * n - 1, node_w);
   return kruskal_re_tree_impl_::run_(tr, sorted_a);
 }
 //!! edge: w u v
