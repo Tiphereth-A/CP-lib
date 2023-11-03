@@ -533,6 +533,12 @@ notebook:
     - tarjan: 强连通分量（tarjan）
       code_ext: hpp
       test_ext: cpp
+    - v_bcc: 点双连通分量
+      code_ext: hpp
+      test_ext: cpp
+    - e_bcc: 边双连通分量
+      code_ext: hpp
+      test_ext: cpp
     comb:
     - binom: 组合数
       code_ext: hpp
