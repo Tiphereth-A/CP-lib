@@ -66,7 +66,7 @@ class eograph {
   template <class... Ts>
   u32 add_arc(u32 u, Ts&&... args) {
     e.emplace_back(head[u], args...);
-    return head[u] = e.size() - 1;
+    return head[u] = (u32)e.size() - 1;
   }
   template <class... Ts>
   ptt<u32> add_edge(u32 u, u32 v, Ts&&... args) { return {add_arc(u, v, args...), add_arc(v, u, args...)}; }
