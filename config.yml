@@ -530,6 +530,9 @@ notebook:
     - ringcnt4: 无向图四元环计数
       code_ext: hpp
       test_ext: cpp
+    - tarjan: 强连通分量（tarjan）
+      code_ext: hpp
+      test_ext: cpp
     comb:
     - binom: 组合数
       code_ext: hpp
