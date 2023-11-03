@@ -1,4 +1,4 @@
-#define PROBLEM "https://www.luogu.com.cn/problem/P8435"
+#define PROBLEM "https://www.luogu.com.cn/problem/P8436"
 
 #include "../../code/graph/e_bcc.hpp"
 
