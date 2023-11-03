@@ -1,7 +1,6 @@
 #define PROBLEM "https://www.luogu.com.cn/problem/P8435"
 
 #include "../../code/graph/v_bcc.hpp"
-#include "../../code/util/ios_container.hpp"
 
 
 int main() {
