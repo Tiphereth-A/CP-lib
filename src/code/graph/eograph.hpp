@@ -42,17 +42,18 @@ class eograph {
  protected:
   vec<u32> head;
   vec<E<EW>> e;
-  V<VW> v;
+  vec<VW> v;
 
  public:
   constexpr static bool HAS_VW = !std::is_void_v<VW>, HAS_EW = !std::is_void_v<EW>;
   //! vertex ID: [0, n)
   template <class... Ts>
   explicit eograph(u32 n = 0, Ts&&... args_vw) : head(n, -1_u32), e(), v(args_vw...) {}
-  void reset(u32 n = 0) {
+  template <class... Ts>
+  void reset(u32 n, Ts&&... args_vw) {
     clear();
     head.resize(n, -1_u32);
-    v.resize(n);
+    if constexpr (HAS_VW) v = vec<VW>(args_vw...);
   }
   void clear() {
     head.clear();
