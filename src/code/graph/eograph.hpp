@@ -29,12 +29,20 @@ struct E<T, false> {
   T w;
   E() {}
   E(u32 nxt, u32 v, T const& w) : to(v), nxt(nxt), w(w) {}
+  template <class F>
+  void run(F&& f) { f(to, nxt, w); }
+  template <class F>
+  void run(F&& f) const { f(to, nxt, w); }
 };
 template <class T>
 struct E<T, true> {
   u32 to, nxt;
   E() {}
   explicit E(u32 nxt, u32 v) : to(v), nxt(nxt) {}
+  template <class F>
+  void run(F&& f) { f(to, nxt); }
+  template <class F>
+  void run(F&& f) const { f(to, nxt); }
 };
 
 template <class VW = void, class EW = void>
@@ -77,17 +85,22 @@ class eograph {
   u32 v_size() const { return (u32)head.size(); }
   u32 arc_size() const { return e.size(); }
 
-  u32 rev_edge_id(u32 eid) const { return eid ^ 1; }
+  u32 rev_eid(u32 eid) const { return eid ^ 1; }
 
-  // func(e)
+  bool del_next_arc(u32 eid) {
+    if (u32 nxt = e[eid].nxt; ~nxt) return (e[eid].nxt = e[nxt].nxt), true;
+    else return false;
+  }
+
+  // func(to, nxt[, w])
   template <class F>
   void foreach(u32 vid, F func) {
-    for (u32 id = head[vid]; ~id; id = e[id].nxt) func(e[id]);
+    for (u32 id = head[vid]; ~id; id = e[id].nxt) e[id].run(func);
   }
-  // func(e)
+  // func(to, nxt[, w])
   template <class F>
   void foreach_c(u32 vid, F func) const {
-    for (u32 id = head[vid]; ~id; id = e[id].nxt) func(e[id]);
+    for (u32 id = head[vid]; ~id; id = e[id].nxt) e[id].run(func);
   }
 };
 
