@@ -79,10 +79,12 @@ class eograph {
 
   u32 rev_edge_id(u32 eid) const { return eid ^ 1; }
 
+  // func(e)
   template <class F>
   void foreach(u32 vid, F func) {
     for (u32 id = head[vid]; ~id; id = e[id].nxt) func(e[id]);
   }
+  // func(e)
   template <class F>
   void foreach_c(u32 vid, F func) const {
     for (u32 id = head[vid]; ~id; id = e[id].nxt) func(e[id]);
