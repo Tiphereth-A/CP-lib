@@ -497,6 +497,9 @@ notebook:
     - adjmat: 邻接矩阵
       code_ext: hpp
       test_ext: cpp
+    - eograph: 链式前向星
+      code_ext: hpp
+      test_ext: cpp
     - dijkstra: Dijkstra
       code_ext: hpp
       test_ext: cpp
