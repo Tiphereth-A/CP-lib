@@ -47,16 +47,16 @@ using pqg = std::priority_queue<T, vec<T>, std::greater<T>>;
 #define assert(x) 42
 #endif
 
-inline i8 operator""_i8(unsigned long long x) { return (i8)x; }
-inline i16 operator""_i16(unsigned long long x) { return (i16)x; }
-inline i32 operator""_i32(unsigned long long x) { return (i32)x; }
-inline i64 operator""_i64(unsigned long long x) { return (i64)x; }
-inline isz operator""_iz(unsigned long long x) { return (isz)x; }
+constexpr i8 operator""_i8(unsigned long long x) { return (i8)x; }
+constexpr i16 operator""_i16(unsigned long long x) { return (i16)x; }
+constexpr i32 operator""_i32(unsigned long long x) { return (i32)x; }
+constexpr i64 operator""_i64(unsigned long long x) { return (i64)x; }
+constexpr isz operator""_iz(unsigned long long x) { return (isz)x; }
 
-inline u8 operator""_u8(unsigned long long x) { return (u8)x; }
-inline u16 operator""_u16(unsigned long long x) { return (u16)x; }
-inline u32 operator""_u32(unsigned long long x) { return (u32)x; }
-inline u64 operator""_u64(unsigned long long x) { return (u64)x; }
-inline usz operator""_uz(unsigned long long x) { return (usz)x; }
+constexpr u8 operator""_u8(unsigned long long x) { return (u8)x; }
+constexpr u16 operator""_u16(unsigned long long x) { return (u16)x; }
+constexpr u32 operator""_u32(unsigned long long x) { return (u32)x; }
+constexpr u64 operator""_u64(unsigned long long x) { return (u64)x; }
+constexpr usz operator""_uz(unsigned long long x) { return (usz)x; }
 
 #endif
