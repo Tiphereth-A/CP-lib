@@ -8,10 +8,10 @@ int main() {
   u32 n, m, s, t;
   std::cin >> n >> m >> s >> t;
   --s, --t;
-  tifa_libs::graph::ssp maxflow(n, s, t);
+  tifa_libs::graph::ssp mcmf(n, s, t);
   i32 c;
-  for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w >> c, --u, --v, maxflow.add(u, v, w, c);
-  auto [flow, cost] = maxflow();
+  for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w >> c, --u, --v, mcmf.add(u, v, w, c);
+  auto [flow, cost] = mcmf();
   std::cout << flow << ' ' << cost;
   return 0;
 }

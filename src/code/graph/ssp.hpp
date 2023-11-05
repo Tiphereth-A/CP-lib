@@ -17,11 +17,11 @@ class ssp {
   vec<i64> dis;
   vec<EW> flow;
   vec<std::pair<u32, u32>> pre;
-  bool spfa(EW inflow = std::numeric_limits<EW>::max()) {
+  bool spfa(u64 inflow) {
     dis = vec<i64>(N, std::numeric_limits<i64>::max() / 2 - 1);
     vec<bool> inq(N);
     std::queue<u32> q;
-    dis[S] = 0, flow[S] = inflow, flow[T] = 0, q.push(S), inq[S] = 1;
+    dis[S] = 0, flow[S] = EW(inflow), flow[T] = 0, q.push(S), inq[S] = 1;
     while (!q.empty()) {
       u32 u = q.front();
       q.pop(), inq[u] = 0;
@@ -53,10 +53,11 @@ class ssp {
     u32 temu = u32(e[u].size()), temv = u32(e[v].size());
     e[u].push_back({v, w, c, temv}), e[v].push_back({u, 0, -c, temu});
   }
-  std::pair<u64, i64> operator()() {
+  std::pair<u64, i64> operator()(u64 inflow = std::numeric_limits<u64>::max()) {
     u64 retflow = 0;
     i64 retcost = 0;
-    while (spfa()) update(retflow, retcost);
+    bool flag = inflow == std::numeric_limits<EW>::max();
+    while (spfa(flag ? inflow : inflow - retflow)) update(retflow, retcost);
     return {retflow, retcost};
   }
 };
