@@ -13,7 +13,7 @@ int main() {
   tifa_libs::graph::tree tr(n);
   for (u32 i = 1, p; i < n; ++i) {
     std::cin >> p;
-    tr.add_edge(i, p);
+    tr.add_arc(i, p), tr.add_arc(p, i);
   }
   auto ans = tifa_libs::graph::tree_hash_rooted(tr, tifa_libs::hash_splitmix64());
   std::map<u64, vec<u32>> dict;

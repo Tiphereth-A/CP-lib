@@ -16,7 +16,7 @@ struct amat {
     for (u32 i = 0; i < n; ++i) g[i][i] = 0;
   }
 
-  void set_arc(u32 u, u32 v, T const& w) { return g[u][v] = w; }
+  void set_arc(u32 u, u32 v, T const& w) { g[u][v] = w; }
 };
 
 }  // namespace tifa_libs::graph

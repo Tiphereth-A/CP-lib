@@ -19,7 +19,7 @@ int main() {
   auto res = tifa_libs::graph::kruskal(edges, n);
   u64 w = 0;
   for (u32 i = 0; i < n; ++i)
-    for (auto [to, v] : res[i]) w += v;
+    for (auto [to, v] : res.g[i]) w += v;
   std::cout << w / 2 << '\n';
   return 0;
 }

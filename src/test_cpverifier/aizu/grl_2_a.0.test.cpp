@@ -13,7 +13,7 @@ int main() {
   auto tr = tifa_libs::graph::kruskal<u32>(e, n);
   u32 ret = 0;
   for (u32 i = 0; i < n; ++i)
-    for (auto x : tr[i]) ret += x.w;
+    for (auto [to, w] : tr.g[i]) ret += w;
   std::cout << ret / 2 << '\n';
   return 0;
 }

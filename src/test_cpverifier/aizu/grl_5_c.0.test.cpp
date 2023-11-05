@@ -12,7 +12,7 @@ int main() {
     std::cin >> k;
     for (u32 j = 0, x; j < k; ++j) {
       std::cin >> x;
-      tr.add_edge(i, x);
+      tr.add_arc(i, x), tr.add_arc(x, i);
     }
   }
   tifa_libs::graph::lca_hld lca(tr);

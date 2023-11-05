@@ -19,20 +19,20 @@ int main() {
   vec<T> a(n);
   for (auto& x : b) tifa_libs::fin >> x;
   tifa_libs::graph::tree tr_(n);
-  for (usz i = 1, u, v; i < n; ++i) tifa_libs::fin >> u >> v, tr_.add_edge((u32)u, (u32)v);
+  for (usz i = 1, u, v; i < n; ++i) tifa_libs::fin >> u >> v, tr_.add_arc((u32)u, (u32)v), tr_.add_arc((u32)v, (u32)u);
   tifa_libs::ds::hld<T, op, e, F, mapping, composition, id> tr(tr_);
-  for (usz i = 0; i < n; ++i) a[tr_.dfn[i]].first = b[i], a[tr_.dfn[i]].second = 1;
+  for (usz i = 0; i < n; ++i) a[tr.info.dfn[i]].first = b[i], a[tr.info.dfn[i]].second = 1;
   tr.build(a);
   for (usz i = 0, opt, u; i < q; ++i) {
     tifa_libs::fin >> opt >> u;
     if (opt == 0) {
       i64 x;
       tifa_libs::fin >> x;
-      tr.node_update(u, x);
+      tr.node_update((u32)u, x);
     } else {
       usz v;
       tifa_libs::fin >> v;
-      tifa_libs::fout << tr.chain_query(u, v).first << '\n';
+      tifa_libs::fout << tr.chain_query((u32)u, (u32)v).first << '\n';
     }
   }
   return 0;
