@@ -13,7 +13,6 @@ class dinic {
     u32 inv;
   };
   const u32 N, S, T;
-  vvec<YYZ> e;
   vec<u32> dep, cur;
   bool bfs() {
     dep = vec<u32>(N, 0);
@@ -48,6 +47,7 @@ class dinic {
   }
 
  public:
+  vvec<YYZ> e;
   dinic(const u32& n, const u32& s, const u32& t) : N(n), S(s), T(t), e(n) {}
   void add(u32 u, u32 v, u32 w) {
     u32 temu = u32(e[u].size()), temv = u32(e[v].size());
