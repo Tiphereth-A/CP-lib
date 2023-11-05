@@ -235,6 +235,9 @@ notebook:
     - deque_with_w: 带权双端队列
       code_ext: hpp
       test_ext: cpp
+    - cartesian_tree: 笛卡尔树
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - point: 点
       code_ext: hpp
