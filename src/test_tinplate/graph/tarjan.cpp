@@ -9,27 +9,27 @@ int main() {
   std::cin >> n >> m;
   vec<u32> a(n);
   for (auto& x : a) std::cin >> x;
-  tifa_libs::graph::adjlist e(n);
+  vvec<u32> e(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     --u, --v;
-    e.add_arc(u, v);
+    e[u].push_back(v);
   }
   tifa_libs::graph::tarjan scc(e);
-  tifa_libs::graph::adjlist g(scc.id);
+  vvec<u32> g(scc.id);
   vec<u32> in(scc.id), b(scc.id), dp(scc.id, 1'000'000'000);
   std::queue<u32> q;
   for (u32 i = 0, x, y; i < n; ++i) {
     b[x = scc.scc_id[i]] += a[i];
     for (auto v : e[i])
-      if (x != (y = scc.scc_id[v.to])) g.add_arc(x, y), ++in[y];
+      if (x != (y = scc.scc_id[v])) g[x].push_back(y), ++in[y];
   }
   auto dfs = [&](auto&& dfs, u32 u) -> void {
     if (dp[u] != 1'000'000'000) return;
     dp[u] = b[u];
     for (auto v : g[u]) {
-      dfs(dfs, v.to);
-      dp[u] = std::max(dp[u], b[u] + dp[v.to]);
+      dfs(dfs, v);
+      dp[u] = std::max(dp[u], b[u] + dp[v]);
     }
   };
   u32 ret = 0;

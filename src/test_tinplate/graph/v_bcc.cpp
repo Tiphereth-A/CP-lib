@@ -9,18 +9,18 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   struct EW {
-    u32 inv;
+    u32 to, inv;
   };
-  tifa_libs::graph::adjlist<void, EW> e(n);
+  vvec<EW> e(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     if(u == v) continue;
     --u, --v;
-    u32 tem1 = e[u].size(), tem2 = e[v].size();
-    e.add_arc(u, v, EW{tem2});
-    e.add_arc(v, u, EW{tem1});
+    u32 tem1 = u32(e[u].size()), tem2 = u32(e[v].size());
+    e[u].push_back({v, tem2});
+    e[v].push_back({u, tem1});
   }
-  tifa_libs::graph::v_bcc<void, EW> bcc(e);
+  tifa_libs::graph::v_bcc<EW> bcc(e);
   std::cout << bcc.id << '\n';
   for (u32 i = 0; i < bcc.id; ++i) {
     std::cout << bcc.belongs[i].size() << ' ';
