@@ -1,29 +1,23 @@
 #ifndef TIFA_LIBS_TREE_TREE_SUMVW
 #define TIFA_LIBS_TREE_TREE_SUMVW
 
+#include "../graph/dfs.hpp"
 #include "tree.hpp"
 
 namespace tifa_libs::graph {
 
-namespace tree_sumvw_impl_ {
-
-template <class VW, class EW>
-void dfs_(tree<VW, EW> const &tr, vec<VW> &sumvw, u32 now, u32 fa) {
-  sumvw[now] = tr.v_weight()[now];
-  for (auto v : tr[now])
-    if (v.to != fa) {
-      dfs_(tr, sumvw, v.to, now);
-      sumvw[now] += sumvw[v.to];
-    }
-}
-
-}  // namespace tree_sumvw_impl_
-
-template <class VW, class EW>
-inline vec<VW> tree_sumvw(tree<VW, EW> const &tr) {
-  static_assert(!std::is_void_v<VW>);
-  vec<VW> sumvw(tr.v_size());
-  tree_sumvw_impl_::dfs_(tr, sumvw, tr.rt, tr.v_size());
+template <class T>
+inline vec<T> tree_sumvw(tree const &tr, vec<T> const &v_weight) {
+  vec<T> sumvw(tr.g.size());
+  dfs(
+      tr, tr.root,
+      [&](u32 u, u32) {
+        sumvw[u] = v_weight[u];
+      },
+      [](u32, u32) {},
+      [&](u32 to, u32 u) {
+        sumvw[u] += sumvw[to];
+      });
   return sumvw;
 }
 

@@ -11,9 +11,10 @@ notebook:
     util: 杂项
     bit: 位操作
     ds: 数据结构
+    graph: 图论
+    tree: 树
     geo2d: 二维计算几何
     geo3d: 三维计算几何
-    graph: 图论
     comb: 组合数学
     math: 数学
     matrix: 矩阵
@@ -22,7 +23,6 @@ notebook:
     str: 字符串
     rand: 随机数与随机化算法
     game: 游戏
-    tree: 树
     fast: 卡常用算法
   sections:
     util:
@@ -462,45 +462,29 @@ notebook:
     - polyhedron: 多面体
       code_ext: hpp
       test_ext: cpp
-    tree:
-    - tree: 树
-      code_ext: hpp
-      test_ext: cpp
-    - lca_hld: LCA（树链剖分）
-      code_ext: hpp
-      test_ext: cpp
-    - centroid: 重心
-      code_ext: hpp
-      test_ext: cpp
-    - tree_dis: 到根的距离
-      code_ext: hpp
-      test_ext: cpp
-    - tree_sumvw: 子树点权和
-      code_ext: hpp
-      test_ext: cpp
-    - diameter: 直径
-      code_ext: hpp
-      test_ext: cpp
-    - virtual_tree: 虚树
-      code_ext: hpp
-      test_ext: cpp
-    - tree_hash_rooted: 有根树 Hash
-      code_ext: hpp
-      test_ext: cpp
-    - prufer: Pr\"ufer 序列
-      code_ext: hpp
-      test_ext: cpp
-    - prufer_inv: Pr\"ufer 序列逆
-      code_ext: hpp
-      test_ext: cpp
     graph:
-    - adjlist: 邻接表
+    - alist: 邻接表
       code_ext: hpp
       test_ext: cpp
-    - adjmat: 邻接矩阵
+    - alistw: 带边权邻接表
       code_ext: hpp
       test_ext: cpp
-    - eograph: 链式前向星
+    - amat: 邻接矩阵
+      code_ext: hpp
+      test_ext: cpp
+    - eog: 链式前向星
+      code_ext: hpp
+      test_ext: cpp
+    - eogw: 带边权链式前向星
+      code_ext: hpp
+      test_ext: cpp
+    - alistr: 邻接表反图
+      code_ext: hpp
+      test_ext: cpp
+    - alistrw: 带权邻接表反图
+      code_ext: hpp
+      test_ext: cpp
+    - dfs: 邻接表 DFS
       code_ext: hpp
       test_ext: cpp
     - dijkstra: Dijkstra
@@ -519,9 +503,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - kosaraju: 强连通分量（Kosaraju）
-      code_ext: hpp
-      test_ext: cpp
-    - adjlist_rev: 反图（邻接表）
       code_ext: hpp
       test_ext: cpp
     - path: 求两点间的一条简单路径
@@ -549,6 +530,43 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - ssp: 最小费用最大流(SuccessiveShortestPath)
+      code_ext: hpp
+      test_ext: cpp
+    tree:
+    - tree: 树
+      code_ext: hpp
+      test_ext: cpp
+    - treew: 带权树
+      code_ext: hpp
+      test_ext: cpp
+    - dfs_info: 常用树 DFS
+      code_ext: hpp
+      test_ext: cpp
+    - dfs_info_w: 常用带权树 DFS
+      code_ext: hpp
+      test_ext: cpp
+    - lca_hld: LCA（树链剖分）
+      code_ext: hpp
+      test_ext: cpp
+    - centroid: 重心
+      code_ext: hpp
+      test_ext: cpp
+    - tree_sumvw: 子树点权和
+      code_ext: hpp
+      test_ext: cpp
+    - diam: 直径
+      code_ext: hpp
+      test_ext: cpp
+    - virtual_tree: 虚树
+      code_ext: hpp
+      test_ext: cpp
+    - tree_hash_rooted: 有根树 Hash
+      code_ext: hpp
+      test_ext: cpp
+    - prufer: Pr\"ufer 序列
+      code_ext: hpp
+      test_ext: cpp
+    - prufer_inv: Pr\"ufer 序列逆
       code_ext: hpp
       test_ext: cpp
     comb:

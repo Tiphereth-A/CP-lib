@@ -23,31 +23,31 @@ int main() {
     vec<ptt<u32>> edges(m);
     std::cin >> edges;
     for (auto &[u, v] : edges) --u, --v;
-    tifa_libs::graph::adjlist g(n);
-    for (auto [u, v] : edges) g.add_edge(u, v);
-    tifa_libs::graph::adjlist dg(n), dgv(n);
+    tifa_libs::graph::alist g(n);
+    for (auto [u, v] : edges) g.add_arc(u, v), g.add_arc(v, u);
+    tifa_libs::graph::alist dg(n), dgv(n);
     for (u32 u = 0; u < n; ++u)
-      for (auto [v] : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[v].size(), v) ? dg : dgv).add_arc(u, v);
+      for (u32 v : g.g[u]) (std::make_pair(g.g[u].size(), u) < std::make_pair(g.g[v].size(), v) ? dg : dgv).add_arc(u, v);
     // 菊花图
     mint ans0 = 0;
     for (u32 u = 0; u < n; ++u)
-      if (g[u].size() >= 4) ans0 += inv24 * g[u].size() * (g[u].size() - 1) * (g[u].size() - 2) * (g[u].size() - 3);
+      if (g.g[u].size() >= 4) ans0 += inv24 * g.g[u].size() * (g.g[u].size() - 1) * (g.g[u].size() - 2) * (g.g[u].size() - 3);
     // 四元环
     mint ans1 = tifa_libs::graph::ringcnt4_impl_::run_(dg, dgv);
     // 三元环+一条边
     mint ans2 = 0;
     u64 cnt2 = 0;
     tifa_libs::graph::ringenum3_impl_::run(dg, [&g, &ans2, &cnt2](u32 u, u32 v, u32 w) {
-      ans2 += g[u].size() + g[v].size() + g[w].size() - 6;
+      ans2 += g.g[u].size() + g.g[v].size() + g.g[w].size() - 6;
       ++cnt2;
     });
     // P4+中间一点连出一条边
     mint ans3 = 0;
     for (u32 u = 0; u < n; ++u) {
-      if (g[u].size() < 2) continue;
-      for (auto [v] : g[u]) {
-        if (g[v].size() < 3) continue;
-        ans3 += inv2 * (g[u].size() - 1) * (g[v].size() - 1) * (g[v].size() - 2);
+      if (g.g[u].size() < 2) continue;
+      for (u32 v : g.g[u]) {
+        if (g.g[v].size() < 3) continue;
+        ans3 += inv2 * (g.g[u].size() - 1) * (g.g[v].size() - 1) * (g.g[v].size() - 2);
       }
     }
     ans3 -= ans2 * 2;
@@ -55,9 +55,9 @@ int main() {
     mint ans4 = 0;
     for (u32 u = 0; u < n; ++u) {
       mint _ = 0;
-      for (auto [v] : g[u]) {
-        ans4 += _ * (g[v].size() - 1);
-        _ += g[v].size() - 1;
+      for (u32 v : g.g[u]) {
+        ans4 += _ * (g.g[v].size() - 1);
+        _ += g.g[v].size() - 1;
       }
     }
     ans4 -= 2 * ans2 + 4 * ans1 + 3 * cnt2;

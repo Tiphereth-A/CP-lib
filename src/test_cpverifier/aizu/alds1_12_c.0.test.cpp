@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  tifa_libs::graph::adjlist<void, u64> g(n);
+  tifa_libs::graph::alistw<u64> g(n);
   for (u32 i = 0, u, k; i < n; ++i) {
     std::cin >> u >> k;
     for (u32 j = 0, v, c; j < k; ++j) {

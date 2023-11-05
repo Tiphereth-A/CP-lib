@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m, r;
   std::cin >> n >> m >> r;
-  tifa_libs::graph::adjlist<void, u32> g(n);
+  tifa_libs::graph::alistw<u32> g(n);
   for (u32 i = 0, u, v, w; i < m; ++i) {
     std::cin >> u >> v >> w;
     g.add_arc(u, v, w);

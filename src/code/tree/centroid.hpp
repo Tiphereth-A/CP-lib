@@ -7,26 +7,23 @@ namespace tifa_libs::graph {
 
 namespace tree_centroid_impl_ {
 
-template <class VW, class EW>
-void dfs_(tree<VW, EW> &tr, vec<u32> &ans, u32 now, u32 fa) {
-  tr.sz[now] = 1;
+inline void dfs_(tree const &tr, vec<u32> &sz, vec<u32> &ans, u32 now, u32 fa) {
+  sz[now] = 1;
   u32 max_sz = 0;
-  for (auto v : tr[now])
-    if (v.to != fa) {
-      dfs_(tr, ans, v.to, now);
-      tr.sz[now] += tr.sz[v.to];
-      max_sz = std::max(max_sz, tr.sz[v.to]);
+  for (u32 to : tr.g[now])
+    if (to != fa) {
+      dfs_(tr, sz, ans, to, now);
+      sz[now] += sz[to];
+      max_sz = std::max(max_sz, sz[to]);
     }
-  if (std::max(max_sz, tr.v_size() - tr.sz[now]) <= tr.v_size() / 2) ans.push_back(now);
+  if (std::max(max_sz, (u32)tr.g.size() - sz[now]) <= tr.g.size() / 2) ans.push_back(now);
 }
 
 }  // namespace tree_centroid_impl_
 
-template <class VW, class EW>
-inline vec<u32> tree_centroid(tree<VW, EW> &tr) {
-  tr.sz = vec<u32>(tr.v_size());
-  vec<u32> ans;
-  tree_centroid_impl_::dfs_(tr, ans, tr.rt, tr.v_size());
+inline vec<u32> tree_centroid(tree const &tr) {
+  vec<u32> sz(tr.g.size()), ans;
+  tree_centroid_impl_::dfs_(tr, sz, ans, tr.root, -1_u32);
   return ans;
 }
 

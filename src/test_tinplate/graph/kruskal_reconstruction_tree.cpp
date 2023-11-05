@@ -2,6 +2,7 @@
 
 #include "../../code/graph/kruskal_reconstruction_tree.hpp"
 
+#include "../../code/tree/dfs_info.hpp"
 #include "../../code/tree/tree_sumvw.hpp"
 
 int main() {
@@ -14,20 +15,20 @@ int main() {
   vec<std::tuple<u32, u32, u32>> e(m);
   for (auto& [w, u, v] : e) std::cin >> u >> v >> w, --u, --v;
   std::sort(e.begin(), e.end());
-  auto [tr, ew] = tifa_libs::graph::kruskal_re_tree(e, n, nw);
-  n = tr.v_size();
-  tr.reset_dfs_info<tifa_libs::graph::s_go>();
-  auto sum_node_w = tifa_libs::graph::tree_sumvw(tr);
+  auto [tr, ew] = tifa_libs::graph::kruskal_re_tree(e, n);
+  n = (u32)tr.g.size();
+  tifa_libs::graph::tree_dfs_info info;
+  info.reset_dfs_info<tifa_libs::graph::s_go>(tr);
+  auto sum_node_w = tifa_libs::graph::tree_sumvw(tr, nw);
   while (q--) {
     u32 x, k;
     std::cin >> x >> k;
     --x;
     u64 ans = k + sum_node_w[x];
-    while (x != tr.rt) {
+    while (x != tr.root) {
       u32 tem = x;
-      for (i32 i = 20; i >= 0; i--) {
-        if (tr.go[x][i] < n && ew[tr.go[x][i]] <= ans) x = tr.go[x][i];
-      }
+      for (u32 i = 20; ~i; --i)
+        if (info.go[x][i] < n && ew[info.go[x][i]] <= ans) x = info.go[x][i];
       if (x == tem) break;
       ans = k + sum_node_w[x];
     }

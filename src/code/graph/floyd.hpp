@@ -1,13 +1,15 @@
 #ifndef TIFA_LIBS_GRAPH_FLOYD
 #define TIFA_LIBS_GRAPH_FLOYD
 
-#include "adjmat.hpp"
+#include "amat.hpp"
 
 namespace tifa_libs::graph {
 
-template <class W>
-std::optional<adjmat<W>> floyd(adjmat<W> g, W INF = std::numeric_limits<W>::max() / 2 - 1) {
-  u32 n = g.v_size();
+//! will change input graph
+template <class T>
+std::optional<amat<T>> floyd(amat<T>& fg, T INF = std::numeric_limits<T>::max() / 2 - 1) {
+  auto&& g = fg.g;
+  u32 n = g.size();
   for (u32 k = 0; k < n; ++k)
     for (u32 x = 0; x < n; ++x) {
       if (g[x][k] == INF) continue;

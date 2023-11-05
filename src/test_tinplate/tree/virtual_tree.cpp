@@ -2,22 +2,28 @@
 
 #include "../../code/tree/virtual_tree.hpp"
 
+#include "../../code/tree/tree.hpp"
+#include "../../code/tree/treew.hpp"
+
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
   vec<u32> sign(n), min_(n);
-  using Tw = u32;
-  tifa_libs::graph::tree<void, Tw> tr(n);
-  for (u32 i = 1, u, v, w; i < n; ++i) std::cin >> u >> v >> w, --u, --v, tr.add_edge(u, v, w);
-  auto dfs = [&](auto&& dfs, u32 u, u32 fa, u32 min__) -> void {
-    min_[u] = min__;
-    for (auto v : tr[u])
-      if (v.to != fa) dfs(dfs, v.to, u, std::min(min__, v.w));
-  };
-  dfs(dfs, 0, 0, INT32_MAX);
-  tifa_libs::graph::virtual_tree<Tw> vt(tr);
+  tifa_libs::graph::tree tr(n);
+  {
+    using Tw = u32;
+    tifa_libs::graph::treew<Tw> trw(n);
+    for (u32 i = 1, u, v, w; i < n; ++i) std::cin >> u >> v >> w, --u, --v, tr.add_arc(u, v), tr.add_arc(v, u), trw.add_arc(u, v, w), trw.add_arc(v, u, w);
+    auto dfs = [&](auto&& dfs, u32 u, u32 fa, u32 min__) -> void {
+      min_[u] = min__;
+      for (auto [to, w] : trw.g[u])
+        if (to != fa) dfs(dfs, to, u, std::min(min__, w));
+    };
+    dfs(dfs, 0, 0, INT32_MAX);
+  }
+  tifa_libs::graph::virtual_tree vt(tr);
   u32 m, k;
   std::cin >> m;
   for (u32 i = 0; i < m; ++i) {
@@ -28,7 +34,7 @@ int main() {
     auto dp = [&](auto&& dp, u32 u) -> u64 {
       if (sign[u]) return min_[u];
       u64 ret = 0;
-      for (auto v : vt.vt[u]) ret += dp(dp, v.to);
+      for (u32 to : vt.vt.g[u]) ret += dp(dp, to);
       return u ? std::min(u64(min_[u]), ret) : ret;
     };
     std::cout << dp(dp, 0) << '\n';

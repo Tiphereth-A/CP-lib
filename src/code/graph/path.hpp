@@ -1,12 +1,12 @@
 #ifndef TIFA_LIBS_GRAPH_PATH
 #define TIFA_LIBS_GRAPH_PATH
 
-#include "adjlist.hpp"
+#include "alist.hpp"
 
 namespace tifa_libs::graph {
 
-template <class VW, class EW>
-std::optional<vec<u32>> path(adjlist<VW, EW> const &g, u32 from, u32 to) {
+template <class G>
+inline std::optional<vec<u32>> path(G const &g, u32 from, u32 to) {
   vec<u32> ret;
   bool failed = true;
   auto dfs = [&](auto &&dfs, u32 now, u32 fa) -> void {
@@ -15,15 +15,19 @@ std::optional<vec<u32>> path(adjlist<VW, EW> const &g, u32 from, u32 to) {
       failed = false;
       return;
     }
-    for (auto dst : g[now]) {
-      if (dst.to == fa) continue;
-      dfs(dfs, dst.to, now);
+    for (auto v : g.g[now]) {
+      u32 to = 0;
+      if constexpr (std::is_base_of_v<alist, G>) to = v;
+      else to = v.first;
+      if (to == fa) continue;
+      dfs(dfs, to, now);
       if (!failed) return;
     }
     if (!failed) return;
     ret.pop_back();
   };
-  dfs(dfs, from, g.v_size());
+
+  dfs(dfs, from, -1_u32);
   if (failed) return {};
   return ret;
 }

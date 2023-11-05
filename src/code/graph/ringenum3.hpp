@@ -1,22 +1,22 @@
 #ifndef TIFA_LIBS_GRAPH_RINGENUM3
 #define TIFA_LIBS_GRAPH_RINGENUM3
 
-#include "adjlist.hpp"
+#include "alist.hpp"
 
 namespace tifa_libs::graph {
 
 namespace ringenum3_impl_ {
 
 template <class F>
-inline void run(adjlist<> const& dg, F func) {
-  u32 n = dg.v_size();
+inline void run(alist const& dg, F func) {
+  u32 n = (u32)dg.g.size();
   vec<bool> vis(n);
   for (u32 u = 0; u < n; ++u) {
-    for (auto [v] : dg[u]) vis[v].flip();
-    for (auto [v] : dg[u])
-      for (auto [w] : dg[v])
+    for (u32 v : dg.g[u]) vis[v].flip();
+    for (u32 v : dg.g[u])
+      for (u32 w : dg.g[v])
         if (vis[w]) func(u, v, w);
-    for (auto [v] : dg[u]) vis[v].flip();
+    for (u32 v : dg.g[u]) vis[v].flip();
   }
 }
 
@@ -26,7 +26,7 @@ inline void run(adjlist<> const& dg, F func) {
 // func(u, v, w) forall {u,v,w} is C3
 template <class F>
 inline void ringenum3(vec<u32> const& deg, vec<ptt<u32>> const& edges, F func) {
-  adjlist<void> dg((u32)deg.size());
+  alist dg(deg.size());
   for (auto [u, v] : edges) {
     if (deg[u] < deg[v] || (deg[u] == deg[v] && u > v)) std::swap(u, v);
     dg.add_arc(u, v);

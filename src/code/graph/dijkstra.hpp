@@ -2,17 +2,18 @@
 #define TIFA_LIBS_GRAPH_DIJKSTRA
 
 #include "../util/traits.hpp"
-#include "adjlist.hpp"
+#include "alistw.hpp"
 
 namespace tifa_libs::graph {
 
 // cb_relax(now, to)
-template <class VW, class EW, class F>
-vec<EW> dijkstra(adjlist<VW, EW> const &g, u32 s, F cb_relax, EW INF = std::numeric_limits<EW>::max() / 2 - 1) {
-  static_assert(!is_sint<EW>::value);
-  vec<EW> dis(g.v_size(), INF);
-  vec<bool> vis(g.v_size());
-  pqg<std::pair<EW, u32>> q;
+template <class T, class F>
+vec<T> dijkstra(alistw<T> const &fg, u32 s, F cb_relax, T INF = std::numeric_limits<T>::max() / 2 - 1) {
+  static_assert(!is_sint<T>::value);
+  auto &&g = fg.g;
+  vec<T> dis(g.size(), INF);
+  vec<bool> vis(g.size());
+  pqg<std::pair<T, u32>> q;
   q.emplace(dis[s] = 0, s);
   while (!q.empty()) {
     auto [dis_now, now] = q.top();

@@ -1,7 +1,8 @@
 #ifndef TIFA_LIBS_GRAPH_E_BCC
 #define TIFA_LIBS_GRAPH_E_BCC
 
-#include "../../code/util/util.hpp"
+#include "../util/util.hpp"
+
 namespace tifa_libs::graph {
 
 template <class EW>

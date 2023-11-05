@@ -4,7 +4,7 @@
 #include "../bit/cntr0.hpp"
 #include "../bit/parity.hpp"
 #include "../math/mul_mod_s.hpp"
-#include "adjlist.hpp"
+#include "alist.hpp"
 
 namespace tifa_libs::graph {
 
@@ -22,12 +22,12 @@ u32 calc(u32 n, vec<ptt<i32>> hist) {
 
 }  // namespace chrom_num_impl_
 
-template <class VW, class EW>
-u32 chrom_num(adjlist<VW, EW> const& g) {
-  u32 n = g.v_size();
+inline u32 chrom_num(alist const& fg) {
+  auto&& g = fg.g;
+  u32 n = (u32)g.size();
   vec<u32> adj(n), dp(1 << n);
   for (u32 i = 0; i < n; ++i)
-    for (auto const& j : g[i]) adj[i] |= 1 << j.to, adj[j.to] |= 1 << i;
+    for (u32 to : g[i]) adj[i] |= 1 << to, adj[to] |= 1 << i;
   dp[0] = 1;
   for (u32 i = 1; i < (1u << n); ++i) {
     u32 k = i & (i - 1);

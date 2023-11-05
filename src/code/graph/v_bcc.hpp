@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_GRAPH_V_BCC
 #define TIFA_LIBS_GRAPH_V_BCC
 
-#include "../../code/util/util.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::graph {
 
