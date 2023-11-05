@@ -1,13 +1,12 @@
 #ifndef TIFA_LIBS_GRAPH_E_BCC
 #define TIFA_LIBS_GRAPH_E_BCC
 
-#include "adjlist.hpp"
-
+#include "../../code/util/util.hpp"
 namespace tifa_libs::graph {
 
-template <class VW, class EW>
+template <class EW>
 class e_bcc {
-  const adjlist<VW, EW> &g;
+  const vvec<EW> &g;
 
  public:
   u32 id;
@@ -15,10 +14,10 @@ class e_bcc {
   vec<bool> cut;
   vvec<u32> belongs;
   //!! EW need rev_edge
-  e_bcc(adjlist<VW, EW> const &G) : g(G) { build(); }
+  e_bcc(vvec<EW> const &G) : g(G) { build(); }
   void build() {
     id = 0;
-    u32 cnt = 0, n = g.v_size();
+    u32 cnt = 0, n = u32(g.size());
     dfn = low = ebcc_id = vec<u32>(n, n);
     cut = vec<bool>(n, 0);
     std::stack<u32> s;
@@ -30,7 +29,7 @@ class e_bcc {
         auto v = g[u][i];
         if (v.to == fa && i == inv_from) continue;
         if (dfn[v.to] == n) {
-          dfs(dfs, v.to, u, v.w.inv);
+          dfs(dfs, v.to, u, v.inv);
           low[u] = std::min(low[u], low[v.to]);
         } else low[u] = std::min(low[u], dfn[v.to]);
       }
