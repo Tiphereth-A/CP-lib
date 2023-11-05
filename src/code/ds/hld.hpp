@@ -22,7 +22,7 @@ class hld {
     tr.template reset_dfs_info<graph::s_dep | graph::s_fa>();
     tr.template reset_top<true>();
     vec<T> b(a.size());
-    for(u32 i = 0; i < a.size(); ++ i) b[tr.dfn[i]] = a[i];
+    for (u32 i = 0; i < a.size(); ++i) b[tr.dfn[i]] = a[i];
     build(b);
   }
 
