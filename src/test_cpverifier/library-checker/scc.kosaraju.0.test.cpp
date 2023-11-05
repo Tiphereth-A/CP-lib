@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
-#include "../../code/graph/kosaraju.hpp"
-
 #include "../../code/graph/adjlist_rev.hpp"
+#include "../../code/graph/kosaraju.hpp"
 #include "../../code/util/ios_container.hpp"
 
 int main() {

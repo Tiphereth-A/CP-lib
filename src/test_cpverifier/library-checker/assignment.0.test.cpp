@@ -18,8 +18,12 @@ int main() {
   auto [flow, cost] = mcmf();
   std::cout << cost << '\n';
   vec<u32> ans(n);
-  for(u32 i = 0; i < n; ++ i)
-    for(auto v: mcmf.e[i]) if(v.to < n + n && v.to >= n && v.w == 0) {ans[i] = v.to - n; break;}
-  for(auto x: ans) std::cout << x << ' ';
+  for (u32 i = 0; i < n; ++i)
+    for (auto v : mcmf.e[i])
+      if (v.to < n + n && v.to >= n && v.w == 0) {
+        ans[i] = v.to - n;
+        break;
+      }
+  for (auto x : ans) std::cout << x << ' ';
   return 0;
 }

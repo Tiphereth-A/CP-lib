@@ -2,7 +2,6 @@
 
 #include "../../code/graph/v_bcc.hpp"
 
-
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
@@ -14,7 +13,7 @@ int main() {
   vvec<EW> e(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
-    if(u == v) continue;
+    if (u == v) continue;
     u32 tem1 = u32(e[u].size()), tem2 = u32(e[v].size());
     e[u].push_back({v, tem2});
     e[v].push_back({u, tem1});

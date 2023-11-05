@@ -20,7 +20,7 @@ int main() {
         ret = v.to - l;
         break;
       }
-    if(ret != s) std::cout << i << ' ' << ret << '\n';
+    if (ret != s) std::cout << i << ' ' << ret << '\n';
   }
   return 0;
 }

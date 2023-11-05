@@ -3,13 +3,12 @@
 #include "../../code/graph/tarjan.hpp"
 #include "../../code/util/ios_container.hpp"
 
-
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
-  
+
   vvec<u32> e(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
@@ -26,11 +25,12 @@ int main() {
     if (!in[i]) q.push(i);
   std::cout << scc.id << '\n';
   while (!q.empty()) {
-    u32 u = q.front(); q.pop();
+    u32 u = q.front();
+    q.pop();
     std::cout << scc.belongs[u].size() << ' ' << scc.belongs[u] << '\n';
-    for(auto v: g[u]) {
-      -- in[v];
-      if(!in[v]) q.push(v);
+    for (auto v : g[u]) {
+      --in[v];
+      if (!in[v]) q.push(v);
     }
   }
   return 0;

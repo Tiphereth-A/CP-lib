@@ -8,8 +8,8 @@ int main() {
   u32 n;
   std::cin >> n;
   vec<i32> a(n);
-  for(auto &x: a) std::cin >> x;
+  for (auto &x : a) std::cin >> x;
   tifa_libs::ds::cartesian_tree tr(a);
-  for(u32 i = 0; i < n; ++ i) std::cout << tr.t[i].fa << ' ';
+  for (u32 i = 0; i < n; ++i) std::cout << tr.t[i].fa << ' ';
   return 0;
 }

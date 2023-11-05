@@ -38,9 +38,8 @@ class dinic {
           e[u][i].w -= flow;
           e[v.to][e[u][i].inv].w += flow;
           ret += flow, limit -= flow;
-          if(!limit) break;
-        }
-        else dep[v.to] = 0;
+          if (!limit) break;
+        } else dep[v.to] = 0;
       }
     }
     return ret;
