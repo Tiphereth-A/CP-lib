@@ -8,7 +8,7 @@ namespace tifa_libs::ds {
 
 template <class KEY, class VAL, bool recovery = false>
 class fhq_treap {
-  //!!! initial cnt = 1 
+  //!!! initial cnt = 1
   struct YYZ {
     std::pair<KEY, VAL> w;
     u32 sz;

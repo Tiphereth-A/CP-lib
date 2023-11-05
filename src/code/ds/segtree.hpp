@@ -16,7 +16,7 @@ class segtree {
   void all_update(usz x, F f) { t[x] = mapping(f, t[x]), sign[x] = composition(f, sign[x]); }
   void all_set(usz x, T f) { t[x] = f, sign[x] = id(), set_sign[x] = 1; }
   void pushdown(usz x) {
-    if(set_sign[x]) all_set(x << 1, t[x]), all_set(x << 1 | 1, t[x]), set_sign[x] = 0;
+    if (set_sign[x]) all_set(x << 1, t[x]), all_set(x << 1 | 1, t[x]), set_sign[x] = 0;
     else all_update(x << 1, sign[x]), all_update(x << 1 | 1, sign[x]), sign[x] = id();
   }
   void build(vec<T> const &a, usz x, usz l, usz r) {
