@@ -1220,6 +1220,7 @@ cheatsheets:
   oeis-seq: 常用 OEIS 数列
   decimal: Python Decimal
   formula: 常用公式
+  lgv: lgv定理
 default_code_style: common
 code_styles:
   C: cpp
