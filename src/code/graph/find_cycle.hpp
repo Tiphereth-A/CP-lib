@@ -5,7 +5,8 @@
 
 namespace tifa_libs::graph {
 
-inline vec<ptt<u32>> find_cycle(alist const& fg, bool directed = true) {
+template <bool directed = true>
+inline vec<ptt<u32>> find_cycle(alist const& fg) {
   auto&& g = fg.g;
 
   for (u32 i = 0; i < g.size(); ++i)
@@ -21,7 +22,8 @@ inline vec<ptt<u32>> find_cycle(alist const& fg, bool directed = true) {
     vis[now] = 1;
     for (u32 to : g[now]) {
       if (fin) return -1_u32;
-      if (!directed && to == fa) continue;
+      if constexpr (!directed)
+        if (to == fa) continue;
       if (pidx[to] == pidx[now]) {
         cycle.emplace_back(now, to);
         return to;
