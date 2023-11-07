@@ -29,9 +29,6 @@ notebook:
     - util: 共同依赖
       code_ext: hpp
       test_ext: cpp
-    - si_avx2: AVX2 共同依赖
-      code_ext: hpp
-      test_ext: cpp
     - si_avx512: AVX-512 共同依赖
       code_ext: hpp
       test_ext: cpp
