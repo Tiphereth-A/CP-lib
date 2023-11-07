@@ -34,7 +34,7 @@ template <class mint>
 mint sum_ipaf(vec<mint> const& f, mint const& a, u64 n) {
   if (!n) return mint(0);
   if (!a.val()) return f[0];
-  return sum_ipaf(f, a, n, Binom<mint>((u32)std::max<u64>(n, f.size() + 1)));
+  return sum_ipaf(f, a, n, Binom<mint>((u32)(f.size() + 1)));
 }
 
 }  // namespace tifa_libs::math
