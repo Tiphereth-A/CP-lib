@@ -1,8 +1,10 @@
 #ifndef TIFA_LIBS_FAST_MONTGOMERY_SIMD
 #define TIFA_LIBS_FAST_MONTGOMERY_SIMD
 
-#include "../math/montgomery.hpp"
+// clang-format off
 #include "../util/simd.hpp"
+#include "../math/montgomery.hpp"
+// clang-format on
 
 namespace tifa_libs::math {
 
