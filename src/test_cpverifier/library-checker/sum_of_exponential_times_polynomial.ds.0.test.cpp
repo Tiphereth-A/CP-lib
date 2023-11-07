@@ -11,7 +11,8 @@ int main() {
   mint::set_mod(MOD);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  u32 r, d, n;
+  u32 r, d;
+  u64 n;
   std::cin >> r >> d >> n;
   auto p = tifa_libs::math::gen_pows<mint>(d + 1, d);
   std::cout << tifa_libs::math::sum_ipaf(p, mint(r), n);
