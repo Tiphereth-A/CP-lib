@@ -1,8 +1,8 @@
-#ifndef TIFA_LIBS_FAST_MONTGOMERY_SIMD
-#define TIFA_LIBS_FAST_MONTGOMERY_SIMD
+#ifndef TIFA_LIBS_FAST_MONTGOMERY_SI512
+#define TIFA_LIBS_FAST_MONTGOMERY_SI512
 
 // clang-format off
-#include "../util/si512.hpp"
+#include "../util/si_avx512.hpp"
 #include "../math/montgomery.hpp"
 // clang-format on
 

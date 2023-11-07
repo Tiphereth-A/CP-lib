@@ -8,6 +8,6 @@ int main() {
   tifa_libs::fin >> n >> m;
   vec<u32> a(n), b(m);
   tifa_libs::fin >> a >> b;
-  tifa_libs::fout << tifa_libs::math::NTT_s1512(998244353).conv(a, b) << '\n';
+  tifa_libs::fout << tifa_libs::math::NTT_si512(998244353).conv(a, b) << '\n';
   return 0;
 }

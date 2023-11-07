@@ -29,6 +29,12 @@ notebook:
     - util: 共同依赖
       code_ext: hpp
       test_ext: cpp
+    - si_avx2: AVX2 共同依赖
+      code_ext: hpp
+      test_ext: cpp
+    - si_avx512: AVX-512 共同依赖
+      code_ext: hpp
+      test_ext: cpp
     - abs_constexpr: abs_constexpr
       code_ext: hpp
       test_ext: cpp
@@ -69,9 +75,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - inversion: 逆序对计数
-      code_ext: hpp
-      test_ext: cpp
-    - si512: AVX-512 共同依赖
       code_ext: hpp
       test_ext: cpp
     - pair_op: pair 运算
@@ -1208,10 +1211,10 @@ notebook:
     - u32tostrhex: u32 转 16 进制字符串
       code_ext: hpp
       test_ext: cpp
-    - montgomery_si512: Montgomery 乘法（32 位，AVX-512）
+    - montgomery_si512: 32 位 Montgomery 乘法 AVX-512
       code_ext: hpp
       test_ext: cpp
-    - ntt_si512: NTT SIMD AVX-512
+    - ntt_si512: NTT AVX-512
       code_ext: hpp
       test_ext: cpp
 cheatsheets:

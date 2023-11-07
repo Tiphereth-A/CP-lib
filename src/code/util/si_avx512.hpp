@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_SIMD
-#define TIFA_LIBS_UTIL_SIMD
+#ifndef TIFA_LIBS_UTIL_SI_AVX512
+#define TIFA_LIBS_UTIL_SI_AVX512
 
 #pragma GCC target("avx512f,bmi")
 #include <immintrin.h>
@@ -9,7 +9,10 @@
 namespace tifa_libs {
 
 using i512 = __m512i;
+
+using i32x16 = i32 __attribute__((vector_size(64)));
 using u32x16 = u32 __attribute__((vector_size(64)));
+using i64x8 = i64 __attribute__((vector_size(64)));
 using u64x8 = u64 __attribute__((vector_size(64)));
 
 inline u32x16 load_u32x16(u32 *ptr) { return (u32x16)(_mm512_load_si512((i512 *)ptr)); }
