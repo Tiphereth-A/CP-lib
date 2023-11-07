@@ -81,7 +81,6 @@ class matrix {
     return *this;
   }
   constexpr friend matrix operator-(matrix l, const T &v) { return l -= v; }
-  constexpr friend matrix operator-(const T &v, matrix l) { return l -= v; }
   constexpr matrix &operator-=(const T &v) {
     apply_range(0, row(), 0, col(), [&v](usz, usz, T &val) { val -= v; });
     return *this;
