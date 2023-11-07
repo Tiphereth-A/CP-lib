@@ -2,21 +2,21 @@
 #define TIFA_LIBS_FAST_MONTGOMERY_SIMD
 
 // clang-format off
-#include "../util/simd.hpp"
+#include "../util/si512.hpp"
 #include "../math/montgomery.hpp"
 // clang-format on
 
 namespace tifa_libs::math {
 
-struct Montgomery_simd {
+struct Montgomery_si512 {
   alignas(64) u32x16 mod;
   alignas(64) u32x16 mod2;   // 2 * mod
   alignas(64) u32x16 n_inv;  // n_inv * mod == -1 (mod 2^32)
   alignas(64) u32x16 r;      // 2^32 % mod
   alignas(64) u32x16 r2;     // (2^32) ^ 2 % mod
 
-  Montgomery_simd() = default;
-  Montgomery_simd(u32 md) {
+  Montgomery_si512() = default;
+  Montgomery_si512(u32 md) {
     Montgomery mt(md);
     mod = set1_u32x16(mt.mod);
     mod2 = set1_u32x16(mt.mod2);

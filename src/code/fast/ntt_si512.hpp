@@ -2,18 +2,18 @@
 #define TIFA_LIBS_FAST_NTT_SIMD
 
 // clang-format off
-#include "montgomery_simd.hpp"
+#include "montgomery_si512.hpp"
 #include "../math/proot_u32.hpp"
 // clang-format on
 
 namespace tifa_libs::math {
 
 // from <https://judge.yosupo.jp/submission/166305>
-struct NTT {
+struct NTT_s1512 {
   // avoid weird CE from clang
   using pu32 = u32 *;
 
-  alignas(64) Montgomery_simd mts;
+  alignas(64) Montgomery_si512 mts;
   Montgomery mt;
   u32 mod, g;
 
@@ -30,7 +30,7 @@ struct NTT {
   alignas(64) u32 w[8], w_r[8];                      // read NTT()
   alignas(64) u64x8 w_cum_x8[LG], w_rcum_x8[LG];     // read NTT()
   alignas(64) u32x16 w_cum_x16[LG], w_rcum_x16[LG];  // read NTT()
-  explicit NTT(u32 mod = 998244353) : mts(mod), mt(mod), mod(mod) {
+  explicit NTT_s1512(u32 mod = 998244353) : mts(mod), mt(mod), mod(mod) {
     const auto mt = this->mt;  // ! to put Montgomery constants in registers
     g = mt.mul<true>(mt.r2, proot_u32(mod));
     for (int i = 0; i < LG; ++i) {
@@ -104,8 +104,8 @@ struct NTT {
                                            w[2], w[1], w[3], w[0],   // [ w * w_2   | w^2 * w_1 | w * w_3    | w^8       ]
                                            w[4], w[2], w[5], w[1],   // [ w * w_4   | w^2 * w_2 | w * w_5    | w^4 * w_1 ]
                                            w[6], w[3], w[7], w[0]);  // [ w * w_6   | w^2 * w_3 | w * w_7    | w^8       ]
-    int n_16 = n / 16;
-    for (int i = 0; i < n_16; ++i) {
+    u32 n_16 = n / 16;
+    for (u32 i = 0; i < n_16; ++i) {
       u32x16 val = load_u32x16(data + i * 16);
       u64x8 w3 = (u64x8)cum;  // no shuffle needed
       u64x8 w2 = (u64x8)shuffle_u32x16<0b00'01'00'01>(cum);
