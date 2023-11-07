@@ -898,6 +898,12 @@ notebook:
     - lagrange_interp0: Lagrange 插值（从 0 开始的连续样本点）
       code_ext: hpp
       test_ext: cpp
+    - sum_ipaf: sum_ipaf
+      code_ext: hpp
+      test_ext: cpp
+    - series_ipaf: series_ipaf
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: 矩阵
       code_ext: hpp
