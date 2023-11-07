@@ -538,6 +538,9 @@ notebook:
     - find_cycle: 找环
       code_ext: hpp
       test_ext: cpp
+    - topo_sort: 拓扑排序
+      code_ext: hpp
+      test_ext: cpp
     tree:
     - tree: 树
       code_ext: hpp
