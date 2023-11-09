@@ -3,23 +3,22 @@
 #include <cpuid.h>
 using namespace std;
 
-void cpuid() {
-  static char brand[0x40];
-  static unsigned info[4] = {0, 0, 0, 0};
+void cpu_name() {
+  static char s[0x40];
+  static unsigned x[4] = {0, 0, 0, 0};
   constexpr unsigned N = 0x80000000;
-  __cpuid(N, info[0], info[1], info[2], info[3]);
-  unsigned nexids = info[0];
-  for (unsigned i = N; i <= nexids; ++i) {
-    __cpuid(i, info[0], info[1], info[2], info[3]);
-    if (i == N + 2) memcpy(brand, info, sizeof(info));
-    if (i == N + 3) memcpy(brand + 16, info, sizeof(info));
-    if (i == N + 4) memcpy(brand + 32, info, sizeof(info));
+  __cpuid(N, x[0], x[1], x[2], x[3]);
+  for (unsigned i = N, ed = x[0]; i <= ed; ++i) {
+    __cpuid(i, x[0], x[1], x[2], x[3]);
+    if (i == N + 2) memcpy(s, x, sizeof(x));
+    if (i == N + 3) memcpy(s + 16, x, sizeof(x));
+    if (i == N + 4) memcpy(s + 32, x, sizeof(x));
   }
-  cout << brand << endl;
+  cout << s << endl;
 }
 
 int main() {
-  cpuid();
+  cpu_name();
   auto st = chrono::high_resolution_clock::now();
 
   volatile int n = 3000;
