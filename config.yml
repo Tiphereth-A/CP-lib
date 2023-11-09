@@ -1060,6 +1060,9 @@ notebook:
     - polydata_s32: 多项式数据类（基于 NTT 32）
       code_ext: hpp
       test_ext: cpp
+    - polydata_scntt: 多项式数据类（基于 CNTT）
+      code_ext: hpp
+      test_ext: cpp
     - poly: 多项式
       code_ext: hpp
       test_ext: cpp
