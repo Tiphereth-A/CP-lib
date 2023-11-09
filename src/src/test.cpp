@@ -29,7 +29,7 @@ int main() {
       for (int k = 1; k <= n; k += 4) ans |= i | j | k;
 
   auto ed = chrono::high_resolution_clock::now();
-  cout << fixed << setprecision(12) << chrono::duration_cast<chrono::nanoseconds>(ed - st).count() * 1e-6l << " ms" << endl;
+  cout << fixed << setprecision(6) << chrono::duration_cast<chrono::nanoseconds>(ed - st).count() * 1e-6l << " ms" << endl;
   long double nn = 1.l * n * (n >> 1) * (n >> 2);
-  cout << nn / chrono::duration_cast<chrono::seconds>(ed - st).count() << endl;
+  cout << scientific << nn / chrono::duration_cast<chrono::nanoseconds>(ed - st).count() * 1e9 << endl;
 }
