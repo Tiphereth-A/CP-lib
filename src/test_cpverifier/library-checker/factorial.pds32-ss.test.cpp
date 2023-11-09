@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/502"
+#define PROBLEM "https://judge.yosupo.jp/problem/factorial"
 
 #include "../../code/math/fact_mint.hpp"
 #include "../../code/math/mint_ss.hpp"
