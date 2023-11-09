@@ -22,14 +22,14 @@ int main() {
   cpuid();
   auto st = chrono::high_resolution_clock::now();
 
-  int n = 3000;
+  volatile int n = 3000;
   bitset<30> ans;
   for (int i = 1; i <= n; ++i)
     for (int j = 1; j <= n; j += 2)
       for (int k = 1; k <= n; k += 4) ans |= i | j | k;
 
   auto ed = chrono::high_resolution_clock::now();
-  cout << chrono::duration_cast<chrono::milliseconds>(ed - st).count() << endl;
+  cout << fixed << setprecision(12) << chrono::duration_cast<chrono::nanoseconds>(ed - st).count() * 1e-6l << " ms" << endl;
   long double nn = 1.l * n * (n >> 1) * (n >> 2);
   cout << nn / chrono::duration_cast<chrono::seconds>(ed - st).count() << endl;
 }
