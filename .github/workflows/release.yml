@@ -72,7 +72,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ github.token }}
-          file: "*.pdf"
+          file: notebook.pdf
           tag: ${{ github.ref }}
           file_glob: true
           overwrite: true
