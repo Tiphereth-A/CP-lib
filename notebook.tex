@@ -16,12 +16,6 @@
 	\pagenumbering{roman}
 	\setcounter{page}{1}
 
-    \begin{multicols}{2}
-        \tableofcontents
-    \end{multicols}
-
-    \newpage
-
     \paragraph{项目地址} \url{https://github.com/Tiphereth-A/CP-lib}
 
     本书代码默认数组下标从 \(0\) 开始 (\([0, n)\)), 故需注意题目下标是从 \(0\) 开始 (\([0, n)\)) 还是从 \(1\) 开始 (\([1, n]\))
@@ -33,6 +27,11 @@
     \paragraph{试机代码}
 
     \inputminted{cpp}{src/src/test.cpp}
+
+    \newpage
+    \begin{multicols}{2}
+        \tableofcontents
+    \end{multicols}
 
     \newpage
 	\pagestyle{fancy}

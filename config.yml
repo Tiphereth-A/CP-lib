@@ -229,7 +229,7 @@ notebook:
     - link_cut_tree: 动态树（LCT）
       code_ext: hpp
       test_ext: cpp
-    - leftist_tree: 可并堆(左偏树)
+    - leftist_tree: 可并堆（左偏树）
       code_ext: hpp
       test_ext: cpp
     - deque_with_w: 带权双端队列
@@ -529,7 +529,7 @@ notebook:
     - dinic: 网络最大流（dinic）
       code_ext: hpp
       test_ext: cpp
-    - ssp: 最小费用最大流(SuccessiveShortestPath)
+    - ssp: 最小费用最大流（SuccessiveShortestPath）
       code_ext: hpp
       test_ext: cpp
     - steiner_tree: 斯坦纳树
@@ -1178,13 +1178,13 @@ notebook:
     - suffix_automaton: 后缀自动机
       code_ext: hpp
       test_ext: cpp
-    - orthodox_ex_suffix_automaton: (离线)广义后缀自动机
+    - orthodox_ex_suffix_automaton: （离线）广义后缀自动机
       code_ext: hpp
       test_ext: cpp
     - ex_suffix_automaton: 广义后缀自动机
       code_ext: hpp
       test_ext: cpp
-    - aho_corasick_automaton: ac自动机
+    - aho_corasick_automaton: AC 自动机
       code_ext: hpp
       test_ext: cpp
     - lyndon: Lyndon 分解
@@ -1235,7 +1235,7 @@ cheatsheets:
   oeis-seq: 常用 OEIS 数列
   decimal: Python Decimal
   formula: 常用公式
-  lgv: lgv定理
+  lgv: lgv 定理
 default_code_style: common
 code_styles:
   C: cpp

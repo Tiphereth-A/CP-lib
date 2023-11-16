@@ -29,6 +29,7 @@ int main() {
 
   auto ed = chrono::high_resolution_clock::now();
   cout << fixed << setprecision(6) << chrono::duration_cast<chrono::nanoseconds>(ed - st).count() * 1e-6l << " ms" << endl;
-  long double nn = 1.l * n * (n >> 1) * (n >> 2);
-  cout << scientific << nn / chrono::duration_cast<chrono::nanoseconds>(ed - st).count() * 1e9 << endl;
+  long double nn = 1.l * n * (n >> 1) * (n >> 2) / chrono::duration_cast<chrono::nanoseconds>(ed - st).count() * 1e9;
+  // assert(nn > 3e9);
+  cout << scientific << nn << endl;
 }
