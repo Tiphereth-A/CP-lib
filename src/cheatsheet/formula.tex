@@ -86,87 +86,87 @@
 \subsubsection{Stirling 数相关公式}
 
 \begin{equation}
-    \stirlingfirst{n}{m}=(n-1)\stirlingfirst{n-1}{m}+\stirlingfirst{n-1}{m-1}
+    \stirlingI{n}{m}=(n-1)\stirlingI{n-1}{m}+\stirlingI{n-1}{m-1}
 \end{equation}
 
 \begin{equation}
-    \stirlingsecond{n}{m}=m\stirlingsecond{n-1}{m}+\stirlingsecond{n-1}{m-1}
+    \stirlingII{n}{m}=m\stirlingII{n-1}{m}+\stirlingII{n-1}{m-1}
 \end{equation}
 
 \begin{equation}
-    \sum_{n\geq k}\frac{x^n}{n!}\stirlingfirst{n}{k}=\frac{\left(-\ln(1-x)\right)^k}{k!}
+    \sum_{n\geq k}\frac{x^n}{n!}\stirlingI{n}{k}=\frac{\left(-\ln(1-x)\right)^k}{k!}
 \end{equation}
 
 \begin{equation}
-    \sum_{n\geq k}\frac{x^n}{n!}\stirlingsecond{n}{k}=\frac{\left(\mathrm{e}^x-1\right)^k}{k!}
+    \sum_{n\geq k}\frac{x^n}{n!}\stirlingII{n}{k}=\frac{\left(\mathrm{e}^x-1\right)^k}{k!}
 \end{equation}
 
 \begin{equation}
-    \sum_{n\geq k}x^n\stirlingsecond{n}{k}=\prod_{i=1}^k\frac{x}{1-\mathrm{i}x}
+    \sum_{n\geq k}x^n\stirlingII{n}{k}=\prod_{i=1}^k\frac{x}{1-\mathrm{i}x}
 \end{equation}
 
 \begin{equation}
-    f_n=\sum_{k=0}^n\stirlingfirst{n}{k}g_k \iff g_n=\sum_{k=0}^n\stirlingsecond{n}{k}(-1)^{n-k}f_k
+    f_n=\sum_{k=0}^n\stirlingI{n}{k}g_k \iff g_n=\sum_{k=0}^n\stirlingII{n}{k}(-1)^{n-k}f_k
 \end{equation}
 
 \begin{equation}
-    \stirlingfirst{n}{k}=\frac{n!}{k!}\frac{k}{n}\left[x^{n-k}\right]\left(\frac{x}{\mathrm{e}^x-1}\right)^n
+    \stirlingI{n}{k}=\frac{n!}{k!}\frac{k}{n}\left[x^{n-k}\right]\left(\frac{x}{\mathrm{e}^x-1}\right)^n
 \end{equation}
 
 \begin{equation}
-    \stirlingsecond{n}{k}=\frac{n!}{k!}\frac{k}{n}\left[x^{n-k}\right]\left(\frac{x}{\ln(1+x)}\right)^n
+    \stirlingII{n}{k}=\frac{n!}{k!}\frac{k}{n}\left[x^{n-k}\right]\left(\frac{x}{\ln(1+x)}\right)^n
 \end{equation}
 
 \begin{equation}
-    \stirlingsecond{n+1}{m+1}=\sum_{k=0}^n\binom{n}{k}\stirlingsecond{k}{m}
+    \stirlingII{n+1}{m+1}=\sum_{k=0}^n\binom{n}{k}\stirlingII{k}{m}
 \end{equation}
 
 \begin{equation}
-    \stirlingfirst{n+1}{m+1}=\sum_{k=0}^n\stirlingfirst{n}{k}\binom{k}{m}
+    \stirlingI{n+1}{m+1}=\sum_{k=0}^n\stirlingI{n}{k}\binom{k}{m}
 \end{equation}
 
 \begin{equation}
-    \stirlingsecond{n+1}{m+1}=\sum_{k=0}^n\stirlingsecond{k}{m}(m+1)^{n-k}
+    \stirlingII{n+1}{m+1}=\sum_{k=0}^n\stirlingII{k}{m}(m+1)^{n-k}
 \end{equation}
 
 \begin{equation}
-    \stirlingfirst{n+1}{m+1}=\sum_{k=0}^n\stirlingfirst{k}{m}\frac{n!}{k!}
+    \stirlingI{n+1}{m+1}=\sum_{k=0}^n\stirlingI{k}{m}\frac{n!}{k!}
 \end{equation}
 
 \begin{equation}
-    \stirlingsecond{n+m+1}{m}=\sum_{k=0}^mk\stirlingsecond{k+n}{k}
+    \stirlingII{n+m+1}{m}=\sum_{k=0}^mk\stirlingII{k+n}{k}
 \end{equation}
 
 \begin{equation}
-    \stirlingfirst{n+m+1}{m}=\sum_{k=0}^m(n+k)\stirlingfirst{k+n}{k}
+    \stirlingI{n+m+1}{m}=\sum_{k=0}^m(n+k)\stirlingI{k+n}{k}
 \end{equation}
 
 \begin{equation}
-    \binom{n}{m}=\sum_{k=0}^n\stirlingsecond{n+1}{k+1}\stirlingfirst{k}{m}(-1)^{m-k}
+    \binom{n}{m}=\sum_{k=0}^n\stirlingII{n+1}{k+1}\stirlingI{k}{m}(-1)^{m-k}
 \end{equation}
 
 \begin{equation}
-    n^{\underline{n-m}}[n\geq m]=\sum_{k=0}^n\stirlingfirst{n+1}{k+1}\stirlingsecond{k}{m}(-1)^{m-k}
+    n^{\underline{n-m}}[n\geq m]=\sum_{k=0}^n\stirlingI{n+1}{k+1}\stirlingII{k}{m}(-1)^{m-k}
 \end{equation}
 
 \begin{equation}
-    \stirlingsecond{n}{n-m}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingfirst{m+k}{k}
+    \stirlingII{n}{n-m}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingI{m+k}{k}
 \end{equation}
 
 \begin{equation}
-    \stirlingfirst{n}{n-m}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingsecond{m+k}{k}
+    \stirlingI{n}{n-m}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingII{m+k}{k}
 \end{equation}
 
 \begin{equation}
-    \stirlingsecond{-n+m}{-n}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingfirst{-k}{-k-m}
+    \stirlingII{-n+m}{-n}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingI{-k}{-k-m}
 \end{equation}
 
 \begin{equation}
-    \stirlingsecond{n}{l+m}\binom{l+m}{l}=\sum_k\binom{n}{k}\stirlingsecond{k}{l}\stirlingsecond{n-k}{m}
+    \stirlingII{n}{l+m}\binom{l+m}{l}=\sum_k\binom{n}{k}\stirlingII{k}{l}\stirlingII{n-k}{m}
 \end{equation}
 
 \begin{equation}
-    \stirlingfirst{n}{l+m}\binom{l+m}{l}=\sum_k\binom{n}{k}\stirlingfirst{k}{l}\stirlingfirst{n-k}{m}
+    \stirlingI{n}{l+m}\binom{l+m}{l}=\sum_k\binom{n}{k}\stirlingI{k}{l}\stirlingI{n-k}{m}
 \end{equation}
 
 \subsection{初等数论}
