@@ -30,22 +30,6 @@
 \subsubsection{组合数相关公式}
 
 \begin{equation}
-    \binom{n}{m}=\binom{n}{n-m}
-\end{equation}
-
-\begin{equation}
-    \binom{n}{k} = \frac{n}{k} \binom{n-1}{k-1}
-\end{equation}
-
-\begin{equation}
-    \binom{n}{m}=\binom{n-1}{m}+\binom{n-1}{m-1}
-\end{equation}
-
-\begin{equation}
-    \sum_{i=0}^n\binom{n}{i}=2^n
-\end{equation}
-
-\begin{equation}
     \sum_{i=0}^n(-1)^i\binom{n}{i}=[n=0]
 \end{equation}
 
@@ -66,14 +50,6 @@
 \end{equation}
 
 \begin{equation}
-    \sum_{l=0}^n\binom{l}{k} = \binom{n+1}{k+1}
-\end{equation}
-
-\begin{equation}
-    \binom{n}{r}\binom{r}{k} = \binom{n}{k}\binom{n-k}{r-k}
-\end{equation}
-
-\begin{equation}
     \sum_{i=0}^n\binom{n-i}{i}=F_{n+1}
 \end{equation}
 
@@ -84,14 +60,6 @@
 \end{equation}
 
 \subsubsection{Stirling 数相关公式}
-
-\begin{equation}
-    \stirlingI{n}{m}=(n-1)\stirlingI{n-1}{m}+\stirlingI{n-1}{m-1}
-\end{equation}
-
-\begin{equation}
-    \stirlingII{n}{m}=m\stirlingII{n-1}{m}+\stirlingII{n-1}{m-1}
-\end{equation}
 
 \begin{equation}
     \sum_{n\geq k}\frac{x^n}{n!}\stirlingI{n}{k}=\frac{\left(-\ln(1-x)\right)^k}{k!}
@@ -117,32 +85,10 @@
     \stirlingII{n}{k}=\frac{n!}{k!}\frac{k}{n}\left[x^{n-k}\right]\left(\frac{x}{\ln(1+x)}\right)^n
 \end{equation}
 
-\begin{equation}
-    \stirlingII{n+1}{m+1}=\sum_{k=0}^n\binom{n}{k}\stirlingII{k}{m}
-\end{equation}
-
-\begin{equation}
-    \stirlingI{n+1}{m+1}=\sum_{k=0}^n\stirlingI{n}{k}\binom{k}{m}
-\end{equation}
-
-\begin{equation}
-    \stirlingII{n+1}{m+1}=\sum_{k=0}^n\stirlingII{k}{m}(m+1)^{n-k}
-\end{equation}
-
-\begin{equation}
-    \stirlingI{n+1}{m+1}=\sum_{k=0}^n\stirlingI{k}{m}\frac{n!}{k!}
-\end{equation}
-
-\begin{equation}
-    \stirlingII{n+m+1}{m}=\sum_{k=0}^mk\stirlingII{k+n}{k}
-\end{equation}
+注意: 下面的公式是对的, \fullref{sec:theoretical-computer-science-cheat-sheet} 的第 43 个是错的
 
 \begin{equation}
     \stirlingI{n+m+1}{m}=\sum_{k=0}^m(n+k)\stirlingI{k+n}{k}
-\end{equation}
-
-\begin{equation}
-    \binom{n}{m}=\sum_{k=0}^n\stirlingII{n+1}{k+1}\stirlingI{k}{m}(-1)^{m-k}
 \end{equation}
 
 \begin{equation}
@@ -150,23 +96,7 @@
 \end{equation}
 
 \begin{equation}
-    \stirlingII{n}{n-m}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingI{m+k}{k}
-\end{equation}
-
-\begin{equation}
-    \stirlingI{n}{n-m}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingII{m+k}{k}
-\end{equation}
-
-\begin{equation}
     \stirlingII{-n+m}{-n}=\sum_k\binom{m-n}{m+k}\binom{m+n}{n+k}\stirlingI{-k}{-k-m}
-\end{equation}
-
-\begin{equation}
-    \stirlingII{n}{l+m}\binom{l+m}{l}=\sum_k\binom{n}{k}\stirlingII{k}{l}\stirlingII{n-k}{m}
-\end{equation}
-
-\begin{equation}
-    \stirlingI{n}{l+m}\binom{l+m}{l}=\sum_k\binom{n}{k}\stirlingI{k}{l}\stirlingI{n-k}{m}
 \end{equation}
 
 \subsection{初等数论}
