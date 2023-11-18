@@ -15,11 +15,11 @@ T solve_(i64 p, i64 q, i64 r, i64 l, T a, T b) {
   auto div = [](i64 a, i64 b, i64 c, i64 d) -> i64 { return (1.l * a * b + c) / d; };
 #pragma GCC diagnostic pop
   if (!l) return {};
-  if (p >= q) return solve_(p % q, q, r, l, a, qpow(a, p / q) + b);
+  if (p >= q) return solve_(p % q, q, r, l, a, qpow(a, u64(p / q)) * b);
   i64 m = div(l, p, r, q);
-  if (!m) return qpow(b, l);
+  if (!m) return qpow(b, (u64)l);
   i64 cnt = l - div(q, m, -r - 1, p);
-  return qpow(b, (q - r - 1) / p) * a * solve_(q, p, (q - r - 1) % p, m - 1, b, a) * qpow(b, cnt);
+  return qpow(b, u64((q - r - 1) / p)) * a * solve_(q, p, (q - r - 1) % p, m - 1, b, a) * qpow(b, (u64)cnt);
 }
 
 }  // namespace exeuclid_impl_
@@ -36,13 +36,13 @@ struct exeuclid_node {
   T u, r;
   T i, f, sqr_f, i_f;
   exeuclid_node(T u = 0, T r = 0, T i = 0, T f = 0, T sqr_f = 0, T i_f = 0) : u(u), r(r), i(i), f(f), sqr_f(sqr_f), i_f(i_f) {}
-  exeuclid_node operator*(exeuclid_node const &rhs) const {
-    return exeuclid_node{u + rhs.u,
-                         r + rhs.r,
-                         i + rhs.i + r * rhs.r,
-                         f + rhs.f + u * rhs.r,
-                         sqr_f + rhs.sqr_f + u * u * rhs.r + 2 * u * rhs.f,
-                         i_f + rhs.i_f + u * r * rhs.r + u * rhs.i + r * rhs.f};
+  friend exeuclid_node operator*(exeuclid_node const &l, exeuclid_node const &r) {
+    return {l.u + r.u,
+            l.r + r.r,
+            l.i + r.i + l.r * r.r,
+            l.f + r.f + l.u * r.r,
+            l.sqr_f + r.sqr_f + l.u * l.u * r.r + 2 * l.u * r.f,
+            l.i_f + r.i_f + l.u * l.r * r.r + l.u * r.i + l.r * r.f};
   }
 };
 
@@ -50,7 +50,7 @@ struct exeuclid_node {
 // result will add a when s cross with horizontal line
 // result will add b when s cross with vertical line
 template <class Node>
-Node exeuclid(i64 p, i64 q, i64 r, i64 l, Node const &a, Node const &b) { return qpow(a, r / q) * exeuclid_impl_::solve_(p, q, r % q, l, a, b); }
+Node exeuclid(i64 p, i64 q, i64 r, i64 l, Node const &a, Node const &b) { return qpow(a, u64(r / q)) * exeuclid_impl_::solve_(p, q, r % q, l, a, b); }
 
 }  // namespace tifa_libs::math
 

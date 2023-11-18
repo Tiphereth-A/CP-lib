@@ -15,7 +15,7 @@ int main() {
   u64 m;
   std::cin >> n >> k >> m;
   poly_t p(n);
-  for (usz i = 0, x; i < k; ++i) std::cin >> x >> p[x];
+  for (u32 i = 0, x; i < k; ++i) std::cin >> x >> p[x];
   std::cout << tifa_libs::math::polysp_pow(p, m);
   return 0;
 }

@@ -9,11 +9,11 @@
 namespace tifa_libs::math {
 
 template <class T, class Is0, class Ge>
-std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0 is0, Ge ge) {
+std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0 is0, Ge &&ge) {
   u32 r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
   matrix<T> Ab = mat_merge_lr(A, b);
-  u32 rk = (u32)rank(Ab, ge);
+  u32 rk = (u32)do_rank(Ab, std::forward<Ge>(ge));
   if (rk > c_) return {};
   if (!is0(Ab(rk - 1, c_))) {
     bool f = true;

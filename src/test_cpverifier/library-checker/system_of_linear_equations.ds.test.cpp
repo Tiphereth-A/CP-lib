@@ -12,7 +12,7 @@ int main() {
   mint::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  u64 n, m;
+  u32 n, m;
   std::cin >> n >> m;
   mat a(n, m), b(n, 1);
   std::cin >> a >> b;
