@@ -29,7 +29,7 @@ class poly {
     return os << poly.p.d.back();
   }
 
-  constexpr u32 size() const { return p.d.size(); }
+  constexpr u32 size() const { return (u32)p.d.size(); }
   constexpr data_type &data() { return p.d; }
   constexpr data_type const &data() const { return p.d; }
 

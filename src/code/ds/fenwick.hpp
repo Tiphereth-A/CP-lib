@@ -23,7 +23,7 @@ class fenwick {
   //! [1, pos)
   constexpr T sum(u32 pos) {
     T ret = 0;
-    for (pos = std::min(pos, a.size() - 1); pos; pos -= bit::lowbit(pos)) ret += a[pos];
+    for (pos = std::min(pos, (u32)a.size() - 1); pos; pos -= bit::lowbit(pos)) ret += a[pos];
     return ret;
   }
   //! for weighted fenwick

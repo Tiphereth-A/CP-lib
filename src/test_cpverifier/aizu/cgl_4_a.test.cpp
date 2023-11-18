@@ -14,11 +14,11 @@ int main() {
   std::cin >> p;
   p.init_nonstrict();
   std::cout << p.vs.size() << '\n';
-  usz now = 0;
-  for (usz i = 1; i < p.vs.size(); ++i)
+  u32 now = 0;
+  for (u32 i = 1; i < p.vs.size(); ++i)
     if (tifa_libs::is_lt(p[i].y, p[now].y) || (tifa_libs::is_eq(p[i].y, p[now].y) && tifa_libs::is_lt(p[i].x, p[now].x))) now = i;
-  for (usz i = now; i < p.vs.size(); ++i) std::cout << p[i] << '\n';
+  for (u32 i = now; i < p.vs.size(); ++i) std::cout << p[i] << '\n';
   if (now)
-    for (usz i = 0; i < now; ++i) std::cout << p[i] << '\n';
+    for (u32 i = 0; i < now; ++i) std::cout << p[i] << '\n';
   return 0;
 }

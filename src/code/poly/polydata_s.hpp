@@ -21,7 +21,7 @@ struct polydata_s {
   explicit constexpr polydata_s(vec<mint> const &v) : d(v) {}
 
   void conv(polydata_s const &r, u32 ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_ntt(d, r.d, ans_size); }
-  void conv(polydata_s const &r) { conv(r, d.size() + r.d.size() - 1); }
+  void conv(polydata_s const &r) { conv(r, u32(d.size() + r.d.size() - 1)); }
 };
 
 }  // namespace tifa_libs::math

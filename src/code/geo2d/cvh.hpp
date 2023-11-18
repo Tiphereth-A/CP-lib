@@ -71,7 +71,7 @@ struct cvh : public polygon<FP> {
   }
 
   cvh &do_minkowski_sum_nonstrict(cvh<FP> const &r) {
-    u32 n = (u32)this->vs.size(), (u32)m = r.vs.size();
+    u32 n = (u32)this->vs.size(), m = (u32)r.vs.size();
     if (!m) return *this;
     if (!n) return *this = r;
     vec<point<FP>> result;
