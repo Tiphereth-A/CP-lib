@@ -904,6 +904,9 @@ notebook:
     - series_ipaf: series_ipaf
       code_ext: hpp
       test_ext: cpp
+    - berlekamp_massey: Berlekamp–Massey 算法
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: 矩阵
       code_ext: hpp
