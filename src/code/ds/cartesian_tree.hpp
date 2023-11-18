@@ -11,6 +11,7 @@ class cartesian_tree {
     u32 fa;
     std::array<u32, 2> son{-1u, -1u};
   };
+
   void build(const vec<T>& y) {
     vec<u32> s(y.size() + 1);
     u32 top = 0;
@@ -27,6 +28,7 @@ class cartesian_tree {
  public:
   u32 root;
   vec<YYZ> t;
+
   cartesian_tree(const vec<T>& y) : root(), t(y.size()) { build(y); }
 };
 

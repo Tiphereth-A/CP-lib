@@ -20,11 +20,11 @@ class simuanl {
   // F: fT(vec<T> const &)
   template <class F>
   std::pair<fT, vec<T>> sa_seq(vec<T> const &seq, F fit) {
-    std::uniform_int_distribution<usz> u_idx(0, seq.size());
+    std::uniform_int_distribution<u32> u_idx(0, seq.size());
     vec<T> ans_seq = seq;
     fT ans = fit(ans_seq);
     for (Tt t = Tmax; t > Tmin; t *= dT) {
-      usz x, y;
+      u32 x, y;
       do {
         x = u_idx(g.rand_eng()), y = u_idx(g.rand_eng());
       } while (x == y);

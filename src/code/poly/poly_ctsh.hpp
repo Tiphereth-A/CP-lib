@@ -7,18 +7,18 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64> const &ifact, usz m = 0) {
-  usz n = f.size(), k = f.size() - 1;
+poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64> const &ifact, u32 m = 0) {
+  u32 n = f.size(), k = f.size() - 1;
   if (!m) m = n;
   using mint = typename T::value_type;
   u64 t = c.val();
   if (t <= k) {
     poly<T> ret(m);
-    usz ptr = 0;
-    for (usz i = t; i <= k && ptr < m; ++i) ret[ptr++] = f[i];
+    u32 ptr = 0;
+    for (u64 i = t; i <= k && ptr < m; ++i) ret[ptr++] = f[i];
     if (k + 1 < t + m) {
       auto suf = poly_ctsh(f, k + 1, ifact, m - ptr);
-      for (usz i = k + 1; i < t + m; ++i) ret[ptr++] = suf[i - (k + 1)];
+      for (u32 i = k + 1; i < t + m; ++i) ret[ptr++] = suf[i - (k + 1)];
     }
     return ret;
   }
@@ -28,28 +28,25 @@ inline poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64> co
     return pref;
   }
   poly<T> d(k + 1);
-  for (usz i = 0; i <= k; ++i) {
+  for (u32 i = 0; i <= k; ++i) {
     d[i] = ifact[i];
     (d[i] *= ifact[k - i]) *= f[i];
     if ((k - i) & 1) d[i] = -d[i];
   }
   poly<T> h(m + k);
-  for (usz i = 0; i < m + k; ++i) h[i] = mint(t - k + i).inv();
+  for (u32 i = 0; i < m + k; ++i) h[i] = mint(t - k + i).inv();
   auto dh = d * h;
   poly<T> ret(m);
   mint cur = t;
-  for (usz i = 1; i <= k; ++i) cur *= t - i;
-  for (usz i = 0; i < m; ++i) {
+  for (u32 i = 1; i <= k; ++i) cur *= t - i;
+  for (u32 i = 0; i < m; ++i) {
     ret[i] = cur * dh[k + i];
     (cur *= t + i + 1) *= h[i];
   }
   return ret;
 }
 template <class T>
-inline poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, usz m = 0) {
-  u32 n = (u32)f.size();
-  return poly_ctsh(f, c, gen_ifact(n, T::value_type::mod()), m);
-}
+poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, u32 m = 0) { return poly_ctsh(f, c, gen_ifact(f.size(), T::value_type::mod()), m); }
 
 }  // namespace tifa_libs::math
 

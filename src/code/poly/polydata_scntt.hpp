@@ -15,12 +15,12 @@ struct polydata_scntt {
 
   vec<mint> d;
 
-  explicit constexpr polydata_scntt(usz sz = 1, value_type const &val = value_type{}) : d(sz, val) {}
+  explicit constexpr polydata_scntt(u32 sz = 1, value_type const &val = value_type{}) : d(sz, val) {}
   constexpr polydata_scntt(typename vec<mint>::const_iterator begin, typename vec<mint>::const_iterator end) : d(begin, end) {}
   explicit constexpr polydata_scntt(std::initializer_list<mint> v) : d(v) {}
   explicit constexpr polydata_scntt(vec<mint> const &v) : d(v) {}
 
-  void conv(polydata_scntt const &r, usz ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_cntt(d, r.d, ans_size); }
+  void conv(polydata_scntt const &r, u32 ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_cntt(d, r.d, ans_size); }
   void conv(polydata_scntt const &r) { conv(r, d.size() + r.d.size() - 1); }
 };
 

@@ -12,7 +12,7 @@ namespace tifa_libs::math {
 
 // stirling1[i] = {n \\brace i}, i=0,1,...,n
 template <class T, bool with_sgn = true>
-inline poly<T> gen_stirling1_row(u32 n, vec<u64> const& fact, vec<u64> const& ifact) {
+poly<T> gen_stirling1_row(u32 n, vec<u64> const& fact, vec<u64> const& ifact) {
   if (!n) return poly<T>{1};
   poly<T> f{0, 1};
   if (n == 1) return f;
@@ -29,7 +29,7 @@ inline poly<T> gen_stirling1_row(u32 n, vec<u64> const& fact, vec<u64> const& if
 }
 // stirling1[i] = {n \\brace i}, i=0,1,...,n
 template <class T, bool with_sgn = true>
-inline poly<T> gen_stirling1_row(u32 n) { return gen_stirling1_row<T, with_sgn>(n, gen_fact(n + 1, T::value_type::mod()), gen_ifact(n + 1, T::value_type::mod())); }
+poly<T> gen_stirling1_row(u32 n) { return gen_stirling1_row<T, with_sgn>(n, gen_fact(n + 1, T::value_type::mod()), gen_ifact(n + 1, T::value_type::mod())); }
 
 }  // namespace tifa_libs::math
 

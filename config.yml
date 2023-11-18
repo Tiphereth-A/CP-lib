@@ -820,10 +820,10 @@ notebook:
     - kahan: Kahan 求和
       code_ext: hpp
       test_ext: cpp
-    - real_basis: 实数线性基
+    - basis_r: 实数线性基
       code_ext: hpp
       test_ext: cpp
-    - xor_basis: 异或线性基
+    - basis_z2: 异或线性基
       code_ext: hpp
       test_ext: cpp
     - cantor: Cantor 展开

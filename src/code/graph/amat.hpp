@@ -12,7 +12,7 @@ struct amat {
   value_type g;
 
   //! vertex ID: [0, n)
-  explicit amat(usz n, T const v = T{}) : g(n, vec<T>(n, v)) {
+  explicit amat(u32 n, T const v = T{}) : g(n, vec<T>(n, v)) {
     for (u32 i = 0; i < n; ++i) g[i][i] = 0;
   }
 

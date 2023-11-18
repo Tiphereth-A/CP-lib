@@ -25,7 +25,7 @@ class v_bcc {
 
     auto dfs = [&](auto &&dfs, u32 u, u32 fa, u32 inv_from) -> void {
       dfn[u] = low[u] = cnt++;
-      if (u == fa && g[u].size() == 0) cut[u] = 1, belongs.push_back(vec<u32>(1, u)), id++;
+      if (u == fa && g[u].size() == 0) cut[u] = 1, belongs.push_back(vec<u32>(1, u)), ++id;
       s.push(u);
       for (u32 i = 0; i < g[u].size(); ++i) {
         auto v = g[u][i];

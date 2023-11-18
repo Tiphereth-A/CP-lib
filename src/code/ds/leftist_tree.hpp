@@ -15,6 +15,7 @@ class leftist_tree {
     YYZ() {}
     YYZ(std::array<u32, 2> SON, u32 DIST, u32 RT, T W, bool DEL = false) : son(SON), dist(DIST), rt(RT), w(W), del(DEL) {}
   };
+
   u32 merge_(u32 x, u32 y) {
     if (x == -1u) return y;
     if (y == -1u) return x;
@@ -33,13 +34,15 @@ class leftist_tree {
 
  public:
   vec<YYZ> t;
-  void newheap(T w) {
-    t.emplace_back(std::array<u32, 2>{-1u, -1u}, 0, t.size(), w, false);
-  }
+
   leftist_tree(vec<T> const& a) : t() {
     for (auto x : a) newheap(x);
   }
   leftist_tree() : t() {}
+
+  void newheap(T w) {
+    t.emplace_back(std::array<u32, 2>{-1u, -1u}, 0, t.size(), w, false);
+  }
   u32 gf(u32 x) { return t[x].rt == x ? x : t[x].rt = gf(t[x].rt); }
   bool same(u32 x, u32 y) {
     if (t[x].del || t[y].del) return false;

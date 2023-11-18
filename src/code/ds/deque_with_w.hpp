@@ -15,14 +15,15 @@ class deque_with_w {
   void bf() {
     s[0].resize(q[0].size() + 1);
     s[0][0] = e();
-    for (usz i = 0; i < q[0].size(); ++i) s[0][i + 1] = op(q[0][i], s[0][i]);
+    for (u32 i = 0; i < q[0].size(); ++i) s[0][i + 1] = op(q[0][i], s[0][i]);
     s[1].resize(q[1].size() + 1);
     s[1][0] = e();
-    for (usz i = 0; i < q[1].size(); ++i) s[1][i + 1] = op(s[1][i], q[1][i]);
+    for (u32 i = 0; i < q[1].size(); ++i) s[1][i + 1] = op(s[1][i], q[1][i]);
   }
 
  public:
   deque_with_w() : q(2), s(2) { bf(); }
+  
   void push_front(T x) {
     q[0].push_back(x);
     if (s[0].size()) s[0].push_back(op(x, s[0].back()));

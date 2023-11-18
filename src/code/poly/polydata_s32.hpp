@@ -15,12 +15,12 @@ struct polydata_s32 {
 
   vec<mint> d;
 
-  explicit constexpr polydata_s32(usz sz = 1, value_type const &val = value_type{}) : d(sz, val) {}
+  explicit constexpr polydata_s32(u32 sz = 1, value_type const &val = value_type{}) : d(sz, val) {}
   constexpr polydata_s32(typename vec<mint>::const_iterator begin, typename vec<mint>::const_iterator end) : d(begin, end) {}
   explicit constexpr polydata_s32(std::initializer_list<mint> v) : d(v) {}
   explicit constexpr polydata_s32(vec<mint> const &v) : d(v) {}
 
-  void conv(polydata_s32 const &r, usz ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_ntt32(d, r.d, ans_size); }
+  void conv(polydata_s32 const &r, u32 ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_ntt32(d, r.d, ans_size); }
   void conv(polydata_s32 const &r) { conv(r, d.size() + r.d.size() - 1); }
 };
 

@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 template <bool directed = true>
-inline vec<ptt<u32>> find_cycle(alist const& fg) {
+vec<ptt<u32>> find_cycle(alist const& fg) {
   auto&& g = fg.g;
 
   for (u32 i = 0; i < g.size(); ++i)

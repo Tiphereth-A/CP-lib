@@ -16,10 +16,8 @@ std::optional<ptt<circle<FP>>> make_C_rPL(FP r, point<FP> const &p, line<FP> con
   point dirl = rot90(dir), dirr = rot270(dir);
   if (is_zero(dis)) return {{p + dirl, r}, {p + dirr, r}};
   circle c{p, r};
-  auto ps = ins_CL(c, {l.l + dirl, l.r + dirl});
-  if (!ps.has_value()) ps = ins_CL(c, {l.l + dirr, l.r + dirr});
-  if (!ps.has_value()) return {};
-  return {{ps.value().first, r}, {ps.value().second, r}};
+  if (auto ps = ins_CL(c, {l.l + dirl, l.r + dirl}); !ps.has_value() && !(ps = ins_CL(c, {l.l + dirr, l.r + dirr})).has_value()) return {};
+  else return {{ps.value().first, r}, {ps.value().second, r}};
 }
 
 }  // namespace tifa_libs::geo

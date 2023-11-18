@@ -37,7 +37,7 @@ class GaussInt {
     return *this;
   }
   constexpr GaussInt &operator*=(GaussInt const &x) {
-    const mint _ = r_ * x.real() + i_ * x.imag() * M;
+    mint _ = r_ * x.real() + i_ * x.imag() * M;
     i_ = r_ * x.imag() + i_ * x.real();
     r_ = _;
     return *this;

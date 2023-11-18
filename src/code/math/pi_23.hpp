@@ -17,9 +17,9 @@ inline u64 pi_23(u64 n) {
   vec<u64> ns;
   ns.reserve(n2 * 2 + 2);
   ns.push_back(0);
-  for (usz i = 1; i <= n2; ++i) ns.push_back(div_u64d(n, i));
+  for (u32 i = 1; i <= n2; ++i) ns.push_back(div_u64d(n, i));
   for (usz i = ns.back() - 1; i; --i) ns.push_back(i);
-  usz nsz = ns.size();
+  u32 nsz = (u32)ns.size();
   vec<u64> h = ns;
   for (auto &i : h) --i;
   while (prime[pidx] <= n6) {
@@ -51,7 +51,7 @@ inline u64 pi_23(u64 n) {
   }
   for (usz i = bit.size() - 1; i; --i)
     if (usz j = i + (i & -i); j < bit.size()) bit[i] += bit[j];
-  for (usz i = 1; i < bit.size(); ++i) h[i + n3] += (u64)bit[i];
+  for (u32 i = 1; i < bit.size(); ++i) h[i + n3] += (u64)bit[i];
   while (prime[pidx] <= n2) {
     u32 p = prime[pidx];
     u64 p2 = (u64)p * p;

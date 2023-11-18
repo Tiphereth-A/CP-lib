@@ -8,7 +8,7 @@ int main() {
   u32 n;
   std::cin >> n;
   tifa_libs::hset<u64> dict;
-  for (usz i = 0; i < n; ++i) {
+  for (u32 i = 0; i < n; ++i) {
     std::string s, t;
     std::cin >> s >> t;
     u64 x = 0;

@@ -9,7 +9,7 @@ namespace tifa_libs::util {
 // Just run it on the same compiler and same options as the solution you want to hack.
 // Works for integral types, and std::string. Slow for std::string.
 template <class T>
-inline vec<T> unordered_stl_hacker(usz n) {
+vec<T> unordered_stl_hacker(usz n) {
   auto get_bucket_counts = [n]() {
     vec<usz> ans;
     std::unordered_set<int> s;

@@ -9,21 +9,21 @@ namespace tifa_libs::math {
 // Lagrange interpolation in O(n \log^2 n)
 // @return f s.t. f(x[i]) = y[i]
 template <class T>
-inline poly<T> poly_interp(poly<T> const &x, poly<T> const &y) {
+poly<T> poly_interp(poly<T> const &x, poly<T> const &y) {
   class SegTree {
-    constexpr void init_(poly<T> const &a, usz k, usz l, usz r) {
+    constexpr void init_(poly<T> const &a, u32 k, u32 l, u32 r) {
       if (l == r) {
         t[k] = poly<T>{-a[l], 1};
         return;
       }
-      usz m = l + (r - l) / 2;
+      u32 m = l + (r - l) / 2;
       init_(a, k * 2, l, m);
       init_(a, k * 2 + 1, m + 1, r);
       t[k] = t[k * 2] * t[k * 2 + 1];
     }
-    constexpr poly<T> calc_(poly<T> const &f, usz k, usz l, usz r) const {
+    constexpr poly<T> calc_(poly<T> const &f, u32 k, u32 l, u32 r) const {
       if (l == r) return poly<T>{f[l]};
-      usz m = l + (r - l) / 2;
+      u32 m = l + (r - l) / 2;
       return calc_(f, k * 2, l, m) * t[2 * k + 1] + calc_(f, k * 2 + 1, m + 1, r) * t[2 * k];
     }
 
@@ -36,10 +36,10 @@ inline poly<T> poly_interp(poly<T> const &x, poly<T> const &y) {
   };
 
   assert(x.size() == y.size());
-  usz n = x.size();
+  u32 n = x.size();
   SegTree sgt(x);
   poly<T> t = poly_mpe(poly_deriv(sgt.t[1]), x);
-  for (usz i = 0; i < n; ++i) t[i] = y[i] * t[i].inv();
+  for (u32 i = 0; i < n; ++i) t[i] = y[i] * t[i].inv();
   return sgt(t);
 }
 

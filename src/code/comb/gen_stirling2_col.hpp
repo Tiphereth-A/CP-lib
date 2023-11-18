@@ -32,7 +32,7 @@ void solve(poly<T>& f, u32 n, vec<u64> const& fact, vec<u64> const& ifact) {
 
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class T>
-inline poly<T> gen_stirling2_col(u32 n, u32 k, vec<u64> const& fact, vec<u64> const& ifact) {
+poly<T> gen_stirling2_col(u32 n, u32 k, vec<u64> const& fact, vec<u64> const& ifact) {
   if (k > n) return poly<T>(n + 1);
   poly<T> f{0, 1};
   gen_stirling2_col_impl_::solve(f, k + 1, fact, ifact);
@@ -46,7 +46,7 @@ inline poly<T> gen_stirling2_col(u32 n, u32 k, vec<u64> const& fact, vec<u64> co
 }
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class T>
-inline poly<T> gen_stirling2_col(u32 n, u32 k) { return gen_stirling2_col<T>(n, k, gen_fact(n + 1, T::value_type::mod()), gen_ifact(n + 1, T::value_type::mod())); }
+poly<T> gen_stirling2_col(u32 n, u32 k) { return gen_stirling2_col<T>(n, k, gen_fact(n + 1, T::value_type::mod()), gen_ifact(n + 1, T::value_type::mod())); }
 
 }  // namespace tifa_libs::math
 

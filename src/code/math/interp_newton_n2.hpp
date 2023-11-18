@@ -20,22 +20,22 @@ class interp_newton {
   explicit interp_newton() {}
   interp_newton &insert(T const &x, T const &y) {
     points.emplace_back(x, y);
-    usz n = points.size();
+    u32 n = (u32)points.size();
     if (n == 1) {
       base.push_back(1);
     } else {
-      usz m = base.size();
+      u32 m = (u32)base.size();
       base.push_back(0);
-      for (usz i = m; i; --i) base[i] = base[i - 1];
+      for (u32 i = m; i; --i) base[i] = base[i - 1];
       base[0] = 0;
-      for (usz i = 0; i < m; ++i) base[i] = base[i] - points[n - 2].first * base[i + 1];
+      for (u32 i = 0; i < m; ++i) base[i] = base[i] - points[n - 2].first * base[i + 1];
     }
     diffs.emplace_back(points.size());
     diffs[n - 1][n - 1] = y;
     if (n > 1)
-      for (usz i = n - 2; ~i; --i) diffs[n - 1][i] = (diffs[n - 2][i] - diffs[n - 1][i + 1]) / (points[i].first - points[n - 1].first);
+      for (u32 i = n - 2; ~i; --i) diffs[n - 1][i] = (diffs[n - 2][i] - diffs[n - 1][i + 1]) / (points[i].first - points[n - 1].first);
     fit.push_back(0);
-    for (usz i = 0; i < n; ++i) fit[i] = fit[i] + diffs[n - 1][0] * base[i];
+    for (u32 i = 0; i < n; ++i) fit[i] = fit[i] + diffs[n - 1][0] * base[i];
     return *this;
   }
   vec<T> coeffs() const { return fit; }

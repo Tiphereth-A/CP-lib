@@ -10,7 +10,7 @@ struct eog {
   vvec<ptt<u32>> e;
 
   //! vertex ID: [0, n)
-  explicit eog(usz n = 0) : head(n, -1_u32) {}
+  explicit eog(u32 n = 0) : head(n, -1_u32) {}
 
   void add_arc(u32 u, u32 v) {
     e[u].emplace_back(v, head[u]);

@@ -6,11 +6,11 @@
 namespace tifa_libs::math {
 
 template <class Mat, class T = typename Mat::value_type>
-inline T trace(Mat const &mat) {
-  usz n = mat.row();
+T trace(Mat const &mat) {
+  u32 n = mat.row();
   assert(n == mat.col());
   T ret{};
-  for (usz i = 0; i < n; ++i) ret += mat(i, i);
+  for (u32 i = 0; i < n; ++i) ret += mat(i, i);
   return ret;
 }
 

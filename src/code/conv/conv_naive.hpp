@@ -6,26 +6,26 @@
 namespace tifa_libs::math {
 
 template <class U, class T = U>
-inline vec<T> conv_naive(vec<U> const &l, vec<U> const &r, usz ans_size) {
+vec<T> conv_naive(vec<U> const &l, vec<U> const &r, u32 ans_size) {
   static_assert(sizeof(U) <= sizeof(T));
-  usz n = l.size(), m = r.size();
+  u32 n = (u32)l.size(), m = (u32)r.size();
   vec<T> ans(ans_size);
   if (n < m)
-    for (usz j = 0; j < m; ++j)
-      for (usz i = 0; i < n; ++i) {
+    for (u32 j = 0; j < m; ++j)
+      for (u32 i = 0; i < n; ++i) {
         if (i + j >= ans_size) break;
         ans[i + j] += (T)l[i] * (T)r[j];
       }
   else
-    for (usz i = 0; i < n; ++i)
-      for (usz j = 0; j < m; ++j) {
+    for (u32 i = 0; i < n; ++i)
+      for (u32 j = 0; j < m; ++j) {
         if (i + j >= ans_size) break;
         ans[i + j] += (T)l[i] * (T)r[j];
       }
   return ans;
 }
 template <class U, class T = U>
-inline vec<T> conv_naive(vec<U> const &l, vec<U> const &r) { return conv_naive<U, T>(l, r, l.size() + r.size() - 1); }
+vec<T> conv_naive(vec<U> const &l, vec<U> const &r) { return conv_naive<U, T>(l, r, l.size() + r.size() - 1); }
 
 }  // namespace tifa_libs::math
 

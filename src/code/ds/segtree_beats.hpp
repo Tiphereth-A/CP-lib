@@ -20,6 +20,81 @@ class segtree_beats {
   vec<YYZ> t;
   vec<NFO> sign;
   T INF;
+
+ public:
+  explicit constexpr segtree_beats(vec<T> const& a) : n(a.size()), t(a.size() * 4), sign(a.size() * 4), INF(std::numeric_limits<T>::max()) { build(a, 1, 0, n - 1); }
+  explicit constexpr segtree_beats(usz N) : n(N), t(N * 4), sign(N * 4), INF(std::numeric_limits<T>::max()) { build(vec<T>(n, 0), 1, 0, n - 1); }
+
+  void add(usz x, usz l, usz r, usz L, usz R, T k) {
+    assert(R >= l && L <= r);
+    if (L <= l && r <= R) {
+      all_update(x, l, r, k, k, k, k, k, k);
+      return;
+    }
+    pushdown(x, l, r);
+    usz mid = l + (r - l) / 2;
+    if (L <= mid) add(x << 1, l, mid, L, R, k);
+    if (R > mid) add(x << 1 | 1, mid + 1, r, L, R, k);
+    pushup(x);
+  }
+  void chmax(usz x, usz l, usz r, usz L, usz R, T k) {
+    assert(R >= l && L <= r);
+    if (k <= t[x]._min) return;
+    if (L <= l && r <= R && k < t[x].secmin) {
+      all_update(x, l, r, k - t[x]._min, 0, 0, k - t[x]._min, 0, 0);
+      return;
+    }
+    pushdown(x, l, r);
+    usz mid = l + (r - l) / 2;
+    if (L <= mid) chmax(x << 1, l, mid, L, R, k);
+    if (R > mid) chmax(x << 1 | 1, mid + 1, r, L, R, k);
+    pushup(x);
+  }
+  void chmin(usz x, usz l, usz r, usz L, usz R, T k) {
+    assert(R >= l && L <= r);
+    if (k >= t[x]._max) return;
+    if (L <= l && r <= R && k > t[x].secmax) {
+      all_update(x, l, r, 0, k - t[x]._max, 0, 0, k - t[x]._max, 0);
+      return;
+    }
+    pushdown(x, l, r);
+    usz mid = l + (r - l) / 2;
+    if (L <= mid) chmin(x << 1, l, mid, L, R, k);
+    if (R > mid) chmin(x << 1 | 1, mid + 1, r, L, R, k);
+    pushup(x);
+  }
+  T1 querys(usz x, usz l, usz r, usz L, usz R) {
+    assert(R >= l && L <= r);
+    if (L <= l && r <= R) return t[x].sum;
+    pushdown(x, l, r);
+    usz mid = l + (r - l) / 2;
+    T1 ret = 0;
+    if (L <= mid) ret = querys(x << 1, l, mid, L, R);
+    if (R > mid) ret += querys(x << 1 | 1, mid + 1, r, L, R);
+    return ret;
+  }
+  T querymax(usz x, usz l, usz r, usz L, usz R) {
+    assert(R >= l && L <= r);
+    if (L <= l && r <= R) return t[x]._max;
+    pushdown(x, l, r);
+    usz mid = l + (r - l) / 2;
+    T ret = -INF;
+    if (L <= mid) ret = querymax(x << 1, l, mid, L, R);
+    if (R > mid) ret = std::max(ret, querymax(x << 1 | 1, mid + 1, r, L, R));
+    return ret;
+  }
+  T queryhismax(usz x, usz l, usz r, usz L, usz R) {
+    assert(R >= l && L <= r);
+    if (L <= l && r <= R) return t[x].hismax;
+    pushdown(x, l, r);
+    usz mid = l + (r - l) / 2;
+    T ret = -INF;
+    if (L <= mid) ret = queryhismax(x << 1, l, mid, L, R);
+    if (R > mid) ret = std::max(ret, queryhismax(x << 1 | 1, mid + 1, r, L, R));
+    return ret;
+  }
+
+ private:
   void pushup(usz x) {
     t[x].sum = t[x << 1].sum + t[x << 1 | 1].sum;
     t[x].hismax = std::max(t[x << 1].hismax, t[x << 1 | 1].hismax);
@@ -101,78 +176,6 @@ class segtree_beats {
     build(a, x << 1, l, mid), build(a, x << 1 | 1, mid + 1, r);
     pushup(x);
   }
-
- public:
-  void add(usz x, usz l, usz r, usz L, usz R, T k) {
-    assert(R >= l && L <= r);
-    if (L <= l && r <= R) {
-      all_update(x, l, r, k, k, k, k, k, k);
-      return;
-    }
-    pushdown(x, l, r);
-    usz mid = l + (r - l) / 2;
-    if (L <= mid) add(x << 1, l, mid, L, R, k);
-    if (R > mid) add(x << 1 | 1, mid + 1, r, L, R, k);
-    pushup(x);
-  }
-  void chmax(usz x, usz l, usz r, usz L, usz R, T k) {
-    assert(R >= l && L <= r);
-    if (k <= t[x]._min) return;
-    if (L <= l && r <= R && k < t[x].secmin) {
-      all_update(x, l, r, k - t[x]._min, 0, 0, k - t[x]._min, 0, 0);
-      return;
-    }
-    pushdown(x, l, r);
-    usz mid = l + (r - l) / 2;
-    if (L <= mid) chmax(x << 1, l, mid, L, R, k);
-    if (R > mid) chmax(x << 1 | 1, mid + 1, r, L, R, k);
-    pushup(x);
-  }
-  void chmin(usz x, usz l, usz r, usz L, usz R, T k) {
-    assert(R >= l && L <= r);
-    if (k >= t[x]._max) return;
-    if (L <= l && r <= R && k > t[x].secmax) {
-      all_update(x, l, r, 0, k - t[x]._max, 0, 0, k - t[x]._max, 0);
-      return;
-    }
-    pushdown(x, l, r);
-    usz mid = l + (r - l) / 2;
-    if (L <= mid) chmin(x << 1, l, mid, L, R, k);
-    if (R > mid) chmin(x << 1 | 1, mid + 1, r, L, R, k);
-    pushup(x);
-  }
-  T1 querys(usz x, usz l, usz r, usz L, usz R) {
-    assert(R >= l && L <= r);
-    if (L <= l && r <= R) return t[x].sum;
-    pushdown(x, l, r);
-    usz mid = l + (r - l) / 2;
-    T1 ret = 0;
-    if (L <= mid) ret = querys(x << 1, l, mid, L, R);
-    if (R > mid) ret += querys(x << 1 | 1, mid + 1, r, L, R);
-    return ret;
-  }
-  T querymax(usz x, usz l, usz r, usz L, usz R) {
-    assert(R >= l && L <= r);
-    if (L <= l && r <= R) return t[x]._max;
-    pushdown(x, l, r);
-    usz mid = l + (r - l) / 2;
-    T ret = -INF;
-    if (L <= mid) ret = querymax(x << 1, l, mid, L, R);
-    if (R > mid) ret = std::max(ret, querymax(x << 1 | 1, mid + 1, r, L, R));
-    return ret;
-  }
-  T queryhismax(usz x, usz l, usz r, usz L, usz R) {
-    assert(R >= l && L <= r);
-    if (L <= l && r <= R) return t[x].hismax;
-    pushdown(x, l, r);
-    usz mid = l + (r - l) / 2;
-    T ret = -INF;
-    if (L <= mid) ret = queryhismax(x << 1, l, mid, L, R);
-    if (R > mid) ret = std::max(ret, queryhismax(x << 1 | 1, mid + 1, r, L, R));
-    return ret;
-  }
-  explicit constexpr segtree_beats(vec<T> const& a) : n(a.size()), t(a.size() * 4), sign(a.size() * 4), INF(std::numeric_limits<T>::max()) { build(a, 1, 0, n - 1); }
-  explicit constexpr segtree_beats(usz N) : n(N), t(N * 4), sign(N * 4), INF(std::numeric_limits<T>::max()) { build(vec<T>(n, 0), 1, 0, n - 1); }
 };
 
 }  // namespace tifa_libs::ds

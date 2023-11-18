@@ -7,7 +7,7 @@
 namespace tifa_libs::graph {
 
 template <class T>
-inline vec<T> tree_sumvw(tree const &tr, vec<T> const &v_weight) {
+vec<T> tree_sumvw(tree const &tr, vec<T> const &v_weight) {
   vec<T> sumvw(tr.g.size());
   dfs(
       tr, tr.root,

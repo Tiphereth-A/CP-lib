@@ -9,7 +9,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> conv_czt(poly<T> l, poly<T> r, usz ans_size) {
+poly<T> conv_czt(poly<T> l, poly<T> r, u32 ans_size) {
   using mint = typename T::value_type;
   constexpr u64 m = T::value_type::mod();
   u64 s = bit::bceil(l.size() + r.size() - 1);
@@ -19,13 +19,13 @@ inline poly<T> conv_czt(poly<T> l, poly<T> r, usz ans_size) {
   r.resize(s);
   l = poly_czt(l, c);
   r = poly_czt(r, c);
-  for (usz i = 0; i < s; ++i) l[i] *= r[i];
+  for (u32 i = 0; i < s; ++i) l[i] *= r[i];
   l = poly_czt(l, c.inv());
   l.resize(ans_size);
   return l *= mint(s).inv();
 }
 template <class T>
-inline poly<T> conv_czt(poly<T> const &l, poly<T> const &r) { return conv_czt(l, r, l.size() + r.size() - 1); }
+poly<T> conv_czt(poly<T> const &l, poly<T> const &r) { return conv_czt(l, r, l.size() + r.size() - 1); }
 
 }  // namespace tifa_libs::math
 

@@ -10,7 +10,7 @@ class dsu_weighted {
   vec<i64> dep;
 
  public:
-  explicit dsu_weighted(usz n) : p(n, -1), dep(n) {}
+  explicit dsu_weighted(u32 n) : p(n, -1), dep(n) {}
 
   i32 find(u32 x) {
     if (p[x] < 0) return (i32)x;

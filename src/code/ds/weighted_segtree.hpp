@@ -9,6 +9,17 @@ class weighted_segtree {
   const usz n;
   vec<usz> t;
 
+ public:
+  explicit weighted_segtree(usz N) : n(N), t(N * 4) {}
+
+  void ins(usz pos) { ins_(1, 0, n - 1, pos); }
+  void del(usz pos) { del_(1, 0, n - 1, pos); }
+  usz kth_min(usz k) { return kth_min_(1, 0, n - 1, k); }
+  usz kth_max(usz k) { return kth_max_(1, 0, n - 1, k); }
+  usz frequency(usz k) { return frequency_(1, 0, n - 1, k, k); }
+  usz frequency(usz l, usz r) { return frequency_(1, 0, n - 1, l, r); }
+
+ private:
   void ins_(usz x, usz l, usz r, usz pos) {
     if (l == r) return void(++t[x]);
     usz mid = l + (r - l) / 2;
@@ -42,17 +53,8 @@ class weighted_segtree {
     if (R > mid) ret += frequency_(x << 1 | 1, mid + 1, r, L, R);
     return ret;
   }
-
- public:
-  explicit weighted_segtree(usz N) : n(N), t(N * 4) {}
-
-  void ins(usz pos) { ins_(1, 0, n - 1, pos); }
-  void del(usz pos) { del_(1, 0, n - 1, pos); }
-  usz kth_min(usz k) { return kth_min_(1, 0, n - 1, k); }
-  usz kth_max(usz k) { return kth_max_(1, 0, n - 1, k); }
-  usz frequency(usz k) { return frequency_(1, 0, n - 1, k, k); }
-  usz frequency(usz l, usz r) { return frequency_(1, 0, n - 1, l, r); }
 };
+
 }  // namespace tifa_libs::ds
 
 #endif

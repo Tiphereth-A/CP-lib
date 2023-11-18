@@ -2,18 +2,11 @@
 #define TIFA_LIBS_MATH_EXEUCLID
 
 #include "../util/util.hpp"
+#include "qpow.hpp"
 
 namespace tifa_libs::math {
 
 namespace exeuclid_impl_ {
-
-template <class T>
-constexpr T qpow(T a, u64 b) {
-  T res;
-  for (; b; b >>= 1, a = a + a)
-    if (b & 1) res = res + a;
-  return res;
-}
 
 template <class T>
 T solve_(i64 p, i64 q, i64 r, i64 l, T a, T b) {
@@ -26,7 +19,7 @@ T solve_(i64 p, i64 q, i64 r, i64 l, T a, T b) {
   i64 m = div(l, p, r, q);
   if (!m) return qpow(b, l);
   i64 cnt = l - div(q, m, -r - 1, p);
-  return qpow(b, (q - r - 1) / p) + a + solve_(q, p, (q - r - 1) % p, m - 1, b, a) + qpow(b, cnt);
+  return qpow(b, (q - r - 1) / p) * a * solve_(q, p, (q - r - 1) % p, m - 1, b, a) * qpow(b, cnt);
 }
 
 }  // namespace exeuclid_impl_
@@ -43,7 +36,7 @@ struct exeuclid_node {
   T u, r;
   T i, f, sqr_f, i_f;
   exeuclid_node(T u = 0, T r = 0, T i = 0, T f = 0, T sqr_f = 0, T i_f = 0) : u(u), r(r), i(i), f(f), sqr_f(sqr_f), i_f(i_f) {}
-  exeuclid_node operator+(exeuclid_node const &rhs) const {
+  exeuclid_node operator*(exeuclid_node const &rhs) const {
     return exeuclid_node{u + rhs.u,
                          r + rhs.r,
                          i + rhs.i + r * rhs.r,
@@ -57,7 +50,7 @@ struct exeuclid_node {
 // result will add a when s cross with horizontal line
 // result will add b when s cross with vertical line
 template <class Node>
-Node exeuclid(i64 p, i64 q, i64 r, i64 l, Node const &a, Node const &b) { return exeuclid_impl_::qpow(a, r / q) + exeuclid_impl_::solve_(p, q, r % q, l, a, b); }
+Node exeuclid(i64 p, i64 q, i64 r, i64 l, Node const &a, Node const &b) { return qpow(a, r / q) * exeuclid_impl_::solve_(p, q, r % q, l, a, b); }
 
 }  // namespace tifa_libs::math
 

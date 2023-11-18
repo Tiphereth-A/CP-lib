@@ -9,7 +9,7 @@ class dsu_basic {
   vec<i32> p;
 
  public:
-  explicit dsu_basic(usz sz) : p(sz, -1) {}
+  explicit dsu_basic(u32 sz) : p(sz, -1) {}
 
   i32 find(u32 x) { return p[x] < 0 ? (i32)x : p[x] = find((u32)p[x]); }
   u32 size(u32 x) { return (u32)-p[(u32)find(x)]; }

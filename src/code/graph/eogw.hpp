@@ -12,7 +12,7 @@ struct eogw {
   vvec<std::tuple<u32, T, u32>> e;
 
   //! vertex ID: [0, n)
-  explicit eogw(usz n = 0) : head(n, -1_u32) {}
+  explicit eogw(u32 n = 0) : head(n, -1_u32) {}
 
   void add_arc(u32 u, u32 v, T const& w) {
     e[u].emplace_back(v, w, head[u]);

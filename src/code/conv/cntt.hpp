@@ -14,9 +14,9 @@ struct CNTT {
 
   CNTT() {}
 
-  usz size() const { return rev.size(); }
-  void bzr(usz len) {
-    usz n = std::max(bit::bceil(len), 2_uz);
+  u32 size() const { return (u32)rev.size(); }
+  void bzr(u32 len) {
+    u32 n = std::max<u32>(bit::bceil(len), 2);
     if (n == size()) return;
     rev.resize(n, 0);
     u32 k = (u32)bit::log2(n);
@@ -37,10 +37,10 @@ struct CNTT {
 
   template <bool inv = false>
   void difdit(vec<Zpi> &f) const {
-    usz n = size();
+    u32 n = size();
     assert(f.size() <= n);
     f.resize(n);
-    for (usz i = 0; i < n; ++i)
+    for (u32 i = 0; i < n; ++i)
       if (i < rev[i]) std::swap(f[rev[i]], f[i]);
     for (u32 mid = 1, k = 0; mid < n; mid <<= 1, ++k) {
       Zpi now;

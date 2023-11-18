@@ -16,6 +16,19 @@ class lichao_segtree {
   usz sz;
   vec<T> lsh;
   vec<seg> t;
+
+ public:
+  explicit constexpr lichao_segtree(const vec<T>& LSH, F func) : lsh(LSH), t(LSH.size() * 4), f(func) { sz = lsh.size(); }
+
+  void add(T a, T b, T l, T r, usz id = 1) {
+    seg k = {id, a, b, l, r};
+    l = std::lower_bound(lsh.begin(), lsh.end(), l) - lsh.begin();
+    r = std::lower_bound(lsh.begin(), lsh.end(), r) - lsh.begin();
+    add(1, 0, sz - 1, l, r, k);
+  }
+  T query(T pos) { return query(1, 0, sz - 1, pos); }
+
+ private:
   // min: <=   max: >=
   bool pd(T a, T b) { return f(a, b) == a; }
   void add(usz x, usz l, usz r, usz L, usz R, seg k) {
@@ -44,16 +57,6 @@ class lichao_segtree {
     if (pos <= lsh[mid]) return f(ret, query(x << 1, l, mid, pos));
     else return f(ret, query(x << 1 | 1, mid + 1, r, pos));
   }
-
- public:
-  void add(T a, T b, T l, T r, usz id = 1) {
-    seg k = {id, a, b, l, r};
-    l = std::lower_bound(lsh.begin(), lsh.end(), l) - lsh.begin();
-    r = std::lower_bound(lsh.begin(), lsh.end(), r) - lsh.begin();
-    add(1, 0, sz - 1, l, r, k);
-  }
-  T query(T pos) { return query(1, 0, sz - 1, pos); }
-  explicit constexpr lichao_segtree(const vec<T>& LSH, F func) : lsh(LSH), t(LSH.size() * 4), f(func) { sz = lsh.size(); }
 };
 }  // namespace tifa_libs::ds
 

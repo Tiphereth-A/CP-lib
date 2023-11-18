@@ -4,12 +4,12 @@
 #include "traits.hpp"
 
 template <class T, std::enable_if_t<tifa_libs::is_container<T>::value> * = nullptr>
-inline std::istream &operator>>(std::istream &is, T &x) {
+std::istream &operator>>(std::istream &is, T &x) {
   for (auto &i : x) is >> i;
   return is;
 }
 template <class T, std::enable_if_t<tifa_libs::is_container<T>::value> * = nullptr>
-inline std::ostream &operator<<(std::ostream &os, const T &x) {
+std::ostream &operator<<(std::ostream &os, const T &x) {
   if (x.begin() == x.end()) return os;
   auto it = x.begin();
   os << *it++;

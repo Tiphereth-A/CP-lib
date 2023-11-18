@@ -16,7 +16,7 @@ namespace tifa_libs {
 namespace fastio_impl_ {
 
 //! UB if EOF occured during reading
-template <usz BUF>
+template <u32 BUF>
 class fastin {
   char bf_[BUF], *now_ = bf_, *end_ = bf_;
   FILE *f_;
@@ -135,7 +135,7 @@ class fastin {
   fastin &operator>>(T &val) { return read(val); }
 };
 
-template <usz BUF, usz INTBUF>
+template <u32 BUF, u32 INTBUF>
 class fastout {
   char int_bf_[INTBUF], *now_ib_ = int_bf_;
 

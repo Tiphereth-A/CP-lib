@@ -15,6 +15,51 @@ class link_cut_tree {
     u32 fa, rev;
     std::array<u32, 2> son;
   };
+
+ public:
+  vec<YYZ> tr;
+
+  link_cut_tree(u32 n, vec<T> A) : tr(n + 1) {
+    for (u32 i = 1; i <= n; ++i) tr[i].val = A[i - 1];
+  }
+
+  void access(u32 x) { access_(x + 1); }
+  void makeroot(u32 x) { makeroot_(x + 1); }
+  u32 findroot(u32 x) { return findroot_(x + 1) - 1; }
+  void split(u32 x, u32 y) { split_(x + 1, y + 1); }
+  bool con(u32 x, u32 y) { return con_(x + 1, y + 1); }
+  bool link(u32 x, u32 y) { return link_(x + 1, y + 1); }
+  bool cut(u32 x, u32 y) { return cut_(x + 1, y + 1); }
+  void node_update(u32 x, T k) {
+    x += 1;
+    access_(x);  // requirement of maintaining subtree
+    splay_(x), tr[x].val = k, update_(x);
+  }
+  void node_add(u32 x, T k) {
+    x += 1;
+    access_(x);  // requirement of maintaining subtree
+    splay_(x), tr[x].val = op(tr[x].val, k), update_(x);
+  }
+  u32 lca(u32 u, u32 v, u32 root = 0) {
+    if (u == v) return u;
+    ++u, ++v, ++root;
+    makeroot_(root);
+    access_(u);
+    u32 ret = access_(v) - 1;
+    return tr[u].fa ? ret : -1u;
+  }
+  std::pair<T, T> query_subtree(u32 x, u32 y) {
+    ++x, ++y;
+    split_(x, y);
+    return {op(tr[x].sv, tr[x].val), op(tr[y].sv, tr[y].val)};
+  }
+  T query_path(u32 x, u32 y) {
+    ++x, ++y;
+    split_(x, y);
+    return tr[y].w;
+  }
+
+ private:
   void update_(u32 x) {
     tr[x].w = op(op(tr[tr[x].son[0]].w, tr[x].val), tr[tr[x].son[1]].w);
     tr[x].s = op(op(op(tr[tr[x].son[0]].s, tr[x].val), tr[tr[x].son[1]].s), tr[x].sv);  // requirement of maintaining subtree
@@ -89,47 +134,6 @@ class link_cut_tree {
       return true;
     }
     return false;
-  }
-
- public:
-  link_cut_tree(u32 n, vec<T> A) : tr(n + 1) {
-    for (u32 i = 1; i <= n; ++i) tr[i].val = A[i - 1];
-  }
-  vec<YYZ> tr;
-  void access(u32 x) { access_(x + 1); }
-  void makeroot(u32 x) { makeroot_(x + 1); }
-  u32 findroot(u32 x) { return findroot_(x + 1) - 1; }
-  void split(u32 x, u32 y) { split_(x + 1, y + 1); }
-  bool con(u32 x, u32 y) { return con_(x + 1, y + 1); }
-  bool link(u32 x, u32 y) { return link_(x + 1, y + 1); }
-  bool cut(u32 x, u32 y) { return cut_(x + 1, y + 1); }
-  void node_update(u32 x, T k) {
-    x += 1;
-    access_(x);  // requirement of maintaining subtree
-    splay_(x), tr[x].val = k, update_(x);
-  }
-  void node_add(u32 x, T k) {
-    x += 1;
-    access_(x);  // requirement of maintaining subtree
-    splay_(x), tr[x].val = op(tr[x].val, k), update_(x);
-  }
-  u32 lca(u32 u, u32 v, u32 root = 0) {
-    if (u == v) return u;
-    ++u, ++v, ++root;
-    makeroot_(root);
-    access_(u);
-    u32 ret = access_(v) - 1;
-    return tr[u].fa ? ret : -1u;
-  }
-  std::pair<T, T> query_subtree(u32 x, u32 y) {
-    ++x, ++y;
-    split_(x, y);
-    return {op(tr[x].sv, tr[x].val), op(tr[y].sv, tr[y].val)};
-  }
-  T query_path(u32 x, u32 y) {
-    ++x, ++y;
-    split_(x, y);
-    return tr[y].w;
   }
 };
 

@@ -17,7 +17,7 @@ inline vec<u64> gen_derange(u32 n, u64 mod) {
   return d;
 }
 template <class mint>
-inline vec<mint> gen_derange(u32 n) {
+vec<mint> gen_derange(u32 n) {
   vec<mint> d(n);
   auto _ = gen_derange(n, mint::mod());
   for (u32 i = 0; i < n; ++i) d[i] = _[i];

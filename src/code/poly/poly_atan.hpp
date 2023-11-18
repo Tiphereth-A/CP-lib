@@ -8,8 +8,8 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> poly_atan(poly<T> const &p) {
-  usz n = p.size();
+poly<T> poly_atan(poly<T> const &p) {
+  u32 n = p.size();
   poly<T> _ = p;
   _.conv(p);
   _.resize(n);

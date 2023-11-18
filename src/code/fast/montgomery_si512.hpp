@@ -37,11 +37,9 @@ struct Montgomery_si512 {
   u32x16 mul(u32x16 a, u32x16 b) const {
     u32x16 x0246 = mul64_u32x16(a, b);
     u32x16 x1357 = mul64_u32x16(shift_right_u32x16_epi64(a, 32), shift_right_u32x16_epi64(b, 32));
-    u32x16 x0246_ninv = mul64_u32x16(x0246, n_inv);
-    u32x16 x1357_ninv = mul64_u32x16(x1357, n_inv);
+    u32x16 x0246_ninv = mul64_u32x16(x0246, n_inv), x1357_ninv = mul64_u32x16(x1357, n_inv);
     u32x16 res = blend_u32x16_si256<0b10'10'10'10>(shift_right_u32x16_epi64(u32x16((u64x8)x0246 + (u64x8)mul64_u32x16(x0246_ninv, mod)), 32), u32x16((u64x8)x1357 + (u64x8)mul64_u32x16(x1357_ninv, mod)));
-    if constexpr (strict)
-      res = shrink(res);
+    if constexpr (strict) res = shrink(res);
     return res;
   }
 
@@ -51,8 +49,7 @@ struct Montgomery_si512 {
   // result in [0, mod)       <true>
   template <bool strict = false>
   u64x8 mul_to_hi(u64x8 a, u64x8 b) const {
-    u32x16 val = mul64_u32x16((u32x16)a, (u32x16)b);
-    u32x16 val_ninv = mul64_u32x16(val, n_inv);
+    u32x16 val = mul64_u32x16((u32x16)a, (u32x16)b), val_ninv = mul64_u32x16(val, n_inv);
     u32x16 res = u32x16(u64x8(val) + u64x8(mul64_u32x16(val_ninv, mod)));
     if constexpr (strict) res = shrink(res);
     return (u64x8)res;

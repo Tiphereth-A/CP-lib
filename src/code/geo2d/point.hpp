@@ -15,7 +15,7 @@ struct point {
 
   // s * r + t * (1 - r)
   friend constexpr point lerp(point const &s, point const &t, FP r) { return s * r + t * (1 - r); }
-  friend constexpr point mid_point(point const &s, point const &t) { return lerp(s, t, 0.5); }
+  friend constexpr point mid_point(point const &s, point const &t) { return lerp(s, t, .5); }
 
   constexpr point &operator+=(FP n) {
     this->x += n;
@@ -67,15 +67,9 @@ struct point {
   constexpr FP operator^(point const &p) const { return x * p.y - y * p.x; }
 
   constexpr auto arg() const { return std::atan2(y, x); }
-
-  // result in [0, 2pi)
-  constexpr FP arg2pi() const {
-    FP _ = arg();
-    return is_neg(_) ? _ + 2 * PI<FP> : _;
-  }
-
   constexpr FP norm2() const { return x * x + y * y; }
   constexpr FP norm() const { return std::hypot(x, y); }
+  constexpr point &do_unit() { return *this /= norm(); }
 
   constexpr static u32 QUAD__[9] = {6, 7, 8, 5, 0, 1, 4, 3, 2};
   // 4 3 2
@@ -83,6 +77,12 @@ struct point {
   // 6 7 8
   constexpr u32 quad() const { return QUAD__[(sgn(y) + 1) * 3 + sgn(x) + 1]; }
 
+  constexpr point &do_rot(FP theta) {
+    FP x0 = x, y0 = y, ct = std::cos(theta), st = std::sin(theta);
+    x = x0 * ct - y0 * st;
+    y = x0 * st + y0 * ct;
+    return *this;
+  }
   constexpr point &do_rot90() {
     FP tmp = x;
     x = -y;
@@ -90,7 +90,6 @@ struct point {
     return *this;
   }
   friend constexpr point rot90(point p) { return p.do_rot90(); }
-
   constexpr point &do_rot270() {
     FP tmp = y;
     y = -x;
@@ -98,15 +97,6 @@ struct point {
     return *this;
   }
   friend constexpr point rot270(point p) { return p.do_rot270(); }
-
-  constexpr point &do_unit() { return *this /= norm(); }
-
-  constexpr point &do_rot(FP theta) {
-    FP x0 = x, y0 = y, ct = std::cos(theta), st = std::sin(theta);
-    x = x0 * ct - y0 * st;
-    y = x0 * st + y0 * ct;
-    return *this;
-  }
 };
 
 }  // namespace tifa_libs::geo

@@ -35,14 +35,14 @@ class hash_substr {
     if (need_reset) {
       p.resize(1, 1);
       p.reserve(s.size() + 1);
-      for (usz i = 0; i < s.size(); ++i) p.push_back(mod_(mul_(p.back(), b)));
+      for (u32 i = 0; i < s.size(); ++i) p.push_back(mod_(mul_(p.back(), b)));
       need_reset = false;
     }
   }
   constexpr u32 base() const { return b; }
-  u64 get(usz pos, usz len = SIZE_MAX) const {
+  u64 get(u32 pos, u32 len = SIZE_MAX) const {
     assert(!need_reset && pos < hash.size());
-    auto end_ = hash[pos + std::min(len, hash.size() - 1 - pos)];
+    auto end_ = hash[pos + std::min(len, (u32)hash.size() - 1 - pos)];
     return mod_(end_ + mod * 7 - mul_(hash[pos], p[len]));
   }
 };

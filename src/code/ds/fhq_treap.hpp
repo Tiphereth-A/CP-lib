@@ -8,7 +8,7 @@ namespace tifa_libs::ds {
 
 template <class KEY, class VAL, bool recovery = false>
 class fhq_treap {
-  //!!! initial cnt = 1
+  //! initial cnt = 1
   struct YYZ {
     std::pair<KEY, VAL> w;
     u32 sz;
@@ -20,6 +20,7 @@ class fhq_treap {
   vec<YYZ> t;
   vec<u32> sta;
   u32 cnt;
+
   u32 newnode(std::pair<KEY, VAL> const& w) {
     u32 ret;
     if (recovery && sta.size()) ret = *sta.rbegin(), sta.pop_back(), t[ret] = YYZ(w, 1, gen());
@@ -49,7 +50,9 @@ class fhq_treap {
 
  public:
   u32 root;
+
   explicit constexpr fhq_treap() : gen(), t(1), sta(), cnt(0), root(0) {}
+
   void split(u32 u, KEY k, u32& x, u32& y) {
     if (!u) x = y = 0;
     else {

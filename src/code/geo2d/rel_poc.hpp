@@ -19,8 +19,8 @@ template <class FP>
 RELPoC relation_PoC(polygon<FP> const &po, circle<FP> const &c) {
   auto x = covered_poc;
   if (relation_PoP(po, c.o) != RELPoP::inside_pop) return otherwise_poc;
-  for (usz i = 0; i < po.vs.size(); ++i) {
-    usz state = relation_CS(c, {po.vs[i], po.vs[po.next(i)]});
+  for (u32 i = 0; i < (u32)po.vs.size(); ++i) {
+    RELCS state = relation_CS(c, {po.vs[i], po.vs[po.next(i)]});
     if (state == RELCS::intersect_cs) return otherwise_poc;
     if (state == RELCS::tagante_cs) x = touchin_poc;
   }

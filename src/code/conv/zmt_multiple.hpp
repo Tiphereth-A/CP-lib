@@ -12,7 +12,6 @@ void zt_multiple(vec<T>& a, vec<u32> const& pf) {
 }
 template <class T>
 void zt_multiple(vec<T>& a) { zt_multiple(a, prime_seq(a.size() - 1)); }
-
 template <class T>
 void mt_multiple(vec<T>& a, vec<u32> const& pf) {
   for (u32 p : pf)

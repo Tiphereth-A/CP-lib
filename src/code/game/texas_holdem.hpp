@@ -102,15 +102,15 @@ class th_hand {
     exit(1);
   }
 
-  th_card &operator[](usz x) { return cds[x]; }
-  th_card operator[](usz x) const { return cds[x]; }
+  th_card &operator[](u32 x) { return cds[x]; }
+  th_card operator[](u32 x) const { return cds[x]; }
 
   friend std::istream &operator>>(std::istream &is, th_hand &hands) {
-    for (usz i = 0; i < 5; ++i) is >> hands.cds[i];
+    for (u32 i = 0; i < 5; ++i) is >> hands.cds[i];
     return is;
   }
   friend std::ostream &operator<<(std::ostream &os, th_hand const &hands) {
-    for (usz i = 0; i < 4; ++i) os << hands.cds[i] << ' ';
+    for (u32 i = 0; i < 4; ++i) os << hands.cds[i] << ' ';
     return os << hands.cds[4];
   }
 

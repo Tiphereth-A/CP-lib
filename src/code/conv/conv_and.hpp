@@ -6,10 +6,10 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline vec<T> conv_and(vec<T> l, vec<T> r) {
+vec<T> conv_and(vec<T> l, vec<T> r) {
   zt_supset(l);
   zt_supset(r);
-  for (usz i = 0; i < l.size(); ++i) l[i] *= r[i];
+  for (u32 i = 0; i < l.size(); ++i) l[i] *= r[i];
   mt_supset(l);
   return l;
 }

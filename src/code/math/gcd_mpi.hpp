@@ -38,7 +38,7 @@ inline ptt<i32> shrink(mpi& a) {
 }  // namespace gcd_mpi_impl_
 
 template <bool FAST = true>
-inline mpi gcd_mpi(mpi a, mpi b) {
+mpi gcd_mpi(mpi a, mpi b) {
   a.set_neg(false), b.set_neg(false);
   if constexpr (FAST)
     if (std::max(a.data().size(), b.data().size()) <= 4) return gcd_128(a.to_i128(), b.to_i128());

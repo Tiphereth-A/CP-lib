@@ -32,16 +32,16 @@ inline u64x8 setr_u64x8_si256(u64 a0, u64 a1, u64 a2, u64 a3) { return (u64x8)_m
 inline u64x8 setr_u64x8(u64 a0, u64 a1, u64 a2, u64 a3, u64 a4, u64 a5, u64 a6, u64 a7) { return (u64x8)_mm512_setr_epi64(a0, a1, a2, a3, a4, a5, a6, a7); }
 
 template <int imm8>
-inline u32x16 shuffle_u32x16(u32x16 val) { return (u32x16)(_mm512_shuffle_epi32((i512)(val), (_MM_PERM_ENUM)imm8)); }
+u32x16 shuffle_u32x16(u32x16 val) { return (u32x16)(_mm512_shuffle_epi32((i512)(val), (_MM_PERM_ENUM)imm8)); }
 inline u32x16 permute_u32x16(u32x16 val, u32x16 p) { return (u32x16)(_mm512_permutexvar_epi32((i512)(p), (i512)(val))); }
 
 template <int imm8>
-inline u32x16 permute_u32x16_epi128(u32x16 a) { return (u32x16)(_mm512_shuffle_i64x2((i512)(a), (i512)(a), imm8)); }
+u32x16 permute_u32x16_epi128(u32x16 a) { return (u32x16)(_mm512_shuffle_i64x2((i512)(a), (i512)(a), imm8)); }
 
 template <int imm16>
-inline u32x16 blend_u32x16(u32x16 a, u32x16 b) { return (u32x16)(_mm512_mask_blend_epi32(imm16, (i512)(a), (i512)(b))); }
+u32x16 blend_u32x16(u32x16 a, u32x16 b) { return (u32x16)(_mm512_mask_blend_epi32(imm16, (i512)(a), (i512)(b))); }
 template <int imm8>
-inline u32x16 blend_u32x16_si256(u32x16 a, u32x16 b) { return (u32x16)(_mm512_mask_blend_epi32(imm8 | (imm8 << 8), (i512)(a), (i512)(b))); }
+u32x16 blend_u32x16_si256(u32x16 a, u32x16 b) { return (u32x16)(_mm512_mask_blend_epi32(imm8 | (imm8 << 8), (i512)(a), (i512)(b))); }
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-conversion"

@@ -8,19 +8,18 @@ namespace tifa_libs::math {
 
 template <class T>
 void zt_supset(vec<T>& f) {
-  usz n = f.size();
+  u32 n = (u32)f.size();
   assert(bit::ispow2(n));
-  for (usz i = 1; i < n; i *= 2)
-    for (usz j = 0; j < n; ++j)
+  for (u32 i = 1; i < n; i *= 2)
+    for (u32 j = 0; j < n; ++j)
       if (!(j & i)) f[j] += f[j | i];
 }
-
 template <class T>
 void mt_supset(vec<T>& f) {
-  usz n = f.size();
+  u32 n = (u32)f.size();
   assert(bit::ispow2(n));
-  for (usz i = 1; i < n; i *= 2)
-    for (usz j = 0; j < n; ++j)
+  for (u32 i = 1; i < n; i *= 2)
+    for (u32 j = 0; j < n; ++j)
       if (!(j & i)) f[j] -= f[j | i];
 }
 

@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 template <class G>
-inline std::optional<vec<u32>> path(G const &g, u32 from, u32 to) {
+std::optional<vec<u32>> path(G const &g, u32 from, u32 to) {
   vec<u32> ret;
   bool failed = true;
   auto dfs = [&](auto &&dfs, u32 now, u32 fa) -> void {

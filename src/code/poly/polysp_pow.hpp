@@ -10,11 +10,11 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> polysp_pow(poly<T> const& p, u64 y, vec<u64> const& inv, usz n = 0) {
+poly<T> polysp_pow(poly<T> const& p, u64 y, vec<u64> const& inv, u32 n = 0) {
   if (!n) n = p.size();
   if (!y) return poly<T>{1}.pre(n);
   if (p.data().empty()) return p.pre(n);
-  usz l0 = std::find_if(p.data().begin(), p.data().end(), [](auto const& x) { return x != 0; }) - p.data().begin();
+  u32 l0 = u32(std::find_if(p.data().begin(), p.data().end(), [](auto const& x) { return x != 0; }) - p.data().begin());
   if ((u128)l0 * y >= n) return poly<T>(n);
   if (l0) {
     auto _ = poly_shr(p, l0), g = polysp_pow(_, y, inv, n - l0 * y);
@@ -35,10 +35,7 @@ inline poly<T> polysp_pow(poly<T> const& p, u64 y, vec<u64> const& inv, usz n = 
   return g;
 }
 template <class T>
-inline poly<T> polysp_pow(poly<T> const& p, u64 y, usz n = 0) {
-  if (!n) n = p.size();
-  return polysp_pow(p, y, gen_inv(n, T::value_type::mod()), n);
-}
+poly<T> polysp_pow(poly<T> const& p, u64 y, u32 n = 0) { return polysp_pow(p, y, gen_inv(n, T::value_type::mod()), n ? n : p.size()); }
 
 }  // namespace tifa_libs::math
 

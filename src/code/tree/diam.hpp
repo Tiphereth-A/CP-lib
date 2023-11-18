@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 
 // {u, v, diam}
 template <class G>
-inline auto tree_diam(G &tree) {
+auto tree_diam(G &tree) {
   constexpr bool F = std::is_base_of_v<alist, G>;
   auto _ = tree.root;
   vec<std::conditional_t<F, u32, typename G::weight_type>> d;

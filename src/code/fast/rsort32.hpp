@@ -6,10 +6,10 @@
 namespace tifa_libs {
 
 template <class T>
-inline void rsort32(vec<T>& a) {
+void rsort32(vec<T>& a) {
   static_assert(sizeof(T) == 4);
   static u32 _0[256], _1[256], _2[256], _3[256];
-  usz n = a.size();
+  u32 n = (u32)a.size();
   vec<u32> b(n);
   u32 *a_ = a.data(), *b_ = b.data();
   for (u32 *_ = a_ + n, *i = a_; i < _; ++i) {
@@ -29,7 +29,7 @@ inline void rsort32(vec<T>& a) {
   for (u32* i = a_ + n; --i >= a_;) b_[--_2[*i >> 16 & 255]] = *i;
   for (u32* i = b_ + n; --i >= b_;) a_[--_3[*i >> 24 & 255]] = *i;
   if constexpr (std::is_signed_v<T>) {
-    usz i = n;
+    u32 i = n;
     while (i && a[i - 1] < 0) --i;
     std::rotate(a_, a_ + i, a_ + n);
   }

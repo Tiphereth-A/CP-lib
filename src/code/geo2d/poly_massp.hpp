@@ -9,9 +9,10 @@ template <class FP>
 point<FP> poly_massp(polygon<FP> const &po) {
   point<FP> ret{};
   FP area{};
-  if (po.vs.size() == 0) return ret;
-  if (po.vs.size() == 1) return po.vs[0];
-  for (usz i = 1; i < po.vs.size() - 1; ++i) {
+  u32 n = (u32)po.vs.size();
+  if (n == 0) return ret;
+  if (n == 1) return po.vs[0];
+  for (u32 i = 1; i < n - 1; ++i) {
     FP tmp = cross(po.vs[0], po.vs[i], po.vs[i + 1]);
     if (is_zero(tmp)) continue;
     area += tmp;

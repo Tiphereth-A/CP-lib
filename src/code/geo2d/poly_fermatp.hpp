@@ -12,12 +12,12 @@ point<FP> fermatp(polygon<FP> const &po, const FP begin = 1e10, const FP end = E
   static rand::Gen<std::uniform_real_distribution<FP>> gen_angle(0, 2 * PI<FP>);
   point<FP> ret = po.vs.front(), pre = po.vs.front(), now;
   FP dis_ret{}, dis_pre{}, dis_now;
-  for (usz i = 1; i < po.vs.size(); ++i) dis_pre += dist_PP(po.vs[i], ret);
+  for (u32 i = 1; i < po.vs.size(); ++i) dis_pre += dist_PP(po.vs[i], ret);
   dis_ret = dis_pre;
   for (FP T = begin; T > end; T *= delta) {
     now = pre + make_P_polar(T, gen_angle());
     dis_now = 0;
-    for (usz i = 0; i < po.vs.size(); ++i) dis_now += dist_PP(po.vs[i], now);
+    for (u32 i = 0; i < po.vs.size(); ++i) dis_now += dist_PP(po.vs[i], now);
     if (is_lt(dis_now, dis_ret)) {
       ret = now;
       dis_ret = dis_now;

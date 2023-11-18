@@ -7,19 +7,18 @@ namespace tifa_libs::math {
 
 template <class T>
 void wht(vec<T>& f) {
-  usz n = f.size();
-  for (usz i = 1; i < n; i *= 2)
-    for (usz j = 0; j < n; ++j)
+  u32 n = (u32)f.size();
+  for (u32 i = 1; i < n; i *= 2)
+    for (u32 j = 0; j < n; ++j)
       if (!(j & i)) {
         T x = f[j], y = f[j | i];
         f[j] = x + y;
         f[j | i] = x - y;
       }
 }
-
 template <class T>
 void iwht(vec<T>& f) {
-  usz n = f.size();
+  u32 n = (u32)f.size();
   wht(f);
   if constexpr (std::is_integral_v<T>)
     for (auto& x : f) x /= n;

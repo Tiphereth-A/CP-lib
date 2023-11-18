@@ -4,12 +4,12 @@
 #include "util.hpp"
 
 template <typename... Ts>
-inline std::istream &operator>>(std::istream &is, std::tuple<Ts...> &p) {
+std::istream &operator>>(std::istream &is, std::tuple<Ts...> &p) {
   std::apply([&](Ts &...targs) { ((is >> targs), ...); }, p);
   return is;
 }
 template <typename... Ts>
-inline std::ostream &operator<<(std::ostream &os, std::tuple<Ts...> const &p) {
+std::ostream &operator<<(std::ostream &os, std::tuple<Ts...> const &p) {
   std::apply(
       [&](Ts const &...targs) {
         std::size_t n{0};

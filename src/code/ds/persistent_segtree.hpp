@@ -15,6 +15,18 @@ class persistent_segtree {
   vec<YYZ> t;
   vec<usz> root;
 
+ public:
+  persistent_segtree(vec<usz> const& a, usz N) : n(N), cnt(0), t(a.size() * 24, YYZ()), root(a.size()) {
+    build(root[0], 0, n - 1, a[0]);
+    for (usz i = 1; i < a.size(); ++i) add_(root[i - 1], root[i], 0, n - 1, a[i]);
+  }
+  void add(usz old_x, usz x, usz pos) { add_(root[old_x], root[x], 0, n - 1, pos); }
+  usz kth_min(usz x, usz y, usz k) { return x ? kth_min_(root[x - 1], root[y], 0, n - 1, k) : kth_min_(root[y], 0, n - 1, k); }
+  usz kth_max(usz x, usz y, usz k) { return x ? kth_max_(root[x - 1], root[y], 0, n - 1, k) : kth_max_(root[y], 0, n - 1, k); }
+  usz frequency(usz x, usz y, usz pos) { return x ? frequency_(root[x - 1], root[y], 0, n - 1, pos, pos) : frequency_(root[y], 0, n - 1, pos, pos); }
+  usz frequency(usz x, usz y, usz L, usz R) { return x ? frequency_(root[x - 1], root[y], 0, n - 1, L, R) : frequency_(root[y], 0, n - 1, L, R); }
+
+ private:
   void pushup(usz x) {
     t[x].w = 0;
     if (t[x].ls) t[x].w = t[t[x].ls].w;
@@ -79,17 +91,6 @@ class persistent_segtree {
     if (R > mid) ret += frequency_(t[y].rs, mid + 1, r, L, R);
     return ret;
   }
-
- public:
-  persistent_segtree(vec<usz> const& a, usz N) : n(N), cnt(0), t(a.size() * 24, YYZ()), root(a.size()) {
-    build(root[0], 0, n - 1, a[0]);
-    for (usz i = 1; i < a.size(); ++i) add_(root[i - 1], root[i], 0, n - 1, a[i]);
-  }
-  void add(usz old_x, usz x, usz pos) { add_(root[old_x], root[x], 0, n - 1, pos); }
-  usz kth_min(usz x, usz y, usz k) { return x ? kth_min_(root[x - 1], root[y], 0, n - 1, k) : kth_min_(root[y], 0, n - 1, k); }
-  usz kth_max(usz x, usz y, usz k) { return x ? kth_max_(root[x - 1], root[y], 0, n - 1, k) : kth_max_(root[y], 0, n - 1, k); }
-  usz frequency(usz x, usz y, usz pos) { return x ? frequency_(root[x - 1], root[y], 0, n - 1, pos, pos) : frequency_(root[y], 0, n - 1, pos, pos); }
-  usz frequency(usz x, usz y, usz L, usz R) { return x ? frequency_(root[x - 1], root[y], 0, n - 1, L, R) : frequency_(root[y], 0, n - 1, L, R); }
 };
 
 }  // namespace tifa_libs::ds

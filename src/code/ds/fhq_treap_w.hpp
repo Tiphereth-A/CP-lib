@@ -33,6 +33,7 @@ class fhq_treap_w {
   vec<YYZ> t;
   vec<usz> sta;
   usz cnt;
+
   usz newnode(T val) {
     usz ret;
     if (sta.size()) ret = *sta.rbegin(), sta.pop_back(), t[ret] = YYZ(val, val, 1, gen());
@@ -45,7 +46,7 @@ class fhq_treap_w {
     t[u].sz = t[t[u].son[0]].sz + t[t[u].son[1]].sz + 1;
   }
   constexpr void reverse__(usz u) {
-    assert(reverse_);
+    static_assert(reverse_);
     std::swap(t[u].son[0], t[u].son[1]), t[u].rev ^= 1;
   }
   constexpr void all_update(usz u, F f) {
@@ -54,15 +55,18 @@ class fhq_treap_w {
   constexpr void pushdown(usz u) {
     if (u) {
       all_update(t[u].son[0], t[u].sign), all_update(t[u].son[1], t[u].sign), t[u].sign = id();
-      if (reverse_ && t[u].rev) reverse__(t[u].son[0]), reverse__(t[u].son[1]), t[u].rev = 0;
+      if constexpr (reverse_)
+        if (t[u].rev) reverse__(t[u].son[0]), reverse__(t[u].son[1]), t[u].rev = 0;
     }
   }
 
  public:
   usz root;
+
   explicit constexpr fhq_treap_w(usz MAX_N) : gen(), t(MAX_N + 1), sta(), cnt(0), root(0) {
-    if (recovery) sta.reserve(MAX_N + 1);
+    if constexpr (recovery) sta.reserve(MAX_N + 1);
   }
+
   void split(usz u, usz k, usz& x, usz& y) {
     if (!u) x = y = 0;
     else {

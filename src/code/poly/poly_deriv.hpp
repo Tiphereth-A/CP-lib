@@ -6,9 +6,9 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> poly_deriv(poly<T> const &p) {
+poly<T> poly_deriv(poly<T> const &p) {
   auto _ = p;
-  for (usz i = 1; i < _.size(); ++i) _[i - 1] = _[i] * i;
+  for (u32 i = 1; i < _.size(); ++i) _[i - 1] = _[i] * i;
   _.data().back() = 0;
   return _;
 }

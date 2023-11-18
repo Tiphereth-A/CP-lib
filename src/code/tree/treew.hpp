@@ -9,7 +9,7 @@ template <class T>
 struct treew : alistw<T> {
   u32 root;
 
-  explicit treew(usz n, u32 root = 0) : alistw<T>(n), root(root) {}
+  explicit treew(u32 n, u32 root = 0) : alistw<T>(n), root(root) {}
 };
 
 }  // namespace tifa_libs::graph

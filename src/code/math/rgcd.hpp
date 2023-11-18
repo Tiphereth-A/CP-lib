@@ -11,7 +11,6 @@ class RGCD {
     u32 a, b, c;
     F3(u32 _a = 0, u32 _b = 0, u32 _c = 0) : a(_a), b(_b), c(_c) {}
   };
-
   vec<F3> fs;
   vvec<u32> g_;
 
@@ -33,9 +32,9 @@ class RGCD {
           if ((now.a *= j) > now.b) std::swap(now.a, now.b);
           if (now.b > now.c) std::swap(now.b, now.c);
         });
-    for (usz i = 1; i < g_.size(); ++i) {
+    for (u32 i = 1; i < g_.size(); ++i) {
       g_[i][0] = g_[0][i] = g_[i][i] = (u32)i;
-      for (usz j = 1; j < i; ++j) g_[i][j] = g_[j][i] = g_[j][i % j];
+      for (u32 j = 1; j < i; ++j) g_[i][j] = g_[j][i] = g_[j][i % j];
     }
   }
 

@@ -6,8 +6,8 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> poly_div(poly<T> p, poly<T> q) {
-  usz n = p.size(), m = q.size();
+poly<T> poly_div(poly<T> p, poly<T> q) {
+  u32 n = p.size(), m = q.size();
   if (n < m) return poly<T>();
   p.reverse();
   q.reverse();

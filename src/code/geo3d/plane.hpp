@@ -16,12 +16,12 @@ struct plane {
   point3d<FP> normal() const { return (v - u) ^ (w - u); }
   FP area() const { return normal().norm() / 2; }
 
-  point3d<FP> &get(usz i) {
+  point3d<FP> &get(u32 i) {
     if (i == 0) return u;
     if (i == 1) return v;
     if (i == 2) return w;
   }
-  point3d<FP> get(usz i) const {
+  point3d<FP> get(u32 i) const {
     if (i == 0) return u;
     if (i == 1) return v;
     if (i == 2) return w;

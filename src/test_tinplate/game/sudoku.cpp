@@ -3,12 +3,12 @@
 #include "../../code/game/sudoku.hpp"
 
 void solve() {
-  vvec<usz> sdk(9, vec<usz>(9));
+  vvec<u32> sdk(9, vec<u32>(9));
   for (auto &i : sdk)
     for (auto &j : i) std::cin >> j;
   auto res = tifa_libs::game::sudoku_solver(sdk)[0];
-  for (usz i = 0; i < 9; ++i)
-    for (usz j = 0; j < 9; ++j) std::cout << res[i][j] << " \n"[j == 8];
+  for (u32 i = 0; i < 9; ++i)
+    for (u32 j = 0; j < 9; ++j) std::cout << res[i][j] << " \n"[j == 8];
 }
 
 int main() {

@@ -9,12 +9,12 @@ namespace tifa_libs::math {
 // @brief Chirp Z-Transform
 // @return {f(a*c^0), f(a*c^1), ..., f(a*c^{m-1})}
 template <class T>
-inline poly<T> poly_czt(poly<T> f, typename T::value_type c, u64 m = -1_u64, typename T::value_type a = 1) {
+poly<T> poly_czt(poly<T> f, typename T::value_type c, u64 m = -1_u64, typename T::value_type a = 1) {
   using mint = typename T::value_type;
   static rpow rp, irp;
   if (m == -1_u64) m = f.size();
   if (f.data().empty() || !m) return poly<T>{};
-  usz n = f.size();
+  u32 n = f.size();
   if (a != 1) {
     mint x = 1;
     for (u64 i = 0; i < n; ++i) f[i] *= x, x *= a;
@@ -28,10 +28,10 @@ inline poly<T> poly_czt(poly<T> f, typename T::value_type c, u64 m = -1_u64, typ
   if (c.val() == irp.base()) rp.swap(irp);
   rp.reset(c.val(), mod);
   irp.reset(c.inv().val(), mod);
-  poly<T> cc(m + n), icc(std::max(m, n));
+  poly<T> cc(m + n), icc(std::max<u64>(m, n));
   cc[0] = icc[0] = 1;
   for (u64 i = 1; i < m + n; ++i) cc[i] = rp((i * (i - 1) / 2) % (mod - 1));
-  for (u64 i = 1; i < std::max(m, n); ++i) icc[i] = irp((i * (i - 1) / 2) % (mod - 1));
+  for (u64 i = 1; i < std::max<u64>(m, n); ++i) icc[i] = irp((i * (i - 1) / 2) % (mod - 1));
   for (u32 i = 1; i < n; ++i) f[i] *= icc[i];
   std::reverse(f.data().begin(), f.data().end());
   f.conv(cc, n + m);

@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 
 // solve a^x=b
 template <class uint, uint (*prod)(uint, uint)>
-inline uint bsgs_nimber(nimber<uint, prod> const& a, nimber<uint, prod> const& b) {
+uint bsgs_nimber(nimber<uint, prod> const& a, nimber<uint, prod> const& b) {
   assert(a != 0 && b != 0);
   vec<uint> rem, mod;
   for (uint p : {3, 5, 17, 257, 641, 65537, 6700417}) {

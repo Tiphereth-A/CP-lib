@@ -18,9 +18,9 @@ class rpow {
     b_ = base % mod;
     m_ = mod;
     b0[0] = b1[0] = 1;
-    for (usz i = 1; i < 65536; ++i) b0[i] = mul_mod_u(b0[i - 1], b_, m_);
+    for (u32 i = 1; i < 65536; ++i) b0[i] = mul_mod_u(b0[i - 1], b_, m_);
     u64 _(mul_mod_u(b0.back(), b_, m_));
-    for (usz i = 1; i < 65536; ++i) b1[i] = mul_mod_u(b1[i - 1], _, m_);
+    for (u32 i = 1; i < 65536; ++i) b1[i] = mul_mod_u(b1[i - 1], _, m_);
   }
 
   void swap(rpow& r) {

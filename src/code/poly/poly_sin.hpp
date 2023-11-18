@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-inline poly<T> poly_sin(poly<T> const &p) {
+poly<T> poly_sin(poly<T> const &p) {
   using mint = typename T::value_type;
   mint i = qpow(mint(proot_u64(mint::mod())), (mint::mod() - 1) / 4);
   auto _ = p * i;

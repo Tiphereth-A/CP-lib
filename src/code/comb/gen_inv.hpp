@@ -14,7 +14,7 @@ inline vec<u64> gen_inv(u32 n, u64 mod) {
 }
 // i^{-1} from i=0..n-1
 template <class mint>
-inline vec<mint> gen_inv(u32 n) {
+vec<mint> gen_inv(u32 n) {
   vec<mint> ans(n);
   auto _ = gen_inv(n, mint::mod());
   for (u32 i = 0; i < n; ++i) ans[i] = _[i];

@@ -12,7 +12,6 @@ void zt_divisor(vec<T>& a, vec<u32> const& pf) {
 }
 template <class T>
 void zt_divisor(vec<T>& a) { zt_divisor(a, prime_seq(a.size() - 1)); }
-
 template <class T>
 void mt_divisor(vec<T>& a, vec<u32> const& pf) {
   for (u32 p : pf)

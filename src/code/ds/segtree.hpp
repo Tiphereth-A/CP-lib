@@ -12,6 +12,21 @@ class segtree {
   vec<F> sign;
   vec<bool> set_sign;
   usz n;
+
+ public:
+  explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4), sign(a.size() * 4), set_sign(a.size() * 4), n(a.size()) { build(a, 1, 0, n - 1); }
+  explicit constexpr segtree(usz N = 0) : t(N * 4), sign(N * 4), set_sign(N * 4), n(N) {
+    if (n) build(vec<T>(n, e()), 1, 0, n - 1);
+  }
+
+  void update(usz L, usz R, F f) { update(1, 0, n - 1, L, R, f); }
+  void update(usz pos, F f) { update(1, 0, n - 1, pos, pos, f); }
+  void set(usz L, usz R, T f) { set(1, 0, n - 1, L, R, f); }
+  void set(usz pos, T f) { set(1, 0, n - 1, pos, pos, f); }
+  T query(usz L, usz R) { return query(1, 0, n - 1, L, R); }
+  T query(usz pos) { return query(1, 0, n - 1, pos, pos); }
+
+ private:
   void pushup(usz x) { t[x] = op(t[x << 1], t[x << 1 | 1]); }
   void all_update(usz x, F f) { t[x] = mapping(f, t[x]), sign[x] = composition(f, sign[x]); }
   void all_set(usz x, T f) { t[x] = f, sign[x] = id(), set_sign[x] = 1; }
@@ -54,18 +69,6 @@ class segtree {
     if (R > mid) ret = op(ret, query(x << 1 | 1, mid + 1, r, L, R));
     return ret;
   }
-
- public:
-  explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4), sign(a.size() * 4), set_sign(a.size() * 4), n(a.size()) { build(a, 1, 0, n - 1); }
-  explicit constexpr segtree(usz N = 0) : t(N * 4), sign(N * 4), set_sign(N * 4), n(N) {
-    if (n) build(vec<T>(n, e()), 1, 0, n - 1);
-  }
-  void update(usz L, usz R, F f) { update(1, 0, n - 1, L, R, f); }
-  void update(usz pos, F f) { update(1, 0, n - 1, pos, pos, f); }
-  void set(usz L, usz R, T f) { set(1, 0, n - 1, L, R, f); }
-  void set(usz pos, T f) { set(1, 0, n - 1, pos, pos, f); }
-  T query(usz L, usz R) { return query(1, 0, n - 1, L, R); }
-  T query(usz pos) { return query(1, 0, n - 1, pos, pos); }
 };
 
 }  // namespace tifa_libs::ds

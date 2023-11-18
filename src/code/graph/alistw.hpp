@@ -12,7 +12,7 @@ struct alistw {
   value_type g;
 
   //! vertex ID: [0, n)
-  explicit alistw(usz n = 0) : g(n) {}
+  explicit alistw(u32 n = 0) : g(n) {}
 
   void add_arc(u32 u, u32 v, T const& w) { g[u].emplace_back(v, w); }
 };
