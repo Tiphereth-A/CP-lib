@@ -23,7 +23,7 @@ class deque_with_w {
 
  public:
   deque_with_w() : q(2), s(2) { bf(); }
-  
+
   void push_front(T x) {
     q[0].push_back(x);
     if (s[0].size()) s[0].push_back(op(x, s[0].back()));
