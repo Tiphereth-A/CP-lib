@@ -7,11 +7,7 @@ struct exeuclid_node {
   T u, r;
   T f;
   exeuclid_node(T u = 0, T r = 0, T f = 0) : u(u), r(r), f(f) {}
-  exeuclid_node operator*(exeuclid_node const &rhs) const {
-    return exeuclid_node{u + rhs.u,
-                         r + rhs.r,
-                         f + rhs.f + u * rhs.r};
-  }
+  friend exeuclid_node operator*(exeuclid_node const &l, exeuclid_node const &r) { return {l.u + r.u, l.r + r.r, l.f + r.f + l.u * r.r}; }
 };
 
 int main() {

@@ -4,8 +4,23 @@
 
 #include "../../code/math/mint_ss.hpp"
 
+template <class T>
+struct exeuclid_node {
+  T u, r;
+  T i, f, sqr_f, i_f;
+  exeuclid_node(T u = 0, T r = 0, T i = 0, T f = 0, T sqr_f = 0, T i_f = 0) : u(u), r(r), i(i), f(f), sqr_f(sqr_f), i_f(i_f) {}
+  friend exeuclid_node operator*(exeuclid_node const &l, exeuclid_node const &r) {
+    return {l.u + r.u,
+            l.r + r.r,
+            l.i + r.i + l.r * r.r,
+            l.f + r.f + l.u * r.r,
+            l.sqr_f + r.sqr_f + l.u * l.u * r.r + 2 * l.u * r.f,
+            l.i_f + r.i_f + l.u * l.r * r.r + l.u * r.i + l.r * r.f};
+  }
+};
+
 using mint = tifa_libs::math::mint_ss<998244353>;
-using node = tifa_libs::math::exeuclid_node<mint>;
+using node = exeuclid_node<mint>;
 
 int main() {
   std::ios::sync_with_stdio(false);

@@ -6,8 +6,8 @@
 namespace tifa_libs::math {
 
 template <class T>
-constexpr T qpow(T a, u64 b) {
-  T res(1);
+constexpr T qpow(T a, u64 b, T const& init_v = 1) {
+  T res(init_v);
   for (; b; b >>= 1, a = a * a)
     if (b & 1) res = res * a;
   return res;
