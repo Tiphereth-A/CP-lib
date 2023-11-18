@@ -25,7 +25,10 @@ poly<T> polysp_exp(poly<T> const& p, vec<u64> const& inv, u32 n = 0) {
   return g;
 }
 template <class T>
-poly<T> polysp_exp(poly<T> const& p, u32 n = 0) { return polysp_exp(p, gen_inv(n, T::value_type::mod()), n ? n : p.size()); }
+poly<T> polysp_exp(poly<T> const& p, u32 n = 0) {
+  if (!n) n = p.size();
+  return polysp_exp(p, gen_inv(n, T::value_type::mod()), n);
+}
 
 }  // namespace tifa_libs::math
 
