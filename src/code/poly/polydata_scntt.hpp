@@ -17,7 +17,7 @@ struct polydata_scntt {
   static constexpr auto ccore_type = pdct_CNTT;
 
   vec<mint> d;
-  static conv_core ccore;
+  static inline conv_core ccore;
 
   explicit constexpr polydata_scntt(u32 sz = 1, value_type const &val = value_type{}) : d(sz, val) {}
   constexpr polydata_scntt(typename vec<mint>::const_iterator begin, typename vec<mint>::const_iterator end) : d(begin, end) {}
