@@ -30,6 +30,11 @@ class poly {
   }
 
   constexpr u32 size() const { return (u32)p.d.size(); }
+  constexpr bool empty() const {
+    for (auto &&i : p.d)
+      if (i != 0) return 0;
+    return 1;
+  }
   constexpr data_type &data() { return p.d; }
   constexpr data_type const &data() const { return p.d; }
 
@@ -56,7 +61,7 @@ class poly {
   }
   constexpr void strip() {
     auto it = std::find_if(p.d.rbegin(), p.d.rend(), [](auto const &x) { return x != 0; });
-    p.d.resize(p.d.rend() - it);
+    p.d.resize(usz(p.d.rend() - it));
     if (p.d.empty()) p.d.push_back(value_type(0));
   }
   constexpr void reverse(u32 n = 0) { std::reverse(p.d.begin(), p.d.begin() + (n ? n : size())); }

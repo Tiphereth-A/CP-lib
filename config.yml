@@ -1096,6 +1096,12 @@ notebook:
     - poly_divmod: 多项式除法与取模
       code_ext: hpp
       test_ext: cpp
+    - poly_gcd: 多项式 GCD
+      code_ext: hpp
+      test_ext: cpp
+    - poly_modinv: 多项式逆元
+      code_ext: hpp
+      test_ext: cpp
     - poly_exp: 多项式 exp
       code_ext: hpp
       test_ext: cpp
