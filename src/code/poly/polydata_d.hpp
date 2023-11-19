@@ -8,10 +8,10 @@
 
 namespace tifa_libs::math {
 
-template <class mint>
+template <class mint, class FP = f64>
 struct polydata_d {
   using value_type = mint;
-  using conv_core = FFT<mint>;
+  using conv_core = FFT<FP>;
   static constexpr auto ccore_type = pdct_FFT;
 
   vec<mint> d;
