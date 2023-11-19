@@ -14,6 +14,7 @@ int main() {
   std::cin >> n >> m;
   vec<mint> a(n), b(m);
   std::cin >> a >> b;
-  std::cout << tifa_libs::math::conv_mtt<mint, long double>(a, b) << '\n';
+  tifa_libs::math::FFT<long double> fft;
+  std::cout << tifa_libs::math::conv_mtt(fft, a, b) << '\n';
   return 0;
 }

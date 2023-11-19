@@ -15,6 +15,7 @@ int main() {
   std::cin >> n >> m;
   vec<u64> a(n), b(m);
   std::cin >> a >> b;
-  std::cout << tifa_libs::math::conv_3ntt<mint0, mint1, mint2>(a, b, 1000000007) << '\n';
+  std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>> ntt3;
+  std::cout << tifa_libs::math::conv_3ntt_u64(ntt3, a, b, 1000000007) << '\n';
   return 0;
 }

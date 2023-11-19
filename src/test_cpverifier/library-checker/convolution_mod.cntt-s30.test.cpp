@@ -13,6 +13,7 @@ int main() {
   std::cin >> n >> m;
   vec<mint> a(n), b(m);
   std::cin >> a >> b;
-  std::cout << tifa_libs::math::conv_cntt(a, b) << '\n';
+  tifa_libs::math::CNTT<mint> cntt;
+  std::cout << tifa_libs::math::conv_cntt(cntt, a, b) << '\n';
   return 0;
 }

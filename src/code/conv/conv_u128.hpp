@@ -21,9 +21,13 @@ vec<u128> conv_u128(vec<T> const &l, vec<T> const &r, u32 ans_size) {
   if (l.empty() && r.empty()) return {};
   if (std::min(l.size(), r.size()) < 128) return conv_naive<T, u128>(l, r);
 
-  vec<mint0> d0 = conv_ntt32<mint0>(l, r, ans_size);
-  vec<mint1> d1 = conv_ntt32<mint1>(l, r, ans_size);
-  vec<mint2> d2 = conv_ntt32<mint2>(l, r, ans_size);
+  static NTT32<mint0> ntt0;
+  static NTT32<mint1> ntt1;
+  static NTT32<mint2> ntt2;
+
+  vec<mint0> d0 = conv_ntt32(ntt0, l, r, ans_size);
+  vec<mint1> d1 = conv_ntt32(ntt1, l, r, ans_size);
+  vec<mint2> d2 = conv_ntt32(ntt2, l, r, ans_size);
 
   vec<u128> ret(ans_size);
   for (u32 i = 0; i < ans_size; ++i) {

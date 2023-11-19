@@ -30,7 +30,6 @@ vec<T> berlekamp_massey(vec<T> const &a) {
       for (u32 i = 0; i < m; ++i) c[l - 1 - i] -= d_ * b[m - 1 - i];
   }
   std::reverse(c.begin(), c.end());
-  for (auto &i : c) i = -i;
   return c;
 }
 

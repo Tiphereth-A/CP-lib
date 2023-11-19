@@ -15,6 +15,6 @@ int main() {
   std::cin >> a;
   auto b = tifa_libs::math::berlekamp_massey(a);
   std::cout << b.size() - 1 << '\n';
-  for (u32 i = 1; i < b.size(); ++i) std::cout << b[i] << " \n"[i + 1 == b.size()];
+  for (u32 i = 1; i < b.size(); ++i) std::cout << -b[i] << " \n"[i + 1 == b.size()];
   return 0;
 }

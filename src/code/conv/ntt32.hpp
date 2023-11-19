@@ -12,6 +12,8 @@ template <class mint>
 struct NTT32 {
   static_assert((mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
 
+  static constexpr mint G = proot_u32(mint::mod());
+
   NTT32() : root() {}
 
   u32 size() const { return (u32)root.size(); }
@@ -61,7 +63,6 @@ struct NTT32 {
 #pragma GCC diagnostic pop
 
  private:
-  static constexpr mint G = proot_u32(mint::mod());
   vec<mint> root;
 };
 

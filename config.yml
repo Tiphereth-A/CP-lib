@@ -904,10 +904,10 @@ notebook:
     - series_ipaf: series_ipaf
       code_ext: hpp
       test_ext: cpp
-    - berlekamp_massey: Berlekamp–Massey 算法
+    - sbt: Stern–Brocot 树
       code_ext: hpp
       test_ext: cpp
-    - sbt: Stern–Brocot 树
+    - berlekamp_massey: Berlekamp–Massey 算法
       code_ext: hpp
       test_ext: cpp
     matrix:
@@ -1054,6 +1054,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     poly:
+    - polydata_convtype: 多项式数据类的卷积类型
+      code_ext: hpp
+      test_ext: cpp
     - polydata_d: 多项式数据类（基于 MTT）
       code_ext: hpp
       test_ext: cpp
