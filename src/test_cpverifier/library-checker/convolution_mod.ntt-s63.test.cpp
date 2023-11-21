@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
 #include "../../code/conv/conv_ntt.hpp"
+#include "../../code/conv/ntt.hpp"
 #include "../../code/math/mint_s63.hpp"
 #include "../../code/util/ios_container.hpp"
 

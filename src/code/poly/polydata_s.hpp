@@ -3,6 +3,7 @@
 
 #include "../conv/conv_naive.hpp"
 #include "../conv/conv_ntt.hpp"
+#include "../conv/ntt.hpp"
 #include "../util/util.hpp"
 #include "polydata_convtype.hpp"
 

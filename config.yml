@@ -999,19 +999,16 @@ notebook:
     - ntt32: 数论变换（u32）
       code_ext: hpp
       test_ext: cpp
-    - conv_3ntt: 卷积（三模 NTT）
-      code_ext: hpp
-      test_ext: cpp
-    - conv_mtt: 卷积（MTT）
-      code_ext: hpp
-      test_ext: cpp
     - conv_naive: 卷积（暴力）
       code_ext: hpp
       test_ext: cpp
     - conv_ntt: 卷积（NTT）
       code_ext: hpp
       test_ext: cpp
-    - conv_ntt32: 卷积（NTT u32）
+    - conv_mtt: 卷积（MTT）
+      code_ext: hpp
+      test_ext: cpp
+    - conv_3ntt: 卷积（三模 NTT）
       code_ext: hpp
       test_ext: cpp
     - conv_u128: 卷积（三模 NTT，高精度整数用）

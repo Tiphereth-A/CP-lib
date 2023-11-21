@@ -4,6 +4,7 @@
 #include "../math/mul_mod_u.hpp"
 #include "../util/util.hpp"
 #include "conv_ntt.hpp"
+#include "ntt.hpp"
 
 namespace tifa_libs::math {
 
