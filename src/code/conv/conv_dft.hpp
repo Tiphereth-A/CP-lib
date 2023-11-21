@@ -18,7 +18,7 @@ vec<mint> conv_dft(DFT_t &dft, vec<mint> l, vec<mint> r, u32 ans_size) {
 template <class DFT_t, class mint>
 vec<mint> conv_dft(DFT_t &dft, vec<mint> const &l, vec<mint> const &r) { return conv_dft(dft, l, r, u32(l.size() + r.size() - 1)); }
 template <class DFT_t, class mint, class T = u64>
-vec<mint> conv_dft(DFT_t &dft, vec<T> const &l, vec<T> const &r, u32 ans_size) {
+vec<mint> conv_dft_u64(DFT_t &dft, vec<T> const &l, vec<T> const &r, u32 ans_size) {
   vec<mint> l_, r_;
   l_.reserve(l.size());
   r_.reserve(r.size());
@@ -27,7 +27,7 @@ vec<mint> conv_dft(DFT_t &dft, vec<T> const &l, vec<T> const &r, u32 ans_size) {
   return conv_dft(dft, l_, r_, ans_size);
 }
 template <class DFT_t, class mint, class T = u64>
-vec<mint> conv_dft(DFT_t &dft, vec<T> const &l, vec<T> const &r) { return conv_dft<DFT_t, mint, T>(dft, l, r, u32(l.size() + r.size() - 1)); }
+vec<mint> conv_dft_u64(DFT_t &dft, vec<T> const &l, vec<T> const &r) { return conv_dft_u64<DFT_t, mint, T>(dft, l, r, u32(l.size() + r.size() - 1)); }
 
 }  // namespace tifa_libs::math
 

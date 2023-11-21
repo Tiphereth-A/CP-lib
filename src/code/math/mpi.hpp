@@ -92,7 +92,7 @@ class mpi {
   friend bool operator>(mpi const& lhs, mpi const& rhs) { return lhs == rhs ? false : neq_lt_(rhs, lhs); }
   friend bool operator>=(mpi const& lhs, mpi const& rhs) { return lhs == rhs ? true : neq_lt_(rhs, lhs); }
 
-  u32 size() const { return dt.size(); }
+  u32 size() const { return (u32)dt.size(); }
   void shrink() { shrink_(dt); }
 
   std::string to_str() const {

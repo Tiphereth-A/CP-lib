@@ -25,7 +25,7 @@ vec<T> conv_naive(vec<U> const &l, vec<U> const &r, u32 ans_size) {
   return ans;
 }
 template <class U, class T = U>
-vec<T> conv_naive(vec<U> const &l, vec<U> const &r) { return conv_naive<U, T>(l, r, l.size() + r.size() - 1); }
+vec<T> conv_naive(vec<U> const &l, vec<U> const &r) { return conv_naive<U, T>(l, r, u32(l.size() + r.size() - 1)); }
 
 }  // namespace tifa_libs::math
 

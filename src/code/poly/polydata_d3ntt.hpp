@@ -11,7 +11,7 @@ namespace tifa_libs::math {
 template <class mint, class mint0, class mint1, class mint2>
 struct polydata_d3ntt {
   using value_type = mint;
-  using conv_core = std::tuple<NTT<mint0>, NTT<mint1>, NTT<mint2>>;
+  using conv_core = std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>>;
   static constexpr auto ccore_type = pdct_NTT3;
 
   vec<mint> d;
