@@ -3,7 +3,7 @@
 
 #include "../math/mul_mod_u.hpp"
 #include "../util/util.hpp"
-#include "conv_ntt.hpp"
+#include "conv_dft.hpp"
 #include "ntt.hpp"
 
 namespace tifa_libs::math {
@@ -17,9 +17,9 @@ vec<u64> conv_3ntt_u64(std::tuple<NTT<mint0>, NTT<mint1>, NTT<mint2>> &ntt3, vec
 
   auto &[ntt0, ntt1, ntt2] = ntt3;
 
-  vec<mint0> d0 = conv_ntt(ntt0, l, r, ans_size);
-  vec<mint1> d1 = conv_ntt(ntt1, l, r, ans_size);
-  vec<mint2> d2 = conv_ntt(ntt2, l, r, ans_size);
+  vec<mint0> d0 = conv_dft(ntt0, l, r, ans_size);
+  vec<mint1> d1 = conv_dft(ntt1, l, r, ans_size);
+  vec<mint2> d2 = conv_dft(ntt2, l, r, ans_size);
 
   vec<u64> ret(ans_size);
   for (u32 i = 0; i < ans_size; ++i) {

@@ -993,16 +993,16 @@ notebook:
     - ntt: 数论变换
       code_ext: hpp
       test_ext: cpp
-    - cntt: 扩域 NTT
+    - ntt32: 数论变换（u32）
       code_ext: hpp
       test_ext: cpp
-    - ntt32: 数论变换（u32）
+    - cntt: 扩域 NTT
       code_ext: hpp
       test_ext: cpp
     - conv_naive: 卷积（暴力）
       code_ext: hpp
       test_ext: cpp
-    - conv_ntt: 卷积（NTT）
+    - conv_dft: 卷积（FFT 或 NTT）
       code_ext: hpp
       test_ext: cpp
     - conv_mtt: 卷积（MTT）

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#include "../../code/conv/conv_ntt.hpp"
+#include "../../code/conv/conv_dft.hpp"
 #include "../../code/conv/ntt.hpp"
 #include "../../code/math/mint_s30.hpp"
 #include "../../code/util/ios_container.hpp"
@@ -15,6 +15,6 @@ int main() {
   vec<mint> a(n), b(m);
   std::cin >> a >> b;
   tifa_libs::math::NTT<mint> ntt;
-  std::cout << tifa_libs::math::conv_ntt(ntt, a, b) << '\n';
+  std::cout << tifa_libs::math::conv_dft(ntt, a, b) << '\n';
   return 0;
 }

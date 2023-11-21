@@ -4,7 +4,7 @@
 #include "../math/mint_s30.hpp"
 #include "../util/util.hpp"
 #include "conv_naive.hpp"
-#include "conv_ntt.hpp"
+#include "conv_dft.hpp"
 #include "ntt32.hpp"
 
 namespace tifa_libs::math {
@@ -26,9 +26,9 @@ vec<u128> conv_u128(vec<T> const &l, vec<T> const &r, u32 ans_size) {
   static NTT32<mint1> ntt1;
   static NTT32<mint2> ntt2;
 
-  vec<mint0> d0 = conv_ntt(ntt0, l, r, ans_size);
-  vec<mint1> d1 = conv_ntt(ntt1, l, r, ans_size);
-  vec<mint2> d2 = conv_ntt(ntt2, l, r, ans_size);
+  vec<mint0> d0 = conv_dft(ntt0, l, r, ans_size);
+  vec<mint1> d1 = conv_dft(ntt1, l, r, ans_size);
+  vec<mint2> d2 = conv_dft(ntt2, l, r, ans_size);
 
   vec<u128> ret(ans_size);
   for (u32 i = 0; i < ans_size; ++i) {
