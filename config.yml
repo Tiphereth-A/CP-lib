@@ -910,6 +910,12 @@ notebook:
     - berlekamp_massey: Berlekamp–Massey 算法
       code_ext: hpp
       test_ext: cpp
+    - ntt_doubling: NTT doubling
+      code_ext: hpp
+      test_ext: cpp
+    - nth_term_lrec: 线性递推数列的第 N 项
+      code_ext: hpp
+      test_ext: cpp
     matrix:
     - mat: 矩阵
       code_ext: hpp
@@ -1148,6 +1154,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - poly_ode: 多项式 ODE
+      code_ext: hpp
+      test_ext: cpp
+    - bostan_mori: Bostan–Mori 算法
       code_ext: hpp
       test_ext: cpp
     - polysp: 多项式转稀疏多项式

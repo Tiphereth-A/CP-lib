@@ -1,0 +1,25 @@
+设线性递推数组 \(a\) (下标从 \(0\) 开始) 满足
+
+\[
+    a_n=\sum_{i=1}^{|c|} c_i a_{n-i},\quad \forall |c|\leq n < |a|
+\]
+
+其中 \(c\) 是一个常数组, 对于一个较大的整数 \(N\), 计算 \(a_N\)
+
+令 \(|c|=k\), 考虑 OGF, 令
+
+\[
+    G(x)=1-\sum_{i=1}^k c_ix^i
+\]
+
+\[
+    F(x)=G(x)\sum_{i=0}^{\infty} a_ix^i
+\]
+
+则
+
+\[
+    a_N=\left[x^N\right]\frac{f(x)}{g(x)}
+\]
+
+参见 \fullref{sec:bostan–mori-算法}
