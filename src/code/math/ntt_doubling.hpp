@@ -6,8 +6,8 @@
 namespace tifa_libs::math {
 
 template <class NTT_t, class mint>
-void ntt_doubling(NTT_t const& ntt, vec<mint>& f) {
-  u32 n = (u32)f.size();
+void ntt_doubling(NTT_t const& ntt, vec<mint>& f, u32 n = 0) {
+  if (!n) n = (u32)f.size();
   auto g = f;
   ntt.dit(g);
   mint r = 1, zeta = qpow(ntt.G, (mint::mod() - 1) / (n * 2));

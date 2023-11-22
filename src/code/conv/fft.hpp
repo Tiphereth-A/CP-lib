@@ -25,10 +25,10 @@ struct FFT {
     for (u32 i = 1; i < n; ++i) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
   }
 
-  void dif(vec<C> &f) const {
-    u32 n = size();
-    assert(f.size() <= n);
-    f.resize(n);
+  void dif(vec<C> &f, u32 n = 0) const {
+    if (!n) n = (u32)f.size();
+    else if (f.size() < n) f.resize(n);
+    assert(n <= size());
     for (u32 i = 0; i < n; ++i)
       if (i < rev[i]) std::swap(f[rev[i]], f[i]);
 #pragma GCC diagnostic push
@@ -45,9 +45,10 @@ struct FFT {
       }
 #pragma GCC diagnostic pop
   }
-  void dit(vec<C> &f) const {
-    u32 n = size();
-    dif(f);
+  void dit(vec<C> &f, u32 n = 0) const {
+    if (!n) n = (u32)f.size();
+    else if (f.size() < n) f.resize(n);
+    dif(f, n);
     for (u32 i = 0; i < n; ++i) f[i] /= (FP)n;
   }
 

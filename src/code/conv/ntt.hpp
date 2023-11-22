@@ -2,6 +2,7 @@
 #define TIFALIBS_CONV_NTT
 
 #include "../bit/bceil.hpp"
+#include "../bit/ispow2.hpp"
 #include "../math/proot_u64.hpp"
 #include "../math/qpow.hpp"
 #include "../util/util.hpp"
@@ -29,9 +30,10 @@ struct NTT {
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-conversion"
-  void dif(vec<mint> &f) const {
-    u32 n = size();
-    assert(f.size() <= n);
+  void dif(vec<mint> &f, u32 n = 0) const {
+    if (!n) n = (u32)f.size();
+    else if (f.size() < n) f.resize(n);
+    assert(bit::ispow2(n) && n <= size() * 2);
     f.resize(n);
     for (u32 i = n / 2, d = 1; i; i /= 2, d *= 2)
       for (u32 j = 0; j < n; j += i * 2) {
@@ -43,10 +45,10 @@ struct NTT {
         }
       }
   }
-  void dit(vec<mint> &f) const {
-    u32 n = size();
-    assert(f.size() <= n);
-    f.resize(n);
+  void dit(vec<mint> &f, u32 n = 0) const {
+    if (!n) n = (u32)f.size();
+    else if (f.size() < n) f.resize(n);
+    assert(bit::ispow2(n) && n <= size() * 2);
     for (u32 i = 1, d = n / 2; d; i *= 2, d /= 2)
       for (u32 j = 0; j < n; j += i * 2) {
         auto w = root.begin();

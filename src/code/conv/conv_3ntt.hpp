@@ -10,11 +10,12 @@ namespace tifa_libs::math {
 
 // 167772161, 469762049, 754974721
 template <class mint0, class mint1, class mint2>
-vec<u64> conv_3ntt_u64(std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>> &ntt3, vec<u64> const &l, vec<u64> const &r, u64 mod, u32 ans_size) {
+vec<u64> conv_3ntt_u64(std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>> &ntt3, vec<u64> const &l, vec<u64> const &r, u64 mod, u32 ans_size = 0) {
   static constexpr u32 m0 = mint0::mod(), m1 = mint1::mod(), m2 = mint2::mod();
   static const u32 r01 = mint1(m0).inv().val(), r02 = mint2(m0).inv().val(), r12 = mint2(m1).inv().val(), r02r12 = (u32)mul_mod_u(r02, r12, m2);
   static const u64 w1 = m0 % mod, w2 = mul_mod_u(m0, m1, mod);
 
+  if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   auto &[ntt0, ntt1, ntt2] = ntt3;
 
   vec<mint0> d0 = conv_dft_u64<NTT32<mint0>, mint0>(ntt0, l, r, ans_size);
@@ -29,10 +30,9 @@ vec<u64> conv_3ntt_u64(std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>> &ntt
   }
   return ret;
 }
-template <class mint0, class mint1, class mint2>
-vec<u64> conv_3ntt_u64(std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>> &ntt3, vec<u64> const &l, vec<u64> const &r, u64 mod) { return conv_3ntt_u64(ntt3, l, r, mod, u32(l.size() + r.size() - 1)); }
 template <class mint, class mint0, class mint1, class mint2>
-vec<mint> conv_3ntt(std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>> &ntt3, vec<mint> const &l, vec<mint> const &r, u32 ans_size) {
+vec<mint> conv_3ntt(std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>> &ntt3, vec<mint> const &l, vec<mint> const &r, u32 ans_size = 0) {
+  if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   vec<u64> l_(l.size()), r_(r.size());
   for (u32 i = 0; i < l.size(); ++i) l_[i] = l[i].val();
   for (u32 i = 0; i < r.size(); ++i) r_[i] = r[i].val();
@@ -41,8 +41,6 @@ vec<mint> conv_3ntt(std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>> &ntt3, 
   for (u32 i = 0; i < _.size(); ++i) res[i] = _[i];
   return res;
 }
-template <class mint, class mint0, class mint1, class mint2>
-vec<mint> conv_3ntt(std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>> &ntt3, vec<mint> const &l, vec<mint> const &r) { return conv_3ntt<mint, mint0, mint1, mint2>(ntt3, l, r, u32(l.size() + r.size() - 1)); }
 
 }  // namespace tifa_libs::math
 

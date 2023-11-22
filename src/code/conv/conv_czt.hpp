@@ -9,7 +9,8 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> conv_czt(poly<T> l, poly<T> r, u32 ans_size) {
+poly<T> conv_czt(poly<T> l, poly<T> r, u32 ans_size = 0) {
+  if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   using mint = typename T::value_type;
   constexpr u64 m = T::value_type::mod();
   u64 s = bit::bceil(l.size() + r.size() - 1);
@@ -24,8 +25,6 @@ poly<T> conv_czt(poly<T> l, poly<T> r, u32 ans_size) {
   l.resize(ans_size);
   return l *= mint(s).inv();
 }
-template <class T>
-poly<T> conv_czt(poly<T> const &l, poly<T> const &r) { return conv_czt(l, r, l.size() + r.size() - 1); }
 
 }  // namespace tifa_libs::math
 
