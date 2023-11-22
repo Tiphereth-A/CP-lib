@@ -9,10 +9,10 @@ namespace tifa_libs::math {
 template <class pdata, class mint = typename pdata::value_type>
 mint nth_term_lrec(u64 n, vec<mint> const& a, vec<mint> const& bm) {
   if (n < a.size()) return a[n];
-  assert(!bm.empty() && bm[0] != 0);
-  auto p = poly<pdata>(a).pre(u32(bm.size() - 1)) * poly<pdata>(bm);
-  p.resize(u32(bm.size() - 1));
-  return bostan_mori(n, poly<pdata>(bm), poly<pdata>(p));
+  assert(!bm.empty() && bm[0] == 1);
+  poly<pdata> q(bm);
+  q.strip();
+  return bostan_mori(n, (poly<pdata>(a) * q).pre(q.size() - 1), q);
 }
 template <class pdata, class mint = typename pdata::value_type>
 mint nth_term_lrec(u64 n, vec<mint> const& a) {

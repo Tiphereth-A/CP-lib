@@ -1,11 +1,15 @@
-设 \(g(x)\mid f(x)\), 求
+设 \(0<\deg(p)<deg(q)=k\), 求
 
 \[
-    \left[x^k\right]\frac{f(x)}{g(x)}
+    \left[x^n\right]\frac{p(x)}{q(x)}
 \]
+
+\paragraph{注意}
+
+传参时应使 \verb|p.size() == q.size() - 1|
 
 \paragraph{复杂度}
 
-\(O(\deg(g)\log \deg(g)\log k)\)
+\(O(k\log k\log n)\)
 
 \paragraph{参考文献} \cite{bostan2021simple}
