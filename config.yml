@@ -1215,7 +1215,7 @@ notebook:
     - gen: 随机数生成辅助类
       code_ext: hpp
       test_ext: cpp
-    - simulated_annealing: 模拟退火
+    - heuristic_sa: 模拟退火
       code_ext: hpp
       test_ext: cpp
     game:
