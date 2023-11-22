@@ -2,7 +2,7 @@
 #define TIFA_LIBS_MATH_NTT_DOUBLING
 
 #include "../bit/ispow2.hpp"
-#include "qpow.hpp"
+#include "../math/qpow.hpp"
 
 namespace tifa_libs::math {
 

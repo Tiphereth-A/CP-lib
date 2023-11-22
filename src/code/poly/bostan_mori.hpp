@@ -1,7 +1,7 @@
 #ifndef TIFA_LIBS_POLY_BOSTAM_MORI
 #define TIFA_LIBS_POLY_BOSTAM_MORI
 
-#include "../math/ntt_doubling.hpp"
+#include "../conv/ntt_doubling.hpp"
 #include "poly.hpp"
 #include "polydata_convtype.hpp"
 
@@ -29,7 +29,7 @@ vec<T> coeff_(ccore_t const& core, ccore_t const& core2, vec<T>& q, u64 n, u32 d
   for (u32 i = 0; i < len * 2; ++i) s[i] = 0;
   for (u32 i = (n & 1) ^ 1, j = 0; j < d; ++j, i += 2) s[i] = w[j];
   core2.dif(s);
-  for (u32 i = 0; i  < len * 2; ++i) s[i] *= q[i ^ 1];
+  for (u32 i = 0; i < len * 2; ++i) s[i] *= q[i ^ 1];
   core2.dit(s);
   return vec<T>(s.begin() + d, s.begin() + d * 2);
 }

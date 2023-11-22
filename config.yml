@@ -910,9 +910,6 @@ notebook:
     - berlekamp_massey: Berlekamp–Massey 算法
       code_ext: hpp
       test_ext: cpp
-    - ntt_doubling: NTT doubling
-      code_ext: hpp
-      test_ext: cpp
     - nth_term_lrec: 线性递推数列的第 N 项
       code_ext: hpp
       test_ext: cpp
@@ -994,6 +991,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - ntt32: 数论变换（u32）
+      code_ext: hpp
+      test_ext: cpp
+    - ntt_doubling: NTT doubling
       code_ext: hpp
       test_ext: cpp
     - cntt: 扩域 NTT
