@@ -31,7 +31,7 @@ struct NTT32 {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-conversion"
   void dif(vec<mint> &f, u32 n = 0) const {
-    if (!n) n = bit::bceil((u32)f.size());
+    if (!n) n = size();
     if (f.size() < n) f.resize(n);
     assert(bit::ispow2(n) && n <= size() * 2);
     for (u32 i = n / 2, d = 1; i; i /= 2, d *= 2)
@@ -45,7 +45,7 @@ struct NTT32 {
       }
   }
   void dit(vec<mint> &f, u32 n = 0) const {
-    if (!n) n = bit::bceil((u32)f.size());
+    if (!n) n = size();
     if (f.size() < n) f.resize(n);
     assert(bit::ispow2(n) && n <= size() * 2);
     for (u32 i = 1, d = n / 2; d; i *= 2, d /= 2)
