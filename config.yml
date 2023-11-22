@@ -1218,6 +1218,9 @@ notebook:
     - heuristic_sa: 模拟退火
       code_ext: hpp
       test_ext: cpp
+    - heuristic_lbsa: List-Based 模拟退火
+      code_ext: hpp
+      test_ext: cpp
     game:
     - sudoku: 数独求解
       code_ext: hpp
