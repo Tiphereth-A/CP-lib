@@ -26,8 +26,8 @@ struct FFT {
   }
 
   void dif(vec<C> &f, u32 n = 0) const {
-    if (!n) n = (u32)f.size();
-    else if (f.size() < n) f.resize(n);
+    if (!n) n = bit::bceil((u32)f.size());
+    if (f.size() < n) f.resize(n);
     assert(n <= size());
     for (u32 i = 0; i < n; ++i)
       if (i < rev[i]) std::swap(f[rev[i]], f[i]);
@@ -46,8 +46,8 @@ struct FFT {
 #pragma GCC diagnostic pop
   }
   void dit(vec<C> &f, u32 n = 0) const {
-    if (!n) n = (u32)f.size();
-    else if (f.size() < n) f.resize(n);
+    if (!n) n = bit::bceil((u32)f.size());
+    if (f.size() < n) f.resize(n);
     dif(f, n);
     for (u32 i = 0; i < n; ++i) f[i] /= (FP)n;
   }
