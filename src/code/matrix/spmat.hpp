@@ -28,7 +28,7 @@ class spmat {
     d[r].emplace_back(c, T{});
     return d[r].back().second;
   }
-  constexpr T operator()(u32 r, u32 c) const {
+  constexpr T const &operator()(u32 r, u32 c) const {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
     return T{};

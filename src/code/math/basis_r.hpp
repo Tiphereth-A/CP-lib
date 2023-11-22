@@ -19,7 +19,7 @@ class basisR {
   constexpr explicit basisR(u32 vec_len, FP EPS = 1e-4) : vec_len(vec_len), EPS(EPS) {}
 
   constexpr vec<FP> &operator[](u32 i) { return base[i]; }
-  constexpr vec<FP> operator[](u32 i) const { return base[i]; }
+  constexpr vec<FP> const &operator[](u32 i) const { return base[i]; }
   constexpr vvec<FP> &data() { return base; }
   constexpr vvec<FP> data() const { return base; }
 

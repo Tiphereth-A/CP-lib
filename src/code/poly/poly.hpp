@@ -39,7 +39,7 @@ class poly {
   constexpr data_type const &data() const { return p.d; }
 
   constexpr value_type &operator[](u32 x) { return p.d[x]; }
-  constexpr value_type operator[](u32 x) const { return p.d[x]; }
+  constexpr value_type const &operator[](u32 x) const { return p.d[x]; }
   constexpr value_type operator()(value_type x) const {
     value_type ans = 0;
     for (u32 i = size() - 1; ~i; --i) ans = ans * x + p.d[i];

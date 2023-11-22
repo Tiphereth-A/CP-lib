@@ -103,7 +103,7 @@ class th_hand {
   }
 
   th_card &operator[](u32 x) { return cds[x]; }
-  th_card operator[](u32 x) const { return cds[x]; }
+  th_card const& operator[](u32 x) const { return cds[x]; }
 
   friend std::istream &operator>>(std::istream &is, th_hand &hands) {
     for (u32 i = 0; i < 5; ++i) is >> hands.cds[i];
