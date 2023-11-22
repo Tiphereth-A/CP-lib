@@ -40,17 +40,21 @@ void check_bool_(std::string const &pretty_func, std::string const &expression, 
 }  // namespace detail__
 
 template <bool always_test = false>
-void post_test(u32 a = 1000000000, u32 b = 1000000000) {
+void post_test([[maybe_unused]] u32 a = 1000000000, [[maybe_unused]] u32 b = 1000000000) {
+#ifndef LOCAL_
   std::cout << a + b << '\n';
   if constexpr (!always_test)
     if (a != 1000000000 || b != 1000000000) exit(0);
+#endif
 }
 
 template <bool always_test = false>
 void pre_test() {
+#ifndef LOCAL_
   u32 a, b;
   std::cin >> a >> b;
   if (a != 1000000000 || b != 1000000000) post_test<always_test>(a, b);
+#endif
 }
 
 #pragma GCC diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
