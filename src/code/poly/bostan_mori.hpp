@@ -41,15 +41,16 @@ template <class T, class mint = typename T::value_type>
 mint bostan_mori(u64 n, poly<T> const& p, poly<T> const& q) {
   assert(p.size() == q.size() - 1 && !p.empty());
   if constexpr (T::ccore_type != pdct_NTT) {
+    auto p_ = p, q_ = q;
     while (n) {
-      auto _ = q;
+      auto _ = q_;
       for (u32 i = 1; i < _.size(); i += 2) _[i] = -_[i];
-      auto s = p * _, t = q * _;
-      for (u32 i = n & 1; i < s.size(); i += 2) p[i / 2] = s[i];
-      for (u32 i = 0; i < t.size(); i += 2) q[i / 2] = t[i];
+      auto s = p_ * _, t = q_ * _;
+      for (u32 i = n & 1; i < s.size(); i += 2) p_[i / 2] = s[i];
+      for (u32 i = 0; i < t.size(); i += 2) q_[i / 2] = t[i];
       n /= 2;
     }
-    return p[0];
+    return p_[0];
   } else {
     auto& core = T::ccore;
     auto core2 = core;
