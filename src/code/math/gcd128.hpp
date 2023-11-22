@@ -12,12 +12,10 @@ constexpr T gcd_u128(T a, T b) {
   if (!a) return b;
   if (!b) return a;
   const int i = bit::cntr0(a), j = bit::cntr0(b), k = std::min(i, j);
-  a >>= i;
-  b >>= j;
-  while (true) {
+  a >>= i, b >>= j;
+  while (1) {
     if (a > b) std::swap(a, b);
-    b -= a;
-    if (!b) return a << k;
+    if (!(b -= a)) return a << k;
     b >>= bit::cntr0(b);
   }
 }
