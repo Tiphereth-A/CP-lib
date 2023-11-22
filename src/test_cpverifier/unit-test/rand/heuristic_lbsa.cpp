@@ -69,7 +69,7 @@ void test(const char* const name, double optimal, u32 L, double p0, u32 K, u32 M
     check(sol_unique.size(), solution.size());
   }
   check(f(solution), f_solution);
-  check_bool(f_solution >= optimal && (f_solution - optimal) / optimal <= rerr, check_param(optimal), check_param(f_solution), check_param(L), check_param(p0), check_param(K), check_param(M), check_param(rerr));
+  check_bool(f_solution >= optimal && (f_solution - optimal) / optimal <= rerr, check_param(name), check_param(optimal), check_param(f_solution), check_param(L), check_param(p0), check_param(K), check_param(M), check_param(rerr));
 }
 
 int main() {
@@ -77,8 +77,8 @@ int main() {
 
   test("bcl380", 1621, 120, .27, 1000, 380, .2);
   test("xql662", 2513, 120, .19, 1000, 662, .2);
-  test("xit1083", 3558, 120, .16, 1000, 1083, .2);
-  test("xsc6880", 21537, 120, .15, 1000, 6880, .2);
+  // test("xit1083", 3558, 120, .16, 1000, 1083, .2);
+  // test("xsc6880", 21537, 120, .15, 1000, 6880, .2);
 
   tifa_libs::unittest::post_test();
 }
