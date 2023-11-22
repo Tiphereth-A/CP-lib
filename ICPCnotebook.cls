@@ -104,23 +104,7 @@
 % Code style
 \RequirePackage{minted}
 
-\setminted[cpp]{
-	style=default,
-	mathescape,
-	linenos,
-	autogobble,
-	breakanywhere,
-	baselinestretch=0.9,
-	tabsize=2,
-	fontsize=\normalsize,
-	frame=single,
-	framesep=1mm,
-	framerule=0.3pt,
-	numbersep=1mm,
-	breaklines=true,
-}
-
-\setminted[python]{
+\setminted{
 	style=default,
 	mathescape,
 	linenos,
