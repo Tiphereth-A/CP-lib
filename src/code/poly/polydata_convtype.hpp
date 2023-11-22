@@ -4,7 +4,7 @@
 namespace tifa_libs::math {
 
 // clang-format off
-enum pdc_type { pdct_FFT, pdct_NTT3, pdct_NTT, pdct_CNTT };
+enum pdc_type { pdct_FFT, pdct_3NTT, pdct_NTT, pdct_CNTT };
 // clang-format on
 
 }  // namespace tifa_libs::math

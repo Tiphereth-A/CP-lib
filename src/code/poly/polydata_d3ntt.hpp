@@ -12,7 +12,7 @@ template <class mint, class mint0, class mint1, class mint2>
 struct polydata_d3ntt {
   using value_type = mint;
   using conv_core = std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>>;
-  static constexpr auto ccore_type = pdct_NTT3;
+  static constexpr auto ccore_type = pdct_3NTT;
 
   vec<mint> d;
   static inline conv_core ccore;

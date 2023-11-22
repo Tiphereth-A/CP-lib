@@ -11,8 +11,8 @@ vec<mint> conv_cntt(CNTT<mint, M> &cntt, vec<mint> const &l, vec<mint> const &r,
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   cntt.bzr(std::max({(u32)l.size(), (u32)r.size(), std::min(u32(l.size() + r.size() - 1), ans_size)}));
   vec<GaussInt<mint, M>> v(cntt.size());
-  for (u32 i = 0, ie = std::min<u32>(l.size(), cntt.size()); i < ie; ++i) v[i].real(l[i]);
-  for (u32 i = 0, ie = std::min<u32>(r.size(), cntt.size()); i < ie; ++i) v[i].imag(r[i]);
+  for (u32 i = 0, ie = std::min((u32)l.size(), cntt.size()); i < ie; ++i) v[i].real(l[i]);
+  for (u32 i = 0, ie = std::min((u32)r.size(), cntt.size()); i < ie; ++i) v[i].imag(r[i]);
   cntt.dif(v);
   for (u32 i = 0; i < cntt.size(); ++i) v[i] *= v[i];
   cntt.dit(v);
