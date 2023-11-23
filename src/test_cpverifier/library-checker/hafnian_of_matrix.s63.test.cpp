@@ -10,7 +10,7 @@ using mat = tifa_libs::math::matrix<mint>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  u64 n;
+  u32 n;
   std::cin >> n;
   mat a(n, n);
   std::cin >> a;

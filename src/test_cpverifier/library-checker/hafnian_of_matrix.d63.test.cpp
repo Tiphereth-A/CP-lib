@@ -10,7 +10,7 @@ using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
   mint::set_mod(998244353);
-  u64 n;
+  u32 n;
   tifa_libs::fin >> n;
   mat a(n, n);
   for (auto& i : a.data()) tifa_libs::fin >> i;

@@ -20,8 +20,8 @@ class matrix {
   matrix(u32 row, u32 col, T const &v = T{}) : d(row, vec<T>(col, v)) { assert(row > 0 && col > 0); }
   explicit matrix(vvec<T> const &data) : d(data) { assert(data.size() > 0 && data[0].size > 0); }
 
-  constexpr u32 const &row() const { return d.size(); }
-  constexpr u32 const &col() const { return d[0].size(); }
+  constexpr u32 row() const { return (u32)d.size(); }
+  constexpr u32 col() const { return (u32)d[0].size(); }
   constexpr vvec<T> const &data() const { return d; }
   constexpr vvec<T> &data() { return d; }
   constexpr typename vec<T>::reference operator()(u32 r, u32 c) { return d[r][c]; }

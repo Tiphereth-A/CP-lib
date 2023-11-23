@@ -20,7 +20,7 @@ T hafnian(Mat const &mat) {
       ans[0] = 1;
       return ans;
     }
-    u32 m = v.size() - 2;
+    u32 m = u32(v.size() - 2);
     auto v_ = v;
     v_.resize(m);
     vec<T> _0 = f(f, v_);
