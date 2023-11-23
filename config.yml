@@ -766,7 +766,7 @@ notebook:
     - mint_s63: 静态模整数类（63）
       code_ext: hpp
       test_ext: cpp
-    - mint_2e61n1: 模整数类（2^61-1）
+    - mint_2e61n1: 模整数类（61-1）
       code_ext: hpp
       test_ext: cpp
     - mint_ss: 静态模整数类的简单实现
