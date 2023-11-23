@@ -10,7 +10,7 @@ class basisZ2 {
   vec<std::bitset<N>> base;
 
  public:
-  constexpr basisZ2() {}
+  constexpr basisZ2() : base(N) {}
 
   constexpr std::bitset<N> &operator[](u32 index) { return base[index]; }
   constexpr std::bitset<N> const &operator[](u32 index) const { return base[index]; }
