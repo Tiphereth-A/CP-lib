@@ -12,7 +12,7 @@ template <typename... Ts>
 std::ostream &operator<<(std::ostream &os, std::tuple<Ts...> const &p) {
   std::apply(
       [&](Ts const &...targs) {
-        std::size_t n{0};
+        usz n = 0;
         ((os << targs << (++n != sizeof...(Ts) ? " " : "")), ...);
       },
       p);
