@@ -23,7 +23,7 @@ class poly {
     for (auto &val : poly.p.d) is >> val;
     return is;
   }
-  constexpr friend std::ostream &operator<<(std::ostream &os, const poly &poly) {
+  constexpr friend std::ostream &operator<<(std::ostream &os, poly const &poly) {
     if (!poly.size()) return os;
     for (u32 i = 1; i < poly.size(); ++i) os << poly[i - 1] << ' ';
     return os << poly.p.d.back();

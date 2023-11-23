@@ -60,7 +60,7 @@ class huffman {
     return run<std::string>([&](const std::string &pre_code, u32 idx) { return pre_code + char_set[idx]; });
   }
   vec<u32> depths() const {
-    return run<u32>([](const u32 &pre_depth, u32) { return pre_depth + 1; });
+    return run<u32>([](u32 const &pre_depth, u32) { return pre_depth + 1; });
   }
 };
 

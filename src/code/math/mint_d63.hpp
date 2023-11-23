@@ -66,35 +66,35 @@ class mint_d63 {
     }
     return mint_d63(x1);
   }
-  mint_d63 &operator+=(const mint_d63 &rhs) {
+  mint_d63 &operator+=(mint_d63 const &rhs) {
     v_ += rhs.v_ - MOD, v_ += MOD & -(v_ >> 63);
     return *this;
   }
-  mint_d63 &operator-=(const mint_d63 &rhs) {
+  mint_d63 &operator-=(mint_d63 const &rhs) {
     v_ -= rhs.v_, v_ += MOD & -(v_ >> 63);
     return *this;
   }
-  mint_d63 &operator*=(const mint_d63 &rhs) {
+  mint_d63 &operator*=(mint_d63 const &rhs) {
     v_ = redc_mul(v_, rhs.v_);
     return *this;
   }
-  mint_d63 &operator/=(const mint_d63 &rhs) {
+  mint_d63 &operator/=(mint_d63 const &rhs) {
     return operator*=(rhs.inv());
   }
-  friend mint_d63 operator+(const mint_d63 &lhs, const mint_d63 &rhs) { return mint_d63(lhs) += rhs; }
-  friend mint_d63 operator-(const mint_d63 &lhs, const mint_d63 &rhs) { return mint_d63(lhs) -= rhs; }
-  friend mint_d63 operator*(const mint_d63 &lhs, const mint_d63 &rhs) { return mint_d63(lhs) *= rhs; }
-  friend mint_d63 operator/(const mint_d63 &lhs, const mint_d63 &rhs) { return mint_d63(lhs) /= rhs; }
-  friend bool operator==(const mint_d63 &lhs, const mint_d63 &rhs) { return lhs.v_ == rhs.v_; }
-  friend bool operator!=(const mint_d63 &lhs, const mint_d63 &rhs) { return lhs.v_ != rhs.v_; }
-  friend constexpr bool operator<(const mint_d63 &lhs, const mint_d63 &rhs) { return lhs.val() < rhs.val(); }
+  friend mint_d63 operator+(mint_d63 const &lhs, mint_d63 const &rhs) { return mint_d63(lhs) += rhs; }
+  friend mint_d63 operator-(mint_d63 const &lhs, mint_d63 const &rhs) { return mint_d63(lhs) -= rhs; }
+  friend mint_d63 operator*(mint_d63 const &lhs, mint_d63 const &rhs) { return mint_d63(lhs) *= rhs; }
+  friend mint_d63 operator/(mint_d63 const &lhs, mint_d63 const &rhs) { return mint_d63(lhs) /= rhs; }
+  friend bool operator==(mint_d63 const &lhs, mint_d63 const &rhs) { return lhs.v_ == rhs.v_; }
+  friend bool operator!=(mint_d63 const &lhs, mint_d63 const &rhs) { return lhs.v_ != rhs.v_; }
+  friend constexpr bool operator<(mint_d63 const &lhs, mint_d63 const &rhs) { return lhs.val() < rhs.val(); }
   friend std::istream &operator>>(std::istream &is, mint_d63 &rhs) {
     i64 x;
     is >> x;
     rhs = mint_d63(x);
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, const mint_d63 &rhs) { return os << rhs.val(); }
+  friend std::ostream &operator<<(std::ostream &os, mint_d63 const &rhs) { return os << rhs.val(); }
   friend constexpr u64 abs(mint_d63 const &x) { return x.val(); }
 };
 

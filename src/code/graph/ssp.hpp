@@ -48,7 +48,7 @@ class ssp {
 
  public:
   vvec<YYZ> e;
-  ssp(const u32& n, const u32& s, const u32& t) : N(n), S(s), T(t), dis(), flow(n), pre(n), e(n) {}
+  ssp(u32 n, u32 s, u32 t) : N(n), S(s), T(t), dis(), flow(n), pre(n), e(n) {}
   void add(u32 u, u32 v, EW w, EC c) {
     u32 temu = u32(e[u].size()), temv = u32(e[v].size());
     e[u].push_back({v, w, c, temv}), e[v].push_back({u, 0, -c, temu});

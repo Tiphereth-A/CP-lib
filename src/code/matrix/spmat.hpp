@@ -87,21 +87,21 @@ class spmat {
     return ret;
   }
 
-  constexpr friend spmat operator+(spmat l, const T &v) { return l += v; }
-  constexpr friend spmat operator+(const T &v, spmat l) { return l += v; }
-  constexpr spmat &operator+=(const T &v) {
+  constexpr friend spmat operator+(spmat l, T const &v) { return l += v; }
+  constexpr friend spmat operator+(T const &v, spmat l) { return l += v; }
+  constexpr spmat &operator+=(T const &v) {
     apply([&v](u32, u32, T &val) { val += v; });
     return *this;
   }
-  constexpr friend spmat operator-(spmat l, const T &v) { return l -= v; }
-  constexpr friend spmat operator-(const T &v, spmat l) { return l -= v; }
-  constexpr spmat &operator-=(const T &v) {
+  constexpr friend spmat operator-(spmat l, T const &v) { return l -= v; }
+  constexpr friend spmat operator-(T const &v, spmat l) { return l -= v; }
+  constexpr spmat &operator-=(T const &v) {
     apply([&v](u32, u32, T &val) { val -= v; });
     return *this;
   }
-  constexpr friend spmat operator*(spmat l, const T &v) { return l *= v; }
-  constexpr friend spmat operator*(const T &v, spmat l) { return l *= v; }
-  constexpr spmat &operator*=(const T &v) {
+  constexpr friend spmat operator*(spmat l, T const &v) { return l *= v; }
+  constexpr friend spmat operator*(T const &v, spmat l) { return l *= v; }
+  constexpr spmat &operator*=(T const &v) {
     apply([&v](u32, u32, T &val) { val *= v; });
     return *this;
   }
@@ -110,9 +110,9 @@ class spmat {
     return merge(l, r, [](u32, u32, T const &lv, T const &rv) { return lv + rv; });
   }
   constexpr spmat &operator+=(spmat const &r) { return *this = *this + r; }
-  constexpr friend spmat operator-(spmat l, const spmat &r) { return l + (-r); }
-  constexpr spmat &operator-=(const spmat &r) { return *this = *this - r; }
-  constexpr friend spmat operator*(spmat l, const spmat &r) {
+  constexpr friend spmat operator-(spmat l, spmat const &r) { return l + (-r); }
+  constexpr spmat &operator-=(spmat const &r) { return *this = *this - r; }
+  constexpr friend spmat operator*(spmat l, spmat const &r) {
     u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
     assert(j_ == r.row());
     spmat ret(i_, k_);
@@ -126,7 +126,7 @@ class spmat {
     }
     return ret;
   }
-  constexpr spmat &operator*=(const spmat &r) { return *this = *this - r; }
+  constexpr spmat &operator*=(spmat const &r) { return *this = *this - r; }
 
   vec<T> lproj(vec<T> const &x) const {
     u32 r_ = row(), c_ = col();

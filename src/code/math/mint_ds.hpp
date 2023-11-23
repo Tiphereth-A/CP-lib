@@ -40,7 +40,7 @@ class mint_ds {
     x.v_ = (u32)(xx + (xx < 0 ? mod() : 0));
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, const mint_ds &x) { return os << x.v_; }
+  friend std::ostream &operator<<(std::ostream &os, mint_ds const &x) { return os << x.v_; }
   constexpr u32 val() const { return v_; }
   constexpr i32 sval() const { return (i32)v_; }
   constexpr explicit operator u32() const { return val(); }
@@ -64,31 +64,31 @@ class mint_ds {
     --*this;
     return result;
   }
-  constexpr mint_ds &operator+=(const mint_ds &r) {
+  constexpr mint_ds &operator+=(mint_ds const &r) {
     v_ += r.v_;
     if (v_ >= mod()) v_ -= mod();
     return *this;
   }
-  constexpr mint_ds &operator-=(const mint_ds &r) {
+  constexpr mint_ds &operator-=(mint_ds const &r) {
     v_ -= r.v_;
     if (v_ >= mod()) v_ += mod();
     return *this;
   }
-  constexpr mint_ds &operator*=(const mint_ds &r) {
+  constexpr mint_ds &operator*=(mint_ds const &r) {
     v_ = bt_.mul(v_, r.v_);
     return *this;
   }
-  constexpr mint_ds &operator/=(const mint_ds &r) { return *this = *this * r.inv(); }
+  constexpr mint_ds &operator/=(mint_ds const &r) { return *this = *this * r.inv(); }
   constexpr mint_ds operator+() const { return *this; }
   constexpr mint_ds operator-() const { return mint_ds() - *this; }
   constexpr mint_ds inv() const { return inverse(v_, mod()); }
-  constexpr friend mint_ds operator+(mint_ds l, const mint_ds &r) { return l += r; }
-  constexpr friend mint_ds operator-(mint_ds l, const mint_ds &r) { return l -= r; }
-  constexpr friend mint_ds operator*(mint_ds l, const mint_ds &r) { return l *= r; }
-  constexpr friend mint_ds operator/(mint_ds l, const mint_ds &r) { return l /= r; }
-  constexpr friend bool operator==(const mint_ds &l, const mint_ds &r) { return l.v_ == r.v_; }
-  constexpr friend bool operator!=(const mint_ds &l, const mint_ds &r) { return l.v_ != r.v_; }
-  constexpr friend bool operator<(const mint_ds &l, const mint_ds &r) { return l.v_ < r.v_; }
+  constexpr friend mint_ds operator+(mint_ds l, mint_ds const &r) { return l += r; }
+  constexpr friend mint_ds operator-(mint_ds l, mint_ds const &r) { return l -= r; }
+  constexpr friend mint_ds operator*(mint_ds l, mint_ds const &r) { return l *= r; }
+  constexpr friend mint_ds operator/(mint_ds l, mint_ds const &r) { return l /= r; }
+  constexpr friend bool operator==(mint_ds const &l, mint_ds const &r) { return l.v_ == r.v_; }
+  constexpr friend bool operator!=(mint_ds const &l, mint_ds const &r) { return l.v_ != r.v_; }
+  constexpr friend bool operator<(mint_ds const &l, mint_ds const &r) { return l.v_ < r.v_; }
 };
 
 }  // namespace tifa_libs::math

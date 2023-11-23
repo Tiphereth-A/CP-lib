@@ -74,38 +74,38 @@ class matrix {
     return ret;
   }
 
-  constexpr friend matrix operator+(matrix l, const T &v) { return l += v; }
-  constexpr friend matrix operator+(const T &v, matrix l) { return l += v; }
-  constexpr matrix &operator+=(const T &v) {
+  constexpr friend matrix operator+(matrix l, T const &v) { return l += v; }
+  constexpr friend matrix operator+(T const &v, matrix l) { return l += v; }
+  constexpr matrix &operator+=(T const &v) {
     apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val += v; });
     return *this;
   }
-  constexpr friend matrix operator-(matrix l, const T &v) { return l -= v; }
-  constexpr matrix &operator-=(const T &v) {
+  constexpr friend matrix operator-(matrix l, T const &v) { return l -= v; }
+  constexpr matrix &operator-=(T const &v) {
     apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val -= v; });
     return *this;
   }
-  constexpr friend matrix operator*(matrix l, const T &v) { return l *= v; }
-  constexpr friend matrix operator*(const T &v, matrix l) { return l *= v; }
-  constexpr matrix &operator*=(const T &v) {
+  constexpr friend matrix operator*(matrix l, T const &v) { return l *= v; }
+  constexpr friend matrix operator*(T const &v, matrix l) { return l *= v; }
+  constexpr matrix &operator*=(T const &v) {
     apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val *= v; });
     return *this;
   }
 
-  constexpr friend matrix operator+(matrix l, const matrix &r) { return l += r; }
-  constexpr matrix &operator+=(const matrix &r) {
+  constexpr friend matrix operator+(matrix l, matrix const &r) { return l += r; }
+  constexpr matrix &operator+=(matrix const &r) {
     assert(row() == r.row() && col() == r.col());
     apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val += r(i, j); });
     return *this;
   }
-  constexpr friend matrix operator-(matrix l, const matrix &r) { return l -= r; }
-  constexpr matrix &operator-=(const matrix &r) {
+  constexpr friend matrix operator-(matrix l, matrix const &r) { return l -= r; }
+  constexpr matrix &operator-=(matrix const &r) {
     assert(row() == r.row() && col() == r.col());
     apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val -= r(i, j); });
     return *this;
   }
 
-  constexpr friend matrix operator*(const matrix &l, const matrix &r) {
+  constexpr friend matrix operator*(matrix const &l, matrix const &r) {
     u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
     assert(j_ == r.row());
     matrix ret(i_, k_);
@@ -114,7 +114,7 @@ class matrix {
         FOR1_ (k, 0, k_) ret(i, k) += l(i, j) * r(j, k);
     return ret;
   }
-  constexpr matrix &operator*=(const matrix &r) { return *this = *this * r; }
+  constexpr matrix &operator*=(matrix const &r) { return *this = *this * r; }
 
   vec<T> lproj(vec<T> const &x) const {
     u32 r_ = row(), c_ = col();

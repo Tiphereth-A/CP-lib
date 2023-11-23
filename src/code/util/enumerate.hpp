@@ -12,15 +12,15 @@ class iter_ {
   using iter_t = typename remove_cvref_t<T>::iterator;
 
  private:
-  const T &container_;
+  T const &container_;
   usz sz_;
   iter_t now_;
 
  public:
   iter_(T x) : container_(x), sz_(0), now_(x.begin()) {}
-  const iter_ &begin() const { return *this; }
-  const iter_ &end() const { return *this; }
-  bool operator!=(const iter_ &) const { return now_ != container_.end(); }
+  iter_ const &begin() const { return *this; }
+  iter_ const &end() const { return *this; }
+  bool operator!=(iter_ const &) const { return now_ != container_.end(); }
   void operator++() {
     ++now_;
     ++sz_;

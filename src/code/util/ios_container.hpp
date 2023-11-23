@@ -9,7 +9,7 @@ std::istream &operator>>(std::istream &is, T &x) {
   return is;
 }
 template <class T, std::enable_if_t<tifa_libs::is_container<T>::value> * = nullptr>
-std::ostream &operator<<(std::ostream &os, const T &x) {
+std::ostream &operator<<(std::ostream &os, T const &x) {
   if (x.begin() == x.end()) return os;
   auto it = x.begin();
   os << *it++;
