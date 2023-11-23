@@ -2,21 +2,21 @@
 
 \paragraph{输入（构造函数）}
 
-\begin{enumerate}
-    \item[\verb|f|] 价值函数 \(f(x)\), 目标是寻找其最优解
-    \item[\verb|init|] 初始序列, 最终返回值是该序列的一个\textbf{排列}
-    \item[\verb|L|] 温度列表的最大长度
-    \item[\verb|p0|] 接受概率, 用于生成温度列表
-\end{enumerate}
+\verb|f|: 价值函数 \(f(x)\), 目标是寻找其最优解
+
+\verb|init|: 初始序列, 最终返回值是该序列的一个\textbf{排列}
+
+\verb|L|: 温度列表的最大长度
+
+\verb|p0|: 接受概率, 用于生成温度列表
 
 温度列表为大根堆, 生成方式为: 对当前解 \(x\) 施加随机扰动以生成一个新解 \(y\), 若该解比更优则接受该解, 否则将 \((-|f(y)-f(x)|)/p_0\) 插入温度列表中, 直到温度列表长度到达最大为止
 
 \paragraph{输入（运行）}
 
-\begin{enumerate}
-    \item[\verb|K|] 最大迭代次数
-    \item[\verb|M|] Markov 链长度, 即单次迭代时生成新序列的最大次数
-\end{enumerate}
+\verb|K|: 最大迭代次数
+
+\verb|M|: Markov 链长度, 即单次迭代时生成新序列的最大次数
 
 \paragraph{测试数据集（TSP VLSI Data Sets）} \cite{tspvlsidatasets}
 
