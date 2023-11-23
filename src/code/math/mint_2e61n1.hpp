@@ -13,7 +13,7 @@ class mint_2e61n1 {
 
   // clang-format off
   template <class T, std::enable_if_t<is_uint<T>::value> * = nullptr>
-  constexpr static u64 mod_(T x) { return x < MOD ? x : (x = (x & MOD) + ((u64)x >> 61)) > MOD ? x - MOD : x; }
+  constexpr static u64 mod_(T x) { return x < MOD ? (u64)x : (x = (x & MOD) + ((u64)x >> 61)) > MOD ? x - MOD : (u64)x; }
   template <class T, std::enable_if_t<is_sint<T>::value> * = nullptr>
   constexpr static u64 mod_(T x) { return x >= 0 ? mod_(to_uint_t<T>(x)) : MOD - mod_(to_uint_t<T>(-x)); }
   // clang-format on
