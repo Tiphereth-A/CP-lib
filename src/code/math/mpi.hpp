@@ -49,33 +49,33 @@ class mpi {
   vec<u32>& data() { return dt; }
   vec<u32> const& data() const { return dt; }
 
-  friend mpi operator+(mpi const& lhs, mpi const& rhs) {
-    if (lhs.neg == rhs.neg) return {lhs.neg, add_(lhs.dt, rhs.dt)};
-    if (leq_(lhs.dt, rhs.dt)) {
-      auto c = sub_(rhs.dt, lhs.dt);
-      return {is0_(c) ? false : rhs.neg, c};
+  friend mpi operator+(mpi const& l, mpi const& r) {
+    if (l.neg == r.neg) return {l.neg, add_(l.dt, r.dt)};
+    if (leq_(l.dt, r.dt)) {
+      auto c = sub_(r.dt, l.dt);
+      return {is0_(c) ? false : r.neg, c};
     }
-    auto c = sub_(lhs.dt, rhs.dt);
-    return {is0_(c) ? false : lhs.neg, c};
+    auto c = sub_(l.dt, r.dt);
+    return {is0_(c) ? false : l.neg, c};
   }
-  friend mpi operator-(mpi const& lhs, mpi const& rhs) { return lhs + (-rhs); }
-  friend mpi operator*(mpi const& lhs, mpi const& rhs) {
-    auto c = mul_(lhs.dt, rhs.dt);
-    bool n = is0_(c) ? false : (lhs.neg ^ rhs.neg);
+  friend mpi operator-(mpi const& l, mpi const& r) { return l + (-r); }
+  friend mpi operator*(mpi const& l, mpi const& r) {
+    auto c = mul_(l.dt, r.dt);
+    bool n = is0_(c) ? false : (l.neg ^ r.neg);
     return {n, c};
   }
-  friend ptt<mpi> divmod(mpi const& lhs, mpi const& rhs) {
-    auto dm = divmod_newton_(lhs.dt, rhs.dt);
-    return {mpi{is0_(dm.first) ? false : lhs.neg != rhs.neg, dm.first}, mpi{is0_(dm.second) ? false : lhs.neg, dm.second}};
+  friend ptt<mpi> divmod(mpi const& l, mpi const& r) {
+    auto dm = divmod_newton_(l.dt, r.dt);
+    return {mpi{is0_(dm.first) ? false : l.neg != r.neg, dm.first}, mpi{is0_(dm.second) ? false : l.neg, dm.second}};
   }
-  friend mpi operator/(mpi const& lhs, mpi const& rhs) { return divmod(lhs, rhs).first; }
-  friend mpi operator%(mpi const& lhs, mpi const& rhs) { return divmod(lhs, rhs).second; }
+  friend mpi operator/(mpi const& l, mpi const& r) { return divmod(l, r).first; }
+  friend mpi operator%(mpi const& l, mpi const& r) { return divmod(l, r).second; }
 
-  mpi& operator+=(mpi const& rhs) { return (*this) = (*this) + rhs; }
-  mpi& operator-=(mpi const& rhs) { return (*this) = (*this) - rhs; }
-  mpi& operator*=(mpi const& rhs) { return (*this) = (*this) * rhs; }
-  mpi& operator/=(mpi const& rhs) { return (*this) = (*this) / rhs; }
-  mpi& operator%=(mpi const& rhs) { return (*this) = (*this) % rhs; }
+  mpi& operator+=(mpi const& r) { return (*this) = (*this) + r; }
+  mpi& operator-=(mpi const& r) { return (*this) = (*this) - r; }
+  mpi& operator*=(mpi const& r) { return (*this) = (*this) * r; }
+  mpi& operator/=(mpi const& r) { return (*this) = (*this) / r; }
+  mpi& operator%=(mpi const& r) { return (*this) = (*this) % r; }
 
   mpi operator-() const {
     if (is_zero()) return *this;
@@ -85,12 +85,12 @@ class mpi {
   friend mpi abs(mpi const& m) { return {false, m.dt}; }
   bool is_zero() const { return is0_(dt); }
 
-  friend bool operator==(mpi const& lhs, mpi const& rhs) { return lhs.neg == rhs.neg && lhs.dt == rhs.dt; }
-  friend bool operator!=(mpi const& lhs, mpi const& rhs) { return !(lhs == rhs); }
-  friend bool operator<(mpi const& lhs, mpi const& rhs) { return lhs == rhs ? false : neq_lt_(lhs, rhs); }
-  friend bool operator<=(mpi const& lhs, mpi const& rhs) { return lhs == rhs ? true : neq_lt_(lhs, rhs); }
-  friend bool operator>(mpi const& lhs, mpi const& rhs) { return lhs == rhs ? false : neq_lt_(rhs, lhs); }
-  friend bool operator>=(mpi const& lhs, mpi const& rhs) { return lhs == rhs ? true : neq_lt_(rhs, lhs); }
+  friend bool operator==(mpi const& l, mpi const& r) { return l.neg == r.neg && l.dt == r.dt; }
+  friend bool operator!=(mpi const& l, mpi const& r) { return !(l == r); }
+  friend bool operator<(mpi const& l, mpi const& r) { return l == r ? false : neq_lt_(l, r); }
+  friend bool operator<=(mpi const& l, mpi const& r) { return l == r ? true : neq_lt_(l, r); }
+  friend bool operator>(mpi const& l, mpi const& r) { return l == r ? false : neq_lt_(r, l); }
+  friend bool operator>=(mpi const& l, mpi const& r) { return l == r ? true : neq_lt_(r, l); }
 
   u32 size() const { return (u32)dt.size(); }
   void shrink() { shrink_(dt); }
@@ -129,10 +129,10 @@ class mpi {
   }
   static bool leq_(vec<u32> const& a, vec<u32> const& b) { return a == b || lt_(a, b); }
   // a < b (s.t. a != b)
-  static bool neq_lt_(mpi const& lhs, mpi const& rhs) {
-    assert(lhs != rhs);
-    if (lhs.neg != rhs.neg) return lhs.neg;
-    return lt_(lhs.dt, rhs.dt) ^ lhs.neg;
+  static bool neq_lt_(mpi const& l, mpi const& r) {
+    assert(l != r);
+    if (l.neg != r.neg) return l.neg;
+    return lt_(l.dt, r.dt) ^ l.neg;
   }
   static bool is0_(vec<u32> const& a) { return a.empty(); }
   static bool is1_(vec<u32> const& a) { return a.size() == 1 && a[0] == 1; }

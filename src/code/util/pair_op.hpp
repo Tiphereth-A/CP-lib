@@ -3,14 +3,14 @@
 
 #include "util.hpp"
 
-#define OO_PTEQ_(op)                                                                                                                                        \
-  template <class T, class U>                                                                                                                               \
-  constexpr auto operator op(std::pair<T, U> lhs, std::pair<T, U> const &rhs) { return std::pair<T, U>{lhs.first op rhs.first, lhs.second op rhs.second}; } \
-  template <class T, class U>                                                                                                                               \
-  constexpr std::pair<T, U> &operator op##=(std::pair<T, U> &lhs, std::pair<T, U> const &rhs) {                                                             \
-    lhs.first op## = rhs.first;                                                                                                                             \
-    lhs.second op## = rhs.second;                                                                                                                           \
-    return lhs;                                                                                                                                             \
+#define OO_PTEQ_(op)                                                                                                                            \
+  template <class T, class U>                                                                                                                   \
+  constexpr auto operator op(std::pair<T, U> l, std::pair<T, U> const &r) { return std::pair<T, U>{l.first op r.first, l.second op r.second}; } \
+  template <class T, class U>                                                                                                                   \
+  constexpr std::pair<T, U> &operator op##=(std::pair<T, U> &l, std::pair<T, U> const &r) {                                                     \
+    l.first op## = r.first;                                                                                                                     \
+    l.second op## = r.second;                                                                                                                   \
+    return l;                                                                                                                                   \
   }
 
 OO_PTEQ_(+)

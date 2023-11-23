@@ -146,13 +146,13 @@ class fastout {
  public:
   explicit fastout(FILE *file = stdout) : f_(file), now_(bf_) {}
 
-  fastout &operator=(fastout const &rhs) {
-    f_ = rhs.f_;
-    now_ = bf_ + (rhs.now_ - rhs.bf_);
-    memcpy(bf_, rhs.bf_, sizeof(*bf_) * (rhs.now_ - rhs.bf_));
+  fastout &operator=(fastout const &r) {
+    f_ = r.f_;
+    now_ = bf_ + (r.now_ - r.bf_);
+    memcpy(bf_, r.bf_, sizeof(*bf_) * (r.now_ - r.bf_));
     return *this;
   }
-  fastout(fastout const &rhs) { *this = rhs; }
+  fastout(fastout const &r) { *this = r; }
 
   ~fastout() { flush(); }
 

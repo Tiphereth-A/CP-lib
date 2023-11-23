@@ -38,7 +38,7 @@ RELPoP relation_CvhP(cvh<FP> const &cvh, point<FP> const &p) {
     if (is_on_S({cvh.vs[i], cvh.vs[cvh.next(i)]}, p)) return onborder_pop;
   if (sz < 3) return outside_pop;
   if (is_pos(cross(cvh.vs.front(), p, cvh.vs[1])) || is_pos(cross(cvh.vs.front(), cvh.vs.back(), p))) return outside_pop;
-  auto it = std::lower_bound(cvh.vs.begin() + 1, cvh.vs.end(), p, [&](point<FP> const &lhs, point<FP> const &rhs) { return is_pos(cross(cvh.vs.front(), lhs, rhs)); }) - 1;
+  auto it = std::lower_bound(cvh.vs.begin() + 1, cvh.vs.end(), p, [&](point<FP> const &l, point<FP> const &r) { return is_pos(cross(cvh.vs.front(), l, r)); }) - 1;
   auto next_it = cvh.next(it);
   auto res = sgn_cross(p, *it, *next_it);
   if (res) return ~res ? inside_pop : outside_pop;

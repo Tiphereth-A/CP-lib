@@ -1,8 +1,8 @@
 #ifndef TIFALIBS_POLY_POLYDATA_S32
 #define TIFALIBS_POLY_POLYDATA_S32
 
-#include "../conv/conv_naive.hpp"
 #include "../conv/conv_dft.hpp"
+#include "../conv/conv_naive.hpp"
 #include "../conv/ntt32.hpp"
 #include "../util/util.hpp"
 #include "polydata_convtype.hpp"

@@ -61,35 +61,35 @@ class mint_d31 {
     }
     return mint_d31(x1);
   }
-  mint_d31 &operator+=(mint_d31 const &rhs) {
-    u32 h = (v_ >> OFFSET) + (rhs.v_ >> OFFSET) - MOD_ODD;
-    v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((v_ + rhs.v_) & MASK);
+  mint_d31 &operator+=(mint_d31 const &r) {
+    u32 h = (v_ >> OFFSET) + (r.v_ >> OFFSET) - MOD_ODD;
+    v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((v_ + r.v_) & MASK);
     return *this;
   }
-  mint_d31 &operator-=(mint_d31 const &rhs) {
-    u32 h = (v_ >> OFFSET) - (rhs.v_ >> OFFSET);
-    v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((v_ - rhs.v_) & MASK);
+  mint_d31 &operator-=(mint_d31 const &r) {
+    u32 h = (v_ >> OFFSET) - (r.v_ >> OFFSET);
+    v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((v_ - r.v_) & MASK);
     return *this;
   }
-  mint_d31 &operator*=(mint_d31 const &rhs) {
-    v_ = (redc((u64)(v_ >> OFFSET) * (rhs.v_ >> OFFSET)) << OFFSET) | ((v_ * rhs.v_) & MASK);
+  mint_d31 &operator*=(mint_d31 const &r) {
+    v_ = (redc((u64)(v_ >> OFFSET) * (r.v_ >> OFFSET)) << OFFSET) | ((v_ * r.v_) & MASK);
     return *this;
   }
-  mint_d31 &operator/=(mint_d31 const &rhs) { return operator*=(rhs.inv()); }
-  friend mint_d31 operator+(mint_d31 const &lhs, mint_d31 const &rhs) { return mint_d31(lhs) += rhs; }
-  friend mint_d31 operator-(mint_d31 const &lhs, mint_d31 const &rhs) { return mint_d31(lhs) -= rhs; }
-  friend mint_d31 operator*(mint_d31 const &lhs, mint_d31 const &rhs) { return mint_d31(lhs) *= rhs; }
-  friend mint_d31 operator/(mint_d31 const &lhs, mint_d31 const &rhs) { return mint_d31(lhs) /= rhs; }
-  friend bool operator==(mint_d31 const &lhs, mint_d31 const &rhs) { return lhs.v_ == rhs.v_; }
-  friend bool operator!=(mint_d31 const &lhs, mint_d31 const &rhs) { return lhs.v_ != rhs.v_; }
-  friend constexpr bool operator<(mint_d31 const &lhs, mint_d31 const &rhs) { return lhs.val() < rhs.val(); }
-  friend std::istream &operator>>(std::istream &is, mint_d31 &rhs) {
+  mint_d31 &operator/=(mint_d31 const &r) { return operator*=(r.inv()); }
+  friend mint_d31 operator+(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) += r; }
+  friend mint_d31 operator-(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) -= r; }
+  friend mint_d31 operator*(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) *= r; }
+  friend mint_d31 operator/(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) /= r; }
+  friend bool operator==(mint_d31 const &l, mint_d31 const &r) { return l.v_ == r.v_; }
+  friend bool operator!=(mint_d31 const &l, mint_d31 const &r) { return l.v_ != r.v_; }
+  friend constexpr bool operator<(mint_d31 const &l, mint_d31 const &r) { return l.val() < r.val(); }
+  friend std::istream &operator>>(std::istream &is, mint_d31 &r) {
     i32 x;
     is >> x;
-    rhs = mint_d31(x);
+    r = mint_d31(x);
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, mint_d31 const &rhs) { return os << rhs.val(); }
+  friend std::ostream &operator<<(std::ostream &os, mint_d31 const &r) { return os << r.val(); }
   friend constexpr u32 abs(mint_d31 const &x) { return x.val(); }
 };
 

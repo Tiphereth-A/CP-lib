@@ -36,8 +36,8 @@ class SBT {
     }
   }
 
-  friend bool operator<(SBT const &lhs, SBT const &rhs) { return lhs.x * rhs.y < rhs.x * lhs.y; }
-  friend bool operator==(SBT const &lhs, SBT const &rhs) { return lhs.x == rhs.x && lhs.y == rhs.y; }
+  friend bool operator<(SBT const &l, SBT const &r) { return l.x * r.y < r.x * l.y; }
+  friend bool operator==(SBT const &l, SBT const &r) { return l.x == r.x && l.y == r.y; }
 
   constexpr ptt<T> current() const { return {x, y}; }
   constexpr ptt<T> lbound() const { return {lx, ly}; }
@@ -89,10 +89,10 @@ class SBT {
     return true;
   }
 
-  static SBT lca(SBT const &lhs, SBT const &rhs) {
+  static SBT lca(SBT const &l, SBT const &r) {
     SBT ret;
-    for (u32 i = 0; i < std::min((u32)lhs.seq.size(), (u32)rhs.seq.size()); ++i) {
-      T val1 = lhs.seq[i], val2 = rhs.seq[i];
+    for (u32 i = 0; i < std::min((u32)l.seq.size(), (u32)r.seq.size()); ++i) {
+      T val1 = l.seq[i], val2 = r.seq[i];
       if ((val1 < 0) != (val2 < 0)) break;
       if (val1 < 0) ret.movl(std::min(-val1, -val2));
       if (val1 > 0) ret.movr(std::min(val1, val2));
