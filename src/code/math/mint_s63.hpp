@@ -54,7 +54,6 @@ class mint_s63 {
   constexpr i64 sval() const { return val(); }
   constexpr u64 &data() { return v_; }
   constexpr u64 data() const { return v_; }
-  constexpr bool is_zero() const { return v_ == 0; }
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit constexpr operator T() const { return (T)(val()); }
   constexpr mint_s63 operator-() const {

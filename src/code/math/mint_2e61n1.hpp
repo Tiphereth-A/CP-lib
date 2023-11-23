@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_MATH_MINT_2E31N1
 #define TIFA_LIBS_MATH_MINT_2E31N1
 
+#include "../util/traits.hpp"
 #include "../util/util.hpp"
 
 namespace tifa_libs::math {
@@ -11,8 +12,10 @@ class mint_2e61n1 {
   static constexpr u64 _30 = (1 << 30) - 1, _31 = (1u << 31) - 1;
 
   // clang-format off
-  constexpr static u64 mod_(u64 x) { return x < MOD ? x : (x = (x & MOD) + (x >> 61)) > MOD ? x - MOD : x; }
-  constexpr static u64 mod_(i64 x) { return x >= 0 ? mod_((u64)x) : MOD - mod_(u64(-x)); }
+  template <class T, std::enable_if_t<is_uint<T>::value> * = nullptr>
+  constexpr static u64 mod_(T x) { return x < MOD ? x : (x = (x & MOD) + ((u64)x >> 61)) > MOD ? x - MOD : x; }
+  template <class T, std::enable_if_t<is_sint<T>::value> * = nullptr>
+  constexpr static u64 mod_(T x) { return x >= 0 ? mod_(to_uint_t<T>(x)) : MOD - mod_(to_uint_t<T>(-x)); }
   // clang-format on
 
  public:
@@ -20,10 +23,9 @@ class mint_2e61n1 {
   mint_2e61n1() {}
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   mint_2e61n1(T v) : v_(mod_(v)) {}
-  u64 val() const { return v_; }
+  constexpr u64 val() const { return v_; }
   constexpr u64 &data() { return v_; }
   constexpr u64 const &data() const { return v_; }
-  bool is_zero() const { return v_ == 0; }
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit operator T() const { return (T)(val()); }
   mint_2e61n1 operator-() const { return MOD - v_; }

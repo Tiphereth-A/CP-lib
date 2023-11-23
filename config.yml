@@ -1190,10 +1190,13 @@ notebook:
     - manacher: Manacher
       code_ext: hpp
       test_ext: cpp
-    - hash_substr_1mod: 单模子串 Hash
+    - hash_substr: 单模子串 Hash
       code_ext: hpp
       test_ext: cpp
-    - hash_substr_2mod: 双模子串 Hash
+    - hash_substr2: 双模子串 Hash
+      code_ext: hpp
+      test_ext: cpp
+    - lcp_hashstr: 子串 Hash 的 LCP
       code_ext: hpp
       test_ext: cpp
     - suffix_array: 后缀数组
