@@ -15,7 +15,7 @@ class basisZ2 {
   constexpr std::bitset<N> &operator[](u32 index) { return base[index]; }
   constexpr std::bitset<N> const &operator[](u32 index) const { return base[index]; }
   constexpr vec<std::bitset<N>> &data() { return base; }
-  constexpr vec<std::bitset<N>> data() const { return base; }
+  constexpr vec<std::bitset<N>> const &data() const { return base; }
 
   constexpr u32 rank() const {
     u32 res = 0;

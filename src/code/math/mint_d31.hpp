@@ -43,7 +43,7 @@ class mint_d31 {
   }
   i32 sval() const { return (i32)val(); }
   constexpr u32 &data() { return v_; }
-  constexpr u32 data() const { return v_; }
+  constexpr u32 const &data() const { return v_; }
   bool is_zero() const { return v_ == 0; }
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
   explicit operator T() const { return (T)(val()); }

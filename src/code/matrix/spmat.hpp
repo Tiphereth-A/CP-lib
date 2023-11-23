@@ -18,9 +18,9 @@ class spmat {
 
   spmat(u32 row, u32 col) : r(row), c(col), d(r) { assert(row > 0 && col > 0); }
 
-  constexpr u32 row() const { return r; }
-  constexpr u32 col() const { return c; }
-  constexpr data_t data() const { return d; }
+  constexpr u32 const &row() const { return r; }
+  constexpr u32 const &col() const { return c; }
+  constexpr data_t const &data() const { return d; }
   constexpr data_t &data() { return d; }
   constexpr T &operator()(u32 r, u32 c) {
     for (auto &[c_, v] : d[r])

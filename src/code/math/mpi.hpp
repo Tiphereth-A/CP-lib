@@ -47,7 +47,7 @@ class mpi {
   void set_neg(bool s) { neg = s; }
   bool is_neg() const { return neg; }
   vec<u32>& data() { return dt; }
-  vec<u32> data() const { return dt; }
+  vec<u32> const& data() const { return dt; }
 
   friend mpi operator+(mpi const& lhs, mpi const& rhs) {
     if (lhs.neg == rhs.neg) return {lhs.neg, add_(lhs.dt, rhs.dt)};
