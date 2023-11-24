@@ -22,37 +22,41 @@ struct point {
     this->y += n;
     return *this;
   }
-  constexpr point operator+(FP n) const { return point(*this) += n; }
   constexpr point &operator-=(FP n) {
     this->x -= n;
     this->y -= n;
     return *this;
   }
-  constexpr point operator-(FP n) const { return point(*this) -= n; }
   constexpr point &operator*=(FP n) {
     this->x *= n;
     this->y *= n;
     return *this;
   }
-  constexpr point operator*(FP n) const { return point(*this) *= n; }
   constexpr point &operator/=(FP n) {
     this->x /= n;
     this->y /= n;
     return *this;
   }
-  constexpr point operator/(FP n) const { return point(*this) /= n; }
+  friend constexpr point operator+(point x, FP n) { return x += n; }
+  friend constexpr point operator+(FP n, point x) { return x += n; }
+  friend constexpr point operator-(point x, FP n) { return x -= n; }
+  friend constexpr point operator-(FP n, point x) { return x -= n; }
+  friend constexpr point operator*(point x, FP n) { return x *= n; }
+  friend constexpr point operator*(FP n, point x) { return x *= n; }
+  friend constexpr point operator/(point x, FP n) { return x /= n; }
+  friend constexpr point operator/(FP n, point x) { return x /= n; }
 
   constexpr point &operator+=(point const &p) {
     this->x += p.x;
     this->y += p.y;
     return *this;
   }
-  constexpr point operator+(point const &p) const { return point(*this) += p; }
   constexpr point &operator-=(point const &p) {
     this->x -= p.x;
     this->y -= p.y;
     return *this;
   }
+  constexpr point operator+(point const &p) const { return point(*this) += p; }
   constexpr point operator-(point const &p) const { return point(*this) -= p; }
 
   constexpr point operator-() const { return point{-x, -y}; }
