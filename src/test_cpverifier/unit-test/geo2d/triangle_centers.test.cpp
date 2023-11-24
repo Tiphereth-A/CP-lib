@@ -4,7 +4,6 @@
 #include "../../../code/geo2d/ang2pi_PP.hpp"
 #include "../../../code/geo2d/area_triedges.hpp"
 #include "../../../code/geo2d/dist_pl.hpp"
-#include "../../../code/geo2d/is_on_same_l.hpp"
 #include "../../../code/geo2d/point_is_in_middle.hpp"
 #include "../../../code/geo2d/tcenter_e.hpp"
 #include "../../../code/geo2d/tcenter_g.hpp"
