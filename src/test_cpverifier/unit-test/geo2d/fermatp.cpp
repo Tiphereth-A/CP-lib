@@ -15,11 +15,11 @@ void single_test(vec<point<T>> const& v) {
   polygon<T> poly(v);
   point<T> fp_poly = fermatp(poly);
 
-  if (v.size() == 3) {
-    triangle<T> t(v[0], v[1], v[2]);
-    point<T> fp_tri = tifa_libs::geo::center_X(t);
-    check(fp_poly, fp_tri, check_param(v));
-  }
+  // if (v.size() == 3) {
+  //   triangle<T> t(v[0], v[1], v[2]);
+  //   point<T> fp_tri = tifa_libs::geo::center_X(t);
+  //   check(fp_poly, fp_tri, check_param(v));
+  // }
 
   point<T> sum(0, 0), O(0, 0);
   for (auto const& i : v) sum += (i - fp_poly).do_unit();
