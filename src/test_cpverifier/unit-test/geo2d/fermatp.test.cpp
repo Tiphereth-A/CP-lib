@@ -16,7 +16,7 @@ void single_test(vec<point<T>> const& v) {
 
   point<T> sum(0, 0);
   for (auto const& i : v) sum += (i - fp_poly).do_unit();
-  check_bool(tifa_libs::is_lt(sum.norm2(), (T)1), check_param(v), check_param(fp_poly), check_param(sum));
+  check_bool(tifa_libs::is_lt(sum.norm(), (T)1), check_param(v), check_param(fp_poly), check_param(sum));
 }
 
 template <class T, std::enable_if_t<std::is_arithmetic_v<T>>* = nullptr>
