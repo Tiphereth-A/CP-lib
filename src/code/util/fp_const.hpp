@@ -1,15 +1,19 @@
 #ifndef TIFA_LIBS_UTIL_FP_CONST
 #define TIFA_LIBS_UTIL_FP_CONST
 
-#include "util.hpp"
-
 namespace tifa_libs {
 
-// const FP EPS = std::sqrt(std::numeric_limits<FP>::epsilon());
+// std::sqrt(std::numeric_limits<FP>::epsilon())
 template <class FP>
-constexpr FP EPS = 1e-8;
+inline constexpr FP EPS = FP(1e-8L);
+
+// std::acos((FP)-1)
 template <class FP>
-const FP PI = std::acos((FP)-1);
+inline constexpr FP PI = FP(3.141592653589793238462643383279502884L);
+
+// (std::sqrt((FP)5) + 1) / 2
+template <class FP>
+inline constexpr FP PHI = FP(1.618033988749894848204586834365638118L);
 
 }  // namespace tifa_libs
 

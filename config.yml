@@ -116,6 +116,9 @@ notebook:
     - unordered_stl_hacker: unordered STL hacker
       code_ext: hpp
       test_ext: cpp
+    - tsearch: 三分
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
