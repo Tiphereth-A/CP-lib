@@ -52,6 +52,8 @@
 % User defined command
 \newcommand{\lcm}{\operatorname{lcm}}
 \newcommand{\subjectto}{~s.t.~}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
 
 \newcommand{\geneulerian}[3]{\genfrac<>{0pt}{#1}{#2}{#3}}
 \newcommand{\eulerian}[2]{\geneulerian{}{#1}{#2}}
