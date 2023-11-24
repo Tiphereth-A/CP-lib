@@ -28,7 +28,7 @@ template <class FP, std::enable_if_t<is_int<FP>::value>* = nullptr>
 constexpr bool is_gt(FP l, FP r) { return comp(l, r) > 0; }
 
 template <class FP, std::enable_if_t<std::is_floating_point_v<FP>>* = nullptr>
-constexpr int comp(FP l, FP r) { return sgn((l - r) / std::max(std::abs(l), std::abs(r))); }
+constexpr int comp(FP l, FP r) { return sgn((l - r) / std::max({std::abs(l), std::abs(r), FP(1)})); }
 template <class FP, std::enable_if_t<std::is_floating_point_v<FP>>* = nullptr>
 constexpr bool is_lt(FP l, FP r) { return comp(l, r) < 0; }
 template <class FP, std::enable_if_t<std::is_floating_point_v<FP>>* = nullptr>
