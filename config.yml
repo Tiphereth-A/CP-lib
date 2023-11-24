@@ -434,7 +434,7 @@ notebook:
     - tcenter_o: 三角形外心
       code_ext: hpp
       test_ext: cpp
-    - tcenter_ea: 三角形点 A 的旁心
+    - tcenter_e: 三角形旁心
       code_ext: hpp
       test_ext: cpp
     - tcenter_n: 三角形九点圆圆心

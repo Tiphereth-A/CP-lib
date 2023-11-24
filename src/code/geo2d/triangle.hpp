@@ -1,7 +1,9 @@
 #ifndef TIFA_LIBS_GEO2D
 #define TIFA_LIBS_GEO2D
 
+#include "ang_pp.hpp"
 #include "cross.hpp"
+#include "dist_pp.hpp"
 #include "dot.hpp"
 
 namespace tifa_libs::geo {
@@ -19,7 +21,17 @@ struct triangle {
 
   friend bool operator==(triangle const &l, triangle const &r) { return l.A == r.A && l.B == r.B && l.C == r.C; }
 
-  constexpr point<FP> average_w(FP wA, FP wB, FP wC) const { return (A * wA + B * wB + C * wC) / (wA + wB + wC); }
+  // (a, b, c)
+  pt3<FP> edges() const { return {dist_PP(B, C), dist_PP(C, A), dist_PP(A, B)}; }
+  // (A, B, C)
+  pt3<FP> angles() const { return {std::abs(ang_PP(C - A, B - A)), std::abs(ang_PP(A - B, C - B)), std::abs(ang_PP(A - C, B - C))}; }
+
+  constexpr point<FP> trilinears(FP x, FP y, FP z) const {
+    auto [a, b, c] = edges();
+    x *= a, y *= b, z *= c;
+    return (A * x + B * y + C * z) / (x + y + z);
+  }
+  constexpr point<FP> barycentrics(FP u, FP v, FP w) const { return (A * u + B * v + C * w) / (u + v + w); }
   constexpr FP area() const { return std::abs(cross(A, B, C)) / 2; }
   constexpr bool is_acute() const { return is_pos(dot(A, B, C)) && is_pos(dot(B, C, A)) && is_pos(dot(C, A, B)); }
   constexpr bool is_right() const { return is_zero(dot(A, B, C)) || is_zero(dot(B, C, A)) || is_zero(dot(C, A, B)); }

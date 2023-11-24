@@ -1,0 +1,11 @@
+对 \(\triangle ABC\), \(A\) 所对的边为 \(a\), \(B\) 所对的边为 \(b\), \(C\) 所对的边为 \(c\)
+
+\verb|trilinears|: 三线坐标, 设 \verb|trilinears(x, y, z)| 对应的点为 \(D\), 则 \(D\) 到 \(a\), \(b\), \(c\) 的距离比 (有符号) 为 \(x:y:z\). 有
+
+\[
+    D=\frac{ax\cdot A+by\cdot B+cz\cdot C}{ax+by+cz}
+\]
+
+\verb|barycentrics|: 重心坐标, \verb|barycentrics(u, v, w)| 即为 \((u\cdot A+v\cdot B+w\cdot C)/(u+v+w)\)
+
+\verb|trilinears(x, y, z) == barycentrics(a*x, b*y, c*z)|, \verb|barycentrics(u, v, w) == trilinears(u/a, v/b, w/c)|

@@ -144,6 +144,14 @@ int main() {
   tifa_libs::unittest::pre_test();
 
   test<i32>(1e4);
+  test<i64>(1e4);
+  test<f64>(1e4);
+  test<f128>(1e4);
+
+  test<i64>(1e5);
+  test<f64>(1e5);
+  test<f128>(1e5);
+
   test<i64>(1e9);
   test<f64>(1e9);
   test<f128>(1e9);
