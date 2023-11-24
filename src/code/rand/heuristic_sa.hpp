@@ -24,7 +24,7 @@ class heuristic_sa {
     for (Tt t = Tmax; t > Tmin; t *= dT) {
       now = gen(ans, t);
       if (Ft now_f = f(now); now_f <= ans_f || std::exp((ans_f - now_f) / t) > g()) {
-        ans = now_f;
+        ans_f = now_f;
         ans = now;
       }
     }
