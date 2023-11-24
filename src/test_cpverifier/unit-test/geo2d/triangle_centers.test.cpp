@@ -108,7 +108,7 @@ void test_n(triangle<T> const& t) {
   point<T> o = tifa_libs::geo::center_O(t), h = tifa_libs::geo::center_H(t), g = tifa_libs::geo::center_G(t), i = tifa_libs::geo::center_I(t);
 
   check(n, mid_point(o, h), check_param(t), check_param(n), check_param(o), check_param(h));
-  check_bool(tifa_libs::geo::is_on_same_L(n, o, g), check_param(t), check_param(n), check_param(o), check_param(g));
+  check_bool(is_zero(tifa_libs::geo::cross_unit(n, o, g)), check_param(t), check_param(n), check_param(o), check_param(g));
 
   T no = tifa_libs::geo::dist_PP(n, o), nh = tifa_libs::geo::dist_PP(n, h), ng = tifa_libs::geo::dist_PP(n, g);
 
