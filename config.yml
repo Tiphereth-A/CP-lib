@@ -119,6 +119,9 @@ notebook:
     - tsearch: 三分
       code_ext: hpp
       test_ext: cpp
+    - odt: 珂朵莉树
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bceil: std::bit_ceil
       code_ext: hpp
