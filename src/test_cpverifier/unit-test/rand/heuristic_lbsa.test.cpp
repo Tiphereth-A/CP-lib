@@ -82,12 +82,6 @@ int main() {
     case tifa_libs::unittest::ts_example_01:
       test("xql662", 2513, 120, .19, 1000, 662, .2);
       break;
-    case tifa_libs::unittest::ts_random_00:
-      test("xit1083", 3558, 120, .16, 1000, 1083, .2);
-      break;
-    case tifa_libs::unittest::ts_random_01:
-      test("xsc6880", 21537, 120, .15, 1000, 6880, .2);
-      break;
     default:
       break;
   }

@@ -151,13 +151,24 @@ void test(T lim) {
 }
 
 int main() {
-  tifa_libs::unittest::pre_test();
+  auto tcase = tifa_libs::unittest::pre_test();
 
-  test<f64>(1e5);
-  test<f128>(1e5);
-
-  test<f64>(1e9);
-  test<f128>(1e9);
+  switch (tcase) {
+    case tifa_libs::unittest::ts_example_00:
+      test<f64>(1e5);
+      break;
+    case tifa_libs::unittest::ts_example_01:
+      test<f128>(1e5);
+      break;
+    case tifa_libs::unittest::ts_random_00:
+      test<f64>(1e9);
+      break;
+    case tifa_libs::unittest::ts_random_01:
+      test<f128>(1e9);
+      break;
+    default:
+      break;
+  }
 
   tifa_libs::unittest::post_test();
 }

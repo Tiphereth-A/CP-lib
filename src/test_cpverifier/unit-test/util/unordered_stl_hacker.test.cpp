@@ -14,13 +14,27 @@ void test_unordered_stl_hacker(usz n) {
 }
 
 int main() {
-  tifa_libs::unittest::pre_test();
+  auto tcase = tifa_libs::unittest::pre_test();
 
-  test_unordered_stl_hacker<std::string>(1000);
-  test_unordered_stl_hacker<i32>(1000);
-  test_unordered_stl_hacker<u32>(1000);
-  test_unordered_stl_hacker<i64>(1000);
-  test_unordered_stl_hacker<u64>(1000);
+  switch (tcase) {
+    case tifa_libs::unittest::ts_example_00:
+      test_unordered_stl_hacker<std::string>(1000);
+      break;
+    case tifa_libs::unittest::ts_example_01:
+      test_unordered_stl_hacker<i32>(1000);
+      break;
+    case tifa_libs::unittest::ts_random_00:
+      test_unordered_stl_hacker<u32>(1000);
+      break;
+    case tifa_libs::unittest::ts_random_01:
+      test_unordered_stl_hacker<i64>(1000);
+      break;
+    case tifa_libs::unittest::ts_random_02:
+      test_unordered_stl_hacker<u64>(1000);
+      break;
+    default:
+      break;
+  }
 
   tifa_libs::unittest::post_test();
 }

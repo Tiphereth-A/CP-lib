@@ -55,44 +55,49 @@ void test_proot_gint() {
 }
 
 int main() {
-  tifa_libs::unittest::pre_test();
+  auto tcase = tifa_libs::unittest::pre_test();
 
-  // small prime
-
-  test_proot_gint<mint<2>>();
-  test_proot_gint<mint<3>>();
-  test_proot_gint<mint<5>>();
-  test_proot_gint<mint<7>>();
-  test_proot_gint<mint<11>>();
-  test_proot_gint<mint<13>>();
-  test_proot_gint<mint<17>>();
-  test_proot_gint<mint<19>>();
-  test_proot_gint<mint<40961>>();
-  test_proot_gint<mint<65537>>();
-  test_proot_gint<mint<786433>>();
-  test_proot_gint<mint<19260817>>();
-
-  // larger prime in u32
-
-  test_proot_gint<mint<167772161>>();
-  test_proot_gint<mint<469762049>>();
-  test_proot_gint<mint<754974721>>();
-  test_proot_gint<mint<998244353>>();
-  test_proot_gint<mint<999292927>>();
-  test_proot_gint<mint<1000000007>>();
-  test_proot_gint<mint<1004535809>>();
-  test_proot_gint<mint<2013265921>>();
-
-  // larger prime in u64
-
-  test_proot_gint<mint64<75161927681>>();
-  test_proot_gint<mint64<77309411329>>();
-  test_proot_gint<mint64<2061584302081>>();
-  test_proot_gint<mint64<6597069766657>>();
-  test_proot_gint<mint64<1231453023109121>>();
-  test_proot_gint<mint64<3799912185593857>>();
-  test_proot_gint<mint64<180143985094819841>>();
-  test_proot_gint<mint64<4179340454199820289>>();
+  switch (tcase) {
+      // small prime
+    case tifa_libs::unittest::ts_example_00:
+      test_proot_gint<mint<2>>();
+      test_proot_gint<mint<3>>();
+      test_proot_gint<mint<5>>();
+      test_proot_gint<mint<7>>();
+      test_proot_gint<mint<11>>();
+      test_proot_gint<mint<13>>();
+      test_proot_gint<mint<17>>();
+      test_proot_gint<mint<19>>();
+      test_proot_gint<mint<40961>>();
+      test_proot_gint<mint<65537>>();
+      test_proot_gint<mint<786433>>();
+      test_proot_gint<mint<19260817>>();
+      break;
+      // larger prime in u32
+    case tifa_libs::unittest::ts_example_01:
+      test_proot_gint<mint<167772161>>();
+      test_proot_gint<mint<469762049>>();
+      test_proot_gint<mint<754974721>>();
+      test_proot_gint<mint<998244353>>();
+      test_proot_gint<mint<999292927>>();
+      test_proot_gint<mint<1000000007>>();
+      test_proot_gint<mint<1004535809>>();
+      test_proot_gint<mint<2013265921>>();
+      break;
+      // larger prime in u64
+    case tifa_libs::unittest::ts_random_00:
+      test_proot_gint<mint64<75161927681>>();
+      test_proot_gint<mint64<77309411329>>();
+      test_proot_gint<mint64<2061584302081>>();
+      test_proot_gint<mint64<6597069766657>>();
+      test_proot_gint<mint64<1231453023109121>>();
+      test_proot_gint<mint64<3799912185593857>>();
+      test_proot_gint<mint64<180143985094819841>>();
+      test_proot_gint<mint64<4179340454199820289>>();
+      break;
+    default:
+      break;
+  }
 
   tifa_libs::unittest::post_test();
 }
