@@ -30,9 +30,9 @@ class lseive2 {
   // @param %fpi(p, i) = $f(p^i)$
   // @return v[i] = f(i), for i in [0, n]
   template <class T, class F>
-  vec<T> run(F fpi) {
+  vec<T> run(F fpi, T init = T{1}) {
     vec<T> v(fr.size());
-    v[1] = 1;
+    v[1] = init;
     for (u32 i = 0; i < pr.size(); ++i)
       for (u32 p = pr[i].first, e = pr[i].second, pe = p, ex = 1; ex <= e; ++ex, pe *= p) v[pe] = fpi(p, ex);
     for (u32 i = 2; i < fr.size(); ++i) v[i] = v[i / fr[i]] * v[fr[i]];

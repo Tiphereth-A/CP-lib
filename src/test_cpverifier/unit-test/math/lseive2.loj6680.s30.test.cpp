@@ -17,10 +17,11 @@ void test(std::string const& data) {
   fin >> n;
   tifa_libs::math::lseive2 ls(n);
   ptt<mint> lst;
-  vec<ptt<mint>> g = ls.template run<ptt<mint>>([&](u32 p, u32 e) {
+  vec<ptt<mint>> g = ls.run([&](u32 p, u32 e) {
     if (e == 1) return lst = ptt<mint>(p + (p ^ 1), 1 + (p ^ 1));
     else return lst = ptt<mint>((lst.first * p + (p ^ e)), (lst.second + (p ^ e)));
-  });
+  },
+                            ptt<mint>{1, 1});
 
   vec<mint> f(n + 1);
   f[1] = 1;
