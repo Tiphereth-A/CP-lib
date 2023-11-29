@@ -1,6 +1,7 @@
 #ifndef TIFA_LIBS_UNITTEST_BASE
 #define TIFA_LIBS_UNITTEST_BASE
 
+#include "../../code/rand/gen.hpp"
 #include "../../code/util/ios128.hpp"
 #include "../../code/util/ios_container.hpp"
 #include "../../code/util/ios_pair.hpp"

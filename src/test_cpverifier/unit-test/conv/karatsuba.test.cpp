@@ -10,7 +10,6 @@
 #include "../../../code/math/mint_s63.hpp"
 #include "../../../code/math/mint_ss.hpp"
 #include "../../../code/math/nimber.hpp"
-#include "../../../code/rand/gen.hpp"
 #include "../base.hpp"
 
 tifa_libs::rand::Gen<std::uniform_int_distribution<u64>> g;

@@ -12,7 +12,6 @@
 #include "../../../code/geo2d/tcenter_n.hpp"
 #include "../../../code/geo2d/tcenter_o.hpp"
 #include "../../../code/geo2d/tcenter_x.hpp"
-#include "../../../code/rand/gen.hpp"
 #include "../base.hpp"
 
 using tifa_libs::is_zero, tifa_libs::is_eq;

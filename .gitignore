@@ -33,7 +33,6 @@
 
 # Executables
 *.exe
-*.out
 *.app
 
 # Python
@@ -207,7 +206,6 @@ cython_debug/
 *.log
 *.lot
 *.fls
-*.out
 *.toc
 *.fmt
 *.fot
@@ -518,6 +516,7 @@ _pdf_out/
 local/
 
 /out*.cpp
+/*.out
 tempCodeRunnerFile.cpp
 in.in
 todo.md
