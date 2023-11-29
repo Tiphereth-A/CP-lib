@@ -18,7 +18,7 @@ point<FP> fermatp(polygon<FP> const &po, FP begin = 1e10, FP end = EPS<FP>, FP d
     return dis;
   };
   rand::heuristic_sa<point<FP>, decltype(gen), decltype(fitness), FP, FP> sa(gen, fitness, begin, end, delta);
-  return sa(poly_massp(po)).second;
+  return sa(sa(sa(poly_massp(po)).second).second).second;
 }
 
 }  // namespace tifa_libs::geo
