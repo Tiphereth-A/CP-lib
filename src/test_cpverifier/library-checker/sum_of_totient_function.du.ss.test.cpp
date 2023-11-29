@@ -2,7 +2,7 @@
 
 #include "../../code/math/du_seive.hpp"
 #include "../../code/math/isqrt.hpp"
-#include "../../code/math/linear_phi_seive.hpp"
+#include "../../code/math/lseive_func.hpp"
 #include "../../code/math/mint_ss.hpp"
 
 using mint = tifa_libs::math::mint_ss<998244353>;
@@ -14,7 +14,7 @@ int main() {
   std::cin >> n;
   vec<mint> sphi;
   {
-    auto _ = tifa_libs::math::linear_phi_seive(tifa_libs::math::isqrt(n));
+    auto _ = tifa_libs::math::lseive_func().reset_lseive_func<tifa_libs::math::ls_phi>(tifa_libs::math::isqrt(n)).phi;
     sphi.reserve(_.size());
     for (auto i : _) sphi.push_back(i);
     std::partial_sum(sphi.begin(), sphi.end(), sphi.begin());
