@@ -24,11 +24,21 @@ void test_sum_ik_flist(u64 n) {
 }
 
 int main() {
-  tifa_libs::unittest::pre_test();
+  auto tcase = tifa_libs::unittest::pre_test();
 
-  for (u64 i = 0; i < 10; ++i) test_sum_ik_flist(i);
-  test_sum_ik_flist(42);
-  test_sum_ik_flist(114514);
+  switch (tcase) {
+    case tifa_libs::unittest::ts_example_00:
+      for (u64 i = 0; i < 10; ++i) test_sum_ik_flist(i);
+      break;
+    case tifa_libs::unittest::ts_example_01:
+      test_sum_ik_flist(42);
+      break;
+    case tifa_libs::unittest::ts_random_00:
+      test_sum_ik_flist(114514);
+      break;
+    default:
+      break;
+  }
 
   tifa_libs::unittest::post_test();
 }
