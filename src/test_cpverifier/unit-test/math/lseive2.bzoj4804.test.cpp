@@ -17,9 +17,9 @@ void test(std::string const& data) {
   u32 n = *std::max_element(ns.begin(), ns.end());
   tifa_libs::math::lseive2 ls(n);
   u64 lst = 1;
-  vec<u32> g = ls.template run<u32>([&](u32 p, u32 e) {
+  vec<u64> g = ls.template run<u64>([&](u32 p, u32 e) {
     if (e == 1) return lst = p - 2;
-    else if (e == 2) return lst = (p - 1) * (p - 1);
+    else if (e == 2) return lst = u64(p - 1) * (p - 1);
     else return lst *= p;
   });
   vec<u64> f(n + 1);
