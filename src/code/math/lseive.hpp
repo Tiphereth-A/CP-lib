@@ -16,7 +16,7 @@ vec<u32> lseive(u32 n, F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime) {
       cb_prime(i);
     }
     for (u32 j : p) {
-      if ((u64)i * j >= n) break;
+      if (i * j >= n) break;
       vis[i * j] = true;
       if (i % j) cb_coprime(i, j);
       else {
