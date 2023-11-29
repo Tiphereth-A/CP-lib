@@ -73,12 +73,24 @@ void test(const char* const name, double optimal, u32 L, double p0, u32 K, u32 M
 }
 
 int main() {
-  tifa_libs::unittest::pre_test();
+  auto tcase = tifa_libs::unittest::pre_test();
 
-  test("bcl380", 1621, 120, .27, 1000, 380, .2);
-  test("xql662", 2513, 120, .19, 1000, 662, .2);
-  // test("xit1083", 3558, 120, .16, 1000, 1083, .2);
-  // test("xsc6880", 21537, 120, .15, 1000, 6880, .2);
+  switch (tcase) {
+    case tifa_libs::unittest::ts_example_00:
+      test("bcl380", 1621, 120, .27, 1000, 380, .2);
+      break;
+    case tifa_libs::unittest::ts_example_01:
+      test("xql662", 2513, 120, .19, 1000, 662, .2);
+      break;
+    case tifa_libs::unittest::ts_random_00:
+      test("xit1083", 3558, 120, .16, 1000, 1083, .2);
+      break;
+    case tifa_libs::unittest::ts_random_01:
+      test("xsc6880", 21537, 120, .15, 1000, 6880, .2);
+      break;
+    default:
+      break;
+  }
 
   tifa_libs::unittest::post_test();
 }

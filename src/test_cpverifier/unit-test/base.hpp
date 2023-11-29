@@ -39,21 +39,54 @@ void check_bool_(std::string const &pretty_func, std::string const &expression, 
 }
 }  // namespace detail__
 
-template <bool always_test = false>
-void post_test([[maybe_unused]] u32 a = 1000000000, [[maybe_unused]] u32 b = 1000000000) {
+enum TESTCASE { ts_local,
+                ts_example_00,
+                ts_example_01,
+                ts_random_00,
+                ts_random_01,
+                ts_random_02,
+                ts_random_03,
+                ts_random_04,
+                ts_random_05,
+                ts_random_06,
+                ts_random_07,
+                ts_random_08,
+                ts_random_09 };
+
+inline const std::map<ptt<u32>, TESTCASE> testcase_id{
+    {{1234, 5678}, ts_example_00},
+    {{1000000000, 1000000000}, ts_example_01},
+    {{192279220, 156648746}, ts_random_00},
+    {{264704197, 120999146}, ts_random_01},
+    {{682152023, 451794314}, ts_random_02},
+    {{627477696, 504915182}, ts_random_03},
+    {{729561619, 415335212}, ts_random_04},
+    {{173330281, 220603612}, ts_random_05},
+    {{841413509, 58432763}, ts_random_06},
+    {{251229786, 256388306}, ts_random_07},
+    {{118232767, 222490630}, ts_random_08},
+    {{907649120, 290651129}, ts_random_09}};
+
+inline void post_test([[maybe_unused]] ptt<u32> const &p = {0, 0}) {
 #ifndef LOCAL_
-  std::cout << a + b << '\n';
-  if constexpr (!always_test)
-    if (a != 1000000000 || b != 1000000000) exit(0);
+  static ptt<u32> p_{0, 0};
+  if (p.first || p.second) {
+    p_ = p;
+    return;
+  }
+  std::cout << p_.first + p_.second << '\n';
+  exit(0);
 #endif
 }
 
-template <bool always_test = false>
-void pre_test() {
+inline TESTCASE pre_test() {
 #ifndef LOCAL_
-  u32 a, b;
-  std::cin >> a >> b;
-  if (a != 1000000000 || b != 1000000000) post_test<always_test>(a, b);
+  ptt<u32> p;
+  std::cin >> p.first >> p.second;
+  post_test(p);
+  return testcase_id.at(p);
+#else
+  return ts_local;
 #endif
 }
 
