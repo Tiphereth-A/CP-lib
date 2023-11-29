@@ -560,7 +560,7 @@ notebook:
     - dfs_info_w: 常用带权树 DFS
       code_ext: hpp
       test_ext: cpp
-    - lca_hld: LCA（树链剖分）
+    - lca_hld: 树链剖分求 LCA
       code_ext: hpp
       test_ext: cpp
     - centroid: 重心
