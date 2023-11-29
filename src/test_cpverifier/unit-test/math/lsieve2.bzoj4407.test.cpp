@@ -10,24 +10,36 @@
 using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
 void test(std::string const& data) {
-  std::string path = "src/data/loj/124/" + data;
+  std::string path = "src/data/bzoj/4407/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 
-  u32 n, k;
-  fin >> n >> k;
+  u32 t, k;
+  fin >> t >> k;
+  vec<u32> ns(t), ms(t);
+  for (u32 i = 0; i < t; ++i) {
+    fin >> ns[i] >> ms[i];
+    if (ns[i] > ms[i]) std::swap(ns[i], ms[i]);
+  }
+  u32 n = *std::max_element(ns.begin(), ns.end());
   tifa_libs::math::lsieve2 ls(n);
-  mint pk = 1, lst = 1;
-  vec<mint> dk = ls.template run<mint>([&](u32 p, u32 e) {
-    if (e == 1) pk = tifa_libs::math::qpow<mint>(p, k), lst = 1 + pk;
-    else lst = lst * pk + 1;
-    return lst;
-  });
-  mint res = 0;
-  for (u32 i = 1; i <= n; ++i) res += dk[i];
+  static mint pk, lst;
+  vec<mint> g = ls.template run<mint>(
+      [&](u32 p, u32 e) {
+        if (e == 1) return lst = (pk = tifa_libs::math::qpow<mint>(p, k)) - 1;
+        else return lst *= pk;
+      });
+  std::partial_sum(g.begin(), g.end(), g.begin());
+  for (u32 i = 0; i < t; ++i) {
+    mint res = 0;
+    for (u32 n = ns[i], m = ms[i], l = 1, r, d1, d2; l <= n; l = r + 1) {
+      r = std::min(n / (d1 = n / l), m / (d2 = m / l));
+      res += (g[r] - g[l - 1]) * d1 * d2;
+    }
 
-  u64 got = res.val(), want;
-  fans >> want;
-  check(got, want, check_param(data));
+    u64 got = res.val(), want;
+    fans >> want;
+    check(got, want, check_param(data));
+  }
 }
 
 int main() {
@@ -35,47 +47,34 @@ int main() {
 
   switch (tcase) {
     case tifa_libs::unittest::ts_example_00:
-      test("sieve0");
-      test("sieve1");
-      test("sieve2");
+      test("1");
       break;
     case tifa_libs::unittest::ts_example_01:
-      test("sieve3");
-      test("sieve4");
-      test("sieve5");
+      test("2");
       break;
     case tifa_libs::unittest::ts_random_00:
-      test("sieve6");
-      test("sieve7");
-      test("sieve8");
+      test("3");
       break;
     case tifa_libs::unittest::ts_random_01:
-      test("sieve9");
-      test("sieve10");
-      test("sieve11");
+      test("4");
       break;
     case tifa_libs::unittest::ts_random_02:
-      test("sieve12");
-      test("sieve13");
-      test("sieve14");
+      test("5");
       break;
     case tifa_libs::unittest::ts_random_03:
-      test("sieve15");
-      test("sieve16");
-      test("sieve17");
+      test("6");
       break;
     case tifa_libs::unittest::ts_random_04:
-      test("sieve18");
-      test("sieve19");
-      test("sieve20");
+      test("7");
       break;
     case tifa_libs::unittest::ts_random_05:
-      test("sieve21");
-      test("sieve22");
-      test("sieve23");
+      test("8");
       break;
     case tifa_libs::unittest::ts_random_06:
-      test("sieve24");
+      test("9");
+      break;
+    case tifa_libs::unittest::ts_random_07:
+      test("10");
       break;
     default:
       break;

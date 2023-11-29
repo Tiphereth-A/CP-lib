@@ -24,9 +24,8 @@ void test(std::string const& data) {
   });
   mint res = 0;
   for (u32 i = 1; i <= n; ++i) res += dk[i];
-  u64 got = res.val();
 
-  u64 want;
+  u64 got = res.val(), want;
   fans >> want;
   check(got, want, check_param(data));
 }
