@@ -29,8 +29,8 @@ void test(std::string const& data) {
   vec<mint> f(n + 1);
   f[1] = 1;
   for (u32 i = 2; i <= n; ++i) f[i] = f[i - 1] + g[i].first + g[i].first - g[i].second;
-  for (u32 i = 2; i <= n; ++i) f[i] = f[i].val() ^ f[i - 1].val();
-  u64 got = f[n].val();
+  u64 got = f[1].val();
+  for (u32 i = 2; i <= n; ++i) got ^= f[i].val();
 
   u64 want;
   fans >> want;
