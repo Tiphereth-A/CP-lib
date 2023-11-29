@@ -1,6 +1,6 @@
 ---
-title: Linear seive
-documentation_of: //src/code/math/lseive.hpp
+title: Linear sieve
+documentation_of: //src/code/math/lsieve.hpp
 ---
 
 Seive primes in $[2,n)$

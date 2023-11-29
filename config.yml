@@ -739,13 +739,13 @@ notebook:
     - prime_seq: 素数序列
       code_ext: hpp
       test_ext: cpp
-    - lseive: 线性筛
+    - lsieve: 线性筛
       code_ext: hpp
       test_ext: cpp
-    - lseive_func: 用线性筛计算常用积性函数
+    - lsieve_func: 用线性筛计算常用积性函数
       code_ext: hpp
       test_ext: cpp
-    - lseive2: 线性筛实现2
+    - lsieve2: 线性筛实现2
       code_ext: hpp
       test_ext: cpp
     - mint_d31: 动态模整数类（31）
@@ -868,10 +868,10 @@ notebook:
     - pi_23: pi(n) 实现二
       code_ext: hpp
       test_ext: cpp
-    - du_seive: 杜教筛
+    - du_sieve: 杜教筛
       code_ext: hpp
       test_ext: cpp
-    - min25_seive: min25 筛
+    - min25_sieve: min25 筛
       code_ext: hpp
       test_ext: cpp
     - sum_ik_flist: 简单的自然数幂和函数列表

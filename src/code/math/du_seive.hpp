@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class T, class SF, class SG, class SH>
-class du_seive {
+class du_sieve {
   const u64 sf_max;
   SF sf;
   SG sg;
@@ -26,7 +26,7 @@ class du_seive {
   }
 
  public:
-  du_seive(u64 sf_max, SF sf, SG sg, SH sh) : sf_max(sf_max), sf(sf), sg(sg), sh(sh) {}
+  du_sieve(u64 sf_max, SF sf, SG sg, SH sh) : sf_max(sf_max), sf(sf), sg(sg), sh(sh) {}
 
   T operator()(u64 n) { return !n ? 0 : calc(n); }
 };

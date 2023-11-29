@@ -1,7 +1,7 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../../code/math/lseive2.hpp"
+#include "../../../code/math/lsieve2.hpp"
 
 #include "../base.hpp"
 
@@ -15,7 +15,7 @@ void test(std::string const& data) {
   for (u32 i = 0; i < t; ++i) fin >> ns[i];
 
   u32 n = *std::max_element(ns.begin(), ns.end());
-  tifa_libs::math::lseive2 ls(n);
+  tifa_libs::math::lsieve2 ls(n);
   u64 lst = 1;
   vec<u64> g = ls.template run<u64>([&](u32 p, u32 e) {
     if (e == 1) return lst = p - 2;

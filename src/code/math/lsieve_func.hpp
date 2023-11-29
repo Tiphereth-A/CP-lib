@@ -1,11 +1,11 @@
-#ifndef TIFA_LIBS_MATH_LSEIVE_FUNC
-#define TIFA_LIBS_MATH_LSEIVE_FUNC
+#ifndef TIFA_LIBS_MATH_LSIEVE_FUNC
+#define TIFA_LIBS_MATH_LSIEVE_FUNC
 
-#include "lseive.hpp"
+#include "lsieve.hpp"
 
 namespace tifa_libs::math {
 
-enum lseive_state {
+enum lsieve_state {
   ls_mpf = 1,
   ls_phi = 2,
   ls_mu = 4,
@@ -13,20 +13,20 @@ enum lseive_state {
   ls_tau = 16
 };
 
-struct lseive_func {
+struct lsieve_func {
   vec<u32> prime, mpf, phi;
   vec<i32> mu;
   vec<u64> sigma, tau;
 
   template <int state>
-  lseive_func& reset_lseive_func(u32 n) {
+  lsieve_func& reset_lsieve_func(u32 n) {
     if constexpr (state | ls_mpf) mpf = vec<u32>(n), mpf[1] = 1;
     if constexpr (state | ls_phi) phi = vec<u32>(n), phi[1] = 1;
     if constexpr (state | ls_mu) mu = vec<i32>(n), mu[1] = 1;
     if constexpr (state | ls_sigma) pw = vec<u64>(n), sigma = vec<u64>(n), sigma[1] = 1;
     if constexpr (state | ls_tau) pc = vec<u32>(n, 1), tau = vec<u64>(n), tau[1] = 1;
 
-    prime = lseive(
+    prime = lsieve(
         n,
         [&](u32 p) {
           if constexpr (state | ls_mpf) mpf[p] = p;

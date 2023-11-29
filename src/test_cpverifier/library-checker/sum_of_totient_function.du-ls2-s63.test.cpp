@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
 
-#include "../../code/math/du_seive.hpp"
+#include "../../code/math/du_sieve.hpp"
 #include "../../code/math/isqrt.hpp"
-#include "../../code/math/lseive2.hpp"
+#include "../../code/math/lsieve2.hpp"
 #include "../../code/math/mint_s63.hpp"
 
 using mint = tifa_libs::math::mint_s63<998244353>;
@@ -15,7 +15,7 @@ int main() {
   vec<mint> sphi;
   {
     mint lst = 1;
-    sphi = tifa_libs::math::lseive2(tifa_libs::math::isqrt(n)).template run<mint>([&lst](u32 p, u32 e) {
+    sphi = tifa_libs::math::lsieve2(tifa_libs::math::isqrt(n)).template run<mint>([&lst](u32 p, u32 e) {
       if (e == 1) return lst = p - 1;
       else return lst = lst * p;
     });
@@ -24,6 +24,6 @@ int main() {
   auto sf = [sphi](u64 x) -> mint { return sphi[x]; };
   auto sg = [](u64 x) -> mint { return x; };
   auto sh = [](u64 x) -> mint { return mint{x} * (x + 1) * ((mint::mod() + 1) / 2); };
-  std::cout << tifa_libs::math::du_seive<mint, decltype(sf), decltype(sg), decltype(sh)>(sphi.size() - 1, sf, sg, sh)(n) << '\n';
+  std::cout << tifa_libs::math::du_sieve<mint, decltype(sf), decltype(sg), decltype(sh)>(sphi.size() - 1, sf, sg, sh)(n) << '\n';
   return 0;
 }

@@ -1,16 +1,16 @@
-#ifndef TIFA_LIBS_MATH_LSEIVE2
-#define TIFA_LIBS_MATH_LSEIVE2
+#ifndef TIFA_LIBS_MATH_LSIEVE2
+#define TIFA_LIBS_MATH_LSIEVE2
 
 #include "../util/util.hpp"
 
 namespace tifa_libs::math {
 
-class lseive2 {
+class lsieve2 {
   vec<ptt<u32>> pr;
   vec<u32> fr;
 
  public:
-  lseive2(u32 n) : fr(n + 1) {
+  lsieve2(u32 n) : fr(n + 1) {
     for (u32 i = 2, x = n / 2, p1, p2, e; i <= n; x = n / (++i)) {
       if (!fr[i]) {
         for (p1 = 1, p2 = i, e = 0; p1 <= x; p1 = p2, p2 *= i, ++e) fr[p2] = 1;

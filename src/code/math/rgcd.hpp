@@ -2,7 +2,7 @@
 #define TIFA_LIBS_MATH_RGCD
 
 #include "isqrt.hpp"
-#include "lseive.hpp"
+#include "lsieve.hpp"
 
 namespace tifa_libs::math {
 
@@ -17,7 +17,7 @@ class RGCD {
  public:
   explicit RGCD(u32 n) : fs(n), g_(isqrt(n) + 1, decltype(g_)::value_type(isqrt(n) + 1)) {
     fs[1] = {1, 1, 1};
-    lseive(
+    lsieve(
         n,
         [this](u32 p) { fs[p] = {1, 1, p}; },
         [this](u32 i, u32 j) {

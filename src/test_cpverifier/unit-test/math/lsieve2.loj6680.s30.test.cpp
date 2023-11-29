@@ -5,7 +5,7 @@
 #include "../../../code/util/pair_op.hpp"
 // clang-format on
 
-#include "../../../code/math/lseive2.hpp"
+#include "../../../code/math/lsieve2.hpp"
 
 #include "../../../code/math/mint_s30.hpp"
 #include "../base.hpp"
@@ -18,7 +18,7 @@ void test(std::string const& data) {
 
   u32 n;
   fin >> n;
-  tifa_libs::math::lseive2 ls(n);
+  tifa_libs::math::lsieve2 ls(n);
   ptt<mint> lst;
   vec<ptt<mint>> g = ls.run([&](u32 p, u32 e) {
     if (e == 1) return lst = ptt<mint>(p + (p ^ 1), 1 + (p ^ 1));

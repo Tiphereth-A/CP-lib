@@ -1,7 +1,7 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../../code/math/lseive2.hpp"
+#include "../../../code/math/lsieve2.hpp"
 
 #include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/qpow.hpp"
@@ -15,7 +15,7 @@ void test(std::string const& data) {
 
   u32 n, k;
   fin >> n >> k;
-  tifa_libs::math::lseive2 ls(n);
+  tifa_libs::math::lsieve2 ls(n);
   mint pk = 1, lst = 1;
   vec<mint> dk = ls.template run<mint>([&](u32 p, u32 e) {
     if (e == 1) pk = tifa_libs::math::qpow<mint>(p, k), lst = 1 + pk;
@@ -36,47 +36,47 @@ int main() {
 
   switch (tcase) {
     case tifa_libs::unittest::ts_example_00:
-      test("seive0");
-      test("seive1");
-      test("seive2");
+      test("sieve0");
+      test("sieve1");
+      test("sieve2");
       break;
     case tifa_libs::unittest::ts_example_01:
-      test("seive3");
-      test("seive4");
-      test("seive5");
+      test("sieve3");
+      test("sieve4");
+      test("sieve5");
       break;
     case tifa_libs::unittest::ts_random_00:
-      test("seive6");
-      test("seive7");
-      test("seive8");
+      test("sieve6");
+      test("sieve7");
+      test("sieve8");
       break;
     case tifa_libs::unittest::ts_random_01:
-      test("seive9");
-      test("seive10");
-      test("seive11");
+      test("sieve9");
+      test("sieve10");
+      test("sieve11");
       break;
     case tifa_libs::unittest::ts_random_02:
-      test("seive12");
-      test("seive13");
-      test("seive14");
+      test("sieve12");
+      test("sieve13");
+      test("sieve14");
       break;
     case tifa_libs::unittest::ts_random_03:
-      test("seive15");
-      test("seive16");
-      test("seive17");
+      test("sieve15");
+      test("sieve16");
+      test("sieve17");
       break;
     case tifa_libs::unittest::ts_random_04:
-      test("seive18");
-      test("seive19");
-      test("seive20");
+      test("sieve18");
+      test("sieve19");
+      test("sieve20");
       break;
     case tifa_libs::unittest::ts_random_05:
-      test("seive21");
-      test("seive22");
-      test("seive23");
+      test("sieve21");
+      test("sieve22");
+      test("sieve23");
       break;
     case tifa_libs::unittest::ts_random_06:
-      test("seive24");
+      test("sieve24");
       break;
     default:
       break;

@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 
 // f(p, c) = value of f(p^c)
 template <typename T, T (*f)(u64, u64)>
-class min25_seive {
+class min25_sieve {
   u64 m, sqm, s;
   vec<u32> p;
 
@@ -18,7 +18,7 @@ class min25_seive {
 
  public:
   // m^{3/2} in u64
-  min25_seive(u64 m) : m(m), sqm(isqrt(m)) {
+  min25_sieve(u64 m) : m(m), sqm(isqrt(m)) {
     assert(m < (1ll << 42));
     if (m) {
       u64 hls = div_u64d(m, sqm);
