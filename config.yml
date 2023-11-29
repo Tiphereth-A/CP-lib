@@ -739,10 +739,13 @@ notebook:
     - prime_seq: 素数序列
       code_ext: hpp
       test_ext: cpp
-    - lseive: 简单线性筛
+    - lseive: 线性筛
       code_ext: hpp
       test_ext: cpp
-    - lseive_func: 用简单线性筛计算常用积性函数
+    - lseive_func: 用线性筛计算常用积性函数
+      code_ext: hpp
+      test_ext: cpp
+    - lseive2: 线性筛实现2
       code_ext: hpp
       test_ext: cpp
     - mint_d31: 动态模整数类（31）
