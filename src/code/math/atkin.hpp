@@ -15,20 +15,21 @@ inline vec<u32> atkin(u32 lim) {
   u32 slim = isqrt(lim);
   if (slim * slim < lim) ++slim;
   vec<bool> vis(lim + 1);
-  for (u32 i = 0, n; i < slim; ++i)
+
+  for (u32 i = 0; i < slim; ++i)
     for (u32 j = 0; j < slim; ++j) {
-      if ((n = 4 * i * i + j * j) > lim) break;
-      if (n % 12 == 1 || n % 12 == 5) vis[n].flip();
+      if (u64 n = 4_u64 * i * i + j * j; n > lim) break;
+      else if (n % 12 == 1 || n % 12 == 5) vis[n].flip();
     }
-  for (u32 i = 0, n; i < slim; ++i)
+  for (u32 i = 0; i < slim; ++i)
     for (u32 j = 0; j < slim; ++j) {
-      if ((n = 3 * i * i + j * j) > lim) break;
-      if (n % 12 == 7) vis[n].flip();
+      if (u64 n = 3_u64 * i * i + j * j; n > lim) break;
+      else if (n % 12 == 7) vis[n].flip();
     }
-  for (u32 i = 0, n; i < slim; ++i)
+  for (u32 i = 0; i < slim; ++i)
     for (u32 j = i - 1; ~j; --j) {
-      if ((n = 3 * i * i - j * j) > lim) break;
-      if (n % 12 == 11) vis[n].flip();
+      if (u64 n = 3_u64 * i * i - j * j; n > lim) break;
+      else if (n % 12 == 11) vis[n].flip();
     }
   for (u32 i = 5; i < slim; ++i)
     if (vis[i])
