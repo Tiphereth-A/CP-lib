@@ -739,6 +739,9 @@ notebook:
     - prime_seq: 素数序列
       code_ext: hpp
       test_ext: cpp
+    - atkin: Atkin 筛法
+      code_ext: hpp
+      test_ext: cpp
     - lsieve: 线性筛
       code_ext: hpp
       test_ext: cpp
@@ -746,9 +749,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - lsieve2: 线性筛实现2
-      code_ext: hpp
-      test_ext: cpp
-    - atkin: Atkin 筛法
       code_ext: hpp
       test_ext: cpp
     - mint_d31: 动态模整数类（31）
