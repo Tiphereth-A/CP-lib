@@ -748,6 +748,9 @@ notebook:
     - lsieve2: 线性筛实现2
       code_ext: hpp
       test_ext: cpp
+    - atkin: Atkin 筛法
+      code_ext: hpp
+      test_ext: cpp
     - mint_d31: 动态模整数类（31）
       code_ext: hpp
       test_ext: cpp
