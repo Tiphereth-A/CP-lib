@@ -47,7 +47,7 @@
 \setmathrm{CMU Serif}
 \setmathsf{CMU Sans Serif}
 \newfontfamily\cnfont{Noto Sans CJK SC}
-\setTransitionsForChinese{\cnfont}{}
+\setTransitionsForChinese{\begingroup\cnfont}{\endgroup}
 
 % User defined command
 \newcommand{\lcm}{\operatorname{lcm}}
