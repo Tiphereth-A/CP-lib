@@ -181,13 +181,13 @@ notebook:
     - fenwick: 树状数组
       code_ext: hpp
       test_ext: cpp
-    - fenwick_rr: 树状数组（区间修改、区间查询）
+    - fenwick_rr: 树状数组(区间修改,区间查询)
       code_ext: hpp
       test_ext: cpp
     - fenwick_2d: 二维树状数组
       code_ext: hpp
       test_ext: cpp
-    - fenwick_2d_rr: 二维树状数组（区间修改、区间查询）
+    - fenwick_2d_rr: 二维树状数组(区间修改,区间查询)
       code_ext: hpp
       test_ext: cpp
     - dsu_basic: 并查集
@@ -208,7 +208,7 @@ notebook:
     - segtree_old: 旧版线段树
       code_ext: hpp
       test_ext: cpp
-    - lichao_segtree: 李超线段树（线段添加、定点最值）
+    - lichao_segtree: 李超线段树(线段添加,定点最值)
       code_ext: hpp
       test_ext: cpp
     - st_array_2d: 二维 ST 表
@@ -232,10 +232,10 @@ notebook:
     - fhq_treap_w: 维护区间操作的非旋treap
       code_ext: hpp
       test_ext: cpp
-    - link_cut_tree: 动态树（LCT）
+    - link_cut_tree: 动态树(LCT)
       code_ext: hpp
       test_ext: cpp
-    - leftist_tree: 可并堆（左偏树）
+    - leftist_tree: 可并堆(左偏树)
       code_ext: hpp
       test_ext: cpp
     - deque_with_w: 带权双端队列
@@ -275,7 +275,7 @@ notebook:
     - area_poc: 多边形与圆的面积交
       code_ext: hpp
       test_ext: cpp
-    - sarea_ct: 三角形与圆的面积交（带方向）
+    - sarea_ct: 三角形与圆的面积交(带方向)
       code_ext: hpp
       test_ext: cpp
     - area_triedges: 根据三角形的三边计算面积
@@ -362,7 +362,7 @@ notebook:
     - make_c_rll: 根据半径和两切线构造圆
       code_ext: hpp
       test_ext: cpp
-    - make_c_rpl: 根据半径、切线和经过的一点构造圆
+    - make_c_rpl: 根据半径,切线和经过的一点构造圆
       code_ext: hpp
       test_ext: cpp
     - make_c_rpp: 根据半径和经过的两点构造圆
@@ -371,10 +371,10 @@ notebook:
     - min_cover_c: 最小覆盖圆
       code_ext: hpp
       test_ext: cpp
-    - ang2pi_pp: 两向量夹角（0 到 2pi 之间）
+    - ang2pi_pp: 两向量夹角(0 到 2pi 之间)
       code_ext: hpp
       test_ext: cpp
-    - ang_pp: 两向量夹角（-pi 到 pi 之间）
+    - ang_pp: 两向量夹角(-pi 到 pi 之间)
       code_ext: hpp
       test_ext: cpp
     - cross: 叉乘
@@ -383,10 +383,10 @@ notebook:
     - dist_pp: 两点间距离
       code_ext: hpp
       test_ext: cpp
-    - dist_pp_ch: 两点间距离（Chebyshev）
+    - dist_pp_ch: 两点间距离(Chebyshev)
       code_ext: hpp
       test_ext: cpp
-    - dist_pp_ma: 两点间距离（Manhattan）
+    - dist_pp_ma: 两点间距离(Manhattan)
       code_ext: hpp
       test_ext: cpp
     - dot: 点乘
@@ -496,7 +496,7 @@ notebook:
     - dijkstra: Dijkstra
       code_ext: hpp
       test_ext: cpp
-    - kruskal: 最小生成树（kruskal）
+    - kruskal: 最小生成树(kruskal)
       code_ext: hpp
       test_ext: cpp
     - kruskal_reconstruction_tree: kruskal 重构树
@@ -508,7 +508,7 @@ notebook:
     - floyd: Floyd
       code_ext: hpp
       test_ext: cpp
-    - kosaraju: 强连通分量（Kosaraju）
+    - kosaraju: 强连通分量(Kosaraju)
       code_ext: hpp
       test_ext: cpp
     - path: 求两点间的一条简单路径
@@ -523,7 +523,7 @@ notebook:
     - ringcnt4: 无向图四元环计数
       code_ext: hpp
       test_ext: cpp
-    - tarjan: 强连通分量（tarjan）
+    - tarjan: 强连通分量(tarjan)
       code_ext: hpp
       test_ext: cpp
     - v_bcc: 点双连通分量
@@ -532,10 +532,10 @@ notebook:
     - e_bcc: 边双连通分量
       code_ext: hpp
       test_ext: cpp
-    - dinic: 网络最大流（dinic）
+    - dinic: 网络最大流(dinic)
       code_ext: hpp
       test_ext: cpp
-    - ssp: 最小费用最大流（SuccessiveShortestPath）
+    - ssp: 最小费用最大流(SuccessiveShortestPath)
       code_ext: hpp
       test_ext: cpp
     - steiner_tree: 斯坦纳树
@@ -588,28 +588,28 @@ notebook:
     - binom: 组合数
       code_ext: hpp
       test_ext: cpp
-    - lucas: Lucas 定理（模素数）
+    - lucas: Lucas 定理(模素数)
       code_ext: hpp
       test_ext: cpp
-    - lucas_pp: Lucas 定理（模素数幂次）
+    - lucas_pp: Lucas 定理(模素数幂次)
       code_ext: hpp
       test_ext: cpp
-    - exlucas: Lucas 定理（任意模数）
+    - exlucas: Lucas 定理(任意模数)
       code_ext: hpp
       test_ext: cpp
     - gen_derange: 错排数序列
       code_ext: hpp
       test_ext: cpp
-    - gen_stirling1_row: 第一类 Stirling 数序列（行）
+    - gen_stirling1_row: 第一类 Stirling 数序列(行)
       code_ext: hpp
       test_ext: cpp
-    - gen_stirling1_col: 第一类 Stirling 数序列（列）
+    - gen_stirling1_col: 第一类 Stirling 数序列(列)
       code_ext: hpp
       test_ext: cpp
-    - gen_stirling2_row: 第二类 Stirling 数序列（行）
+    - gen_stirling2_row: 第二类 Stirling 数序列(行)
       code_ext: hpp
       test_ext: cpp
-    - gen_stirling2_col: 第二类 Stirling 数序列（列）
+    - gen_stirling2_col: 第二类 Stirling 数序列(列)
       code_ext: hpp
       test_ext: cpp
     - gen_bell: Bell 数序列
@@ -636,56 +636,56 @@ notebook:
     - gen_bernoulli: Bernoulli 数序列
       code_ext: hpp
       test_ext: cpp
-    - stirling1_smallp: 第一类 Stirling 数（小模数）
+    - stirling1_smallp: 第一类 Stirling 数(小模数)
       code_ext: hpp
       test_ext: cpp
-    - stirling2_smallp: 第二类 Stirling 数（小模数）
+    - stirling2_smallp: 第二类 Stirling 数(小模数)
       code_ext: hpp
       test_ext: cpp
-    - gen_ball_box_ii: 球与盒（球全部相同，盒全部相同）序列
+    - gen_ball_box_ii: 球与盒(球全部相同，盒全部相同)序列
       code_ext: hpp
       test_ext: cpp
-    - ball_box_dda: 球与盒（球互不相同，盒互不相同）
+    - ball_box_dda: 球与盒(球互不相同，盒互不相同)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_ddm: 球与盒（球互不相同，盒互不相同，至多装一个球）
+    - ball_box_ddm: 球与盒(球互不相同，盒互不相同，至多装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_ddl: 球与盒（球互不相同，盒互不相同，至少装一个球）
+    - ball_box_ddl: 球与盒(球互不相同，盒互不相同，至少装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_ida: 球与盒（球全部相同，盒互不相同）
+    - ball_box_ida: 球与盒(球全部相同，盒互不相同)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_idm: 球与盒（球全部相同，盒互不相同，至多装一个球）
+    - ball_box_idm: 球与盒(球全部相同，盒互不相同，至多装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_idl: 球与盒（球全部相同，盒互不相同，至少装一个球）
+    - ball_box_idl: 球与盒(球全部相同，盒互不相同，至少装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_dia: 球与盒（球互不相同，盒全部相同）
+    - ball_box_dia: 球与盒(球互不相同，盒全部相同)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_dim: 球与盒（球互不相同，盒全部相同，至多装一个球）
+    - ball_box_dim: 球与盒(球互不相同，盒全部相同，至多装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_dil: 球与盒（球互不相同，盒全部相同，至少装一个球）
+    - ball_box_dil: 球与盒(球互不相同，盒全部相同，至少装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_iia: 球与盒（球全部相同，盒全部相同）
+    - ball_box_iia: 球与盒(球全部相同，盒全部相同)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_iim: 球与盒（球全部相同，盒全部相同，至多装一个球）
+    - ball_box_iim: 球与盒(球全部相同，盒全部相同，至多装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_iil: 球与盒（球全部相同，盒全部相同，至少装一个球）
+    - ball_box_iil: 球与盒(球全部相同，盒全部相同，至少装一个球)
       code_ext: hpp
       test_ext: cpp
     math:
     - barrett: Barrett 模乘法
       code_ext: hpp
       test_ext: cpp
-    - montgomery: Montgomery 乘法（32 位）
+    - montgomery: Montgomery 乘法(32 位)
       code_ext: hpp
       test_ext: cpp
     - bsgs: BSGS
@@ -706,10 +706,10 @@ notebook:
     - do_quot: 整除分块
       code_ext: hpp
       test_ext: cpp
-    - euler_phi_u32: Euler 函数（32 位）
+    - euler_phi_u32: Euler 函数(32 位)
       code_ext: hpp
       test_ext: cpp
-    - euler_phi_u64: Euler 函数（64 位）
+    - euler_phi_u64: Euler 函数(64 位)
       code_ext: hpp
       test_ext: cpp
     - gauss_int: Gauss 整数
@@ -751,22 +751,22 @@ notebook:
     - lsieve2: 线性筛实现2
       code_ext: hpp
       test_ext: cpp
-    - mint_d31: 动态模整数类（31）
+    - mint_d31: 动态模整数类(31)
       code_ext: hpp
       test_ext: cpp
-    - mint_d63: 动态模整数类（63）
+    - mint_d63: 动态模整数类(63)
       code_ext: hpp
       test_ext: cpp
     - mint_ds: 动态模整数类的简单实现
       code_ext: hpp
       test_ext: cpp
-    - mint_s30: 静态模整数类（30）
+    - mint_s30: 静态模整数类(30)
       code_ext: hpp
       test_ext: cpp
-    - mint_s63: 静态模整数类（63）
+    - mint_s63: 静态模整数类(63)
       code_ext: hpp
       test_ext: cpp
-    - mint_2e61n1: 模整数类（61-1）
+    - mint_2e61n1: 模整数类(61-1)
       code_ext: hpp
       test_ext: cpp
     - mint_ss: 静态模整数类的简单实现
@@ -784,16 +784,16 @@ notebook:
     - is_proot: 是否为原根
       code_ext: hpp
       test_ext: cpp
-    - is_proot_nimber: 是否为原根（Nimber）
+    - is_proot_nimber: 是否为原根(Nimber)
       code_ext: hpp
       test_ext: cpp
-    - proot_u32: 原根（32 位）
+    - proot_u32: 原根(32 位)
       code_ext: hpp
       test_ext: cpp
-    - proot_u64: 原根（64 位）
+    - proot_u64: 原根(64 位)
       code_ext: hpp
       test_ext: cpp
-    - proot_gint: 原根（Gauss 整数）
+    - proot_gint: 原根(Gauss 整数)
       code_ext: hpp
       test_ext: cpp
     - qpow_mod: 模快速幂
@@ -880,7 +880,7 @@ notebook:
     - sum_ik_flist: 简单的自然数幂和函数列表
       code_ext: hpp
       test_ext: cpp
-    - interp_newton_n2: Newton 插值（朴素实现）
+    - interp_newton_n2: Newton 插值(朴素实现)
       code_ext: hpp
       test_ext: cpp
     - nim_prod: Nim 积
@@ -898,7 +898,7 @@ notebook:
     - min_mod_linear: 模线性变换最小值
       code_ext: hpp
       test_ext: cpp
-    - lagrange_interp0: Lagrange 插值（从 0 开始的连续样本点）
+    - lagrange_interp0: Lagrange 插值(从 0 开始的连续样本点)
       code_ext: hpp
       test_ext: cpp
     - sum_ipaf: sum_ipaf
@@ -929,13 +929,13 @@ notebook:
     - mat_ge_swapr_: mat_ge_swapr_
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_basic: Gauss 消元（普通）
+    - mat_ge_basic: Gauss 消元(普通)
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_euclid: Gauss 消元（辗转相除）
+    - mat_ge_euclid: Gauss 消元(辗转相除)
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_xor: Gauss 消元（异或）
+    - mat_ge_xor: Gauss 消元(异或)
       code_ext: hpp
       test_ext: cpp
     - mat_inv: 逆矩阵
@@ -980,10 +980,10 @@ notebook:
     - lfsr_bm: 寻找最短 LFSR
       code_ext: hpp
       test_ext: cpp
-    - mat_minpoly_rd: 求矩阵的最小多项式（随机化算法）
+    - mat_minpoly_rd: 求矩阵的最小多项式(随机化算法)
       code_ext: hpp
       test_ext: cpp
-    - mat_det_rd: 求矩阵的行列式（随机化算法）
+    - mat_det_rd: 求矩阵的行列式(随机化算法)
       code_ext: hpp
       test_ext: cpp
     conv:
@@ -993,7 +993,7 @@ notebook:
     - ntt: 数论变换
       code_ext: hpp
       test_ext: cpp
-    - ntt32: 数论变换（u32）
+    - ntt32: 数论变换(u32)
       code_ext: hpp
       test_ext: cpp
     - ntt_doubling: NTT doubling
@@ -1002,25 +1002,25 @@ notebook:
     - cntt: 扩域 NTT
       code_ext: hpp
       test_ext: cpp
-    - conv_naive: 卷积（暴力）
+    - conv_naive: 卷积(暴力)
       code_ext: hpp
       test_ext: cpp
-    - conv_dft: 卷积（FFT 或 NTT）
+    - conv_dft: 卷积(FFT 或 NTT)
       code_ext: hpp
       test_ext: cpp
-    - conv_mtt: 卷积（MTT）
+    - conv_mtt: 卷积(MTT)
       code_ext: hpp
       test_ext: cpp
-    - conv_3ntt: 卷积（三模 NTT）
+    - conv_3ntt: 卷积(三模 NTT)
       code_ext: hpp
       test_ext: cpp
-    - conv_u128: 卷积（三模 NTT，高精度整数用）
+    - conv_u128: 卷积(三模 NTT，高精度整数用)
       code_ext: hpp
       test_ext: cpp
-    - conv_cntt: 卷积（扩域 NTT）
+    - conv_cntt: 卷积(扩域 NTT)
       code_ext: hpp
       test_ext: cpp
-    - conv_czt: 卷积（Chirp-Z 变换）
+    - conv_czt: 卷积(Chirp-Z 变换)
       code_ext: hpp
       test_ext: cpp
     - karatsuba: Karatsuba 乘法
@@ -1029,53 +1029,53 @@ notebook:
     - wht: Walsh Hadamard 变换
       code_ext: hpp
       test_ext: cpp
-    - conv_xor: 卷积（异或）
+    - conv_xor: 卷积(异或)
       code_ext: hpp
       test_ext: cpp
-    - zmt_subset: Zeta–M\"obius 变换（子集）
+    - zmt_subset: Zeta–M\"obius 变换(子集)
       code_ext: hpp
       test_ext: cpp
-    - zmt_supset: Zeta–M\"obius 变换（超集）
+    - zmt_supset: Zeta–M\"obius 变换(超集)
       code_ext: hpp
       test_ext: cpp
-    - conv_subset: 卷积（子集）
+    - conv_subset: 卷积(子集)
       code_ext: hpp
       test_ext: cpp
-    - conv_and: 卷积（并）
+    - conv_and: 卷积(并)
       code_ext: hpp
       test_ext: cpp
-    - conv_or: 卷积（交）
+    - conv_or: 卷积(交)
       code_ext: hpp
       test_ext: cpp
-    - zmt_divisor: Zeta–M\"obius 变换（因数）
+    - zmt_divisor: Zeta–M\"obius 变换(因数)
       code_ext: hpp
       test_ext: cpp
-    - zmt_multiple: Zeta–M\"obius 变换（倍数）
+    - zmt_multiple: Zeta–M\"obius 变换(倍数)
       code_ext: hpp
       test_ext: cpp
-    - conv_gcd: 卷积（GCD）
+    - conv_gcd: 卷积(GCD)
       code_ext: hpp
       test_ext: cpp
-    - conv_lcm: 卷积（LCM）
+    - conv_lcm: 卷积(LCM)
       code_ext: hpp
       test_ext: cpp
     poly:
     - polydata_convtype: 多项式数据类的卷积类型
       code_ext: hpp
       test_ext: cpp
-    - polydata_d: 多项式数据类（基于 MTT）
+    - polydata_d: 多项式数据类(基于 MTT)
       code_ext: hpp
       test_ext: cpp
-    - polydata_d3ntt: 多项式数据类（基于三模 MTT）
+    - polydata_d3ntt: 多项式数据类(基于三模 MTT)
       code_ext: hpp
       test_ext: cpp
-    - polydata_s: 多项式数据类（基于 NTT）
+    - polydata_s: 多项式数据类(基于 NTT)
       code_ext: hpp
       test_ext: cpp
-    - polydata_s32: 多项式数据类（基于 NTT 32）
+    - polydata_s32: 多项式数据类(基于 NTT 32)
       code_ext: hpp
       test_ext: cpp
-    - polydata_scntt: 多项式数据类（基于 CNTT）
+    - polydata_scntt: 多项式数据类(基于 CNTT)
       code_ext: hpp
       test_ext: cpp
     - poly: 多项式
@@ -1184,7 +1184,7 @@ notebook:
     - kmp: KMP
       code_ext: hpp
       test_ext: cpp
-    - z_func: Z 函数（扩展 KMP）
+    - z_func: Z 函数(扩展 KMP)
       code_ext: hpp
       test_ext: cpp
     - manacher: Manacher
@@ -1205,7 +1205,7 @@ notebook:
     - suffix_automaton: 后缀自动机
       code_ext: hpp
       test_ext: cpp
-    - orthodox_ex_suffix_automaton: 广义后缀自动机（离线）
+    - orthodox_ex_suffix_automaton: 广义后缀自动机(离线)
       code_ext: hpp
       test_ext: cpp
     - ex_suffix_automaton: 广义后缀自动机
@@ -1241,7 +1241,7 @@ notebook:
     - str2uint_si64: 字符串转 u32
       code_ext: hpp
       test_ext: cpp
-    - str2uint_mod: 字符串转整数（取模）
+    - str2uint_mod: 字符串转整数(取模)
       code_ext: hpp
       test_ext: cpp
     - strhex2uint_si64: 16 进制字符串转 u32

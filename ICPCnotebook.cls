@@ -31,7 +31,6 @@
 \RequirePackage{tabularx}
 \RequirePackage{tikz}
 \RequirePackage{tocloft}
-\RequirePackage{ucharclasses}
 \RequirePackage{xspace}
 \RequirePackage{xurl}
 
@@ -40,6 +39,7 @@
 
 % Font setting
 \RequirePackage{fontspec,unicode-math}
+\RequirePackage[CJK,Latin]{ucharclasses}
 \setmainfont{Noto Sans}
 \setsansfont{Fira Sans}
 \setmonofont[Contextuals=Alternate]{Fira Code}
@@ -79,8 +79,8 @@
 
 
 % Page style
-\XeTeXlinebreaklocale "zh"
-\XeTeXlinebreakskip = 0pt plus 1pt
+% \XeTeXlinebreaklocale "zh"
+% \XeTeXlinebreakskip = 0pt plus 1pt
 
 \setlength{\itemindent}{0em}
 \setlength{\parindent}{0em}
