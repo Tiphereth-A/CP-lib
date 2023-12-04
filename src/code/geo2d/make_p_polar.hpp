@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_MAKE_P_POLAR
-#define TIFA_LIBS_GEO2D_MAKE_P_POLAR
+#ifndef TIFALIBS_GEO2D_MAKE_P_POLAR
+#define TIFALIBS_GEO2D_MAKE_P_POLAR
 
 #include "point.hpp"
 

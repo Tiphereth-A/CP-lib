@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_TCENTER_G
-#define TIFA_LIBS_GEO2D_TCENTER_G
+#ifndef TIFALIBS_GEO2D_TCENTER_G
+#define TIFALIBS_GEO2D_TCENTER_G
 
 #include "triangle.hpp"
 

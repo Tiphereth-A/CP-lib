@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_FP_COMP
-#define TIFA_LIBS_UTIL_FP_COMP
+#ifndef TIFALIBS_UTIL_FP_COMP
+#define TIFALIBS_UTIL_FP_COMP
 
 #include "fp_const.hpp"
 #include "traits.hpp"

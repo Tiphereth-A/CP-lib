@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_LUCAS_PP
-#define TIFA_LIBS_MATH_LUCAS_PP
+#ifndef TIFALIBS_COMB_LUCAS_PP
+#define TIFALIBS_COMB_LUCAS_PP
 
 #include "../math/qpow_mod.hpp"
 #include "gen_invseq.hpp"

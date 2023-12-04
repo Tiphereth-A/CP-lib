@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_BSWAP
-#define TIFA_LIBS_BIT_BSWAP
+#ifndef TIFALIBS_BIT_BSWAP
+#define TIFALIBS_BIT_BSWAP
 
 namespace tifa_libs::bit {
 

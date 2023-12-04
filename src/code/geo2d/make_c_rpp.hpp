@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_MAKE_C_RPP
-#define TIFA_LIBS_GEO2D_MAKE_C_RPP
+#ifndef TIFALIBS_GEO2D_MAKE_C_RPP
+#define TIFALIBS_GEO2D_MAKE_C_RPP
 
 #include "ins_cc.hpp"
 

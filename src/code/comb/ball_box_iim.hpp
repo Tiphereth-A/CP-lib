@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_BALL_BOX_IIM
-#define TIFA_LIBS_MATH_BALL_BOX_IIM
+#ifndef TIFALIBS_COMB_BALL_BOX_IIM
+#define TIFALIBS_COMB_BALL_BOX_IIM
 
 #include "../util/util.hpp"
 

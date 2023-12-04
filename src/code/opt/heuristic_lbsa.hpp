@@ -1,16 +1,16 @@
-#ifndef TIFA_LIBS_UTIL_HEURISTIC_LBSA
-#define TIFA_LIBS_UTIL_HEURISTIC_LBSA
+#ifndef TIFALIBS_OPT_HEURISTIC_LBSA
+#define TIFALIBS_OPT_HEURISTIC_LBSA
 
-#include "gen.hpp"
+#include "../rand/gen.hpp"
 
-namespace tifa_libs::rand {
+namespace tifa_libs::opt {
 
 // Ff: Ft(T const &)
 template <class Cont, class Ff, class Ft = f64, class Tt = f64>
 class heuristic_lbsa {
   Ff f;
-  Gen<std::uniform_int_distribution<u32>> g_idx;
-  Gen<std::uniform_real_distribution<Tt>> g;
+  rand::Gen<std::uniform_int_distribution<u32>> g_idx;
+  rand::Gen<std::uniform_real_distribution<Tt>> g;
   Cont x;
   Ft fx;
   pq<Tt> tlist;
@@ -63,6 +63,6 @@ class heuristic_lbsa {
   }
 };
 
-}  // namespace tifa_libs::rand
+}  // namespace tifa_libs::opt
 
 #endif

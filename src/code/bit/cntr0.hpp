@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_CNTR0
-#define TIFA_LIBS_BIT_CNTR0
+#ifndef TIFALIBS_BIT_CNTR0
+#define TIFALIBS_BIT_CNTR0
 
 namespace tifa_libs::bit {
 

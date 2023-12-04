@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_FP_CONST
-#define TIFA_LIBS_UTIL_FP_CONST
+#ifndef TIFALIBS_UTIL_FP_CONST
+#define TIFALIBS_UTIL_FP_CONST
 
 namespace tifa_libs {
 

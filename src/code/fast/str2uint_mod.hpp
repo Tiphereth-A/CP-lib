@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_FAST_STR2UINT_MOD
-#define TIFA_LIBS_FAST_STR2UINT_MOD
+#ifndef TIFALIBS_FAST_STR2UINT_MOD
+#define TIFALIBS_FAST_STR2UINT_MOD
 
 #include "../math/mul_mod_u.hpp"
 #include "str2uint_si64.hpp"

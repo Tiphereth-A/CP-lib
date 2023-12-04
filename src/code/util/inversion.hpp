@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_INVERSION
-#define TIFA_LIBS_UTIL_INVERSION
+#ifndef TIFALIBS_UTIL_INVERSION
+#define TIFALIBS_UTIL_INVERSION
 
 #include "../ds/fenwick.hpp"
 #include "discretization.hpp"

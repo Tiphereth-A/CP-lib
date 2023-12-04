@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_IOS128
-#define TIFA_LIBS_UTIL_IOS128
+#ifndef TIFALIBS_UTIL_IOS128
+#define TIFALIBS_UTIL_IOS128
 
 #include "util.hpp"
 

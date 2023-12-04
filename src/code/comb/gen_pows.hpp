@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GEN_POWS
-#define TIFA_LIBS_MATH_GEN_POWS
+#ifndef TIFALIBS_COMB_GEN_POWS
+#define TIFALIBS_COMB_GEN_POWS
 
 #include "../math/qpow_mod.hpp"
 

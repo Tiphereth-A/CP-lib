@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_ANG2PI_PP
-#define TIFA_LIBS_GEO2D_ANG2PI_PP
+#ifndef TIFALIBS_GEO2D_ANG2PI_PP
+#define TIFALIBS_GEO2D_ANG2PI_PP
 
 #include "ang_pp.hpp"
 

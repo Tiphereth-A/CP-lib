@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_POINT
-#define TIFA_LIBS_GEO2D_POINT
+#ifndef TIFALIBS_GEO2D_POINT
+#define TIFALIBS_GEO2D_POINT
 
 #include "../util/fp_comp.hpp"
 

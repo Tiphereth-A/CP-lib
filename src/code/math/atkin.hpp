@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_ATKIN
-#define TIFA_LIBS_MATH_ATKIN
+#ifndef TIFALIBS_MATH_ATKIN
+#define TIFALIBS_MATH_ATKIN
 
 #include "../util/util.hpp"
 #include "isqrt.hpp"

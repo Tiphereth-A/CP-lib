@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_RINGCNT4
-#define TIFA_LIBS_GRAPH_RINGCNT4
+#ifndef TIFALIBS_GRAPH_RINGCNT4
+#define TIFALIBS_GRAPH_RINGCNT4
 
 #include "alist.hpp"
 

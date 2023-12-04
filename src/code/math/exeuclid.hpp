@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_EXEUCLID
-#define TIFA_LIBS_MATH_EXEUCLID
+#ifndef TIFALIBS_MATH_EXEUCLID
+#define TIFALIBS_MATH_EXEUCLID
 
 #include "../util/util.hpp"
 #include "qpow.hpp"

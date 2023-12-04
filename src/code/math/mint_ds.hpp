@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MINT_DS
-#define TIFA_LIBS_MATH_MINT_DS
+#ifndef TIFALIBS_MATH_MINT_DS
+#define TIFALIBS_MATH_MINT_DS
 
 #include "barrett.hpp"
 #include "inverse.hpp"

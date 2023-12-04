@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_ENUMERATE
-#define TIFA_LIBS_UTIL_ENUMERATE
+#ifndef TIFALIBS_UTIL_ENUMERATE
+#define TIFALIBS_UTIL_ENUMERATE
 
 #include "traits.hpp"
 

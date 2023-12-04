@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_KTH_ROOT
-#define TIFA_LIBS_MATH_KTH_ROOT
+#ifndef TIFALIBS_MATH_KTH_ROOT
+#define TIFALIBS_MATH_KTH_ROOT
 
 #include "../math/inverse.hpp"
 #include "../math/isqrt.hpp"

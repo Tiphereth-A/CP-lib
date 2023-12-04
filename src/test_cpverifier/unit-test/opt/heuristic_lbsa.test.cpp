@@ -1,7 +1,7 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../../code/rand/heuristic_lbsa.hpp"
+#include "../../../code/opt/heuristic_lbsa.hpp"
 
 #include "../base.hpp"
 
@@ -60,7 +60,7 @@ void test(const char* const name, double optimal, u32 L, double p0, u32 K, u32 M
   vec<u32> seq(points.size());
   std::iota(seq.begin(), seq.end(), 0);
   // std::shuffle(seq.begin(), seq.end(), std::mt19937(time(nullptr)));
-  tifa_libs::rand::heuristic_lbsa<vec<u32>, decltype(f)> sa(f, seq, L, p0);
+  tifa_libs::opt::heuristic_lbsa<vec<u32>, decltype(f)> sa(f, seq, L, p0);
   auto [f_solution, solution] = sa(K, M);
 
   {

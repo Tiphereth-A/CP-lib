@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GEN_STIRLING2_ROW
-#define TIFA_LIBS_MATH_GEN_STIRLING2_ROW
+#ifndef TIFALIBS_COMB_GEN_STIRLING2_ROW
+#define TIFALIBS_COMB_GEN_STIRLING2_ROW
 
 #include "../poly/poly.hpp"
 #include "gen_ifact.hpp"

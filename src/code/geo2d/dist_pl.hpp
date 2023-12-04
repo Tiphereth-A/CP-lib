@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_DIST_PL
-#define TIFA_LIBS_GEO2D_DIST_PL
+#ifndef TIFALIBS_GEO2D_DIST_PL
+#define TIFALIBS_GEO2D_DIST_PL
 
 #include "proj.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_CIRCLE
-#define TIFA_LIBS_GEO2D_CIRCLE
+#ifndef TIFALIBS_GEO2D_CIRCLE
+#define TIFALIBS_GEO2D_CIRCLE
 
 #include "point.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GEN_BERNOULLI
-#define TIFA_LIBS_MATH_GEN_BERNOULLI
+#ifndef TIFALIBS_COMB_GEN_BERNOULLI
+#define TIFALIBS_COMB_GEN_BERNOULLI
 
 #include "../poly/poly.hpp"
 #include "../poly/poly_inv.hpp"

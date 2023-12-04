@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_GRAY_CODE
-#define TIFA_LIBS_UTIL_GRAY_CODE
+#ifndef TIFALIBS_UTIL_GRAY_CODE
+#define TIFALIBS_UTIL_GRAY_CODE
 
 #include "util.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_UTIL
-#define TIFA_LIBS_UTIL_UTIL
+#ifndef TIFALIBS_UTIL_UTIL
+#define TIFALIBS_UTIL_UTIL
 
 #include <bits/stdc++.h>
 

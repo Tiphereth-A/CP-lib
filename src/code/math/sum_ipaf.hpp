@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_SUM_IPAF
-#define TIFA_LIBS_MATH_SUM_IPAF
+#ifndef TIFALIBS_MATH_SUM_IPAF
+#define TIFALIBS_MATH_SUM_IPAF
 
 #include "../comb/binom.hpp"
 #include "lagrange_interp0.hpp"

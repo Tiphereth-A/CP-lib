@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_TREE_CENTROID
-#define TIFA_LIBS_TREE_CENTROID
+#ifndef TIFALIBS_TREE_CENTROID
+#define TIFALIBS_TREE_CENTROID
 
 #include "tree.hpp"
 

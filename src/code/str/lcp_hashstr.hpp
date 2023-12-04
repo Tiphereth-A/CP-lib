@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_STR_LCP_HASHSTR
-#define TIFA_LIBS_STR_LCP_HASHSTR
+#ifndef TIFALIBS_STR_LCP_HASHSTR
+#define TIFALIBS_STR_LCP_HASHSTR
 
 #include "../util/util.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_BALL_BOX_IIA
-#define TIFA_LIBS_MATH_BALL_BOX_IIA
+#ifndef TIFALIBS_COMB_BALL_BOX_IIA
+#define TIFALIBS_COMB_BALL_BOX_IIA
 
 #include "gen_ball_box_ii.hpp"
 

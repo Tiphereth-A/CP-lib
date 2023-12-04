@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_REL_POP
-#define TIFA_LIBS_GEO2D_REL_POP
+#ifndef TIFALIBS_GEO2D_REL_POP
+#define TIFALIBS_GEO2D_REL_POP
 
 #include "cvh.hpp"
 #include "is_on_s.hpp"

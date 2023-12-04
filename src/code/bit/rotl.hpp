@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_ROTL
-#define TIFA_LIBS_BIT_ROTL
+#ifndef TIFALIBS_BIT_ROTL
+#define TIFALIBS_BIT_ROTL
 
 namespace tifa_libs::bit {
 

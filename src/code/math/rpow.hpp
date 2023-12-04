@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_RPOW
-#define TIFA_LIBS_MATH_RPOW
+#ifndef TIFALIBS_MATH_RPOW
+#define TIFALIBS_MATH_RPOW
 
 #include "mul_mod_u.hpp"
 

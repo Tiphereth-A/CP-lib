@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_TSH
-#define TIFALIBS_POLY_TSH
+#ifndef TIFALIBS_POLY_POLY_TSH
+#define TIFALIBS_POLY_POLY_TSH
 
 #include "../comb/gen_fact.hpp"
 #include "../comb/gen_ifact.hpp"

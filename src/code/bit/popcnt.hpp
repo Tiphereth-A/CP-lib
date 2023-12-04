@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_POPCNT
-#define TIFA_LIBS_BIT_POPCNT
+#ifndef TIFALIBS_BIT_POPCNT
+#define TIFALIBS_BIT_POPCNT
 
 namespace tifa_libs::bit {
 

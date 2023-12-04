@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_INV_P2P
-#define TIFA_LIBS_GEO2D_INV_P2P
+#ifndef TIFALIBS_GEO2D_INV_P2P
+#define TIFALIBS_GEO2D_INV_P2P
 
 #include "circle.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_BSGS
-#define TIFA_LIBS_MATH_BSGS
+#ifndef TIFALIBS_MATH_BSGS
+#define TIFALIBS_MATH_BSGS
 
 #include "../util/hash_splitmix64.hpp"
 #include "isqrt.hpp"

@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_SQRT
-#define TIFALIBS_POLY_SQRT
+#ifndef TIFALIBS_POLY_POLY_SQRT
+#define TIFALIBS_POLY_POLY_SQRT
 
 #include "../math/qresidue.hpp"
 #include "poly_inv.hpp"

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_ALIST
-#define TIFA_LIBS_GRAPH_ALIST
+#ifndef TIFALIBS_GRAPH_ALIST
+#define TIFALIBS_GRAPH_ALIST
 
 #include "../util/util.hpp"
 

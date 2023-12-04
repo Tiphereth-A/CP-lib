@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_MIN_DIS_PS
-#define TIFA_LIBS_GEO2D_MIN_DIS_PS
+#ifndef TIFALIBS_GEO2D_MIN_DIS_PS
+#define TIFALIBS_GEO2D_MIN_DIS_PS
 
 #include "dist_pp.hpp"
 

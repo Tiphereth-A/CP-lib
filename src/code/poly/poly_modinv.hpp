@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_MODINV
-#define TIFALIBS_POLY_MODINV
+#ifndef TIFALIBS_POLY_POLY_MODINV
+#define TIFALIBS_POLY_POLY_MODINV
 
 #include "poly_gcd.hpp"
 

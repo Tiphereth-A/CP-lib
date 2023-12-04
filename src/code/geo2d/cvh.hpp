@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_CVH
-#define TIFA_LIBS_GEO2D_CVH
+#ifndef TIFALIBS_GEO2D_CVH
+#define TIFALIBS_GEO2D_CVH
 
 #include "ins_ll.hpp"
 #include "polygon.hpp"

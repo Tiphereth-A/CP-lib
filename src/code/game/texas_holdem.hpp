@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_TEXAS_HOLDEM
-#define TIFA_LIBS_UTIL_TEXAS_HOLDEM
+#ifndef TIFALIBS_GAME_TEXAS_HOLDEM
+#define TIFALIBS_GAME_TEXAS_HOLDEM
 
 #include "../bit/cntlsb.hpp"
 #include "../util/util.hpp"

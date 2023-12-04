@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_LEFTIST_TREE
-#define TIFA_LIBS_DS_LEFTIST_TREE
+#ifndef TIFALIBS_DS_LEFTIST_TREE
+#define TIFALIBS_DS_LEFTIST_TREE
 
 #include "../util/util.hpp"
 

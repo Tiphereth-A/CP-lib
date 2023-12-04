@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_LSIEVE2
-#define TIFA_LIBS_MATH_LSIEVE2
+#ifndef TIFALIBS_MATH_LSIEVE2
+#define TIFALIBS_MATH_LSIEVE2
 
 #include "../util/util.hpp"
 

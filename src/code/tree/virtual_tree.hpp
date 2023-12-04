@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_TREE_VIRTUAL_TREE
-#define TIFA_LIBS_TREE_VIRTUAL_TREE
+#ifndef TIFALIBS_TREE_VIRTUAL_TREE
+#define TIFALIBS_TREE_VIRTUAL_TREE
 
 #include "lca_hld.hpp"
 #include "tree.hpp"

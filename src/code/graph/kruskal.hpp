@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_KRUSKAL
-#define TIFA_LIBS_GRAPH_KRUSKAL
+#ifndef TIFALIBS_GRAPH_KRUSKAL
+#define TIFALIBS_GRAPH_KRUSKAL
 
 #include "../ds/dsu_basic.hpp"
 #include "../tree/treew.hpp"

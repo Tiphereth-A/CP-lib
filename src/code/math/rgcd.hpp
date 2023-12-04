@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_RGCD
-#define TIFA_LIBS_MATH_RGCD
+#ifndef TIFALIBS_MATH_RGCD
+#define TIFALIBS_MATH_RGCD
 
 #include "isqrt.hpp"
 #include "lsieve.hpp"

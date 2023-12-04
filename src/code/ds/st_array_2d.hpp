@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_ST_ARRAY_2D
-#define TIFA_LIBS_DS_ST_ARRAY_2D
+#ifndef TIFALIBS_DS_ST_ARRAY_2D
+#define TIFALIBS_DS_ST_ARRAY_2D
 
 #include "../bit/log2.hpp"
 #include "../util/util.hpp"

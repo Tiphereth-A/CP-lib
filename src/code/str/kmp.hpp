@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_STR_KMP
-#define TIFA_LIBS_STR_KMP
+#ifndef TIFALIBS_STR_KMP
+#define TIFALIBS_STR_KMP
 
 #include "../util/util.hpp"
 

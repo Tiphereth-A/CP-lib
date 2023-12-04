@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_SUM_IK_FUNC
-#define TIFA_LIBS_MATH_SUM_IK_FUNC
+#ifndef TIFALIBS_MATH_SUM_IK_FLIST
+#define TIFALIBS_MATH_SUM_IK_FLIST
 
 namespace tifa_libs::math {
 

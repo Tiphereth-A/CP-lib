@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLYSPS_COMP
-#define TIFALIBS_POLYSPS_COMP
+#ifndef TIFALIBS_POLY_POLYSPS_COMP
+#define TIFALIBS_POLY_POLYSPS_COMP
 
 #include "../comb/gen_fact.hpp"
 #include "../comb/gen_ifact.hpp"

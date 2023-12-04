@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_TREE_PRUFER
-#define TIFA_LIBS_TREE_PRUFER
+#ifndef TIFALIBS_TREE_PRUFER
+#define TIFALIBS_TREE_PRUFER
 
 #include "../util/util.hpp"
 

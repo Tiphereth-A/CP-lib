@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GEN_STIRLING1_ROW
-#define TIFA_LIBS_MATH_GEN_STIRLING1_ROW
+#ifndef TIFALIBS_COMB_GEN_STIRLING1_ROW
+#define TIFALIBS_COMB_GEN_STIRLING1_ROW
 
 #include "../bit/cntl0.hpp"
 #include "../poly/poly.hpp"

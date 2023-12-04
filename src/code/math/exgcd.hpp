@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_EXGCD
-#define TIFA_LIBS_MATH_EXGCD
+#ifndef TIFALIBS_MATH_EXGCD
+#define TIFALIBS_MATH_EXGCD
 
 #include "../util/util.hpp"
 

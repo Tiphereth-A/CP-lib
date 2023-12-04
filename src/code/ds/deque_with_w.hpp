@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_DEQUE_WITH_W
-#define TIFA_LIBS_DS_DEQUE_WITH_W
+#ifndef TIFALIBS_DS_DEQUE_WITH_W
+#define TIFALIBS_DS_DEQUE_WITH_W
 
 #include "../util/util.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_INS_HP
-#define TIFA_LIBS_GEO2D_INS_HP
+#ifndef TIFALIBS_GEO2D_INS_HP
+#define TIFALIBS_GEO2D_INS_HP
 
 #include "cvh.hpp"
 

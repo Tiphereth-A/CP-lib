@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MEX
-#define TIFA_LIBS_MATH_MEX
+#ifndef TIFALIBS_MATH_MEX
+#define TIFALIBS_MATH_MEX
 
 #include "../util/util.hpp"
 

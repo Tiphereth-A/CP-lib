@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_CANTOR
-#define TIFA_LIBS_MATH_CANTOR
+#ifndef TIFALIBS_MATH_CANTOR
+#define TIFALIBS_MATH_CANTOR
 
 #include "../ds/fenwick.hpp"
 

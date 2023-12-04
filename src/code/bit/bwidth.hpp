@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_BWIDTH
-#define TIFA_LIBS_BIT_BWIDTH
+#ifndef TIFALIBS_BIT_BWIDTH
+#define TIFALIBS_BIT_BWIDTH
 
 #include "cntl0.hpp"
 

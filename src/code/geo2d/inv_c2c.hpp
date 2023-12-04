@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_INV_C2C
-#define TIFA_LIBS_GEO2D_INV_C2C
+#ifndef TIFALIBS_GEO2D_INV_C2C
+#define TIFALIBS_GEO2D_INV_C2C
 
 #include "inv_p2p.hpp"
 

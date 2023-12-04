@@ -1,7 +1,7 @@
-#ifndef TIFA_LIBS_GEO2D_POLY_FERMATP
-#define TIFA_LIBS_GEO2D_POLY_FERMATP
+#ifndef TIFALIBS_GEO2D_POLY_FERMATP
+#define TIFALIBS_GEO2D_POLY_FERMATP
 
-#include "../rand/heuristic_sa.hpp"
+#include "../opt/heuristic_sa.hpp"
 #include "make_p_polar.hpp"
 #include "poly_massp.hpp"
 
@@ -17,7 +17,7 @@ point<FP> fermatp(polygon<FP> const &po, FP begin = 1e10, FP end = EPS<FP>, FP d
     for (u32 i = 0; i < po.vs.size(); ++i) dis += dist_PP(po.vs[i], p);
     return dis;
   };
-  rand::heuristic_sa<point<FP>, decltype(gen), decltype(fitness), FP, FP> sa(gen, fitness, begin, end, delta);
+  opt::heuristic_sa<point<FP>, decltype(gen), decltype(fitness), FP, FP> sa(gen, fitness, begin, end, delta);
   return sa(sa(sa(poly_massp(po)).second).second).second;
 }
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MAT_UHB
-#define TIFA_LIBS_MATH_MAT_UHB
+#ifndef TIFALIBS_MATRIX_MAT_UHB
+#define TIFALIBS_MATRIX_MAT_UHB
 
 #include "../util/util.hpp"
 

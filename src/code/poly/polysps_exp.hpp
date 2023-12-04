@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLYSPS_EXP
-#define TIFALIBS_POLYSPS_EXP
+#ifndef TIFALIBS_POLY_POLYSPS_EXP
+#define TIFALIBS_POLY_POLYSPS_EXP
 
 #include "../conv/conv_subset.hpp"
 

@@ -11,6 +11,7 @@ notebook:
     util: 杂项
     bit: 位操作
     ds: 数据结构
+    opt: 最优化
     graph: 图论
     tree: 树
     geo2d: 二维计算几何
@@ -114,9 +115,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - unordered_stl_hacker: unordered STL hacker
-      code_ext: hpp
-      test_ext: cpp
-    - tsearch: 三分
       code_ext: hpp
       test_ext: cpp
     - odt: 珂朵莉树
@@ -466,6 +464,16 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - polyhedron: 多面体
+      code_ext: hpp
+      test_ext: cpp
+    opt:
+    - tsearch: 三分
+      code_ext: hpp
+      test_ext: cpp
+    - heuristic_sa: 模拟退火
+      code_ext: hpp
+      test_ext: cpp
+    - heuristic_lbsa: List-Based 模拟退火
       code_ext: hpp
       test_ext: cpp
     graph:
@@ -1219,12 +1227,6 @@ notebook:
       test_ext: cpp
     rand:
     - gen: 随机数生成辅助类
-      code_ext: hpp
-      test_ext: cpp
-    - heuristic_sa: 模拟退火
-      code_ext: hpp
-      test_ext: cpp
-    - heuristic_lbsa: List-Based 模拟退火
       code_ext: hpp
       test_ext: cpp
     game:

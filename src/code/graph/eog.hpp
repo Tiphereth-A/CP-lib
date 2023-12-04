@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_EOG
-#define TIFA_LIBS_GRAPH_EOG
+#ifndef TIFALIBS_GRAPH_EOG
+#define TIFALIBS_GRAPH_EOG
 
 #include "../util/util.hpp"
 

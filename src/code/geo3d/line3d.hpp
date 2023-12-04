@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO3D_LINE3D
-#define TIFA_LIBS_GEO3D_LINE3D
+#ifndef TIFALIBS_GEO3D_LINE3D
+#define TIFALIBS_GEO3D_LINE3D
 
 #include "point3d.hpp"
 

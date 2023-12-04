@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_FFS
-#define TIFA_LIBS_BIT_FFS
+#ifndef TIFALIBS_BIT_FFS
+#define TIFALIBS_BIT_FFS
 
 namespace tifa_libs::bit {
 

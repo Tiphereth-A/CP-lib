@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_SIMPSON
-#define TIFA_LIBS_MATH_SIMPSON
+#ifndef TIFALIBS_MATH_SIMPSON
+#define TIFALIBS_MATH_SIMPSON
 
 #include "../util/util.hpp"
 

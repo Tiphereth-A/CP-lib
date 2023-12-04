@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_IS_PROOT
-#define TIFA_LIBS_MATH_IS_PROOT
+#ifndef TIFALIBS_MATH_IS_PROOT
+#define TIFALIBS_MATH_IS_PROOT
 
 #include "qpow_mod.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_VEC_OP
-#define TIFA_LIBS_UTIL_VEC_OP
+#ifndef TIFALIBS_UTIL_VEC_OP
+#define TIFALIBS_UTIL_VEC_OP
 
 #include "util.hpp"
 

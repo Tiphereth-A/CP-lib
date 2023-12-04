@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_INT
-#define TIFALIBS_POLY_INT
+#ifndef TIFALIBS_POLY_POLY_INT
+#define TIFALIBS_POLY_POLY_INT
 
 #include "poly.hpp"
 

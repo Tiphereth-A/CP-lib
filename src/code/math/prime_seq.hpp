@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_PRIME_SEQ
-#define TIFA_LIBS_MATH_PRIME_SEQ
+#ifndef TIFALIBS_MATH_PRIME_SEQ
+#define TIFALIBS_MATH_PRIME_SEQ
 
 #include "isqrt.hpp"
 

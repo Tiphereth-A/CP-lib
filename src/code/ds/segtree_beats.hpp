@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_SEGTREE_BEATS
-#define TIFA_LIBS_DS_SEGTREE_BEATS
+#ifndef TIFALIBS_DS_SEGTREE_BEATS
+#define TIFALIBS_DS_SEGTREE_BEATS
 
 #include "../util/util.hpp"
 

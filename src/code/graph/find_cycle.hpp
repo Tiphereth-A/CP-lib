@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_FIND_CYCLE
-#define TIFA_LIBS_GRAPH_FIND_CYCLE
+#ifndef TIFALIBS_GRAPH_FIND_CYCLE
+#define TIFALIBS_GRAPH_FIND_CYCLE
 
 #include "alist.hpp"
 

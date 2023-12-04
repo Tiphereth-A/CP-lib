@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_EOGW
-#define TIFA_LIBS_GRAPH_EOGW
+#ifndef TIFALIBS_GRAPH_EOGW
+#define TIFALIBS_GRAPH_EOGW
 
 #include "../util/util.hpp"
 

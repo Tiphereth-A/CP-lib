@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_TREE_LCA_HLD
-#define TIFA_LIBS_TREE_LCA_HLD
+#ifndef TIFALIBS_TREE_LCA_HLD
+#define TIFALIBS_TREE_LCA_HLD
 
 #include "dfs_info.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_DIST_PP_CH
-#define TIFA_LIBS_GEO2D_DIST_PP_CH
+#ifndef TIFALIBS_GEO2D_DIST_PP_CH
+#define TIFALIBS_GEO2D_DIST_PP_CH
 
 #include "point.hpp"
 

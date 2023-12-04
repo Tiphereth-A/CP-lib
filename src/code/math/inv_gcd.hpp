@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_INV_GCD
-#define TIFA_LIBS_MATH_INV_GCD
+#ifndef TIFALIBS_MATH_INV_GCD
+#define TIFALIBS_MATH_INV_GCD
 
 #include "exgcd.hpp"
 #include "safe_mod.hpp"

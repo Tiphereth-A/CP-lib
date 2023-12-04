@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_DSU_BASIC
-#define TIFA_LIBS_DS_DSU_BASIC
+#ifndef TIFALIBS_DS_DSU_BASIC
+#define TIFALIBS_DS_DSU_BASIC
 
 #include "../util/util.hpp"
 

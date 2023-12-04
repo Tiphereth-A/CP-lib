@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GEN_INVSEQ
-#define TIFA_LIBS_MATH_GEN_INVSEQ
+#ifndef TIFALIBS_COMB_GEN_INVSEQ
+#define TIFALIBS_COMB_GEN_INVSEQ
 
 #include "../math/inverse.hpp"
 #include "../math/mul_mod_u.hpp"

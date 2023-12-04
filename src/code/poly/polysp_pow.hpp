@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLYSP_POW
-#define TIFALIBS_POLYSP_POW
+#ifndef TIFALIBS_POLY_POLYSP_POW
+#define TIFALIBS_POLY_POLYSP_POW
 
 #include "../comb/gen_inv.hpp"
 #include "../math/qpow.hpp"

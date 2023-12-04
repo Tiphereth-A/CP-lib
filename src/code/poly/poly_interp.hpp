@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_INTERP
-#define TIFALIBS_POLY_INTERP
+#ifndef TIFALIBS_POLY_POLY_INTERP
+#define TIFALIBS_POLY_POLY_INTERP
 
 #include "poly_deriv.hpp"
 #include "poly_mpe.hpp"

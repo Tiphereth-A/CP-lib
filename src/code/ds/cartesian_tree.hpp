@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_CARTESIAN_TREE
-#define TIFA_LIBS_DS_CARTESIAN_TREE
+#ifndef TIFALIBS_DS_CARTESIAN_TREE
+#define TIFALIBS_DS_CARTESIAN_TREE
 
 #include "../util/util.hpp"
 

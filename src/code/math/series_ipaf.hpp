@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_SERIES_IPAF
-#define TIFA_LIBS_MATH_SERIES_IPAF
+#ifndef TIFALIBS_MATH_SERIES_IPAF
+#define TIFALIBS_MATH_SERIES_IPAF
 
 #include "../comb/binom.hpp"
 #include "qpow.hpp"

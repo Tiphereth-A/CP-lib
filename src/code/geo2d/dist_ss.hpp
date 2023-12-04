@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_DIST_SS
-#define TIFA_LIBS_GEO2D_DIST_SS
+#ifndef TIFALIBS_GEO2D_DIST_SS
+#define TIFALIBS_GEO2D_DIST_SS
 
 #include "dist_ps.hpp"
 #include "is_ins_ss.hpp"

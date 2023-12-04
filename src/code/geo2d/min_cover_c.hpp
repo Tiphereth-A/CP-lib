@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_MIN_COVER_C
-#define TIFA_LIBS_GEO2D_MIN_COVER_C
+#ifndef TIFALIBS_GEO2D_MIN_COVER_C
+#define TIFALIBS_GEO2D_MIN_COVER_C
 
 #include "make_c_ppp.hpp"
 #include "rel_cp.hpp"

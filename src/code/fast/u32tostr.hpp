@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_FAST_UINT2STR_32
-#define TIFA_LIBS_FAST_UINT2STR_32
+#ifndef TIFALIBS_FAST_UINT2STR_32
+#define TIFALIBS_FAST_UINT2STR_32
 
 #include "../util/util.hpp"
 

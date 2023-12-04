@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_MAX_AREA_T
-#define TIFA_LIBS_GEO2D_MAX_AREA_T
+#ifndef TIFALIBS_GEO2D_MAX_AREA_T
+#define TIFALIBS_GEO2D_MAX_AREA_T
 
 #include "cvh.hpp"
 #include "triangle.hpp"

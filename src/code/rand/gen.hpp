@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_RAND_GEN
-#define TIFA_LIBS_UTIL_RAND_GEN
+#ifndef TIFALIBS_RAND_GEN
+#define TIFALIBS_RAND_GEN
 
 #include "../util/util.hpp"
 

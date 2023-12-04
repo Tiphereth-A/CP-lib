@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_DIJKSTRA
-#define TIFA_LIBS_GRAPH_DIJKSTRA
+#ifndef TIFALIBS_GRAPH_DIJKSTRA
+#define TIFALIBS_GRAPH_DIJKSTRA
 
 #include "../util/traits.hpp"
 #include "alistw.hpp"

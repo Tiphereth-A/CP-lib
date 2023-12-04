@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_IS_ON_S
-#define TIFA_LIBS_GEO2D_IS_ON_S
+#ifndef TIFALIBS_GEO2D_IS_ON_S
+#define TIFALIBS_GEO2D_IS_ON_S
 
 #include "is_on_same_l.hpp"
 #include "line.hpp"

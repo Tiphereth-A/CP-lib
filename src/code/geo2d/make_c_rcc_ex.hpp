@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_MAKE_C_RCC_EX
-#define TIFA_LIBS_GEO2D_MAKE_C_RCC_EX
+#ifndef TIFALIBS_GEO2D_MAKE_C_RCC_EX
+#define TIFALIBS_GEO2D_MAKE_C_RCC_EX
 
 #include "ins_cc.hpp"
 #include "rel_cc.hpp"

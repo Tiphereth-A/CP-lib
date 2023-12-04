@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_CZT
-#define TIFALIBS_POLY_CZT
+#ifndef TIFALIBS_POLY_POLY_CZT
+#define TIFALIBS_POLY_POLY_CZT
 
 #include "../math/rpow.hpp"
 #include "poly.hpp"

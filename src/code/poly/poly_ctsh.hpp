@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_CTSH
-#define TIFALIBS_POLY_CTSH
+#ifndef TIFALIBS_POLY_POLY_CTSH
+#define TIFALIBS_POLY_POLY_CTSH
 
 #include "../comb/gen_ifact.hpp"
 #include "poly.hpp"

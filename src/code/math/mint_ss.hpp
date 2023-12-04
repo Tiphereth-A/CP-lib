@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MINT_SS
-#define TIFA_LIBS_MATH_MINT_SS
+#ifndef TIFALIBS_MATH_MINT_SS
+#define TIFALIBS_MATH_MINT_SS
 
 #include "inverse.hpp"
 

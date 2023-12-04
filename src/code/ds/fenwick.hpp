@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_FENWICK
-#define TIFA_LIBS_DS_FENWICK
+#ifndef TIFALIBS_DS_FENWICK
+#define TIFALIBS_DS_FENWICK
 
 #include "../bit/bceil.hpp"
 #include "../bit/lowbit.hpp"

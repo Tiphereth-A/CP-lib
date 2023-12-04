@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_TREE_TREE_SUMVW
-#define TIFA_LIBS_TREE_TREE_SUMVW
+#ifndef TIFALIBS_TREE_TREE_SUMVW
+#define TIFALIBS_TREE_TREE_SUMVW
 
 #include "../graph/dfs.hpp"
 #include "tree.hpp"

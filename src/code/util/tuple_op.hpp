@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_TUPLE_OP
-#define TIFA_LIBS_UTIL_TUPLE_OP
+#ifndef TIFALIBS_UTIL_TUPLE_OP
+#define TIFALIBS_UTIL_TUPLE_OP
 
 #include "tuple_push_pop.hpp"
 

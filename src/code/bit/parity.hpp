@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_PARITY
-#define TIFA_LIBS_BIT_PARITY
+#ifndef TIFALIBS_BIT_PARITY
+#define TIFALIBS_BIT_PARITY
 
 namespace tifa_libs::bit {
 

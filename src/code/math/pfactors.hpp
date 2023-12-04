@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_PFACTORS
-#define TIFA_LIBS_MATH_PFACTORS
+#ifndef TIFALIBS_MATH_PFACTORS
+#define TIFALIBS_MATH_PFACTORS
 
 #include "../bit/cntr0.hpp"
 #include "../rand/gen.hpp"

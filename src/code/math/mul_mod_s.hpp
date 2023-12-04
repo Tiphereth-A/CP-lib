@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MUL_MOD_S
-#define TIFA_LIBS_MATH_MUL_MOD_S
+#ifndef TIFALIBS_MATH_MUL_MOD_S
+#define TIFALIBS_MATH_MUL_MOD_S
 
 #include "../bit/bwidth.hpp"
 #include "../util/abs_constexpr.hpp"

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_NTT_DOUBLING
-#define TIFA_LIBS_MATH_NTT_DOUBLING
+#ifndef TIFALIBS_CONV_NTT_DOUBLING
+#define TIFALIBS_CONV_NTT_DOUBLING
 
 #include "../bit/ispow2.hpp"
 #include "../math/qpow.hpp"

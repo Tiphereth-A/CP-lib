@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_PAIR_OP
-#define TIFA_LIBS_UTIL_PAIR_OP
+#ifndef TIFALIBS_UTIL_PAIR_OP
+#define TIFALIBS_UTIL_PAIR_OP
 
 #include "util.hpp"
 

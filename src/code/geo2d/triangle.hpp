@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D
-#define TIFA_LIBS_GEO2D
+#ifndef TIFALIBS_GEO2D_TRIANGLE
+#define TIFALIBS_GEO2D_TRIANGLE
 
 #include "ang_pp.hpp"
 #include "cross.hpp"

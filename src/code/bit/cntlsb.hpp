@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_CNTLSB
-#define TIFA_LIBS_BIT_CNTLSB
+#ifndef TIFALIBS_BIT_CNTLSB
+#define TIFALIBS_BIT_CNTLSB
 
 namespace tifa_libs::bit {
 

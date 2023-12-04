@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_LUCAS
-#define TIFA_LIBS_MATH_LUCAS
+#ifndef TIFALIBS_COMB_LUCAS
+#define TIFALIBS_COMB_LUCAS
 
 #include "binom.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_BALL_BOX_DDL
-#define TIFA_LIBS_MATH_BALL_BOX_DDL
+#ifndef TIFALIBS_COMB_BALL_BOX_DDL
+#define TIFALIBS_COMB_BALL_BOX_DDL
 
 #include "binom.hpp"
 #include "gen_pows.hpp"

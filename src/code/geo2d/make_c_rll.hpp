@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_MAKE_C_RLL
-#define TIFA_LIBS_GEO2D_MAKE_C_RLL
+#ifndef TIFALIBS_GEO2D_MAKE_C_RLL
+#define TIFALIBS_GEO2D_MAKE_C_RLL
 
 #include "circle.hpp"
 #include "ins_ll.hpp"

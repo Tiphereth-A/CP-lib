@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_NTH_TERM_LREC
-#define TIFA_LIBS_MATH_NTH_TERM_LREC
+#ifndef TIFALIBS_MATH_NTH_TERM_LREC
+#define TIFALIBS_MATH_NTH_TERM_LREC
 
 #include "../poly/bostan_mori.hpp"
 #include "berlekamp_massey.hpp"

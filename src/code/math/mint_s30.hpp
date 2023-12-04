@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MINT_S30
-#define TIFA_LIBS_MATH_MINT_S30
+#ifndef TIFALIBS_MATH_MINT_S30
+#define TIFALIBS_MATH_MINT_S30
 
 #include "../util/util.hpp"
 

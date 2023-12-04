@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_REL_CS
-#define TIFA_LIBS_GEO2D_REL_CS
+#ifndef TIFALIBS_GEO2D_REL_CS
+#define TIFALIBS_GEO2D_REL_CS
 
 #include "circle.hpp"
 #include "line.hpp"

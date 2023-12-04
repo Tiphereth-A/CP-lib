@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_PATH
-#define TIFA_LIBS_GRAPH_PATH
+#ifndef TIFALIBS_GRAPH_PATH
+#define TIFALIBS_GRAPH_PATH
 
 #include "alist.hpp"
 

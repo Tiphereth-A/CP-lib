@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_DU_SIEVE
-#define TIFA_LIBS_MATH_DU_SIEVE
+#ifndef TIFALIBS_MATH_DU_SIEVE
+#define TIFALIBS_MATH_DU_SIEVE
 
 #include "../util/hash_splitmix64.hpp"
 #include "do_quot.hpp"

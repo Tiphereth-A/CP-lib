@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_BASE64
-#define TIFA_LIBS_UTIL_BASE64
+#ifndef TIFALIBS_UTIL_BASE64
+#define TIFALIBS_UTIL_BASE64
 
 #include "../bit/cntl0.hpp"
 #include "util.hpp"

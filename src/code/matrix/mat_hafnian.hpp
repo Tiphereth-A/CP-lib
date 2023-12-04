@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MAT_HAFNIAN
-#define TIFA_LIBS_MATH_MAT_HAFNIAN
+#ifndef TIFALIBS_MATRIX_MAT_HAFNIAN
+#define TIFALIBS_MATRIX_MAT_HAFNIAN
 
 #include "../util/util.hpp"
 

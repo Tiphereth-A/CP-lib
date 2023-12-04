@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_DIVMOD
-#define TIFALIBS_POLY_DIVMOD
+#ifndef TIFALIBS_POLY_POLY_DIVMOD
+#define TIFALIBS_POLY_POLY_DIVMOD
 
 #include "poly_div.hpp"
 

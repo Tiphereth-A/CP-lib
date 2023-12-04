@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_ALISTRW
-#define TIFA_LIBS_GRAPH_ALISTRW
+#ifndef TIFALIBS_GRAPH_ALISTRW
+#define TIFALIBS_GRAPH_ALISTRW
 
 #include "alistw.hpp"
 

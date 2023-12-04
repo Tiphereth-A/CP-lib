@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_POINT_IS_IN_MIDDLE
-#define TIFA_LIBS_GEO2D_POINT_IS_IN_MIDDLE
+#ifndef TIFALIBS_GEO2D_POINT_IS_IN_MIDDLE
+#define TIFALIBS_GEO2D_POINT_IS_IN_MIDDLE
 
 #include "../util/fp_range_is_in_middle.hpp"
 #include "point.hpp"

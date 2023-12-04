@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_LAGRANGE_INTERP0
-#define TIFA_LIBS_MATH_LAGRANGE_INTERP0
+#ifndef TIFALIBS_MATH_LAGRANGE_INTERP0
+#define TIFALIBS_MATH_LAGRANGE_INTERP0
 
 #include "../comb/gen_ifact.hpp"
 #include "mul_mod_s.hpp"

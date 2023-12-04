@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_IS_PROOT_NIMBER
-#define TIFA_LIBS_MATH_IS_PROOT_NIMBER
+#ifndef TIFALIBS_MATH_IS_PROOT_NIMBER
+#define TIFALIBS_MATH_IS_PROOT_NIMBER
 
 #include "nimber.hpp"
 #include "qpow.hpp"

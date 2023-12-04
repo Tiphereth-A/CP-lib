@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_EULER_PHI_U32
-#define TIFA_LIBS_MATH_EULER_PHI_U32
+#ifndef TIFALIBS_MATH_EULER_PHI_U32
+#define TIFALIBS_MATH_EULER_PHI_U32
 
 #include "isqrt.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_DIST_PS
-#define TIFA_LIBS_GEO2D_DIST_PS
+#ifndef TIFALIBS_GEO2D_DIST_PS
+#define TIFALIBS_GEO2D_DIST_PS
 
 #include "dist_pp.hpp"
 #include "point_is_in_middle.hpp"

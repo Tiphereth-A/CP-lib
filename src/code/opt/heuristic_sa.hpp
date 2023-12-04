@@ -1,9 +1,9 @@
-#ifndef TIFA_LIBS_UTIL_HEURISTIC_SA
-#define TIFA_LIBS_UTIL_HEURISTIC_SA
+#ifndef TIFALIBS_OPT_HEURISTIC_SA
+#define TIFALIBS_OPT_HEURISTIC_SA
 
-#include "gen.hpp"
+#include "../rand/gen.hpp"
 
-namespace tifa_libs::rand {
+namespace tifa_libs::opt {
 
 // Fg: T(T const &, Tt)
 // Ff: Ft(T const &)
@@ -12,7 +12,7 @@ class heuristic_sa {
   Fg gen;
   Ff f;
   const Tt Tmax, Tmin, dT;
-  Gen<std::uniform_real_distribution<Tt>> g;
+  rand::Gen<std::uniform_real_distribution<Tt>> g;
 
  public:
   // Find minimum argument of f(x)
@@ -32,6 +32,6 @@ class heuristic_sa {
   }
 };
 
-}  // namespace tifa_libs::rand
+}  // namespace tifa_libs::opt
 
 #endif

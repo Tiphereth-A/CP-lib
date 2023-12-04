@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_SEGTREE
-#define TIFA_LIBS_DS_SEGTREE
+#ifndef TIFALIBS_DS_SEGTREE
+#define TIFALIBS_DS_SEGTREE
 
 #include "../util/util.hpp"
 

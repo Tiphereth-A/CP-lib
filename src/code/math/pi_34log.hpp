@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_PI_34LOG
-#define TIFA_LIBS_MATH_PI_34LOG
+#ifndef TIFALIBS_MATH_PI_34LOG
+#define TIFALIBS_MATH_PI_34LOG
 
 #include "div64.hpp"
 #include "isqrt.hpp"

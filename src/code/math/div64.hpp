@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_DIV_u64
-#define TIFA_LIBS_MATH_DIV_u64
+#ifndef TIFALIBS_MATH_DIV64
+#define TIFALIBS_MATH_DIV64
 
 #include "../util/util.hpp"
 

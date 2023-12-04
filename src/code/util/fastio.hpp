@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_FASTIO
-#define TIFA_LIBS_UTIL_FASTIO
+#ifndef TIFALIBS_UTIL_FASTIO
+#define TIFALIBS_UTIL_FASTIO
 
 #include "../fast/u32tostr.hpp"
 #include "traits.hpp"

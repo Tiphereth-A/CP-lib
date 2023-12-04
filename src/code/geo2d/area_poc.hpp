@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_AREA_POC
-#define TIFA_LIBS_GEO2D_AREA_POC
+#ifndef TIFALIBS_GEO2D_AREA_POC
+#define TIFALIBS_GEO2D_AREA_POC
 
 #include "circle.hpp"
 #include "polygon.hpp"

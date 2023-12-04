@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GEN_STIRLING2_COL
-#define TIFA_LIBS_MATH_GEN_STIRLING2_COL
+#ifndef TIFALIBS_COMB_GEN_STIRLING2_COL
+#define TIFALIBS_COMB_GEN_STIRLING2_COL
 
 #include "../poly/poly.hpp"
 #include "../poly/poly_inv.hpp"

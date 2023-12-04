@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GAME_SUDOKU
-#define TIFA_LIBS_GAME_SUDOKU
+#ifndef TIFALIBS_GAME_SUDOKU
+#define TIFALIBS_GAME_SUDOKU
 
 #include "../math/isqrt.hpp"
 #include "../util/dlx.hpp"

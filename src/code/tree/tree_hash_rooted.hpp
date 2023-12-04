@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_TREE_TREE_HASH_ROOTED
-#define TIFA_LIBS_TREE_TREE_HASH_ROOTED
+#ifndef TIFALIBS_TREE_TREE_HASH_ROOTED
+#define TIFALIBS_TREE_TREE_HASH_ROOTED
 
 #include "../graph/dfs.hpp"
 #include "tree.hpp"

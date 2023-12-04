@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_FLOYD
-#define TIFA_LIBS_GRAPH_FLOYD
+#ifndef TIFALIBS_GRAPH_FLOYD
+#define TIFALIBS_GRAPH_FLOYD
 
 #include "amat.hpp"
 

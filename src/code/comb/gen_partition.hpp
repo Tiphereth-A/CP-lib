@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GEN_PARTITION
-#define TIFA_LIBS_MATH_GEN_PARTITION
+#ifndef TIFALIBS_COMB_GEN_PARTITION
+#define TIFALIBS_COMB_GEN_PARTITION
 
 #include "../poly/poly.hpp"
 #include "../poly/poly_inv.hpp"

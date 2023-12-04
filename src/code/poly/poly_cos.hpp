@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_COS
-#define TIFALIBS_POLY_COS
+#ifndef TIFALIBS_POLY_POLY_COS
+#define TIFALIBS_POLY_POLY_COS
 
 #include "../math/proot_u64.hpp"
 #include "../math/qpow.hpp"

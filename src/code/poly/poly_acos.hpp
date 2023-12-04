@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_ACOS
-#define TIFALIBS_POLY_ACOS
+#ifndef TIFALIBS_POLY_POLY_ACOS
+#define TIFALIBS_POLY_POLY_ACOS
 
 #include "poly_deriv.hpp"
 #include "poly_int.hpp"

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_STR_SUFFIX_ARRAY
-#define TIFA_LIBS_STR_SUFFIX_ARRAY
+#ifndef TIFALIBS_STR_SUFFIX_ARRAY
+#define TIFALIBS_STR_SUFFIX_ARRAY
 
 #include "../util/util.hpp"
 

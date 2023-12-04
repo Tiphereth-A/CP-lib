@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_AREA_CC
-#define TIFA_LIBS_GEO2D_AREA_CC
+#ifndef TIFALIBS_GEO2D_AREA_CC
+#define TIFALIBS_GEO2D_AREA_CC
 
 #include "circle.hpp"
 #include "rel_cc.hpp"

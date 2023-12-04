@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MONTGOMERY
-#define TIFA_LIBS_MATH_MONTGOMERY
+#ifndef TIFALIBS_MATH_MONTGOMERY
+#define TIFALIBS_MATH_MONTGOMERY
 
 #include "../util/util.hpp"
 

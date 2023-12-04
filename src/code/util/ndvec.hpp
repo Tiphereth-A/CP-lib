@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_NDVEC
-#define TIFA_LIBS_UTIL_NDVEC
+#ifndef TIFALIBS_UTIL_NDVEC
+#define TIFALIBS_UTIL_NDVEC
 
 #include "util.hpp"
 

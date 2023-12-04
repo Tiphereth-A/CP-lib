@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GCD_U128
-#define TIFA_LIBS_MATH_GCD_U128
+#ifndef TIFALIBS_MATH_GCD128
+#define TIFALIBS_MATH_GCD128
 
 #include "../bit/cntr0.hpp"
 #include "../util/abs_constexpr.hpp"

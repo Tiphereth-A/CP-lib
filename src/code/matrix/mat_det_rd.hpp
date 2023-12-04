@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MAT_DET
-#define TIFA_LIBS_MATH_MAT_DET
+#ifndef TIFALIBS_MATRIX_MAT_DET_RD
+#define TIFALIBS_MATRIX_MAT_DET_RD
 
 #include "lfsr_bm.hpp"
 

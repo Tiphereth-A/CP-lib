@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MAT_TRANS
-#define TIFA_LIBS_MATH_MAT_TRANS
+#ifndef TIFALIBS_MATRIX_MAT_TRANS
+#define TIFALIBS_MATRIX_MAT_TRANS
 
 #include "../util/util.hpp"
 

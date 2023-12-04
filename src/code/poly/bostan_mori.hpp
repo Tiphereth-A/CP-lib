@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_POLY_BOSTAM_MORI
-#define TIFA_LIBS_POLY_BOSTAM_MORI
+#ifndef TIFALIBS_POLY_BOSTAN_MORI
+#define TIFALIBS_POLY_BOSTAN_MORI
 
 #include "../conv/ntt_doubling.hpp"
 #include "poly.hpp"

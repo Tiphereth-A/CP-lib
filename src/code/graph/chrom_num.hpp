@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_CHROM_NUM
-#define TIFA_LIBS_GRAPH_CHROM_NUM
+#ifndef TIFALIBS_GRAPH_CHROM_NUM
+#define TIFALIBS_GRAPH_CHROM_NUM
 
 #include "../bit/cntr0.hpp"
 #include "../bit/parity.hpp"

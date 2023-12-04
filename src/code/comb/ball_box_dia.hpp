@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_BALL_BOX_DIA
-#define TIFA_LIBS_MATH_BALL_BOX_DIA
+#ifndef TIFALIBS_COMB_BALL_BOX_DIA
+#define TIFALIBS_COMB_BALL_BOX_DIA
 
 #include "gen_stirling2_row.hpp"
 

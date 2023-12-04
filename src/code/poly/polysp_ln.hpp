@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLYSP_LN
-#define TIFALIBS_POLYSP_LN
+#ifndef TIFALIBS_POLY_POLYSP_LN
+#define TIFALIBS_POLY_POLYSP_LN
 
 #include "../comb/gen_inv.hpp"
 #include "polysp.hpp"

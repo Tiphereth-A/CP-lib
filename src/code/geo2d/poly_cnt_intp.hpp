@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_POLY_CNT_INTP
-#define TIFA_LIBS_GEO2D_POLY_CNT_INTP
+#ifndef TIFALIBS_GEO2D_POLY_CNT_INTP
+#define TIFALIBS_GEO2D_POLY_CNT_INTP
 
 #include "../util/fp2uint.hpp"
 #include "polygon.hpp"

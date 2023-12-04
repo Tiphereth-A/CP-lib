@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_SIN
-#define TIFALIBS_POLY_SIN
+#ifndef TIFALIBS_POLY_POLY_SIN
+#define TIFALIBS_POLY_POLY_SIN
 
 #include "../math/proot_u64.hpp"
 #include "../math/qpow.hpp"

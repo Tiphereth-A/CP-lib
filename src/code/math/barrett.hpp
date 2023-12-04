@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_BARRETT
-#define TIFA_LIBS_MATH_BARRETT
+#ifndef TIFALIBS_MATH_BARRETT
+#define TIFALIBS_MATH_BARRETT
 
 #include "../util/util.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_MAX_COVER_PS
-#define TIFA_LIBS_GEO2D_MAX_COVER_PS
+#ifndef TIFALIBS_GEO2D_MAX_COVER_PS
+#define TIFALIBS_GEO2D_MAX_COVER_PS
 
 #include "ang2pi_pp.hpp"
 #include "dist_pp.hpp"

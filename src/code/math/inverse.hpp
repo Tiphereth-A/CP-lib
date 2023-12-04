@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_INVERSE
-#define TIFA_LIBS_MATH_INVERSE
+#ifndef TIFALIBS_MATH_INVERSE
+#define TIFALIBS_MATH_INVERSE
 
 #include "inv_gcd.hpp"
 

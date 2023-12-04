@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_CANTOR_INV
-#define TIFA_LIBS_MATH_CANTOR_INV
+#ifndef TIFALIBS_MATH_CANTOR_INV
+#define TIFALIBS_MATH_CANTOR_INV
 
 #include "../ds/weighted_segtree.hpp"
 

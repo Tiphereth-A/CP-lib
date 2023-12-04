@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_FAST_STR2UINT_SI64
-#define TIFA_LIBS_FAST_STR2UINT_SI64
+#ifndef TIFALIBS_FAST_STR2UINT_SI64
+#define TIFALIBS_FAST_STR2UINT_SI64
 
 #include "../bit/bswap.hpp"
 #include "../bit/endian.hpp"

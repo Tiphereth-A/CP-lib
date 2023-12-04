@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_TOPO_SORT
-#define TIFA_LIBS_GRAPH_TOPO_SORT
+#ifndef TIFALIBS_GRAPH_TOPO_SORT
+#define TIFALIBS_GRAPH_TOPO_SORT
 
 #include "alist.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_LINK_CUT_TREE
-#define TIFA_LIBS_DS_LINK_CUT_TREE
+#ifndef TIFALIBS_DS_LINK_CUT_TREE
+#define TIFALIBS_DS_LINK_CUT_TREE
 
 #include "../util/util.hpp"
 

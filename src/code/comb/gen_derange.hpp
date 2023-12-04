@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GEN_DERANGE
-#define TIFA_LIBS_MATH_GEN_DERANGE
+#ifndef TIFALIBS_COMB_GEN_DERANGE
+#define TIFALIBS_COMB_GEN_DERANGE
 
 #include "../math/mul_mod_u.hpp"
 

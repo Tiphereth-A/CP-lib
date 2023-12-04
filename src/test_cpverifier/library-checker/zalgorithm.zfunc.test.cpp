@@ -6,6 +6,6 @@
 int main() {
   std::string s;
   tifa_libs::fin >> s;
-  tifa_libs::fout << tifa_libs::str::z_function(s) << '\n';
+  tifa_libs::fout << tifa_libs::str::z_func(s) << '\n';
   return 0;
 }

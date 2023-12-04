@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_EULER_PHI_U64
-#define TIFA_LIBS_MATH_EULER_PHI_U64
+#ifndef TIFALIBS_MATH_EULER_PHI_U64
+#define TIFALIBS_MATH_EULER_PHI_U64
 
 #include "euler_phi_u32.hpp"
 #include "pfactors.hpp"

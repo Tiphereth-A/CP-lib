@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_MAKE_C_PPP
-#define TIFA_LIBS_GEO2D_MAKE_C_PPP
+#ifndef TIFALIBS_GEO2D_MAKE_C_PPP
+#define TIFALIBS_GEO2D_MAKE_C_PPP
 
 #include "circle.hpp"
 #include "tcenter_o.hpp"

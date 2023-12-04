@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_ENDIAN
-#define TIFA_LIBS_BIT_ENDIAN
+#ifndef TIFALIBS_BIT_ENDIAN
+#define TIFALIBS_BIT_ENDIAN
 
 namespace tifa_libs::bit {
 

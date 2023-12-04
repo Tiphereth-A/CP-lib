@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_DCVH
-#define TIFA_LIBS_GEO2D_DCVH
+#ifndef TIFALIBS_GEO2D_DCVH
+#define TIFALIBS_GEO2D_DCVH
 
 #include "argsort.hpp"
 #include "cvh.hpp"

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_PROOT_U32
-#define TIFA_LIBS_MATH_PROOT_U32
+#ifndef TIFALIBS_MATH_PROOT_U32
+#define TIFALIBS_MATH_PROOT_U32
 
 #include "../bit/cntr0.hpp"
 #include "is_proot.hpp"

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_BINOM
-#define TIFA_LIBS_MATH_BINOM
+#ifndef TIFALIBS_COMB_BINOM
+#define TIFALIBS_COMB_BINOM
 
 #include "../util/traits.hpp"
 #include "gen_fact.hpp"

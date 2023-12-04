@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MINT_2E31N1
-#define TIFA_LIBS_MATH_MINT_2E31N1
+#ifndef TIFALIBS_MATH_MINT_2E61N1
+#define TIFALIBS_MATH_MINT_2E61N1
 
 #include "../util/traits.hpp"
 #include "../util/util.hpp"

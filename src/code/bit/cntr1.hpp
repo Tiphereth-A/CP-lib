@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_CNTR1
-#define TIFA_LIBS_BIT_CNTR1
+#ifndef TIFALIBS_BIT_CNTR1
+#define TIFALIBS_BIT_CNTR1
 
 #include "cntr0.hpp"
 

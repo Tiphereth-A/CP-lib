@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_DSU_WEIGHTED
-#define TIFA_LIBS_DS_DSU_WEIGHTED
+#ifndef TIFALIBS_DS_DSU_WEIGHTED
+#define TIFALIBS_DS_DSU_WEIGHTED
 
 #include "../util/util.hpp"
 

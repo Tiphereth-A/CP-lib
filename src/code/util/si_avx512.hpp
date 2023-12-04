@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_SI_AVX512
-#define TIFA_LIBS_UTIL_SI_AVX512
+#ifndef TIFALIBS_UTIL_SI_AVX512
+#define TIFALIBS_UTIL_SI_AVX512
 
 #pragma GCC target("avx512f,bmi")
 #include <immintrin.h>

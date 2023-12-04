@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_TAN
-#define TIFALIBS_POLY_TAN
+#ifndef TIFALIBS_POLY_POLY_TAN
+#define TIFALIBS_POLY_POLY_TAN
 
 #include "../math/proot_u64.hpp"
 #include "../math/qpow.hpp"

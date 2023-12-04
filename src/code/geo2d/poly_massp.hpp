@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_POLY_MASSP
-#define TIFA_LIBS_GEO2D_POLY_MASSP
+#ifndef TIFALIBS_GEO2D_POLY_MASSP
+#define TIFALIBS_GEO2D_POLY_MASSP
 
 #include "polygon.hpp"
 

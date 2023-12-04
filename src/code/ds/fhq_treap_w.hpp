@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_FHQ_TREAP_W
-#define TIFA_LIBS_DS_FHQ_TREAP_W
+#ifndef TIFALIBS_DS_FHQ_TREAP_W
+#define TIFALIBS_DS_FHQ_TREAP_W
 
 #include "../rand/gen.hpp"
 #include "../util/util.hpp"

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_STR_LYNDON
-#define TIFA_LIBS_STR_LYNDON
+#ifndef TIFALIBS_STR_LYNDON
+#define TIFALIBS_STR_LYNDON
 
 #include "../util/util.hpp"
 

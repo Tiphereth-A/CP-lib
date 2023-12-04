@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GCD_MPI
-#define TIFA_LIBS_MATH_GCD_MPI
+#ifndef TIFALIBS_MATH_GCD_MPI
+#define TIFALIBS_MATH_GCD_MPI
 
 #include "../util/util.hpp"
 #include "gcd128.hpp"

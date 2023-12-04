@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_TREE_TREEW
-#define TIFA_LIBS_TREE_TREEW
+#ifndef TIFALIBS_TREE_TREEW
+#define TIFALIBS_TREE_TREEW
 
 #include "../graph/alistw.hpp"
 

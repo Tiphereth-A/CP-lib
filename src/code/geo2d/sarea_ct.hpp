@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_SAREA_CT
-#define TIFA_LIBS_GEO2D_SAREA_CT
+#ifndef TIFALIBS_GEO2D_SAREA_CT
+#define TIFALIBS_GEO2D_SAREA_CT
 
 #include "ang_pp.hpp"
 #include "dot.hpp"

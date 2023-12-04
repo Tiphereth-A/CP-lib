@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_PROJ
-#define TIFA_LIBS_GEO2D_PROJ
+#ifndef TIFALIBS_GEO2D_PROJ
+#define TIFALIBS_GEO2D_PROJ
 
 #include "line.hpp"
 

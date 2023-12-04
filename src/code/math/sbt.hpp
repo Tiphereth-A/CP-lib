@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_SBT
-#define TIFA_LIBS_MATH_SBT
+#ifndef TIFALIBS_MATH_SBT
+#define TIFALIBS_MATH_SBT
 
 #include "../util/abs_constexpr.hpp"
 #include "../util/util.hpp"

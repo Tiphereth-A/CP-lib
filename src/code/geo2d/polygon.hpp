@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_POLYGON
-#define TIFA_LIBS_GEO2D_POLYGON
+#ifndef TIFALIBS_GEO2D_POLYGON
+#define TIFALIBS_GEO2D_POLYGON
 
 #include "cross.hpp"
 #include "dist_pp.hpp"

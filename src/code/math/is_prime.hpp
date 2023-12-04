@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_IS_PRIME
-#define TIFA_LIBS_MATH_IS_PRIME
+#ifndef TIFALIBS_MATH_IS_PRIME
+#define TIFALIBS_MATH_IS_PRIME
 
 #include "../bit/cntr0.hpp"
 #include "mul_mod_u.hpp"

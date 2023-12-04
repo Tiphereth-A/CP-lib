@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MAT_DET
-#define TIFA_LIBS_MATH_MAT_DET
+#ifndef TIFALIBS_MATRIX_MAT_DET
+#define TIFALIBS_MATRIX_MAT_DET
 
 #include "../util/abs_constexpr.hpp"
 #include "../util/util.hpp"

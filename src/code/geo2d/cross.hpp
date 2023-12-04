@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_CROSS
-#define TIFA_LIBS_GEO2D_CROSS
+#ifndef TIFALIBS_GEO2D_CROSS
+#define TIFALIBS_GEO2D_CROSS
 
 #include "point.hpp"
 

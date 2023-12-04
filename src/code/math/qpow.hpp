@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_QPOW
-#define TIFA_LIBS_MATH_QPOW
+#ifndef TIFALIBS_MATH_QPOW
+#define TIFALIBS_MATH_QPOW
 
 #include "../util/util.hpp"
 

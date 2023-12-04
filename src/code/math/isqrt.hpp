@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_ISQRT
-#define TIFA_LIBS_MATH_ISQRT
+#ifndef TIFALIBS_MATH_ISQRT
+#define TIFALIBS_MATH_ISQRT
 
 #include "../bit/bwidth.hpp"
 #include "../util/util.hpp"

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MIN25_SIEVE
-#define TIFA_LIBS_MATH_MIN25_SIEVE
+#ifndef TIFALIBS_MATH_MIN25_SIEVE
+#define TIFALIBS_MATH_MIN25_SIEVE
 
 #include "div64.hpp"
 #include "prime_seq.hpp"

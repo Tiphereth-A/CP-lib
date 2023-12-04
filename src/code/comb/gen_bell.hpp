@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_GEN_BELL
-#define TIFA_LIBS_MATH_GEN_BELL
+#ifndef TIFALIBS_COMB_GEN_BELL
+#define TIFALIBS_COMB_GEN_BELL
 
 #include "../poly/poly.hpp"
 #include "../poly/poly_exp.hpp"

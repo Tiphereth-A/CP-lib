@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_BSGS_NIMBER
-#define TIFA_LIBS_MATH_BSGS_NIMBER
+#ifndef TIFALIBS_MATH_BSGS_NIMBER
+#define TIFALIBS_MATH_BSGS_NIMBER
 
 #include "../util/hash_splitmix64.hpp"
 #include "nimber.hpp"

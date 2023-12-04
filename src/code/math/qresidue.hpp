@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_QRESIDUE
-#define TIFA_LIBS_MATH_QRESIDUE
+#ifndef TIFALIBS_MATH_QRESIDUE
+#define TIFALIBS_MATH_QRESIDUE
 
 #include "../bit/cntr0.hpp"
 #include "inverse.hpp"

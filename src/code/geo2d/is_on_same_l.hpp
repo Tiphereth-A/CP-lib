@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_IS_ON_SAME_L
-#define TIFA_LIBS_GEO2D_IS_ON_SAME_L
+#ifndef TIFALIBS_GEO2D_IS_ON_SAME_L
+#define TIFALIBS_GEO2D_IS_ON_SAME_L
 
 #include "cross.hpp"
 #include "point.hpp"

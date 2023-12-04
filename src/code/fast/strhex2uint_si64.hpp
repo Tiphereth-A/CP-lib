@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_FAST_STRHEX2UINT_1E8
-#define TIFA_LIBS_FAST_STRHEX2UINT_1E8
+#ifndef TIFALIBS_FAST_STRHEX2UINT_1E8
+#define TIFALIBS_FAST_STRHEX2UINT_1E8
 
 #include "../bit/bswap.hpp"
 #include "../bit/endian.hpp"

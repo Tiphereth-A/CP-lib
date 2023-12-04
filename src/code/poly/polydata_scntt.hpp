@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_POLYDATA_S
-#define TIFALIBS_POLY_POLYDATA_S
+#ifndef TIFALIBS_POLY_POLYDATA_SCNTT
+#define TIFALIBS_POLY_POLYDATA_SCNTT
 
 #include "../conv/conv_cntt.hpp"
 #include "../conv/conv_naive.hpp"

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_ISPOW2
-#define TIFA_LIBS_BIT_ISPOW2
+#ifndef TIFALIBS_BIT_ISPOW2
+#define TIFALIBS_BIT_ISPOW2
 
 #include "popcnt.hpp"
 

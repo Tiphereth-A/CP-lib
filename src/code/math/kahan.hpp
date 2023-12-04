@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_KAHAN
-#define TIFA_LIBS_MATH_KAHAN
+#ifndef TIFALIBS_MATH_KAHAN
+#define TIFALIBS_MATH_KAHAN
 
 #include "../util/util.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_STR_ORTHODOX_EX_SUFFIX_AUTOMATON
-#define TIFA_LIBS_STR_ORTHODOX_EX_SUFFIX_AUTOMATON
+#ifndef TIFALIBS_STR_ORTHODOX_EX_SUFFIX_AUTOMATON
+#define TIFALIBS_STR_ORTHODOX_EX_SUFFIX_AUTOMATON
 
 #include "../util/util.hpp"
 #pragma GCC diagnostic ignored "-Wsign-conversion"

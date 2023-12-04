@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_CRT_MOD
-#define TIFA_LIBS_MATH_CRT_MOD
+#ifndef TIFALIBS_MATH_CRT_MOD
+#define TIFALIBS_MATH_CRT_MOD
 
 #include "inverse.hpp"
 #include "safe_mod.hpp"

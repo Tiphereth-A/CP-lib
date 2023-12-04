@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_BFLOOR
-#define TIFA_LIBS_BIT_BFLOOR
+#ifndef TIFALIBS_BIT_BFLOOR
+#define TIFALIBS_BIT_BFLOOR
 
 #include "cntl0.hpp"
 

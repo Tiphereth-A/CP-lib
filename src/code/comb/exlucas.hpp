@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_EXLUCAS
-#define TIFA_LIBS_MATH_EXLUCAS
+#ifndef TIFALIBS_COMB_EXLUCAS
+#define TIFALIBS_COMB_EXLUCAS
 
 #include "../math/crt.hpp"
 #include "../math/isqrt.hpp"

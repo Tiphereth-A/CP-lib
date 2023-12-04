@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_NIM_PROD
-#define TIFA_LIBS_MATH_NIM_PROD
+#ifndef TIFALIBS_MATH_NIM_PROD
+#define TIFALIBS_MATH_NIM_PROD
 
 #include "../util/util.hpp"
 

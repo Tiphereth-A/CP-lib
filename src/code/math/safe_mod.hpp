@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_SAFE_MOD
-#define TIFA_LIBS_MATH_SAFE_MOD
+#ifndef TIFALIBS_MATH_SAFE_MOD
+#define TIFALIBS_MATH_SAFE_MOD
 
 #include "../util/traits.hpp"
 

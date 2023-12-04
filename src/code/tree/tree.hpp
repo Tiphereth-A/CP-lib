@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_TREE_TREE
-#define TIFA_LIBS_TREE_TREE
+#ifndef TIFALIBS_TREE_TREE
+#define TIFALIBS_TREE_TREE
 
 #include "../graph/alist.hpp"
 

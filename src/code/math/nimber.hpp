@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_NIMBER
-#define TIFA_LIBS_MATH_NIMBER
+#ifndef TIFALIBS_MATH_NIMBER
+#define TIFALIBS_MATH_NIMBER
 
 #include "nim_prod.hpp"
 

@@ -1,11 +1,11 @@
-#ifndef TIFA_LIBS_STR_Z_ALGO
-#define TIFA_LIBS_STR_Z_ALGO
+#ifndef TIFALIBS_STR_Z_FUNC
+#define TIFALIBS_STR_Z_FUNC
 
 #include "../util/util.hpp"
 
 namespace tifa_libs::str {
 
-inline vec<u32> z_function(std::string_view s) {
+inline vec<u32> z_func(std::string_view s) {
   u32 n = (u32)s.size();
   vec<u32> z(n);
   for (u32 i = 1, l = 0, r = 0; i < n; ++i) {

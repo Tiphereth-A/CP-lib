@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_DO_QUOT
-#define TIFA_LIBS_MATH_DO_QUOT
+#ifndef TIFALIBS_MATH_DO_QUOT
+#define TIFALIBS_MATH_DO_QUOT
 
 #include "div64.hpp"
 

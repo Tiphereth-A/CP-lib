@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_MPI
-#define TIFA_LIBS_MATH_MPI
+#ifndef TIFALIBS_MATH_MPI
+#define TIFALIBS_MATH_MPI
 
 #include "../conv/conv_u128.hpp"
 #include "../fast/str2uint_si64.hpp"

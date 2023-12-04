@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_TRAITS
-#define TIFA_LIBS_UTIL_TRAITS
+#ifndef TIFALIBS_UTIL_TRAITS
+#define TIFALIBS_UTIL_TRAITS
 
 #include "util.hpp"
 

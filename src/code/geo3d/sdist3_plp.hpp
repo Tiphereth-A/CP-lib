@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO3D_SDIST3_PLP
-#define TIFA_LIBS_GEO3D_SDIST3_PLP
+#ifndef TIFALIBS_GEO3D_SDIST3_PLP
+#define TIFALIBS_GEO3D_SDIST3_PLP
 
 #include "plane.hpp"
 #include "point3d.hpp"

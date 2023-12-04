@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_LICHAO_SEGTREE
-#define TIFA_LIBS_DS_LICHAO_SEGTREE
+#ifndef TIFALIBS_DS_LICHAO_SEGTREE
+#define TIFALIBS_DS_LICHAO_SEGTREE
 
 #include "../util/util.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_LOWBIT
-#define TIFA_LIBS_BIT_LOWBIT
+#ifndef TIFALIBS_BIT_LOWBIT
+#define TIFALIBS_BIT_LOWBIT
 
 #include "cntr0.hpp"
 

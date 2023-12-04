@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_BALL_BOX_DDA
-#define TIFA_LIBS_MATH_BALL_BOX_DDA
+#ifndef TIFALIBS_COMB_BALL_BOX_DDA
+#define TIFALIBS_COMB_BALL_BOX_DDA
 
 #include "../math/qpow.hpp"
 

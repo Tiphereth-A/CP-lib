@@ -1,10 +1,10 @@
-#ifndef TIFA_LIBS_UTIL_TSEARCH
-#define TIFA_LIBS_UTIL_TSEARCH
+#ifndef TIFALIBS_OPT_TSEARCH
+#define TIFALIBS_OPT_TSEARCH
 
-#include "fp_const.hpp"
-#include "traits.hpp"
+#include "../util/fp_const.hpp"
+#include "../util/traits.hpp"
 
-namespace tifa_libs {
+namespace tifa_libs::opt {
 
 // F: T(I)
 // @return $\argmin_{l\leq x\leq r}\{f\}$
@@ -42,6 +42,6 @@ constexpr std::pair<I, T> tsearch(I l, I r, F f) {
   } while (1);
 }
 
-}  // namespace tifa_libs
+}  // namespace tifa_libs::opt
 
 #endif

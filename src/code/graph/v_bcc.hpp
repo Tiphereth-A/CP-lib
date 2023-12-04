@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_V_BCC
-#define TIFA_LIBS_GRAPH_V_BCC
+#ifndef TIFALIBS_GRAPH_V_BCC
+#define TIFALIBS_GRAPH_V_BCC
 
 #include "../util/util.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_QTETRA
-#define TIFA_LIBS_MATH_QTETRA
+#ifndef TIFALIBS_MATH_QTETRA_MOD
+#define TIFALIBS_MATH_QTETRA_MOD
 
 #include "euler_phi_u64.hpp"
 

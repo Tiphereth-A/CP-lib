@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_KOSARAJU
-#define TIFA_LIBS_GRAPH_KOSARAJU
+#ifndef TIFALIBS_GRAPH_KOSARAJU
+#define TIFALIBS_GRAPH_KOSARAJU
 
 #include "alist.hpp"
 #include "alistr.hpp"

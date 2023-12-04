@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GEO2D_ARGSORT
-#define TIFA_LIBS_GEO2D_ARGSORT
+#ifndef TIFALIBS_GEO2D_ARGSORT
+#define TIFALIBS_GEO2D_ARGSORT
 
 #include "point.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_JACOBI_SYM
-#define TIFA_LIBS_MATH_JACOBI_SYM
+#ifndef TIFALIBS_MATH_JACOBI_SYM
+#define TIFALIBS_MATH_JACOBI_SYM
 
 #include "../bit/cntr0.hpp"
 #include "../util/util.hpp"

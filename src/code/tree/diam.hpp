@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_TREE_DIAM
-#define TIFA_LIBS_TREE_DIAM
+#ifndef TIFALIBS_TREE_DIAM
+#define TIFALIBS_TREE_DIAM
 
 #include "dfs_info.hpp"
 #include "dfs_info_w.hpp"

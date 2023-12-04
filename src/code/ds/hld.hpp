@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_HLD
-#define TIFA_LIBS_DS_HLD
+#ifndef TIFALIBS_DS_HLD
+#define TIFALIBS_DS_HLD
 
 #include "../tree/dfs_info.hpp"
 #include "segtree.hpp"

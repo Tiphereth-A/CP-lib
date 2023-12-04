@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_DS_FENWICK_RR
-#define TIFA_LIBS_DS_FENWICK_RR
+#ifndef TIFALIBS_DS_FENWICK_RR
+#define TIFALIBS_DS_FENWICK_RR
 
 #include "fenwick.hpp"
 

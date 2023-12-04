@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_GCD
-#define TIFALIBS_POLY_GCD
+#ifndef TIFALIBS_POLY_POLY_GCD
+#define TIFALIBS_POLY_POLY_GCD
 
 #include "poly_divmod.hpp"
 #include "poly_shr.hpp"

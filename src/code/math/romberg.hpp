@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_ROMBERG
-#define TIFA_LIBS_MATH_ROMBERG
+#ifndef TIFALIBS_MATH_ROMBERG
+#define TIFALIBS_MATH_ROMBERG
 
 #include "../util/util.hpp"
 

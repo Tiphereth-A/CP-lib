@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_SPARSE_MAT
-#define TIFA_LIBS_SPARSE_MAT
+#ifndef TIFALIBS_MATRIX_SPMAT
+#define TIFALIBS_MATRIX_SPMAT
 
 #include "../util/util.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_BIT_ROTR
-#define TIFA_LIBS_BIT_ROTR
+#ifndef TIFALIBS_BIT_ROTR
+#define TIFALIBS_BIT_ROTR
 
 namespace tifa_libs::bit {
 

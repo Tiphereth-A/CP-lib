@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_IOS_TUPLE
-#define TIFA_LIBS_UTIL_IOS_TUPLE
+#ifndef TIFALIBS_UTIL_IOS_TUPLE
+#define TIFALIBS_UTIL_IOS_TUPLE
 
 #include "util.hpp"
 

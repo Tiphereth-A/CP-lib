@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_UTIL_ODT
-#define TIFA_LIBS_UTIL_ODT
+#ifndef TIFALIBS_UTIL_ODT
+#define TIFALIBS_UTIL_ODT
 
 #include "util.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_FAST_RSORT32
-#define TIFA_LIBS_FAST_RSORT32
+#ifndef TIFALIBS_FAST_RSORT32
+#define TIFALIBS_FAST_RSORT32
 
 #include "../util/util.hpp"
 

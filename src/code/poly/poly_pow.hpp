@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_POW
-#define TIFALIBS_POLY_POW
+#ifndef TIFALIBS_POLY_POLY_POW
+#define TIFALIBS_POLY_POLY_POW
 
 #include "../math/qpow.hpp"
 #include "poly_exp.hpp"

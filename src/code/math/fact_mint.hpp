@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_FACT_MINT
-#define TIFA_LIBS_MATH_FACT_MINT
+#ifndef TIFALIBS_MATH_FACT_MINT
+#define TIFALIBS_MATH_FACT_MINT
 
 #include "../poly/poly_ctsh.hpp"
 

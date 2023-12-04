@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_PI_23
-#define TIFA_LIBS_MATH_PI_23
+#ifndef TIFALIBS_MATH_PI_23
+#define TIFALIBS_MATH_PI_23
 
 #include "div64.hpp"
 #include "ikth_root.hpp"

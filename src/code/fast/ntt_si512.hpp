@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_FAST_NTT_SI512
-#define TIFA_LIBS_FAST_NTT_SI512
+#ifndef TIFALIBS_FAST_NTT_SI512
+#define TIFALIBS_FAST_NTT_SI512
 
 // clang-format off
 #include "montgomery_si512.hpp"

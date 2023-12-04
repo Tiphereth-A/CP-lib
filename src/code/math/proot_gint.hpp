@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_PROOT_GINT
-#define TIFA_LIBS_MATH_PROOT_GINT
+#ifndef TIFALIBS_MATH_PROOT_GINT
+#define TIFALIBS_MATH_PROOT_GINT
 
 #include "gauss_int.hpp"
 #include "pfactors.hpp"

@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_IKTH_ROOT
-#define TIFA_LIBS_MATH_IKTH_ROOT
+#ifndef TIFALIBS_MATH_IKTH_ROOT
+#define TIFALIBS_MATH_IKTH_ROOT
 
 #include "../util/util.hpp"
 

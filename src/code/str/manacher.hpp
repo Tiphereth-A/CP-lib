@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_STR_MANACHER
-#define TIFA_LIBS_STR_MANACHER
+#ifndef TIFALIBS_STR_MANACHER
+#define TIFALIBS_STR_MANACHER
 
 #include "../util/util.hpp"
 

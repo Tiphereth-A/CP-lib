@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_MATH_CRT
-#define TIFA_LIBS_MATH_CRT
+#ifndef TIFALIBS_MATH_CRT
+#define TIFALIBS_MATH_CRT
 
 #include "inv_gcd.hpp"
 #include "safe_mod.hpp"

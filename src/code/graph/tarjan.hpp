@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_GRAPH_TARJAN
-#define TIFA_LIBS_GRAPH_TARJAN
+#ifndef TIFALIBS_GRAPH_TARJAN
+#define TIFALIBS_GRAPH_TARJAN
 
 #include "../util/util.hpp"
 

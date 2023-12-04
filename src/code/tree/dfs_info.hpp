@@ -1,5 +1,5 @@
-#ifndef TIFA_LIBS_TREE_DFS_INFO
-#define TIFA_LIBS_TREE_DFS_INFO
+#ifndef TIFALIBS_TREE_DFS_INFO
+#define TIFALIBS_TREE_DFS_INFO
 
 #include "../graph/dfs.hpp"
 #include "tree.hpp"
