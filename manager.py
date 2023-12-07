@@ -116,8 +116,10 @@ def _gen_nbc():
                     code_filepath, doc_filepath, test_filepath = section.get_filenames(
                         CONFIG.get_code_dir(), CONFIG.get_doc_dir(), CONFIG.get_test_dir())
                     f.writelines(latex_input(PathLaTeX(doc_filepath)))
-                    f.writelines(latex_listing_code_range(
-                        PathLaTeX(code_filepath), CONFIG.get_code_style(section.code_ext), 4, len(open(code_filepath).readlines())-2))
+                    if section.code_ext == 'hpp':
+                        f.writelines(latex_listing_code_range(PathLaTeX(code_filepath), CONFIG.get_code_style(section.code_ext), 4, len(open(code_filepath).readlines())-2))
+                    else:
+                        f.writelines(latex_listing_code(PathLaTeX(code_filepath), CONFIG.get_code_style(section.code_ext)))
                     if CONFIG.generate_test_in_notebook():
                         if not os.path.getsize(test_filepath):
                             continue
