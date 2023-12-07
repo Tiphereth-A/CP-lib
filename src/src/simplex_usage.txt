@@ -1,0 +1,4 @@
+using T = double;
+vvec<T> A{{1, -1}, {-1, 1}, {-1, -2}};
+vec<T> b{1, 1, -4}, c{-1, -1}, x;
+T val = LPSolver(A, b, c).solve(x);

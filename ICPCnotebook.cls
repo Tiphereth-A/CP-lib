@@ -28,7 +28,7 @@
 \RequirePackage{seqsplit}
 \RequirePackage{subcaption}
 \RequirePackage{svg}
-\RequirePackage{tabularx}
+\RequirePackage{tabularx,diagbox}
 \RequirePackage{tikz}
 \RequirePackage{tocloft}
 \RequirePackage{xspace}

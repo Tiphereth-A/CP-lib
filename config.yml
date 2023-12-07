@@ -470,6 +470,9 @@ notebook:
     - tsearch: 三分
       code_ext: hpp
       test_ext: cpp
+    - simplex: 单纯形法
+      code_ext: hpp
+      test_ext: cpp
     - heuristic_sa: 模拟退火
       code_ext: hpp
       test_ext: cpp
@@ -659,43 +662,43 @@ notebook:
     - stirling2_smallp: 第二类 Stirling 数(小模数)
       code_ext: hpp
       test_ext: cpp
-    - gen_ball_box_ii: 球与盒(球全部相同，盒全部相同)序列
+    - gen_ball_box_ii: 球与盒(球相同,盒相同)序列
       code_ext: hpp
       test_ext: cpp
-    - ball_box_dda: 球与盒(球互不相同，盒互不相同)
+    - ball_box_dda: 球与盒(球不同,盒不同)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_ddm: 球与盒(球互不相同，盒互不相同，至多装一个球)
+    - ball_box_ddm: 球与盒(球不同,盒不同,至多装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_ddl: 球与盒(球互不相同，盒互不相同，至少装一个球)
+    - ball_box_ddl: 球与盒(球不同,盒不同,至少装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_ida: 球与盒(球全部相同，盒互不相同)
+    - ball_box_ida: 球与盒(球相同,盒不同)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_idm: 球与盒(球全部相同，盒互不相同，至多装一个球)
+    - ball_box_idm: 球与盒(球相同,盒不同,至多装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_idl: 球与盒(球全部相同，盒互不相同，至少装一个球)
+    - ball_box_idl: 球与盒(球相同,盒不同,至少装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_dia: 球与盒(球互不相同，盒全部相同)
+    - ball_box_dia: 球与盒(球不同,盒相同)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_dim: 球与盒(球互不相同，盒全部相同，至多装一个球)
+    - ball_box_dim: 球与盒(球不同,盒相同,至多装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_dil: 球与盒(球互不相同，盒全部相同，至少装一个球)
+    - ball_box_dil: 球与盒(球不同,盒相同,至少装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_iia: 球与盒(球全部相同，盒全部相同)
+    - ball_box_iia: 球与盒(球相同,盒相同)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_iim: 球与盒(球全部相同，盒全部相同，至多装一个球)
+    - ball_box_iim: 球与盒(球相同,盒相同,至多装一个球)
       code_ext: hpp
       test_ext: cpp
-    - ball_box_iil: 球与盒(球全部相同，盒全部相同，至少装一个球)
+    - ball_box_iil: 球与盒(球相同,盒相同,至少装一个球)
       code_ext: hpp
       test_ext: cpp
     math:
@@ -1031,7 +1034,7 @@ notebook:
     - conv_3ntt: 卷积(三模 NTT)
       code_ext: hpp
       test_ext: cpp
-    - conv_u128: 卷积(三模 NTT，高精度整数用)
+    - conv_u128: 卷积(三模 NTT,高精度整数用)
       code_ext: hpp
       test_ext: cpp
     - conv_cntt: 卷积(扩域 NTT)
@@ -1274,8 +1277,9 @@ cheatsheets:
   nt-const: 初等数论常数表
   seqences: 常见数列
   oeis-seq: 常用 OEIS 数列
-  decimal: Python Decimal
   formula: 常用公式
+  decimal: Python Decimal
+  bash: Bash 简单用法
   lgv: lgv 定理
 default_code_style: common
 code_styles:
