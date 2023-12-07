@@ -6,9 +6,9 @@
 
 namespace tifa_libs::graph {
 
-// cb_relax(now, to)
+// relax(now, to)
 template <class T, class F>
-vec<T> dijkstra(alistw<T> const &fg, u32 s, F cb_relax, T INF = std::numeric_limits<T>::max() / 2 - 1) {
+vec<T> dijkstra(alistw<T> const &fg, u32 s, F relax, T INF = std::numeric_limits<T>::max() / 2 - 1) {
   static_assert(!is_sint<T>::value);
   auto &&g = fg.g;
   vec<T> dis(g.size(), INF);
@@ -22,7 +22,7 @@ vec<T> dijkstra(alistw<T> const &fg, u32 s, F cb_relax, T INF = std::numeric_lim
     vis[now] = true;
     for (auto [to, w] : g[now])
       if (dis[now] + w < dis[to]) {
-        cb_relax(now, to);
+        relax(now, to);
         dis[to] = dis[now] + w;
         if (!vis[to]) q.emplace(dis[to], to);
       }

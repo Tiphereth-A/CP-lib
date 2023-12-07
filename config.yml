@@ -598,6 +598,9 @@ notebook:
     - prufer_inv: Pr\"ufer 序列逆
       code_ext: hpp
       test_ext: cpp
+    - dsu_on_tree: DSU on tree
+      code_ext: hpp
+      test_ext: cpp
     comb:
     - binom: 组合数
       code_ext: hpp

@@ -15,7 +15,7 @@ struct tree_dfs_info {
   template <int state>
   tree_dfs_info& reset_dfs_info(tree const& tree) {
     u32 n = (u32)tree.g.size();
-    if constexpr (state & (td_dfn | td_maxdfn | td_euler)) dfn = vec<u32>(n);
+    if constexpr (state & td_dfn) dfn = vec<u32>(n);
     if constexpr (state & (td_sz | td_maxson)) sz = vec<u32>(n);
     if constexpr (state & td_fa) fa = vec<u32>(n);
     if constexpr (state & td_dep) dep = vec<u32>(n);
@@ -30,10 +30,11 @@ struct tree_dfs_info {
     dfs(
         tree, tree.root,
         [&](u32 u, u32 f) {
-          if constexpr (state & (td_dfn | td_maxdfn | td_euler)) dfn[u] = cnt++;
+          if constexpr (state & td_dfn) dfn[u] = cnt;
+          if constexpr (state & td_euler) euler[cnt] = u;
+          if constexpr (state & (td_dfn | td_maxdfn | td_euler)) ++cnt;
           if constexpr (state & (td_sz | td_maxson)) sz[u] = 1;
           if constexpr (state & td_fa) fa[u] = f;
-          if constexpr (state & td_euler) euler[u] = cnt;
           if constexpr (state & td_go) {
             go[u][0] = f;
             for (u32 i = 1; i <= 20u && go[u][i - 1] < n; i++) go[u][i] = go[go[u][i - 1]][i - 1];
@@ -49,7 +50,7 @@ struct tree_dfs_info {
             if (maxson[u] == n || sz[to] > sz[maxson[u]]) maxson[u] = to;
         },
         [&](u32 u, u32) {
-          if constexpr (state & td_maxdfn) maxdfn[u] = cnt;
+          if constexpr (state & td_maxdfn) maxdfn[u] = cnt - 1;
         });
     return *this;
   }
