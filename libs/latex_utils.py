@@ -83,3 +83,8 @@ def latex_section(name: NameLaTeX, **kwargs) -> list[str]:
 @withlog
 def latex_listing_code(path: PathLaTeX, code_style: str, **kwargs) -> list[str]:
     return [rf'Path: \verb|{path.get()}|', '\n\n', __latex_command_('inputminted', code_style, path.get()), '\n']
+
+
+@withlog
+def latex_listing_code_range(path: PathLaTeX, code_style: str, begin: int, end: int, **kwargs) -> list[str]:
+    return [rf'Path: \verb|{path.get()}|', '\n\n', __latex_command_with_option_('inputminted', rf'firstline={begin},lastline={end}', code_style, path.get()), '\n']

@@ -12,7 +12,7 @@ import coloredlogs
 from libs.classes.section import Section
 from libs.consts import CONFIG, CLEAN_EXT_NAME, CONTENTS_CS, CONTENTS_DIR, CONTENTS_NB
 from libs.decorator import withlog
-from libs.latex_utils import latex_input, latex_chapter, latex_section, latex_listing_code, PathLaTeX, NameLaTeX, \
+from libs.latex_utils import latex_input, latex_chapter, latex_listing_code_range, latex_section, latex_listing_code, PathLaTeX, NameLaTeX, \
     LATEX_COMPILE_COMMAND_GROUP
 from libs.utils import get_full_filenames, file_preprocess, execute_if_file_exist, scandir_dir_merge, \
     scandir_file_merge, parse_filename, unique
@@ -116,8 +116,8 @@ def _gen_nbc():
                     code_filepath, doc_filepath, test_filepath = section.get_filenames(
                         CONFIG.get_code_dir(), CONFIG.get_doc_dir(), CONFIG.get_test_dir())
                     f.writelines(latex_input(PathLaTeX(doc_filepath)))
-                    f.writelines(latex_listing_code(
-                        PathLaTeX(code_filepath), CONFIG.get_code_style(section.code_ext)))
+                    f.writelines(latex_listing_code_range(
+                        PathLaTeX(code_filepath), CONFIG.get_code_style(section.code_ext), 4, len(open(code_filepath).readlines())-2))
                     if CONFIG.generate_test_in_notebook():
                         if not os.path.getsize(test_filepath):
                             continue
