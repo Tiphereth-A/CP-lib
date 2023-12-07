@@ -17,7 +17,8 @@ vec<u64> tree_hash_rooted(tree const &tr, Hash &&hasher) {
       [](u32, u32) {},
       [&](u32 to, u32 u) {
         hash[u] += hasher(hash[to]);
-      });
+      },
+      [](u32, u32) {});
   return hash;
 }
 

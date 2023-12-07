@@ -7,75 +7,58 @@
 namespace tifa_libs::graph {
 
 enum dfs_info_state {
-  s_dfn = 1,
-  s_sz = 2,
-  s_fa = 4,
-  s_dep = 8,
-  s_maxson = 16,
-  s_go = 32
+  dis_dfn = 1,
+  dis_sz = 2,
+  dis_fa = 4,
+  dis_dep = 8,
+  dis_maxson = 16,
+  dis_maxdfn = 32,
+  dis_euler = 64,
+  dis_go = 128
 };
 
 struct tree_dfs_info {
-  vec<u32> dfn, sz, fa, dep, maxson, top;
+  vec<u32> dfn, sz, fa, dep, maxson, maxdfn, euler;
   vvec<u32> go;
 
   template <int state>
   tree_dfs_info& reset_dfs_info(tree const& tree) {
     u32 n = (u32)tree.g.size();
-    if constexpr (state & s_dfn) dfn = vec<u32>(n);
-    if constexpr (state & (s_sz | s_maxson)) sz = vec<u32>(n);
-    if constexpr (state & s_fa) fa = vec<u32>(n);
-    if constexpr (state & s_dep) dep = vec<u32>(n);
-    if constexpr (state & s_maxson) maxson = vec<u32>(n, n);
-    if constexpr (state & s_go) go = vec<vec<u32>>(n, vec<u32>(21u, n));
+    if constexpr (state & (dis_dfn | dis_maxdfn | dis_euler)) dfn = vec<u32>(n);
+    if constexpr (state & (dis_sz | dis_maxson)) sz = vec<u32>(n);
+    if constexpr (state & dis_fa) fa = vec<u32>(n);
+    if constexpr (state & dis_dep) dep = vec<u32>(n);
+    if constexpr (state & dis_maxson) maxson = vec<u32>(n, n);
+    if constexpr (state & dis_maxdfn) maxdfn = vec<u32>(n);
+    if constexpr (state & dis_euler) euler = vec<u32>(n);
+    if constexpr (state & dis_go) go = vec<vec<u32>>(n, vec<u32>(21u, n));
 
     u32 cnt = 0;
 
     dfs(
         tree, tree.root,
         [&](u32 u, u32 f) {
-          if constexpr (state & s_dfn) dfn[u] = cnt++;
-          if constexpr (state & (s_sz | s_maxson)) sz[u] = 1;
-          if constexpr (state & s_fa) fa[u] = f;
-          if constexpr (state & s_go) {
+          if constexpr (state & (dis_dfn | dis_maxdfn | dis_euler)) dfn[u] = cnt++;
+          if constexpr (state & (dis_sz | dis_maxson)) sz[u] = 1;
+          if constexpr (state & dis_fa) fa[u] = f;
+          if constexpr (state & dis_euler) euler[u] = cnt;
+          if constexpr (state & dis_go) {
             go[u][0] = f;
             for (u32 i = 1; i <= 20u && go[u][i - 1] < n; i++) go[u][i] = go[go[u][i - 1]][i - 1];
           }
         },
         [&](u32 to, u32 u) {
-          if constexpr (state & s_dep) dep[to] = dep[u] + 1;
+          if constexpr (state & dis_dep) dep[to] = dep[u] + 1;
         },
         [&](u32 to, u32 u) {
-          if constexpr (state & (s_sz | s_maxson)) sz[u] += sz[to];
-          if constexpr (state & s_maxson)
+          if constexpr (state & (dis_sz | dis_maxson)) sz[u] += sz[to];
+          if constexpr (state & dis_maxson)
             if (maxson[u] == n || sz[to] > sz[maxson[u]]) maxson[u] = to;
+        },
+        [&](u32 u, u32) {
+          if constexpr (state & dis_maxdfn) maxdfn[u] = cnt;
         });
     return *this;
-  }
-
-  template <bool need_dfn = false>
-  tree_dfs_info& reset_top(tree const& tree) {
-    u32 n = (u32)tree.g.size();
-    if (maxson.empty()) reset_dfs_info<s_maxson>(tree);
-    if constexpr (need_dfn) dfn = vec<u32>(n);
-    top = vec<u32>(n, n);
-
-    u32 cnt = 0;
-    dfs_top_(tree, tree.root, tree.root, [&](u32 u, u32 top_) {
-      if constexpr (need_dfn) dfn[u] = cnt++;
-      top[u] = top_;
-    });
-    return *this;
-  }
-
- private:
-  template <class F>
-  void dfs_top_(tree const& tree, u32 u, u32 top_, F&& f) {
-    f(u, top_);
-    if (maxson[u] == tree.g.size()) return;
-    dfs_top_(tree, maxson[u], top_, std::forward<F>(f));
-    for (u32 to : tree.g[u])
-      if (top[to] == tree.g.size()) dfs_top_(tree, to, to, std::forward<F>(f));
   }
 };
 

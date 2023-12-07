@@ -2,12 +2,11 @@
 #define TIFALIBS_TREE_TREE_SUMVW
 
 #include "../graph/dfs.hpp"
-#include "tree.hpp"
 
 namespace tifa_libs::graph {
 
-template <class T>
-vec<T> tree_sumvw(tree const &tr, vec<T> const &v_weight) {
+template <class G, class T>
+vec<T> tree_sumvw(G const &tr, vec<T> const &v_weight) {
   vec<T> sumvw(tr.g.size());
   dfs(
       tr, tr.root,
@@ -17,7 +16,8 @@ vec<T> tree_sumvw(tree const &tr, vec<T> const &v_weight) {
       [](u32, u32) {},
       [&](u32 to, u32 u) {
         sumvw[u] += sumvw[to];
-      });
+      },
+      [](u32, u32) {});
   return sumvw;
 }
 

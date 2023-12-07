@@ -2,27 +2,32 @@
 #define TIFALIBS_TREE_LCA_HLD
 
 #include "dfs_info.hpp"
+#include "tree_top.hpp"
 
 namespace tifa_libs::graph {
 
 struct lca_hld {
   tree_dfs_info info;
+  vec<u32> top;
 
-  lca_hld(tree& tr) { info.reset_dfs_info<s_dep | s_fa>(tr).reset_top<true>(tr); }
+  lca_hld(tree& tr) {
+    info.reset_dfs_info<dis_dep | dis_fa>(tr);
+    top = tree_top(tr, info);
+  }
 
   u32 operator()(u32 u, u32 v) const {
-    while (info.top[u] != info.top[v]) info.dep[info.top[u]] < info.dep[info.top[v]] ? v = info.fa[info.top[v]] : u = info.fa[info.top[u]];
+    while (top[u] != top[v]) info.dep[top[u]] < info.dep[top[v]] ? v = info.fa[top[v]] : u = info.fa[top[u]];
     return info.dep[u] > info.dep[v] ? v : u;
   }
   ptt<vec<ptt<u32>>> getchain(u32 u, u32 v) {
     u32 lca = (*this)(u, v);
     vec<ptt<u32>> retu, retv;
-    while (info.top[u] != info.top[lca]) {
-      retu.emplace_back(u, info.top[u]), u = info.fa[info.top[u]];
+    while (top[u] != top[lca]) {
+      retu.emplace_back(u, top[u]), u = info.fa[top[u]];
     }
     retu.emplace_back(u, lca);
-    while (info.top[v] != info.top[lca]) {
-      retv.emplace_back(info.top[v], v), v = info.fa[info.top[v]];
+    while (top[v] != top[lca]) {
+      retv.emplace_back(top[v], v), v = info.fa[top[v]];
     }
     if (v != lca) retv.emplace_back(info.maxson[lca], v);
     std::reverse(retv.begin(), retv.end());

@@ -2,6 +2,7 @@
 #define TIFALIBS_DS_HLD
 
 #include "../tree/dfs_info.hpp"
+#include "../tree/tree_top.hpp"
 #include "segtree.hpp"
 
 namespace tifa_libs::ds {
@@ -14,8 +15,12 @@ class hld {
  public:
   graph::tree& tr;
   graph::tree_dfs_info info;
+  vec<u32> top;
 
-  explicit hld(graph::tree& tr) : t(), tr(tr) { info.reset_dfs_info<graph::s_dep | graph::s_fa>(tr).reset_top<true>(tr); }
+  explicit hld(graph::tree& tr) : t(), tr(tr) {
+    info.reset_dfs_info<graph::dis_dep | graph::dis_fa>(tr);
+    top = graph::tree_top<graph::tree, true>(tr, info);
+  }
   explicit hld(graph::tree& tr, const vec<T>& a) : hld(tr) {
     vec<T> b(a.size());
     for (u32 i = 0; i < a.size(); ++i) b[info.dfn[i]] = a[i];
@@ -24,9 +29,9 @@ class hld {
 
   void build(const vec<T>& a) { t = segtree<T, op, e, F, mapping, composition, id>(a); }
   void chain_update(u32 u, u32 v, F f) {
-    while (info.top[u] != info.top[v]) {
-      if (info.dep[info.top[u]] < info.dep[info.top[v]]) std::swap(u, v);
-      t.update(info.dfn[info.top[u]], info.dfn[u], f), u = info.fa[info.top[u]];
+    while (top[u] != top[v]) {
+      if (info.dep[top[u]] < info.dep[top[v]]) std::swap(u, v);
+      t.update(info.dfn[top[u]], info.dfn[u], f), u = info.fa[top[u]];
     }
     if (info.dfn[u] < info.dfn[v]) std::swap(u, v);
     t.update(info.dfn[v], info.dfn[u], f);
@@ -34,9 +39,9 @@ class hld {
   void subtree_update(u32 u, F f) { t.update(info.dfn[u], info.dfn[u] + info.sz[u] - 1, f); }
   void node_update(u32 u, F f) { t.update(info.dfn[u], f); }
   void chain_set(u32 u, u32 v, T f) {
-    while (info.top[u] != info.top[v]) {
-      if (info.dep[info.top[u]] < info.dep[info.top[v]]) std::swap(u, v);
-      t.set(info.dfn[info.top[u]], info.dfn[u], f), u = info.fa[info.top[u]];
+    while (top[u] != top[v]) {
+      if (info.dep[top[u]] < info.dep[top[v]]) std::swap(u, v);
+      t.set(info.dfn[top[u]], info.dfn[u], f), u = info.fa[top[u]];
     }
     if (info.dfn[u] < info.dfn[v]) std::swap(u, v);
     t.set(info.dfn[v], info.dfn[u], f);
@@ -45,9 +50,9 @@ class hld {
   void node_set(u32 u, T f) { t.set(info.dfn[u], f); }
   T chain_query(u32 u, u32 v) {
     T ret = e();
-    while (info.top[u] != info.top[v]) {
-      if (info.dep[info.top[u]] < info.dep[info.top[v]]) std::swap(u, v);
-      ret = op(ret, t.query(info.dfn[info.top[u]], info.dfn[u])), u = info.fa[info.top[u]];
+    while (top[u] != top[v]) {
+      if (info.dep[top[u]] < info.dep[top[v]]) std::swap(u, v);
+      ret = op(ret, t.query(info.dfn[top[u]], info.dfn[u])), u = info.fa[top[u]];
     }
     if (info.dfn[u] < info.dfn[v]) std::swap(u, v);
     return op(ret, t.query(info.dfn[v], info.dfn[u]));
