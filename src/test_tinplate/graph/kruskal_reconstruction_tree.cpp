@@ -18,7 +18,7 @@ int main() {
   auto [tr, ew] = tifa_libs::graph::kruskal_re_tree(e, n);
   n = (u32)tr.g.size();
   tifa_libs::graph::tree_dfs_info info;
-  info.reset_dfs_info<tifa_libs::graph::dis_go>(tr);
+  info.reset_dfs_info<tifa_libs::graph::td_go>(tr);
   auto sum_node_w = tifa_libs::graph::tree_sumvw(tr, nw);
   while (q--) {
     u32 x, k;

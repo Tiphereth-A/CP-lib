@@ -13,12 +13,12 @@ auto tree_diam(G &tree) {
   auto _ = tree.root;
   
   vec<std::conditional_t<F, u32, typename G::weight_type>> d;
-  if constexpr (F) d = tree_dfs_info().reset_dfs_info<dis_dep>(tree).dep;
-  else d = tree_dfs_info_w<typename G::weight_type>().template reset_dfs_info<diws_dis>(tree).dis;
+  if constexpr (F) d = tree_dfs_info().reset_dfs_info<td_dep>(tree).dep;
+  else d = tree_dfs_info_w<typename G::weight_type>().template reset_dfs_info<tdw_dis>(tree).dis;
   
   u32 u = tree.root = (u32)std::distance(d.begin(), std::max_element(d.begin(), d.end()));
-  if constexpr (F) d = tree_dfs_info().reset_dfs_info<dis_dep>(tree).dep;
-  else d = tree_dfs_info_w<typename G::weight_type>().template reset_dfs_info<diws_dis>(tree).dis;
+  if constexpr (F) d = tree_dfs_info().reset_dfs_info<td_dep>(tree).dep;
+  else d = tree_dfs_info_w<typename G::weight_type>().template reset_dfs_info<tdw_dis>(tree).dis;
   
   u32 v = (u32)std::distance(d.begin(), std::max_element(d.begin(), d.end()));
   tree.root = _;

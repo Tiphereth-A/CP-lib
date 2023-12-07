@@ -562,6 +562,9 @@ notebook:
     - treew: 带权树
       code_ext: hpp
       test_ext: cpp
+    - dfs_info_mask: 树 DFS 掩码
+      code_ext: hpp
+      test_ext: cpp
     - dfs_info: 常用树 DFS
       code_ext: hpp
       test_ext: cpp

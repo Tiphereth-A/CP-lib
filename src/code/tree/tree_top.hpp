@@ -10,8 +10,8 @@ template <class G, bool need_dfn = false, class Tinfo = std::conditional_t<std::
 vec<u32> tree_top(G const &tr, Tinfo &info) {
   u32 n = (u32)tr.g.size();
   if (info.maxson.empty()) {
-    if constexpr (std::is_base_of_v<alist, G>) info.template reset_dfs_info<dis_maxson>(tr);
-    else info.template reset_dfs_info<diws_maxson>(tr);
+    if constexpr (std::is_base_of_v<alist, G>) info.template reset_dfs_info<td_maxson>(tr);
+    else info.template reset_dfs_info<td_maxson>(tr);
   }
   if constexpr (need_dfn) info.dfn = vec<u32>(n);
 

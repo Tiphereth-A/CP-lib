@@ -18,7 +18,7 @@ class hld {
   vec<u32> top;
 
   explicit hld(graph::tree& tr) : t(), tr(tr) {
-    info.reset_dfs_info<graph::dis_dep | graph::dis_fa>(tr);
+    info.reset_dfs_info<graph::td_dep | graph::td_fa>(tr);
     top = graph::tree_top<graph::tree, true>(tr, info);
   }
   explicit hld(graph::tree& tr, const vec<T>& a) : hld(tr) {

@@ -11,7 +11,7 @@ struct lca_hld {
   vec<u32> top;
 
   lca_hld(tree& tr) {
-    info.reset_dfs_info<dis_dep | dis_fa>(tr);
+    info.reset_dfs_info<td_dep | td_fa>(tr);
     top = tree_top(tr, info);
   }
 
