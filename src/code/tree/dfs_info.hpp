@@ -10,6 +10,7 @@ namespace tifa_libs::graph {
 struct tree_dfs_info {
   vec<u32> dfn, sz, fa, dep, maxson, maxdfn, euler;
   vvec<u32> go;
+  vec<u32> dis;
 
   template <int state>
   tree_dfs_info& reset_dfs_info(tree const& tree) {
@@ -22,6 +23,7 @@ struct tree_dfs_info {
     if constexpr (state & td_maxdfn) maxdfn = vec<u32>(n);
     if constexpr (state & td_euler) euler = vec<u32>(n);
     if constexpr (state & td_go) go = vec<vec<u32>>(n, vec<u32>(21u, n));
+    if constexpr (state & td_dis) dis = vec<u32>(n);
 
     u32 cnt = 0;
 
@@ -39,6 +41,7 @@ struct tree_dfs_info {
         },
         [&](u32 to, u32 u) {
           if constexpr (state & td_dep) dep[to] = dep[u] + 1;
+          if constexpr (state & td_dis) dis[to] = dis[u] + 1;
         },
         [&](u32 to, u32 u) {
           if constexpr (state & (td_sz | td_maxson)) sz[u] += sz[to];

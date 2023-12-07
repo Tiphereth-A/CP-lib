@@ -12,7 +12,7 @@ enum tree_dfs_info_mask {
   td_maxdfn = 32,
   td_euler = 64,
   td_go = 128,
-  tdw_dis = 256
+  td_dis = 256
 };
 
 }  // namespace tifa_libs::graph
