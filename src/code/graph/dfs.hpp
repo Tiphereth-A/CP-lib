@@ -14,13 +14,13 @@ void dfs_(G const& fg, u32 u, u32 fa, Fb&& init, Fp&& pre_dfs, Fs&& post_dfs, Fr
     if constexpr (std::is_base_of_v<alist, G>) {
       if (v != fa) {
         pre_dfs(v, u);
-        dfs_(fg, v, u, std::forward<Fb>(init), std::forward<Fp>(pre_dfs), std::forward<Fs>(post_dfs));
+        dfs_(fg, v, u, std::forward<Fb>(init), std::forward<Fp>(pre_dfs), std::forward<Fs>(post_dfs), std::forward<Fr>(before_return));
         post_dfs(v, u);
       }
     } else {
       if (v.first != fa) {
         pre_dfs(v.first, v.second, u);
-        dfs_(fg, v.first, u, std::forward<Fb>(init), std::forward<Fp>(pre_dfs), std::forward<Fs>(post_dfs));
+        dfs_(fg, v.first, u, std::forward<Fb>(init), std::forward<Fp>(pre_dfs), std::forward<Fs>(post_dfs), std::forward<Fr>(before_return));
         post_dfs(v.first, v.second, u);
       }
     }
