@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_matrix"
 
 #include "../../code/math/mint_s30.hpp"
-#include "../../code/matrix/mat.hpp"
-#include "../../code/matrix/mat_pow.hpp"
+#include "../../code/lalg/mat.hpp"
+#include "../../code/lalg/mat_pow.hpp"
 
 using mint = tifa_libs::math::mint_s30<998244353>;
 using mat = tifa_libs::math::matrix<mint>;

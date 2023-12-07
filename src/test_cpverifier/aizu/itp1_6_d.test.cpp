@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_6_D"
 
-#include "../../code/matrix/mat.hpp"
+#include "../../code/lalg/mat.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

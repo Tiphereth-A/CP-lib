@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sparse_matrix_det"
 
 #include "../../code/math/mint_ds.hpp"
-#include "../../code/matrix/mat_det_rd.hpp"
-#include "../../code/matrix/spmat.hpp"
+#include "../../code/lalg/mat_det_rd.hpp"
+#include "../../code/lalg/spmat.hpp"
 #include "../../code/rand/gen.hpp"
 
 using mint = tifa_libs::math::mint_ds<-1>;

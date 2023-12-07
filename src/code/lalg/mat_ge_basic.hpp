@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_MATRIX_MAT_GE_BASIC
-#define TIFALIBS_MATRIX_MAT_GE_BASIC
+#ifndef TIFALIBS_LALG_MAT_GE_BASIC
+#define TIFALIBS_LALG_MAT_GE_BASIC
 
 #include "mat_ge_swapr_.hpp"
 

@@ -17,10 +17,10 @@ notebook:
     geo2d: 二维计算几何
     geo3d: 三维计算几何
     comb: 组合数学
-    math: 数学
-    matrix: 矩阵
+    lalg: 线性代数
     conv: 卷积
     poly: 多项式
+    math: 数论与其他数学
     str: 字符串
     rand: 随机数与随机化算法
     game: 游戏
@@ -933,7 +933,7 @@ notebook:
     - nth_term_lrec: 线性递推数列的第 N 项
       code_ext: hpp
       test_ext: cpp
-    matrix:
+    lalg:
     - mat: 矩阵
       code_ext: hpp
       test_ext: cpp

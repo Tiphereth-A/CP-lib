@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_MATRIX_LEQS_SOLVER
-#define TIFALIBS_MATRIX_LEQS_SOLVER
+#ifndef TIFALIBS_LALG_LEQS_SOLVER
+#define TIFALIBS_LALG_LEQS_SOLVER
 
 #include "mat.hpp"
 #include "mat_merge_lr.hpp"

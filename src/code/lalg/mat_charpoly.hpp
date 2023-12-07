@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_MATRIX_MAT_CHARPOLY
-#define TIFALIBS_MATRIX_MAT_CHARPOLY
+#ifndef TIFALIBS_LALG_MAT_CHARPOLY
+#define TIFALIBS_LALG_MAT_CHARPOLY
 
 #include "mat.hpp"
 #include "mat_uhb.hpp"

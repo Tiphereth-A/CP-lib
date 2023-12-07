@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_MATRIX_LFSR_BM
-#define TIFALIBS_MATRIX_LFSR_BM
+#ifndef TIFALIBS_LALG_LFSR_BM
+#define TIFALIBS_LALG_LFSR_BM
 
 #include "../util/util.hpp"
 

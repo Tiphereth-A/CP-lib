@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/characteristic_polynomial"
 
 #include "../../code/math/mint_s63.hpp"
-#include "../../code/matrix/mat_charpoly.hpp"
+#include "../../code/lalg/mat_charpoly.hpp"
 #include "../../code/util/ios_container.hpp"
 
 using mint = tifa_libs::math::mint_s63<998244353>;

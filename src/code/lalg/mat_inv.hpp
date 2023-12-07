@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_MATRIX_MAT_INV
-#define TIFALIBS_MATRIX_MAT_INV
+#ifndef TIFALIBS_LALG_MAT_INV
+#define TIFALIBS_LALG_MAT_INV
 
 #include "mat_merge_lr.hpp"
 

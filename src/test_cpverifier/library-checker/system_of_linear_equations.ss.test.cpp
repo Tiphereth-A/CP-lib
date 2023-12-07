@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/system_of_linear_equations"
 
 #include "../../code/math/mint_ss.hpp"
-#include "../../code/matrix/leqs_solver.hpp"
-#include "../../code/matrix/mat_ge_basic.hpp"
-#include "../../code/matrix/mat_trans.hpp"
+#include "../../code/lalg/leqs_solver.hpp"
+#include "../../code/lalg/mat_ge_basic.hpp"
+#include "../../code/lalg/mat_trans.hpp"
 
 using mint = tifa_libs::math::mint_ss<998244353>;
 using mat = tifa_libs::math::matrix<mint>;

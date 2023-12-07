@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_MATRIX_MAT_GE_EUCLID
-#define TIFALIBS_MATRIX_MAT_GE_EUCLID
+#ifndef TIFALIBS_LALG_MAT_GE_EUCLID
+#define TIFALIBS_LALG_MAT_GE_EUCLID
 
 #include "mat_ge_swapr_.hpp"
 

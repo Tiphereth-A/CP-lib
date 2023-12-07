@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_MATRIX_MAT_GE_SWAPR_
-#define TIFALIBS_MATRIX_MAT_GE_SWAPR_
+#ifndef TIFALIBS_LALG_MAT_GE_SWAPR_
+#define TIFALIBS_LALG_MAT_GE_SWAPR_
 
 #include "../util/util.hpp"
 

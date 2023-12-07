@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_MATRIX_MAT_GE_XOR
-#define TIFALIBS_MATRIX_MAT_GE_XOR
+#ifndef TIFALIBS_LALG_MAT_GE_XOR
+#define TIFALIBS_LALG_MAT_GE_XOR
 
 #include "mat_ge_swapr_.hpp"
 
