@@ -14,8 +14,6 @@ using vvec = vector<vector<Tp>>;
 #define fors_(i, l, r, s, v...) for (i64 i = (l), i##e = (r), ##v; i <= i##e; i += s)
 #define rfor_(i, r, l, v...) for (i64 i = (r), i##e = (l), ##v; i >= i##e; --i)
 #define rfors_(i, r, l, s, v...) for (i64 i = (r), i##e = (l), ##v; i >= i##e; i -= s)
-#define Rep for_
-#define rep rfor_
 
 template <class... Ts>
 void dec(Ts &...x) { ((--x), ...); }
@@ -41,7 +39,6 @@ signed main() {
 #endif
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  cerr << fixed << setprecision(6);
   int i_ = 0;
 #ifdef MCAS
   int t_ = 0;
