@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_CONV_SUBSET
 #define TIFALIBS_CONV_SUBSET
 
-#include "../bit/cntr0.hpp"
 #include "../util/util.hpp"
 
 namespace tifa_libs::math {
@@ -52,7 +51,7 @@ struct conv_subset {
   }
 
   void prod(vec<arr>& A, vec<arr> const& B) const {
-    u32 n = (u32)A.size(), d = (u32)bit::cntr0(n);
+    u32 n = (u32)A.size(), d = (u32)std::countr_zero(n);
     for (u32 i = 0; i < n; ++i) {
       arr c;
       for (u32 j = 0; j <= d; ++j)

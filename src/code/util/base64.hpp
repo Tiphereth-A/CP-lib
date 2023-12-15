@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_UTIL_BASE64
 #define TIFALIBS_UTIL_BASE64
 
-#include "../bit/cntl0.hpp"
 #include "util.hpp"
 
 namespace tifa_libs {
@@ -15,7 +14,7 @@ class Base64 {
  public:
   static std::string encode(vec<usz> const &a) {
     usz x = *std::max_element(a.begin(), a.end()), y = *std::min_element(a.begin(), a.end());
-    usz N = a.size(), B = std::max(usz(6), (sizeof(usz) * 8 - (usz)(y < 0 ? 0 : bit::cntl0(x))));
+    usz N = a.size(), B = std::max(usz(6), (sizeof(usz) * 8 - (usz)(y < 0 ? 0 : std::countl_zero(x))));
     std::string S((B * N + 11) / 6, 0);
     S[0] = (char)B;
     for (usz i = 0; i < N; ++i)

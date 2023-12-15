@@ -13,7 +13,7 @@ namespace gcd_mpi_impl_ {
 // @return {x, y} s.t. a = 2^x 5^y
 constexpr ptt<i32> shrink(u32 a) {
   assert(a > 0);
-  int x = bit::cntr0(a);
+  int x = std::countr_zero(a);
   a >>= x;
   // clang-format off
   return {x, a == 1 ? 0 : a == 5 ? 1 : a == 25 ? 2 : a == 125 ? 3 : a == 625 ? 4 : a == 3125 ? 5 : a == 15625 ? 6 : a == 78125 ? 7 : a == 390625 ? 8 : 9};

@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_MATH_IS_PRIME
 #define TIFALIBS_MATH_IS_PRIME
 
-#include "../bit/cntr0.hpp"
 #include "mul_mod_u.hpp"
 #include "qpow_mod.hpp"
 
@@ -12,7 +11,7 @@ constexpr bool is_prime(u64 n) {
   if (~n & 1) return false;
   if (n < 8 || n == 61) return true;
 
-  auto f = [n, d = (n - 1) >> bit::cntr0(n - 1)](auto const& bases) -> bool {
+  auto f = [n, d = (n - 1) >> std::countr_zero(n - 1)](auto const& bases) -> bool {
     for (u64 i : bases) {
       if (!(i % n)) continue;
       u64 t = d, y = qpow_mod(i, t, n);

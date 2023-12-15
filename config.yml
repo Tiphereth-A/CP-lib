@@ -121,49 +121,7 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     bit:
-    - bceil: std::bit_ceil
-      code_ext: hpp
-      test_ext: cpp
-    - bfloor: std::bit_floor
-      code_ext: hpp
-      test_ext: cpp
-    - bwidth: std::bit_width
-      code_ext: hpp
-      test_ext: cpp
-    - cntl0: std::countl_zero
-      code_ext: hpp
-      test_ext: cpp
-    - cntl1: std::countl_one
-      code_ext: hpp
-      test_ext: cpp
     - cntlsb: 与符号位相同的高位长度
-      code_ext: hpp
-      test_ext: cpp
-    - cntr0: std::countr_zero
-      code_ext: hpp
-      test_ext: cpp
-    - cntr1: std::countr_one
-      code_ext: hpp
-      test_ext: cpp
-    - popcnt: std::popcount
-      code_ext: hpp
-      test_ext: cpp
-    - rotl: std::rotl
-      code_ext: hpp
-      test_ext: cpp
-    - rotr: std::rotr
-      code_ext: hpp
-      test_ext: cpp
-    - bswap: std::byteswap
-      code_ext: hpp
-      test_ext: cpp
-    - endian: std::endian
-      code_ext: hpp
-      test_ext: cpp
-    - log2: log2
-      code_ext: hpp
-      test_ext: cpp
-    - ispow2: 是否为 2 的整数次幂
       code_ext: hpp
       test_ext: cpp
     - parity: popcount 奇偶性

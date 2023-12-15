@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_MATH_JACOBI_SYM
 #define TIFALIBS_MATH_JACOBI_SYM
 
-#include "../bit/cntr0.hpp"
 #include "../util/util.hpp"
 
 namespace tifa_libs::math {
@@ -12,7 +11,7 @@ constexpr int jacobi_sym(u64 a, u64 p) {
   int s = 1, _ = 0;
   while (a > 1) {
     if (a == p || !a || p < 2) return 0;
-    _ = bit::cntr0(a);
+    _ = std::countr_zero(a);
     if (((p - 1) & 7) && ((p + 1) & 7) && (_ & 1)) s = -s;
     if ((a >>= _) == 1) break;
     if ((((p - 1) & 7) * (a - 1)) & 7) s = -s;

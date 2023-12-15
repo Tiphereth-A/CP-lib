@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_MATH_PFACTORS
 #define TIFALIBS_MATH_PFACTORS
 
-#include "../bit/cntr0.hpp"
 #include "../rand/gen.hpp"
 #include "is_prime.hpp"
 #include "mul_mod_u.hpp"
@@ -53,7 +52,7 @@ class PollardRho {
 inline std::map<u64, u32> pfactors(u64 n) {
   std::map<u64, u32> ans;
   if (n < 2) return ans;
-  if (~n & 1) n >>= (ans[2] = (u32)bit::cntr0(n));
+  if (~n & 1) n >>= (ans[2] = (u32)std::countr_zero(n));
   pfactors_impl_::PollardRho()(n, ans);
   return ans;
 }

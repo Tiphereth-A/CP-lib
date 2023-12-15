@@ -1,8 +1,6 @@
 #ifndef TIFALIBS_CONV_CNTT
 #define TIFALIBS_CONV_CNTT
 
-#include "../bit/bceil.hpp"
-#include "../bit/log2.hpp"
 #include "../math/proot_gint.hpp"
 #include "../math/qpow.hpp"
 
@@ -16,10 +14,10 @@ struct CNTT {
 
   u32 size() const { return (u32)rev.size(); }
   void bzr(u32 len) {
-    u32 n = std::max<u32>(bit::bceil(len), 2);
+    u32 n = std::max<u32>(std::bit_ceil(len), 2);
     if (n == size()) return;
     rev.resize(n, 0);
-    u32 k = (u32)bit::log2(n);
+    u32 k = (u32)(std::bit_width(n) - 1);
     for (u32 i = 0; i < n; ++i) rev[i] = (rev[i / 2] / 2) | ((i & 1) << (k - 1));
     Wn.resize(k);
     IWn.resize(k);

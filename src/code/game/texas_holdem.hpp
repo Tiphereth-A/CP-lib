@@ -10,7 +10,7 @@ namespace texas_holdem_impl_ {
 
 constexpr int bsr(int x) { return 30 - bit::cntlsb(x); }
 // Returns the submask containing highest k bits set
-// Returns -1 instead if popcnt(a) < k
+// Returns -1 instead if std::popcount(a) < k
 constexpr int hbits(int a, int k) {
   int b = 0;
   for (int i = 0; i < k; ++i) {

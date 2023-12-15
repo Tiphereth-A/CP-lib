@@ -1,9 +1,7 @@
 #ifndef TIFALIBS_DS_FENWICK
 #define TIFALIBS_DS_FENWICK
 
-#include "../bit/bceil.hpp"
 #include "../bit/lowbit.hpp"
-#include "../util/util.hpp"
 
 namespace tifa_libs::ds {
 
@@ -28,7 +26,7 @@ class fenwick {
   }
   //! for weighted fenwick
   constexpr T kth_max(u32 k) {
-    u32 now = 0, n = bit::bceil(a.size());
+    u32 now = 0, n = std::bit_ceil(a.size());
     T s{};
     while (n) {
       u32 to = now | n;

@@ -1,8 +1,6 @@
 #ifndef TIFALIBS_CONV_NTT
 #define TIFALIBS_CONV_NTT
 
-#include "../bit/bceil.hpp"
-#include "../bit/ispow2.hpp"
 #include "../math/proot_u64.hpp"
 #include "../math/qpow.hpp"
 #include "../util/util.hpp"
@@ -19,7 +17,7 @@ struct NTT {
 
   u32 size() const { return (u32)root.size(); }
   void bzr(u32 len) {
-    u32 n = bit::bceil(len);
+    u32 n = std::bit_ceil(len);
     assert((mint::mod() - 1) % n == 0);
     if (n == size()) return;
     root.resize(n);
@@ -34,7 +32,7 @@ struct NTT {
     assert(size());
     if (!n) n = size();
     if (f.size() < n) f.resize(n);
-    assert(bit::ispow2(n) && n <= size());
+    assert(std::has_single_bit(n) && n <= size());
     for (u32 i = n / 2, d = 1; i; i /= 2, d *= 2)
       for (u32 j = 0; j < n; j += i * 2) {
         auto w = root.begin();
@@ -49,7 +47,7 @@ struct NTT {
     assert(size());
     if (!n) n = size();
     if (f.size() < n) f.resize(n);
-    assert(bit::ispow2(n) && n <= size());
+    assert(std::has_single_bit(n) && n <= size());
     for (u32 i = 1, d = n / 2; d; i *= 2, d /= 2)
       for (u32 j = 0; j < n; j += i * 2) {
         auto w = root.begin();

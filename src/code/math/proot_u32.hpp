@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_MATH_PROOT_U32
 #define TIFALIBS_MATH_PROOT_U32
 
-#include "../bit/cntr0.hpp"
 #include "is_proot.hpp"
 #include "isqrt.hpp"
 
@@ -15,7 +14,7 @@ constexpr u32 proot_u32(u32 m) {
   if (m == 998244353 || m == 1004535809) return 3;
   u32 divs[20] = {2};
   u32 cnt = 1, x = (m - 1) / 2;
-  x >>= bit::cntr0(x);
+  x >>= std::countr_zero(x);
   for (u32 i = 3, ed_ = isqrt(x); i <= ed_; i += 2)
     if (x % i == 0) {
       divs[cnt++] = i;

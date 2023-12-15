@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_CONV_CONV_CZT
 #define TIFALIBS_CONV_CONV_CZT
 
-#include "../bit/bceil.hpp"
 #include "../math/proot_u64.hpp"
 #include "../poly/poly_czt.hpp"
 #include "../util/util.hpp"
@@ -13,7 +12,7 @@ poly<T> conv_czt(poly<T> l, poly<T> r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   using mint = typename T::value_type;
   constexpr u64 m = T::value_type::mod();
-  u64 s = bit::bceil(l.size() + r.size() - 1);
+  u64 s = std::bit_ceil(l.size() + r.size() - 1);
   assert((m - 1) % s == 0);
   mint c = qpow(mint(proot_u64(m)), (m - 1) / s);
   l.resize(s);

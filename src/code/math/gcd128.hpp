@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_MATH_GCD128
 #define TIFALIBS_MATH_GCD128
 
-#include "../bit/cntr0.hpp"
 #include "../util/abs_constexpr.hpp"
 #include "../util/traits.hpp"
 
@@ -11,12 +10,12 @@ template <class T, std::enable_if_t<is_uint<T>::value>* = nullptr>
 constexpr T gcd_u128(T a, T b) {
   if (!a) return b;
   if (!b) return a;
-  const int i = bit::cntr0(a), j = bit::cntr0(b), k = std::min(i, j);
+  const int i = std::countr_zero(a), j = std::countr_zero(b), k = std::min(i, j);
   a >>= i, b >>= j;
   while (1) {
     if (a > b) std::swap(a, b);
     if (!(b -= a)) return a << k;
-    b >>= bit::cntr0(b);
+    b >>= std::countr_zero(b);
   }
 }
 #pragma GCC diagnostic push

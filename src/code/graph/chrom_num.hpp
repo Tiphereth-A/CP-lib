@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_GRAPH_CHROM_NUM
 #define TIFALIBS_GRAPH_CHROM_NUM
 
-#include "../bit/cntr0.hpp"
 #include "../bit/parity.hpp"
 #include "../math/mul_mod_s.hpp"
 #include "alist.hpp"
@@ -31,7 +30,7 @@ inline u32 chrom_num(alist const& fg) {
   dp[0] = 1;
   for (u32 i = 1; i < (1u << n); ++i) {
     u32 k = i & (i - 1);
-    dp[i] = dp[k] + dp[k & ~adj[(u32)bit::cntr0(i)]];
+    dp[i] = dp[k] + dp[k & ~adj[(u32)std::countr_zero(i)]];
   }
   vec<i32> _((1 << n) + 1);
   for (u32 i = 0; i < (1u << n); ++i) _[dp[i]] += bit::parity(i) ? -1 : 1;

@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_COMB_GEN_STIRLING1_ROW
 #define TIFALIBS_COMB_GEN_STIRLING1_ROW
 
-#include "../bit/cntl0.hpp"
 #include "../poly/poly.hpp"
 #include "../poly/poly_shl.hpp"
 #include "../poly/poly_tsh.hpp"
@@ -16,7 +15,7 @@ poly<T> gen_stirling1_row(u32 n, vec<u64> const& fact, vec<u64> const& ifact) {
   if (!n) return poly<T>{1};
   poly<T> f{0, 1};
   if (n == 1) return f;
-  for (int i = 30 - bit::cntl0(n); ~i; --i) {
+  for (int i = 30 - std::countl_zero(n); ~i; --i) {
     u32 _ = n >> i;
     f *= poly_tsh(f, _ / 2, fact, ifact);
     f.resize(f.size() + 1);
