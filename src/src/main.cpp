@@ -26,7 +26,7 @@ void debug(Ts const &...args) {
 #define dbgn_(var) debug(#var, var)
 
 // #define MCAS
-void solve(int t_ = 0) {
+void solve(int) {
 }
 
 signed main() {
