@@ -17,11 +17,10 @@ tifa_libs::rand::Gen<std::uniform_int_distribution<u64>> g;
 template <class T>
 void test_karatsuba(u64 n) {
   vec<T> a(n), b(n);
-#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wconversion"
   for (auto& i : a) i = T(g());
   for (auto& i : b) i = T(g());
-#pragma GCC diagnostic pop
+#pragma GCC diagnostic warning "-Wconversion"
   vec<T> c = tifa_libs::math::conv_naive(a, b), d = tifa_libs::math::karatsuba(a, b);
   check(d, c);
 }

@@ -10,10 +10,9 @@ namespace exeuclid_impl_ {
 
 template <class T>
 T solve_(i64 p, i64 q, i64 r, i64 l, T a, T b) {
-#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wfloat-conversion"
   auto div = [](i64 a, i64 b, i64 c, i64 d) -> i64 { return (1.l * a * b + c) / d; };
-#pragma GCC diagnostic pop
+#pragma GCC diagnostic warning "-Wfloat-conversion"
   if (!l) return {};
   if (p >= q) return solve_(p % q, q, r, l, a, qpow(a, u64(p / q), T{}) * b);
   i64 m = div(l, p, r, q);

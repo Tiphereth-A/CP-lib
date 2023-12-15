@@ -18,11 +18,10 @@ constexpr T gcd_u128(T a, T b) {
     b >>= std::countr_zero(b);
   }
 }
-#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-conversion"
 template <class T, std::enable_if_t<is_int<T>::value>* = nullptr>
 constexpr T gcd_128(T a, T b) { return gcd_u128<to_uint_t<T>>(abs(a), abs(b)); }
-#pragma GCC diagnostic pop
+#pragma GCC diagnostic warning "-Wsign-conversion"
 
 }  // namespace tifa_libs::math
 

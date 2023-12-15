@@ -30,7 +30,6 @@ struct FFT {
     assert(n <= size());
     for (u32 i = 0; i < n; ++i)
       if (i < rev[i]) std::swap(f[rev[i]], f[i]);
-#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-conversion"
     for (u32 i = 2, d = n / 2; i <= n; i *= 2, d /= 2)
       for (u32 j = 0; j < n; j += i) {
@@ -42,7 +41,7 @@ struct FFT {
           *l = *l + tmp;
         }
       }
-#pragma GCC diagnostic pop
+#pragma GCC diagnostic warning "-Wsign-conversion"
   }
   void dit(vec<C> &f, u32 n = 0) const {
     if (!n) n = size();

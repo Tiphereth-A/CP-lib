@@ -26,7 +26,6 @@ struct NTT32 {
     for (u32 i = 1; i < n; ++i) root[i] = root[i - 1] * w;
   }
 
-#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-conversion"
   void dif(vec<mint> &f, u32 n = 0) const {
     assert(size());
@@ -61,7 +60,7 @@ struct NTT32 {
     mint t = mint(n).inv();
     for (u32 i = 0; i < n; ++i) f[i] *= t;
   }
-#pragma GCC diagnostic pop
+#pragma GCC diagnostic warning "-Wsign-conversion"
 
  private:
   vec<mint> root;

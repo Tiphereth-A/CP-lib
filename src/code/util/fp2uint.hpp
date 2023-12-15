@@ -5,11 +5,10 @@
 
 namespace tifa_libs {
 
-#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wfloat-conversion"
 template <class FP>
 constexpr u64 fp2uint(FP x, FP eps) { return x + eps; }
-#pragma GCC diagnostic pop
+#pragma GCC diagnostic warning "-Wfloat-conversion"
 
 }  // namespace tifa_libs
 

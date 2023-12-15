@@ -10,13 +10,12 @@ inline vec<i32> kmp_nxt(std::string_view pattern) {
   i32 n = (i32)pattern.size();
   vec<i32> nxt((u32)n);
   i32 i, j;
-#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-conversion"
   for (nxt[0] = j = -1, i = 1; i < n; nxt[i++] = j) {
     while (~j && pattern[j + 1] != pattern[i]) j = nxt[j];
     if (pattern[j + 1] == pattern[i]) ++j;
   }
-#pragma GCC diagnostic pop
+#pragma GCC diagnostic warning "-Wsign-conversion"
   return nxt;
 }
 
@@ -27,7 +26,6 @@ inline vec<u32> kmp(std::string_view pattern, std::string_view text) {
   vec<u32> ret;
   i32 n = (i32)pattern.size(), m = (i32)text.size();
   i32 i, j;
-#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-conversion"
   for (j = -1, i = 0; i < m; ++i) {
     while (~j && pattern[j + 1] != text[i]) j = nxt[j];
@@ -37,7 +35,7 @@ inline vec<u32> kmp(std::string_view pattern, std::string_view text) {
       j = nxt[j];
     }
   }
-#pragma GCC diagnostic pop
+#pragma GCC diagnostic warning "-Wsign-conversion"
   return ret;
 }
 
