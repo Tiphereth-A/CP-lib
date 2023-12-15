@@ -17,8 +17,8 @@ class interp_newton {
   vec<T> fit;
 
  public:
-  explicit interp_newton() {}
-  interp_newton &insert(T const &x, T const &y) {
+  explicit constexpr interp_newton() {}
+  constexpr interp_newton &insert(T const &x, T const &y) {
     points.emplace_back(x, y);
     u32 n = (u32)points.size();
     if (n == 1) {
@@ -38,8 +38,8 @@ class interp_newton {
     for (u32 i = 0; i < n; ++i) fit[i] = fit[i] + diffs[n - 1][0] * base[i];
     return *this;
   }
-  vec<T> coeffs() const { return fit; }
-  T evaluate(T const &x) {
+  constexpr vec<T> coeffs() const { return fit; }
+  constexpr T eval(T const &x) {
     T ans{};
     for (auto it = fit.rbegin(); it != fit.rend(); ++it) ans = ans * x + *it;
     return ans;

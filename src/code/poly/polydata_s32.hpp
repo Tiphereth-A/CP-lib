@@ -25,8 +25,8 @@ struct polydata_s32 {
   explicit constexpr polydata_s32(std::initializer_list<mint> v) : d(v) {}
   explicit constexpr polydata_s32(vec<mint> const &v) : d(v) {}
 
-  void conv(polydata_s32 const &r, u32 ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_dft(ccore, d, r.d, ans_size); }
-  void conv(polydata_s32 const &r) { conv(r, u32(d.size() + r.d.size() - 1)); }
+  constexpr void conv(polydata_s32 const &r, u32 ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_dft(ccore, d, r.d, ans_size); }
+  constexpr void conv(polydata_s32 const &r) { conv(r, u32(d.size() + r.d.size() - 1)); }
 };
 
 }  // namespace tifa_libs::math

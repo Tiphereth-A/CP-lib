@@ -15,8 +15,8 @@ class SBT {
   vec<T> seq;
 
  public:
-  explicit SBT() : lx(0), ly(1), x(1), y(1), rx(1), ry(0) {}
-  SBT(T X, T Y) : SBT() {
+  explicit constexpr SBT() : lx(0), ly(1), x(1), y(1), rx(1), ry(0) {}
+  constexpr SBT(T X, T Y) : SBT() {
     assert(x > 0 && Y > 0);
     if (T g = std::gcd(X, Y); g > 1) X /= g, Y /= g;
     while (std::min(X, Y))
@@ -28,7 +28,7 @@ class SBT {
         movl(_ - !(Y -= _ * X));
       }
   }
-  explicit SBT(vec<T> const &seq_) : SBT() {
+  explicit constexpr SBT(vec<T> const &seq_) : SBT() {
     for (auto &&d : seq_) {
       assert(d != 0);
       if (d > 0) movr(d);
@@ -36,8 +36,8 @@ class SBT {
     }
   }
 
-  friend bool operator<(SBT const &l, SBT const &r) { return l.x * r.y < r.x * l.y; }
-  friend bool operator==(SBT const &l, SBT const &r) { return l.x == r.x && l.y == r.y; }
+  friend constexpr bool operator<(SBT const &l, SBT const &r) { return l.x * r.y < r.x * l.y; }
+  friend constexpr bool operator==(SBT const &l, SBT const &r) { return l.x == r.x && l.y == r.y; }
 
   constexpr ptt<T> current() const { return {x, y}; }
   constexpr ptt<T> lbound() const { return {lx, ly}; }
@@ -51,7 +51,7 @@ class SBT {
     return res;
   }
   // move towards lchild with @d steps
-  void movl(T d = 1) {
+  constexpr void movl(T d = 1) {
     if (d <= 0) return;
     if (seq.empty() || seq.back() > 0) seq.push_back(0);
     seq.back() -= d;
@@ -59,7 +59,7 @@ class SBT {
     x = rx + lx, y = ry + ly;
   }
   // move towards rchild with @d steps
-  void movr(T d = 1) {
+  constexpr void movr(T d = 1) {
     if (d <= 0) return;
     if (seq.empty() || seq.back() < 0) seq.push_back(0);
     seq.back() += d;
@@ -68,7 +68,7 @@ class SBT {
   }
   // move towards fa with @d steps
   // @return true if succeed, or false if falied
-  bool movf(T d = 1) {
+  constexpr bool movf(T d = 1) {
     if (d <= 0) return true;
     while (d) {
       if (seq.empty()) return false;
@@ -89,7 +89,7 @@ class SBT {
     return true;
   }
 
-  static SBT lca(SBT const &l, SBT const &r) {
+  static constexpr SBT lca(SBT const &l, SBT const &r) {
     SBT ret;
     for (u32 i = 0; i < std::min((u32)l.seq.size(), (u32)r.seq.size()); ++i) {
       T val1 = l.seq[i], val2 = r.seq[i];

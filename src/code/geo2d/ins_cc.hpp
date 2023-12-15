@@ -9,7 +9,7 @@ namespace tifa_libs::geo {
 //! need to check whether two circles are the same
 // maybe duplicate
 template <class FP>
-std::optional<ptt<point<FP>>> ins_CC(circle<FP> const &c1, circle<FP> const &c2) {
+constexpr std::optional<ptt<point<FP>>> ins_CC(circle<FP> const &c1, circle<FP> const &c2) {
   assert(!is_eq(c1.o.x, c2.o.x) || !is_eq(c1.o.y, c2.o.y) || !is_eq(c1.r, c2.r));
   auto state = relation_CC(c1, c2);
   if (state == RELCC::lyingin_cc || state == RELCC::lyingout_cc) return {};

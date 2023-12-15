@@ -15,7 +15,7 @@ struct Montgomery_si512 {
   alignas(64) u32x16 r;      // 2^32 % mod
   alignas(64) u32x16 r2;     // (2^32) ^ 2 % mod
 
-  Montgomery_si512() = default;
+  Montgomery_si512() {}
   Montgomery_si512(u32 md) {
     Montgomery mt(md);
     mod = set1_u32x16(mt.mod);

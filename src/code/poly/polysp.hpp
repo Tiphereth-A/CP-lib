@@ -9,7 +9,7 @@ template <class T>
 using polysp = vec<std::pair<u32, typename poly<T>::value_type>>;
 
 template <class T>
-polysp<T> poly2sp(poly<T> const& p, u32 n = 0) {
+constexpr polysp<T> poly2sp(poly<T> const& p, u32 n = 0) {
   if (!n) n = p.size();
   polysp<T> fs;
   for (u32 i = 0; i < n; ++i)

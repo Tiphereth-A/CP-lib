@@ -19,7 +19,7 @@ struct lsieve_func {
   vec<u64> sigma, tau;
 
   template <int state>
-  lsieve_func& reset_lsieve_func(u32 n) {
+  constexpr lsieve_func& reset_lsieve_func(u32 n) {
     if constexpr (state | ls_mpf) mpf = vec<u32>(n), mpf[1] = 1;
     if constexpr (state | ls_phi) phi = vec<u32>(n), phi[1] = 1;
     if constexpr (state | ls_mu) mu = vec<i32>(n), mu[1] = 1;

@@ -17,8 +17,10 @@ class aho_corasick_automaton {
  public:
   vec<YYZ> t;
   u32 sz;
-  aho_corasick_automaton() : t(1), sz(1) {}
-  void insert(std::string s, u32 id = -1u) {
+
+  explicit constexpr aho_corasick_automaton() : t(1), sz(1) {}
+  
+  constexpr void insert(std::string s, u32 id = -1u) {
     u32 u = 0;
     ++t[u].tot;
     for (auto c : s) {
@@ -28,7 +30,7 @@ class aho_corasick_automaton {
     }
     if (id != -1u) t[u].end.push_back(id);
   }
-  void getfail() {
+  constexpr void getfail() {
     std::queue<u32> q;
     for (u32 i = 0; i < SZ; ++i)
       if (t[0].nex[i]) q.push(t[0].nex[i]);
@@ -41,7 +43,7 @@ class aho_corasick_automaton {
       }
     }
   }
-  void build(vec<std::string> s_) {
+  constexpr void build(vec<std::string> s_) {
     for (u32 i = 0; i < s_.size(); ++i) insert(s_[i], i);
     getfail();
   }

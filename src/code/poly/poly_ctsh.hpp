@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64> const &ifact, u32 m = 0) {
+constexpr poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64> const &ifact, u32 m = 0) {
   u32 n = f.size(), k = f.size() - 1;
   if (!m) m = n;
   using mint = typename T::value_type;
@@ -46,7 +46,7 @@ poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64> const &if
   return ret;
 }
 template <class T>
-poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, u32 m = 0) { return poly_ctsh(f, c, gen_ifact(f.size(), T::value_type::mod()), m); }
+constexpr poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, u32 m = 0) { return poly_ctsh(f, c, gen_ifact(f.size(), T::value_type::mod()), m); }
 
 }  // namespace tifa_libs::math
 

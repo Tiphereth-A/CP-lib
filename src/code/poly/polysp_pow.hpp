@@ -10,7 +10,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> polysp_pow(poly<T> const& p, u64 y, vec<u64> const& inv, u32 n = 0) {
+constexpr poly<T> polysp_pow(poly<T> const& p, u64 y, vec<u64> const& inv, u32 n = 0) {
   if (!n) n = p.size();
   if (!y) return poly<T>{1}.pre(n);
   if (p.data().empty()) return p.pre(n);
@@ -35,7 +35,7 @@ poly<T> polysp_pow(poly<T> const& p, u64 y, vec<u64> const& inv, u32 n = 0) {
   return g;
 }
 template <class T>
-poly<T> polysp_pow(poly<T> const& p, u64 y, u32 n = 0) {
+constexpr poly<T> polysp_pow(poly<T> const& p, u64 y, u32 n = 0) {
   if (!n) n = p.size();
   return polysp_pow(p, y, gen_inv(n, T::value_type::mod()), n);
 }

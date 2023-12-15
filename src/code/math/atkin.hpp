@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 // @return primes in [1, %lim]
-inline vec<u32> atkin(u32 lim) {
+constexpr vec<u32> atkin(u32 lim) {
   if (lim < 2) return {};
   if (lim < 3) return {2};
   if (lim < 5) return {2, 3};

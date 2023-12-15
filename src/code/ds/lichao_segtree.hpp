@@ -10,7 +10,7 @@ class lichao_segtree {
   struct seg {
     usz id;
     T a, b, l, r;  // y = ax + b(where x in [l, r])
-    T w(T x) { return a * x + b; }
+    constexpr T w(T x) { return a * x + b; }
   };
   F f;
   usz sz;
@@ -20,7 +20,7 @@ class lichao_segtree {
  public:
   explicit constexpr lichao_segtree(const vec<T>& LSH, F func) : lsh(LSH), t(LSH.size() * 4), f(func) { sz = lsh.size(); }
 
-  void add(T a, T b, T l, T r, usz id = 1) {
+  constexpr void add(T a, T b, T l, T r, usz id = 1) {
     seg k = {id, a, b, l, r};
     l = std::lower_bound(lsh.begin(), lsh.end(), l) - lsh.begin();
     r = std::lower_bound(lsh.begin(), lsh.end(), r) - lsh.begin();
@@ -30,8 +30,8 @@ class lichao_segtree {
 
  private:
   // min: <=   max: >=
-  bool pd(T a, T b) { return f(a, b) == a; }
-  void add(usz x, usz l, usz r, usz L, usz R, seg k) {
+  constexpr bool pd(T a, T b) { return f(a, b) == a; }
+  constexpr void add(usz x, usz l, usz r, usz L, usz R, seg k) {
     usz mid = l + (r - l) / 2;
     if (L <= l && R >= r) {
       if (!t[x].id) return void(t[x] = k);
@@ -49,7 +49,7 @@ class lichao_segtree {
     if (L <= mid) add(x << 1, l, mid, L, R, k);
     if (R > mid) add(x << 1 | 1, mid + 1, r, L, R, k);
   }
-  T query(usz x, usz l, usz r, T pos) {
+  constexpr T query(usz x, usz l, usz r, T pos) {
     T MIN = std::numeric_limits<T>::lowest(), MAX = std::numeric_limits<T>::max();
     T ret = t[x].id ? t[x].w(pos) : (pd(MIN, MAX) ? MAX : MIN);
     if (l == r) return ret;

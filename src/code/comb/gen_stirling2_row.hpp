@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 
 // stirling2[i] = {n \\brace i}, i=0,1,...,n
 template <class T>
-poly<T> gen_stirling2_row(u32 n, vec<u64> const& pows, vec<u64> const& ifact) {
+constexpr poly<T> gen_stirling2_row(u32 n, vec<u64> const& pows, vec<u64> const& ifact) {
   if (!n) return poly<T>{1};
   u64 mod = T::value_type::mod();
   poly<T> a(n + 1), b(n + 1);
@@ -21,7 +21,7 @@ poly<T> gen_stirling2_row(u32 n, vec<u64> const& pows, vec<u64> const& ifact) {
 }
 // stirling2[i] = {n \\brace i}, i=0,1,...,n
 template <class T>
-poly<T> gen_stirling2_row(u32 n) { return gen_stirling2_row<T>(n, gen_pows(n + 1, n, T::value_type::mod()), gen_ifact(n + 1, T::value_type::mod())); }
+constexpr poly<T> gen_stirling2_row(u32 n) { return gen_stirling2_row<T>(n, gen_pows(n + 1, n, T::value_type::mod()), gen_ifact(n + 1, T::value_type::mod())); }
 
 }  // namespace tifa_libs::math
 

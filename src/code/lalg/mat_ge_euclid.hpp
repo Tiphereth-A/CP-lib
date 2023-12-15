@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0, class Div, class T = typename Mat::value_type>
-i32 ge_euclid(Mat &mat, Is0 is0, Div div, u32 row_start, u32 row_end, bool clear_u = true) {
+constexpr i32 ge_euclid(Mat &mat, Is0 is0, Div div, u32 row_start, u32 row_end, bool clear_u = true) {
   assert(row_start < row_end && row_end <= mat.row());
   u32 r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);
   u32 rk = 0;

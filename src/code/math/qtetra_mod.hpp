@@ -27,7 +27,7 @@ constexpr u64 mpow(u64 a, u64 b, u64 m, u64 &f) {
   return v;
 }
 
-inline u64 qtetra(u64 a, u64 b, u64 m, u64 &f) {
+constexpr u64 qtetra(u64 a, u64 b, u64 m, u64 &f) {
   if (a == 0) return ~b & 1;
   if (m == 1) return f = 1;
   if (a == 1 || b == 0) return 1;
@@ -41,7 +41,7 @@ inline u64 qtetra(u64 a, u64 b, u64 m, u64 &f) {
 
 }  // namespace qtetra_mod_impl_
 
-inline u64 qtetra_mod(u64 a, u64 b, u64 m) {
+constexpr u64 qtetra_mod(u64 a, u64 b, u64 m) {
   u64 f = 0;
   return qtetra_mod_impl_::qtetra(a, b, m, f) % m;
 }

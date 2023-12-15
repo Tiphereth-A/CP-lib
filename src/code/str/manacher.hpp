@@ -5,7 +5,7 @@
 
 namespace tifa_libs::str {
 
-inline vec<u32> manacher(std::string_view t) {
+constexpr vec<u32> manacher(std::string_view t) {
   std::string s{'\001', '\002'};
   for (char c : t) (s += c) += '\002';
   s += '\003';

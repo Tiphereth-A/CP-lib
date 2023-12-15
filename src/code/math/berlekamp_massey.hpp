@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-vec<T> berlekamp_massey(vec<T> const &a) {
+constexpr vec<T> berlekamp_massey(vec<T> const &a) {
   u32 n = (u32)a.size();
   vec<T> b{1}, c{1};
   b.reserve(n + 1);

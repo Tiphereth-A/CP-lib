@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_GRAPH_KRUSKAL_RECONSTRUCTION_TREE
-#define TIFALIBS_GRAPH_KRUSKAL_RECONSTRUCTION_TREE
+#ifndef TIFALIBS_GRAPH_KRUSKAL_RE_TREE
+#define TIFALIBS_GRAPH_KRUSKAL_RE_TREE
 
 #include "../ds/dsu_basic.hpp"
 #include "../tree/tree.hpp"
@@ -9,7 +9,7 @@ namespace tifa_libs::graph {
 namespace kruskal_re_tree_impl_ {
 
 template <class T>
-std::pair<tree, vec<T>> run_(tree& tr, vec<std::tuple<T, u32, u32>> const& sorted_a) {
+constexpr std::pair<tree, vec<T>> run_(tree& tr, vec<std::tuple<T, u32, u32>> const& sorted_a) {
   u32 n = u32((tr.g.size() + 1) / 2);
   vec<T> w_(2 * n - 1);
   ds::dsu_basic dsu(2 * n - 1);
@@ -31,10 +31,10 @@ std::pair<tree, vec<T>> run_(tree& tr, vec<std::tuple<T, u32, u32>> const& sorte
 
 }  // namespace kruskal_re_tree_impl_
 
-//!! edge: w u v
+//! edge: w u v
 //! MUST be sorted
 template <class EW>
-std::pair<tree, vec<EW>> kruskal_re_tree(vec<std::tuple<EW, u32, u32>> const& sorted_a, u32 n) {
+constexpr std::pair<tree, vec<EW>> kruskal_re_tree(vec<std::tuple<EW, u32, u32>> const& sorted_a, u32 n) {
   tree tr(2 * n - 1, 2 * n - 1);
   return kruskal_re_tree_impl_::run_(tr, sorted_a);
 }

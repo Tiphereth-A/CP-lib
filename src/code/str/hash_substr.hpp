@@ -11,9 +11,9 @@ class hash_substr {
   vec<mint> hash;
 
  public:
-  explicit hash_substr() {}
+  explicit constexpr hash_substr() {}
 
-  void set(std::string_view s) {
+  constexpr void set(std::string_view s) {
     hash.resize(1, 0), hash.reserve(s.size() + 1);
     for (char c : s) hash.push_back(hash.back() * base + (u32)c + 1);
     if (p.size() <= s.size()) {
@@ -22,8 +22,8 @@ class hash_substr {
       while (p.size() <= s.size()) p.push_back(p.back() * base);
     }
   }
-  u32 size() const { return u32(hash.size() - 1); }
-  mint get(u32 pos, u32 len = -1_u32) const {
+  constexpr u32 size() const { return u32(hash.size() - 1); }
+  constexpr mint get(u32 pos, u32 len = -1_u32) const {
     assert(!p.empty() && pos < hash.size());
     return hash[pos + std::min(len, (u32)hash.size() - 1 - pos)] - hash[pos] * p[len];
   }

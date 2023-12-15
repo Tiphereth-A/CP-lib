@@ -13,7 +13,7 @@ struct tree_dfs_info {
   vec<u32> dis;
 
   template <int state>
-  tree_dfs_info& reset_dfs_info(tree const& tree) {
+  constexpr tree_dfs_info& reset_dfs_info(tree const& tree) {
     u32 n = (u32)tree.g.size();
     if constexpr (state & td_dfn) dfn = vec<u32>(n);
     if constexpr (state & (td_sz | td_maxson)) sz = vec<u32>(n);

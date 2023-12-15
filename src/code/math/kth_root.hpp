@@ -7,7 +7,7 @@
 
 namespace tifa_libs::math {
 
-inline std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
+constexpr std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
   if (k > 0 && !(a % p)) return 0;
   k %= p - 1;
   u64 g = std::gcd(k, p - 1);

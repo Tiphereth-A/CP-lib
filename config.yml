@@ -468,7 +468,7 @@ notebook:
     - kruskal: 最小生成树(kruskal)
       code_ext: hpp
       test_ext: cpp
-    - kruskal_reconstruction_tree: kruskal 重构树
+    - kruskal_re_tree: kruskal 重构树
       code_ext: hpp
       test_ext: cpp
     - bm: Bellman–Ford

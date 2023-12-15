@@ -7,9 +7,9 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Ge>
-u64 do_rank(Mat &mat, Ge ge) { return (u64)abs(ge(mat, false)); }
+constexpr u64 do_rank(Mat &mat, Ge ge) { return (u64)abs(ge(mat, false)); }
 template <class Mat, class Ge>
-u64 rank(Mat const &mat, Ge &&ge) { return do_rank(Mat(mat), std::forward<Ge>(ge)); }
+constexpr u64 rank(Mat const &mat, Ge &&ge) { return do_rank(Mat(mat), std::forward<Ge>(ge)); }
 
 }  // namespace tifa_libs::math
 

@@ -14,7 +14,7 @@ class du_sieve {
   SH sh;
   hmap<u64, T> mem;
 
-  T calc(u64 x) {
+  constexpr T calc(u64 x) {
     if (x <= sf_max) return sf(x);
     if (auto d = mem.find(x); d != mem.end()) return d->second;
     T ans = 0;
@@ -26,9 +26,9 @@ class du_sieve {
   }
 
  public:
-  du_sieve(u64 sf_max, SF sf, SG sg, SH sh) : sf_max(sf_max), sf(sf), sg(sg), sh(sh) {}
+  constexpr du_sieve(u64 sf_max, SF sf, SG sg, SH sh) : sf_max(sf_max), sf(sf), sg(sg), sh(sh) {}
 
-  T operator()(u64 n) { return !n ? 0 : calc(n); }
+  constexpr T operator()(u64 n) { return !n ? 0 : calc(n); }
 };
 
 }  // namespace tifa_libs::math

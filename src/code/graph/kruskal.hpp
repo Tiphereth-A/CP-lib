@@ -6,10 +6,10 @@
 
 namespace tifa_libs::graph {
 
-//!! edge: w u v
+//! edge: w u v
 //! edges MUST be sorted
 template <class T>
-treew<T> kruskal(vec<std::tuple<T, u32, u32>> sorted_a, u32 n) {
+constexpr treew<T> kruskal(vec<std::tuple<T, u32, u32>> sorted_a, u32 n) {
   treew<T> tr(n);
   ds::dsu_basic dsu(n);
   u32 m = n - 1;

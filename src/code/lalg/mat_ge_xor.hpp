@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0>
-i32 ge_xor(Mat &mat, Is0, u32 row_start, u32 row_end, bool clear_u = true) {
+constexpr i32 ge_xor(Mat &mat, Is0, u32 row_start, u32 row_end, bool clear_u = true) {
   static_assert(std::is_same_v<typename Mat::value_type, bool>);
   assert(row_start < row_end && row_end <= mat.row());
   u32 r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);

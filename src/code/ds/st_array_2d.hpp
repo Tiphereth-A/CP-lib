@@ -10,7 +10,7 @@ class st_array_2d {
   vvvec<T> st;
 
  public:
-  explicit st_array_2d(vvec<T> const &a) : st((u32)std::bit_width(std::max(a.size(), a[0].size())), vvec<T>(a.size(), vec<T>(a[0].size()))) {
+  explicit constexpr st_array_2d(vvec<T> const &a) : st((u32)std::bit_width(std::max(a.size(), a[0].size())), vvec<T>(a.size(), vec<T>(a[0].size()))) {
     u32 n = a.size(), n2 = a[0].size();
     st[0] = a;
     for (u32 j = 1, m = (u32)std::bit_width(std::max(n, n2)); j < m; ++j)
@@ -24,7 +24,7 @@ class st_array_2d {
   }
 
   //! [x, x + l] * [y, y + l]
-  T query(u32 x, u32 y, u32 l) const {
+  constexpr T query(u32 x, u32 y, u32 l) const {
     u32 k = (u32)(std::bit_width(l + 1) - 1), ofs = (1 << k) - 1;
     return op(op(st[k][x][y], st[k][x + l - ofs][y]), op(st[k][x][y + l - ofs], st[k][x + l - ofs][y + l - ofs]));
   }

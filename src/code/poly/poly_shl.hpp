@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> poly_shl(poly<T> const &p, usz x) {
+constexpr poly<T> poly_shl(poly<T> const &p, usz x) {
   if (!x) return p;
   auto _ = p;
   if (x >= _.size()) {

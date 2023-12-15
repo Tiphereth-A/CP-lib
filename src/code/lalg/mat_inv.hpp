@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T, class Is0, class Ge>
-std::optional<matrix<T>> mat_inv(matrix<T> const &mat, Is0 is0, Ge ge) {
+constexpr std::optional<matrix<T>> mat_inv(matrix<T> const &mat, Is0 is0, Ge ge) {
   u32 n = mat.row();
   if (n != mat.col()) return {};
   matrix<T> ret(n, n);

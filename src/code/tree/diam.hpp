@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 
 // {u, v, diam}
 template <class G>
-auto tree_diam(G &tree) {
+constexpr auto tree_diam(G &tree) {
   using Tinfo = std::conditional_t<std::is_base_of_v<alist, G>, tree_dfs_info, tree_dfs_info_w<typename G::weight_type>>;
   auto _ = tree.root;
   auto d = Tinfo().template reset_dfs_info<td_dis>(tree).dis;

@@ -10,7 +10,7 @@ class lsieve2 {
   vec<u32> fr;
 
  public:
-  lsieve2(u32 n) : fr(n + 1) {
+  explicit constexpr lsieve2(u32 n) : fr(n + 1) {
     for (u32 i = 2, x = n / 2, p1, p2, e; i <= n; x = n / (++i)) {
       if (!fr[i]) {
         for (p1 = 1, p2 = i, e = 0; p1 <= x; p1 = p2, p2 *= i, ++e) fr[p2] = 1;
@@ -30,7 +30,7 @@ class lsieve2 {
   // @param %fpi(p, i) = $f(p^i)$
   // @return v[i] = f(i), for i in [0, n]
   template <class T, class F>
-  vec<T> run(F fpi, T init = T{1}) {
+  constexpr vec<T> run(F fpi, T init = T{1}) {
     vec<T> v(fr.size());
     v[1] = init;
     for (u32 i = 0; i < pr.size(); ++i)

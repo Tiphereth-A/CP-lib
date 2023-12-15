@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> poly_int(poly<T> const &p) {
+constexpr poly<T> poly_int(poly<T> const &p) {
   using mint = typename T::value_type;
   auto _ = p;
   for (u32 i = _.size() - 1; i; --i) _[i] = _[i - 1] * mint(i).inv();

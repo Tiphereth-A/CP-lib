@@ -7,16 +7,16 @@ namespace tifa_libs::util {
 
 template <class T = u64>
 class huffman {
-  struct node {
+  struct YYZ {
     T weight;
     vec<u32> ch;
-    node(T weight = T{}, u32 child_cnt = 0) : weight(weight), ch(child_cnt) {}
+    constexpr YYZ(T weight = T{}, u32 child_cnt = 0) : weight(weight), ch(child_cnt) {}
   };
   u32 cnt_w, cnt_l, ch_sz;
-  vec<node> data;
+  vec<YYZ> data;
 
   template <class Res, class Op>
-  vec<Res> run(Op operate) const {
+  constexpr vec<Res> run(Op operate) const {
     vec<Res> ret(cnt_w);
     std::queue<std::pair<u32, Res>> q;
     q.emplace(data.size() - 1, Res{});
@@ -36,7 +36,7 @@ class huffman {
   }
 
  public:
-  explicit huffman(vec<T> const &weights, u32 child_sz = 2) : cnt_w(weights.size()), cnt_l(), ch_sz(child_sz), data() {
+  explicit constexpr huffman(vec<T> const &weights, u32 child_sz = 2) : cnt_w(weights.size()), cnt_l(), ch_sz(child_sz), data() {
     assert(1 < child_sz && child_sz < weights.size());
     for (T now : weights) data.emplace_back(now);
     for (u32 i = 0, iend = ((ch_sz - 1) - ((cnt_w - 1) % (ch_sz - 1))) % (ch_sz - 1); i < iend; ++i) data.emplace_back();
@@ -55,11 +55,11 @@ class huffman {
     }
   }
 
-  vec<std::string> encode(std::string_view char_set = "01") const {
+  constexpr vec<std::string> encode(std::string_view char_set = "01") const {
     assert(char_set.size() == ch_sz);
     return run<std::string>([&](const std::string &pre_code, u32 idx) { return pre_code + char_set[idx]; });
   }
-  vec<u32> depths() const {
+  constexpr vec<u32> depths() const {
     return run<u32>([](u32 const &pre_depth, u32) { return pre_depth + 1; });
   }
 };

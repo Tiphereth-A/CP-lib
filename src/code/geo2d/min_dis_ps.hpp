@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 // min distance of a set of points in range [l, r)
 //! need to sort `vp` first by the ascending order of x
 template <class FP>
-FP min_dis_Ps(vec<point<FP>> const &vp, u32 l, u32 r) {
+constexpr FP min_dis_Ps(vec<point<FP>> const &vp, u32 l, u32 r) {
   FP ret = std::numeric_limits<FP>::max();
   if (r - l <= 5) {
     for (u32 i = l; i < r; ++i)

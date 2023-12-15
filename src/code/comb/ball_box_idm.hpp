@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class mint>
-mint ball_box_idm(u32 ball, u32 box, Binom<mint> const& binom) { return binom.mCn(box, ball); }
+constexpr mint ball_box_idm(u32 ball, u32 box, Binom<mint> const& binom) { return binom.mCn(box, ball); }
 
 }  // namespace tifa_libs::math
 

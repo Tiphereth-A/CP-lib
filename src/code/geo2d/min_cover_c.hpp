@@ -9,7 +9,7 @@ namespace tifa_libs::geo {
 // min coverage circle of a set of points
 //! accuracy maybe reduced without shuffling `vp` first
 template <class FP>
-circle<FP> min_cover_C(vec<point<FP>> const &vp) {
+constexpr circle<FP> min_cover_C(vec<point<FP>> const &vp) {
   circle ret{vp.front(), 0};
   u32 sz = (u32)vp.size();
   for (u32 i = 1; i < sz; ++i) {

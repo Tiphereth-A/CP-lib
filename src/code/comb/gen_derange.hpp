@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 // (derangement) !i for i=0..n-1
-inline vec<u64> gen_derange(u32 n, u64 mod) {
+constexpr vec<u64> gen_derange(u32 n, u64 mod) {
   vec<u64> d{0, mod > 1};
   if (n > 2) d.reserve(n);
   else {
@@ -17,7 +17,7 @@ inline vec<u64> gen_derange(u32 n, u64 mod) {
   return d;
 }
 template <class mint>
-vec<mint> gen_derange(u32 n) {
+constexpr vec<mint> gen_derange(u32 n) {
   vec<mint> d(n);
   auto _ = gen_derange(n, mint::mod());
   for (u32 i = 0; i < n; ++i) d[i] = _[i];

@@ -14,9 +14,11 @@ class v_bcc {
   vec<u32> dfn, low;
   vec<bool> cut;
   vvec<u32> belongs;
-  //!! EW need rev_edge
-  v_bcc(vvec<EW> const &G) : g(G) { build(); }
-  void build() {
+
+  //! EW need rev_edge
+  explicit constexpr v_bcc(vvec<EW> const &G) : g(G) { build(); }
+
+  constexpr void build() {
     id = 0;
     u32 cnt = 0, n = u32(g.size());
     dfn = low = vec<u32>(n, n);

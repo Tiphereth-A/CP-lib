@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 //! vertex ID starts at 1
 //! tree root = n
 // father ID of i is fa[i], fa[0] = 0
-inline vec<u32> prufer(vec<u32> const& fa) {
+constexpr vec<u32> prufer(vec<u32> const& fa) {
   u32 n = (u32)fa.size();
   vec<u32> deg(n + 1);
   for (u32 i = 1; i < n; ++i) ++deg[fa[i]];

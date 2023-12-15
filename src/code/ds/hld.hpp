@@ -17,18 +17,18 @@ class hld {
   graph::tree_dfs_info info;
   vec<u32> top;
 
-  explicit hld(graph::tree& tr) : t(), tr(tr) {
+  explicit constexpr hld(graph::tree& tr) : t(), tr(tr) {
     info.reset_dfs_info<graph::td_dep | graph::td_fa>(tr);
     top = graph::tree_top<graph::tree, true>(tr, info);
   }
-  explicit hld(graph::tree& tr, const vec<T>& a) : hld(tr) {
+  explicit constexpr hld(graph::tree& tr, const vec<T>& a) : hld(tr) {
     vec<T> b(a.size());
     for (u32 i = 0; i < a.size(); ++i) b[info.dfn[i]] = a[i];
     build(b);
   }
 
-  void build(const vec<T>& a) { t = segtree<T, op, e, F, mapping, composition, id>(a); }
-  void chain_update(u32 u, u32 v, F f) {
+  constexpr void build(const vec<T>& a) { t = segtree<T, op, e, F, mapping, composition, id>(a); }
+  constexpr void chain_update(u32 u, u32 v, F f) {
     while (top[u] != top[v]) {
       if (info.dep[top[u]] < info.dep[top[v]]) std::swap(u, v);
       t.update(info.dfn[top[u]], info.dfn[u], f), u = info.fa[top[u]];
@@ -36,9 +36,9 @@ class hld {
     if (info.dfn[u] < info.dfn[v]) std::swap(u, v);
     t.update(info.dfn[v], info.dfn[u], f);
   }
-  void subtree_update(u32 u, F f) { t.update(info.dfn[u], info.dfn[u] + info.sz[u] - 1, f); }
-  void node_update(u32 u, F f) { t.update(info.dfn[u], f); }
-  void chain_set(u32 u, u32 v, T f) {
+  constexpr void subtree_update(u32 u, F f) { t.update(info.dfn[u], info.dfn[u] + info.sz[u] - 1, f); }
+  constexpr void node_update(u32 u, F f) { t.update(info.dfn[u], f); }
+  constexpr void chain_set(u32 u, u32 v, T f) {
     while (top[u] != top[v]) {
       if (info.dep[top[u]] < info.dep[top[v]]) std::swap(u, v);
       t.set(info.dfn[top[u]], info.dfn[u], f), u = info.fa[top[u]];
@@ -46,9 +46,9 @@ class hld {
     if (info.dfn[u] < info.dfn[v]) std::swap(u, v);
     t.set(info.dfn[v], info.dfn[u], f);
   }
-  void subtree_set(u32 u, T f) { t.set(info.dfn[u], info.dfn[u] + info.sz[u] - 1, f); }
-  void node_set(u32 u, T f) { t.set(info.dfn[u], f); }
-  T chain_query(u32 u, u32 v) {
+  constexpr void subtree_set(u32 u, T f) { t.set(info.dfn[u], info.dfn[u] + info.sz[u] - 1, f); }
+  constexpr void node_set(u32 u, T f) { t.set(info.dfn[u], f); }
+  constexpr T chain_query(u32 u, u32 v) {
     T ret = e();
     while (top[u] != top[v]) {
       if (info.dep[top[u]] < info.dep[top[v]]) std::swap(u, v);
@@ -57,8 +57,8 @@ class hld {
     if (info.dfn[u] < info.dfn[v]) std::swap(u, v);
     return op(ret, t.query(info.dfn[v], info.dfn[u]));
   }
-  T subtree_query(u32 u) { return t.query(info.dfn[u], info.dfn[u] + info.sz[u] - 1); }
-  T node_query(u32 u) { return t.query(info.dfn[u]); }
+  constexpr T subtree_query(u32 u) { return t.query(info.dfn[u], info.dfn[u] + info.sz[u] - 1); }
+  constexpr T node_query(u32 u) { return t.query(info.dfn[u]); }
 };
 
 }  // namespace tifa_libs::ds

@@ -12,19 +12,19 @@ class segtree_old {
   };
   vec<YYZ> t;
 
-  void pushup(usz x) {
+  constexpr void pushup(usz x) {
     t[x].w = t[x * 2].w + t[x * 2 + 1].w;
     t[x]._min = std::min(t[x * 2]._min, t[x * 2 + 1]._min);
     t[x]._max = std::max(t[x * 2]._max, t[x * 2 + 1]._max);
   }
-  void build(vec<T> const &a, usz x, usz l, usz r) {
+  constexpr void build(vec<T> const &a, usz x, usz l, usz r) {
     t[x].sign1 = 1;
     if (l == r) return void(t[x].w = a[l]);
     usz mid = l + (r - l) / 2;
     build(a, x * 2, l, mid), build(a, x * 2 + 1, mid + 1, r);
     pushup(x);
   }
-  void pushdown(usz x, usz l, usz r) {  // sign1(*) must be pushdowned before sign(+)
+  constexpr void pushdown(usz x, usz l, usz r) {  // sign1(*) must be pushdowned before sign(+)
     if (t[x].sign1 != 1) {
       t[x * 2].w *= t[x].sign1;
       t[x * 2].sign *= t[x].sign1, t[x * 2].sign1 *= t[x].sign1;
@@ -47,7 +47,7 @@ class segtree_old {
  public:
   explicit constexpr segtree_old(vec<T> const &a) : t(a.size() * 4) { build(a, 1, 0, a.size() - 1); }
 
-  void add(usz x, usz l, usz r, usz L, usz R, T k) {
+  constexpr void add(usz x, usz l, usz r, usz L, usz R, T k) {
     assert(R >= l && L <= r);
     if (L <= l && R >= r) {
       t[x].w += i64(r - l + 1) * k, t[x].sign += k;
@@ -60,7 +60,7 @@ class segtree_old {
     if (R > mid) add(x * 2 + 1, mid + 1, r, L, R, k);
     pushup(x);
   }
-  void mul(usz x, usz l, usz r, usz L, usz R, T k) {
+  constexpr void mul(usz x, usz l, usz r, usz L, usz R, T k) {
     assert(R >= l && L <= r);
     if (L <= l && R >= r) {
       t[x].w *= k;
@@ -74,7 +74,7 @@ class segtree_old {
     if (R > mid) mul(x * 2 + 1, mid + 1, r, L, R, k);
     pushup(x);
   }
-  T querys(usz x, usz l, usz r, usz L, usz R) {
+  constexpr T querys(usz x, usz l, usz r, usz L, usz R) {
     assert(R >= l && L <= r);
     if (L <= l && R >= r) return t[x].w;
     pushdown(x, l, r);
@@ -84,7 +84,7 @@ class segtree_old {
     if (R > mid) ret += querys(x * 2 + 1, mid + 1, r, L, R);
     return ret;
   }
-  T querym(usz x, usz l, usz r, usz L, usz R, F f) {
+  constexpr T querym(usz x, usz l, usz r, usz L, usz R, F f) {
     assert(R >= l && L <= r);
     if (L <= l && R >= r) return f(t[x]._min, t[x]._max);
     pushdown(x, l, r);

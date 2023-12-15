@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class mint, i64 M = -1>
-vec<mint> conv_cntt(CNTT<mint, M> &cntt, vec<mint> const &l, vec<mint> const &r, u32 ans_size = 0) {
+constexpr vec<mint> conv_cntt(CNTT<mint, M> &cntt, vec<mint> const &l, vec<mint> const &r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   cntt.bzr(std::max({(u32)l.size(), (u32)r.size(), std::min(u32(l.size() + r.size() - 1), ans_size)}));
   vec<GaussInt<mint, M>> v(cntt.size());
@@ -22,7 +22,7 @@ vec<mint> conv_cntt(CNTT<mint, M> &cntt, vec<mint> const &l, vec<mint> const &r,
   return res;
 }
 template <class mint, i64 M = -1>
-vec<mint> conv_cntt(CNTT<mint, M> &cntt, vec<u64> const &l, vec<u64> const &r, u32 ans_size = 0) {
+constexpr vec<mint> conv_cntt(CNTT<mint, M> &cntt, vec<u64> const &l, vec<u64> const &r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   vec<mint> l_, r_;
   l_.reserve(l.size());

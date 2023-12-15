@@ -55,7 +55,7 @@ enum TESTCASE { ts_local,
                 ts_random_08,
                 ts_random_09 };
 
-inline const std::map<ptt<u32>, TESTCASE> testcase_id{
+constexpr const std::map<ptt<u32>, TESTCASE> testcase_id{
     {{1234, 5678}, ts_example_00},
     {{1000000000, 1000000000}, ts_example_01},
     {{192279220, 156648746}, ts_random_00},
@@ -69,7 +69,7 @@ inline const std::map<ptt<u32>, TESTCASE> testcase_id{
     {{118232767, 222490630}, ts_random_08},
     {{907649120, 290651129}, ts_random_09}};
 
-inline void post_test([[maybe_unused]] ptt<u32> const &p = {0, 0}) {
+constexpr void post_test([[maybe_unused]] ptt<u32> const &p = {0, 0}) {
 #ifndef LOCAL_
   static ptt<u32> p_{0, 0};
   if (p.first || p.second) {
@@ -81,7 +81,7 @@ inline void post_test([[maybe_unused]] ptt<u32> const &p = {0, 0}) {
 #endif
 }
 
-inline TESTCASE pre_test() {
+constexpr TESTCASE pre_test() {
 #ifndef LOCAL_
   ptt<u32> p;
   std::cin >> p.first >> p.second;

@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 // [u] [d] -> [u; d]
 template <class T>
-spmat<T> spmat_merge_ud(const spmat<T> &u, const spmat<T> &d) {
+constexpr spmat<T> spmat_merge_ud(const spmat<T> &u, const spmat<T> &d) {
   u32 ur_ = u.row(), dr_ = d.row(), c_ = u.col();
   assert(c_ == d.col());
   spmat<T> ret(ur_ + dr_, c_);

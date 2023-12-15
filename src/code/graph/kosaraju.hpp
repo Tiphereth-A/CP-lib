@@ -14,11 +14,11 @@ class kosaraju {
   vec<u32> scc_id;
   vvec<u32> belongs;
 
-  explicit kosaraju(alist const &g) : kosaraju(g, alistr(g)) {}
-  kosaraju(alist const &g, alist const &rev_g) : g(g.g), rev_g(rev_g.g) { build(); }
+  explicit constexpr kosaraju(alist const &g) : kosaraju(g, alistr(g)) {}
+  constexpr kosaraju(alist const &g, alist const &rev_g) : g(g.g), rev_g(rev_g.g) { build(); }
 
  private:
-  void build() {
+  constexpr void build() {
     vec<bool> vis(g.size());
     vec<u32> ord;
     auto dfs = [&, this](auto &&dfs, u32 idx) {

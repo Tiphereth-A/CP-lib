@@ -12,19 +12,19 @@ template <class FP>
 struct triangle {
   point<FP> A, B, C;
 
-  triangle() {}
+  constexpr triangle() {}
   constexpr triangle(point<FP> const &a, point<FP> const &b, point<FP> const &c) : A(a), B(b), C(c) {}
   constexpr triangle(FP a_x, FP a_y, FP b_x, FP b_y, FP c_x, FP c_y) : A(a_x, a_y), B(b_x, b_y), C(c_x, c_y) {}
 
   friend std::istream &operator>>(std::istream &is, triangle &t) { return is >> t.A >> t.B >> t.C; }
   friend std::ostream &operator<<(std::ostream &os, triangle const &t) { return os << t.A << ' ' << t.B << ' ' << t.C; }
 
-  friend bool operator==(triangle const &l, triangle const &r) { return l.A == r.A && l.B == r.B && l.C == r.C; }
+  friend constexpr bool operator==(triangle const &l, triangle const &r) { return l.A == r.A && l.B == r.B && l.C == r.C; }
 
   // (a, b, c)
-  pt3<FP> edges() const { return {dist_PP(B, C), dist_PP(C, A), dist_PP(A, B)}; }
+  constexpr pt3<FP> edges() const { return {dist_PP(B, C), dist_PP(C, A), dist_PP(A, B)}; }
   // (A, B, C)
-  pt3<FP> angles() const { return {std::abs(ang_PP(C - A, B - A)), std::abs(ang_PP(A - B, C - B)), std::abs(ang_PP(A - C, B - C))}; }
+  constexpr pt3<FP> angles() const { return {std::abs(ang_PP(C - A, B - A)), std::abs(ang_PP(A - B, C - B)), std::abs(ang_PP(A - C, B - C))}; }
 
   constexpr point<FP> trilinears(FP x, FP y, FP z) const {
     auto [a, b, c] = edges();

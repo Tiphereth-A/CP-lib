@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> conv_czt(poly<T> l, poly<T> r, u32 ans_size = 0) {
+constexpr poly<T> conv_czt(poly<T> l, poly<T> r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   using mint = typename T::value_type;
   constexpr u64 m = T::value_type::mod();

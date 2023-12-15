@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> poly_div(poly<T> p, poly<T> q) {
+constexpr poly<T> poly_div(poly<T> p, poly<T> q) {
   u32 n = p.size(), m = q.size();
   if (n < m) return poly<T>();
   p.reverse();

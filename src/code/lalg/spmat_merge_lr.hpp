@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 // [l] [r] -> [l r]
 template <class T>
-spmat<T> spmat_merge_lr(spmat<T> const &l, spmat<T> const &r) {
+constexpr spmat<T> spmat_merge_lr(spmat<T> const &l, spmat<T> const &r) {
   u32 r_ = l.row(), lc_ = l.col();
   assert(r_ == r.row());
   spmat<T> ret(r_, lc_ + r.col());

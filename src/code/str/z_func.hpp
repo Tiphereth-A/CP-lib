@@ -5,7 +5,7 @@
 
 namespace tifa_libs::str {
 
-inline vec<u32> z_func(std::string_view s) {
+constexpr vec<u32> z_func(std::string_view s) {
   u32 n = (u32)s.size();
   vec<u32> z(n);
   for (u32 i = 1, l = 0, r = 0; i < n; ++i) {

@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 //! will change input graph
 template <class T>
-std::optional<amat<T>> floyd(amat<T>& g, T INF = std::numeric_limits<T>::max() / 2 - 1) {
+constexpr std::optional<amat<T>> floyd(amat<T>& g, T INF = std::numeric_limits<T>::max() / 2 - 1) {
   u32 n = (u32)g.g.size();
   for (u32 k = 0; k < n; ++k)
     for (u32 x = 0; x < n; ++x) {

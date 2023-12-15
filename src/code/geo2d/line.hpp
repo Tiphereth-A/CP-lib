@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 template <class FP>
 struct line {
   point<FP> l, r;
-  line() {}
+  constexpr line() {}
   constexpr line(point<FP> const &s, point<FP> const &t) : l(s), r(t) {}
   constexpr line(FP s_x, FP s_y, FP t_x, FP t_y) : l(s_x, s_y), r(t_x, t_y) {}
 
@@ -21,13 +21,13 @@ struct line {
   constexpr bool is_same_dir(line const &r) const { return is_parallel(r) && is_pos(direction() * r.direction()); }
   friend constexpr bool is_same_dir(line const &l, line const &r) { return l.is_same_dir(r); }
 
-  constexpr friend bool operator<(line const &l, line const &r) {
+  friend constexpr  bool operator<(line const &l, line const &r) {
     if (l.is_same_dir(r)) return r.is_include_strict(l.l);
     auto vl = l.direction(), vr = r.direction();
     if (vl.quad() != vr.quad()) return vl.quad() < vr.quad();
     return is_pos(vl ^ vr);
   }
-  friend bool operator==(line const &l, line const &r) { return l.l == r.l && l.r == r.r; }
+  friend constexpr bool operator==(line const &l, line const &r) { return l.l == r.l && l.r == r.r; }
 
   // half plane
   constexpr bool is_include_strict(point<FP> const &p) const { return is_pos(cross(l, r, p)); }

@@ -10,7 +10,7 @@ namespace tifa_libs::graph {
 namespace chrom_num_impl_ {
 
 template <u32 mod>
-u32 calc(u32 n, vec<ptt<i32>> hist) {
+constexpr u32 calc(u32 n, vec<ptt<i32>> hist) {
   for (u32 c = 1; c <= n; ++c) {
     i64 _ = 0;
     for (auto& [i, x] : hist) _ += (x = (i32)math::mul_mod_s(x, i, mod));
@@ -21,7 +21,7 @@ u32 calc(u32 n, vec<ptt<i32>> hist) {
 
 }  // namespace chrom_num_impl_
 
-inline u32 chrom_num(alist const& fg) {
+constexpr u32 chrom_num(alist const& fg) {
   auto&& g = fg.g;
   u32 n = (u32)g.size();
   vec<u32> adj(n), dp(1 << n);

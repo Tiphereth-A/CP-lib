@@ -10,8 +10,9 @@ class suffixarray {
 
  public:
   vec<u32> sa, rk, height;
+
   // s must start from 1
-  suffixarray(T s_) : s(s_), sa(s.size()), rk(s.size()) {
+  explicit constexpr suffixarray(T s_) : s(s_), sa(s.size()), rk(s.size()) {
     u32 n = u32(s.size() - 1), m = 0, p;
     for (auto x : s_) m = std::max(m, u32(x));
     vec<u32> oldrk(n + n + 1), id(n + 1), cnt(m + 1, 0);
@@ -38,7 +39,8 @@ class suffixarray {
       if (p == n) break;
     }
   }
-  void get_height() {
+
+  constexpr void get_height() {
     u32 n = s.size() - 1;
     vec<u32> height(n + 1);
     for (u32 i = 1, k = 0; i <= n; ++i) {
@@ -55,7 +57,7 @@ class suffixarray {
     1 :  t < s.substr, t is a prefix of s.substr
     2 :  t < s.substr, t isn't prefix of s.substr
   */
-  i32 compare_substr(T t, u32 begs = 1, u32 begt = 1) {
+  constexpr i32 compare_substr(T t, u32 begs = 1, u32 begt = 1) {
     while (begs < s.size() && begt < t.size()) {
       if (t[begt] > s[begs]) return -1;
       if (t[begt] < s[begs]) return 2;
@@ -63,7 +65,8 @@ class suffixarray {
     }
     return begs == s.size() && begt == t.size() ? 0 : (begt >= t.size() ? 1 : -1);
   }
-  u32 lower_bound(T t) {  // the smallest rank of suffix that is greater than or equal t
+  // the smallest rank of suffix that is greater than or equal t
+  constexpr u32 lower_bound(T t) {
     u32 l = 1, r = u32(s.size() - 1), ret = u32(s.size());
     while (r >= l) {
       u32 mid = l + (r - l) / 2;
@@ -72,7 +75,8 @@ class suffixarray {
     }
     return ret;
   }
-  u32 upper_bound(T t) {  // the smallest rank of suffix that is greater than t and t isn't prefix of that
+  // the smallest rank of suffix that is greater than t and t isn't prefix of that
+  constexpr u32 upper_bound(T t) {
     u32 l = 1, r = u32(s.size() - 1), ret = u32(s.size());
     while (r >= l) {
       u32 mid = l + (r - l) / 2;
@@ -81,9 +85,7 @@ class suffixarray {
     }
     return ret;
   }
-  u32 frequency(T t) {
-    return upper_bound(t) - lower_bound(t);
-  }
+  constexpr u32 frequency(T t) { return upper_bound(t) - lower_bound(t); }
 };
 
 }  // namespace tifa_libs::str

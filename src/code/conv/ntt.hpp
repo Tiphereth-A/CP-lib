@@ -13,10 +13,10 @@ struct NTT {
 
   const mint G = proot_u64(mint::mod());
 
-  NTT() : root() {}
+  explicit constexpr NTT() : root() {}
 
-  u32 size() const { return (u32)root.size(); }
-  void bzr(u32 len) {
+  constexpr u32 size() const { return (u32)root.size(); }
+  constexpr void bzr(u32 len) {
     u32 n = std::bit_ceil(len);
     assert((mint::mod() - 1) % n == 0);
     if (n == size()) return;
@@ -27,7 +27,7 @@ struct NTT {
   }
 
 #pragma GCC diagnostic ignored "-Wsign-conversion"
-  void dif(vec<mint> &f, u32 n = 0) const {
+  constexpr void dif(vec<mint> &f, u32 n = 0) const {
     assert(size());
     if (!n) n = size();
     if (f.size() < n) f.resize(n);
@@ -42,7 +42,7 @@ struct NTT {
         }
       }
   }
-  void dit(vec<mint> &f, u32 n = 0) const {
+  constexpr void dit(vec<mint> &f, u32 n = 0) const {
     assert(size());
     if (!n) n = size();
     if (f.size() < n) f.resize(n);

@@ -12,7 +12,7 @@ class Stirling2 {
 
  public:
   //! @param p MUST be prime
-  explicit Stirling2() : mCn(), S(mint::mod()) {
+  explicit constexpr Stirling2() : mCn(), S(mint::mod()) {
     u32 p = mint::mod();
     assert(p < 32768);
     S[0] = {1};
@@ -25,8 +25,8 @@ class Stirling2 {
     }
   }
 
-  constexpr static u32 mod() { return mint::mod(); }
-  mint operator()(i64 m_, i64 n_) const {
+  static constexpr  u32 mod() { return mint::mod(); }
+  constexpr mint operator()(i64 m_, i64 n_) const {
     if (n_ < 0 || n_ > m_) return 0;
     if (!m_) return 1;
     u32 p = mod();

@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 // i^{b} from i=0..n-1
-inline vec<u64> gen_pows(u32 n, u64 b, u64 mod) {
+constexpr vec<u64> gen_pows(u32 n, u64 b, u64 mod) {
   vec<u64> ans(n);
   if (!n) return {};
   if (!b) ans[0] = 1;
@@ -17,7 +17,7 @@ inline vec<u64> gen_pows(u32 n, u64 b, u64 mod) {
 }
 // i^{b} from i=0..n-1
 template <class mint>
-vec<mint> gen_pows(u32 n, u64 b) {
+constexpr vec<mint> gen_pows(u32 n, u64 b) {
   vec<mint> ans(n);
   auto _ = gen_pows(n, b, mint::mod());
   for (u32 i = 0; i < n; ++i) ans[i] = _[i];

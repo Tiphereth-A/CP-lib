@@ -6,7 +6,7 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-point<FP> poly_massp(polygon<FP> const &po) {
+constexpr point<FP> poly_massp(polygon<FP> const &po) {
   point<FP> ret{};
   FP area{};
   u32 n = (u32)po.vs.size();

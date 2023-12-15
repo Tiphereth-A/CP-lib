@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 
 // bell[i] = B_i, i=0,1,...,n
 template <class T, class mint = typename T::value_type>
-poly<T> gen_bell(u32 n, vec<mint> const& fact, vec<mint> const& ifact) {
+constexpr poly<T> gen_bell(u32 n, vec<mint> const& fact, vec<mint> const& ifact) {
   poly<T> b(n + 1);
   for (u32 i = 1; i <= n; ++i) b[i] = ifact[i];
   b = poly_exp(b);
@@ -19,7 +19,7 @@ poly<T> gen_bell(u32 n, vec<mint> const& fact, vec<mint> const& ifact) {
 }
 // bell[i] = B_i, i=0,1,...,n
 template <class T, class mint = typename T::value_type>
-poly<T> gen_bell(u32 n) { return gen_bell<T, mint>(n, gen_fact<mint>(n + 1), gen_ifact<mint>(n + 1)); }
+constexpr poly<T> gen_bell(u32 n) { return gen_bell<T, mint>(n, gen_fact<mint>(n + 1), gen_ifact<mint>(n + 1)); }
 
 }  // namespace tifa_libs::math
 

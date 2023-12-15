@@ -7,7 +7,7 @@ namespace tifa_libs::geo {
 
 // Min distance between two convex hulls
 template <class FP>
-FP min_dis_CVH(cvh<FP> const &ch1, cvh<FP> const &ch2) {
+constexpr FP min_dis_CVH(cvh<FP> const &ch1, cvh<FP> const &ch2) {
   u32 is = 0, js = 0;
   u32 szl = (u32)ch1.vs.size(), szr = (u32)ch2.vs.size();
   FP ans = std::numeric_limits<FP>::max();

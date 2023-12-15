@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 // @param f $f(0),\dots,f(k-1)$, $k\leq n$
 // @return $\sum_{i=0}^{n-1}a^if(i)$
 template <class mint>
-mint sum_ipaf(vec<mint> const& f, mint const& a, u64 n, Binom<mint> const& C) {
+constexpr mint sum_ipaf(vec<mint> const& f, mint const& a, u64 n, Binom<mint> const& C) {
   if (!n) return mint(0);
   if (!a.val()) return f[0];
   if (a.val() == 1) {
@@ -31,7 +31,7 @@ mint sum_ipaf(vec<mint> const& f, mint const& a, u64 n, Binom<mint> const& C) {
   return lagrange_interp0(g, n - 1, C.ifact) * qpow(a, n - 1) + c;
 }
 template <class mint>
-mint sum_ipaf(vec<mint> const& f, mint const& a, u64 n) {
+constexpr mint sum_ipaf(vec<mint> const& f, mint const& a, u64 n) {
   if (!n) return mint(0);
   if (!a.val()) return f[0];
   return sum_ipaf(f, a, n, Binom<mint>((u32)(f.size() + 1)));

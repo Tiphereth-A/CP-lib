@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T, class Is0>
-vec<T> lfsr_bm(vec<T> const &s, Is0 is0) {
+constexpr vec<T> lfsr_bm(vec<T> const &s, Is0 is0) {
   vec<T> C{1}, B(C);
   T b(1);
   for (u32 n = 0, n_ed = (u32)s.size(), l = 0, x = 1; n < n_ed; ++n) {

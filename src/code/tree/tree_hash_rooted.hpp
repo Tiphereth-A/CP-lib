@@ -7,7 +7,7 @@
 namespace tifa_libs::graph {
 
 template <class Hash, u64 OFFSET = 1>
-vec<u64> tree_hash_rooted(tree const &tr, Hash &&hasher) {
+constexpr vec<u64> tree_hash_rooted(tree const &tr, Hash &&hasher) {
   vec<u64> hash(tr.g.size());
   dfs(
       tr, tr.root,

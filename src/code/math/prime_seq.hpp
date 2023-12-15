@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-inline vec<u32> prime_seq(u32 n) {
+constexpr vec<u32> prime_seq(u32 n) {
   vec<bool> sieve(n / 3 + 1, 1);
   for (u32 p = 5, d = 4, i = 1, sqn = isqrt(n); p <= sqn; p += d = 6 - d, ++i) {
     if (!sieve[i]) continue;

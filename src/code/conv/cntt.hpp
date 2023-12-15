@@ -10,10 +10,10 @@ template <class mint, i64 M = -1>
 struct CNTT {
   using Zpi = GaussInt<mint, M>;
 
-  CNTT() {}
+  explicit constexpr CNTT() {}
 
-  u32 size() const { return (u32)rev.size(); }
-  void bzr(u32 len) {
+  constexpr u32 size() const { return (u32)rev.size(); }
+  constexpr void bzr(u32 len) {
     u32 n = std::max<u32>(std::bit_ceil(len), 2);
     if (n == size()) return;
     rev.resize(n, 0);
@@ -25,8 +25,8 @@ struct CNTT {
     for (u32 i = 0; i < k; ++i) IWn[i] = qpow(Wn[i], (((mint::mod() + 1) & 3) ? (u64)mint::mod() : (u64)mint::mod() * mint::mod()) - 2);
   }
 
-  void dif(vec<Zpi> &f) const { difdit(f); }
-  void dit(vec<Zpi> &f) const { difdit<true>(f); }
+  constexpr void dif(vec<Zpi> &f) const { difdit(f); }
+  constexpr void dit(vec<Zpi> &f) const { difdit<true>(f); }
 
  private:
   vec<u32> rev;
@@ -34,7 +34,7 @@ struct CNTT {
   vec<Zpi> Wn, IWn;
 
   template <bool inv = false>
-  void difdit(vec<Zpi> &f) const {
+  constexpr void difdit(vec<Zpi> &f) const {
     u32 n = size();
     assert(f.size() <= n);
     f.resize(n);

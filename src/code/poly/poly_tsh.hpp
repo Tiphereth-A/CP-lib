@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> poly_tsh(poly<T> const &f, typename T::value_type c, vec<u64> const &fact, vec<u64> const &ifact) {
+constexpr poly<T> poly_tsh(poly<T> const &f, typename T::value_type c, vec<u64> const &fact, vec<u64> const &ifact) {
   u32 n = f.size();
   if (n == 1) return f;
   poly<T> s = f, p(f.size());
@@ -22,7 +22,7 @@ poly<T> poly_tsh(poly<T> const &f, typename T::value_type c, vec<u64> const &fac
   return s;
 }
 template <class T>
-poly<T> poly_tsh(poly<T> const &f, typename T::value_type c) {
+constexpr poly<T> poly_tsh(poly<T> const &f, typename T::value_type c) {
   u32 n = f.size();
   if (n == 1) return f;
   return poly_tsh(f, c, gen_fact(n, T::value_type::mod()), gen_ifact(n, T::value_type::mod()));

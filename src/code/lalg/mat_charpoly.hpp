@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class T, class Is0>
-vec<T> charpoly(matrix<T> mat, Is0 is0) {
+constexpr vec<T> charpoly(matrix<T> mat, Is0 is0) {
   u32 n = mat.row();
   assert(n == mat.col());
   uhb(mat, is0);

@@ -17,7 +17,7 @@ class ssp {
   vec<i64> dis;
   vec<EW> flow;
   vec<std::pair<u32, u32>> pre;
-  bool spfa(u64 inflow) {
+  constexpr bool spfa(u64 inflow) {
     dis = vec<i64>(N, std::numeric_limits<i64>::max() / 2 - 1);
     vec<bool> inq(N);
     std::queue<u32> q;
@@ -37,7 +37,7 @@ class ssp {
     }
     return flow[T];
   }
-  void update(u64& retflow, i64& retcost) {
+  constexpr void update(u64& retflow, i64& retcost) {
     retflow += flow[T];
     for (u32 u = T; u != S; u = pre[u].first) {
       e[pre[u].first][pre[u].second].w -= flow[T];
@@ -48,12 +48,14 @@ class ssp {
 
  public:
   vvec<YYZ> e;
-  ssp(u32 n, u32 s, u32 t) : N(n), S(s), T(t), dis(), flow(n), pre(n), e(n) {}
-  void add(u32 u, u32 v, EW w, EC c) {
+
+  constexpr ssp(u32 n, u32 s, u32 t) : N(n), S(s), T(t), dis(), flow(n), pre(n), e(n) {}
+
+  constexpr void add(u32 u, u32 v, EW w, EC c) {
     u32 temu = u32(e[u].size()), temv = u32(e[v].size());
     e[u].push_back({v, w, c, temv}), e[v].push_back({u, 0, -c, temu});
   }
-  std::pair<u64, i64> operator()(u64 inflow = std::numeric_limits<u64>::max()) {
+  constexpr std::pair<u64, i64> operator()(u64 inflow = std::numeric_limits<u64>::max()) {
     u64 retflow = 0;
     i64 retcost = 0;
     bool flag = inflow == std::numeric_limits<EW>::max();

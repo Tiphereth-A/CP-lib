@@ -8,7 +8,7 @@
 namespace tifa_libs {
 
 template <class T>
-u64 inversion(vec<T> const& v) {
+constexpr u64 inversion(vec<T> const& v) {
   u64 ans = 0;
   auto id = gen_id(v).second;
   ds::fenwick<u64> tr(v.size() + 1);

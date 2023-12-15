@@ -17,10 +17,10 @@ class orthodox_ex_suffix_automaton {
  public:
   u32 sz;
   vec<YYZ> st;
-  orthodox_ex_suffix_automaton() : sz(1) {
-    st.push_back(YYZ()), st[0].len = 0, st[0].link = -1u;
-  }
-  u32 extend(u32 last, u32 c) {
+
+  explicit constexpr orthodox_ex_suffix_automaton() : sz(1) { st.push_back(YYZ()), st[0].len = 0, st[0].link = -1u; }
+
+  constexpr u32 extend(u32 last, u32 c) {
     u32 cur = st[last].nex[c];
     if (st[cur].len) return cur;
     st[cur].len = st[last].len + 1;
@@ -52,7 +52,7 @@ class orthodox_ex_suffix_automaton {
     }
     return cur;
   }
-  void insert(std::string s) {
+  constexpr void insert(std::string s) {
     u32 u = 0;
     for (auto cc : s) {
       u32 c = cc - BASE;
@@ -60,7 +60,7 @@ class orthodox_ex_suffix_automaton {
       u = st[u].nex[c];
     }
   }
-  void build() {
+  constexpr void build() {
     std::queue<std::pair<u32, char>> q;
     for (u32 i = 0; i < SZ; ++i)
       if (st[0].nex[i]) q.push({0, i});

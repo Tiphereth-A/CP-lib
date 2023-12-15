@@ -11,7 +11,7 @@ namespace tifa_libs::geo {
 //! WITH DIRECTION, sgn is cross(c.o, p1, p2)
 //! the center ot circle is also a endpoint of triangle
 template <class FP>
-FP sarea_CT(circle<FP> const &c, point<FP> const &p1, point<FP> const &p2) {
+constexpr FP sarea_CT(circle<FP> const &c, point<FP> const &p1, point<FP> const &p2) {
   if (is_zero(cross(c.o, p1, p2))) return FP{};
   auto is = ins_CL(c, {p1, p2});
   if (!is.has_value()) return c.area(ang_PP(p1 - c.o, p2 - c.o));

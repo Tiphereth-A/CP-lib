@@ -15,7 +15,7 @@ enum RELPoP {
 };
 
 template <class FP>
-RELPoP relation_PoP(polygon<FP> const &po, point<FP> const &p) {
+constexpr RELPoP relation_PoP(polygon<FP> const &po, point<FP> const &p) {
   for (auto &&now : po.vs)
     if (now == p) return onendpoint_pop;
   bool result = false;
@@ -30,7 +30,7 @@ RELPoP relation_PoP(polygon<FP> const &po, point<FP> const &p) {
 }
 
 template <class FP>
-RELPoP relation_CvhP(cvh<FP> const &cvh, point<FP> const &p) {
+constexpr RELPoP relation_CvhP(cvh<FP> const &cvh, point<FP> const &p) {
   for (auto &&now : cvh.vs)
     if (now == p) return onendpoint_pop;
   u32 sz = (u32)cvh.vs.size();

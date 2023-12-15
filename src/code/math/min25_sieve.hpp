@@ -14,11 +14,11 @@ class min25_sieve {
   u64 m, sqm, s;
   vec<u32> p;
 
-  u64 idx(u64 n) const { return n <= sqm ? s - n : div_u64d(m, n); }
+  constexpr u64 idx(u64 n) const { return n <= sqm ? s - n : div_u64d(m, n); }
 
  public:
   // m^{3/2} in u64
-  min25_sieve(u64 m) : m(m), sqm(isqrt(m)) {
+  explicit constexpr min25_sieve(u64 m) : m(m), sqm(isqrt(m)) {
     assert(m < (1ll << 42));
     if (m) {
       u64 hls = div_u64d(m, sqm);
@@ -28,7 +28,7 @@ class min25_sieve {
     }
   }
 
-  vec<T> sum_pk(u32 k) const {
+  constexpr vec<T> sum_pk(u32 k) const {
     auto sik = sum_ik<T>[k];
     if (!m) return {};
     u64 hls = div_u64d(m, sqm);
@@ -47,7 +47,7 @@ class min25_sieve {
     return h;
   }
 
-  T run(vec<T> fprime) const {
+  constexpr T run(vec<T> fprime) const {
     if (!m) return {};
     assert(fprime.size() == s);
     T ans = fprime[idx(m)] + 1;

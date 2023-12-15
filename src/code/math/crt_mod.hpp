@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-inline std::optional<std::pair<u32, u32>> crt_mod(const vec<i32> &a, const vec<u32> &m, const u32 mod) {
+constexpr std::optional<std::pair<u32, u32>> crt_mod(const vec<i32> &a, const vec<u32> &m, const u32 mod) {
   if (a.size() != m.size()) return {};
   vec<u32> m_cpy(m);
   u32 n = (u32)a.size();

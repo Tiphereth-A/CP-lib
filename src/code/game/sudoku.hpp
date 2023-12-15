@@ -6,7 +6,7 @@
 
 namespace tifa_libs::game {
 
-inline vvvec<u32> sudoku_solver(vvec<u32> const &data, bool get_all_solution = false) {
+constexpr vvvec<u32> sudoku_solver(vvec<u32> const &data, bool get_all_solution = false) {
   const u32 n = math::isqrt(data.size()), n2 = (u32)data.size(), n4 = n2 * n2;
   assert(n <= 65536 && n * n == n2);
   vvec<bool> g(n2 * n4, vec<bool>(4 * n4));

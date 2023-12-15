@@ -10,7 +10,7 @@
 namespace tifa_libs::math {
 
 template <class T, u32 N = 21>
-vec<typename T::value_type> polysps_comp(u32 n, poly<T> f, vec<typename T::value_type> g, vec<u64> const &fact, vec<u64> const &ifact) {
+constexpr vec<typename T::value_type> polysps_comp(u32 n, poly<T> f, vec<typename T::value_type> g, vec<u64> const &fact, vec<u64> const &ifact) {
   assert(n <= N);
   using mint = typename T::value_type;
   static conv_subset<mint, N> ss;
@@ -40,7 +40,7 @@ vec<typename T::value_type> polysps_comp(u32 n, poly<T> f, vec<typename T::value
   return h[n][0];
 }
 template <class T, u32 N = 21>
-auto polysps_comp(u32 n, poly<T> const &f, vec<typename T::value_type> const &g) { return polysps_comp<T, N>(n, f, g, gen_fact((u32)f.size() + 1, T::value_type::mod()), gen_ifact((u32)f.size() + 1, T::value_type::mod())); }
+constexpr auto polysps_comp(u32 n, poly<T> const &f, vec<typename T::value_type> const &g) { return polysps_comp<T, N>(n, f, g, gen_fact((u32)f.size() + 1, T::value_type::mod()), gen_ifact((u32)f.size() + 1, T::value_type::mod())); }
 
 }  // namespace tifa_libs::math
 

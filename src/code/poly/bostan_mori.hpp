@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 namespace bostan_mori_impl_ {
 
 template <class ccore_t, class T>
-vec<T> coeff_(ccore_t const& core, ccore_t const& core2, vec<T>& q, u64 n, u32 d) {
+constexpr vec<T> coeff_(ccore_t const& core, ccore_t const& core2, vec<T>& q, u64 n, u32 d) {
   static u32 len = core.size();
   static vec<T> s(len * 2);
   static constexpr T inv2 = (T::mod() + 1) / 2;
@@ -38,7 +38,7 @@ vec<T> coeff_(ccore_t const& core, ccore_t const& core2, vec<T>& q, u64 n, u32 d
 
 // @return [x^k]p/q
 template <class T, class mint = typename T::value_type>
-mint bostan_mori(u64 n, poly<T> const& p, poly<T> const& q) {
+constexpr mint bostan_mori(u64 n, poly<T> const& p, poly<T> const& q) {
   assert(p.size() == q.size() - 1 && !p.empty());
   if constexpr (T::ccore_type != pdct_NTT) {
     auto p_ = p, q_ = q;

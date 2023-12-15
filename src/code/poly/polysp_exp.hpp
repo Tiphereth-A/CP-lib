@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> polysp_exp(poly<T> const& p, vec<u64> const& inv, u32 n = 0) {
+constexpr poly<T> polysp_exp(poly<T> const& p, vec<u64> const& inv, u32 n = 0) {
   if (p.data().empty()) return p;
   assert(p[0] == 0);
   if (!n) n = p.size();
@@ -25,7 +25,7 @@ poly<T> polysp_exp(poly<T> const& p, vec<u64> const& inv, u32 n = 0) {
   return g;
 }
 template <class T>
-poly<T> polysp_exp(poly<T> const& p, u32 n = 0) {
+constexpr poly<T> polysp_exp(poly<T> const& p, u32 n = 0) {
   if (!n) n = p.size();
   return polysp_exp(p, gen_inv(n, T::value_type::mod()), n);
 }

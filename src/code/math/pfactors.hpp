@@ -12,7 +12,7 @@ namespace pfactors_impl_ {
 class PollardRho {
   rand::Gen<std::uniform_int_distribution<u64>> e;
 
-  u64 rho(u64 n) {
+  constexpr u64 rho(u64 n) {
     e.set_range(2, n - 1);
     auto f = [n, r = e()](u64 x) { return (mul_mod_u(x, x, n) + r) % n; };
     u64 g = 1, x = 0, y = e(), yy = 0;
@@ -33,9 +33,9 @@ class PollardRho {
   }
 
  public:
-  explicit PollardRho() : e() {}
+  explicit constexpr PollardRho() : e() {}
 
-  void operator()(u64 n, std::map<u64, u32> &ans) {
+  constexpr void operator()(u64 n, std::map<u64, u32> &ans) {
     if (n < 2) return;
     if (is_prime(n)) {
       ++ans[n];
@@ -49,7 +49,7 @@ class PollardRho {
 
 }  // namespace pfactors_impl_
 
-inline std::map<u64, u32> pfactors(u64 n) {
+constexpr std::map<u64, u32> pfactors(u64 n) {
   std::map<u64, u32> ans;
   if (n < 2) return ans;
   if (~n & 1) n >>= (ans[2] = (u32)std::countr_zero(n));

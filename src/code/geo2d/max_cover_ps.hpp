@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 
 // max number of points covered by a circle with radius @r
 template <class FP>
-u64 max_cover_Ps(vec<point<FP>> const &vp, FP r) {
+constexpr u64 max_cover_Ps(vec<point<FP>> const &vp, FP r) {
   if (is_neg(r)) return 0;
   if (is_zero(r)) return 1;
   const FP diam = r * 2;

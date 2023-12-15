@@ -22,7 +22,7 @@ class DLX {
 #define col_(x) data[x].col
 #define dlxfor_(i, l, dir) for (usz ied__ = (l), i = dir##_(ied__); i != ied__; i = dir##_(i))
 
-  void remove_(usz col) {
+ constexpr  void remove_(usz col) {
     r_(l_(col)) = r_(col);
     l_(r_(col)) = l_(col);
     dlxfor_ (i, col, d)
@@ -32,7 +32,7 @@ class DLX {
         --cnt_col[col_(j)];
       }
   }
-  void resume_(usz col) {
+  constexpr void resume_(usz col) {
     r_(l_(col)) = l_(r_(col)) = col;
     dlxfor_ (i, col, u)
       dlxfor_ (j, i, r) {
@@ -41,7 +41,7 @@ class DLX {
       }
   }
   template <class F>
-  bool dance_(vec<usz> &ans, F cb) {
+  constexpr bool dance_(vec<usz> &ans, F cb) {
     usz now = r_(0);
     if (now == 0) return cb(ans), true;
     dlxfor_ (i, 0, r)
@@ -59,7 +59,7 @@ class DLX {
     resume_(now);
     return ret;
   }
-  void ins_row_(usz row, vec<usz> const &cols) {
+ constexpr  void ins_row_(usz row, vec<usz> const &cols) {
     assert(row > 0);
     usz n = data.size();
     for (usz i = 0; i < cols.size(); ++i) {
@@ -72,7 +72,7 @@ class DLX {
   }
 
  public:
-  explicit DLX(vvec<bool> const &grid, bool multi_ans = false) : data(), cnt_col(), mans(multi_ans) {
+  explicit constexpr DLX(vvec<bool> const &grid, bool multi_ans = false) : data(), cnt_col(), mans(multi_ans) {
     usz col = grid[0].size();
     assert(col > 0);
     cnt_col.resize(col + 1);
@@ -90,7 +90,7 @@ class DLX {
   }
 
   template <class F>
-  std::optional<vec<usz>> dance(F cb) {
+  constexpr std::optional<vec<usz>> dance(F cb) {
     vec<usz> ans;
     if (!dance_(ans, cb)) return {};
     return ans;

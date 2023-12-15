@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-std::optional<poly<T>> poly_modinv(poly<T> const &f, poly<T> const &g) {
+constexpr std::optional<poly<T>> poly_modinv(poly<T> const &f, poly<T> const &g) {
   auto m = poly_gcd_impl_::pgcd_(f, g);
   if (poly<T> _ = (m * ptt<poly<T>>{f, g}).first; _.size() != 1) return {};
   else {

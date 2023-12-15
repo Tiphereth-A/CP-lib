@@ -17,8 +17,8 @@ class matrix {
  public:
   using value_type = T;
 
-  matrix(u32 row, u32 col, T const &v = T{}) : d(row, vec<T>(col, v)) { assert(row > 0 && col > 0); }
-  explicit matrix(vvec<T> const &data) : d(data) { assert(data.size() > 0 && data[0].size > 0); }
+  constexpr matrix(u32 row, u32 col, T const &v = T{}) : d(row, vec<T>(col, v)) { assert(row > 0 && col > 0); }
+  explicit constexpr matrix(vvec<T> const &data) : d(data) { assert(data.size() > 0 && data[0].size > 0); }
 
   constexpr u32 row() const { return (u32)d.size(); }
   constexpr u32 col() const { return (u32)d[0].size(); }
@@ -28,9 +28,9 @@ class matrix {
   constexpr typename vec<T>::const_reference operator()(u32 r, u32 c) const { return d[r][c]; }
 
   template <class F>
-  void apply(F f) { apply_range(0, row(), 0, col(), f); }
+  constexpr void apply(F f) { apply_range(0, row(), 0, col(), f); }
   template <class F>
-  void apply_range(u32 row_l, u32 row_r, u32 col_l, u32 col_r, F f) {
+  constexpr void apply_range(u32 row_l, u32 row_r, u32 col_l, u32 col_r, F f) {
     assert(row_l < row_r && row_r <= row());
     assert(col_l < col_r && col_r <= col());
     FOR2_ (i, row_l, row_r, j, col_l, col_r) f(i, j, (*this)(i, j));
@@ -49,7 +49,7 @@ class matrix {
     return os;
   }
 
-  matrix submat(u32 row_l, u32 row_r, u32 col_l, u32 col_r) const {
+  constexpr matrix submat(u32 row_l, u32 row_r, u32 col_l, u32 col_r) const {
     assert(row_l < row_r && row_r <= row());
     assert(col_l < col_r && col_r <= col());
     matrix ret(row_r - row_l, col_r - col_l);
@@ -74,38 +74,38 @@ class matrix {
     return ret;
   }
 
-  constexpr friend matrix operator+(matrix l, T const &v) { return l += v; }
-  constexpr friend matrix operator+(T const &v, matrix l) { return l += v; }
+  friend constexpr matrix operator+(matrix l, T const &v) { return l += v; }
+  friend constexpr matrix operator+(T const &v, matrix l) { return l += v; }
   constexpr matrix &operator+=(T const &v) {
     apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val += v; });
     return *this;
   }
-  constexpr friend matrix operator-(matrix l, T const &v) { return l -= v; }
+  friend constexpr matrix operator-(matrix l, T const &v) { return l -= v; }
   constexpr matrix &operator-=(T const &v) {
     apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val -= v; });
     return *this;
   }
-  constexpr friend matrix operator*(matrix l, T const &v) { return l *= v; }
-  constexpr friend matrix operator*(T const &v, matrix l) { return l *= v; }
+  friend constexpr matrix operator*(matrix l, T const &v) { return l *= v; }
+  friend constexpr matrix operator*(T const &v, matrix l) { return l *= v; }
   constexpr matrix &operator*=(T const &v) {
     apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val *= v; });
     return *this;
   }
 
-  constexpr friend matrix operator+(matrix l, matrix const &r) { return l += r; }
+  friend constexpr matrix operator+(matrix l, matrix const &r) { return l += r; }
   constexpr matrix &operator+=(matrix const &r) {
     assert(row() == r.row() && col() == r.col());
     apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val += r(i, j); });
     return *this;
   }
-  constexpr friend matrix operator-(matrix l, matrix const &r) { return l -= r; }
+  friend constexpr matrix operator-(matrix l, matrix const &r) { return l -= r; }
   constexpr matrix &operator-=(matrix const &r) {
     assert(row() == r.row() && col() == r.col());
     apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val -= r(i, j); });
     return *this;
   }
 
-  constexpr friend matrix operator*(matrix const &l, matrix const &r) {
+  friend constexpr matrix operator*(matrix const &l, matrix const &r) {
     u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
     assert(j_ == r.row());
     matrix ret(i_, k_);
@@ -116,7 +116,7 @@ class matrix {
   }
   constexpr matrix &operator*=(matrix const &r) { return *this = *this * r; }
 
-  vec<T> lproj(vec<T> const &x) const {
+  constexpr vec<T> lproj(vec<T> const &x) const {
     u32 r_ = row(), c_ = col();
     assert(r_ == x.size());
     vec<T> ret(c_);

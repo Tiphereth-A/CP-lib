@@ -10,10 +10,10 @@ struct FFT {
   static_assert(std::is_floating_point_v<FP>);
   using C = std::complex<FP>;
 
-  constexpr FFT() : rev(), w() {}
+  explicit constexpr FFT() : rev(), w() {}
 
-  u32 size() const { return (u32)rev.size(); }
-  void bzr(u32 len) {
+  constexpr u32 size() const { return (u32)rev.size(); }
+  constexpr void bzr(u32 len) {
     u32 n = std::max<u32>(std::bit_ceil(len), 2);
     if (n == size()) return;
     rev.resize(n, 0);
@@ -24,7 +24,7 @@ struct FFT {
     for (u32 i = 1; i < n; ++i) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
   }
 
-  void dif(vec<C> &f, u32 n = 0) const {
+  constexpr void dif(vec<C> &f, u32 n = 0) const {
     if (!n) n = size();
     if (f.size() < n) f.resize(n);
     assert(n <= size());
@@ -43,7 +43,7 @@ struct FFT {
       }
 #pragma GCC diagnostic warning "-Wsign-conversion"
   }
-  void dit(vec<C> &f, u32 n = 0) const {
+  constexpr void dit(vec<C> &f, u32 n = 0) const {
     if (!n) n = size();
     dif(f, n);
     for (u32 i = 0; i < n; ++i) f[i] /= (FP)n;

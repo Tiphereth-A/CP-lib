@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class Mat>
-Mat pow(Mat mat, u64 b) {
+constexpr Mat pow(Mat mat, u64 b) {
   u32 n = mat.row();
   assert(n == mat.col());
   Mat res(n, n);

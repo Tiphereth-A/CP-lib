@@ -17,7 +17,7 @@ class heuristic_lbsa {
 
  public:
   // Find minimum argument of f(x)
-  explicit heuristic_lbsa(Ff f, Cont const& init, u32 L, Tt p0 = .2) : f(f), g_idx(0, (u32)init.size() - 1), g(0, 1), x(init), fx(f(init)), tlist() {
+  explicit constexpr heuristic_lbsa(Ff f, Cont const& init, u32 L, Tt p0 = .2) : f(f), g_idx(0, (u32)init.size() - 1), g(0, 1), x(init), fx(f(init)), tlist() {
     const Tt lp0 = std::log(p0);
     while (tlist.size() < L) {
       auto [fy, y] = gen();
@@ -26,7 +26,7 @@ class heuristic_lbsa {
     }
   }
 
-  std::pair<Ft, Cont> operator()(u32 K, u32 M) {
+  constexpr std::pair<Ft, Cont> operator()(u32 K, u32 M) {
     for (u32 k = 0; k < K; ++k) {
       Tt tmax = tlist.top(), t = 0;
       u32 c = 0;
@@ -41,14 +41,14 @@ class heuristic_lbsa {
   }
 
  private:
-  static void inv_(typename Cont::iterator l, typename Cont::iterator r) { std::reverse(l, std::next(r)); }
-  static void ins_(typename Cont::iterator l, typename Cont::iterator r) {
+  static constexpr void inv_(typename Cont::iterator l, typename Cont::iterator r) { std::reverse(l, std::next(r)); }
+  static constexpr void ins_(typename Cont::iterator l, typename Cont::iterator r) {
     auto x = *r;
     std::move_backward(l, r, std::next(r));
     *l = x;
   }
-  static void swap_(typename Cont::iterator l, typename Cont::iterator r) { std::iter_swap(l, r); }
-  std::pair<Ft, Cont> gen() {
+  static constexpr void swap_(typename Cont::iterator l, typename Cont::iterator r) { std::iter_swap(l, r); }
+  constexpr std::pair<Ft, Cont> gen() {
     u32 l = g_idx(), r = g_idx();
     while (l == r) r = g_idx();
     if (l > r) std::swap(l, r);

@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class Mat, class T = typename Mat::value_type>
-T hafnian(Mat const &mat) {
+constexpr T hafnian(Mat const &mat) {
   u32 n = mat.row(), h = n / 2 + 1;
   assert(n == mat.col() && !(n & 1));
 

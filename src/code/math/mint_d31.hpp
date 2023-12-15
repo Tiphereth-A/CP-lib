@@ -9,18 +9,18 @@ template <int>
 class mint_d31 {
   u32 v_{};
 
-  static inline u32 norm(i32 x) { return (u32)(x + (-(x < 0) & (i32)MOD)); }
-  static inline u32 redc(u64 x) {
+  static constexpr u32 norm(i32 x) { return (u32)(x + (-(x < 0) & (i32)MOD)); }
+  static constexpr u32 redc(u64 x) {
     u32 t = (u32)((x + (u64)((u32)(x)*R) * MOD_ODD) >> 32);
     return t - (MOD_ODD & -((MOD_ODD - 1 - t) >> 31));
   }
-  static inline u32 tsf(u32 x) { return redc((u64)(x % MOD_ODD) * R2) << OFFSET | (x & MASK); }
+  static constexpr u32 tsf(u32 x) { return redc((u64)(x % MOD_ODD) * R2) << OFFSET | (x & MASK); }
 
   static inline u32 R, R2, MOD, MOD_ODD, OFFSET, MASK;
   static inline i32 SMOD;
 
  public:
-  static inline void set_mod(u32 m) {
+  static constexpr void set_mod(u32 m) {
     assert(!(m == 1 || m >> 31));
     for (MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD >>= 1)
       ;
@@ -32,27 +32,29 @@ class mint_d31 {
     }
     R2 = (u32)(-(u64)(MOD_ODD) % MOD_ODD);
   }
-  static inline u32 mod() { return MOD; }
-  static inline i32 smod() { return SMOD; }
-  mint_d31() {}
+  static constexpr u32 mod() { return MOD; }
+  static constexpr i32 smod() { return SMOD; }
+
+  constexpr mint_d31() {}
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
-  mint_d31(T v) : v_(tsf(norm((i32)(v % (T)SMOD)))) {}
-  u32 val() const {
+  constexpr mint_d31(T v) : v_(tsf(norm((i32)(v % (T)SMOD)))) {}
+
+  constexpr u32 val() const {
     u32 h = redc(v_ >> OFFSET);
     return ((h - v_) * R & MASK) * MOD_ODD + h;
   }
-  i32 sval() const { return (i32)val(); }
+  constexpr i32 sval() const { return (i32)val(); }
   constexpr u32 &data() { return v_; }
   constexpr u32 const &data() const { return v_; }
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
-  explicit operator T() const { return (T)(val()); }
-  mint_d31 operator-() const {
+  explicit constexpr operator T() const { return (T)(val()); }
+  constexpr mint_d31 operator-() const {
     mint_d31 res;
     u32 h = v_ >> OFFSET;
     res.v_ = (((MOD_ODD & -(h != 0)) - h) << OFFSET) | (-v_ & MASK);
     return res;
   }
-  mint_d31 inv() const {
+  constexpr mint_d31 inv() const {
     i32 x1 = 1, x3 = 0, a = sval(), b = SMOD;
     while (b != 0) {
       i32 q = a / b, x1_old = x1, a_old = a;
@@ -60,27 +62,27 @@ class mint_d31 {
     }
     return mint_d31(x1);
   }
-  mint_d31 &operator+=(mint_d31 const &r) {
+  constexpr mint_d31 &operator+=(mint_d31 const &r) {
     u32 h = (v_ >> OFFSET) + (r.v_ >> OFFSET) - MOD_ODD;
     v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((v_ + r.v_) & MASK);
     return *this;
   }
-  mint_d31 &operator-=(mint_d31 const &r) {
+  constexpr mint_d31 &operator-=(mint_d31 const &r) {
     u32 h = (v_ >> OFFSET) - (r.v_ >> OFFSET);
     v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((v_ - r.v_) & MASK);
     return *this;
   }
-  mint_d31 &operator*=(mint_d31 const &r) {
+  constexpr mint_d31 &operator*=(mint_d31 const &r) {
     v_ = (redc((u64)(v_ >> OFFSET) * (r.v_ >> OFFSET)) << OFFSET) | ((v_ * r.v_) & MASK);
     return *this;
   }
-  mint_d31 &operator/=(mint_d31 const &r) { return operator*=(r.inv()); }
-  friend mint_d31 operator+(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) += r; }
-  friend mint_d31 operator-(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) -= r; }
-  friend mint_d31 operator*(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) *= r; }
-  friend mint_d31 operator/(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) /= r; }
-  friend bool operator==(mint_d31 const &l, mint_d31 const &r) { return l.v_ == r.v_; }
-  friend bool operator!=(mint_d31 const &l, mint_d31 const &r) { return l.v_ != r.v_; }
+  constexpr mint_d31 &operator/=(mint_d31 const &r) { return operator*=(r.inv()); }
+  friend constexpr mint_d31 operator+(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) += r; }
+  friend constexpr mint_d31 operator-(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) -= r; }
+  friend constexpr mint_d31 operator*(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) *= r; }
+  friend constexpr mint_d31 operator/(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) /= r; }
+  friend constexpr bool operator==(mint_d31 const &l, mint_d31 const &r) { return l.v_ == r.v_; }
+  friend constexpr bool operator!=(mint_d31 const &l, mint_d31 const &r) { return l.v_ != r.v_; }
   friend constexpr bool operator<(mint_d31 const &l, mint_d31 const &r) { return l.val() < r.val(); }
   friend std::istream &operator>>(std::istream &is, mint_d31 &r) {
     i32 x;

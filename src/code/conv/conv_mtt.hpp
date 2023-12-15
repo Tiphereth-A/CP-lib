@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class FP>
-vec<mint> conv_mtt(FFT<FP> &fft, vec<mint> const &l, vec<mint> const &r, u32 ans_size = 0) {
+constexpr vec<mint> conv_mtt(FFT<FP> &fft, vec<mint> const &l, vec<mint> const &r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   using C = typename FFT<FP>::C;
   if (l.size() == 1) {

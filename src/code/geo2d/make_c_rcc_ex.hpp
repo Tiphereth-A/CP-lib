@@ -9,7 +9,7 @@ namespace tifa_libs::geo {
 // make circle by radius and 2 external tagante circle
 // maybe duplicate
 template <class FP>
-std::optional<ptt<circle<FP>>> make_C_rCC_ex(FP r, circle<FP> const &c1, circle<FP> const &c2) {
+constexpr std::optional<ptt<circle<FP>>> make_C_rCC_ex(FP r, circle<FP> const &c1, circle<FP> const &c2) {
   if (relation_CC(c1, c2) == RELCC::lyingin_cc) return {};
   if (auto ps = ins_CC({c1.o, c1.r + r}, {c2.o, c2.r + r}); !ps.has_value()) return {};
   else return {{ps.value().first, r}, {ps.value().second, r}};

@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 // @return centroid, at MOST 2
-inline vec<u32> tree_centroid(tree const &tr) {
+constexpr vec<u32> tree_centroid(tree const &tr) {
   vec<u32> sz(tr.g.size()), ans;
 
   auto dfs = [&](auto &&dfs, u32 now, u32 fa = -1_u32) -> void {

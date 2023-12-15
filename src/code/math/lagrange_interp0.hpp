@@ -7,7 +7,7 @@
 
 namespace tifa_libs::math {
 
-inline i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod, vec<u64> const &ifact) {
+constexpr i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod, vec<u64> const &ifact) {
   u32 n = (u32)v.size();
   assert(n);
   if (n == 1) return v[0];
@@ -28,9 +28,9 @@ inline i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod, vec<u64> const &i
   }
   return ans;
 }
-inline i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod) { return lagrange_interp0(v, x, mod, gen_ifact((u32)v.size(), mod)); }
+constexpr i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod) { return lagrange_interp0(v, x, mod, gen_ifact((u32)v.size(), mod)); }
 template <class mint>
-mint lagrange_interp0(vec<mint> const &v, u64 x, vec<mint> const &ifact) {
+constexpr mint lagrange_interp0(vec<mint> const &v, u64 x, vec<mint> const &ifact) {
   vec<i64> _(v.size());
   for (u32 i = 0; i < (u32)v.size(); ++i) _[i] = v[i].val();
   vec<u64> ifa(ifact.size());
@@ -38,7 +38,7 @@ mint lagrange_interp0(vec<mint> const &v, u64 x, vec<mint> const &ifact) {
   return mint(lagrange_interp0(_, x, mint::mod(), ifa));
 }
 template <class mint>
-mint lagrange_interp0(vec<mint> const &v, u64 x) { return lagrange_interp0(v, x, mint::mod(), gen_ifact<mint>(v.size())); }
+constexpr mint lagrange_interp0(vec<mint> const &v, u64 x) { return lagrange_interp0(v, x, mint::mod(), gen_ifact<mint>(v.size())); }
 
 }  // namespace tifa_libs::math
 

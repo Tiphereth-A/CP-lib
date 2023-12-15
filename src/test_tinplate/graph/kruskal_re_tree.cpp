@@ -1,6 +1,6 @@
 #define PROBLEM "https://codeforces.com/gym/103446/problem/H"
 
-#include "../../code/graph/kruskal_reconstruction_tree.hpp"
+#include "../../code/graph/kruskal_re_tree.hpp"
 
 #include "../../code/tree/dfs_info.hpp"
 #include "../../code/tree/tree_sumvw.hpp"

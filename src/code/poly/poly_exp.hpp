@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> poly_exp(poly<T> const &p, u32 n = 0) {
+constexpr poly<T> poly_exp(poly<T> const &p, u32 n = 0) {
   assert(p[0] == 0);
   if (!n) n = p.size();
   poly<T> _ = p + 1, a{1};

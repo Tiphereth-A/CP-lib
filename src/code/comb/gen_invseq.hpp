@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 // i^{-1} for i in v
-inline vec<u64> gen_invseq(vec<u64> const &v, u64 mod) {
+constexpr vec<u64> gen_invseq(vec<u64> const &v, u64 mod) {
   u32 n = (u32)v.size();
   vec<u64> ans(n);
   ans[0] = v[1];
@@ -22,7 +22,7 @@ inline vec<u64> gen_invseq(vec<u64> const &v, u64 mod) {
 }
 // i^{-1} for i in v
 template <class mint>
-vec<mint> gen_invseq(vec<mint> const &v) {
+constexpr vec<mint> gen_invseq(vec<mint> const &v) {
   u32 n = (u32)v.size();
   vec<mint> ans(n);
   auto _ = gen_invseq(v, mint::mod());

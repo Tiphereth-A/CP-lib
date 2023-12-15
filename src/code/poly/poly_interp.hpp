@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 // Lagrange interpolation in O(n \log^2 n)
 // @return f s.t. f(x[i]) = y[i]
 template <class T>
-poly<T> poly_interp(poly<T> const &x, poly<T> const &y) {
+constexpr poly<T> poly_interp(poly<T> const &x, poly<T> const &y) {
   class SegTree {
     constexpr void init_(poly<T> const &a, u32 k, u32 l, u32 r) {
       if (l == r) {

@@ -12,11 +12,11 @@ class leftist_tree {
     u32 dist, rt;
     T w;
     bool del;
-    YYZ() {}
-    YYZ(std::array<u32, 2> SON, u32 DIST, u32 RT, T W, bool DEL = false) : son(SON), dist(DIST), rt(RT), w(W), del(DEL) {}
+    constexpr YYZ() {}
+    constexpr YYZ(std::array<u32, 2> SON, u32 DIST, u32 RT, T W, bool DEL = false) : son(SON), dist(DIST), rt(RT), w(W), del(DEL) {}
   };
 
-  u32 merge_(u32 x, u32 y) {
+  constexpr u32 merge_(u32 x, u32 y) {
     if (x == -1u) return y;
     if (y == -1u) return x;
     if (t[y].w < t[x].w || (t[y].w == t[x].w && x > y)) std::swap(x, y);

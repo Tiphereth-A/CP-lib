@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0, class T = typename Mat::value_type>
-void uhb(Mat &mat, Is0 is0) {
+constexpr void uhb(Mat &mat, Is0 is0) {
   u32 n = mat.row();
   assert(n == mat.col());
   if (n <= 2) return;

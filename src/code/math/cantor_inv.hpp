@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 //! [0, n)
 //! p \in [1, n], a_i == a_j \iff i == j
-inline vec<u32> cantor_inv_seq(vec<u32> const &s) {
+constexpr vec<u32> cantor_inv_seq(vec<u32> const &s) {
   u32 n = (u32)s.size();
   ds::weighted_segtree tr(n + 1);
   for (u32 i = 1; i <= n; ++i) tr.ins(i);

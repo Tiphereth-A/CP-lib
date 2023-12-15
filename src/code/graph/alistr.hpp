@@ -5,8 +5,8 @@
 
 namespace tifa_libs::graph {
 
-inline alist alistr(alist const& ag) {
-  alist ret(ag.g.size());
+constexpr alist alistr(alist const& ag) {
+  alist ret((u32)ag.g.size());
   for (u32 u = 0; u < ag.g.size(); ++u)
     for (u32 v : ag.g[u]) ret.add_arc(v, u);
   return ret;

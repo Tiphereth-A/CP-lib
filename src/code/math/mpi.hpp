@@ -13,15 +13,15 @@ class mpi {
   vec<u32> dt;
 
  public:
-  explicit mpi() : neg(false), dt() {}
-  mpi(bool n, vec<u32> const& d) : neg(n), dt(d) {}
+  explicit constexpr mpi() : neg(false), dt() {}
+  constexpr mpi(bool n, vec<u32> const& d) : neg(n), dt(d) {}
   template <class T, std::enable_if_t<is_int<T>::value>* = nullptr>
-  mpi(T x) : neg(false) {
+  constexpr mpi(T x) : neg(false) {
     if constexpr (is_sint<T>::value)
       if (x < 0) neg = true, x = -x;
     while (x) dt.push_back(u32(to_uint_t<T>(x) % D)), x /= D;
   }
-  mpi(std::string s) : neg(false) {
+  constexpr mpi(std::string s) : neg(false) {
     assert(!s.empty());
     if (s.size() == 1u) {
       if (s[0] == '0') return;
@@ -42,14 +42,14 @@ class mpi {
     if (_) dt.push_back(_);
   }
 
-  constexpr static u32 digit() { return D; }
-  constexpr static u32 log_digit() { return lgD; }
-  void set_neg(bool s) { neg = s; }
-  bool is_neg() const { return neg; }
-  vec<u32>& data() { return dt; }
-  vec<u32> const& data() const { return dt; }
+  static constexpr u32 digit() { return D; }
+  static constexpr u32 log_digit() { return lgD; }
+  constexpr void set_neg(bool s) { neg = s; }
+  constexpr bool is_neg() const { return neg; }
+  constexpr vec<u32>& data() { return dt; }
+  constexpr vec<u32> const& data() const { return dt; }
 
-  friend mpi operator+(mpi const& l, mpi const& r) {
+  friend constexpr mpi operator+(mpi const& l, mpi const& r) {
     if (l.neg == r.neg) return {l.neg, add_(l.dt, r.dt)};
     if (leq_(l.dt, r.dt)) {
       auto c = sub_(r.dt, l.dt);
@@ -58,55 +58,55 @@ class mpi {
     auto c = sub_(l.dt, r.dt);
     return {is0_(c) ? false : l.neg, c};
   }
-  friend mpi operator-(mpi const& l, mpi const& r) { return l + (-r); }
-  friend mpi operator*(mpi const& l, mpi const& r) {
+  friend constexpr mpi operator-(mpi const& l, mpi const& r) { return l + (-r); }
+  friend constexpr mpi operator*(mpi const& l, mpi const& r) {
     auto c = mul_(l.dt, r.dt);
     bool n = is0_(c) ? false : (l.neg ^ r.neg);
     return {n, c};
   }
-  friend ptt<mpi> divmod(mpi const& l, mpi const& r) {
+  friend constexpr ptt<mpi> divmod(mpi const& l, mpi const& r) {
     auto dm = divmod_newton_(l.dt, r.dt);
     return {mpi{is0_(dm.first) ? false : l.neg != r.neg, dm.first}, mpi{is0_(dm.second) ? false : l.neg, dm.second}};
   }
-  friend mpi operator/(mpi const& l, mpi const& r) { return divmod(l, r).first; }
-  friend mpi operator%(mpi const& l, mpi const& r) { return divmod(l, r).second; }
+  friend constexpr mpi operator/(mpi const& l, mpi const& r) { return divmod(l, r).first; }
+  friend constexpr mpi operator%(mpi const& l, mpi const& r) { return divmod(l, r).second; }
 
-  mpi& operator+=(mpi const& r) { return (*this) = (*this) + r; }
-  mpi& operator-=(mpi const& r) { return (*this) = (*this) - r; }
-  mpi& operator*=(mpi const& r) { return (*this) = (*this) * r; }
-  mpi& operator/=(mpi const& r) { return (*this) = (*this) / r; }
-  mpi& operator%=(mpi const& r) { return (*this) = (*this) % r; }
+  constexpr mpi& operator+=(mpi const& r) { return (*this) = (*this) + r; }
+  constexpr mpi& operator-=(mpi const& r) { return (*this) = (*this) - r; }
+  constexpr mpi& operator*=(mpi const& r) { return (*this) = (*this) * r; }
+  constexpr mpi& operator/=(mpi const& r) { return (*this) = (*this) / r; }
+  constexpr mpi& operator%=(mpi const& r) { return (*this) = (*this) % r; }
 
-  mpi operator-() const {
+  constexpr mpi operator-() const {
     if (is_zero()) return *this;
     return {!neg, dt};
   }
-  mpi operator+() const { return *this; }
-  friend mpi abs(mpi const& m) { return {false, m.dt}; }
-  bool is_zero() const { return is0_(dt); }
+  constexpr mpi operator+() const { return *this; }
+  friend constexpr mpi abs(mpi const& m) { return {false, m.dt}; }
+  constexpr bool is_zero() const { return is0_(dt); }
 
-  friend bool operator==(mpi const& l, mpi const& r) { return l.neg == r.neg && l.dt == r.dt; }
-  friend bool operator!=(mpi const& l, mpi const& r) { return !(l == r); }
-  friend bool operator<(mpi const& l, mpi const& r) { return l == r ? false : neq_lt_(l, r); }
-  friend bool operator<=(mpi const& l, mpi const& r) { return l == r ? true : neq_lt_(l, r); }
-  friend bool operator>(mpi const& l, mpi const& r) { return l == r ? false : neq_lt_(r, l); }
-  friend bool operator>=(mpi const& l, mpi const& r) { return l == r ? true : neq_lt_(r, l); }
+  friend constexpr bool operator==(mpi const& l, mpi const& r) { return l.neg == r.neg && l.dt == r.dt; }
+  friend constexpr bool operator!=(mpi const& l, mpi const& r) { return !(l == r); }
+  friend constexpr bool operator<(mpi const& l, mpi const& r) { return l == r ? false : neq_lt_(l, r); }
+  friend constexpr bool operator<=(mpi const& l, mpi const& r) { return l == r ? true : neq_lt_(l, r); }
+  friend constexpr bool operator>(mpi const& l, mpi const& r) { return l == r ? false : neq_lt_(r, l); }
+  friend constexpr bool operator>=(mpi const& l, mpi const& r) { return l == r ? true : neq_lt_(r, l); }
 
-  u32 size() const { return (u32)dt.size(); }
-  void shrink() { shrink_(dt); }
+  constexpr u32 size() const { return (u32)dt.size(); }
+  constexpr void shrink() { shrink_(dt); }
 
-  std::string to_str() const {
+  constexpr std::string to_str() const {
     if (is_zero()) return "0";
     std::string res;
     if (neg) res.push_back('-');
     for (u32 i = size() - 1; ~i; --i) res += itos_((u32)dt[i], i != size() - 1);
     return res;
   }
-  i64 to_i64() const {
+  constexpr i64 to_i64() const {
     i64 res = to_i64_(dt);
     return neg ? -res : res;
   }
-  i128 to_i128() const {
+  constexpr i128 to_i128() const {
     i128 res = 0;
     for (u32 i = (u32)dt.size() - 1; ~i; --i) res = res * D + dt[i];
     return neg ? -res : res;
@@ -121,26 +121,26 @@ class mpi {
   friend std::ostream& operator<<(std::ostream& os, mpi const& m) { return os << m.to_str(); }
 
  private:
-  static bool lt_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr bool lt_(vec<u32> const& a, vec<u32> const& b) {
     if (a.size() != b.size()) return a.size() < b.size();
     for (u32 i = (u32)a.size() - 1; ~i; --i)
       if (a[i] != b[i]) return a[i] < b[i];
     return false;
   }
-  static bool leq_(vec<u32> const& a, vec<u32> const& b) { return a == b || lt_(a, b); }
+  static constexpr bool leq_(vec<u32> const& a, vec<u32> const& b) { return a == b || lt_(a, b); }
   // a < b (s.t. a != b)
-  static bool neq_lt_(mpi const& l, mpi const& r) {
+  static constexpr bool neq_lt_(mpi const& l, mpi const& r) {
     assert(l != r);
     if (l.neg != r.neg) return l.neg;
     return lt_(l.dt, r.dt) ^ l.neg;
   }
-  static bool is0_(vec<u32> const& a) { return a.empty(); }
-  static bool is1_(vec<u32> const& a) { return a.size() == 1 && a[0] == 1; }
-  static void shrink_(vec<u32>& a) {
+  static constexpr bool is0_(vec<u32> const& a) { return a.empty(); }
+  static constexpr bool is1_(vec<u32> const& a) { return a.size() == 1 && a[0] == 1; }
+  static constexpr void shrink_(vec<u32>& a) {
     while (a.size() && !a.back()) a.pop_back();
   }
 
-  static vec<u32> add_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr vec<u32> add_(vec<u32> const& a, vec<u32> const& b) {
     vec<u32> c(std::max(a.size(), b.size()) + 1);
     for (u32 i = 0; i < a.size(); ++i) c[i] += a[i];
     for (u32 i = 0; i < b.size(); ++i) c[i] += b[i];
@@ -149,7 +149,7 @@ class mpi {
     shrink_(c);
     return c;
   }
-  static vec<u32> sub_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr vec<u32> sub_(vec<u32> const& a, vec<u32> const& b) {
     assert(leq_(b, a));
     vec<u32> c = a;
     u32 borrow = 0;
@@ -163,7 +163,7 @@ class mpi {
     shrink_(c);
     return c;
   }
-  static vec<u32> mul_3ntt_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr vec<u32> mul_3ntt_(vec<u32> const& a, vec<u32> const& b) {
     if (a.empty() || b.empty()) return {};
     auto m = conv_u128(a, b);
     vec<u32> c;
@@ -178,7 +178,7 @@ class mpi {
     shrink_(c);
     return c;
   }
-  static vec<u32> mul_bf_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr vec<u32> mul_bf_(vec<u32> const& a, vec<u32> const& b) {
     if (a.empty() || b.empty()) return {};
     vec<u64> prod(a.size() + b.size() - 1 + 1);
     for (u32 i = 0; i < a.size(); ++i)
@@ -192,7 +192,7 @@ class mpi {
     shrink_(c);
     return c;
   }
-  static vec<u32> mul_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr vec<u32> mul_(vec<u32> const& a, vec<u32> const& b) {
     if (is0_(a) || is0_(b)) return {};
     if (is1_(a)) return b;
     if (is1_(b)) return a;
@@ -200,20 +200,20 @@ class mpi {
     return mul_3ntt_(a, b);
   }
   // 0 <= A < 1e16, 1 <= B < 1e8
-  static ptt<vec<u32>> divmod_li_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr ptt<vec<u32>> divmod_li_(vec<u32> const& a, vec<u32> const& b) {
     assert(a.size() <= 2 && b.size() == 1);
     i64 va = to_i64_(a);
     u32 vb = b[0];
     return {itov_(va / vb), itov_(va % vb)};
   }
   // 0 <= A < 1e16, 1 <= B < 1e16
-  static ptt<vec<u32>> divmod_ll_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr ptt<vec<u32>> divmod_ll_(vec<u32> const& a, vec<u32> const& b) {
     assert(a.size() <= 2 && b.size() && b.size() <= 2);
     i64 va = to_i64_(a), vb = to_i64_(b);
     return {itov_(va / vb), itov_(va % vb)};
   }
   // 1 <= B < 1e8
-  static ptt<vec<u32>> divmod_1e8_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr ptt<vec<u32>> divmod_1e8_(vec<u32> const& a, vec<u32> const& b) {
     assert(b.size() == 1);
     if (b[0] == 1) return {a, {}};
     if (a.size() <= 2) return divmod_li_(a, b);
@@ -230,7 +230,7 @@ class mpi {
     return {quo, d ? vec<u32>{u32(d)} : vec<u32>{}};
   }
   // 0 <= A, 1 <= B
-  static ptt<vec<u32>> divmod_bf_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr ptt<vec<u32>> divmod_bf_(vec<u32> const& a, vec<u32> const& b) {
     assert(!is0_(b) && b.size());
     if (b.size() == 1) return divmod_1e8_(a, b);
     if (std::max(a.size(), b.size()) <= 2) return divmod_ll_(a, b);
@@ -261,7 +261,7 @@ class mpi {
   }
 
   // 1 / a, abserr = B^{-deg}
-  static vec<u32> inv_(vec<u32> const& a, u32 deg) {
+  static constexpr vec<u32> inv_(vec<u32> const& a, u32 deg) {
     assert(!a.empty() && D / 2 <= a.back() and a.back() < D);
     u32 k = deg, c = (u32)a.size();
     while (k > 64) k = (k + 1) / 2;
@@ -283,7 +283,7 @@ class mpi {
     return z;
   }
 
-  static ptt<vec<u32>> divmod_newton_(vec<u32> const& a, vec<u32> const& b) {
+  static constexpr ptt<vec<u32>> divmod_newton_(vec<u32> const& a, vec<u32> const& b) {
     assert(!is0_(b));
     if (b.size() <= 64) return divmod_bf_(a, b);
     if ((int)(a.size() - b.size()) <= 64) return divmod_bf_(a, b);
@@ -303,7 +303,7 @@ class mpi {
     return {q, q2};
   }
 
-  static std::string itos_(u32 x, bool zero_padding) {
+  static constexpr std::string itos_(u32 x, bool zero_padding) {
     assert(x < D);
     std::string res;
     for (u32 i = 0; i < lgD; ++i) res.push_back(char(48 + x % 10)), x /= 10;
@@ -315,13 +315,13 @@ class mpi {
     return res;
   }
   template <class T, std::enable_if_t<is_int<T>::value>* = nullptr>
-  static vec<u32> itov_(T x) {
+  static constexpr vec<u32> itov_(T x) {
     if constexpr (is_sint<T>::value) assert(x >= 0);
     vec<u32> res;
     while (x) res.push_back((u32)(x % D)), x /= D;
     return res;
   }
-  static i64 to_i64_(vec<u32> const& a) {
+  static constexpr i64 to_i64_(vec<u32> const& a) {
     i64 res = 0;
     for (u32 i = (u32)a.size() - 1; ~i; --i) res = res * D + a[i];
     return res;

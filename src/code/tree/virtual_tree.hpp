@@ -11,7 +11,7 @@ class virtual_tree {
   lca_hld lca_;
   vec<u32> st;
 
-  void insert(u32 x) {
+  constexpr void insert(u32 x) {
     u32 lca = lca_(x, st.back());
     if (lca == st.back()) {
       st.push_back(x);
@@ -26,9 +26,9 @@ class virtual_tree {
  public:
   tree vt;
 
-  virtual_tree(tree& tr) : tr(tr), lca_(tr), vt(tr.g.size()) {}
+  explicit constexpr virtual_tree(tree& tr) : tr(tr), lca_(tr), vt(tr.g.size()) {}
 
-  void build(vec<u32>& a) {
+  constexpr void build(vec<u32>& a) {
     std::sort(a.begin(), a.end(), [&](u32 a, u32 b) { return lca_.info.dfn[a] < lca_.info.dfn[b]; });
     vt.g.clear();
     st.push_back(tr.root);

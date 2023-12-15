@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 
 // partition[i] = p(i), i=0,1,...,n
 template <class T>
-poly<T> gen_partition(u32 n) {
+constexpr poly<T> gen_partition(u32 n) {
   poly<T> p(n + 1);
   p[0] = 1;
   for (u64 k = 1, k1, k2; k <= n; ++k) {

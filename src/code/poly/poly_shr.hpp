@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> poly_shr(poly<T> const &p, usz x) {
+constexpr poly<T> poly_shr(poly<T> const &p, usz x) {
   if (!x) return p;
   auto _ = p;
   if (x >= p.size()) {
@@ -17,7 +17,7 @@ poly<T> poly_shr(poly<T> const &p, usz x) {
   return _;
 }
 template <class T>
-poly<T> poly_shr_strip(poly<T> const &p, usz x) {
+constexpr poly<T> poly_shr_strip(poly<T> const &p, usz x) {
   auto _ = poly_shr(p, x);
   _.strip();
   return _;

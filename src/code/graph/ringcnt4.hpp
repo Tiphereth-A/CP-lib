@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 namespace ringcnt4_impl_ {
 
-inline u64 run_(alist const& dg, alist const& dgv) {
+constexpr u64 run_(alist const& dg, alist const& dgv) {
   u64 ans = 0;
   u32 n = (u32)dg.g.size();
   vec<u64> cnt1(n), cnt2(n);
@@ -35,7 +35,7 @@ inline u64 run_(alist const& dg, alist const& dgv) {
 }  // namespace ringcnt4_impl_
 
 //! should be simple undirected graph
-inline u64 ringcnt4(alist const& fg) {
+constexpr u64 ringcnt4(alist const& fg) {
   auto&& g = fg.g;
   u32 n = (u32)g.size();
   alist dg(n), dgv(n);

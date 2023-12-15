@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class F1, class F2, class F3>
-vec<u32> lsieve(u32 n, F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime) {
+constexpr vec<u32> lsieve(u32 n, F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime) {
   vec<bool> vis(n);
   vec<u32> p;
   p.reserve(n <= 170 ? 16 : n / 10);

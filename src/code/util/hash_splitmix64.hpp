@@ -16,9 +16,9 @@ class hash_splitmix64 {
   static constexpr usz append(usz x, usz y) { return x ^ (y >> 1) ^ ((y & 1) << (sizeof(usz) * 8 - 1)); }
 
  public:
-  explicit hash_splitmix64() { set_seed(); }
+  explicit constexpr hash_splitmix64() { set_seed(); }
 
-  static void set_seed() { seed = (u64)std::chrono::steady_clock::now().time_since_epoch().count(); }
+  static constexpr void set_seed() { seed = (u64)std::chrono::steady_clock::now().time_since_epoch().count(); }
   static constexpr void set_seed(u64 s) { seed = s; }
   usz operator()(u64 x) const { return splitmix64(x + seed); }
 

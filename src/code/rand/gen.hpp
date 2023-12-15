@@ -15,14 +15,14 @@ class Gen {
   using distribution = Distri;
   using result_type = typename Distri::result_type;
 
-  Gen() : re(std::random_device{}()), dist() {}
-  Gen(result_type a, result_type b) : re(std::random_device{}()), dist(a, b) {}
+  constexpr Gen() : re(std::random_device{}()), dist() {}
+  constexpr Gen(result_type a, result_type b) : re(std::random_device{}()), dist(a, b) {}
 
-  void set_range(result_type a, result_type b) { dist = Distri(a, b); }
-  random_engine& rand_eng() { return re; }
-  Distri& distrib() { return dist; }
+  constexpr void set_range(result_type a, result_type b) { dist = Distri(a, b); }
+  constexpr random_engine& rand_eng() { return re; }
+  constexpr Distri& distrib() { return dist; }
 
-  result_type operator()() { return dist(re); }
+  constexpr result_type operator()() { return dist(re); }
 };
 
 }  // namespace tifa_libs::rand

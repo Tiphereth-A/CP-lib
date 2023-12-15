@@ -13,8 +13,10 @@ class tarjan {
   u32 id;
   vec<u32> scc_id, dfn, low;
   vvec<u32> belongs;
-  tarjan(vvec<EW> const &G) : g(G) { get_scc(); }
-  void get_scc() {
+
+  explicit constexpr tarjan(vvec<EW> const &G) : g(G) { get_scc(); }
+
+  constexpr void get_scc() {
     id = 0;
     u32 cnt = 0, n = u32(g.size());
     std::stack<u32> s;

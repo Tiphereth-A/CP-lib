@@ -15,7 +15,7 @@ class RGCD {
   vvec<u32> g_;
 
  public:
-  explicit RGCD(u32 n) : fs(n), g_(isqrt(n) + 1, decltype(g_)::value_type(isqrt(n) + 1)) {
+  explicit constexpr RGCD(u32 n) : fs(n), g_(isqrt(n) + 1, decltype(g_)::value_type(isqrt(n) + 1)) {
     fs[1] = {1, 1, 1};
     lsieve(
         n,
@@ -38,7 +38,7 @@ class RGCD {
     }
   }
 
-  u32 operator()(u32 x, u32 y) const {
+  constexpr u32 operator()(u32 x, u32 y) const {
     assert(x < fs.size() && y < fs.size());
     if (x < g_.size() && y < g_.size()) return g_[x][y];
     u32 ans = 1, _;

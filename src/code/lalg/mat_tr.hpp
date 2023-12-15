@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class Mat, class T = typename Mat::value_type>
-T trace(Mat const &mat) {
+constexpr T trace(Mat const &mat) {
   u32 n = mat.row();
   assert(n == mat.col());
   T ret{};

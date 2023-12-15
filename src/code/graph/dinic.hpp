@@ -14,7 +14,8 @@ class dinic {
   };
   const u32 N, S, T;
   vec<u32> dep, cur;
-  bool bfs() {
+
+  constexpr bool bfs() {
     dep = vec<u32>(N, 0);
     std::queue<u32> q;
     dep[S] = 1, q.push(S);
@@ -27,7 +28,7 @@ class dinic {
     cur = vec<u32>(N, 0);
     return dep[T];
   }
-  u64 dfs(u32 u, EW limit = std::numeric_limits<EW>::max()) {
+  constexpr u64 dfs(u32 u, EW limit = std::numeric_limits<EW>::max()) {
     if (u == T || limit == 0) return limit;
     u64 ret = 0;
     for (u32& i = cur[u]; i < e[u].size(); ++i) {
@@ -47,12 +48,14 @@ class dinic {
 
  public:
   vvec<YYZ> e;
-  dinic(u32 n, u32 s, u32 t) : N(n), S(s), T(t), e(n) {}
-  void add(u32 u, u32 v, EW w) {
+
+  constexpr dinic(u32 n, u32 s, u32 t) : N(n), S(s), T(t), e(n) {}
+  
+  constexpr void add(u32 u, u32 v, EW w) {
     u32 temu = u32(e[u].size()), temv = u32(e[v].size());
     e[u].push_back({v, w, temv}), e[v].push_back({u, 0, temu});
   }
-  u64 operator()() {
+  constexpr u64 operator()() {
     u64 ret = 0, flow;
     while (bfs())
       while ((flow = dfs(S))) ret += flow;

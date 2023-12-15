@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class DFT_t, class mint>
-vec<mint> conv_dft(DFT_t &dft, vec<mint> l, vec<mint> r, u32 ans_size = 0) {
+constexpr vec<mint> conv_dft(DFT_t &dft, vec<mint> l, vec<mint> r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   dft.bzr(std::max({(u32)l.size(), (u32)r.size(), std::min(u32(l.size() + r.size() - 1), ans_size)}));
   dft.dif(l);
@@ -17,7 +17,7 @@ vec<mint> conv_dft(DFT_t &dft, vec<mint> l, vec<mint> r, u32 ans_size = 0) {
   return l;
 }
 template <class DFT_t, class mint, class T = u64>
-vec<mint> conv_dft_u64(DFT_t &dft, vec<T> const &l, vec<T> const &r, u32 ans_size = 0) {
+constexpr vec<mint> conv_dft_u64(DFT_t &dft, vec<T> const &l, vec<T> const &r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   vec<mint> l_, r_;
   l_.reserve(l.size());

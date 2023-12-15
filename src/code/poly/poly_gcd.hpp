@@ -16,11 +16,11 @@ struct matp {
   using Dt = poly<T>;
   Dt a00, a01, a10, a11;
 
-  explicit matp() {}
-  matp(u64 x00, u64 x01, u64 x10, u64 x11) : a00(1, x00), a01(1, x01), a10(1, x10), a11(1, x11) {}
-  matp(Dt const& a00, Dt const& a01, Dt const& a10, Dt const& a11) : a00(a00), a01(a01), a10(a10), a11(a11) {}
+  explicit constexpr matp() {}
+  constexpr matp(u64 x00, u64 x01, u64 x10, u64 x11) : a00(1, x00), a01(1, x01), a10(1, x10), a11(1, x11) {}
+  constexpr matp(Dt const& a00, Dt const& a01, Dt const& a10, Dt const& a11) : a00(a00), a01(a01), a10(a10), a11(a11) {}
 
-  matp& operator*=(matp const& r) {
+  constexpr matp& operator*=(matp const& r) {
     Dt _00 = a00 * r.a00 + a01 * r.a10,
        _01 = a00 * r.a01 + a01 * r.a11,
        _10 = a10 * r.a00 + a11 * r.a10,
@@ -29,8 +29,8 @@ struct matp {
     std::swap(_00, a00), std::swap(_01, a01), std::swap(_10, a10), std::swap(_11, a11);
     return *this;
   }
-  matp operator*(matp const& r) const { return matp(*this) *= r; }
-  friend pttp<T> operator*(matp const& m, pttp<T> const& a) {
+  constexpr matp operator*(matp const& r) const { return matp(*this) *= r; }
+  friend constexpr pttp<T> operator*(matp const& m, pttp<T> const& a) {
     Dt b0 = m.a00 * a.first + m.a01 * a.second, b1 = m.a10 * a.first + m.a11 * a.second;
     b0.strip(), b1.strip();
     return {b0, b1};
@@ -38,7 +38,7 @@ struct matp {
 };
 
 template <class T>
-void ngcd_(matp<T>& m, pttp<T>& p) {
+constexpr void ngcd_(matp<T>& m, pttp<T>& p) {
   auto [q, r] = poly_divmod(p.first, p.second);
   poly<T> b0 = m.a00 - m.a10 * q, b1 = m.a01 - m.a11 * q;
   b0.strip(), b1.strip();
@@ -47,7 +47,7 @@ void ngcd_(matp<T>& m, pttp<T>& p) {
 }
 
 template <class T>
-matp<T> hgcd_(pttp<T> p) {
+constexpr matp<T> hgcd_(pttp<T> p) {
   u32 n = (u32)p.first.size(), m = (u32)p.second.size(), k = (n + 1) / 2;
   if (m <= k) return matp<T>(1, 0, 0, 1);
   matp<T> _ = hgcd_(ptt<poly<T>>{poly_shr_strip(p.first, k), poly_shr_strip(p.second, k)});
@@ -61,7 +61,7 @@ matp<T> hgcd_(pttp<T> p) {
 }
 
 template <class T>
-matp<T> pgcd_(poly<T> const& a, poly<T> const& b) {
+constexpr matp<T> pgcd_(poly<T> const& a, poly<T> const& b) {
   pttp<T> p{a, b};
   p.first.strip(), p.second.strip();
   u32 n = (u32)p.first.size(), m = (u32)p.second.size();
@@ -84,7 +84,7 @@ matp<T> pgcd_(poly<T> const& a, poly<T> const& b) {
 }  // namespace poly_gcd_impl_
 
 template <class T>
-poly<T> poly_gcd(poly<T> const& f, poly<T> const& g) {
+constexpr poly<T> poly_gcd(poly<T> const& f, poly<T> const& g) {
   ptt<poly<T>> p(f, g);
   p = poly_gcd_impl_::pgcd_(f, g) * p;
   if (!p.first.empty()) {

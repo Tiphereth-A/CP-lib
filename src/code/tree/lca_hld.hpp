@@ -10,16 +10,16 @@ struct lca_hld {
   tree_dfs_info info;
   vec<u32> top;
 
-  lca_hld(tree& tr) {
+  constexpr lca_hld(tree& tr) {
     info.reset_dfs_info<td_dep | td_fa>(tr);
     top = tree_top(tr, info);
   }
 
-  u32 operator()(u32 u, u32 v) const {
+  constexpr u32 operator()(u32 u, u32 v) const {
     while (top[u] != top[v]) info.dep[top[u]] < info.dep[top[v]] ? v = info.fa[top[v]] : u = info.fa[top[u]];
     return info.dep[u] > info.dep[v] ? v : u;
   }
-  ptt<vec<ptt<u32>>> getchain(u32 u, u32 v) {
+  constexpr ptt<vec<ptt<u32>>> getchain(u32 u, u32 v) {
     u32 lca = (*this)(u, v);
     vec<ptt<u32>> retu, retv;
     while (top[u] != top[lca]) {

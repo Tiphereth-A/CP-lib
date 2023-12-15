@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 
 // Triangle inside with max area
 template <class FP>
-triangle<FP> max_area_T(cvh<FP> const &ch) {
+constexpr triangle<FP> max_area_T(cvh<FP> const &ch) {
   if (ch.vs.size() < 3) return triangle<FP>{ch.vs[0], ch.vs[0], ch.vs[0]};
   u32 j = 1, k = 2;
   FP ans = 0, tmp, new_tmp;

@@ -12,7 +12,7 @@ class Stirling1 {
 
  public:
   //! @param p MUST be prime
-  explicit Stirling1() : mCn(), s(mint::mod()) {
+  explicit constexpr Stirling1() : mCn(), s(mint::mod()) {
     u32 p = mint::mod();
     assert(p < 32768);
     s[0] = {1};
@@ -25,9 +25,9 @@ class Stirling1 {
     }
   }
 
-  constexpr static u32 mod() { return mint::mod(); }
+  static constexpr  u32 mod() { return mint::mod(); }
   template <bool with_sgn = true>
-  mint operator()(i64 m_, i64 n_) const {
+  constexpr mint operator()(i64 m_, i64 n_) const {
     if (n_ < 0 || n_ > m_) return 0;
     u32 p = mod();
     u64 m = (u64)m_, n = (u64)n_;

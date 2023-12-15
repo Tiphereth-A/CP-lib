@@ -7,7 +7,7 @@ namespace tifa_libs::geo {
 
 // Coverage rectangle with min circum
 template <class FP>
-polygon<FP> coverage_rect_with_min_circum(cvh<FP> const &ch) {
+constexpr polygon<FP> coverage_rect_with_min_circum(cvh<FP> const &ch) {
   u32 n = (u32)ch.vs.size();
   if (n == 0) return ch;
   if (n == 1) return polygon{vec<point<FP>>{ch[0], ch[0], ch[0], ch[0]}};

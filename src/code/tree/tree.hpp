@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 struct tree : alist {
   u32 root;
 
-  explicit tree(u32 n, u32 root = 0) : alist(n), root(root) {}
+  explicit constexpr tree(u32 n, u32 root = 0) : alist(n), root(root) {}
 };
 
 }  // namespace tifa_libs::graph

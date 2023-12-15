@@ -24,8 +24,8 @@ struct polydata_scntt {
   explicit constexpr polydata_scntt(std::initializer_list<mint> v) : d(v) {}
   explicit constexpr polydata_scntt(vec<mint> const &v) : d(v) {}
 
-  void conv(polydata_scntt const &r, u32 ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_cntt(ccore, d, r.d, ans_size); }
-  void conv(polydata_scntt const &r) { conv(r, u32(d.size() + r.d.size() - 1)); }
+  constexpr void conv(polydata_scntt const &r, u32 ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_cntt(ccore, d, r.d, ans_size); }
+  constexpr void conv(polydata_scntt const &r) { conv(r, u32(d.size() + r.d.size() - 1)); }
 };
 
 }  // namespace tifa_libs::math

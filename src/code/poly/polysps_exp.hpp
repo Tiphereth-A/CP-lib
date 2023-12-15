@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T, u32 N = 21>
-vec<T> polysps_exp(u32 n, vec<T> g) {
+constexpr vec<T> polysps_exp(u32 n, vec<T> g) {
   assert(n <= N && g[0] == 0);
   static conv_subset<T, N> ss;
   g.resize(1 << n);

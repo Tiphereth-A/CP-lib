@@ -16,9 +16,9 @@ class heuristic_sa {
 
  public:
   // Find minimum argument of f(x)
-  explicit heuristic_sa(Fg gen, Ff f, Tt Tmax = 1e10, Tt Tmin = 1e-10, Tt dT = 1 - 1e-5) : gen(gen), f(f), Tmax(Tmax), Tmin(Tmin), dT(dT), g(0, 1) {}
+  explicit constexpr heuristic_sa(Fg gen, Ff f, Tt Tmax = 1e10, Tt Tmin = 1e-10, Tt dT = 1 - 1e-5) : gen(gen), f(f), Tmax(Tmax), Tmin(Tmin), dT(dT), g(0, 1) {}
 
-  std::pair<Ft, T> operator()(T init_val) {
+  constexpr std::pair<Ft, T> operator()(T init_val) {
     T ans = init_val, now = ans;
     Ft ans_f = f(ans);
     for (Tt t = Tmax; t > Tmin; t *= dT) {

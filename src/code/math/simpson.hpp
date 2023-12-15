@@ -10,8 +10,8 @@ template <class FP, class Func>
 class simpson_impl {
   Func f;
 
-  constexpr static FP sps(FP l, FP r, FP fl, FP fmid, FP fr) { return (fl + 4 * fmid + fr) * (r - l) / 6; }
-  FP asr(FP l, FP r, FP area, FP eps, i64 dep) const {
+  static constexpr FP sps(FP l, FP r, FP fl, FP fmid, FP fr) { return (fl + 4 * fmid + fr) * (r - l) / 6; }
+  constexpr FP asr(FP l, FP r, FP area, FP eps, i64 dep) const {
     FP mid = r - (r - l) * .5;
     FP lmid = mid - (mid - l) * .5, rmid = r - (r - mid) * .5;
     FP fl = f(l), flmid = f(lmid), fmid = f(mid), frmid = f(rmid), fr = f(r);
@@ -21,9 +21,8 @@ class simpson_impl {
   }
 
  public:
-  explicit simpson_impl(Func func) : f(func) {}
-  FP operator()(FP l, FP r, FP eps, i64 min_dep) const { return asr(l, r, sps(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, min_dep); }
-  FP operator()(FP l, FP r, FP eps) const { return asr(l, r, sps(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, -1); }
+  explicit constexpr simpson_impl(Func func) : f(func) {}
+  constexpr FP operator()(FP l, FP r, FP eps, i64 min_dep = -1) const { return asr(l, r, sps(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, min_dep); }
 };
 
 }  // namespace tifa_libs::math

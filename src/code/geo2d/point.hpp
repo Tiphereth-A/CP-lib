@@ -75,7 +75,7 @@ struct point {
   constexpr FP norm() const { return std::hypot(x, y); }
   constexpr point &do_unit() { return *this /= norm(); }
 
-  constexpr static u32 QUAD__[9] = {6, 7, 8, 5, 0, 1, 4, 3, 2};
+  static constexpr u32 QUAD__[9] = {6, 7, 8, 5, 0, 1, 4, 3, 2};
   // 4 3 2
   // 5 0 1
   // 6 7 8

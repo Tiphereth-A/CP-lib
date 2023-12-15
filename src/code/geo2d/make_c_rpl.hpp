@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 // make circle by radius, a point passed through and a tagante lines
 // maybe duplicate
 template <class FP>
-std::optional<ptt<circle<FP>>> make_C_rPL(FP r, point<FP> const &p, line<FP> const &l) {
+constexpr std::optional<ptt<circle<FP>>> make_C_rPL(FP r, point<FP> const &p, line<FP> const &l) {
   FP dis = dist_PL(p, l);
   if (is_pos(dis - r * 2)) return {};
   point dir = l.direction();

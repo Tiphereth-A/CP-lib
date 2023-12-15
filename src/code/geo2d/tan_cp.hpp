@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 // tagante points of point to circle
 // maybe duplicate
 template <class FP>
-std::optional<ptt<point<FP>>> tan_CP(circle<FP> const &c, point<FP> const &p) {
+constexpr std::optional<ptt<point<FP>>> tan_CP(circle<FP> const &c, point<FP> const &p) {
   point v = p - c.o;
   FP x = v.norm2(), d = x - c.r * c.r;
   if (is_neg(d)) return {};

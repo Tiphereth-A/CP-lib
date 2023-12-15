@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 // @param f $f(0),\dots,f(k-1)$, $k\leq n$
 // @return $\sum_{i=0}^{\infty}a^if(i)$
 template <class mint>
-mint series_ipaf(vec<mint> const& f, mint const& a, Binom<mint> const& C) {
+constexpr mint series_ipaf(vec<mint> const& f, mint const& a, Binom<mint> const& C) {
   if (!a.val()) return f[0];
   u32 K = u32(f.size() - 1);
   vec<mint> g(f.size());
@@ -21,7 +21,7 @@ mint series_ipaf(vec<mint> const& f, mint const& a, Binom<mint> const& C) {
   return c / qpow(-a + 1, K + 1);
 }
 template <class mint>
-mint series_ipaf(vec<mint> const& f, mint const& a) {
+constexpr mint series_ipaf(vec<mint> const& f, mint const& a) {
   if (!a.val()) return f[0];
   return series_ipaf(f, a, Binom<mint>((u32)f.size() + 1));
 }

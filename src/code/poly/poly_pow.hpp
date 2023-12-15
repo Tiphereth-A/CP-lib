@@ -10,7 +10,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> poly_pow(poly<T> const &p, u64 y, u32 n = 0) {
+constexpr poly<T> poly_pow(poly<T> const &p, u64 y, u32 n = 0) {
   using mint = typename T::value_type;
   if (!n) n = p.size();
   if (y == 0) {

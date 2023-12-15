@@ -8,9 +8,9 @@ namespace tifa_libs::geo {
 
 template <class FP>
 struct cvh : public polygon<FP> {
-  cvh() {}
-  explicit cvh(u32 sz) : polygon<FP>(sz) {}
-  explicit cvh(vec<point<FP>> const &vs_, bool inited = false, bool strict = true) : polygon<FP>(vs_) {
+  constexpr cvh() {}
+  explicit constexpr cvh(u32 sz) : polygon<FP>(sz) {}
+  explicit constexpr cvh(vec<point<FP>> const &vs_, bool inited = false, bool strict = true) : polygon<FP>(vs_) {
     if (!inited) strict ? init() : init_nonstrict();
   }
 
@@ -24,7 +24,7 @@ struct cvh : public polygon<FP> {
     return os << ch.vs.back();
   }
 
-  cvh &init() {
+  constexpr cvh &init() {
     u32 n = (u32)this->vs.size();
     if (n <= 1) return *this;
     this->resort();
@@ -38,7 +38,7 @@ struct cvh : public polygon<FP> {
     this->vs = cvh;
     return *this;
   }
-  cvh &init_nonstrict() {
+  constexpr cvh &init_nonstrict() {
     this->reunique();
     u32 n = (u32)this->vs.size();
     if (n <= 1) return *this;
@@ -53,7 +53,7 @@ struct cvh : public polygon<FP> {
     return *this;
   }
 
-  FP diameter() const {
+  constexpr FP diameter() const {
     u32 n = (u32)this->vs.size();
     if (n <= 1) return FP{};
     u32 is = 0, js = 0;
@@ -70,7 +70,7 @@ struct cvh : public polygon<FP> {
     return ret;
   }
 
-  cvh &do_minkowski_sum_nonstrict(cvh<FP> const &r) {
+  constexpr cvh &do_minkowski_sum_nonstrict(cvh<FP> const &r) {
     u32 n = (u32)this->vs.size(), m = (u32)r.vs.size();
     if (!m) return *this;
     if (!n) return *this = r;
@@ -92,9 +92,9 @@ struct cvh : public polygon<FP> {
     return *this;
   }
 
-  cvh &do_minkowski_sum(cvh<FP> const &r) { return do_minkowski_sum_nonstrict(r).init(); }
+  constexpr cvh &do_minkowski_sum(cvh<FP> const &r) { return do_minkowski_sum_nonstrict(r).init(); }
 
-  cvh &do_ins_CVHhP(line<FP> const &l) {
+  constexpr cvh &do_ins_CVHhP(line<FP> const &l) {
     u32 n = (u32)this->vs.size();
     vec<point<FP>> cvc;
     for (u32 i = 0; i < n; ++i) {

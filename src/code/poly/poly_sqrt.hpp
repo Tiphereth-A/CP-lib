@@ -9,7 +9,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-std::optional<poly<T>> poly_sqrt(poly<T> p, u32 n = 0) {
+constexpr std::optional<poly<T>> poly_sqrt(poly<T> p, u32 n = 0) {
   using mint = typename T::value_type;
   if (!n) n = p.size();
   u32 cnt = (u32)std::distance(p.data().begin(), std::find_if(p.data().begin(), std::next(p.data().begin(), (isz)n), [](auto const &x) { return x.val() > 0; }));

@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-inline u32 min_mod_linear(u32 n, u32 m, u32 a, u32 b, u32 cnt = 1, u32 p = 1, u32 q = 1) {
+constexpr u32 min_mod_linear(u32 n, u32 m, u32 a, u32 b, u32 cnt = 1, u32 p = 1, u32 q = 1) {
   if (!a) return b;
   if (cnt & 1) {
     if (b >= a) {

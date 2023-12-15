@@ -12,7 +12,7 @@ struct Montgomery {
   u32 r;      // 2^32 % mod
   u32 r2;     // (2^32) ^ 2 % mod
 
-  constexpr explicit Montgomery(u32 mod = 998244353) : mod(mod), mod2(mod * 2), n_inv(1), r((1ULL << 32) % mod), r2(r * u64(r) % mod) {
+  explicit constexpr Montgomery(u32 mod = 998244353) : mod(mod), mod2(mod * 2), n_inv(1), r((1ULL << 32) % mod), r2(r * u64(r) % mod) {
     assert(mod % 2);
     assert(mod < (1 << 30));
     for (int i = 0; i < 5; ++i) n_inv *= 2u + n_inv * mod;

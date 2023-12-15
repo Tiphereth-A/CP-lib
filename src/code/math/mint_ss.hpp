@@ -12,8 +12,8 @@ class mint_ss {
   u32 v_;
 
  public:
-  constexpr static u32 mod() { return MOD; }
-  constexpr static mint_ss raw(u32 v) {
+  static constexpr u32 mod() { return MOD; }
+  static constexpr mint_ss raw(u32 v) {
     mint_ss x;
     x.v_ = v;
     return x;
@@ -36,7 +36,7 @@ class mint_ss {
   friend std::ostream &operator<<(std::ostream &os, mint_ss const &x) { return os << x.v_; }
   constexpr u32 val() const { return v_; }
   constexpr i32 sval() const { return (i32)v_; }
-  constexpr explicit operator u32() const { return val(); }
+  explicit constexpr operator u32() const { return val(); }
   constexpr u32 &data() { return v_; }
   constexpr mint_ss &operator++() {
     if (++v_ == mod()) v_ = 0;
@@ -75,13 +75,13 @@ class mint_ss {
   constexpr mint_ss operator+() const { return *this; }
   constexpr mint_ss operator-() const { return mint_ss() - *this; }
   constexpr mint_ss inv() const { return inverse(v_, mod()); }
-  constexpr friend mint_ss operator+(mint_ss l, mint_ss const &r) { return l += r; }
-  constexpr friend mint_ss operator-(mint_ss l, mint_ss const &r) { return l -= r; }
-  constexpr friend mint_ss operator*(mint_ss l, mint_ss const &r) { return l *= r; }
-  constexpr friend mint_ss operator/(mint_ss l, mint_ss const &r) { return l /= r; }
-  constexpr friend bool operator==(mint_ss const &l, mint_ss const &r) { return l.v_ == r.v_; }
-  constexpr friend bool operator!=(mint_ss const &l, mint_ss const &r) { return l.v_ != r.v_; }
-  constexpr friend bool operator<(mint_ss const &l, mint_ss const &r) { return l.v_ < r.v_; }
+  friend constexpr mint_ss operator+(mint_ss l, mint_ss const &r) { return l += r; }
+  friend constexpr mint_ss operator-(mint_ss l, mint_ss const &r) { return l -= r; }
+  friend constexpr mint_ss operator*(mint_ss l, mint_ss const &r) { return l *= r; }
+  friend constexpr mint_ss operator/(mint_ss l, mint_ss const &r) { return l /= r; }
+  friend constexpr bool operator==(mint_ss const &l, mint_ss const &r) { return l.v_ == r.v_; }
+  friend constexpr bool operator!=(mint_ss const &l, mint_ss const &r) { return l.v_ != r.v_; }
+  friend constexpr bool operator<(mint_ss const &l, mint_ss const &r) { return l.v_ < r.v_; }
 };
 
 }  // namespace tifa_libs::math

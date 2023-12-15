@@ -10,7 +10,7 @@ class st_array {
   vvec<T> st;
 
  public:
-  explicit st_array(vec<T> const &a) : st((u32)std::bit_width(a.size()), vec<T>(a.size())) {
+  explicit constexpr st_array(vec<T> const &a) : st((u32)std::bit_width(a.size()), vec<T>(a.size())) {
     u32 n = a.size();
     st[0] = a;
     for (u32 j = 1, m = (u32)std::bit_width(n); j < m; ++j)
@@ -18,7 +18,7 @@ class st_array {
   }
 
   //! [l, r]
-  T query(u32 l, u32 r) const {
+  constexpr T query(u32 l, u32 r) const {
     u32 k = (u32)(std::bit_width(1 + r - l) - 1);
     return op(st[k][l], st[k][r + 1 - (1 << k)]);
   }

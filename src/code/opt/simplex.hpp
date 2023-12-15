@@ -14,7 +14,7 @@ struct LPSolver {
   int m, n;       // # m = contraints, # n = variables
   vec<int> N, B;  // N[j] = non-basic variable (j-th column), = 0
   vvec<T> D;      // B[j] = basic variable (j-th row)
-  LPSolver(vvec<T> const& A, vec<T> const& b, vec<T> const& c) : m(sz(b)), n(sz(c)), N(n + 1), B(m), D(m + 2, vec<T>(n + 2)) {
+  constexpr LPSolver(vvec<T> const& A, vec<T> const& b, vec<T> const& c) : m(sz(b)), n(sz(c)), N(n + 1), B(m), D(m + 2, vec<T>(n + 2)) {
     for (int i = 0; i < m; ++i)
       for (int j = 0; j < n; ++j) D[i][j] = A[i][j];
     for (int i = 0; i < m; ++i) B[i] = n + i, D[i][n] = -1, D[i][n + 1] = b[i];
@@ -24,10 +24,10 @@ struct LPSolver {
     // D[m] stores negation of objective,
     // which we want to minimize
     N[n] = -1;
-    D[m + 1][n] = 1;          // to find initial feasible
-  }                           // solution, minimize artificial variable
-  void pivot(int r, int s) {  // swap B[r] (row)
-    T inv = 1 / D[r][s];      // with N[r] (column)
+    D[m + 1][n] = 1;                    // to find initial feasible
+  }                                     // solution, minimize artificial variable
+  constexpr void pivot(int r, int s) {  // swap B[r] (row)
+    T inv = 1 / D[r][s];                // with N[r] (column)
     for (int i = 0; i <= m + 1; ++i)
       if (i != r && abs(D[i][s]) > EPS<T>) {
         T binv = D[i][s] * inv;
@@ -39,7 +39,7 @@ struct LPSolver {
     for (int j = 0; j < (n + 2); ++j) D[r][j] *= inv;  // scale r-th row
     std::swap(B[r], N[s]);
   }
-  bool simplex(int phase) {
+  constexpr bool simplex(int phase) {
     int x = m + phase - 1;
     while (1) {  // if phase=1, ignore artificial variable
       int s = -1;
@@ -58,7 +58,7 @@ struct LPSolver {
       pivot(r, s);
     }
   }
-  T solve(vec<T>& x) {  // 1. check if x=0 feasible
+  constexpr T solve(vec<T>& x) {  // 1. check if x=0 feasible
     int r = 0;
     for (int i = (1); i < m; ++i)
       if (D[i][n + 1] < D[r][n + 1]) r = i;

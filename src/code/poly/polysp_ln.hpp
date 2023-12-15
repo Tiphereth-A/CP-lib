@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> polysp_ln(poly<T> const& p, vec<u64> const& inv, u32 n = 0) {
+constexpr poly<T> polysp_ln(poly<T> const& p, vec<u64> const& inv, u32 n = 0) {
   assert(!p.data().empty() && p[0] == 1);
   if (!n) n = p.size();
   polysp<T> ps = poly2sp(p, n);
@@ -24,7 +24,7 @@ poly<T> polysp_ln(poly<T> const& p, vec<u64> const& inv, u32 n = 0) {
   return g;
 }
 template <class T>
-poly<T> polysp_ln(poly<T> const& p, u32 n = 0) {
+constexpr poly<T> polysp_ln(poly<T> const& p, u32 n = 0) {
   if (!n) n = p.size();
   return polysp_ln(p, gen_inv(n, T::value_type::mod()), n);
 }

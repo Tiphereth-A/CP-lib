@@ -11,7 +11,7 @@ namespace tifa_libs::graph {
 // @param clear(now): reset data of node %now (if necesarry)
 // @param reset(): reset data related to all (if necesarry)
 template <class G, class Fu, class Fq, class Fc, class Fr, class Tinfo = std::conditional_t<std::is_base_of_v<alist, G>, tree_dfs_info, tree_dfs_info_w<typename G::weight_type>>>
-void dsu_on_tree(G const &tr, Tinfo &info, Fu update, Fq query, Fc clear, Fr reset) {
+constexpr void dsu_on_tree(G const &tr, Tinfo &info, Fu update, Fq query, Fc clear, Fr reset) {
   constexpr bool F = std::is_base_of_v<alist, G>;
   if (info.dfn.empty() || info.maxson.empty() || info.maxdfn.empty() || info.euler.empty()) info.template reset_dfs_info<td_dfn | td_maxson | td_maxdfn | td_euler>(tr);
 

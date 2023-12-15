@@ -18,7 +18,7 @@ template <
     bool reverse_ = false,
     bool recovery = false>
 class fhq_treap_w {
-  //!!! initial cnt = 1;
+  //! initial cnt = 1;
   struct YYZ {
     T w;
     T val;
@@ -27,14 +27,14 @@ class fhq_treap_w {
     std::array<usz, 2> son{};
     i32 rad;
     bool rev;
-    YYZ(T W = e(), T VAL = e(), usz SZ = 0, i32 RAD = 0, F SIGN = id()) : w(W), val(VAL), sign(SIGN), sz(SZ), rad(RAD), rev(0) {}
+    constexpr YYZ(T W = e(), T VAL = e(), usz SZ = 0, i32 RAD = 0, F SIGN = id()) : w(W), val(VAL), sign(SIGN), sz(SZ), rad(RAD), rev(0) {}
   };
   rand::Gen<std::uniform_int_distribution<i32>> gen;
   vec<YYZ> t;
   vec<usz> sta;
   usz cnt;
 
-  usz newnode(T val) {
+  constexpr usz newnode(T val) {
     usz ret;
     if (sta.size()) ret = *sta.rbegin(), sta.pop_back(), t[ret] = YYZ(val, val, 1, gen());
     else ret = ++cnt, t[ret] = YYZ(val, val, 1, gen());
@@ -67,7 +67,7 @@ class fhq_treap_w {
     if constexpr (recovery) sta.reserve(MAX_N + 1);
   }
 
-  void split(usz u, usz k, usz& x, usz& y) {
+  constexpr void split(usz u, usz k, usz& x, usz& y) {
     if (!u) x = y = 0;
     else {
       pushdown(u);
@@ -75,7 +75,7 @@ class fhq_treap_w {
       else y = u, split(t[u].son[0], k, x, t[y].son[0]), update(y);
     }
   }
-  usz merge(usz x, usz y) {
+  constexpr usz merge(usz x, usz y) {
     pushdown(x), pushdown(y);
     if (x && y) {
       if (t[x].rad <= t[y].rad) {
@@ -87,27 +87,27 @@ class fhq_treap_w {
       }
     } else return x + y;
   }
-  void insert(T w, usz id_) {
+  constexpr void insert(T w, usz id_) {
     usz x, y;
     split(root, id_, x, y);
     root = merge(merge(x, newnode(w)), y);
   }
-  void insert(T w) { insert(w, cnt); }
-  void erase(usz id_) {
+  constexpr void insert(T w) { insert(w, cnt); }
+  constexpr void erase(usz id_) {
     usz x, y, z;
     split(root, id_, x, y);
     split(y, 1, z, y);
     if (recovery) rm(z);
     root = merge(x, y);
   }
-  void update(usz l, usz r, F f) {
+  constexpr void update(usz l, usz r, F f) {
     usz x, y, z;
     split(root, r + 1, x, z);
     split(x, l, x, y);
     all_update(y, f);
     root = merge(merge(x, y), z);
   }
-  void reverse(usz l, usz r) {
+  constexpr void reverse(usz l, usz r) {
     assert(reverse_);
     usz x, y, z;
     split(root, r + 1, x, z);
@@ -115,7 +115,7 @@ class fhq_treap_w {
     reverse__(y);
     root = merge(merge(x, y), z);
   }
-  T query(usz l, usz r) {
+  constexpr T query(usz l, usz r) {
     usz x, y, z;
     split(root, r + 1, x, z);
     split(x, l, x, y);

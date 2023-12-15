@@ -11,7 +11,7 @@ namespace tifa_libs::math {
 
 // max = 167772161 * 469762049 * 754974721 \approx 5.95e25
 template <class T>
-vec<u128> conv_u128(vec<T> const &l, vec<T> const &r, u32 ans_size = 0) {
+constexpr vec<u128> conv_u128(vec<T> const &l, vec<T> const &r, u32 ans_size = 0) {
   static constexpr u32 m0 = 167772161, m1 = 469762049, m2 = 754974721;
   using mint0 = mint_s30<m0>;
   using mint1 = mint_s30<m1>;

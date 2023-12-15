@@ -15,7 +15,7 @@ class LucasPP {
  public:
   // mod = p ** q
   // @param p MUSU be prime
-  LucasPP(u32 p, u32 q) : p(p), q(q) {
+  constexpr LucasPP(u32 p, u32 q) : p(p), q(q) {
     assert(p <= 100'000'000 && q > 0);
     m_ = 1;
     while (q--) {
@@ -36,7 +36,7 @@ class LucasPP {
 
   constexpr u64 mod() const { return m_; }
 
-  u64 operator()(i64 m, i64 n) const {
+  constexpr u64 operator()(i64 m, i64 n) const {
     if (m < n || n < 0) return 0;
     i64 r = m - n;
     i32 e0 = 0, eq = 0;

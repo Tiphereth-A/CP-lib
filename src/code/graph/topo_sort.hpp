@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 //! return empty vector if @fg is not DAG
-inline vec<u32> topo_sort(alist const& fg) {
+constexpr vec<u32> topo_sort(alist const& fg) {
   u32 n = (u32)fg.g.size();
   vec<bool> vis(n), _(n);
   vec<u32> ans;

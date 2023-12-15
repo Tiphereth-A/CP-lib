@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-inline u64 pi_34log(u64 n) {
+constexpr u64 pi_34log(u64 n) {
   if (n < 2) return 0;
   u64 n2 = isqrt(n), ndn2 = div_u64d(n, n2);
   vec<u64> hl(ndn2);

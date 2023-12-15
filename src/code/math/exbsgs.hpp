@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 // solve a^x=b (mod m)
-inline std::optional<u64> exbsgs(u64 a, u64 b, u64 m) {
+constexpr std::optional<u64> exbsgs(u64 a, u64 b, u64 m) {
   if (m == 0) return -1;
   a %= m;
   if ((b %= m) == 1 || m == 1) return 0;

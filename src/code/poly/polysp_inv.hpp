@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-poly<T> polysp_inv(poly<T> const& p, u32 n = 0) {
+constexpr poly<T> polysp_inv(poly<T> const& p, u32 n = 0) {
   assert(!p.data().empty() && p[0] != 0);
   if (!n) n = p.size();
   polysp<T> ps = poly2sp(p, n);

@@ -8,7 +8,7 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-FP area_PoC(polygon<FP> const &po, circle<FP> const &c) {
+constexpr FP area_PoC(polygon<FP> const &po, circle<FP> const &c) {
   FP ans{};
   u32 sz = (u32)po.vs.size();
   if (sz < 3) return ans;

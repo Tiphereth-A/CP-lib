@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-void zt_supset(vec<T>& f) {
+constexpr void zt_supset(vec<T>& f) {
   u32 n = (u32)f.size();
   assert(std::has_single_bit(n));
   for (u32 i = 1; i < n; i *= 2)
@@ -14,7 +14,7 @@ void zt_supset(vec<T>& f) {
       if (!(j & i)) f[j] += f[j | i];
 }
 template <class T>
-void mt_supset(vec<T>& f) {
+constexpr void mt_supset(vec<T>& f) {
   u32 n = (u32)f.size();
   assert(std::has_single_bit(n));
   for (u32 i = 1; i < n; i *= 2)

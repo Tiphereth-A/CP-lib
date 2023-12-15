@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class Mat, class T = typename Mat::value_type, class Ge>
-T det(Mat mat, Ge ge) {
+constexpr T det(Mat mat, Ge ge) {
   u32 n = mat.row();
   assert(n == mat.col());
   i64 rk_ = ge(mat, false);

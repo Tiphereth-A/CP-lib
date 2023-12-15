@@ -14,7 +14,7 @@ class ExLucas {
   vec<LucasPP> cs;
 
  public:
-  explicit ExLucas(u32 md) : m_(md) {
+  explicit constexpr ExLucas(u32 md) : m_(md) {
     assert(md < 100'000'000);
     for (u32 i = 2, ed_ = isqrt(md); i <= ed_; ++i)
       if (md % i == 0) {
@@ -33,7 +33,7 @@ class ExLucas {
     }
   }
 
-  u64 operator()(i64 m, i64 n) const {
+  constexpr u64 operator()(i64 m, i64 n) const {
     if (m_ == 1 || m < n || n < 0) return 0;
     vec<i64> b;
     b.reserve(cs.size());

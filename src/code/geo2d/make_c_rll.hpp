@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 
 // make circle by radius and 2 tagante lines
 template <class FP>
-std::optional<pt4<circle<FP>>> make_C_rLL(FP r, line<FP> const &l1, line<FP> const &l2) {
+constexpr std::optional<pt4<circle<FP>>> make_C_rLL(FP r, line<FP> const &l1, line<FP> const &l2) {
   if (is_parallel(l1, l2)) return {};
   point<FP> dir1 = l1.direction(), dir2 = l2.direction();
   dir1 *= r / dir1.norm();

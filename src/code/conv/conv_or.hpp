@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-vec<T> conv_or(vec<T> l, vec<T> r) {
+constexpr vec<T> conv_or(vec<T> l, vec<T> r) {
   zt_subset(l);
   zt_subset(r);
   for (u32 i = 0; i < l.size(); ++i) l[i] *= r[i];

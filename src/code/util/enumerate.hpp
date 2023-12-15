@@ -17,21 +17,21 @@ class iter_ {
   iter_t now_;
 
  public:
-  iter_(T x) : container_(x), sz_(0), now_(x.begin()) {}
-  iter_ const &begin() const { return *this; }
-  iter_ const &end() const { return *this; }
-  bool operator!=(iter_ const &) const { return now_ != container_.end(); }
-  void operator++() {
+  constexpr iter_(T x) : container_(x), sz_(0), now_(x.begin()) {}
+  constexpr iter_ const &begin() const { return *this; }
+  constexpr iter_ const &end() const { return *this; }
+  constexpr bool operator!=(iter_ const &) const { return now_ != container_.end(); }
+  constexpr void operator++() {
     ++now_;
     ++sz_;
   }
-  std::pair<usz, iter_t> operator*() const { return {sz_, now_}; }
+ constexpr  std::pair<usz, iter_t> operator*() const { return {sz_, now_}; }
 };
 
 }  // namespace enumerate_impl_
 //! Usage: for(auto [index, iter] : enumerate(container)) {...}
 template <typename T>
-enumerate_impl_::iter_<T> enumerate(T &&container) { return {std::forward<T>(container)}; }
+constexpr enumerate_impl_::iter_<T> enumerate(T &&container) { return {std::forward<T>(container)}; }
 
 }  // namespace tifa_libs::util
 

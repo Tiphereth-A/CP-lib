@@ -12,7 +12,7 @@ class cartesian_tree {
     std::array<u32, 2> son{-1u, -1u};
   };
 
-  void build(const vec<T>& y) {
+  constexpr void build(const vec<T>& y) {
     vec<u32> s(y.size() + 1);
     u32 top = 0;
     for (u32 i = 0; i < y.size(); i++) {
@@ -29,7 +29,7 @@ class cartesian_tree {
   u32 root;
   vec<YYZ> t;
 
-  cartesian_tree(const vec<T>& y) : root(), t(y.size()) { build(y); }
+  explicit constexpr cartesian_tree(const vec<T>& y) : root(), t(y.size()) { build(y); }
 };
 
 }  // namespace tifa_libs::ds

@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class polydata, class mint = typename polydata::value_type>
-mint fact_mint(u64 n) {
+constexpr mint fact_mint(u64 n) {
   if (n <= 1) return 1;
   if (n >= mint::mod()) return 0;
   using poly_t = poly<polydata>;
