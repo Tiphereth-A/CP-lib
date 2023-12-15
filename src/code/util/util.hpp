@@ -35,7 +35,9 @@ using vvec = vec<vec<T>>;
 template <class T>
 using vvvec = vec<vvec<T>>;
 template <class U, class T>
-using vvp = vvec<std::pair<U, T>>;
+using vecp = vec<std::pair<U, T>>;
+template <class U, class T>
+using vvecp = vvec<std::pair<U, T>>;
 
 template <class T>
 using pq = std::priority_queue<T>;

@@ -25,7 +25,7 @@ class Stirling2 {
     }
   }
 
-  static constexpr  u32 mod() { return mint::mod(); }
+  static constexpr u32 mod() { return mint::mod(); }
   constexpr mint operator()(i64 m_, i64 n_) const {
     if (n_ < 0 || n_ > m_) return 0;
     if (!m_) return 1;

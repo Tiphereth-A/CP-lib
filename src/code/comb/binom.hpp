@@ -13,7 +13,7 @@ struct Binom {
 
   explicit constexpr Binom(u32 max_m) : fact(gen_fact<mint>(max_m)), ifact(gen_ifact<mint>(max_m)) {}
 
-  static constexpr  u64 mod() { return mint::mod(); }
+  static constexpr u64 mod() { return mint::mod(); }
 
   // \binom{m}{n}
   template <class T, std::enable_if_t<is_uint<T>::value>* = nullptr>

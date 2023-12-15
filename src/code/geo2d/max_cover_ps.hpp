@@ -13,7 +13,7 @@ constexpr u64 max_cover_Ps(vec<point<FP>> const &vp, FP r) {
   if (is_zero(r)) return 1;
   const FP diam = r * 2;
   u64 ans = 1;
-  vec<std::pair<FP, i64>> angles;
+  vecp<FP, i64> angles;
   FP dist;
   for (u32 i = 0; i < vp.size(); ++i) {
     angles.clear();

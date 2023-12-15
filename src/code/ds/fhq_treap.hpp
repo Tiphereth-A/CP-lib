@@ -27,19 +27,19 @@ class fhq_treap {
     else ret = ++cnt, t.push_back(YYZ(w, 1, gen()));
     return ret;
   }
-  constexpr void preorder(u32 u, vec<std::pair<KEY, VAL>>& ret) {
+  constexpr void preorder(u32 u, vecp<KEY, VAL>& ret) {
     if (!u) return;
     ret.push_back(t[u].w);
     preorder(t[u].son[0], ret);
     preorder(t[u].son[1], ret);
   }
-  constexpr void inorder(u32 u, vec<std::pair<KEY, VAL>>& ret) {
+  constexpr void inorder(u32 u, vecp<KEY, VAL>& ret) {
     if (!u) return;
     inorder(t[u].son[0], ret);
     ret.push_back(t[u].w);
     inorder(t[u].son[1], ret);
   }
-  constexpr void postorder(u32 u, vec<std::pair<KEY, VAL>>& ret) {
+  constexpr void postorder(u32 u, vecp<KEY, VAL>& ret) {
     if (!u) return;
     preorder(t[u].son[0], ret);
     preorder(t[u].son[1], ret);
@@ -129,26 +129,26 @@ class fhq_treap {
     root = merge(merge(x, z), y);
     return ret;
   }
-  constexpr vec<std::pair<KEY, VAL>> preorder() {
-    vec<std::pair<KEY, VAL>> ret;
+  constexpr vecp<KEY, VAL> preorder() {
+    vecp<KEY, VAL> ret;
     preorder(root, ret);
     return ret;
   }
-  constexpr vec<std::pair<KEY, VAL>> inorder() {
-    vec<std::pair<KEY, VAL>> ret;
+  constexpr vecp<KEY, VAL> inorder() {
+    vecp<KEY, VAL> ret;
     inorder(root, ret);
     return ret;
   }
-  constexpr vec<std::pair<KEY, VAL>> postorder() {
-    vec<std::pair<KEY, VAL>> ret;
+  constexpr vecp<KEY, VAL> postorder() {
+    vecp<KEY, VAL> ret;
     postorder(root, ret);
     return ret;
   }
-  constexpr vec<std::pair<KEY, VAL>> inorder(KEY key) {
+  constexpr vecp<KEY, VAL> inorder(KEY key) {
     u32 x, y, z;
     split(root, key, x, y);
     split_not_include(x, key, x, z);
-    vec<std::pair<KEY, VAL>> ret;
+    vecp<KEY, VAL> ret;
     inorder(z, ret);
     root = merge(merge(x, z), y);
     return ret;

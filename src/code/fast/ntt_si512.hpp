@@ -227,7 +227,7 @@ struct NTT_si512 {
     ifft(lg, a, mt.r2);
   }
 
-  __attribute__((optimize("O3"))) vec<u32> conv(const vec<u32> &a, const vec<u32> &b) const {
+  __attribute__((optimize("O3"))) vec<u32> conv(vec<u32> const &a, vec<u32> const &b) const {
     u32 sz = std::max<u32>(0, u32(a.size() + b.size() - 1));
     u32 lg = u32(std::__lg(std::max<u32>(1, sz - 1)) + 1);
     pu32 ap = (pu32)_mm_malloc((usz)std::max(64, (1 << lg) * 4), 64);

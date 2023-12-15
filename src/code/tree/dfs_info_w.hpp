@@ -23,7 +23,7 @@ struct tree_dfs_info_w {
     if constexpr (state & td_maxson) maxson = vec<u32>(n, n);
     if constexpr (state & td_maxdfn) maxdfn = vec<u32>(n);
     if constexpr (state & td_euler) euler = vec<u32>(n);
-    if constexpr (state & td_go) go = vec<vec<u32>>(n, vec<u32>(21u, n));
+    if constexpr (state & td_go) go = vvec<u32>(n, vec<u32>(21u, n));
     if constexpr (state & td_dis) dis = vec<T>(n);
 
     u32 cnt = 0;

@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/hafnian_of_matrix"
 
-#include "../../code/math/mint_s30.hpp"
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/mat_hafnian.hpp"
+#include "../../code/math/mint_s30.hpp"
 
 using mint = tifa_libs::math::mint_s30<998244353>;
 using mat = tifa_libs::math::matrix<mint>;

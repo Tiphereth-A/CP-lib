@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 template <class T>
 struct alistw {
   using weight_type = T;
-  using value_type = vvec<std::pair<u32, T>>;
+  using value_type = vvecp<u32, T>;
   value_type g;
 
   //! vertex ID: [0, n)

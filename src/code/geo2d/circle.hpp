@@ -16,7 +16,7 @@ struct circle {
 
   friend std::istream &operator>>(std::istream &is, circle &c) { return is >> c.o >> c.r; }
   friend std::ostream &operator<<(std::ostream &os, circle const &c) { return os << c.o << ' ' << c.r; }
-  friend constexpr  bool operator==(circle const &l, circle const &r) { return l.o == r.o && l.r == r.r; }
+  friend constexpr bool operator==(circle const &l, circle const &r) { return l.o == r.o && l.r == r.r; }
 
   constexpr FP area(FP angle = PI<FP> * 2) const { return angle * r * r / 2; }
   constexpr FP crown_area(FP angle = PI<FP> * 2) const { return (angle - std::sin(angle)) * r * r / 2; }

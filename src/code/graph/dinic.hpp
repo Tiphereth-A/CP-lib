@@ -50,7 +50,7 @@ class dinic {
   vvec<YYZ> e;
 
   constexpr dinic(u32 n, u32 s, u32 t) : N(n), S(s), T(t), e(n) {}
-  
+
   constexpr void add(u32 u, u32 v, EW w) {
     u32 temu = u32(e[u].size()), temv = u32(e[v].size());
     e[u].push_back({v, w, temv}), e[v].push_back({u, 0, temu});

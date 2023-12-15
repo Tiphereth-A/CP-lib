@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/inverse_matrix"
 
-#include "../../code/math/mint_d31.hpp"
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/mat_ge_basic.hpp"
 #include "../../code/lalg/mat_inv.hpp"
+#include "../../code/math/mint_d31.hpp"
 
 using mint = tifa_libs::math::mint_d31<-1>;
 using mat = tifa_libs::math::matrix<mint>;

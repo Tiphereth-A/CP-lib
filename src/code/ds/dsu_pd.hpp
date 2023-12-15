@@ -7,7 +7,7 @@ namespace tifa_libs::ds {
 
 class dsu_pd {
   vec<i32> p;
-  vec<std::pair<u32, i32>> edges;
+  vecp<u32, i32> edges;
 
  public:
   explicit constexpr dsu_pd(u32 sz) : p(sz, -1) {}

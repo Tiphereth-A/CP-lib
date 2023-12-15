@@ -16,8 +16,8 @@ class ssp {
   const u32 N, S, T;
   vec<i64> dis;
   vec<EW> flow;
-  vec<std::pair<u32, u32>> pre;
-  constexpr bool spfa(u64 inflow) {
+  vecp<u32, u32> pre;
+  bool spfa(u64 inflow) {
     dis = vec<i64>(N, std::numeric_limits<i64>::max() / 2 - 1);
     vec<bool> inq(N);
     std::queue<u32> q;

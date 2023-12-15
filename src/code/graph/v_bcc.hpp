@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 template <class EW>
 class v_bcc {
-  const vvec<EW> &g;
+  vvec<EW> const &g;
 
  public:
   u32 id;
@@ -16,9 +16,9 @@ class v_bcc {
   vvec<u32> belongs;
 
   //! EW need rev_edge
-  explicit constexpr v_bcc(vvec<EW> const &G) : g(G) { build(); }
+  explicit v_bcc(vvec<EW> const &G) : g(G) { build(); }
 
-  constexpr void build() {
+  void build() {
     id = 0;
     u32 cnt = 0, n = u32(g.size());
     dfn = low = vec<u32>(n, n);

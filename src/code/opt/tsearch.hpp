@@ -13,7 +13,7 @@ constexpr std::pair<I, T> tsearch(I l, I r, F f) {
   assert(l <= r);
   I ml, mr;
   T fl = f(l), fr = f(r), fml, fmr;
-  using PT = std::conditional_t<std::is_floating_point_v<I>, I, double>;
+  using PT = std::conditional_t<std::is_floating_point_v<I>, I, f64>;
   fml = f(ml = l + (r - l) * (1 - PHI<PT>)), fmr = f(mr = r - (r - l) * (1 - PHI<PT>));
 
   do {

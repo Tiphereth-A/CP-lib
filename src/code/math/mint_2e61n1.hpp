@@ -43,7 +43,7 @@ class mint_2e61n1 {
     v_ = mod_(v_ + r.v_);
     return *this;
   }
- constexpr  mint_2e61n1 &operator-=(mint_2e61n1 const &r) {
+  constexpr mint_2e61n1 &operator-=(mint_2e61n1 const &r) {
     v_ < r.v_ ? v_ = mod_(v_ + MOD - r.v_) : v_ -= r.v_;
     return *this;
   }

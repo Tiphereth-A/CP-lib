@@ -121,6 +121,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     bit:
+    - bswap: std::byteswap
+      code_ext: hpp
+      test_ext: cpp
     - cntlsb: 与符号位相同的高位长度
       code_ext: hpp
       test_ext: cpp

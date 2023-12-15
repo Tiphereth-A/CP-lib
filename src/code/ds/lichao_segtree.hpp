@@ -18,7 +18,7 @@ class lichao_segtree {
   vec<seg> t;
 
  public:
-  explicit constexpr lichao_segtree(const vec<T>& LSH, F func) : lsh(LSH), t(LSH.size() * 4), f(func) { sz = lsh.size(); }
+  explicit constexpr lichao_segtree(vec<T> const& LSH, F func) : lsh(LSH), t(LSH.size() * 4), f(func) { sz = lsh.size(); }
 
   constexpr void add(T a, T b, T l, T r, usz id = 1) {
     seg k = {id, a, b, l, r};
@@ -38,7 +38,7 @@ class lichao_segtree {
       T tl = t[x].w(lsh[l]), tr = t[x].w(lsh[r]), kl = k.w(lsh[l]), kr = k.w(lsh[r]);
       if (pd(tl, kl) && pd(tr, kr)) return;
       if (!pd(tl, kl) && !pd(tr, kr)) return void(t[x] = k);
-      double in = (t[x].b - k.b) / (k.a - t[x].a);
+      f64 in = (t[x].b - k.b) / (k.a - t[x].a);
       if (pd(kl, tl)) {
         if (in <= lsh[mid]) add(x << 1, l, mid, L, R, k);
         else add(x << 1 | 1, mid + 1, r, L, R, t[x]), t[x] = k;

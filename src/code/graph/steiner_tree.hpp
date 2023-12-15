@@ -7,15 +7,15 @@ namespace tifa_libs::graph {
 
 template <class T>
 class steiner_tree {
-  const alistw<T>& e;
-  const vec<u32>& a;
+  alistw<T> const& e;
+  vec<u32> const& a;
 
  public:
   vvec<u32> dp;
 
-  constexpr steiner_tree(const alistw<T>& E, const vec<u32>& A) : e(E), a(A) { build(); }
+  steiner_tree(alistw<T> const& E, vec<u32> const& A) : e(E), a(A) { build(); }
 
-  constexpr void build() {
+  void build() {
     dp = vvec<u32>(e.g.size(), vec<u32>(1 << a.size(), INT32_MAX));
     for (u32 i = 0; i < a.size(); ++i) dp[a[i]][1 << i] = 0;
     pq<ptt<u32>> q;

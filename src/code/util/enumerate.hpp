@@ -25,7 +25,7 @@ class iter_ {
     ++now_;
     ++sz_;
   }
- constexpr  std::pair<usz, iter_t> operator*() const { return {sz_, now_}; }
+  constexpr std::pair<usz, iter_t> operator*() const { return {sz_, now_}; }
 };
 
 }  // namespace enumerate_impl_

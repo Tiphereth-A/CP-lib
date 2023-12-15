@@ -21,13 +21,13 @@ class hld {
     info.reset_dfs_info<graph::td_dep | graph::td_fa>(tr);
     top = graph::tree_top<graph::tree, true>(tr, info);
   }
-  explicit constexpr hld(graph::tree& tr, const vec<T>& a) : hld(tr) {
+  explicit constexpr hld(graph::tree& tr, vec<T> const& a) : hld(tr) {
     vec<T> b(a.size());
     for (u32 i = 0; i < a.size(); ++i) b[info.dfn[i]] = a[i];
     build(b);
   }
 
-  constexpr void build(const vec<T>& a) { t = segtree<T, op, e, F, mapping, composition, id>(a); }
+  constexpr void build(vec<T> const& a) { t = segtree<T, op, e, F, mapping, composition, id>(a); }
   constexpr void chain_update(u32 u, u32 v, F f) {
     while (top[u] != top[v]) {
       if (info.dep[top[u]] < info.dep[top[v]]) std::swap(u, v);

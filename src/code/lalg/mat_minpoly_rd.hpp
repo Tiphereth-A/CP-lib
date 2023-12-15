@@ -14,12 +14,12 @@ vec<T> minpoly(Mat const &mat, Gn &gen, Is0 is0) {
     std::generate(v.begin(), v.end(), gen);
     return v;
   };
-  std::vector<T> u = gen2(n), v = gen2(n), _(n * 2);
+  vec<T> u = gen2(n), v = gen2(n), _(n * 2);
   for (u32 i = 0; i < n * 2; ++i) {
     _[i] = std::transform_reduce(u.begin(), u.end(), v.begin(), T{});
     v = mat.lproj(v);
   }
-  std::vector<T> res = lfsr_bm(_, is0);
+  vec<T> res = lfsr_bm(_, is0);
   std::reverse(res.begin(), res.end());
   return res;
 }

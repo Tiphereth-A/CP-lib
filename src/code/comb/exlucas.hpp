@@ -37,7 +37,7 @@ class ExLucas {
     if (m_ == 1 || m < n || n < 0) return 0;
     vec<i64> b;
     b.reserve(cs.size());
-    for (const auto &i : cs) b.push_back((i64)i(m, n));
+    for (auto const &i : cs) b.push_back((i64)i(m, n));
     return crt(b, ms)->first;
   }
 };

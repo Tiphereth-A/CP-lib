@@ -16,7 +16,7 @@ class Lucas {
   // @param p MUSU be prime
   explicit constexpr Lucas() : mCn(mint::mod()) { assert(mint::mod() > 1 && mint::mod() < 10'000'000); }
 
-  static constexpr  u64 mod() { return mint::mod(); }
+  static constexpr u64 mod() { return mint::mod(); }
   template <class T, std::enable_if_t<is_sint<T>::value>* = nullptr>
   constexpr mint operator()(T m, T n) const { return m < n || n < 0 ? 0 : lucas__(to_uint_t<T>(m), to_uint_t<T>(n)); }
 };

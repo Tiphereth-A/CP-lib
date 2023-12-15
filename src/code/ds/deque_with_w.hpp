@@ -10,8 +10,7 @@ namespace tifa_libs::ds {
 template <typename T, auto e, auto op>
 class deque_with_w {
   // front [q[0].back        q[0].front][q[1].front       q[1].back] back
-  vec<vec<T>> q;
-  vec<vec<T>> s;
+  vvec<T> q, s;
   constexpr void bf() {
     s[0].resize(q[0].size() + 1);
     s[0][0] = e();
@@ -37,8 +36,8 @@ class deque_with_w {
   constexpr T pop_front() {
     if (q[0].empty()) {
       u32 lessHalf = u32(q[1].size()) / 2;
-      q[0] = std::vector<T>(q[1].rbegin() + lessHalf, q[1].rend());
-      q[1] = std::vector<T>(q[1].end() - lessHalf, q[1].end());
+      q[0] = vec<T>(q[1].rbegin() + lessHalf, q[1].rend());
+      q[1] = vec<T>(q[1].end() - lessHalf, q[1].end());
       bf();
     }
     T ret = q[0].back();
@@ -48,8 +47,8 @@ class deque_with_w {
   constexpr T pop_back() {
     if (q[1].empty()) {
       u32 lessHalf = u32(q[0].size()) / 2;
-      q[1] = std::vector<T>(q[0].rbegin() + lessHalf, q[0].rend());
-      q[0] = std::vector<T>(q[0].end() - lessHalf, q[0].end());
+      q[1] = vec<T>(q[0].rbegin() + lessHalf, q[0].rend());
+      q[0] = vec<T>(q[0].end() - lessHalf, q[0].end());
       bf();
     }
     T ret = q[1].back();

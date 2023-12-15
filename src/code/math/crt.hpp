@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 
 namespace crt_impl_ {
 
-constexpr std::optional<std::pair<i64, i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1) {
+constexpr std::optional<ptt<i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1) {
   if (m0 < m1) return crt2(a1, m1, a0, m0);
   auto [d, x] = inv_gcd(m0, m1);
   i64 a1_a0 = a1 - a0, a1_a0_d = a1_a0 / (i64)d;
@@ -21,7 +21,7 @@ constexpr std::optional<std::pair<i64, i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1
 }  // namespace crt_impl_
 
 // Returns (remainder, modular)
-constexpr std::optional<std::pair<u64, u64>> crt(const vec<i64> &a, const vec<u64> &m) {
+constexpr std::optional<ptt<u64>> crt(vec<i64> const &a, vec<u64> const &m) {
   if (a.size() != m.size()) return {};
   i64 A = 0;
   u64 M = 1;

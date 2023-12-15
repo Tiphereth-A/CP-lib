@@ -19,7 +19,7 @@ class aho_corasick_automaton {
   u32 sz;
 
   explicit constexpr aho_corasick_automaton() : t(1), sz(1) {}
-  
+
   constexpr void insert(std::string s, u32 id = -1u) {
     u32 u = 0;
     ++t[u].tot;

@@ -6,7 +6,7 @@
 
 namespace tifa_libs::opt {
 
-template <class T = double>
+template <class T = f64>
 struct LPSolver {
 #define ltj(X) \
   if (s == -1 || std::make_pair(X[j], N[j]) < std::make_pair(X[s], N[s])) s = j

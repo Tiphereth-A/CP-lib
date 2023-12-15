@@ -22,7 +22,7 @@ class DLX {
 #define col_(x) data[x].col
 #define dlxfor_(i, l, dir) for (usz ied__ = (l), i = dir##_(ied__); i != ied__; i = dir##_(i))
 
- constexpr  void remove_(usz col) {
+  constexpr void remove_(usz col) {
     r_(l_(col)) = r_(col);
     l_(r_(col)) = l_(col);
     dlxfor_ (i, col, d)
@@ -59,7 +59,7 @@ class DLX {
     resume_(now);
     return ret;
   }
- constexpr  void ins_row_(usz row, vec<usz> const &cols) {
+  constexpr void ins_row_(usz row, vec<usz> const &cols) {
     assert(row > 0);
     usz n = data.size();
     for (usz i = 0; i < cols.size(); ++i) {

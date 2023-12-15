@@ -19,7 +19,7 @@ constexpr auto tuple_apply2(Op2 &&f, Tpl &&l, Tpl &&r) { return tuple_op_impl_::
     return tuple_apply2([](auto &&l, auto &&r) { return l op r; }, l, r);              \
   }                                                                                    \
   template <class... Ts>                                                               \
-  constexpr auto operator op##=(std::tuple<Ts...> &l, const std::tuple<Ts...> &r) { return l = l op r; }
+  constexpr auto operator op##=(std::tuple<Ts...> &l, std::tuple<Ts...> const &r) { return l = l op r; }
 
 OO_PTEQ_(+)
 OO_PTEQ_(-)

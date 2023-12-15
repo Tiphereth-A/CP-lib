@@ -21,7 +21,7 @@ struct line {
   constexpr bool is_same_dir(line const &r) const { return is_parallel(r) && is_pos(direction() * r.direction()); }
   friend constexpr bool is_same_dir(line const &l, line const &r) { return l.is_same_dir(r); }
 
-  friend constexpr  bool operator<(line const &l, line const &r) {
+  friend constexpr bool operator<(line const &l, line const &r) {
     if (l.is_same_dir(r)) return r.is_include_strict(l.l);
     auto vl = l.direction(), vr = r.direction();
     if (vl.quad() != vr.quad()) return vl.quad() < vr.quad();

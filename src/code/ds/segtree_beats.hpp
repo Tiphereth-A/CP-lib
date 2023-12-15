@@ -165,7 +165,7 @@ class segtree_beats {
       sign[x] = {0, 0, 0, 0, 0, 0};
     }
   }
-  constexpr void build(const vec<T>& a, usz x, usz l, usz r) {
+  constexpr void build(vec<T> const& a, usz x, usz l, usz r) {
     if (l == r) {
       t[x].hismax = t[x].sum = t[x]._min = t[x]._max = a[l];
       t[x].secmin = INF, t[x].secmax = -INF;

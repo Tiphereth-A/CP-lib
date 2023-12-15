@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 
-#include "../../code/math/mint_ds.hpp"
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/mat_det.hpp"
 #include "../../code/lalg/mat_ge_basic.hpp"
+#include "../../code/math/mint_ds.hpp"
 
 using mint = tifa_libs::math::mint_ds<-1>;
 using mat = tifa_libs::math::matrix<mint>;

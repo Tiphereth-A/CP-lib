@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 template <class T>
 class interp_newton {
   // {(x_0,y_0),(x__1,y_1),...,(x_{n-1},y_{n-1})}
-  vec<std::pair<T, T>> points;
+  vecp<T, T> points;
   // diffs[r][l] = f[x_l,x_{l+1},...,x_r]
   vvec<T> diffs;
   // (x-x_0)(x-x_1)...(x-x_{n-1})
