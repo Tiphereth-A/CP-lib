@@ -9,7 +9,7 @@ namespace enumerate_impl_ {
 template <typename T, std::enable_if_t<is_iterable<T>::value> * = nullptr>
 class iter_ {
  public:
-  using iter_t = typename remove_cvref_t<T>::iterator;
+  using iter_t = typename std::remove_cvref_t<T>::iterator;
 
  private:
   T const &container_;

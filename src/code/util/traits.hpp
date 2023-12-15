@@ -6,10 +6,7 @@
 namespace tifa_libs {
 
 template <class T>
-using remove_cvref_t = typename std::remove_cv_t<typename std::remove_reference_t<T>>;
-
-template <class T>
-using is_iterable = typename std::conditional_t<std::is_same_v<decltype(std::declval<remove_cvref_t<T>>().begin()), typename remove_cvref_t<T>::iterator> && std::is_same_v<decltype(std::declval<remove_cvref_t<T>>().end()), typename remove_cvref_t<T>::iterator>, std::true_type, std::false_type>;
+using is_iterable = typename std::conditional_t<std::is_same_v<decltype(std::declval<std::remove_cvref_t<T>>().begin()), typename std::remove_cvref_t<T>::iterator> && std::is_same_v<decltype(std::declval<std::remove_cvref_t<T>>().end()), typename std::remove_cvref_t<T>::iterator>, std::true_type, std::false_type>;
 
 template <class T>
 using is_container = typename std::conditional_t<is_iterable<T>::value && !std::is_base_of_v<T, std::basic_string<typename T::value_type>>, std::true_type, std::false_type>;
@@ -39,7 +36,7 @@ template <class T>
 using to_uint_t = typename std::conditional_t<std::is_same_v<T, i128>, to_u128<T>, typename std::conditional_t<std::is_signed_v<T>, std::make_unsigned<T>, std::common_type<T>>>::type;
 
 template <class T>
-using is_mint = typename std::conditional_t<is_uint<decltype(std::declval<remove_cvref_t<T>>().mod())>::value && is_uint<decltype(std::declval<remove_cvref_t<T>>().val())>::value, std::true_type, std::false_type>;
+using is_mint = typename std::conditional_t<is_uint<decltype(std::declval<std::remove_cvref_t<T>>().mod())>::value && is_uint<decltype(std::declval<std::remove_cvref_t<T>>().val())>::value, std::true_type, std::false_type>;
 
 template <class T>
 using is_arithm = typename std::conditional_t<std::is_arithmetic_v<T> || is_int<T>::value, std::true_type, std::false_type>;

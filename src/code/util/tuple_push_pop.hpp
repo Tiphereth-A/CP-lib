@@ -13,7 +13,7 @@ constexpr auto subtuple_impl_(Tpl &&t, std::index_sequence<Is...>) { return std:
 }  // namespace tuple_push_pop_impl_
 
 template <class Tpl>
-constexpr usz tuple_size = std::tuple_size_v<remove_cvref_t<Tpl>>;
+constexpr usz tuple_size = std::tuple_size_v<std::remove_cvref_t<Tpl>>;
 
 template <usz bgn, usz len, class Tpl>
 constexpr auto subtuple(Tpl &&t) {
