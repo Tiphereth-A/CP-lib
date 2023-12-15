@@ -49,7 +49,7 @@ class PollardRho {
 
 }  // namespace pfactors_impl_
 
-constexpr std::map<u64, u32> pfactors(u64 n) {
+inline std::map<u64, u32> pfactors(u64 n) {
   std::map<u64, u32> ans;
   if (n < 2) return ans;
   if (~n & 1) n >>= (ans[2] = (u32)std::countr_zero(n));

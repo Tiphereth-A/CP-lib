@@ -53,7 +53,7 @@ class mint_s63 {
     u64 res = -mul_high(v_ * R, MOD);
     return res + (MOD & -(res >> 63));
   }
-  constexpr i64 sval() const { return val(); }
+  constexpr i64 sval() const { return (i64)val(); }
   constexpr u64 &data() { return v_; }
   constexpr u64 data() const { return v_; }
   template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>

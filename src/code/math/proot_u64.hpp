@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-constexpr u64 proot_u64(u64 m) {
+inline u64 proot_u64(u64 m) {
   if (m <= (u32)(-1)) return proot_u32((u32)m);
   vec<u64> pf;
   {
