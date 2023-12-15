@@ -6,7 +6,7 @@
 namespace tifa_libs {
 
 template <class T>
-constexpr void rsort32(vec<T>& a) {
+void rsort32(vec<T>& a) {
   static_assert(sizeof(T) == 4);
   static u32 _0[256], _1[256], _2[256], _3[256];
   u32 n = (u32)a.size();
