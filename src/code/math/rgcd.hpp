@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 class RGCD {
   struct F3 {
     u32 a, b, c;
-    F3(u32 _a = 0, u32 _b = 0, u32 _c = 0) : a(_a), b(_b), c(_c) {}
+    constexpr F3(u32 _a = 0, u32 _b = 0, u32 _c = 0) : a(_a), b(_b), c(_c) {}
   };
   vec<F3> fs;
   vvec<u32> g_;
