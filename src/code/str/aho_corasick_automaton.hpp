@@ -20,7 +20,7 @@ class aho_corasick_automaton {
 
   explicit constexpr aho_corasick_automaton() : t(1), sz(1) {}
 
-  constexpr void insert(std::string s, u32 id = -1u) {
+  constexpr void insert(std::string_view s, u32 id = -1u) {
     u32 u = 0;
     ++t[u].tot;
     for (auto c : s) {
@@ -30,7 +30,7 @@ class aho_corasick_automaton {
     }
     if (id != -1u) t[u].end.push_back(id);
   }
-  constexpr void getfail() {
+  void getfail() {
     std::queue<u32> q;
     for (u32 i = 0; i < SZ; ++i)
       if (t[0].nex[i]) q.push(t[0].nex[i]);
@@ -43,7 +43,7 @@ class aho_corasick_automaton {
       }
     }
   }
-  constexpr void build(vec<std::string> s_) {
+  constexpr void build(vec<std::string> const& s_) {
     for (u32 i = 0; i < s_.size(); ++i) insert(s_[i], i);
     getfail();
   }

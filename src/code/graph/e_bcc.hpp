@@ -16,9 +16,9 @@ class e_bcc {
   vvec<u32> belongs;
 
   //! EW need rev_edge
-  constexpr e_bcc(vvec<EW> const &G) : g(G) { build(); }
+  explicit e_bcc(vvec<EW> const &G) : g(G) { build(); }
 
-  constexpr void build() {
+  void build() {
     id = 0;
     u32 cnt = 0, n = u32(g.size());
     dfn = low = ebcc_id = vec<u32>(n, n);

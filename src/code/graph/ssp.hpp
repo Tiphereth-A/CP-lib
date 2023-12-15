@@ -17,6 +17,7 @@ class ssp {
   vec<i64> dis;
   vec<EW> flow;
   vecp<u32, u32> pre;
+
   bool spfa(u64 inflow) {
     dis = vec<i64>(N, std::numeric_limits<i64>::max() / 2 - 1);
     vec<bool> inq(N);

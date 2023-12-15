@@ -5,16 +5,16 @@
 
 namespace tifa_libs::str {
 
-constexpr vec<u32> duval(std::string_view str) {
-  const u32 n = (u32)str.size();
+constexpr vec<u32> duval(std::string_view s) {
+  const u32 n = (u32)s.size();
   vec<u32> res{0};
   while (res.back() != n) {
     u32 l = 1;
     for (u32 i = res.back() + 1; i < n + 1; ++i)
-      if (i == n || str[i] < str[i - l]) {
+      if (i == n || s[i] < s[i - l]) {
         for (u32 j = res.back() + l; j < i + 1; j += l) res.push_back(j);
         break;
-      } else if (str[i - l] < str[i]) l = i + 1 - res.back();
+      } else if (s[i - l] < s[i]) l = i + 1 - res.back();
   }
   return res;
 }

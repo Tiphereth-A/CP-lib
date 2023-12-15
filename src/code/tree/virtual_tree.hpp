@@ -26,7 +26,7 @@ class virtual_tree {
  public:
   tree vt;
 
-  explicit constexpr virtual_tree(tree& tr) : tr(tr), lca_(tr), vt(tr.g.size()) {}
+  explicit constexpr virtual_tree(tree& tr) : tr(tr), lca_(tr), vt((u32)tr.g.size()) {}
 
   constexpr void build(vec<u32>& a) {
     std::sort(a.begin(), a.end(), [&](u32 a, u32 b) { return lca_.info.dfn[a] < lca_.info.dfn[b]; });

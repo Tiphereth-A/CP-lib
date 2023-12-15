@@ -9,7 +9,7 @@ namespace tifa_libs::geo {
 
 // simulated annealing
 template <class FP>
-constexpr point<FP> fermatp(polygon<FP> const &po, FP begin = 1e10, FP end = EPS<FP>, FP delta = .999) {
+point<FP> fermatp(polygon<FP> const &po, FP begin = 1e10, FP end = EPS<FP>, FP delta = .999) {
   static rand::Gen<std::uniform_real_distribution<FP>> gen_angle(0, 2 * PI<FP>);
   auto gen = [](point<FP> const &pre, FP t) { return pre + make_P_polar(t, gen_angle()); };
   auto fitness = [&po](point<FP> const &p) {

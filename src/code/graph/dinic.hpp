@@ -15,7 +15,7 @@ class dinic {
   const u32 N, S, T;
   vec<u32> dep, cur;
 
-  constexpr bool bfs() {
+  bool bfs() {
     dep = vec<u32>(N, 0);
     std::queue<u32> q;
     dep[S] = 1, q.push(S);
@@ -55,7 +55,7 @@ class dinic {
     u32 temu = u32(e[u].size()), temv = u32(e[v].size());
     e[u].push_back({v, w, temv}), e[v].push_back({u, 0, temu});
   }
-  constexpr u64 operator()() {
+  u64 operator()() {
     u64 ret = 0, flow;
     while (bfs())
       while ((flow = dfs(S))) ret += flow;

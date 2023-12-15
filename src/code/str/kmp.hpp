@@ -6,7 +6,7 @@
 namespace tifa_libs::str {
 
 // @return nxt of pattern
-constexpr vec<i32> kmp_nxt(std::string_view pattern) {
+inline vec<i32> kmp_nxt(std::string_view pattern) {
   i32 n = (i32)pattern.size();
   vec<i32> nxt((u32)n);
   i32 i, j;
@@ -21,7 +21,7 @@ constexpr vec<i32> kmp_nxt(std::string_view pattern) {
 
 // find pattern in text
 // @return matched position in s
-constexpr vec<u32> kmp(std::string_view pattern, std::string_view text) {
+inline vec<u32> kmp(std::string_view pattern, std::string_view text) {
   vec<i32> nxt = kmp_nxt(pattern);
   vec<u32> ret;
   i32 n = (i32)pattern.size(), m = (i32)text.size();

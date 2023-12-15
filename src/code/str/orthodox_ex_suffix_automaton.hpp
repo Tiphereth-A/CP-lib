@@ -52,7 +52,7 @@ class orthodox_ex_suffix_automaton {
     }
     return cur;
   }
-  constexpr void insert(std::string s) {
+  constexpr void insert(std::string_view s) {
     u32 u = 0;
     for (auto cc : s) {
       u32 c = cc - BASE;
@@ -60,7 +60,7 @@ class orthodox_ex_suffix_automaton {
       u = st[u].nex[c];
     }
   }
-  constexpr void build() {
+  void build() {
     std::queue<std::pair<u32, char>> q;
     for (u32 i = 0; i < SZ; ++i)
       if (st[0].nex[i]) q.push({0, i});
