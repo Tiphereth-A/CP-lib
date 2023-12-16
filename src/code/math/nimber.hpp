@@ -26,7 +26,6 @@ struct nimber {
   constexpr nimber operator-(nimber const& p) const { return x ^ p.x; }
   constexpr nimber operator*(nimber const& p) const { return prod(x, p.x); }
   constexpr bool operator==(nimber const& p) const { return x == p.x; }
-  constexpr bool operator!=(nimber const& p) const { return x != p.x; }
   friend std::ostream& operator<<(std::ostream& os, nimber const& p) { return os << p.x; }
 };
 

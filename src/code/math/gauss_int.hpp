@@ -7,11 +7,11 @@ namespace tifa_libs::math {
 
 template <class mint, i64 M>
 class GaussInt {
- private:
   mint r_, i_;
 
  public:
   constexpr GaussInt(mint const &real = mint(), mint const &imag = mint()) : r_(real), i_(imag) {}
+
   constexpr mint real() const { return r_; }
   constexpr mint imag() const { return i_; }
   constexpr void real(mint x) { r_ = x; }
@@ -57,16 +57,12 @@ class GaussInt {
   friend constexpr GaussInt operator/(GaussInt x, GaussInt const &y) { return x /= y; }
   friend constexpr GaussInt conj(GaussInt const &x) { return GaussInt{x.r_, -x.i_}; }
   friend constexpr mint norm(GaussInt const &x) { return x.r_ * x.r_ + x.i_ * x.i_ * M; }
-
   friend constexpr bool operator==(GaussInt const &x, GaussInt const &y) { return x.real() == y.real() && x.imag() == y.imag(); }
-  friend constexpr bool operator!=(GaussInt const &x, GaussInt const &y) { return !(x == y); }
-
   friend std::istream &operator>>(std::istream &is, GaussInt &x) { return is >> x.r_ >> x.i_; }
   friend std::ostream &operator<<(std::ostream &os, GaussInt const &x) { return os << '(' << x.real() << ',' << x.imag() << ')'; }
 };
 template <class mint>
-class GaussInt<mint, -1> : public std::complex<mint> {
- public:
+struct GaussInt<mint, -1> : public std::complex<mint> {
   constexpr GaussInt(std::complex<mint> const &&c) : std::complex<mint>(c) {}
   constexpr GaussInt(mint const &real = mint(), mint const &imag = mint()) : std::complex<mint>(real, imag) {}
 
