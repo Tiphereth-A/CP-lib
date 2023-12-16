@@ -5,9 +5,8 @@
 
 namespace tifa_libs::math {
 
-template <class FP>
+template <std::floating_point FP>
 struct FFT {
-  static_assert(std::is_floating_point_v<FP>);
   using C = std::complex<FP>;
 
   explicit constexpr FFT() : rev(), w() {}

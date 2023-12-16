@@ -6,8 +6,8 @@
 namespace tifa_libs {
 
 template <class T>
+requires(sizeof(T) == 4)
 void rsort32(vec<T>& a) {
-  static_assert(sizeof(T) == 4);
   static u32 _0[256], _1[256], _2[256], _3[256];
   u32 n = (u32)a.size();
   vec<u32> b(n);

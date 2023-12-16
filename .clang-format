@@ -7,6 +7,7 @@ ForEachMacros:
   - FOR1_
   - FOR2_
   - dlxfor_
+IndentRequiresClause: false
 SortIncludes: CaseSensitive
 SpacesBeforeTrailingComments: 2
 SpacesInLineCommentPrefix:

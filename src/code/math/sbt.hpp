@@ -7,10 +7,8 @@
 namespace tifa_libs::math {
 
 // x / y (x > 0, y > 0). default 1 / 1
-template <class T>
+template <std::signed_integral T>
 class SBT {
-  static_assert(std::is_integral_v<T> && std::is_signed_v<T>);
-
   T lx, ly, x, y, rx, ry;
   vec<T> seq;
 
