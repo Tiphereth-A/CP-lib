@@ -22,7 +22,6 @@ class mint_s30 {
   static constexpr u32 MOD2 = MOD << 1;
   static constexpr u32 R = get_r();
   static constexpr u32 R2 = -(u64)(MOD) % MOD;
-  static constexpr i32 SMOD = (i32)(MOD);
 
   static_assert(MOD & 1);
   static_assert(-R * MOD == 1);
@@ -30,11 +29,11 @@ class mint_s30 {
   static_assert(MOD != 1);
 
   static constexpr u32 mod() { return MOD; }
-  static constexpr i32 smod() { return SMOD; }
+  static constexpr i32 smod() { return (i32)MOD; }
 
   constexpr mint_s30() {}
   template <std::integral T>
-  constexpr mint_s30(T v) : v_(reduce((u64)(v % SMOD + SMOD) * R2)) {}
+  constexpr mint_s30(T v) : v_(reduce((u64)(v % smod() + smod()) * R2)) {}
 
   constexpr u32 val() const { return norm(reduce(v_)); }
   constexpr i32 sval() const { return (i32)norm(reduce(v_)); }
@@ -48,7 +47,7 @@ class mint_s30 {
     return res;
   }
   constexpr mint_s30 inv() const {
-    i32 x1 = 1, x3 = 0, a = sval(), b = SMOD;
+    i32 x1 = 1, x3 = 0, a = sval(), b = smod();
     while (b != 0) {
       i32 q = a / b, x1_old = x1, a_old = a;
       x1 = x3, x3 = x1_old - x3 * q, a = b, b = a_old - b * q;

@@ -13,7 +13,7 @@ concept iterable_c = is_iterable<T>::value;
 template <class T>
 using is_container = typename std::conditional_t<is_iterable<T>::value && !std::is_base_of_v<T, std::basic_string<typename T::value_type>>, std::true_type, std::false_type>;
 template <class T>
-concept container_c = is_iterable<T>::value;
+concept container_c = is_container<T>::value;
 
 template <class T>
 using is_char = typename std::conditional_t<std::is_same_v<T, char> || std::is_same_v<T, signed char> || std::is_same_v<T, unsigned char>, std::true_type, std::false_type>;

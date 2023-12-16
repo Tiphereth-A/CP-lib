@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 inline u64 proot_u64(u64 m) {
-  if (m <= (u32)(-1)) return proot_u32((u32)m);
+  if (m <= (u64)-1_u32) return proot_u32((u32)m);
   vec<u64> pf;
   {
     auto _ = pfactors(m - 1);
