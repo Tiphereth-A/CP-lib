@@ -6,14 +6,13 @@
 namespace tifa_libs {
 
 template <class T>
-constexpr bool is_iterable_v = std::is_same_v<decltype(std::declval<std::remove_cvref_t<T>>().begin()), typename std::remove_cvref_t<T>::iterator> && std::is_same_v<decltype(std::declval<std::remove_cvref_t<T>>().end()), typename std::remove_cvref_t<T>::iterator>;
-template <class T>
-concept iterable_c = is_iterable_v<T>;
+concept iterable_c = requires(T v) {
+  { v.begin() } -> std::same_as<typename T::iterator>;
+  { v.end() } -> std::same_as<typename T::iterator>;
+};
 
 template <class T>
-constexpr bool is_container_v = is_iterable_v<T> && !std::is_base_of_v<T, std::basic_string<typename T::value_type>>;
-template <class T>
-concept container_c = is_container_v<T>;
+concept container_c = iterable_c<T> && !std::derived_from<T, std::basic_string<typename T::value_type>>;
 
 template <class T>
 constexpr bool is_char_v = std::is_same_v<T, char> || std::is_same_v<T, signed char> || std::is_same_v<T, unsigned char>;
@@ -46,9 +45,10 @@ template <class T>
 concept uint_c = is_uint_v<T>;
 
 template <class T>
-constexpr bool is_mint_v = is_uint_v<decltype(std::declval<std::remove_cvref_t<T>>().mod())> && is_uint_v<decltype(std::declval<std::remove_cvref_t<T>>().val())>;
-template <class T>
-concept mint_c = is_mint_v<T>;
+concept mint_c = requires(T x) {
+  { x.mod() } -> uint_c;
+  { x.val() } -> uint_c;
+};
 
 template <class T>
 constexpr bool is_arithm_v = std::is_arithmetic_v<T> || is_int_v<T>;
@@ -56,10 +56,10 @@ template <class T>
 concept arithm_c = is_arithm_v<T>;
 
 template <class T>
-using to_u128 = typename std::conditional<std::is_same_v<T, __int128_t>, __uint128_t, unsigned __int128>;
+using to_u128_t = typename std::conditional_t<std::is_same_v<T, __int128_t>, __uint128_t, unsigned __int128>;
 
 template <class T>
-using to_uint_t = typename std::conditional_t<std::is_same_v<T, i128>, to_u128<T>, typename std::conditional_t<std::is_signed_v<T>, std::make_unsigned<T>, std::common_type<T>>>::type;
+using to_uint_t = typename std::conditional_t<std::is_same_v<T, i128>, to_u128_t<T>, typename std::conditional_t<std::is_signed_v<T>, std::make_unsigned_t<T>, T>>;
 
 }  // namespace tifa_libs
 
