@@ -17,7 +17,7 @@ class mpi {
   constexpr mpi(bool n, vec<u32> const& d) : neg(n), dt(d) {}
   template <int_c T>
   constexpr mpi(T x) : neg(false) {
-    if constexpr (is_sint<T>::value)
+    if constexpr (is_sint_v<T>)
       if (x < 0) neg = true, x = -x;
     while (x) dt.push_back(u32(to_uint_t<T>(x) % D)), x /= D;
   }
@@ -316,7 +316,7 @@ class mpi {
   }
   template <int_c T>
   static constexpr vec<u32> itov_(T x) {
-    if constexpr (is_sint<T>::value) assert(x >= 0);
+    if constexpr (is_sint_v<T>) assert(x >= 0);
     vec<u32> res;
     while (x) res.push_back((u32)(x % D)), x /= D;
     return res;

@@ -17,7 +17,7 @@ constexpr std::pair<I, T> tsearch(I l, I r, F f) {
   fml = f(ml = l + (r - l) * (1 - phi_v<PT>)), fmr = f(mr = r - (r - l) * (1 - phi_v<PT>));
 
   do {
-    if constexpr (is_int<I>::value) {
+    if constexpr (is_int_v<I>) {
       if (r - l < 8) {
         I x = l, fx = fl;
         if (fr < fx) x = r, fx = fr;
