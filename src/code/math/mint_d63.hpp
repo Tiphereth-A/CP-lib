@@ -85,8 +85,7 @@ class mint_d63 {
   friend constexpr mint_d63 operator*(mint_d63 const &l, mint_d63 const &r) { return mint_d63(l) *= r; }
   friend constexpr mint_d63 operator/(mint_d63 const &l, mint_d63 const &r) { return mint_d63(l) /= r; }
   friend constexpr bool operator==(mint_d63 const &l, mint_d63 const &r) { return l.v_ == r.v_; }
-  friend constexpr bool operator!=(mint_d63 const &l, mint_d63 const &r) { return l.v_ != r.v_; }
-  friend constexpr bool operator<(mint_d63 const &l, mint_d63 const &r) { return l.val() < r.val(); }
+  friend constexpr auto operator<=>(mint_d63 const &l, mint_d63 const &r) { return l.sval() - r.sval(); }
   friend std::istream &operator>>(std::istream &is, mint_d63 &r) {
     i64 x;
     is >> x;

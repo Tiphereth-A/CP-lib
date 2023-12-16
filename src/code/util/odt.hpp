@@ -13,7 +13,7 @@ class ODT {
     mutable T v;
     //! [l, r]
     constexpr YYZ(u32 l, u32 r, T const &v) : l(l), r(r), v(v) {}
-    constexpr bool operator<(YYZ const &o) const { return l < o.l; }
+    constexpr auto operator<=>(YYZ const &o) const { return (i32)l - (i32)o.l; }
   };
 
   std::set<YYZ> data;

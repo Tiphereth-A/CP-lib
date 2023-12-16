@@ -34,7 +34,7 @@ class SBT {
     }
   }
 
-  friend constexpr bool operator<(SBT const &l, SBT const &r) { return l.x * r.y < r.x * l.y; }
+  friend constexpr auto operator<=>(SBT const &l, SBT const &r) { return l.x * r.y - r.x * l.y; }
   friend constexpr bool operator==(SBT const &l, SBT const &r) { return l.x == r.x && l.y == r.y; }
 
   constexpr ptt<T> current() const { return {x, y}; }

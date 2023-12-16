@@ -81,8 +81,7 @@ class mint_d31 {
   friend constexpr mint_d31 operator*(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) *= r; }
   friend constexpr mint_d31 operator/(mint_d31 const &l, mint_d31 const &r) { return mint_d31(l) /= r; }
   friend constexpr bool operator==(mint_d31 const &l, mint_d31 const &r) { return l.v_ == r.v_; }
-  friend constexpr bool operator!=(mint_d31 const &l, mint_d31 const &r) { return l.v_ != r.v_; }
-  friend constexpr bool operator<(mint_d31 const &l, mint_d31 const &r) { return l.val() < r.val(); }
+  friend constexpr auto operator<=>(mint_d31 const &l, mint_d31 const &r) { return l.sval() - r.sval(); }
   friend std::istream &operator>>(std::istream &is, mint_d31 &r) {
     i32 x;
     is >> x;

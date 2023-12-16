@@ -21,13 +21,14 @@ struct line {
   constexpr bool is_same_dir(line const &r) const { return is_parallel(r) && is_pos(direction() * r.direction()); }
   friend constexpr bool is_same_dir(line const &l, line const &r) { return l.is_same_dir(r); }
 
-  friend constexpr bool operator<(line const &l, line const &r) {
-    if (l.is_same_dir(r)) return r.is_include_strict(l.l);
-    auto vl = l.direction(), vr = r.direction();
-    if (vl.quad() != vr.quad()) return vl.quad() < vr.quad();
-    return is_pos(vl ^ vr);
-  }
   friend constexpr bool operator==(line const &l, line const &r) { return l.l == r.l && l.r == r.r; }
+  friend constexpr auto operator<=>(line const &l, line const &r) {
+    if (l == r) return 0;
+    if (l.is_same_dir(r)) return r.is_include_strict(l.l) ? -1 : 1;
+    auto vl = l.direction(), vr = r.direction();
+    if (vl.quad() != vr.quad()) return (i32)vl.quad() - (i32)vr.quad();
+    return -sgn(vl ^ vr);
+  }
 
   // half plane
   constexpr bool is_include_strict(point<FP> const &p) const { return is_pos(cross(l, r, p)); }

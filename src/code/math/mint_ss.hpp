@@ -81,8 +81,7 @@ class mint_ss {
   friend constexpr mint_ss operator*(mint_ss l, mint_ss const &r) { return l *= r; }
   friend constexpr mint_ss operator/(mint_ss l, mint_ss const &r) { return l /= r; }
   friend constexpr bool operator==(mint_ss const &l, mint_ss const &r) { return l.v_ == r.v_; }
-  friend constexpr bool operator!=(mint_ss const &l, mint_ss const &r) { return l.v_ != r.v_; }
-  friend constexpr bool operator<(mint_ss const &l, mint_ss const &r) { return l.v_ < r.v_; }
+  friend constexpr auto operator<=>(mint_ss const &l, mint_ss const &r) { return (i32)l.v_ - (i32)r.v_; }
 };
 
 }  // namespace tifa_libs::math

@@ -60,12 +60,11 @@ struct point {
   constexpr point operator-(point const &p) const { return point(*this) -= p; }
 
   constexpr point operator-() const { return point{-x, -y}; }
-  constexpr bool operator<(point const &p) const {
-    if (auto c = comp(x, p.x); c) return c >> 1;
-    return comp(y, p.y) >> 1;
+  constexpr auto operator<=>(point const &p) const {
+    if (auto c = comp(x, p.x); c) return c;
+    return comp(y, p.y);
   }
   constexpr bool operator==(point const &p) const { return is_eq(x, p.x) && is_eq(y, p.y); }
-  constexpr bool operator!=(point const &p) const { return !(*this == p); }
 
   constexpr FP operator*(point const &p) const { return x * p.x + y * p.y; }
   constexpr FP operator^(point const &p) const { return x * p.y - y * p.x; }

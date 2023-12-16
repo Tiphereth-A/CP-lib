@@ -58,8 +58,7 @@ class mint_2e61n1 {
   friend constexpr mint_2e61n1 operator*(mint_2e61n1 const &l, mint_2e61n1 const &r) { return mint_2e61n1(l) *= r; }
   friend constexpr mint_2e61n1 operator/(mint_2e61n1 const &l, mint_2e61n1 const &r) { return mint_2e61n1(l) /= r; }
   friend constexpr bool operator==(mint_2e61n1 const &l, mint_2e61n1 const &r) { return l.v_ == r.v_; }
-  friend constexpr bool operator!=(mint_2e61n1 const &l, mint_2e61n1 const &r) { return l.v_ != r.v_; }
-  friend constexpr bool operator<(mint_2e61n1 const &l, mint_2e61n1 const &r) { return l.val() < r.val(); }
+  friend constexpr auto operator<=>(mint_2e61n1 const &l, mint_2e61n1 const &r) { return (i64)l.val() - (i64)r.val(); }
   friend std::istream &operator>>(std::istream &is, mint_2e61n1 &r) {
     i64 x;
     is >> x;

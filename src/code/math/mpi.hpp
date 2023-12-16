@@ -86,11 +86,9 @@ class mpi {
   constexpr bool is_zero() const { return is0_(dt); }
 
   friend constexpr bool operator==(mpi const& l, mpi const& r) { return l.neg == r.neg && l.dt == r.dt; }
-  friend constexpr bool operator!=(mpi const& l, mpi const& r) { return !(l == r); }
-  friend constexpr bool operator<(mpi const& l, mpi const& r) { return l == r ? false : neq_lt_(l, r); }
-  friend constexpr bool operator<=(mpi const& l, mpi const& r) { return l == r ? true : neq_lt_(l, r); }
-  friend constexpr bool operator>(mpi const& l, mpi const& r) { return l == r ? false : neq_lt_(r, l); }
-  friend constexpr bool operator>=(mpi const& l, mpi const& r) { return l == r ? true : neq_lt_(r, l); }
+  // clang-format off
+  friend constexpr auto operator<=>(mpi const& l, mpi const& r) { return l == r ? 0 : neq_lt_(l, r) ? -1 : 1; }
+  // clang-format on
 
   constexpr u32 size() const { return (u32)dt.size(); }
   constexpr void shrink() { shrink_(dt); }
