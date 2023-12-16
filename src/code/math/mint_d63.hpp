@@ -20,7 +20,6 @@ class mint_d63 {
   static constexpr u64 norm(i64 x) { return (u64)(x + (i64)(MOD & (u64)(-(x < 0)))); }
 
   static inline u64 MOD, R, R2;
-  static inline i64 SMOD;
 
  public:
   static constexpr void set_mod(u64 m) {
@@ -36,14 +35,13 @@ class mint_d63 {
       for (int i = 0; i != 64; ++i)
         if ((R2 *= 2) >= MOD) R2 -= MOD;
     }
-    SMOD = (i64)(MOD);
   }
   static constexpr u64 mod() { return MOD; }
-  static constexpr i64 smod() { return SMOD; }
+  static constexpr i64 smod() { return (i64)MOD; }
 
   constexpr mint_d63() {}
   template <std::integral T>
-  constexpr mint_d63(T v) : v_(redc_mul(norm(i64(v % (T)SMOD)), R2)) {}
+  constexpr mint_d63(T v) : v_(redc_mul(norm(i64(v % (T)smod())), R2)) {}
 
   constexpr u64 val() const {
     u64 res = -mul_high(v_ * R, MOD);
@@ -60,7 +58,7 @@ class mint_d63 {
     return res;
   }
   constexpr mint_d63 inv() const {
-    i64 x1 = 1, x3 = 0, a = sval(), b = SMOD;
+    i64 x1 = 1, x3 = 0, a = sval(), b = smod();
     while (b != 0) {
       i64 q = a / b, x1_old = x1, a_old = a;
       x1 = x3, x3 = x1_old - x3 * q, a = b, b = a_old - b * q;

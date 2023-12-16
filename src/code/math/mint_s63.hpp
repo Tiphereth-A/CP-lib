@@ -35,7 +35,6 @@ class mint_s63 {
  public:
   static constexpr u64 R = get_r();
   static constexpr u64 R2 = get_r2();
-  static constexpr i64 SMOD = (i64)(MOD);
 
   static_assert(MOD & 1);
   static_assert(R * MOD == 1);
@@ -43,11 +42,11 @@ class mint_s63 {
   static_assert(MOD != 1);
 
   static constexpr u64 mod() { return MOD; }
-  static constexpr i64 smod() { return SMOD; }
+  static constexpr i64 smod() { return (i64)MOD; }
 
   constexpr mint_s63() {}
   template <std::integral T>
-  constexpr mint_s63(T v) : v_(redc_mul(norm(v % SMOD), R2)) {}
+  constexpr mint_s63(T v) : v_(redc_mul(norm(v % smod()), R2)) {}
 
   constexpr u64 val() const {
     u64 res = -mul_high(v_ * R, MOD);
@@ -64,7 +63,7 @@ class mint_s63 {
     return res;
   }
   constexpr mint_s63 inv() const {
-    i64 x1 = 1, x3 = 0, a = sval(), b = SMOD;
+    i64 x1 = 1, x3 = 0, a = sval(), b = smod();
     while (b != 0) {
       i64 q = a / b, x1_old = x1, a_old = a;
       x1 = x3, x3 = x1_old - x3 * q, a = b, b = a_old - b * q;

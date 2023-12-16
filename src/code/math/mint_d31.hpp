@@ -17,14 +17,13 @@ class mint_d31 {
   static constexpr u32 tsf(u32 x) { return redc((u64)(x % MOD_ODD) * R2) << OFFSET | (x & MASK); }
 
   static inline u32 R, R2, MOD, MOD_ODD, OFFSET, MASK;
-  static inline i32 SMOD;
 
  public:
   static constexpr void set_mod(u32 m) {
     assert(!(m == 1 || m >> 31));
     for (MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD >>= 1)
       ;
-    MASK = (1 << OFFSET) - 1, SMOD = (i32)(MOD);
+    MASK = (1 << OFFSET) - 1;
     {
       u32 t = 2, iv = MOD_ODD * (t - MOD_ODD * MOD_ODD);
       iv *= t - MOD_ODD * iv, iv *= t - MOD_ODD * iv;
@@ -33,11 +32,11 @@ class mint_d31 {
     R2 = (u32)(-(u64)(MOD_ODD) % MOD_ODD);
   }
   static constexpr u32 mod() { return MOD; }
-  static constexpr i32 smod() { return SMOD; }
+  static constexpr i32 smod() { return (i32)MOD; }
 
   constexpr mint_d31() {}
   template <std::integral T>
-  constexpr mint_d31(T v) : v_(tsf(norm((i32)(v % (T)SMOD)))) {}
+  constexpr mint_d31(T v) : v_(tsf(norm((i32)(v % (T)smod())))) {}
 
   constexpr u32 val() const {
     u32 h = redc(v_ >> OFFSET);
@@ -55,7 +54,7 @@ class mint_d31 {
     return res;
   }
   constexpr mint_d31 inv() const {
-    i32 x1 = 1, x3 = 0, a = sval(), b = SMOD;
+    i32 x1 = 1, x3 = 0, a = sval(), b = smod();
     while (b != 0) {
       i32 q = a / b, x1_old = x1, a_old = a;
       x1 = x3, x3 = x1_old - x3 * q, a = b, b = a_old - b * q;
