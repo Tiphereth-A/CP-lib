@@ -6,7 +6,7 @@
 namespace tifa_libs {
 
 #pragma GCC diagnostic ignored "-Wfloat-conversion"
-template <class FP>
+template <std::floating_point FP>
 constexpr u64 fp2uint(FP x, FP eps) { return x + eps; }
 #pragma GCC diagnostic warning "-Wfloat-conversion"
 
