@@ -5,7 +5,7 @@
 
 namespace tifa_libs {
 
-using std::numbers::pi_v, std::numbers::phi_v;
+using namespace std::numbers;
 
 // std::sqrt(std::numeric_limits<FP>::epsilon())
 template <std::floating_point FP>
