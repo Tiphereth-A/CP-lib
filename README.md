@@ -5,5 +5,6 @@
 [![GitHub deployments](https://img.shields.io/github/deployments/Tiphereth-A/CP-lib/github-pages?label=pages+state&logo=github)](https://cplib.tifa-233.com/)
 ![Code Size](https://img.shields.io/github/languages/code-size/Tiphereth-A/CP-lib)
 ![Standard](https://img.shields.io/static/v1?label=standard&message=C%2B%2B20+with+O2&color=green&logo=cplusplus)
+![Requirments](https://img.shields.io/static/v1?label=requirments&message=GCC+>=12&color=blue&logo=cplusplus)
 
 My code library for Competitive Programming, powered by [competitive-verifier/competitive-verifier](https://github.com/competitive-verifier/competitive-verifier) & [Tiphereth-A/TINplate](https://github.com/Tiphereth-A/TINplate).
