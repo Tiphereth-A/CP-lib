@@ -36,7 +36,7 @@ class mint_d31 {
   static constexpr i32 smod() { return SMOD; }
 
   constexpr mint_d31() {}
-  template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
+  template <std::integral T>
   constexpr mint_d31(T v) : v_(tsf(norm((i32)(v % (T)SMOD)))) {}
 
   constexpr u32 val() const {
@@ -46,7 +46,7 @@ class mint_d31 {
   constexpr i32 sval() const { return (i32)val(); }
   constexpr u32 &data() { return v_; }
   constexpr u32 const &data() const { return v_; }
-  template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
+  template <std::integral T>
   explicit constexpr operator T() const { return (T)(val()); }
   constexpr mint_d31 operator-() const {
     mint_d31 res;

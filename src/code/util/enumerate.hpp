@@ -6,7 +6,7 @@
 namespace tifa_libs::util {
 
 namespace enumerate_impl_ {
-template <typename T, std::enable_if_t<is_iterable<T>::value> * = nullptr>
+template <iterable_c T>
 class iter_ {
  public:
   using iter_t = typename std::remove_cvref_t<T>::iterator;

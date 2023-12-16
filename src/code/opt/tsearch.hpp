@@ -8,7 +8,7 @@ namespace tifa_libs::opt {
 
 // F: T(I)
 // @return $\argmin_{l\leq x\leq r}\{f\}$
-template <class I, class F, class T = decltype(std::declval<F>()(std::declval<I>())), std::enable_if_t<is_arithm<I>::value>* = nullptr>
+template <arithm_c I, class F, class T = decltype(std::declval<F>()(std::declval<I>()))>
 constexpr std::pair<I, T> tsearch(I l, I r, F f) {
   assert(l <= r);
   I ml, mr;

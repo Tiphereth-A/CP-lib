@@ -133,7 +133,7 @@ void single_test(point<T> const& x, point<T> const& y, point<T> const& a, T s) {
   test_distance_absolute_homogeneity(y, x, s);
 }
 
-template <class T, std::enable_if_t<std::is_arithmetic_v<T>>* = nullptr>
+template <tifa_libs::arithm_c T>
 void test(T lim) {
   tifa_libs::rand::Gen<std::conditional_t<std::is_integral_v<T>, std::uniform_int_distribution<T>, std::uniform_real_distribution<T>>> g(std::is_signed_v<T> ? -lim : 0, lim);
   single_test(point<T>(g(), g()), point<T>(g(), g()), point<T>(g(), g()), g());

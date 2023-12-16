@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-template <class T, std::enable_if_t<is_sint<T>::value>* = nullptr>
+template <sint_c T>
 constexpr T safe_mod(T x, to_uint_t<T> mod) { return ((x %= (T)mod) < 0 ? x + (T)mod : x); }
 
 }  // namespace tifa_libs::math

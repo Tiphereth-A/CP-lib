@@ -134,7 +134,7 @@ void test_x(triangle<T> const& t) {
              check_param(t), check_param(x), check_param(uva), check_param(uvb), check_param(uvc), check_param(ang_axb), check_param(ang_bxc), check_param(ang_cxa));
 }
 
-template <class T, std::enable_if_t<std::is_arithmetic_v<T>>* = nullptr>
+template <tifa_libs::arithm_c T>
 void test(T lim) {
   tifa_libs::rand::Gen<std::conditional_t<std::is_integral_v<T>, std::uniform_int_distribution<T>, std::uniform_real_distribution<T>>> g(std::is_signed_v<T> ? -lim : 0, lim);
 

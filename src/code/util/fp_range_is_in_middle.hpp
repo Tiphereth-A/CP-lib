@@ -6,7 +6,7 @@
 namespace tifa_libs {
 
 //! containing endpoints
-template <class FP, std::enable_if_t<std::is_arithmetic_v<FP>>* = nullptr>
+template <arithm_c FP>
 constexpr bool is_in_middle(FP l, FP mid, FP r) { return is_eq(l, mid) || is_eq(r, mid) || ((l < mid) ^ (r < mid)); }
 
 }  // namespace tifa_libs

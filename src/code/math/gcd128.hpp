@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-template <class T, std::enable_if_t<is_uint<T>::value>* = nullptr>
+template <uint_c T>
 constexpr T gcd_u128(T a, T b) {
   if (!a) return b;
   if (!b) return a;
@@ -19,7 +19,7 @@ constexpr T gcd_u128(T a, T b) {
   }
 }
 #pragma GCC diagnostic ignored "-Wsign-conversion"
-template <class T, std::enable_if_t<is_int<T>::value>* = nullptr>
+template <int_c T>
 constexpr T gcd_128(T a, T b) { return gcd_u128<to_uint_t<T>>(abs(a), abs(b)); }
 #pragma GCC diagnostic warning "-Wsign-conversion"
 

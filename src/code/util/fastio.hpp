@@ -33,7 +33,8 @@ class fastin {
 
   bool iseof() { return peek() == EOF; }
 
-  template <class T, std::enable_if_t<is_sint<T>::value && !is_char<T>::value> * = nullptr>
+  template <class T>
+    requires(sint_c<T> && !char_c<T>)
   fastin &read(T &n) {
     bool is_neg = false;
     char ch = get();
@@ -49,7 +50,8 @@ class fastin {
     if (is_neg) n = -n;
     return *this;
   }
-  template <class T, std::enable_if_t<is_uint<T>::value && !is_char<T>::value> * = nullptr>
+  template <class T>
+    requires(uint_c<T> && !char_c<T>)
   fastin &read(T &n) {
     char ch = get();
     while (!isdigit(ch)) ch = get();
@@ -60,7 +62,7 @@ class fastin {
     }
     return *this;
   }
-  template <class T, std::enable_if_t<is_mint<T>::value> * = nullptr>
+  template <mint_c T>
   fastin &read(T &n) {
     decltype(std::declval<T>().sval()) x;
     read(x);
@@ -68,7 +70,7 @@ class fastin {
     return *this;
   }
   //! ignore cntrl and space
-  template <class T, std::enable_if_t<is_char<T>::value> * = nullptr>
+  template <char_c T>
   fastin &read(T &n) {
     while (!isgraph(n = get()))
       ;
@@ -99,7 +101,7 @@ class fastin {
     std::apply([&](Ts &...targs) { ((read(targs)), ...); }, p);
     return *this;
   }
-  template <class T, std::enable_if_t<is_container<T>::value> * = nullptr>
+  template <container_c T>
   fastin &read(T &p) {
     if (p.begin() == p.end()) return *this;
     for (auto &i : p) read(i);
@@ -125,7 +127,7 @@ class fastin {
   }
 
   //! NOT ignore cntrl and space
-  template <class T, std::enable_if_t<is_char<T>::value> * = nullptr>
+  template <char_c T>
   fastin &strict_read(T &n) {
     n = get();
     return *this;
@@ -162,7 +164,7 @@ class fastout {
   }
   void rebind(FILE *file) { f_ = file; }
 
-  template <class T, std::enable_if_t<is_char<T>::value> * = nullptr>
+  template <char_c T>
   fastout &write(T const &n) {
     if (now_ == end_) flush();
     *(now_++) = n;
@@ -182,7 +184,8 @@ class fastout {
     now_ += len;
     return *this;
   }
-  template <class T, std::enable_if_t<is_sint<T>::value && !is_char<T>::value> * = nullptr>
+  template <class T>
+    requires(sint_c<T> && !char_c<T>)
   fastout &write(T n) {
     if (n < 0) {
       write('-');
@@ -190,7 +193,8 @@ class fastout {
     }
     return write(to_uint_t<T>(n));
   }
-  template <class T, std::enable_if_t<is_uint<T>::value && !is_char<T>::value> * = nullptr>
+  template <class T>
+    requires(uint_c<T> && !char_c<T>)
   fastout &write(T n) {
     if constexpr (sizeof(T) <= 4) {
       memset(now_ib_ = int_bf_, 0, 11);
@@ -203,7 +207,7 @@ class fastout {
     } while (n /= 10);
     return write(now_ib_);
   }
-  template <class T, std::enable_if_t<is_mint<T>::value> * = nullptr>
+  template <mint_c T>
   fastout &write(T n) { return write(n.val()); }
   fastout &write(std::string const &str) { return write(str.c_str()); }
   template <class T, class U>
@@ -218,7 +222,7 @@ class fastout {
         p);
     return *this;
   }
-  template <class T, std::enable_if_t<is_container<T>::value> * = nullptr>
+  template <container_c T>
   fastout &write(T const &p) {
     if (p.begin() == p.end()) return *this;
     auto it = p.begin();

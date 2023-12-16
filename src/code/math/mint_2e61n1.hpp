@@ -12,9 +12,9 @@ class mint_2e61n1 {
   static constexpr u64 _30 = (1 << 30) - 1, _31 = (1u << 31) - 1;
 
   // clang-format off
-  template <class T, std::enable_if_t<is_uint<T>::value> * = nullptr>
+  template <uint_c T>
   static constexpr u64 mod_(T x) { return x < MOD ? (u64)x : (x = (x & MOD) + ((u64)x >> 61)) > MOD ? x - MOD : (u64)x; }
-  template <class T, std::enable_if_t<is_sint<T>::value> * = nullptr>
+  template <sint_c T>
   static constexpr u64 mod_(T x) { return x >= 0 ? mod_(to_uint_t<T>(x)) : MOD - mod_(to_uint_t<T>(-x)); }
   // clang-format on
 
@@ -22,13 +22,13 @@ class mint_2e61n1 {
   static constexpr u64 mod() { return MOD; }
 
   constexpr mint_2e61n1() {}
-  template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
+  template <std::integral T>
   constexpr mint_2e61n1(T v) : v_(mod_(v)) {}
 
   constexpr u64 val() const { return v_; }
   constexpr u64 &data() { return v_; }
   constexpr u64 const &data() const { return v_; }
-  template <class T, std::enable_if_t<std::is_integral_v<T>> * = nullptr>
+  template <std::integral T>
   explicit operator T() const { return (T)(val()); }
   constexpr mint_2e61n1 operator-() const { return MOD - v_; }
   constexpr mint_2e61n1 inv() const {

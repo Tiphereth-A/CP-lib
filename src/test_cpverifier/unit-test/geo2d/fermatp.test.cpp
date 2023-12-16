@@ -18,7 +18,7 @@ void single_test(vec<point<T>> const& v) {
   check_bool(tifa_libs::is_lt(sum.norm(), (T)2), check_param(v), check_param(fp_poly), check_param(sum));
 }
 
-template <class T, std::enable_if_t<std::is_arithmetic_v<T>>* = nullptr>
+template <tifa_libs::arithm_c T>
 void test(T lim) {
   tifa_libs::rand::Gen<std::conditional_t<std::is_integral_v<T>, std::uniform_int_distribution<T>, std::uniform_real_distribution<T>>> g(std::is_signed_v<T> ? -lim : 0, lim);
 

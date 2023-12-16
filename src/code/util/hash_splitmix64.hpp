@@ -31,7 +31,7 @@ class hash_splitmix64 {
     std::apply([&](Ts const &...targs) { ((ret = append(ret, (*this)(targs))), ...); }, tp);
     return ret;
   }
-  template <class T, std::enable_if_t<is_iterable<T>::value> * = nullptr>
+  template <iterable_c T>
   usz operator()(T const &tp) const {
     usz ret = 0;
     for (auto &&i : tp) ret = append(ret, (*this)(i));

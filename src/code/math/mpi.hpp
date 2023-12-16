@@ -15,7 +15,7 @@ class mpi {
  public:
   explicit constexpr mpi() : neg(false), dt() {}
   constexpr mpi(bool n, vec<u32> const& d) : neg(n), dt(d) {}
-  template <class T, std::enable_if_t<is_int<T>::value>* = nullptr>
+  template <int_c T>
   constexpr mpi(T x) : neg(false) {
     if constexpr (is_sint<T>::value)
       if (x < 0) neg = true, x = -x;
@@ -314,7 +314,7 @@ class mpi {
     std::reverse(res.begin(), res.end());
     return res;
   }
-  template <class T, std::enable_if_t<is_int<T>::value>* = nullptr>
+  template <int_c T>
   static constexpr vec<u32> itov_(T x) {
     if constexpr (is_sint<T>::value) assert(x >= 0);
     vec<u32> res;

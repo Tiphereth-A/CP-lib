@@ -20,12 +20,12 @@ class mint_ss {
     return x;
   }
   constexpr mint_ss() : v_(0) {}
-  template <class T, std::enable_if_t<std::is_integral<T>::value && std::is_signed<T>::value> * = nullptr>
+  template <std::signed_integral T>
   constexpr mint_ss(T v) : mint_ss() {
     i64 x = (i64)(v % (i64)mod());
     v_ = (u32)(x + (x < 0 ? mod() : 0));
   }
-  template <class T, std::enable_if_t<std::is_integral<T>::value && std::is_unsigned<T>::value> * = nullptr>
+  template <std::unsigned_integral T>
   constexpr mint_ss(T v) : v_((u32)(v % mod())) {}
   friend std::istream &operator>>(std::istream &is, mint_ss &x) {
     i64 xx;

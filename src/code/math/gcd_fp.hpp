@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-template <class T, std::enable_if_t<std::is_floating_point_v<T>>* = nullptr>
+template <std::floating_point T>
 constexpr T gcd_fp(T a, T b, T eps = 1e-2) {
   if ((a = std::abs(a)) < (b = std::abs(b))) std::swap(a, b);
   while (a - b > eps) {
