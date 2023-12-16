@@ -10,13 +10,13 @@ class basisR {
   static_assert(std::is_floating_point_v<FP>);
 
   vvec<FP> base;
-  constexpr bool is_zero(FP x) const { return std::abs(x) < EPS; }
+  constexpr bool is_zero(FP x) const { return std::abs(x) < eps_v; }
 
  public:
   const u32 vec_len;
-  const FP EPS;
+  const FP eps_v;
 
-  explicit constexpr basisR(u32 vec_len, FP EPS = 1e-4) : vec_len(vec_len), EPS(EPS) {}
+  explicit constexpr basisR(u32 vec_len, FP eps_v = 1e-4) : vec_len(vec_len), eps_v(eps_v) {}
 
   constexpr vec<FP> &operator[](u32 i) { return base[i]; }
   constexpr vec<FP> const &operator[](u32 i) const { return base[i]; }

@@ -14,7 +14,7 @@ constexpr std::pair<I, T> tsearch(I l, I r, F f) {
   I ml, mr;
   T fl = f(l), fr = f(r), fml, fmr;
   using PT = std::conditional_t<std::is_floating_point_v<I>, I, f64>;
-  fml = f(ml = l + (r - l) * (1 - PHI<PT>)), fmr = f(mr = r - (r - l) * (1 - PHI<PT>));
+  fml = f(ml = l + (r - l) * (1 - phi_v<PT>)), fmr = f(mr = r - (r - l) * (1 - phi_v<PT>));
 
   do {
     if constexpr (is_int<I>::value) {
@@ -29,7 +29,7 @@ constexpr std::pair<I, T> tsearch(I l, I r, F f) {
         }
         return {x, fx};
       }
-    } else if ((r - l) / std::max({l, r, (I)1}) < EPS<I>) return {l, fl};
+    } else if ((r - l) / std::max({l, r, (I)1}) < eps_v<I>) return {l, fl};
     if (fml < fmr) {
       r = mr, fr = fmr;
       mr = ml, fmr = fml;

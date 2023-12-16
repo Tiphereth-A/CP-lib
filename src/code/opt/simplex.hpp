@@ -2,7 +2,6 @@
 #define TIFALIBS_OPT_SIMPLEX
 
 #include "../util/fp_const.hpp"
-#include "../util/util.hpp"
 
 namespace tifa_libs::opt {
 
@@ -29,7 +28,7 @@ struct LPSolver {
   constexpr void pivot(int r, int s) {  // swap B[r] (row)
     T inv = 1 / D[r][s];                // with N[r] (column)
     for (int i = 0; i <= m + 1; ++i)
-      if (i != r && abs(D[i][s]) > EPS<T>) {
+      if (i != r && abs(D[i][s]) > eps_v<T>) {
         T binv = D[i][s] * inv;
         for (int j = 0; j < (n + 2); ++j)
           if (j != s) D[i][j] -= D[r][j] * binv;
@@ -46,11 +45,11 @@ struct LPSolver {
       for (int j = 0; j <= n; ++j)
         if (N[j] != -phase) ltj(D[x]);
       // find most negative col for nonbasic (NB) variable
-      if (D[x][s] >= -EPS<T>) return 1;
+      if (D[x][s] >= -eps_v<T>) return 1;
       // can't get better sol by increasing NB variable
       int r = -1;
       for (int i = 0; i < m; ++i) {
-        if (D[i][s] <= EPS<T>) continue;
+        if (D[i][s] <= eps_v<T>) continue;
         if (r == -1 || std::make_pair(D[i][n + 1] / D[i][s], B[i]) < std::make_pair(D[r][n + 1] / D[r][s], B[r])) r = i;
         // find smallest positive ratio
       }                       // -> max increase in NB variable
@@ -62,10 +61,10 @@ struct LPSolver {
     int r = 0;
     for (int i = (1); i < m; ++i)
       if (D[i][n + 1] < D[r][n + 1]) r = i;
-    if (D[r][n + 1] < -EPS<T>) {  // if not, find feasible start
+    if (D[r][n + 1] < -eps_v<T>) {  // if not, find feasible start
       pivot(r, n);                // make artificial variable basic
       assert(simplex(2));         // I think this will always be true??
-      if (D[m + 1][n + 1] < -EPS<T>) return -inf;
+      if (D[m + 1][n + 1] < -eps_v<T>) return -inf;
       // D[m+1][n+1] is max possible value of the negation of
       // artificial variable, optimal value should be zero
       // if exists feasible solution

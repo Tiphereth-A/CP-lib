@@ -9,7 +9,7 @@ namespace tifa_libs::geo {
 template <class FP>
 constexpr FP ang2pi_PP(point<FP> const &p1, point<FP> const &p2) {
   FP res = ang_PP(p1, p2);
-  return is_neg(res) ? res + 2 * PI<FP> : res;
+  return is_neg(res) ? res + 2 * pi_v<FP> : res;
 }
 
 }  // namespace tifa_libs::geo

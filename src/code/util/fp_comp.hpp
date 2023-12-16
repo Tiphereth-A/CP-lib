@@ -9,7 +9,7 @@ namespace tifa_libs {
 template <int_c FP>
 constexpr int sgn(FP x) { return (!!x) | (x >> (sizeof(FP) * 8 - 1)); }
 template <std::floating_point FP>
-constexpr int sgn(FP x) { return (x > EPS<FP>)-(x < -EPS<FP>); }
+constexpr int sgn(FP x) { return (x > eps_v<FP>)-(x < -eps_v<FP>); }
 
 template <class FP>
 constexpr bool is_neg(FP x) { return sgn(x) < 0; }
