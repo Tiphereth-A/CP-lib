@@ -15,7 +15,7 @@ constexpr poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64>
   if (t <= k) {
     poly<T> ret(m);
     u32 ptr = 0;
-    for (u64 i = t; i <= k && ptr < m; ++i) ret[ptr++] = f[i];
+    for (u32 i = (u32)t; i <= k && ptr < m; ++i) ret[ptr++] = f[i];
     if (k + 1 < t + m) {
       auto suf = poly_ctsh(f, k + 1, ifact, m - ptr);
       for (u32 i = k + 1; i < t + m; ++i) ret[ptr++] = suf[i - (k + 1)];
@@ -23,7 +23,7 @@ constexpr poly<T> poly_ctsh(poly<T> const &f, typename T::value_type c, vec<u64>
     return ret;
   }
   if (t + m > mint::mod()) {
-    auto pref = poly_ctsh(f, t, ifact, mint::mod() - t), suf = poly_ctsh(f, 0, ifact, m - pref.size());
+    auto pref = poly_ctsh(f, t, ifact, u32(mint::mod() - t)), suf = poly_ctsh(f, 0, ifact, m - pref.size());
     std::copy(suf.data().begin(), suf.data().end(), std::back_inserter(pref.data()));
     return pref;
   }
