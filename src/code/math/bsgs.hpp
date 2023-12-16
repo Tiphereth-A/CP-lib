@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 
 // solve a^x=b (mod m)
 //! gcd(a, m) == 1 required
-constexpr std::optional<u64> bsgs(u64 a, u64 b, u64 m) {
+inline std::optional<u64> bsgs(u64 a, u64 b, u64 m) {
   a %= m;
   hmap<u64, u64> hmp;
   u64 sqrt_m = isqrt(m), s = mul_mod_u(a, b, m);

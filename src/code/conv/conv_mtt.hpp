@@ -46,8 +46,8 @@ constexpr vec<mint> conv_mtt(FFT<FP> &fft, vec<mint> const &l, vec<mint> const &
   fft.dif(a);
   fft.dif(b);
   for (u32 i = 0; i < ans_size; ++i) {
-    i64 da = (i64)(a[i].real() / (FP)n + .5) % mint::mod(), db = (i64)(a[i].imag() / (FP)n + .5) % mint::mod(), dc = (i64)(b[i].real() / (FP)n + .5) % mint::mod(), dd = (i64)(b[i].imag() / (FP)n + .5) % mint::mod();
-    ans[i] = da + ((db + dc) << OFS) % mint::mod() + (dd << (OFS * 2)) % mint::mod();
+    i64 da = (i64)(a[i].real() / (FP)n + .5) % mint::smod(), db = (i64)(a[i].imag() / (FP)n + .5) % mint::smod(), dc = (i64)(b[i].real() / (FP)n + .5) % mint::smod(), dd = (i64)(b[i].imag() / (FP)n + .5) % mint::smod();
+    ans[i] = da + ((db + dc) << OFS) % mint::smod() + (dd << (OFS * 2)) % mint::smod();
   }
   return ans;
 }

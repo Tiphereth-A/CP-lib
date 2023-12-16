@@ -14,6 +14,7 @@ class mint_ds {
 
  public:
   static constexpr u32 mod() { return bt_.umod(); }
+  static constexpr i32 smod() { return (i32)bt_.umod(); }
   //! MUST be called first
   //! set module with same ID
   static constexpr void set_mod(u32 m) {

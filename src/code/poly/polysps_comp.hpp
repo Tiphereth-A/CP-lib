@@ -10,7 +10,7 @@
 namespace tifa_libs::math {
 
 template <class T, u32 N = 21>
-constexpr vec<typename T::value_type> polysps_comp(u32 n, poly<T> f, vec<typename T::value_type> g, vec<u64> const &fact, vec<u64> const &ifact) {
+vec<typename T::value_type> polysps_comp(u32 n, poly<T> f, vec<typename T::value_type> g, vec<u64> const &fact, vec<u64> const &ifact) {
   assert(n <= N);
   using mint = typename T::value_type;
   static conv_subset<mint, N> ss;

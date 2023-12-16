@@ -13,6 +13,7 @@ class mint_ss {
 
  public:
   static constexpr u32 mod() { return MOD; }
+  static constexpr i32 smod() { return (i32)MOD; }
   static constexpr mint_ss raw(u32 v) {
     mint_ss x;
     x.v_ = v;
