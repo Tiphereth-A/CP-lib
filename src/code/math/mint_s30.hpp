@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_MINT_S30
 #define TIFALIBS_MATH_MINT_S30
 
-#include "../util/util.hpp"
+#include "inverse.hpp"
 
 namespace tifa_libs::math {
 
@@ -46,14 +46,7 @@ class mint_s30 {
     res.v_ = (MOD2 & -(v_ != 0)) - v_;
     return res;
   }
-  constexpr mint_s30 inv() const {
-    i32 x1 = 1, x3 = 0, a = sval(), b = smod();
-    while (b != 0) {
-      i32 q = a / b, x1_old = x1, a_old = a;
-      x1 = x3, x3 = x1_old - x3 * q, a = b, b = a_old - b * q;
-    }
-    return mint_s30(x1);
-  }
+  constexpr mint_s30 inv() const { return inverse(val(), mod()); }
   constexpr mint_s30 &operator+=(mint_s30 const &r) {
     v_ += r.v_ - MOD2, v_ += MOD2 & -(v_ >> 31);
     return *this;

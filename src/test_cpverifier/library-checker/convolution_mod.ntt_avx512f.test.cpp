@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#include "../../code/fast/ntt_si512.hpp"
+#include "../../code/fast/ntt_avx512f.hpp"
 #include "../../code/util/fastio.hpp"
 
 int main() {
@@ -8,6 +8,6 @@ int main() {
   tifa_libs::fin >> n >> m;
   vec<u32> a(n), b(m);
   tifa_libs::fin >> a >> b;
-  tifa_libs::fout << tifa_libs::math::NTT_si512(998244353).conv(a, b) << '\n';
+  tifa_libs::fout << tifa_libs::math::NTT_AVX512F(998244353).conv(a, b) << '\n';
   return 0;
 }

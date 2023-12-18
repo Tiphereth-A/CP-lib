@@ -5,8 +5,9 @@
 
 namespace tifa_libs::math {
 
-constexpr u64 inverse(u64 n, u64 mod) {
-  auto [g, x] = inv_gcd(n % mod, mod);
+template <uint_c T, uint_c U>
+constexpr U inverse(T n, U mod) {
+  auto [g, x] = inv_gcd(U(n % mod), mod);
   assert(g == 1);
   return x;
 }

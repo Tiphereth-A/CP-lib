@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_MINT_D63
 #define TIFALIBS_MATH_MINT_D63
 
-#include "../util/util.hpp"
+#include "inverse.hpp"
 
 namespace tifa_libs::math {
 
@@ -57,14 +57,7 @@ class mint_d63 {
     res.v_ = (MOD & -(v_ != 0)) - v_;
     return res;
   }
-  constexpr mint_d63 inv() const {
-    i64 x1 = 1, x3 = 0, a = sval(), b = smod();
-    while (b != 0) {
-      i64 q = a / b, x1_old = x1, a_old = a;
-      x1 = x3, x3 = x1_old - x3 * q, a = b, b = a_old - b * q;
-    }
-    return mint_d63(x1);
-  }
+  constexpr mint_d63 inv() const { return inverse(val(), mod()); }
   constexpr mint_d63 &operator+=(mint_d63 const &r) {
     v_ += r.v_ - MOD, v_ += MOD & -(v_ >> 63);
     return *this;

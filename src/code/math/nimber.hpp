@@ -5,10 +5,10 @@
 
 namespace tifa_libs::math {
 
-template <class uint, uint (*prod)(uint, uint)>
+template <std::unsigned_integral T, T (*prod)(T, T)>
 struct nimber {
-  uint x;
-  constexpr nimber(uint _x = 0) : x(_x) {}
+  T x;
+  constexpr nimber(T _x = 0) : x(_x) {}
 
   constexpr nimber& operator+=(nimber const& p) {
     x ^= p.x;

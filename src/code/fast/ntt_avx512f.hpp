@@ -9,11 +9,11 @@
 namespace tifa_libs::math {
 
 // from <https://judge.yosupo.jp/submission/166305>
-struct NTT_si512 {
+struct NTT_AVX512F {
   // avoid weird CE from clang
   using pu32 = u32 *;
 
-  alignas(64) Montgomery_si512 mts;
+  alignas(64) MontgomeryAVX512F mts;
   Montgomery mt;
   u32 mod, g;
 
@@ -30,7 +30,7 @@ struct NTT_si512 {
   alignas(64) u32 w[8], w_r[8];                      // read NTT()
   alignas(64) u64x8 w_cum_x8[LG], w_rcum_x8[LG];     // read NTT()
   alignas(64) u32x16 w_cum_x16[LG], w_rcum_x16[LG];  // read NTT()
-  explicit NTT_si512(u32 mod = 998244353) : mts(mod), mt(mod), mod(mod) {
+  explicit NTT_AVX512F(u32 mod = 998244353) : mts(mod), mt(mod), mod(mod) {
     const auto mt = this->mt;  // ! to put Montgomery constants in registers
     g = mt.mul<true>(mt.r2, proot_u32(mod));
     for (int i = 0; i < LG; ++i) {

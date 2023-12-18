@@ -6,8 +6,10 @@
 
 namespace tifa_libs::math {
 
-constexpr std::pair<u64, u64> inv_gcd(u64 n, u64 mod) {
-  auto [g, x, y] = exgcd((i64)(n % mod), (i64)mod);
+template <uint_c T>
+constexpr ptt<T> inv_gcd(T n, T mod) {
+  using U = std::make_signed_t<T>;
+  auto [g, x, y] = exgcd(U(n % mod), (U)mod);
   return {g, safe_mod(x, mod)};
 }
 

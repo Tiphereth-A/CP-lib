@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_MINT_D31
 #define TIFALIBS_MATH_MINT_D31
 
-#include "../util/util.hpp"
+#include "inverse.hpp"
 
 namespace tifa_libs::math {
 
@@ -53,14 +53,7 @@ class mint_d31 {
     res.v_ = (((MOD_ODD & -(h != 0)) - h) << OFFSET) | (-v_ & MASK);
     return res;
   }
-  constexpr mint_d31 inv() const {
-    i32 x1 = 1, x3 = 0, a = sval(), b = smod();
-    while (b != 0) {
-      i32 q = a / b, x1_old = x1, a_old = a;
-      x1 = x3, x3 = x1_old - x3 * q, a = b, b = a_old - b * q;
-    }
-    return mint_d31(x1);
-  }
+  constexpr mint_d31 inv() const { return inverse(val(), mod()); }
   constexpr mint_d31 &operator+=(mint_d31 const &r) {
     u32 h = (v_ >> OFFSET) + (r.v_ >> OFFSET) - MOD_ODD;
     v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((v_ + r.v_) & MASK);

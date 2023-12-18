@@ -8,15 +8,15 @@
 
 namespace tifa_libs::math {
 
-struct Montgomery_si512 {
+struct MontgomeryAVX512F {
   alignas(64) u32x16 mod;
   alignas(64) u32x16 mod2;   // 2 * mod
   alignas(64) u32x16 n_inv;  // n_inv * mod == -1 (mod 2^32)
   alignas(64) u32x16 r;      // 2^32 % mod
   alignas(64) u32x16 r2;     // (2^32) ^ 2 % mod
 
-  Montgomery_si512() {}
-  Montgomery_si512(u32 md) {
+  MontgomeryAVX512F() {}
+  MontgomeryAVX512F(u32 md) {
     Montgomery mt(md);
     mod = set1_u32x16(mt.mod);
     mod2 = set1_u32x16(mt.mod2);
