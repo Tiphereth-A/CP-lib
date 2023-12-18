@@ -2,6 +2,7 @@
 #define TIFALIBS_UTIL_SIMD_AVX512F
 
 #pragma GCC target("avx512f")
+#pragma GCC optimize("O3,unroll-loops")
 #include <immintrin.h>
 
 #include "util.hpp"

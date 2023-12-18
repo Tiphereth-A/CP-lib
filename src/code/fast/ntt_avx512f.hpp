@@ -17,7 +17,7 @@ struct NTT_AVX512F {
   Montgomery mt;
   u32 mod, g;
 
-  [[gnu::noinline]] u32 power(u32 base, u32 exp) const {
+  u32 power(u32 base, u32 exp) const {
     const auto mt = this->mt;  // ! to put Montgomery constants in registers
     u32 res = mt.r;
     for (; exp > 0; exp >>= 1) {
@@ -64,7 +64,7 @@ struct NTT_AVX512F {
   }
   // input data[i] in [0, 2 * mod)
   // output data[i] in [0, 4 * mod)
-  [[gnu::noinline]] __attribute__((optimize("O3"))) void fft(u32 lg, u32 *data) const {
+  void fft(u32 lg, u32 *data) const {
     const auto mt = this->mt;    // ! to put Montgomery constants in registers
     const auto mts = this->mts;  // ! to put Montgomery constants in registers
     u32 n = 1 << lg, k = lg;
@@ -133,7 +133,7 @@ struct NTT_AVX512F {
   // output data[i] in [0, mod)
   // fc (if specified) should be in [0, mod)
   // if fc is specified everything is multiplied by fc
-  [[gnu::noinline]] __attribute__((optimize("O3"))) void ifft(u32 lg, u32 *data, u32 fc = -1u) const {
+  void ifft(u32 lg, u32 *data, u32 fc = -1u) const {
     const auto mt = this->mt;    // ! to put Montgomery constants in registers
     const auto mts = this->mts;  // ! to put Montgomery constants in registers
     if (fc == -1u) fc = mt.r;
@@ -192,7 +192,7 @@ struct NTT_AVX512F {
     }
   }
 
-  __attribute__((optimize("O3"))) vec<u32> conv_slow(vec<u32> a, vec<u32> b) const {
+  vec<u32> conv_slow(vec<u32> a, vec<u32> b) const {
     u32 sz = std::max<u32>(0, u32(a.size() + b.size() - 1));
     const auto mt = this->mt;  // ! to put Montgomery constants in registers
     vec<u32> c(sz);
@@ -206,7 +206,7 @@ struct NTT_AVX512F {
 
   // a and b should be 64-byte aligned
   // writes (a * b) to a
-  [[gnu::noinline]] __attribute__((optimize("O3"))) void conv(u32 lg, __restrict__ pu32 a, __restrict__ pu32 b) const {
+  void conv(u32 lg, __restrict__ pu32 a, __restrict__ pu32 b) const {
     if (lg <= 4) {
       u32 n = (1 << lg);
       __restrict__ pu32 c = (pu32)_mm_malloc(n * 4, 4);
@@ -227,7 +227,7 @@ struct NTT_AVX512F {
     ifft(lg, a, mt.r2);
   }
 
-  __attribute__((optimize("O3"))) vec<u32> conv(vec<u32> const &a, vec<u32> const &b) const {
+  vec<u32> conv(vec<u32> const &a, vec<u32> const &b) const {
     u32 sz = std::max<u32>(0, u32(a.size() + b.size() - 1));
     u32 lg = u32(std::__lg(std::max<u32>(1, sz - 1)) + 1);
     pu32 ap = (pu32)_mm_malloc((usz)std::max(64, (1 << lg) * 4), 64);
