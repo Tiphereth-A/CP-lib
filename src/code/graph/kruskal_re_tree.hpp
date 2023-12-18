@@ -6,12 +6,13 @@
 
 namespace tifa_libs::graph {
 
-namespace kruskal_re_tree_impl_ {
-
-template <class T>
-constexpr std::pair<tree, vec<T>> run_(tree& tr, vec<std::tuple<T, u32, u32>> const& sorted_a) {
-  u32 n = u32((tr.g.size() + 1) / 2);
-  vec<T> w_(2 * n - 1);
+//! edge: w u v
+//! MUST be sorted
+template <class EW>
+constexpr std::pair<tree, vec<EW>> kruskal_re_tree(vec<std::tuple<EW, u32, u32>> const& sorted_a, u32 n) {
+  tree tr(2 * n - 1, 2 * n - 1);
+  n = u32((tr.g.size() + 1) / 2);
+  vec<EW> w_(2 * n - 1);
   ds::dsu_basic dsu(2 * n - 1);
   u32 m = n - 1, cnt = n;
   for (auto [w, u, v] : sorted_a) {
@@ -27,16 +28,6 @@ constexpr std::pair<tree, vec<T>> run_(tree& tr, vec<std::tuple<T, u32, u32>> co
   }
   tr.root = cnt - 1;
   return {tr, w_};
-}
-
-}  // namespace kruskal_re_tree_impl_
-
-//! edge: w u v
-//! MUST be sorted
-template <class EW>
-constexpr std::pair<tree, vec<EW>> kruskal_re_tree(vec<std::tuple<EW, u32, u32>> const& sorted_a, u32 n) {
-  tree tr(2 * n - 1, 2 * n - 1);
-  return kruskal_re_tree_impl_::run_(tr, sorted_a);
 }
 
 }  // namespace tifa_libs::graph

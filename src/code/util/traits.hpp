@@ -56,10 +56,7 @@ template <class T>
 concept arithm_c = is_arithm_v<T>;
 
 template <class T>
-using to_u128_t = typename std::conditional_t<std::is_same_v<T, __int128_t>, __uint128_t, unsigned __int128>;
-
-template <class T>
-using to_uint_t = typename std::conditional_t<std::is_same_v<T, i128>, to_u128_t<T>, typename std::conditional_t<std::is_signed_v<T>, std::make_unsigned_t<T>, T>>;
+using to_uint_t = typename std::conditional_t<std::is_same_v<T, i128>, u128, std::make_unsigned_t<T>>;
 
 }  // namespace tifa_libs
 

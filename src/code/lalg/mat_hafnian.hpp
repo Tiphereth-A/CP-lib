@@ -14,7 +14,7 @@ constexpr T hafnian(Mat const &mat) {
     for (u32 i = 0; i < h - 1; ++i)
       for (u32 j = 0; j < h - 1 - i; ++j) x[i + j + 1] += a[i] * b[j];
   };
-  auto solve = [&](auto &&f, vvvec<T> const &v) -> vec<T> {
+  auto f = [&](auto &&f, vvvec<T> const &v) -> vec<T> {
     vec<T> ans(h);
     if (v.empty()) {
       ans[0] = 1;
@@ -40,7 +40,7 @@ constexpr T hafnian(Mat const &mat) {
     v[i].resize(i, vec<T>(h));
     for (u32 j = 0; j < i; ++j) v[i][j][0] = mat(i, j);
   }
-  return solve(solve, v).back();
+  return f(f, v).back();
 }
 
 }  // namespace tifa_libs::math

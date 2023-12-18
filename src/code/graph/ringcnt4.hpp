@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 namespace ringcnt4_impl_ {
 
-constexpr u64 run_(alist const& dg, alist const& dgv) {
+constexpr u64 run(alist const& dg, alist const& dgv) {
   u64 ans = 0;
   u32 n = (u32)dg.g.size();
   vec<u64> cnt1(n), cnt2(n);
@@ -41,7 +41,7 @@ constexpr u64 ringcnt4(alist const& fg) {
   alist dg(n), dgv(n);
   for (u32 u = 0; u < n; ++u)
     for (u32 v : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[v].size(), v) ? dg : dgv).add_arc(u, v);
-  return ringcnt4_impl_::run_(dg, dgv);
+  return ringcnt4_impl_::run(dg, dgv);
 }
 
 }  // namespace tifa_libs::graph

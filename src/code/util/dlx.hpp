@@ -41,7 +41,7 @@ class DLX {
       }
   }
   template <class F>
-  constexpr bool dance_(vec<usz> &ans, F cb) {
+  constexpr bool dance_(vec<usz> &ans, F &&cb) {
     usz now = r_(0);
     if (now == 0) return cb(ans), true;
     dlxfor_ (i, 0, r)
@@ -51,7 +51,7 @@ class DLX {
     dlxfor_ (i, now, d) {
       ans.push_back(row_(i));
       dlxfor_ (j, i, r) remove_(col_(j));
-      ret |= dance_(ans, cb);
+      ret |= dance_(ans, std::forward<F>(cb));
       dlxfor_ (j, i, l) resume_(col_(j));
       if (!mans && ret) return true;
       ans.pop_back();
@@ -90,9 +90,9 @@ class DLX {
   }
 
   template <class F>
-  constexpr std::optional<vec<usz>> dance(F cb) {
+  constexpr std::optional<vec<usz>> dance(F &&cb) {
     vec<usz> ans;
-    if (!dance_(ans, cb)) return {};
+    if (!dance_(ans, std::forward<F>(cb))) return {};
     return ans;
   }
 

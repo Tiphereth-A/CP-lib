@@ -10,32 +10,28 @@
 
 namespace tifa_libs::math {
 
-namespace gen_stirling2_col_impl_ {
-
-template <class T>
-constexpr void solve(poly<T>& f, u32 n, vec<u64> const& fact, vec<u64> const& ifact) {
-  if (n == 1) return;
-  if (n & 1) {
-    solve(f, n - 1, fact, ifact);
-    f.data().push_back(0);
-    for (u32 i = n; i; --i) f[i] = f[i - 1] - (n - 1) * f[i];
-    f[0] = (-f[0]) * (n - 1);
-    return;
-  }
-  solve(f, n / 2, fact, ifact);
-  f.data().push_back(0);
-  f *= poly_tsh(f, T::value_type::mod() - n / 2, fact, ifact);
-  f.resize(n + 1);
-}
-
-}  // namespace gen_stirling2_col_impl_
-
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class T>
 constexpr poly<T> gen_stirling2_col(u32 n, u32 k, vec<u64> const& fact, vec<u64> const& ifact) {
   if (k > n) return poly<T>(n + 1);
+
+  auto dfs = [&](auto&& dfs, poly<T>& f, u32 n) -> void {
+    if (n == 1) return;
+    if (n & 1) {
+      dfs(dfs, f, n - 1);
+      f.data().push_back(0);
+      for (u32 i = n; i; --i) f[i] = f[i - 1] - (n - 1) * f[i];
+      f[0] = (-f[0]) * (n - 1);
+      return;
+    }
+    dfs(dfs, f, n / 2);
+    f.data().push_back(0);
+    f *= poly_tsh(f, T::value_type::mod() - n / 2, fact, ifact);
+    f.resize(n + 1);
+  };
+
   poly<T> f{0, 1};
-  gen_stirling2_col_impl_::solve(f, k + 1, fact, ifact);
+  dfs(dfs, f, k + 1);
   f.resize(k + 2);
   for (u32 i = 0; i < k + 1; ++i) f[i] = f[i + 1];
   f.reverse(k + 1);

@@ -693,9 +693,6 @@ notebook:
     - gauss_int: Gauss 整数
       code_ext: hpp
       test_ext: cpp
-    - gcd128: 128 位 GCD
-      code_ext: hpp
-      test_ext: cpp
     - gcd_mpi: 高精度整数 GCD
       code_ext: hpp
       test_ext: cpp

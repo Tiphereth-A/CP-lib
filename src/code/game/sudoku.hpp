@@ -21,12 +21,11 @@ constexpr vvvec<u32> sudoku_solver(vvec<u32> const &data, bool get_all_solution 
       }
   if (!not_filled) return {data};
   vvvec<u32> ans;
-  auto cb = [&data, &ans, n4, n2](vec<u32> const &res) -> void {
-    auto dt = data;
-    for (auto _ : res) dt[(_ - 1) % n4 / n2][(_ - 1) % n2] = (_ - 1) / n4 + 1;
+  util::DLX(g, get_all_solution).dance([&](vec<usz> const &res) -> void {
+    vvec<u32> dt = data;
+    for (usz _ : res) dt[(_ - 1) % n4 / n2][(_ - 1) % n2] = u32((_ - 1) / n4 + 1);
     ans.push_back(dt);
-  };
-  util::DLX(g, get_all_solution).dance(cb);
+  });
   return ans;
 }
 

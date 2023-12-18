@@ -33,7 +33,7 @@ int main() {
     for (u32 u = 0; u < n; ++u)
       if (g.g[u].size() >= 4) ans0 += inv24 * g.g[u].size() * (g.g[u].size() - 1) * (g.g[u].size() - 2) * (g.g[u].size() - 3);
     // 四元环
-    mint ans1 = tifa_libs::graph::ringcnt4_impl_::run_(dg, dgv);
+    mint ans1 = tifa_libs::graph::ringcnt4_impl_::run(dg, dgv);
     // 三元环+一条边
     mint ans2 = 0;
     u64 cnt2 = 0;
