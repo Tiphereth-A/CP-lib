@@ -17,7 +17,7 @@ struct NTT_AVX512F {
   Montgomery mt;
   u32 mod, g;
 
-  u32 power(u32 base, u32 exp) const {
+  [[gnu::noinline]] u32 power(u32 base, u32 exp) const {
     const auto mt = this->mt;  // ! to put Montgomery constants in registers
     u32 res = mt.r;
     for (; exp > 0; exp >>= 1) {
@@ -64,7 +64,7 @@ struct NTT_AVX512F {
   }
   // input data[i] in [0, 2 * mod)
   // output data[i] in [0, 4 * mod)
-  void fft(u32 lg, u32 *data) const {
+  [[gnu::noinline]] void fft(u32 lg, u32 *data) const {
     const auto mt = this->mt;    // ! to put Montgomery constants in registers
     const auto mts = this->mts;  // ! to put Montgomery constants in registers
     u32 n = 1 << lg, k = lg;
@@ -133,7 +133,7 @@ struct NTT_AVX512F {
   // output data[i] in [0, mod)
   // fc (if specified) should be in [0, mod)
   // if fc is specified everything is multiplied by fc
-  void ifft(u32 lg, u32 *data, u32 fc = -1u) const {
+  [[gnu::noinline]] void ifft(u32 lg, u32 *data, u32 fc = -1u) const {
     const auto mt = this->mt;    // ! to put Montgomery constants in registers
     const auto mts = this->mts;  // ! to put Montgomery constants in registers
     if (fc == -1u) fc = mt.r;
@@ -206,7 +206,7 @@ struct NTT_AVX512F {
 
   // a and b should be 64-byte aligned
   // writes (a * b) to a
-  void conv(u32 lg, __restrict__ pu32 a, __restrict__ pu32 b) const {
+  [[gnu::noinline]] void conv(u32 lg, __restrict__ pu32 a, __restrict__ pu32 b) const {
     if (lg <= 4) {
       u32 n = (1 << lg);
       __restrict__ pu32 c = (pu32)_mm_malloc(n * 4, 4);
