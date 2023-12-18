@@ -1,8 +1,8 @@
-#ifndef TIFALIBS_FAST_MONTGOMERY_SI512
-#define TIFALIBS_FAST_MONTGOMERY_SI512
+#ifndef TIFALIBS_FAST_MONTGOMERY_AVX512F
+#define TIFALIBS_FAST_MONTGOMERY_AVX512F
 
 // clang-format off
-#include "../util/si_avx512.hpp"
+#include "../util/simd_avx512f.hpp"
 #include "../math/montgomery.hpp"
 // clang-format on
 

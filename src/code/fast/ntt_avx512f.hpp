@@ -1,8 +1,8 @@
-#ifndef TIFALIBS_FAST_NTT_SI512
-#define TIFALIBS_FAST_NTT_SI512
+#ifndef TIFALIBS_FAST_NTT_AVX512F
+#define TIFALIBS_FAST_NTT_AVX512F
 
 // clang-format off
-#include "montgomery_si512.hpp"
+#include "montgomery_avx512f.hpp"
 #include "../math/proot_u32.hpp"
 // clang-format on
 

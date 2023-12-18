@@ -30,7 +30,7 @@ notebook:
     - util: 共同依赖
       code_ext: hpp
       test_ext: cpp
-    - si_avx512: AVX-512 共同依赖
+    - simd_avx512f: AVX-512F 共同依赖
       code_ext: hpp
       test_ext: cpp
     - abs_constexpr: abs_constexpr
@@ -1222,10 +1222,10 @@ notebook:
     - u32tostrhex: u32 转 16 进制字符串
       code_ext: hpp
       test_ext: cpp
-    - montgomery_si512: 32 位 Montgomery 乘法 AVX-512
+    - montgomery_avx512f: 32 位 Montgomery 乘法(AVX-512F)
       code_ext: hpp
       test_ext: cpp
-    - ntt_si512: NTT AVX-512
+    - ntt_avx512f: NTT(AVX-512F)
       code_ext: hpp
       test_ext: cpp
 cheatsheets:
