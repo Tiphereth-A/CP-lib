@@ -8,3 +8,5 @@
 ![Requirments](https://img.shields.io/static/v1?label=requirments&message=GCC+>=12&color=blue&logo=cplusplus)
 
 My code library for Competitive Programming, powered by [competitive-verifier/competitive-verifier](https://github.com/competitive-verifier/competitive-verifier) & [Tiphereth-A/TINplate](https://github.com/Tiphereth-A/TINplate).
+
+我的竞赛编程代码库，由 [competitive-verifier/competitive-verifier](https://github.com/competitive-verifier/competitive-verifier) & [Tiphereth-A/TINplate](https://github.com/Tiphereth-A/TINplate)支持。
