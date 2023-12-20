@@ -5,18 +5,16 @@ using i64 = int64_t;
 using u64 = uint64_t;
 template <class Tp>
 using vec = vector<Tp>;
-template <class Tp>
-using vvec = vector<vector<Tp>>;
 
-#define for_(i, l, r, ...) for (i64 i = (l), i##e = (r), __VA_OPT__(, ) __VA_ARGS__; i <= i##e; ++i)
-#define fors_(i, l, r, s, ...) for (i64 i = (l), i##e = (r), __VA_OPT__(, ) __VA_ARGS__; i <= i##e; i += s)
-#define rfor_(i, r, l, ...) for (i64 i = (r), i##e = (l), __VA_OPT__(, ) __VA_ARGS__; i >= i##e; --i)
-#define rfors_(i, r, l, s, ...) for (i64 i = (r), i##e = (l), __VA_OPT__(, ) __VA_ARGS__; i >= i##e; i -= s)
+#define for_(i, l, r, ...) for (i64 i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i <= i##e; ++i)
+#define fors_(i, l, r, s, ...) for (i64 i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i <= i##e; i += s)
+#define rfor_(i, r, l, ...) for (i64 i = (r), i##e = (l)__VA_OPT__(, ) __VA_ARGS__; i >= i##e; --i)
+#define rfors_(i, r, l, s, ...) for (i64 i = (r), i##e = (l)__VA_OPT__(, ) __VA_ARGS__; i >= i##e; i -= s)
 
 template <class... Ts>
 void inc(Ts &...x) { ((++x), ...); }
 template <class... Ts>
-void debug(Ts const &...args) {
+void debug([[maybe_unused]] Ts const &...args) {
 #ifdef LOCAL_
   size_t n = 0;
   ((cerr << args << (++n != sizeof...(Ts) ? " " : "\n")), ...);
