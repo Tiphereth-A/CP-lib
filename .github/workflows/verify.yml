@@ -20,7 +20,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: ${{ github.head_ref || 'x' }}-${{ github.workflow }}-${{ github.ref }}-verify
   cancel-in-progress: true
 
 jobs:

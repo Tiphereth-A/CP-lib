@@ -10,7 +10,7 @@ on:
   workflow_dispatch:    
 
 concurrency:
-  group: ${{ github.head_ref || 'x' }}-${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.head_ref || 'x' }}-${{ github.workflow }}-${{ github.ref }}-pdf
   cancel-in-progress: true
 
 jobs:
