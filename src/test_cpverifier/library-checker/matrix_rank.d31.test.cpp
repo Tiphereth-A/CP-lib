@@ -14,6 +14,10 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
+  if (!n || !m) {
+    std::cout << "0\n";
+    return 0;
+  }
   mat a(n, m);
   std::cin >> a;
   auto is_0 = [](mint const &x) { return x.val() == 0; };
