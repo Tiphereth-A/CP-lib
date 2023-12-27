@@ -21,13 +21,7 @@ constexpr polygon<FP> coverage_rect_with_min_circum(cvh<FP> const &ch) {
     if (i == 0) q = p;
     while (!is_pos(dot(ch.vs[i], ch.vs[ch.next(i)], ch.vs[ch.next(q)]) - dot(ch.vs[i], ch.vs[ch.next(i)], ch.vs[q]))) q = ch.next(q);
     FP tmp = (cross(ch.vs[i], ch.vs[ch.next(i)], ch.vs[r]) + (dot(ch.vs[i], ch.vs[ch.next(i)], ch.vs[p]) - dot(ch.vs[i], ch.vs[ch.next(i)], ch.vs[q]))) / (ch.vs[i] - ch.vs[ch.next(i)]).abs();
-    if (ans > tmp) {
-      ans = tmp;
-      ans_i = i;
-      ans_r = r;
-      ans_p = p;
-      ans_q = q;
-    }
+    if (ans > tmp) ans = tmp, ans_i = i, ans_r = r, ans_p = p, ans_q = q;
   }
   point dir = line{ch[ans_i], ch[ch.next(ans_i)]}.direction(), vdir = rot90(dir);
   line li{ch[ans_i], ch[ans_i] + dir}, lp{ch[ans_p], ch[ans_p] + vdir}, lr{ch[ans_r], ch[ans_r] + dir}, lq{ch[ans_q], ch[ans_q] + vdir};

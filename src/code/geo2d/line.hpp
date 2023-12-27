@@ -10,6 +10,13 @@ struct line {
   point<FP> l, r;
   constexpr line() {}
   constexpr line(point<FP> const &s, point<FP> const &t) : l(s), r(t) {}
+  constexpr line(point<FP> const &s, FP angle_x) : l(s), r(s + is_eq(angle_x, pi_v<FP> / 2) ? point<FP>{0, 1} : point<FP>{1, std::tan(angle_x)}) { assert(angle_x > 0 && angle_x < pi_v<FP>); }
+  // ax + by + c = 0
+  constexpr line(FP a, FP b, FP c) {
+    if (is_zero(a)) l = {0, -c / b}, r = {1, -c / b};
+    else if (is_zero(b)) l = {-c / a, 0}, r = {-c / a, 1};
+    else l = {0, -c / b}, r = {1, -(c + a) / b};
+  }
   constexpr line(FP s_x, FP s_y, FP t_x, FP t_y) : l(s_x, s_y), r(t_x, t_y) {}
 
   friend std::istream &operator>>(std::istream &is, line &l) { return is >> l.l >> l.r; }

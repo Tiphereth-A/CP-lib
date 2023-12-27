@@ -1,12 +1,12 @@
-#ifndef TIFALIBS_GEO2D_INS_HP
-#define TIFALIBS_GEO2D_INS_HP
+#ifndef TIFALIBS_GEO2D_INS_HPS
+#define TIFALIBS_GEO2D_INS_HPS
 
 #include "cvh.hpp"
 
 namespace tifa_libs::geo {
 
 template <class FP>
-constexpr cvh<FP> ins_hP(vec<line<FP>> vl) {
+constexpr cvh<FP> ins_hPs(vec<line<FP>> vl) {
   auto check = [](line<FP> const &u, line<FP> const &v, line<FP> const &w) -> bool { return w.is_include_strict(ins_LL(u, v)); };
   std::sort(vl.begin(), vl.end());
   vl.erase(std::unique(vl.begin(), vl.end()), vl.end());

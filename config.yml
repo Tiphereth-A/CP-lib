@@ -240,7 +240,10 @@ notebook:
     - argsort: 极角排序
       code_ext: hpp
       test_ext: cpp
-    - ins_hp: 半平面交
+    - ins_hps: 半平面交
+      code_ext: hpp
+      test_ext: cpp
+    - ins_pohp: 多边形与半平面的交
       code_ext: hpp
       test_ext: cpp
     - max_area_t: 凸包内面积最大的三角形
@@ -343,6 +346,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - dist_pp_ma: 两点间距离(Manhattan)
+      code_ext: hpp
+      test_ext: cpp
+    - distsp_pp: 球面上两点间距离
       code_ext: hpp
       test_ext: cpp
     - dot: 点乘
