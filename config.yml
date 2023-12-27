@@ -443,6 +443,9 @@ notebook:
     - heuristic_lbsa: List-Based 模拟退火
       code_ext: hpp
       test_ext: cpp
+    - alpha_beta: min-max 搜索
+      code_ext: hpp
+      test_ext: cpp
     graph:
     - alist: 邻接表
       code_ext: hpp
