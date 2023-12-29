@@ -84,7 +84,7 @@ From \cite{antileafstandard}.
     \stirlingI{n}{k} = \stirlingI{n-1}{k-1} + (n-1)\stirlingI{n-1}{k}
 \]
 
-求同一行: 分治 FFT \(O(n\log ^2 n)\), 或者倍增 \(O(n\log n)\) (每次都是 \(f(x) = g(x) g(x + d)\) 的形式, 可以用 \(g(x)\) 反转之后做一个卷积求出后者).
+求同一行: 分治 FFT \(O(n\log ^2 n)\), 或者倍增 \(O(n\log n)\) \\(每次都是 \(f(x) = g(x) g(x + d)\) 的形式, 可以用 \(g(x)\) 反转之后做一个卷积求出后者).
 
 \[
     \sum_{k = 0}^n \stirlingI{n}{k} x^k = \prod_{i = 0}^{n - 1} (x + i)
@@ -155,7 +155,9 @@ From \cite{antileafstandard}.
     x^{\underline{n}}=\sum_{k} \stirlingI{n}{k} (-1)^{n-k} x^k
 \]
 
-另外, 多项式的\textbf{点值}表示的每项除以阶乘之后卷上 \(\mathrm{e}^{-x}\) 乘上阶乘之后是牛顿插值表示, 或者不乘阶乘就是\textbf{下降幂}系数表示. 反过来的转换当然卷上 \(\mathrm{e}^x\) 就行了. 原理是每次差分等价于乘以 \((1 - x)\), 展开之后用一次卷积取代多次差分.
+多项式的\textbf{点值}表示的每项除以阶乘之后卷上 \(\mathrm{e}^{-x}\) 乘上阶乘之后是牛顿插值表示, 不乘阶乘就是\textbf{下降幂}系数表示.
+
+反过来的转换当然卷上 \(\mathrm{e}^x\) 就行了. 原理是每次差分等价于乘以 \((1 - x)\), 展开之后用一次卷积取代多次差分.
 
 \subsubsection{Stirling 多项式(Stirling 数关于斜线的性质)}
 
