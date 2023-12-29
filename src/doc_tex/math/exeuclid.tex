@@ -1,6 +1,8 @@
 考虑直线 \(s=\frac{px+r}{q},~x\in (0,l]\), 以及所有的竖线 \(x=k,~k\in\mathbf{Z}\) 与横线 \(y=h,~h\in\mathbf{Z}\)
 
-从左向右扫描直线 \(s\), 若遇到与横线的交点, 则执行操作 \(a\), 若遇到与竖线的交点, 则执行操作 \(b\), 若同时遇到横线与竖线的交点, 则先执行操作 \(a\) 再执行操作 \(b\)
+从左向右扫描直线 \(s\), 若遇到与横线的交点, 则执行操作 \(a\); 若遇到与竖线的交点, 则执行操作 \(b\);
+
+若同时遇到横线与竖线的交点, 则先执行操作 \(a\) 再执行操作 \(b\).
 
 用 \(F(p,q,r,l,a,b)\) 表示上述操作的序列, 如 \(F(3,5,2,6,a,b)=abbabbabab\)
 
@@ -9,29 +11,29 @@
 \begin{enumerate}
     \item \(p\geq q\) 时, 令 \(b'=a^{p/q}b\), 则 \(F(p,q,r,l,a,b)=F(p\bmod q,q,r,l,a,b')\)
     \item \(p<q\) 时, 交换 \(p,q\) 并回到上一步
-
+          
           注意到第 \(d\) 个 \(b\) 前有 \(\left\lfloor\frac{pd+r}{q}\right\rfloor\) 个 \(a\), 设第 \(\alpha\) 个 \(a\) 在第 \(\beta\) 个 \(b\) 之前, 则
-
+          
           \[
               \beta > \left\lfloor\frac{p\alpha+r}{q}\right\rfloor \implies \alpha \leq \left\lfloor\frac{q\beta-r-1}{p}\right\rfloor
           \]
-
+          
           即第 \(\beta\) 个 \(b\) 之前有 \(\left\lfloor\frac{q\beta-r-1}{p}\right\rfloor\) 个 \(a\)
-
+          
           迭代的子问题应该与原问题形式相同, 所以第一个 \(a\) 之前的操作应该被截掉, 对第一个 \(a\) 之后的部分进行递归
-
+          
           假设现在去掉了第一个 \(a\) 以及它之前的 \(b\), 则剩余的第 \(c\) 个 \(a\) 与第 \(c-1\) 个 \(a\) 之间剩余的 \(b\) 的个数为
-
+          
           \[
               \left\lfloor\frac{q(c+1)-r-1}{p}\right\rfloor-\left\lfloor\frac{qc-r-1}{p}\right\rfloor=\left\lfloor\frac{qc+q-r-1}{p}\right\rfloor-\left\lfloor\frac{q(c-1)+q-r-1}{p}\right\rfloor
           \]
-
+          
           从而
           
           \[
               F(p,q,r,l,a,b)=b^{\left\lfloor (q-r-1)/p \right\rfloor}aF(q,p,(q-r-1)\bmod p,c-1,b,a)b^{l-\left\lfloor (qc-r-1)/p \right\rfloor}
           \]
-
+          
           其中 \(c=\left\lfloor\frac{pl+r}{q}\right\rfloor\)
 \end{enumerate}
 

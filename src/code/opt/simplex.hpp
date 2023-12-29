@@ -62,8 +62,8 @@ struct LPSolver {
     for (int i = (1); i < m; ++i)
       if (D[i][n + 1] < D[r][n + 1]) r = i;
     if (D[r][n + 1] < -eps_v<T>) {  // if not, find feasible start
-      pivot(r, n);                // make artificial variable basic
-      assert(simplex(2));         // I think this will always be true??
+      pivot(r, n);                  // make artificial variable basic
+      assert(simplex(2));           // I think this will always be true??
       if (D[m + 1][n + 1] < -eps_v<T>) return -inf;
       // D[m+1][n+1] is max possible value of the negation of
       // artificial variable, optimal value should be zero

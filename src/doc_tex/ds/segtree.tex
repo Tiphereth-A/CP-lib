@@ -2,15 +2,15 @@
 
 \begin{tabular}{ll}
     \hline
-    代码                                    & 备注               \\
+    代码                                  & 备注                       \\
     \hline
-    \verb|class T|                        & 维护的数据            \\
-    \verb|T (*op)(T, T)|                  & 维护的操作            \\
-    \verb|T (*e)()|                       & T的幺元             \\
+    \verb|class T|                        & 维护的数据                 \\
+    \verb|T (*op)(T, T)|                  & 维护的操作                 \\
+    \verb|T (*e)()|                       & T的幺元                    \\
     \verb|class F|                        & 修改的类型(会用于lazy标记) \\
     \verb|T (*mapping)(F, T) f(x)|        & 即修改怎么应用于数据       \\
-    \verb|F (*composition)(F, F) f(g(x))| & 即修改的复合           \\
-    \verb|F (*id)() id(x) = x|            & 即恒等映射            \\
+    \verb|F (*composition)(F, F) f(g(x))| & 即修改的复合               \\
+    \verb|F (*id)() id(x) = x|            & 即恒等映射                 \\
     \hline
 \end{tabular}
 

@@ -11,10 +11,10 @@ class suffix_automaton {
   struct YYZ {
     u32 len, link;
     std::array<u32, SZ> nex{};
-    u64 sz;         // application 1
-    u32 times;      // application 2
-    bool is_clone;  // application 3
-    u32 firstpos;   // application 3
+    u64 sz;         // app 1
+    u32 times;      // app 2
+    bool is_clone;  // app 3
+    u32 firstpos;   // app 3
   };
 
  public:
@@ -28,8 +28,8 @@ class suffix_automaton {
     u32 cur = sz++;
     st.push_back(YYZ());
     st[cur].len = st[last].len + 1;
-    st[cur].times = 1;                   // application 2
-    st[cur].firstpos = st[cur].len - 1;  // application 3
+    st[cur].times = 1;                   // app 2
+    st[cur].firstpos = st[cur].len - 1;  // app 3
     u32 p = last;
 
     while (p != -1u && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
@@ -43,8 +43,8 @@ class suffix_automaton {
         st[clone].nex = st[q].nex;
         st[clone].len = st[p].len + 1;
         st[clone].link = st[q].link;
-        st[clone].firstpos = st[q].firstpos;  // application 3
-        st[clone].is_clone = 1;               // application 3
+        st[clone].firstpos = st[q].firstpos;  // app 3
+        st[clone].is_clone = 1;               // app 3
 
         while (p != -1u && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
         st[q].link = st[cur].link = clone;
@@ -58,7 +58,7 @@ class suffix_automaton {
     for (u32 i = 1; i < sz; ++i) add(u32(st[i].link), i);
   }
 
-  // application 0
+  // app 0
   //! default: each character of t is lowercase English letters.
   constexpr std::pair<u32, bool> search(std::string t) {
     u32 u = 0, i = 0, base = u32('a');
@@ -68,7 +68,7 @@ class suffix_automaton {
     }
     return {u32(u), true};
   }
-  // application 1
+  // app 1
   constexpr void getsz(u32 u = 0) {
     st[u].sz = 1;
     for (auto v : st[u].nex)
@@ -77,18 +77,18 @@ class suffix_automaton {
         st[u].sz += st[v].sz;
       }
   }
-  // application 2
+  // app 2
   //! need build()
   constexpr void gettimes(u32 u = 0) {
     for (auto v : e[u]) gettimes(v), st[u].times += st[v].times;
   }
-  // application 3
+  // app 3
   //! need build(), search()
   constexpr void output_all_occurrences(u32 u, u32 P_length, vec<u32> &ans) {
     if (!st[u].is_clone) ans.push_back(st[u].first_pos - P_length + 1);
     for (u32 v : e[u]) output_all_occurrences(v, P_length, ans);
   }
-  // application 4
+  // app 4
   //! default: each character of t is lowercase English letters.
   constexpr ptt<u32> lcs(std::string_view t) {
     u32 v = 0, len = 0, ret = 0, end = 0, base = u32('a');

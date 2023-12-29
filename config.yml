@@ -834,6 +834,9 @@ notebook:
     - kth_root: K 次剩余
       code_ext: hpp
       test_ext: cpp
+    - mex: mex
+      code_ext: hpp
+      test_ext: cpp
     - isqrt: 平方根下取整
       code_ext: hpp
       test_ext: cpp
@@ -841,9 +844,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - mpi: 高精度整数
-      code_ext: hpp
-      test_ext: cpp
-    - mex: mex
       code_ext: hpp
       test_ext: cpp
     - fact_mint: 快速阶乘取模
@@ -1265,6 +1265,15 @@ code_styles:
 formatting_commands:
   cpp:
   - clang-format
+  - --Wno-error=unknown
   - -style=file
   - -i
+  - ${filename}
+  tex:
+  - latexindent
+  - --cruft=/
+  - -l
+  - -s
+  - ${filename}
+  - -o
   - ${filename}

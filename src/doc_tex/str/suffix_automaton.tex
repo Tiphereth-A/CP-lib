@@ -1,26 +1,13 @@
-\begin{itemize}
-    \item application 0\\
-          检查字符串 \verb|t| 是否出现, 如果未出现返回 \{出现的最大前缀长度 \verb|len|, \verb|false|\}, 如果出现则返回 \{该串所对应状态 \verb|u|, \verb|true|\}
+\begin{enumerate}
+    \item[app 0] 检查字符串 \verb|t| 是否出现, 如果未出现返回 \{出现的最大前缀长度 \verb|len|, \verb|false|\}, 如果出现则返回 \{该串所对应状态 \verb|u|, \verb|true|\}
+    \item[app 1] 求不同子串个数, 答案即 \verb|sam.st.sz[0] - 1|
+    \item[app 2] 求每一个 \verb|endpos| 内部串的出现次数, 答案即 \verb|sam.st.times[i]|
+    \item[app 3] 求每个状态的第一次出现这个状态的末端的位置 \verb|sam.st.firstpos|
 
-    \item application 1\\
-          求不同子串个数, 答案即 \verb|sam.st.sz[0] - 1|
+        对于字符串 \verb|t|, 调用 \verb|search(t)| 后, 第一次出现的位置即 \begin{verbatim}sam.st.firstpos[u] - |P| + 1\end{verbatim}
 
-    \item application 2\\
-          求每一个 \verb|endpos| 内部串的出现次数, 答案即 \verb|sam.st.times[i]|
-
-    \item application 3\\
-          求每个状态的第一次出现这个状态的末端的位置 \verb|sam.st.firstpos|
-
-          对于字符串 \verb|t|, 调用 \verb|search(t)| 后, 第一次出现的位置即 \begin{verbatim}sam.st.firstpos[u] - |P| + 1\end{verbatim}
-
-          \verb|t| 的每一个出现位置: 遍历所有以状态 \verb|u| 为后缀的状态 \verb|v|, 答案即 \begin{verbatim}{sam.st.firstpos[v] - |P| + 1}\end{verbatim}
-
-    \item application 4\\
-          求 \verb|s| 与 \verb|t| 的最长公共子串, 其中 \verb|sam| 由 \verb|s| 建立
-
-    \item application others 0\\
-          所有不同子串的总长度, 字典序第 \(k\) 大子串, 最短的没有出现的字符串 (给定字符集): \verb|dp|
-
-    \item application others 1\\
-          多个字符串间的最长公共子串, 见 \fullref{sec:广义后缀自动机}
-\end{itemize}
+        \verb|t| 的每一个出现位置: 遍历所有以状态 \verb|u| 为后缀的状态 \verb|v|, 答案即 \begin{verbatim}{sam.st.firstpos[v] - |P| + 1}\end{verbatim}
+    \item[app 4] 求 \verb|s| 与 \verb|t| 的最长公共子串, 其中 \verb|sam| 由 \verb|s| 建立
+    \item[app x0] 所有不同子串的总长度, 字典序第 \(k\) 大子串, 最短的没有出现的字符串 (给定字符集): \verb|dp|
+    \item[app x1] 多个字符串间的最长公共子串, 见 \fullref{sec:广义后缀自动机}
+\end{enumerate}

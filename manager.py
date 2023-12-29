@@ -117,9 +117,11 @@ def _gen_nbc():
                         CONFIG.get_code_dir(), CONFIG.get_doc_dir(), CONFIG.get_test_dir())
                     f.writelines(latex_input(PathLaTeX(doc_filepath)))
                     if section.code_ext == 'hpp':
-                        f.writelines(latex_listing_code_range(PathLaTeX(code_filepath), CONFIG.get_code_style(section.code_ext), 4, len(open(code_filepath).readlines())-2))
+                        f.writelines(latex_listing_code_range(PathLaTeX(code_filepath), CONFIG.get_code_style(
+                            section.code_ext), 4, len(open(code_filepath).readlines())-2))
                     else:
-                        f.writelines(latex_listing_code(PathLaTeX(code_filepath), CONFIG.get_code_style(section.code_ext)))
+                        f.writelines(latex_listing_code(
+                            PathLaTeX(code_filepath), CONFIG.get_code_style(section.code_ext)))
                     if CONFIG.generate_test_in_notebook():
                         if not os.path.getsize(test_filepath):
                             continue
@@ -218,7 +220,10 @@ def _format(code_type: str):
 
     @withlog
     def reformat_all_codes(_code_type: str, **kwargs):
-        filepaths: list[str] = get_full_filenames([CONFIG.get_code_dir(), CONFIG.get_test_dir()],
+        filepaths: list[str] = get_full_filenames([CONFIG.get_code_dir(),
+                                                   CONFIG.get_doc_dir(),
+                                                   CONFIG.get_cheatsheet_dir(),
+                                                   CONFIG.get_test_dir()],
                                                   CONFIG.get_ext_names_by_code_style(_code_type))
         kwargs.get('logger').info(f"{len(filepaths)} file(s) found")
         for filepath in filepaths:
