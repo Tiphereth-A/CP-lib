@@ -2,7 +2,6 @@
 #define TIFALIBS_TREE_DSU_ON_TREE
 
 #include "dfs_info.hpp"
-#include "dfs_info_w.hpp"
 
 namespace tifa_libs::graph {
 
@@ -10,8 +9,8 @@ namespace tifa_libs::graph {
 // @param query(now): answer queries of subtree %now
 // @param clear(now): reset data of node %now (if necesarry)
 // @param reset(): reset data related to all (if necesarry)
-template <class G, class Fu, class Fq, class Fc, class Fr, class Tinfo = std::conditional_t<std::is_base_of_v<alist, G>, tree_dfs_info, tree_dfs_info_w<typename G::weight_type>>>
-constexpr void dsu_on_tree(G const &tr, Tinfo &info, Fu update, Fq query, Fc clear, Fr reset) {
+template <class G, class Fu, class Fq, class Fc, class Fr>
+constexpr void dsu_on_tree(G const &tr, tree_dfs_info<G> &info, Fu update, Fq query, Fc clear, Fr reset) {
   constexpr bool F = std::is_base_of_v<alist, G>;
   if (info.dfn.empty() || info.maxson.empty() || info.maxdfn.empty() || info.euler.empty()) info.template reset_dfs_info<td_dfn | td_maxson | td_maxdfn | td_euler>(tr);
 

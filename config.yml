@@ -538,9 +538,6 @@ notebook:
     - dfs_info: 常用树 DFS
       code_ext: hpp
       test_ext: cpp
-    - dfs_info_w: 常用带权树 DFS
-      code_ext: hpp
-      test_ext: cpp
     - tree_top: 树的 top 数组
       code_ext: hpp
       test_ext: cpp

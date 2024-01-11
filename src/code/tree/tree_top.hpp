@@ -2,12 +2,11 @@
 #define TIFALIBS_TREE_TREE_TOP
 
 #include "dfs_info.hpp"
-#include "dfs_info_w.hpp"
 
 namespace tifa_libs::graph {
 
-template <class G, bool need_dfn = false, class Tinfo = std::conditional_t<std::is_base_of_v<alist, G>, tree_dfs_info, tree_dfs_info_w<typename G::weight_type>>>
-constexpr vec<u32> tree_top(G const &tr, Tinfo &info) {
+template <class G, bool need_dfn = false>
+constexpr vec<u32> tree_top(G const &tr, tree_dfs_info<G> &info) {
   u32 n = (u32)tr.g.size();
   if (info.maxson.empty()) info.template reset_dfs_info<td_maxson>(tr);
   if constexpr (need_dfn) info.dfn = vec<u32>(n);

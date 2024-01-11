@@ -6,6 +6,7 @@
 namespace tifa_libs::graph {
 
 struct alist {
+  using weight_type = u32;
   using value_type = vvec<u32>;
   value_type g;
 

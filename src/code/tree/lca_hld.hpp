@@ -2,16 +2,17 @@
 #define TIFALIBS_TREE_LCA_HLD
 
 #include "dfs_info.hpp"
+#include "tree.hpp"
 #include "tree_top.hpp"
 
 namespace tifa_libs::graph {
 
 struct lca_hld {
-  tree_dfs_info info;
+  tree_dfs_info<tree> info;
   vec<u32> top;
 
   constexpr lca_hld(tree& tr) {
-    info.reset_dfs_info<td_dep | td_fa>(tr);
+    info.template reset_dfs_info<td_dep | td_fa>(tr);
     top = tree_top(tr, info);
   }
 

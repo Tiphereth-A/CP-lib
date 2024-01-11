@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_HLD
 #define TIFALIBS_DS_HLD
 
-#include "../tree/dfs_info.hpp"
+#include "../tree/tree.hpp"
 #include "../tree/tree_top.hpp"
 #include "segtree.hpp"
 
@@ -14,11 +14,11 @@ class hld {
 
  public:
   graph::tree& tr;
-  graph::tree_dfs_info info;
+  graph::tree_dfs_info<graph::tree> info;
   vec<u32> top;
 
-  explicit constexpr hld(graph::tree& tr) : t(), tr(tr) {
-    info.reset_dfs_info<graph::td_dep | graph::td_fa>(tr);
+  explicit constexpr hld(graph::tree& tr) : t(), tr(tr), info() {
+    info.template reset_dfs_info<graph::td_dep | graph::td_fa>(tr);
     top = graph::tree_top<graph::tree, true>(tr, info);
   }
   explicit constexpr hld(graph::tree& tr, vec<T> const& a) : hld(tr) {
