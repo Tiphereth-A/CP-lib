@@ -13,6 +13,6 @@ int main() {
     std::cin >> u >> v >> w;
     tr.add_arc(u, v, w), tr.add_arc(v, u, w);
   }
-  std::cout << std::get<2>(tifa_libs::graph::tree_diam(tr)) << '\n';
+  std::cout << tifa_libs::graph::tree_diam_d(tr) << '\n';
   return 0;
 }
