@@ -17,18 +17,15 @@ constexpr auto tree_diam(G& tree) {
   tree.root = _;
   return std::make_tuple(u, v, d[v]);
 }
+
 // diam
 template <class G>
 constexpr auto tree_diam_d(G const& tree) {
   using T = typename G::weight_type;
-
   vec<T> mdis(tree.g.size());
   T d = 0;
-
   dfs(
-      tree, tree.root,
-      fn_0,
-      fn_0,
+      tree, tree.root, fn_0, fn_0,
       [&](u32 to, u32 u, T const& w = 1) {
         d = std::max(d, mdis[u] + mdis[to] + w);
         mdis[u] = std::max(mdis[u], mdis[to] + w);
