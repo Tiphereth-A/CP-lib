@@ -11,12 +11,12 @@ constexpr vec<u64> tree_hash_rooted(tree const &tr, Hash &&hasher) {
   vec<u64> hash(tr.g.size(), OFFSET);
   dfs(
       tr, tr.root,
-      [](u32, u32) {},
-      [](u32, u32, u32 = 1) {},
+      fn_0,
+      fn_0,
       [&](u32 to, u32 u, u32 = 1) {
         hash[u] += hasher(hash[to]);
       },
-      [](u32, u32) {});
+      fn_0);
   return hash;
 }
 

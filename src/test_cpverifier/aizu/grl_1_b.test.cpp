@@ -15,8 +15,7 @@ int main() {
     g.add_arc(u, v, w);
   }
   constexpr i32 INF = std::numeric_limits<i32>::max() / 2 - 1;
-  auto d = tifa_libs::graph::bellman_ford(
-      g, r, [](u32, u32) {}, INF);
+  auto d = tifa_libs::graph::bellman_ford(g, r, fn_0, INF);
   if (!d.has_value()) {
     std::cout << "NEGATIVE CYCLE\n";
     return 0;

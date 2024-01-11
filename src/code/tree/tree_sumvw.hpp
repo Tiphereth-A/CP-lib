@@ -10,12 +10,12 @@ constexpr vec<T> tree_sumvw(G const &tr, vec<T> const &v_weight) {
   vec<T> sumvw = v_weight;
   dfs(
       tr, tr.root,
-      [](u32, u32) {},
-      [](u32, u32, u32 = 1) {},
+      fn_0,
+      fn_0,
       [&](u32 to, u32 u, u32 = 1) {
         sumvw[u] += sumvw[to];
       },
-      [](u32, u32) {});
+      fn_0);
   return sumvw;
 }
 

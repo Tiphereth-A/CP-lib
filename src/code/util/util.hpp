@@ -61,4 +61,6 @@ constexpr u32 operator""_u32(unsigned long long x) { return (u32)x; }
 constexpr u64 operator""_u64(unsigned long long x) { return (u64)x; }
 constexpr usz operator""_uz(unsigned long long x) { return (usz)x; }
 
+inline const auto fn_0 = [](auto&&...) {};
+
 #endif

@@ -17,8 +17,8 @@ constexpr auto tree_diam(G const& tree) {
 
   dfs(
       tree, tree.root,
-      [](u32, u32) {},
-      [](u32, u32, T const& = 1) {},
+      fn_0,
+      fn_0,
       [&](u32 to, u32 u, T const& w = 1) {
         if (T _ = mdis[to] + w; _ > mdis[u]) {
           mdis2[u] = mdis[u], midx2[u] = midx[u];
@@ -28,7 +28,7 @@ constexpr auto tree_diam(G const& tree) {
           if (midx[u] == u) midx[u] = midx[to];
         }
       },
-      [](u32, u32) {});
+      fn_0);
 
   u32 u = midx[0], v = midx2[0];
   T d = mdis[0] + mdis2[0];

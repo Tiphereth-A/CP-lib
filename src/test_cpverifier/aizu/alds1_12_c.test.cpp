@@ -15,7 +15,7 @@ int main() {
       g.add_arc(u, v, c);
     }
   }
-  auto dis = tifa_libs::graph::dijkstra(g, 0, [](u32, u32) {});
+  auto dis = tifa_libs::graph::dijkstra(g, 0, fn_0);
   for (u32 i = 0; i < n; ++i) std::cout << i << ' ' << dis[i] << '\n';
   return 0;
 }
