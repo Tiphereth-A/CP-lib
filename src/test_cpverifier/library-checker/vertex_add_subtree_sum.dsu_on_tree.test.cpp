@@ -2,6 +2,7 @@
 
 #include "../../code/ds/fenwick.hpp"
 #include "../../code/tree/dsu_on_tree.hpp"
+#include "../../code/tree/tree.hpp"
 #include "../../code/util/fastio.hpp"
 
 constexpr i64 INF = std::numeric_limits<i64>::max() / 2;
@@ -30,7 +31,7 @@ int main() {
   tifa_libs::ds::fenwick<i64> bit(q + 2);
   vec<i64> ans(q + 1, INF);
 
-  tifa_libs::graph::tree_dfs_info info;
+  tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree> info;
   tifa_libs::graph::dsu_on_tree(
       tr, info,
       [&](u32 i) {

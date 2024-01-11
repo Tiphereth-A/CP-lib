@@ -1,6 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
 
 #include "../../code/tree/diam.hpp"
+#include "../../code/tree/treew.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

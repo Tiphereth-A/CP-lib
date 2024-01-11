@@ -2,6 +2,7 @@
 
 #include "../../code/graph/path.hpp"
 #include "../../code/tree/diam.hpp"
+#include "../../code/tree/treew.hpp"
 #include "../../code/util/ios_container.hpp"
 
 int main() {
