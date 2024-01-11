@@ -13,22 +13,28 @@ constexpr auto tree_diam(G const& tree) {
   u32 n = (u32)tree.g.size();
   vec<T> mdis(n), mdis2(n);
   vec<u32> midx(n), midx2(n);
-  std::iota(midx.begin(), midx.end(), 0), std::iota(midx2.begin(), midx2.end(), 0);
+  std::iota(midx.begin(), midx.end(), 0), midx2 = midx;
 
   auto init = [](u32, u32) {};
   auto pre = [](u32, u32) {};
   auto prew = [](u32, T const&, u32) {};
   auto post = [&](u32 to, u32 u) {
     if (T _ = mdis[to] + 1; _ > mdis[u]) {
-      mdis2[u] = mdis[u], mdis[u] = _;
-      midx2[u] = midx[u], midx[u] = midx[to];
-    } else if (_ > mdis2[u]) mdis2[u] = _, midx2[u] = midx2[to];
+      mdis2[u] = mdis[u], midx2[u] = midx[u];
+      mdis[u] = _, midx[u] = midx[to];
+    } else if (_ > mdis2[u]) {
+      mdis2[u] = _, midx2[u] = midx2[to];
+      if (midx[u] == u) midx[u] = midx[to];
+    }
   };
   auto postw = [&](u32 to, T const& w, u32 u) {
     if (T _ = mdis[to] + w; _ > mdis[u]) {
-      mdis2[u] = mdis[u], mdis[u] = _;
-      midx2[u] = midx[u], midx[u] = midx[to];
-    } else if (_ > mdis2[u]) mdis2[u] = _, midx2[u] = midx2[to];
+      mdis2[u] = mdis[u], midx2[u] = midx[u];
+      mdis[u] = _, midx[u] = midx[to];
+    } else if (_ > mdis2[u]) {
+      mdis2[u] = _, midx2[u] = midx2[to];
+      if (midx[u] == u) midx[u] = midx[to];
+    }
   };
   auto ret = [](u32, u32) {};
 
