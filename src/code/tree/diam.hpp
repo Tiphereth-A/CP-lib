@@ -11,9 +11,9 @@ constexpr auto tree_diam(G& tree) {
   auto _ = tree.root;
   tree_dfs_info<G> info;
   auto d = info.template reset_dfs_info<td_dis>(tree).dis;
-  u32 u = tree.root = (u32)std::distance(d.begin(), std::max_element(d.begin(), d.end()));
+  u32 u = tree.root = u32(std::max_element(d.begin(), d.end()) - d.begin());
   d = info.template reset_dfs_info<td_dis>(tree).dis;
-  u32 v = (u32)std::distance(d.begin(), std::max_element(d.begin(), d.end()));
+  u32 v = u32(std::max_element(d.begin(), d.end()) - d.begin());
   tree.root = _;
   return std::make_tuple(u, v, d[v]);
 }

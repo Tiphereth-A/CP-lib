@@ -12,7 +12,7 @@ constexpr vec<T> karatsuba(vec<T> const &a, vec<T> const &b) {
   if (a.size() < b.size()) return karatsuba(b, a);
   if (a.size() < 32) return conv_naive(a, b);
   u32 d = (u32)a.size() / 2;
-  vec<T> al(a.begin(), std::next(a.begin(), (isz)d)), au(std::next(a.begin(), (isz)d), a.end());
+  vec<T> al(a.begin(), a.begin() + d), au(a.begin() + d, a.end());
   if (b.size() < d + 10) {
     auto cl = karatsuba(al, b), cu = karatsuba(au, b);
     vec<T> c(a.size() + b.size() - 1);
@@ -20,7 +20,7 @@ constexpr vec<T> karatsuba(vec<T> const &a, vec<T> const &b) {
     for (u32 i = 0; i < cu.size(); ++i) c[i + d] += cu[i];
     return c;
   }
-  vec<T> bl(b.begin(), std::next(b.begin(), (isz)d)), bu(std::next(b.begin(), (isz)d), b.end());
+  vec<T> bl(b.begin(), b.begin() + d), bu(b.begin() + d, b.end());
   vec<T> alu{al}, blu{bl};
   alu += au;
   blu += bu;

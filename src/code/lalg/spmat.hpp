@@ -70,7 +70,7 @@ class spmat {
           *d = *f1;
           ++f1;
         } else {
-          u32 j = std::distance(f1, l.begin());
+          u32 j = u32(f1 - l.begin());
           *d = f(i, j, *f1, *f2);
           ++f1;
           ++f2;

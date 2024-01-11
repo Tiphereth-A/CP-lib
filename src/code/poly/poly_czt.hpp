@@ -34,7 +34,7 @@ poly<T> poly_czt(poly<T> f, mint c, u64 m = -1_u64, mint a = 1) {
   for (u32 i = 1; i < n; ++i) f[i] *= icc[i];
   std::reverse(f.data().begin(), f.data().end());
   f.conv(cc, n + m);
-  poly<T> ans(std::next(f.data().begin(), (isz)n - 1), std::next(f.data().begin(), isz(n + m) - 1));
+  poly<T> ans(f.data().begin() + ((isz)n - 1), f.data().begin() + (isz(n + m) - 1));
   for (u64 i = 1; i < m; ++i) ans[i] *= icc[i];
   return ans;
 }
