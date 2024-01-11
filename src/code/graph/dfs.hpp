@@ -19,9 +19,9 @@ constexpr void dfs_(G const& fg, u32 u, u32 fa, Fb&& init, Fp&& pre_dfs, Fs&& po
       }
     } else {
       if (v.first != fa) {
-        pre_dfs(v.first, v.second, u);
+        pre_dfs(v.first, u, v.second);
         dfs_(fg, v.first, u, std::forward<Fb>(init), std::forward<Fp>(pre_dfs), std::forward<Fs>(post_dfs), std::forward<Fr>(before_return));
-        post_dfs(v.first, v.second, u);
+        post_dfs(v.first, u, v.second);
       }
     }
   before_return(u, fa);
