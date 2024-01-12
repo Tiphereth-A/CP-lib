@@ -10,7 +10,7 @@
 #include "../../code/util/ios_container.hpp"
 // clang-format on
 
-using mdata = tifa_libs::math::mint_ss<1'000'000'000 + 7>;
+using mdata = tifa_libs::math::mdata_ss<1'000'000'000 + 7>;
 using mint = tifa_libs::math::mint<mdata>;
 
 int main() {

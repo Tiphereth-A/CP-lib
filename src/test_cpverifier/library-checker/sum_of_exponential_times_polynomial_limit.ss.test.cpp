@@ -6,7 +6,7 @@
 #include "../../code/math/series_ipaf.hpp"
 
 constexpr u32 MOD = 998244353;
-using mdata = tifa_libs::math::mint_ss<MOD>;
+using mdata = tifa_libs::math::mdata_ss<MOD>;
 using mint = tifa_libs::math::mint<mdata>;
 
 int main() {

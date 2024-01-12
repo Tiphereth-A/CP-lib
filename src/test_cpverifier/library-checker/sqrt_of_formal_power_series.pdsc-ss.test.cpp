@@ -7,7 +7,7 @@
 #include "../../code/poly/polydata_scntt.hpp"
 #include "../../code/util/fastio.hpp"
 
-using mdata = tifa_libs::math::mint_ss<998244353>;
+using mdata = tifa_libs::math::mdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mdata>;
 using poly_t = tifa_libs::math::poly<tifa_libs::math::polydata_scntt<mint>>;
 

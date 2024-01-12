@@ -6,7 +6,7 @@
 #include "../../code/math/mint.hpp"
 #include "../../code/rand/gen.hpp"
 
-using mdata = tifa_libs::math::mint_ss<998244353>;
+using mdata = tifa_libs::math::mdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mdata>;
 using mat = tifa_libs::math::spmat<mint>;
 

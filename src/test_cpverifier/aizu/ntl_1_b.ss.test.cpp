@@ -5,7 +5,7 @@
 #include "../../code/math/qpow.hpp"
 
 constexpr u64 MOD = 1'000'000'007;
-using mdata = tifa_libs::math::mint_ss<MOD>;
+using mdata = tifa_libs::math::mdata_ss<MOD>;
 using mint = tifa_libs::math::mint<mdata>;
 
 int main() {

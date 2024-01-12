@@ -5,7 +5,7 @@
 #include "../../code/math/mint.hpp"
 #include "../../code/poly/polydata_s32.hpp"
 
-using mdata = tifa_libs::math::mint_ss<998244353>;
+using mdata = tifa_libs::math::mdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mdata>;
 using polyd = tifa_libs::math::polydata_s32<mint>;
 using poly = tifa_libs::math::poly<polyd>;

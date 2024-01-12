@@ -8,14 +8,14 @@
 #include "../../code/poly/polydata_d3ntt.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mdata = tifa_libs::math::mint_ds<-1>;
+using mdata = tifa_libs::math::mdata_ds<-1>;
 using mint = tifa_libs::math::mint<mdata>;
 
-using mdata1 = tifa_libs::math::mint_ss<167772161>;
+using mdata1 = tifa_libs::math::mdata_ss<167772161>;
 using mint1 = tifa_libs::math::mint<mdata1>;
-using mdata2 = tifa_libs::math::mint_ss<469762049>;
+using mdata2 = tifa_libs::math::mdata_ss<469762049>;
 using mint2 = tifa_libs::math::mint<mdata2>;
-using mdata3 = tifa_libs::math::mint_ss<754974721>;
+using mdata3 = tifa_libs::math::mdata_ss<754974721>;
 using mint3 = tifa_libs::math::mint<mdata3>;
 using polyd = tifa_libs::math::polydata_d3ntt<mint, mint1, mint2, mint3>;
 using poly = tifa_libs::math::poly<polyd>;

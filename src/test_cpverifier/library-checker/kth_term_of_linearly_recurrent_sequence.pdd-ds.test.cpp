@@ -6,7 +6,7 @@
 #include "../../code/poly/polydata_d.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mdata = tifa_libs::math::mint_ds<-1>;
+using mdata = tifa_libs::math::mdata_ds<-1>;
 using mint = tifa_libs::math::mint<mdata>;
 
 using polyd = tifa_libs::math::polydata_d<mint>;

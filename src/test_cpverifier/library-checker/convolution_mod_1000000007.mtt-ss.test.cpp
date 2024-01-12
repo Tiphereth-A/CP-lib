@@ -5,7 +5,7 @@
 #include "../../code/math/mint.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mdata = tifa_libs::math::mint_ss<1000000007>;
+using mdata = tifa_libs::math::mdata_ss<1000000007>;
 using mint = tifa_libs::math::mint<mdata>;
 
 int main() {

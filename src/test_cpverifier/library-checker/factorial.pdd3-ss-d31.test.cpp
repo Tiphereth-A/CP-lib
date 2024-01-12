@@ -9,11 +9,11 @@
 constexpr u64 MOD = 998244353;
 
 using mint = tifa_libs::math::mint_d31<-1>;
-using mdata1 = tifa_libs::math::mint_ss<167772161>;
+using mdata1 = tifa_libs::math::mdata_ss<167772161>;
 using mint1 = tifa_libs::math::mint<mdata1>;
-using mdata2 = tifa_libs::math::mint_ss<469762049>;
+using mdata2 = tifa_libs::math::mdata_ss<469762049>;
 using mint2 = tifa_libs::math::mint<mdata2>;
-using mdata3 = tifa_libs::math::mint_ss<754974721>;
+using mdata3 = tifa_libs::math::mdata_ss<754974721>;
 using mint3 = tifa_libs::math::mint<mdata3>;
 using pldt_t = tifa_libs::math::polydata_d3ntt<mint, mint1, mint2, mint3>;
 

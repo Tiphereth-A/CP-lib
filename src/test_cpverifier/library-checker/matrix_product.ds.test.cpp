@@ -4,7 +4,7 @@
 #include "../../code/math/mdata_ds.hpp"
 #include "../../code/math/mint.hpp"
 
-using mdata = tifa_libs::math::mint_ds<-1>;
+using mdata = tifa_libs::math::mdata_ds<-1>;
 using mint = tifa_libs::math::mint<mdata>;
 
 using mat = tifa_libs::math::matrix<mint>;

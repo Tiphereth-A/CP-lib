@@ -11,7 +11,7 @@
 #include "../../../code/math/mint.hpp"
 #include "../base.hpp"
 
-using mdata = tifa_libs::math::mint_ss<998244353>;
+using mdata = tifa_libs::math::mdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mdata>;
 
 void test(std::string const& data) {

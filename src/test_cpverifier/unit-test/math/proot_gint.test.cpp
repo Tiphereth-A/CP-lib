@@ -11,7 +11,7 @@
 #include "../base.hpp"
 
 template <u32 MOD>
-using mdata = tifa_libs::math::mint_ss<MOD>;
+using mdata = tifa_libs::math::mdata_ss<MOD>;
 using mint = tifa_libs::math::mint<mdata>;
 template <u64 MOD>
 using mint64 = tifa_libs::math::mint_s63<MOD>;

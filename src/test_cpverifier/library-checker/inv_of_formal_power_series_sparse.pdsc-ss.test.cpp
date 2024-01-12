@@ -5,7 +5,7 @@
 #include "../../code/poly/polydata_scntt.hpp"
 #include "../../code/poly/polysp_inv.hpp"
 
-using mdata = tifa_libs::math::mint_ss<998244353>;
+using mdata = tifa_libs::math::mdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mdata>;
 using pldt_t = tifa_libs::math::polydata_scntt<mint>;
 using poly_t = tifa_libs::math::poly<pldt_t>;

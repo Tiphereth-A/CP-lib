@@ -6,7 +6,8 @@
 #include "../../code/str/lcp_hashstr.hpp"
 #include "../../code/util/fastio.hpp"
 
-using mint = tifa_libs::math::mint_2e61n1;
+using mdata = tifa_libs::math::mdata_2e61n1;
+using mint = tifa_libs::math::mint<mdata>;
 using hashstr = tifa_libs::str::hash_substr<mint>;
 
 int main() {

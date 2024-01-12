@@ -7,7 +7,7 @@
 
 constexpr u64 MOD = 998244353;
 
-using mdata = tifa_libs::math::mint_ds<-1>;
+using mdata = tifa_libs::math::mdata_ds<-1>;
 using mint = tifa_libs::math::mint<mdata>;
 
 using pldt_t = tifa_libs::math::polydata_d<mint>;
