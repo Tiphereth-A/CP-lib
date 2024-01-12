@@ -1228,12 +1228,6 @@ notebook:
     - u32tostrhex: u32 转 16 进制字符串
       code_ext: hpp
       test_ext: cpp
-    - montgomery_avx512f: 32 位 Montgomery 乘法(AVX-512F)
-      code_ext: hpp
-      test_ext: cpp
-    - ntt_avx512f: NTT(AVX-512F)
-      code_ext: hpp
-      test_ext: cpp
 cheatsheets:
   nt-const: 初等数论常数表
   seqences: 常见数列
