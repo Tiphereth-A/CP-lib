@@ -2,10 +2,12 @@
 
 #include "../../code/conv/conv_dft.hpp"
 #include "../../code/conv/ntt32.hpp"
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mintdata = tifa_libs::math::mintdata_ss<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 
 int main() {
   std::ios::sync_with_stdio(false);

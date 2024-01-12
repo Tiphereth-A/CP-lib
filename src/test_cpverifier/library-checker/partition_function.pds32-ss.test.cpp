@@ -1,10 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/partition_function"
 
 #include "../../code/comb/gen_partition.hpp"
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/polydata_s32.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mintdata = tifa_libs::math::mintdata_ss<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using polyd = tifa_libs::math::polydata_s32<mint>;
 
 int main() {

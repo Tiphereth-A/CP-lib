@@ -4,15 +4,16 @@
 #include "../../../code/math/proot_gint.hpp"
 
 #include "../../../code/math/jacobi_sym.hpp"
-#include "../../../code/math/mint_s63.hpp"
-#include "../../../code/math/mint_ss.hpp"
+#include "../../../code/math/mint.hpp"
+#include "../../../code/math/mintdata_s63.hpp"
+#include "../../../code/math/mintdata_ss.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
 
 template <u32 MOD>
-using mint = tifa_libs::math::mint_ss<MOD>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mintdata_ss<MOD>>;
 template <u64 MOD>
-using mint64 = tifa_libs::math::mint_s63<MOD>;
+using mint64 = tifa_libs::math::mint<tifa_libs::math::mintdata_s63<MOD>>;
 
 template <class mint, i64 M>
 void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> const& pf_v) {

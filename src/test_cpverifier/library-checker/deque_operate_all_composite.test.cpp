@@ -1,9 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/deque_operate_all_composite"
 
 #include "../../code/ds/deque_with_w.hpp"
-#include "../../code/math/mint_s30.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s30.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mintdata = tifa_libs::math::mintdata_s30<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using T = ptt<mint>;
 T e() { return T{1, 0}; }
 T op(T b, T a) { return T{a.first * b.first, a.first * b.second + a.second}; }

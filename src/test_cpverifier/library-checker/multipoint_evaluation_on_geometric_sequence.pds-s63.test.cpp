@@ -1,10 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence"
 
-#include "../../code/math/mint_s63.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s63.hpp"
 #include "../../code/poly/poly_czt.hpp"
 #include "../../code/poly/polydata_s.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+using mintdata = tifa_libs::math::mintdata_s63<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using polyd = tifa_libs::math::polydata_s<mint>;
 using poly = tifa_libs::math::poly<polyd>;
 

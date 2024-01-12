@@ -1,11 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_fixed_k"
 
 #include "../../code/comb/gen_stirling2_col.hpp"
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/polydata_scntt.hpp"
 #include "../../code/util/fastio.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mintdata = tifa_libs::math::mintdata_ss<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using polyd = tifa_libs::math::polydata_scntt<mint>;
 
 int main() {

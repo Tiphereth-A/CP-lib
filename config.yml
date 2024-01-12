@@ -732,25 +732,28 @@ notebook:
     - lsieve2: 线性筛实现2
       code_ext: hpp
       test_ext: cpp
-    - mint_d31: 动态模整数类(31)
+    - mint: 模整数类
       code_ext: hpp
       test_ext: cpp
-    - mint_d63: 动态模整数类(63)
+    - mintdata_2e61n1: 模整数类适配器(固定,61-1)
       code_ext: hpp
       test_ext: cpp
-    - mint_ds: 动态模整数类的简单实现
+    - mintdata_ss: 模整数类适配器(静态,简单实现)
       code_ext: hpp
       test_ext: cpp
-    - mint_s30: 静态模整数类(30)
+    - mintdata_s30: 模整数类适配器(静态,30)
       code_ext: hpp
       test_ext: cpp
-    - mint_s63: 静态模整数类(63)
+    - mintdata_s63: 模整数类适配器(静态,63)
       code_ext: hpp
       test_ext: cpp
-    - mint_2e61n1: 模整数类(61-1)
+    - mintdata_ds: 模整数类适配器(动态,简单实现)
       code_ext: hpp
       test_ext: cpp
-    - mint_ss: 静态模整数类的简单实现
+    - mintdata_d31: 模整数类适配器(动态,31)
+      code_ext: hpp
+      test_ext: cpp
+    - mintdata_d63: 模整数类适配器(动态,63)
       code_ext: hpp
       test_ext: cpp
     - mul_mod_s: 有符号模乘法

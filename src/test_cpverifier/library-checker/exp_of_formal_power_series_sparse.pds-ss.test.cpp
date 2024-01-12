@@ -1,10 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse"
 
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/polydata_s.hpp"
 #include "../../code/poly/polysp_exp.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mintdata = tifa_libs::math::mintdata_ss<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using pldt_t = tifa_libs::math::polydata_s<mint>;
 using poly_t = tifa_libs::math::poly<pldt_t>;
 

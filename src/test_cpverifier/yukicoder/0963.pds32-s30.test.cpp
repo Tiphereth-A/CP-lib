@@ -1,10 +1,12 @@
 #define PROBLEM "https://yukicoder.me/problems/no/963"
 
-#include "../../code/math/mint_s30.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s30.hpp"
 #include "../../code/poly/poly_ode.hpp"
 #include "../../code/poly/polydata_s32.hpp"
 
-using mint = tifa_libs::math::mint_s30<1012924417>;
+using mintdata = tifa_libs::math::mintdata_s30<1012924417>;
+using mint = tifa_libs::math::mint<mintdata>;
 using pldt_t = tifa_libs::math::polydata_s32<mint>;
 using poly_t = tifa_libs::math::poly<pldt_t>;
 
