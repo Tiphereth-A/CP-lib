@@ -29,7 +29,7 @@ class mdata_ss {
   constexpr raw_type val() const { return v_; }
   constexpr sraw_type sval() const { return (sraw_type)v_; }
   constexpr raw_type &data() { return v_; }
-  constexpr mint_ss operator-() const { return mint_ss() - *this; }
+  constexpr mdata_ss operator-() const { return mdata_ss() - *this; }
   constexpr mdata_ss &operator+=(mdata_ss const &r) {
     v_ += r.v_;
     if (v_ >= mod()) v_ -= mod();

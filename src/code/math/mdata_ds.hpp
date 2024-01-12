@@ -31,7 +31,7 @@ class mdata_ds {
   constexpr raw_type val() const { return v_; }
   constexpr sraw_type sval() const { return (sraw_type)v_; }
   constexpr raw_type &data() { return v_; }
-  constexpr mdata_ds operator-() const { return mint_ds() - *this; }
+  constexpr mdata_ds operator-() const { return mdata_ds() - *this; }
   constexpr mdata_ds &operator+=(mdata_ds const &r) {
     v_ += r.v_;
     if (v_ >= mod()) v_ -= mod();
