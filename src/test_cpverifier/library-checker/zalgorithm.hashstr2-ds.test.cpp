@@ -6,13 +6,15 @@
 #include "../../code/str/lcp_hashstr.hpp"
 #include "../../code/util/fastio.hpp"
 
-using mint0 = tifa_libs::math::mdata_ds<-1>;
-using mint1 = tifa_libs::math::mdata_ds<-2>;
+using mdata0 = tifa_libs::math::mdata_ds<-1>;
+using mdata1 = tifa_libs::math::mdata_ds<-2>;
+using mint0 = tifa_libs::math::mint<mdata0>;
+using mint1 = tifa_libs::math::mint<mdata1>;
 using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 
 int main() {
-  mint0::set_mod(998244353);
-  mint1::set_mod(1'000'000'007);
+  mdata0::set_mod(998244353);
+  mdata1::set_mod(1'000'000'007);
   std::string s;
   tifa_libs::fin >> s;
   hashstr hs;

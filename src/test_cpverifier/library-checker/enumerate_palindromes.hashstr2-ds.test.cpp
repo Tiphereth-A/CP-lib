@@ -4,13 +4,15 @@
 #include "../../code/math/mint.hpp"
 #include "../../code/str/hash_substr2.hpp"
 
-using mint0 = tifa_libs::math::mdata_ds<-1>;
-using mint1 = tifa_libs::math::mdata_ds<-2>;
+using mdata0 = tifa_libs::math::mdata_ds<-1>;
+using mdata1 = tifa_libs::math::mdata_ds<-2>;
+using mint0 = tifa_libs::math::mint<mdata0>;
+using mint1 = tifa_libs::math::mint<mdata1>;
 using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 
 int main() {
-  mint0::set_mod(998244353);
-  mint1::set_mod(1'000'000'007);
+  mdata0::set_mod(998244353);
+  mdata1::set_mod(1'000'000'007);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   std::string s;
