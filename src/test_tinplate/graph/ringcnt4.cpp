@@ -3,13 +3,15 @@
 #include "../../code/graph/ringcnt4.hpp"
 
 #include "../../code/graph/ringenum3.hpp"
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mdata_ss.hpp"
+#include "../../code/math/mint.hpp"
 // clang-format off
 #include "../../code/util/ios_pair.hpp"
 #include "../../code/util/ios_container.hpp"
 // clang-format on
 
-using mint = tifa_libs::math::mint_ss<1'000'000'000 + 7>;
+using mdata = tifa_libs::math::mint_ss<1'000'000'000 + 7>;
+using mint = tifa_libs::math::mint<mdata>;
 
 int main() {
   std::ios::sync_with_stdio(false);

@@ -1,13 +1,15 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
 
 #include "../../code/conv/conv_subset.hpp"
-#include "../../code/math/mint_ds.hpp"
+#include "../../code/math/mdata_ds.hpp"
+#include "../../code/math/mint.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mint = tifa_libs::math::mint_ds<-1>;
+using mdata = tifa_libs::math::mint_ds<-1>;
+using mint = tifa_libs::math::mint<mdata>;
 
 int main() {
-  mint::set_mod(998244353);
+  mdata::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 n;

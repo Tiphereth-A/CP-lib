@@ -2,7 +2,8 @@
 
 #include "../../code/math/exeuclid.hpp"
 
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mdata_ss.hpp"
+#include "../../code/math/mint.hpp"
 
 template <class T>
 struct exeuclid_node {
@@ -19,7 +20,8 @@ struct exeuclid_node {
   }
 };
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mdata = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint<mdata>;
 using node = exeuclid_node<mint>;
 
 int main() {

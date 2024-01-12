@@ -2,14 +2,17 @@
 
 #include "../../code/lalg/mat_det_rd.hpp"
 #include "../../code/lalg/spmat.hpp"
-#include "../../code/math/mint_ds.hpp"
+#include "../../code/math/mdata_ds.hpp"
+#include "../../code/math/mint.hpp"
 #include "../../code/rand/gen.hpp"
 
-using mint = tifa_libs::math::mint_ds<-1>;
+using mdata = tifa_libs::math::mint_ds<-1>;
+using mint = tifa_libs::math::mint<mdata>;
+
 using mat = tifa_libs::math::spmat<mint>;
 
 int main() {
-  mint::set_mod(998244353);
+  mdata::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u64 n, k;

@@ -1,10 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mdata_ss.hpp"
+#include "../../code/math/mint.hpp"
 #include "../../code/str/hash_substr2.hpp"
 
-using mint0 = tifa_libs::math::mint_ss<998244353>;
-using mint1 = tifa_libs::math::mint_ss<1'000'000'007>;
+using mdata0 = tifa_libs::math::mint_ss<998244353>;
+using mint0 = tifa_libs::math::mint<mdata0>;
+using mdata1 = tifa_libs::math::mint_ss<1'000'000'007>;
+using mint1 = tifa_libs::math::mint<mdata1>;
 using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 
 int main() {

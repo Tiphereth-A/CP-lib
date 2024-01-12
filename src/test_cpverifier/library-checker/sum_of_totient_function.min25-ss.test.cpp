@@ -1,9 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
 
 #include "../../code/math/min25_sieve.hpp"
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mdata_ss.hpp"
+#include "../../code/math/mint.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mdata = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint<mdata>;
 
 mint f(u64 p, u64 c) {
   u64 res = 1;

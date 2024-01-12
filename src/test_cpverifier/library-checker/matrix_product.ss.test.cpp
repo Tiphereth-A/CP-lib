@@ -1,9 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_product"
 
 #include "../../code/lalg/mat.hpp"
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mdata_ss.hpp"
+#include "../../code/math/mint.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mdata = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint<mdata>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {

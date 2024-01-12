@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 
-#include "../../code/math/mint_2e61n1.hpp"
+#include "../../code/math/mdata_2e61n1.hpp"
+#include "../../code/math/mint.hpp"
 #include "../../code/str/hash_substr.hpp"
 
 using mint = tifa_libs::math::mint_2e61n1;

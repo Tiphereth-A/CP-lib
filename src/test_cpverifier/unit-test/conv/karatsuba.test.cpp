@@ -5,10 +5,12 @@
 
 #include "../../../code/math/mint_d31.hpp"
 #include "../../../code/math/mint_d63.hpp"
-#include "../../../code/math/mint_ds.hpp"
+#include "../../../code/math/mdata_ds.hpp"
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/mint_s63.hpp"
-#include "../../../code/math/mint_ss.hpp"
+#include "../../../code/math/mdata_ss.hpp"
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/nimber.hpp"
 #include "../base.hpp"
 

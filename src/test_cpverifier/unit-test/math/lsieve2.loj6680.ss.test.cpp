@@ -7,10 +7,12 @@
 
 #include "../../../code/math/lsieve2.hpp"
 
-#include "../../../code/math/mint_ss.hpp"
+#include "../../../code/math/mdata_ss.hpp"
+#include "../../../code/math/mint.hpp"
 #include "../base.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mdata = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint<mdata>;
 
 void test(std::string const& data) {
   std::string path = "src/data/loj/6680/" + data;

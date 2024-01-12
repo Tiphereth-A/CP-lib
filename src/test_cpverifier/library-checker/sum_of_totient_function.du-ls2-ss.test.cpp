@@ -3,9 +3,11 @@
 #include "../../code/math/du_sieve.hpp"
 #include "../../code/math/isqrt.hpp"
 #include "../../code/math/lsieve2.hpp"
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mdata_ss.hpp"
+#include "../../code/math/mint.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mdata = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint<mdata>;
 
 int main() {
   std::ios::sync_with_stdio(false);

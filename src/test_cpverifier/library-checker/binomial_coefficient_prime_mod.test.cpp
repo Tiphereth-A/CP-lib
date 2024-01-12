@@ -2,15 +2,17 @@
 
 #include "../../code/comb/binom.hpp"
 #include "../../code/comb/lucas.hpp"
-#include "../../code/math/mint_ds.hpp"
+#include "../../code/math/mdata_ds.hpp"
+#include "../../code/math/mint.hpp"
 #include "../../code/util/fastio.hpp"
 
-using mint = tifa_libs::math::mint_ds<-1>;
+using mdata = tifa_libs::math::mint_ds<-1>;
+using mint = tifa_libs::math::mint<mdata>;
 
 int main() {
   u32 t, m;
   tifa_libs::fin >> t >> m;
-  mint::set_mod(m);
+  mdata::set_mod(m);
   if (m < 1e7) {
     tifa_libs::math::Lucas<mint> mCn;
     while (t--) {

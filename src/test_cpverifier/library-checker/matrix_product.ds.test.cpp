@@ -1,13 +1,16 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_product"
 
 #include "../../code/lalg/mat.hpp"
-#include "../../code/math/mint_ds.hpp"
+#include "../../code/math/mdata_ds.hpp"
+#include "../../code/math/mint.hpp"
 
-using mint = tifa_libs::math::mint_ds<-1>;
+using mdata = tifa_libs::math::mint_ds<-1>;
+using mint = tifa_libs::math::mint<mdata>;
+
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
-  mint::set_mod(998244353);
+  mdata::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u64 n, m, k;

@@ -1,16 +1,19 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorial"
 
 #include "../../code/math/fact_mint.hpp"
-#include "../../code/math/mint_ds.hpp"
+#include "../../code/math/mdata_ds.hpp"
+#include "../../code/math/mint.hpp"
 #include "../../code/poly/polydata_d.hpp"
 
 constexpr u64 MOD = 998244353;
 
-using mint = tifa_libs::math::mint_ds<-1>;
+using mdata = tifa_libs::math::mint_ds<-1>;
+using mint = tifa_libs::math::mint<mdata>;
+
 using pldt_t = tifa_libs::math::polydata_d<mint>;
 
 int main() {
-  mint::set_mod(MOD);
+  mdata::set_mod(MOD);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 t;
