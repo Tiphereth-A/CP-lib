@@ -6,7 +6,8 @@
 #include "../../code/math/mint.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mint = tifa_libs::math::mdata_ss<998244353>;
+using mdata = tifa_libs::math::mdata_ss<998244353>;
+using mint = tifa_libs::math::mint<mdata>;
 
 int main() {
   std::ios::sync_with_stdio(false);
