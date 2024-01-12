@@ -7,18 +7,18 @@
 #include "../../code/poly/polydata_d3ntt.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mint = tifa_libs::math::mint_d63<-1>;
 using mdata1 = tifa_libs::math::mdata_ss<167772161>;
-using mint1 = tifa_libs::math::mint<mdata1>;
 using mdata2 = tifa_libs::math::mdata_ss<469762049>;
-using mint2 = tifa_libs::math::mint<mdata2>;
 using mdata3 = tifa_libs::math::mdata_ss<754974721>;
+using mint = tifa_libs::math::mint_d63<-1>;
+using mint1 = tifa_libs::math::mint<mdata1>;
+using mint2 = tifa_libs::math::mint<mdata2>;
 using mint3 = tifa_libs::math::mint<mdata3>;
 using polyd = tifa_libs::math::polydata_d3ntt<mint, mint1, mint2, mint3>;
 using poly = tifa_libs::math::poly<polyd>;
 
 int main() {
-  mdata::set_mod(998244353);
+  mint::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 d;
