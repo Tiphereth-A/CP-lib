@@ -31,6 +31,7 @@ class mdata_2e61n1 {
   constexpr raw_type val() const { return v_; }
   constexpr raw_type &data() { return v_; }
   constexpr raw_type const &data() const { return v_; }
+  constexpr mdata_2e61n1 operator-() const { return MOD - v_; }
   constexpr mdata_2e61n1 &operator+=(mdata_2e61n1 const &r) {
     v_ = mod_(v_ + r.v_);
     return *this;
