@@ -2,19 +2,19 @@
 
 #include "../../code/math/fact_mint.hpp"
 #include "../../code/math/mint_d31.hpp"
-#include "../../code/math/mdata_ss.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/poly/polydata_d3ntt.hpp"
 
 constexpr u64 MOD = 998244353;
 
-using mdata1 = tifa_libs::math::mdata_ss<167772161>;
-using mdata2 = tifa_libs::math::mdata_ss<469762049>;
-using mdata3 = tifa_libs::math::mdata_ss<754974721>;
+using mintdata1 = tifa_libs::math::mintdata_ss<167772161>;
+using mintdata2 = tifa_libs::math::mintdata_ss<469762049>;
+using mintdata3 = tifa_libs::math::mintdata_ss<754974721>;
 using mint = tifa_libs::math::mint_d31<-1>;
-using mint1 = tifa_libs::math::mint<mdata1>;
-using mint2 = tifa_libs::math::mint<mdata2>;
-using mint3 = tifa_libs::math::mint<mdata3>;
+using mint1 = tifa_libs::math::mint<mintdata1>;
+using mint2 = tifa_libs::math::mint<mintdata2>;
+using mint3 = tifa_libs::math::mint<mintdata3>;
 using pldt_t = tifa_libs::math::polydata_d3ntt<mint, mint1, mint2, mint3>;
 
 int main() {

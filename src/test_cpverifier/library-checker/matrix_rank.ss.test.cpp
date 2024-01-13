@@ -3,11 +3,11 @@
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/mat_ge_basic.hpp"
 #include "../../code/lalg/mat_rk.hpp"
-#include "../../code/math/mdata_ss.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
 
-using mdata = tifa_libs::math::mdata_ss<998244353>;
-using mint = tifa_libs::math::mint<mdata>;
+using mintdata = tifa_libs::math::mintdata_ss<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {

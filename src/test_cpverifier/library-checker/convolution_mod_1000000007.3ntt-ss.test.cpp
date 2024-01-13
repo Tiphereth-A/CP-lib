@@ -1,16 +1,16 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
 #include "../../code/conv/conv_3ntt.hpp"
-#include "../../code/math/mdata_ss.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mdata0 = tifa_libs::math::mdata_ss<167772161>;
-using mdata1 = tifa_libs::math::mdata_ss<469762049>;
-using mdata2 = tifa_libs::math::mdata_ss<754974721>;
-using mint0 = tifa_libs::math::mint<mdata0>;
-using mint1 = tifa_libs::math::mint<mdata1>;
-using mint2 = tifa_libs::math::mint<mdata2>;
+using mintdata0 = tifa_libs::math::mintdata_ss<167772161>;
+using mintdata1 = tifa_libs::math::mintdata_ss<469762049>;
+using mintdata2 = tifa_libs::math::mintdata_ss<754974721>;
+using mint0 = tifa_libs::math::mint<mintdata0>;
+using mint1 = tifa_libs::math::mint<mintdata1>;
+using mint2 = tifa_libs::math::mint<mintdata2>;
 
 int main() {
   std::ios::sync_with_stdio(false);

@@ -1,14 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence"
 
-#include "../../code/math/mdata_ds.hpp"
+#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/math/mint_s30.hpp"
 #include "../../code/math/nth_term_lrec.hpp"
 #include "../../code/poly/polydata_d3ntt.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mdata = tifa_libs::math::mdata_ds<-1>;
-using mint = tifa_libs::math::mint<mdata>;
+using mintdata = tifa_libs::math::mintdata_ds<-1>;
+using mint = tifa_libs::math::mint<mintdata>;
 
 using mint1 = tifa_libs::math::mint_s30<167772161>;
 using mint2 = tifa_libs::math::mint_s30<469762049>;
@@ -17,7 +17,7 @@ using polyd = tifa_libs::math::polydata_d3ntt<mint, mint1, mint2, mint3>;
 using poly = tifa_libs::math::poly<polyd>;
 
 int main() {
-  mdata::set_mod(998244353);
+  mintdata::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 d;

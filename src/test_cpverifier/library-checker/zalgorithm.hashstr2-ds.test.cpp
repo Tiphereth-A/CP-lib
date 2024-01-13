@@ -1,20 +1,20 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#include "../../code/math/mdata_ds.hpp"
+#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/str/hash_substr2.hpp"
 #include "../../code/str/lcp_hashstr.hpp"
 #include "../../code/util/fastio.hpp"
 
-using mdata0 = tifa_libs::math::mdata_ds<-1>;
-using mdata1 = tifa_libs::math::mdata_ds<-2>;
-using mint0 = tifa_libs::math::mint<mdata0>;
-using mint1 = tifa_libs::math::mint<mdata1>;
+using mintdata0 = tifa_libs::math::mintdata_ds<-1>;
+using mintdata1 = tifa_libs::math::mintdata_ds<-2>;
+using mint0 = tifa_libs::math::mint<mintdata0>;
+using mint1 = tifa_libs::math::mint<mintdata1>;
 using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 
 int main() {
-  mdata0::set_mod(998244353);
-  mdata1::set_mod(1'000'000'007);
+  mintdata0::set_mod(998244353);
+  mintdata1::set_mod(1'000'000'007);
   std::string s;
   tifa_libs::fin >> s;
   hashstr hs;

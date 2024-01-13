@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#include "../../code/math/mdata_2e61n1.hpp"
+#include "../../code/math/mintdata_2e61n1.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/str/hash_substr.hpp"
 #include "../../code/str/lcp_hashstr.hpp"
 #include "../../code/util/fastio.hpp"
 
-using mdata = tifa_libs::math::mdata_2e61n1;
-using mint = tifa_libs::math::mint<mdata>;
+using mintdata = tifa_libs::math::mintdata_2e61n1;
+using mint = tifa_libs::math::mint<mintdata>;
 using hashstr = tifa_libs::str::hash_substr<mint>;
 
 int main() {

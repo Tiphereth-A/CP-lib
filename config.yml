@@ -735,13 +735,13 @@ notebook:
     - mint: 模整数类
       code_ext: hpp
       test_ext: cpp
-    - mdata_ds: 模整数类适配器(动态,简单实现)
+    - mintdata_ds: 模整数类适配器(动态,简单实现)
       code_ext: hpp
       test_ext: cpp
-    - mdata_ss: 模整数类适配器(静态,简单实现)
+    - mintdata_ss: 模整数类适配器(静态,简单实现)
       code_ext: hpp
       test_ext: cpp
-    - mdata_2e61n1: 模整数类适配器(61-1)
+    - mintdata_2e61n1: 模整数类适配器(61-1)
       code_ext: hpp
       test_ext: cpp
     - mint_d31: 动态模整数类(31)
