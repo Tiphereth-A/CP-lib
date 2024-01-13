@@ -6,10 +6,10 @@
 #include "../../code/util/ios_container.hpp"
 
 using mintdata0 = tifa_libs::math::mintdata_s30<167772161>;
-using mint0 = tifa_libs::math::mint<mintdata0>;
 using mintdata1 = tifa_libs::math::mintdata_s30<469762049>;
-using mint1 = tifa_libs::math::mint<mintdata1>;
 using mintdata2 = tifa_libs::math::mintdata_s30<754974721>;
+using mint0 = tifa_libs::math::mint<mintdata0>;
+using mint1 = tifa_libs::math::mint<mintdata1>;
 using mint2 = tifa_libs::math::mint<mintdata2>;
 
 int main() {

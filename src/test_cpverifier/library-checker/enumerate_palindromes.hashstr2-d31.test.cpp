@@ -5,8 +5,8 @@
 #include "../../code/str/hash_substr2.hpp"
 
 using mintdata0 = tifa_libs::math::mintdata_d31<-1>;
-using mint0 = tifa_libs::math::mint<mintdata0>;
 using mintdata1 = tifa_libs::math::mintdata_d31<-2>;
+using mint0 = tifa_libs::math::mint<mintdata0>;
 using mint1 = tifa_libs::math::mint<mintdata1>;
 using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 
