@@ -12,7 +12,7 @@ using polyd = tifa_libs::math::polydata_d<mint>;
 using poly = tifa_libs::math::poly<polyd>;
 
 int main() {
-  mint::set_mod(998244353);
+  mintdata::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 d;

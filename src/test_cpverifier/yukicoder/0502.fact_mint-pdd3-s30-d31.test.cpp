@@ -19,7 +19,7 @@ using mint3 = tifa_libs::math::mint<mintdata3>;
 using pldt_t = tifa_libs::math::polydata_d3ntt<mint, mint1, mint2, mint3>;
 
 int main() {
-  mint::set_mod(MOD);
+  mintdata::set_mod(MOD);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u64 n;

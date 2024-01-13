@@ -18,7 +18,7 @@ int main() {
   while (t--) {
     u32 n, p;
     std::cin >> n >> p;
-    mint::set_mod(p);
+    mintdata::set_mod(p);
     std::cout << tifa_libs::math::fact_mint<polyd>(n) << '\n';
   }
   return 0;

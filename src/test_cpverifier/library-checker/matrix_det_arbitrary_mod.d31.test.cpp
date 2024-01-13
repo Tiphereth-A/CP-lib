@@ -15,7 +15,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
-  mint::set_mod(m);
+  mintdata::set_mod(m);
   if (!n) {
     std::cout << "1\n";
     return 0;

@@ -12,7 +12,7 @@ using mint = tifa_libs::math::mint<mintdata>;
 using pldt_t = tifa_libs::math::polydata_d<mint>;
 
 int main() {
-  mint::set_mod(MOD);
+  mintdata::set_mod(MOD);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u64 n;

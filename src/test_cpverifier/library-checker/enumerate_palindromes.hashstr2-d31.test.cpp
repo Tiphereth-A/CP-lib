@@ -11,8 +11,8 @@ using mint1 = tifa_libs::math::mint<mintdata1>;
 using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 
 int main() {
-  mint0::set_mod(998244353);
-  mint1::set_mod(1'000'000'007);
+  mintdata0::set_mod(998244353);
+  mintdata1::set_mod(1'000'000'007);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   std::string s;
