@@ -56,7 +56,7 @@ class mint {
     return is;
   }
   friend std::ostream &operator<<(std::ostream &os, mint const &x) { return os << x.val(); }
-  friend constexpr raw_type abs(mint const &x) { return x.val(); }
+  friend constexpr mint abs(mint const &x) { return x.val(); }
 };
 
 }  // namespace tifa_libs::math
