@@ -14,9 +14,9 @@ namespace tifa_libs::math {
 template <class T>
 vec<u128> conv_u128(vec<T> const &l, vec<T> const &r, u32 ans_size = 0) {
   static constexpr u32 m0 = 167772161, m1 = 469762049, m2 = 754974721;
-  using mint0 = mintdata_s30<m0>;
-  using mint1 = mintdata_s30<m1>;
-  using mint2 = mintdata_s30<m2>;
+  using mint0 = mint<mintdata_s30<m0>>;
+  using mint1 = mint<mintdata_s30<m1>>;
+  using mint2 = mint<mintdata_s30<m2>>;
   static constexpr u32 r01 = mint1(m0).inv().val(), r02 = mint2(m0).inv().val(), r12 = mint2(m1).inv().val(), r02r12 = (u64)r02 * r12 % m2;
   static constexpr u64 w1 = m0, w2 = (u64)m0 * m1;
 
