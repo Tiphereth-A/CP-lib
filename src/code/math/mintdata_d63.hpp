@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_MINTDATA_D63
 #define TIFALIBS_MATH_MINTDATA_D63
 
-#include "inverse.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 

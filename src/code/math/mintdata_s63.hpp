@@ -1,14 +1,23 @@
 #ifndef TIFALIBS_MATH_MINTDATA_S63
 #define TIFALIBS_MATH_MINTDATA_S63
 
-#include "inverse.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 
 template <u64 MOD>
 class mintdata_s63 {
-  static constexpr u64 R = get_r();
-  static constexpr u64 R2 = get_r2();
+  static constexpr u64 R = []() {
+    u64 t = 2, iv = MOD * (t - MOD * MOD);
+    iv *= t - MOD * iv, iv *= t - MOD * iv, iv *= t - MOD * iv;
+    return iv * (t - MOD * iv);
+  }();
+  static constexpr u64 R2 = []() {
+    u64 iv = -MOD % MOD;
+    for (u32 i = 0; i != 64; ++i)
+      if ((iv *= 2) >= MOD) iv -= MOD;
+    return iv;
+  }();
 
   static_assert(MOD & 1);
   static_assert(R * MOD == 1);
@@ -17,17 +26,6 @@ class mintdata_s63 {
 
   u64 v_{};
 
-  static constexpr u64 get_r() {
-    u64 t = 2, iv = MOD * (t - MOD * MOD);
-    iv *= t - MOD * iv, iv *= t - MOD * iv, iv *= t - MOD * iv;
-    return iv * (t - MOD * iv);
-  }
-  static constexpr u64 get_r2() {
-    u64 iv = -MOD % MOD;
-    for (int i = 0; i != 64; ++i)
-      if ((iv *= 2) >= MOD) iv -= MOD;
-    return iv;
-  }
   static constexpr u64 mul_high(u64 x, u64 y) {
     u64 a = x >> 32, b = (u32)(x), c = y >> 32, d = (u32)(y), ad = a * d, bc = b * c;
     return a * c + (ad >> 32) + (bc >> 32) + (((ad & 0xFFFFFFFF) + (bc & 0xFFFFFFFF) + (b * d >> 32)) >> 32);

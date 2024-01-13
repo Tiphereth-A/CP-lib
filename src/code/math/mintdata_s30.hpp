@@ -1,14 +1,18 @@
 #ifndef TIFALIBS_MATH_MINTDATA_S30
 #define TIFALIBS_MATH_MINTDATA_S30
 
-#include "inverse.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 
 template <u32 MOD>
 class mintdata_s30 {
   static constexpr u32 MOD2 = MOD << 1;
-  static constexpr u32 R = get_r();
+  static constexpr u32 R = []() {
+    u32 t = 2, iv = MOD * (t - MOD * MOD);
+    iv *= t - MOD * iv, iv *= t - MOD * iv;
+    return iv * (MOD * iv - t);
+  }();
   static constexpr u32 R2 = -(u64)(MOD) % MOD;
 
   static_assert(MOD & 1);
@@ -20,11 +24,6 @@ class mintdata_s30 {
 
   static constexpr u32 reduce(u64 x) { return (u32)((x + (u64)((u32)(x)*R) * MOD) >> 32); }
   static constexpr u32 norm(u32 x) { return x - (MOD & -((MOD - 1 - x) >> 31)); }
-  static constexpr u32 get_r() {
-    u32 t = 2, iv = MOD * (t - MOD * MOD);
-    iv *= t - MOD * iv, iv *= t - MOD * iv;
-    return iv * (MOD * iv - t);
-  }
 
  public:
   using raw_type = u32;
