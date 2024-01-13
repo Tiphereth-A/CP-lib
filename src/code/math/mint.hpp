@@ -25,7 +25,6 @@ class mint {
   constexpr raw_type val() const { return d.val(); }
   constexpr sraw_type sval() const { return d.sval(); }
   constexpr raw_type &data() { return d.data(); }
-  constexpr raw_type const &data() { return d.data(); }
   template <std::integral T>
   explicit constexpr operator T() const { return (T)(d.val()); }
   constexpr mint &operator+=(mint const &r) {
@@ -41,8 +40,8 @@ class mint {
     return *this;
   }
   constexpr mint &operator/=(mint const &r) { return *this = *this * r.inv(); }
-  constexpr mint operator+() const { return *this; }
-  constexpr mint operator-() const { return mint(-d); }
+  constexpr mint const &operator+() const { return *this; }
+  constexpr mint operator-() const { return -d; }
   constexpr mint inv() const { return inverse(val(), mod()); }
   friend constexpr mint operator+(mint l, mint const &r) { return l += r; }
   friend constexpr mint operator-(mint l, mint const &r) { return l -= r; }
