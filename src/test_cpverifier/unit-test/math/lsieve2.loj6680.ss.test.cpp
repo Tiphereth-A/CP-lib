@@ -7,8 +7,8 @@
 
 #include "../../../code/math/lsieve2.hpp"
 
-#include "../../../code/math/mintdata_ss.hpp"
 #include "../../../code/math/mint.hpp"
+#include "../../../code/math/mintdata_ss.hpp"
 #include "../base.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ss<998244353>;

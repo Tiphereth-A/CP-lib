@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence"
 
-#include "../../code/math/mint_d31.hpp"
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_d31.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/nth_term_lrec.hpp"
 #include "../../code/poly/polydata_d3ntt.hpp"
 #include "../../code/util/ios_container.hpp"
@@ -10,7 +10,8 @@
 using mintdata1 = tifa_libs::math::mintdata_ss<167772161>;
 using mintdata2 = tifa_libs::math::mintdata_ss<469762049>;
 using mintdata3 = tifa_libs::math::mintdata_ss<754974721>;
-using mint = tifa_libs::math::mint_d31<-1>;
+using mintdata = tifa_libs::math::mintdata_d31<-1>;
+using mint = tifa_libs::math::mint<mintdata>;
 using mint1 = tifa_libs::math::mint<mintdata1>;
 using mint2 = tifa_libs::math::mint<mintdata2>;
 using mint3 = tifa_libs::math::mint<mintdata3>;

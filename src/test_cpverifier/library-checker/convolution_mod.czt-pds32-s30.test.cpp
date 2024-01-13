@@ -1,10 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
 #include "../../code/conv/conv_czt.hpp"
-#include "../../code/math/mint_s30.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s30.hpp"
 #include "../../code/poly/polydata_s32.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mintdata = tifa_libs::math::mintdata_s30<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using polyd = tifa_libs::math::polydata_s32<mint>;
 using poly = tifa_libs::math::poly<polyd>;
 

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/poly.hpp"
 #include "../../code/poly/poly_ctsh.hpp"
 #include "../../code/poly/polydata_s32.hpp"

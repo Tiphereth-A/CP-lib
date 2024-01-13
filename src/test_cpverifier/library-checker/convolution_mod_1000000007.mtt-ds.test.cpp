@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
 #include "../../code/conv/conv_mtt.hpp"
-#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/util/ios_container.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ds<-1>;

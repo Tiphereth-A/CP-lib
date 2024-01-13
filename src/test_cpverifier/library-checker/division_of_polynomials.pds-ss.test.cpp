@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/division_of_polynomials"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/poly.hpp"
 #include "../../code/poly/poly_divmod.hpp"
 #include "../../code/poly/polydata_s.hpp"

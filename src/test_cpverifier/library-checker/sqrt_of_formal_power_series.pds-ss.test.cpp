@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sqrt_of_formal_power_series"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/poly.hpp"
 #include "../../code/poly/poly_sqrt.hpp"
 #include "../../code/poly/polydata_s.hpp"

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/poly_czt.hpp"
 #include "../../code/poly/polydata_s.hpp"
 

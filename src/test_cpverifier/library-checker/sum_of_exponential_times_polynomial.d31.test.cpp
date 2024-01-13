@@ -1,11 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial"
 
 #include "../../code/comb/gen_pows.hpp"
-#include "../../code/math/mint_d31.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_d31.hpp"
 #include "../../code/math/sum_ipaf.hpp"
 
 constexpr u32 MOD = 998244353;
-using mint = tifa_libs::math::mint_d31<-1>;
+using mintdata = tifa_libs::math::mintdata_d31<-1>;
+using mint = tifa_libs::math::mint<mintdata>;
 
 int main() {
   mint::set_mod(MOD);

@@ -2,8 +2,8 @@
 
 #include "../../code/math/min25_sieve.hpp"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/qpow.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ss<1'000'000'000 + 7>;

@@ -1,10 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
 #include "../../code/conv/conv_mtt.hpp"
-#include "../../code/math/mint_d63.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_d63.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mint = tifa_libs::math::mint_d63<-1>;
+using mintdata = tifa_libs::math::mintdata_d63<-1>;
+using mint = tifa_libs::math::mint<mintdata>;
 
 int main() {
   mint::set_mod(1000000007);

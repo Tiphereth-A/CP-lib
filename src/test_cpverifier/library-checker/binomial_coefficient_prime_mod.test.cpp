@@ -2,8 +2,8 @@
 
 #include "../../code/comb/binom.hpp"
 #include "../../code/comb/lucas.hpp"
-#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/util/fastio.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ds<-1>;

@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorial"
 
 #include "../../code/math/fact_mint.hpp"
-#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/poly/polydata_d.hpp"
 
 constexpr u64 MOD = 998244353;

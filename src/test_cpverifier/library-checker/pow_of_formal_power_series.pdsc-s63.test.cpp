@@ -1,12 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_formal_power_series"
 
-#include "../../code/math/mint_s63.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s63.hpp"
 #include "../../code/poly/poly.hpp"
 #include "../../code/poly/poly_pow.hpp"
 #include "../../code/poly/polydata_scntt.hpp"
 #include "../../code/util/fastio.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+using mintdata = tifa_libs::math::mintdata_s63<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using poly_t = tifa_libs::math::poly<tifa_libs::math::polydata_scntt<mint>>;
 
 int main() {

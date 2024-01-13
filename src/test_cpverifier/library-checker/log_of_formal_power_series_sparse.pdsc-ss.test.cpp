@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/polydata_scntt.hpp"
 #include "../../code/poly/polysp_ln.hpp"
 

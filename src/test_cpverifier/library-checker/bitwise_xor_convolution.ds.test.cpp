@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution"
 
 #include "../../code/conv/conv_xor.hpp"
-#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/util/ios_container.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ds<-1>;

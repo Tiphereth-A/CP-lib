@@ -1,9 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
 #include "../../code/ds/segtree.hpp"
-#include "../../code/math/mint_s30.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s30.hpp"
 
-using Ty = tifa_libs::math::mint_s30<998244353>;
+using Ty = tifa_libs::math::mintdata_s30<998244353>;
 using T = std::pair<Ty, Ty>;
 using F = T;
 

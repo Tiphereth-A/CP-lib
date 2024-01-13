@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 
 // relax(now, to)
 template <class T, class F>
-  requires(!sint_c<T>)
+requires(!sint_c<T>)
 constexpr vec<T> dijkstra(alistw<T> const &fg, u32 s, F relax, T INF = std::numeric_limits<T>::max() / 2 - 1) {
   auto &&g = fg.g;
   vec<T> dis(g.size(), INF);

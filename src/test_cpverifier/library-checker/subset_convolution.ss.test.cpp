@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
 
 #include "../../code/conv/conv_subset.hpp"
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/util/ios_container.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ss<998244353>;

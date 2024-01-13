@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n"
 
 #include "../../code/comb/stirling2_smallp.hpp"
-#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ds.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ds<-1>;
 using mint = tifa_libs::math::mint<mintdata>;

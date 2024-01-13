@@ -2,8 +2,8 @@
 
 #include "../../code/math/exeuclid.hpp"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 
 template <class T>
 struct exeuclid_node {

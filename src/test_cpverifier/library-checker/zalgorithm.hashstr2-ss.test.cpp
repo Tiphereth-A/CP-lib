@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/str/hash_substr2.hpp"
 #include "../../code/str/lcp_hashstr.hpp"
 #include "../../code/util/fastio.hpp"

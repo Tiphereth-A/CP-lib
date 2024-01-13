@@ -2,10 +2,12 @@
 
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/mat_hafnian.hpp"
-#include "../../code/math/mint_d63.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_d63.hpp"
 #include "../../code/util/fastio.hpp"
 
-using mint = tifa_libs::math::mint_d63<-1>;
+using mintdata = tifa_libs::math::mintdata_d63<-1>;
+using mint = tifa_libs::math::mint<mintdata>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {

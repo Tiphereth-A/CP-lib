@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/polynomial_interpolation"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/poly.hpp"
 #include "../../code/poly/poly_interp.hpp"
 #include "../../code/poly/polydata_scntt.hpp"

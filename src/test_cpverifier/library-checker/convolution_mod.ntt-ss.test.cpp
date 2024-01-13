@@ -2,8 +2,8 @@
 
 #include "../../code/conv/conv_dft.hpp"
 #include "../../code/conv/ntt.hpp"
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/util/ios_container.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ss<998244353>;

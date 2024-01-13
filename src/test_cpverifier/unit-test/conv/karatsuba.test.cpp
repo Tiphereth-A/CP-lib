@@ -3,13 +3,13 @@
 
 #include "../../../code/conv/karatsuba.hpp"
 
-#include "../../../code/math/mintdata_ds.hpp"
-#include "../../../code/math/mintdata_ss.hpp"
 #include "../../../code/math/mint.hpp"
-#include "../../../code/math/mint_d31.hpp"
-#include "../../../code/math/mint_d63.hpp"
-#include "../../../code/math/mint_s30.hpp"
-#include "../../../code/math/mint_s63.hpp"
+#include "../../../code/math/mintdata_d31.hpp"
+#include "../../../code/math/mintdata_d63.hpp"
+#include "../../../code/math/mintdata_ds.hpp"
+#include "../../../code/math/mintdata_s30.hpp"
+#include "../../../code/math/mintdata_s63.hpp"
+#include "../../../code/math/mintdata_ss.hpp"
 #include "../../../code/math/nimber.hpp"
 #include "../base.hpp"
 
@@ -31,21 +31,21 @@ int main() {
 
   switch (tcase) {
     case tifa_libs::unittest::ts_example_00:
-      test_karatsuba<tifa_libs::math::mint_s30<998244353>>(1000);
+      test_karatsuba<tifa_libs::math::mint<tifa_libs::math::mintdata_s30<998244353>>>(1000);
       break;
     case tifa_libs::unittest::ts_example_01:
-      test_karatsuba<tifa_libs::math::mint_s63<998244353>>(1000);
+      test_karatsuba<tifa_libs::math::mint<tifa_libs::math::mintdata_s63<998244353>>>(1000);
       break;
     case tifa_libs::unittest::ts_random_00:
       test_karatsuba<tifa_libs::math::mint<tifa_libs::math::mintdata_ss<998244353>>>(1000);
       break;
     case tifa_libs::unittest::ts_random_01:
-      tifa_libs::math::mint_d31<-1>::set_mod(1000000000 + 7);
-      test_karatsuba<tifa_libs::math::mint_d31<-1>>(1000);
+      tifa_libs::math::mintdata_d31<-1>::set_mod(1000000000 + 7);
+      test_karatsuba<tifa_libs::math::mint<tifa_libs::math::mintdata_d31<-1>>>(1000);
       break;
     case tifa_libs::unittest::ts_random_02:
-      tifa_libs::math::mint_d63<-1>::set_mod(1000000000 + 7);
-      test_karatsuba<tifa_libs::math::mint_d63<-1>>(1000);
+      tifa_libs::math::mintdata_d63<-1>::set_mod(1000000000 + 7);
+      test_karatsuba<tifa_libs::math::mint<tifa_libs::math::mintdata_d63<-1>>>(1000);
       break;
     case tifa_libs::unittest::ts_random_03:
       tifa_libs::math::mintdata_ds<-1>::set_mod(1000000000 + 7);

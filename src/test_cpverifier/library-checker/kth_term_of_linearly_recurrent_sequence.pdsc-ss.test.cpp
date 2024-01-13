@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/nth_term_lrec.hpp"
 #include "../../code/poly/polydata_scntt.hpp"
 #include "../../code/util/ios_container.hpp"

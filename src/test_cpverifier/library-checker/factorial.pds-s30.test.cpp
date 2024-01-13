@@ -1,12 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorial"
 
 #include "../../code/math/fact_mint.hpp"
-#include "../../code/math/mint_s30.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s30.hpp"
 #include "../../code/poly/polydata_s.hpp"
 
 constexpr u64 MOD = 998244353;
 
-using mint = tifa_libs::math::mint_s30<MOD>;
+using mintdata = tifa_libs::math::mintdata_s30<MOD>;
+using mint = tifa_libs::math::mint<mintdata>;
 using pldt_t = tifa_libs::math::polydata_s<mint>;
 
 int main() {

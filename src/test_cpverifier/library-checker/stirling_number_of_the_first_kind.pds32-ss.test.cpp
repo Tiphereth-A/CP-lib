@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind"
 
 #include "../../code/comb/gen_stirling1_row.hpp"
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/polydata_s32.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ss<998244353>;

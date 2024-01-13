@@ -34,7 +34,7 @@ class fastin {
   bool iseof() { return peek() == EOF; }
 
   template <class T>
-    requires(sint_c<T> && !char_c<T>)
+  requires(sint_c<T> && !char_c<T>)
   fastin &read(T &n) {
     bool is_neg = false;
     char ch = get();
@@ -51,7 +51,7 @@ class fastin {
     return *this;
   }
   template <class T>
-    requires(uint_c<T> && !char_c<T>)
+  requires(uint_c<T> && !char_c<T>)
   fastin &read(T &n) {
     char ch = get();
     while (!isdigit(ch)) ch = get();
@@ -185,7 +185,7 @@ class fastout {
     return *this;
   }
   template <class T>
-    requires(sint_c<T> && !char_c<T>)
+  requires(sint_c<T> && !char_c<T>)
   fastout &write(T n) {
     if (n < 0) {
       write('-');
@@ -194,7 +194,7 @@ class fastout {
     return write(to_uint_t<T>(n));
   }
   template <class T>
-    requires(uint_c<T> && !char_c<T>)
+  requires(uint_c<T> && !char_c<T>)
   fastout &write(T n) {
     if constexpr (sizeof(T) <= 4) {
       memset(now_ib_ = int_bf_, 0, 11);

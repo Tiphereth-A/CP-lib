@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_product"
 
 #include "../../code/lalg/mat.hpp"
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mintdata>;

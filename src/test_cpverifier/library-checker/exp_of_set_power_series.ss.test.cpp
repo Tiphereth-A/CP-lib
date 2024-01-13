@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/exp_of_set_power_series"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/polysps_exp.hpp"
 #include "../../code/util/ios_container.hpp"
 

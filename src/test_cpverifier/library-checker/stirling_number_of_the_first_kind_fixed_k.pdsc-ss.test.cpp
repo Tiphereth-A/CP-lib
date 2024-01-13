@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_fixed_k"
 
 #include "../../code/comb/gen_stirling1_col.hpp"
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/polydata_scntt.hpp"
 #include "../../code/util/fastio.hpp"
 

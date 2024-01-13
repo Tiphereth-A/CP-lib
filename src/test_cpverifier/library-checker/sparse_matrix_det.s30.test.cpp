@@ -2,10 +2,12 @@
 
 #include "../../code/lalg/mat_det_rd.hpp"
 #include "../../code/lalg/spmat.hpp"
-#include "../../code/math/mint_s30.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s30.hpp"
 #include "../../code/rand/gen.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mintdata = tifa_libs::math::mintdata_s30<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using mat = tifa_libs::math::spmat<mint>;
 
 int main() {

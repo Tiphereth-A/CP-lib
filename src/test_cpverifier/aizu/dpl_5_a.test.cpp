@@ -1,10 +1,12 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_A"
 
 #include "../../code/comb/ball_box_dda.hpp"
-#include "../../code/math/mint_s30.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s30.hpp"
 
 constexpr u32 MOD = 1000000000 + 7;
-using mint = tifa_libs::math::mint_s30<MOD>;
+using mintdata = tifa_libs::math::mintdata_s30<MOD>;
+using mint = tifa_libs::math::mint<mintdata>;
 
 int main() {
   std::ios::sync_with_stdio(false);

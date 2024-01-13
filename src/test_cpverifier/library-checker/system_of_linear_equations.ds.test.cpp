@@ -3,8 +3,8 @@
 #include "../../code/lalg/leqs_solver.hpp"
 #include "../../code/lalg/mat_ge_basic.hpp"
 #include "../../code/lalg/mat_trans.hpp"
-#include "../../code/math/mintdata_ds.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ds.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ds<-1>;
 using mint = tifa_libs::math::mint<mintdata>;

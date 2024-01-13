@@ -2,10 +2,12 @@
 
 #include "../../code/comb/gen_stirling2_col.hpp"
 
-#include "../../code/math/mint_s30.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s30.hpp"
 #include "../../code/poly/polydata_s32.hpp"
 
-using mint = tifa_libs::math::mint_s30<167772161>;
+using mintdata = tifa_libs::math::mintdata_s30<167772161>;
+using mint = tifa_libs::math::mint<mintdata>;
 using polyd = tifa_libs::math::polydata_s32<mint>;
 
 int main() {

@@ -1,11 +1,13 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_G"
 
 #include "../../code/comb/ball_box_dia.hpp"
-#include "../../code/math/mint_d31.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_d31.hpp"
 #include "../../code/poly/polydata_d.hpp"
 
 constexpr u32 MOD = 1000000000 + 7;
-using mint = tifa_libs::math::mint_d31<-1>;
+using mintdata = tifa_libs::math::mintdata_d31<-1>;
+using mint = tifa_libs::math::mint<mintdata>;
 using pdata = tifa_libs::math::polydata_d<mint>;
 
 int main() {

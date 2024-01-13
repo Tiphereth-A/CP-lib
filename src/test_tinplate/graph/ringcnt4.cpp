@@ -3,8 +3,8 @@
 #include "../../code/graph/ringcnt4.hpp"
 
 #include "../../code/graph/ringenum3.hpp"
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 // clang-format off
 #include "../../code/util/ios_pair.hpp"
 #include "../../code/util/ios_container.hpp"

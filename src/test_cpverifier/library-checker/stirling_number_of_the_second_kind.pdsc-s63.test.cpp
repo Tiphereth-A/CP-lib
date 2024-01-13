@@ -1,10 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind"
 
 #include "../../code/comb/gen_stirling2_row.hpp"
-#include "../../code/math/mint_s63.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s63.hpp"
 #include "../../code/poly/polydata_scntt.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+using mintdata = tifa_libs::math::mintdata_s63<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using polyd = tifa_libs::math::polydata_scntt<mint>;
 
 int main() {

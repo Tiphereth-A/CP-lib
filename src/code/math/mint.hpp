@@ -25,6 +25,7 @@ class mint {
   constexpr raw_type val() const { return d.val(); }
   constexpr sraw_type sval() const { return d.sval(); }
   constexpr raw_type &data() { return d.data(); }
+  constexpr raw_type const &data() { return d.data(); }
   template <std::integral T>
   explicit constexpr operator T() const { return (T)(d.val()); }
   constexpr mint &operator+=(mint const &r) {

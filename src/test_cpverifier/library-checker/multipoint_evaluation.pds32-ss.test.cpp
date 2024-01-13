@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation"
 
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/poly.hpp"
 #include "../../code/poly/poly_mpe.hpp"
 #include "../../code/poly/polydata_s32.hpp"

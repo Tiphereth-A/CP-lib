@@ -1,11 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial"
 
-#include "../../code/math/mint_s63.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s63.hpp"
 #include "../../code/poly/poly.hpp"
 #include "../../code/poly/poly_ctsh.hpp"
 #include "../../code/poly/polydata_scntt.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+using mintdata = tifa_libs::math::mintdata_s63<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using polyd = tifa_libs::math::polydata_scntt<mint>;
 using poly_t = tifa_libs::math::poly<polyd>;
 

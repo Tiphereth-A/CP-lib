@@ -1,11 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/polynomial_composite_set_power_series"
 
-#include "../../code/math/mint_s30.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mintdata_s30.hpp"
 #include "../../code/poly/polydata_scntt.hpp"
 #include "../../code/poly/polysps_comp.hpp"
 #include "../../code/util/ios_container.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mintdata = tifa_libs::math::mintdata_s30<998244353>;
+using mint = tifa_libs::math::mint<mintdata>;
 using poly_t = tifa_libs::math::poly<tifa_libs::math::polydata_scntt<mint>>;
 
 int main() {
