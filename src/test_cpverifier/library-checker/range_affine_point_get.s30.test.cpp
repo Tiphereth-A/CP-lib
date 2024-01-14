@@ -1,11 +1,12 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
+#define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 
 #include "../../code/ds/segtree.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/math/mintdata_s30.hpp"
 
-using T = std::pair<tifa_libs::math::mintdata_s30<998244353>, usz>;                                       // sum len
-using F = std::pair<tifa_libs::math::mintdata_s30<998244353>, tifa_libs::math::mintdata_s30<998244353>>;  // mul add
+using mint = tifa_libs::math::mint<tifa_libs::math::mintdata_s30<998244353>>;
+using T = std::pair<mint, usz>;   // sum len
+using F = std::pair<mint, mint>;  // mul add
 
 auto op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
 auto e() { return T{0, 0}; }
@@ -31,14 +32,14 @@ int main() {
   tifa_libs::ds::segtree<T, op, e, F, mapping, composition, id> segt(a);
   for (usz i = 1; i <= q; ++i) {
     usz opt, l, r;
-    std::cin >> opt >> l >> r;
-    --r;
+    std::cin >> opt >> l;
     if (opt == 0) {
-      tifa_libs::math::mintdata_s30<998244353> x, y;
-      std::cin >> x >> y;
+      mint x, y;
+      std::cin >> r >> x >> y;
+      --r;
       segt.update(l, r, F{x, y});
     } else
-      std::cout << segt.query(l, r).first << '\n';
+      std::cout << segt.query(l).first << '\n';
   }
   return 0;
 }

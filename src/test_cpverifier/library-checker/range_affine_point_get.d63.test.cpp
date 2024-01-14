@@ -2,10 +2,12 @@
 
 #include "../../code/ds/segtree.hpp"
 #include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_s30.hpp"
+#include "../../code/math/mintdata_d63.hpp"
 
-using T = std::pair<tifa_libs::math::mintdata_s30<998244353>, usz>;                                       // sum len
-using F = std::pair<tifa_libs::math::mintdata_s30<998244353>, tifa_libs::math::mintdata_s30<998244353>>;  // mul add
+using mintdata = tifa_libs::math::mintdata_d63<-1>;
+using mint = tifa_libs::math::mint<mintdata>;
+using T = std::pair<mint, usz>;   // sum len
+using F = std::pair<mint, mint>;  // mul add
 
 auto op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
 auto e() { return T{0, 0}; }
@@ -22,6 +24,7 @@ auto composition(F f, F g) {
 auto id() { return F(1, 0); }
 
 int main() {
+  mintdata::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   usz n, q;
@@ -33,7 +36,7 @@ int main() {
     usz opt, l, r;
     std::cin >> opt >> l;
     if (opt == 0) {
-      tifa_libs::math::mintdata_s30<998244353> x, y;
+      mint x, y;
       std::cin >> r >> x >> y;
       --r;
       segt.update(l, r, F{x, y});
