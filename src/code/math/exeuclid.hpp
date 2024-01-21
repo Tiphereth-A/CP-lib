@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_MATH_EXEUCLID
 #define TIFALIBS_MATH_EXEUCLID
 
-#include "../util/util.hpp"
 #include "qpow.hpp"
 
 namespace tifa_libs::math {

@@ -1,9 +1,9 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/all/ITP2_5_C"
 
-#include "../../code/math/cantor.hpp"
-#include "../../code/math/cantor_inv.hpp"
-#include "../../code/math/cantor_seq2val.hpp"
-#include "../../code/math/cantor_val2seq.hpp"
+#include "../../code/comb/cantor.hpp"
+#include "../../code/comb/cantor_inv.hpp"
+#include "../../code/comb/cantor_seq2val.hpp"
+#include "../../code/comb/cantor_val2seq.hpp"
 #include "../../code/util/ios_container.hpp"
 
 int main() {

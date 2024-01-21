@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_C"
 
-#include "../../code/math/is_prime.hpp"
+#include "../../code/nt/is_prime.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_CONV_ZMT_MULTIPLE
 #define TIFALIBS_CONV_ZMT_MULTIPLE
 
-#include "../math/prime_seq.hpp"
+#include "../nt/prime_seq.hpp"
 
 namespace tifa_libs::math {
 

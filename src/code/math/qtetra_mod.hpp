@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_QTETRA_MOD
 #define TIFALIBS_MATH_QTETRA_MOD
 
-#include "euler_phi_u64.hpp"
+#include "../nt/euler_phi_u64.hpp"
 
 namespace tifa_libs::math {
 

@@ -1,6 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_B"
 
-#include "../../code/math/gcd_mpi.hpp"
+#include "../../code/nt/gcd_mpi.hpp"
+
 using tifa_libs::math::mpi;
 using std::operator""s;
 

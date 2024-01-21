@@ -1,8 +1,8 @@
 #ifndef TIFALIBS_POLY_POLY_SIN
 #define TIFALIBS_POLY_POLY_SIN
 
-#include "../math/proot_u64.hpp"
 #include "../math/qpow.hpp"
+#include "../nt/proot_u64.hpp"
 #include "poly_exp.hpp"
 
 namespace tifa_libs::math {

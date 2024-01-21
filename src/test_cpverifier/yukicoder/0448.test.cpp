@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/448"
 
-#include "../../code/math/crt_mod.hpp"
+#include "../../code/nt/crt_mod.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

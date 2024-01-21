@@ -1,9 +1,8 @@
 #ifndef TIFALIBS_CONV_NTT32
 #define TIFALIBS_CONV_NTT32
 
-#include "../math/proot_u32.hpp"
 #include "../math/qpow.hpp"
-#include "../util/util.hpp"
+#include "../nt/proot_u32.hpp"
 
 namespace tifa_libs::math {
 

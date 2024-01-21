@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E"
 
-#include "../../code/math/exgcd.hpp"
+#include "../../code/nt/exgcd.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

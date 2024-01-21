@@ -1,9 +1,8 @@
 #ifndef TIFALIBS_CONV_NTT
 #define TIFALIBS_CONV_NTT
 
-#include "../math/proot_u64.hpp"
 #include "../math/qpow.hpp"
-#include "../util/util.hpp"
+#include "../nt/proot_u64.hpp"
 
 namespace tifa_libs::math {
 

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 
-#include "../../code/math/pfactors.hpp"
+#include "../../code/nt/pfactors.hpp"
 #include "../../code/util/ios_container.hpp"
 
 int main() {

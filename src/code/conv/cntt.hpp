@@ -1,8 +1,8 @@
 #ifndef TIFALIBS_CONV_CNTT
 #define TIFALIBS_CONV_CNTT
 
-#include "../math/proot_gint.hpp"
 #include "../math/qpow.hpp"
+#include "../nt/proot_gint.hpp"
 
 namespace tifa_libs::math {
 

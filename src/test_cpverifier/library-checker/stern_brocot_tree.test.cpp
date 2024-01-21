@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stern_brocot_tree"
 
-#include "../../code/math/sbt.hpp"
+#include "../../code/nt/sbt.hpp"
 #include "../../code/util/ios_pair.hpp"
 
 using sbt = tifa_libs::math::SBT<i64>;

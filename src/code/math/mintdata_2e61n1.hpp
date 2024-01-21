@@ -2,7 +2,6 @@
 #define TIFALIBS_MATH_MINTDATA_2E61N1
 
 #include "../util/traits.hpp"
-#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 

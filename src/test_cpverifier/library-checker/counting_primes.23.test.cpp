@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/counting_primes"
 
-#include "../../code/math/pi_23.hpp"
+#include "../../code/nt/pi_23.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

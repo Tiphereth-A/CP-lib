@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/primitive_root"
 
-#include "../../code/math/proot_u64.hpp"
+#include "../../code/nt/proot_u64.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

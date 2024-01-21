@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sqrt_mod"
 
-#include "../../code/math/qresidue.hpp"
+#include "../../code/nt/qresidue.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

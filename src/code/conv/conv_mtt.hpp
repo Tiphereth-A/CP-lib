@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_CONV_CONV_MTT
 #define TIFALIBS_CONV_CONV_MTT
 
-#include "../util/util.hpp"
 #include "fft.hpp"
 
 namespace tifa_libs::math {

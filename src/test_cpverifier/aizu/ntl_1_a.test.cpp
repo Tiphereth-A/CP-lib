@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A"
 
-#include "../../code/math/pfactors.hpp"
+#include "../../code/nt/pfactors.hpp"
 #include "../../code/util/fastio.hpp"
 
 int main() {

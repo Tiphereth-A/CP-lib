@@ -2,7 +2,6 @@
 #define TIFALIBS_CONV_CONV_3NTT
 
 #include "../math/mul_mod_u.hpp"
-#include "../util/util.hpp"
 #include "conv_dft.hpp"
 #include "ntt32.hpp"
 

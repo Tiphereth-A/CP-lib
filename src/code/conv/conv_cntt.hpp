@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_CONV_CONV_CNTT
 #define TIFALIBS_CONV_CONV_CNTT
 
-#include "../util/util.hpp"
 #include "cntt.hpp"
 
 namespace tifa_libs::math {

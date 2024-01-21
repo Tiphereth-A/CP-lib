@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/primality_test"
 
-#include "../../code/math/is_prime.hpp"
+#include "../../code/nt/is_prime.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

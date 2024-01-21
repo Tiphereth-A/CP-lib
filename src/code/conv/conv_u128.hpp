@@ -3,7 +3,6 @@
 
 #include "../math/mint.hpp"
 #include "../math/mintdata_s30.hpp"
-#include "../util/util.hpp"
 #include "conv_dft.hpp"
 #include "conv_naive.hpp"
 #include "ntt32.hpp"

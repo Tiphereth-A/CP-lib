@@ -5,6 +5,7 @@ import logging
 import os
 import random
 import subprocess
+from threading import Thread
 
 import click
 import coloredlogs
@@ -12,10 +13,8 @@ import coloredlogs
 from libs.classes.section import Section
 from libs.consts import CONFIG, CLEAN_EXT_NAME, CONTENTS_CS, CONTENTS_DIR, CONTENTS_NB
 from libs.decorator import withlog
-from libs.latex_utils import latex_input, latex_chapter, latex_listing_code_range, latex_section, latex_listing_code, PathLaTeX, NameLaTeX, \
-    LATEX_COMPILE_COMMAND_GROUP
-from libs.utils import get_full_filenames, file_preprocess, execute_if_file_exist, scandir_dir_merge, \
-    scandir_file_merge, parse_filename, unique
+from libs.latex_utils import latex_input, latex_chapter, latex_listing_code_range, latex_section, latex_listing_code, PathLaTeX, NameLaTeX, LATEX_COMPILE_COMMAND_GROUP
+from libs.utils import get_full_filenames, file_preprocess, scandir_dir_merge, scandir_file_merge, parse_filename, unique
 
 
 @click.group()
@@ -86,17 +85,16 @@ def _gen_nbc():
                 _partitioned_doc_filename = load_from(
                     os.path.join(CONFIG.get_doc_dir(), chapter))
                 __dict: dict[str, str] = dict(_partitioned_code_filename)
-                if CONFIG.enable_test():
-                    _partitioned_test_filename = load_from(
-                        os.path.join(CONFIG.get_test_dir(), chapter))
-                    for k, v in _partitioned_test_filename:
-                        try:
-                            _sections_generated.append(
-                                Section(chapter, k, k, __dict.pop(k), v))
-                        except KeyError as e:
-                            logger.error(
-                                f"Test file '{k}.{v}' found, while code file is not")
-                            raise e
+                _partitioned_test_filename = load_from(
+                    os.path.join(CONFIG.get_test_dir(), chapter))
+                for k, v in _partitioned_test_filename:
+                    try:
+                        _sections_generated.append(
+                            Section(chapter, k, k, __dict.pop(k), v))
+                    except KeyError as e:
+                        logger.error(
+                            f"Test file '{k}.{v}' found, while code file is not")
+                        raise e
                 __null_ext_name: str = f"{random.randint(0, 114514)}.null"
                 for k, v in _partitioned_doc_filename:
                     _sections_generated.append(
@@ -122,7 +120,7 @@ def _gen_nbc():
                     else:
                         f.writelines(latex_listing_code(
                             PathLaTeX(code_filepath), CONFIG.get_code_style(section.code_ext)))
-                    if CONFIG.generate_test_in_notebook():
+                    if CONFIG.export_testcode_in_notebook():
                         if not os.path.getsize(test_filepath):
                             continue
                         f.writelines(latex_listing_code(
@@ -180,15 +178,48 @@ def _gen_csc():
     generate_cheatsheet_contents()
 
 
+@cli.command('test')
+@click.option('-t', '--code-type', help='Code type, default: cpp', default='cpp')
+@click.option('-l', '--thlimit', type=int, default=8, help='Thread number limit, default 8')
+def _test(code_type: str, thlimit: int):
+    """Run test codes"""
+
+    @withlog
+    def run_test_codes(_code_type: str, _thlimit: int, **kwargs):
+        all_files: list[str] = list(filter(lambda x: os.path.getsize(x), get_full_filenames(
+            [CONFIG.get_test_dir()], CONFIG.get_ext_names_by_code_style(_code_type))))
+
+        kwargs.get('logger').info(f'{len(all_files)} file(s) found')
+
+        def single_process(filepaths: str, id: int):
+            for filepath in filepaths:
+                kwargs.get('logger').debug(
+                    f'Thread #{id}: Compiling {filepath}')
+                cmd: list[str] = CONFIG.get_test_command(_code_type, filepath)
+                subprocess.run(cmd, encoding='utf8', check=True)
+
+        thread_all: list[Thread] = [Thread(target=single_process, args=(
+            all_files[x::_thlimit], x), name=str(x)) for x in range(_thlimit)]
+        for th in thread_all:
+            th.start()
+        for th in thread_all:
+            th.join()
+
+        kwargs.get('logger').info('Finished')
+
+    run_test_codes(code_type, thlimit)
+
+
 @cli.command('run')
-@click.option('--no-fmt', is_flag=True, help='Do not reformat codes before compile')
+@click.option('--no-fmt', is_flag=True, help='Do not lint codes before compile')
+@click.option('--no-test', is_flag=True, help='Do not run test codes before compile')
 @click.option('--no-gen', is_flag=True, help='Do not generate content before compile')
 @click.option('--no-clean', is_flag=True, help='Do not clean files after compile')
-def _compile(no_fmt: bool, no_gen: bool, no_clean: bool):
+def _compile(no_fmt: bool, no_test: bool, no_gen: bool, no_clean: bool):
     """Compile notebook"""
 
     @withlog
-    def compile_all(_no_fmt: bool, _no_gen: bool, _no_clean: bool, **kwargs):
+    def compile_all(_no_fmt: bool, _no_test: bool, _no_gen: bool, _no_clean: bool, **kwargs):
         cnt: int = 0
         for procedure in LATEX_COMPILE_COMMAND_GROUP:
             now_proc: list[str] = procedure(CONFIG.get_notebook_file())
@@ -203,11 +234,15 @@ def _compile(no_fmt: bool, no_gen: bool, no_clean: bool):
         for code_style in CONFIG.get_all_code_styles():
             _format.callback(code_style)
 
+    if not no_test:
+        for code_style in CONFIG.get_all_code_styles():
+            _test.callback(code_style, 8)
+
     if not no_gen:
         _gen_nbc.callback()
         _gen_csc.callback()
 
-    compile_all(no_fmt, no_gen, no_clean)
+    compile_all(no_fmt, no_test, no_gen, no_clean)
 
     if not no_clean:
         _clean.callback()
@@ -216,10 +251,10 @@ def _compile(no_fmt: bool, no_gen: bool, no_clean: bool):
 @cli.command('fmt')
 @click.option('-t', '--code-type', help='Code type, default: cpp', default='cpp')
 def _format(code_type: str):
-    """Reformat all codes"""
+    """Lint all codes"""
 
     @withlog
-    def reformat_all_codes(_code_type: str, **kwargs):
+    def lint_all_codes(_code_type: str, **kwargs):
         filepaths: list[str] = get_full_filenames([CONFIG.get_code_dir(),
                                                    CONFIG.get_doc_dir(),
                                                    CONFIG.get_cheatsheet_dir(),
@@ -233,7 +268,7 @@ def _format(code_type: str):
 
         kwargs.get('logger').info('finished')
 
-    reformat_all_codes(code_type)
+    lint_all_codes(code_type)
 
 
 @cli.command('new')
@@ -269,12 +304,6 @@ def _new_note(chapter_name: str, file_name: str, section_title: str, code_ext_na
 
     add_new_note(chapter_name, file_name, section_title,
                  code_ext_name, test_ext_name)
-
-
-# TODO
-# @cli.command('test')
-def _tester():
-    pass
 
 
 if __name__ == '__main__':

@@ -1,12 +1,26 @@
 #ifndef TIFALIBS_MATH_MINTDATA_DS
 #define TIFALIBS_MATH_MINTDATA_DS
 
-#include "barrett.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 
 template <isz>
 class mintdata_ds {
+  struct barrett {
+    u32 m_;
+    u64 im;
+    // @param m `1 <= m < 2^31`
+    explicit constexpr barrett(u32 m = 998244353) : m_(m), im(-1_u64 / m + 1) {}
+    // @return m
+    constexpr u32 umod() const { return m_; }
+    constexpr u32 mul(u32 a, u32 b) const {
+      u64 z = (u64)a * b, x = (u64)(((u128)z * im) >> 64);
+      u32 v = (u32)(z - x * m_);
+      return v + (m_ <= v ? m_ : 0);
+    }
+  };
+
   u32 v_;
   static inline barrett bt_;
 

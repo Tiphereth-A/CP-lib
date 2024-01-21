@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_C"
 
-#include "../../code/math/rgcd.hpp"
+#include "../../code/nt/rgcd.hpp"
 #include "../../code/util/fastio.hpp"
 
 constexpr u32 LIMIT = 1e7;

@@ -4,7 +4,6 @@
 #include "../conv/conv_dft.hpp"
 #include "../conv/conv_naive.hpp"
 #include "../conv/ntt.hpp"
-#include "../util/util.hpp"
 #include "polydata_convtype.hpp"
 
 namespace tifa_libs::math {

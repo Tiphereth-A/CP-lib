@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_primes"
 
-#include "../../code/math/prime_seq.hpp"
+#include "../../code/nt/prime_seq.hpp"
 #include "../../code/util/fastio.hpp"
 
 int main() {

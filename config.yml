@@ -4,8 +4,7 @@ notebook_doc_dir: doc_tex
 cheatsheet_dir: cheatsheet
 test_dir: test_tinplate
 notebook_file: notebook
-enable_test: false
-generate_test_in_notebook: true
+export_testcode_in_notebook: true
 notebook:
   chapters:
     util: 杂项
@@ -20,7 +19,8 @@ notebook:
     lalg: 线性代数
     conv: 卷积
     poly: 多项式
-    math: 数论与其他数学
+    nt: 数论
+    math: 其他数学
     str: 字符串
     rand: 随机数与随机化算法
     game: 游戏
@@ -28,9 +28,6 @@ notebook:
   sections:
     util:
     - util: 共同依赖
-      code_ext: hpp
-      test_ext: cpp
-    - simd_avx512f: AVX-512F 共同依赖
       code_ext: hpp
       test_ext: cpp
     - abs_constexpr: abs_constexpr
@@ -532,9 +529,6 @@ notebook:
     - treew: 带权树
       code_ext: hpp
       test_ext: cpp
-    - dfs_info_mask: 树 DFS 掩码
-      code_ext: hpp
-      test_ext: cpp
     - dfs_info: 常用树 DFS
       code_ext: hpp
       test_ext: cpp
@@ -579,6 +573,18 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - exlucas: Lucas 定理(任意模数)
+      code_ext: hpp
+      test_ext: cpp
+    - cantor: Cantor 展开
+      code_ext: hpp
+      test_ext: cpp
+    - cantor_inv: 逆 Cantor 展开
+      code_ext: hpp
+      test_ext: cpp
+    - cantor_seq2val: Cantor 展开序列转整数
+      code_ext: hpp
+      test_ext: cpp
+    - cantor_val2seq: Cantor 展开整数转序列
       code_ext: hpp
       test_ext: cpp
     - gen_derange: 错排数序列
@@ -665,13 +671,7 @@ notebook:
     - ball_box_iil: 球与盒(球相同,盒相同,至少装一个球)
       code_ext: hpp
       test_ext: cpp
-    math:
-    - barrett: Barrett 模乘法
-      code_ext: hpp
-      test_ext: cpp
-    - montgomery: Montgomery 乘法(32 位)
-      code_ext: hpp
-      test_ext: cpp
+    nt:
     - bsgs: BSGS
       code_ext: hpp
       test_ext: cpp
@@ -684,19 +684,10 @@ notebook:
     - crt: CRT
       code_ext: hpp
       test_ext: cpp
-    - div64: 64 位整数除法
-      code_ext: hpp
-      test_ext: cpp
-    - do_quot: 整除分块
-      code_ext: hpp
-      test_ext: cpp
     - euler_phi_u32: Euler 函数(32 位)
       code_ext: hpp
       test_ext: cpp
     - euler_phi_u64: Euler 函数(64 位)
-      code_ext: hpp
-      test_ext: cpp
-    - gauss_int: Gauss 整数
       code_ext: hpp
       test_ext: cpp
     - gcd_mpi: 高精度整数 GCD
@@ -732,6 +723,64 @@ notebook:
     - lsieve2: 线性筛实现2
       code_ext: hpp
       test_ext: cpp
+    - pfactors: 质因子
+      code_ext: hpp
+      test_ext: cpp
+    - is_proot: 是否为原根
+      code_ext: hpp
+      test_ext: cpp
+    - is_proot_nimber: 是否为原根(Nimber)
+      code_ext: hpp
+      test_ext: cpp
+    - proot_u32: 原根(32 位)
+      code_ext: hpp
+      test_ext: cpp
+    - proot_u64: 原根(64 位)
+      code_ext: hpp
+      test_ext: cpp
+    - proot_gint: 原根(Gauss 整数)
+      code_ext: hpp
+      test_ext: cpp
+    - jacobi_sym: Jacobi 符号
+      code_ext: hpp
+      test_ext: cpp
+    - qresidue: 二次剩余
+      code_ext: hpp
+      test_ext: cpp
+    - rgcd: 固定值域的 GCD
+      code_ext: hpp
+      test_ext: cpp
+    - kth_root: K 次剩余
+      code_ext: hpp
+      test_ext: cpp
+    - pi_34log: pi(n) 实现一
+      code_ext: hpp
+      test_ext: cpp
+    - pi_23: pi(n) 实现二
+      code_ext: hpp
+      test_ext: cpp
+    - du_sieve: 杜教筛
+      code_ext: hpp
+      test_ext: cpp
+    - min25_sieve: min25 筛
+      code_ext: hpp
+      test_ext: cpp
+    - bsgs_nimber: Nimber BSGS
+      code_ext: hpp
+      test_ext: cpp
+    - sbt: Stern–Brocot 树
+      code_ext: hpp
+      test_ext: cpp
+    math:
+    - div64: 64 位整数除法
+      code_ext: hpp
+      test_ext: cpp
+    - do_quot: 整除分块
+      code_ext: hpp
+      test_ext: cpp
+    - gauss_int: Gauss 整数
+      code_ext: hpp
+      test_ext: cpp
     - mint: 模整数类
       code_ext: hpp
       test_ext: cpp
@@ -762,40 +811,13 @@ notebook:
     - mul_mod_u: 无符号模乘法
       code_ext: hpp
       test_ext: cpp
-    - pfactors: 质因子
-      code_ext: hpp
-      test_ext: cpp
-    - is_proot: 是否为原根
-      code_ext: hpp
-      test_ext: cpp
-    - is_proot_nimber: 是否为原根(Nimber)
-      code_ext: hpp
-      test_ext: cpp
-    - proot_u32: 原根(32 位)
-      code_ext: hpp
-      test_ext: cpp
-    - proot_u64: 原根(64 位)
-      code_ext: hpp
-      test_ext: cpp
-    - proot_gint: 原根(Gauss 整数)
-      code_ext: hpp
-      test_ext: cpp
     - qpow_mod: 模快速幂
       code_ext: hpp
       test_ext: cpp
     - qpow: 快速幂
       code_ext: hpp
       test_ext: cpp
-    - jacobi_sym: Jacobi 符号
-      code_ext: hpp
-      test_ext: cpp
-    - qresidue: 二次剩余
-      code_ext: hpp
-      test_ext: cpp
     - qtetra_mod: 模超幂
-      code_ext: hpp
-      test_ext: cpp
-    - rgcd: 固定值域的 GCD
       code_ext: hpp
       test_ext: cpp
     - rpow: 固定底数和模数的快速幂
@@ -819,21 +841,6 @@ notebook:
     - basis_z2: 异或线性基
       code_ext: hpp
       test_ext: cpp
-    - cantor: Cantor 展开
-      code_ext: hpp
-      test_ext: cpp
-    - cantor_inv: 逆 Cantor 展开
-      code_ext: hpp
-      test_ext: cpp
-    - cantor_seq2val: Cantor 展开序列转整数
-      code_ext: hpp
-      test_ext: cpp
-    - cantor_val2seq: Cantor 展开整数转序列
-      code_ext: hpp
-      test_ext: cpp
-    - kth_root: K 次剩余
-      code_ext: hpp
-      test_ext: cpp
     - mex: mex
       code_ext: hpp
       test_ext: cpp
@@ -849,18 +856,6 @@ notebook:
     - fact_mint: 快速阶乘取模
       code_ext: hpp
       test_ext: cpp
-    - pi_34log: pi(n) 实现一
-      code_ext: hpp
-      test_ext: cpp
-    - pi_23: pi(n) 实现二
-      code_ext: hpp
-      test_ext: cpp
-    - du_sieve: 杜教筛
-      code_ext: hpp
-      test_ext: cpp
-    - min25_sieve: min25 筛
-      code_ext: hpp
-      test_ext: cpp
     - sum_ik_flist: 简单的自然数幂和函数列表
       code_ext: hpp
       test_ext: cpp
@@ -871,9 +866,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - nimber: Nimber
-      code_ext: hpp
-      test_ext: cpp
-    - bsgs_nimber: Nimber BSGS
       code_ext: hpp
       test_ext: cpp
     - exeuclid: 类 Euclid 算法
@@ -889,9 +881,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - series_ipaf: series_ipaf
-      code_ext: hpp
-      test_ext: cpp
-    - sbt: Stern–Brocot 树
       code_ext: hpp
       test_ext: cpp
     - berlekamp_massey: Berlekamp–Massey 算法
@@ -1256,6 +1245,11 @@ code_styles:
   HPP: cpp
   hxx: cpp
   tex: tex
+test_commands:
+  cpp:
+  - g++-12
+  - -std=gnu++20
+  - ${filename}
 formatting_commands:
   cpp:
   - clang-format

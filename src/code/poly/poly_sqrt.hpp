@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_POLY_POLY_SQRT
 #define TIFALIBS_POLY_POLY_SQRT
 
-#include "../math/qresidue.hpp"
+#include "../nt/qresidue.hpp"
 #include "poly_inv.hpp"
 #include "poly_shl.hpp"
 #include "poly_shr.hpp"

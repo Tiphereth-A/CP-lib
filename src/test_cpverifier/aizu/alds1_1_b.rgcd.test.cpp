@@ -1,6 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_B"
 
-#include "../../code/math/rgcd.hpp"
+#include "../../code/nt/rgcd.hpp"
+
 constexpr u32 LIMIT = 1e7;
 
 int main() {

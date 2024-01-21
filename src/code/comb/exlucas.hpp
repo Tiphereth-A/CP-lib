@@ -1,8 +1,8 @@
 #ifndef TIFALIBS_COMB_EXLUCAS
 #define TIFALIBS_COMB_EXLUCAS
 
-#include "../math/crt.hpp"
 #include "../math/isqrt.hpp"
+#include "../nt/crt.hpp"
 #include "lucas_pp.hpp"
 
 namespace tifa_libs::math {

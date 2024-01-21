@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_MINT
 #define TIFALIBS_MATH_MINT
 
-#include "inverse.hpp"
+#include "../nt/inverse.hpp"
 
 namespace tifa_libs::math {
 

@@ -1,9 +1,8 @@
 #ifndef TIFALIBS_CONV_CONV_CZT
 #define TIFALIBS_CONV_CONV_CZT
 
-#include "../math/proot_u64.hpp"
+#include "../nt/proot_u64.hpp"
 #include "../poly/poly_czt.hpp"
-#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 

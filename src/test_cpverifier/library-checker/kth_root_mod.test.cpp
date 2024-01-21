@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/kth_root_mod"
 
-#include "../../code/math/kth_root.hpp"
+#include "../../code/nt/kth_root.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

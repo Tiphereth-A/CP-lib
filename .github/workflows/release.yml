@@ -29,6 +29,9 @@ jobs:
           pip install -r requirements.txt
           python manager.py -l DEBUG gen-cs
           python manager.py -l DEBUG gen-nb
+      - name: Run test codes
+        run: |
+          python manager.py -l DEBUG test
       - name: Build the LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
