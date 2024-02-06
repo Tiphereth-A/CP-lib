@@ -990,6 +990,9 @@ notebook:
     - conv_mtt: 卷积(MTT)
       code_ext: hpp
       test_ext: cpp
+    - conv_ntt_large: 卷积(NTT,二倍极限长度)
+      code_ext: hpp
+      test_ext: cpp
     - conv_3ntt: 卷积(三模 NTT)
       code_ext: hpp
       test_ext: cpp
