@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/gcd_of_gaussian_integers"
 
-#include "../../code/math/gauss_int.hpp"
+#include "../../code/math/gint.hpp"
 
 using gint = tifa_libs::math::gint<i64, -1>;
 

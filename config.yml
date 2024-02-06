@@ -778,7 +778,7 @@ notebook:
     - do_quot: 整除分块
       code_ext: hpp
       test_ext: cpp
-    - gauss_int: Gauss 整数
+    - gint: Gauss 整数
       code_ext: hpp
       test_ext: cpp
     - mint: 模整数类

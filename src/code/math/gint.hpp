@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_MATH_GAUSS_INT
-#define TIFALIBS_MATH_GAUSS_INT
+#ifndef TIFALIBS_MATH_GINT
+#define TIFALIBS_MATH_GINT
 
 #include "../util/util.hpp"
 

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_PROOT_GINT
 #define TIFALIBS_MATH_PROOT_GINT
 
-#include "../math/gauss_int.hpp"
+#include "../math/gint.hpp"
 #include "../math/qpow.hpp"
 #include "pfactors.hpp"
 
