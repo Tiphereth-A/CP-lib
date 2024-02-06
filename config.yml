@@ -1147,6 +1147,9 @@ notebook:
     - poly_ode: 多项式 ODE
       code_ext: hpp
       test_ext: cpp
+    - poly_cbm2n: 单项式基转 Newton 基
+      code_ext: hpp
+      test_ext: cpp
     - bostan_mori: Bostan–Mori 算法
       code_ext: hpp
       test_ext: cpp
