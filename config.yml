@@ -889,6 +889,9 @@ notebook:
     - nth_term_lrec: 线性递推数列的第 N 项
       code_ext: hpp
       test_ext: cpp
+    - ssts_pim_cnt: 子集和原像大小
+      code_ext: hpp
+      test_ext: cpp
     lalg:
     - mat: 矩阵
       code_ext: hpp
