@@ -4,19 +4,17 @@
 #include "../../code/conv/ntt32.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/math/mintdata_ss.hpp"
-#include "../../code/util/ios_container.hpp"
+#include "../../code/util/fastio.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mintdata>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   u32 n, m;
-  std::cin >> n >> m;
+  tifa_libs::fin >> n >> m;
   vec<mint> a(n), b(m);
-  std::cin >> a >> b;
+  tifa_libs::fin >> a >> b;
   tifa_libs::math::NTT32<mint> ntt;
-  std::cout << tifa_libs::math::conv_ntt_large(ntt, a, b) << '\n';
+  tifa_libs::fout << tifa_libs::math::conv_ntt_large(ntt, a, b) << '\n';
   return 0;
 }

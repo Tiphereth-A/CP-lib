@@ -9,16 +9,16 @@ namespace tifa_libs::math {
 template <class mint>
 struct NTT {
   static_assert((mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
-  static constexpr u64 max_size = (mint::mod() - 1) & -(mint::mod() - 1);
+  static constexpr u64 max_size = 1 << std::countr_zero(mint::mod() - 1);
 
   const mint G = proot_u64(mint::mod());
 
   explicit constexpr NTT() : root() {}
 
   constexpr u32 size() const { return (u32)root.size(); }
-  constexpr void bzr(u32 len) {
+  constexpr void bzr(u32 len = max_size) {
     u32 n = std::bit_ceil(len);
-    assert((mint::mod() - 1) % n == 0);
+    assert(n <= max_size);
     if (n == size()) return;
     root.resize(n);
     root[0] = 1;

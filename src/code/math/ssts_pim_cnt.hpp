@@ -7,8 +7,6 @@
 namespace tifa_libs::math {
 
 template <class T, class U, class mint = typename T::value_type>
-poly<T> ssts_pim_cnt(vec<U> const& s, u32 t) { return ssts_pim_cnt<T, U, mint>(s, t, gen_inv<mint>(t + 1)); }
-template <class T, class U, class mint = typename T::value_type>
 poly<T> ssts_pim_cnt(vec<U> const& s, u32 t, vec<mint> const& inv) {
   std::map<U, u32> cnt;
   for (auto&& i : s) ++cnt[i];
@@ -19,6 +17,8 @@ poly<T> ssts_pim_cnt(vec<U> const& s, u32 t, vec<mint> const& inv) {
       else p[d * x] -= mint(cnt[x]) * inv[d];
   return poly_exp(p);
 }
+template <class T, class U, class mint = typename T::value_type>
+poly<T> ssts_pim_cnt(vec<U> const& s, u32 t) { return ssts_pim_cnt<T, U, mint>(s, t, gen_inv<mint>(t + 1)); }
 
 }  // namespace tifa_libs::math
 

@@ -8,6 +8,7 @@ namespace tifa_libs::math {
 template <class U, class T = U>
 requires(sizeof(U) <= sizeof(T))
 constexpr vec<T> conv_naive(vec<U> const &l, vec<U> const &r, u32 ans_size = 0) {
+  if (l.empty() || r.empty()) return {};
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   u32 n = (u32)l.size(), m = (u32)r.size();
   vec<T> ans(ans_size);
