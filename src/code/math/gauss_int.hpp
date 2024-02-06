@@ -5,68 +5,79 @@
 
 namespace tifa_libs::math {
 
-template <class mint, i64 M>
-class GaussInt {
-  mint r_, i_;
+template <class T, i64 M>
+class gint {
+  T r_, i_;
 
  public:
-  constexpr GaussInt(mint const &real = mint(), mint const &imag = mint()) : r_(real), i_(imag) {}
+  constexpr gint(T const &real = T{}, T const &imag = T{}) : r_(real), i_(imag) {}
 
-  constexpr mint real() const { return r_; }
-  constexpr mint imag() const { return i_; }
-  constexpr void real(mint x) { r_ = x; }
-  constexpr void imag(mint x) { i_ = x; }
-  constexpr GaussInt &operator*=(mint const &x) {
+  constexpr T const &real() const { return r_; }
+  constexpr T const &imag() const { return i_; }
+  constexpr T norm() const { return r_ * r_ - i_ * i_ * M; }
+  constexpr T &real() { return r_; }
+  constexpr T &imag() { return i_; }
+  constexpr void real(T x) { r_ = x; }
+  constexpr void imag(T x) { i_ = x; }
+  constexpr gint &operator*=(T const &x) {
     r_ *= x;
     i_ *= x;
     return *this;
   }
-  constexpr GaussInt &operator/=(mint const &x) {
+  constexpr gint &operator/=(T const &x) {
     r_ /= x;
     i_ /= x;
     return *this;
   }
-  constexpr GaussInt &operator+=(GaussInt const &x) {
+  constexpr gint &operator+=(gint const &x) {
     r_ += x.real();
     i_ += x.imag();
     return *this;
   }
-  constexpr GaussInt &operator-=(GaussInt const &x) {
+  constexpr gint &operator-=(gint const &x) {
     r_ -= x.real();
     i_ -= x.imag();
     return *this;
   }
-  constexpr GaussInt &operator*=(GaussInt const &x) {
-    mint _ = r_ * x.real() + i_ * x.imag() * M;
+  constexpr gint &operator*=(gint const &x) {
+    T _ = r_ * x.real() + i_ * x.imag() * M;
     i_ = r_ * x.imag() + i_ * x.real();
     r_ = _;
     return *this;
   }
-  constexpr GaussInt &operator/=(GaussInt const &x) {
-    const mint _ = r_ * x.real() - i_ * x.imag() * M;
-    const mint n_ = x.norm();
-    i_ = (i_ * x.real() - r_ * x.imag()) / n_;
-    r_ = _ / n_;
+  constexpr gint &operator/=(gint const &x) {
+    const T _ = r_ * x.real() - i_ * x.imag() * M;
+    const T n_ = x.norm();
+    if constexpr (std::is_integral_v<T>) {
+      auto div = [](T x, T y) {
+        T a = x * 2 + y, b = y * 2;
+        return a / b - (a % b < 0);
+      };
+      i_ = div(i_ * x.real() - r_ * x.imag(), n_);
+      r_ = div(_, n_);
+    } else {
+      i_ = (i_ * x.real() - r_ * x.imag()) / n_;
+      r_ = _ / n_;
+    }
     return *this;
   }
-  friend constexpr GaussInt operator*(GaussInt x, mint const &y) { return x *= y; }
-  friend constexpr GaussInt operator/(GaussInt x, mint const &y) { return x /= y; }
-  friend constexpr GaussInt operator+(GaussInt x, GaussInt const &y) { return x += y; }
-  friend constexpr GaussInt operator-(GaussInt x, GaussInt const &y) { return x -= y; }
-  friend constexpr GaussInt operator*(GaussInt x, GaussInt const &y) { return x *= y; }
-  friend constexpr GaussInt operator/(GaussInt x, GaussInt const &y) { return x /= y; }
-  friend constexpr GaussInt conj(GaussInt const &x) { return GaussInt{x.r_, -x.i_}; }
-  friend constexpr mint norm(GaussInt const &x) { return x.r_ * x.r_ + x.i_ * x.i_ * M; }
-  friend constexpr bool operator==(GaussInt const &x, GaussInt const &y) { return x.real() == y.real() && x.imag() == y.imag(); }
-  friend std::istream &operator>>(std::istream &is, GaussInt &x) { return is >> x.r_ >> x.i_; }
-  friend std::ostream &operator<<(std::ostream &os, GaussInt const &x) { return os << '(' << x.real() << ',' << x.imag() << ')'; }
-};
-template <class mint>
-struct GaussInt<mint, -1> : public std::complex<mint> {
-  constexpr GaussInt(std::complex<mint> const &&c) : std::complex<mint>(c) {}
-  constexpr GaussInt(mint const &real = mint(), mint const &imag = mint()) : std::complex<mint>(real, imag) {}
-
-  explicit constexpr operator std::complex<mint>() { return *this; }
+  constexpr gint &operator%=(gint const &x) { return *this -= *this / x * x; }
+  friend constexpr gint operator*(gint x, T const &y) { return x *= y; }
+  friend constexpr gint operator/(gint x, T const &y) { return x /= y; }
+  friend constexpr gint operator+(gint x, gint const &y) { return x += y; }
+  friend constexpr gint operator-(gint x, gint const &y) { return x -= y; }
+  friend constexpr gint operator*(gint x, gint const &y) { return x *= y; }
+  friend constexpr gint operator/(gint x, gint const &y) { return x /= y; }
+  friend constexpr gint operator%(gint x, gint const &y) { return x %= y; }
+  friend constexpr gint conj(gint const &x) { return gint{x.r_, -x.i_}; }
+  friend constexpr T norm(gint const &x) { return x.norm(); }
+  friend constexpr gint gcd(gint m, gint n) {
+    while (n != gint{}) std::swap(m %= n, n);
+    return m;
+  }
+  friend constexpr bool operator==(gint const &x, gint const &y) { return x.real() == y.real() && x.imag() == y.imag(); }
+  friend std::istream &operator>>(std::istream &is, gint &x) { return is >> x.r_ >> x.i_; }
+  friend std::ostream &operator<<(std::ostream &os, gint const &x) { return os << x.real() << ' ' << x.imag(); }
 };
 
 }  // namespace tifa_libs::math

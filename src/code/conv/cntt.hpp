@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 
 template <class mint, i64 M = -1>
 struct CNTT {
-  using Zpi = GaussInt<mint, M>;
+  using Zpi = gint<mint, M>;
 
   explicit constexpr CNTT() {}
 
