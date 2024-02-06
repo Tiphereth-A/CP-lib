@@ -443,6 +443,9 @@ notebook:
     - alpha_beta: min-max 搜索
       code_ext: hpp
       test_ext: cpp
+    - smawk: SMAWK 算法
+      code_ext: hpp
+      test_ext: cpp
     graph:
     - alist: 邻接表
       code_ext: hpp
@@ -1039,6 +1042,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - conv_lcm: 卷积(LCM)
+      code_ext: hpp
+      test_ext: cpp
+    - conv_minplus_ca: 卷积(min-plus,一个凸序列)
+      code_ext: hpp
+      test_ext: cpp
+    - conv_minplus_cc: 卷积(min-plus,两个凸序列)
       code_ext: hpp
       test_ext: cpp
     poly:
