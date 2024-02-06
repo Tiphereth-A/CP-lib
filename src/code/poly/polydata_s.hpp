@@ -2,7 +2,6 @@
 #define TIFALIBS_POLY_POLYDATA_S
 
 #include "../conv/conv_dft.hpp"
-#include "../conv/conv_naive.hpp"
 #include "../conv/ntt.hpp"
 #include "polydata_convtype.hpp"
 
@@ -24,7 +23,7 @@ struct polydata_s {
   explicit constexpr polydata_s(std::initializer_list<mint> v) : d(v) {}
   explicit constexpr polydata_s(vec<mint> const &v) : d(v) {}
 
-  constexpr void conv(polydata_s const &r, u32 ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_dft(ccore, d, r.d, ans_size); }
+  constexpr void conv(polydata_s const &r, u32 ans_size) { d = conv_dft(ccore, d, r.d, ans_size); }
   constexpr void conv(polydata_s const &r) { conv(r, u32(d.size() + r.d.size() - 1)); }
 };
 

@@ -2,7 +2,6 @@
 #define TIFALIBS_POLY_POLYDATA_D
 
 #include "../conv/conv_mtt.hpp"
-#include "../conv/conv_naive.hpp"
 #include "polydata_convtype.hpp"
 
 namespace tifa_libs::math {
@@ -21,7 +20,7 @@ struct polydata_d {
   explicit constexpr polydata_d(std::initializer_list<mint> v) : d(v) {}
   explicit constexpr polydata_d(vec<mint> const &v) : d(v) {}
 
-  constexpr void conv(polydata_d const &r, u32 ans_size) { d = ans_size < 32 ? conv_naive(d, r.d, ans_size) : conv_mtt(ccore, d, r.d, ans_size); }
+  constexpr void conv(polydata_d const &r, u32 ans_size) { d = conv_mtt(ccore, d, r.d, ans_size); }
   constexpr void conv(polydata_d const &r) { conv(r, u32(d.size() + r.d.size() - 1)); }
 };
 

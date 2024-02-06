@@ -10,11 +10,13 @@ namespace tifa_libs::math {
 // 167772161, 469762049, 754974721
 template <class mint0, class mint1, class mint2>
 constexpr vec<u64> conv_3ntt_u64(std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>> &ntt3, vec<u64> const &l, vec<u64> const &r, u64 mod, u32 ans_size = 0) {
+  if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
+  if (ans_size < 64) return conv_naive(l, r, ans_size);
+
   constexpr u32 m0 = mint0::mod(), m1 = mint1::mod(), m2 = mint2::mod();
   const u32 r01 = mint1(m0).inv().val(), r02 = mint2(m0).inv().val(), r12 = mint2(m1).inv().val(), r02r12 = (u32)mul_mod_u(r02, r12, m2);
   const u64 w1 = m0 % mod, w2 = mul_mod_u(m0, m1, mod);
 
-  if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   auto &[ntt0, ntt1, ntt2] = ntt3;
 
   vec<mint0> d0 = conv_dft_u64<NTT32<mint0>, mint0>(ntt0, l, r, ans_size);

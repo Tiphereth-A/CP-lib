@@ -1,13 +1,14 @@
 #ifndef TIFALIBS_CONV_CONV_DFT
 #define TIFALIBS_CONV_CONV_DFT
 
-#include "../util/util.hpp"
+#include "conv_naive.hpp"
 
 namespace tifa_libs::math {
 
 template <class DFT_t, class mint>
 constexpr vec<mint> conv_dft(DFT_t &dft, vec<mint> l, vec<mint> r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
+  if (ans_size < 64) return conv_naive(l, r, ans_size);
   dft.bzr(std::max({(u32)l.size(), (u32)r.size(), std::min(u32(l.size() + r.size() - 1), ans_size)}));
   dft.dif(l);
   dft.dif(r);

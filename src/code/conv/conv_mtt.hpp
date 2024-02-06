@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_CONV_CONV_MTT
 #define TIFALIBS_CONV_CONV_MTT
 
+#include "conv_naive.hpp"
 #include "fft.hpp"
 
 namespace tifa_libs::math {
@@ -8,6 +9,7 @@ namespace tifa_libs::math {
 template <class mint, class FP>
 constexpr vec<mint> conv_mtt(FFT<FP> &fft, vec<mint> const &l, vec<mint> const &r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
+  if (ans_size < 64) return conv_naive(l, r, ans_size);
   using C = typename FFT<FP>::C;
   if (l.size() == 1) {
     vec<mint> ans = r;
