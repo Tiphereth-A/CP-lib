@@ -446,6 +446,9 @@ notebook:
     - smawk: SMAWK 算法
       code_ext: hpp
       test_ext: cpp
+    - astar: A* 算法
+      code_ext: hpp
+      test_ext: cpp
     graph:
     - alist: 邻接表
       code_ext: hpp
@@ -1223,6 +1226,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - texas_holdem: 德州扑克
+      code_ext: hpp
+      test_ext: cpp
+    - npuzzle_data: N puzzle 数据类
       code_ext: hpp
       test_ext: cpp
     fast:

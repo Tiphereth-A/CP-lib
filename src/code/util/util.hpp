@@ -39,10 +39,13 @@ using vecp = vec<std::pair<U, T>>;
 template <class U, class T>
 using vvecp = vvec<std::pair<U, T>>;
 
-template <class T>
-using pq = std::priority_queue<T>;
+template <class T, class C = std::less<T>>
+using pq = std::priority_queue<T, vec<T>, C>;
 template <class T>
 using pqg = std::priority_queue<T, vec<T>, std::greater<T>>;
+
+using strn = std::string;
+using strnv = std::string_view;
 
 #ifdef ONLINE_JUDGE
 #undef assert

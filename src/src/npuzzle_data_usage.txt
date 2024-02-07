@@ -1,0 +1,9 @@
+int k = 4; // 15-puzzle
+
+NPuzzleData start(k);
+// 读入局面
+std::cin >> start;
+// 输出当前局面
+std::cout << start.node();
+// 输出操作步骤
+std::cout << astar(start)->moves();
