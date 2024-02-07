@@ -550,6 +550,9 @@ notebook:
     - diam: 直径
       code_ext: hpp
       test_ext: cpp
+    - height: 高度
+      code_ext: hpp
+      test_ext: cpp
     - virtual_tree: 虚树
       code_ext: hpp
       test_ext: cpp
