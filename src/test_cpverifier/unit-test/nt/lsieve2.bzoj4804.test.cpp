@@ -5,8 +5,8 @@
 
 #include "../base.hpp"
 
-void test(std::string const& data) {
-  std::string path = "src/data/bzoj/4804/" + data;
+void test(strn const& data) {
+  strn path = "src/data/bzoj/4804/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 
   u32 t;
@@ -39,23 +39,12 @@ int main() {
   auto tcase = tifa_libs::unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00:
-      test("1");
-      break;
-    case tifa_libs::unittest::ts_example_01:
-      test("2");
-      break;
-    case tifa_libs::unittest::ts_random_00:
-      test("3");
-      break;
-    case tifa_libs::unittest::ts_random_01:
-      test("4");
-      break;
-    case tifa_libs::unittest::ts_random_02:
-      test("5");
-      break;
-    default:
-      break;
+    case tifa_libs::unittest::ts_example_00: test("1"); break;
+    case tifa_libs::unittest::ts_example_01: test("2"); break;
+    case tifa_libs::unittest::ts_random_00: test("3"); break;
+    case tifa_libs::unittest::ts_random_01: test("4"); break;
+    case tifa_libs::unittest::ts_random_02: test("5"); break;
+    default: break;
   }
 
   tifa_libs::unittest::post_test();

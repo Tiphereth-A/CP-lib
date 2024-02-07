@@ -15,7 +15,7 @@ using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 int main() {
   mintdata0::set_mod(998244353);
   mintdata1::set_mod(1'000'000'007);
-  std::string s;
+  strn s;
   tifa_libs::fin >> s;
   hashstr hs;
   hs.set(s);

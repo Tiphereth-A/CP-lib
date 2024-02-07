@@ -7,7 +7,7 @@
 namespace tifa_libs::util {
 
 // Just run it on the same compiler and same options as the solution you want to hack.
-// Works for integral types, and std::string. Slow for std::string.
+// Works for integral types, and strn. Slow for strn.
 template <class T>
 inline vec<T> unordered_stl_hacker(usz n) {
   auto get_bucket_counts = [n]() {
@@ -24,19 +24,19 @@ inline vec<T> unordered_stl_hacker(usz n) {
 
   vec<usz> bc = get_bucket_counts();
 
-  if constexpr (std::is_same_v<std::string, T>) {
+  if constexpr (std::is_same_v<strn, T>) {
     // Edit these if need
     const usz len = 15;
-    const std::string pref = "";
-    const std::string alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
+    const strn pref = "";
+    const strn alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
 
     rand::Gen<std::uniform_int_distribution<usz>> gen(0, alphabet.size() - 1);
-    auto gen_str_with_divisible_hash = [&](usz mod) -> std::string {
-      std::string s = pref;
+    auto gen_str_with_divisible_hash = [&](usz mod) -> strn {
+      strn s = pref;
       while (true) {
         s.resize(pref.size());
         while (s.size() < len) s += alphabet[gen()];
-        if (!(std::hash<std::string>{}(s) % mod)) return s;
+        if (!(std::hash<strn>{}(s) % mod)) return s;
       }
       return "";
     };

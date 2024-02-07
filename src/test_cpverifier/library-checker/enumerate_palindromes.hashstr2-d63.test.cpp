@@ -15,16 +15,16 @@ int main() {
   mintdata1::set_mod(1'000'000'007);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  std::string s;
+  strn s;
   std::cin >> s;
   {
-    std::string x;
+    strn x;
     x.reserve(s.size() * 2 + 1);
     x.push_back('$');
     for (char c : s) x.push_back(c), x.push_back('$');
     s.swap(x);
   }
-  std::string t = s;
+  strn t = s;
   std::reverse(t.begin(), t.end());
   hashstr hs, ht;
   hs.set(s), ht.set(t);

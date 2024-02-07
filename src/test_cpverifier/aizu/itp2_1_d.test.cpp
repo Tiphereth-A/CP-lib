@@ -17,11 +17,8 @@ int main() {
         std::cin >> x;
         nv[t].push_back(x);
         break;
-      case 1:
-        std::cout << nv[t] << '\n';
-        break;
-      case 2:
-        nv[t].clear();
+      case 1: std::cout << nv[t] << '\n'; break;
+      case 2: nv[t].clear();
     }
   }
   return 0;

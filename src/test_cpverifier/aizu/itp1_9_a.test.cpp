@@ -5,7 +5,7 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  std::string s, p, _;
+  strn s, p, _;
   std::cin >> p;
   while (std::cin >> _, _ != "END_OF_TEXT") {
     for (char &c : _)

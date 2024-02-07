@@ -6,7 +6,7 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 n;
-  std::string s;
+  strn s;
   std::cin >> n;
   tifa_libs::str::ex_suffix_automaton sam;
   for (u32 i = 0; i < n; ++i) {

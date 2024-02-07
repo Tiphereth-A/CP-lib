@@ -4,7 +4,7 @@
 #include "../../code/util/fastio.hpp"
 
 int main() {
-  std::string s;
+  strn s;
   tifa_libs::fin >> s;
   tifa_libs::str::suffix_automaton sam;
   for (auto c : s) sam.extend(c - 'a');

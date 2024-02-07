@@ -14,8 +14,8 @@
 using mintdata = tifa_libs::math::mintdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mintdata>;
 
-void test(std::string const& data) {
-  std::string path = "src/data/loj/6680/" + data;
+void test(strn const& data) {
+  strn path = "src/data/loj/6680/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 
   u32 n;
@@ -83,8 +83,7 @@ int main() {
       test("19");
       test("20");
       break;
-    default:
-      break;
+    default: break;
   }
 
   tifa_libs::unittest::post_test();

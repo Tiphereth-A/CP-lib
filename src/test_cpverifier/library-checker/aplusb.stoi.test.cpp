@@ -8,7 +8,7 @@ constexpr u64 MOD = u64(1e9) + 1;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  std::string s, t;
+  strn s, t;
   std::cin >> s >> t;
   char ans[16] = {0};
   tifa_libs::u32tostr(tifa_libs::str2uint_mod(s, MOD) + tifa_libs::str2uint_mod(t, MOD), ans);

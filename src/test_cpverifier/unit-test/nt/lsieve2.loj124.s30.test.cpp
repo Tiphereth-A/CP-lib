@@ -11,8 +11,8 @@
 using mintdata = tifa_libs::math::mintdata_s30<1'000'000'000 + 7>;
 using mint = tifa_libs::math::mint<mintdata>;
 
-void test(std::string const& data) {
-  std::string path = "src/data/loj/124/" + data;
+void test(strn const& data) {
+  strn path = "src/data/loj/124/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 
   u32 n, k;
@@ -76,11 +76,8 @@ int main() {
       test("sieve22");
       test("sieve23");
       break;
-    case tifa_libs::unittest::ts_random_06:
-      test("sieve24");
-      break;
-    default:
-      break;
+    case tifa_libs::unittest::ts_random_06: test("sieve24"); break;
+    default: break;
   }
 
   tifa_libs::unittest::post_test();

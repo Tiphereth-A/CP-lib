@@ -85,7 +85,7 @@ class fastin {
     *n_ = '\0';
     return *this;
   }
-  fastin &read(std::string &n) {
+  fastin &read(strn &n) {
     n.clear();
     char n_;
     while (!isgraph(n_ = get()))
@@ -117,7 +117,7 @@ class fastin {
     *n_ = '\0';
     return *this;
   }
-  fastin &getline(std::string &n) {
+  fastin &getline(strn &n) {
     char n_;
     while (!isprint(n_ = get()))
       ;
@@ -209,7 +209,7 @@ class fastout {
   }
   template <mint_c T>
   fastout &write(T n) { return write(n.val()); }
-  fastout &write(std::string const &str) { return write(str.c_str()); }
+  fastout &write(strn const &str) { return write(str.c_str()); }
   template <class T, class U>
   fastout &write(std::pair<T, U> const &p) { return write(p.first).space().write(p.second); }
   template <typename... Ts>

@@ -17,11 +17,8 @@ int main() {
   auto tcase = tifa_libs::unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00:
-      test();
-      break;
-    default:
-      break;
+    case tifa_libs::unittest::ts_example_00: test(); break;
+    default: break;
   }
 
   tifa_libs::unittest::post_test();

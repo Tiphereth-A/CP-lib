@@ -12,10 +12,10 @@ class Base64 {
   // clang-format on
 
  public:
-  static constexpr std::string encode(vec<usz> const &a) {
+  static constexpr strn encode(vec<usz> const &a) {
     usz x = *std::max_element(a.begin(), a.end()), y = *std::min_element(a.begin(), a.end());
     usz N = a.size(), B = std::max(usz(6), (sizeof(usz) * 8 - (usz)(y < 0 ? 0 : std::countl_zero(x))));
-    std::string S((B * N + 11) / 6, 0);
+    strn S((B * N + 11) / 6, 0);
     S[0] = (char)B;
     for (usz i = 0; i < N; ++i)
       for (usz j = 0; j < B; ++j)
@@ -23,7 +23,7 @@ class Base64 {
     for (auto &c : S) c = base[(usz)c];
     return S;
   }
-  static constexpr vec<usz> decode(std::string S) {
+  static constexpr vec<usz> decode(strn S) {
     for (auto &c : S) c = ibase(c);
     usz B = (usz)S[0], M = (usz)S.size() - 1;
     vec<usz> a(6 * M / B, 0);

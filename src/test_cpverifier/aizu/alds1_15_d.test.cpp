@@ -5,7 +5,7 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  std::string s;
+  strn s;
   std::cin >> s;
   std::map<char, u32> mp;
   for (char c : s) ++mp[c];

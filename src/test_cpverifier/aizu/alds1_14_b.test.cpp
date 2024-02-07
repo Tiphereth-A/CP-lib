@@ -5,7 +5,7 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  std::string s, p;
+  strn s, p;
   std::cin >> s >> p;
   auto _ = tifa_libs::str::kmp(p, s);
   for (auto i : _) std::cout << i << '\n';

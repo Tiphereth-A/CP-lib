@@ -55,9 +55,9 @@ class huffman {
     }
   }
 
-  constexpr vec<std::string> encode(std::string_view char_set = "01") const {
+  constexpr vec<strn> encode(strnv char_set = "01") const {
     assert(char_set.size() == ch_sz);
-    return run<std::string>([&](std::string const &pre_code, u32 idx) { return pre_code + char_set[idx]; });
+    return run<strn>([&](strn const &pre_code, u32 idx) { return pre_code + char_set[idx]; });
   }
   constexpr vec<u32> depths() const {
     return run<u32>([](u32 const &pre_depth, u32) { return pre_depth + 1; });

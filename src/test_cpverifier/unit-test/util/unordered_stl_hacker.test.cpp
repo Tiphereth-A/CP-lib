@@ -17,23 +17,12 @@ int main() {
   auto tcase = tifa_libs::unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00:
-      test_unordered_stl_hacker<std::string>(1000);
-      break;
-    case tifa_libs::unittest::ts_example_01:
-      test_unordered_stl_hacker<i32>(1000);
-      break;
-    case tifa_libs::unittest::ts_random_00:
-      test_unordered_stl_hacker<u32>(1000);
-      break;
-    case tifa_libs::unittest::ts_random_01:
-      test_unordered_stl_hacker<i64>(1000);
-      break;
-    case tifa_libs::unittest::ts_random_02:
-      test_unordered_stl_hacker<u64>(1000);
-      break;
-    default:
-      break;
+    case tifa_libs::unittest::ts_example_00: test_unordered_stl_hacker<strn>(1000); break;
+    case tifa_libs::unittest::ts_example_01: test_unordered_stl_hacker<i32>(1000); break;
+    case tifa_libs::unittest::ts_random_00: test_unordered_stl_hacker<u32>(1000); break;
+    case tifa_libs::unittest::ts_random_01: test_unordered_stl_hacker<i64>(1000); break;
+    case tifa_libs::unittest::ts_random_02: test_unordered_stl_hacker<u64>(1000); break;
+    default: break;
   }
 
   tifa_libs::unittest::post_test();

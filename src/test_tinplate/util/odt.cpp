@@ -2,11 +2,11 @@
 
 #include "../../code/util/odt.hpp"
 
-const std::string YN_[2] = {"No", "Yes"};
+const strn YN_[2] = {"No", "Yes"};
 
 int main() {
   u32 n, m;
-  std::string s;
+  strn s;
   std::cin >> n >> s >> m;
   tifa_libs::ODT<char> odt;
   for (u32 l = 0, r = 0; l < n; l = r) {

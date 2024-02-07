@@ -96,8 +96,7 @@ int main() {
       test_proot_gint<mint64<180143985094819841>>();
       test_proot_gint<mint64<4179340454199820289>>();
       break;
-    default:
-      break;
+    default: break;
   }
 
   tifa_libs::unittest::post_test();

@@ -21,14 +21,9 @@ int main() {
     point p;
     std::cin >> p;
     switch (tifa_libs::geo::relation_PoP(pl, p)) {
-      case tifa_libs::geo::inside_pop:
-        std::cout << "2\n";
-        break;
-      case tifa_libs::geo::outside_pop:
-        std::cout << "0\n";
-        break;
-      default:
-        std::cout << "1\n";
+      case tifa_libs::geo::inside_pop: std::cout << "2\n"; break;
+      case tifa_libs::geo::outside_pop: std::cout << "0\n"; break;
+      default: std::cout << "1\n";
     }
   }
   return 0;

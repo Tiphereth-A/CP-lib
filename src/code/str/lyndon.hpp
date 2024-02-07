@@ -5,7 +5,7 @@
 
 namespace tifa_libs::str {
 
-constexpr vec<u32> duval(std::string_view s) {
+constexpr vec<u32> duval(strnv s) {
   const u32 n = (u32)s.size();
   vec<u32> res{0};
   while (res.back() != n) {

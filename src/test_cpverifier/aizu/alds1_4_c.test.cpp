@@ -9,18 +9,14 @@ int main() {
   std::cin >> n;
   tifa_libs::hset<u64> dict;
   for (u32 i = 0; i < n; ++i) {
-    std::string s, t;
+    strn s, t;
     std::cin >> s >> t;
     u64 x = 0;
     for (char c : t) switch (c) {
-        case 'A':
-          ++x;
-        case 'C':
-          ++x;
-        case 'G':
-          ++x;
-        default:
-          (++x) *= 5;
+        case 'A': ++x;
+        case 'C': ++x;
+        case 'G': ++x;
+        default: (++x) *= 5;
       }
     if (s[0] == 'i')
       dict.insert(x);

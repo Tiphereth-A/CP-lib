@@ -11,7 +11,7 @@ using mint = tifa_libs::math::mint<mintdata>;
 using hashstr = tifa_libs::str::hash_substr<mint>;
 
 int main() {
-  std::string s;
+  strn s;
   tifa_libs::fin >> s;
   hashstr hs;
   hs.set(s);

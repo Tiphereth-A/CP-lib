@@ -51,7 +51,7 @@ class orthodox_ex_suffix_automaton {
     }
     return cur;
   }
-  constexpr void insert(std::string_view s) {
+  constexpr void insert(strnv s) {
     u32 u = 0;
     for (auto cc : s) {
       u32 c = cc - BASE;

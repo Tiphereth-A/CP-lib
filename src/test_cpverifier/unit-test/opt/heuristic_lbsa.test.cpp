@@ -7,14 +7,14 @@
 
 using point_t = ptt<i32>;
 
-vec<point_t> parse_tsp_data(std::string const& name) {
-  std::string filename = "src/data/tsp-vlsi/" + name + ".tsp";
+vec<point_t> parse_tsp_data(strn const& name) {
+  strn filename = "src/data/tsp-vlsi/" + name + ".tsp";
 #ifndef LOCAL_
   std::fstream fin(filename, std::ios_base::in);
 #else
   auto& fin = std::cin;
 #endif
-  std::string s;
+  strn s;
   auto drop = [&]() { std::getline(fin, s); };
 
   u32 n;
@@ -43,7 +43,7 @@ vec<point_t> parse_tsp_data(std::string const& name) {
   drop();
   // EOF
   std::getline(fin, s);
-  check(s, std::string("EOF"));
+  check(s, strn("EOF"));
   return ret;
 }
 
@@ -76,14 +76,9 @@ int main() {
   auto tcase = tifa_libs::unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00:
-      test("bcl380", 1621, 120, .27, 1000, 380, .2);
-      break;
-    case tifa_libs::unittest::ts_example_01:
-      test("xql662", 2513, 120, .19, 1000, 662, .2);
-      break;
-    default:
-      break;
+    case tifa_libs::unittest::ts_example_00: test("bcl380", 1621, 120, .27, 1000, 380, .2); break;
+    case tifa_libs::unittest::ts_example_01: test("xql662", 2513, 120, .19, 1000, 662, .2); break;
+    default: break;
   }
 
   tifa_libs::unittest::post_test();

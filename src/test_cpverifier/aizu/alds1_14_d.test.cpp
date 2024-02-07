@@ -5,7 +5,7 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  std::string t, s;
+  strn t, s;
   std::cin >> t;
   t = " " + t;
   u32 n;

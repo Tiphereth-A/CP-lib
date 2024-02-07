@@ -29,7 +29,7 @@ class th_card {
   static constexpr char SUITS[5] = "CDHS";
   explicit constexpr th_card() {}
   constexpr th_card(char rank, char suit) { encode(rank, suit); }
-  explicit constexpr th_card(std::string_view str) : th_card(str[0], str[1]) { assert(str.size() == 2); }
+  explicit constexpr th_card(strnv str) : th_card(str[0], str[1]) { assert(str.size() == 2); }
   // Parses a card in a format as "2C"
   // @return: 4 * (rank - 2) + suit  (2 <= rank <= 14)
   constexpr void encode(char rank, char suit) {

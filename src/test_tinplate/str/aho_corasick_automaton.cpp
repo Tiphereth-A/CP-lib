@@ -6,7 +6,7 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 n;
-  std::string s;
+  strn s;
   std::cin >> n;
   vec<u32> ans(n);
   tifa_libs::str::aho_corasick_automaton acam;

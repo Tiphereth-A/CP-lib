@@ -13,7 +13,7 @@ class hash_substr2 {
  public:
   explicit constexpr hash_substr2() {}
 
-  constexpr void set(std::string_view s) { h0.set(s), h1.set(s); }
+  constexpr void set(strnv s) { h0.set(s), h1.set(s); }
   constexpr u32 size() const { return h0.size(); }
   constexpr std::pair<mint0, mint1> get(u32 pos, u32 len = -1_u32) const { return {h0.get(pos, len), h1.get(pos, len)}; }
 };

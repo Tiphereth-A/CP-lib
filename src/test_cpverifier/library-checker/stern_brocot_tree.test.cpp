@@ -11,7 +11,7 @@ int main() {
   int n;
   std::cin >> n;
   while (n--) {
-    std::string s;
+    strn s;
     std::cin >> s;
     u64 k;
     i64 a, b, c, d;

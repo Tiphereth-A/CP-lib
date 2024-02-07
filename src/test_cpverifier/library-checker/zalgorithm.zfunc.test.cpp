@@ -4,7 +4,7 @@
 #include "../../code/util/fastio.hpp"
 
 int main() {
-  std::string s;
+  strn s;
   tifa_libs::fin >> s;
   tifa_libs::fout << tifa_libs::str::z_func(s) << '\n';
   return 0;

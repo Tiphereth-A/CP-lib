@@ -2,6 +2,7 @@
 Language: Cpp
 BasedOnStyle: Google
 AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+AllowShortCaseLabelsOnASingleLine: true
 ColumnLimit: 0
 ForEachMacros:
   - FOR1_

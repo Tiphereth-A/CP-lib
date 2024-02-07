@@ -21,7 +21,7 @@ class mpi {
       if (x < 0) neg = true, x = -x;
     while (x) dt.push_back(u32(to_uint_t<T>(x) % D)), x /= D;
   }
-  constexpr mpi(std::string s) : neg(false) {
+  constexpr mpi(strn s) : neg(false) {
     assert(!s.empty());
     if (s.size() == 1u) {
       if (s[0] == '0') return;
@@ -93,9 +93,9 @@ class mpi {
   constexpr u32 size() const { return (u32)dt.size(); }
   constexpr void shrink() { shrink_(dt); }
 
-  constexpr std::string to_str() const {
+  constexpr strn to_str() const {
     if (is_zero()) return "0";
-    std::string res;
+    strn res;
     if (neg) res.push_back('-');
     for (u32 i = size() - 1; ~i; --i) res += itos_((u32)dt[i], i != size() - 1);
     return res;
@@ -111,7 +111,7 @@ class mpi {
   }
 
   friend std::istream& operator>>(std::istream& is, mpi& m) {
-    std::string s;
+    strn s;
     is >> s;
     m = mpi{s};
     return is;
@@ -301,9 +301,9 @@ class mpi {
     return {q, q2};
   }
 
-  static constexpr std::string itos_(u32 x, bool zero_padding) {
+  static constexpr strn itos_(u32 x, bool zero_padding) {
     assert(x < D);
-    std::string res;
+    strn res;
     for (u32 i = 0; i < lgD; ++i) res.push_back(char(48 + x % 10)), x /= 10;
     if (!zero_padding) {
       while (res.size() && res.back() == '0') res.pop_back();

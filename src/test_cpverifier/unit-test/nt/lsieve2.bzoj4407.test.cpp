@@ -11,8 +11,8 @@
 using mintdata = tifa_libs::math::mintdata_s30<1'000'000'000 + 7>;
 using mint = tifa_libs::math::mint<mintdata>;
 
-void test(std::string const& data) {
-  std::string path = "src/data/bzoj/4407/" + data;
+void test(strn const& data) {
+  strn path = "src/data/bzoj/4407/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 
   u32 t, k;
@@ -48,38 +48,17 @@ int main() {
   auto tcase = tifa_libs::unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00:
-      test("1");
-      break;
-    case tifa_libs::unittest::ts_example_01:
-      test("2");
-      break;
-    case tifa_libs::unittest::ts_random_00:
-      test("3");
-      break;
-    case tifa_libs::unittest::ts_random_01:
-      test("4");
-      break;
-    case tifa_libs::unittest::ts_random_02:
-      test("5");
-      break;
-    case tifa_libs::unittest::ts_random_03:
-      test("6");
-      break;
-    case tifa_libs::unittest::ts_random_04:
-      test("7");
-      break;
-    case tifa_libs::unittest::ts_random_05:
-      test("8");
-      break;
-    case tifa_libs::unittest::ts_random_06:
-      test("9");
-      break;
-    case tifa_libs::unittest::ts_random_07:
-      test("10");
-      break;
-    default:
-      break;
+    case tifa_libs::unittest::ts_example_00: test("1"); break;
+    case tifa_libs::unittest::ts_example_01: test("2"); break;
+    case tifa_libs::unittest::ts_random_00: test("3"); break;
+    case tifa_libs::unittest::ts_random_01: test("4"); break;
+    case tifa_libs::unittest::ts_random_02: test("5"); break;
+    case tifa_libs::unittest::ts_random_03: test("6"); break;
+    case tifa_libs::unittest::ts_random_04: test("7"); break;
+    case tifa_libs::unittest::ts_random_05: test("8"); break;
+    case tifa_libs::unittest::ts_random_06: test("9"); break;
+    case tifa_libs::unittest::ts_random_07: test("10"); break;
+    default: break;
   }
 
   tifa_libs::unittest::post_test();

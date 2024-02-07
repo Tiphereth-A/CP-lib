@@ -4,7 +4,7 @@
 #include "../util/util.hpp"
 
 namespace tifa_libs::str {
-template <typename T = std::string>
+template <typename T = strn>
 class suffixarray {
   T s;
 

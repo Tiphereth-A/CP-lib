@@ -5,7 +5,7 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  std::string s;
+  strn s;
   std::cin >> s;
   usz n = s.size();
   s = " " + s;

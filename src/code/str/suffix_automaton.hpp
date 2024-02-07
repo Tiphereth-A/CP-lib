@@ -60,7 +60,7 @@ class suffix_automaton {
 
   // app 0
   //! default: each character of t is lowercase English letters.
-  constexpr std::pair<u32, bool> search(std::string t) {
+  constexpr std::pair<u32, bool> search(strn t) {
     u32 u = 0, i = 0, base = u32('a');
     while (i < t.size()) {
       if (!st[u].nex[u32(t[i]) - base]) return {i, false};
@@ -90,7 +90,7 @@ class suffix_automaton {
   }
   // app 4
   //! default: each character of t is lowercase English letters.
-  constexpr ptt<u32> lcs(std::string_view t) {
+  constexpr ptt<u32> lcs(strnv t) {
     u32 v = 0, len = 0, ret = 0, end = 0, base = u32('a');
     for (u32 i = 0; i < t.size(); ++i) {
       while (v && !st[v].nex[u32(t[i]) - base]) v = st[v].link, len = st[v].len;

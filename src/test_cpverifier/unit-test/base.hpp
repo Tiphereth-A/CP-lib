@@ -13,31 +13,31 @@ namespace tifa_libs::unittest {
 namespace detail__ {
 
 template <class T>
-std::string to_str(T const &x) {
+strn to_str(T const &x) {
   static std::stringstream ss;
   ss.clear();
   ss << std::fixed << std::setprecision(12) << x;
-  std::string s;
+  strn s;
   std::getline(ss, s);
   return s;
 }
 
 template <class T, class... Ts>
-void check_(std::string const &pretty_func, T const &got, T const &want, Ts... param) {
+void check_(strn const &pretty_func, T const &got, T const &want, Ts... param) {
   if constexpr (sizeof...(param) == 0) {
     if (got != want) throw std::runtime_error(pretty_func + ": " + "| got " + to_str(got) + ", want " + to_str(want));
   } else if constexpr (sizeof...(param) == 1) {
-    if (got != want) throw std::runtime_error(pretty_func + ": " + (param + ...) + std::string(", ") + "| got " + to_str(got) + ", want " + to_str(want));
-  } else if (got != want) throw std::runtime_error(pretty_func + ": " + ((param + std::string(", ")) + ...) + "| got " + to_str(got) + ", want " + to_str(want));
+    if (got != want) throw std::runtime_error(pretty_func + ": " + (param + ...) + strn(", ") + "| got " + to_str(got) + ", want " + to_str(want));
+  } else if (got != want) throw std::runtime_error(pretty_func + ": " + ((param + strn(", ")) + ...) + "| got " + to_str(got) + ", want " + to_str(want));
 }
 
 template <class... Ts>
-void check_bool_(std::string const &pretty_func, std::string const &expression, bool res, Ts... param) {
+void check_bool_(strn const &pretty_func, strn const &expression, bool res, Ts... param) {
   if constexpr (sizeof...(param) == 0) {
     if (!res) throw std::runtime_error(pretty_func + ": " + expression + " failed");
   } else if constexpr (sizeof...(param) == 1) {
-    if (!res) throw std::runtime_error(pretty_func + ": " + (param + ...) + std::string(", ") + "| " + expression + " failed");
-  } else if (!res) throw std::runtime_error(pretty_func + ": " + ((param + std::string(", ")) + ...) + "| " + expression + " failed");
+    if (!res) throw std::runtime_error(pretty_func + ": " + (param + ...) + strn(", ") + "| " + expression + " failed");
+  } else if (!res) throw std::runtime_error(pretty_func + ": " + ((param + strn(", ")) + ...) + "| " + expression + " failed");
 }
 }  // namespace detail__
 

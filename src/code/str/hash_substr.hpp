@@ -13,7 +13,7 @@ class hash_substr {
  public:
   explicit constexpr hash_substr() {}
 
-  constexpr void set(std::string_view s) {
+  constexpr void set(strnv s) {
     hash.resize(1, 0), hash.reserve(s.size() + 1);
     for (char c : s) hash.push_back(hash.back() * base + (u32)c + 1);
     if (p.size() <= s.size()) {
