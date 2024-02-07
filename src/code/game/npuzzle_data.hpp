@@ -6,74 +6,71 @@
 
 namespace tifa_libs::game {
 
-// clang-format off
-enum Dir4 { U, D, L, R };
-// clang-format on
-
 // n = k*k-1
 class NPuzzleData {
+  static inline vec<u32> fin_node, fin_pos;
+  static inline vvec<u32> pos_cost;
+
   u32 k, pos0;
-  vec<u32> node_;
-  vec<Dir4> moves_;
   u32 cost_;
 
  public:
-  constexpr explicit NPuzzleData(u32 k) : k(k) {}
+  static inline u32 limit = UINT32_MAX;
+  static constexpr void set_fin(u32 k, vec<u32> const &fin) {
+    assert(fin.size() == k * k);
+    fin_node = fin;
+    fin_pos.resize(k * k);
+    for (u32 i = 0; i < k * k; ++i) fin_pos[fin_node[i]] = i;
+    pos_cost.resize(k * k, vec<u32>(k * k));
+    for (u32 p = 1; p < k * k; ++p)
+      for (u32 q = 0; q < k * k; ++q) pos_cost[p][q] = u32(abs(i32(p / k) - i32(q / k)) + abs(i32(p % k) - i32(q % k)));
+  }
+
+  vec<u32> node;
+  strn moves;
+
+  constexpr explicit NPuzzleData(u32 k) : k(k), pos0(0), cost_(0), node(k * k), moves() {}
 
   constexpr auto const &cost() const { return cost_; }
-  constexpr auto &node() { return node_; }
-  constexpr auto const &node() const { return node_; }
-  constexpr auto const &moves() const { return moves_; }
-
-  constexpr bool solved() {
-    for (u32 i = 0; i < node_.size(); ++i)
-      if (node_[i] != i) return 0;
-    return 1;
-  }
+  constexpr bool solved() { return node == fin_node; }
   constexpr vec<NPuzzleData> next() {
-    auto moves = gen_move();
-    vec<NPuzzleData> ans(moves.size(), *this);
-    for (u32 i = 0; i < moves.size(); ++i) ans[i].move(moves[i]);
+    strn moves;
+    {
+      char lst = moves.back();
+      if (pos0 / k && lst != 'D') moves += 'U';
+      if (pos0 / k != k - 1 && lst != 'U') moves += 'D';
+      if (pos0 % k && lst != 'R') moves += 'L';
+      if (pos0 % k != k - 1 && lst != 'L') moves += 'R';
+    }
+    vec<NPuzzleData> ans;
+    for (char d : moves) {
+      auto nxt = *this;
+      nxt.move(d);
+      if (nxt.cost_ <= limit) ans.push_back(nxt);
+    }
     return ans;
   }
-  constexpr void move(Dir4 dir) {
-    moves_.push_back(dir);
+  constexpr void move(char dir) {
+    moves.push_back(dir);
+    ++cost_;
     u32 _ = pos0;
     switch (dir) {
-      case U: pos0 -= k; break;
-      case D: pos0 += k; break;
-      case L: --pos0; break;
-      case R: ++pos0; break;
+      case 'U': pos0 -= k; break;
+      case 'D': pos0 += k; break;
+      case 'L': --pos0; break;
+      case 'R': ++pos0; break;
     }
-    std::swap(node_[_], node_[pos0]);
-    cost_ = gen_cost();
+    cost_ += pos_cost[_][fin_pos[node[pos0]]];
+    cost_ -= pos_cost[pos0][fin_pos[node[pos0]]];
+    std::swap(node[_], node[pos0]);
   }
-
-  constexpr auto operator<=>(NPuzzleData const &node) const { return node_ <=> node.node_; }
-
+  constexpr auto operator<=>(NPuzzleData const &r) const { return node <=> r.node; }
   friend std::istream &operator>>(std::istream &is, NPuzzleData &np) {
-    np.node_.resize(np.k * np.k);
-    for (auto &i : np.node_) is >> i;
-    np.pos0 = u32(std::find(np.node_.begin(), np.node_.end(), 0) - np.node_.begin());
-    np.cost_ = np.gen_cost();
+    for (auto &i : np.node) is >> i;
+    np.pos0 = u32(std::find(np.node.begin(), np.node.end(), 0) - np.node.begin());
+    for (u32 p = 0; p < np.node.size(); ++p)
+      if (np.node[p]) np.cost_ += pos_cost[p][fin_pos[np.node[p]]];
     return is;
-  }
-
- private:
-  constexpr vec<Dir4> gen_move() const {
-    vec<Dir4> ans;
-    if (pos0 / k) ans.push_back(U);
-    if (pos0 / k != k - 1) ans.push_back(D);
-    if (pos0 % k) ans.push_back(L);
-    if (pos0 % k != k - 1) ans.push_back(R);
-    return ans;
-  }
-  constexpr u32 gen_cost() const {
-    u32 h1 = 0, h2 = 0;
-    for (u32 i = 0; i < k; ++i)
-      for (u32 j = 0; j < k; ++j)
-        if (u32 _ = node_[k * i + j]; _ != k * i + j && _) ++h1, h2 += u32(abs((i32)i - i32(_ / k)) + abs((i32)j - i32(_ % k)));
-    return std::max(h1, h2) + (u32)moves_.size();
   }
 };
 

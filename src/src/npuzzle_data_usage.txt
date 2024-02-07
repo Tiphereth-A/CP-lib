@@ -1,9 +1,15 @@
 int k = 4; // 15-puzzle
-
 NPuzzleData start(k);
+
+// 初始化终止局面
+std::vector<u32> fin(k * k);
+std::iota(fin.begin(), fin.end(), 0);
+NPuzzleData::set_fin(k, fin);
+// 初始化最大估价
+tifa_libs::game::NPuzzleData::limit = 100;
 // 读入局面
 std::cin >> start;
 // 输出当前局面
-std::cout << start.node();
+std::cout << start.node;
 // 输出操作步骤
-std::cout << astar(start)->moves();
+std::cout << astar(start)->moves;
