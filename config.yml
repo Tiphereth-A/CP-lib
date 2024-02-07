@@ -513,7 +513,7 @@ notebook:
     - dinic: 网络最大流(dinic)
       code_ext: hpp
       test_ext: cpp
-    - ssp: 最小费用最大流(SuccessiveShortestPath)
+    - ssp: 最小费用最大流(SSP)
       code_ext: hpp
       test_ext: cpp
     - steiner_tree: 斯坦纳树
