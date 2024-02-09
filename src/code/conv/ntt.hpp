@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_CONV_NTT
 #define TIFALIBS_CONV_NTT
 
+#include "../bit/lowbit.hpp"
 #include "../math/qpow.hpp"
 #include "../nt/proot_u64.hpp"
 
@@ -9,7 +10,7 @@ namespace tifa_libs::math {
 template <class mint>
 struct NTT {
   static_assert((mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
-  static constexpr u64 max_size = 1 << std::countr_zero(mint::mod() - 1);
+  static constexpr u64 max_size = bit::lowbit(mint::mod() - 1);
 
   const mint G = proot_u64(mint::mod());
 
