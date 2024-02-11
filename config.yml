@@ -117,6 +117,9 @@ notebook:
     - odt: 珂朵莉树
       code_ext: hpp
       test_ext: cpp
+    - blocking: 分块
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bswap: std::byteswap
       code_ext: hpp
