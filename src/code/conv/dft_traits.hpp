@@ -6,11 +6,11 @@
 namespace tifa_libs {
 
 template <class T>
-concept dft_c = requires(T x, vec<typename T::data_t> v) {
+concept dft_c = requires(T x, vec<typename T::data_t> v, u32 n) {
   { x.size() } -> std::same_as<u32>;
-  { x.bzr(0_u32) };
-  { x.dif(v, 0_u32) };
-  { x.dit(v, 0_u32) };
+  { x.bzr(n) };
+  { x.dif(v, n) };
+  { x.dit(v, n) };
 };
 
 template <class T>

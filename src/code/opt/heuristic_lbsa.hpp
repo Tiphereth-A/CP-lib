@@ -5,8 +5,10 @@
 
 namespace tifa_libs::opt {
 
-// Ff: Ft(T const &)
 template <class Cont, class Ff, class Ft = f64, class Tt = f64>
+requires requires(Ff f, Cont const& t) {
+  { f(t) } -> std::same_as<Ft>;
+}
 class heuristic_lbsa {
   Ff f;
   rand::Gen<std::uniform_int_distribution<u32>> g_idx;

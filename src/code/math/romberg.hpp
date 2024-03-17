@@ -5,10 +5,12 @@
 
 namespace tifa_libs::math {
 
-// Func = FP(FP)
-template <class FP, class Func>
+template <std::floating_point FP, class F>
+requires requires(FP fp, F f) {
+  { f(fp) } -> std::same_as<FP>;
+}
 class romberg_impl {
-  Func f;
+  F f;
   constexpr FP ctqf(FP a, FP b, FP h) const {
     FP ans = 0;
     for (FP i = a + h * .5; i < b; i += h) ans += f(i);
@@ -16,7 +18,7 @@ class romberg_impl {
   }
 
  public:
-  explicit constexpr romberg_impl(Func func) : f(func) {}
+  explicit constexpr romberg_impl(F func) : f(func) {}
 
   constexpr FP operator()(FP a, FP b, FP eps) const {
     FP h = b - a;

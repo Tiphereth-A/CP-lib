@@ -5,10 +5,12 @@
 
 namespace tifa_libs::math {
 
-// Func = FP(FP)
-template <class FP, class Func>
+template <std::floating_point FP, class F>
+requires requires(FP fp, F f) {
+  { f(fp) } -> std::same_as<FP>;
+}
 class simpson_impl {
-  Func f;
+  F f;
 
   static constexpr FP sps(FP l, FP r, FP fl, FP fmid, FP fr) { return (fl + 4 * fmid + fr) * (r - l) / 6; }
   constexpr FP asr(FP l, FP r, FP area, FP eps, i64 dep) const {
@@ -21,7 +23,7 @@ class simpson_impl {
   }
 
  public:
-  explicit constexpr simpson_impl(Func func) : f(func) {}
+  explicit constexpr simpson_impl(F func) : f(func) {}
   constexpr FP operator()(FP l, FP r, FP eps, i64 min_dep = -1) const { return asr(l, r, sps(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, min_dep); }
 };
 

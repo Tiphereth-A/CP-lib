@@ -6,9 +6,11 @@
 
 namespace tifa_libs::opt {
 
-// F: T(I)
 // @return $\argmin_{l\leq x\leq r}\{f\}$
 template <arithm_c I, class F, class T = decltype(std::declval<F>()(std::declval<I>()))>
+requires requires(F f, I i) {
+  { f(i) } -> std::same_as<T>;
+}
 constexpr std::pair<I, T> tsearch(I l, I r, F f) {
   assert(l <= r);
   I ml, mr;
