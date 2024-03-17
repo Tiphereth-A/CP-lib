@@ -8,6 +8,7 @@ namespace tifa_libs::math {
 template <std::floating_point FP>
 struct FFT {
   using C = std::complex<FP>;
+  using data_t = C;
 
   explicit constexpr FFT() : rev(), w() {}
 

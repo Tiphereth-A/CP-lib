@@ -2,11 +2,12 @@
 #define TIFALIBS_CONV_CONV_DFT
 
 #include "conv_naive.hpp"
+#include "dft_traits.hpp"
 
 namespace tifa_libs::math {
 
-template <class DFT_t, class mint>
-constexpr vec<mint> conv_dft(DFT_t &dft, vec<mint> l, vec<mint> r, u32 ans_size = 0) {
+template <dft_c DFT_t, class DFT_data_t = typename DFT_t::data_t>
+constexpr vec<DFT_data_t> conv_dft(DFT_t &dft, vec<DFT_data_t> l, vec<DFT_data_t> r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   if (ans_size < 32) return conv_naive(l, r, ans_size);
   dft.bzr(std::max({(u32)l.size(), (u32)r.size(), std::min(u32(l.size() + r.size() - 1), ans_size)}));

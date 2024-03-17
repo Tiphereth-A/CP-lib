@@ -975,6 +975,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     conv:
+    - dft_traits: DFT traits
+      code_ext: hpp
+      test_ext: cpp
     - fft: 快速 Fourier 变换
       code_ext: hpp
       test_ext: cpp

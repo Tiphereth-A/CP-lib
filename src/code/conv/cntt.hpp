@@ -9,6 +9,7 @@ namespace tifa_libs::math {
 template <class mint, i64 M = -1>
 struct CNTT {
   using Zpi = gint<mint, M>;
+  using data_t = Zpi;
 
   explicit constexpr CNTT() {}
 
