@@ -6,9 +6,9 @@
 namespace tifa_libs::opt {
 
 template <class T, class Fg, class Ff, class Ft = f64, class Tt = f64>
-requires requires(Ff f, Fg g, T const& t) {
-  { f(t) } -> std::same_as<Ft>;
-  { g(t) } -> std::same_as<T>;
+requires requires(Ff fit, Fg gen, T const& sample, Tt t) {
+  { fit(sample) } -> std::same_as<Ft>;
+  { gen(sample, t) } -> std::same_as<T>;
 }
 class heuristic_sa {
   Fg gen;
