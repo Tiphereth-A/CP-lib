@@ -8,9 +8,9 @@ namespace tifa_libs {
 template <class T>
 concept dft_c = requires(T x, vec<typename T::data_t> v, u32 n) {
   { x.size() } -> std::same_as<u32>;
-  { x.bzr(n) };
-  { x.dif(v, n) };
-  { x.dit(v, n) };
+  x.bzr(n);
+  x.dif(v, n);
+  x.dit(v, n);
 };
 
 template <class T>
