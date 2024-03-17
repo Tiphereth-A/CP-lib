@@ -111,8 +111,8 @@ def _gen_nbc():
 
                 for section in sections:
                     f.writelines(latex_section(NameLaTeX(section.title)))
-                    code_filepath, doc_filepath, test_filepath = section.get_filenames(
-                        CONFIG.get_code_dir(), CONFIG.get_doc_dir(), CONFIG.get_test_dir())
+                    code_filepath, doc_filepath, _, test_filepath = section.get_filenames(
+                        CONFIG.get_code_dir(), CONFIG.get_doc_dir(), CONFIG.get_cvdoc_dir(), CONFIG.get_test_dir())
                     f.writelines(latex_input(PathLaTeX(doc_filepath)))
                     if section.code_ext == 'hpp':
                         f.writelines(latex_listing_code_range(PathLaTeX(code_filepath), CONFIG.get_code_style(
@@ -289,18 +289,29 @@ def _new_note(chapter_name: str, file_name: str, section_title: str, code_ext_na
         section: Section = Section(
             _chapter_name, _file_name, _section_title, _code_ext_name, _test_ext_name)
 
-        section.open(CONFIG.get_code_dir(), CONFIG.get_doc_dir(),
-                     CONFIG.get_test_dir(), 'x')
+        _, _, f_cvdoc, _ = section.open(CONFIG.get_code_dir(), CONFIG.get_doc_dir(),
+                                        CONFIG.get_cvdoc_dir(), CONFIG.get_test_dir(), 'x')
         kwargs.get('logger').info('Created')
 
-        _code, _doc, _test = section.get_filenames(
-            CONFIG.get_code_dir(), CONFIG.get_doc_dir(), CONFIG.get_test_dir())
+        _code, _doc, _cvdoc, _test = section.get_filenames(CONFIG.get_code_dir(), CONFIG.get_doc_dir(),
+                                                           CONFIG.get_cvdoc_dir(), CONFIG.get_test_dir())
         kwargs.get('logger').info(f"Code: {os.path.join(os.curdir, _code)}")
         kwargs.get('logger').info(f"Doc: {os.path.join(os.curdir, _doc)}")
+        kwargs.get('logger').info(f"CVDoc: {os.path.join(os.curdir, _cvdoc)}")
         kwargs.get('logger').info(f"Test: {os.path.join(os.curdir, _test)}")
 
         CONFIG.append_section(section)
         kwargs.get('logger').info('Config updated')
+
+        _fixed_codepath = '//' + \
+            os.path.join(os.curdir, _code).replace(
+                '\\', '/').removeprefix('./')
+        _cvdoc_content = f"""---
+title: {_file_name}
+documentation_of: {_fixed_codepath}
+---
+"""
+        f_cvdoc.write(_cvdoc_content)
 
     add_new_note(chapter_name, file_name, section_title,
                  code_ext_name, test_ext_name)

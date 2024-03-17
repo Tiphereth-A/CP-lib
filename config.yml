@@ -1,6 +1,7 @@
 src_dir: src
 notebook_code_dir: code
 notebook_doc_dir: doc_tex
+competitive_verifier_doc_dir: doc_md
 cheatsheet_dir: cheatsheet
 test_dir: test_tinplate
 notebook_file: notebook
