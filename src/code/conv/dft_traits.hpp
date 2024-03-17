@@ -15,8 +15,8 @@ concept dft_c = requires(T x, vec<typename T::data_t> v, u32 n) {
 
 template <class T>
 concept ntt_c = dft_c<T> && requires(T x) {
-  { T::max_size } -> std::unsigned_integral;
-  { T::G } -> std::same_as<typename T::data_t>;
+  T::max_size;
+  T::G;
 };
 
 }  // namespace tifa_libs
