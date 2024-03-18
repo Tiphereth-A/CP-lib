@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 
 #include "../../code/ds/persistent_segtree.hpp"
-#include "../../code/util/discretization.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/edh/discretization.hpp"
+#include "../../code/io/fastio.hpp"
 
 int main() {
   usz n, q;

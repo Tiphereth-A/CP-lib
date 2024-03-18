@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_15_D"
 
-#include "../../code/util/huffman_tree.hpp"
+#include "../../code/edh/huffman_tree.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -22,7 +22,7 @@ int main() {
       std::cout << w[0] + w[1] << "\n";
     return 0;
   }
-  tifa_libs::util::huffman<u32> hf(w);
+  tifa_libs::huffman<u32> hf(w);
   auto x = hf.encode();
   u64 ans = 0;
   for (u32 i = 0; i < w.size(); ++i) ans += w[i] * x[i].size();

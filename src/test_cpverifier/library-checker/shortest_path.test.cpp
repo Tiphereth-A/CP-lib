@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 
 #include "../../code/graph/dijkstra.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 int main() {
   u32 n, m, s, t;

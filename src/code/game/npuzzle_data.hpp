@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_GAME_NPUZZLE_DATA
 #define TIFALIBS_GAME_NPUZZLE_DATA
 
-#include "../util/abs_constexpr.hpp"
 #include "../util/util.hpp"
 
 namespace tifa_libs::game {

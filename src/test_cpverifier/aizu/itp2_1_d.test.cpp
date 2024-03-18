@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/all/ITP2_1_D"
 
-#include "../../code/util/ios_container.hpp"
+#include "../../code/io/ios_container.hpp"
 #include "../../code/util/ndvec.hpp"
 
 int main() {

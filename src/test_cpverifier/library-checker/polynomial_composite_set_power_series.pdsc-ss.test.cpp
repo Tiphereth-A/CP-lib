@@ -4,7 +4,7 @@
 #include "../../code/math/mintdata_ss.hpp"
 #include "../../code/poly/polydata_scntt.hpp"
 #include "../../code/poly/polysps_comp.hpp"
-#include "../../code/util/ios_container.hpp"
+#include "../../code/io/ios_container.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mintdata>;

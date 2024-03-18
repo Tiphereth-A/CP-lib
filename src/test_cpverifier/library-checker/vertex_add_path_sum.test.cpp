@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 
 #include "../../code/ds/hld.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 using T = std::pair<i64, i32>;
 using F = i64;

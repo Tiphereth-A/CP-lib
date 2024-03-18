@@ -4,7 +4,7 @@
 #include "../../code/math/mintdata_2e61n1.hpp"
 #include "../../code/str/hash_substr.hpp"
 #include "../../code/str/lcp_hashstr.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 using mintdata = tifa_libs::math::mintdata_2e61n1;
 using mint = tifa_libs::math::mint<mintdata>;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/all/ITP2_11_C"
 
-#include "../../code/util/enum_subset.hpp"
+#include "../../code/enum/enum_subset.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

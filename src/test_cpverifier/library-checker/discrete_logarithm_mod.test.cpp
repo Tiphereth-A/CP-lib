@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/discrete_logarithm_mod"
 
 #include "../../code/nt/exbsgs.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 int main() {
   i64 t;

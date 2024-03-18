@@ -1,8 +1,8 @@
 #ifndef TIFALIBS_MATH_DU_SIEVE
 #define TIFALIBS_MATH_DU_SIEVE
 
+#include "../edh/hash_splitmix64.hpp"
 #include "../math/do_quot.hpp"
-#include "../util/hash_splitmix64.hpp"
 
 namespace tifa_libs::math {
 

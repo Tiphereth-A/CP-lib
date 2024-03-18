@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary"
 
 #include "../../code/conv/conv_minplus_ca.hpp"
-#include "../../code/util/ios_container.hpp"
+#include "../../code/io/ios_container.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_ROMBERG
 #define TIFALIBS_MATH_ROMBERG
 
-#include "../util/util.hpp"
+#include "../util/fp_const.hpp"
 
 namespace tifa_libs::math {
 
@@ -20,7 +20,7 @@ class romberg_impl {
  public:
   explicit constexpr romberg_impl(F func) : f(func) {}
 
-  constexpr FP operator()(FP a, FP b, FP eps) const {
+  constexpr FP operator()(FP a, FP b, FP eps = eps_v<FP>) const {
     FP h = b - a;
     FP T1 = (f(a) + f(b)) * h * .5, T2 = 0, S1 = 0, S2 = 0, C1 = 0, C2 = 0, R1 = 0, R2 = 0;
     for (int k = 1; k < 4; h *= .5, ++k) {

@@ -1,9 +1,9 @@
 #ifndef TIFALIBS_MATH_BSGS
 #define TIFALIBS_MATH_BSGS
 
+#include "../edh/hash_splitmix64.hpp"
 #include "../math/isqrt.hpp"
 #include "../math/qpow_mod.hpp"
-#include "../util/hash_splitmix64.hpp"
 
 namespace tifa_libs::math {
 

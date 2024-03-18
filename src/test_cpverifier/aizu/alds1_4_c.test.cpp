@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_4_C"
 
-#include "../../code/util/hash_splitmix64.hpp"
+#include "../../code/edh/hash_splitmix64.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

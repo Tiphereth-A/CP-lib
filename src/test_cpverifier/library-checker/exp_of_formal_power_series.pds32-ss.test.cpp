@@ -5,7 +5,7 @@
 #include "../../code/poly/poly.hpp"
 #include "../../code/poly/poly_exp.hpp"
 #include "../../code/poly/polydata_s32.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mintdata>;

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 
 #include "../../code/str/manacher.hpp"
-#include "../../code/util/ios_container.hpp"
+#include "../../code/io/ios_container.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

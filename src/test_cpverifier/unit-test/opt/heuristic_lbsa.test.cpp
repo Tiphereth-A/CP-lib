@@ -43,7 +43,7 @@ vec<point_t> parse_tsp_data(strn const& name) {
   drop();
   // EOF
   std::getline(fin, s);
-  check(s, strn("EOF"));
+  check(s, "EOF"s);
   return ret;
 }
 

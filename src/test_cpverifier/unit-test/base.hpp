@@ -1,11 +1,11 @@
 #ifndef TIFALIBS_UNITTEST_BASE
 #define TIFALIBS_UNITTEST_BASE
 
+#include "../../code/io/ios128.hpp"
+#include "../../code/io/ios_container.hpp"
+#include "../../code/io/ios_pair.hpp"
+#include "../../code/io/ios_tuple.hpp"
 #include "../../code/rand/gen.hpp"
-#include "../../code/util/ios128.hpp"
-#include "../../code/util/ios_container.hpp"
-#include "../../code/util/ios_pair.hpp"
-#include "../../code/util/ios_tuple.hpp"
 #include "../../code/util/util.hpp"
 
 namespace tifa_libs::unittest {
@@ -27,8 +27,8 @@ void check_(strn const &pretty_func, T const &got, T const &want, Ts... param) {
   if constexpr (sizeof...(param) == 0) {
     if (got != want) throw std::runtime_error(pretty_func + ": " + "| got " + to_str(got) + ", want " + to_str(want));
   } else if constexpr (sizeof...(param) == 1) {
-    if (got != want) throw std::runtime_error(pretty_func + ": " + (param + ...) + strn(", ") + "| got " + to_str(got) + ", want " + to_str(want));
-  } else if (got != want) throw std::runtime_error(pretty_func + ": " + ((param + strn(", ")) + ...) + "| got " + to_str(got) + ", want " + to_str(want));
+    if (got != want) throw std::runtime_error(pretty_func + ": " + (param + ...) + ", | got " + to_str(got) + ", want " + to_str(want));
+  } else if (got != want) throw std::runtime_error(pretty_func + ": " + ((param + ", "s) + ...) + "| got " + to_str(got) + ", want " + to_str(want));
 }
 
 template <class... Ts>
@@ -36,8 +36,8 @@ void check_bool_(strn const &pretty_func, strn const &expression, bool res, Ts..
   if constexpr (sizeof...(param) == 0) {
     if (!res) throw std::runtime_error(pretty_func + ": " + expression + " failed");
   } else if constexpr (sizeof...(param) == 1) {
-    if (!res) throw std::runtime_error(pretty_func + ": " + (param + ...) + strn(", ") + "| " + expression + " failed");
-  } else if (!res) throw std::runtime_error(pretty_func + ": " + ((param + strn(", ")) + ...) + "| " + expression + " failed");
+    if (!res) throw std::runtime_error(pretty_func + ": " + (param + ...) + ", | " + expression + " failed");
+  } else if (!res) throw std::runtime_error(pretty_func + ": " + ((param + ", "s) + ...) + "| " + expression + " failed");
 }
 }  // namespace detail__
 

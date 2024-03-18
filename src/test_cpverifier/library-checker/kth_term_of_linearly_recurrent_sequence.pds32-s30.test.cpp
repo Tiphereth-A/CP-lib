@@ -4,7 +4,7 @@
 #include "../../code/math/mintdata_s30.hpp"
 #include "../../code/math/nth_term_lrec.hpp"
 #include "../../code/poly/polydata_s32.hpp"
-#include "../../code/util/ios_container.hpp"
+#include "../../code/io/ios_container.hpp"
 
 using mintdata = tifa_libs::math::mintdata_s30<998244353>;
 using mint = tifa_libs::math::mint<mintdata>;

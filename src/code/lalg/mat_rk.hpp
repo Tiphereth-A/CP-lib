@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_LALG_MAT_RK
 #define TIFALIBS_LALG_MAT_RK
 
-#include "../util/abs_constexpr.hpp"
 #include "../util/util.hpp"
 
 namespace tifa_libs::math {

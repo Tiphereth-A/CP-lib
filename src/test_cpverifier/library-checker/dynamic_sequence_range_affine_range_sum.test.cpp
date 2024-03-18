@@ -3,7 +3,7 @@
 #include "../../code/ds/fhq_treap_w.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/math/mintdata_s30.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 using mintdata = tifa_libs::math::mintdata_s30<998244353>;
 using mint = tifa_libs::math::mint<mintdata>;

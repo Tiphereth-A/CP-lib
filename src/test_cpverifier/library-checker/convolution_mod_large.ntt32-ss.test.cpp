@@ -4,7 +4,7 @@
 #include "../../code/conv/ntt32.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/math/mintdata_ss.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 using mintdata = tifa_libs::math::mintdata_ss<998244353>;
 using mint = tifa_libs::math::mint<mintdata>;

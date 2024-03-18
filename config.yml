@@ -10,6 +10,8 @@ notebook:
   chapters:
     util: 杂项
     bit: 位操作
+    enum: 枚举
+    io: IO
     ds: 数据结构
     opt: 最优化
     graph: 图论
@@ -24,14 +26,12 @@ notebook:
     math: 其他数学
     str: 字符串
     rand: 随机数与随机化算法
+    edh: 编解码与 Hash
     game: 游戏
     fast: 卡常用算法
   sections:
     util:
     - util: 共同依赖
-      code_ext: hpp
-      test_ext: cpp
-    - abs_constexpr: abs_constexpr
       code_ext: hpp
       test_ext: cpp
     - fp_const: 一些浮点常数
@@ -46,28 +46,10 @@ notebook:
     - fp_range_is_in_middle: 判断浮点数是否在浮点数区间中
       code_ext: hpp
       test_ext: cpp
-    - base64: Base64
-      code_ext: hpp
-      test_ext: cpp
     - fp2uint: 浮点数到 uint
       code_ext: hpp
       test_ext: cpp
-    - hash_splitmix64: Hash splitmix64
-      code_ext: hpp
-      test_ext: cpp
-    - discretization: 离散化
-      code_ext: hpp
-      test_ext: cpp
-    - enum_subset: 枚举子集
-      code_ext: hpp
-      test_ext: cpp
-    - enum_supset: 枚举超集
-      code_ext: hpp
-      test_ext: cpp
     - traits: traits
-      code_ext: hpp
-      test_ext: cpp
-    - ios128: 128 位整数的 IO
       code_ext: hpp
       test_ext: cpp
     - inversion: 逆序对计数
@@ -76,40 +58,19 @@ notebook:
     - pair_op: pair 运算
       code_ext: hpp
       test_ext: cpp
-    - ios_pair: pair IO
-      code_ext: hpp
-      test_ext: cpp
     - tuple_push_pop: tuple push 与 pop
       code_ext: hpp
       test_ext: cpp
     - tuple_op: tuple 运算
       code_ext: hpp
       test_ext: cpp
-    - ios_tuple: tuple IO
-      code_ext: hpp
-      test_ext: cpp
     - vec_op: vec 运算
-      code_ext: hpp
-      test_ext: cpp
-    - ios_container: 容器 IO
       code_ext: hpp
       test_ext: cpp
     - ndvec: 高维 vector
       code_ext: hpp
       test_ext: cpp
-    - huffman_tree: Huffman 树
-      code_ext: hpp
-      test_ext: cpp
-    - gray_code: Gray 码
-      code_ext: hpp
-      test_ext: cpp
     - dlx: DLX
-      code_ext: hpp
-      test_ext: cpp
-    - enumerate: enumerate
-      code_ext: hpp
-      test_ext: cpp
-    - fastio: 快速 IO
       code_ext: hpp
       test_ext: cpp
     - unordered_stl_hacker: unordered STL hacker
@@ -132,6 +93,32 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - lowbit: lowbit
+      code_ext: hpp
+      test_ext: cpp
+    enum:
+    - enum_subset: 枚举子集
+      code_ext: hpp
+      test_ext: cpp
+    - enum_supset: 枚举超集
+      code_ext: hpp
+      test_ext: cpp
+    - enumerate: enumerate
+      code_ext: hpp
+      test_ext: cpp
+    io:
+    - ios128: 128 位整数的 IO
+      code_ext: hpp
+      test_ext: cpp
+    - ios_pair: pair IO
+      code_ext: hpp
+      test_ext: cpp
+    - ios_tuple: tuple IO
+      code_ext: hpp
+      test_ext: cpp
+    - ios_container: 容器 IO
+      code_ext: hpp
+      test_ext: cpp
+    - fastio: 快速 IO
       code_ext: hpp
       test_ext: cpp
     ds:
@@ -563,12 +550,6 @@ notebook:
     - tree_hash_rooted: 有根树 Hash
       code_ext: hpp
       test_ext: cpp
-    - prufer: Pr\"ufer 序列
-      code_ext: hpp
-      test_ext: cpp
-    - prufer_inv: Pr\"ufer 序列逆
-      code_ext: hpp
-      test_ext: cpp
     - dsu_on_tree: DSU on tree
       code_ext: hpp
       test_ext: cpp
@@ -583,18 +564,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - exlucas: Lucas 定理(任意模数)
-      code_ext: hpp
-      test_ext: cpp
-    - cantor: Cantor 展开
-      code_ext: hpp
-      test_ext: cpp
-    - cantor_inv: 逆 Cantor 展开
-      code_ext: hpp
-      test_ext: cpp
-    - cantor_seq2val: Cantor 展开序列转整数
-      code_ext: hpp
-      test_ext: cpp
-    - cantor_val2seq: Cantor 展开整数转序列
       code_ext: hpp
       test_ext: cpp
     - gen_derange: 错排数序列
@@ -1223,6 +1192,40 @@ notebook:
       test_ext: cpp
     rand:
     - gen: 随机数生成辅助类
+      code_ext: hpp
+      test_ext: cpp
+    edh:
+    - base64: Base64
+      code_ext: hpp
+      test_ext: cpp
+    - hash_splitmix64: Hash splitmix64
+      code_ext: hpp
+      test_ext: cpp
+    - discretization: 离散化
+      code_ext: hpp
+      test_ext: cpp
+    - huffman_tree: Huffman 树
+      code_ext: hpp
+      test_ext: cpp
+    - gray_code: Gray 码
+      code_ext: hpp
+      test_ext: cpp
+    - cantor: Cantor 展开
+      code_ext: hpp
+      test_ext: cpp
+    - cantor_inv: 逆 Cantor 展开
+      code_ext: hpp
+      test_ext: cpp
+    - cantor_seq2val: Cantor 展开序列转整数
+      code_ext: hpp
+      test_ext: cpp
+    - cantor_val2seq: Cantor 展开整数转序列
+      code_ext: hpp
+      test_ext: cpp
+    - prufer: Pr\"ufer 序列
+      code_ext: hpp
+      test_ext: cpp
+    - prufer_inv: Pr\"ufer 序列逆
       code_ext: hpp
       test_ext: cpp
     game:

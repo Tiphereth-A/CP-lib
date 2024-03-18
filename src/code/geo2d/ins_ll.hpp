@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_GEO2D_INS_LL
 #define TIFALIBS_GEO2D_INS_LL
 
-#include "../util/abs_constexpr.hpp"
 #include "line.hpp"
 
 namespace tifa_libs::geo {

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/associative_array"
 
-#include "../../code/util/hash_splitmix64.hpp"
+#include "../../code/edh/hash_splitmix64.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

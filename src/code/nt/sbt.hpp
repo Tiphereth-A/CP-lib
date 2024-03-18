@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_MATH_SBT
 #define TIFALIBS_MATH_SBT
 
-#include "../util/abs_constexpr.hpp"
 #include "../util/util.hpp"
 
 namespace tifa_libs::math {

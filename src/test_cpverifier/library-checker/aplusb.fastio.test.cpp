@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 int main() {
   i64 s, t;

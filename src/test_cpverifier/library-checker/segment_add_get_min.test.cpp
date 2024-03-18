@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 
 #include "../../code/ds/lichao_segtree.hpp"
-#include "../../code/util/discretization.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/edh/discretization.hpp"
+#include "../../code/io/fastio.hpp"
 
 int main() {
   usz n, q;

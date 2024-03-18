@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_SIMPSON
 #define TIFALIBS_MATH_SIMPSON
 
-#include "../util/util.hpp"
+#include "../util/fp_const.hpp"
 
 namespace tifa_libs::math {
 
@@ -24,7 +24,7 @@ class simpson_impl {
 
  public:
   explicit constexpr simpson_impl(F func) : f(func) {}
-  constexpr FP operator()(FP l, FP r, FP eps, i64 min_dep = -1) const { return asr(l, r, sps(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, min_dep); }
+  constexpr FP operator()(FP l, FP r, FP eps = eps_v<FP>, i64 min_dep = -1) const { return asr(l, r, sps(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, min_dep); }
 };
 
 }  // namespace tifa_libs::math

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/division_of_big_integers"
 
 #include "../../code/math/mpi.hpp"
-#include "../../code/util/ios_pair.hpp"
+#include "../../code/io/ios_pair.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

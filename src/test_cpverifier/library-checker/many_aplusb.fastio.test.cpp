@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/many_aplusb"
 
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 int main() {
   u32 t;

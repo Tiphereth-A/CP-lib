@@ -3,6 +3,9 @@
 
 #include <bits/stdc++.h>
 
+template <class T>
+constexpr T abs(T x) { return x < 0 ? -x : x; }
+
 using i8 = int8_t;
 using i16 = int16_t;
 using i32 = int32_t;
@@ -51,6 +54,8 @@ using strnv = std::string_view;
 #undef assert
 #define assert(x) 42
 #endif
+
+using namespace std::literals;
 
 constexpr i8 operator""_i8(unsigned long long x) { return (i8)x; }
 constexpr i16 operator""_i16(unsigned long long x) { return (i16)x; }

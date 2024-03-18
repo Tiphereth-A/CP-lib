@@ -2,7 +2,7 @@
 
 #include "../../code/tree/lca_hld.hpp"
 #include "../../code/tree/tree.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 int main() {
   u32 n, q;

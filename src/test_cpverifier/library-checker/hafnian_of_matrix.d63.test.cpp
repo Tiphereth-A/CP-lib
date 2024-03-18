@@ -4,7 +4,7 @@
 #include "../../code/lalg/mat_hafnian.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/math/mintdata_d63.hpp"
-#include "../../code/util/fastio.hpp"
+#include "../../code/io/fastio.hpp"
 
 using mintdata = tifa_libs::math::mintdata_d63<-1>;
 using mint = tifa_libs::math::mint<mintdata>;

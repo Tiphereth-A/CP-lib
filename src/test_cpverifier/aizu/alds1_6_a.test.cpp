@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_6_A"
 
 #include "../../code/fast/rsort32.hpp"
-#include "../../code/util/ios_container.hpp"
+#include "../../code/io/ios_container.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

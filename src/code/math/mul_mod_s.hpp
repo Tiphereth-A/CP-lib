@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_MATH_MUL_MOD_S
 #define TIFALIBS_MATH_MUL_MOD_S
 
-#include "../util/abs_constexpr.hpp"
 #include "safe_mod.hpp"
 
 namespace tifa_libs::math {
