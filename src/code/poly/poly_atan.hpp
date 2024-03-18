@@ -7,10 +7,10 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr poly<T> poly_atan(poly<T> const &p) {
+template <class poly>
+constexpr poly poly_atan(poly const &p) {
   u32 n = p.size();
-  poly<T> _ = p;
+  poly _ = p;
   _.conv(p);
   _.resize(n);
   _ = -poly_inv(_ + 1);

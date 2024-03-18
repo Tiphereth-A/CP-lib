@@ -72,24 +72,20 @@ class fastin {
   //! ignore cntrl and space
   template <char_c T>
   fastin &read(T &n) {
-    while (!isgraph(n = get()))
-      ;
+    while (!isgraph(n = get()));
     return *this;
   }
   fastin &read(char *n) {
     char *n_ = n;
-    while (!isgraph(*n_ = get()))
-      ;
-    while (isgraph(*(++n_) = get()))
-      ;
+    while (!isgraph(*n_ = get()));
+    while (isgraph(*(++n_) = get()));
     *n_ = '\0';
     return *this;
   }
   fastin &read(strn &n) {
     n.clear();
     char n_;
-    while (!isgraph(n_ = get()))
-      ;
+    while (!isgraph(n_ = get()));
     n.push_back(n_);
     while (isgraph(n_ = get())) n.push_back(n_);
     return *this;
@@ -110,17 +106,14 @@ class fastin {
 
   fastin &getline(char *n) {
     char *n_ = n;
-    while (!isprint(*n_ = get()))
-      ;
-    while (isprint(*(++n_) = get()))
-      ;
+    while (!isprint(*n_ = get()));
+    while (isprint(*(++n_) = get()));
     *n_ = '\0';
     return *this;
   }
   fastin &getline(strn &n) {
     char n_;
-    while (!isprint(n_ = get()))
-      ;
+    while (!isprint(n_ = get()));
     n.push_back(n_);
     while (isprint(n_ = get())) n.push_back(n_);
     return *this;

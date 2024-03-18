@@ -5,8 +5,9 @@
 
 namespace tifa_libs::math {
 
-template <class Mat, class Gn, class Is0, class T = typename Mat::value_type>
-vec<T> minpoly(Mat const &mat, Gn &gen, Is0 is0) {
+template <class Mat, class Gn, class Is0>
+auto minpoly(Mat const &mat, Gn &gen, Is0 is0) {
+  using T = typename Mat::value_type;
   u32 n = mat.row();
   assert(n == mat.col());
   auto gen2 = [&gen](u32 n) {

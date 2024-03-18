@@ -5,8 +5,9 @@
 
 namespace tifa_libs::math {
 
-template <class Mat, class Is0, class T = typename Mat::value_type>
+template <class Mat, class Is0>
 constexpr i32 ge_basic(Mat &mat, Is0 is0, u32 row_start, u32 row_end, bool clear_u = true) {
+  using T = typename Mat::value_type;
   assert(row_start < row_end && row_end <= mat.row());
   u32 r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);
   u32 rk = 0;
@@ -26,8 +27,8 @@ constexpr i32 ge_basic(Mat &mat, Is0 is0, u32 row_start, u32 row_end, bool clear
   }
   return neg ? -((i32)rk) : (i32)rk;
 }
-template <class Mat, class Is0, class T = typename Mat::value_type>
-i32 ge_basic(Mat &mat, Is0 is0, bool clear_u = true) { return ge_basic<Mat, Is0, T>(mat, is0, 0, mat.row(), clear_u); }
+template <class Mat, class Is0>
+i32 ge_basic(Mat &mat, Is0 is0, bool clear_u = true) { return ge_basic<Mat, Is0>(mat, is0, 0, mat.row(), clear_u); }
 
 }  // namespace tifa_libs::math
 

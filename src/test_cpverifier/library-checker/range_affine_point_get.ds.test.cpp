@@ -1,11 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 
 #include "../../code/ds/segtree.hpp"
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_ds.hpp"
+#include "../../code/math/mint_ds.hpp"
 
-using mintdata = tifa_libs::math::mintdata_ds<-1>;
-using mint = tifa_libs::math::mint<mintdata>;
+using mint = tifa_libs::math::mint_ds<-1>;
 using T = std::pair<mint, usz>;   // sum len
 using F = std::pair<mint, mint>;  // mul add
 
@@ -24,7 +22,7 @@ auto composition(F f, F g) {
 auto id() { return F(1, 0); }
 
 int main() {
-  mintdata::set_mod(998244353);
+  mint::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   usz n, q;

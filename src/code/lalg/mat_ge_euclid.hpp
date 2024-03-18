@@ -5,8 +5,9 @@
 
 namespace tifa_libs::math {
 
-template <class Mat, class Is0, class Div, class T = typename Mat::value_type>
+template <class Mat, class Is0, class Div>
 constexpr i32 ge_euclid(Mat &mat, Is0 is0, Div div, u32 row_start, u32 row_end, bool clear_u = true) {
+  using T = typename Mat::value_type;
   assert(row_start < row_end && row_end <= mat.row());
   u32 r_ = row_end - row_start, c_ = mat.col(), rk_max = std::min(r_, c_);
   u32 rk = 0;
@@ -36,8 +37,8 @@ constexpr i32 ge_euclid(Mat &mat, Is0 is0, Div div, u32 row_start, u32 row_end, 
   }
   return neg ? -((i32)rk) : (i32)rk;
 }
-template <class Mat, class Is0, class Div, class T = typename Mat::value_type>
-i32 ge_euclid(Mat &mat, Is0 is0, Div div, bool clear_u = true) { return ge_euclid<Mat, Is0, Div, T>(mat, is0, div, 0, mat.row(), clear_u); }
+template <class Mat, class Is0, class Div>
+i32 ge_euclid(Mat &mat, Is0 is0, Div div, bool clear_u = true) { return ge_euclid<Mat, Is0, Div>(mat, is0, div, 0, mat.row(), clear_u); }
 
 }  // namespace tifa_libs::math
 

@@ -1,12 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution"
 
 #include "../../code/conv/conv_xor.hpp"
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/io/ios_container.hpp"
+#include "../../code/math/mint_ss.hpp"
 
-using mintdata = tifa_libs::math::mintdata_ss<998244353>;
-using mint = tifa_libs::math::mint<mintdata>;
+using mint = tifa_libs::math::mint_ss<998244353>;
 
 int main() {
   std::ios::sync_with_stdio(false);

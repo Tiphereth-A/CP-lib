@@ -5,10 +5,10 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr ptt<poly<T>> poly_divmod(poly<T> const &p, poly<T> const &q) {
+template <class poly>
+constexpr ptt<poly> poly_divmod(poly const &p, poly const &q) {
   u32 n = p.size(), m = q.size();
-  if (n < m) return {poly<T>(), p};
+  if (n < m) return {poly(), p};
   auto d = poly_div(p, q);
   d.strip();
   auto r = d;

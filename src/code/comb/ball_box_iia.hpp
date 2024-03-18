@@ -5,10 +5,10 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr auto ball_box_iia(u32 ball, u32, poly<T> const& bbiif) { return bbiif[ball]; }
-template <class T>
-constexpr auto ball_box_iia(u32 ball, u32 box) { return ball_box_iia<T>(ball, box, gen_ball_box_ii<T>(box, ball)); }
+template <class poly>
+constexpr auto ball_box_iia(u32 ball, u32, poly const& bbiif) { return bbiif[ball]; }
+template <class poly>
+constexpr auto ball_box_iia(u32 ball, u32 box) { return ball_box_iia<poly>(ball, box, gen_ball_box_ii<poly>(box, ball)); }
 
 }  // namespace tifa_libs::math
 

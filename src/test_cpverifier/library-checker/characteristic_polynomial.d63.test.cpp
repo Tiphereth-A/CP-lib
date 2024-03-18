@@ -1,16 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/characteristic_polynomial"
 
-#include "../../code/lalg/mat_charpoly.hpp"
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_d63.hpp"
 #include "../../code/io/ios_container.hpp"
+#include "../../code/lalg/mat_charpoly.hpp"
+#include "../../code/math/mint_d63.hpp"
 
-using mintdata = tifa_libs::math::mintdata_d63<-1>;
-using mint = tifa_libs::math::mint<mintdata>;
+using mint = tifa_libs::math::mint_d63<-1>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
-  mintdata::set_mod(998244353);
+  mint::set_mod(998244353);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u64 n;

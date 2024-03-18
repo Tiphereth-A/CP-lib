@@ -2,7 +2,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/util/unordered_stl_hacker.hpp"
-
 #include "../base.hpp"
 
 template <class T>

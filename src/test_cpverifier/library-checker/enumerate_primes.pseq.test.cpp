@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_primes"
 
-#include "../../code/nt/prime_seq.hpp"
 #include "../../code/io/fastio.hpp"
+#include "../../code/nt/prime_seq.hpp"
 
 int main() {
   u32 n, a, b;

@@ -105,6 +105,9 @@ notebook:
     - enumerate: enumerate
       code_ext: hpp
       test_ext: cpp
+    - gosper: 枚举 n 位二进制数中恰有 k 个 1 的数
+      code_ext: hpp
+      test_ext: cpp
     io:
     - ios128: 128 位整数的 IO
       code_ext: hpp
@@ -763,28 +766,28 @@ notebook:
     - gint: Gauss 整数
       code_ext: hpp
       test_ext: cpp
-    - mint: 模整数类
+    - mint: 模整数类基类
       code_ext: hpp
       test_ext: cpp
-    - mintdata_2e61n1: 模整数类适配器(固定,61-1)
+    - mint_2e61n1: 模整数类(固定,61-1)
       code_ext: hpp
       test_ext: cpp
-    - mintdata_ss: 模整数类适配器(静态,简单实现)
+    - mint_ss: 模整数类(静态,简单实现)
       code_ext: hpp
       test_ext: cpp
-    - mintdata_s30: 模整数类适配器(静态,30)
+    - mint_s30: 模整数类(静态,30)
       code_ext: hpp
       test_ext: cpp
-    - mintdata_s63: 模整数类适配器(静态,63)
+    - mint_s63: 模整数类(静态,63)
       code_ext: hpp
       test_ext: cpp
-    - mintdata_ds: 模整数类适配器(动态,简单实现)
+    - mint_ds: 模整数类(动态,简单实现)
       code_ext: hpp
       test_ext: cpp
-    - mintdata_d31: 模整数类适配器(动态,31)
+    - mint_d31: 模整数类(动态,31)
       code_ext: hpp
       test_ext: cpp
-    - mintdata_d63: 模整数类适配器(动态,63)
+    - mint_d63: 模整数类(动态,63)
       code_ext: hpp
       test_ext: cpp
     - mul_mod_s: 有符号模乘法
@@ -1030,25 +1033,22 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     poly:
-    - polydata_convtype: 多项式数据类的卷积类型
+    - poly: 多项式抽象类
       code_ext: hpp
       test_ext: cpp
-    - polydata_d: 多项式数据类(基于 MTT)
+    - polymtt: 多项式(基于 MTT)
       code_ext: hpp
       test_ext: cpp
-    - polydata_d3ntt: 多项式数据类(基于三模 MTT)
+    - poly3ntt: 多项式(基于三模 MTT)
       code_ext: hpp
       test_ext: cpp
-    - polydata_s: 多项式数据类(基于 NTT)
+    - polyntt: 多项式(基于 NTT)
       code_ext: hpp
       test_ext: cpp
-    - polydata_s32: 多项式数据类(基于 NTT 32)
+    - polyntt32: 多项式(基于 NTT 32)
       code_ext: hpp
       test_ext: cpp
-    - polydata_scntt: 多项式数据类(基于 CNTT)
-      code_ext: hpp
-      test_ext: cpp
-    - poly: 多项式
+    - polycntt: 多项式(基于 CNTT)
       code_ext: hpp
       test_ext: cpp
     - poly_acos: 多项式 acos

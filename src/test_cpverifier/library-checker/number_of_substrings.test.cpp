@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/number_of_substrings"
 
-#include "../../code/str/suffix_automaton.hpp"
 #include "../../code/io/fastio.hpp"
+#include "../../code/str/suffix_automaton.hpp"
 
 int main() {
   strn s;

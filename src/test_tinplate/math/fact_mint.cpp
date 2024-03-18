@@ -2,13 +2,11 @@
 
 #include "../../code/math/fact_mint.hpp"
 
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_d31.hpp"
-#include "../../code/poly/polydata_d.hpp"
+#include "../../code/math/mint_d31.hpp"
+#include "../../code/poly/polymtt.hpp"
 
-using mintdata = tifa_libs::math::mintdata_d31<-1>;
-using mint = tifa_libs::math::mint<mintdata>;
-using polyd = tifa_libs::math::polydata_d<mint>;
+using mint = tifa_libs::math::mint_d31<-1>;
+using poly = tifa_libs::math::polymtt<mint>;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -18,8 +16,8 @@ int main() {
   while (t--) {
     u32 n, p;
     std::cin >> n >> p;
-    mintdata::set_mod(p);
-    std::cout << tifa_libs::math::fact_mint<polyd>(n) << '\n';
+    mint::set_mod(p);
+    std::cout << tifa_libs::math::fact_mint<poly>(n) << '\n';
   }
   return 0;
 }

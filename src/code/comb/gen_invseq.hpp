@@ -9,6 +9,8 @@ namespace tifa_libs::math {
 // i^{-1} for i in v
 constexpr vec<u64> gen_invseq(vec<u64> const &v, u64 mod) {
   u32 n = (u32)v.size();
+  if (n == 0) return {};
+  if (n == 1) return {inverse(v[0], mod)};
   vec<u64> ans(n);
   ans[0] = v[1];
   for (u32 i = 1; i < n; ++i) ans[i] = mul_mod_u(ans[i - 1], v[i], mod);

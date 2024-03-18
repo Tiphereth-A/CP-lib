@@ -6,8 +6,9 @@
 namespace tifa_libs::math {
 
 // OK for spmat
-template <class Mat, class Gn, class Is0, class T = typename Mat::value_type>
-T det_rd(Mat mat, Gn &gen, Is0 is0) {
+template <class Mat, class Gn, class Is0>
+auto det_rd(Mat mat, Gn &gen, Is0 is0) {
+  using T = typename Mat::value_type;
   u32 n = mat.row();
   assert(n == mat.col());
   auto gen2 = [&gen](u32 n) {

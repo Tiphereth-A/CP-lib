@@ -1,12 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
 #include "../../code/conv/conv_mtt.hpp"
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_s63.hpp"
 #include "../../code/io/ios_container.hpp"
+#include "../../code/math/mint_s63.hpp"
 
-using mintdata = tifa_libs::math::mintdata_s63<1000000007>;
-using mint = tifa_libs::math::mint<mintdata>;
+using mint = tifa_libs::math::mint_s63<1000000007>;
 
 int main() {
   std::ios::sync_with_stdio(false);

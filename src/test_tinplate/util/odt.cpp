@@ -10,8 +10,7 @@ int main() {
   std::cin >> n >> s >> m;
   tifa_libs::ODT<char> odt;
   for (u32 l = 0, r = 0; l < n; l = r) {
-    while (r < n && s[++r] == s[l])
-      ;
+    while (r < n && s[++r] == s[l]);
     odt.insert(l + 1, r, s[l]);
   }
   for (u32 i = 0; i < m; ++i) {

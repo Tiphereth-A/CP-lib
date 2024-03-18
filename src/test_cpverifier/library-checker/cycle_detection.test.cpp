@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/cycle_detection"
 
-#include "../../code/graph/find_cycle.hpp"
 #include "../../code/edh/hash_splitmix64.hpp"
+#include "../../code/graph/find_cycle.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

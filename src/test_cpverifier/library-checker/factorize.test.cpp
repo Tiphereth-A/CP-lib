@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 
-#include "../../code/nt/pfactors.hpp"
 #include "../../code/io/ios_container.hpp"
+#include "../../code/nt/pfactors.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

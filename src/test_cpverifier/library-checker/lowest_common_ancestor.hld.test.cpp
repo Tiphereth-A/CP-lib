@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 
+#include "../../code/io/fastio.hpp"
 #include "../../code/tree/lca_hld.hpp"
 #include "../../code/tree/tree.hpp"
-#include "../../code/io/fastio.hpp"
 
 int main() {
   u32 n, q;

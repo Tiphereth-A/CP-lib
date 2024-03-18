@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A"
 
-#include "../../code/nt/pfactors.hpp"
 #include "../../code/io/fastio.hpp"
+#include "../../code/nt/pfactors.hpp"
 
 int main() {
   u64 n;

@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-template <class Mat, class Is0, class T = typename Mat::value_type>
+template <class Mat, class Is0>
 constexpr void uhb(Mat &mat, Is0 is0) {
   u32 n = mat.row();
   assert(n == mat.col());
@@ -21,7 +21,7 @@ constexpr void uhb(Mat &mat, Is0 is0) {
     }
     for (u32 j = i + 2; j < n; ++j) {
       if (is0(mat(j, i))) continue;
-      T _ = mat(j, i) / mat(i + 1, i);
+      auto _ = mat(j, i) / mat(i + 1, i);
       for (u32 k = i; k < n; ++k) mat(j, k) -= _ * mat(i + 1, k);
       for (u32 k = 0; k < n; ++k) mat(k, i + 1) += _ * mat(k, j);
     }

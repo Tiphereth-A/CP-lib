@@ -23,8 +23,8 @@ struct LPSolver {
     // D[m] stores negation of objective,
     // which we want to minimize
     N[n] = -1;
-    D[m + 1][n] = 1;                    // to find initial feasible
-  }                                     // solution, minimize artificial variable
+    D[m + 1][n] = 1;  // to find initial feasible
+  }  // solution, minimize artificial variable
   constexpr void pivot(int r, int s) {  // swap B[r] (row)
     T inv = 1 / D[r][s];                // with N[r] (column)
     for (int i = 0; i <= m + 1; ++i)
@@ -52,7 +52,7 @@ struct LPSolver {
         if (D[i][s] <= eps_v<T>) continue;
         if (r == -1 || std::make_pair(D[i][n + 1] / D[i][s], B[i]) < std::make_pair(D[r][n + 1] / D[r][s], B[r])) r = i;
         // find smallest positive ratio
-      }                       // -> max increase in NB variable
+      }  // -> max increase in NB variable
       if (r == -1) return 0;  // objective is unbounded
       pivot(r, s);
     }

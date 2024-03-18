@@ -1,12 +1,12 @@
 #ifndef TIFALIBS_POLY_POLY_SHL
 #define TIFALIBS_POLY_POLY_SHL
 
-#include "poly.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr poly<T> poly_shl(poly<T> const &p, usz x) {
+template <class poly>
+constexpr poly poly_shl(poly const &p, usz x) {
   if (!x) return p;
   auto _ = p;
   if (x >= _.size()) {

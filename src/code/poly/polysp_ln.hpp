@@ -6,12 +6,12 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr poly<T> polysp_ln(poly<T> const& p, vec<u64> const& inv, u32 n = 0) {
+template <class poly>
+constexpr poly polysp_ln(poly const& p, vec<u64> const& inv, u32 n = 0) {
   assert(!p.data().empty() && p[0] == 1);
   if (!n) n = p.size();
-  polysp<T> ps = poly2sp(p, n);
-  poly<T> g(n);
+  auto ps = poly2sp(p, n);
+  poly g(n);
   for (u32 k = 0; k < n - 1; ++k) {
     for (auto& [j, pj] : ps) {
       if (k < j) break;
@@ -23,10 +23,10 @@ constexpr poly<T> polysp_ln(poly<T> const& p, vec<u64> const& inv, u32 n = 0) {
   }
   return g;
 }
-template <class T>
-constexpr poly<T> polysp_ln(poly<T> const& p, u32 n = 0) {
+template <class poly>
+constexpr poly polysp_ln(poly const& p, u32 n = 0) {
   if (!n) n = p.size();
-  return polysp_ln(p, gen_inv(n, T::value_type::mod()), n);
+  return polysp_ln(p, gen_inv(n, poly::value_type::mod()), n);
 }
 
 }  // namespace tifa_libs::math

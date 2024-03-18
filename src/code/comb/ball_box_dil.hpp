@@ -5,10 +5,10 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr auto ball_box_dil(u32 ball, u32 box, poly<T> const& s2r) { return box > ball ? 0 : s2r[box]; }
-template <class T>
-constexpr auto ball_box_dil(u32 ball, u32 box) { return ball_box_dil<T>(ball, box, gen_stirling2_row<T>(ball)); }
+template <class poly>
+constexpr auto ball_box_dil(u32 ball, u32 box, poly const& s2r) { return box > ball ? 0 : s2r[box]; }
+template <class poly>
+constexpr auto ball_box_dil(u32 ball, u32 box) { return ball_box_dil<poly>(ball, box, gen_stirling2_row<poly>(ball)); }
 
 }  // namespace tifa_libs::math
 

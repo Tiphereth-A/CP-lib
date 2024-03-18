@@ -8,14 +8,14 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr std::optional<poly<T>> poly_sqrt(poly<T> p, u32 n = 0) {
-  using mint = typename T::value_type;
+template <class poly>
+constexpr std::optional<poly> poly_sqrt(poly p, u32 n = 0) {
+  using mint = typename poly::value_type;
   if (!n) n = p.size();
   u32 cnt = u32(std::find_if(p.data().begin(), p.data().begin() + n, [](auto const &x) { return x.val() > 0; }) - p.data().begin());
   if (cnt == n) return p.pre(n);
   if (cnt & 1) return {};
-  poly<T> ans{0};
+  poly ans{0};
   p = poly_shr(p, cnt);
   if (auto qres = qresidue(p[0].val(), mint::mod()); !qres.has_value()) return {};
   else ans[0] = std::min(qres.value(), mint::mod() - qres.value());

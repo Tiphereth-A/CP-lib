@@ -8,9 +8,9 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr poly<T> poly_tan(poly<T> const &p) {
-  using mint = typename T::value_type;
+template <class poly>
+constexpr poly poly_tan(poly const &p) {
+  using mint = typename poly::value_type;
   mint i = -qpow(mint(proot_u64(mint::mod())), (mint::mod() - 1) / 4);
   auto _ = poly_exp(p * i), _0 = _ - 1, _1 = _ + 1;
   _0 = _0.conv(poly_inv(_1) * i);

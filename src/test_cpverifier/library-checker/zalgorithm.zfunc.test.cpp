@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#include "../../code/str/z_func.hpp"
 #include "../../code/io/fastio.hpp"
+#include "../../code/str/z_func.hpp"
 
 int main() {
   strn s;

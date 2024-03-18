@@ -11,7 +11,7 @@ template <class mint>
 struct Binom {
   const vec<mint> fact, ifact;
 
-  explicit constexpr Binom(u32 max_m) : fact(gen_fact<mint>(max_m)), ifact(gen_ifact<mint>(max_m)) {}
+  explicit constexpr Binom(u32 max_m) : fact(gen_fact<mint>(max_m + 1)), ifact(gen_ifact<mint>(max_m + 1)) {}
 
   static constexpr u64 mod() { return mint::mod(); }
 

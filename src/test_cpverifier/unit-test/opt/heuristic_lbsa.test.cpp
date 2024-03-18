@@ -2,7 +2,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/opt/heuristic_lbsa.hpp"
-
 #include "../base.hpp"
 
 using point_t = ptt<i32>;

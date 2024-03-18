@@ -1,18 +1,15 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_d31.hpp"
+#include "../../code/math/mint_d31.hpp"
 #include "../../code/str/hash_substr2.hpp"
 
-using mintdata0 = tifa_libs::math::mintdata_d31<-1>;
-using mintdata1 = tifa_libs::math::mintdata_d31<-2>;
-using mint0 = tifa_libs::math::mint<mintdata0>;
-using mint1 = tifa_libs::math::mint<mintdata1>;
+using mint0 = tifa_libs::math::mint_d31<-1>;
+using mint1 = tifa_libs::math::mint_d31<-2>;
 using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 
 int main() {
-  mintdata0::set_mod(998244353);
-  mintdata1::set_mod(1'000'000'007);
+  mint0::set_mod(998244353);
+  mint1::set_mod(1'000'000'007);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   strn s;

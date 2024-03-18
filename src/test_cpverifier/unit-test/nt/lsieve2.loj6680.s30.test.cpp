@@ -6,13 +6,11 @@
 // clang-format on
 
 #include "../../../code/nt/lsieve2.hpp"
-
-#include "../../../code/math/mint.hpp"
-#include "../../../code/math/mintdata_s30.hpp"
+#include "../../../code/math/mint_s30.hpp"
 #include "../base.hpp"
 
-using mintdata = tifa_libs::math::mintdata_s30<998244353>;
-using mint = tifa_libs::math::mint<mintdata>;
+using mint = tifa_libs::math::mint_s30<998244353>;
+
 
 void test(strn const& data) {
   strn path = "src/data/loj/6680/" + data;

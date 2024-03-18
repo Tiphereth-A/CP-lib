@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
 #include "../../code/ds/fenwick.hpp"
+#include "../../code/io/fastio.hpp"
 #include "../../code/tree/dsu_on_tree.hpp"
 #include "../../code/tree/tree.hpp"
-#include "../../code/io/fastio.hpp"
 
 constexpr i64 INF = std::numeric_limits<i64>::max() / 2;
 

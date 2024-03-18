@@ -2,46 +2,40 @@
 #define TIFALIBS_MATH_MINT
 
 #include "../nt/inverse.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::math {
 
-template <class MDATA>
+template <class D, uint_c Rt>
 class mint {
-  MDATA d;
+  constexpr D const &d() const { return static_cast<D const &>(*this); }
+  constexpr D &d() { return static_cast<D &>(*this); }
+
+ protected:
+  Rt v_{};
 
  public:
-  using raw_type = typename MDATA::raw_type;
-  using sraw_type = typename MDATA::sraw_type;
-  static constexpr raw_type mod() { return MDATA::mod(); }
-  static constexpr sraw_type smod() { return MDATA::smod(); }
+  constexpr mint() {}
+  template <int_c T>
+  constexpr mint(T v) : v_(D::mod_(v)) {}
+  constexpr operator D() { return d(); }
 
-  constexpr mint() : d(0) {}
-  constexpr mint(MDATA const &d) : d(d) {}
-  template <std::signed_integral T>
-  constexpr mint(T v) : d(v) {}
-  template <std::unsigned_integral T>
-  constexpr mint(T v) : d(v) {}
+  using raw_type = Rt;
+  using sraw_type = to_sint_t<Rt>;
+  static constexpr raw_type mod() { return D::mod_(); }
+  static constexpr sraw_type smod() { return (sraw_type)D::mod_(); }
+  constexpr raw_type val() const { return d().val_(); }
+  constexpr sraw_type sval() const { return (sraw_type)d().val_(); }
+  constexpr raw_type &data() { return d().data_(); }
 
-  constexpr raw_type val() const { return d.val(); }
-  constexpr sraw_type sval() const { return d.sval(); }
-  constexpr raw_type &data() { return d.data(); }
-  template <std::integral T>
-  explicit constexpr operator T() const { return (T)(d.val()); }
-  constexpr mint &operator+=(mint const &r) {
-    d += r.d;
-    return *this;
-  }
-  constexpr mint &operator-=(mint const &r) {
-    d -= r.d;
-    return *this;
-  }
-  constexpr mint &operator*=(mint const &r) {
-    d *= r.d;
-    return *this;
-  }
+  template <int_c T>
+  explicit constexpr operator T() const { return (T)val(); }
+  constexpr mint &operator+=(mint const &r) { return d().adde_(r.d()); }
+  constexpr mint &operator-=(mint const &r) { return d().sube_(r.d()); }
+  constexpr mint &operator*=(mint const &r) { return d().mule_(r.d()); }
   constexpr mint &operator/=(mint const &r) { return *this = *this * r.inv(); }
   constexpr mint const &operator+() const { return *this; }
-  constexpr mint operator-() const { return -d; }
+  constexpr mint operator-() const { return d().neg_(); }
   constexpr mint inv() const { return inverse(val(), mod()); }
   friend constexpr mint operator+(mint l, mint const &r) { return l += r; }
   friend constexpr mint operator-(mint l, mint const &r) { return l -= r; }

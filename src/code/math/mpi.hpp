@@ -260,7 +260,7 @@ class mpi {
 
   // 1 / a, abserr = B^{-deg}
   static constexpr vec<u32> inv_(vec<u32> const& a, u32 deg) {
-    assert(!a.empty() && D / 2 <= a.back() and a.back() < D);
+    assert(!a.empty() && D / 2 <= a.back() && a.back() < D);
     u32 k = deg, c = (u32)a.size();
     while (k > 64) k = (k + 1) / 2;
     vec<u32> z(c + k + 1);

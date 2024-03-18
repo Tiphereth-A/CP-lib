@@ -3,6 +3,7 @@
 
 #include "../bit/lowbit.hpp"
 #include "../math/qpow.hpp"
+#include "../nt/is_prime.hpp"
 #include "../nt/proot_u32.hpp"
 
 namespace tifa_libs::math {
@@ -11,7 +12,7 @@ template <class mint>
 struct NTT32 {
   using data_t = mint;
 
-  static_assert(sizeof(mint::mod()) <= 4 && (mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
+  static_assert(is_prime(mint::mod()) && sizeof(mint::mod()) <= 4 && (mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
   static constexpr u32 max_size = bit::lowbit(mint::mod() - 1);
 
   static constexpr mint G = proot_u32(mint::mod());

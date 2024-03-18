@@ -8,14 +8,14 @@ namespace tifa_libs::math {
 
 // Multi-point evaluation based on Tellegen's Principle
 // @return {f(a[0]), f(a[1]), ..., f(a.back())}
-template <class T>
-constexpr poly<T> poly_mpe(poly<T> f, poly<T> a) {
+template <class poly>
+constexpr poly poly_mpe(poly f, poly a) {
   class SegTree {
-    vec<poly<T>> t;
+    vec<poly> t;
 
-    constexpr void init_(poly<T> const &a, u32 k, u32 l, u32 r) {
+    constexpr void init_(poly const &a, u32 k, u32 l, u32 r) {
       if (l == r) {
-        t[k] = poly<T>{1, -a[l]};
+        t[k] = poly{1, -a[l]};
         return;
       }
       u32 m = l + (r - l) / 2;
@@ -23,7 +23,7 @@ constexpr poly<T> poly_mpe(poly<T> f, poly<T> a) {
       init_(a, k * 2 + 1, m + 1, r);
       t[k] = t[k * 2] * t[k * 2 + 1];
     }
-    static constexpr poly<T> mult(poly<T> const &f, poly<T> g) {
+    static constexpr poly mult(poly const &f, poly g) {
       u32 m = g.size();
       g.reverse();
       g.conv(f);
@@ -31,7 +31,7 @@ constexpr poly<T> poly_mpe(poly<T> f, poly<T> a) {
       g.resize(f.size());
       return g;
     }
-    constexpr void calc_(poly<T> f, poly<T> &res, u32 k, u32 l, u32 r) const {
+    constexpr void calc_(poly f, poly &res, u32 k, u32 l, u32 r) const {
       f.resize(r - l + 1);
       if (l == r) {
         res[l] = f[0];
@@ -43,10 +43,10 @@ constexpr poly<T> poly_mpe(poly<T> f, poly<T> a) {
     }
 
    public:
-    explicit constexpr SegTree(poly<T> const &a) : t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
+    explicit constexpr SegTree(poly const &a) : t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
 
-    constexpr poly<T> operator()(poly<T> const &f) const {
-      poly<T> res(f.size());
+    constexpr poly operator()(poly const &f) const {
+      poly res(f.size());
       calc_(mult(f, poly_inv(t[1])), res, 1, 0, t.size() / 4 - 1);
       return res;
     }

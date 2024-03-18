@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 
 #include "../../code/ds/segtree.hpp"
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_s63.hpp"
+#include "../../code/math/mint_s63.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mintdata_s63<998244353>>;
+using mint = tifa_libs::math::mint_s63<998244353>;
 using T = std::pair<mint, usz>;   // sum len
 using F = std::pair<mint, mint>;  // mul add
 

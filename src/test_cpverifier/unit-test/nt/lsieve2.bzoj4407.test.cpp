@@ -2,14 +2,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/nt/lsieve2.hpp"
-
-#include "../../../code/math/mint.hpp"
-#include "../../../code/math/mintdata_s30.hpp"
+#include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
 
-using mintdata = tifa_libs::math::mintdata_s30<1'000'000'000 + 7>;
-using mint = tifa_libs::math::mint<mintdata>;
+using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
 void test(strn const& data) {
   strn path = "src/data/bzoj/4407/" + data;
@@ -26,7 +23,7 @@ void test(strn const& data) {
   tifa_libs::math::lsieve2 ls(n);
   static mint pk, lst;
   vec<mint> g = ls.template run<mint>(
-      [&](u32 p, u32 e) {
+      [&](u32 p, u32 e) -> mint {
         if (e == 1) return lst = (pk = tifa_libs::math::qpow<mint>(p, k)) - 1;
         else return lst *= pk;
       });

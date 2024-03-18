@@ -9,20 +9,20 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr poly<T> poly_pow(poly<T> const &p, u64 y, u32 n = 0) {
-  using mint = typename T::value_type;
+template <class poly>
+constexpr poly poly_pow(poly const &p, u64 y, u32 n = 0) {
+  using mint = typename poly::value_type;
   if (!n) n = p.size();
   if (y == 0) {
-    poly<T> _(n);
+    poly _(n);
     if (n) _[0] = 1;
     return _;
   }
   if (y == 1) return p;
   u32 l0 = u32(std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x != 0; }) - p.data().begin());
-  if ((u128)l0 * y >= n) return poly<T>(n);
+  if ((u128)l0 * y >= n) return poly(n);
   if (l0) {
-    auto _ = poly_shr(p, l0), g = poly_pow(_, y, n - l0 * y);
+    auto _ = poly_shr(p, l0), g = poly_pow(_, y, u32(n - l0 * y));
     g.resize(n);
     return poly_shl(g, l0 * y);
   }

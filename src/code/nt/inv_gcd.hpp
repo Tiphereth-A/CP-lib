@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 
 template <uint_c T>
 constexpr ptt<T> inv_gcd(T n, T mod) {
-  using U = std::make_signed_t<T>;
+  using U = to_sint_t<T>;
   auto [g, x, y] = exgcd(U(n % mod), (U)mod);
   return {g, safe_mod(x, mod)};
 }

@@ -3,11 +3,9 @@
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/mat_det.hpp"
 #include "../../code/lalg/mat_ge_euclid.hpp"
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_d31.hpp"
+#include "../../code/math/mint_d31.hpp"
 
-using mintdata = tifa_libs::math::mintdata_d31<-1>;
-using mint = tifa_libs::math::mint<mintdata>;
+using mint = tifa_libs::math::mint_d31<-1>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
@@ -15,7 +13,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
-  mintdata::set_mod(m);
+  mint::set_mod(m);
   if (!n) {
     std::cout << "1\n";
     return 0;

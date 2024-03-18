@@ -30,6 +30,9 @@ class lsieve2 {
   // @param %fpi(p, i) = $f(p^i)$
   // @return v[i] = f(i), for i in [0, n]
   template <class T, class F>
+  requires requires(F f, u32 p, u32 i) {
+    { f(p, i) } -> std::same_as<T>;
+  }
   constexpr vec<T> run(F fpi, T init = T{1}) {
     vec<T> v(fr.size());
     v[1] = init;

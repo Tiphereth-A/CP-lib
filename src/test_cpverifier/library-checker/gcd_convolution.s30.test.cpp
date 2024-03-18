@@ -1,11 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/gcd_convolution"
 
 #include "../../code/conv/conv_gcd.hpp"
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_s30.hpp"
+#include "../../code/math/mint_s30.hpp"
 
-using mintdata = tifa_libs::math::mintdata_s30<998244353>;
-using mint = tifa_libs::math::mint<mintdata>;
+using mint = tifa_libs::math::mint_s30<998244353>;
 
 int main() {
   std::ios::sync_with_stdio(false);

@@ -2,20 +2,18 @@
 
 #include "../../code/comb/gen_stirling2_col.hpp"
 
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_s30.hpp"
-#include "../../code/poly/polydata_s32.hpp"
+#include "../../code/math/mint_s30.hpp"
+#include "../../code/poly/polyntt32.hpp"
 
-using mintdata = tifa_libs::math::mintdata_s30<167772161>;
-using mint = tifa_libs::math::mint<mintdata>;
-using polyd = tifa_libs::math::polydata_s32<mint>;
+using mint = tifa_libs::math::mint_s30<167772161>;
+using poly = tifa_libs::math::polyntt32<mint>;
 
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 n, k;
   std::cin >> n >> k;
-  auto ans = tifa_libs::math::gen_stirling2_col<polyd>(n, k);
+  auto ans = tifa_libs::math::gen_stirling2_col<poly>(n, k);
   for (usz i = 0; i <= n; ++i) std::cout << ans[i] << " \n"[i == n];
   return 0;
 }

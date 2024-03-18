@@ -11,7 +11,7 @@ template <class mint>
 struct NTT {
   using data_t = mint;
 
-  static_assert((mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
+  static_assert(is_prime(mint::mod()) && (mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
   static constexpr u64 max_size = bit::lowbit(mint::mod() - 1);
 
   const mint G = proot_u64(mint::mod());

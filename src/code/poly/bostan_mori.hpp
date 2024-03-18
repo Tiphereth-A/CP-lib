@@ -3,7 +3,6 @@
 
 #include "../conv/ntt_doubling.hpp"
 #include "poly.hpp"
-#include "polydata_convtype.hpp"
 
 namespace tifa_libs::math {
 
@@ -37,10 +36,11 @@ vec<T> coeff_(ccore_t const& core, ccore_t const& core2, vec<T>& q, u64 n, u32 d
 }  // namespace bostan_mori_impl_
 
 // @return [x^k]p/q
-template <class T, class mint = typename T::value_type>
-constexpr mint bostan_mori(u64 n, poly<T> const& p, poly<T> const& q) {
+template <class poly>
+constexpr auto bostan_mori(u64 n, poly const& p, poly const& q) {
+  using mint = typename poly::value_type;
   assert(p.size() == q.size() - 1 && !p.empty());
-  if constexpr (T::ccore_type != pdct_NTT) {
+  if constexpr (poly::ccore_type::ct_cat != ct_NTT) {
     auto p_ = p, q_ = q;
     while (n) {
       auto _ = q_;
@@ -52,7 +52,7 @@ constexpr mint bostan_mori(u64 n, poly<T> const& p, poly<T> const& q) {
     }
     return p_[0];
   } else {
-    auto& core = T::ccore;
+    auto& core = poly::conv_core;
     auto core2 = core;
     u32 m = (u32)q.size();
     core.bzr(m);

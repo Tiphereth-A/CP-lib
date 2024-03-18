@@ -2,7 +2,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/nt/atkin.hpp"
-
 #include "../base.hpp"
 
 void test() {

@@ -28,9 +28,12 @@ class matrix {
   constexpr typename vec<T>::const_reference operator()(u32 r, u32 c) const { return d[r][c]; }
 
   template <class F>
-  constexpr void apply(F f) { apply_range(0, row(), 0, col(), f); }
+  constexpr void apply(F &&f) { apply_range(0, row(), 0, col(), std::forward<F>(f)); }
   template <class F>
-  constexpr void apply_range(u32 row_l, u32 row_r, u32 col_l, u32 col_r, F f) {
+  requires requires(F f, u32 i, u32 j, T &val) {
+    f(i, j, val);
+  }
+  constexpr void apply_range(u32 row_l, u32 row_r, u32 col_l, u32 col_r, F &&f) {
     assert(row_l < row_r && row_r <= row());
     assert(col_l < col_r && col_r <= col());
     FOR2_ (i, row_l, row_r, j, col_l, col_r) f(i, j, (*this)(i, j));

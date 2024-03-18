@@ -2,7 +2,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/math/sum_ik_flist.hpp"
-
 #include "../../../code/math/mpi.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"

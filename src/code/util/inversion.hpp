@@ -2,7 +2,7 @@
 #define TIFALIBS_UTIL_INVERSION
 
 #include "../ds/fenwick.hpp"
-#include "discretization.hpp"
+#include "../edh/discretization.hpp"
 #include "util.hpp"
 
 namespace tifa_libs {

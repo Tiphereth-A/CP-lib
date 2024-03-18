@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_quotients"
 
-#include "../../code/math/do_quot.hpp"
 #include "../../code/io/ios_container.hpp"
+#include "../../code/math/do_quot.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

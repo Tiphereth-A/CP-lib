@@ -5,8 +5,9 @@
 
 namespace tifa_libs::math {
 
-template <class Mat, class T = typename Mat::value_type>
-constexpr T hafnian(Mat const &mat) {
+template <class Mat>
+constexpr auto hafnian(Mat const &mat) {
+  using T = typename Mat::value_type;
   u32 n = mat.row(), h = n / 2 + 1;
   assert(n == mat.col() && !(n & 1));
 

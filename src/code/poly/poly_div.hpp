@@ -5,10 +5,10 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr poly<T> poly_div(poly<T> p, poly<T> q) {
+template <class poly>
+constexpr poly poly_div(poly p, poly q) {
   u32 n = p.size(), m = q.size();
-  if (n < m) return poly<T>();
+  if (n < m) return poly();
   p.reverse();
   q.reverse();
   q.resize(n - m + 1);

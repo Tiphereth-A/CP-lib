@@ -4,15 +4,13 @@
 #include "../comb/gen_fact.hpp"
 #include "../comb/gen_ifact.hpp"
 #include "../conv/conv_subset.hpp"
-#include "poly.hpp"
 #include "poly_tsh.hpp"
 
 namespace tifa_libs::math {
 
-template <class T, u32 N = 21>
-vec<typename T::value_type> polysps_comp(u32 n, poly<T> f, vec<typename T::value_type> g, vec<u64> const &fact, vec<u64> const &ifact) {
+template <class poly, u32 N = 21, std::same_as<typename poly::value_type> mint>
+vec<mint> polysps_comp(u32 n, poly f, vec<mint> g, vec<u64> const &fact, vec<u64> const &ifact) {
   assert(n <= N);
-  using mint = typename T::value_type;
   static conv_subset<mint, N> ss;
   if (!f.size()) return vec<mint>(1 << n);
   if (g[0] != 0) {
@@ -39,8 +37,8 @@ vec<typename T::value_type> polysps_comp(u32 n, poly<T> f, vec<typename T::value
   }
   return h[n][0];
 }
-template <class T, u32 N = 21>
-constexpr auto polysps_comp(u32 n, poly<T> const &f, vec<typename T::value_type> const &g) { return polysps_comp<T, N>(n, f, g, gen_fact((u32)f.size() + 1, T::value_type::mod()), gen_ifact((u32)f.size() + 1, T::value_type::mod())); }
+template <class poly, u32 N = 21, std::same_as<typename poly::value_type> mint>
+constexpr auto polysps_comp(u32 n, poly const &f, vec<mint> const &g) { return polysps_comp<poly, N, mint>(n, f, g, gen_fact((u32)f.size() + 1, mint::mod()), gen_ifact((u32)f.size() + 1, mint::mod())); }
 
 }  // namespace tifa_libs::math
 

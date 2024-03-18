@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-template <ntt_c NTT_t, class mint = typename NTT_t::data_t>
+template <ntt_c NTT_t, std::same_as<typename NTT_t::data_t> mint>
 constexpr vec<mint> conv_ntt_large(NTT_t &ntt, vec<mint> l, vec<mint> r, u32 ans_size = 0) {
   const u32 n = (u32)l.size(), m = (u32)r.size();
   constexpr u32 len = NTT_t::max_size;
@@ -37,7 +37,7 @@ constexpr vec<mint> conv_ntt_large(NTT_t &ntt, vec<mint> l, vec<mint> r, u32 ans
   c.resize(ans_size);
   return c;
 }
-template <class NTT_t, class mint = typename NTT_t::data_t, class T = u64>
+template <class NTT_t, std::same_as<typename NTT_t::data_t> mint, class T = u64>
 constexpr vec<mint> conv_ntt_large_u64(NTT_t &ntt, vec<T> const &l, vec<T> const &r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   vec<mint> l_, r_;

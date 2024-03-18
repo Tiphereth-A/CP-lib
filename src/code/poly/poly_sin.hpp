@@ -7,9 +7,9 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr poly<T> poly_sin(poly<T> const &p) {
-  using mint = typename T::value_type;
+template <class poly>
+constexpr poly poly_sin(poly const &p) {
+  using mint = typename poly::value_type;
   mint i = qpow(mint(proot_u64(mint::mod())), (mint::mod() - 1) / 4);
   auto _ = p * i;
   return (poly_exp(_ * (mint::mod() - 1)) - poly_exp(_)) * i * ((mint::mod() + 1) / 2);

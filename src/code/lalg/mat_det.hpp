@@ -5,8 +5,9 @@
 
 namespace tifa_libs::math {
 
-template <class Mat, class T = typename Mat::value_type, class Ge>
-constexpr T det(Mat mat, Ge ge) {
+template <class Mat, class Ge>
+constexpr auto det(Mat mat, Ge ge) {
+  using T = typename Mat::value_type;
   u32 n = mat.row();
   assert(n == mat.col());
   i64 rk_ = ge(mat, false);

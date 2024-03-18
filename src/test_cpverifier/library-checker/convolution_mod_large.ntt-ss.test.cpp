@@ -2,12 +2,10 @@
 
 #include "../../code/conv/conv_ntt_large.hpp"
 #include "../../code/conv/ntt.hpp"
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_ss.hpp"
 #include "../../code/io/fastio.hpp"
+#include "../../code/math/mint_ss.hpp"
 
-using mintdata = tifa_libs::math::mintdata_ss<998244353>;
-using mint = tifa_libs::math::mint<mintdata>;
+using mint = tifa_libs::math::mint_ss<998244353>;
 
 int main() {
   u32 n, m;

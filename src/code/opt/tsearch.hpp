@@ -7,11 +7,9 @@
 namespace tifa_libs::opt {
 
 // @return $\argmin_{l\leq x\leq r}\{f\}$
-template <arithm_c I, class F, class T = decltype(std::declval<F>()(std::declval<I>()))>
-requires requires(F f, I i) {
-  { f(i) } -> std::same_as<T>;
-}
-constexpr std::pair<I, T> tsearch(I l, I r, F f) {
+template <arithm_c I, class F>
+constexpr auto tsearch(I l, I r, F f) {
+  using T = decltype(f(l));
   assert(l <= r);
   I ml, mr;
   T fl = f(l), fr = f(r), fml, fmr;
@@ -29,9 +27,9 @@ constexpr std::pair<I, T> tsearch(I l, I r, F f) {
           if (i == ml || i == mr) continue;
           if (T fi = f(i); fi < fx) x = i, fx = fi;
         }
-        return {x, fx};
+        return std::make_pair(x, fx);
       }
-    } else if ((r - l) / std::max({l, r, (I)1}) < eps_v<I>) return {l, fl};
+    } else if ((r - l) / std::max({l, r, (I)1}) < eps_v<I>) return std::make_pair(l, fl);
     if (fml < fmr) {
       r = mr, fr = fmr;
       mr = ml, fmr = fml;

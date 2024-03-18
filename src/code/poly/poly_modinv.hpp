@@ -5,12 +5,12 @@
 
 namespace tifa_libs::math {
 
-template <class T>
-constexpr std::optional<poly<T>> poly_modinv(poly<T> const &f, poly<T> const &g) {
+template <class poly>
+constexpr std::optional<poly> poly_modinv(poly const &f, poly const &g) {
   auto m = poly_gcd_impl_::pgcd_(f, g);
-  if (poly<T> _ = (m * ptt<poly<T>>{f, g}).first; _.size() != 1) return {};
+  if (poly _ = (m * ptt<poly>{f, g}).first; _.size() != 1) return {};
   else {
-    auto __ = poly_divmod((m * ptt<poly<T>>(poly<T>(1, 1), g)).first, g);
+    auto __ = poly_divmod((m * ptt<poly>(poly(1, 1), g)).first, g);
     return __.second * _[0].inv();
   }
 }

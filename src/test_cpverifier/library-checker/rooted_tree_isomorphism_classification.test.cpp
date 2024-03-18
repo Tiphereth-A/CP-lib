@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification"
 
-#include "../../code/tree/tree_hash_rooted.hpp"
 #include "../../code/edh/hash_splitmix64.hpp"
 #include "../../code/io/ios_container.hpp"
+#include "../../code/tree/tree_hash_rooted.hpp"
 
 int main() {
   tifa_libs::hash_splitmix64::set_seed();

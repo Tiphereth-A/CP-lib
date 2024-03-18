@@ -5,69 +5,81 @@
 
 namespace tifa_libs::math {
 
-template <class Pldt>
+// clang-format off
+enum ccore_t { ct_FFT, ct_3NTT, ct_NTT, ct_CNTT };
+// clang-format on
+
+template <class mint, class ccore>
+requires requires(ccore cc, vec<mint> l, vec<mint> const &r, u32 sz) {
+  { ccore::ct_cat } -> std::same_as<ccore_t const &>;
+  cc.conv(l, r);
+  cc.conv(l, r, sz);
+}
 class poly {
-  Pldt p;
+  vec<mint> d;
 
  public:
-  using value_type = typename Pldt::value_type;
+  using value_type = mint;
   using data_type = vec<value_type>;
+  using ccore_type = ccore;
+  static inline ccore_type conv_core;
 
-  explicit constexpr poly(u32 sz = 1, value_type const &val = value_type{}) : p(sz, val) {}
-  constexpr poly(typename data_type::const_iterator begin, typename data_type::const_iterator end) : p(begin, end) {}
-  explicit constexpr poly(std::initializer_list<value_type> v) : p(v) {}
+  explicit constexpr poly(u32 sz = 1, value_type const &val = value_type{}) : d(sz, val) {}
+  constexpr poly(typename data_type::const_iterator begin, typename data_type::const_iterator end) : d(begin, end) {}
+  explicit constexpr poly(std::initializer_list<value_type> v) : d(v) {}
   template <class T>
-  explicit constexpr poly(vec<T> const &v) : p(v) {}
+  explicit constexpr poly(vec<T> const &v) : d(v) {}
 
   friend constexpr std::istream &operator>>(std::istream &is, poly &poly) {
-    for (auto &val : poly.p.d) is >> val;
+    for (auto &val : poly.d) is >> val;
     return is;
   }
   friend constexpr std::ostream &operator<<(std::ostream &os, poly const &poly) {
     if (!poly.size()) return os;
     for (u32 i = 1; i < poly.size(); ++i) os << poly[i - 1] << ' ';
-    return os << poly.p.d.back();
+    return os << poly.d.back();
   }
 
-  constexpr u32 size() const { return (u32)p.d.size(); }
+  constexpr u32 size() const { return (u32)d.size(); }
   constexpr bool empty() const {
-    for (auto &&i : p.d)
+    for (auto &&i : d)
       if (i != 0) return 0;
     return 1;
   }
-  constexpr data_type &data() { return p.d; }
-  constexpr data_type const &data() const { return p.d; }
+  constexpr data_type &data() { return d; }
+  constexpr data_type const &data() const { return d; }
 
-  constexpr value_type &operator[](u32 x) { return p.d[x]; }
-  constexpr value_type const &operator[](u32 x) const { return p.d[x]; }
+  constexpr value_type &operator[](u32 x) { return d[x]; }
+  constexpr value_type const &operator[](u32 x) const { return d[x]; }
   constexpr value_type operator()(value_type x) const {
     value_type ans = 0;
-    for (u32 i = size() - 1; ~i; --i) ans = ans * x + p.d[i];
+    for (u32 i = size() - 1; ~i; --i) ans = ans * x + d[i];
     return ans;
   }
 
   template <class F>
-  constexpr void apply_range(u32 l, u32 r, F f) {
+  requires requires(F f, u32 idx, mint &val) {
+    f(idx, val);
+  }
+  constexpr void apply_range(u32 l, u32 r, F &&f) {
     assert(l < r && r <= size());
-    for (u32 i = l; i < r; ++i) f(i, p.d[i]);
+    for (u32 i = l; i < r; ++i) f(i, d[i]);
   }
   template <class F>
-  constexpr void apply(F f) { apply_range(0, size(), f); }
-  constexpr void resize(u32 size) { p.d.resize(size); }
+  constexpr void apply(F &&f) { apply_range(0, size(), std::forward<F>(f)); }
+  constexpr void resize(u32 size) { d.resize(size); }
   constexpr poly pre(u32 size) const {
     poly _ = *this;
     _.resize(size);
     return _;
   }
   constexpr void strip() {
-    auto it = std::find_if(p.d.rbegin(), p.d.rend(), [](auto const &x) { return x != 0; });
-    p.d.resize(usz(p.d.rend() - it));
-    if (p.d.empty()) p.d.push_back(value_type(0));
+    auto it = std::find_if(d.rbegin(), d.rend(), [](auto const &x) { return x != 0; });
+    d.resize(usz(d.rend() - it));
+    if (d.empty()) d.push_back(value_type(0));
   }
-  constexpr void reverse(u32 n = 0) { std::reverse(p.d.begin(), p.d.begin() + (n ? n : size())); }
-
-  constexpr void conv(poly const &r, u32 ans_size) { p.conv(r.p, ans_size); }
-  constexpr void conv(poly const &r) { p.conv(r.p); }
+  constexpr void reverse(u32 n = 0) { std::reverse(d.begin(), d.begin() + (n ? n : size())); }
+  constexpr void conv(poly const &r, u32 ans_size = 0) { conv_core.conv(d, r.d, ans_size); }
 
   constexpr poly operator-() const {
     poly ret = *this;
@@ -112,7 +124,7 @@ class poly {
   constexpr poly &operator*=(poly const &r) {
     if (!r.size()) {
       resize(1);
-      p.d[0] = 0;
+      d[0] = 0;
       return *this;
     }
     conv(r);

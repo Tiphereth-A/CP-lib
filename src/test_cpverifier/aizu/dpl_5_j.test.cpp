@@ -1,21 +1,19 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_J"
 
 #include "../../code/comb/ball_box_iia.hpp"
-#include "../../code/math/mint.hpp"
-#include "../../code/math/mintdata_d31.hpp"
-#include "../../code/poly/polydata_d.hpp"
+#include "../../code/math/mint_d31.hpp"
+#include "../../code/poly/polymtt.hpp"
 
 constexpr u32 MOD = 1000000000 + 7;
-using mintdata = tifa_libs::math::mintdata_d31<-1>;
-using mint = tifa_libs::math::mint<mintdata>;
-using pdata = tifa_libs::math::polydata_d<mint>;
+using mint = tifa_libs::math::mint_d31<-1>;
+using poly = tifa_libs::math::polymtt<mint>;
 
 int main() {
-  mintdata::set_mod(MOD);
+  mint::set_mod(MOD);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 n, k;
   std::cin >> n >> k;
-  std::cout << tifa_libs::math::ball_box_iia<pdata>(n, k) << '\n';
+  std::cout << tifa_libs::math::ball_box_iia<poly>(n, k) << '\n';
   return 0;
 }
