@@ -881,9 +881,6 @@ notebook:
     - mat: 矩阵
       code_ext: hpp
       test_ext: cpp
-    - spmat: 稀疏矩阵
-      code_ext: hpp
-      test_ext: cpp
     - mat_det: 行列式
       code_ext: hpp
       test_ext: cpp
@@ -905,13 +902,7 @@ notebook:
     - mat_merge_lr: 横向合并
       code_ext: hpp
       test_ext: cpp
-    - spmat_merge_lr: 稀疏矩阵横向合并
-      code_ext: hpp
-      test_ext: cpp
     - mat_merge_ud: 纵向合并
-      code_ext: hpp
-      test_ext: cpp
-    - spmat_merge_ud: 稀疏矩阵纵向合并
       code_ext: hpp
       test_ext: cpp
     - mat_pow: 矩阵快速幂
@@ -938,6 +929,15 @@ notebook:
     - leqs_solver: 求线性方程组的解和解空间
       code_ext: hpp
       test_ext: cpp
+    - spmat: 稀疏矩阵
+      code_ext: hpp
+      test_ext: cpp
+    - spmat_merge_lr: 稀疏矩阵横向合并
+      code_ext: hpp
+      test_ext: cpp
+    - spmat_merge_ud: 稀疏矩阵纵向合并
+      code_ext: hpp
+      test_ext: cpp
     - lfsr_bm: 寻找最短 LFSR
       code_ext: hpp
       test_ext: cpp
@@ -945,6 +945,18 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - mat_det_rd: 求矩阵的行列式(随机化算法)
+      code_ext: hpp
+      test_ext: cpp
+    - bitmat: 静态 Bool 矩阵
+      code_ext: hpp
+      test_ext: cpp
+    - bitmat_trans: 静态 Bool 矩阵转置
+      code_ext: hpp
+      test_ext: cpp
+    - bitmat_mul: 静态 Bool 矩阵乘法
+      code_ext: hpp
+      test_ext: cpp
+    - bitmat_ge: 静态 Bool 矩阵 Gauss 消元
       code_ext: hpp
       test_ext: cpp
     conv:

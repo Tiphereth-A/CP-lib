@@ -18,7 +18,7 @@ class matrix {
   using value_type = T;
 
   constexpr matrix(u32 row, u32 col, T const &v = T{}) : d(row, vec<T>(col, v)) { assert(row > 0 && col > 0); }
-  explicit constexpr matrix(vvec<T> const &data) : d(data) { assert(data.size() > 0 && data[0].size > 0); }
+  explicit constexpr matrix(vvec<T> const &data) : d(data) { assert(data.size() > 0 && data[0].size() > 0); }
 
   constexpr u32 row() const { return (u32)d.size(); }
   constexpr u32 col() const { return (u32)d[0].size(); }
@@ -72,39 +72,50 @@ class matrix {
   }
 
   constexpr matrix operator-() const {
-    matrix ret = *this;
-    ret.apply_range(0, row(), 0, col(), [](u32, u32, T &v) { v = -v; });
-    return ret;
+    if constexpr (std::is_same_v<T, bool>) return *this;
+    else {
+      matrix ret = *this;
+      ret.apply_range(0, row(), 0, col(), [](u32, u32, T &v) { v = -v; });
+      return ret;
+    }
   }
 
   friend constexpr matrix operator+(matrix l, T const &v) { return l += v; }
   friend constexpr matrix operator+(T const &v, matrix l) { return l += v; }
   constexpr matrix &operator+=(T const &v) {
-    apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val += v; });
+    if constexpr (std::is_same_v<T, bool>) apply_range(0, row(), 0, col(), [&v](u32, u32, auto &val) { val = val ^ v; });
+    else apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val += v; });
     return *this;
   }
   friend constexpr matrix operator-(matrix l, T const &v) { return l -= v; }
   constexpr matrix &operator-=(T const &v) {
-    apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val -= v; });
+    if constexpr (std::is_same_v<T, bool>) apply_range(0, row(), 0, col(), [&v](u32, u32, auto &val) { val = val ^ v; });
+    else apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val -= v; });
     return *this;
   }
   friend constexpr matrix operator*(matrix l, T const &v) { return l *= v; }
   friend constexpr matrix operator*(T const &v, matrix l) { return l *= v; }
   constexpr matrix &operator*=(T const &v) {
-    apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val *= v; });
+    if constexpr (std::is_same_v<T, bool>) {
+      if (!v)
+        for (auto &i : d) i.clear(), i.resize(col());
+      return *this;
+    } else apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val *= v; });
     return *this;
   }
 
   friend constexpr matrix operator+(matrix l, matrix const &r) { return l += r; }
   constexpr matrix &operator+=(matrix const &r) {
     assert(row() == r.row() && col() == r.col());
-    apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val += r(i, j); });
+    if constexpr (std::is_same_v<T, bool>) apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, auto &val) { val = val ^ r(i, j); });
+    else apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val += r(i, j); });
     return *this;
   }
   friend constexpr matrix operator-(matrix l, matrix const &r) { return l -= r; }
   constexpr matrix &operator-=(matrix const &r) {
     assert(row() == r.row() && col() == r.col());
-    apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val -= r(i, j); });
+    if constexpr (std::is_same_v<T, bool>) apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, auto &val) { val = val ^ r(i, j); });
+    else apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val -= r(i, j); });
     return *this;
   }
 
@@ -114,7 +125,9 @@ class matrix {
     matrix ret(i_, k_);
     FOR1_ (i, 0, i_)
       FOR1_ (j, 0, j_)
-        FOR1_ (k, 0, k_) ret(i, k) += l(i, j) * r(j, k);
+        FOR1_ (k, 0, k_)
+          if constexpr (std::is_same_v<T, bool>) ret(i, k) = ret(i, k) ^ (l(i, j) && r(j, k));
+          else ret(i, k) += l(i, j) * r(j, k);
     return ret;
   }
   constexpr matrix &operator*=(matrix const &r) { return *this = *this * r; }
@@ -123,7 +136,9 @@ class matrix {
     u32 r_ = row(), c_ = col();
     assert(r_ == x.size());
     vec<T> ret(c_);
-    for (u32 i = 0; i < c_; ++i) ret[i] = std::transform_reduce(d[i].begin(), d[i].end(), x.begin(), T{});
+    for (u32 i = 0; i < c_; ++i)
+      if constexpr (std::is_same_v<T, bool>) ret[i] = std::transform_reduce(d[i].begin(), d[i].end(), x.begin(), false, std::bit_xor<bool>{}, std::bit_and<bool>{});
+      else ret[i] = std::transform_reduce(d[i].begin(), d[i].end(), x.begin(), T{});
     return ret;
   }
 };
