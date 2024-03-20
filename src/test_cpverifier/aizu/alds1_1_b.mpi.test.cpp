@@ -3,7 +3,6 @@
 #include "../../code/nt/gcd_mpi.hpp"
 
 using tifa_libs::math::mpi;
-using std::operator""s;
 
 int main() {
   std::ios::sync_with_stdio(false);
