@@ -17,8 +17,16 @@ class gint {
   constexpr T norm() const { return r_ * r_ - i_ * i_ * M; }
   constexpr T &real() { return r_; }
   constexpr T &imag() { return i_; }
-  constexpr void real(T x) { r_ = x; }
-  constexpr void imag(T x) { i_ = x; }
+  constexpr void real(T const &x) { r_ = x; }
+  constexpr void imag(T const &x) { i_ = x; }
+  constexpr gint &operator+=(T const &x) {
+    r_ += x;
+    return *this;
+  }
+  constexpr gint &operator-=(T const &x) {
+    r_ -= x;
+    return *this;
+  }
   constexpr gint &operator*=(T const &x) {
     r_ *= x;
     i_ *= x;
@@ -62,6 +70,8 @@ class gint {
     return *this;
   }
   constexpr gint &operator%=(gint const &x) { return *this -= *this / x * x; }
+  friend constexpr gint operator+(gint x, T const &y) { return x += y; }
+  friend constexpr gint operator-(gint x, T const &y) { return x -= y; }
   friend constexpr gint operator*(gint x, T const &y) { return x *= y; }
   friend constexpr gint operator/(gint x, T const &y) { return x /= y; }
   friend constexpr gint operator+(gint x, gint const &y) { return x += y; }
@@ -69,6 +79,8 @@ class gint {
   friend constexpr gint operator*(gint x, gint const &y) { return x *= y; }
   friend constexpr gint operator/(gint x, gint const &y) { return x /= y; }
   friend constexpr gint operator%(gint x, gint const &y) { return x %= y; }
+  constexpr gint operator+() const { return *this; }
+  constexpr gint operator-() const { return gint(-r_, -i_); }
   friend constexpr gint conj(gint const &x) { return gint{x.r_, -x.i_}; }
   friend constexpr T norm(gint const &x) { return x.norm(); }
   friend constexpr gint gcd(gint m, gint n) {
