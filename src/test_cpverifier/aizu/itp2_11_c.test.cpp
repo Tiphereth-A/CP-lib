@@ -12,7 +12,10 @@ int main() {
     std::cin >> x;
     b |= 1 << x;
   }
-  auto _ = tifa_libs::enum_subset(b);
+  tifa_libs::enum_subset<>::set(b);
+  vec<u32> _;
+  for (auto i : tifa_libs::enum_subset<>{}) _.push_back(i);
+  _.push_back(0);
   std::reverse(_.begin(), _.end());
   for (auto i : _) {
     std::cout << i << ":";

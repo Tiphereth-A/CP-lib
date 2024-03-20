@@ -2,6 +2,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/enum/gosper.hpp"
+
 #include "../../../code/comb/binom.hpp"
 #include "../../../code/math/mint_s30.hpp"
 #include "../base.hpp"
@@ -10,11 +11,11 @@ using mint = tifa_libs::math::mint_s30<998244353>;
 
 template <u32 ID>
 void test(u32 n, u32 kmax) {
-  using Gosper = tifa_libs::Gosper<ID>;
+  using gosper = tifa_libs::gosper<ID>;
   tifa_libs::math::Binom<mint> binom(n);
   for (u32 k = 1; k <= kmax; ++k) {
-    Gosper::set(n, k);
-    Gosper gs;
+    gosper::set(n, k);
+    gosper gs;
     u32 cnt = 0, cnt_correct = binom.mCn(n, k).val();
     for (auto i : gs) {
       ++cnt;

@@ -5,8 +5,8 @@
 
 namespace tifa_libs {
 
-template <u32 ID = 0>
-class Gosper {
+template <u32 = 0>
+class gosper {
   static inline u32 n_, k_;
   u64 now_;
 
@@ -19,13 +19,13 @@ class Gosper {
     n_ = n;
     k_ = k;
   }
-  static constexpr Gosper begin() { return num_begin(); }
-  static constexpr Gosper end() { return num_end(); }
+  static constexpr gosper begin() { return num_begin(); }
+  static constexpr gosper end() { return num_end(); }
 
-  constexpr Gosper(u64 now = num_begin()) : now_(std::min(now, num_end())) { assert(now == num_end() || (u32)std::popcount(now) == k_); }
+  constexpr gosper(u64 now = num_begin()) : now_(std::min(now, num_end())) { assert(now == num_end() || (u32)std::popcount(now) == k_); }
 
   constexpr u64 operator*() const { return now_; }
-  constexpr bool operator!=(Gosper const &x) const { return **this != *x; }
+  constexpr bool operator!=(gosper const &x) const { return **this != *x; }
   constexpr void operator++() {
     u64 c = bit::lowbit(now_), r = now_ + c;
     now_ = std::min(((r ^ now_) / 4 / c) | r, num_end());
