@@ -185,6 +185,9 @@ notebook:
     - cartesian_tree: 笛卡尔树
       code_ext: hpp
       test_ext: cpp
+    - trie01: 0-1 Trie
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - point: 点
       code_ext: hpp

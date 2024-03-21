@@ -1,0 +1,10 @@
+支持可持久化
+
+先将当前 Trie 树包含的所有路径临时异或 \verb|xv|, 之后:
+
+\begin{itemize}
+    \item \verb|void add(u64 bit, T val = 1, int idx = -1, u64 xor_val = 0)|: 将 \verb|bit| 对应路径上的所有点的权值均加 \verb|val|. 若 \verb|idx| 不为 \(-1\) 则在所有匹配结点的 \verb|idxs| 里加入 \verb|idx|.
+    \item \verb|u32 find(u64 bit, u64 xor_val = 0) const|: 返回 \verb|bit| 的匹配结点编号, 未找到则返回 \(0\).
+    \item \verb|std::pair<u64, u32> kth_element(T k, u64 xor_val = 0) const|: 返回所有结点中第 \(k\) 小 (最小: \verb|0|; 最大: \verb|data[root].val - 1|) 的路径与编号.
+    \item \verb|T count_less(u64 bit, u64 xor_val = 0) const|: 小于 \verb|bit| 的路径构成子树的结点点权和.
+\end{itemize}
