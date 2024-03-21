@@ -33,16 +33,15 @@ struct trie01 {
   T count_less(u64 bit, u64 xv = 0) const { return cntle_(root, bit, MAX_DEP, xv); }
 
  private:
-  u32 add_(u32& t, u64 bit, int idx, int dep, T x, u64 xv, bool need = true) {
+  u32 add_(u32 t, u64 bit, int idx, int dep, T x, u64 xv, bool need = true) {
     if constexpr (persistent)
       if (need) t = (u32)data.size(), data.emplace_back();
     if (dep == -1) {
       data[t].val += x;
       if (idx >= 0) data[t].idxs.push_back((u32)idx);
     } else {
-      auto& to = data[t].nxt[(xv ^ bit) >> dep & 1];
-      if (!to) to = (u32)data.size(), data.emplace_back(), need = false;
-      to = add_(to, bit, idx, dep - 1, x, xv, need);
+      if (auto &_ = data[t].nxt[(xv ^ bit) >> dep & 1]; !_) _ = (u32)data.size(), data.emplace_back(), need = false;
+      data[t].nxt[(xv ^ bit) >> dep & 1] = add_(data[t].nxt[(xv ^ bit) >> dep & 1], bit, idx, dep - 1, x, xv, need);
       data[t].val += x;
     }
     return t;
