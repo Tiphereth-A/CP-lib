@@ -1,10 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/division_of_polynomials"
 
-#include "../../code/math/mint_ss.hpp"
 #include "../../code/poly/poly_divmod.hpp"
+
+constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_ss.hpp"
 #include "../../code/poly/polyntt32.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint_ss<MOD>;
 using poly = tifa_libs::math::polyntt32<mint>;
 
 int main() {

@@ -23,6 +23,7 @@ class mint_d63 : public mint<mint_d63<ID>, u64> {
   static constexpr u64 norm(i64 x) { return u64(x + i64(MOD & u64(-(x < 0)))); }
 
  public:
+  static constexpr bool FIXED_MOD = false;
   static constexpr void set_mod(u64 m) {
     assert(!((m & 1) == 0 || m == 1 || m >> 63));
     MOD = m;

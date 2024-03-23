@@ -1,10 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse"
+
+#include "../../code/poly/polysp_exp.hpp"
+
+constexpr u32 MOD = 998244353;
 
 #include "../../code/math/mint_s63.hpp"
 #include "../../code/poly/polycntt.hpp"
-#include "../../code/poly/polysp_exp.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+using mint = tifa_libs::math::mint_s63<MOD>;
 using poly = tifa_libs::math::polycntt<mint>;
 
 int main() {

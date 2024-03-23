@@ -1,11 +1,15 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis"
 
 #include "../../code/io/fastio.hpp"
-#include "../../code/math/mint_ss.hpp"
 #include "../../code/poly/poly_cbm2n.hpp"
+
+constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_ss.hpp"
 #include "../../code/poly/polycntt.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint_ss<MOD>;
 using poly = tifa_libs::math::polycntt<mint>;
 
 int main() {

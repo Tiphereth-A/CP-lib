@@ -1,15 +1,19 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/system_of_linear_equations"
 
 #include "../../code/lalg/leqs_solver.hpp"
 #include "../../code/lalg/mat_ge_basic.hpp"
 #include "../../code/lalg/mat_trans.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_ds.hpp"
 
 using mint = tifa_libs::math::mint_ds<-1>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
-  mint::set_mod(998244353);
+  mint::set_mod(MOD);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 n, m;

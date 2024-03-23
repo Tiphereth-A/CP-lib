@@ -1,19 +1,22 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
+#include "../../code/io/fastio.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/conv/conv_cntt.hpp"
-#include "../../code/io/ios_container.hpp"
 #include "../../code/math/mint_s63.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+using mint = tifa_libs::math::mint_s63<MOD>;
+using cntt_t = tifa_libs::math::CNTT<mint>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   u32 n, m;
-  std::cin >> n >> m;
+  tifa_libs::fin >> n >> m;
   vec<mint> a(n), b(m);
-  std::cin >> a >> b;
-  tifa_libs::math::CNTT<mint> cntt;
-  std::cout << tifa_libs::math::conv_cntt(cntt, a, b) << '\n';
+  tifa_libs::fin >> a >> b;
+  cntt_t cntt;
+  tifa_libs::fout << tifa_libs::math::conv_cntt(cntt, a, b) << '\n';
   return 0;
 }

@@ -1,10 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/hafnian_of_matrix"
 
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/mat_hafnian.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_s30.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mint = tifa_libs::math::mint_s30<MOD>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {

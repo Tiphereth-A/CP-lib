@@ -1,11 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_I"
 
 #include "../../code/comb/ball_box_dil.hpp"
+
+constexpr u32 MOD = 1000000000 + 7;
+
 #include "../../code/math/mint_d63.hpp"
 #include "../../code/math/mint_s30.hpp"
 #include "../../code/poly/poly3ntt.hpp"
 
-constexpr u32 MOD = 1000000000 + 7;
 using mint = tifa_libs::math::mint_d63<-1>;
 using mint1 = tifa_libs::math::mint_s30<167772161>;
 using mint2 = tifa_libs::math::mint_s30<469762049>;

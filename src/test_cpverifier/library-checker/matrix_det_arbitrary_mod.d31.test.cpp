@@ -1,8 +1,10 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod"
 
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/mat_det.hpp"
 #include "../../code/lalg/mat_ge_euclid.hpp"
+
 #include "../../code/math/mint_d31.hpp"
 
 using mint = tifa_libs::math::mint_d31<-1>;
@@ -11,9 +13,9 @@ using mat = tifa_libs::math::matrix<mint>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  u32 n, m;
-  std::cin >> n >> m;
-  mint::set_mod(m);
+  u32 n, MOD;
+  std::cin >> n >> MOD;
+  mint::set_mod(MOD);
   if (!n) {
     std::cout << "1\n";
     return 0;

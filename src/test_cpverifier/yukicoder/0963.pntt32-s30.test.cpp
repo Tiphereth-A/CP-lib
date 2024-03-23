@@ -1,10 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://yukicoder.me/problems/no/963"
 
-#include "../../code/math/mint_s30.hpp"
 #include "../../code/poly/poly_ode.hpp"
+
+constexpr u32 MOD = 1012924417;
+
+#include "../../code/math/mint_s30.hpp"
 #include "../../code/poly/polyntt32.hpp"
 
-using mint = tifa_libs::math::mint_s30<1012924417>;
+using mint = tifa_libs::math::mint_s30<MOD>;
 using poly = tifa_libs::math::polyntt32<mint>;
 
 int main() {

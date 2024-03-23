@@ -1,11 +1,15 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_fixed_k"
 
 #include "../../code/comb/gen_stirling1_col.hpp"
 #include "../../code/io/fastio.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_s63.hpp"
 #include "../../code/poly/polyntt.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+using mint = tifa_libs::math::mint_s63<MOD>;
 using poly = tifa_libs::math::polyntt<mint>;
 
 int main() {

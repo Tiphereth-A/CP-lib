@@ -1,9 +1,13 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
 #include "../../code/ds/segtree_old.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_ss.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint_ss<MOD>;
 
 int main() {
   std::ios::sync_with_stdio(false);

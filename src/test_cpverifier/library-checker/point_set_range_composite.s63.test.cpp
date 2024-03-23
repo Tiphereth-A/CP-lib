@@ -1,9 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
 #include "../../code/ds/segtree.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_s63.hpp"
 
-using Ty = tifa_libs::math::mint_s63<998244353>;
+using mint = tifa_libs::math::mint_s63<MOD>;
+using Ty = mint;
 using T = std::pair<Ty, Ty>;
 using F = T;
 

@@ -1,17 +1,21 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/inverse_matrix"
 
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/mat_ge_basic.hpp"
 #include "../../code/lalg/mat_inv.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_s30.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mint = tifa_libs::math::mint_s30<MOD>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  u64 n;
+  u32 n;
   std::cin >> n;
   mat a(n, n);
   std::cin >> a;

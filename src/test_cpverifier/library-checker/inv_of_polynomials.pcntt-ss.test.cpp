@@ -1,10 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/inv_of_polynomials"
 
-#include "../../code/math/mint_ss.hpp"
 #include "../../code/poly/poly_modinv.hpp"
+
+constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_ss.hpp"
 #include "../../code/poly/polycntt.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint_ss<MOD>;
 using poly = tifa_libs::math::polycntt<mint>;
 
 int main() {
@@ -19,6 +23,5 @@ int main() {
   else if (_.value().empty()) std::cout << "0\n";
   else std::cout << _.value().size() << '\n'
                  << _.value() << '\n';
-
   return 0;
 }

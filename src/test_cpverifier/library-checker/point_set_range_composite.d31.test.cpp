@@ -1,6 +1,10 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
 #include "../../code/ds/segtree.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_d31.hpp"
 
 using mint = tifa_libs::math::mint_d31<-1>;
@@ -18,7 +22,7 @@ auto mapping(F f, T a) { return op(f, a); }
 auto composition(F, F) { return F(1, 0); }
 
 int main() {
-  mint::set_mod(998244353);
+  mint::set_mod(MOD);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 n, q;

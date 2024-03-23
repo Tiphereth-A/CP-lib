@@ -1,9 +1,13 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
 
-#include "../../code/math/mint_s30.hpp"
 #include "../../code/nt/min25_sieve.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_s30.hpp"
+
+using mint = tifa_libs::math::mint_s30<MOD>;
 
 mint f(u64 p, u64 c) {
   u64 res = 1;

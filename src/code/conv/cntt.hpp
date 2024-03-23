@@ -11,7 +11,7 @@ struct CNTT {
   using Zpi = gint<mint, M>;
   using data_t = Zpi;
 
-  explicit constexpr CNTT() {}
+  explicit constexpr CNTT() : rev(), W(proot_gint<mint>()), Wn(), IWn() {}
 
   constexpr u32 size() const { return (u32)rev.size(); }
   constexpr void bzr(u32 len) {
@@ -31,7 +31,7 @@ struct CNTT {
 
  private:
   vec<u32> rev;
-  const Zpi W = proot_gint<mint>();
+  const Zpi W;
   vec<Zpi> Wn, IWn;
 
   template <bool inv = false>

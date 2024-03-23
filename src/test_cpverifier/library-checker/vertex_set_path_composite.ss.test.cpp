@@ -1,10 +1,15 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite/"
 
 #include "../../code/ds/hld.hpp"
-#include "../../code/math/mint_ss.hpp"
 #include "../../code/tree/lca_hld.hpp"
 
-using Ty = tifa_libs::math::mint_ss<998244353>;
+constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_ss.hpp"
+
+using mint = tifa_libs::math::mint_ss<MOD>;
+using Ty = mint;
 using T = std::pair<Ty, Ty>;
 using F = T;
 
