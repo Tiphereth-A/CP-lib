@@ -1,9 +1,12 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_H"
 
 #include "../../code/comb/ball_box_dim.hpp"
-#include "../../code/math/mint_ds.hpp"
 
 constexpr u32 MOD = 1000000000 + 7;
+
+#include "../../code/math/mint_ds.hpp"
+
 using mint = tifa_libs::math::mint_ds<-1>;
 
 int main() {

@@ -1,9 +1,12 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_B"
 
-#include "../../code/math/mint_ds.hpp"
 #include "../../code/math/qpow.hpp"
 
 constexpr u64 MOD = 1'000'000'007;
+
+#include "../../code/math/mint_ds.hpp"
+
 using mint = tifa_libs::math::mint_ds<-1>;
 
 int main() {

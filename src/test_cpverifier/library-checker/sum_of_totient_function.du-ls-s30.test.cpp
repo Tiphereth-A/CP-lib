@@ -1,11 +1,15 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
 
 #include "../../code/math/isqrt.hpp"
-#include "../../code/math/mint_s30.hpp"
 #include "../../code/nt/du_sieve.hpp"
 #include "../../code/nt/lsieve_func.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_s30.hpp"
+
+using mint = tifa_libs::math::mint_s30<MOD>;
 
 int main() {
   std::ios::sync_with_stdio(false);

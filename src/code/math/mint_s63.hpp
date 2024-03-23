@@ -38,6 +38,7 @@ class mint_s63 : public mint<mint_s63<MOD>, u64> {
   static constexpr u64 norm(i64 x) { return (u64)x + (MOD & -(x < 0)); }
 
  public:
+  static constexpr bool FIXED_MOD = true;
   constexpr mint_s63() {}
   template <int_c T>
   constexpr mint_s63(T v) { this->v_ = mod_(v); }

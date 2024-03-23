@@ -1,10 +1,12 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/factorial"
 
 #include "../../code/math/fact_mint.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_d31.hpp"
 #include "../../code/poly/polymtt.hpp"
-
-constexpr u64 MOD = 998244353;
 
 using mint = tifa_libs::math::mint_d31<-1>;
 using poly = tifa_libs::math::polymtt<mint>;

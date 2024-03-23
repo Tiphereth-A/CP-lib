@@ -1,11 +1,15 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/polynomial_composite_set_power_series"
 
 #include "../../code/io/ios_container.hpp"
-#include "../../code/math/mint_s63.hpp"
-#include "../../code/poly/polyntt.hpp"
 #include "../../code/poly/polysps_comp.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_s63.hpp"
+#include "../../code/poly/polyntt.hpp"
+
+using mint = tifa_libs::math::mint_s63<MOD>;
 using poly = tifa_libs::math::polyntt<mint>;
 
 int main() {

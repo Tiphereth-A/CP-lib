@@ -12,6 +12,7 @@ class mint_ss : public mint<mint_ss<MOD>, u32> {
   static_assert(MOD >= 1);
 
  public:
+  static constexpr bool FIXED_MOD = true;
   constexpr mint_ss() {}
   template <int_c T>
   constexpr mint_ss(T v) { this->v_ = mod_(v); }

@@ -1,9 +1,11 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
 #include "../../code/io/fastio.hpp"
+#include "../../code/str/lcp_hashstr.hpp"
+
 #include "../../code/math/mint_2e61n1.hpp"
 #include "../../code/str/hash_substr.hpp"
-#include "../../code/str/lcp_hashstr.hpp"
 
 using mint = tifa_libs::math::mint_2e61n1;
 using hashstr = tifa_libs::str::hash_substr<mint>;

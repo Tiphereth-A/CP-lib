@@ -13,6 +13,7 @@ class mint_2e61n1 : public mint<mint_2e61n1, u64> {
   static constexpr u64 _30 = (1 << 30) - 1, _31 = (1u << 31) - 1;
 
  public:
+  static constexpr bool FIXED_MOD = true;
   constexpr mint_2e61n1() {}
   template <int_c T>
   constexpr mint_2e61n1(T v) { this->v_ = mod_(v); }

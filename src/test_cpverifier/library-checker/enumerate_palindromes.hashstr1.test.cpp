@@ -1,4 +1,7 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
+
+#include "../../code/util/util.hpp"
 
 #include "../../code/math/mint_2e61n1.hpp"
 #include "../../code/str/hash_substr.hpp"

@@ -1,12 +1,17 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
 #include "../../code/io/fastio.hpp"
-#include "../../code/math/mint_ss.hpp"
-#include "../../code/str/hash_substr2.hpp"
 #include "../../code/str/lcp_hashstr.hpp"
 
-using mint0 = tifa_libs::math::mint_ss<998244353>;
-using mint1 = tifa_libs::math::mint_ss<1'000'000'007>;
+constexpr u32 MOD0 = 998244353;
+constexpr u32 MOD1 = 1000000007;
+
+#include "../../code/math/mint_ss.hpp"
+#include "../../code/str/hash_substr2.hpp"
+
+using mint0 = tifa_libs::math::mint_ss<MOD0>;
+using mint1 = tifa_libs::math::mint_ss<MOD1>;
 using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 
 int main() {

@@ -1,14 +1,18 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_matrix"
 
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/mat_pow.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_d63.hpp"
 
 using mint = tifa_libs::math::mint_d63<-1>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
-  mint::set_mod(998244353);
+  mint::set_mod(MOD);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u64 n, k;

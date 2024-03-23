@@ -27,6 +27,7 @@ class mint_s30 : public mint<mint_s30<MOD>, u32> {
   static constexpr u32 norm(u32 x) { return x - (MOD & -((MOD - 1 - x) >> 31)); }
 
  public:
+  static constexpr bool FIXED_MOD = true;
   constexpr mint_s30() {}
   template <int_c T>
   constexpr mint_s30(T v) { this->v_ = mod_(v); }

@@ -20,6 +20,7 @@ class mint_d31 : public mint<mint_d31<ID>, u32> {
   static constexpr u32 tsf(u32 x) { return redc(u64(x % MOD_ODD) * R2) << OFFSET | (x & MASK); }
 
  public:
+  static constexpr bool FIXED_MOD = false;
   static constexpr void set_mod(u32 m) {
     assert(!(m == 1 || m >> 31));
     for (MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD /= 2);

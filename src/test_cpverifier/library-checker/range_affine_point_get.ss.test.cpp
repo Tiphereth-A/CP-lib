@@ -1,9 +1,13 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 
 #include "../../code/ds/segtree.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_ss.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint_ss<MOD>;
 using T = std::pair<mint, usz>;   // sum len
 using F = std::pair<mint, mint>;  // mul add
 

@@ -1,11 +1,15 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/sparse_matrix_det"
 
 #include "../../code/lalg/mat_det_rd.hpp"
 #include "../../code/lalg/spmat.hpp"
-#include "../../code/math/mint_ss.hpp"
 #include "../../code/rand/gen.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_ss.hpp"
+
+using mint = tifa_libs::math::mint_ss<MOD>;
 using mat = tifa_libs::math::spmat<mint>;
 
 int main() {

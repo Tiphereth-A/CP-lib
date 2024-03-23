@@ -1,4 +1,10 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
+
+#include "../../code/util/util.hpp"
+
+constexpr u32 MOD0 = 998244353;
+constexpr u32 MOD1 = 1000000007;
 
 #include "../../code/math/mint_ds.hpp"
 #include "../../code/str/hash_substr2.hpp"
@@ -8,8 +14,8 @@ using mint1 = tifa_libs::math::mint_ds<-2>;
 using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 
 int main() {
-  mint0::set_mod(998244353);
-  mint1::set_mod(1'000'000'007);
+  mint0::set_mod(MOD0);
+  mint1::set_mod(MOD1);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   strn s;

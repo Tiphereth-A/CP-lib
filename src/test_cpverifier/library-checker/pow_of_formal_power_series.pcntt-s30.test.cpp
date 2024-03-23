@@ -1,11 +1,15 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_formal_power_series"
 
 #include "../../code/io/fastio.hpp"
-#include "../../code/math/mint_s30.hpp"
 #include "../../code/poly/poly_pow.hpp"
+
+constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_s30.hpp"
 #include "../../code/poly/polycntt.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mint = tifa_libs::math::mint_s30<MOD>;
 using poly = tifa_libs::math::polycntt<mint>;
 
 int main() {

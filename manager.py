@@ -11,7 +11,7 @@ import click
 import coloredlogs
 
 from libs.classes.section import Section
-from libs.consts import CONFIG, CLEAN_EXT_NAME, CONTENTS_CS, CONTENTS_DIR, CONTENTS_NB
+from libs.consts import CONFIG, CLEAN_EXT_NAME, CONFIG_TCGEN, CONTENTS_CS, CONTENTS_DIR, CONTENTS_NB
 from libs.decorator import withlog
 from libs.latex_utils import latex_input, latex_chapter, latex_listing_code_range, latex_section, latex_listing_code, PathLaTeX, NameLaTeX, LATEX_COMPILE_COMMAND_GROUP
 from libs.utils import get_full_filenames, file_preprocess, scandir_dir_merge, scandir_file_merge, parse_filename, unique
@@ -315,6 +315,68 @@ documentation_of: {_fixed_codepath}
 
     add_new_note(chapter_name, file_name, section_title,
                  code_ext_name, test_ext_name)
+
+
+@cli.command('gentc')
+@click.option('-s', '--source-dir', help='Source dir', default='meta_test')
+@click.option('-t', '--target-dir', help='Target dir', default='test_cpverifier')
+def _generate_testcode(source_dir: str, target_dir: str):
+    """DO NOT USE THIS UNLESS YOU KNOW WHAT YOU ARE DOING
+
+    Generate test code for cpverifier, only support *.cpp"""
+
+    def get_var(x: str) -> str:
+        return x.removeprefix('#ifdef GENTC_').rstrip().replace('_', '-')
+
+    @withlog
+    def get_codelines(file: str, **kwargs) -> list[str]:
+        kwargs.get('logger').debug(f"opening {file}")
+        with open(file, 'r') as f:
+            raw_code = f.read()
+            for tck in CONFIG_TCGEN.get_keys():
+                raw_code = raw_code.replace(
+                    f"#define GENTCs_{tck}\n", CONFIG_TCGEN.get_content(tck))
+            return raw_code.splitlines(True)
+
+    @withlog
+    def generate_testcode(_source_dir: str, _target_dir: str, **kwargs):
+        _source_dir = os.path.join(CONFIG.get_src_dir(), _source_dir)
+        _target_dir = os.path.join(CONFIG.get_src_dir(), _target_dir)
+
+        all_src_files: list[str] = get_full_filenames([_source_dir], ['cpp'])
+        kwargs.get('logger').info(f"{len(all_src_files)} file(s) found")
+
+        for file in all_src_files:
+            tfdir, bname = os.path.split(file)
+            tfdir = _target_dir + tfdir.removeprefix(_source_dir)
+            bname = bname.removesuffix('.cpp')
+
+            code_lines = get_codelines(file)
+            var_list = set(get_var(x) for x in
+                           filter(lambda x: x.startswith('#ifdef GENTC_'), code_lines))
+            kwargs.get('logger').debug(f"variants: {var_list}")
+
+            for var in var_list:
+                tfile = os.path.join(tfdir, f"{bname}{'-' if bname.count('.') else '.'}{var}.test.cpp")
+                kwargs.get('logger').debug(f"writing to {tfile}")
+
+                written_codes: list[str] = ['#define AUTO_GENERATED\n']
+                stk_var: list[str] = [var]
+
+                for cl in code_lines:
+                    if cl.startswith('#ifdef GENTC_'):
+                        stk_var.append(get_var(cl))
+                    elif cl.startswith('#endif'):
+                        stk_var.pop()
+                    elif stk_var[-1] == var:
+                        written_codes.append(cl)
+
+                with open(tfile, 'w') as tf:
+                    tf.writelines(written_codes)
+
+        kwargs.get('logger').info('finished')
+
+    generate_testcode(source_dir, target_dir)
 
 
 if __name__ == '__main__':

@@ -1,10 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind"
 
 #include "../../code/comb/gen_stirling1_row.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_ss.hpp"
 #include "../../code/poly/polyntt32.hpp"
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint_ss<MOD>;
 using poly = tifa_libs::math::polyntt32<mint>;
 
 int main() {

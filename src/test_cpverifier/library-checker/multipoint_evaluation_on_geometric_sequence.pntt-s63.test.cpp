@@ -1,10 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence"
 
-#include "../../code/math/mint_s63.hpp"
 #include "../../code/poly/poly_czt.hpp"
+
+constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_s63.hpp"
 #include "../../code/poly/polyntt.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+using mint = tifa_libs::math::mint_s63<MOD>;
 using poly = tifa_libs::math::polyntt<mint>;
 
 int main() {

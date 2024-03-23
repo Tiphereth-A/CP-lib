@@ -1,10 +1,13 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial"
 
 #include "../../code/comb/gen_pows.hpp"
-#include "../../code/math/mint_ds.hpp"
 #include "../../code/math/sum_ipaf.hpp"
 
 constexpr u32 MOD = 998244353;
+
+#include "../../code/math/mint_ds.hpp"
+
 using mint = tifa_libs::math::mint_ds<-1>;
 
 int main() {

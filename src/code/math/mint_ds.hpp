@@ -27,6 +27,7 @@ class mint_ds : public mint<mint_ds<ID>, u32> {
   static inline barrett bt_;
 
  public:
+  static constexpr bool FIXED_MOD = false;
   static constexpr void set_mod(u32 m) {
     assert(1 <= m);
     bt_ = barrett(m);

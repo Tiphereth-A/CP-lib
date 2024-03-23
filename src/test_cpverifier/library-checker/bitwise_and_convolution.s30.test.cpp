@@ -1,10 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
 
 #include "../../code/conv/conv_and.hpp"
 #include "../../code/io/ios_container.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_s30.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mint = tifa_libs::math::mint_s30<MOD>;
 
 int main() {
   std::ios::sync_with_stdio(false);

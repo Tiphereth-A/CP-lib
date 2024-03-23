@@ -1,10 +1,13 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_B"
 
 #include "../../code/comb/ball_box_ddm.hpp"
 #include "../../code/comb/binom.hpp"
-#include "../../code/math/mint_s30.hpp"
 
 constexpr u32 MOD = 1000000000 + 7;
+
+#include "../../code/math/mint_s30.hpp"
+
 using mint = tifa_libs::math::mint_s30<MOD>;
 
 int main() {

@@ -1,10 +1,14 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
 
 #include "../../code/conv/conv_subset.hpp"
 #include "../../code/io/ios_container.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_s63.hpp"
 
-using mint = tifa_libs::math::mint_s63<998244353>;
+using mint = tifa_libs::math::mint_s63<MOD>;
 
 int main() {
   std::ios::sync_with_stdio(false);

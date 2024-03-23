@@ -1,6 +1,10 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 
 #include "../../code/ds/segtree.hpp"
+
+constexpr u32 MOD = 998244353;
+
 #include "../../code/math/mint_ds.hpp"
 
 using mint = tifa_libs::math::mint_ds<-1>;
@@ -22,7 +26,7 @@ auto composition(F f, F g) {
 auto id() { return F(1, 0); }
 
 int main() {
-  mint::set_mod(998244353);
+  mint::set_mod(MOD);
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   usz n, q;
