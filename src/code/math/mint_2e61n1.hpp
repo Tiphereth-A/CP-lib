@@ -23,7 +23,7 @@ class mint_2e61n1 : public mint<mint_2e61n1, u64> {
   using sraw_t = typename base::sraw_type;
   // clang-format off
   template <uint_c T>
-  static constexpr raw_t mod_(T x) { return x < MOD ? (raw_t)x : (x = (x & MOD) + ((raw_t)x >> 61)) > MOD ? x - MOD : (raw_t)x; }
+  static constexpr raw_t mod_(T x) { return x < MOD ? (raw_t)x : (x = T(((raw_t)x & MOD) + ((raw_t)x >> 61))) >= MOD ? x - MOD : (raw_t)x; }
   template <sint_c T>
   static constexpr raw_t mod_(T x) { return x >= 0 ? mod_(to_uint_t<T>(x)) : MOD - mod_(to_uint_t<T>(-x)); }
   // clang-format on

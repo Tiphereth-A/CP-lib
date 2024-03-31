@@ -9,7 +9,11 @@
 namespace tifa_libs::math {
 
 template <class T, class Is0, class Ge>
-constexpr std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0 is0, Ge &&ge) {
+requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
+  { is0(t) } -> std::same_as<bool>;
+  { ge(A, clear_u) } -> std::same_as<i32>;
+}
+constexpr std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0 &&is0, Ge &&ge) {
   u32 r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
   matrix<T> Ab = mat_merge_lr(A, b);

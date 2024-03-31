@@ -6,7 +6,10 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Gn, class Is0>
-auto minpoly(Mat const &mat, Gn &gen, Is0 is0) {
+requires requires(Is0 is0, typename Mat::value_type t) {
+  { is0(t) } -> std::same_as<bool>;
+}
+auto minpoly(Mat const &mat, Gn &gen, Is0 &&is0) {
   using T = typename Mat::value_type;
   u32 n = mat.row();
   assert(n == mat.col());
@@ -20,7 +23,7 @@ auto minpoly(Mat const &mat, Gn &gen, Is0 is0) {
     _[i] = std::transform_reduce(u.begin(), u.end(), v.begin(), T{});
     v = mat.lproj(v);
   }
-  vec<T> res = lfsr_bm(_, is0);
+  vec<T> res = lfsr_bm(_, std::forward<Is0>(is0));
   std::reverse(res.begin(), res.end());
   return res;
 }

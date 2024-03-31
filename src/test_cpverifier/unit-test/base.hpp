@@ -17,9 +17,7 @@ strn to_str(T const &x) {
   static std::stringstream ss;
   ss.clear();
   ss << std::fixed << std::setprecision(12) << x;
-  strn s;
-  std::getline(ss, s);
-  return s;
+  return ss.str();
 }
 
 template <class T, class... Ts>

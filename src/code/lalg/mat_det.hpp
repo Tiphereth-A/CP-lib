@@ -6,7 +6,10 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Ge>
-constexpr auto det(Mat mat, Ge ge) {
+requires requires(Ge ge, Mat A, bool clear_u) {
+  { ge(A, clear_u) } -> std::same_as<i32>;
+}
+constexpr auto det(Mat mat, Ge&& ge) {
   using T = typename Mat::value_type;
   u32 n = mat.row();
   assert(n == mat.col());

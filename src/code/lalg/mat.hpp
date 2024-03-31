@@ -56,7 +56,7 @@ class matrix {
     assert(row_l < row_r && row_r <= row());
     assert(col_l < col_r && col_r <= col());
     matrix ret(row_r - row_l, col_r - col_l);
-    ret.apply_range(0, ret.row(), 0, ret.col(), [this, row_l, row_r](u32 i, u32 j, T &v) { v = (*this)(i + row_l, j + row_r); });
+    ret.apply_range(0, ret.row(), 0, ret.col(), [this, row_l, col_l](u32 i, u32 j, T &v) { v = (*this)(i + row_l, j + col_l); });
     return ret;
   }
 
@@ -140,6 +140,13 @@ class matrix {
       if constexpr (std::is_same_v<T, bool>) ret[i] = std::transform_reduce(d[i].begin(), d[i].end(), x.begin(), false, std::bit_xor<bool>{}, std::bit_and<bool>{});
       else ret[i] = std::transform_reduce(d[i].begin(), d[i].end(), x.begin(), T{});
     return ret;
+  }
+
+  constexpr bool operator==(matrix const &r) const {
+    if (row() != r.row() || col() != r.col()) return 0;
+    FOR1_ (i, 0, row())
+      if (d[i] != r.d[i]) return 0;
+    return 1;
   }
 };
 
