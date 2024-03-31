@@ -6,13 +6,6 @@
 
 namespace tifa_libs {
 
-#if !HAVE_DECL_FREAD_UNLOCKED
-#define fread_unlocked fread
-#endif
-#if !HAVE_DECL_FWRITE_UNLOCKED
-#define fwrite_unlocked fwrite
-#endif
-
 namespace fastio_impl_ {
 
 //! UB if EOF occured during reading
@@ -24,8 +17,8 @@ class fastin {
  public:
   explicit fastin(FILE *f = stdin) : f_(f) {}
 
-  char get() { return now_ == end_ && (end_ = (now_ = bf_) + fread_unlocked(bf_, 1, BUF, f_), now_ == end_) ? EOF : *(now_)++; }
-  char peek() { return now_ == end_ && (end_ = (now_ = bf_) + fread_unlocked(bf_, 1, BUF, f_), now_ == end_) ? EOF : *(now_); }
+  char get() { return now_ == end_ && (end_ = (now_ = bf_) + fread(bf_, 1, BUF, f_), now_ == end_) ? EOF : *(now_)++; }
+  char peek() { return now_ == end_ && (end_ = (now_ = bf_) + fread(bf_, 1, BUF, f_), now_ == end_) ? EOF : *(now_); }
   void rebind(FILE *f) {
     f_ = f;
     now_ = end_ = bf_;
@@ -152,7 +145,7 @@ class fastout {
   ~fastout() { flush(); }
 
   void flush() {
-    fwrite_unlocked(bf_, 1, usz(now_ - bf_), f_);
+    fwrite(bf_, 1, usz(now_ - bf_), f_);
     now_ = bf_;
   }
   void rebind(FILE *file) { f_ = file; }
