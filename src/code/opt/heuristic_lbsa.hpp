@@ -28,14 +28,14 @@ class heuristic_lbsa {
     }
   }
 
-  constexpr std::pair<Ft, Cont> operator()(u32 K, u32 M) {
+  std::pair<Ft, Cont> operator()(u32 K, u32 M) {
     for (u32 k = 0; k < K; ++k) {
       Tt tmax = tlist.top(), t = 0;
       u32 c = 0;
       for (u32 m = 0; m < M; ++m) {
         auto [fy, y] = gen();
         if (fy < fx) std::swap(fx, fy), std::swap(x, y);
-        else if (Tt r = g(); std::exp((fx - fy) / tmax) > r) t += (fx - fy) / std::log(r), ++c;
+        else if (Tt r = g.next(); std::exp((fx - fy) / tmax) > r) t += (fx - fy) / std::log(r), ++c;
       }
       if (c) tlist.pop(), tlist.push(t / c);
     }
@@ -50,9 +50,9 @@ class heuristic_lbsa {
     *l = x;
   }
   static constexpr void swap_(typename Cont::iterator l, typename Cont::iterator r) { std::iter_swap(l, r); }
-  constexpr std::pair<Ft, Cont> gen() {
-    u32 l = g_idx(), r = g_idx();
-    while (l == r) r = g_idx();
+  std::pair<Ft, Cont> gen() {
+    u32 l = g_idx.next(), r = g_idx.next();
+    while (l == r) r = g_idx.next();
     if (l > r) std::swap(l, r);
     Cont c0 = x, c1 = x, c2 = x;
     inv_(c0.begin() + l, c0.begin() + r);

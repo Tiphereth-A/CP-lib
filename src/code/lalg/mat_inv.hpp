@@ -6,7 +6,11 @@
 namespace tifa_libs::math {
 
 template <class T, class Is0, class Ge>
-constexpr std::optional<matrix<T>> mat_inv(matrix<T> const &mat, Is0 is0, Ge ge) {
+requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
+  { is0(t) } -> std::same_as<bool>;
+  { ge(A, clear_u) } -> std::same_as<i32>;
+}
+constexpr std::optional<matrix<T>> mat_inv(matrix<T> const& mat, Is0&& is0, Ge&& ge) {
   u32 n = mat.row();
   if (n != mat.col()) return {};
   matrix<T> ret(n, n);
@@ -14,7 +18,7 @@ constexpr std::optional<matrix<T>> mat_inv(matrix<T> const &mat, Is0 is0, Ge ge)
   if ((u64)abs(ge(ret = mat_merge_lr(mat, ret), true)) != n) return {};
   for (u32 i = 0; i < n; ++i)
     if (is0(ret(i, i))) return {};
-  ret.apply_range(0, n, n, n * 2, [&ret](u32 i, u32, T &val) { val /= ret(i, i); });
+  ret.apply_range(0, n, n, n * 2, [&ret](u32 i, u32, T& val) { val /= ret(i, i); });
   return ret.submat(0, n, n, n * 2);
 }
 

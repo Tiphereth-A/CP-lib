@@ -6,7 +6,10 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0>
-constexpr i32 ge_basic(Mat &mat, Is0 is0, bool clear_u = true) {
+requires requires(Is0 is0, typename Mat::value_type t) {
+  { is0(t) } -> std::same_as<bool>;
+}
+constexpr i32 ge_basic(Mat& mat, Is0&& is0, bool clear_u = true) {
   using T = typename Mat::value_type;
   u32 r_ = mat.row(), c_ = mat.col(), rk_max = std::min(r_, c_);
   u32 rk = 0;

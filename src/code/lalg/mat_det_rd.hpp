@@ -7,7 +7,10 @@ namespace tifa_libs::math {
 
 // OK for spmat
 template <class Mat, class Gn, class Is0>
-auto det_rd(Mat mat, Gn &gen, Is0 is0) {
+requires requires(Is0 is0, typename Mat::value_type t) {
+  { is0(t) } -> std::same_as<bool>;
+}
+auto det_rd(Mat mat, Gn &gen, Is0 &&is0) {
   using T = typename Mat::value_type;
   u32 n = mat.row();
   assert(n == mat.col());
@@ -22,7 +25,7 @@ auto det_rd(Mat mat, Gn &gen, Is0 is0) {
     for (u32 i = 0; i < n; ++i) v[i] *= diag[i];
     v = mat.lproj(v);
   }
-  vec<T> mp = lfsr_bm(_, is0);
+  vec<T> mp = lfsr_bm(_, std::forward<Is0>(is0));
   T res = mp.back() / std::accumulate(diag.begin(), diag.end(), T(1), std::multiplies<T>());
   return (n & 1) == 1 ? -res : res;
 }

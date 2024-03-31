@@ -6,7 +6,11 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0, class Div>
-constexpr i32 ge_euclid(Mat &mat, Is0 is0, Div div, bool clear_u = true) {
+requires requires(Is0 is0, Div div, typename Mat::value_type t) {
+  { is0(t) } -> std::same_as<bool>;
+  { div(t, t) } -> std::same_as<typename Mat::value_type>;
+}
+constexpr i32 ge_euclid(Mat& mat, Is0&& is0, Div&& div, bool clear_u = true) {
   using T = typename Mat::value_type;
   u32 r_ = mat.row(), c_ = mat.col(), rk_max = std::min(r_, c_);
   u32 rk = 0;

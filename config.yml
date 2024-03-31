@@ -522,6 +522,9 @@ notebook:
     - topo_sort: 拓扑排序
       code_ext: hpp
       test_ext: cpp
+    - mat_tree: Kirchhoff 矩阵树定理
+      code_ext: hpp
+      test_ext: cpp
     tree:
     - tree: 树
       code_ext: hpp
@@ -954,6 +957,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - mat_det_rd: 求矩阵的行列式(随机化算法)
+      code_ext: hpp
+      test_ext: cpp
+    - sherman_morrison: Sherman–Morrison 公式
       code_ext: hpp
       test_ext: cpp
     - bitmat: 静态 Bool 矩阵

@@ -7,10 +7,13 @@
 namespace tifa_libs::math {
 
 template <class T, class Is0>
-constexpr vec<T> charpoly(matrix<T> mat, Is0 is0) {
+requires requires(Is0 is0, T t) {
+  { is0(t) } -> std::same_as<bool>;
+}
+constexpr vec<T> charpoly(matrix<T> mat, Is0 &&is0) {
   u32 n = mat.row();
   assert(n == mat.col());
-  uhb(mat, is0);
+  uhb(mat, std::forward<Is0>(is0));
   vvec<T> p(n + 1);
   p[0].resize(1);
   p[0][0] = 1;

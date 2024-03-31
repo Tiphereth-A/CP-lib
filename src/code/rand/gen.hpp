@@ -22,7 +22,9 @@ class Gen {
   constexpr random_engine& rand_eng() { return re; }
   constexpr Distri& distrib() { return dist; }
 
+  void reset_seed() { re.seed((result_type)std::chrono::duration_cast<std::conditional_t<sizeof(typename Distri::result_type) <= 4, std::chrono::seconds, std::chrono::nanoseconds>>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()); }
   constexpr result_type operator()() { return dist(re); }
+  result_type next() { return dist(re); }
 };
 
 }  // namespace tifa_libs::rand

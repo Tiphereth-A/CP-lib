@@ -4,7 +4,6 @@
 #include "../../../code/util/debruijn.hpp"
 
 #include "../../../code/math/qpow.hpp"
-#include "../../../code/str/kmp.hpp"
 #include "../base.hpp"
 
 void test(u32 n, u32 k) {
