@@ -3,7 +3,7 @@
 
 #include "../util/util.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs::opt {
 
 //! $h(r) = argmin_i a_{r,i}$ MUST be non-decreasing
 // a: $[0, n) \times [0, m)$
@@ -27,6 +27,6 @@ constexpr vec<u32> smawk(u32 n, u32 m, Ft&& f) {
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs::opt
 
 #endif

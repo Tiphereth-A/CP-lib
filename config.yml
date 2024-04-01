@@ -13,7 +13,7 @@ notebook:
     enum: 枚举
     io: IO
     ds: 数据结构
-    opt: 最优化
+    opt: 最优化与 DP
     graph: 图论
     tree: 树
     geo2d: 二维计算几何
@@ -441,6 +441,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - astar: A* 算法
+      code_ext: hpp
+      test_ext: cpp
+    - lis: 最长上升子序列
       code_ext: hpp
       test_ext: cpp
     graph:
@@ -887,6 +890,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - ssts_pim_cnt: 子集和原像大小
+      code_ext: hpp
+      test_ext: cpp
+    - youngt: Young 表
       code_ext: hpp
       test_ext: cpp
     lalg:
