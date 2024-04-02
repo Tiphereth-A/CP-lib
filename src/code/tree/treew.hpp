@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 template <class T>
-struct treew : alistw<T> {
+struct treew : alistw<T, false> {
   u32 root;
 
   explicit constexpr treew(u32 n, u32 root = 0) : alistw<T>(n), root(root) {}

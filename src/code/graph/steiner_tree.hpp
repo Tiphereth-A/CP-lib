@@ -5,15 +5,15 @@
 
 namespace tifa_libs::graph {
 
-template <class T>
+template <class T, bool with_deg>
 class steiner_tree {
-  alistw<T> const& e;
+  alistw<T, with_deg> const& e;
   vec<u32> const& a;
 
  public:
   vvec<u32> dp;
 
-  steiner_tree(alistw<T> const& E, vec<u32> const& A) : e(E), a(A) { build(); }
+  steiner_tree(alistw<T, with_deg> const& E, vec<u32> const& A) : e(E), a(A) { build(); }
 
   void build() {
     dp = vvec<u32>(e.g.size(), vec<u32>(1 << a.size(), INT32_MAX));

@@ -19,7 +19,7 @@ constexpr vec<u32> tree_top(G const &tr, tree_dfs_info<G> &info) {
     if (info.maxson[u] == tr.g.size()) return;
     dfs(dfs, info.maxson[u], top_);
     for (auto v : tr.g[u])
-      if constexpr (std::is_base_of_v<alist, G>) {
+      if constexpr (is_alist<G>) {
         if (top[v] == tr.g.size()) dfs(dfs, v, v);
       } else {
         if (top[v.first] == tr.g.size()) dfs(dfs, v.first, v.first);

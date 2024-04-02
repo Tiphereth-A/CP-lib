@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 class lsieve2 {
-  vec<ptt<u32>> pr;
+  vecpt<u32> pr;
   vec<u32> fr;
 
  public:

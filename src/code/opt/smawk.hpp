@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_CONV_SMAWK
-#define TIFALIBS_CONV_SMAWK
+#ifndef TIFALIBS_OPT_SMAWK
+#define TIFALIBS_OPT_SMAWK
 
 #include "../util/util.hpp"
 

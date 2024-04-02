@@ -17,7 +17,7 @@ constexpr std::optional<vec<u32>> path(G const &g, u32 from, u32 to) {
     }
     for (auto v : g.g[now]) {
       u32 to = 0;
-      if constexpr (std::is_base_of_v<alist, G>) to = v;
+      if constexpr (is_alist<G>) to = v;
       else to = v.first;
       if (to == fa) continue;
       dfs(dfs, to, now);

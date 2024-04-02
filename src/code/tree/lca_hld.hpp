@@ -20,9 +20,9 @@ struct lca_hld {
     while (top[u] != top[v]) info.dep[top[u]] < info.dep[top[v]] ? v = info.fa[top[v]] : u = info.fa[top[u]];
     return info.dep[u] > info.dep[v] ? v : u;
   }
-  constexpr ptt<vec<ptt<u32>>> getchain(u32 u, u32 v) {
+  constexpr ptt<vecpt<u32>> getchain(u32 u, u32 v) {
     u32 lca = (*this)(u, v);
-    vec<ptt<u32>> retu, retv;
+    vecpt<u32> retu, retv;
     while (top[u] != top[lca]) {
       retu.emplace_back(u, top[u]), u = info.fa[top[u]];
     }

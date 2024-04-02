@@ -10,6 +10,6 @@ int main() {
   tifa_libs::math::rational<int> c(a * 60 + b), d(720, 11), x(0);
   while (x < c) x += d;
   x -= c;
-  std::cout << x.numerator() * 60 / x.denominator() << "\n";
+  std::cout << x.num * 60 / x.den << "\n";
   return 0;
 }

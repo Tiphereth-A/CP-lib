@@ -5,7 +5,7 @@
 
 namespace tifa_libs::graph {
 
-struct tree : alist {
+struct tree : alist<false> {
   u32 root;
 
   explicit constexpr tree(u32 n, u32 root = 0) : alist(n), root(root) {}

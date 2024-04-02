@@ -15,7 +15,7 @@ int main() {
     edges[{u, v}] = i;
     g.add_arc(u, v);
   }
-  auto res = tifa_libs::graph::find_cycle(g);
+  auto res = tifa_libs::graph::find_cycle<true>(g);
   if (res.empty()) {
     std::cout << "-1\n";
     return 0;

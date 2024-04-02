@@ -446,6 +446,9 @@ notebook:
     - lis: 最长上升子序列
       code_ext: hpp
       test_ext: cpp
+    - lcs_circ: 环序列的最长公共子序列长度
+      code_ext: hpp
+      test_ext: cpp
     graph:
     - alist: 邻接表
       code_ext: hpp
@@ -526,6 +529,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - mat_tree: Kirchhoff 矩阵树定理
+      code_ext: hpp
+      test_ext: cpp
+    - euler_trail: Euler 迹
+      code_ext: hpp
+      test_ext: cpp
+    - manhattan_mst: 筛选可能在 Manhattan 最小生成树中的边
       code_ext: hpp
       test_ext: cpp
     tree:
@@ -776,6 +785,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - rational: 有理数
+      code_ext: hpp
+      test_ext: cpp
+    - frac_itv: 区间内分母最小的分数
       code_ext: hpp
       test_ext: cpp
     - gint: Gauss 整数

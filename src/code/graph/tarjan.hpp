@@ -5,25 +5,19 @@
 
 namespace tifa_libs::graph {
 
-template <class EW>
-class tarjan {
-  vvec<EW> const &g;
-
- public:
+struct tarjan {
   u32 id;
   vec<u32> scc_id, dfn, low;
   vvec<u32> belongs;
 
-  explicit tarjan(vvec<EW> const &G) : g(G) { get_scc(); }
-
-  void get_scc() {
+  constexpr void build(vvec<u32> const &g) {
     id = 0;
     u32 cnt = 0, n = u32(g.size());
-    std::stack<u32> s;
+    vec<u32> s;
     vec<bool> ins(n);
     dfn = low = scc_id = vec<u32>(n, n);
     auto dfs = [&](auto &&dfs, u32 u) -> void {
-      dfn[u] = low[u] = cnt++, s.push(u), ins[u] = 1;
+      dfn[u] = low[u] = cnt++, s.push_back(u), ins[u] = 1;
       for (auto v : g[u])
         if (dfn[v] == n) {
           dfs(dfs, v);
@@ -32,8 +26,8 @@ class tarjan {
       if (low[u] == dfn[u]) {
         belongs.push_back(vec<u32>());
         do {
-          u32 v = s.top();
-          s.pop(), ins[v] = 0;
+          u32 v = s.back();
+          s.pop_back(), ins[v] = 0;
           scc_id[v] = id;
           belongs[id].push_back(v);
           if (v == u) return void(++id);

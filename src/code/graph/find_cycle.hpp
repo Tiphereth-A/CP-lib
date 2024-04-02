@@ -5,17 +5,17 @@
 
 namespace tifa_libs::graph {
 
-template <bool directed = true>
-constexpr vec<ptt<u32>> find_cycle(alist const& fg) {
+template <bool directed, bool with_deg>
+constexpr vecpt<u32> find_cycle(alist<with_deg> const& fg) {
   auto&& g = fg.g;
 
   for (u32 i = 0; i < g.size(); ++i)
     for (u32 j : g[i])
-      if (i == j) return vec<ptt<u32>>{{i, i}};
+      if (i == j) return vecpt<u32>{{i, i}};
 
   vec<u32> pidx(g.size(), -1_u32), vis(g.size(), 0);
 
-  vec<ptt<u32>> cycle;
+  vecpt<u32> cycle;
   bool fin = false;
   auto dfs = [&](auto&& dfs, u32 now, u32 pval, u32 fa) -> u32 {
     pidx[now] = pval;
@@ -46,7 +46,7 @@ constexpr vec<ptt<u32>> find_cycle(alist const& fg) {
       return cycle;
     }
   }
-  return vec<ptt<u32>>{};
+  return vecpt<u32>{};
 }
 
 }  // namespace tifa_libs::graph

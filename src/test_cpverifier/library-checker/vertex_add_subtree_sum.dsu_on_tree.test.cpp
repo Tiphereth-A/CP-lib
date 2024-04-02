@@ -15,7 +15,7 @@ int main() {
   tifa_libs::graph::tree tr(n);
   for (u32 i = 1, p; i < n; ++i) tifa_libs::fin >> p, tr.add_arc((u32)p, (u32)i), tr.add_arc((u32)i, (u32)p);
 
-  vvec<ptt<i32>> upd(n);
+  vvecpt<i32> upd(n);
   vvec<i32> que(n);
   for (u32 i = 0; i < n; ++i) upd[i].emplace_back(0, a[i]);
   for (u32 i = 1; i <= q; ++i) {

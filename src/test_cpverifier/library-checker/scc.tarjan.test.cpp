@@ -14,7 +14,8 @@ int main() {
     std::cin >> u >> v;
     e[u].push_back(v);
   }
-  tifa_libs::graph::tarjan scc(e);
+  tifa_libs::graph::tarjan scc;
+  scc.build(e);
   vvec<u32> g(scc.id);
   vec<u32> in(scc.id);
   std::queue<u32> q;

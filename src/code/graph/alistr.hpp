@@ -5,7 +5,8 @@
 
 namespace tifa_libs::graph {
 
-constexpr alist alistr(alist const& ag) {
+template <bool with_deg>
+constexpr alist<with_deg> alistr(alist<with_deg> const& ag) {
   alist ret((u32)ag.g.size());
   for (u32 u = 0; u < ag.g.size(); ++u)
     for (u32 v : ag.g[u]) ret.add_arc(v, u);

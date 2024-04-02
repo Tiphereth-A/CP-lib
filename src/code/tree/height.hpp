@@ -15,7 +15,7 @@ constexpr auto tree_height(G const &tr) {
     T ans = 0;
     auto &&es = tr.g[u];
     for (u32 i = 0; i < es.size(); ++i)
-      if constexpr (std::is_base_of_v<alist, G>) {
+      if constexpr (is_alist<G>) {
         if (auto &&v = es[i]; v != fa) ans = std::max(ans, (_[u][i] = (_[u][i] == T(-1) ? f(f, v, u) : _[u][i])) + 1);
       } else {
         if (auto &&[v, w] = es[i]; v != fa) ans = std::max(ans, (_[u][i] = (_[u][i] == T(-1) ? f(f, v, u) : _[u][i])) + w);

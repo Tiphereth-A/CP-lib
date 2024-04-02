@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_CONV_LIS
-#define TIFALIBS_CONV_LIS
+#ifndef TIFALIBS_OPT_LIS
+#define TIFALIBS_OPT_LIS
 
 #include "../util/util.hpp"
 
@@ -7,7 +7,7 @@ namespace tifa_libs::opt {
 
 // @return INDEX of LIS in @a
 template <class T, class C = std::less<T>>
-constexpr vec<u32> lis(vec<T> const& a, T inf, C&& comp = C{}) {
+constexpr vec<u32> lis(vec<T> const& a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}) {
   vec<T> f{inf};
   vec<u32> g;
   for (auto i : a) {

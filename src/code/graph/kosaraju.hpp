@@ -6,16 +6,17 @@
 
 namespace tifa_libs::graph {
 
+template <bool with_deg = false>
 class kosaraju {
-  const alist::value_type &g, &rev_g;
+  const alist<with_deg>::value_type &g, &rev_g;
 
  public:
-  alist dag;
+  alist<with_deg> dag;
   vec<u32> scc_id;
   vvec<u32> belongs;
 
-  explicit constexpr kosaraju(alist const &g) : kosaraju(g, alistr(g)) {}
-  constexpr kosaraju(alist const &g, alist const &rev_g) : g(g.g), rev_g(rev_g.g) { build(); }
+  explicit constexpr kosaraju(alist<with_deg> const &g) : kosaraju(g, alistr(g)) {}
+  constexpr kosaraju(alist<with_deg> const &g, alist<with_deg> const &rev_g) : g(g.g), rev_g(rev_g.g) { build(); }
 
  private:
   constexpr void build() {

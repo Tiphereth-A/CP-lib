@@ -8,11 +8,11 @@
 namespace tifa_libs::graph {
 
 // @return sum of spanning trees of undirected graph g
-template <class T, class Ge>
+template <class T, class Ge, bool with_deg>
 requires requires(Ge ge, math::matrix<T> A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
-constexpr T mat_tree(amat<T> const &g, Ge &&ge) {
+constexpr T mat_tree(amat<T, with_deg> const &g, Ge &&ge) {
   u32 n = g.g.size();
   math::matrix<T> mat(n - 1, n - 1);
   for (u32 i = 0; i < n; ++i)

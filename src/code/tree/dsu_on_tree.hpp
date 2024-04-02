@@ -10,11 +10,17 @@ namespace tifa_libs::graph {
 // @param clear(now): reset data of node %now (if necesarry)
 // @param reset(): reset data related to all (if necesarry)
 template <class G, class Fu, class Fq, class Fc, class Fr>
-constexpr void dsu_on_tree(G const &tr, tree_dfs_info<G> &info, Fu update, Fq query, Fc clear, Fr reset) {
-  constexpr bool F = std::is_base_of_v<alist, G>;
+requires requires(Fu update, Fq query, Fc clear, Fr reset, u32 now) {
+  update(now);
+  query(now);
+  clear(now);
+  reset();
+}
+constexpr void dsu_on_tree(G const& tr, tree_dfs_info<G>& info, Fu&& update, Fq&& query, Fc&& clear, Fr&& reset) {
+  constexpr bool F = is_alist<G>;
   if (info.dfn.empty() || info.maxson.empty() || info.maxdfn.empty() || info.euler.empty()) info.template reset_dfs_info<td_dfn | td_maxson | td_maxdfn | td_euler>(tr);
 
-  auto dfs = [&](auto &&dfs, u32 now, u32 fa = -1_u32, bool keep = false) -> void {
+  auto dfs = [&](auto&& dfs, u32 now, u32 fa = -1_u32, bool keep = false) -> void {
     for (auto v : tr.g[now])
       if constexpr (F) {
         if (v != fa && v != info.maxson[now]) dfs(dfs, v, now, false);

@@ -6,11 +6,10 @@
 namespace tifa_libs::math {
 
 template <int_c T>
-class rational {
+struct rational {
   T num, den;
 
- public:
-  constexpr explicit rational(T numerator = 0, T denominator = 1) : num(numerator), den(denominator) {
+  constexpr rational(T numerator = 0, T denominator = 1) : num(numerator), den(denominator) {
     assert(den != 0);
     if (num == 0) den = 1;
     else {
@@ -21,12 +20,6 @@ class rational {
     }
   }
 
-  constexpr T const &numerator() const { return num; }
-  constexpr T const &denominator() const { return den; }
-  constexpr T &numerator() { return num; }
-  constexpr T &denominator() { return den; }
-  constexpr void numerator(T x) { num = x; }
-  constexpr void denominator(T x) { den = x; }
   constexpr rational &operator+=(T x) {
     num += x * den;
     return *this;
