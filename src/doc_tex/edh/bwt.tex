@@ -1,0 +1,54 @@
+\paragraph{构建方式}
+
+对给定的字符串 \(s\), 列出所有循环平移后的结果, 按字典序排序后取所有串的最后一个字符
+
+如对串 \verb|banana$|, 列出所有循环平移后的结果:
+
+\begin{verbatim}
+$banana
+a$banan
+na$bana
+ana$ban
+nana$ba
+anana$b
+banana$
+\end{verbatim}
+    
+按字典序排序:
+
+\begin{verbatim}
+$banana
+a$banan
+ana$ban
+anana$b
+banana$
+na$bana
+nana$ba
+\end{verbatim}
+    
+取最后一位得到 \verb|annb$aa|
+
+和 \fullref{sec:后缀数组} 对比:
+
+\begin{verbatim}
+i            : 0 1 2 3 4 5 6 7
+s[i]         : $ b a n a n a $
+sa[i]        :   7 6 4 2 1 5 3
+s[sa[i] - 1] :   a n n b $ a a
+bwt[i]       :   a n n b $ a a
+\end{verbatim}
+
+不难发现其中的关系.
+
+使用方式如下:
+
+\begin{minted}{cpp}
+bwt("#banana");     // -> "annb#aa"
+bwt_inv("annb#aa"); // -> "#banana"
+\end{minted}
+
+\paragraph{注意}
+
+例子中的 \verb|$| 为末尾标识符, 可换成任意按 ASCII 排序\textbf{小于}正文的字符, 不可省略且必须保证其小于正文中的字符. 使用时占位符放在正文最前端而不是末尾.
+
+\paragraph{参考资料} \cite{enwiki:1214062423}

@@ -1276,6 +1276,12 @@ notebook:
     - prufer_inv: Pr\"ufer 序列逆
       code_ext: hpp
       test_ext: cpp
+    - bwt: Burrows–Wheeler 变换
+      code_ext: hpp
+      test_ext: cpp
+    - bwt_inv: Burrows–Wheeler 逆变换
+      code_ext: hpp
+      test_ext: cpp
     game:
     - sudoku: 数独求解
       code_ext: hpp
