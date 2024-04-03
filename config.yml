@@ -483,7 +483,7 @@ notebook:
     - kruskal_re_tree: kruskal 重构树
       code_ext: hpp
       test_ext: cpp
-    - bm: Bellman–Ford
+    - bm: Bellman--Ford
       code_ext: hpp
       test_ext: cpp
     - floyd: Floyd
@@ -771,7 +771,7 @@ notebook:
     - bsgs_nimber: Nimber BSGS
       code_ext: hpp
       test_ext: cpp
-    - sbt: Stern–Brocot 树
+    - sbt: Stern--Brocot 树
       code_ext: hpp
       test_ext: cpp
     - sqrfree_cnt: 无平方因子数计数
@@ -895,7 +895,7 @@ notebook:
     - series_ipaf: series_ipaf
       code_ext: hpp
       test_ext: cpp
-    - berlekamp_massey: Berlekamp–Massey 算法
+    - berlekamp_massey: Berlekamp--Massey 算法
       code_ext: hpp
       test_ext: cpp
     - nth_term_lrec: 线性递推数列的第 N 项
@@ -977,7 +977,7 @@ notebook:
     - mat_det_rd: 求矩阵的行列式(随机化算法)
       code_ext: hpp
       test_ext: cpp
-    - sherman_morrison: Sherman–Morrison 公式
+    - sherman_morrison: Sherman--Morrison 公式
       code_ext: hpp
       test_ext: cpp
     - bitmat: 静态 Bool 矩阵
@@ -1044,10 +1044,10 @@ notebook:
     - conv_xor: 卷积(异或)
       code_ext: hpp
       test_ext: cpp
-    - zmt_subset: Zeta–M\"obius 变换(子集)
+    - zmt_subset: Zeta--M\"obius 变换(子集)
       code_ext: hpp
       test_ext: cpp
-    - zmt_supset: Zeta–M\"obius 变换(超集)
+    - zmt_supset: Zeta--M\"obius 变换(超集)
       code_ext: hpp
       test_ext: cpp
     - conv_subset: 卷积(子集)
@@ -1059,10 +1059,10 @@ notebook:
     - conv_or: 卷积(交)
       code_ext: hpp
       test_ext: cpp
-    - zmt_divisor: Zeta–M\"obius 变换(因数)
+    - zmt_divisor: Zeta--M\"obius 变换(因数)
       code_ext: hpp
       test_ext: cpp
-    - zmt_multiple: Zeta–M\"obius 变换(倍数)
+    - zmt_multiple: Zeta--M\"obius 变换(倍数)
       code_ext: hpp
       test_ext: cpp
     - conv_gcd: 卷积(GCD)
@@ -1174,7 +1174,7 @@ notebook:
     - poly_cbm2n: 单项式基转 Newton 基
       code_ext: hpp
       test_ext: cpp
-    - bostan_mori: Bostan–Mori 算法
+    - bostan_mori: Bostan--Mori 算法
       code_ext: hpp
       test_ext: cpp
     - polysp: 多项式转稀疏多项式
@@ -1276,10 +1276,10 @@ notebook:
     - prufer_inv: Pr\"ufer 序列逆
       code_ext: hpp
       test_ext: cpp
-    - bwt: Burrows–Wheeler 变换
+    - bwt: Burrows--Wheeler 变换
       code_ext: hpp
       test_ext: cpp
-    - bwt_inv: Burrows–Wheeler 逆变换
+    - bwt_inv: Burrows--Wheeler 逆变换
       code_ext: hpp
       test_ext: cpp
     game:
