@@ -36,7 +36,11 @@ int main() {
     case tifa_libs::unittest::ts_random_02: test<1>(5, 5); break;
     case tifa_libs::unittest::ts_random_03: test<1>(6, 6); break;
     case tifa_libs::unittest::ts_random_04: test<2>(10, 10); break;
-    case tifa_libs::unittest::ts_random_05: test<2>(20, 5); break;
+    case tifa_libs::unittest::ts_random_05: test<2>(20, 20); break;
+    case tifa_libs::unittest::ts_random_06: test<2>(30, 10); break;
+    case tifa_libs::unittest::ts_random_07: test<2>(40, 8); break;
+    case tifa_libs::unittest::ts_random_08: test<2>(50, 7); break;
+    case tifa_libs::unittest::ts_random_09: test<2>(60, 6); break;
     default: break;
   }
 

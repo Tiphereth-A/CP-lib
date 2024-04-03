@@ -2,12 +2,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/nt/lsieve2.hpp"
+
 #include "../../../code/math/mint_ss.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
 
 using mint = tifa_libs::math::mint_ss<1'000'000'000 + 7>;
-
 
 void test(strn const& data) {
   strn path = "src/data/loj/124/" + data;
@@ -42,39 +42,47 @@ int main() {
     case tifa_libs::unittest::ts_example_01:
       test("sieve3");
       test("sieve4");
-      test("sieve5");
       break;
     case tifa_libs::unittest::ts_random_00:
+      test("sieve5");
       test("sieve6");
+      break;
+    case tifa_libs::unittest::ts_random_01:
       test("sieve7");
       test("sieve8");
       break;
-    case tifa_libs::unittest::ts_random_01:
+    case tifa_libs::unittest::ts_random_02:
       test("sieve9");
       test("sieve10");
-      test("sieve11");
       break;
-    case tifa_libs::unittest::ts_random_02:
+    case tifa_libs::unittest::ts_random_03:
+      test("sieve11");
       test("sieve12");
+      break;
+    case tifa_libs::unittest::ts_random_04:
       test("sieve13");
       test("sieve14");
       break;
-    case tifa_libs::unittest::ts_random_03:
+    case tifa_libs::unittest::ts_random_05:
       test("sieve15");
       test("sieve16");
-      test("sieve17");
       break;
-    case tifa_libs::unittest::ts_random_04:
+    case tifa_libs::unittest::ts_random_06:
+      test("sieve17");
       test("sieve18");
+      break;
+    case tifa_libs::unittest::ts_random_07:
       test("sieve19");
       test("sieve20");
       break;
-    case tifa_libs::unittest::ts_random_05:
+    case tifa_libs::unittest::ts_random_08:
       test("sieve21");
       test("sieve22");
-      test("sieve23");
       break;
-    case tifa_libs::unittest::ts_random_06: test("sieve24"); break;
+    case tifa_libs::unittest::ts_random_09:
+      test("sieve23");
+      test("sieve24");
+      break;
     default: break;
   }
 

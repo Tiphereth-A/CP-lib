@@ -2,7 +2,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/nt/lsieve2.hpp"
+
 #include "../base.hpp"
+
 
 void test(strn const& data) {
   strn path = "src/data/bzoj/4804/" + data;
@@ -43,6 +45,13 @@ int main() {
     case tifa_libs::unittest::ts_random_00: test("3"); break;
     case tifa_libs::unittest::ts_random_01: test("4"); break;
     case tifa_libs::unittest::ts_random_02: test("5"); break;
+    case tifa_libs::unittest::ts_random_03: break;
+    case tifa_libs::unittest::ts_random_04: break;
+    case tifa_libs::unittest::ts_random_05: break;
+    case tifa_libs::unittest::ts_random_06: break;
+    case tifa_libs::unittest::ts_random_07: break;
+    case tifa_libs::unittest::ts_random_08: break;
+    case tifa_libs::unittest::ts_random_09: break;
     default: break;
   }
 

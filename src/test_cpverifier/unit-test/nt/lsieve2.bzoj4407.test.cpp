@@ -2,9 +2,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/nt/lsieve2.hpp"
+
 #include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
+
 
 using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
@@ -55,6 +57,8 @@ int main() {
     case tifa_libs::unittest::ts_random_05: test("8"); break;
     case tifa_libs::unittest::ts_random_06: test("9"); break;
     case tifa_libs::unittest::ts_random_07: test("10"); break;
+    case tifa_libs::unittest::ts_random_08: break;
+    case tifa_libs::unittest::ts_random_09: break;
     default: break;
   }
 

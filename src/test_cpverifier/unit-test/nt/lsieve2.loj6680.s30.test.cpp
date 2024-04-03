@@ -6,11 +6,11 @@
 // clang-format on
 
 #include "../../../code/nt/lsieve2.hpp"
+
 #include "../../../code/math/mint_s30.hpp"
 #include "../base.hpp"
 
 using mint = tifa_libs::math::mint_s30<998244353>;
-
 
 void test(strn const& data) {
   strn path = "src/data/loj/6680/" + data;
@@ -24,7 +24,7 @@ void test(strn const& data) {
     if (e == 1) return lst = ptt<mint>(p + (p ^ 1), 1 + (p ^ 1));
     else return lst = ptt<mint>((lst.first * p + (p ^ e)), (lst.second + (p ^ e)));
   },
-                            ptt<mint>{1, 1});
+                         ptt<mint>{1, 1});
 
   vec<mint> f(n + 1);
   f[1] = 1;
@@ -73,14 +73,10 @@ int main() {
       test("15");
       test("16");
       break;
-    case tifa_libs::unittest::ts_random_06:
-      test("17");
-      test("18");
-      break;
-    case tifa_libs::unittest::ts_random_07:
-      test("19");
-      test("20");
-      break;
+    case tifa_libs::unittest::ts_random_06: test("17"); break;
+    case tifa_libs::unittest::ts_random_07: test("18"); break;
+    case tifa_libs::unittest::ts_random_08: test("19"); break;
+    case tifa_libs::unittest::ts_random_09: test("20"); break;
     default: break;
   }
 

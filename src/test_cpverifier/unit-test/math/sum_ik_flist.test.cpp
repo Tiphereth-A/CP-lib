@@ -2,9 +2,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/math/sum_ik_flist.hpp"
+
 #include "../../../code/math/mpi.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
+
 
 using tifa_libs::math::mpi;
 
@@ -31,6 +33,15 @@ int main() {
       break;
     case tifa_libs::unittest::ts_example_01: test_sum_ik_flist(42); break;
     case tifa_libs::unittest::ts_random_00: test_sum_ik_flist(114514); break;
+    case tifa_libs::unittest::ts_random_01: break;
+    case tifa_libs::unittest::ts_random_02: break;
+    case tifa_libs::unittest::ts_random_03: break;
+    case tifa_libs::unittest::ts_random_04: break;
+    case tifa_libs::unittest::ts_random_05: break;
+    case tifa_libs::unittest::ts_random_06: break;
+    case tifa_libs::unittest::ts_random_07: break;
+    case tifa_libs::unittest::ts_random_08: break;
+    case tifa_libs::unittest::ts_random_09: break;
     default: break;
   }
 

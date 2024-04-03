@@ -2,7 +2,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/opt/heuristic_lbsa.hpp"
+
 #include "../base.hpp"
+
 
 using point_t = ptt<i32>;
 
@@ -77,6 +79,16 @@ int main() {
   switch (tcase) {
     case tifa_libs::unittest::ts_example_00: test("bcl380", 1621, 120, .27, 1000, 380, .2); break;
     case tifa_libs::unittest::ts_example_01: test("xql662", 2513, 120, .19, 1000, 662, .2); break;
+    case tifa_libs::unittest::ts_random_00: break;
+    case tifa_libs::unittest::ts_random_01: break;
+    case tifa_libs::unittest::ts_random_02: break;
+    case tifa_libs::unittest::ts_random_03: break;
+    case tifa_libs::unittest::ts_random_04: break;
+    case tifa_libs::unittest::ts_random_05: break;
+    case tifa_libs::unittest::ts_random_06: break;
+    case tifa_libs::unittest::ts_random_07: break;
+    case tifa_libs::unittest::ts_random_08: break;
+    case tifa_libs::unittest::ts_random_09: break;
     default: break;
   }
 

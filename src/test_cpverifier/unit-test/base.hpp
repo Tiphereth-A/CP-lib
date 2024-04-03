@@ -23,20 +23,21 @@ strn to_str(T const &x) {
 template <class T, class... Ts>
 void check_(strn const &pretty_func, T const &got, T const &want, Ts... param) {
   if constexpr (sizeof...(param) == 0) {
-    if (got != want) throw std::runtime_error(pretty_func + ": " + "| got " + to_str(got) + ", want " + to_str(want));
-  } else if constexpr (sizeof...(param) == 1) {
-    if (got != want) throw std::runtime_error(pretty_func + ": " + (param + ...) + ", | got " + to_str(got) + ", want " + to_str(want));
-  } else if (got != want) throw std::runtime_error(pretty_func + ": " + ((param + ", "s) + ...) + "| got " + to_str(got) + ", want " + to_str(want));
+    if (got != want) throw std::runtime_error(pretty_func + ": got " + to_str(got) + ", want " + to_str(want));
+  } else {
+    if (got != want) throw std::runtime_error(pretty_func + ": " + ((param.first + ::tifa_libs::unittest::detail__::to_str(param.second) + " | ") + ...) + " -> got " + to_str(got) + ", want " + to_str(want));
+  }
 }
 
 template <class... Ts>
 void check_bool_(strn const &pretty_func, strn const &expression, bool res, Ts... param) {
   if constexpr (sizeof...(param) == 0) {
     if (!res) throw std::runtime_error(pretty_func + ": " + expression + " failed");
-  } else if constexpr (sizeof...(param) == 1) {
-    if (!res) throw std::runtime_error(pretty_func + ": " + (param + ...) + ", | " + expression + " failed");
-  } else if (!res) throw std::runtime_error(pretty_func + ": " + ((param + ", "s) + ...) + "| " + expression + " failed");
+  } else {
+    if (!res) throw std::runtime_error(pretty_func + ": " + ((param.first + ::tifa_libs::unittest::detail__::to_str(param.second) + " | ") + ...) + " -> " + expression + " failed");
+  }
 }
+
 }  // namespace detail__
 
 enum TESTCASE { ts_local,
@@ -93,7 +94,8 @@ inline TESTCASE pre_test() {
 #pragma GCC diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
 #define check(got, want, check_params...) ::tifa_libs::unittest::detail__::check_(__PRETTY_FUNCTION__, got, want, ##check_params)
 #define check_bool(expression, check_params...) ::tifa_libs::unittest::detail__::check_bool_(__PRETTY_FUNCTION__, #expression, expression, ##check_params)
-#define check_param(x) #x " = " + ::tifa_libs::unittest::detail__::to_str(x)
+#define check_param(x) \
+  std::pair<std::string, decltype(x)> { #x " = ", x }
 
 }  // namespace tifa_libs::unittest
 

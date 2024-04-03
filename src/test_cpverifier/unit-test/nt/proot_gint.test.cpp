@@ -2,6 +2,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/nt/proot_gint.hpp"
+
 #include "../../../code/math/mint_s63.hpp"
 #include "../../../code/math/mint_ss.hpp"
 #include "../../../code/math/qpow.hpp"
@@ -63,34 +64,51 @@ int main() {
       test_proot_gint<mint<3>>();
       test_proot_gint<mint<5>>();
       test_proot_gint<mint<7>>();
+      break;
+    case tifa_libs::unittest::ts_example_01:
       test_proot_gint<mint<11>>();
       test_proot_gint<mint<13>>();
       test_proot_gint<mint<17>>();
       test_proot_gint<mint<19>>();
+      break;
+    case tifa_libs::unittest::ts_random_00:
       test_proot_gint<mint<40961>>();
       test_proot_gint<mint<65537>>();
       test_proot_gint<mint<786433>>();
       test_proot_gint<mint<19260817>>();
       break;
+    case tifa_libs::unittest::ts_random_01: break;
       // larger prime in u32
-    case tifa_libs::unittest::ts_example_01:
+    case tifa_libs::unittest::ts_random_02:
       test_proot_gint<mint<167772161>>();
       test_proot_gint<mint<469762049>>();
+      break;
+    case tifa_libs::unittest::ts_random_03:
       test_proot_gint<mint<754974721>>();
       test_proot_gint<mint<998244353>>();
+      break;
+    case tifa_libs::unittest::ts_random_04:
       test_proot_gint<mint<999292927>>();
       test_proot_gint<mint<1000000007>>();
+      break;
+    case tifa_libs::unittest::ts_random_05:
       test_proot_gint<mint<1004535809>>();
       test_proot_gint<mint<2013265921>>();
       break;
       // larger prime in u64
-    case tifa_libs::unittest::ts_random_00:
+    case tifa_libs::unittest::ts_random_06:
       test_proot_gint<mint64<75161927681>>();
       test_proot_gint<mint64<77309411329>>();
+      break;
+    case tifa_libs::unittest::ts_random_07:
       test_proot_gint<mint64<2061584302081>>();
       test_proot_gint<mint64<6597069766657>>();
+      break;
+    case tifa_libs::unittest::ts_random_08:
       test_proot_gint<mint64<1231453023109121>>();
       test_proot_gint<mint64<3799912185593857>>();
+      break;
+    case tifa_libs::unittest::ts_random_09:
       test_proot_gint<mint64<180143985094819841>>();
       test_proot_gint<mint64<4179340454199820289>>();
       break;
