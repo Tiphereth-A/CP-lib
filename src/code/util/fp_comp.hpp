@@ -6,8 +6,10 @@
 
 namespace tifa_libs {
 
-template <int_c T>
+template <sint_c T>
 constexpr int sgn(T x) { return (!!x) | (x >> (sizeof(T) * 8 - 1)); }
+template <uint_c T>
+constexpr int sgn(T x) { return !!x; }
 template <std::floating_point FP>
 constexpr int sgn(FP x) { return (x > eps_v<FP>)-(x < -eps_v<FP>); }
 

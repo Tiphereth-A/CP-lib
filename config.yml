@@ -422,6 +422,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     opt:
+    - bsearch: 二分
+      code_ext: hpp
+      test_ext: cpp
     - tsearch: 三分
       code_ext: hpp
       test_ext: cpp
@@ -785,6 +788,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - rational: 有理数
+      code_ext: hpp
+      test_ext: cpp
+    - rational_approx: 有理数近似
       code_ext: hpp
       test_ext: cpp
     - frac_itv: 区间内分母最小的分数

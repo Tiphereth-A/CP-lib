@@ -8,7 +8,7 @@ namespace tifa_libs::opt {
 
 // @return $\argmin_{l\leq x\leq r}\{f\}$
 template <arithm_c I, class F>
-constexpr auto tsearch(I l, I r, F f) {
+constexpr auto tsearch(I l, I r, F&& f) {
   using T = decltype(f(l));
   assert(l <= r);
   I ml, mr;
