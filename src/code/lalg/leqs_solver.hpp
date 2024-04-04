@@ -2,9 +2,9 @@
 #define TIFALIBS_LALG_LEQS_SOLVER
 
 #include "mat.hpp"
-#include "mat_merge_lr.hpp"
-#include "mat_rk.hpp"
-#include "mat_trans.hpp"
+#include "merge_lr_mat.hpp"
+#include "rk_mat.hpp"
+#include "trans_mat.hpp"
 
 namespace tifa_libs::math {
 
@@ -16,7 +16,7 @@ requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
 constexpr std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0 &&is0, Ge &&ge) {
   u32 r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
-  matrix<T> Ab = mat_merge_lr(A, b);
+  matrix<T> Ab = merge_lr_mat(A, b);
   u32 rk = (u32)do_rank(Ab, std::forward<Ge>(ge));
   if (rk > c_) return {};
   if (!is0(Ab(rk - 1, c_))) {
@@ -30,8 +30,8 @@ constexpr std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> con
   }
   for (u32 i = rk; i < r_; ++i)
     if (!is0(Ab(i, c_))) return {};
-  vec<bool> used(c_, false);
-  vec<u32> idxs;
+  vecb used(c_, false);
+  vecu idxs;
   for (u32 i = 0, _ = 0; i < r_; ++i) {
     while (i + _ < c_ && is0(Ab(i, i + _))) ++_;
     if (i + _ >= c_) break;

@@ -5,9 +5,9 @@
 
 namespace tifa_libs::str {
 
-constexpr vec<u32> duval(strnv s) {
+constexpr vecu duval(strnv s) {
   const u32 n = (u32)s.size();
-  vec<u32> res{0};
+  vecu res{0};
   while (res.back() != n) {
     u32 l = 1;
     for (u32 i = res.back() + 1; i < n + 1; ++i)

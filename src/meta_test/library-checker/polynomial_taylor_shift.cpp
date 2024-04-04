@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/polynomial_taylor_shift"
 
-#include "../../code/poly/poly_tsh.hpp"
+#include "../../code/poly/tsh_fps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -21,6 +21,6 @@ int main() {
   std::cin >> n >> c;
   poly a(n);
   std::cin >> a;
-  std::cout << tifa_libs::math::poly_tsh<poly>(a, c) << '\n';
+  std::cout << tifa_libs::math::tsh_fps(a, c) << '\n';
   return 0;
 }

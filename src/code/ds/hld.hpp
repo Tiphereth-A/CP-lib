@@ -7,15 +7,21 @@
 
 namespace tifa_libs::ds {
 
-// template <class T, T (*op)(T, T), T (*e)(), class F, T (*mapping)(F, T), F (*composition)(F, F), F (*id)()>
 template <class T, auto op, auto e, class F = T, auto mapping = op, auto composition = e, auto id = e>
+requires requires(T val, T val_l, T val_r, F tag, F tag_l, F tag_r) {
+  { e() } -> std::same_as<T>;
+  { id() } -> std::same_as<F>;
+  { op(val_l, val_r) } -> std::same_as<T>;
+  { mapping(tag, val) } -> std::same_as<T>;
+  { composition(tag_l, tag_r) } -> std::same_as<F>;
+}
 class hld {
   segtree<T, op, e, F, mapping, composition, id> t;
 
  public:
   graph::tree& tr;
   graph::tree_dfs_info<graph::tree> info;
-  vec<u32> top;
+  vecu top;
 
   explicit constexpr hld(graph::tree& tr) : t(), tr(tr), info() {
     info.template reset_dfs_info<graph::td_dep | graph::td_fa>(tr);

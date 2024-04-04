@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/manhattanmst/"
 
-#include "../../code/graph/manhattan_mst.hpp"
 #include "../../code/graph/kruskal.hpp"
+#include "../../code/graph/manhattan_mst.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);

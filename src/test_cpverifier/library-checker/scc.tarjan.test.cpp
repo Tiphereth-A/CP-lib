@@ -9,15 +9,15 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
 
-  vvec<u32> e(n);
+  vvecu e(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     e[u].push_back(v);
   }
   tifa_libs::graph::tarjan scc;
   scc.build(e);
-  vvec<u32> g(scc.id);
-  vec<u32> in(scc.id);
+  vvecu g(scc.id);
+  vecu in(scc.id);
   std::queue<u32> q;
   for (u32 i = 0, x, y; i < n; ++i)
     for (auto v : e[i])

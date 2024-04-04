@@ -13,10 +13,10 @@ constexpr T uniq(T const &v) {
   return _;
 }
 template <iterable_c T = vec<int>>
-constexpr std::pair<T, vec<usz>> gen_id(T const &v) {
+constexpr std::pair<T, vec<u32>> gen_id(T const &v) {
   T _ = uniq(v);
-  vec<usz> _1;
-  for (usz i = 0; i < v.size(); ++i) _1.push_back(usz(std::lower_bound(_.begin(), _.end(), v[i]) - _.begin()));
+  vec<u32> _1;
+  for (u32 i = 0; i < v.size(); ++i) _1.push_back(u32(std::lower_bound(_.begin(), _.end(), v[i]) - _.begin()));
   return {_, _1};
 }
 

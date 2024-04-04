@@ -11,9 +11,9 @@ requires requires(F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime, u32 p, u32 q) {
   cb_coprime(p, q);
   cb_not_coprime(p, q);
 }
-constexpr vec<u32> lsieve(u32 n, F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime) {
-  vec<bool> vis(n);
-  vec<u32> p;
+constexpr vecu lsieve(u32 n, F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime) {
+  vecb vis(n);
+  vecu p;
   p.reserve(n <= 170 ? 16 : n / 10);
   for (u32 i = 2; i < n; ++i) {
     if (!vis[i]) {

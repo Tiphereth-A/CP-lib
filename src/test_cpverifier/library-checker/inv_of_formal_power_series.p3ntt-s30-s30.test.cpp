@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series"
 
-#include "../../code/poly/poly_inv.hpp"
+#include "../../code/poly/inv_fps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -21,6 +21,6 @@ int main() {
   std::cin >> n;
   poly p(n);
   std::cin >> p;
-  std::cout << tifa_libs::math::poly_inv(p);
+  std::cout << tifa_libs::math::inv_fps(p);
   return 0;
 }

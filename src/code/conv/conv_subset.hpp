@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 template <class T, u32 N>
 struct conv_subset {
   using arr = std::array<T, N + 1>;
-  vec<u32> pc;
+  vecu pc;
 
   constexpr void add(arr& l, arr const& r, u32 d) const {
     for (u32 i = 0; i < d; ++i) l[i] += r[i];

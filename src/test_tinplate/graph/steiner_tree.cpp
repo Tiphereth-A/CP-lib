@@ -9,7 +9,7 @@ int main() {
   std::cin >> n >> m >> k;
   tifa_libs::graph::alistw<u32> e(n);
   for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w, --u, --v, e.add_arc(u, v, w), e.add_arc(v, u, w);
-  vec<u32> a(k);
+  vecu a(k);
   for (auto& x : a) std::cin >> x, --x;
   tifa_libs::graph::steiner_tree st(e, a);
   std::cout << st.val();

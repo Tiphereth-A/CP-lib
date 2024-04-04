@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class mint>
-constexpr mint ball_box_ddl(u32, u32 box, vec<u64> const& pows, Binom<mint> const& binom) {
+constexpr mint ball_box_ddl(u32, u32 box, vecu64 const& pows, Binom<mint> const& binom) {
   mint ans = 0;
   bool f = box & 1;
   for (u32 i = 1; i <= box; ++i) {

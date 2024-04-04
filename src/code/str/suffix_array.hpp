@@ -10,13 +10,13 @@ class suffixarray {
   T s;
 
  public:
-  vec<u32> sa, rk, height;
+  vecu sa, rk, height;
 
   // s must start from 1
   explicit constexpr suffixarray(T s_) : s(s_), sa(s.size()), rk(s.size()) {
     u32 n = u32(s.size() - 1), m = 0, p;
     for (auto x : s_) m = std::max(m, u32(x));
-    vec<u32> oldrk(n + n + 1), id(n + 1), cnt(m + 1, 0);
+    vecu oldrk(n + n + 1), id(n + 1), cnt(m + 1, 0);
     for (u32 i = 1; i <= n; ++i) ++cnt[rk[i] = u32(s[i])];
     for (u32 i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
     for (u32 i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
@@ -27,7 +27,7 @@ class suffixarray {
       for (u32 i = 1; i <= n; ++i)
         if (sa[i] > w) id[++p] = sa[i] - w;
 
-      cnt = vec<u32>(m + 1, 0);
+      cnt = vecu(m + 1, 0);
       for (u32 i = 1; i <= n; ++i) ++cnt[rk[id[i]]];
       for (u32 i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
       for (u32 i = n; i >= 1; --i) sa[cnt[rk[id[i]]]--] = id[i];
@@ -43,7 +43,7 @@ class suffixarray {
 
   constexpr void get_height() {
     u32 n = s.size() - 1;
-    vec<u32> height(n + 1);
+    vecu height(n + 1);
     for (u32 i = 1, k = 0; i <= n; ++i) {
       if (rk[i] == 1) continue;
       if (k) --k;

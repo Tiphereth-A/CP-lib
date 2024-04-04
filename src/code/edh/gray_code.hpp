@@ -14,8 +14,8 @@ constexpr std::bitset<64> gray_code(u32 n, u64 k) {
 }
 
 // all n-digit Gray code
-constexpr vec<u32> gray_code(u32 n) {
-  vec<u32> ret(1 << n);
+constexpr vecu gray_code(u32 n) {
+  vecu ret(1 << n);
   for (u32 i = 0; i < ret.size(); ++i) ret[i] = i ^ (i >> 1);
   return ret;
 }

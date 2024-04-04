@@ -4,12 +4,12 @@
 #include "../../code/io/fastio.hpp"
 
 int main() {
-  usz n, q;
+  u32 n, q;
   tifa_libs::fin >> n >> q;
   vec<i64> a(n);
   for (auto& x : a) tifa_libs::fin >> x;
   tifa_libs::ds::segtree_beats<i64> seg(a);
-  for (usz i = 0, opt, l, r; i < q; ++i) {
+  for (u32 i = 0, opt, l, r; i < q; ++i) {
     tifa_libs::fin >> opt >> l >> r;
     --r;
     if (opt == 3) tifa_libs::fout << seg.querys(1, 0, n - 1, l, r) << '\n';

@@ -20,7 +20,7 @@ int main() {
   mint::set_mod(MOD);
   u32 n, t;
   tifa_libs::fin >> n >> t;
-  vec<u32> s(n);
+  vecu s(n);
   tifa_libs::fin >> s;
   auto v = tifa_libs::math::ssts_pim_cnt<poly>(s, t).data();
   for (u32 i = 1; i <= t; ++i) tifa_libs::fout.write(v[i]).space_if(i != t);

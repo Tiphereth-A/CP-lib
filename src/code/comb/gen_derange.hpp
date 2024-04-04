@@ -6,8 +6,8 @@
 namespace tifa_libs::math {
 
 // (derangement) !i for i=0..n-1
-constexpr vec<u64> gen_derange(u32 n, u64 mod) {
-  vec<u64> d{0, mod > 1};
+constexpr vecu64 gen_derange(u32 n, u64 mod) {
+  vecu64 d{0, mod > 1};
   if (n > 2) d.reserve(n);
   else {
     d.resize(n);

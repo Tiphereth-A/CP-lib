@@ -1,0 +1,34 @@
+#ifndef TIFALIBS_POLY_LN_FPSSP
+#define TIFALIBS_POLY_LN_FPSSP
+
+#include "../comb/gen_inv.hpp"
+#include "polysp.hpp"
+
+namespace tifa_libs::math {
+
+template <class mint, class ccore>
+constexpr poly<mint, ccore> ln_fpssp(poly<mint, ccore> const& p, vecu64 const& inv, u32 n = 0) {
+  assert(!p.data().empty() && p[0] == 1);
+  if (!n) n = p.size();
+  auto ps = poly2sp(p, n);
+  poly<mint, ccore> g(n);
+  for (u32 k = 0; k < n - 1; ++k) {
+    for (auto& [j, pj] : ps) {
+      if (k < j) break;
+      u32 i = k - j + 1;
+      g[k + 1] -= g[i] * pj * i;
+    }
+    g[k + 1] *= inv[k + 1];
+    if (k + 1 < p.size()) g[k + 1] += p[k + 1];
+  }
+  return g;
+}
+template <class mint, class ccore>
+constexpr poly<mint, ccore> ln_fpssp(poly<mint, ccore> const& p, u32 n = 0) {
+  if (!n) n = p.size();
+  return ln_fpssp(p, gen_inv(n, mint::mod()), n);
+}
+
+}  // namespace tifa_libs::math
+
+#endif

@@ -1,7 +1,7 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../../code/geo2d/poly_fermatp.hpp"
+#include "../../../code/geo2d/fermatp.hpp"
 #include "../base.hpp"
 
 using tifa_libs::geo::point, tifa_libs::geo::polygon;

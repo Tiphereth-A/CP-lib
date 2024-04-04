@@ -17,7 +17,7 @@ int main() {
       std::cin >> x, mcmf.add(i, j + n, 1, x);
   auto [flow, cost] = mcmf();
   std::cout << cost << '\n';
-  vec<u32> ans(n);
+  vecu ans(n);
   for (u32 i = 0; i < n; ++i)
     for (auto v : mcmf.e[i])
       if (v.to < n + n && v.to >= n && v.w == 0) {

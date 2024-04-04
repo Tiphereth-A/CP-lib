@@ -11,7 +11,7 @@ struct amat {
   using value_type = vvec<T>;
   value_type g;
   u32 cnt_arc;
-  vec<u32> deg_in, deg_out;
+  vecu deg_in, deg_out;
 
   //! vertex ID: [0, n)
   explicit constexpr amat(u32 n, T const v = T{}) : g(n, vec<T>(n, v)), cnt_arc(0), deg_in(0), deg_out(0) {

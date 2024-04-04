@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod"
 
+#include "../../code/lalg/det_mat.hpp"
+#include "../../code/lalg/ge_euclid_mat.hpp"
 #include "../../code/lalg/mat.hpp"
-#include "../../code/lalg/mat_det.hpp"
-#include "../../code/lalg/mat_ge_euclid.hpp"
-
+//
 #ifdef GENTC_d31
 #include "../../code/math/mint_d31.hpp"
 

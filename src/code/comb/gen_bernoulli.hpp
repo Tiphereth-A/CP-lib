@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_COMB_GEN_BERNOULLI
 #define TIFALIBS_COMB_GEN_BERNOULLI
 
-#include "../poly/poly_inv.hpp"
+#include "../poly/inv_fps.hpp"
 #include "gen_fact.hpp"
 #include "gen_ifact.hpp"
 
@@ -13,7 +13,7 @@ constexpr poly gen_bernoulli(u32 n, vec<mint> const& fact, vec<mint> const& ifac
   if (!n) return poly{1};
   poly b(n + 1);
   for (u32 i = 0; i <= n; ++i) b[i] = ifact[i + 1];
-  b = poly_inv(b);
+  b = inv_fps(b);
   for (u32 i = 1; i <= n; ++i) b[i] *= fact[i];
   return b;
 }

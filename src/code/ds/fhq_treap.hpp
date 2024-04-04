@@ -17,7 +17,7 @@ class fhq_treap {
   };
   rand::Gen<std::uniform_int_distribution<i32>> gen;
   vec<YYZ> t;
-  vec<u32> sta;
+  vecu sta;
   u32 cnt;
 
   constexpr u32 newnode(std::pair<KEY, VAL> const& w) {

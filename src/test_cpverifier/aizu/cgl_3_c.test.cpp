@@ -17,7 +17,7 @@ int main() {
   std::cin >> pl;
   u32 q;
   std::cin >> q;
-  for (usz i = 0; i < q; ++i) {
+  for (u32 i = 0; i < q; ++i) {
     point p;
     std::cin >> p;
     switch (tifa_libs::geo::relation_PoP(pl, p)) {

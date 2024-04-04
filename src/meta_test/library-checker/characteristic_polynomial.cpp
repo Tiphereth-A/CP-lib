@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/characteristic_polynomial"
 
 #include "../../code/io/ios_container.hpp"
-#include "../../code/lalg/mat_charpoly.hpp"
+#include "../../code/lalg/charpoly_mat.hpp"
 
 constexpr u32 MOD = 998244353;
 

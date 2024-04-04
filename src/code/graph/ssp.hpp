@@ -5,7 +5,7 @@
 
 namespace tifa_libs::graph {
 
-template <typename EW = u32, typename EC = i32>
+template <class EW = u32, class EC = i32>
 class ssp {
   struct YYZ {
     u32 to;
@@ -20,7 +20,7 @@ class ssp {
 
   bool spfa(u64 inflow) {
     dis = vec<i64>(N, std::numeric_limits<i64>::max() / 2 - 1);
-    vec<bool> inq(N);
+    vecb inq(N);
     std::queue<u32> q;
     dis[S] = 0, flow[S] = EW(inflow), flow[T] = 0, q.push(S), inq[S] = 1;
     while (!q.empty()) {

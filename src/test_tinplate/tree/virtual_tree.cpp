@@ -10,7 +10,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  vec<u32> sign(n), min_(n);
+  vecu sign(n), min_(n);
   tifa_libs::graph::tree tr(n);
   {
     using Tw = u32;
@@ -28,7 +28,7 @@ int main() {
   std::cin >> m;
   for (u32 i = 0; i < m; ++i) {
     std::cin >> k;
-    vec<u32> a(k);
+    vecu a(k);
     for (auto& x : a) std::cin >> x, --x, sign[x] = 1;
     vt.build(a);
     auto dp = [&](auto&& dp, u32 u) -> u64 {

@@ -7,7 +7,7 @@
 void solve() {
   u32 n;
   std::cin >> n;
-  vec<u32> a(n);
+  vecu a(n);
   for (auto& i : a) std::cin >> i;
   std::cout << tifa_libs::cantor_seq2val(tifa_libs::cantor_seq(a), 998244353) << '\n';
 }

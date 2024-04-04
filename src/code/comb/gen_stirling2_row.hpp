@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 
 // stirling2[i] = {n \\brace i}, i=0,1,...,n
 template <class poly>
-constexpr poly gen_stirling2_row(u32 n, vec<u64> const& pows, vec<u64> const& ifact) {
+constexpr poly gen_stirling2_row(u32 n, vecu64 const& pows, vecu64 const& ifact) {
   using mint = typename poly::value_type;
   if (!n) return poly{1};
   u64 mod = mint::mod();

@@ -6,10 +6,10 @@
 
 namespace tifa_libs::game {
 
-constexpr vvvec<u32> sudoku_solver(vvec<u32> const &data, bool get_all_solution = false) {
+constexpr v3ecu sudoku_solver(vvecu const &data, bool get_all_solution = false) {
   const u32 n = math::isqrt(data.size()), n2 = (u32)data.size(), n4 = n2 * n2;
   assert(n <= 65536 && n * n == n2);
-  vvec<bool> g(n2 * n4, vec<bool>(4 * n4));
+  vvecb g(n2 * n4, vecb(4 * n4));
   bool not_filled = true;
   for (u32 i = 0; i < n2; ++i)
     for (u32 j = 0; j < n2; ++j)
@@ -20,9 +20,9 @@ constexpr vvvec<u32> sudoku_solver(vvec<u32> const &data, bool get_all_solution 
         g[_][i * n2 + j] = g[_][i * n2 + k + n4 - 1] = g[_][j * n2 + k + n4 * 2 - 1] = g[_][(i / n * n + j / n) * n2 + k + n4 * 3 - 1] = true;
       }
   if (!not_filled) return {data};
-  vvvec<u32> ans;
+  v3ecu ans;
   util::DLX(g, get_all_solution).dance([&](vec<usz> const &res) -> void {
-    vvec<u32> dt = data;
+    vvecu dt = data;
     for (usz _ : res) dt[(_ - 1) % n4 / n2][(_ - 1) % n2] = u32((_ - 1) / n4 + 1);
     ans.push_back(dt);
   });

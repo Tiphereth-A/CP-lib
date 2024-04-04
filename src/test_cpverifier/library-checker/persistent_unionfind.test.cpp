@@ -12,7 +12,7 @@ int main() {
   vvec<pt3<u32>> tr(Q), qry(Q);
   std::bitset<Q> ans;
   u32 cnt = 0;
-  for (usz i = 1; i <= q; ++i) {
+  for (u32 i = 1; i <= q; ++i) {
     u32 t, u, v;
     i32 k;
     std::cin >> t >> k >> u >> v;
@@ -33,6 +33,6 @@ int main() {
     }
   };
   dfs(dfs, 0);
-  for (usz i = 0; i < cnt; ++i) std::cout << ans[i] << '\n';
+  for (u32 i = 0; i < cnt; ++i) std::cout << ans[i] << '\n';
   return 0;
 }

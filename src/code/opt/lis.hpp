@@ -7,9 +7,9 @@ namespace tifa_libs::opt {
 
 // @return INDEX of LIS in @a
 template <class T, class C = std::less<T>>
-constexpr vec<u32> lis(vec<T> const& a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}) {
+constexpr vecu lis(vec<T> const& a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}) {
   vec<T> f{inf};
-  vec<u32> g;
+  vecu g;
   for (auto i : a) {
     auto it = std::lower_bound(f.begin(), f.end(), i, comp);
     g.push_back(u32(it - f.begin()));
@@ -17,8 +17,8 @@ constexpr vec<u32> lis(vec<T> const& a, T inf = std::numeric_limits<T>::max(), C
     else *it = i;
   }
   T val = inf;
-  vec<u32> ret;
-  for (usz i = g.size() - 1, now = f.size() - 1; ~i; --i)
+  vecu ret;
+  for (u32 i = u32(g.size() - 1), now = u32(f.size() - 1); ~i; --i)
     if (g[i] == now && val > a[i]) {
       ret.push_back((u32)i);
       --now;

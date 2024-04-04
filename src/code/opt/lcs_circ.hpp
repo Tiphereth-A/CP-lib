@@ -9,7 +9,7 @@ template <iterable_c T>
 constexpr u32 lcs_circ(T const& a, T const& b) {
   T b_(b.size() * 2);
   std::copy(b.begin(), b.end(), b_.begin()), std::copy(b.begin(), b.end(), b_.begin() + b.size());
-  vvec<bool> left(a.size() + 1, vec<bool>(b_.size() + 1)), up = left;
+  vvecb left(a.size() + 1, vecb(b_.size() + 1)), up = left;
   auto f = [&](u32 x, u32 y) {
     assert(x && y);
     bool _ = (a[x - 1] == b_[y - 1]) || up[x][y - 1] || left[x - 1][y];

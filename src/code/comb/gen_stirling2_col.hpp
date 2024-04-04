@@ -1,15 +1,15 @@
 #ifndef TIFALIBS_COMB_GEN_STIRLING2_COL
 #define TIFALIBS_COMB_GEN_STIRLING2_COL
 
-#include "../poly/poly_inv.hpp"
-#include "../poly/poly_shl.hpp"
-#include "../poly/poly_tsh.hpp"
+#include "../poly/inv_fps.hpp"
+#include "../poly/shl_fps.hpp"
+#include "../poly/tsh_fps.hpp"
 
 namespace tifa_libs::math {
 
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class poly>
-constexpr poly gen_stirling2_col(u32 n, u32 k, vec<u64> const& fact, vec<u64> const& ifact) {
+constexpr poly gen_stirling2_col(u32 n, u32 k, vecu64 const& fact, vecu64 const& ifact) {
   using mint = typename poly::value_type;
   if (k > n) return poly(n + 1);
 
@@ -24,7 +24,7 @@ constexpr poly gen_stirling2_col(u32 n, u32 k, vec<u64> const& fact, vec<u64> co
     }
     dfs(dfs, f, n / 2);
     f.data().push_back(0);
-    f *= poly_tsh(f, mint(mint::mod() - n / 2), fact, ifact);
+    f *= tsh_fps(f, mint(mint::mod() - n / 2), fact, ifact);
     f.resize(n + 1);
   };
 
@@ -35,8 +35,8 @@ constexpr poly gen_stirling2_col(u32 n, u32 k, vec<u64> const& fact, vec<u64> co
   f.reverse(k + 1);
   f[k + 1] = 0;
   f.resize(n - k + 1);
-  f = poly_inv(f).pre(n + 1);
-  return poly_shl(f, k);
+  f = inv_fps(f).pre(n + 1);
+  return shl_fps(f, k);
 }
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class poly>

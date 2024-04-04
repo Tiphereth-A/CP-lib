@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation"
 
-#include "../../code/poly/poly_mpe.hpp"
+#include "../../code/poly/mpe_fps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -19,6 +19,6 @@ int main() {
   std::cin >> n >> m;
   poly a(n), p(m);
   std::cin >> a >> p;
-  std::cout << tifa_libs::math::poly_mpe(a, p) << '\n';
+  std::cout << tifa_libs::math::mpe_fps(a, p) << '\n';
   return 0;
 }

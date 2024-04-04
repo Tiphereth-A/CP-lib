@@ -10,7 +10,7 @@ namespace tifa_libs::graph {
 template <class T>
 requires std::is_signed_v<T>
 auto manhattan_mst(vecpt<T> vp) {
-  vec<u32> id(vp.size());
+  vecu id(vp.size());
   std::iota(id.begin(), id.end(), 0);
   vec<std::tuple<T, u32, u32>> ret;
   for (u32 k = 0; k < 4; ++k) {

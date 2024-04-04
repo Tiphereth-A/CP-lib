@@ -5,9 +5,11 @@
 
 namespace tifa_libs::ds {
 
-// T e() {}
-// T op(T a, T b) {}
-template <typename T, auto e, auto op>
+template <class T, auto e, auto op>
+requires requires(T a, T b) {
+  { e() } -> std::same_as<T>;
+  { op(a, b) } -> std::same_as<T>;
+}
 class deque_with_w {
   // front [q[0].back        q[0].front][q[1].front       q[1].back] back
   vvec<T> q, s;

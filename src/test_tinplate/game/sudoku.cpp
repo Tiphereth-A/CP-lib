@@ -3,7 +3,7 @@
 #include "../../code/game/sudoku.hpp"
 
 void solve() {
-  vvec<u32> sdk(9, vec<u32>(9));
+  vvecu sdk(9, vecu(9));
   for (auto &i : sdk)
     for (auto &j : i) std::cin >> j;
   auto res = tifa_libs::game::sudoku_solver(sdk)[0];

@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_mod_2"
 
+#include "../../code/lalg/det_mat.hpp"
+#include "../../code/lalg/ge_xor_mat.hpp"
 #include "../../code/lalg/mat.hpp"
-#include "../../code/lalg/mat_det.hpp"
-#include "../../code/lalg/mat_ge_xor.hpp"
 
 using mat = tifa_libs::math::matrix<bool>;
 

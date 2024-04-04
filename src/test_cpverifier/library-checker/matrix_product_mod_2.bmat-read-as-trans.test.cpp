@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_product_mod_2"
 
 #include "../../code/lalg/bitmat.hpp"
-#include "../../code/lalg/bitmat_mul.hpp"
+#include "../../code/lalg/mul_bmat.hpp"
 
 template <usz N>
 using mat = tifa_libs::math::bitmat<N>;
@@ -17,7 +17,7 @@ int main() {
     mat<num> a, b;                                         \
     tifa_libs::math::read_bitmat(std::cin, a, n, m);       \
     tifa_libs::math::read_bitmat_trans(std::cin, b, m, k); \
-    auto c = tifa_libs::math::bitmat_mul(a, b);            \
+    auto c = tifa_libs::math::mul_bmat(a, b);              \
     tifa_libs::math::print_bitmat(std::cout, c, n, k);     \
     return 0;                                              \
   }

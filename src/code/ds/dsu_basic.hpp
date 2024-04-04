@@ -4,6 +4,7 @@
 #include "../util/util.hpp"
 
 namespace tifa_libs::ds {
+
 template <bool RANK_ = false>
 class dsu_basic {
   vec<i32> p;

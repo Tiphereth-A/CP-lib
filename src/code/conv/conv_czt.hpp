@@ -3,7 +3,7 @@
 
 #include "../math/qpow.hpp"
 #include "../nt/proot_u32.hpp"
-#include "../poly/poly_czt.hpp"
+#include "../poly/czt_fps.hpp"
 
 namespace tifa_libs::math {
 
@@ -15,13 +15,13 @@ constexpr auto conv_czt(poly l, poly r, u32 ans_size = 0) {
   const u32 m = (u32)mint::mod();
   u32 s = (u32)std::bit_ceil(l.size() + r.size() - 1);
   assert((m - 1) % s == 0);
-  mint c = qpow(mint(proot_u32(m)), (m - 1) / s);
+  mint c = qpow(mint(proot(m)), (m - 1) / s);
   l.resize(s);
   r.resize(s);
-  l = poly_czt(l, c);
-  r = poly_czt(r, c);
+  l = czt_fps(l, c);
+  r = czt_fps(r, c);
   for (u32 i = 0; i < s; ++i) l[i] *= r[i];
-  l = poly_czt<poly, mint>(l, c.inv());
+  l = czt_fps<mint, typename poly::ccore_type>(l, c.inv());
   l.resize(ans_size);
   return (l *= mint(s).inv()).data();
 }

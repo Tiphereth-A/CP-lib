@@ -2,7 +2,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sqrt_of_formal_power_series"
 
 #include "../../code/io/fastio.hpp"
-#include "../../code/poly/poly_sqrt.hpp"
+#include "../../code/poly/sqrt_fps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -18,7 +18,7 @@ int main() {
   tifa_libs::fin >> n;
   poly p(n);
   tifa_libs::fin >> p.data();
-  auto res = tifa_libs::math::poly_sqrt(p);
+  auto res = tifa_libs::math::sqrt_fps(p);
   if (!res.has_value()) tifa_libs::fout << "-1\n";
   else tifa_libs::fout << res.value().data() << '\n';
   return 0;

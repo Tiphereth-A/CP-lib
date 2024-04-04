@@ -1,14 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sparse_matrix_det"
 
-#include "../../code/lalg/mat_det_rd.hpp"
-#include "../../code/lalg/spmat.hpp"
+#include "../../code/lalg/det_rd_mat.hpp"
+#include "../../code/lalg/matsp.hpp"
 #include "../../code/rand/gen.hpp"
 
 constexpr u32 MOD = 998244353;
 
 #define GENTCs_mints
 #define GENTCs_mintd0
-using mat = tifa_libs::math::spmat<mint>;
+using mat = tifa_libs::math::matsp<mint>;
 
 int main() {
 #define GENTCs_mintd1

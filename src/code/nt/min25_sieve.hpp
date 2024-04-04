@@ -9,10 +9,10 @@
 namespace tifa_libs::math {
 
 // f(p, c) = value of f(p^c)
-template <typename T, T (*f)(u64, u64)>
+template <class T, T (*f)(u64, u64)>
 class min25_sieve {
   u64 m, sqm, s;
-  vec<u32> p;
+  vecu p;
 
   constexpr u64 idx(u64 n) const { return n <= sqm ? s - n : div_u64d(m, n); }
 

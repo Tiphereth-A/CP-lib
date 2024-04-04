@@ -12,14 +12,14 @@ using mint = tifa_libs::math::mint_s30<MOD>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  usz n, q;
+  u32 n, q;
   std::cin >> n >> q;
   vec<mint> a(n);
   for (auto &x : a) std::cin >> x;
   auto min = [](mint a, mint b) { return std::min(a, b); };
   tifa_libs::ds::segtree_old<mint, decltype(min)> segt(a);
-  for (usz i = 1; i <= q; ++i) {
-    usz opt, l, r;
+  for (u32 i = 1; i <= q; ++i) {
+    u32 opt, l, r;
     std::cin >> opt >> l >> r;
     --r;
     if (opt == 0) {

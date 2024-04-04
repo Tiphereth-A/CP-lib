@@ -20,7 +20,7 @@ class suffix_automaton {
  public:
   u32 sz;
   vec<YYZ> st;
-  vvec<u32> e;
+  vvecu e;
 
   explicit constexpr suffix_automaton() : last(0), sz(1), st(1) { st[0].len = 0, st[0].link = -1u; }
 
@@ -53,7 +53,7 @@ class suffix_automaton {
     last = cur;
   }
   constexpr void build() {
-    e = vvec<u32>(sz);
+    e = vvecu(sz);
     auto add = [&](u32 u, u32 v) { e[u].push_back(v); };
     for (u32 i = 1; i < sz; ++i) add(u32(st[i].link), i);
   }
@@ -84,7 +84,7 @@ class suffix_automaton {
   }
   // app 3
   //! need build(), search()
-  constexpr void output_all_occurrences(u32 u, u32 P_length, vec<u32> &ans) {
+  constexpr void output_all_occurrences(u32 u, u32 P_length, vecu &ans) {
     if (!st[u].is_clone) ans.push_back(st[u].first_pos - P_length + 1);
     for (u32 v : e[u]) output_all_occurrences(v, P_length, ans);
   }

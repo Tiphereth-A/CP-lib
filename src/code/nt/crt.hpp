@@ -21,7 +21,7 @@ constexpr std::optional<ptt<i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1) {
 }  // namespace crt_impl_
 
 // Returns (remainder, modular)
-constexpr std::optional<ptt<u64>> crt(vec<i64> const &a, vec<u64> const &m) {
+constexpr std::optional<ptt<u64>> crt(vec<i64> const &a, vecu64 const &m) {
   if (a.size() != m.size()) return {};
   i64 A = 0;
   u64 M = 1;

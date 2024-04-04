@@ -7,10 +7,10 @@ namespace tifa_libs::graph {
 
 template <bool with_deg = false>
 struct eog {
-  vec<u32> head;
+  vecu head;
   vecpt<u32> e;
   u32 cnt_arc;
-  vec<u32> deg_in, deg_out;
+  vecu deg_in, deg_out;
 
   //! vertex ID: [0, n)
   explicit constexpr eog(u32 n = 0) : head(n, -1_u32), e(), cnt_arc(0), deg_in(0), deg_out(0) {

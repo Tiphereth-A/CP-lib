@@ -11,7 +11,7 @@ template <bool with_deg>
 constexpr u64 run(alist<with_deg> const& dg, alist<with_deg> const& dgv) {
   u64 ans = 0;
   u32 n = (u32)dg.g.size();
-  vec<u64> cnt1(n), cnt2(n);
+  vecu64 cnt1(n), cnt2(n);
   for (u32 u = 0; u < n; ++u) {
     for (u32 v : dg.g[u])
       for (u32 w : dg.g[v]) ++cnt1[w];

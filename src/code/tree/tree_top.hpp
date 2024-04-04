@@ -6,12 +6,12 @@
 namespace tifa_libs::graph {
 
 template <class G, bool need_dfn = false>
-constexpr vec<u32> tree_top(G const &tr, tree_dfs_info<G> &info) {
+constexpr vecu tree_top(G const &tr, tree_dfs_info<G> &info) {
   u32 n = (u32)tr.g.size();
   if (info.maxson.empty()) info.template reset_dfs_info<td_maxson>(tr);
-  if constexpr (need_dfn) info.dfn = vec<u32>(n);
+  if constexpr (need_dfn) info.dfn = vecu(n);
 
-  vec<u32> top(n, n);
+  vecu top(n, n);
   u32 cnt = 0;
   auto dfs = [&](auto &&dfs, u32 u, u32 top_) -> void {
     if constexpr (need_dfn) info.dfn[u] = cnt++;

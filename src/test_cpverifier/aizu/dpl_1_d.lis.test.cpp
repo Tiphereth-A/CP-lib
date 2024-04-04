@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  vec<u32> v(n);
+  vecu v(n);
   std::cin >> v;
   std::cout << tifa_libs::opt::lis(v).size() << '\n';
   return 0;

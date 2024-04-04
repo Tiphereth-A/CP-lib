@@ -6,7 +6,7 @@
 namespace tifa_libs {
 
 inline strn bwt_inv(strnv t) {
-  vec<u32> nxt(t.size());
+  vecu nxt(t.size());
   std::iota(nxt.begin(), nxt.end(), 0);
   std::stable_sort(nxt.begin(), nxt.end(), [&t](u32 a, u32 b) { return t[a] < t[b]; });
   strn ret{t[nxt[0]]};

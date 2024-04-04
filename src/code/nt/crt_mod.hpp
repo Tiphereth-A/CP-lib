@@ -6,9 +6,9 @@
 
 namespace tifa_libs::math {
 
-constexpr std::optional<ptt<u32>> crt_mod(vec<i32> const &a, vec<u32> const &m, u32 const mod) {
+constexpr std::optional<ptt<u32>> crt_mod(vec<i32> const &a, vecu const &m, u32 const mod) {
   if (a.size() != m.size()) return {};
-  vec<u32> m_cpy(m);
+  vecu m_cpy(m);
   u32 n = (u32)a.size();
   for (u32 i = 0; i < n; ++i) {
     u32 &mi = m_cpy[i];

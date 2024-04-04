@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/system_of_linear_equations"
 
+#include "../../code/lalg/ge_basic_mat.hpp"
 #include "../../code/lalg/leqs_solver.hpp"
-#include "../../code/lalg/mat_ge_basic.hpp"
-#include "../../code/lalg/mat_trans.hpp"
+#include "../../code/lalg/trans_mat.hpp"
 
 constexpr u32 MOD = 998244353;
 

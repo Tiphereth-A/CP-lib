@@ -6,11 +6,11 @@
 namespace tifa_libs::math {
 
 class Youngt {
-  vvec<u32> d;
+  vvecu d;
   u32 n;
 
  public:
-  constexpr explicit Youngt(vec<u32> const& l) {
+  constexpr explicit Youngt(vecu const& l) {
     for (auto i : l) insert(i);
   }
   constexpr Youngt(std::initializer_list<u32> l = {}) {
@@ -25,8 +25,8 @@ class Youngt {
   // width() == len(longest incresing seq.)
   constexpr u32 width() const { return (u32)d[0].size(); }
   constexpr u32 const& size() const { return n; }
-  constexpr vvec<u32>& data() { return d; }
-  constexpr vvec<u32> const& data() const { return d; }
+  constexpr vvecu& data() { return d; }
+  constexpr vvecu const& data() const { return d; }
   constexpr u32& operator()(u32 h, u32 w) { return d[h][w]; }
   constexpr u32 const& operator()(u32 h, u32 w) const { return d[h][w]; }
 

@@ -6,8 +6,8 @@
 namespace tifa_libs::math {
 
 // i^{b} from i=0..n-1
-constexpr vec<u64> gen_pows(u32 n, u64 b, u64 mod) {
-  vec<u64> ans(n);
+constexpr vecu64 gen_pows(u32 n, u64 b, u64 mod) {
+  vecu64 ans(n);
   if (!n) return {};
   if (!b) ans[0] = 1;
   if (n == 1) return ans;

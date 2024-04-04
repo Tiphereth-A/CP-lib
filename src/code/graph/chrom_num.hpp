@@ -25,7 +25,7 @@ template <bool with_deg>
 constexpr u32 chrom_num(alist<with_deg> const& fg) {
   auto&& g = fg.g;
   u32 n = (u32)g.size();
-  vec<u32> adj(n), dp(1 << n);
+  vecu adj(n), dp(1 << n);
   for (u32 i = 0; i < n; ++i)
     for (u32 to : g[i]) adj[i] |= 1 << to, adj[to] |= 1 << i;
   dp[0] = 1;

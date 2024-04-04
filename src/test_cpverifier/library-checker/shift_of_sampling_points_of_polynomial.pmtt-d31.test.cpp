@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial"
 
-#include "../../code/poly/poly_ctsh.hpp"
+#include "../../code/poly/ctsh_fps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -19,6 +19,6 @@ int main() {
   std::cin >> n >> m >> c;
   poly a(n);
   std::cin >> a;
-  std::cout << tifa_libs::math::poly_ctsh<poly, mint>(a, c, m) << '\n';
+  std::cout << tifa_libs::math::ctsh_fps(a, mint(c), m) << '\n';
   return 0;
 }

@@ -6,10 +6,10 @@
 namespace tifa_libs::math {
 
 // i! from i=0..n-1
-constexpr vec<u64> gen_fact(u32 n, u64 mod) {
+constexpr vecu64 gen_fact(u32 n, u64 mod) {
   if (n == 0) return {};
   if (n == 1) return {1};
-  vec<u64> ans(n);
+  vecu64 ans(n);
   ans[0] = ans[1] = 1;
   for (u32 i = 2; i < n; ++i) ans[i] = mul_mod_u(ans[i - 1], i, mod);
   return ans;

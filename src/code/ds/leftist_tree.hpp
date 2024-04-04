@@ -4,7 +4,8 @@
 #include "../util/util.hpp"
 
 namespace tifa_libs::ds {
-template <typename T>
+
+template <class T>
 class leftist_tree {
   u32 cnt;
   struct YYZ {

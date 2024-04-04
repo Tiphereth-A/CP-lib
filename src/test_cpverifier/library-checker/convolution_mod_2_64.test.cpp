@@ -6,7 +6,7 @@
 int main() {
   u32 n, m;
   tifa_libs::fin >> n >> m;
-  vec<u64> a(n), b(m);
+  vecu64 a(n), b(m);
   tifa_libs::fin >> a >> b;
   tifa_libs::fout << tifa_libs::math::karatsuba(a, b) << '\n';
   return 0;

@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-constexpr u32 proot_u32(u32 m) {
+constexpr u32 proot(u32 m) {
   if (m == 2) return 1;
   if (m == 3 || m == 5) return 2;
   if (m == 104857601 || m == 167772161 || m == 469762049) return 3;

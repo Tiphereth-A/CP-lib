@@ -12,7 +12,7 @@ int main() {
     u64 a;
     std::cin >> a;
     auto ans = tifa_libs::math::pfactors(a);
-    vec<u64> pf;
+    vecu64 pf;
     for (auto [k, v] : ans)
       for (u32 i = 0; i < v; ++i) pf.push_back(k);
     std::cout << pf.size();

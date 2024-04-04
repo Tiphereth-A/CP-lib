@@ -1,9 +1,9 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 
+#include "../../code/lalg/det_mat.hpp"
+#include "../../code/lalg/ge_basic_mat.hpp"
 #include "../../code/lalg/mat.hpp"
-#include "../../code/lalg/mat_det.hpp"
-#include "../../code/lalg/mat_ge_basic.hpp"
 
 constexpr u32 MOD = 998244353;
 

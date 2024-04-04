@@ -12,16 +12,16 @@ class kosaraju {
 
  public:
   alist<with_deg> dag;
-  vec<u32> scc_id;
-  vvec<u32> belongs;
+  vecu scc_id;
+  vvecu belongs;
 
   explicit constexpr kosaraju(alist<with_deg> const &g) : kosaraju(g, alistr(g)) {}
   constexpr kosaraju(alist<with_deg> const &g, alist<with_deg> const &rev_g) : g(g.g), rev_g(rev_g.g) { build(); }
 
  private:
   constexpr void build() {
-    vec<bool> vis(g.size());
-    vec<u32> ord;
+    vecb vis(g.size());
+    vecu ord;
     auto dfs = [&, this](auto &&dfs, u32 idx) {
       if (vis[idx]) return;
       vis[idx] = true;

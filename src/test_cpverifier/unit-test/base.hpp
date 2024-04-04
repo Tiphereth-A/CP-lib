@@ -14,18 +14,17 @@ namespace detail__ {
 
 template <class T>
 strn to_str(T const &x) {
-  static std::stringstream ss;
-  ss.clear();
+  std::stringstream ss;
   ss << std::fixed << std::setprecision(12) << x;
   return ss.str();
 }
 
 template <class T, class... Ts>
-void check_(strn const &pretty_func, T const &got, T const &want, Ts... param) {
+void check_(strn const &pretty_func, strn const &got_str, T const &got, strn const &want_str, T const &want, Ts... param) {
   if constexpr (sizeof...(param) == 0) {
-    if (got != want) throw std::runtime_error(pretty_func + ": got " + to_str(got) + ", want " + to_str(want));
+    if (got != want) throw std::runtime_error(pretty_func + ": got \"" + got_str + "\" = " + to_str(got) + ", want \"" + want_str + "\" = " + to_str(want));
   } else {
-    if (got != want) throw std::runtime_error(pretty_func + ": " + ((param.first + ::tifa_libs::unittest::detail__::to_str(param.second) + " | ") + ...) + " -> got " + to_str(got) + ", want " + to_str(want));
+    if (got != want) throw std::runtime_error(pretty_func + ": " + ((param.first + ::tifa_libs::unittest::detail__::to_str(param.second) + " | ") + ...) + " -> got \"" + got_str + "\" = " + to_str(got) + ", want \"" + want_str + "\" = " + to_str(want));
   }
 }
 
@@ -91,9 +90,8 @@ inline TESTCASE pre_test() {
 #endif
 }
 
-#pragma GCC diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
-#define check(got, want, check_params...) ::tifa_libs::unittest::detail__::check_(__PRETTY_FUNCTION__, got, want, ##check_params)
-#define check_bool(expression, check_params...) ::tifa_libs::unittest::detail__::check_bool_(__PRETTY_FUNCTION__, #expression, expression, ##check_params)
+#define check(got, want, ...) ::tifa_libs::unittest::detail__::check_(__PRETTY_FUNCTION__, #got, got, #want, want __VA_OPT__(, ) __VA_ARGS__)
+#define check_bool(expression, ...) ::tifa_libs::unittest::detail__::check_bool_(__PRETTY_FUNCTION__, #expression, expression __VA_OPT__(, ) __VA_ARGS__)
 #define check_param(x) \
   std::pair<std::string, decltype(x)> { #x " = ", x }
 

@@ -8,19 +8,19 @@ namespace tifa_libs::graph {
 template <class T, bool with_deg>
 class steiner_tree {
   alistw<T, with_deg> const& e;
-  vec<u32> const& a;
+  vecu const& a;
 
  public:
-  vvec<u32> dp;
+  vvecu dp;
 
-  steiner_tree(alistw<T, with_deg> const& E, vec<u32> const& A) : e(E), a(A) { build(); }
+  steiner_tree(alistw<T, with_deg> const& E, vecu const& A) : e(E), a(A) { build(); }
 
   void build() {
-    dp = vvec<u32>(e.g.size(), vec<u32>(1 << a.size(), INT32_MAX));
+    dp = vvecu(e.g.size(), vecu(1 << a.size(), INT32_MAX));
     for (u32 i = 0; i < a.size(); ++i) dp[a[i]][1 << i] = 0;
     pq<ptt<u32>> q;
     auto dij = [&](u32 s) {
-      vec<u32> vis(e.g.size(), 0);
+      vecu vis(e.g.size(), 0);
       while (!q.empty()) {
         auto [dis, u] = q.top();
         q.pop();

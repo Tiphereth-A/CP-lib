@@ -1,17 +1,17 @@
 #ifndef TIFALIBS_POLY_POLYSP
 #define TIFALIBS_POLY_POLYSP
 
-#include "../util/util.hpp"
+#include "poly.hpp"
 
 namespace tifa_libs::math {
 
-template <class poly>
-using polysp = vec<std::pair<u32, typename poly::value_type>>;
+template <class mint>
+using polysp = vec<std::pair<u32, mint>>;
 
-template <class poly>
-constexpr polysp<poly> poly2sp(poly const& p, u32 n = 0) {
+template <class mint, class ccore>
+constexpr polysp<mint> poly2sp(poly<mint, ccore> const& p, u32 n = 0) {
   if (!n) n = p.size();
-  polysp<poly> fs;
+  polysp<mint> fs;
   for (u32 i = 0; i < n; ++i)
     if (p[i] != 0) fs.emplace_back(i, p[i]);
   return fs;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/inv_of_polynomials"
 
-#include "../../code/poly/poly_modinv.hpp"
+#include "../../code/poly/modinv_fps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -20,7 +20,7 @@ int main() {
   std::cin >> n >> m;
   poly a(n), b(m);
   std::cin >> a >> b;
-  auto _ = tifa_libs::math::poly_modinv(a, b);
+  auto _ = tifa_libs::math::modinv_fps(a, b);
   if (!_.has_value()) std::cout << "-1\n";
   else if (_.value().empty()) std::cout << "0\n";
   else std::cout << _.value().size() << '\n'

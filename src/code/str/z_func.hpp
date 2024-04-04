@@ -5,9 +5,9 @@
 
 namespace tifa_libs::str {
 
-constexpr vec<u32> z_func(strnv s) {
+constexpr vecu z_func(strnv s) {
   u32 n = (u32)s.size();
-  vec<u32> z(n);
+  vecu z(n);
   for (u32 i = 1, l = 0, r = 0; i < n; ++i) {
     if (i <= r && z[i - l] < r - i + 1) z[i] = z[i - l];
     else {

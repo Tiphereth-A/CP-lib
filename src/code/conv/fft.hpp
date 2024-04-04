@@ -52,7 +52,7 @@ struct FFT {
  private:
   const FP TAU = std::acos((FP)-1.) * 2;
 
-  vec<u32> rev;
+  vecu rev;
   vec<C> w;
 };
 

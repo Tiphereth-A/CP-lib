@@ -3,7 +3,7 @@
 
 #include "../../code/io/fastio.hpp"
 #include "../../code/str/lcp_hashstr.hpp"
-
+//
 constexpr u32 MOD0 = 998244353;
 constexpr u32 MOD1 = 1000000007;
 

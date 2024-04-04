@@ -11,7 +11,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 q;
   std::cin >> q;
-  for (usz i = 0; i < q; ++i) {
+  for (u32 i = 0; i < q; ++i) {
     line l1, l2;
     std::cin >> l1 >> l2;
     if (tifa_libs::is_zero(l1.direction() * l2.direction())) std::cout << "1\n";

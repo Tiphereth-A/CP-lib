@@ -14,7 +14,7 @@ requires(!sint_c<T>) && requires(F relex, u32 now, u32 to) {
 constexpr vec<T> dijkstra(alistw<T, with_deg> const &fg, u32 s, F &&relax, T INF = std::numeric_limits<T>::max() / 2 - 1) {
   auto &&g = fg.g;
   vec<T> dis(g.size(), INF);
-  vec<bool> vis(g.size());
+  vecb vis(g.size());
   pqg<std::pair<T, u32>> q;
   q.emplace(dis[s] = 0, s);
   while (!q.empty()) {

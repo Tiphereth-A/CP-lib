@@ -8,10 +8,10 @@ int main() {
   u32 n, k;
   std::cin >> n >> k;
   tifa_libs::gosper<>::set(n, k);
-  vec<u32> _;
+  vecu _;
   for (auto i : tifa_libs::gosper<>{}) {
     std::cout << i << ":";
-    for (usz j = 0; j < n; ++j)
+    for (u32 j = 0; j < n; ++j)
       if ((i >> j) & 1) std::cout << ' ' << j;
     std::cout << '\n';
   }

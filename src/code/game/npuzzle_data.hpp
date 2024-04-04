@@ -7,25 +7,25 @@ namespace tifa_libs::game {
 
 // n = k*k-1
 class NPuzzleData {
-  static inline vec<u32> fin_node, fin_pos;
-  static inline vvec<u32> pos_cost;
+  static inline vecu fin_node, fin_pos;
+  static inline vvecu pos_cost;
 
   u32 k, pos0;
   u32 cost_;
 
  public:
   static inline u32 limit = UINT32_MAX;
-  static constexpr void set_fin(u32 k, vec<u32> const &fin) {
+  static constexpr void set_fin(u32 k, vecu const &fin) {
     assert(fin.size() == k * k);
     fin_node = fin;
     fin_pos.resize(k * k);
     for (u32 i = 0; i < k * k; ++i) fin_pos[fin_node[i]] = i;
-    pos_cost.resize(k * k, vec<u32>(k * k));
+    pos_cost.resize(k * k, vecu(k * k));
     for (u32 p = 1; p < k * k; ++p)
       for (u32 q = 0; q < k * k; ++q) pos_cost[p][q] = u32(abs(i32(p / k) - i32(q / k)) + abs(i32(p % k) - i32(q % k)));
   }
 
-  vec<u32> node;
+  vecu node;
   strn moves;
 
   constexpr explicit NPuzzleData(u32 k) : k(k), pos0(0), cost_(0), node(k * k), moves() {}

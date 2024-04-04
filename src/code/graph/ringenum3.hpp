@@ -10,7 +10,7 @@ namespace ringenum3_impl_ {
 template <class F, bool with_deg>
 constexpr void run(alist<with_deg> const& dg, F&& func) {
   u32 n = (u32)dg.g.size();
-  vec<bool> vis(n);
+  vecb vis(n);
   for (u32 u = 0; u < n; ++u) {
     for (u32 v : dg.g[u]) vis[v].flip();
     for (u32 v : dg.g[u])
@@ -25,7 +25,7 @@ constexpr void run(alist<with_deg> const& dg, F&& func) {
 //! should be simple undirected graph
 // func(u, v, w) forall {u,v,w} is C3
 template <class F>
-constexpr void ringenum3(vec<u32> const& deg, vecpt<u32> const& edges, F&& func) {
+constexpr void ringenum3(vecu const& deg, vecpt<u32> const& edges, F&& func) {
   alist<false> dg((u32)deg.size());
   for (auto [u, v] : edges) {
     if (deg[u] < deg[v] || (deg[u] == deg[v] && u > v)) std::swap(u, v);
@@ -38,7 +38,7 @@ constexpr void ringenum3(vec<u32> const& deg, vecpt<u32> const& edges, F&& func)
 // func(u, v, w) forall {u,v,w} is C3
 template <class F>
 constexpr void ringenum3(u32 n, vecpt<u32> const& edges, F&& func) {
-  vec<u32> deg(n);
+  vecu deg(n);
   for (auto [u, v] : edges) ++deg[u], ++deg[v];
   ringenum3(deg, edges, std::forward<F>(func));
 }

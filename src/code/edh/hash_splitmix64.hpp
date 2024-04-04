@@ -13,7 +13,7 @@ class hash_splitmix64 {
     x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
     return x ^ (x >> 31);
   }
-  static constexpr usz append(usz x, usz y) { return x ^ (y >> 1) ^ ((y & 1) << (sizeof(usz) * 8 - 1)); }
+  static constexpr u64 append(u64 x, u64 y) { return x ^ (y >> 1) ^ ((y & 1) << 63); }
 
  public:
   explicit hash_splitmix64() { set_seed(); }
@@ -21,19 +21,19 @@ class hash_splitmix64 {
 
   static void set_seed() { seed = (u64)std::chrono::steady_clock::now().time_since_epoch().count(); }
   static constexpr void set_seed(u64 s) { seed = s; }
-  usz operator()(u64 x) const { return splitmix64(x + seed); }
+  u64 operator()(u64 x) const { return splitmix64(x + seed); }
 
   template <class T, class U>
-  usz operator()(std::pair<T, U> const &p) const { return append((*this)(p.first), (*this)(p.second)); }
+  u64 operator()(std::pair<T, U> const &p) const { return append((*this)(p.first), (*this)(p.second)); }
   template <class... Ts>
-  usz operator()(std::tuple<Ts...> const &tp) const {
-    usz ret = 0;
+  u64 operator()(std::tuple<Ts...> const &tp) const {
+    u64 ret = 0;
     std::apply([&](Ts const &...targs) { ((ret = append(ret, (*this)(targs))), ...); }, tp);
     return ret;
   }
   template <iterable_c T>
-  usz operator()(T const &tp) const {
-    usz ret = 0;
+  u64 operator()(T const &tp) const {
+    u64 ret = 0;
     for (auto &&i : tp) ret = append(ret, (*this)(i));
     return ret;
   }

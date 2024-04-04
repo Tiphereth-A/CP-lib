@@ -6,13 +6,13 @@
 namespace tifa_libs::util {
 
 // Given alphabet $[0,k)$ constructs a cyclic string of length $k^n$ that contains every length $n$ string as substr
-constexpr vec<u32> deBruijn(u32 n, u32 k, u32 maxsz = 0) {
+constexpr vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) {
   if (k == 1) return {0};
   if (!maxsz) {
     maxsz = 1;
     for (u32 i = 0; i < n; ++i) maxsz *= k;
   }
-  vec<u32> ret, _(n + 1);
+  vecu ret, _(n + 1);
   auto f = [&](auto&& f, u32 t, u32 p) -> void {
     if (ret.size() >= maxsz) return;
     if (t > n) {

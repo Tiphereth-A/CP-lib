@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/division_of_polynomials"
 
-#include "../../code/poly/poly_divmod.hpp"
+#include "../../code/poly/divmod_fps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -23,7 +23,7 @@ int main() {
   std::cin >> n >> m;
   poly f(n), g(m);
   std::cin >> f >> g;
-  auto [q, r] = tifa_libs::math::poly_divmod(f, g);
+  auto [q, r] = tifa_libs::math::divmod_fps(f, g);
   if (q.size() == 1 && q[0].val() == 0) q.resize(0);
   if (r.size() == 1 && r[0].val() == 0) r.resize(0);
   std::cout << q.size() << ' ' << r.size() << '\n';

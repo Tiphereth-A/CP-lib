@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/polynomial_interpolation"
 
-#include "../../code/poly/poly_interp.hpp"
+#include "../../code/poly/interp_fps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -20,6 +20,6 @@ int main() {
   std::cin >> n;
   poly a(n), b(n);
   std::cin >> a >> b;
-  std::cout << tifa_libs::math::poly_interp(a, b) << '\n';
+  std::cout << tifa_libs::math::interp_fps(a, b) << '\n';
   return 0;
 }

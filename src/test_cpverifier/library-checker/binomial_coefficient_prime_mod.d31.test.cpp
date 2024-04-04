@@ -4,7 +4,7 @@
 #include "../../code/comb/binom.hpp"
 #include "../../code/comb/lucas.hpp"
 #include "../../code/io/fastio.hpp"
-
+//
 #include "../../code/math/mint_d31.hpp"
 
 using mint = tifa_libs::math::mint_d31<-1>;

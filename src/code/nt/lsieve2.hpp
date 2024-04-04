@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 class lsieve2 {
   vecpt<u32> pr;
-  vec<u32> fr;
+  vecu fr;
 
  public:
   explicit constexpr lsieve2(u32 n) : fr(n + 1) {

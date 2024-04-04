@@ -13,7 +13,7 @@ constexpr vecpt<u32> find_cycle(alist<with_deg> const& fg) {
     for (u32 j : g[i])
       if (i == j) return vecpt<u32>{{i, i}};
 
-  vec<u32> pidx(g.size(), -1_u32), vis(g.size(), 0);
+  vecu pidx(g.size(), -1_u32), vis(g.size(), 0);
 
   vecpt<u32> cycle;
   bool fin = false;

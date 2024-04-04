@@ -28,13 +28,13 @@ auto id() { return F(1, 0); }
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  usz n, q;
+  u32 n, q;
   std::cin >> n >> q;
   vec<T> a(n);
   for (auto &x : a) std::cin >> x.first, x.second = 1;
   tifa_libs::ds::segtree<T, op, e, F, mapping, composition, id> segt(a);
-  for (usz i = 1; i <= q; ++i) {
-    usz opt, l, r;
+  for (u32 i = 1; i <= q; ++i) {
+    u32 opt, l, r;
     std::cin >> opt >> l;
     if (opt == 0) {
       mint x, y;

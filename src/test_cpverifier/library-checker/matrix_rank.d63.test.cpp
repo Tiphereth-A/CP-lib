@@ -1,9 +1,9 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_rank"
 
+#include "../../code/lalg/ge_basic_mat.hpp"
 #include "../../code/lalg/mat.hpp"
-#include "../../code/lalg/mat_ge_basic.hpp"
-#include "../../code/lalg/mat_rk.hpp"
+#include "../../code/lalg/rk_mat.hpp"
 
 constexpr u32 MOD = 998244353;
 

@@ -9,7 +9,7 @@ template <class T = u64>
 class huffman {
   struct YYZ {
     T weight;
-    vec<u32> ch;
+    vecu ch;
     constexpr YYZ(T weight = T{}, u32 child_cnt = 0) : weight(weight), ch(child_cnt) {}
   };
   u32 cnt_w, cnt_l, ch_sz;
@@ -59,7 +59,7 @@ class huffman {
     assert(char_set.size() == ch_sz);
     return run<strn>([&](strn const &pre_code, u32 idx) { return pre_code + char_set[idx]; });
   }
-  constexpr vec<u32> depths() const {
+  constexpr vecu depths() const {
     return run<u32>([](u32 const &pre_depth, u32) { return pre_depth + 1; });
   }
 };

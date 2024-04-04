@@ -10,7 +10,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m, q;
   std::cin >> n >> m >> q;
-  vec<u32> nw(n);
+  vecu nw(n);
   for (auto& x : nw) std::cin >> x;
   vec<std::tuple<u32, u32, u32>> e(m);
   for (auto& [w, u, v] : e) std::cin >> u >> v >> w, --u, --v;

@@ -10,7 +10,7 @@ int main() {
   while (q--) {
     u64 p;
     std::cin >> p;
-    std::cout << tifa_libs::math::proot_u64(p) << '\n';
+    std::cout << tifa_libs::math::proot(p) << '\n';
   }
   return 0;
 }

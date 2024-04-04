@@ -7,15 +7,15 @@
 
 namespace tifa_libs::math {
 
-constexpr i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod, vec<u64> const &ifact) {
+constexpr i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod, vecu64 const &ifact) {
   u32 n = (u32)v.size();
   assert(n);
   if (n == 1) return v[0];
   if (x < n) return v[x];
-  vec<u64> pre(n);
+  vecu64 pre(n);
   for (u32 i = 0; i < n; ++i) pre[i] = x - i;
   for (u32 i = 1; i < n; ++i) pre[i] = mul_mod_u(pre[i], pre[i - 1], mod);
-  vec<u64> suc(n);
+  vecu64 suc(n);
   for (u32 i = 0; i < n; ++i) suc[i] = x - i;
   for (u32 i = n - 2; ~i; --i) suc[i] = mul_mod_u(suc[i], suc[i + 1], mod);
   i64 ans = 0;
@@ -33,7 +33,7 @@ template <class mint>
 constexpr mint lagrange_interp0(vec<mint> const &v, u64 x, vec<mint> const &ifact) {
   vec<i64> _(v.size());
   for (u32 i = 0; i < (u32)v.size(); ++i) _[i] = v[i].val();
-  vec<u64> ifa(ifact.size());
+  vecu64 ifa(ifact.size());
   for (u32 i = 0; i < (u32)ifact.size(); ++i) ifa[i] = ifact[i].val();
   return mint(lagrange_interp0(_, x, mint::mod(), ifa));
 }

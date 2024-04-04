@@ -14,13 +14,13 @@ constexpr u64 pi_23(u64 n) {
   auto prime = prime_seq((u32)n2 + 1000);
   u32 pidx = 0;
   u64 pi = 0;
-  vec<u64> ns;
+  vecu64 ns;
   ns.reserve(n2 * 2 + 2);
   ns.push_back(0);
   for (u32 i = 1; i <= n2; ++i) ns.push_back(div_u64d(n, i));
-  for (usz i = ns.back() - 1; i; --i) ns.push_back(i);
+  for (u64 i = ns.back() - 1; i; --i) ns.push_back(i);
   u32 nsz = (u32)ns.size();
-  vec<u64> h = ns;
+  vecu64 h = ns;
   for (auto &i : h) --i;
   while (prime[pidx] <= n6) {
     u32 p = prime[pidx];

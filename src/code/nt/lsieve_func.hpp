@@ -14,17 +14,17 @@ enum lsieve_state {
 };
 
 struct lsieve_func {
-  vec<u32> prime, mpf, phi;
+  vecu prime, mpf, phi;
   vec<i32> mu;
-  vec<u64> sigma, tau;
+  vecu64 sigma, tau;
 
   template <int state>
   constexpr lsieve_func& reset_lsieve_func(u32 n) {
-    if constexpr (state | ls_mpf) mpf = vec<u32>(n), mpf[1] = 1;
-    if constexpr (state | ls_phi) phi = vec<u32>(n), phi[1] = 1;
+    if constexpr (state | ls_mpf) mpf = vecu(n), mpf[1] = 1;
+    if constexpr (state | ls_phi) phi = vecu(n), phi[1] = 1;
     if constexpr (state | ls_mu) mu = vec<i32>(n), mu[1] = 1;
-    if constexpr (state | ls_sigma) pw = vec<u64>(n), sigma = vec<u64>(n), sigma[1] = 1;
-    if constexpr (state | ls_tau) pc = vec<u32>(n, 1), tau = vec<u64>(n), tau[1] = 1;
+    if constexpr (state | ls_sigma) pw = vecu64(n), sigma = vecu64(n), sigma[1] = 1;
+    if constexpr (state | ls_tau) pc = vecu(n, 1), tau = vecu64(n), tau[1] = 1;
 
     prime = lsieve(
         n,
@@ -52,8 +52,8 @@ struct lsieve_func {
   }
 
  private:
-  vec<u64> pw;
-  vec<u32> pc;
+  vecu64 pw;
+  vecu pc;
 };
 
 }  // namespace tifa_libs::math

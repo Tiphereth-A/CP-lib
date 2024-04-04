@@ -48,7 +48,7 @@ vec<point_t> parse_tsp_data(strn const& name) {
   return ret;
 }
 
-double fitness(vec<point_t> const& data, vec<u32> const& seq) {
+double fitness(vec<point_t> const& data, vecu const& seq) {
   check(data.size(), seq.size());
   double ans = std::hypot(data[seq[0]].first - data[seq.back()].first, data[seq[0]].second - data[seq.back()].second);
   for (u32 i = 1; i < seq.size(); ++i) ans += std::hypot(data[seq[i]].first - data[seq[i - 1]].first, data[seq[i]].second - data[seq[i - 1]].second);
@@ -57,11 +57,11 @@ double fitness(vec<point_t> const& data, vec<u32> const& seq) {
 
 void test(const char* const name, double optimal, u32 L, double p0, u32 K, u32 M, double rerr) {
   auto points = parse_tsp_data(name);
-  auto f = [&](vec<u32> const& seq) { return fitness(points, seq); };
-  vec<u32> seq(points.size());
+  auto f = [&](vecu const& seq) { return fitness(points, seq); };
+  vecu seq(points.size());
   std::iota(seq.begin(), seq.end(), 0);
   // std::shuffle(seq.begin(), seq.end(), std::mt19937(time(nullptr)));
-  tifa_libs::opt::heuristic_lbsa<vec<u32>, decltype(f)> sa(f, seq, L, p0);
+  tifa_libs::opt::heuristic_lbsa<vecu, decltype(f)> sa(f, seq, L, p0);
   auto [f_solution, solution] = sa(K, M);
 
   {

@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 template <class T>
 constexpr vec<T> conv_minplus_ca(vec<T> const& a, vec<T> const& b) {
   u32 n = (u32)a.size(), m = (u32)b.size();
-  vec<u32> argmin = opt::smawk(
+  vecu argmin = opt::smawk(
       n + m - 1, m,
       [&](u32 k, u32 j1, u32 j2) -> bool {
         i32 i1 = (i32)k - (i32)j1, i2 = (i32)k - (i32)j2;

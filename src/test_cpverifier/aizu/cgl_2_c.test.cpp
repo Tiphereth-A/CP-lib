@@ -14,7 +14,7 @@ int main() {
   std::cout << std::fixed << std::setprecision(10);
   u32 q;
   std::cin >> q;
-  for (usz i = 0; i < q; ++i) {
+  for (u32 i = 0; i < q; ++i) {
     line l1, l2;
     std::cin >> l1 >> l2;
     std::cout << tifa_libs::geo::ins_LL(l1, l2) << '\n';

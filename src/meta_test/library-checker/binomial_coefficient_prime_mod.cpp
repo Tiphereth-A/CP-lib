@@ -3,7 +3,7 @@
 #include "../../code/comb/binom.hpp"
 #include "../../code/comb/lucas.hpp"
 #include "../../code/io/fastio.hpp"
-
+//
 #ifdef GENTC_d31
 #include "../../code/math/mint_d31.hpp"
 

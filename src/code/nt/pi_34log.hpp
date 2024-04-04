@@ -9,9 +9,9 @@ namespace tifa_libs::math {
 constexpr u64 pi_34log(u64 n) {
   if (n < 2) return 0;
   u64 n2 = isqrt(n), ndn2 = div_u64d(n, n2);
-  vec<u64> hl(ndn2);
+  vecu64 hl(ndn2);
   for (u32 i = 1; i < ndn2; ++i) hl[i] = div_u64d(n, i) - 1;
-  vec<u32> hs(n2 + 1);
+  vecu hs(n2 + 1);
   std::iota(hs.begin(), hs.end(), -1_u32);
   for (u64 x = 2, pi = 0; x <= n2; ++x) {
     if (hs[x] == hs[x - 1]) continue;

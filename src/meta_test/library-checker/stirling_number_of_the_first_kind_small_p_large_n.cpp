@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n"
 
 #include "../../code/comb/stirling1_smallp.hpp"
-
+//
 #ifdef GENTC_d31
 #include "../../code/math/mint_d31.hpp"
 

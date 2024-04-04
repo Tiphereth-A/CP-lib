@@ -14,8 +14,8 @@ requires(!uint_c<T>) && requires(F relex, u32 now, u32 to) {
 std::optional<vec<T>> bellman_ford(alistw<T, with_deg> const &fg, u32 s, F &&cb_relax, T INF = std::numeric_limits<T>::max() / 2 - 1) {
   auto &&g = fg.g;
   vec<T> dis(g.size(), INF);
-  vec<bool> vis(g.size());
-  vec<u32> dep(g.size());
+  vecb vis(g.size());
+  vecu dep(g.size());
   std::queue<u32> q;
   q.push(s);
   dis[s] = 0;

@@ -11,7 +11,7 @@ class aho_corasick_automaton {
   struct YYZ {
     std::array<u32, SZ> nex{};
     u32 fail, tot;
-    vec<u32> end;
+    vecu end;
   };
 
  public:

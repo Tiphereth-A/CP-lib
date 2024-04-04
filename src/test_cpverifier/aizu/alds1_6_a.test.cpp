@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  vec<u32> a(n);
+  vecu a(n);
   std::cin >> a;
   tifa_libs::rsort32(a);
   std::cout << a << '\n';

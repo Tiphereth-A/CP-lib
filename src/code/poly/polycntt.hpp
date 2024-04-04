@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_POLY_POLY_SCNTT
-#define TIFALIBS_POLY_POLY_SCNTT
+#ifndef TIFALIBS_POLY_SCNTT_FPS
+#define TIFALIBS_POLY_SCNTT_FPS
 
 #include "../conv/conv_cntt.hpp"
 #include "poly.hpp"

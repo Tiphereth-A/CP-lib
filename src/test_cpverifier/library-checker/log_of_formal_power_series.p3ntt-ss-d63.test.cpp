@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series"
 
-#include "../../code/poly/poly_ln.hpp"
+#include "../../code/poly/ln_fps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -23,6 +23,6 @@ int main() {
   std::cin >> n;
   poly p(n);
   std::cin >> p;
-  std::cout << tifa_libs::math::poly_ln(p);
+  std::cout << tifa_libs::math::ln_fps(p);
   return 0;
 }

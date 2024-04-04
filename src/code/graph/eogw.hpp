@@ -8,10 +8,10 @@ namespace tifa_libs::graph {
 template <class T, bool with_deg = false>
 struct eogw {
   using weight_type = T;
-  vec<u32> head;
+  vecu head;
   vec<std::tuple<u32, T, u32>> e;
   u32 cnt_arc;
-  vec<u32> deg_in, deg_out;
+  vecu deg_in, deg_out;
 
   //! vertex ID: [0, n)
   explicit constexpr eogw(u32 n = 0) : head(n, -1_u32), e(), cnt_arc(0), deg_in(0), deg_out(0) {

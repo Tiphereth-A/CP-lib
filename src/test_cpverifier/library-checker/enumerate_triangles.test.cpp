@@ -11,7 +11,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
-  vec<u32> x(n);
+  vecu x(n);
   std::cin >> x;
   vecpt<u32> edges(m);
   std::cin >> edges;

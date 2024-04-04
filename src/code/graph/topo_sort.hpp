@@ -7,10 +7,10 @@ namespace tifa_libs::graph {
 
 //! return empty vector if @fg is not DAG
 template <bool with_deg>
-constexpr vec<u32> topo_sort(alist<with_deg> const& fg) {
+constexpr vecu topo_sort(alist<with_deg> const& fg) {
   u32 n = (u32)fg.g.size();
-  vec<bool> vis(n), _(n);
-  vec<u32> ans;
+  vecb vis(n), _(n);
+  vecu ans;
   auto dfs = [&](auto&& dfs, u32 i) -> bool {
     if (_[i]) return false;
     if (!vis[i]) {

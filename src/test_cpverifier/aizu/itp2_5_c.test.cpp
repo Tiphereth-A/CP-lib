@@ -11,7 +11,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  vec<u32> p(n);
+  vecu p(n);
   std::cin >> p;
   auto s = tifa_libs::cantor_seq(p);
   auto fact = tifa_libs::math::gen_fact((u32)s.size(), -1_u64);

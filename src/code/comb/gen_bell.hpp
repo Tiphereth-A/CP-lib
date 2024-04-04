@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_COMB_GEN_BELL
 #define TIFALIBS_COMB_GEN_BELL
 
-#include "../poly/poly_exp.hpp"
+#include "../poly/exp_fps.hpp"
 #include "gen_fact.hpp"
 #include "gen_ifact.hpp"
 
@@ -12,7 +12,7 @@ template <class poly, std::same_as<typename poly::value_type> mint>
 constexpr poly gen_bell(u32 n, vec<mint> const& fact, vec<mint> const& ifact) {
   poly b(n + 1);
   for (u32 i = 1; i <= n; ++i) b[i] = ifact[i];
-  b = poly_exp(b);
+  b = exp_fps(b);
   for (u32 i = 1; i <= n; ++i) b[i] *= fact[i];
   return b;
 }

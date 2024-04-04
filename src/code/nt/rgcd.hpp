@@ -12,7 +12,7 @@ class RGCD {
     constexpr F3(u32 _a = 0, u32 _b = 0, u32 _c = 0) : a(_a), b(_b), c(_c) {}
   };
   vec<F3> fs;
-  vvec<u32> g_;
+  vvecu g_;
 
  public:
   explicit constexpr RGCD(u32 n) : fs(n), g_(isqrt(n) + 1, decltype(g_)::value_type(isqrt(n) + 1)) {

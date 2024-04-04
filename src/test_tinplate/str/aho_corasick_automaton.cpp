@@ -8,12 +8,12 @@ int main() {
   u32 n;
   strn s;
   std::cin >> n;
-  vec<u32> ans(n);
+  vecu ans(n);
   tifa_libs::str::aho_corasick_automaton acam;
   for (u32 i = 0; i < n; ++i) std::cin >> s, acam.insert(s, i);
   acam.getfail();
   std::cin >> s;
-  vec<u32> sz(acam.sz), in(acam.sz);
+  vecu sz(acam.sz), in(acam.sz);
   for (u32 i = 0, u = 0; i < s.size(); ++i) u = acam.t[u].nex[u32(s[i] - 'a')], sz[u] += 1;
   for (u32 i = 0; i < acam.sz; ++i) ++in[acam.t[i].fail];
   std::queue<u32> q;

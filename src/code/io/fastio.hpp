@@ -85,7 +85,7 @@ class fastin {
   }
   template <class T, class U>
   fastin &read(std::pair<T, U> &p) { return read(p.first).read(p.second); }
-  template <typename... Ts>
+  template <class... Ts>
   fastin &read(std::tuple<Ts...> &p) {
     std::apply([&](Ts &...targs) { ((read(targs)), ...); }, p);
     return *this;
@@ -198,7 +198,7 @@ class fastout {
   fastout &write(strn const &str) { return write(str.c_str()); }
   template <class T, class U>
   fastout &write(std::pair<T, U> const &p) { return write(p.first).space().write(p.second); }
-  template <typename... Ts>
+  template <class... Ts>
   fastout &write(std::tuple<Ts...> const &p) {
     std::apply(
         [&](Ts const &...targs) {

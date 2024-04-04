@@ -13,13 +13,13 @@ int main() {
     b |= 1 << x;
   }
   tifa_libs::enum_subset<>::set(b);
-  vec<u32> _;
+  vecu _;
   for (auto i : tifa_libs::enum_subset<>{}) _.push_back(i);
   _.push_back(0);
   std::reverse(_.begin(), _.end());
   for (auto i : _) {
     std::cout << i << ":";
-    for (usz j = 0; j < n; ++j)
+    for (u32 j = 0; j < n; ++j)
       if ((i >> j) & 1) std::cout << ' ' << j;
     std::cout << '\n';
   }

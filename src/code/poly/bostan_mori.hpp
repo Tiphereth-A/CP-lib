@@ -36,11 +36,10 @@ vec<T> coeff_(ccore_t const& core, ccore_t const& core2, vec<T>& q, u64 n, u32 d
 }  // namespace bostan_mori_impl_
 
 // @return [x^k]p/q
-template <class poly>
-constexpr auto bostan_mori(u64 n, poly const& p, poly const& q) {
-  using mint = typename poly::value_type;
+template <class mint, class ccore>
+constexpr auto bostan_mori(u64 n, poly<mint, ccore> const& p, poly<mint, ccore> const& q) {
   assert(p.size() == q.size() - 1 && !p.empty());
-  if constexpr (poly::ccore_type::ct_cat != ct_NTT) {
+  if constexpr (ccore::ct_cat != ct_NTT) {
     auto p_ = p, q_ = q;
     while (n) {
       auto _ = q_;
@@ -52,7 +51,7 @@ constexpr auto bostan_mori(u64 n, poly const& p, poly const& q) {
     }
     return p_[0];
   } else {
-    auto& core = poly::conv_core;
+    auto& core = poly<mint, ccore>::conv_core;
     auto core2 = core;
     u32 m = (u32)q.size();
     core.bzr(m);

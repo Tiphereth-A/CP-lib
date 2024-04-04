@@ -6,7 +6,7 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   tifa_libs::ds::fenwick2d<u32> tr(1003, 1003);
-  usz n;
+  u32 n;
   std::cin >> n;
   for (u32 i = 0, xl, xr, yl, yr; i < n; ++i) {
     std::cin >> xl >> yl >> xr >> yr;

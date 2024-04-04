@@ -6,8 +6,8 @@
 namespace tifa_libs::graph {
 
 template <class G>
-constexpr std::optional<vec<u32>> path(G const &g, u32 from, u32 to) {
-  vec<u32> ret;
+constexpr std::optional<vecu> path(G const &g, u32 from, u32 to) {
+  vecu ret;
   bool failed = true;
   auto dfs = [&](auto &&dfs, u32 now, u32 fa) -> void {
     ret.push_back(now);

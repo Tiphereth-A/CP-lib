@@ -2,7 +2,7 @@
 #define TIFALIBS_MATH_SSTS_PIM_CNT
 
 #include "../comb/gen_inv.hpp"
-#include "../poly/poly_exp.hpp"
+#include "../poly/exp_fps.hpp"
 
 namespace tifa_libs::math {
 
@@ -15,7 +15,7 @@ poly ssts_pim_cnt(vec<T> const& s, u32 t, vec<mint> const& inv) {
     for (u32 d = 1; d <= t / x; ++d)
       if (d & 1) p[d * x] += mint(cnt[x]) * inv[d];
       else p[d * x] -= mint(cnt[x]) * inv[d];
-  return poly_exp(p);
+  return exp_fps(p);
 }
 template <class poly, class T>
 poly ssts_pim_cnt(vec<T> const& s, u32 t) {

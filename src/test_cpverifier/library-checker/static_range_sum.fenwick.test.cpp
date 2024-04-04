@@ -9,12 +9,12 @@ int main() {
   std::cin >> n >> q;
   tifa_libs::ds::fenwick<u64> f(n + 1);
   u64 x;
-  for (usz i = 1; i <= n; ++i) {
+  for (u32 i = 1; i <= n; ++i) {
     std::cin >> x;
     f.add(i, x);
   }
-  for (usz i = 1; i <= q; ++i) {
-    usz l, r;
+  for (u32 i = 1; i <= q; ++i) {
+    u32 l, r;
     std::cin >> l >> r;
     std::cout << f.sum(r) - f.sum(l) << '\n';
   }

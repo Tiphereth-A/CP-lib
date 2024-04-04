@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence"
 
-#include "../../code/poly/poly_czt.hpp"
+#include "../../code/poly/czt_fps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -21,6 +21,6 @@ int main() {
   std::cin >> n >> m >> a >> r;
   poly f(n);
   std::cin >> f;
-  std::cout << tifa_libs::math::poly_czt(f, r, m, a) << '\n';
+  std::cout << tifa_libs::math::czt_fps(f, r, m, a) << '\n';
   return 0;
 }

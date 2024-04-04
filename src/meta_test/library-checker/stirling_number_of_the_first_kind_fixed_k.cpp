@@ -18,6 +18,6 @@ int main() {
   u32 n, k;
   tifa_libs::fin >> n >> k;
   auto ans = tifa_libs::math::gen_stirling1_col<poly>(n, k);
-  for (usz i = k; i <= n; ++i) tifa_libs::fout << ans[i] << " \n"[i == n];
+  for (u32 i = k; i <= n; ++i) tifa_libs::fout << ans[i] << " \n"[i == n];
   return 0;
 }

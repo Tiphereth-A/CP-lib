@@ -12,18 +12,18 @@ void test(strn const& data) {
 
   u32 t;
   fin >> t;
-  vec<u32> ns(t);
+  vecu ns(t);
   for (u32 i = 0; i < t; ++i) fin >> ns[i];
 
   u32 n = *std::max_element(ns.begin(), ns.end());
   tifa_libs::math::lsieve2 ls(n);
   u64 lst = 1;
-  vec<u64> g = ls.template run<u64>([&](u32 p, u32 e) {
+  vecu64 g = ls.template run<u64>([&](u32 p, u32 e) {
     if (e == 1) return lst = p - 2;
     else if (e == 2) return lst = u64(p - 1) * (p - 1);
     else return lst *= p;
   });
-  vec<u64> f(n + 1);
+  vecu64 f(n + 1);
   for (u32 i = 1; i <= n; ++i) f[i] = f[i - 1] + g[i];
 
   for (u32 n : ns) {

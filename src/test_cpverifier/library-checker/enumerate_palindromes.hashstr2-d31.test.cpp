@@ -2,7 +2,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 
 #include "../../code/util/util.hpp"
-
+//
 constexpr u32 MOD0 = 998244353;
 constexpr u32 MOD1 = 1000000007;
 
@@ -32,7 +32,7 @@ int main() {
   hashstr hs, ht;
   hs.set(s), ht.set(t);
   u32 n = (u32)s.size();
-  vec<u32> ans(n);
+  vecu ans(n);
   for (u32 i = 0; i < n; ++i) {
     u32 l = 0, r = std::min(i, n - 1 - i) + 1;
     while (l + 1 < r) {

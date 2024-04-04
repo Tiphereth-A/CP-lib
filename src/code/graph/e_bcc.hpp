@@ -11,9 +11,9 @@ class e_bcc {
 
  public:
   u32 id;
-  vec<u32> ebcc_id, dfn, low;
-  vec<bool> cut;
-  vvec<u32> belongs;
+  vecu ebcc_id, dfn, low;
+  vecb cut;
+  vvecu belongs;
 
   //! EW need rev_edge
   explicit e_bcc(vvec<EW> const &G) : g(G) { build(); }
@@ -21,8 +21,8 @@ class e_bcc {
   void build() {
     id = 0;
     u32 cnt = 0, n = u32(g.size());
-    dfn = low = ebcc_id = vec<u32>(n, n);
-    cut = vec<bool>(n, 0);
+    dfn = low = ebcc_id = vecu(n, n);
+    cut = vecb(n, 0);
     std::stack<u32> s;
 
     auto dfs = [&](auto &&dfs, u32 u, u32 fa, u32 inv_from) -> void {
@@ -37,7 +37,7 @@ class e_bcc {
         } else low[u] = std::min(low[u], dfn[v.to]);
       }
       if (low[u] == dfn[u]) {
-        belongs.push_back(vec<u32>());
+        belongs.push_back(vecu());
         do {
           u32 v = s.top();
           s.pop();

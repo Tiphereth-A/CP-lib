@@ -2,7 +2,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 
 #include "../../code/util/util.hpp"
-
+//
 #include "../../code/math/mint_2e61n1.hpp"
 #include "../../code/str/hash_substr.hpp"
 
@@ -26,7 +26,7 @@ int main() {
   hashstr hs, ht;
   hs.set(s), ht.set(t);
   u32 n = (u32)s.size();
-  vec<u32> ans(n);
+  vecu ans(n);
   for (u32 i = 0; i < n; ++i) {
     u32 l = 0, r = std::min(i, n - 1 - i) + 1;
     while (l + 1 < r) {

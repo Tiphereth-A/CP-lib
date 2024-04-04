@@ -7,9 +7,9 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
-  vec<u32> a(n);
+  vecu a(n);
   for (auto& x : a) std::cin >> x;
-  vvec<u32> e(n);
+  vvecu e(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     --u, --v;
@@ -17,8 +17,8 @@ int main() {
   }
   tifa_libs::graph::tarjan scc;
   scc.build(e);
-  vvec<u32> g(scc.id);
-  vec<u32> in(scc.id), b(scc.id), dp(scc.id, 1'000'000'000);
+  vvecu g(scc.id);
+  vecu in(scc.id), b(scc.id), dp(scc.id, 1'000'000'000);
   std::queue<u32> q;
   for (u32 i = 0, x, y; i < n; ++i) {
     b[x = scc.scc_id[i]] += a[i];

@@ -36,7 +36,7 @@ using vec = std::vector<T>;
 template <class T>
 using vvec = vec<vec<T>>;
 template <class T>
-using vvvec = vec<vvec<T>>;
+using v3ec = vec<vvec<T>>;
 template <class U, class T>
 using vecp = vec<std::pair<U, T>>;
 template <class U, class T>
@@ -53,6 +53,13 @@ using pqg = std::priority_queue<T, vec<T>, std::greater<T>>;
 
 using strn = std::string;
 using strnv = std::string_view;
+
+using vecu = vec<u32>;
+using vvecu = vvec<u32>;
+using v3ecu = v3ec<u32>;
+using vecu64 = vec<u64>;
+using vecb = vec<bool>;
+using vvecb = vvec<bool>;
 
 #ifdef ONLINE_JUDGE
 #undef assert

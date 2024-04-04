@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
-  vec<u32> a(n), b(m);
+  vecu a(n), b(m);
   std::cin >> a >> b;
   std::cout << tifa_libs::math::conv_minplus_cc(a, b) << '\n';
   return 0;

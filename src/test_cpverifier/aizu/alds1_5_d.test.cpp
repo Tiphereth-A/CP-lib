@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  vec<u32> a(n);
+  vecu a(n);
   std::cin >> a;
   std::cout << tifa_libs::inversion(a) << '\n';
   return 0;

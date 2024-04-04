@@ -5,7 +5,7 @@
 
 namespace tifa_libs::ds {
 
-template <typename T>
+template <class T>
 class cartesian_tree {
   struct YYZ {
     u32 fa;
@@ -13,7 +13,7 @@ class cartesian_tree {
   };
 
   constexpr void build(vec<T> const& y) {
-    vec<u32> s(y.size() + 1);
+    vecu s(y.size() + 1);
     u32 top = 0;
     for (u32 i = 0; i < y.size(); i++) {
       u32 k = top;

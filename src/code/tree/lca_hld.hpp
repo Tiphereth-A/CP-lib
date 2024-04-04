@@ -9,7 +9,7 @@ namespace tifa_libs::graph {
 
 struct lca_hld {
   tree_dfs_info<tree> info;
-  vec<u32> top;
+  vecu top;
 
   constexpr lca_hld(tree& tr) {
     info.template reset_dfs_info<td_dep | td_fa>(tr);

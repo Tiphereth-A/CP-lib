@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_COMB_GEN_PARTITION
 #define TIFALIBS_COMB_GEN_PARTITION
 
-#include "../poly/poly_inv.hpp"
+#include "../poly/inv_fps.hpp"
 
 namespace tifa_libs::math {
 
@@ -16,7 +16,7 @@ constexpr poly gen_partition(u32 n) {
     if ((k1 = k * (3 * k + 1) / 2) <= n) p[(u32)k1] += ((k & 1) ? -1 : 1);
     if (k2 <= n) p[(u32)k2] += ((k & 1) ? -1 : 1);
   }
-  return poly_inv(p);
+  return inv_fps(p);
 }
 
 }  // namespace tifa_libs::math

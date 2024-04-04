@@ -10,7 +10,7 @@ struct trie01 {
   struct YYZ {
     u32 nxt[2];
     T val;
-    vec<u32> idxs;
+    vecu idxs;
 
     YYZ() : nxt{0, 0}, val(0), idxs() {}
   };

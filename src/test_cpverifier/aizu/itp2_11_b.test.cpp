@@ -15,7 +15,7 @@ int main() {
   tifa_libs::enum_supset<>::set(b, n);
   for (auto i : tifa_libs::enum_supset<>{}) {
     std::cout << i << ":";
-    for (usz j = 0; j < n; ++j)
+    for (u32 j = 0; j < n; ++j)
       if ((i >> j) & 1) std::cout << ' ' << j;
     std::cout << '\n';
   }

@@ -5,10 +5,10 @@
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  usz n;
+  u32 n;
   std::cin >> n;
   tifa_libs::ds::fhq_treap<i32, i32> treap;
-  for (usz i = 0, opt; i < n; ++i) {
+  for (u32 i = 0, opt; i < n; ++i) {
     i32 x;
     std::cin >> opt >> x;
     if (opt == 1) treap.insert({x, x});

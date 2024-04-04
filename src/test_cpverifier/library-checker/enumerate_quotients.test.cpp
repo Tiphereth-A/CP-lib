@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr);
   u64 n;
   std::cin >> n;
-  vec<u64> ans;
+  vecu64 ans;
   tifa_libs::math::do_quot(n, [&ans](u64, u64, u64 q) { ans.push_back(q); });
   std::sort(ans.begin(), ans.end());
   std::cout << ans.size() << '\n';

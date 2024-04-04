@@ -20,7 +20,7 @@ int main() {
     return 0;
   }
   tifa_libs::fout << dis[t] << ' ' << ans.size() << '\n';
-  for (usz i = ans.size() - 1; i; --i) tifa_libs::fout << ans[i] << ' ' << ans[i - 1] << '\n';
+  for (u32 i = u32(ans.size() - 1); i; --i) tifa_libs::fout << ans[i] << ' ' << ans[i - 1] << '\n';
   tifa_libs::fout << ans[0] << ' ' << t << '\n';
   return 0;
 }

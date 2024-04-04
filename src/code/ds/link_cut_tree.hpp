@@ -6,6 +6,10 @@
 namespace tifa_libs::ds {
 
 template <class T, auto op, auto inv_op>
+requires requires(T x, T y) {
+  { op(x, y) } -> std::same_as<T>;
+  { inv_op(x, y) } -> std::same_as<T>;
+}
 class link_cut_tree {
   // function in private: index of node should start from 1
   // wait for updating

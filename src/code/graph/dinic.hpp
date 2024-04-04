@@ -5,7 +5,7 @@
 
 namespace tifa_libs::graph {
 
-template <typename EW = u32>
+template <class EW = u32>
 class dinic {
   struct YYZ {
     u32 to;
@@ -13,10 +13,10 @@ class dinic {
     u32 inv;
   };
   const u32 N, S, T;
-  vec<u32> dep, cur;
+  vecu dep, cur;
 
   bool bfs() {
-    dep = vec<u32>(N, 0);
+    dep = vecu(N, 0);
     std::queue<u32> q;
     dep[S] = 1, q.push(S);
     while (!q.empty()) {
@@ -25,7 +25,7 @@ class dinic {
       for (auto v : e[u])
         if (!dep[v.to] && v.w) dep[v.to] = dep[u] + 1, q.push(v.to);
     }
-    cur = vec<u32>(N, 0);
+    cur = vecu(N, 0);
     return dep[T];
   }
   constexpr u64 dfs(u32 u, EW limit = std::numeric_limits<EW>::max()) {

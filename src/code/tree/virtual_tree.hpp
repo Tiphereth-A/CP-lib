@@ -9,7 +9,7 @@ namespace tifa_libs::graph {
 class virtual_tree {
   tree& tr;
   lca_hld lca_;
-  vec<u32> st;
+  vecu st;
 
   constexpr void insert(u32 x) {
     u32 lca = lca_(x, st.back());
@@ -28,7 +28,7 @@ class virtual_tree {
 
   explicit constexpr virtual_tree(tree& tr) : tr(tr), lca_(tr), vt((u32)tr.g.size()) {}
 
-  constexpr void build(vec<u32>& a) {
+  constexpr void build(vecu& a) {
     std::sort(a.begin(), a.end(), [&](u32 a, u32 b) { return lca_.info.dfn[a] < lca_.info.dfn[b]; });
     vt.g.clear();
     st.push_back(tr.root);

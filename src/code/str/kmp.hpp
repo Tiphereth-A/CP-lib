@@ -21,9 +21,9 @@ inline vec<i32> kmp_nxt(strnv pattern) {
 
 // find pattern in text
 // @return matched position in s
-inline vec<u32> kmp(strnv pattern, strnv text) {
+inline vecu kmp(strnv pattern, strnv text) {
   vec<i32> nxt = kmp_nxt(pattern);
-  vec<u32> ret;
+  vecu ret;
   i32 n = (i32)pattern.size(), m = (i32)text.size();
   i32 i, j;
 #pragma GCC diagnostic ignored "-Wsign-conversion"

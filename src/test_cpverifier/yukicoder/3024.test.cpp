@@ -10,7 +10,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n;
   std::cin >> n;
-  vec<u32> a(n);
+  vecu a(n);
   std::cin >> a;
   vvec<tifa_libs::math::rational<i64>> dp(1 << n);
   for (u32 i = 0; i < n; ++i) dp[1 << i].emplace_back(a[i]);

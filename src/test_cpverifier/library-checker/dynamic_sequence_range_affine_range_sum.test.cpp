@@ -23,13 +23,13 @@ auto composition(F f, F g) {
 auto id() { return F(1, 0); }
 
 int main() {
-  usz n, q;
+  u32 n, q;
   mint x, y;
   tifa_libs::fin >> n >> q;
   tifa_libs::ds::fhq_treap_w<T, op, e, F, mapping, composition, id, true> tr(n + q);
-  for (usz i = 0; i < n; ++i)
+  for (u32 i = 0; i < n; ++i)
     tifa_libs::fin >> x, tr.insert(T{x, 1});
-  for (usz i = 0, opt, l, r; i < q; ++i) {
+  for (u32 i = 0, opt, l, r; i < q; ++i) {
     tifa_libs::fin >> opt >> l;
     if (opt == 0) tifa_libs::fin >> x, tr.insert(T{x, 1}, l);
     else if (opt == 1) tr.erase(l);

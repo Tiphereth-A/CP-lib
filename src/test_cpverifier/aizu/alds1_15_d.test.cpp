@@ -10,7 +10,7 @@ int main() {
   std::map<char, u32> mp;
   for (char c : s) ++mp[c];
   vec<char> dict;
-  vec<u32> w;
+  vecu w;
   for (auto [k, v] : mp) {
     dict.push_back(k);
     w.push_back(v);

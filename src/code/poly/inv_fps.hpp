@@ -1,0 +1,19 @@
+#ifndef TIFALIBS_POLY_INV_FPS
+#define TIFALIBS_POLY_INV_FPS
+
+#include "poly.hpp"
+
+namespace tifa_libs::math {
+
+template <class mint, class ccore>
+constexpr poly<mint, ccore> inv_fps(poly<mint, ccore> const &p, u32 n = 0) {
+  assert(p[0] != 0);
+  if (!n) n = p.size();
+  poly<mint, ccore> a{p[0].inv()};
+  for (u32 i = 1; i < n; i *= 2) a = (a * 2 - (a * a * p).pre(i * 2)).pre(i * 2);
+  return a.pre(n);
+}
+
+}  // namespace tifa_libs::math
+
+#endif

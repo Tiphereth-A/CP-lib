@@ -4,8 +4,8 @@
 #include "../../../code/lalg/sherman_morrison.hpp"
 
 #include "../../../code/lalg/mat.hpp"
-#include "../../../code/lalg/mat_ge_basic.hpp"
-#include "../../../code/lalg/mat_inv.hpp"
+#include "../../../code/lalg/ge_basic_mat.hpp"
+#include "../../../code/lalg/inv_mat.hpp"
 #include "../../../code/math/mint_2e61n1.hpp"
 #include "../../../code/math/mint_d31.hpp"
 #include "../../../code/math/mint_d63.hpp"
@@ -33,7 +33,7 @@ void single_test(u32 n) {
   for (u32 i = 0; i < n; ++i) I(i, i) = 1;
 
   mat A = L * U;
-  mat inv_A = tifa_libs::math::mat_inv(A, is_0, ge).value();
+  mat inv_A = tifa_libs::math::inv_mat(A, is_0, ge).value();
   check(A * inv_A, I, check_param(L), check_param(U), check_param(A), check_param(inv_A));
   mat B = inv_A;
   vec<mint> u(n), v = A.data().back();

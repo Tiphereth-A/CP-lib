@@ -16,7 +16,7 @@ void test(strn const& data) {
 
   u32 t, k;
   fin >> t >> k;
-  vec<u32> ns(t), ms(t);
+  vecu ns(t), ms(t);
   for (u32 i = 0; i < t; ++i) {
     fin >> ns[i] >> ms[i];
     if (ns[i] > ms[i]) std::swap(ns[i], ms[i]);

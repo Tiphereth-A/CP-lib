@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse"
 
-#include "../../code/poly/polysp_pow.hpp"
+#include "../../code/poly/pow_fpssp.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -22,6 +22,6 @@ int main() {
   std::cin >> n >> k >> m;
   poly p(n);
   for (u32 i = 0, x; i < k; ++i) std::cin >> x >> p[x];
-  std::cout << tifa_libs::math::polysp_pow(p, m);
+  std::cout << tifa_libs::math::pow_fpssp(p, m);
   return 0;
 }

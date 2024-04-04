@@ -2,7 +2,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/exp_of_set_power_series"
 
 #include "../../code/io/ios_container.hpp"
-#include "../../code/poly/polysps_exp.hpp"
+#include "../../code/poly/exp_fpssps.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -18,6 +18,6 @@ int main() {
   std::cin >> n;
   vec<mint> b(1 << n);
   std::cin >> b;
-  std::cout << tifa_libs::math::polysps_exp(n, b) << '\n';
+  std::cout << tifa_libs::math::exp_fpssps(n, b) << '\n';
   return 0;
 }

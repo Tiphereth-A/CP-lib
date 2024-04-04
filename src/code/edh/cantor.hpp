@@ -7,10 +7,10 @@ namespace tifa_libs {
 
 //! [0, n)
 //! p \in [1, n], a_i == a_j \iff i == j
-constexpr vec<u32> cantor_seq(vec<u32> const &p) {
+constexpr vecu cantor_seq(vecu const &p) {
   u32 n = (u32)p.size();
   ds::fenwick<u32> tr(n + 1);
-  vec<u32> s(n);
+  vecu s(n);
   for (u32 i = n - 1; ~i; --i) {
     s[i] = tr.sum(p[i]);
     tr.add(p[i], 1);

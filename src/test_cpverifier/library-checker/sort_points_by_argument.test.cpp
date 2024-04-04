@@ -9,7 +9,7 @@ using point = tifa_libs::geo::point<i64>;
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  usz n;
+  u32 n;
   std::cin >> n;
   vec<point> vp(n);
   std::cin >> vp;

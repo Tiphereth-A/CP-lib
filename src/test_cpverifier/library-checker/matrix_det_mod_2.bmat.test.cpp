@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_mod_2"
 
 #include "../../code/lalg/bitmat.hpp"
-#include "../../code/lalg/bitmat_ge.hpp"
+#include "../../code/lalg/ge_bmat.hpp"
 
 template <usz N>
 using mat = tifa_libs::math::bitmat<N>;
@@ -16,7 +16,7 @@ int main() {
   if (n <= num) {                                     \
     mat<num> bm;                                      \
     tifa_libs::math::read_bitmat(std::cin, bm, n, n); \
-    auto rk = tifa_libs::math::bitmat_ge(bm, false);  \
+    auto rk = tifa_libs::math::ge_bmat(bm, false);    \
     std::cout << (rk == n) << '\n';                   \
     return 0;                                         \
   }

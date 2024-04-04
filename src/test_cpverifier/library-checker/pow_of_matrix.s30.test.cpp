@@ -2,7 +2,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_matrix"
 
 #include "../../code/lalg/mat.hpp"
-#include "../../code/lalg/mat_pow.hpp"
+#include "../../code/lalg/pow_mat.hpp"
 
 constexpr u32 MOD = 998244353;
 

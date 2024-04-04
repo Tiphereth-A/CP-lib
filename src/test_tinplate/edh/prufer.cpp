@@ -11,12 +11,12 @@ int main() {
   std::cin >> n >> m;
   u64 ans = 0;
   if (m == 1) {
-    vec<u32> a(n);
+    vecu a(n);
     for (u32 i = 1; i < n; ++i) std::cin >> a[i];
     auto f = tifa_libs::prufer(a);
     for (u64 i = 1; i < n - 1; ++i) ans ^= i * f[i];
   } else {
-    vec<u32> a(n - 1);
+    vecu a(n - 1);
     for (u32 i = 1; i < n - 1; ++i) std::cin >> a[i];
     auto f = tifa_libs::prufer_inv(a);
     for (u64 i = 1; i < n; ++i) ans ^= i * f[i];

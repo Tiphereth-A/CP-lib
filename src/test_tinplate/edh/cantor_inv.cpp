@@ -5,10 +5,10 @@
 void solve() {
   u32 n;
   std::cin >> n;
-  vec<u32> a(n);
+  vecu a(n);
   for (auto& i : a) std::cin >> i;
   auto p = tifa_libs::cantor_inv_seq(a);
-  for (usz i = 0; i < n; ++i) std::cout << p[i] << " \n"[i == n - 1];
+  for (u32 i = 0; i < n; ++i) std::cout << p[i] << " \n"[i == n - 1];
 }
 
 int main() {

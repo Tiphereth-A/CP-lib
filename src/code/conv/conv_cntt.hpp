@@ -23,7 +23,7 @@ constexpr vec<mint> conv_cntt(CNTT<mint, M> &cntt, vec<mint> const &l, vec<mint>
   return res;
 }
 template <class mint, i64 M = -1>
-constexpr vec<mint> conv_cntt(CNTT<mint, M> &cntt, vec<u64> const &l, vec<u64> const &r, u32 ans_size = 0) {
+constexpr vec<mint> conv_cntt(CNTT<mint, M> &cntt, vecu64 const &l, vecu64 const &r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   vec<mint> l_, r_;
   l_.reserve(l.size());

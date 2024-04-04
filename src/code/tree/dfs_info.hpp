@@ -21,21 +21,21 @@ template <class G>
 struct tree_dfs_info {
   using weight_type = typename G::weight_type;
 
-  vec<u32> dfn, sz, fa, dep, maxson, maxdfn, euler;
-  vvec<u32> go;
+  vecu dfn, sz, fa, dep, maxson, maxdfn, euler;
+  vvecu go;
   vec<weight_type> dis;
 
   template <int state>
   constexpr tree_dfs_info& reset_dfs_info(G const& tree) {
     u32 n = (u32)tree.g.size();
-    if constexpr (state & td_dfn) dfn = vec<u32>(n);
-    if constexpr (state & (td_sz | td_maxson)) sz = vec<u32>(n);
-    if constexpr (state & td_fa) fa = vec<u32>(n);
-    if constexpr (state & td_dep) dep = vec<u32>(n);
-    if constexpr (state & td_maxson) maxson = vec<u32>(n, n);
-    if constexpr (state & td_maxdfn) maxdfn = vec<u32>(n);
-    if constexpr (state & td_euler) euler = vec<u32>(n);
-    if constexpr (state & td_go) go = vvec<u32>(n, vec<u32>(21u, n));
+    if constexpr (state & td_dfn) dfn = vecu(n);
+    if constexpr (state & (td_sz | td_maxson)) sz = vecu(n);
+    if constexpr (state & td_fa) fa = vecu(n);
+    if constexpr (state & td_dep) dep = vecu(n);
+    if constexpr (state & td_maxson) maxson = vecu(n, n);
+    if constexpr (state & td_maxdfn) maxdfn = vecu(n);
+    if constexpr (state & td_euler) euler = vecu(n);
+    if constexpr (state & td_go) go = vvecu(n, vecu(21u, n));
     if constexpr (state & td_dis) dis = vec<weight_type>(n);
 
     u32 cnt = 0;

@@ -12,7 +12,7 @@ constexpr std::optional<vecpt<u32>> run_(u32 n, u32 m, vvecpt<u32> const &g, u32
   for (u32 i = 0; i < n; ++i) its[i] = g[i].begin();
   vec<i32> f(n);
   if constexpr (!cyc) ++f[s];
-  vec<bool> vis(m);
+  vecb vis(m);
   vecpt<u32> ret, stk = {{s, -1_u32}};
   while (!stk.empty()) {
     auto [i, p] = stk.back();
@@ -43,7 +43,7 @@ constexpr std::optional<vecpt<u32>> run_(u32 n, u32 m, vvecpt<u32> const &g, u32
 template <bool directed, bool cycle = false>
 constexpr std::optional<vecpt<u32>> euler_trail(u32 n, vecpt<u32> const &edges) {
   vvecpt<u32> g(n);
-  vec<u32> deg_in(0);
+  vecu deg_in(0);
   if constexpr (directed) deg_in.resize(n);
   u32 e = 0;
   for (auto [u, v] : edges) {

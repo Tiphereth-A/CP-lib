@@ -4,9 +4,9 @@
 
 #include "../../code/rand/gen.hpp"
 
-vec<u32> prandom(u32 m, u32 l) {
+vecu prandom(u32 m, u32 l) {
   tifa_libs::rand::Gen<std::uniform_int_distribution<u32>> gen(0, m - 1);
-  vec<u32> ret(l);
+  vecu ret(l);
   for (u32 i = 0; i < l; ++i) ret[i] = gen();
   return ret;
 }
@@ -14,10 +14,10 @@ vec<u32> prandom(u32 m, u32 l) {
 int main() {
   u32 n, m, k;
   std::cin >> n >> m >> k;
-  vec<u32> a(m);
+  vecu a(m);
   for (auto& i : a) std::cin >> i;
   u32 l = n + k - 1;
-  vec<u32> ans = n <= 20 ? tifa_libs::util::deBruijn(n, m, l) : prandom(m, l);
+  vecu ans = n <= 20 ? tifa_libs::util::deBruijn(n, m, l) : prandom(m, l);
   for (u32 i = 0; i < l; ++i) std::cout << a[ans[i]];
   std::cout << '\n';
   return 0;

@@ -26,7 +26,7 @@ class poly {
 
   explicit constexpr poly(u32 sz = 1, value_type const &val = value_type{}) : d(sz, val) {}
   constexpr poly(typename data_type::const_iterator begin, typename data_type::const_iterator end) : d(begin, end) {}
-  explicit constexpr poly(std::initializer_list<value_type> v) : d(v) {}
+  constexpr poly(std::initializer_list<value_type> v) : d(v) {}
   template <class T>
   explicit constexpr poly(vec<T> const &v) : d(v) {}
 
@@ -77,6 +77,10 @@ class poly {
     auto it = std::find_if(d.rbegin(), d.rend(), [](auto const &x) { return x != 0; });
     d.resize(usz(d.rend() - it));
     if (d.empty()) d.push_back(value_type(0));
+  }
+  friend poly stripped(poly p) {
+    p.strip();
+    return p;
   }
   constexpr void reverse(u32 n = 0) { std::reverse(d.begin(), d.begin() + (n ? n : size())); }
   constexpr void conv(poly const &r, u32 ans_size = 0) { conv_core.conv(d, r.d, ans_size); }
@@ -131,6 +135,9 @@ class poly {
     return *this;
   }
   friend constexpr poly operator*(poly l, poly const &r) { return l *= r; }
+
+  constexpr auto operator<=>(poly const &r) const { return stripped(*this).d <=> stripped(r).d; }
+  constexpr bool operator==(poly const &r) const { return stripped(*this).d == stripped(r).d; }
 };
 
 }  // namespace tifa_libs::math

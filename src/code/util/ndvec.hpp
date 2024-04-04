@@ -11,7 +11,7 @@ struct ndvec : public vec<ndvec<N - 1, Tp>> {
   using base_tp = ndvec<N - 1, Tp>;
   using base = vec<base_tp>;
 
-  template <class T, typename... Ts>
+  template <class T, class... Ts>
   constexpr ndvec(T &&n, Ts &&...args) : base(n, base_tp(args...)) {}
 
   constexpr u32 dim() const { return N; }

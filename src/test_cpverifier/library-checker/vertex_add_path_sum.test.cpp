@@ -13,24 +13,24 @@ F composition(F f, F g) { return f + g; }
 F id() { return 0; }
 
 int main() {
-  usz n, q;
+  u32 n, q;
   tifa_libs::fin >> n >> q;
   vec<i64> b(n);
   vec<T> a(n);
   for (auto& x : b) tifa_libs::fin >> x;
   tifa_libs::graph::tree tr_(n);
-  for (usz i = 1, u, v; i < n; ++i) tifa_libs::fin >> u >> v, tr_.add_arc((u32)u, (u32)v), tr_.add_arc((u32)v, (u32)u);
+  for (u32 i = 1, u, v; i < n; ++i) tifa_libs::fin >> u >> v, tr_.add_arc((u32)u, (u32)v), tr_.add_arc((u32)v, (u32)u);
   tifa_libs::ds::hld<T, op, e, F, mapping, composition, id> tr(tr_);
-  for (usz i = 0; i < n; ++i) a[tr.info.dfn[i]].first = b[i], a[tr.info.dfn[i]].second = 1;
+  for (u32 i = 0; i < n; ++i) a[tr.info.dfn[i]].first = b[i], a[tr.info.dfn[i]].second = 1;
   tr.build(a);
-  for (usz i = 0, opt, u; i < q; ++i) {
+  for (u32 i = 0, opt, u; i < q; ++i) {
     tifa_libs::fin >> opt >> u;
     if (opt == 0) {
       i64 x;
       tifa_libs::fin >> x;
       tr.node_update((u32)u, x);
     } else {
-      usz v;
+      u32 v;
       tifa_libs::fin >> v;
       tifa_libs::fout << tr.chain_query((u32)u, (u32)v).first << '\n';
     }

@@ -30,7 +30,7 @@ struct CNTT {
   constexpr void dit(vec<Zpi> &f) const { difdit<true>(f); }
 
  private:
-  vec<u32> rev;
+  vecu rev;
   const Zpi W;
   vec<Zpi> Wn, IWn;
 

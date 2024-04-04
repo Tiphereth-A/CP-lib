@@ -354,13 +354,13 @@ notebook:
     - point_is_in_middle: 点是否在两点连成的线段上
       code_ext: hpp
       test_ext: cpp
-    - poly_cnt_intp: 多边形整点计数
+    - cnt_intp_po: 多边形整点计数
       code_ext: hpp
       test_ext: cpp
-    - poly_fermatp: 多边形 Fermat 点
+    - fermatp: 多边形 Fermat 点
       code_ext: hpp
       test_ext: cpp
-    - poly_massp: 多边形重心
+    - massp: 多边形重心
       code_ext: hpp
       test_ext: cpp
     - rel_cc: 两圆的关系
@@ -531,7 +531,7 @@ notebook:
     - topo_sort: 拓扑排序
       code_ext: hpp
       test_ext: cpp
-    - mat_tree: Kirchhoff 矩阵树定理
+    - kirchhoff: Kirchhoff 矩阵树定理
       code_ext: hpp
       test_ext: cpp
     - euler_trail: Euler 迹
@@ -917,70 +917,70 @@ notebook:
     - mat: 矩阵
       code_ext: hpp
       test_ext: cpp
-    - mat_det: 行列式
+    - det_mat: 行列式
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_swapr_: mat_ge_swapr_
+    - ge_swapr_mat_: ge_swapr_mat_
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_basic: Gauss 消元(普通)
+    - ge_basic_mat: Gauss 消元(普通)
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_euclid: Gauss 消元(辗转相除)
+    - ge_euclid_mat: Gauss 消元(辗转相除)
       code_ext: hpp
       test_ext: cpp
-    - mat_ge_xor: Gauss 消元(异或)
+    - ge_xor_mat: Gauss 消元(异或)
       code_ext: hpp
       test_ext: cpp
-    - mat_inv: 逆矩阵
+    - inv_mat: 逆矩阵
       code_ext: hpp
       test_ext: cpp
-    - mat_merge_lr: 横向合并
+    - merge_lr_mat: 横向合并
       code_ext: hpp
       test_ext: cpp
-    - mat_merge_ud: 纵向合并
+    - merge_ud_mat: 纵向合并
       code_ext: hpp
       test_ext: cpp
-    - mat_pow: 矩阵快速幂
+    - pow_mat: 矩阵快速幂
       code_ext: hpp
       test_ext: cpp
-    - mat_rk: 秩
+    - rk_mat: 秩
       code_ext: hpp
       test_ext: cpp
-    - mat_tr: 迹
+    - tr_mat: 迹
       code_ext: hpp
       test_ext: cpp
-    - mat_trans: 转置
+    - trans_mat: 转置
       code_ext: hpp
       test_ext: cpp
-    - mat_charpoly: 特征多项式
+    - charpoly_mat: 特征多项式
       code_ext: hpp
       test_ext: cpp
-    - mat_uhb: 转为上 Hessenberg 矩阵
+    - uhb_mat: 转为上 Hessenberg 矩阵
       code_ext: hpp
       test_ext: cpp
-    - mat_hafnian: 图的完美匹配计数
+    - hafnian_mat: 图的完美匹配计数
       code_ext: hpp
       test_ext: cpp
     - leqs_solver: 求线性方程组的解和解空间
       code_ext: hpp
       test_ext: cpp
-    - spmat: 稀疏矩阵
+    - matsp: 稀疏矩阵
       code_ext: hpp
       test_ext: cpp
-    - spmat_merge_lr: 稀疏矩阵横向合并
+    - merge_lr_matsp: 稀疏矩阵横向合并
       code_ext: hpp
       test_ext: cpp
-    - spmat_merge_ud: 稀疏矩阵纵向合并
+    - merge_ud_matsp: 稀疏矩阵纵向合并
       code_ext: hpp
       test_ext: cpp
     - lfsr_bm: 寻找最短 LFSR
       code_ext: hpp
       test_ext: cpp
-    - mat_minpoly_rd: 求矩阵的最小多项式(随机化算法)
+    - minpoly_rd_mat: 求矩阵的最小多项式(随机化算法)
       code_ext: hpp
       test_ext: cpp
-    - mat_det_rd: 求矩阵的行列式(随机化算法)
+    - det_rd_mat: 求矩阵的行列式(随机化算法)
       code_ext: hpp
       test_ext: cpp
     - sherman_morrison: Sherman--Morrison 公式
@@ -989,13 +989,13 @@ notebook:
     - bitmat: 静态 Bool 矩阵
       code_ext: hpp
       test_ext: cpp
-    - bitmat_trans: 静态 Bool 矩阵转置
+    - trans_bmat: 静态 Bool 矩阵转置
       code_ext: hpp
       test_ext: cpp
-    - bitmat_mul: 静态 Bool 矩阵乘法
+    - mul_bmat: 静态 Bool 矩阵乘法
       code_ext: hpp
       test_ext: cpp
-    - bitmat_ge: 静态 Bool 矩阵 Gauss 消元
+    - ge_bmat: 静态 Bool 矩阵 Gauss 消元
       code_ext: hpp
       test_ext: cpp
     conv:
@@ -1102,82 +1102,73 @@ notebook:
     - polycntt: 多项式(基于 CNTT)
       code_ext: hpp
       test_ext: cpp
-    - poly_acos: 多项式 acos
+    - shl_fps: 多项式左移
       code_ext: hpp
       test_ext: cpp
-    - poly_asin: 多项式 asin
+    - shr_fps: 多项式右移
       code_ext: hpp
       test_ext: cpp
-    - poly_atan: 多项式 atan
+    - deriv_fps: 多项式导数
       code_ext: hpp
       test_ext: cpp
-    - poly_cos: 多项式 cos
+    - int_fps: 多项式积分
       code_ext: hpp
       test_ext: cpp
-    - poly_czt: 多项式 Chirp-Z 变换
+    - inv_fps: 多项式逆函数
       code_ext: hpp
       test_ext: cpp
-    - poly_deriv: 多项式导数
+    - div_fps: 多项式整除
       code_ext: hpp
       test_ext: cpp
-    - poly_div: 多项式整除
+    - divmod_fps: 多项式除法与取模
       code_ext: hpp
       test_ext: cpp
-    - poly_divmod: 多项式除法与取模
+    - exp_fps: 多项式 exp
       code_ext: hpp
       test_ext: cpp
-    - poly_gcd: 多项式 GCD
+    - ln_fps: 多项式 ln
       code_ext: hpp
       test_ext: cpp
-    - poly_modinv: 多项式逆元
+    - pow_fps: 多项式 pow
       code_ext: hpp
       test_ext: cpp
-    - poly_exp: 多项式 exp
+    - sqrt_fps: 多项式 sqrt
       code_ext: hpp
       test_ext: cpp
-    - poly_int: 多项式积分
+    - cossin_fps: 多项式 cos 与 sin
       code_ext: hpp
       test_ext: cpp
-    - poly_interp: 快速插值
+    - asin_fps: 多项式 asin
       code_ext: hpp
       test_ext: cpp
-    - poly_inv: 多项式逆函数
+    - atan_fps: 多项式 atan
       code_ext: hpp
       test_ext: cpp
-    - poly_ln: 多项式 ln
+    - czt_fps: 多项式 Chirp-Z 变换
       code_ext: hpp
       test_ext: cpp
-    - poly_mpe: 多项式多点求值
+    - gcd_fps: 多项式 GCD
       code_ext: hpp
       test_ext: cpp
-    - poly_pow: 多项式 pow
+    - modinv_fps: 多项式逆元
       code_ext: hpp
       test_ext: cpp
-    - poly_shl: 多项式左移
+    - interp_fps: 多项式快速插值
       code_ext: hpp
       test_ext: cpp
-    - poly_shr: 多项式右移
+    - mpe_fps: 多项式多点求值
       code_ext: hpp
       test_ext: cpp
-    - poly_sin: 多项式 sin
+    - tsh_fps: 多项式单点平移
       code_ext: hpp
       test_ext: cpp
-    - poly_sqrt: 多项式 sqrt
+    - ctsh_fps: 多项式连续点值平移
       code_ext: hpp
       test_ext: cpp
-    - poly_tan: 多项式 tan
+    - ode_fps: 多项式 ODE
       code_ext: hpp
       test_ext: cpp
-    - poly_tsh: 多项式单点平移
-      code_ext: hpp
-      test_ext: cpp
-    - poly_ctsh: 多项式连续点值平移
-      code_ext: hpp
-      test_ext: cpp
-    - poly_ode: 多项式 ODE
-      code_ext: hpp
-      test_ext: cpp
-    - poly_cbm2n: 单项式基转 Newton 基
+    - cbm2n_fps: 单项式基转 Newton 基
       code_ext: hpp
       test_ext: cpp
     - bostan_mori: Bostan--Mori 算法
@@ -1186,22 +1177,22 @@ notebook:
     - polysp: 多项式转稀疏多项式
       code_ext: hpp
       test_ext: cpp
-    - polysp_inv: 稀疏多项式逆函数
+    - inv_fpssp: 稀疏多项式逆函数
       code_ext: hpp
       test_ext: cpp
-    - polysp_ln: 稀疏多项式 ln
+    - ln_fpssp: 稀疏多项式 ln
       code_ext: hpp
       test_ext: cpp
-    - polysp_exp: 稀疏多项式 exp
+    - exp_fpssp: 稀疏多项式 exp
       code_ext: hpp
       test_ext: cpp
-    - polysp_pow: 稀疏多项式 pow
+    - pow_fpssp: 稀疏多项式 pow
       code_ext: hpp
       test_ext: cpp
-    - polysps_comp: 集合幂级数复合
+    - comp_fpssps: 集合幂级数复合
       code_ext: hpp
       test_ext: cpp
-    - polysps_exp: 集合幂级数 exp
+    - exp_fpssps: 集合幂级数 exp
       code_ext: hpp
       test_ext: cpp
     str:
