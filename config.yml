@@ -1247,6 +1247,9 @@ notebook:
     - trie: Trie
       code_ext: hpp
       test_ext: cpp
+    - lcs_sa: 最长公共子串(后缀数组)
+      code_ext: hpp
+      test_ext: cpp
     rand:
     - gen: 随机数生成辅助类
       code_ext: hpp
