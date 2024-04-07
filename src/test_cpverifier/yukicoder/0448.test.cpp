@@ -15,6 +15,6 @@ int main() {
     std::cout << "-1\n";
     return 0;
   }
-  std::cout << ((usz)std::count(r.begin(), r.end(), 0) == n ? res->second : res->first) << '\n';
+  std::cout << ((usz)std::ranges::count(r, 0) == n ? res->second : res->first) << '\n';
   return 0;
 }

@@ -14,7 +14,7 @@ auto manhattan_mst(vecpt<T> vp) {
   std::iota(id.begin(), id.end(), 0);
   vec<std::tuple<T, u32, u32>> ret;
   for (u32 k = 0; k < 4; ++k) {
-    std::sort(id.begin(), id.end(), [&](u32 i, u32 j) { return vp[i].first + vp[i].second < vp[j].first + vp[j].second; });
+    std::ranges::sort(id, [&](u32 i, u32 j) { return vp[i].first + vp[i].second < vp[j].first + vp[j].second; });
     std::map<T, u32> mp;
     for (auto i : id) {
       for (auto it = mp.lower_bound(-vp[i].second); it != mp.end(); mp.erase(it++)) {

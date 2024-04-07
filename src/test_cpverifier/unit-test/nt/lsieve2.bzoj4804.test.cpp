@@ -5,7 +5,6 @@
 
 #include "../base.hpp"
 
-
 void test(strn const& data) {
   strn path = "src/data/bzoj/4804/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
@@ -15,7 +14,7 @@ void test(strn const& data) {
   vecu ns(t);
   for (u32 i = 0; i < t; ++i) fin >> ns[i];
 
-  u32 n = *std::max_element(ns.begin(), ns.end());
+  u32 n = *std::ranges::max_element(ns);
   tifa_libs::math::lsieve2 ls(n);
   u64 lst = 1;
   vecu64 g = ls.template run<u64>([&](u32 p, u32 e) {

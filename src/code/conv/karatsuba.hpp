@@ -27,7 +27,7 @@ constexpr vec<T> karatsuba(vec<T> const &a, vec<T> const &b) {
   vec<T> cll = karatsuba(al, bl), cuu = karatsuba(au, bu), clu = karatsuba(alu, blu);
   (clu -= cll) -= cuu;
   vec<T> c(d);
-  std::copy(clu.begin(), clu.end(), std::back_inserter(c));
+  std::ranges::copy(clu, std::back_inserter(c));
   c.resize(a.size() + b.size() - 1);
   c += cll;
   for (u32 i = 0; i < cuu.size(); ++i) c[i + 2 * d] += cuu[i];

@@ -10,7 +10,7 @@ constexpr poly<mint, ccore> shr_fps(poly<mint, ccore> const &p, usz x) {
   if (!x) return p;
   auto _ = p;
   if (x >= p.size()) {
-    std::fill(_.data().begin(), _.data().end(), 0);
+    std::ranges::fill(_.data(), 0);
     return _;
   }
   std::fill(std::move(_.data().begin() + (isz)x, _.data().end(), _.data().begin()), _.data().end(), 0);

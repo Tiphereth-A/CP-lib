@@ -23,7 +23,7 @@ constexpr u64 max_cover_Ps(vec<point<FP>> const &vp, FP r) {
       angles.emplace_back(polar - delta, 1);
       angles.emplace_back(polar + delta, -1);
     }
-    std::sort(angles.begin(), angles.end());
+    std::ranges::sort(angles);
     u64 sum = 0;
     for (u32 j = 0; j < angles.size(); ++j) ans = std::max(ans, sum += angles[j].second);
   }

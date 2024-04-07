@@ -9,7 +9,7 @@ int main() {
   std::cin >> n >> m;
   vec<std::tuple<u32, u32, u32>> e(m);
   for (auto& [w, u, v] : e) std::cin >> u >> v >> w;
-  std::sort(e.begin(), e.end());
+  std::ranges::sort(e);
   auto tr = tifa_libs::graph::kruskal<u32>(e, n);
   u32 ret = 0;
   for (u32 i = 0; i < n; ++i)

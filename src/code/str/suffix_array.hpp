@@ -31,7 +31,7 @@ class suffixarray {
       for (u32 i = 1; i <= n; ++i) ++cnt[rk[id[i]]];
       for (u32 i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
       for (u32 i = n; i >= 1; --i) sa[cnt[rk[id[i]]]--] = id[i];
-      std::copy(rk.begin(), rk.end(), oldrk.begin());
+      std::ranges::copy(rk, oldrk.begin());
       p = 0;
       for (u32 i = 1; i <= n; ++i) {
         u32 x = sa[i], y = sa[i - 1];

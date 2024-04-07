@@ -42,7 +42,7 @@ constexpr vecpt<u32> find_cycle(alist<with_deg> const& fg) {
     if (vis[i]) continue;
     dfs(dfs, i, i, -1_u32);
     if (fin) {
-      std::reverse(cycle.begin(), cycle.end());
+      std::ranges::reverse(cycle);
       return cycle;
     }
   }

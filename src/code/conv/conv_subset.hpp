@@ -38,7 +38,7 @@ struct conv_subset {
   constexpr vec<arr> lift(vec<T> const& a) const {
     vec<arr> A(a.size());
     for (u32 i = 0; i < a.size(); ++i) {
-      std::fill(A[i].begin(), A[i].end(), T());
+      std::ranges::fill(A[i], T());
       A[i][pc[i]] = a[i];
     }
     return A;

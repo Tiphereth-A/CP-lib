@@ -29,7 +29,7 @@ class virtual_tree {
   explicit constexpr virtual_tree(tree& tr) : tr(tr), lca_(tr), vt((u32)tr.g.size()) {}
 
   constexpr void build(vecu& a) {
-    std::sort(a.begin(), a.end(), [&](u32 a, u32 b) { return lca_.info.dfn[a] < lca_.info.dfn[b]; });
+    std::ranges::sort(a, [&](u32 a, u32 b) { return lca_.info.dfn[a] < lca_.info.dfn[b]; });
     vt.g.clear();
     st.push_back(tr.root);
     for (u32 x : a) insert(x);

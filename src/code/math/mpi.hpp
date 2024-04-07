@@ -273,7 +273,7 @@ class mpi {
       vecu t{a.end() - d, a.end()}, u = mul_(s, t);
       u.erase(u.begin(), u.begin() + d);
       vecu w(k + 1), w2 = add_(z, z);
-      std::copy(w2.begin(), w2.end(), std::back_inserter(w));
+      std::ranges::copy(w2, std::back_inserter(w));
       (z = sub_(w, u)).erase(z.begin());
       k *= 2;
     }
@@ -309,7 +309,7 @@ class mpi {
       while (res.size() && res.back() == '0') res.pop_back();
       assert(!res.empty());
     }
-    std::reverse(res.begin(), res.end());
+    std::ranges::reverse(res);
     return res;
   }
   template <int_c T>

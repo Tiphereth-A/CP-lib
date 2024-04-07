@@ -16,7 +16,7 @@ auto det_rd(Mat mat, Gn &gen, Is0 &&is0) {
   assert(n == mat.col());
   auto gen2 = [&gen](u32 n) {
     vec<T> v(n);
-    std::generate(v.begin(), v.end(), gen);
+    std::ranges::generate(v, gen);
     return v;
   };
   vec<T> u = gen2(n), v = gen2(n), diag = gen2(n), _(n * 2);
@@ -26,7 +26,7 @@ auto det_rd(Mat mat, Gn &gen, Is0 &&is0) {
     v = mat.lproj(v);
   }
   vec<T> mp = lfsr_bm(_, std::forward<Is0>(is0));
-  T res = mp.back() / std::accumulate(diag.begin(), diag.end(), T(1), std::multiplies<T>());
+  T res = mp.back() / std::reduce(diag.begin(), diag.end(), T(1), std::multiplies<T>());
   return (n & 1) == 1 ? -res : res;
 }
 

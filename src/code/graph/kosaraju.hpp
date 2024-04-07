@@ -34,7 +34,7 @@ class kosaraju {
       for (auto to : rev_g[idx]) rdfs(rdfs, to, cnt);
     };
     for (u32 i = 0; i < g.size(); ++i) dfs(dfs, i);
-    std::reverse(ord.begin(), ord.end());
+    std::ranges::reverse(ord);
     scc_id.resize(g.size(), -1_u32);
     u32 cnt = 0;
     for (u32 i : ord)

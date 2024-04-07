@@ -5,7 +5,6 @@
 
 #include "../base.hpp"
 
-
 using point_t = ptt<i32>;
 
 vec<point_t> parse_tsp_data(strn const& name) {

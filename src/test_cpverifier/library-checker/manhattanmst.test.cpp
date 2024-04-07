@@ -11,7 +11,7 @@ int main() {
   vecpt<i64> vp(n);
   for (auto& [x, y] : vp) std::cin >> x >> y;
   auto res = tifa_libs::graph::manhattan_mst(vp);
-  std::sort(res.begin(), res.end());
+  std::ranges::sort(res);
   auto mst = tifa_libs::graph::kruskal(res, n);
   i64 sum = 0;
   for (u32 u = 0; u < n; ++u)

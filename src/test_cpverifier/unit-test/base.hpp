@@ -24,16 +24,16 @@ void check_(strn const &pretty_func, strn const &got_str, T const &got, strn con
   if constexpr (sizeof...(param) == 0) {
     if (got != want) throw std::runtime_error(pretty_func + ": got \"" + got_str + "\" = " + to_str(got) + ", want \"" + want_str + "\" = " + to_str(want));
   } else {
-    if (got != want) throw std::runtime_error(pretty_func + ": " + ((param.first + ::tifa_libs::unittest::detail__::to_str(param.second) + " | ") + ...) + " -> got \"" + got_str + "\" = " + to_str(got) + ", want \"" + want_str + "\" = " + to_str(want));
+    if (got != want) throw std::runtime_error(pretty_func + ": got \"" + got_str + "\" = " + to_str(got) + ", want \"" + want_str + "\" = " + to_str(want) + " with" + ((" " + param.first + " = " + ::tifa_libs::unittest::detail__::to_str(param.second) + " ;") + ...));
   }
 }
 
 template <class... Ts>
 void check_bool_(strn const &pretty_func, strn const &expression, bool res, Ts... param) {
   if constexpr (sizeof...(param) == 0) {
-    if (!res) throw std::runtime_error(pretty_func + ": " + expression + " failed");
+    if (!res) throw std::runtime_error(pretty_func + " :\"" + expression + "\" failed");
   } else {
-    if (!res) throw std::runtime_error(pretty_func + ": " + ((param.first + ::tifa_libs::unittest::detail__::to_str(param.second) + " | ") + ...) + " -> " + expression + " failed");
+    if (!res) throw std::runtime_error(pretty_func + " :\"" + expression + "\" failed with" + ((" " + param.first + " = " + ::tifa_libs::unittest::detail__::to_str(param.second) + " ;") + ...));
   }
 }
 

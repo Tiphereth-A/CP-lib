@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_GEO2D_POLYGON
 #define TIFALIBS_GEO2D_POLYGON
 
+#include "../edh/discretization.hpp"
 #include "cross.hpp"
 #include "dist_pp.hpp"
 
@@ -27,12 +28,11 @@ struct polygon {
   constexpr point<FP> const &operator[](u32 x) const { return vs[x]; }
 
   constexpr polygon &resort() {
-    std::sort(vs.begin(), vs.end());
+    std::ranges::sort(vs);
     return *this;
   }
   constexpr polygon &reunique() {
-    resort();
-    vs.erase(std::unique(vs.begin(), vs.end()), vs.end());
+    vs = uniq(vs);
     return *this;
   }
 

@@ -32,7 +32,7 @@ constexpr std::optional<vecpt<u32>> run_(u32 n, u32 m, vvecpt<u32> const &g, u32
   if (ret.size() != m + 1) return {};
   for (i32 i : f)
     if (i < 0) return {};
-  std::reverse(ret.begin(), ret.end());
+  std::ranges::reverse(ret);
   return ret;
 }
 

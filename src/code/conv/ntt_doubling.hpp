@@ -15,7 +15,7 @@ constexpr void ntt_doubling(NTT_t const& ntt, vec<mint>& f, u32 n = 0) {
   mint r = 1, zeta = qpow(ntt.G, (mint::mod() - 1) / (n * 2));
   for (u32 i = 0; i < n; ++i) g[i] *= r, r *= zeta;
   ntt.dif(g);
-  std::copy(g.begin(), g.end(), f.begin() + n);
+  std::ranges::copy(g, f.begin() + n);
 }
 
 }  // namespace tifa_libs::math

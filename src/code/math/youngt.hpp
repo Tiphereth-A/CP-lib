@@ -38,7 +38,7 @@ class Youngt {
   constexpr void insert(u32 val) {
     ++n;
     for (auto& i : d) {
-      auto it = std::lower_bound(i.begin(), i.end(), val);
+      auto it = std::ranges::lower_bound(i, val);
       if (it == i.end()) {
         i.push_back(val);
         return;

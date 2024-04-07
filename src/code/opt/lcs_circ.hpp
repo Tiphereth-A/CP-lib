@@ -8,7 +8,7 @@ namespace tifa_libs::opt {
 template <iterable_c T>
 constexpr u32 lcs_circ(T const& a, T const& b) {
   T b_(b.size() * 2);
-  std::copy(b.begin(), b.end(), b_.begin()), std::copy(b.begin(), b.end(), b_.begin() + b.size());
+  std::ranges::copy(b, b_.begin()), std::ranges::copy(b, std::back_inserter(b_));
   vvecb left(a.size() + 1, vecb(b_.size() + 1)), up = left;
   auto f = [&](u32 x, u32 y) {
     assert(x && y);

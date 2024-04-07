@@ -32,7 +32,7 @@ vec<mint> comp_fpssps(u32 n, poly<mint, ccore> f, vec<mint> g, vecu64 const &fac
       ss.prod(B, A);
       ss.mobius(B);
       auto c = ss.unlift(B);
-      std::copy(c.begin(), c.end(), std::back_inserter(h[k][j]));
+      std::ranges::copy(c, std::back_inserter(h[k][j]));
     }
   }
   return h[n][0];

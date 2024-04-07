@@ -14,7 +14,7 @@ struct DLL {
   DLL(const char *file) {
     // obtain symbols of requested library
     char buf[1024];
-    strn command = std::format("objdump -T {} | awk '{{if($4 == \".text\") print $7,$1}}'", file);
+    strn command = "objdump -T " + strn(file) + " | awk '{if($4 == \".text\") print $7,$1}'";
     auto cmd = popen(command.c_str(), "r");
     while (fgets(buf, 1024, cmd)) {
       std::istringstream ss(buf);
@@ -24,7 +24,7 @@ struct DLL {
     pclose(cmd);
 
     // obtain base address of requested library
-    command = std::format("awk '{{if(index($6, \"{}\") != 0 && $3 == \"00000000\") print substr($1, 1, index($1, \"-\") - 1)}}' /proc/{}/maps", file, getpid());
+    command = "awk '{if(index($6, \"" + strn(file) + "\") != 0 && $3 == \"00000000\") print substr($1, 1, index($1, \"-\") - 1)}' /proc/" + std::to_string(getpid()) + "/maps";
     cmd = popen(command.c_str(), "r");
     while (fgets(buf, 1024, cmd))
       base = reinterpret_cast<char *>(std::stoul(buf, nullptr, 16));

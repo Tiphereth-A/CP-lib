@@ -66,7 +66,7 @@ class NPuzzleData {
   constexpr auto operator<=>(NPuzzleData const &r) const { return node <=> r.node; }
   friend std::istream &operator>>(std::istream &is, NPuzzleData &np) {
     for (auto &i : np.node) is >> i;
-    np.pos0 = u32(std::find(np.node.begin(), np.node.end(), 0) - np.node.begin());
+    np.pos0 = u32(std::ranges::find(np.node, 0) - np.node.begin());
     for (u32 p = 0; p < np.node.size(); ++p)
       if (np.node[p]) np.cost_ += pos_cost[p][fin_pos[np.node[p]]];
     return is;

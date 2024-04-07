@@ -11,7 +11,7 @@ constexpr vecu lis(vec<T> const& a, T inf = std::numeric_limits<T>::max(), C&& c
   vec<T> f{inf};
   vecu g;
   for (auto i : a) {
-    auto it = std::lower_bound(f.begin(), f.end(), i, comp);
+    auto it = std::ranges::lower_bound(f, i, comp);
     g.push_back(u32(it - f.begin()));
     if (it == f.end()) f.push_back(i);
     else *it = i;
@@ -24,7 +24,7 @@ constexpr vecu lis(vec<T> const& a, T inf = std::numeric_limits<T>::max(), C&& c
       --now;
       val = a[i];
     }
-  std::reverse(ret.begin(), ret.end());
+  std::ranges::reverse(ret);
   return ret;
 }
 

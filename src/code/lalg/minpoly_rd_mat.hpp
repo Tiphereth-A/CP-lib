@@ -15,7 +15,7 @@ auto minpoly(Mat const &mat, Gn &gen, Is0 &&is0) {
   assert(n == mat.col());
   auto gen2 = [&gen](u32 n) {
     vec<T> v(n);
-    std::generate(v.begin(), v.end(), gen);
+    std::ranges::generate(v, gen);
     return v;
   };
   vec<T> u = gen2(n), v = gen2(n), _(n * 2);
@@ -24,7 +24,7 @@ auto minpoly(Mat const &mat, Gn &gen, Is0 &&is0) {
     v = mat.lproj(v);
   }
   vec<T> res = lfsr_bm(_, std::forward<Is0>(is0));
-  std::reverse(res.begin(), res.end());
+  std::ranges::reverse(res);
   return res;
 }
 

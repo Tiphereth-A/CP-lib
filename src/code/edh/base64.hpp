@@ -13,7 +13,7 @@ class Base64 {
 
  public:
   static constexpr strn encode(vec<usz> const &a) {
-    usz x = *std::max_element(a.begin(), a.end()), y = *std::min_element(a.begin(), a.end());
+    usz x = *std::ranges::max_element(a), y = *std::ranges::min_element(a);
     usz N = a.size(), B = std::max(usz(6), (sizeof(usz) * 8 - (usz)(y < 0 ? 0 : std::countl_zero(x))));
     strn S((B * N + 11) / 6, 0);
     S[0] = (char)B;

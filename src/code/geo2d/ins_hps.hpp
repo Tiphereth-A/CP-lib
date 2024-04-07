@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_GEO2D_INS_HPS
 #define TIFALIBS_GEO2D_INS_HPS
 
+#include "../edh/discretization.hpp"
 #include "cvh.hpp"
 
 namespace tifa_libs::geo {
@@ -8,9 +9,7 @@ namespace tifa_libs::geo {
 template <class FP>
 constexpr cvh<FP> ins_hPs(vec<line<FP>> vl) {
   auto check = [](line<FP> const &u, line<FP> const &v, line<FP> const &w) -> bool { return w.is_include_strict(ins_LL(u, v)); };
-  std::sort(vl.begin(), vl.end());
-  vl.erase(std::unique(vl.begin(), vl.end()), vl.end());
-  if (vl.size() < 3) return {};
+  if ((vl = uniq(vl)).size() < 3) return {};
   std::deque<line<FP>> q;
   for (auto it = vl.begin(); it != vl.end(); ++it) {
     if (it != vl.begin() && is_same_dir(*it, *(it - 1))) continue;

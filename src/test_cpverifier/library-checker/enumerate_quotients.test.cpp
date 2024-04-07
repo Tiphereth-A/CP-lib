@@ -10,7 +10,7 @@ int main() {
   std::cin >> n;
   vecu64 ans;
   tifa_libs::math::do_quot(n, [&ans](u64, u64, u64 q) { ans.push_back(q); });
-  std::sort(ans.begin(), ans.end());
+  std::ranges::sort(ans);
   std::cout << ans.size() << '\n';
   std::cout << ans << '\n';
   return 0;

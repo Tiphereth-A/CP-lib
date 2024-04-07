@@ -24,7 +24,7 @@ constexpr poly<mint, ccore> ctsh_fps(poly<mint, ccore> const &f, mint c, vecu64 
   }
   if (t + m > mint::mod()) {
     auto pref = ctsh_fps<mint, ccore>(f, t, ifact, u32(mint::mod() - t)), suf = ctsh_fps<mint, ccore>(f, 0, ifact, m - pref.size());
-    std::copy(suf.data().begin(), suf.data().end(), std::back_inserter(pref.data()));
+    std::ranges::copy(suf.data(), std::back_inserter(pref.data()));
     return pref;
   }
   poly_t d(k + 1);

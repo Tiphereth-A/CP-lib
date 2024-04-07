@@ -1,6 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_G"
 #define ERROR 0.00001
 
+#include "../../code/edh/discretization.hpp"
 #include "../../code/geo2d/circle.hpp"
 #include "../../code/geo2d/extan_cc.hpp"
 #include "../../code/geo2d/intan_cc.hpp"
@@ -25,8 +26,7 @@ int main() {
     ans.push_back(inl.value().first.l);
     ans.push_back(inl.value().second.l);
   }
-  std::sort(ans.begin(), ans.end());
-  ans.erase(std::unique(ans.begin(), ans.end()), ans.end());
+  ans = tifa_libs::uniq(ans);
   for (auto &i : ans) std::cout << i << '\n';
   return 0;
 }

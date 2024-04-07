@@ -16,7 +16,7 @@ int main() {
   vecu _;
   for (auto i : tifa_libs::enum_subset<>{}) _.push_back(i);
   _.push_back(0);
-  std::reverse(_.begin(), _.end());
+  std::ranges::reverse(_);
   for (auto i : _) {
     std::cout << i << ":";
     for (u32 j = 0; j < n; ++j)

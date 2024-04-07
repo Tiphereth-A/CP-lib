@@ -25,7 +25,7 @@ constexpr vecu topo_sort(alist<with_deg> const& fg) {
   };
   for (u32 i = 0; i < n; ++i)
     if (!vis[i] && !dfs(dfs, i)) return {};
-  std::reverse(ans.begin(), ans.end());
+  std::ranges::reverse(ans);
   return ans;
 }
 

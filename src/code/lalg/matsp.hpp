@@ -37,7 +37,7 @@ class matsp {
   constexpr void shrink_row(u32 r) {
     d[r].erase(std::remove_if(d[r].begin(), d[r].end(), [](node const &x) { return x.second == T{}; }), d[r].end());
   }
-  constexpr void sort_row(u32 r) { std::sort(d[r].begin(), d[r].end()); }
+  constexpr void sort_row(u32 r) { std::ranges::sort(d[r]); }
 
   template <class F>
   constexpr void apply(F f) {

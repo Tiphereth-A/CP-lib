@@ -7,7 +7,6 @@
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
 
-
 using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
 void test(strn const& data) {
@@ -21,7 +20,7 @@ void test(strn const& data) {
     fin >> ns[i] >> ms[i];
     if (ns[i] > ms[i]) std::swap(ns[i], ms[i]);
   }
-  u32 n = *std::max_element(ns.begin(), ns.end());
+  u32 n = *std::ranges::max_element(ns);
   tifa_libs::math::lsieve2 ls(n);
   static mint pk, lst;
   vec<mint> g = ls.template run<mint>(

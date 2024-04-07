@@ -29,7 +29,7 @@ constexpr vec<T> berlekamp_massey(vec<T> const &a) {
     } else
       for (u32 i = 0; i < m; ++i) c[l - 1 - i] -= d_ * b[m - 1 - i];
   }
-  std::reverse(c.begin(), c.end());
+  std::ranges::reverse(c);
   return c;
 }
 

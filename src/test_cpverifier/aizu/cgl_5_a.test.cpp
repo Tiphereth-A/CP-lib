@@ -14,7 +14,7 @@ int main() {
   std::cin >> n;
   vec<point> vp(n);
   for (auto &i : vp) std::cin >> i;
-  std::sort(vp.begin(), vp.end());
+  std::ranges::sort(vp);
   std::cout << tifa_libs::geo::min_dis_Ps(vp, 0, n) << '\n';
   return 0;
 }

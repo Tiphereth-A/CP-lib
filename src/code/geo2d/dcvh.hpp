@@ -59,8 +59,7 @@ class dcvh {
   }
   constexpr cvh<FP> to_CVH() const {
     cvh<FP> ret;
-    for (auto it = hcvh_up.vs.begin(); it != hcvh_up.vs.end(); ++it) ret.vs.push_back(*it);
-    for (auto it = hcvh_down.vs.begin(); it != hcvh_down.vs.end(); ++it) ret.vs.push_back(*it);
+    std::ranges::copy(hcvh_up.vs, ret.vs.begin()), std::ranges::copy(hcvh_down.vs, std::back_inserter(ret.vs));
     argsort(ret.vs);
     return ret;
   }

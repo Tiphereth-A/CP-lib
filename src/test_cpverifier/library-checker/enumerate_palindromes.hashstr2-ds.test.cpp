@@ -28,7 +28,7 @@ int main() {
     s.swap(x);
   }
   strn t = s;
-  std::reverse(t.begin(), t.end());
+  std::ranges::reverse(t);
   hashstr hs, ht;
   hs.set(s), ht.set(t);
   u32 n = (u32)s.size();

@@ -18,7 +18,7 @@ constexpr poly<mint, ccore> pow_fps(poly<mint, ccore> const &p, u64 y, u32 n = 0
     return _;
   }
   if (y == 1) return p;
-  u32 l0 = u32(std::find_if(p.data().begin(), p.data().end(), [](auto const &x) { return x != 0; }) - p.data().begin());
+  u32 l0 = u32(std::ranges::find_if(p.data(), [](auto const &x) { return x != 0; }) - p.data().begin());
   if ((u128)l0 * y >= n) return poly<mint, ccore>(n);
   if (l0) {
     auto _ = shr_fps(p, l0), g = pow_fps(_, y, u32(n - l0 * y));

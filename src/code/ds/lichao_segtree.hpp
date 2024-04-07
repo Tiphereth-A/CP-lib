@@ -22,8 +22,8 @@ class lichao_segtree {
   constexpr void add(T a, T b, T l, T r, u32 id = 1) {
     seg k = {id, a, b, l, r};
     add(1, 0, sz - 1,
-        u32(std::lower_bound(lsh.begin(), lsh.end(), l) - lsh.begin()),
-        u32(std::lower_bound(lsh.begin(), lsh.end(), r) - lsh.begin()), k);
+        u32(std::ranges::lower_bound(lsh, l) - lsh.begin()),
+        u32(std::ranges::lower_bound(lsh, r) - lsh.begin()), k);
   }
   T query(T pos) { return query(1, 0, sz - 1, pos); }
 
