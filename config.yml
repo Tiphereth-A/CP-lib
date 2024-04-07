@@ -483,19 +483,22 @@ notebook:
     - dfs: 邻接表 DFS
       code_ext: hpp
       test_ext: cpp
-    - dijkstra: Dijkstra
+    - dijkstra: 单源最短路(Dijkstra)
       code_ext: hpp
       test_ext: cpp
-    - kruskal: 最小生成树(kruskal)
+    - kruskal: 最小生成树(Kruskal)
       code_ext: hpp
       test_ext: cpp
-    - kruskal_re_tree: kruskal 重构树
+    - kruskal_re_tree: Kruskal 重构树
       code_ext: hpp
       test_ext: cpp
-    - bm: Bellman--Ford
+    - bm: 单源最短路(Bellman--Ford)
       code_ext: hpp
       test_ext: cpp
-    - floyd: Floyd
+    - floyd: 全源最短路(Floyd)
+      code_ext: hpp
+      test_ext: cpp
+    - johnson: 全源最短路(Johnson)
       code_ext: hpp
       test_ext: cpp
     - kosaraju: 强连通分量(Kosaraju)
