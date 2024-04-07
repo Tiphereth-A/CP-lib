@@ -82,6 +82,9 @@ notebook:
     - debruijn: de Bruijn 序列
       code_ext: hpp
       test_ext: cpp
+    - josephus: Josephus 问题
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bswap: std::byteswap
       code_ext: hpp
