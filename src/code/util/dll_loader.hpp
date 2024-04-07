@@ -1,0 +1,44 @@
+#ifndef TIFALIBS_UTIL_DLL_LOADER
+#define TIFALIBS_UTIL_DLL_LOADER
+
+#include "util.hpp"
+
+namespace tifa_libs::util {
+
+// resolves a library at runtime
+// you must have ld load the library before using this,
+// otherwise it will die and blow up everything
+struct DLL {
+  char *base;
+  std::unordered_map<strn, size_t> syms;
+  DLL(const char *file) {
+    // obtain symbols of requested library
+    char buf[1024];
+    strn command = std::format("objdump -T {} | awk '{{if($4 == \".text\") print $7,$1}}'", file);
+    auto cmd = popen(command.c_str(), "r");
+    while (fgets(buf, 1024, cmd)) {
+      std::istringstream ss(buf);
+      strn tmp;
+      ss >> tmp, ss >> std::hex >> syms[tmp];
+    }
+    pclose(cmd);
+
+    // obtain base address of requested library
+    command = std::format("awk '{{if(index($6, \"{}\") != 0 && $3 == \"00000000\") print substr($1, 1, index($1, \"-\") - 1)}}' /proc/{}/maps", file, getpid());
+    cmd = popen(command.c_str(), "r");
+    while (fgets(buf, 1024, cmd))
+      base = reinterpret_cast<char *>(std::stoul(buf, nullptr, 16));
+
+    pclose(cmd);
+  }
+  template <typename R = void, typename... T>
+  constexpr R call(const char *name, T... t) {
+    auto off = syms[strn(name)];
+    assert(off != 0);
+    return ((R(*)(T...))(base + off))(t...);
+  }
+};
+
+}  // namespace tifa_libs::util
+
+#endif
