@@ -14,12 +14,12 @@ constexpr std::common_type_t<T, U> gcd(T a, U b) {
     W a_ = abs(a), b_ = abs(b);
     if (a_ == 0) return b_;
     if (b_ == 0) return a_;
-    const int i = std::countr_zero(a_), j = std::countr_zero(b_), k = std::min(i, j);
+    const int i = std::__countr_zero(a_), j = std::__countr_zero(b_), k = std::min(i, j);
     a_ >>= i, b_ >>= j;
     while (true) {
       if (a_ > b_) std::swap(a_, b_);
       if ((b_ -= a_) == 0) return a_ << k;
-      b_ >>= std::countr_zero(b_);
+      b_ >>= std::__countr_zero(b_);
     }
   }
 }

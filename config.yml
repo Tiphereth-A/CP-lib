@@ -783,6 +783,9 @@ notebook:
     - sqrfree_cnt: 无平方因子数计数
       code_ext: hpp
       test_ext: cpp
+    - period_fib: 模 Fibonacci 循环节
+      code_ext: hpp
+      test_ext: cpp
     math:
     - div64: 64 位整数除法
       code_ext: hpp

@@ -30,7 +30,12 @@ template <class T>
 concept u128_c = is_u128_v<T>;
 
 template <class T>
-constexpr bool is_int_v = std::is_integral_v<T> || is_s128_v<T> || is_u128_v<T>;
+constexpr bool is_i128_v = is_s128_v<T> || is_u128_v<T>;
+template <class T>
+concept i128_c = is_u128_v<T>;
+
+template <class T>
+constexpr bool is_int_v = std::is_integral_v<T> || is_i128_v<T>;
 template <class T>
 concept int_c = is_int_v<T>;
 
@@ -56,9 +61,30 @@ template <class T>
 concept arithm_c = is_arithm_v<T>;
 
 template <class T>
-using to_sint_t = typename std::conditional_t<std::is_same_v<T, u128>, i128, std::make_signed_t<T>>;
+struct to_sint : std::make_signed<T> {};
+template <>
+struct to_sint<u128> {
+  using type = u128;
+};
+template <>
+struct to_sint<i128> {
+  using type = u128;
+};
 template <class T>
-using to_uint_t = typename std::conditional_t<std::is_same_v<T, i128>, u128, std::make_unsigned_t<T>>;
+using to_sint_t = typename to_sint<T>::type;
+
+template <class T>
+struct to_uint : std::make_unsigned<T> {};
+template <>
+struct to_uint<u128> {
+  using type = u128;
+};
+template <>
+struct to_uint<i128> {
+  using type = u128;
+};
+template <class T>
+using to_uint_t = typename to_uint<T>::type;
 
 }  // namespace tifa_libs
 
