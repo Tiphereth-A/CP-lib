@@ -5,9 +5,7 @@
 #include "inv_gcd.hpp"
 
 namespace tifa_libs::math {
-
 namespace crt_impl_ {
-
 constexpr std::optional<ptt<i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1) {
   if (m0 < m1) return crt2(a1, m1, a0, m0);
   auto [d, x] = inv_gcd(m0, m1);
@@ -17,7 +15,6 @@ constexpr std::optional<ptt<i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1) {
   if (k0 < 0) k0 += m1_d;
   return std::make_pair(a0 + k0 * (i64)m0, (i64)m0 * m1_d);
 }
-
 }  // namespace crt_impl_
 
 // Returns (remainder, modular)

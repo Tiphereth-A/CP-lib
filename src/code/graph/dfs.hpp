@@ -4,9 +4,7 @@
 #include "alist.hpp"
 
 namespace tifa_libs::graph {
-
 namespace dfs_impl_ {
-
 template <class G, class Fb, class Fp, class Fs, class Fr>
 constexpr void dfs_(G const& fg, u32 u, u32 fa, Fb&& init, Fp&& pre_dfs, Fs&& post_dfs, Fr&& before_return) {
   init(u, fa);
@@ -26,7 +24,6 @@ constexpr void dfs_(G const& fg, u32 u, u32 fa, Fb&& init, Fp&& pre_dfs, Fs&& po
     }
   before_return(u, fa);
 }
-
 }  // namespace dfs_impl_
 
 template <class G, class Fb, class Fp, class Fs, class Fr>

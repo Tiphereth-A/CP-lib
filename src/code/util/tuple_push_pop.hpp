@@ -4,12 +4,9 @@
 #include "traits.hpp"
 
 namespace tifa_libs {
-
 namespace tuple_push_pop_impl_ {
-
 template <usz bgn, class Tpl, usz... Is>
 constexpr auto subtuple_impl_(Tpl &&t, std::index_sequence<Is...>) { return std::make_tuple(std::get<Is + bgn>(t)...); }
-
 }  // namespace tuple_push_pop_impl_
 
 template <class Tpl>

@@ -5,7 +5,6 @@
 
 namespace tifa_libs::graph {
 namespace euler_trail_impl_ {
-
 template <bool cyc>
 constexpr std::optional<vecpt<u32>> run_(u32 n, u32 m, vvecpt<u32> const &g, u32 s) {
   vec<vecpt<u32>::const_iterator> its(n);
@@ -35,7 +34,6 @@ constexpr std::optional<vecpt<u32>> run_(u32 n, u32 m, vvecpt<u32> const &g, u32
   std::ranges::reverse(ret);
   return ret;
 }
-
 }  // namespace euler_trail_impl_
 
 // @return vector of {v, eid} of Euler trail if found

@@ -5,7 +5,6 @@
 #include "poly.hpp"
 
 namespace tifa_libs::math {
-
 namespace polymtt_impl_ {
 template <class FP = f64>
 struct cconv_mtt : public FFT<FP> {

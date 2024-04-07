@@ -5,9 +5,7 @@
 #include "shr_fps.hpp"
 
 namespace tifa_libs::math {
-
-namespace gcd_impl__fps {
-
+namespace gcd_fps_impl_ {
 template <class mint, class ccore>
 using pttp = ptt<poly<mint, ccore>>;
 
@@ -80,12 +78,12 @@ constexpr matp<mint, ccore> pgcd_(poly<mint, ccore> const& a, poly<mint, ccore> 
     res = _ * res;
   }
 }
-}  // namespace gcd_impl__fps
+}  // namespace gcd_fps_impl_
 
 template <class mint, class ccore>
 constexpr poly<mint, ccore> gcd_fps(poly<mint, ccore> const& f, poly<mint, ccore> const& g) {
   ptt<poly<mint, ccore>> p(f, g);
-  p = gcd_impl__fps::pgcd_(f, g) * p;
+  p = gcd_fps_impl_::pgcd_(f, g) * p;
   if (!p.first.empty()) {
     poly<mint, ccore> _ = p.first.back().inv();
     for (auto& x : p.first) x *= _;

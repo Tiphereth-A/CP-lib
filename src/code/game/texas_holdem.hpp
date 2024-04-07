@@ -5,9 +5,7 @@
 #include "../util/util.hpp"
 
 namespace tifa_libs::game {
-
 namespace texas_holdem_impl_ {
-
 constexpr int bsr(int x) { return 30 - bit::cntlsb(x); }
 // Returns the submask containing highest k bits set
 // Returns -1 instead if std::popcount(a) < k
@@ -176,7 +174,6 @@ class th_hand {
       is_pair,
       is_high_card};
 };
-
 }  // namespace texas_holdem_impl_
 
 using texas_holdem_impl_::th_category, texas_holdem_impl_::th_card, texas_holdem_impl_::th_hand;

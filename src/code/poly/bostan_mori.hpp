@@ -5,9 +5,7 @@
 #include "poly.hpp"
 
 namespace tifa_libs::math {
-
 namespace bostan_mori_impl_ {
-
 template <class ccore_t, class T>
 vec<T> coeff_(ccore_t const& core, ccore_t const& core2, vec<T>& q, u64 n, u32 d) {
   static u32 len = core.size();
@@ -32,7 +30,6 @@ vec<T> coeff_(ccore_t const& core, ccore_t const& core2, vec<T>& q, u64 n, u32 d
   core2.dit(s);
   return vec<T>(s.begin() + d, s.begin() + d * 2);
 }
-
 }  // namespace bostan_mori_impl_
 
 // @return [x^k]p/q

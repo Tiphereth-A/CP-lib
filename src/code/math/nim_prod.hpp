@@ -4,9 +4,7 @@
 #include "../util/util.hpp"
 
 namespace tifa_libs::math {
-
 namespace nim_prod_impl_ {
-
 struct calc8 {
   u16 dp[1 << 8][1 << 8];
   explicit constexpr calc8() : dp() {

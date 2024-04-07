@@ -5,9 +5,7 @@
 #include "../util/traits.hpp"
 
 namespace tifa_libs {
-
 namespace fastio_impl_ {
-
 //! UB if EOF occured during reading
 template <u32 BUF>
 class fastin {
@@ -122,7 +120,6 @@ class fastin {
   template <class T>
   fastin &operator>>(T &val) { return read(val); }
 };
-
 template <u32 BUF, u32 INTBUF>
 class fastout {
   char int_bf_[INTBUF], *now_ib_ = int_bf_;
@@ -225,7 +222,6 @@ class fastout {
   template <class T>
   fastout &operator<<(T const &val) { return write(val); }
 };
-
 }  // namespace fastio_impl_
 
 inline fastio_impl_::fastin<0x200005> fin;

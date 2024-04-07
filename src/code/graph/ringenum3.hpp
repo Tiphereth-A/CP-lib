@@ -4,9 +4,7 @@
 #include "alist.hpp"
 
 namespace tifa_libs::graph {
-
 namespace ringenum3_impl_ {
-
 template <class F, bool with_deg>
 constexpr void run(alist<with_deg> const& dg, F&& func) {
   u32 n = (u32)dg.g.size();
@@ -19,7 +17,6 @@ constexpr void run(alist<with_deg> const& dg, F&& func) {
     for (u32 v : dg.g[u]) vis[v].flip();
   }
 }
-
 }  // namespace ringenum3_impl_
 
 //! should be simple undirected graph

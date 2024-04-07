@@ -5,7 +5,6 @@
 #include "poly.hpp"
 
 namespace tifa_libs::math {
-
 namespace polycntt_impl_ {
 template <class mint, i64 M = -1>
 struct cconv_cntt : public CNTT<mint, M> {

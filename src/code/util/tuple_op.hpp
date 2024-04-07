@@ -4,10 +4,8 @@
 #include "tuple_push_pop.hpp"
 
 namespace tuple_op_impl_ {
-
 template <class Tpl, class Op2, usz... Is>
 constexpr auto apply2_impl_(Op2 f, Tpl &&l, Tpl &&r, std::index_sequence<Is...>) { return std::make_tuple(f(std::get<Is>(l), std::get<Is>(r))...); }
-
 }  // namespace tuple_op_impl_
 
 template <class Tpl, class Op2>

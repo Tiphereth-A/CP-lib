@@ -6,9 +6,7 @@
 #include "alist.hpp"
 
 namespace tifa_libs::graph {
-
 namespace chrom_num_impl_ {
-
 template <u32 mod>
 constexpr u32 calc(u32 n, vecpt<i32> hist) {
   for (u32 c = 1; c <= n; ++c) {
@@ -18,7 +16,6 @@ constexpr u32 calc(u32 n, vecpt<i32> hist) {
   }
   return n;
 }
-
 }  // namespace chrom_num_impl_
 
 template <bool with_deg>

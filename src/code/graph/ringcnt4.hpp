@@ -4,9 +4,7 @@
 #include "alist.hpp"
 
 namespace tifa_libs::graph {
-
 namespace ringcnt4_impl_ {
-
 template <bool with_deg>
 constexpr u64 run(alist<with_deg> const& dg, alist<with_deg> const& dgv) {
   u64 ans = 0;
@@ -32,7 +30,6 @@ constexpr u64 run(alist<with_deg> const& dg, alist<with_deg> const& dgv) {
   }
   return ans / 2;
 }
-
 }  // namespace ringcnt4_impl_
 
 //! should be simple undirected graph

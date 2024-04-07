@@ -4,9 +4,7 @@
 #include "../nt/euler_phi_u64.hpp"
 
 namespace tifa_libs::math {
-
 namespace qtetra_mod_impl_ {
-
 constexpr u64 mpow(u64 a, u64 b, u64 m, u64 &f) {
   if (a == 1 || b == 0) return 1;
   u64 v = 1, x = a, z = m;
@@ -38,7 +36,6 @@ constexpr u64 qtetra(u64 a, u64 b, u64 m, u64 &f) {
   u64 z = qtetra(a, b - 1, euler_phi_u64(m), f), r = mpow(a, z, m, f);
   return r + f * m;
 }
-
 }  // namespace qtetra_mod_impl_
 
 constexpr u64 qtetra_mod(u64 a, u64 b, u64 m) {

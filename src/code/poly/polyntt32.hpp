@@ -6,7 +6,6 @@
 #include "poly.hpp"
 
 namespace tifa_libs::math {
-
 namespace polyntt32_impl_ {
 template <class mint>
 struct cconv_ntt32 : public NTT32<mint> {

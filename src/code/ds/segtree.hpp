@@ -4,7 +4,6 @@
 #include "../util/util.hpp"
 
 namespace tifa_libs::ds {
-
 namespace segtree_impl_ {
 template <bool use_tag, class T, auto op, auto e, class F, auto mapping, auto composition, auto id>
 requires requires(T val, T val_l, T val_r, F tag) {

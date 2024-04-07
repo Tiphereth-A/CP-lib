@@ -5,9 +5,7 @@
 #include "../math/qpow.hpp"
 
 namespace tifa_libs::math {
-
 namespace gcd_mpi_impl_ {
-
 // @return {x, y} s.t. a = 2^x 5^y
 constexpr ptt<i32> shrink(u32 a) {
   assert(a > 0);
@@ -32,7 +30,6 @@ constexpr ptt<i32> shrink(mpi& a) {
   }
   return res;
 }
-
 }  // namespace gcd_mpi_impl_
 
 template <bool FAST = true>

@@ -6,9 +6,7 @@
 #include "is_prime.hpp"
 
 namespace tifa_libs::math {
-
 namespace pfactors_impl_ {
-
 class PollardRho {
   rand::Gen<std::uniform_int_distribution<u64>> e;
 
@@ -46,7 +44,6 @@ class PollardRho {
     (*this)(g, ans);
   }
 };
-
 }  // namespace pfactors_impl_
 
 inline std::map<u64, u32> pfactors(u64 n) {
