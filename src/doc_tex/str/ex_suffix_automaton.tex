@@ -1,5 +1,17 @@
 建图
-\inputminted{cpp}{src/src/exsam_build.txt}
+
+\begin{minted}{cpp}
+u32 n;
+std::string s;
+std::cin >> n;
+tifa_libs::str::ex_suffix_automaton sam;
+for (u32 i = 0; i < n; ++i) {
+  std::cin >> s;
+  u32 last = 0;
+  for (auto c : s)
+  last = sam.extend(last, u32(c - 'a'));
+}
+\end{minted}
 
 代码对此无体现\\
 \\

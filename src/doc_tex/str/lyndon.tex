@@ -10,20 +10,45 @@
 
 字符串 \(S\) 的最小表示为与 \(S\) 循环同构的所有字符串中字典序最小的字符串
 
-\paragraph{Lyndon 分解}
+\paragraph{Lyndon 分解}~\\
 
-\begin{enumerate}
-    \item[Lyndon 串] 对于字符串 \(s\), 如果 \(s\) 的字典序严格小于 \(s\) 的所有后缀的字典序, 我们称 \(s\) 是简单串, 或者 \textbf{Lyndon 串}. 举一些例子, \verb|a|, \verb|b|, \verb|ab|, \verb|aab|, \verb|abb|, \verb|ababb|, \verb|abcd| 都是 Lyndon 串. 当且仅当 \(s\) 的字典序严格小于它的所有非平凡的(非平凡: 非空且不同于自身)循环同构串时, \(s\) 才是 Lyndon 串
-    \item[Lyndon 分解] 串 \(s\) 的 Lyndon 分解记为 \(s=w_1w_2\cdots w_k\), 其中所有 \(w_i\) 为简单串, 并且他们的字典序按照非严格单减排序, 即 \(w_1\ge w_2\ge\cdots\ge w_k\). 可以发现, 这样的分解存在且唯一
-\end{enumerate}
+Lyndon 串: 对于字符串 \(s\), 如果 \(s\) 的字典序严格小于 \(s\) 的所有后缀的字典序, 我们称 \(s\) 是简单串, 或者 \textbf{Lyndon 串}
+
+举一些例子, \verb|a|, \verb|b|, \verb|ab|, \verb|aab|, \verb|abb|, \verb|ababb|, \verb|abcd| 都是 Lyndon 串
+
+当且仅当 \(s\) 的字典序严格小于它的所有非平凡 (非空且不同于自身) 循环同构串时, \(s\) 才是 Lyndon 串
+
+Lyndon 分解: 串 \(s\) 的 Lyndon 分解记为 \(s=w_1w_2\cdots w_k\), 其中所有 \(w_i\) 为简单串, 并且他们的字典序按照非严格单减排序, 即 \(w_1\ge w_2\ge\cdots\ge w_k\). 可以发现, 这样的分解存在且唯一
 
 对于长度为 \(n\) 的串 \(s\), 我们可以通过 Lyndon 分解寻找该串的最小表示法
 
-我们构建串 \(ss\) 的 Lyndon 分解, 然后寻找这个分解中的一个 Lyndon 串 \(t\), 使得它的起点小于 \(n\) 且终点大于等于 \(n\). 可以很容易地使用 Lyndon 分解的性质证明, 子串 \(t\) 的首字符就是 \(s\) 的最小表示法的首字符, 即我们沿着 \(t\) 的开头往后 \(n\) 个字符组成的串就是 \(s\) 的最小表示法
+我们构建串 \(ss\) 的 Lyndon 分解, 然后寻找这个分解中的一个 Lyndon 串 \(t\), 使得它的起点小于 \(n\) 且终点大于等于 \(n\)
+
+可以很容易地使用 Lyndon 分解的性质证明, 子串 \(t\) 的首字符就是 \(s\) 的最小表示法的首字符, 即我们沿着 \(t\) 的开头往后 \(n\) 个字符组成的串就是 \(s\) 的最小表示法
 
 于是我们在分解的过程中记录每一次的近似 Lyndon 串的开头即可
 
-\inputminted{cpp}{src/src/min_cyclic_string.txt}
+\begin{minted}{cpp}
+// smallest_cyclic_string
+string min_cyclic_string(string s) {
+  s += s;
+  int n = s.size();
+  int i = 0, ans = 0;
+  while (i < n / 2) {
+    ans = i;
+    int j = i + 1, k = i;
+    while (j < n && s[k] <= s[j]) {
+      if (s[k] < s[j])
+        k = i;
+      else
+        k++;
+      j++;
+    }
+    while (i <= k) i += j - k;
+  }
+  return s.substr(ans, n / 2);
+}
+\end{minted}
 
 \paragraph{复杂度}
 

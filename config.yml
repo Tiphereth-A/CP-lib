@@ -434,7 +434,10 @@ notebook:
     - tsearch: 三分
       code_ext: hpp
       test_ext: cpp
-    - simplex: 单纯形法
+    - lis: 最长上升子序列
+      code_ext: hpp
+      test_ext: cpp
+    - lcs_circ: 环序列的最长公共子序列长度
       code_ext: hpp
       test_ext: cpp
     - heuristic_sa: 模拟退火
@@ -452,10 +455,7 @@ notebook:
     - astar: A* 算法
       code_ext: hpp
       test_ext: cpp
-    - lis: 最长上升子序列
-      code_ext: hpp
-      test_ext: cpp
-    - lcs_circ: 环序列的最长公共子序列长度
+    - simplex: 单纯形法
       code_ext: hpp
       test_ext: cpp
     graph:
@@ -546,7 +546,7 @@ notebook:
     - euler_trail: Euler 迹
       code_ext: hpp
       test_ext: cpp
-    - manhattan_mst: 筛选可能在 Manhattan 最小生成树中的边
+    - manhattan_mst: 筛选 Manhattan 最小生成树中的边
       code_ext: hpp
       test_ext: cpp
     tree:
@@ -977,6 +977,18 @@ notebook:
     - leqs_solver: 求线性方程组的解和解空间
       code_ext: hpp
       test_ext: cpp
+    - bitmat: 静态 Bool 矩阵
+      code_ext: hpp
+      test_ext: cpp
+    - trans_bmat: 静态 Bool 矩阵转置
+      code_ext: hpp
+      test_ext: cpp
+    - mul_bmat: 静态 Bool 矩阵乘法
+      code_ext: hpp
+      test_ext: cpp
+    - ge_bmat: 静态 Bool 矩阵 Gauss 消元
+      code_ext: hpp
+      test_ext: cpp
     - matsp: 稀疏矩阵
       code_ext: hpp
       test_ext: cpp
@@ -996,18 +1008,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - sherman_morrison: Sherman--Morrison 公式
-      code_ext: hpp
-      test_ext: cpp
-    - bitmat: 静态 Bool 矩阵
-      code_ext: hpp
-      test_ext: cpp
-    - trans_bmat: 静态 Bool 矩阵转置
-      code_ext: hpp
-      test_ext: cpp
-    - mul_bmat: 静态 Bool 矩阵乘法
-      code_ext: hpp
-      test_ext: cpp
-    - ge_bmat: 静态 Bool 矩阵 Gauss 消元
       code_ext: hpp
       test_ext: cpp
     conv:
@@ -1330,6 +1330,7 @@ cheatsheets:
   formula: 常用公式
   decimal: Python Decimal
   bash: Bash 简单用法
+  vim: Vim 简单用法
   lgv: lgv 定理
 default_code_style: common
 code_styles:

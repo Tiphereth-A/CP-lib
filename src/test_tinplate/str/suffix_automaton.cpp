@@ -17,6 +17,20 @@ int main() {
   return 0;
 }
 
+// Or
+/*
+int main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
+  strn s, t;
+  std::cin >> s >> t;
+  tifa_libs::str::suffix_automaton sam;
+  for (auto c : s) sam.extend(u32(c - 'a'));
+  std::cout << sam.lcs(t).second;
+  return 0;
+}
+*/
+
 /*
 给定一个只包含小写字母的字符串 $S$
 

@@ -1,7 +1,7 @@
 用于计算满足如下条件的矩阵 \(a\) 每行的 \(\operatorname{argmin}\):
 
 \begin{center}
-令 \(h(r) = \operatorname{argmin}_i a_{r,i}\), 则 \(h\) 单调不降
+    令 \(h(r) = \operatorname{argmin}_i a_{r,i}\), 则 \(h\) 单调不降
 \end{center}
 
 不难发现可以分治: 对当前矩阵, 找到中间一行的 \(\operatorname{argmin}\), 然后就可根据这个将矩阵分为更小的两个矩阵

@@ -13,7 +13,7 @@ nana$ba
 anana$b
 banana$
 \end{verbatim}
-    
+
 按字典序排序:
 
 \begin{verbatim}
@@ -25,7 +25,7 @@ banana$
 na$bana
 nana$ba
 \end{verbatim}
-    
+
 取最后一位得到 \verb|annb$aa|
 
 和 \fullref{sec:后缀数组} 对比:
@@ -49,6 +49,8 @@ bwt_inv("annb#aa"); // -> "#banana"
 
 \paragraph{注意}
 
-例子中的 \verb|$| 为末尾标识符, 可换成任意按 ASCII 排序\textbf{小于}正文的字符, 不可省略且必须保证其小于正文中的字符. 使用时占位符放在正文最前端而不是末尾.
+例子中的 \verb|$| 为末尾标识符, 可换成任意字典序 \textbf{小于} 正文的字符, \textbf{不可省略}, 且必须保证其 \textbf{小于} 正文中的字符
+
+使用时占位符放在正文最前端而不是末尾
 
 \paragraph{参考资料} \cite{enwiki:1214062423}

@@ -24,10 +24,28 @@
 
 \verb|T = {int _min}| 区间和, 长度
 
-\inputminted{cpp}{src/src/segtree_eg1.txt}
+\begin{minted}{cpp}
+op(T a, T b) = return T{min(a._min, b._min)}
+e() = return T{INT_MAX}
+F() = {int add}
+mapping(F f, T a) = return T{a.s + f.add * a.l, a.l}
+composition(F f, F g) = return F{f.add + g.add}
+id() = return F{0}
+\end{minted}
 
 \textbf{维护}: 区间和; \textbf{操作}: 区间加,区间乘
 
 \verb|T = {mint s, l}| 区间和, 长度
 
-\inputminted{cpp}{src/src/segtree_eg2.txt}
+\begin{minted}{cpp}
+op(T a, T b) = return T{a.s + b.s, a.l + b.l}
+e() = return T{0, 0}
+F() = {mint mul, add}
+mapping(F f, T a) = return T{a.s * f.mul + f.add * a.l, a.l}
+composition(F f, F g) = return F{f.mul * g.mul, f.mul * g.add + f.add};
+/*
+g(x) = g.mul * x + g.add
+f(g(x)) = f.mul * (g.mul * x + g.add) + f.add = f.mul * g.mul * x + f.mul * g.add + f.add
+*/
+id() = return F{1, 0}
+\end{minted}
