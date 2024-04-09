@@ -12,13 +12,31 @@ class dinic {
     EW w;
     u32 inv;
   };
-  const u32 N, S, T;
+  const u32 N;
+
+ public:
+  vvec<YYZ> e;
   vecu dep, cur;
 
-  bool bfs() {
+  constexpr dinic(u32 n) : N(n), e(n) {}
+
+  constexpr ptt<u32> add(u32 u, u32 v, EW w, EW rw = 0) {
+    u32 lstu = (u32)e[u].size(), lstv = (u32)e[v].size();
+    e[u].push_back({v, w, lstv}), e[v].push_back({u, rw, lstu});
+    return {u, e[u].size() - 1};
+  }
+  u64 operator()(u32 s, u32 t) {
+    u64 ret = 0, flow;
+    while (bfs(s, t))
+      while ((flow = dfs(s, t))) ret += flow;
+    return ret;
+  }
+
+ private:
+  bool bfs(u32 s, u32 t) {
     dep = vecu(N, 0);
     std::queue<u32> q;
-    dep[S] = 1, q.push(S);
+    dep[s] = 1, q.push(s);
     while (!q.empty()) {
       u32 u = q.front();
       q.pop();
@@ -26,39 +44,23 @@ class dinic {
         if (!dep[v.to] && v.w) dep[v.to] = dep[u] + 1, q.push(v.to);
     }
     cur = vecu(N, 0);
-    return dep[T];
+    return dep[t];
   }
-  constexpr u64 dfs(u32 u, EW limit = std::numeric_limits<EW>::max()) {
-    if (u == T || limit == 0) return limit;
+  constexpr u64 dfs(u32 u, u32 t, EW lim = std::numeric_limits<EW>::max()) {
+    if (u == t || lim == 0) return lim;
     u64 ret = 0;
     for (u32& i = cur[u]; i < e[u].size(); ++i) {
       auto v = e[u][i];
       if (dep[v.to] == dep[u] + 1 && v.w) {
-        u64 flow = dfs(v.to, std::min(v.w, limit));
+        u64 flow = dfs(v.to, t, std::min(v.w, lim));
         if (flow) {
           e[u][i].w -= flow;
           e[v.to][e[u][i].inv].w += flow;
-          ret += flow, limit -= flow;
-          if (!limit) break;
+          ret += flow, lim -= flow;
+          if (!lim) break;
         } else dep[v.to] = 0;
       }
     }
-    return ret;
-  }
-
- public:
-  vvec<YYZ> e;
-
-  constexpr dinic(u32 n, u32 s, u32 t) : N(n), S(s), T(t), e(n) {}
-
-  constexpr void add(u32 u, u32 v, EW w) {
-    u32 temu = u32(e[u].size()), temv = u32(e[v].size());
-    e[u].push_back({v, w, temv}), e[v].push_back({u, 0, temu});
-  }
-  u64 operator()() {
-    u64 ret = 0, flow;
-    while (bfs())
-      while ((flow = dfs(S))) ret += flow;
     return ret;
   }
 };

@@ -549,6 +549,9 @@ notebook:
     - manhattan_mst: 筛选 Manhattan 最小生成树中的边
       code_ext: hpp
       test_ext: cpp
+    - gomory_hu: 最小割树(Gomory--Hu)
+      code_ext: hpp
+      test_ext: cpp
     tree:
     - tree: 树
       code_ext: hpp

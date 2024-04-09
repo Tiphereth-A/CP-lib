@@ -8,11 +8,11 @@ int main() {
   u32 l, r, m;
   std::cin >> l >> r >> m;
   u32 s = l + r, t = l + r + 1;
-  tifa_libs::graph::dinic big(l + r + 2, s, t);
+  tifa_libs::graph::dinic big(l + r + 2);
   for (u32 i = 0; i < l; ++i) big.add(s, i, 1);
   for (u32 i = 0; i < r; ++i) big.add(i + l, t, 1);
   for (u32 i = 0, u, v; i < m; ++i) std::cin >> u >> v, big.add(u, v + l, 1);
-  std::cout << big() << '\n';
+  std::cout << big(s, t) << '\n';
   for (u32 i = 0; i < l; ++i) {
     u32 ret = s;
     for (auto v : big.e[i])

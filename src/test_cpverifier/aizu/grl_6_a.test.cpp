@@ -7,8 +7,8 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, m;
   std::cin >> n >> m;
-  tifa_libs::graph::dinic maxflow(n, 0, n - 1);
+  tifa_libs::graph::dinic maxflow(n);
   for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w, maxflow.add(u, v, w);
-  std::cout << maxflow() << '\n';
+  std::cout << maxflow(0, n - 1) << '\n';
   return 0;
 }

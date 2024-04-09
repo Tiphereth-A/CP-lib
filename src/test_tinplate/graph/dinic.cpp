@@ -8,9 +8,9 @@ int main() {
   u32 n, m, s, t;
   std::cin >> n >> m >> s >> t;
   --s, --t;
-  tifa_libs::graph::dinic maxflow(n, s, t);
+  tifa_libs::graph::dinic maxflow(n);
   for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w, --u, --v, maxflow.add(u, v, w);
-  std::cout << maxflow();
+  std::cout << maxflow(s, t);
   return 0;
 }
 
