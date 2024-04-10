@@ -45,6 +45,11 @@ class radix_heap {
   }
 };
 
+template <class K, class V>
+using rheap = std::conditional_t<std::unsigned_integral<K>, ds::radix_heap<K, V>, pqg<std::pair<K, V>>>;
+template <class K, class V>
+using rheapg = std::conditional_t<std::unsigned_integral<K>, ds::radix_heap<K, V, std::greater<K>>, pq<std::pair<K, V>>>;
+
 }  // namespace tifa_libs::ds
 
 #endif

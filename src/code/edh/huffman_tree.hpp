@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_EDH_HUFFMAN_TREE
 #define TIFALIBS_EDH_HUFFMAN_TREE
 
+#include "../ds/radix_heap.hpp"
 #include "../util/util.hpp"
 
 namespace tifa_libs {
@@ -41,7 +42,7 @@ class huffman {
     for (T now : weights) data.emplace_back(now);
     for (u32 i = 0, iend = ((ch_sz - 1) - ((cnt_w - 1) % (ch_sz - 1))) % (ch_sz - 1); i < iend; ++i) data.emplace_back();
     cnt_l = (u32)data.size();
-    pqg<std::pair<T, u32>> q;
+    ds::rheap<T, u32> q;
     for (u32 i = 0; i < data.size(); ++i) q.emplace(data[i].weight, i);
     while (q.size() > 1) {
       data.emplace_back(T{}, ch_sz);

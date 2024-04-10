@@ -16,7 +16,7 @@ constexpr vec<T> dijkstra(alistw<T, with_deg> const &fg, u32 s, F &&relax, T INF
   auto &&g = fg.g;
   vec<T> dis(g.size(), INF);
   vecb vis(g.size());
-  std::conditional_t<std::unsigned_integral<T>, ds::radix_heap<T, u32>, pqg<std::pair<T, u32>>> q;
+  ds::rheap<T, u32> q;
   q.emplace(dis[s] = 0, s);
   while (!q.empty()) {
     auto [dis_now, now] = q.top();

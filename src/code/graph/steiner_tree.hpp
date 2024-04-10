@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_GRAPH_STEINER_TREE
 #define TIFALIBS_GRAPH_STEINER_TREE
 
+#include "../ds/radix_heap.hpp"
 #include "alistw.hpp"
 
 namespace tifa_libs::graph {
@@ -18,7 +19,7 @@ class steiner_tree {
   void build() {
     dp = vvecu(e.g.size(), vecu(1 << a.size(), INT32_MAX));
     for (u32 i = 0; i < a.size(); ++i) dp[a[i]][1 << i] = 0;
-    pq<ptt<u32>> q;
+    ds::rheapg<u32, u32> q;
     auto dij = [&](u32 s) {
       vecu vis(e.g.size(), 0);
       while (!q.empty()) {
@@ -29,7 +30,7 @@ class steiner_tree {
         for (auto [v, w] : e.g[u]) {
           if (dp[v][s] > dp[u][s] + w) {
             dp[v][s] = dp[u][s] + w;
-            q.push({-dp[v][s], v});
+            q.emplace(-dp[v][s], v);
           }
         }
       }
@@ -38,7 +39,7 @@ class steiner_tree {
       for (u32 i = 0; i < e.g.size(); ++i) {
         for (u32 ss = s & (s - 1); ss; ss = s & (ss - 1))
           dp[i][s] = std::min(dp[i][s], dp[i][ss] + dp[i][s ^ ss]);
-        if (dp[i][s] != INT32_MAX) q.push({-dp[i][s], i});
+        if (dp[i][s] != INT32_MAX) q.emplace(-dp[i][s], i);
       }
       dij(s);
     }
