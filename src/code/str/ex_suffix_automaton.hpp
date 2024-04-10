@@ -10,7 +10,7 @@ class ex_suffix_automaton {
   // super root is 0
   struct YYZ {
     u32 len, link;
-    std::array<u32, SZ> nex{};
+    arr<u32, SZ> nex{};
   };
 
  public:

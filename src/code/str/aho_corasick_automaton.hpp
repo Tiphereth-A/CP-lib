@@ -9,7 +9,7 @@ template <u32 SZ = 26, u32 BASE = u32('a')>
 class aho_corasick_automaton {
   // super root is 0
   struct YYZ {
-    std::array<u32, SZ> nex{};
+    arr<u32, SZ> nex{};
     u32 fail, tot;
     vecu end;
   };

@@ -11,7 +11,7 @@ namespace tifa_libs::math {
     FOR1_ (j, col_l, col_r)
 
 template <usz R, usz C = R>
-using bitmat = std::array<std::bitset<C>, R>;
+using bitmat = arr<std::bitset<C>, R>;
 
 template <usz R, usz C>
 constexpr matrix<bool> bitmat2mat(bitmat<R, C> const &bmat) {

@@ -11,7 +11,7 @@ class fhq_treap {
   struct YYZ {
     std::pair<KEY, VAL> w;
     u32 sz;
-    std::array<u32, 2> son{};
+    arr<u32, 2> son{};
     i32 rad;
     constexpr YYZ(std::pair<KEY, VAL> W = {0, 0}, u32 SZ = 0, i32 RAD = 0) : w(W), sz(SZ), rad(RAD) {}
   };

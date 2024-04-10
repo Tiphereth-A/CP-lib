@@ -9,7 +9,7 @@ template <class T>
 class cartesian_tree {
   struct YYZ {
     u32 fa;
-    std::array<u32, 2> son{-1u, -1u};
+    arr<u32, 2> son{-1u, -1u};
   };
 
   constexpr void build(vec<T> const& y) {

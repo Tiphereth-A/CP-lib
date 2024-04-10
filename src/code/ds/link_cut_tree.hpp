@@ -17,7 +17,7 @@ class link_cut_tree {
     T w, val;
     T s, sv;  // requirement of maintaining subtree
     u32 fa, rev;
-    std::array<u32, 2> son;
+    arr<u32, 2> son;
   };
 
  public:

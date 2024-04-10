@@ -10,7 +10,7 @@ class suffix_automaton {
   u32 last;
   struct YYZ {
     u32 len, link;
-    std::array<u32, SZ> nex{};
+    arr<u32, SZ> nex{};
     u64 sz;         // app 1
     u32 times;      // app 2
     bool is_clone;  // app 3

@@ -20,7 +20,7 @@ class fhq_treap_w {
     T w, val;
     F sign;
     u32 sz;
-    std::array<u32, 2> son{};
+    arr<u32, 2> son{};
     i32 rad;
     bool rev;
     constexpr YYZ(T W = e(), T VAL = e(), u32 SZ = 0, i32 RAD = 0, F SIGN = id()) : w(W), val(VAL), sign(SIGN), sz(SZ), rad(RAD), rev(0) {}

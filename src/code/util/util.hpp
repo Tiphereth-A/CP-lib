@@ -31,6 +31,8 @@ using pt3 = std::tuple<T, T, T>;
 template <class T>
 using pt4 = std::tuple<T, T, T, T>;
 
+template <class T, usz N>
+using arr = std::array<T, N>;
 template <class T>
 using vec = std::vector<T>;
 template <class T>
