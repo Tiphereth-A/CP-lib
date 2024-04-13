@@ -194,6 +194,12 @@ notebook:
     - radix_heap: 基数堆
       code_ext: hpp
       test_ext: cpp
+    - d_ary_heap: 多叉堆
+      code_ext: hpp
+      test_ext: cpp
+    - depq: 双端优先队列
+      code_ext: hpp
+      test_ext: cpp
     - deque_with_w: 带权双端队列
       code_ext: hpp
       test_ext: cpp
