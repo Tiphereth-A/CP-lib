@@ -489,13 +489,16 @@ notebook:
     - dfs: 邻接表 DFS
       code_ext: hpp
       test_ext: cpp
-    - dijkstra: 单源最短路(Dijkstra)
-      code_ext: hpp
-      test_ext: cpp
     - kruskal: 最小生成树(Kruskal)
       code_ext: hpp
       test_ext: cpp
     - kruskal_re_tree: Kruskal 重构树
+      code_ext: hpp
+      test_ext: cpp
+    - cle: 最小树形图(Chu--Liu--Edmonds)
+      code_ext: hpp
+      test_ext: cpp
+    - dijkstra: 单源最短路(Dijkstra)
       code_ext: hpp
       test_ext: cpp
     - bm: 单源最短路(Bellman--Ford)
