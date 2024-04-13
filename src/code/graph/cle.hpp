@@ -11,11 +11,11 @@ template <class T>
 constexpr vec<std::tuple<T, u32, u32>> cle(u32 n, u32 root, vec<std::tuple<T, u32, u32>> const &arcs) {
   ds::SkewHeap<T> heap;
   ds::dsu_basic<> uf(n);
-  vec<u32> used(n, -1_u32), from(n), come(n, -1_u32);
+  vecu used(n, -1_u32), from(n), come(n, -1_u32);
   vec<T> from_cost(n);
 
   used[root] = root;
-  vec<u32> par_e(arcs.size(), -1_u32), stem(n, -1_u32), idxs;
+  vecu par_e(arcs.size(), -1_u32), stem(n, -1_u32), idxs;
 
   for (u32 i = 0; i < arcs.size(); ++i) {
     auto [w, u, v] = arcs[i];
@@ -26,7 +26,7 @@ constexpr vec<std::tuple<T, u32, u32>> cle(u32 n, u32 root, vec<std::tuple<T, u3
   for (u32 start = 0; start < n; start++) {
     if (~used[start]) continue;
     u32 now = start;
-    vec<u32> chi_e;
+    vecu chi_e;
     u32 cycle = 0;
     while (!~used[now] || used[now] == start) {
       used[now] = start;
@@ -65,7 +65,7 @@ constexpr vec<std::tuple<T, u32, u32>> cle(u32 n, u32 root, vec<std::tuple<T, u3
     }
   }
 
-  vec<u32> used_e(arcs.size());
+  vecu used_e(arcs.size());
   vec<std::tuple<T, u32, u32>> res;
   for (u32 _ = (u32)idxs.size(); _--;) {
     u32 idx = idxs[_];

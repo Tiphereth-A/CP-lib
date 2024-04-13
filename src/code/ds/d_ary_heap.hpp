@@ -63,9 +63,9 @@ constexpr I l_ch_(I it_ch1, int num_ch, C &&c) {
 }
 }  // namespace d_ary_heap_impl_
 
-template <int D, class I, class C>
-constexpr void make_dary_heap(I begin, I end, C &&comp = std::less<>{}) {
-  u32 len = end - begin;
+template <int D, class I, class C = std::less<>>
+constexpr void make_dary_heap(I begin, I end, C &&comp = C{}) {
+  u32 len = u32(end - begin);
   if (len <= 1) return;
   u32 idx = (len - 2) / D;
   if (int num_ch_end = (len - 1) % D; num_ch_end) {
@@ -88,24 +88,24 @@ constexpr void make_dary_heap(I begin, I end, C &&comp = std::less<>{}) {
       I ch = begin;
       if (idx_ch < len) ch = d_ary_heap_impl_::l_ch_<D>(begin + idx_ch1, comp);
       else if (idx_ch1 >= len) break;
-      else ch = d_ary_heap_impl_::l_ch_<D>(begin + idx_ch1, len - idx_ch1, comp);
+      else ch = d_ary_heap_impl_::l_ch_<D>(begin + idx_ch1, int(len - idx_ch1), comp);
       if (!comp(value, *ch)) break;
       begin[mdidx] = std::move(*ch);
-      mdidx = ch - begin;
+      mdidx = u32(ch - begin);
     }
     begin[mdidx] = std::move(value);
     if (idx == 0) break;
   }
 }
-template <int D, class I, class C>
-constexpr bool is_dary_heap(I begin, I end, C &&comp = std::less<>{}) {
+template <int D, class I, class C = std::less<>>
+constexpr bool is_dary_heap(I begin, I end, C &&comp = C{}) {
   u32 len = u32(end - begin);
   for (u32 i = 1; i < len; ++i)
     if (u32 p = d_ary_heap_impl_::pidx_<D>(i); comp(begin[p], begin[i])) return false;
   return true;
 }
-template <int D, class I, class C>
-constexpr void push_dary_heap(I begin, I end, C &&comp = std::less<>{}) {
+template <int D, class I, class C = std::less<>>
+constexpr void push_dary_heap(I begin, I end, C &&comp = C{}) {
   typename std::iterator_traits<I>::value_type val = std::move(end[-1]);
   u32 idx = u32(end - begin) - 1;
   while (idx > 0) {
@@ -116,8 +116,8 @@ constexpr void push_dary_heap(I begin, I end, C &&comp = std::less<>{}) {
   }
   begin[idx] = std::move(val);
 }
-template <int D, class I, class C>
-constexpr void pop_dary_heap(I begin, I end, C &&comp = std::less<>{}) {
+template <int D, class I, class C = std::less<>>
+constexpr void pop_dary_heap(I begin, I end, C &&comp = C{}) {
   u32 len = u32(end - begin) - 1;
   typename std::iterator_traits<I>::value_type val = std::move(end[-1]);
   end[-1] = std::move(begin[0]);
@@ -127,11 +127,11 @@ constexpr void pop_dary_heap(I begin, I end, C &&comp = std::less<>{}) {
       I ch = d_ary_heap_impl_::l_ch_<D>(begin + ch1, comp);
       if (!comp(val, *ch)) break;
       begin[idx] = std::move(*ch);
-      idx = ch - begin;
+      idx = u32(ch - begin);
     } else if (ch1 < len) {
-      if (I ch = d_ary_heap_impl_::l_ch_<D>(begin + ch1, len - ch1, comp); comp(val, *ch)) {
+      if (I ch = d_ary_heap_impl_::l_ch_<D>(begin + ch1, int(len - ch1), comp); comp(val, *ch)) {
         begin[idx] = std::move(*ch);
-        idx = ch - begin;
+        idx = u32(ch - begin);
       }
       break;
     } else break;
