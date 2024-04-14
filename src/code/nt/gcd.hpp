@@ -11,15 +11,14 @@ constexpr std::common_type_t<T, U> gcd(T a, U b) {
   using W = to_uint_t<std::common_type_t<T, U>>;
   if constexpr (std::is_integral_v<W>) return std::gcd(a, b);
   else {
-    W a_ = abs(a), b_ = abs(b);
-    if (a_ == 0) return b_;
-    if (b_ == 0) return a_;
-    const int i = std::__countr_zero(a_), j = std::__countr_zero(b_), k = std::min(i, j);
-    a_ >>= i, b_ >>= j;
-    while (true) {
-      if (a_ > b_) std::swap(a_, b_);
-      if ((b_ -= a_) == 0) return a_ << k;
-      b_ >>= std::__countr_zero(b_);
+    W u = abs(a), v = abs(b);
+    if (!u || !v) return u ^ v;
+    const int i = std::__countr_zero(u), j = std::__countr_zero(v), k = std::min(i, j);
+    u >>= i, v >>= j;
+    while (1) {
+      if (u > v) std::swap(u, v);
+      if ((v -= u) == 0) return u << k;
+      v >>= std::__countr_zero(v);
     }
   }
 }
