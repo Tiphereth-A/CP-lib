@@ -20,7 +20,7 @@ int main() {
   u32 n;
   tifa_libs::fin >> n;
   poly p(n);
-  tifa_libs::fin >> p;
+  tifa_libs::fin >> p.data();
   tifa_libs::fout << tifa_libs::math::inv_fps(p).data();
   return 0;
 }

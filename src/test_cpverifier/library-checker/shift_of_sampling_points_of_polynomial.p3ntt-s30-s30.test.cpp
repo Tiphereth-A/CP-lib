@@ -19,7 +19,7 @@ int main() {
   u32 n, m, c;
   tifa_libs::fin >> n >> m >> c;
   poly a(n);
-  tifa_libs::fin >> a;
+  tifa_libs::fin >> a.data();
   tifa_libs::fout << tifa_libs::math::ctsh_fps(a, mint(c), m).data() << '\n';
   return 0;
 }
