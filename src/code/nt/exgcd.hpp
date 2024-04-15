@@ -8,8 +8,10 @@ namespace tifa_libs::math {
 // Binary exgcd
 template <uint_c U>
 constexpr auto exgcd(U a, U b) {
-  auto r = std::__countr_zero(a | b);
   using T = to_sint_t<U>;
+  if (!a) return std::make_tuple(b, (T)0, (T)!!b);
+  if (!b) return std::make_tuple(a, (T)1, (T)0);
+  auto r = std::__countr_zero(a | b);
   a >>= r, b >>= r;
   T x = (T)a, y = (T)b;
   T s = 1, t = 0, u = 0, v = 1;
