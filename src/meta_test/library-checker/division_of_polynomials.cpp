@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/division_of_polynomials"
 
+#include "../../code/io/fastio.hpp"
 #include "../../code/poly/divmod_fps.hpp"
 
 constexpr u32 MOD = 998244353;
@@ -14,17 +15,15 @@ constexpr u32 MOD = 998244353;
 int main() {
 #define GENTCs_p3nttd1
 #define GENTCs_pmttd1
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   u32 n, m;
-  std::cin >> n >> m;
+  tifa_libs::fin >> n >> m;
   poly f(n), g(m);
-  std::cin >> f >> g;
+  tifa_libs::fin >> f.data() >> g.data();
   auto [q, r] = tifa_libs::math::divmod_fps(f, g);
   if (q.size() == 1 && q[0].val() == 0) q.resize(0);
   if (r.size() == 1 && r[0].val() == 0) r.resize(0);
-  std::cout << q.size() << ' ' << r.size() << '\n';
-  std::cout << q << '\n';
-  std::cout << r << '\n';
+  tifa_libs::fout << q.size() << ' ' << r.size() << '\n';
+  tifa_libs::fout << q.data() << '\n';
+  tifa_libs::fout << r.data() << '\n';
   return 0;
 }

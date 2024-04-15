@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/inv_of_polynomials"
 
+#include "../../code/io/fastio.hpp"
 #include "../../code/poly/modinv_fps.hpp"
 
 constexpr u32 MOD = 998244353;
@@ -14,16 +15,14 @@ constexpr u32 MOD = 998244353;
 int main() {
 #define GENTCs_p3nttd1
 #define GENTCs_pmttd1
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   u32 n, m;
-  std::cin >> n >> m;
+  tifa_libs::fin >> n >> m;
   poly a(n), b(m);
-  std::cin >> a >> b;
+  tifa_libs::fin >> a.data() >> b.data();
   auto _ = tifa_libs::math::modinv_fps(a, b);
-  if (!_.has_value()) std::cout << "-1\n";
-  else if (_.value().empty()) std::cout << "0\n";
-  else std::cout << _.value().size() << '\n'
-                 << _.value() << '\n';
+  if (!_.has_value()) tifa_libs::fout << "-1\n";
+  else if (_.value().empty()) tifa_libs::fout << "0\n";
+  else tifa_libs::fout << _.value().size() << '\n'
+                       << _.value().data() << '\n';
   return 0;
 }

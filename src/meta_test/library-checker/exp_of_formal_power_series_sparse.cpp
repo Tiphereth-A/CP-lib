@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse"
 
+#include "../../code/io/fastio.hpp"
 #include "../../code/poly/exp_fpssp.hpp"
 
 constexpr u32 MOD = 998244353;
@@ -14,12 +15,10 @@ constexpr u32 MOD = 998244353;
 int main() {
 #define GENTCs_p3nttd1
 #define GENTCs_pmttd1
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   u32 n, k;
-  std::cin >> n >> k;
+  tifa_libs::fin >> n >> k;
   poly p(n);
-  for (u32 i = 0, x; i < k; ++i) std::cin >> x >> p[x];
-  std::cout << tifa_libs::math::exp_fpssp(p);
+  for (u32 i = 0, x; i < k; ++i) tifa_libs::fin >> x >> p[x];
+  tifa_libs::fout << tifa_libs::math::exp_fpssp(p).data();
   return 0;
 }

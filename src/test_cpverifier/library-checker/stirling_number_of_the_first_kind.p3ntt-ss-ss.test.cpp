@@ -2,6 +2,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind"
 
 #include "../../code/comb/gen_stirling1_row.hpp"
+#include "../../code/io/fastio.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -15,10 +16,8 @@ using mint3 = tifa_libs::math::mint_ss<754974721>;
 using poly = tifa_libs::math::poly3ntt<mint, mint1, mint2, mint3>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   u32 n;
-  std::cin >> n;
-  std::cout << tifa_libs::math::gen_stirling1_row<poly>(n);
+  tifa_libs::fin >> n;
+  tifa_libs::fout << tifa_libs::math::gen_stirling1_row<poly>(n).data();
   return 0;
 }

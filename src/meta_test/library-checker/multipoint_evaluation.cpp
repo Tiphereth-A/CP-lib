@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation"
 
+#include "../../code/io/fastio.hpp"
 #include "../../code/poly/mpe_fps.hpp"
 
 constexpr u32 MOD = 998244353;
@@ -14,12 +15,10 @@ constexpr u32 MOD = 998244353;
 int main() {
 #define GENTCs_p3nttd1
 #define GENTCs_pmttd1
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   u32 n, m;
-  std::cin >> n >> m;
+  tifa_libs::fin >> n >> m;
   poly a(n), p(m);
-  std::cin >> a >> p;
-  std::cout << tifa_libs::math::mpe_fps(a, p) << '\n';
+  tifa_libs::fin >> a.data() >> p.data();
+  tifa_libs::fout << tifa_libs::math::mpe_fps(a, p).data() << '\n';
   return 0;
 }

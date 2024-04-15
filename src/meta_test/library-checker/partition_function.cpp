@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/partition_function"
 
 #include "../../code/comb/gen_partition.hpp"
+#include "../../code/io/fastio.hpp"
 
 constexpr u32 MOD = 998244353;
 
@@ -14,10 +15,8 @@ constexpr u32 MOD = 998244353;
 int main() {
 #define GENTCs_p3nttd1
 #define GENTCs_pmttd1
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
   u32 n;
-  std::cin >> n;
-  std::cout << tifa_libs::math::gen_partition<poly>(n);
+  tifa_libs::fin >> n;
+  tifa_libs::fout << tifa_libs::math::gen_partition<poly>(n).data();
   return 0;
 }
