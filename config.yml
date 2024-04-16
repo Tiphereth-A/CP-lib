@@ -729,6 +729,9 @@ notebook:
     - gcd: 整数 GCD
       code_ext: hpp
       test_ext: cpp
+    - lcm: 整数 LCM
+      code_ext: hpp
+      test_ext: cpp
     - exgcd: exGCD
       code_ext: hpp
       test_ext: cpp

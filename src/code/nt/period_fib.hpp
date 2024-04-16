@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_PERIOD_FIB
 #define TIFALIBS_MATH_PERIOD_FIB
 
-#include "../util/util.hpp"
+#include "../nt/lcm.hpp"
 
 namespace tifa_libs::math {
 
@@ -19,11 +19,11 @@ constexpr u64 period_fib(u32 n) {
       n /= i;
       u64 x = g(i), _ = n;
       while (n % i == 0) n /= i;
-      x *= _ / n, res = res / std::gcd(res, x) * x;
+      x *= _ / n, res = lcm(res, x);
     }
   if (n > 1) {
     u64 x = g(n);
-    res = res / std::gcd(res, x) * x;
+    res = lcm(res, x);
   }
   return res;
 }

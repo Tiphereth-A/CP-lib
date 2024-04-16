@@ -2,6 +2,7 @@
 #define TIFALIBS_MATH_EXBSGS
 
 #include "bsgs.hpp"
+#include "gcd.hpp"
 #include "inverse.hpp"
 
 namespace tifa_libs::math {
@@ -12,7 +13,7 @@ inline std::optional<u64> exbsgs(u64 a, u64 b, u64 m) {
   a %= m;
   if ((b %= m) == 1 || m == 1) return 0;
   u64 cnt = 0, t = 1;
-  for (u64 d = std::gcd(a, m); d != 1; d = std::gcd(a, m)) {
+  for (u64 d = gcd(a, m); d != 1; d = gcd(a, m)) {
     if (b % d) return -1;
     ++cnt;
     b /= d;

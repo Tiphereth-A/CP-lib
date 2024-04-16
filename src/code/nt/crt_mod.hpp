@@ -2,6 +2,7 @@
 #define TIFALIBS_MATH_CRT_MOD
 
 #include "../math/safe_mod.hpp"
+#include "gcd.hpp"
 #include "inverse.hpp"
 
 namespace tifa_libs::math {
@@ -13,12 +14,12 @@ constexpr std::optional<ptt<u32>> crt_mod(vec<i32> const &a, vecu const &m, u32 
   for (u32 i = 0; i < n; ++i) {
     u32 &mi = m_cpy[i];
     for (u32 j = 0; j < i; ++j) {
-      u32 &mj = m_cpy[j], d = std::gcd(mi, mj);
+      u32 &mj = m_cpy[j], d = gcd(mi, mj);
       if (d == 1) continue;
       if (safe_mod(a[i], d) != safe_mod(a[j], d)) return {};
       mi /= d;
       mj /= d;
-      if (u32 k = std::gcd(mi, d); k != 1)
+      if (u32 k = gcd(mi, d); k != 1)
         while (d % k == 0) {
           mi *= k;
           d /= k;

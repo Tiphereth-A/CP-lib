@@ -3,6 +3,7 @@
 
 #include "../math/mul_mod_u.hpp"
 #include "../rand/gen.hpp"
+#include "gcd.hpp"
 #include "is_prime.hpp"
 
 namespace tifa_libs::math {
@@ -21,11 +22,11 @@ class PollardRho {
       for (u64 k = 0; g == 1 && k < r; k += LIM) {
         yy = y;
         for (u64 i = 0; i < LIM && i < r - k; ++i) q = mul_mod_u(q, (x + (n - (y = f(y)))) % n, n);
-        g = std::gcd(q, n);
+        g = gcd(q, n);
       }
     }
     if (g == n) do {
-        g = std::gcd((x + (n - (yy = f(yy)))) % n, n);
+        g = gcd((x + (n - (yy = f(yy)))) % n, n);
       } while (g == 1);
     return g == n ? rho(n) : g;
   }

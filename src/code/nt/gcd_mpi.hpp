@@ -3,6 +3,7 @@
 
 #include "../math/mpi.hpp"
 #include "../math/qpow.hpp"
+#include "../nt/gcd.hpp"
 
 namespace tifa_libs::math {
 namespace gcd_mpi_impl_ {
@@ -21,7 +22,7 @@ constexpr ptt<i32> shrink(mpi& a) {
   if (a.data().empty()) return {0, 0};
   ptt<i32> res{0, 0};
   while (true) {
-    u32 g = std::gcd(mpi::digit(), a.data()[0]);
+    u32 g = gcd(mpi::digit(), a.data()[0]);
     if (g == 1) break;
     if (g != mpi::digit()) a *= mpi::digit() / g;
     a.data().erase(begin(a.data()));
@@ -36,7 +37,7 @@ template <bool FAST = true>
 constexpr mpi gcd_mpi(mpi a, mpi b) {
   a.set_neg(false), b.set_neg(false);
   if constexpr (FAST)
-    if (std::max(a.data().size(), b.data().size()) <= 2) return std::gcd(a.to_i64(), b.to_i64());
+    if (std::max(a.data().size(), b.data().size()) <= 2) return gcd(a.to_i64(), b.to_i64());
   if (a.data().empty()) return b;
   if (b.data().empty()) return a;
   ptt<i32> s = gcd_mpi_impl_::shrink(a), t = gcd_mpi_impl_::shrink(b);
@@ -48,7 +49,7 @@ constexpr mpi gcd_mpi(mpi a, mpi b) {
     a = a - b;
     if (!a.data().empty())
       while (true) {
-        u32 g = std::gcd(a.data()[0], mpi::digit());
+        u32 g = gcd(a.data()[0], mpi::digit());
         if (g == 1) break;
         if (g != mpi::digit()) a *= mpi::digit() / g;
         a.data().erase(begin(a.data()));
@@ -57,7 +58,7 @@ constexpr mpi gcd_mpi(mpi a, mpi b) {
   }
   assert(a >= b);
   mpi g;
-  if constexpr (FAST) g = b.data().empty() ? a : std::gcd(a.to_i64(), b.to_i64());
+  if constexpr (FAST) g = b.data().empty() ? a : gcd(a.to_i64(), b.to_i64());
   else g = a;
   u32 e2 = (u32)std::min(s.first, t.first), e5 = (u32)std::min(s.second, t.second);
   if (e2) g *= qpow(mpi{2}, e2);

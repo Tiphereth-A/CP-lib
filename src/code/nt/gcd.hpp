@@ -5,23 +5,23 @@
 
 namespace tifa_libs::math {
 
-// From GCC lib
-template <int_c T, int_c U>
-constexpr std::common_type_t<T, U> gcd(T a, U b) {
-  using W = to_uint_t<std::common_type_t<T, U>>;
-  if constexpr (std::is_integral_v<W>) return std::gcd(a, b);
-  else {
-    W u = abs(a), v = abs(b);
-    if (!u || !v) return u ^ v;
-    const int i = std::__countr_zero(u), j = std::__countr_zero(v), k = std::min(i, j);
-    u >>= i, v >>= j;
-    while (1) {
-      if (u > v) std::swap(u, v);
-      if ((v -= u) == 0) return u << k;
-      v >>= std::__countr_zero(v);
-    }
-  }
+namespace gcd_impl_ {
+template <uint_c T, uint_c U>
+constexpr std::common_type_t<T, U> gcd__(T u, U v) {
+  using W = std::common_type_t<T, U>;
+  if (!u || !v) return u ^ v;
+  auto k = std::__countr_zero(u | v);
+  u >>= k, v >>= k;
+  do {
+    if (W _ = v >> std::__countr_zero(v); u > _) v = u - _, u = _;
+    else v = _ - u;
+  } while (v);
+  return u << k;
 }
+}  // namespace gcd_impl_
+
+template <int_c T, int_c U>
+constexpr std::common_type_t<T, U> gcd(T a, U b) { return gcd_impl_::gcd__((to_uint_t<T>)abs(a), (to_uint_t<U>)abs(b)); }
 
 }  // namespace tifa_libs::math
 

@@ -3,6 +3,7 @@
 
 #include "../math/isqrt.hpp"
 #include "../math/qpow_mod.hpp"
+#include "../nt/gcd.hpp"
 #include "../nt/inverse.hpp"
 
 namespace tifa_libs::math {
@@ -10,7 +11,7 @@ namespace tifa_libs::math {
 constexpr std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
   if (k > 0 && !(a % p)) return 0;
   k %= p - 1;
-  u64 g = std::gcd(k, p - 1);
+  u64 g = gcd(k, p - 1);
   if (qpow_mod(a, (p - 1) / g, p) != 1) return {};
   a = qpow_mod(a, inverse(k / g, (p - 1) / g), p);
   auto pethr = [](u64 a, u64 p, u32 e, u64 m) {

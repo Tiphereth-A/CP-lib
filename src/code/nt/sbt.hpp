@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_SBT
 #define TIFALIBS_MATH_SBT
 
-#include "../util/util.hpp"
+#include "../nt/gcd.hpp"
 
 namespace tifa_libs::math {
 
@@ -15,7 +15,7 @@ class SBT {
   explicit constexpr SBT() : lx(0), ly(1), x(1), y(1), rx(1), ry(0) {}
   constexpr SBT(T X, T Y) : SBT() {
     assert(x > 0 && Y > 0);
-    if (T g = std::gcd(X, Y); g > 1) X /= g, Y /= g;
+    if (T g = gcd(X, Y); g > 1) X /= g, Y /= g;
     while (std::min(X, Y))
       if (X > Y) {
         T _ = X / Y;
