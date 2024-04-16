@@ -346,6 +346,14 @@ def _generate_testcode(source_dir: str, target_dir: str):
         all_src_files: list[str] = get_full_filenames([_source_dir], ['cpp'])
         kwargs.get('logger').info(f"{len(all_src_files)} file(s) found")
 
+        all_tar_files: list[str] = get_full_filenames([_target_dir], ['cpp'])
+        for file in all_tar_files:
+            with open(file, "r") as f:
+                first_line = f.readline()
+                if first_line.strip() == "#define AUTO_GENERATED":
+                    f.close()
+                    os.remove(file)
+
         for file in all_src_files:
             tfdir, bname = os.path.split(file)
             tfdir = _target_dir + tfdir.removeprefix(_source_dir)
@@ -357,7 +365,8 @@ def _generate_testcode(source_dir: str, target_dir: str):
             kwargs.get('logger').debug(f"variants: {var_list}")
 
             for var in var_list:
-                tfile = os.path.join(tfdir, f"{bname}{'-' if bname.count('.') else '.'}{var}.test.cpp")
+                tfile = os.path.join(
+                    tfdir, f"{bname}{'-' if bname.count('.') else '.'}{var}.test.cpp")
                 kwargs.get('logger').debug(f"writing to {tfile}")
 
                 written_codes: list[str] = ['#define AUTO_GENERATED\n']
