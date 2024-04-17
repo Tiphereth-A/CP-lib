@@ -570,6 +570,9 @@ notebook:
     - domtree: 支配树
       code_ext: hpp
       test_ext: cpp
+    - sat2: 2-Sat
+      code_ext: hpp
+      test_ext: cpp
     tree:
     - tree: 树
       code_ext: hpp
