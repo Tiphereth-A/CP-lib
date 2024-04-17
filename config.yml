@@ -13,7 +13,7 @@ notebook:
     enum: 枚举
     io: IO
     ds: 数据结构
-    opt: 最优化与 DP
+    opt: 最优化 DP
     graph: 图论
     tree: 树
     geo2d: 二维计算几何
@@ -25,10 +25,10 @@ notebook:
     nt: 数论
     math: 其他数学
     str: 字符串
-    rand: 随机数与随机化算法
-    edh: 编解码与 Hash
-    game: 游戏
-    fast: 卡常用算法
+    rand: 随机数 随机化算法
+    edh: 编解码 Hash 序列化 反序列化
+    game: 游戏 博弈论
+    fast: 卡常
   sections:
     util:
     - util: 共同依赖
