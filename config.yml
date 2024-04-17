@@ -607,6 +607,9 @@ notebook:
     - dsu_on_tree: DSU on tree
       code_ext: hpp
       test_ext: cpp
+    - btree_make_post_pi: 根据前序中序遍历构造后序遍历
+      code_ext: hpp
+      test_ext: cpp
     comb:
     - binom: 组合数
       code_ext: hpp
