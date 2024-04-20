@@ -17,9 +17,9 @@ int main() {
       std::cin >> y, --y;
       tr.merge(x, y);
     } else {
-      i32 ret = tr.pop(x);
-      if (ret == std::numeric_limits<i32>::max()) std::cout << "-1\n";
-      else std::cout << ret << '\n';
+      auto ret = tr.pop(x);
+      if (!ret.has_value()) std::cout << "-1\n";
+      else std::cout << ret.value() << '\n';
     }
   }
   return 0;

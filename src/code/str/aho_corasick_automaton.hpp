@@ -28,7 +28,7 @@ class aho_corasick_automaton {
       if (!t[u].nex[a]) t[u].nex[a] = sz++, t.push_back(YYZ());
       u = t[u].nex[a], ++t[u].tot;
     }
-    if (id != -1u) t[u].end.push_back(id);
+    if (~id) t[u].end.push_back(id);
   }
   void getfail() {
     std::queue<u32> q;

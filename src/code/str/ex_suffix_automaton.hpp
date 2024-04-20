@@ -29,7 +29,7 @@ class ex_suffix_automaton {
         st[clone].len = st[p].len + 1;
         st[clone].link = st[q].link;
         st[clone].nex = st[q].nex;
-        while (p != -1u && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
+        while (~p && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
         st[q].link = clone;
         return clone;
       }
@@ -37,8 +37,8 @@ class ex_suffix_automaton {
     u32 cur = sz++, p = last;
     st.push_back(YYZ());
     st[cur].len = st[last].len + 1;
-    while (p != -1u && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
-    if (p == -1u) st[cur].link = 0;
+    while (~p && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
+    if (!~p) st[cur].link = 0;
     else {
       u32 q = st[p].nex[c];
       if (st[p].len + 1 == st[q].len) st[cur].link = q;
@@ -48,7 +48,7 @@ class ex_suffix_automaton {
         st[clone].len = st[p].len + 1;
         st[clone].link = st[q].link;
         st[clone].nex = st[q].nex;
-        while (p != -1u && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
+        while (~p && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
         st[q].link = st[cur].link = clone;
       }
     }

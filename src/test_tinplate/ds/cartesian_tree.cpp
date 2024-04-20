@@ -12,8 +12,8 @@ int main() {
   tifa_libs::ds::cartesian_tree tr(a);
   i64 retl = 0, retr = 0;
   for (u32 i = 0; i < n; ++i) {
-    retl ^= 1ll * (i + 1) * (tr.t[i].son[0] != -1u ? tr.t[i].son[0] + 2 : 1);
-    retr ^= 1ll * (i + 1) * (tr.t[i].son[1] != -1u ? tr.t[i].son[1] + 2 : 1);
+    retl ^= 1ll * (i + 1) * (~tr.t[i].son[0] ? tr.t[i].son[0] + 2 : 1);
+    retr ^= 1ll * (i + 1) * (~tr.t[i].son[1] ? tr.t[i].son[1] + 2 : 1);
   }
   std::cout << retl << ' ' << retr << '\n';
   return 0;

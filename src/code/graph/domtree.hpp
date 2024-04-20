@@ -16,7 +16,7 @@ class domtree {
     rev[arr[u] = label[t] = sdom[t] = dsu[t] = t] = u;
     ++t;
     for (u32 w : g.g[u]) {
-      if (arr[w] == -1_u32) {
+      if (!~arr[w]) {
         dfs(w);
         par[arr[w]] = arr[u];
       }

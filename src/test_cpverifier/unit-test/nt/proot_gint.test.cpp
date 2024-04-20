@@ -23,11 +23,11 @@ void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> const& 
   check_bool(g.real() == 1, check_param(g));
   gint g_qpow = tifa_libs::math::qpow(g, mod + 1);
 
-  if (tifa_libs::math::jacobi_sym(mint_M.val(), mod) == -1) {
-    gint g_mp1{1 - g.imag() * g.imag() * mint_M, 0};
+  if (~tifa_libs::math::jacobi_sym(mint_M.val(), mod)) {
+    gint g_mp1{1 + g.imag() * g.imag() * mint_M, g.imag() * 2};
     check_bool(g_qpow == g_mp1, check_param(g), check_param(g_qpow), check_param(g_mp1), check_param(mod), check_param(pf_v));
   } else {
-    gint g_mp1{1 + g.imag() * g.imag() * mint_M, g.imag() * 2};
+    gint g_mp1{1 - g.imag() * g.imag() * mint_M, 0};
     check_bool(g_qpow == g_mp1, check_param(g), check_param(g_qpow), check_param(g_mp1), check_param(mod), check_param(pf_v));
   }
 }
@@ -77,7 +77,8 @@ int main() {
       test_proot_gint<mint<786433>>();
       test_proot_gint<mint<19260817>>();
       break;
-    case tifa_libs::unittest::ts_random_01: break;
+    case tifa_libs::unittest::ts_random_01:
+      break;
       // larger prime in u32
     case tifa_libs::unittest::ts_random_02:
       test_proot_gint<mint<167772161>>();

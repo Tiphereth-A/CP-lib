@@ -32,8 +32,8 @@ class suffix_automaton {
     st[cur].firstpos = st[cur].len - 1;  // app 3
     u32 p = last;
 
-    while (p != -1u && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
-    if (p == -1u) st[cur].link = 0;
+    while (~p && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
+    if (!~p) st[cur].link = 0;
     else {
       u32 q = st[p].nex[c];
       if (st[p].len + 1 == st[q].len) st[cur].link = q;
@@ -46,7 +46,7 @@ class suffix_automaton {
         st[clone].firstpos = st[q].firstpos;  // app 3
         st[clone].is_clone = 1;               // app 3
 
-        while (p != -1u && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
+        while (~p && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
         st[q].link = st[cur].link = clone;
       }
     }

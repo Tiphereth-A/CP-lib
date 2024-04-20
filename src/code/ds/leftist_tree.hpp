@@ -5,12 +5,11 @@
 
 namespace tifa_libs::ds {
 
-template <class T>
+template <class T, bool persistent = false>
 class leftist_tree {
   u32 cnt;
   struct YYZ {
     u32 l, r;
-    arr<u32, 2> son{};
     u32 dist, rt;
     T w;
     bool del;
@@ -19,19 +18,19 @@ class leftist_tree {
   };
 
   constexpr u32 merge_(u32 x, u32 y) {
-    if (x == -1u) return y;
-    if (y == -1u) return x;
+    if (!~x || !~y) return x & y;
     if (t[y].w < t[x].w || (t[y].w == t[x].w && x > y)) std::swap(x, y);
+    if constexpr (persistent) t.push_back(t[x]), t.back().rt = x = (u32)t.size() - 1;
     t[x].r = merge_(t[x].r, y);
-    if (t[x].l == -1_u32 || t[t[x].r].dist > t[t[x].l].dist) std::swap(t[x].l, t[x].r);
-    t[x].dist = (t[x].r == -1u ? 0 : t[t[x].r].dist + 1);
+    if (!~t[x].l || t[t[x].r].dist > t[t[x].l].dist) std::swap(t[x].l, t[x].r);
+    t[x].dist = (!~t[x].r ? 0 : t[t[x].r].dist + 1);
     return x;
   }
-  void del(u32 x) {
+  constexpr void del(u32 x) {
     t[x].del = true;
     t[x].rt = merge_(t[x].l, t[x].r);
-    if (t[x].l != -1u) t[t[x].l].rt = t[x].rt;
-    if (t[x].r != -1u) t[t[x].r].rt = t[x].rt;
+    if (~t[x].l) t[t[x].l].rt = t[x].rt;
+    if (~t[x].r) t[t[x].r].rt = t[x].rt;
   }
 
  public:
@@ -40,24 +39,28 @@ class leftist_tree {
   constexpr explicit leftist_tree(vec<T> const& a) : t() {
     for (auto x : a) newheap(x);
   }
-  constexpr explicit leftist_tree() : t() {}
-
-  void newheap(T w) {
-    t.emplace_back(-1u, -1u, 0, t.size(), w, false);
+  constexpr explicit leftist_tree(u32 n = 0) : t() {
+    t.reserve(n);
+    for (u32 i = 0; i < n; ++i) newheap();
   }
-  u32 gf(u32 x) { return t[x].rt == x ? x : t[x].rt = gf(t[x].rt); }
-  bool same(u32 x, u32 y) {
+
+  constexpr u32 newheap(T w = T{}) {
+    t.emplace_back(-1_u32, -1_u32, 0, t.size(), w, false);
+    return (u32)t.size() - 1;
+  }
+  constexpr u32 gf(u32 x) { return t[x].rt == x ? x : t[x].rt = gf(t[x].rt); }
+  constexpr bool same(u32 x, u32 y) {
     if (t[x].del || t[y].del) return false;
     if ((x = gf(x)) == (y = gf(y))) return false;
     return true;
   }
-  void merge(u32 x, u32 y) {
+  constexpr void merge(u32 x, u32 y) {
     if (t[x].del || t[y].del) return;
     if ((x = gf(x)) == (y = gf(y))) return;
     t[x].rt = t[y].rt = merge_(x, y);
   }
-  T pop(u32 x) {
-    if (t[x].del) return std::numeric_limits<T>::max();
+  constexpr std::optional<T> pop(u32 x) {
+    if (t[x].del) return {};
     T ret = t[x = gf(x)].w;
     del(x);
     return ret;

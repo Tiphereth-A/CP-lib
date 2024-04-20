@@ -16,8 +16,7 @@ std::optional<vec<T>> bellman_ford(alistw<T, with_deg> const &fg, u32 s, F &&cb_
   vec<T> dis(g.size(), INF);
   vecb vis(g.size());
   vecu dep(g.size());
-  std::queue<u32> q;
-  q.push(s);
+  std::queue<u32> q({s});
   dis[s] = 0;
   vis[s] = true;
   dep[s] = 1;

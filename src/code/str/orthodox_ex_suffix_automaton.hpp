@@ -25,11 +25,11 @@ class orthodox_ex_suffix_automaton {
     st[cur].len = st[last].len + 1;
     u32 p = st[last].link;
 
-    while (p != -1u && !st[p].nex[c]) {
+    while (~p && !st[p].nex[c]) {
       st[p].nex[c] = cur;
       p = st[p].link;
     }
-    if (p == -1u) st[cur].link = 0;
+    if (!~p) st[cur].link = 0;
     else {
       u32 q = st[p].nex[c];
       if (st[p].len + 1 == st[q].len) st[cur].link = q;
@@ -42,7 +42,7 @@ class orthodox_ex_suffix_automaton {
         st[clone].len = st[p].len + 1;
         st[clone].link = st[q].link;
 
-        while (p != -1u && st[p].nex[c] == q) {
+        while (~p && st[p].nex[c] == q) {
           st[p].nex[c] = clone;
           p = st[p].link;
         }

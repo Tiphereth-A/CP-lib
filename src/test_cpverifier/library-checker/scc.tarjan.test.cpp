@@ -18,10 +18,10 @@ int main() {
   scc.build(e);
   vvecu g(scc.id);
   vecu in(scc.id);
-  std::queue<u32> q;
   for (u32 i = 0, x, y; i < n; ++i)
     for (auto v : e[i])
       if ((x = scc.scc_id[i]) != (y = scc.scc_id[v])) g[x].push_back(y), ++in[y];
+  std::queue<u32> q;
   for (u32 i = 0; i < scc.id; ++i)
     if (!in[i]) q.push(i);
   std::cout << scc.id << '\n';

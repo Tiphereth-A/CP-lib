@@ -19,7 +19,6 @@ int main() {
   scc.build(e);
   vvecu g(scc.id);
   vecu in(scc.id), b(scc.id), dp(scc.id, 1'000'000'000);
-  std::queue<u32> q;
   for (u32 i = 0, x, y; i < n; ++i) {
     b[x = scc.scc_id[i]] += a[i];
     for (auto v : e[i])

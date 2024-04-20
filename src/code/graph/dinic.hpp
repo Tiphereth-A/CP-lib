@@ -35,8 +35,8 @@ class dinic {
  private:
   bool bfs(u32 s, u32 t) {
     dep = vecu(N, 0);
-    std::queue<u32> q;
-    dep[s] = 1, q.push(s);
+    std::queue<u32> q({s});
+    dep[s] = 1;
     while (!q.empty()) {
       u32 u = q.front();
       q.pop();

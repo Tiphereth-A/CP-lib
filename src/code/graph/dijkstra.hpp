@@ -20,9 +20,7 @@ constexpr vec<T> dijkstra(alistw<T, with_deg> const &fg, u32 s, F &&relax, T INF
   q.emplace(dis[s] = 0, s);
   while (!q.empty()) {
     auto [dis_now, now] = q.top();
-    if constexpr (std::unsigned_integral<T>) {
-      if (dis_now > INF) dis_now = INF;
-    }
+    if (dis_now > INF) dis_now = INF;
     q.pop();
     if (vis[now]) continue;
     vis[now] = true;

@@ -8,7 +8,7 @@ namespace tifa_libs::opt {
 template <class T = f64>
 struct LPSolver {
 #define ltj(X) \
-  if (s == -1 || std::make_pair(X[j], N[j]) < std::make_pair(X[s], N[s])) s = j
+  if (!~s || std::make_pair(X[j], N[j]) < std::make_pair(X[s], N[s])) s = j
   static constexpr T inf = 1 / .0;
   int m, n;       // # m = contraints, # n = variables
   vec<int> N, B;  // N[j] = non-basic variable (j-th column), = 0
@@ -50,10 +50,10 @@ struct LPSolver {
       int r = -1;
       for (int i = 0; i < m; ++i) {
         if (D[i][s] <= eps_v<T>) continue;
-        if (r == -1 || std::make_pair(D[i][n + 1] / D[i][s], B[i]) < std::make_pair(D[r][n + 1] / D[r][s], B[r])) r = i;
+        if (!~r || std::make_pair(D[i][n + 1] / D[i][s], B[i]) < std::make_pair(D[r][n + 1] / D[r][s], B[r])) r = i;
         // find smallest positive ratio
       }  // -> max increase in NB variable
-      if (r == -1) return 0;  // objective is unbounded
+      if (!~r) return 0;  // objective is unbounded
       pivot(r, s);
     }
   }
@@ -69,7 +69,7 @@ struct LPSolver {
       // artificial variable, optimal value should be zero
       // if exists feasible solution
       for (int i = 0; i < m; ++i)
-        if (B[i] == -1) {  // artificial var basic
+        if (!~B[i]) {  // artificial var basic
           int s = 0;
           for (int j = (1); j <= n; ++j) ltj(D[i]);  // -> nonbasic
           pivot(i, s);

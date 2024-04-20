@@ -12,7 +12,7 @@ template <class mint, class ccore>
 poly<mint, ccore> czt_fps(poly<mint, ccore> f, mint c, u32 m = -1_u32, mint a = 1) {
   using poly_t = poly<mint, ccore>;
   static rpow rp, irp;
-  if (m == -1_u32) m = f.size();
+  if (!~m) m = f.size();
   if (f.data().empty() || !m) return poly_t{};
   u32 n = f.size();
   if (a != 1) {
