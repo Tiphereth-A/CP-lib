@@ -1,0 +1,23 @@
+对字符串 \(s\), 称满足如下条件的三元组 \(\mathbf{r}=(p,l,r)\) 为 \(s\) 的一个 run:
+
+\begin{itemize}
+    \item \(s[l,r)\) 的\textbf{最小}循环节为 \(p\), \(2p\leq r-l\),
+    \item \(s[l,r)\) 不能扩张, 即 \(s[l-1]\ne s[l-1+p]\) 且 \(s[r]\ne s[r+p]\).
+\end{itemize}
+
+另外, 记
+
+\begin{itemize}
+    \item \(e_{\mathbf{r}}=\dfrac{r-l}{p}\) 为 run \(\mathbf{r}=(p,l,r)\) 的指数,
+    \item \(\rho_{\textrm{run}}(n)\) 为长度为 \(n\) 的字符串中至多含有的 run 个数,
+    \item \(\sigma_{\textrm{run}}(n)\) 为长度为 \(n\) 的字符串的 run 指数和的最大值.
+\end{itemize}
+
+run 有如下性质:
+
+\begin{itemize}
+    \item 两个周期为 \(p\) 的 run 的交长度小于 \(p\),
+    \item (The ``Runs'' Theorem, \cite{bannai2017runs}) \(\rho_{\textrm{run}}(n)<n\), \(\sigma_{\textrm{run}}(n)<3n\).
+\end{itemize}
+
+\paragraph{复杂度} \(O(n\log n)\)
