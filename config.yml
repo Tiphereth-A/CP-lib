@@ -1253,10 +1253,10 @@ notebook:
     - hash_substr2: 双模子串 Hash
       code_ext: hpp
       test_ext: cpp
-    - lcpf_hash: 最长公共前缀(子串 Hash)
+    - lcpf_hash: 子串 Hash 的最长公共前缀
       code_ext: hpp
       test_ext: cpp
-    - lcsf_hash: 最长公共后缀(子串 Hash)
+    - lcsf_hash: 子串 Hash 的最长公共后缀
       code_ext: hpp
       test_ext: cpp
     - suffix_array: 后缀数组
@@ -1284,6 +1284,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - run_hash: Run(子串 Hash)
+      code_ext: hpp
+      test_ext: cpp
+    - run_zfunc: Run(Z 函数)
       code_ext: hpp
       test_ext: cpp
     rand:
