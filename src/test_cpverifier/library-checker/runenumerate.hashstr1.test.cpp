@@ -1,9 +1,9 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
+#define PROBLEM "https://judge.yosupo.jp/problem/runenumerate/"
 
 #include "../../code/io/fastio.hpp"
-#include "../../code/str/lcpf_hash.hpp"
-//
+#include "../../code/str/run_hash.hpp"
+
 #include "../../code/math/mint_2e61n1.hpp"
 #include "../../code/str/hash_substr.hpp"
 
@@ -13,8 +13,8 @@ using hashstr = tifa_libs::str::hash_substr<mint>;
 int main() {
   strn s;
   tifa_libs::fin >> s;
-  hashstr hs;
-  hs.set(s);
-  for (u32 i = 0; i < s.size(); ++i) tifa_libs::fout << tifa_libs::str::lcpf_hash(hs, hs, 0, i) << " \n"[i + 1 == s.size()];
+  auto res = tifa_libs::str::run_hash<hashstr>(s);
+  tifa_libs::fout << res.size() << '\n';
+  for (auto& i : res) tifa_libs::fout << i << '\n';
   return 0;
 }
