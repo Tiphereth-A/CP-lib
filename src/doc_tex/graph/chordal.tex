@@ -1,0 +1,44 @@
+\paragraph{概念}~\\
+
+\begin{itemize}
+    \item \textbf{团数}: 最大团的点数, 记为 \(\omega(G)\)
+    \item \textbf{色数}: 最小点染色的颜色数, 记为 \(\chi(G)\)
+    
+          显然 \(\omega(G)\le\chi(G)\)
+    
+    \item \textbf{最大独立集}: 最大的点集使得点集中任意两点都没有边直接相连. 该集合的大小记为 \(\alpha(G)\)
+    \item \textbf{最小团覆盖}: 用最少的团覆盖所有的点. 使用团的数量记为 \(\kappa(G)\)
+    
+          显然 \(\alpha(G)\le\kappa(G)\)
+    
+    \item \textbf{弦}: 连接环中不相邻两点的边
+    \item \textbf{弦图}: 任意长度大于 \(3\) 的环都有一个弦的图
+    \item \textbf{单纯点}: 设 \(N(x)\) 表示与点 \(x\) 相邻的点集, 若 \(\{x\}\cup N(x)\) 的导出子图是团, 则称点 \(x\) 为单纯点
+    \item \textbf{完美消除序列(PEO)}: 令 \(n=|V|\), 完美消除序列 \(v_1,\dots,v_n\) 为 \(1,\dots,n\) 的一个排列, 满足 \(v_i\) 在 \(\{v_i,\dots,v_n\}\) 的导出子图中为单纯点
+\end{itemize}
+
+\paragraph{性质}~\\
+
+\begin{itemize}
+    \item 弦图的任意导出子图一定是弦图
+    \item 弦图的任意导出子图一定不可能是一个点数大于 \(3\) 的环
+    \item 弦图上任意两点间的极小点割集的导出子图一定为一个团
+    \item 任何一个弦图都至少有一个单纯点, 不是完全图的弦图至少有两个不相邻的单纯点
+    \item 一个无向图是弦图当且仅当其有一个完美消除序列
+    \item 弦图的 \(\omega(G)=\chi(G)=\max_{v\in V(G)}\{|N(v)|+1\}\)
+    \item 弦图的 \(\alpha(G)=\kappa(G)\)
+    \item 设弦图的最大独立集为 \(\{v_1,\dots,v_t\}\), 则 \(\{\{v_1+N(v_1)\},\dots,\{v_t+N(v_t)\} \}\) 为其最小团覆盖
+\end{itemize}
+
+弦图判定: 用最大势算法 (Maximum Cardinality Search) 得到一个序列, 若该序列为 PEO 则图为弦图
+
+弦图的最大独立集找法为: PEO 从前往后, 选择所有没有与已经选择的点有直接连边的点
+
+\paragraph{复杂度}~\\
+
+\begin{itemize}
+    \item MCS, 弦图判定: \(O(n+m)\)
+    \item 求弦图极大团: \(O(n+m)\)
+    \item 求弦图色数/团数: \(O(n)\)
+    \item 求弦图最大独立集/最小团覆盖: \(O(n+m)\)
+\end{itemize}
