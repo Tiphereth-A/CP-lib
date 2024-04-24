@@ -8,15 +8,16 @@ namespace tifa_libs::graph {
 template <bool with_deg = false>
 class chordal {
   alist<with_deg> const& g;
+  vecu deg;
 
  public:
   vecu peo, rnk;
 
   // @param g simple UNDIRECTED graph
   //! g.g[i] MUST be sorted
-  explicit constexpr chordal(alist<with_deg> const& g) : g(g), peo(g.g.size()), rnk(peo.size()) {
+  explicit constexpr chordal(alist<with_deg> const& g) : g(g), deg(g.g.size()), peo(g.g.size()), rnk(g.g.size()) {
     for (auto& i : g.g) assert(std::ranges::is_sorted(i));
-    u32 n = (u32)peo.size();
+    u32 n = (u32)g.g.size();
     vecu l(n * 2 + 1), r, idx(n);
     std::iota(l.begin(), l.end(), 0);
     r = l;
@@ -30,7 +31,7 @@ class chordal {
       u32 v = l[li];
       idx[v] = -1_u32, del(v);
       for (u32 to : g.g[v])
-        if (~idx[to]) del(to), ins(to, n + (++idx[to]));
+        if (~idx[to]) ++deg[to], del(to), ins(to, n + (++idx[to]));
       peo[i] = v;
     }
     std::ranges::reverse(peo);
@@ -90,11 +91,7 @@ class chordal {
     }
     return res;
   }
-  constexpr u32 chromatic_number() const {
-    u32 ans = 0;
-    for (auto& i : g) ans = std::max(ans, (u32)i.size());
-    return ans + 1;
-  }
+  constexpr u32 chromatic_number() const { return *std::ranges::max_element(deg) + 1; }
   constexpr vecu max_independent_set() const {
     vecu res;
     vecb vis(peo.size());
