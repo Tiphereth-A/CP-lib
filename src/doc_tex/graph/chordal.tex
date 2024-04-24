@@ -17,6 +17,13 @@
     \item \textbf{完美消除序列(PEO)}: 令 \(n=|V|\), 完美消除序列 \(v_1,\dots,v_n\) 为 \(1,\dots,n\) 的一个排列, 满足 \(v_i\) 在 \(\{v_i,\dots,v_n\}\) 的导出子图中为单纯点
 \end{itemize}
 
+\begin{figure}
+    \label{img:c5-with-2-chords}
+    \centering
+    \includesvg[width=0.4\textwidth]{img/Chordal-graph}
+    \caption{有两条弦的环(From Wikipedia)}
+\end{figure}
+
 \paragraph{性质}~\\
 
 \begin{itemize}
@@ -34,6 +41,23 @@
 
 弦图的最大独立集找法为: PEO 从前往后, 选择所有没有与已经选择的点有直接连边的点
 
+\paragraph{树分解}
+
+对图 \(G=(V,E)\), 其树分解 (tree decompositions, junction trees, clique trees, join trees) 定义为 \((X,T)\), 其中 \(X=\{X_1,\dots,X_n\}\) 为一族 \(V\) 的子集, 称为 bags, \(T\) 为以 \(X\) 为点集的树, 满足:
+
+\begin{enumerate}
+    \item \(\bigcup_{x\in X} x=V\).
+    \item \(\forall (v, w)\in E\), \(\exists X_i\in X\) s.t. \(v,w\in X_i\).
+    \item 若 \(X_k\) 在 \(X_i\) 到 \(X_j\) 的路径上, 则 \(X_{i}\cap X_{j}\subseteq X_{k}\).
+\end{enumerate}
+
+\begin{figure}
+    \label{img:tree-decomposition}
+    \centering
+    \includesvg[width=0.4\textwidth]{img/Tree_decomposition}
+    \caption{树分解(From Wikipedia)}
+\end{figure}
+
 \paragraph{复杂度}~\\
 
 \begin{itemize}
@@ -42,3 +66,5 @@
     \item 求弦图色数/团数: \(O(n)\)
     \item 求弦图最大独立集/最小团覆盖: \(O(n+m)\)
 \end{itemize}
+
+\paragraph{参考资料} \cite{enwiki:1204698483} \cite{enwiki:1217459734} \cite{10.1137/0213035}
