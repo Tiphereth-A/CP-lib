@@ -20,11 +20,10 @@ struct amat {
   }
 
   constexpr void set_arc(u32 u, u32 v, T const& w) {
-    if (g[u][v] >= g.size()) {
-      ++cnt_arc;
-      if constexpr (with_deg) ++deg_in[v], ++deg_out[u];
-    }
+    if (g[u][v] == w) return;
+    ++cnt_arc;
     g[u][v] = w;
+    if constexpr (with_deg) ++deg_in[v], ++deg_out[u];
   }
 };
 

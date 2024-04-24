@@ -15,7 +15,7 @@ constexpr vec<T> conv_minplus_ca(vec<T> const& a, vec<T> const& b) {
       [&](u32 k, u32 j1, u32 j2) -> bool {
         i32 i1 = (i32)k - (i32)j1, i2 = (i32)k - (i32)j2;
         if (i2 < 0) return 1;
-        if (i1 >= n) return 0;
+        if (i1 >= (i32)n) return 0;
         return a[i1] + b[j1] < a[i2] + b[j2];
       });
   vec<T> c(n + m - 1);

@@ -132,6 +132,7 @@ class fastout {
   explicit fastout(FILE *file = stdout) : f_(file), now_(bf_) {}
 
   fastout &operator=(fastout const &r) {
+    if (&r == this) return *this;
     f_ = r.f_;
     now_ = bf_ + (r.now_ - r.bf_);
     memcpy(bf_, r.bf_, sizeof(*bf_) * (r.now_ - r.bf_));

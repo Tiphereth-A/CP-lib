@@ -4,10 +4,32 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '.github/**'
+      - 'src/cheatsheet/**'
+      - 'src/code/**'
+      - 'src/doc_tex/**'
+      - 'src/test_tinplate/**'
+      - 'config.yml'
+      - '*.bib'
+      - '*.cls'
+      - '*.py'
+      - '*.tex'
   pull_request:
     branches:
       - master
-  workflow_dispatch:    
+    paths:
+      - '.github/**'
+      - 'src/cheatsheet/**'
+      - 'src/code/**'
+      - 'src/doc_tex/**'
+      - 'src/test_tinplate/**'
+      - 'config.yml'
+      - '*.bib'
+      - '*.cls'
+      - '*.py'
+      - '*.tex'
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.head_ref || 'x' }}-${{ github.workflow }}-${{ github.ref }}-pdf

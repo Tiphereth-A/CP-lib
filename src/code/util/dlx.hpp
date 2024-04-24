@@ -90,6 +90,9 @@ class DLX {
   }
 
   template <class F>
+  requires requires(F f, vecu sol) {
+    f(sol);
+  }
   constexpr std::optional<vecu> dance(F &&cb) {
     vecu ans;
     if (!dance_(ans, std::forward<F>(cb))) return {};

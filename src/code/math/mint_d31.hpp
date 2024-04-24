@@ -24,7 +24,7 @@ class mint_d31 : public mint<mint_d31<ID>, u32> {
   static constexpr void set_mod(u32 m) {
     assert(!(m == 1 || m >> 31));
     for (MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD /= 2);
-    MASK = (1 << OFFSET) - 1;
+    MASK = (1_u32 << OFFSET) - 1_u32;
     u32 t = 2, iv = MOD_ODD * (t - MOD_ODD * MOD_ODD);
     iv *= t - MOD_ODD * iv, iv *= t - MOD_ODD * iv;
     R = iv * (MOD_ODD * iv - t);

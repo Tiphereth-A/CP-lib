@@ -3,9 +3,21 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '.github/**'
+      - '.verify-helper/**'
+      - 'src/code/**'
+      - 'src/doc_md/**'
+      - 'src/test_cpverifier/**'
   pull_request:
     branches:
       - master
+    paths:
+      - '.github/**'
+      - '.verify-helper/**'
+      - 'src/code/**'
+      - 'src/doc_md/**'
+      - 'src/test_cpverifier/**'
   workflow_dispatch:
     inputs:
       ignore_prev_result:

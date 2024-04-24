@@ -7,4 +7,9 @@
 ![Standard](https://img.shields.io/static/v1?label=standard&message=C%2B%2B20+with+O2&color=green&logo=cplusplus)
 ![Requirments](https://img.shields.io/static/v1?label=requirments&message=GCC+>=12&color=blue&logo=cplusplus)
 
+[![verify](https://github.com/Tiphereth-A/CP-lib/actions/workflows/verify.yml/badge.svg)](https://github.com/Tiphereth-A/CP-lib/actions/workflows/verify.yml)
+[![Build & Relase LaTeX document](https://github.com/Tiphereth-A/CP-lib/actions/workflows/release.yml/badge.svg)](https://github.com/Tiphereth-A/CP-lib/actions/workflows/release.yml)
+[![CodeQL](https://github.com/Tiphereth-A/CP-lib/actions/workflows/codeql.yml/badge.svg)](https://github.com/Tiphereth-A/CP-lib/actions/workflows/codeql.yml)
+[![flawfinder](https://github.com/Tiphereth-A/CP-lib/actions/workflows/flawfinder.yml/badge.svg)](https://github.com/Tiphereth-A/CP-lib/actions/workflows/flawfinder.yml)
+
 My code library for Competitive Programming, powered by [competitive-verifier/competitive-verifier](https://github.com/competitive-verifier/competitive-verifier) & [Tiphereth-A/TINplate](https://github.com/Tiphereth-A/TINplate).

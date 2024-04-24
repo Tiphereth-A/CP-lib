@@ -16,8 +16,9 @@ class lsieve2 {
         for (p1 = 1, p2 = i, e = 0; p1 <= x; p1 = p2, p2 *= i, ++e) fr[p2] = 1;
         pr.emplace_back(i, e);
       }
-      for (u32 t = 0; t < pr.size(); ++t)
-        if (u32 p = pr[t].first; p > x) break;
+      for (auto [p, _] : pr)
+        if (p > x) break;
+        // p <= x == n/i ==> p*i <= n
         else if (i % p) fr[p * i] = i;
         else {
           fr[p * i] = fr[i];

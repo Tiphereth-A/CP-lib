@@ -9,11 +9,11 @@ template <int_c T>
 struct rational {
   T num, den;
 
-  constexpr rational(T numerator = 0, T denominator = 1) : num(numerator), den(denominator) {
+  constexpr rational(T numerator = T(0), T denominator = T(1)) : num(numerator), den(denominator) {
     assert(den != 0);
     if (num == 0) den = 1;
     else {
-      T g = gcd(num, den);
+      T g = (T)gcd(num, den);
       num /= g, den /= g;
       if constexpr (std::is_signed_v<T>)
         if (den < 0) num = -num, den = -den;
@@ -29,37 +29,37 @@ struct rational {
     return *this;
   }
   constexpr rational &operator*=(T x) {
-    T g = gcd(x, den);
+    T g = (T)gcd(x, den);
     num *= x / g, den /= g;
     return *this;
   }
   constexpr rational &operator/=(T x) {
     assert(x);
-    T g = gcd(x, num);
+    T g = (T)gcd(x, num);
     num /= g, den *= x / g;
     if constexpr (std::is_signed_v<T>)
       if (den < 0) num = -num, den = -den;
     return *this;
   }
   constexpr rational &operator+=(rational const &x) {
-    T g = gcd(den, x.den);
-    num = num * (x.den / g) + x.num * (den /= g), g = gcd(num, g);
+    T g = (T)gcd(den, x.den);
+    num = num * (x.den / g) + x.num * (den /= g), g = (T)gcd(num, g);
     num /= g, den *= x.den / g;
     return *this;
   }
   constexpr rational &operator-=(rational const &x) {
-    T g = gcd(den, x.den);
-    num = num * (x.den / g) - x.num * (den /= g), g = gcd(num, g);
+    T g = (T)gcd(den, x.den);
+    num = num * (x.den / g) - x.num * (den /= g), g = (T)gcd(num, g);
     num /= g, den *= x.den / g;
     return *this;
   }
   constexpr rational &operator*=(rational const &x) {
-    T g1 = gcd(num, x.den), g2 = gcd(x.num, den);
+    T g1 = (T)gcd(num, x.den), g2 = (T)gcd(x.num, den);
     num = num / g1 * (x.num / g2), den = den / g2 * (x.den / g1);
     return *this;
   }
   constexpr rational &operator/=(rational const &x) {
-    T g1 = gcd(num, x.num), g2 = gcd(den, x.den);
+    T g1 = (T)gcd(num, x.num), g2 = (T)gcd(den, x.den);
     num = num / g1 * (x.den / g2), den = den / g2 * (x.num / g1);
     if constexpr (std::is_signed_v<T>)
       if (den < 0) num = -num, den = -den;

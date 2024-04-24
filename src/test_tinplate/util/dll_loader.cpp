@@ -10,7 +10,7 @@ tifa_libs::util::DLL *gmp;
 int t;
 char sa[2000010], sb[2000010], sq[2000010];
 
-int main(int argc, char **argv) {
+int main(int, char **argv) {
   if (getenv("LD_PRELOAD") == nullptr) {
     setenv("LD_PRELOAD", LIB_PATH, 1);
     execve("/proc/self/exe", argv, environ);
@@ -25,9 +25,9 @@ int main(int argc, char **argv) {
   gmp->call("__gmpz_init", q);
   gmp->call("__gmpz_init", r);
 
-  scanf("%d", &t);
+  [[maybe_unused]] auto _ = scanf("%d", &t);
   while (t--) {
-    scanf("%s%s", sa, sb);
+    [[maybe_unused]] auto _ = scanf("%s%s", sa, sb);
     gmp->call("__gmpz_set_str", a, sa, 16);
     gmp->call("__gmpz_set_str", b, sb, 16);
     gmp->call("__gmpz_mul", q, a, b);
@@ -45,8 +45,8 @@ int main(int argc, char **argv) {
 /*
 **statement**
 
-This problem has $T$ cases.  
-Given hexadecimal integers $A$ and $B$, print hexadecimal integer $AB$. 
+This problem has $T$ cases.
+Given hexadecimal integers $A$ and $B$, print hexadecimal integer $AB$.
 
 **constraints**
 

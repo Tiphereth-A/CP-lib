@@ -21,11 +21,11 @@ int main() {
   cpu_name();
   auto st = chrono::high_resolution_clock::now();
 
-  volatile int n = 3000;
+  volatile unsigned n = 3000;
   bitset<30> ans;
-  for (int i = 1; i <= n; ++i)
-    for (int j = 1; j <= n; j += 2)
-      for (int k = 1; k <= n; k += 4) ans |= i | j | k;
+  for (volatile unsigned i = 1; i <= n; ++i)
+    for (volatile unsigned j = 1; j <= n; j += 2)
+      for (volatile unsigned k = 1; k <= n; k += 4) ans |= i | j | k;
 
   auto ed = chrono::high_resolution_clock::now();
   cout << fixed << setprecision(6) << chrono::duration_cast<chrono::nanoseconds>(ed - st).count() * 1e-6l << " ms" << endl;

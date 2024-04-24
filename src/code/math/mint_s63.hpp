@@ -47,7 +47,7 @@ class mint_s63 : public mint<mint_s63<MOD>, u64> {
   using raw_t = typename base::raw_type;
   using sraw_t = typename base::sraw_type;
   template <int_c T>
-  static constexpr raw_t mod_(T v) { return redc_mul(norm(v % (std::conditional_t<sint_c<T>, i64, u64>)mod_()), R2); }
+  static constexpr raw_t mod_(T v) { return redc_mul(norm(i64(v % (std::conditional_t<sint_c<T>, i64, u64>)mod_())), R2); }
   static constexpr raw_t mod_() { return MOD; }
   constexpr raw_t val_() const {
     raw_t res = -mulh(this->v_ * R, mod_());

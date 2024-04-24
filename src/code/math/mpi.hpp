@@ -19,7 +19,7 @@ class mpi {
   constexpr mpi(T x) : neg(false) {
     if constexpr (is_sint_v<T>)
       if (x < 0) neg = true, x = -x;
-    while (x) dt.push_back(u32(to_uint_t<T>(x) % D)), x /= D;
+    while (x) dt.push_back(u32(to_uint_t<T>(x) % D)), x /= (T)D;
   }
   constexpr mpi(strn s) : neg(false) {
     assert(!s.empty());

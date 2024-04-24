@@ -21,12 +21,14 @@ class RGCD {
         n,
         [this](u32 p) { fs[p] = {1, 1, p}; },
         [this](u32 i, u32 j) {
+          tifa_said((u64)i * j == u64(i * j));
           F3 &now = fs[i * j];
           now = fs[i];
           if ((now.a *= j) > now.b) std::swap(now.a, now.b);
           if (now.b > now.c) std::swap(now.b, now.c);
         },
         [this](u32 i, u32 j) {
+          tifa_said((u64)i * j == u64(i * j));
           F3 &now = fs[i * j];
           now = fs[i];
           if ((now.a *= j) > now.b) std::swap(now.a, now.b);

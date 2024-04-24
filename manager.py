@@ -343,7 +343,7 @@ def _generate_testcode(source_dir: str, target_dir: str):
         _source_dir = os.path.join(CONFIG.get_src_dir(), _source_dir)
         _target_dir = os.path.join(CONFIG.get_src_dir(), _target_dir)
 
-        all_src_files: list[str] = get_full_filenames([_source_dir], ['cpp'])
+        all_src_files: list[str] = get_full_filenames([_source_dir], ['cppmeta'])
         kwargs.get('logger').info(f"{len(all_src_files)} file(s) found")
 
         all_tar_files: list[str] = get_full_filenames([_target_dir], ['cpp'])
@@ -357,7 +357,7 @@ def _generate_testcode(source_dir: str, target_dir: str):
         for file in all_src_files:
             tfdir, bname = os.path.split(file)
             tfdir = _target_dir + tfdir.removeprefix(_source_dir)
-            bname = bname.removesuffix('.cpp')
+            bname = bname.removesuffix('.cppmeta')
 
             code_lines = get_codelines(file)
             var_list = set(get_var(x) for x in

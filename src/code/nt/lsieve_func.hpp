@@ -36,6 +36,7 @@ struct lsieve_func {
           if constexpr (state | ls_tau) tau[p] = 2;
         },
         [&](u32 i, u32 j) {
+          tifa_said((u64)i * j == u64(i * j));
           if constexpr (state | ls_mpf) mpf[i * j] = j;
           if constexpr (state | ls_phi) phi[i * j] = phi[i] * (j - 1);
           if constexpr (state | ls_mu) mu[i * j] = -mu[i];
@@ -43,6 +44,7 @@ struct lsieve_func {
           if constexpr (state | ls_tau) tau[i * j] = tau[i] * 2;
         },
         [&](u32 i, u32 j) {
+          tifa_said((u64)i * j == u64(i * j));
           if constexpr (state | ls_mpf) mpf[i * j] = j;
           if constexpr (state | ls_phi) phi[i * j] = phi[i] * j;
           if constexpr (state | ls_sigma) sigma[i * j] = sigma[i] * ((pw[i * j] = pw[i] * j) - 1) / (pw[i] - 1);

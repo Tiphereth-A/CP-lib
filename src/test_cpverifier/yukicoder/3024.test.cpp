@@ -13,7 +13,7 @@ int main() {
   vecu a(n);
   std::cin >> a;
   vvec<tifa_libs::math::rational<i64>> dp(1 << n);
-  for (u32 i = 0; i < n; ++i) dp[1 << i].emplace_back(a[i]);
+  for (u32 i = 0; i < n; ++i) dp[1 << i].emplace_back((i64)a[i]);
   for (u32 i = 0, ed_ = 1 << n; i < ed_; ++i) {
     if (std::popcount(i) <= 1) continue;
     tifa_libs::enum_subset<>::set(i);
@@ -24,7 +24,7 @@ int main() {
             std::cout << "YES\n";
             return 0;
           }
-          if (i != (1 << n) - 1) dp[i].push_back(x + y), dp[i].push_back(x - y), dp[i].push_back(x * y), dp[i].push_back(x / y);
+          if (i != (1_u32 << n) - 1_u32) dp[i].push_back(x + y), dp[i].push_back(x - y), dp[i].push_back(x * y), dp[i].push_back(x / y);
         }
     dp[i] = tifa_libs::uniq(dp[i]);
   }

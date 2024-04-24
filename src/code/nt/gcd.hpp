@@ -21,7 +21,7 @@ constexpr std::common_type_t<T, U> gcd__(T u, U v) {
 }  // namespace gcd_impl_
 
 template <int_c T, int_c U>
-constexpr std::common_type_t<T, U> gcd(T a, U b) { return gcd_impl_::gcd__((to_uint_t<T>)abs(a), (to_uint_t<U>)abs(b)); }
+constexpr auto gcd(T a, U b) { return gcd_impl_::gcd__((to_uint_t<T>)abs(a), (to_uint_t<U>)abs(b)); }
 
 }  // namespace tifa_libs::math
 

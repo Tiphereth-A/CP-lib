@@ -13,9 +13,9 @@ int main() {
     std::cin >> s >> t;
     u64 x = 0;
     for (char c : t) switch (c) {
-        case 'A': ++x;
-        case 'C': ++x;
-        case 'G': ++x;
+        case 'A': ++x; [[fallthrough]];
+        case 'C': ++x; [[fallthrough]];
+        case 'G': ++x; [[fallthrough]];
         default: (++x) *= 5;
       }
     if (s[0] == 'i')

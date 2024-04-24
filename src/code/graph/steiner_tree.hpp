@@ -35,7 +35,7 @@ class steiner_tree {
         }
       }
     };
-    for (u32 s = 1; s < (1 << a.size()); ++s) {
+    for (u32 s = 1; s < (1_u32 << a.size()); ++s) {
       for (u32 i = 0; i < e.g.size(); ++i) {
         for (u32 ss = s & (s - 1); ss; ss = s & (ss - 1))
           dp[i][s] = std::min(dp[i][s], dp[i][ss] + dp[i][s ^ ss]);

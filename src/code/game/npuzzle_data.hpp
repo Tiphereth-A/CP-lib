@@ -28,7 +28,7 @@ class NPuzzleData {
   vecu node;
   strn moves;
 
-  constexpr explicit NPuzzleData(u32 k) : k(k), pos0(0), cost_(0), node(k * k), moves() {}
+  constexpr explicit NPuzzleData(u32 k) : k(k), pos0(0), cost_(0), node(k * k), moves() { assert(k < 65535); }
 
   constexpr auto const &cost() const { return cost_; }
   constexpr bool solved() { return node == fin_node; }

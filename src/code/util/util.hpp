@@ -68,6 +68,16 @@ using vvecb = vvec<bool>;
 #define assert(x) 42
 #endif
 
+#if __cplusplus >= 202302l
+#define tifa_said(exp) [[assume(exp)]]
+#elif defined __clang__
+#define tifa_said(exp) __builtin_assume(exp)
+#elif defined __GNUC__
+#define tifa_said(exp) __attribute__((assume(exp)))
+#elif defined _MSC_VER
+#define tifa_said(exp) __assume(exp)
+#endif
+
 using namespace std::literals;
 
 constexpr i8 operator""_i8(unsigned long long x) { return (i8)x; }

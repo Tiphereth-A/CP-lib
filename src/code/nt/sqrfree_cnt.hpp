@@ -22,7 +22,7 @@ constexpr u64 sqrfree_cnt(u64 n) {
     i64 sum = 1;
     for (u32 t = 1, l = 1; t < tlim; ++t) {
       u32 r = f(t), q = f(tlim - t - 1);
-      sum -= i64(r - l) * (q <= D ? mu[q] : mu_large[i * r * r]);
+      sum -= i64(r - l) * (q <= D ? mu[q] : mu_large[(u64)i * r * r]);
       l = r;
     }
     ans += u64(mu_large[i] = (i32)sum);
