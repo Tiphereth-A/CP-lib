@@ -2,14 +2,14 @@
 #define TIFALIBS_CONV_CONV_CZT
 
 #include "../math/qpow.hpp"
-#include "../nt/proot_u32.hpp"
+#include "../nt/proot.hpp"
 #include "../poly/czt_fps.hpp"
 
 namespace tifa_libs::math {
 
 template <class poly>
-constexpr auto conv_czt(poly l, poly r, u32 ans_size = 0) {
-  using mint = typename poly::value_type;
+CEXP auto conv_czt(poly l, poly r, u32 ans_size = 0) {
+  using mint = TPN poly::value_type;
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   assert(mint::mod() <= u64(-1_u32));
   const u32 m = (u32)mint::mod();
@@ -20,8 +20,8 @@ constexpr auto conv_czt(poly l, poly r, u32 ans_size = 0) {
   r.resize(s);
   l = czt_fps(l, c);
   r = czt_fps(r, c);
-  for (u32 i = 0; i < s; ++i) l[i] *= r[i];
-  l = czt_fps<mint, typename poly::ccore_type>(l, c.inv());
+  flt_ (u32, i, 0, s) l[i] *= r[i];
+  l = czt_fps<mint, TPN poly::ccore_type>(l, c.inv());
   l.resize(ans_size);
   return (l *= mint(s).inv()).data();
 }

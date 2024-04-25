@@ -3,7 +3,7 @@
 
 #include "../../code/comb/ball_box_iia.hpp"
 
-constexpr u32 MOD = 1000000000 + 7;
+CEXP u32 MOD = 1000000000 + 7;
 
 #include "../../code/math/mint_d63.hpp"
 #include "../../code/math/mint_ss.hpp"

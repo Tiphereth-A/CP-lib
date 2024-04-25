@@ -8,19 +8,19 @@
 namespace tifa_libs::math {
 
 // bernoulli[i] = B_i, i=0,1,...,n
-template <class poly, std::same_as<typename poly::value_type> mint>
-constexpr poly gen_bernoulli(u32 n, vec<mint> const& fact, vec<mint> const& ifact) {
+template <class poly, std::same_as<TPN poly::value_type> mint>
+CEXP poly gen_bernoulli(u32 n, vec<mint> CR fact, vec<mint> CR ifact) {
   if (!n) return poly{1};
   poly b(n + 1);
-  for (u32 i = 0; i <= n; ++i) b[i] = ifact[i + 1];
+  fle_ (u32, i, 0, n) b[i] = ifact[i + 1];
   b = inv_fps(b);
-  for (u32 i = 1; i <= n; ++i) b[i] *= fact[i];
+  fle_ (u32, i, 1, n) b[i] *= fact[i];
   return b;
 }
 // bernoulli[i] = B_i, i=0,1,...,n
 template <class poly>
-constexpr poly gen_bernoulli(u32 n) {
-  using mint = typename poly::value_type;
+CEXP poly gen_bernoulli(u32 n) {
+  using mint = TPN poly::value_type;
   return gen_bernoulli<poly>(n, gen_fact<mint>(n + 1), gen_ifact<mint>(n + 2));
 }
 

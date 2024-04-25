@@ -6,57 +6,77 @@
 namespace tifa_libs::math {
 
 template <u32 N = 64>
-class basisZ2 {
-  vec<std::bitset<N>> base;
+struct basisZ2 {
+  vec<std::bitset<N>> basis;
 
- public:
-  constexpr basisZ2() : base(N) {}
+  CEXP basisZ2() : basis(N) {}
 
-  constexpr std::bitset<N> &operator[](u32 index) { return base[index]; }
-  constexpr std::bitset<N> const &operator[](u32 index) const { return base[index]; }
-  constexpr vec<std::bitset<N>> &data() { return base; }
-  constexpr vec<std::bitset<N>> const &data() const { return base; }
-
-  constexpr u32 rank() const {
-    u32 res = 0;
-    for (u32 i = 0; i < base.size(); ++i) res += base[i][i];
-    return res;
-  }
-
-  constexpr bool insert(std::bitset<N> x) {
-    bool status = false;
-    for (u32 i = base.size() - 1; ~i; --i) {
+  CEXP bool insert(std::bitset<N> x) {
+    bool status = 0;
+    for (u32 i = N - 1; ~i; --i) {
       if (!(x[i])) continue;
-      if (base[i][i])
-        x ^= base[i];
+      if (basis[i][i]) x ^= basis[i];
       else {
-        for (u32 j = 0; j < i; ++j)
-          if (x[j]) x ^= base[j];
-        for (u32 j = i + 1; j < base.size(); ++j)
-          if (base[j][i]) base[j] ^= x;
-        base[i] = x;
-        status = true;
+        flt_ (u32, j, 0, i)
+          if (x[j]) x ^= basis[j];
+        for (u32 j = i + 1; j < basis.size(); ++j)
+          if (basis[j][i]) basis[j] ^= x;
+        basis[i] = x, status = 1;
         break;
       }
     }
     return status;
   }
-  constexpr std::bitset<N> max_span() const {
+  CEXP bool test(std::bitset<N> x) const {
+    for (u32 i = N - 1; ~i; --i) {
+      if (!(x[i])) continue;
+      if (basis[i][i]) x ^= basis[i];
+      else return 0;
+    }
+    return 1;
+  }
+  CEXP u32 rank() const {
+    u32 res = 0;
+    for (u32 i = 0; i < basis.size(); ++i) res += basis[i][i];
+    return res;
+  }
+  CEXP std::bitset<N> max_span() const {
     std::bitset<N> ret;
-    for (auto &&i : base) ret ^= i;
+    for (auto &&i : basis) ret ^= i;
     return ret;
   }
-
   // @return std::nullopt if x is linear independent with current basis, else return the solution
-  constexpr std::optional<std::bitset<N>> coord(std::bitset<N> x) {
+  CEXP std::optional<std::bitset<N>> coord(std::bitset<N> x) {
     std::bitset<N> res;
-    for (u32 i = base.size() - 1; ~i; --i)
+    for (u32 i = basis.size() - 1; ~i; --i)
       if (x[i]) {
-        if (!base[i][i]) return {};
+        if (!basis[i][i]) return {};
         res.set(i);
-        x ^= base[i];
+        x ^= basis[i];
       }
     return res;
+  }
+  CEXP basisZ2 meet(cT_(vec<std::bitset<N>>) r) const {
+    auto cvt = [](cT_(std::bitset<N>) x) {
+      if CEXP (N <= 32) return x.to_ulong();
+      else if CEXP (N <= 64) return x.to_ullong();
+      else return x.to_string();
+    };
+    auto f = [&, this](std::bitset<N> x) {
+      for (auto i : basis)
+        if (auto y = x ^ i; cvt(y) < cvt(x)) x = y;
+      return x;
+    };
+    basisZ2<N> ans;
+    vecpt<std::bitset<N>> ab;
+    for (auto x : r) {
+      auto y = f(x), xy = y ^ x;
+      for (auto [a, b] : ab)
+        if (auto _ = y ^ b; cvt(_) < cvt(y)) y = _, xy ^= a;
+      if (y.any()) ab.emplace_back(xy, y);
+      else ans.insert(xy);
+    }
+    return ans;
   }
 };
 

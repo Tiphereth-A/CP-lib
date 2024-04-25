@@ -6,7 +6,7 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   u32 _tests = 1;
-  for (u32 _test = 1; _test <= _tests; ++_test) {
+  fle_ (u32, _test, 1, _tests) {
     u32 n, q;
     std::cin >> n >> q;
     vec<int> a(n);

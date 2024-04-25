@@ -9,7 +9,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore, u32 N = 21>
-vec<mint> comp_fpssps(u32 n, poly<mint, ccore> f, vec<mint> g, vecu64 const &fact, vecu64 const &ifact) {
+vec<mint> comp_fpssps(u32 n, poly<mint, ccore> f, vec<mint> g, vecu64 CR fact, vecu64 CR ifact) {
   assert(n <= N);
   static conv_subset<mint, N> ss;
   if (!f.size()) return vec<mint>(1 << n);
@@ -19,10 +19,10 @@ vec<mint> comp_fpssps(u32 n, poly<mint, ccore> f, vec<mint> g, vecu64 const &fac
   }
   f.resize(n + 1);
   g.resize(1 << n);
-  for (u32 i = 0; i <= n; ++i) f[i] *= fact[i];
+  fle_ (u32, i, 0, n) f[i] *= fact[i];
   v3ec<mint> h(n + 1, vvec<mint>(n + 1, vec<mint>{}));
-  for (u32 i = 0; i <= n; ++i) h[0][i] = {f[i]};
-  for (u32 k = 1; k <= n; ++k) {
+  fle_ (u32, i, 0, n) h[0][i] = {f[i]};
+  fle_ (u32, k, 1, n) {
     auto A = ss.lift({g.begin() + (1 << (k - 1)), g.begin() + (1 << k)});
     ss.zeta(A);
     for (u32 j = 0; j <= n - k; ++j) {
@@ -38,7 +38,7 @@ vec<mint> comp_fpssps(u32 n, poly<mint, ccore> f, vec<mint> g, vecu64 const &fac
   return h[n][0];
 }
 template <class mint, class ccore, u32 N = 21>
-constexpr auto comp_fpssps(u32 n, poly<mint, ccore> const &f, vec<mint> const &g) { return comp_fpssps<mint, ccore, N>(n, f, g, gen_fact((u32)f.size() + 1, mint::mod()), gen_ifact((u32)f.size() + 1, mint::mod())); }
+CEXP auto comp_fpssps(u32 n, poly<mint, ccore> CR f, vec<mint> CR g) { return comp_fpssps<mint, ccore, N>(n, f, g, gen_fact((u32)f.size() + 1, mint::mod()), gen_ifact((u32)f.size() + 1, mint::mod())); }
 
 }  // namespace tifa_libs::math
 

@@ -7,7 +7,7 @@
 
 using point_t = ptt<i32>;
 
-vec<point_t> parse_tsp_data(strn const& name) {
+vec<point_t> parse_tsp_data(cT_(strn) name) {
   strn filename = "src/data/tsp-vlsi/" + name + ".tsp";
 #ifndef LOCAL_
   std::fstream fin(filename, std::ios_base::in);
@@ -47,7 +47,7 @@ vec<point_t> parse_tsp_data(strn const& name) {
   return ret;
 }
 
-double fitness(vec<point_t> const& data, vecu const& seq) {
+double fitness(vec<point_t> CR data, vecu CR seq) {
   check(data.size(), seq.size());
   double ans = std::hypot(data[seq[0]].first - data[seq.back()].first, data[seq[0]].second - data[seq.back()].second);
   for (u32 i = 1; i < seq.size(); ++i) ans += std::hypot(data[seq[i]].first - data[seq[i - 1]].first, data[seq[i]].second - data[seq[i - 1]].second);
@@ -56,7 +56,7 @@ double fitness(vec<point_t> const& data, vecu const& seq) {
 
 void test(const char* const name, double optimal, u32 L, double p0, u32 K, u32 M, double rerr) {
   auto points = parse_tsp_data(name);
-  auto f = [&](vecu const& seq) { return fitness(points, seq); };
+  auto f = [&](vecu CR seq) { return fitness(points, seq); };
   vecu seq(points.size());
   std::iota(seq.begin(), seq.end(), 0);
   // std::shuffle(seq.begin(), seq.end(), std::mt19937(time(nullptr)));

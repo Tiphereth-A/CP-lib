@@ -4,7 +4,7 @@
 #include "../../code/io/ios_container.hpp"
 #include "../../code/lalg/charpoly_mat.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_s63.hpp"
 
@@ -22,7 +22,7 @@ int main() {
   }
   mat a(n, n);
   std::cin >> a;
-  auto is_0 = [](mint const &x) { return x.val() == 0; };
+  auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
   std::cout << tifa_libs::math::charpoly(a, is_0) << '\n';
   return 0;
 }

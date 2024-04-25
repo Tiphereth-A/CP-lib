@@ -14,7 +14,7 @@ void test(u32 n, u32 k) {
   vecu text = list;
   for (auto i : list) text.push_back(i);
   vecu pattern(n);
-  for (usz cnt = 0; cnt < len; ++cnt) {
+  flt_(usz, cnt, 0, len) {
     auto res = std::search(text.begin(), text.end(), std::boyer_moore_horspool_searcher(pattern.begin(), pattern.end()));
     check_bool(res != text.end(), check_param(text), check_param(pattern));
     ++pattern.back();

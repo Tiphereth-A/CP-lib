@@ -16,7 +16,7 @@ class e_bcc {
   vvecu belongs;
 
   //! EW need rev_edge
-  explicit e_bcc(vvec<EW> const &G) : g(G) { build(); }
+  explicit e_bcc(cT_(vvec<EW>) G) : g(G) { build(); }
 
   void build() {
     id = 0;
@@ -33,8 +33,8 @@ class e_bcc {
         if (v.to == fa && i == inv_from) continue;
         if (dfn[v.to] == n) {
           dfs(dfs, v.to, u, v.inv);
-          low[u] = std::min(low[u], low[v.to]);
-        } else low[u] = std::min(low[u], dfn[v.to]);
+          low[u] = min(low[u], low[v.to]);
+        } else low[u] = min(low[u], dfn[v.to]);
       }
       if (low[u] == dfn[u]) {
         belongs.push_back(vecu());
@@ -48,7 +48,7 @@ class e_bcc {
       }
     };
 
-    for (u32 i = 0; i < n; ++i)
+    flt_ (u32, i, 0, n)
       if (dfn[i] == n) dfs(dfs, i, i, -1_u32);
   }
 };

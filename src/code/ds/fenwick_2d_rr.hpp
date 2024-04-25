@@ -11,29 +11,29 @@ class fenwick2d_rr {
 
  public:
   //! [1, row) * [1, col)
-  explicit constexpr fenwick2d_rr(u32 row, u32 col) : a(row, col), ax(row, col), ay(row, col), axy(row, col) {}
+  explicit CEXP fenwick2d_rr(u32 row, u32 col) : a(row, col), ax(row, col), ay(row, col), axy(row, col) {}
 
-  constexpr u32 row() const { return a.size(); }
-  constexpr u32 col() const { return a[0].size(); }
+  CEXP u32 row() const { return a.size(); }
+  CEXP u32 col() const { return a[0].size(); }
 
   //! [x, row) * [y, col), x > 0, y > 0
-  constexpr void add(u32 x, u32 y, T const &val) {
+  CEXP void add(u32 x, u32 y, cT_(T) val) {
     a.add(x, y, val);
     ax.add(x, y, val * (x - 1));
     ay.add(x, y, val * (y - 1));
     axy.add(x, y, val * (x - 1) * (y - 1));
   }
   //! [xl, xr) * [yl, yr), x > 0, y > 0
-  constexpr void add(u32 xl, u32 yl, u32 xr, u32 yr, T const &val) {
+  CEXP void add(u32 xl, u32 yl, u32 xr, u32 yr, cT_(T) val) {
     add(xl, yl, val);
     add(xl, yr, -val);
     add(xr, yl, -val);
     add(xr, yr, val);
   }
   //! [1, x) * [1, y), x > 0, y > 0
-  constexpr T sum(u32 x, u32 y) { return a.sum(x, y) * x * y - ax.sum(x, y) * y - ay.sum(x, y) * x + axy.sum(x, y); }
+  CEXP T sum(u32 x, u32 y) { return a.sum(x, y) * x * y - ax.sum(x, y) * y - ay.sum(x, y) * x + axy.sum(x, y); }
   //! (xl, xr] * (yl, yr], x > 0, y > 0
-  constexpr T sum(u32 xl, u32 yl, u32 xr, u32 yr) {
+  CEXP T sum(u32 xl, u32 yl, u32 xr, u32 yr) {
     if (xl >= xr || yl >= yr) return 0;
     return sum(xr, yr) - sum(xl, yr) + sum(xl, yl) - sum(xr, yl);
   }

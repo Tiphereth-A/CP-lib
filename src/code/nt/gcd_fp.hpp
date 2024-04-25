@@ -6,11 +6,11 @@
 namespace tifa_libs::math {
 
 template <std::floating_point T>
-constexpr T gcd_fp(T a, T b, T eps = 1e-2) {
-  if ((a = std::abs(a)) < (b = std::abs(b))) std::swap(a, b);
+CEXP T gcd_fp(T a, T b, T eps = 1e-2) {
+  if ((a = abs(a)) < (b = abs(b))) swap(a, b);
   while (a - b > eps) {
     if (b < eps) return a;
-    std::swap(a = std::fmod(a, b), b);
+    swap(a = std::fmod(a, b), b);
   }
   return a;
 }

@@ -14,13 +14,13 @@ struct alist {
   vecu deg_in;
 
   //! vertex ID: [0, n)
-  explicit constexpr alist(u32 n = 0) : g(n), cnt_arc(0), deg_in(0) {
-    if constexpr (with_deg) deg_in.resize(n);
+  explicit CEXP alist(u32 n = 0) : g(n), cnt_arc(0), deg_in(0) {
+    if CEXP (with_deg) deg_in.resize(n);
   }
 
-  constexpr void add_arc(u32 u, u32 v) {
+  CEXP void add_arc(u32 u, u32 v) {
     g[u].push_back(v), ++cnt_arc;
-    if constexpr (with_deg) ++deg_in[v];
+    if CEXP (with_deg) ++deg_in[v];
   }
 };
 template <class G>

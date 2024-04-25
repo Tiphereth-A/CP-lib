@@ -7,19 +7,19 @@
 
 namespace tifa_libs::math {
 
-constexpr i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod, vecu64 const &ifact) {
+CEXP i64 lagrange_interp0(vec<i64> CR v, u64 x, u64 mod, vecu64 CR ifact) {
   u32 n = (u32)v.size();
   assert(n);
   if (n == 1) return v[0];
   if (x < n) return v[x];
   vecu64 pre(n);
-  for (u32 i = 0; i < n; ++i) pre[i] = x - i;
-  for (u32 i = 1; i < n; ++i) pre[i] = mul_mod_u(pre[i], pre[i - 1], mod);
+  flt_ (u32, i, 0, n) pre[i] = x - i;
+  flt_ (u32, i, 1, n) pre[i] = mul_mod_u(pre[i], pre[i - 1], mod);
   vecu64 suc(n);
-  for (u32 i = 0; i < n; ++i) suc[i] = x - i;
+  flt_ (u32, i, 0, n) suc[i] = x - i;
   for (u32 i = n - 2; ~i; --i) suc[i] = mul_mod_u(suc[i], suc[i + 1], mod);
   i64 ans = 0;
-  for (u32 i = 0; i < n; ++i) {
+  flt_ (u32, i, 0, n) {
     i64 _ = v[i];
     if (i) _ = mul_mod_s(_, (i64)pre[i - 1], mod);
     if (i + 1 < n) _ = mul_mod_s(_, (i64)suc[i + 1], mod);
@@ -28,9 +28,9 @@ constexpr i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod, vecu64 const &
   }
   return ans;
 }
-constexpr i64 lagrange_interp0(vec<i64> const &v, u64 x, u64 mod) { return lagrange_interp0(v, x, mod, gen_ifact((u32)v.size(), mod)); }
+CEXP i64 lagrange_interp0(vec<i64> CR v, u64 x, u64 mod) { return lagrange_interp0(v, x, mod, gen_ifact((u32)v.size(), mod)); }
 template <class mint>
-constexpr mint lagrange_interp0(vec<mint> const &v, u64 x, vec<mint> const &ifact) {
+CEXP mint lagrange_interp0(vec<mint> CR v, u64 x, vec<mint> CR ifact) {
   vec<i64> _(v.size());
   for (u32 i = 0; i < (u32)v.size(); ++i) _[i] = v[i].val();
   vecu64 ifa(ifact.size());
@@ -38,7 +38,7 @@ constexpr mint lagrange_interp0(vec<mint> const &v, u64 x, vec<mint> const &ifac
   return mint(lagrange_interp0(_, x, mint::mod(), ifa));
 }
 template <class mint>
-constexpr mint lagrange_interp0(vec<mint> const &v, u64 x) { return lagrange_interp0(v, x, mint::mod(), gen_ifact<mint>(v.size())); }
+CEXP mint lagrange_interp0(vec<mint> CR v, u64 x) { return lagrange_interp0(v, x, mint::mod(), gen_ifact<mint>(v.size())); }
 
 }  // namespace tifa_libs::math
 

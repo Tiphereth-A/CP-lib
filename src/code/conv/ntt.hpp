@@ -3,7 +3,7 @@
 
 #include "../bit/lowbit.hpp"
 #include "../math/qpow.hpp"
-#include "../nt/proot_u64.hpp"
+#include "../nt/proot.hpp"
 
 namespace tifa_libs::math {
 
@@ -12,25 +12,25 @@ struct NTT {
   using data_t = mint;
 
   static_assert(is_prime(mint::mod()) && (mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
-  static constexpr u64 max_size = bit::lowbit(mint::mod() - 1);
+  static CEXP u64 max_size = bit::lowbit(mint::mod() - 1);
 
   const mint G = proot(mint::mod());
 
-  explicit constexpr NTT() : root() {}
+  explicit CEXP NTT() : root() {}
 
-  constexpr u32 size() const { return (u32)root.size(); }
-  constexpr void bzr(u32 len = max_size) {
+  CEXP u32 size() const { return (u32)root.size(); }
+  CEXP void bzr(u32 len = max_size) {
     u32 n = std::bit_ceil(len);
     assert(n <= max_size);
     if (n == size()) return;
     root.resize(n);
     root[0] = 1;
     mint w = qpow(G, (mint::mod() - 1) / n);
-    for (u32 i = 1; i < n; ++i) root[i] = root[i - 1] * w;
+    flt_ (u32, i, 1, n) root[i] = root[i - 1] * w;
   }
 
 #pragma GCC diagnostic ignored "-Wsign-conversion"
-  constexpr void dif(vec<mint> &f, u32 n = 0) const {
+  CEXP void dif(vec<mint> &f, u32 n = 0) const {
     assert(size());
     if (!n) n = size();
     if (f.size() < n) f.resize(n);
@@ -45,7 +45,7 @@ struct NTT {
         }
       }
   }
-  constexpr void dit(vec<mint> &f, u32 n = 0) const {
+  CEXP void dit(vec<mint> &f, u32 n = 0) const {
     assert(size());
     if (!n) n = size();
     if (f.size() < n) f.resize(n);
@@ -61,7 +61,7 @@ struct NTT {
       }
     std::reverse(f.begin() + 1, f.end());
     mint t = mint(n).inv();
-    for (u32 i = 0; i < n; ++i) f[i] *= t;
+    flt_ (u32, i, 0, n) f[i] *= t;
   }
 #pragma GCC diagnostic warning "-Wsign-conversion"
 

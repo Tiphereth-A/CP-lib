@@ -9,16 +9,16 @@ int main() {
   std::cin >> n;
   u32 s = n + n, t = n + n + 1;
   tifa_libs::graph::ssp mcmf(n + n + 2, s, t);
-  for (u32 i = 0; i < n; ++i) mcmf.add(s, i, 1, 0);
-  for (u32 i = 0; i < n; ++i) mcmf.add(i + n, t, 1, 0);
+  flt_ (u32, i, 0, n) mcmf.add(s, i, 1, 0);
+  flt_ (u32, i, 0, n) mcmf.add(i + n, t, 1, 0);
   i32 x;
-  for (u32 i = 0; i < n; ++i)
-    for (u32 j = 0; j < n; ++j)
+  flt_ (u32, i, 0, n)
+    flt_ (u32, j, 0, n)
       std::cin >> x, mcmf.add(i, j + n, 1, x);
   auto [flow, cost] = mcmf();
   std::cout << cost << '\n';
   vecu ans(n);
-  for (u32 i = 0; i < n; ++i)
+  flt_ (u32, i, 0, n)
     for (auto v : mcmf.e[i])
       if (v.to < n + n && v.to >= n && v.w == 0) {
         ans[i] = v.to - n;

@@ -7,7 +7,7 @@ namespace tifa_libs::geo {
 
 // orthocenter (X4)
 template <class FP>
-constexpr point<FP> center_H(triangle<FP> const &t) {
+CEXP point<FP> center_H(triangle<FP> CR t) {
   auto [A, B, C] = t.angles();
   return t.trilinears(1 / std::cos(A), 1 / std::cos(B), 1 / std::cos(C));
 }

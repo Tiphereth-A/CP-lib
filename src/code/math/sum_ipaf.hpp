@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 // @param f $f(0),\dots,f(k-1)$, $k\leq n$
 // @return $\sum_{i=0}^{n-1}a^if(i)$
 template <class mint>
-constexpr mint sum_ipaf(vec<mint> const& f, mint const& a, u64 n, Binom<mint> const& C) {
+CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n, Binom<mint> CR C) {
   if (!n) return mint(0);
   if (!a.val()) return f[0];
   if (a.val() == 1) {
@@ -24,14 +24,14 @@ constexpr mint sum_ipaf(vec<mint> const& f, mint const& a, u64 n, Binom<mint> co
   for (u32 i = 1; i < g.size(); ++i) g[i] += g[i - 1];
   mint c = 0, buf2 = 1;
   u32 K = u32(f.size() - 1);
-  for (u32 i = 0; i <= K; ++i) c += C.mCn(K + 1, i) * buf2 * g[K - i], buf2 *= -a;
+  fle_ (u32, i, 0, K) c += C.mCn(K + 1, i) * buf2 * g[K - i], buf2 *= -a;
   c /= qpow(-a + 1, K + 1);
   mint buf3 = 1, ia = a.inv();
   for (u32 i = 0; i < g.size(); ++i) g[i] = (g[i] - c) * buf3, buf3 *= ia;
   return lagrange_interp0(g, n - 1, C.ifact) * qpow(a, n - 1) + c;
 }
 template <class mint>
-constexpr mint sum_ipaf(vec<mint> const& f, mint const& a, u64 n) {
+CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n) {
   if (!n) return mint(0);
   if (!a.val()) return f[0];
   return sum_ipaf(f, a, n, Binom<mint>((u32)(f.size() + 1)));

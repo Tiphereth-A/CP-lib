@@ -7,8 +7,8 @@ hashstrs: |
   using hashstr = tifa_libs::str::hash_substr<mint>;
   #endif
   #ifdef GENTC_hashstr2_s30
-  constexpr u32 MOD0 = 998244353;
-  constexpr u32 MOD1 = 1000000007;
+  CEXP u32 MOD0 = 998244353;
+  CEXP u32 MOD1 = 1000000007;
 
   #include "../../code/math/mint_s30.hpp"
   #include "../../code/str/hash_substr2.hpp"
@@ -18,8 +18,8 @@ hashstrs: |
   using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
   #endif
   #ifdef GENTC_hashstr2_s63
-  constexpr u32 MOD0 = 998244353;
-  constexpr u32 MOD1 = 1000000007;
+  CEXP u32 MOD0 = 998244353;
+  CEXP u32 MOD1 = 1000000007;
 
   #include "../../code/math/mint_s63.hpp"
   #include "../../code/str/hash_substr2.hpp"
@@ -29,8 +29,8 @@ hashstrs: |
   using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
   #endif
   #ifdef GENTC_hashstr2_ss
-  constexpr u32 MOD0 = 998244353;
-  constexpr u32 MOD1 = 1000000007;
+  CEXP u32 MOD0 = 998244353;
+  CEXP u32 MOD1 = 1000000007;
 
   #include "../../code/math/mint_ss.hpp"
   #include "../../code/str/hash_substr2.hpp"
@@ -42,8 +42,8 @@ hashstrs: |
 
 hashstrd0: |
   #ifdef GENTC_hashstr2_d31
-  constexpr u32 MOD0 = 998244353;
-  constexpr u32 MOD1 = 1000000007;
+  CEXP u32 MOD0 = 998244353;
+  CEXP u32 MOD1 = 1000000007;
 
   #include "../../code/math/mint_d31.hpp"
   #include "../../code/str/hash_substr2.hpp"
@@ -53,8 +53,8 @@ hashstrd0: |
   using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
   #endif
   #ifdef GENTC_hashstr2_d63
-  constexpr u32 MOD0 = 998244353;
-  constexpr u32 MOD1 = 1000000007;
+  CEXP u32 MOD0 = 998244353;
+  CEXP u32 MOD1 = 1000000007;
 
   #include "../../code/math/mint_d63.hpp"
   #include "../../code/str/hash_substr2.hpp"
@@ -64,8 +64,8 @@ hashstrd0: |
   using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
   #endif
   #ifdef GENTC_hashstr2_ds
-  constexpr u32 MOD0 = 998244353;
-  constexpr u32 MOD1 = 1000000007;
+  CEXP u32 MOD0 = 998244353;
+  CEXP u32 MOD1 = 1000000007;
 
   #include "../../code/math/mint_ds.hpp"
   #include "../../code/str/hash_substr2.hpp"
@@ -142,7 +142,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_s30<167772161>;
   using mint1 = tifa_libs::math::mint_s30<469762049>;
   using mint2 = tifa_libs::math::mint_s30<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3nttu64_ss
   #include "../../code/conv/conv_3ntt.hpp"
@@ -151,7 +151,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_ss<167772161>;
   using mint1 = tifa_libs::math::mint_ss<469762049>;
   using mint2 = tifa_libs::math::mint_ss<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
 
 3ntts: |
@@ -163,7 +163,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_s30<167772161>;
   using mint1 = tifa_libs::math::mint_s30<469762049>;
   using mint2 = tifa_libs::math::mint_s30<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3ntt_s30_s63
   #include "../../code/conv/conv_3ntt.hpp"
@@ -174,7 +174,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_s30<167772161>;
   using mint1 = tifa_libs::math::mint_s30<469762049>;
   using mint2 = tifa_libs::math::mint_s30<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3ntt_s30_ss
   #include "../../code/conv/conv_3ntt.hpp"
@@ -185,7 +185,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_s30<167772161>;
   using mint1 = tifa_libs::math::mint_s30<469762049>;
   using mint2 = tifa_libs::math::mint_s30<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3ntt_ss_s30
   #include "../../code/conv/conv_3ntt.hpp"
@@ -196,7 +196,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_ss<167772161>;
   using mint1 = tifa_libs::math::mint_ss<469762049>;
   using mint2 = tifa_libs::math::mint_ss<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3ntt_ss_s63
   #include "../../code/conv/conv_3ntt.hpp"
@@ -207,7 +207,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_ss<167772161>;
   using mint1 = tifa_libs::math::mint_ss<469762049>;
   using mint2 = tifa_libs::math::mint_ss<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3ntt_ss_ss
   #include "../../code/conv/conv_3ntt.hpp"
@@ -217,7 +217,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_ss<167772161>;
   using mint1 = tifa_libs::math::mint_ss<469762049>;
   using mint2 = tifa_libs::math::mint_ss<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
 
 3nttd0: |
@@ -230,7 +230,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_s30<167772161>;
   using mint1 = tifa_libs::math::mint_s30<469762049>;
   using mint2 = tifa_libs::math::mint_s30<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3ntt_s30_d63
   #include "../../code/conv/conv_3ntt.hpp"
@@ -241,7 +241,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_s30<167772161>;
   using mint1 = tifa_libs::math::mint_s30<469762049>;
   using mint2 = tifa_libs::math::mint_s30<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3ntt_s30_ds
   #include "../../code/conv/conv_3ntt.hpp"
@@ -252,7 +252,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_s30<167772161>;
   using mint1 = tifa_libs::math::mint_s30<469762049>;
   using mint2 = tifa_libs::math::mint_s30<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3ntt_ss_d31
   #include "../../code/conv/conv_3ntt.hpp"
@@ -263,7 +263,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_ss<167772161>;
   using mint1 = tifa_libs::math::mint_ss<469762049>;
   using mint2 = tifa_libs::math::mint_ss<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3ntt_ss_d63
   #include "../../code/conv/conv_3ntt.hpp"
@@ -274,7 +274,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_ss<167772161>;
   using mint1 = tifa_libs::math::mint_ss<469762049>;
   using mint2 = tifa_libs::math::mint_ss<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
   #ifdef GENTC_3ntt_ss_ds
   #include "../../code/conv/conv_3ntt.hpp"
@@ -285,7 +285,7 @@ mintd1: |
   using mint0 = tifa_libs::math::mint_ss<167772161>;
   using mint1 = tifa_libs::math::mint_ss<469762049>;
   using mint2 = tifa_libs::math::mint_ss<754974721>;
-  using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+  using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
   #endif
 
 3nttd1: |
@@ -306,29 +306,6 @@ mintd1: |
   #endif
   #ifdef GENTC_3ntt_ss_ds
     mint::set_mod(MOD);
-  #endif
-
-cntts: |
-  #ifdef GENTC_cntt_s30
-  #include "../../code/conv/conv_cntt.hpp"
-  #include "../../code/math/mint_s30.hpp"
-
-  using mint = tifa_libs::math::mint_s30<MOD>;
-  using cntt_t = tifa_libs::math::CNTT<mint>;
-  #endif
-  #ifdef GENTC_cntt_s63
-  #include "../../code/conv/conv_cntt.hpp"
-  #include "../../code/math/mint_s63.hpp"
-
-  using mint = tifa_libs::math::mint_s63<MOD>;
-  using cntt_t = tifa_libs::math::CNTT<mint>;
-  #endif
-  #ifdef GENTC_cntt_ss
-  #include "../../code/conv/conv_cntt.hpp"
-  #include "../../code/math/mint_ss.hpp"
-
-  using mint = tifa_libs::math::mint_ss<MOD>;
-  using cntt_t = tifa_libs::math::CNTT<mint>;
   #endif
 
 czts: |
@@ -402,30 +379,6 @@ czts: |
   using mint3 = tifa_libs::math::mint_ss<754974721>;
   using poly = tifa_libs::math::poly3ntt<mint, mint1, mint2, mint3>;
   #endif
-  #ifdef GENTC_czt_pcntt_s30
-  #include "../../code/conv/conv_czt.hpp"
-  #include "../../code/math/mint_s30.hpp"
-  #include "../../code/poly/polycntt.hpp"
-
-  using mint = tifa_libs::math::mint_s30<MOD>;
-  using poly = tifa_libs::math::polycntt<mint>;
-  #endif
-  #ifdef GENTC_czt_pcntt_s63
-  #include "../../code/conv/conv_czt.hpp"
-  #include "../../code/math/mint_s63.hpp"
-  #include "../../code/poly/polycntt.hpp"
-
-  using mint = tifa_libs::math::mint_s63<MOD>;
-  using poly = tifa_libs::math::polycntt<mint>;
-  #endif
-  #ifdef GENTC_czt_pcntt_ss
-  #include "../../code/conv/conv_czt.hpp"
-  #include "../../code/math/mint_ss.hpp"
-  #include "../../code/poly/polycntt.hpp"
-
-  using mint = tifa_libs::math::mint_ss<MOD>;
-  using poly = tifa_libs::math::polycntt<mint>;
-  #endif
   #ifdef GENTC_czt_pntt_s30
   #include "../../code/conv/conv_czt.hpp"
   #include "../../code/math/mint_s30.hpp"
@@ -449,22 +402,6 @@ czts: |
 
   using mint = tifa_libs::math::mint_ss<MOD>;
   using poly = tifa_libs::math::polyntt<mint>;
-  #endif
-  #ifdef GENTC_czt_pntt32_s30
-  #include "../../code/conv/conv_czt.hpp"
-  #include "../../code/math/mint_s30.hpp"
-  #include "../../code/poly/polyntt32.hpp"
-
-  using mint = tifa_libs::math::mint_s30<MOD>;
-  using poly = tifa_libs::math::polyntt32<mint>;
-  #endif
-  #ifdef GENTC_czt_pntt32_ss
-  #include "../../code/conv/conv_czt.hpp"
-  #include "../../code/math/mint_ss.hpp"
-  #include "../../code/poly/polyntt32.hpp"
-
-  using mint = tifa_libs::math::mint_ss<MOD>;
-  using poly = tifa_libs::math::polyntt32<mint>;
   #endif
 
 cztd0: |
@@ -670,22 +607,6 @@ dftntt: |
   using mint = tifa_libs::math::mint_ss<MOD>;
   using ntt_t = tifa_libs::math::NTT<mint>;
   #endif
-  #ifdef GENTC_ntt32_s30
-  #include "../../code/conv/conv_dft.hpp"
-  #include "../../code/conv/ntt32.hpp"
-  #include "../../code/math/mint_s30.hpp"
-
-  using mint = tifa_libs::math::mint_s30<MOD>;
-  using ntt_t = tifa_libs::math::NTT32<mint>;
-  #endif
-  #ifdef GENTC_ntt32_ss
-  #include "../../code/conv/conv_dft.hpp"
-  #include "../../code/conv/ntt32.hpp"
-  #include "../../code/math/mint_ss.hpp"
-
-  using mint = tifa_libs::math::mint_ss<MOD>;
-  using ntt_t = tifa_libs::math::NTT32<mint>;
-  #endif
 
 ntt: |
   #ifdef GENTC_ntt_s30
@@ -708,20 +629,6 @@ ntt: |
 
   using mint = tifa_libs::math::mint_ss<MOD>;
   using ntt_t = tifa_libs::math::NTT<mint>;
-  #endif
-  #ifdef GENTC_ntt32_s30
-  #include "../../code/conv/ntt32.hpp"
-  #include "../../code/math/mint_s30.hpp"
-
-  using mint = tifa_libs::math::mint_s30<MOD>;
-  using ntt_t = tifa_libs::math::NTT32<mint>;
-  #endif
-  #ifdef GENTC_ntt32_ss
-  #include "../../code/conv/ntt32.hpp"
-  #include "../../code/math/mint_ss.hpp"
-
-  using mint = tifa_libs::math::mint_ss<MOD>;
-  using ntt_t = tifa_libs::math::NTT32<mint>;
   #endif
 
 p3ntts: |
@@ -878,29 +785,6 @@ p3nttd1: |
     mint::set_mod(MOD);
   #endif
 
-pcntts: |
-  #ifdef GENTC_pcntt_s30
-  #include "../../code/math/mint_s30.hpp"
-  #include "../../code/poly/polycntt.hpp"
-
-  using mint = tifa_libs::math::mint_s30<MOD>;
-  using poly = tifa_libs::math::polycntt<mint>;
-  #endif
-  #ifdef GENTC_pcntt_s63
-  #include "../../code/math/mint_s63.hpp"
-  #include "../../code/poly/polycntt.hpp"
-
-  using mint = tifa_libs::math::mint_s63<MOD>;
-  using poly = tifa_libs::math::polycntt<mint>;
-  #endif
-  #ifdef GENTC_pcntt_ss
-  #include "../../code/math/mint_ss.hpp"
-  #include "../../code/poly/polycntt.hpp"
-
-  using mint = tifa_libs::math::mint_ss<MOD>;
-  using poly = tifa_libs::math::polycntt<mint>;
-  #endif
-
 pmtts: |
   #ifdef GENTC_pmtt_s30
   #include "../../code/math/mint_s30.hpp"
@@ -979,18 +863,4 @@ pntt: |
 
   using mint = tifa_libs::math::mint_ss<MOD>;
   using poly = tifa_libs::math::polyntt<mint>;
-  #endif
-  #ifdef GENTC_pntt32_s30
-  #include "../../code/math/mint_s30.hpp"
-  #include "../../code/poly/polyntt32.hpp"
-
-  using mint = tifa_libs::math::mint_s30<MOD>;
-  using poly = tifa_libs::math::polyntt32<mint>;
-  #endif
-  #ifdef GENTC_pntt32_ss
-  #include "../../code/math/mint_ss.hpp"
-  #include "../../code/poly/polyntt32.hpp"
-
-  using mint = tifa_libs::math::mint_ss<MOD>;
-  using poly = tifa_libs::math::polyntt32<mint>;
   #endif

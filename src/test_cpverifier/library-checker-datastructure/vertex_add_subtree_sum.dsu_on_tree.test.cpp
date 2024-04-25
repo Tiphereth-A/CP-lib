@@ -5,7 +5,7 @@
 #include "../../code/tree/dsu_on_tree.hpp"
 #include "../../code/tree/tree.hpp"
 
-constexpr i64 INF = std::numeric_limits<i64>::max() / 2;
+CEXP i64 INF = std::numeric_limits<i64>::max() / 2;
 
 int main() {
   u32 n, q;
@@ -17,8 +17,8 @@ int main() {
 
   vvecpt<i32> upd(n);
   vvec<i32> que(n);
-  for (u32 i = 0; i < n; ++i) upd[i].emplace_back(0, a[i]);
-  for (u32 i = 1; i <= q; ++i) {
+  flt_ (u32, i, 0, n) upd[i].emplace_back(0, a[i]);
+  fle_ (u32, i, 1, q) {
     u32 c, u;
     tifa_libs::fin >> c >> u;
     if (c == 0) {

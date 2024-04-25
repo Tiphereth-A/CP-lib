@@ -10,7 +10,7 @@ struct exeuclid_node {
   T u, r;
   T i, f, sqr_f, i_f;
   exeuclid_node(T u = 0, T r = 0, T i = 0, T f = 0, T sqr_f = 0, T i_f = 0) : u(u), r(r), i(i), f(f), sqr_f(sqr_f), i_f(i_f) {}
-  friend exeuclid_node operator*(exeuclid_node const &l, exeuclid_node const &r) {
+  friend exeuclid_node operator*(exeuclid_node const& l, exeuclid_node const& r) {
     return {l.u + r.u,
             l.r + r.r,
             l.i + r.i + l.r * r.r,

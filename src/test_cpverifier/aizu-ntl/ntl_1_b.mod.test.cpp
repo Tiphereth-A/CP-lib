@@ -2,7 +2,7 @@
 
 #include "../../code/math/qpow_mod.hpp"
 
-constexpr i64 MOD = 1'000'000'007;
+CEXP i64 MOD = 1'000'000'007;
 
 int main() {
   std::ios::sync_with_stdio(false);

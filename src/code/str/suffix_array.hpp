@@ -13,27 +13,27 @@ class suffixarray {
   vecu sa, rk, height;
 
   // s must start from 1
-  explicit constexpr suffixarray(T const& s_) : s(s_), sa(s.size()), rk(s.size()) {
+  explicit CEXP suffixarray(cT_(T) s_) : s(s_), sa(s.size()), rk(s.size()) {
     u32 n = u32(s.size() - 1), m = 0, p;
-    for (auto x : s_) m = std::max(m, u32(x));
+    for (auto x : s_) m = max(m, u32(x));
     vecu oldrk(n + n + 1), id(n + 1), cnt(m + 1, 0);
-    for (u32 i = 1; i <= n; ++i) ++cnt[rk[i] = u32(s[i])];
-    for (u32 i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
+    fle_ (u32, i, 1, n) ++cnt[rk[i] = u32(s[i])];
+    fle_ (u32, i, 1, m) cnt[i] += cnt[i - 1];
     for (u32 i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
 
     for (u32 w = 1;; w *= 2, m = p) {
       p = 0;
       for (u32 i = n; i > n - w; --i) id[++p] = i;
-      for (u32 i = 1; i <= n; ++i)
+      fle_ (u32, i, 1, n)
         if (sa[i] > w) id[++p] = sa[i] - w;
 
       cnt = vecu(m + 1, 0);
-      for (u32 i = 1; i <= n; ++i) ++cnt[rk[id[i]]];
-      for (u32 i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
+      fle_ (u32, i, 1, n) ++cnt[rk[id[i]]];
+      fle_ (u32, i, 1, m) cnt[i] += cnt[i - 1];
       for (u32 i = n; i >= 1; --i) sa[cnt[rk[id[i]]]--] = id[i];
       std::ranges::copy(rk, oldrk.begin());
       p = 0;
-      for (u32 i = 1; i <= n; ++i) {
+      fle_ (u32, i, 1, n) {
         u32 x = sa[i], y = sa[i - 1];
         rk[x] = oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w] ? p : ++p;
       }
@@ -41,7 +41,7 @@ class suffixarray {
     }
   }
 
-  constexpr void get_height() {
+  CEXP void get_height() {
     u32 n = u32(s.size() - 1);
     height = vecu(n + 1);
     for (u32 i = 1, k = 0; i <= n; ++i) {
@@ -51,14 +51,12 @@ class suffixarray {
       height[rk[i]] = k;
     }
   }
-  /*
-    s.substr(begs) := s[begs..s.size() - 1]
-    -1:  t > s.substr
-    0 :  t == s.substr
-    1 :  t < s.substr, t is a prefix of s.substr
-    2 :  t < s.substr, t isn't prefix of s.substr
-  */
-  constexpr i32 compare_substr(T t, u32 begs = 1, u32 begt = 1) const {
+  // s.substr(begs) := s[begs..s.size() - 1]
+  // -1:  t > s.substr
+  // 0 :  t == s.substr
+  // 1 :  t < s.substr, t is a prefix of s.substr
+  // 2 :  t < s.substr, t isn't prefix of s.substr
+  CEXP i32 compare_substr(T t, u32 begs = 1, u32 begt = 1) const {
     while (begs < s.size() && begt < t.size()) {
       if (t[begt] > s[begs]) return -1;
       if (t[begt] < s[begs]) return 2;
@@ -67,7 +65,7 @@ class suffixarray {
     return begs == s.size() && begt == t.size() ? 0 : (begt >= t.size() ? 1 : -1);
   }
   // the smallest rank of suffix that is greater than or equal t
-  constexpr u32 lower_bound(T t) const {
+  CEXP u32 lower_bound(T t) const {
     u32 l = 1, r = u32(s.size() - 1), ret = u32(s.size());
     while (r >= l) {
       u32 mid = l + (r - l) / 2;
@@ -77,7 +75,7 @@ class suffixarray {
     return ret;
   }
   // the smallest rank of suffix that is greater than t and t isn't prefix of that
-  constexpr u32 upper_bound(T t) const {
+  CEXP u32 upper_bound(T t) const {
     u32 l = 1, r = u32(s.size() - 1), ret = u32(s.size());
     while (r >= l) {
       u32 mid = l + (r - l) / 2;
@@ -86,7 +84,7 @@ class suffixarray {
     }
     return ret;
   }
-  constexpr u32 frequency(T t) const { return upper_bound(t) - lower_bound(t); }
+  CEXP u32 frequency(T t) const { return upper_bound(t) - lower_bound(t); }
 };
 
 }  // namespace tifa_libs::str

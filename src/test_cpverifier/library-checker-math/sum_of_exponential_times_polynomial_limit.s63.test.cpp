@@ -4,7 +4,7 @@
 #include "../../code/comb/gen_pows.hpp"
 #include "../../code/math/series_ipaf.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_s63.hpp"
 

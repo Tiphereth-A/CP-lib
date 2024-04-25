@@ -3,7 +3,7 @@
 
 #include "../../code/io/fastio.hpp"
 
-constexpr u32 MOD = 1000000007;
+CEXP u32 MOD = 1000000007;
 
 #include "../../code/conv/conv_3ntt.hpp"
 #include "../../code/math/mint_s30.hpp"
@@ -13,7 +13,7 @@ using mint = tifa_libs::math::mint_s30<MOD>;
 using mint0 = tifa_libs::math::mint_ss<167772161>;
 using mint1 = tifa_libs::math::mint_ss<469762049>;
 using mint2 = tifa_libs::math::mint_ss<754974721>;
-using ntt3_t = std::tuple<tifa_libs::math::NTT32<mint0>, tifa_libs::math::NTT32<mint1>, tifa_libs::math::NTT32<mint2>>;
+using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint1>, tifa_libs::math::NTT<mint2>>;
 
 int main() {
   u32 n, m;

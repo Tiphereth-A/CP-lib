@@ -7,23 +7,23 @@ namespace tifa_libs::rand {
 
 template <class Distri>
 class Gen {
-  std::conditional_t<sizeof(typename Distri::result_type) <= 4, std::mt19937, std::mt19937_64> re;
+  std::conditional_t<sizeof(TPN Distri::result_type) <= 4, std::mt19937, std::mt19937_64> re;
   Distri dist;
 
  public:
   using random_engine = decltype(re);
   using distribution = Distri;
-  using result_type = typename Distri::result_type;
+  using result_type = TPN Distri::result_type;
 
-  constexpr Gen() : re(std::random_device{}()), dist() {}
-  constexpr Gen(result_type a, result_type b) : re(std::random_device{}()), dist(a, b) {}
+  CEXP Gen() : re(std::random_device{}()), dist() {}
+  CEXP Gen(result_type a, result_type b) : re(std::random_device{}()), dist(a, b) {}
 
-  constexpr void set_range(result_type a, result_type b) { dist = Distri(a, b); }
-  constexpr random_engine& rand_eng() { return re; }
-  constexpr Distri& distrib() { return dist; }
+  CEXP void set_range(result_type a, result_type b) { dist = Distri(a, b); }
+  CEXP random_engine& rand_eng() { return re; }
+  CEXP Distri& distrib() { return dist; }
 
-  void reset_seed() { re.seed((result_type)std::chrono::duration_cast<std::conditional_t<sizeof(typename Distri::result_type) <= 4, std::chrono::seconds, std::chrono::nanoseconds>>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()); }
-  constexpr result_type operator()() { return dist(re); }
+  void reset_seed() { re.seed((result_type)std::chrono::duration_cast<std::conditional_t<sizeof(TPN Distri::result_type) <= 4, std::chrono::seconds, std::chrono::nanoseconds>>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()); }
+  CEXP result_type operator()() { return dist(re); }
   result_type next() { return dist(re); }
 };
 

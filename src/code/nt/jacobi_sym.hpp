@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-constexpr int jacobi_sym(u64 a, u64 p) {
+CEXP int jacobi_sym(u64 a, u64 p) {
   assert(p & 1);
   if (!a) return 0;
   int s = 1, _ = 0;
@@ -15,7 +15,7 @@ constexpr int jacobi_sym(u64 a, u64 p) {
     if (((p - 1) & 7) && ((p + 1) & 7) && (_ & 1)) s = -s;
     if ((a >>= _) == 1) break;
     if ((((p - 1) & 7) * (a - 1)) & 7) s = -s;
-    std::swap(a, p %= a);
+    swap(a, p %= a);
   }
   return s;
 }

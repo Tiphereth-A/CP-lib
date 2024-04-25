@@ -3,10 +3,10 @@
 #include "../../code/comb/gen_stirling2_col.hpp"
 
 #include "../../code/math/mint_s30.hpp"
-#include "../../code/poly/polyntt32.hpp"
+#include "../../code/poly/polyntt.hpp"
 
 using mint = tifa_libs::math::mint_s30<167772161>;
-using poly = tifa_libs::math::polyntt32<mint>;
+using poly = tifa_libs::math::polyntt<mint>;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -14,16 +14,14 @@ int main() {
   u32 n, k;
   std::cin >> n >> k;
   auto ans = tifa_libs::math::gen_stirling2_col<poly>(n, k);
-  for (u32 i = 0; i <= n; ++i) std::cout << ans[i] << " \n"[i == n];
+  fle_ (u32, i, 0, n) std::cout << ans[i] << " \n"[i == n];
   return 0;
 }
 
 /*
-第二类斯特林数$\begin{Bmatrix} n \\m \end{Bmatrix}$表示把$n$个**不同**元素划分成$m$个**相同**的集合 (不能有空集) 的方案数
-
-给定$n,k$, 对于所有的整数$i\in[0,n]$, 你要求出$\begin{Bmatrix} i \\k \end{Bmatrix}$
-
-由于答案会非常大, 所以你的输出需要对$167772161$ ($2^{25}\times 5+1$, 是一个质数) 取模
+第二类斯特林数 $\begin{Bmatrix} n \\m \end{Bmatrix}$ 表示把 $n$ 个不同元素划分成 $m$ 个相同的集合 (不能有空集) 的方案数
+给定 $n,k$, 对于所有的整数 $i\in[0,n]$, 你要求出 $\begin{Bmatrix} i \\k \end{Bmatrix}$
+由于答案会非常大, 所以你的输出需要对 $167772161$ ($2^{25}\times 5+1$, 是一个质数) 取模
 */
 
 /*

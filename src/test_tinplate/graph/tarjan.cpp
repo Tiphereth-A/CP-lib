@@ -29,36 +29,30 @@ int main() {
     dp[u] = b[u];
     for (auto v : g[u]) {
       dfs(dfs, v);
-      dp[u] = std::max(dp[u], b[u] + dp[v]);
+      dp[u] = tifa_libs::max(dp[u], b[u] + dp[v]);
     }
   };
   u32 ret = 0;
   for (u32 i = 0; i < scc.id; ++i)
-    if (!in[i]) dfs(dfs, i), ret = std::max(ret, dp[i]);
+    if (!in[i]) dfs(dfs, i), ret = tifa_libs::max(ret, dp[i]);
   std::cout << ret;
   return 0;
 }
 
 /*
 给定一个 $n$ 个点 $m$ 条边有向图, 每个点有一个权值, 求一条路径, 使路径经过的点权值之和最大. 你只需要求出这个权值和
-
 允许多次经过一条边或者一个点, 但是, 重复经过的点, 权值只计算一次
 
-## 输入格式
+## 输入
 
 第一行两个正整数 $n,m$
-
 第二行 $n$ 个整数, 其中第 $i$ 个数 $a_i$ 表示点 $i$ 的点权
-
 第三至 $m+2$ 行, 每行两个整数 $u,v$, 表示一条 $u\rightarrow v$ 的有向边
+$1\le n \le 10^4$, $1\le m \le 10^5$, $0\le a_i\le 10^3$
 
-## 输出格式
+## 输出
 
 共一行, 最大的点权之和
-
-## 提示
-
-对于 $100\%$ 的数据, $1\le n \le 10^4$, $1\le m \le 10^5$, $0\le a_i\le 10^3$
 */
 
 /*

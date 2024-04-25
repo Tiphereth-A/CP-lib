@@ -15,7 +15,7 @@ template <u64 MOD>
 using mint64 = tifa_libs::math::mint_s63<MOD>;
 
 template <class mint, i64 M>
-void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> const& pf_v) {
+void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> CR pf_v) {
   mint mint_M = mint{M};
   using gint = tifa_libs::math::gint<mint, M>;
   if (mint_M.val() <= 1) return;
@@ -38,7 +38,7 @@ void test_proot_gint() {
   auto pf = tifa_libs::math::pfactors(mod - 1);
   vec<decltype(mod)> pf_v;
   pf_v.reserve(pf.size());
-  for (auto [k, v] : pf) pf_v.push_back((decltype(mod))k);
+  for (auto k : pf) pf_v.push_back((decltype(mod))k);
 
   __single_test<mint, 2>(mod, pf_v);
   __single_test<mint, 3>(mod, pf_v);

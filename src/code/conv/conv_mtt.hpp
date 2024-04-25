@@ -7,10 +7,10 @@
 namespace tifa_libs::math {
 
 template <class mint, class FP>
-constexpr vec<mint> conv_mtt(FFT<FP> &fft, vec<mint> const &l, vec<mint> const &r, u32 ans_size = 0) {
+CEXP vec<mint> conv_mtt(FFT<FP> &fft, vec<mint> CR l, vec<mint> CR r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   if (ans_size < 32) return conv_naive(l, r, ans_size);
-  using C = typename FFT<FP>::C;
+  using C = TPN FFT<FP>::C;
   if (l.size() == 1) {
     vec<mint> ans = r;
     ans.resize(ans_size);
@@ -23,7 +23,7 @@ constexpr vec<mint> conv_mtt(FFT<FP> &fft, vec<mint> const &l, vec<mint> const &
     for (auto &i : ans) i *= r[0];
     return ans;
   }
-  fft.bzr(std::max({(u32)l.size(), (u32)r.size(), std::min(u32(l.size() + r.size() - 1), ans_size)}));
+  fft.bzr(max({(u32)l.size(), (u32)r.size(), min(u32(l.size() + r.size() - 1), ans_size)}));
   u32 n = fft.size();
   const int OFS = ((int)sizeof(decltype(mint::mod())) * 8 - std::countl_zero(mint::mod() - 1) + 1) / 2;
   const u32 MSK = ((1u << OFS) - 1);
@@ -46,7 +46,7 @@ constexpr vec<mint> conv_mtt(FFT<FP> &fft, vec<mint> const &l, vec<mint> const &
   }
   fft.dif(a);
   fft.dif(b);
-  for (u32 i = 0; i < ans_size; ++i) {
+  flt_ (u32, i, 0, ans_size) {
     i64 da = (i64)(a[i].real() / (FP)n + .5) % mint::smod(), db = (i64)(a[i].imag() / (FP)n + .5) % mint::smod(), dc = (i64)(b[i].real() / (FP)n + .5) % mint::smod(), dd = (i64)(b[i].imag() / (FP)n + .5) % mint::smod();
     ans[i] = da + ((db + dc) << OFS) % mint::smod() + (dd << (OFS * 2)) % mint::smod();
   }

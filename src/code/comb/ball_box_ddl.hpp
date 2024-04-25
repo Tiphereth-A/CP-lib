@@ -7,17 +7,17 @@
 namespace tifa_libs::math {
 
 template <class mint>
-constexpr mint ball_box_ddl(u32, u32 box, vecu64 const& pows, Binom<mint> const& binom) {
+CEXP mint ball_box_ddl(u32, u32 box, vecu64 CR pows, Binom<mint> CR binom) {
   mint ans = 0;
   bool f = box & 1;
-  for (u32 i = 1; i <= box; ++i) {
+  fle_ (u32, i, 1, box) {
     f ? (ans += binom.mCn(box, i) * pows[i]) : (ans -= binom.mCn(box, i) * pows[i]);
     f ^= 1;
   }
   return ans;
 }
 template <class mint>
-constexpr mint ball_box_ddl(u32 ball, u32 box, Binom<mint> const& binom) { return ball_box_ddl<mint>(ball, box, gen_pows(box + 1, ball, mint::mod()), binom); }
+CEXP mint ball_box_ddl(u32 ball, u32 box, Binom<mint> CR binom) { return ball_box_ddl<mint>(ball, box, gen_pows(box + 1, ball, mint::mod()), binom); }
 
 }  // namespace tifa_libs::math
 

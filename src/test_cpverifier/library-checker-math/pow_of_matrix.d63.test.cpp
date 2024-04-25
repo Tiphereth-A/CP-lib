@@ -4,7 +4,7 @@
 #include "../../code/lalg/mat.hpp"
 #include "../../code/lalg/pow_mat.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_d63.hpp"
 

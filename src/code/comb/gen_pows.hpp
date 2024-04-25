@@ -6,21 +6,21 @@
 namespace tifa_libs::math {
 
 // i^{b} from i=0..n-1
-constexpr vecu64 gen_pows(u32 n, u64 b, u64 mod) {
+CEXP vecu64 gen_pows(u32 n, u64 b, u64 mod) {
   vecu64 ans(n);
   if (!n) return {};
   if (!b) ans[0] = 1;
   if (n == 1) return ans;
   ans[1] = 1;
-  for (u32 i = 2; i < n; ++i) ans[i] = qpow_mod(i, b, mod);
+  flt_ (u32, i, 2, n) ans[i] = qpow_mod(i, b, mod);
   return ans;
 }
 // i^{b} from i=0..n-1
 template <class mint>
-constexpr vec<mint> gen_pows(u32 n, u64 b) {
+CEXP vec<mint> gen_pows(u32 n, u64 b) {
   vec<mint> ans(n);
   auto _ = gen_pows(n, b, mint::mod());
-  for (u32 i = 0; i < n; ++i) ans[i] = _[i];
+  flt_ (u32, i, 0, n) ans[i] = _[i];
   return ans;
 }
 

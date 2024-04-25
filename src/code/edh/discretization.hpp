@@ -6,14 +6,14 @@
 namespace tifa_libs {
 
 template <iterable_c T = vec<int>>
-constexpr T uniq(T v) {
+CEXP T uniq(T v) {
   std::ranges::sort(v);
   auto [f, l] = std::ranges::unique(v);
   v.erase(f, l);
   return v;
 }
 template <iterable_c T = vec<int>>
-constexpr std::pair<T, vec<u32>> gen_id(T const &v) {
+CEXP std::pair<T, vec<u32>> gen_id(T CR v) {
   T _ = uniq(v);
   vec<u32> _1;
 

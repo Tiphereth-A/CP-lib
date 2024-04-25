@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 template <class EW = u32, class EC = i32>
 class ssp {
-  struct YYZ {
+  struct TIFA {
     u32 to;
     EW w;
     EC c;
@@ -31,14 +31,14 @@ class ssp {
         if (dis[u] + v.c < dis[v.to] && v.w) {
           dis[v.to] = dis[u] + v.c;
           if (!inq[v.to]) q.push(v.to), inq[v.to] = 1;
-          flow[v.to] = std::min(flow[u], v.w);
+          flow[v.to] = min(flow[u], v.w);
           pre[v.to] = {u, i};
         }
       }
     }
     return flow[T];
   }
-  constexpr void update(u64& retflow, i64& retcost) {
+  CEXP void update(u64& retflow, i64& retcost) {
     retflow += flow[T];
     for (u32 u = T; u != S; u = pre[u].first) {
       e[pre[u].first][pre[u].second].w -= flow[T];
@@ -48,15 +48,15 @@ class ssp {
   }
 
  public:
-  vvec<YYZ> e;
+  vvec<TIFA> e;
 
-  constexpr ssp(u32 n, u32 s, u32 t) : N(n), S(s), T(t), dis(), flow(n), pre(n), e(n) {}
+  CEXP ssp(u32 n, u32 s, u32 t) : N(n), S(s), T(t), dis(), flow(n), pre(n), e(n) {}
 
-  constexpr void add(u32 u, u32 v, EW w, EC c) {
+  CEXP void add(u32 u, u32 v, EW w, EC c) {
     u32 temu = u32(e[u].size()), temv = u32(e[v].size());
     e[u].push_back({v, w, c, temv}), e[v].push_back({u, 0, -c, temu});
   }
-  constexpr std::pair<u64, i64> operator()(u64 inflow = std::numeric_limits<u64>::max()) {
+  CEXP std::pair<u64, i64> operator()(u64 inflow = std::numeric_limits<u64>::max()) {
     u64 retflow = 0;
     i64 retcost = 0;
     bool flag = inflow == std::numeric_limits<EW>::max();

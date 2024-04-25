@@ -4,7 +4,7 @@
 #include "../../code/io/ios_container.hpp"
 #include "../../code/math/nth_term_lrec.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_d31.hpp"
 #include "../../code/poly/polymtt.hpp"
@@ -22,7 +22,7 @@ int main() {
   vec<mint> a(d), c(d + 1);
   std::cin >> a;
   c[0] = 1;
-  for (u32 i = 1; i <= d; ++i) {
+  fle_ (u32, i, 1, d) {
     std::cin >> c[i];
     c[i] = -c[i];
   }

@@ -14,11 +14,11 @@ int main() {
   std::ranges::sort(res);
   auto mst = tifa_libs::graph::kruskal(res, n);
   i64 sum = 0;
-  for (u32 u = 0; u < n; ++u)
+  flt_ (u32, u, 0, n)
     for (auto [v, w] : mst.g[u])
       if (v > u) sum += w;
   std::cout << sum << '\n';
-  for (u32 u = 0; u < n; ++u)
+  flt_ (u32, u, 0, n)
     for (auto [v, w] : mst.g[u])
       if (v > u) std::cout << u << ' ' << v << '\n';
   return 0;

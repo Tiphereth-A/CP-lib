@@ -11,25 +11,25 @@ struct ndvec : public vec<ndvec<N - 1, Tp>> {
   using base_tp = ndvec<N - 1, Tp>;
   using base = vec<base_tp>;
 
-  template <class T, class... Ts>
-  constexpr ndvec(T &&n, Ts &&...args) : base(n, base_tp(args...)) {}
+  template <std::integral T, class... Ts>
+  CEXP ndvec(T n, Ts &&...args) : base(n, base_tp(args...)) {}
 
-  constexpr u32 dim() const { return N; }
+  CEXP u32 dim() const { return N; }
   template <class T>
-  constexpr void fill(T &&x) {
-    for (auto &i : *this) i.fill(x);
+  CEXP void fill(T &&x) {
+    for (auto &i : *this) i.fill(std::forward<T>(x));
   }
 };
 template <class Tp>
 struct ndvec<1, Tp> : public vec<Tp> {
   using base = vec<Tp>;
 
-  template <class T>
-  constexpr ndvec(T &&n) : base(n) {}
+  template <std::integral T>
+  CEXP ndvec(T n) : base(n) {}
 
-  constexpr u32 dim() const { return 1; }
+  CEXP u32 dim() const { return 1; }
   template <class T>
-  constexpr void fill(T &&x) { std::fill(this->begin(), this->end(), x); }
+  CEXP void fill(T &&x) { std::fill(this->begin(), this->end(), std::forward<T>(x)); }
 };
 
 }  // namespace tifa_libs

@@ -8,6 +8,8 @@ ForEachMacros:
   - FOR1_
   - FOR2_
   - dlxfor_
+  - fle_
+  - flt_
 IndentRequiresClause: false
 SortIncludes: CaseSensitive
 SpacesBeforeTrailingComments: 2

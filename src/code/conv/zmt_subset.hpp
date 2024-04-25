@@ -6,19 +6,19 @@
 namespace tifa_libs::math {
 
 template <class T>
-constexpr void zt_subset(vec<T>& f) {
+CEXP void zt_subset(vec<T>& f) {
   u32 n = (u32)f.size();
   assert(std::has_single_bit(n));
   for (u32 i = 1; i < n; i *= 2)
-    for (u32 j = 0; j < n; ++j)
+    flt_ (u32, j, 0, n)
       if (!(j & i)) f[j | i] += f[j];
 }
 template <class T>
-constexpr void mt_subset(vec<T>& f) {
+CEXP void mt_subset(vec<T>& f) {
   u32 n = (u32)f.size();
   assert(std::has_single_bit(n));
   for (u32 i = 1; i < n; i *= 2)
-    for (u32 j = 0; j < n; ++j)
+    flt_ (u32, j, 0, n)
       if (!(j & i)) f[j | i] -= f[j];
 }
 

@@ -31,8 +31,8 @@ struct DLL {
 
     pclose(cmd);
   }
-  template <typename R = void, typename... T>
-  constexpr R call(const char *name, T... t) {
+  template <TPN R = void, TPN... T>
+  CEXP R call(const char *name, T... t) {
     auto off = syms[strn(name)];
     assert(off != 0);
     return ((R(*)(T...))(base + off))(t...);

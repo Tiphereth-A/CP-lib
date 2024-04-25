@@ -10,16 +10,16 @@ class lichao_segtree {
   struct seg {
     u32 id;
     T a, b, l, r;  // y = ax + b(where x in [l, r])
-    constexpr T w(T x) const { return a * x + b; }
+    CEXP T w(T x) const { return a * x + b; }
   };
   u32 sz;
   vec<T> lsh;
   vec<seg> t;
 
  public:
-  explicit constexpr lichao_segtree(vec<T> const& LSH) : lsh(LSH), t(LSH.size() * 4) { sz = (u32)lsh.size(); }
+  explicit CEXP lichao_segtree(vec<T> CR LSH) : lsh(LSH), t(LSH.size() * 4) { sz = (u32)lsh.size(); }
 
-  constexpr void add(T a, T b, T l, T r, u32 id = 1) {
+  CEXP void add(T a, T b, T l, T r, u32 id = 1) {
     seg k = {id, a, b, l, r};
     add(1, 0, sz - 1,
         u32(std::ranges::lower_bound(lsh, l) - lsh.begin()),
@@ -29,8 +29,8 @@ class lichao_segtree {
 
  private:
   // min: <=   max: >=
-  constexpr bool pd(T a, T b) const { return op(a, b) == a; }
-  constexpr void add(u32 x, u32 l, u32 r, u32 L, u32 R, seg const& k) {
+  CEXP bool pd(T a, T b) const { return op(a, b) == a; }
+  CEXP void add(u32 x, u32 l, u32 r, u32 L, u32 R, cT_(seg) k) {
     u32 mid = l + (r - l) / 2;
     if (L <= l && R >= r) {
       if (!t[x].id) return void(t[x] = k);
@@ -48,13 +48,13 @@ class lichao_segtree {
     if (L <= mid) add(x << 1, l, mid, L, R, k);
     if (R > mid) add(x << 1 | 1, mid + 1, r, L, R, k);
   }
-  constexpr T query(u32 x, u32 l, u32 r, T pos) {
+  CEXP T query(u32 x, u32 l, u32 r, T pos) {
     T MIN = std::numeric_limits<T>::lowest(), MAX = std::numeric_limits<T>::max();
     T ret = t[x].id ? t[x].w(pos) : (pd(MIN, MAX) ? MAX : MIN);
     if (l == r) return ret;
     u32 mid = l + (r - l) / 2;
     if (pos <= lsh[mid]) return op(ret, query(x << 1, l, mid, pos));
-    else return op(ret, query(x << 1 | 1, mid + 1, r, pos));
+    return op(ret, query(x << 1 | 1, mid + 1, r, pos));
   }
 };
 }  // namespace tifa_libs::ds

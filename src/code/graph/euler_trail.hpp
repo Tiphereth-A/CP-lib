@@ -6,11 +6,11 @@
 namespace tifa_libs::graph {
 namespace euler_trail_impl_ {
 template <bool cyc>
-constexpr std::optional<vecpt<u32>> run_(u32 n, u32 m, vvecpt<u32> const &g, u32 s) {
+CEXP std::optional<vecpt<u32>> run_(u32 n, u32 m, cT_(vvecpt<u32>) g, u32 s) {
   vec<vecpt<u32>::const_iterator> its(n);
-  for (u32 i = 0; i < n; ++i) its[i] = g[i].begin();
+  flt_ (u32, i, 0, n) its[i] = g[i].begin();
   vec<i32> f(n);
-  if constexpr (!cyc) ++f[s];
+  if CEXP (!cyc) ++f[s];
   vecb vis(m);
   vecpt<u32> ret, stk = {{s, -1_u32}};
   while (!stk.empty()) {
@@ -39,14 +39,14 @@ constexpr std::optional<vecpt<u32>> run_(u32 n, u32 m, vvecpt<u32> const &g, u32
 // @return vector of {v, eid} of Euler trail if found
 // edges[eid[i]] = v[i-1] -> v[i], eid[0] = -1
 template <bool directed, bool cycle = false>
-constexpr std::optional<vecpt<u32>> euler_trail(u32 n, vecpt<u32> const &edges) {
+CEXP std::optional<vecpt<u32>> euler_trail(u32 n, cT_(vecpt<u32>) edges) {
   vvecpt<u32> g(n);
   vecu deg_in(0);
-  if constexpr (directed) deg_in.resize(n);
+  if CEXP (directed) deg_in.resize(n);
   u32 e = 0;
   for (auto [u, v] : edges) {
     g[u].emplace_back(v, e);
-    if constexpr (directed) ++deg_in[v];
+    if CEXP (directed) ++deg_in[v];
     else g[v].emplace_back(u, e);
     ++e;
   }
@@ -54,7 +54,7 @@ constexpr std::optional<vecpt<u32>> euler_trail(u32 n, vecpt<u32> const &edges) 
   for (u32 i = 1; i < g.size(); ++i)
     if (!g[i].empty()) s = i;
   for (u32 i = 0; i < g.size(); ++i)
-    if constexpr (directed) {
+    if CEXP (directed) {
       if (deg_in[i] < g[i].size()) s = i;
     } else {
       if (g[i].size() & 1) s = i;

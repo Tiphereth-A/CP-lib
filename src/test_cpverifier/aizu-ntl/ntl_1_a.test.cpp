@@ -6,10 +6,9 @@
 int main() {
   u64 n;
   tifa_libs::fin >> n;
-  auto ans = tifa_libs::math::pfactors(n);
+  auto ans = tifa_libs::math::pfactors<false>(n);
   tifa_libs::fout << n << ":";
-  for (auto [k, v] : ans)
-    for (u32 i = 0; i < v; ++i) tifa_libs::fout << ' ' << k;
+  for (auto k : ans) tifa_libs::fout << ' ' << k;
   tifa_libs::fout << '\n';
   return 0;
 }

@@ -4,7 +4,7 @@
 #include "../../code/comb/gen_stirling1_col.hpp"
 #include "../../code/io/fastio.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_s30.hpp"
 #include "../../code/poly/poly3ntt.hpp"
@@ -19,6 +19,6 @@ int main() {
   u32 n, k;
   tifa_libs::fin >> n >> k;
   auto ans = tifa_libs::math::gen_stirling1_col<poly>(n, k);
-  for (u32 i = k; i <= n; ++i) tifa_libs::fout << ans[i] << " \n"[i == n];
+  fle_ (u32, i, k, n) tifa_libs::fout << ans[i] << " \n"[i == n];
   return 0;
 }

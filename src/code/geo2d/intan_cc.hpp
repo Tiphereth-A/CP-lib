@@ -10,7 +10,7 @@ namespace tifa_libs::geo {
 // internal tagante lines of 2 disjoint circles
 // maybe 0, 2 (maybe duplicate)
 template <class FP>
-constexpr std::optional<ptt<line<FP>>> intan_CC(circle<FP> const &c1, circle<FP> const &c2) {
+CEXP std::optional<ptt<line<FP>>> intan_CC(circle<FP> CR c1, circle<FP> CR c2) {
   if (is_eq(c1.o.x, c2.o.x) && is_eq(c1.o.y, c2.o.y)) return {};
   point p = (c1.o * c2.r + c2.o * c1.r) / (c1.r + c2.r);
   auto ps = tan_CP(c1, p), qs = tan_CP(c2, p);

@@ -5,7 +5,7 @@
 #include "../../code/nt/du_sieve.hpp"
 #include "../../code/nt/lsieve2.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_s63.hpp"
 

@@ -16,12 +16,12 @@ enum RELCC {
 };
 
 template <class FP>
-constexpr RELCC relation_CC(circle<FP> const &c1, circle<FP> const &c2) {
+CEXP RELCC relation_CC(circle<FP> CR c1, circle<FP> CR c2) {
   FP d = dist_PP(c1.o, c2.o);
   if (is_gt(d, c1.r + c2.r)) return lyingout_cc;
   if (is_eq(d, c1.r + c2.r)) return touchex_cc;
-  if (is_gt(d, std::abs(c1.r - c2.r))) return intersect_cc;
-  if (is_eq(d, std::abs(c1.r - c2.r))) return touchin_cc;
+  if (is_gt(d, abs(c1.r - c2.r))) return intersect_cc;
+  if (is_eq(d, abs(c1.r - c2.r))) return touchin_cc;
   return lyingin_cc;
 }
 

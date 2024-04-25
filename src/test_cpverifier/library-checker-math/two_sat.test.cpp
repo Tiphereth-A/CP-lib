@@ -11,7 +11,7 @@ int main() {
   std::cin >> n >> m;
   i32 u, v, w;
   tifa_libs::graph::sat2 s2(n);
-  for (u32 i = 0; i < m; ++i) {
+  flt_ (u32, i, 0, m) {
     std::cin >> u >> v >> w;
     bool fu = u > 0, fv = v > 0;
     s2.add((u32)abs(u) - 1, fu, (u32)abs(v) - 1, fv);

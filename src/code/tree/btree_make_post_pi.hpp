@@ -6,11 +6,11 @@
 namespace tifa_libs::graph {
 
 namespace btree_make_post_pi_impl_ {
-constexpr void dfs(vecu const& pre, vecu const& in, vecu& post, u32& p, u32 l, u32 r) {
+CEXP void dfs(vecu CR pre, vecu CR in, vecu& post, u32& p, u32 l, u32 r) {
   if (l >= r) return;
   u32 rt = pre[p++];
   u32 m = -1_u32;
-  for (u32 i = l; i < r; ++i)
+  flt_ (u32, i, l, r)
     if (in[i] == rt) m = i;
   dfs(pre, in, post, p, l, m);
   dfs(pre, in, post, p, m + 1, r);
@@ -18,7 +18,7 @@ constexpr void dfs(vecu const& pre, vecu const& in, vecu& post, u32& p, u32 l, u
 }
 }  // namespace btree_make_post_pi_impl_
 
-constexpr vecu btree_make_post_pi(vecu const& pre_order, vecu const& in_order) {
+CEXP vecu btree_make_post_pi(vecu CR pre_order, vecu CR in_order) {
   assert(pre_order.size() == in_order.size());
   vecu ret;
   u32 pos = 0;

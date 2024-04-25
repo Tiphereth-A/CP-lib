@@ -13,15 +13,15 @@ namespace tifa_libs::unittest {
 namespace detail__ {
 
 template <class T>
-strn to_str(T const &x) {
+strn to_str(T CR x) {
   std::stringstream ss;
   ss << std::fixed << std::setprecision(12) << x;
   return ss.str();
 }
 
 template <class T, class... Ts>
-void check_(strn const &pretty_func, strn const &got_str, T const &got, strn const &want_str, T const &want, Ts... param) {
-  if constexpr (sizeof...(param) == 0) {
+void check_(strn CR pretty_func, strn CR got_str, T CR got, strn CR want_str, T CR want, Ts... param) {
+  if CEXP (sizeof...(param) == 0) {
     if (got != want) throw std::runtime_error(pretty_func + ": got \"" + got_str + "\" = " + to_str(got) + ", want \"" + want_str + "\" = " + to_str(want));
   } else {
     if (got != want) throw std::runtime_error(pretty_func + ": got \"" + got_str + "\" = " + to_str(got) + ", want \"" + want_str + "\" = " + to_str(want) + " with" + ((" " + param.first + " = " + ::tifa_libs::unittest::detail__::to_str(param.second) + " ;") + ...));
@@ -29,8 +29,8 @@ void check_(strn const &pretty_func, strn const &got_str, T const &got, strn con
 }
 
 template <class... Ts>
-void check_bool_(strn const &pretty_func, strn const &expression, bool res, Ts... param) {
-  if constexpr (sizeof...(param) == 0) {
+void check_bool_(strn CR pretty_func, strn CR expression, bool res, Ts... param) {
+  if CEXP (sizeof...(param) == 0) {
     if (!res) throw std::runtime_error(pretty_func + " :\"" + expression + "\" failed");
   } else {
     if (!res) throw std::runtime_error(pretty_func + " :\"" + expression + "\" failed with" + ((" " + param.first + " = " + ::tifa_libs::unittest::detail__::to_str(param.second) + " ;") + ...));
@@ -67,7 +67,7 @@ inline const std::map<ptt<u32>, TESTCASE> testcase_id{
     {{118232767, 222490630}, ts_random_08},
     {{907649120, 290651129}, ts_random_09}};
 
-inline void post_test([[maybe_unused]] ptt<u32> const &p = {0, 0}) {
+inline void post_test([[maybe_unused]] ptt<u32> CR p = {0, 0}) {
 #ifndef LOCAL_
   static ptt<u32> p_{0, 0};
   if (p.first || p.second) {

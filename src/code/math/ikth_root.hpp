@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-constexpr u64 ikth_root(u64 a, u64 k) {
+CEXP u64 ikth_root(u64 a, u64 k) {
   assert(k);
   if (a <= 1 || k == 1) return a;
   if (k >= 64) return 1;

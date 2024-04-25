@@ -5,7 +5,7 @@
 
 namespace tifa_libs {
 
-constexpr u32 u32tostr_si16(u64 x, char *s) {
+CEXP u32 u32tostr_si16(u64 x, char *s) {
   if (x <= 9) {
     *s = (char)(x | 0x30);
     return 1;
@@ -19,7 +19,7 @@ constexpr u32 u32tostr_si16(u64 x, char *s) {
   }
   return 0;
 }
-constexpr u32 u32tostr_si32(u64 x, char *s) {
+CEXP u32 u32tostr_si32(u64 x, char *s) {
   u64 low = 0, ll = 0;
   u32 digits = 0;
   if (x <= 99) return u32tostr_si16(x, s);
@@ -42,7 +42,7 @@ constexpr u32 u32tostr_si32(u64 x, char *s) {
   return digits;
 }
 
-constexpr u32 u32tostr(u64 x, char *s) {
+CEXP u32 u32tostr(u64 x, char *s) {
   u64 low = 0, ll = 0;
   u32 digits = 0;
   if (x <= 9999) return u32tostr_si32(x, s);

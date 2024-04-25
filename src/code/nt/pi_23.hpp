@@ -8,7 +8,7 @@
 
 namespace tifa_libs::math {
 
-constexpr u64 pi_23(u64 n) {
+CEXP u64 pi_23(u64 n) {
   if (n < 2) return 0;
   u64 n2 = isqrt(n), n3 = ikth_root(n, 3), n6 = ikth_root(n, 6), n23 = n / n3;
   auto prime = prime_seq((u32)n2 + 1000);
@@ -17,7 +17,7 @@ constexpr u64 pi_23(u64 n) {
   vecu64 ns;
   ns.reserve(n2 * 2 + 2);
   ns.push_back(0);
-  for (u32 i = 1; i <= n2; ++i) ns.push_back(div_u64d(n, i));
+  fle_ (u32, i, 1, n2) ns.push_back(div_u64d(n, i));
   for (u64 i = ns.back() - 1; i; --i) ns.push_back(i);
   u32 nsz = (u32)ns.size();
   vecu64 h = ns;
@@ -38,7 +38,7 @@ constexpr u64 pi_23(u64 n) {
   while (prime[pidx] <= n3) {
     u32 p = prime[pidx];
     u64 p2 = (u64)p * p;
-    for (u64 i = 1; i <= n3; ++i) {
+    fle_ (u64, i, 1, n3) {
       if (p2 > ns[i]) break;
       u64 id = i * p <= n2 ? i * p : nsz - div_u64d(ns[i], p);
       i64 _ = (i64)h[id];

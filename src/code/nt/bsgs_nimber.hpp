@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 
 // solve a^x=b
 template <std::unsigned_integral T, T (*prod)(T, T)>
-constexpr T bsgs_nimber(nimber<T, prod> const& a, nimber<T, prod> const& b) {
+CEXP T bsgs_nimber(nimber<T, prod> CR a, nimber<T, prod> CR b) {
   assert(a != 0 && b != 0);
   vec<T> rem, mod;
   for (T p : {3, 5, 17, 257, 641, 65537, 6700417}) {

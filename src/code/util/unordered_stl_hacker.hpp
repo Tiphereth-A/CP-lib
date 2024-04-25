@@ -24,7 +24,7 @@ inline vec<T> unordered_stl_hacker(usz n) {
 
   vec<usz> bc = get_bucket_counts();
 
-  if constexpr (std::is_same_v<strn, T>) {
+  if CEXP (std::is_same_v<strn, T>) {
     // Edit these if need
     const usz len = 15;
     const strn pref = "";
@@ -60,7 +60,7 @@ inline vec<T> unordered_stl_hacker(usz n) {
       ++cnt;
     }
     return op1 > op2 ? ans1 : ans2;
-  } else if constexpr (std::is_integral_v<T>) {
+  } else if CEXP (std::is_integral_v<T>) {
     vec<T> ans1;
     i64 op1 = 0;
     for (usz i = 0, psb = 0, cnt = 0, lst = bc[0]; i < n; ++i) {

@@ -2,7 +2,7 @@
 
 #include "../../code/ds/dsu_pd.hpp"
 
-constexpr usz Q = 200005;
+CEXP usz Q = 200005;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -12,7 +12,7 @@ int main() {
   vvec<pt3<u32>> tr(Q), qry(Q);
   std::bitset<Q> ans;
   u32 cnt = 0;
-  for (u32 i = 1; i <= q; ++i) {
+  fle_ (u32, i, 1, q) {
     u32 t, u, v;
     i32 k;
     std::cin >> t >> k >> u >> v;
@@ -33,6 +33,6 @@ int main() {
     }
   };
   dfs(dfs, 0);
-  for (u32 i = 0; i < cnt; ++i) std::cout << ans[i] << '\n';
+  flt_ (u32, i, 0, cnt) std::cout << ans[i] << '\n';
   return 0;
 }

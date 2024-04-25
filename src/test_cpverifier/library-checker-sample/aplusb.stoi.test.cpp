@@ -3,7 +3,7 @@
 #include "../../code/fast/str2uint_mod.hpp"
 #include "../../code/fast/u32tostr.hpp"
 
-constexpr u64 MOD = u64(1e9) + 1;
+CEXP u64 MOD = u64(1e9) + 1;
 
 int main() {
   std::ios::sync_with_stdio(false);

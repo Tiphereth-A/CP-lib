@@ -7,7 +7,7 @@ namespace tifa_libs::geo {
 
 // centroid (X2)
 template <class FP>
-constexpr point<FP> center_G(triangle<FP> const &t) { return t.barycentrics(1, 1, 1); }
+CEXP point<FP> center_G(triangle<FP> CR t) { return t.barycentrics(1, 1, 1); }
 
 }  // namespace tifa_libs::geo
 

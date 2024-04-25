@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 template <bool with_deg = false>
 class chordal {
-  alist<with_deg> const& g;
+  alist<with_deg> CR g;
   vecu deg;
 
  public:
@@ -15,7 +15,7 @@ class chordal {
 
   // @param g simple UNDIRECTED graph
   //! g.g[i] MUST be sorted
-  explicit constexpr chordal(alist<with_deg> const& g) : g(g), deg(g.g.size()), peo(g.g.size()), rnk(g.g.size()) {
+  explicit CEXP chordal(alist<with_deg> CR g) : g(g), deg(g.g.size()), peo(g.g.size()), rnk(g.g.size()) {
     for (auto& i : g.g) assert(std::ranges::is_sorted(i));
     u32 n = (u32)g.g.size();
     vecu l(n * 2 + 1), r, idx(n);
@@ -23,9 +23,9 @@ class chordal {
     r = l;
     auto ins = [&](u32 i, u32 j) { r[l[i] = l[j]] = i, r[l[j] = i] = j; };
     auto del = [&](u32 i) { r[l[i]] = r[i], l[r[i]] = l[i]; };
-    for (u32 i = 0; i < n; ++i) ins(i, n);
+    flt_ (u32, i, 0, n) ins(i, n);
     u32 li = n;
-    for (u32 i = 0; i < n; ++i) {
+    flt_ (u32, i, 0, n) {
       ++li;
       while (l[li] == li) --li;
       u32 v = l[li];
@@ -35,7 +35,7 @@ class chordal {
       peo[i] = v;
     }
     std::ranges::reverse(peo);
-    for (u32 i = 0; i < n; ++i) rnk[peo[i]] = i;
+    flt_ (u32, i, 0, n) rnk[peo[i]] = i;
   }
 
   template <bool find_indcycle = false>
@@ -46,11 +46,11 @@ class chordal {
       for (auto v : g.g[u])
         if (rnk[u] < rnk[v]) {
           s.push_back(v);
-          if (rnk[s.back()] < rnk[s[0]]) std::swap(s[0], s.back());
+          if (rnk[s.back()] < rnk[s[0]]) swap(s[0], s.back());
         }
       for (u32 j = 1; j < s.size(); ++j)
         if (!std::ranges::binary_search(g.g[s[0]], s[j])) {
-          if constexpr (!find_indcycle) return false;
+          if CEXP (!find_indcycle) return false;
           else {
             u32 x = s[j], y = s[0], z = u;
             vecu pre(peo.size(), -1_u32);
@@ -71,11 +71,11 @@ class chordal {
           }
         }
     }
-    if constexpr (find_indcycle) return {};
+    if CEXP (find_indcycle) return {};
     else return true;
   }
   // @return {x}, which $\{x\}+N(x)$ be a maximal clique
-  constexpr vecu maximal_cliques() const {
+  CEXP vecu maximal_cliques() const {
     vecu fst(peo.size(), -1_u32), n(peo.size()), res;
     vecb vis(peo.size());
     for (u32 u : peo)
@@ -91,8 +91,8 @@ class chordal {
     }
     return res;
   }
-  constexpr u32 chromatic_number() const { return *std::ranges::max_element(deg) + 1; }
-  constexpr vecu max_independent_set() const {
+  CEXP u32 chromatic_number() const { return *std::ranges::max_element(deg) + 1; }
+  CEXP vecu max_independent_set() const {
     vecu res;
     vecb vis(peo.size());
     for (u32 u : peo) {

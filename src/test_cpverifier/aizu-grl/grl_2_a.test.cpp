@@ -12,7 +12,7 @@ int main() {
   std::ranges::sort(e);
   auto tr = tifa_libs::graph::kruskal<u32>(e, n);
   u32 ret = 0;
-  for (u32 i = 0; i < n; ++i)
+  flt_ (u32, i, 0, n)
     for (auto [to, w] : tr.g[i]) ret += w;
   std::cout << ret / 2 << '\n';
   return 0;

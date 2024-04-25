@@ -6,13 +6,13 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0>
-requires std::same_as<typename Mat::value_type, bool>
-constexpr i32 ge_xor(Mat &mat, Is0, bool clear_u = true) {
-  u32 r_ = mat.row(), c_ = mat.col(), rk_max = std::min(r_, c_);
+requires std::same_as<TPN Mat::value_type, bool>
+CEXP i32 ge_xor(Mat &mat, Is0, bool clear_u = true) {
+  u32 r_ = mat.row(), c_ = mat.col(), rk_max = min(r_, c_);
   u32 rk = 0;
   bool neg = false;
   for (u32 i = 0, now_row = 0, j_ = i; i < mat.row(); ++i) {
-    j_ = std::max(j_, i);
+    j_ = max(j_, i);
     if (!mat(rk, i)) {
       neg ^= ge_impl_::swapr__(mat, now_row, rk, mat.row());
       while (j_ < c_ && !mat(rk, j_)) ++j_;

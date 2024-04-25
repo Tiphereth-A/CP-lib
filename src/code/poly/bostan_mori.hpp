@@ -7,14 +7,14 @@
 namespace tifa_libs::math {
 namespace bostan_mori_impl_ {
 template <class ccore_t, class T>
-vec<T> coeff_(ccore_t const& core, ccore_t const& core2, vec<T>& q, u64 n, u32 d) {
+vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) {
   static u32 len = core.size();
   static vec<T> s(len * 2);
-  static constexpr T inv2 = (T::mod() + 1) / 2;
+  static CEXP T inv2 = (T::mod() + 1) / 2;
   if (!n) {
     vec<T> res(d);
     T q0 = 0;
-    for (u32 i = 0; i < len; ++i) q0 += q[i];
+    flt_ (u32, i, 0, len) q0 += q[i];
     res.back() = len * q0.inv();
     return res;
   }
@@ -34,9 +34,9 @@ vec<T> coeff_(ccore_t const& core, ccore_t const& core2, vec<T>& q, u64 n, u32 d
 
 // @return [x^k]p/q
 template <class mint, class ccore>
-constexpr auto bostan_mori(u64 n, poly<mint, ccore> const& p, poly<mint, ccore> const& q) {
+CEXP auto bostan_mori(u64 n, poly<mint, ccore> CR p, poly<mint, ccore> CR q) {
   assert(p.size() == q.size() - 1 && !p.empty());
-  if constexpr (ccore::ct_cat != ct_NTT) {
+  if CEXP (ccore::ct_cat != ct_NTT) {
     auto p_ = p, q_ = q;
     while (n) {
       auto _ = q_;

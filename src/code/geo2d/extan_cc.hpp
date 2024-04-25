@@ -10,7 +10,7 @@ namespace tifa_libs::geo {
 // external tagante lines of 2 circles
 // maybe duplicate
 template <class FP>
-constexpr std::optional<ptt<line<FP>>> extan_CC(circle<FP> const &c1, circle<FP> const &c2) {
+CEXP std::optional<ptt<line<FP>>> extan_CC(circle<FP> CR c1, circle<FP> CR c2) {
   if (is_eq(c1.o.x, c2.o.x) && is_eq(c1.o.y, c2.o.y)) return {};
   if (is_eq(c1.r, c2.r)) {
     point dr = (c2.o - c1.o).do_unit().do_rot90() * c1.r;

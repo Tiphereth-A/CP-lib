@@ -131,14 +131,14 @@ class fastout {
  public:
   explicit fastout(FILE *file = stdout) : f_(file), now_(bf_) {}
 
-  fastout &operator=(fastout const &r) {
+  fastout &operator=(fastout CR r) {
     if (&r == this) return *this;
     f_ = r.f_;
     now_ = bf_ + (r.now_ - r.bf_);
     memcpy(bf_, r.bf_, sizeof(*bf_) * (r.now_ - r.bf_));
     return *this;
   }
-  fastout(fastout const &r) { *this = r; }
+  fastout(fastout CR r) { *this = r; }
 
   ~fastout() { flush(); }
 
@@ -149,7 +149,7 @@ class fastout {
   void rebind(FILE *file) { f_ = file; }
 
   template <char_c T>
-  fastout &write(T const &n) {
+  fastout &write(T n) {
     if (now_ == end_) flush();
     *(now_++) = n;
     return *this;
@@ -180,7 +180,7 @@ class fastout {
   template <class T>
   requires(uint_c<T> && !char_c<T>)
   fastout &write(T n) {
-    if constexpr (sizeof(T) <= 4) {
+    if CEXP (sizeof(T) <= 4) {
       memset(now_ib_ = int_bf_, 0, 11);
       u32tostr(n, now_ib_);
       return write(now_ib_);
@@ -193,13 +193,13 @@ class fastout {
   }
   template <mint_c T>
   fastout &write(T n) { return write(n.val()); }
-  fastout &write(strn const &str) { return write(str.c_str()); }
+  fastout &write(strn CR str) { return write(str.c_str()); }
   template <class T, class U>
-  fastout &write(std::pair<T, U> const &p) { return write(p.first).space().write(p.second); }
+  fastout &write(std::pair<T, U> CR p) { return write(p.first).space().write(p.second); }
   template <class... Ts>
-  fastout &write(std::tuple<Ts...> const &p) {
+  fastout &write(std::tuple<Ts...> CR p) {
     std::apply(
-        [&](Ts const &...targs) {
+        [&](Ts CR... targs) {
           usz n{0};
           ((write(targs).space_if(++n != sizeof...(Ts))), ...);
         },
@@ -207,7 +207,7 @@ class fastout {
     return *this;
   }
   template <container_c T>
-  fastout &write(T const &p) {
+  fastout &write(T CR p) {
     if (p.begin() == p.end()) return *this;
     auto it = p.begin();
     write(*it++);
@@ -221,7 +221,7 @@ class fastout {
   fastout &space_if(bool flag) { return flag ? space() : *this; }
 
   template <class T>
-  fastout &operator<<(T const &val) { return write(val); }
+  fastout &operator<<(T CR val) { return write(val); }
 };
 }  // namespace fastio_impl_
 

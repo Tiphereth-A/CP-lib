@@ -7,7 +7,7 @@
 vecu prandom(u32 m, u32 l) {
   tifa_libs::rand::Gen<std::uniform_int_distribution<u32>> gen(0, m - 1);
   vecu ret(l);
-  for (u32 i = 0; i < l; ++i) ret[i] = gen();
+  flt_ (u32, i, 0, l) ret[i] = gen();
   return ret;
 }
 
@@ -18,54 +18,39 @@ int main() {
   for (auto& i : a) std::cin >> i;
   u32 l = n + k - 1;
   vecu ans = n <= 20 ? tifa_libs::util::deBruijn(n, m, l) : prandom(m, l);
-  for (u32 i = 0; i < l; ++i) std::cout << a[ans[i]];
+  flt_ (u32, i, 0, l) std::cout << a[ans[i]];
   std::cout << '\n';
   return 0;
 }
 
 /*
-Ayu managed to steal Budi's treasure box and ready to uncover any secret Budi hides. Unfortunately, the treasure box has some security system to prevent any unauthorized person (e.g., Ayu) from opening it.
+阿育成功偷了布迪的宝箱, 准备揭开布迪隐藏的任何秘密. 不幸的是, 宝箱有一些安全系统, 防止任何未经授权的人 (例如阿育) 打开它
+要解锁宝箱, 阿育必须输入一个正确的长度为 $N$ 的 PIN (个人识别码) , 当然, 她没有. 阿育别无选择, 只能尝试所有可能的 PIN 组合. 然而, 阿育注意到这个安全系统有一个有趣的 (老式) 机制
+当你输入一个 $N$ 位数的 PIN 时, 它会自动且立即进行评估, 也就是说, 你不需要按下某个 "确认" 按钮来确认 PIN. 每当您输入的 PIN 错误时, 它会移除最旧 (第一个) 数字, 并将其余的所有数字向左移动, 因此, 您只需要再输入一个 (最后) 数字, 使其再次变为 $N$ 位数
+例如, 假设 $N=4$. 如果我们输入 204320435, 则实际上测试了 6 个PIN (共 5 个不同的PIN)
+- 测试的PIN = 2043
+- 测试的PIN = 0432
+- 测试的PIN = 4320
+- 测试的PIN = 3204
+- 测试的PIN = 2043
+- 测试的PIN = 0435
+注意, 在这个例子中, 2043 被测试了两次
+作为一名计算机科学专业的学生, 阿育知道通过尝试所有可能的组合来找到正确的 PIN 可能非常耗时, 但是, 无奈之下, 没有其他方法. 阿育决定她想在第一天至少测试 $K$ 个不同的 PIN. 你的任务是通过简单地给出一个包含至少 $K$ 个不同 PIN 的字符串 $S$ 来帮助阿育. 阿育不在乎她要测试哪个 PIN (只要至少有 $K$ 个不同的 PIN) , 也不在乎 $S$ 中是否有任何 PIN 被测试多次, 但字符串 $S$ 需要尽可能短. 如果有多个可能的字符串 $S$, 你可以输出其中任何一个
+请注意, 由于这个系统相当老旧, 可用的数字仅为 $0$ 到 $9$
 
-To unlock the treasure box, Ayu has to input a correct PIN (Personal Identification Number) of length $N$, which of course, she doesn't have. Ayu has no choice other than trying all possible PIN combinations. However, Ayu notices that this security system has an interesting (old) mechanism.
+## 输入
 
-When you enter an $N$ digits PIN, it is evaluated automatically and promptly, i.e. you don't need to push some "enter" button to confirm the PIN. Whenever your entered PIN is wrong, it removes the oldest (first) digit and shifts all the remaining to the left, thus, you only need to enter one more (last) digit to make it $N$ length again.
+输入以一行包含三个整数开头: $N$ $M$ $K$ ($1 \le N \le 100000$, $1 \le M \le 10$, $1 \le K \le \min(M^N,100000)$), 分别表示 PIN 长度, 可用数字数量和要测试的 PIN 的最小数量. 接下来一行包含 $M$ 个整数: $A_i$ ($0 \le A_i \le 9$) , 表示可用数字. 您可以假设所有 $A_i$ 都是不同的. 您还可以假设所选择的 $N$, $M$ 和 $K$ 的值使得答案不超过 $100000$ 个数字
 
-For example, let $N = 4$. If we input 204320435, then we actually test 6 PINs (with 5 different PINs):
+## 输出
 
--   , tested PIN = 2043
--   , tested PIN = 0432
--   , tested PIN = 4320
--   , tested PIN = 3204
--   , tested PIN = 2043
--   , tested PIN = 0435
+在一行中输出最短的字符串, 该字符串包含至少 $K$ 个不同的 PIN 作为其子串. 如果有多个这样的字符串, 则可以输出任何一个
 
-Notice that 2043 is tested twice in this example.
+## 提示
 
-As a CS student, Ayu knows that finding the correct PIN by trying all possible combinations can be very time-consuming, but alas, there's no other way. Ayu decides that she wants to test at least $K$ different PINs on the first day. Your task is to help Ayu by simply giving her the string $S$ which contains at least $K$ different PINs. Ayu doesn't care which PIN she's going to test (so long at least there are $K$ different PINs) or whether any PIN is tested more than once in $S$, but string $S$ needs to be as short as possible. If there is more than one possible string for $S$, you can output any of them.
-
-Note that, as this system is quite old, there are only $M$ available digits ranging from $0$ to $9$.
-
-**Input**
-
-Input begins with a line containing three integers: $N$ $M$ $K$ ($1 \le N \le 100000$, $1 \le M \le 10$, $1 \le K \le \min(M^N,100000)$), representing the PIN length, the number of available digits, and the minimum number of PINs to be tested, respectively. The next line contains $M$ integers: $A_i$ ($0 \le A_i \le 9$), representing the available digits. You may assume all $A_i$ are distinct. You may also assume that the values of $N$, $M$, and $K$ are chosen such that the answer contains no longer than $100000$ digits
-
-**Output**
-
-Output in a line the **shortest** string which contains at least $K$ different PINs as its substring. If there is more than one such string, you can output any of them.
-
-**Note**
-
-Explanation for the sample input/output #1
-
-There are $5$ different PINs of length $3$ tested with the string 7477447, i.e. 447, 477, 744, 747, and 774.
-
-Explanation for the sample input/output #2
-
-There are $9$ different PINs of length $2$ tested with the string 1234554321, i.e. 12, 21, 23, 32, 34, 43, 45, 54, and 55.
-
-Explanation for the sample input/output #3
-
-There are $2$ different PINs of length $6$ tested with the string 9353593, i.e. 353593, and 935359.
+#1: 447, 477, 744, 747, 774
+#2: 12, 21, 23, 32, 34, 43, 45, 54, 55
+#3: 353593, 935359
 */
 
 /*

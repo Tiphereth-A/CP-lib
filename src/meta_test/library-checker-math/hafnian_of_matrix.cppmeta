@@ -3,7 +3,7 @@
 #include "../../code/lalg/hafnian_mat.hpp"
 #include "../../code/lalg/mat.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #define GENTCs_mints
 #define GENTCs_mintd0

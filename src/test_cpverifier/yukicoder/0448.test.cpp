@@ -9,7 +9,7 @@ int main() {
   std::cin >> n;
   vec<i32> r(n);
   vecu m(n);
-  for (u32 i = 0; i < n; ++i) std::cin >> r[i] >> m[i];
+  flt_ (u32, i, 0, n) std::cin >> r[i] >> m[i];
   auto res = tifa_libs::math::crt_mod(r, m, 1'000'000'007);
   if (!res) {
     std::cout << "-1\n";

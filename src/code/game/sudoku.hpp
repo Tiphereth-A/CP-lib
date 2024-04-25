@@ -6,15 +6,14 @@
 
 namespace tifa_libs::game {
 
-constexpr v3ecu sudoku_solver(vvecu const &data, bool get_all_solution = false) {
+CEXP v3ecu sudoku_solver(cT_(vvecu) data, bool get_all_solution = false) {
   const u32 n = math::isqrt(data.size()), n2 = (u32)data.size(), n4 = n2 * n2;
   assert(n <= 40 && n * n == n2);
-  tifa_said((u64)n2 * n4 < u64(u32(-1)));
   vvecb g(n2 * n4, vecb(4 * n4));
   bool not_filled = true;
-  for (u32 i = 0; i < n2; ++i)
-    for (u32 j = 0; j < n2; ++j)
-      for (u32 k = 1; k <= n2; ++k) {
+  flt_ (u32, i, 0, n2)
+    flt_ (u32, j, 0, n2)
+      fle_ (u32, k, 1, n2) {
         if (data[i][j] && data[i][j] != k) continue;
         not_filled |= data[i][j] == 0;
         auto _ = (k - 1) * n4 + i * n2 + j;
@@ -22,7 +21,7 @@ constexpr v3ecu sudoku_solver(vvecu const &data, bool get_all_solution = false) 
       }
   if (!not_filled) return {data};
   v3ecu ans;
-  util::DLX(g, get_all_solution).dance([&](vecu const &res) -> void {
+  util::DLX(g, get_all_solution).dance([&](vecu CR res) -> void {
     vvecu dt = data;
     for (u32 _ : res) dt[(_ - 1) % n4 / n2][(_ - 1) % n2] = (_ - 1) / n4 + 1;
     ans.push_back(dt);

@@ -7,7 +7,7 @@ namespace tifa_libs::geo {
 
 // distance of two points on sphere with radius %r (Euclidian)
 template <class FP>
-constexpr FP distsp_PP(FP r, point<FP> const &p1, point<FP> const &p2) { return r * std::acos(std::sin(p1.y) * std::sin(p2.y) + std::cos(p1.y) * std::cos(p2.y) * std::cos(p1.x - p2.x)); }
+CEXP FP distsp_PP(FP r, point<FP> CR p1, point<FP> CR p2) { return r * std::acos(std::sin(p1.y) * std::sin(p2.y) + std::cos(p1.y) * std::cos(p2.y) * std::cos(p1.x - p2.x)); }
 
 }  // namespace tifa_libs::geo
 

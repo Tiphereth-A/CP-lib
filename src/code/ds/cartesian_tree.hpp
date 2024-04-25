@@ -7,12 +7,12 @@ namespace tifa_libs::ds {
 
 template <class T>
 class cartesian_tree {
-  struct YYZ {
+  struct TIFA {
     u32 fa;
     arr<u32, 2> son{-1u, -1u};
   };
 
-  constexpr void build(vec<T> const& y) {
+  CEXP void build(vec<T> CR y) {
     vecu s(y.size() + 1);
     u32 top = 0;
     for (u32 i = 0; i < y.size(); i++) {
@@ -27,9 +27,9 @@ class cartesian_tree {
 
  public:
   u32 root;
-  vec<YYZ> t;
+  vec<TIFA> t;
 
-  explicit constexpr cartesian_tree(vec<T> const& y) : root(), t(y.size()) { build(y); }
+  explicit CEXP cartesian_tree(vec<T> CR y) : root(), t(y.size()) { build(y); }
 };
 
 }  // namespace tifa_libs::ds

@@ -7,12 +7,12 @@ namespace tifa_libs::util {
 
 namespace josephus_impl_ {
 // $O(m)$
-constexpr u64 j1(u64 n, u64 k, u64 m) {
+CEXP u64 j1(u64 n, u64 k, u64 m) {
   if (m == 1) return (k - 1) % n;
-  else return (j1(n - 1, k, m - 1) + k) % n;
+  return (j1(n - 1, k, m - 1) + k) % n;
 }
 // $O(k\log n)$
-constexpr u64 j2(u64 n, u64 k, u64 m) {
+CEXP u64 j2(u64 n, u64 k, u64 m) {
   if (k == 1) return m - 1;
   u64 n2 = n - m + 1, ret = j1(n2, k, 1);
   --m;
@@ -31,7 +31,7 @@ constexpr u64 j2(u64 n, u64 k, u64 m) {
 //! 0-based
 // @return $m$-th executed person in Josephus problem
 //         with total_people = n, start_point = 0, skipped_number = k
-constexpr u64 Josephus(u64 n, u64 k, u64 m) {
+CEXP u64 Josephus(u64 n, u64 k, u64 m) {
   assert(m && k && m <= n);
   return m < k * (u32)std::bit_width(n) ? josephus_impl_::j1(n, k, m) : josephus_impl_::j2(n, k, m);
 }

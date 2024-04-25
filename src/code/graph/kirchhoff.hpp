@@ -12,10 +12,10 @@ template <class T, class Ge, bool with_deg>
 requires requires(Ge ge, math::matrix<T> A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
-constexpr T kirchhoff(amat<T, with_deg> const &g, Ge &&ge) {
+CEXP T kirchhoff(cT_(amat<T, with_deg>) g, Ge &&ge) {
   u32 n = g.g.size();
   math::matrix<T> mat(n - 1, n - 1);
-  for (u32 i = 0; i < n; ++i)
+  flt_ (u32, i, 0, n)
     for (u32 j = i + 1; j < n; ++j) {
       auto _ = g.g[i][j];
       mat(i, i) += _;

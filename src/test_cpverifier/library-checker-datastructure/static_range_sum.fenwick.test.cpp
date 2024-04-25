@@ -9,11 +9,11 @@ int main() {
   std::cin >> n >> q;
   tifa_libs::ds::fenwick<u64> f(n + 1);
   u64 x;
-  for (u32 i = 1; i <= n; ++i) {
+  fle_ (u32, i, 1, n) {
     std::cin >> x;
     f.add(i, x);
   }
-  for (u32 i = 1; i <= q; ++i) {
+  fle_ (u32, i, 1, q) {
     u32 l, r;
     std::cin >> l >> r;
     std::cout << f.sum(r) - f.sum(l) << '\n';

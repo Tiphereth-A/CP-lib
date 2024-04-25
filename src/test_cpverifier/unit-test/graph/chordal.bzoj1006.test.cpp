@@ -5,7 +5,7 @@
 
 #include "../base.hpp"
 
-void test(strn const& data) {
+void test(cT_(strn) data) {
   strn path = "src/data/bzoj/1006/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 

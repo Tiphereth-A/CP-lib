@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <uint_c T, uint_c U>
-constexpr U inverse(T n, U mod) {
+CEXP U inverse(T n, U mod) {
   auto [g, x] = inv_gcd(U(n % mod), mod);
   assert(g == 1);
   return x;

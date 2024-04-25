@@ -12,7 +12,7 @@ int main() {
     std::cin >> a >> b >> c >> d;
     tr.add(a + 1, b + 1, c + 2, d + 2, 1);
   }
-  for (u32 i = 1; i <= n; ++i)
-    for (u32 j = 1; j <= m; ++j) std::cout << tr.sum(i, j) << " \n"[j == m];
+  fle_ (u32, i, 1, n)
+    fle_ (u32, j, 1, m) std::cout << tr.sum(i, j) << " \n"[j == m];
   return 0;
 }

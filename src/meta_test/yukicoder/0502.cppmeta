@@ -2,7 +2,7 @@
 
 #include "../../code/math/fact_mint.hpp"
 
-constexpr u64 MOD = 1000000007;
+CEXP u64 MOD = 1000000007;
 
 #define GENTCs_pmttd0
 #define GENTCs_p3nttd0

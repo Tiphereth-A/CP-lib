@@ -10,7 +10,7 @@ struct tarjan {
   vecu scc_id, dfn, low;
   vvecu belongs;
 
-  constexpr void build(vvecu const &g) {
+  CEXP void build(cT_(vvecu) g) {
     id = 0;
     u32 cnt = 0, n = u32(g.size());
     vecu s;
@@ -21,8 +21,8 @@ struct tarjan {
       for (auto v : g[u])
         if (dfn[v] == n) {
           dfs(dfs, v);
-          low[u] = std::min(low[u], low[v]);
-        } else if (ins[v]) low[u] = std::min(low[u], dfn[v]);
+          low[u] = min(low[u], low[v]);
+        } else if (ins[v]) low[u] = min(low[u], dfn[v]);
       if (low[u] == dfn[u]) {
         belongs.push_back(vecu());
         do {
@@ -34,7 +34,7 @@ struct tarjan {
         } while (1);
       }
     };
-    for (u32 i = 0; i < n; ++i)
+    flt_ (u32, i, 0, n)
       if (dfn[i] == n) dfs(dfs, i);
   }
 };

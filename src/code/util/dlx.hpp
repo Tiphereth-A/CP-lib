@@ -8,7 +8,7 @@ namespace tifa_libs::util {
 class DLX {
   struct node {
     u32 l, r, u, d, row, col;
-    constexpr node(u32 l = 0, u32 r = 0, u32 u = 0, u32 d = 0, u32 row = 0, u32 col = 0) : l(l), r(r), u(u), d(d), row(row), col(col) {}
+    CEXP node(u32 l = 0, u32 r = 0, u32 u = 0, u32 d = 0, u32 row = 0, u32 col = 0) : l(l), r(r), u(u), d(d), row(row), col(col) {}
   };
   vec<node> data;
   vecu cnt_col;
@@ -22,7 +22,7 @@ class DLX {
 #define col_(x) data[x].col
 #define dlxfor_(i, l, dir) for (u32 ied__ = (l), i = dir##_(ied__); i != ied__; i = dir##_(i))
 
-  constexpr void remove_(u32 col) {
+  CEXP void remove_(u32 col) {
     r_(l_(col)) = r_(col);
     l_(r_(col)) = l_(col);
     dlxfor_ (i, col, d)
@@ -32,7 +32,7 @@ class DLX {
         --cnt_col[col_(j)];
       }
   }
-  constexpr void resume_(u32 col) {
+  CEXP void resume_(u32 col) {
     r_(l_(col)) = l_(r_(col)) = col;
     dlxfor_ (i, col, u)
       dlxfor_ (j, i, r) {
@@ -41,7 +41,7 @@ class DLX {
       }
   }
   template <class F>
-  constexpr bool dance_(vecu &ans, F &&cb) {
+  CEXP bool dance_(vecu &ans, F &&cb) {
     u32 now = r_(0);
     if (now == 0) return cb(ans), true;
     dlxfor_ (i, 0, r)
@@ -59,7 +59,7 @@ class DLX {
     resume_(now);
     return ret;
   }
-  constexpr void ins_row_(u32 row, vecu const &cols) {
+  CEXP void ins_row_(u32 row, vecu CR cols) {
     assert(row > 0);
     u32 n = (u32)data.size();
     for (u32 i = 0; i < cols.size(); ++i) {
@@ -72,17 +72,17 @@ class DLX {
   }
 
  public:
-  explicit constexpr DLX(vvecb const &grid, bool multi_ans = false) : data(), cnt_col(), mans(multi_ans) {
+  explicit CEXP DLX(cT_(vvecb) grid, bool multi_ans = false) : data(), cnt_col(), mans(multi_ans) {
     u32 col = (u32)grid[0].size();
     assert(col > 0);
     cnt_col.resize(col + 1);
     data.reserve(col + 1);
-    for (u32 i = 0; i <= col; ++i) data.emplace_back(i - 1, i + 1, i, i, 0, i);
+    fle_ (u32, i, 0, col) data.emplace_back(i - 1, i + 1, i, i, 0, i);
     r_(l_(0) = col) = 0;
     for (u32 i = 0; i < grid.size(); ++i) {
       vecu _;
       _.reserve(col);
-      for (u32 j = 0; j < col; ++j)
+      flt_ (u32, j, 0, col)
         if (grid[i][j]) _.push_back(j + 1);
       _.shrink_to_fit();
       if (!_.empty()) ins_row_(i + 1, _);
@@ -90,10 +90,8 @@ class DLX {
   }
 
   template <class F>
-  requires requires(F f, vecu sol) {
-    f(sol);
-  }
-  constexpr std::optional<vecu> dance(F &&cb) {
+  requires requires(F f, vecu sol) { f(sol); }
+  CEXP std::optional<vecu> dance(F &&cb) {
     vecu ans;
     if (!dance_(ans, std::forward<F>(cb))) return {};
     return ans;

@@ -13,8 +13,8 @@ int main() {
   std::cin >> n;
   mat a(n, n);
   char c;
-  for (u32 i = 0; i < n; ++i)
-    for (u32 j = 0; j < n; ++j) {
+  flt_ (u32, i, 0, n)
+    flt_ (u32, j, 0, n) {
       std::cin >> c;
       a(i, j) = c & 1;
     }

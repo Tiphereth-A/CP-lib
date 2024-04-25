@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-constexpr ptt<poly<mint, ccore>> divmod_fps(poly<mint, ccore> const &p, poly<mint, ccore> const &q) {
+CEXP ptt<poly<mint, ccore>> divmod_fps(poly<mint, ccore> CR p, poly<mint, ccore> CR q) {
   u32 n = p.size(), m = q.size();
   if (n < m) return {poly<mint, ccore>{}, p};
   auto d = div_fps(p, q);

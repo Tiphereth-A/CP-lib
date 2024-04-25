@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <int_c T, int_c U>
-constexpr std::common_type_t<T, U> lcm(T a, U b) {
+CEXP std::common_type_t<T, U> lcm(T a, U b) {
   using V = std::common_type_t<T, U>;
   using W = to_uint_t<V>;
   if (!a || !b) return 0;

@@ -6,7 +6,7 @@
 namespace tifa_libs::bit {
 
 template <class T>
-constexpr T lowbit(T x) { return T(1) << std::countr_zero(x); }
+CEXP T lowbit(T x) { return T(1) << std::countr_zero(x); }
 
 }  // namespace tifa_libs::bit
 

@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 // @return [cos(p(x)), sin(p(x))]
 template <class mint, class ccore>
 requires(ccore::ct_cat == ct_NTT)
-constexpr ptt<poly<mint, ccore>> cossin_fps(poly<mint, ccore> p, u32 n = 0) {
+CEXP ptt<poly<mint, ccore>> cossin_fps(poly<mint, ccore> p, u32 n = 0) {
   if (!n) n = (u32)p.size();
   mint i = qpow(poly<mint, ccore>::conv_core.G, (mint::mod() - 1) / 4),
        inv2 = (mint::mod() + 1) / 2;

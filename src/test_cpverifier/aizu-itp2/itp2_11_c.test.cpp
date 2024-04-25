@@ -19,7 +19,7 @@ int main() {
   std::ranges::reverse(_);
   for (auto i : _) {
     std::cout << i << ":";
-    for (u32 j = 0; j < n; ++j)
+    flt_ (u32, j, 0, n)
       if ((i >> j) & 1) std::cout << ' ' << j;
     std::cout << '\n';
   }

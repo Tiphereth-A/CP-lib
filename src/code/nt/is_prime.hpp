@@ -6,12 +6,12 @@
 
 namespace tifa_libs::math {
 
-constexpr bool is_prime(u64 n) {
+CEXP bool is_prime(u64 n) {
   if (n <= 2) return n == 2;
   if (~n & 1) return false;
   if (n < 8 || n == 61) return true;
 
-  auto f = [n, d = (n - 1) >> std::countr_zero(n - 1)](auto const& bases) -> bool {
+  auto f = [n, d = (n - 1) >> std::countr_zero(n - 1)](auto&& bases) -> bool {
     for (u64 i : bases) {
       if (!(i % n)) continue;
       u64 t = d, y = qpow_mod(i, t, n);
@@ -25,10 +25,10 @@ constexpr bool is_prime(u64 n) {
   };
 
   if (n < (1 << 30)) {
-    constexpr u64 bases[3] = {2, 7, 61};
+    CEXP u64 bases[3] = {2, 7, 61};
     return f(bases);
   }
-  constexpr u64 bases[7] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
+  CEXP u64 bases[7] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
   return f(bases);
 }
 

@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 template <class EW>
 class v_bcc {
-  vvec<EW> const &g;
+  vvec<EW> CR g;
 
  public:
   u32 id;
@@ -16,7 +16,7 @@ class v_bcc {
   vvecu belongs;
 
   //! EW need rev_edge
-  explicit v_bcc(vvec<EW> const &G) : g(G) { build(); }
+  explicit v_bcc(cT_(vvec<EW>) G) : g(G) { build(); }
 
   void build() {
     id = 0;
@@ -34,7 +34,7 @@ class v_bcc {
         if (v.to == fa && i == inv_from) continue;
         if (dfn[v.to] == n) {
           dfs(dfs, v.to, u, v.inv);
-          low[u] = std::min(low[u], low[v.to]);
+          low[u] = min(low[u], low[v.to]);
           if (low[v.to] >= dfn[u]) {
             u32 p;
             cut[u] = 1, belongs.push_back(vecu(1, u));
@@ -44,11 +44,11 @@ class v_bcc {
             } while (p != v.to);
             id++;
           }
-        } else low[u] = std::min(low[u], dfn[v.to]);
+        } else low[u] = min(low[u], dfn[v.to]);
       }
     };
 
-    for (u32 i = 0; i < n; ++i)
+    flt_ (u32, i, 0, n)
       if (dfn[i] == n) dfs(dfs, i, i, -1_u32);
   }
 };

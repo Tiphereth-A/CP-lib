@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 namespace gcd_mpi_impl_ {
 // @return {x, y} s.t. a = 2^x 5^y
-constexpr ptt<i32> shrink(u32 a) {
+CEXP ptt<i32> shrink(u32 a) {
   assert(a > 0);
   int x = std::countr_zero(a);
   a >>= x;
@@ -17,7 +17,7 @@ constexpr ptt<i32> shrink(u32 a) {
   // clang-format on
 }
 
-constexpr ptt<i32> shrink(mpi& a) {
+CEXP ptt<i32> shrink(mpi& a) {
   assert(!a.is_neg());
   if (a.data().empty()) return {0, 0};
   ptt<i32> res{0, 0};
@@ -34,17 +34,17 @@ constexpr ptt<i32> shrink(mpi& a) {
 }  // namespace gcd_mpi_impl_
 
 template <bool FAST = true>
-constexpr mpi gcd_mpi(mpi a, mpi b) {
+CEXP mpi gcd_mpi(mpi a, mpi b) {
   a.set_neg(false), b.set_neg(false);
-  if constexpr (FAST)
-    if (std::max(a.data().size(), b.data().size()) <= 2) return gcd(a.to_i64(), b.to_i64());
+  if CEXP (FAST)
+    if (max(a.data().size(), b.data().size()) <= 2) return gcd(a.to_i64(), b.to_i64());
   if (a.data().empty()) return b;
   if (b.data().empty()) return a;
   ptt<i32> s = gcd_mpi_impl_::shrink(a), t = gcd_mpi_impl_::shrink(b);
-  if (a < b) std::swap(a, b);
+  if (a < b) swap(a, b);
   while (true) {
     if (b.data().empty()) break;
-    if constexpr (FAST)
+    if CEXP (FAST)
       if (a.data().size() <= 2) break;
     a = a - b;
     if (!a.data().empty())
@@ -54,13 +54,13 @@ constexpr mpi gcd_mpi(mpi a, mpi b) {
         if (g != mpi::digit()) a *= mpi::digit() / g;
         a.data().erase(begin(a.data()));
       }
-    if (a < b) std::swap(a, b);
+    if (a < b) swap(a, b);
   }
   assert(a >= b);
   mpi g;
-  if constexpr (FAST) g = b.data().empty() ? a : gcd(a.to_i64(), b.to_i64());
+  if CEXP (FAST) g = b.data().empty() ? a : gcd(a.to_i64(), b.to_i64());
   else g = a;
-  u32 e2 = (u32)std::min(s.first, t.first), e5 = (u32)std::min(s.second, t.second);
+  u32 e2 = (u32)min(s.first, t.first), e5 = (u32)min(s.second, t.second);
   if (e2) g *= qpow(mpi{2}, e2);
   if (e5) g *= qpow(mpi{5}, e5);
   return g;

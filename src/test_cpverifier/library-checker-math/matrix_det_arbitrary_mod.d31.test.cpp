@@ -22,8 +22,8 @@ int main() {
   }
   mat a(n, n);
   std::cin >> a;
-  auto is_0 = [](mint const &x) { return x.val() == 0; };
-  auto div = [](mint const &x, mint const &y) -> mint { return x.val() / y.val(); };
+  auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
+  auto div = [](cT_(mint) x, cT_(mint) y) -> mint { return x.val() / y.val(); };
   auto ge = [&is_0, &div](mat &m, bool f) { return tifa_libs::math::ge_euclid(m, is_0, div, f); };
   std::cout << det(a, ge);
   return 0;

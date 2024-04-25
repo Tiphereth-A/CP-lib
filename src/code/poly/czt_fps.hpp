@@ -17,7 +17,7 @@ poly<mint, ccore> czt_fps(poly<mint, ccore> f, mint c, u32 m = -1_u32, mint a = 
   u32 n = f.size();
   if (a != 1) {
     mint x = 1;
-    for (u32 i = 0; i < n; ++i) f[i] *= x, x *= a;
+    flt_ (u32, i, 0, n) f[i] *= x, x *= a;
   }
   if (c == 0) {
     poly_t ans(m, f[0]);
@@ -27,15 +27,15 @@ poly<mint, ccore> czt_fps(poly<mint, ccore> f, mint c, u32 m = -1_u32, mint a = 
   const u32 mod = (u32)mint::mod();
   if (c.val() == irp.base()) rp.swap(irp);
   rp.reset(c.val(), mod), irp.reset(c.inv().val(), mod);
-  poly_t cc(m + n), icc(std::max(m, n));
+  poly_t cc(m + n), icc(max(m, n));
   cc[0] = icc[0] = 1;
-  for (u32 i = 1; i < m + n; ++i) cc[i] = rp((i * (i - 1_u64) / 2) % (mod - 1));
-  for (u32 i = 1; i < std::max(m, n); ++i) icc[i] = irp((i * (i - 1_u64) / 2) % (mod - 1));
-  for (u32 i = 1; i < n; ++i) f[i] *= icc[i];
+  for (u32 i = 1; i < m + n; ++i) cc[i] = rp(u32((i * (i - 1_u64) / 2) % (mod - 1)));
+  for (u32 i = 1; i < max(m, n); ++i) icc[i] = irp(u32((i * (i - 1_u64) / 2) % (mod - 1)));
+  flt_ (u32, i, 1, n) f[i] *= icc[i];
   std::ranges::reverse(f.data());
   f.conv(cc, n + m);
   poly_t ans(f.data().begin() + ((isz)n - 1), f.data().begin() + (isz(n + m) - 1));
-  for (u32 i = 1; i < m; ++i) ans[i] *= icc[i];
+  flt_ (u32, i, 1, m) ans[i] *= icc[i];
   return ans;
 }
 

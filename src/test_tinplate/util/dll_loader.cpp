@@ -3,7 +3,7 @@
 
 #include "../../code/util/dll_loader.hpp"
 
-constexpr const char *LIB_PATH = "/usr/lib/x86_64-linux-gnu/libgmp.so.10";
+CEXP const char *LIB_PATH = "/usr/lib/x86_64-linux-gnu/libgmp.so.10";
 
 using mpz_t = char[16];
 tifa_libs::util::DLL *gmp;
@@ -43,33 +43,25 @@ int main(int, char **argv) {
 }
 
 /*
-**statement**
-
 This problem has $T$ cases.
 Given hexadecimal integers $A$ and $B$, print hexadecimal integer $AB$.
 
-**constraints**
-
-- $1 \leq T \leq 160000$
-- $0 \leq |A|, |B| < 16^{16\times 10^5}$
-- The sum of (the number of characters in $A$) $+$ (the number of characters in $B$) over all test cases does not exceed $3200002$.
+$1 \leq T \leq 160000$
+$0 \leq |A|, |B| < 16^{16\times 10^5}$
+The sum of (the number of characters in $A$) $+$ (the number of characters in $B$) over all test cases does not exceed $3200002$.
 
 **input**
 
-```
 $T$
 $A$ $B$
- $\vdots$
+$\vdots$
 $A$ $B$
-```
 
 **output**
 
-```
 $AB$
- $\vdots$
+$\vdots$
 $AB$
-```
 */
 
 /*

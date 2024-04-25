@@ -12,11 +12,11 @@ class SBT {
   vec<T> seq;
 
  public:
-  explicit constexpr SBT() : lx(0), ly(1), x(1), y(1), rx(1), ry(0) {}
-  constexpr SBT(T X, T Y) : SBT() {
+  explicit CEXP SBT() : lx(0), ly(1), x(1), y(1), rx(1), ry(0) {}
+  CEXP SBT(T X, T Y) : SBT() {
     assert(x > 0 && Y > 0);
     if (T g = gcd(X, Y); g > 1) X /= g, Y /= g;
-    while (std::min(X, Y))
+    while (min(X, Y))
       if (X > Y) {
         T _ = X / Y;
         movr(_ - !(X -= _ * Y));
@@ -25,7 +25,7 @@ class SBT {
         movl(_ - !(Y -= _ * X));
       }
   }
-  explicit constexpr SBT(vec<T> const &seq_) : SBT() {
+  explicit CEXP SBT(vec<T> CR seq_) : SBT() {
     for (auto &&d : seq_) {
       assert(d != 0);
       if (d > 0) movr(d);
@@ -33,22 +33,22 @@ class SBT {
     }
   }
 
-  friend constexpr auto operator<=>(SBT const &l, SBT const &r) { return l.x * r.y - r.x * l.y; }
-  friend constexpr bool operator==(SBT const &l, SBT const &r) { return l.x == r.x && l.y == r.y; }
+  friend CEXP auto operator<=>(SBT CR l, SBT CR r) { return l.x * r.y - r.x * l.y; }
+  friend CEXP bool operator==(SBT CR l, SBT CR r) { return l.x == r.x && l.y == r.y; }
 
-  constexpr ptt<T> current() const { return {x, y}; }
-  constexpr ptt<T> lbound() const { return {lx, ly}; }
-  constexpr ptt<T> rbound() const { return {rx, ry}; }
+  CEXP ptt<T> current() const { return {x, y}; }
+  CEXP ptt<T> lbound() const { return {lx, ly}; }
+  CEXP ptt<T> rbound() const { return {rx, ry}; }
   // path from (1, 1) to @current(). rchild be positive and vice versa
-  constexpr vec<T> path() const { return seq; }
+  CEXP vec<T> path() const { return seq; }
 
-  constexpr T dep() const {
+  CEXP T dep() const {
     T res = 0;
     for (auto &&s : seq) res += abs(s);
     return res;
   }
   // move towards lchild with @d steps
-  constexpr void movl(T d = 1) {
+  CEXP void movl(T d = 1) {
     if (d <= 0) return;
     if (seq.empty() || seq.back() > 0) seq.push_back(0);
     seq.back() -= d;
@@ -56,7 +56,7 @@ class SBT {
     x = rx + lx, y = ry + ly;
   }
   // move towards rchild with @d steps
-  constexpr void movr(T d = 1) {
+  CEXP void movr(T d = 1) {
     if (d <= 0) return;
     if (seq.empty() || seq.back() < 0) seq.push_back(0);
     seq.back() += d;
@@ -65,11 +65,11 @@ class SBT {
   }
   // move towards fa with @d steps
   // @return true if succeed, or false if falied
-  constexpr bool movf(T d = 1) {
+  CEXP bool movf(T d = 1) {
     if (d <= 0) return true;
     while (d) {
       if (seq.empty()) return false;
-      T _ = std::min(d, abs(seq.back()));
+      T _ = min(d, abs(seq.back()));
       if (seq.back() > 0) {
         x -= rx * _, y -= ry * _;
         lx = x - rx, ly = y - ry;
@@ -86,13 +86,13 @@ class SBT {
     return true;
   }
 
-  static constexpr SBT lca(SBT const &l, SBT const &r) {
+  static CEXP SBT lca(SBT CR l, SBT CR r) {
     SBT ret;
-    for (u32 i = 0; i < std::min((u32)l.seq.size(), (u32)r.seq.size()); ++i) {
+    for (u32 i = 0; i < min((u32)l.seq.size(), (u32)r.seq.size()); ++i) {
       T val1 = l.seq[i], val2 = r.seq[i];
       if ((val1 < 0) != (val2 < 0)) break;
-      if (val1 < 0) ret.movl(std::min(-val1, -val2));
-      if (val1 > 0) ret.movr(std::min(val1, val2));
+      if (val1 < 0) ret.movl(min(-val1, -val2));
+      if (val1 > 0) ret.movr(min(val1, val2));
       if (val1 != val2) break;
     }
     return ret;

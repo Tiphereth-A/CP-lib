@@ -11,48 +11,48 @@ template <class FP>
 struct polygon {
   vec<point<FP>> vs;
 
-  constexpr polygon() {}
-  explicit constexpr polygon(u32 sz) : vs(sz) {}
-  explicit constexpr polygon(vec<point<FP>> const &vs_) : vs(vs_) {}
+  CEXP polygon() {}
+  explicit CEXP polygon(u32 sz) : vs(sz) {}
+  explicit CEXP polygon(vec<point<FP>> CR vs_) : vs(vs_) {}
 
   friend std::istream &operator>>(std::istream &is, polygon &p) {
     for (auto &i : p.vs) is >> i;
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, polygon const &p) {
+  friend std::ostream &operator<<(std::ostream &os, polygon CR p) {
     if (p.vs.empty()) return os;
     for (auto it = p.vs.begin(); it != p.vs.end() - 1; ++it) os << *it << ' ';
     return os << p.vs.back();
   }
-  constexpr point<FP> &operator[](u32 x) { return vs[x]; }
-  constexpr point<FP> const &operator[](u32 x) const { return vs[x]; }
+  CEXP point<FP> &operator[](u32 x) { return vs[x]; }
+  CEXP point<FP> CR operator[](u32 x) const { return vs[x]; }
 
-  constexpr polygon &resort() {
+  CEXP polygon &resort() {
     std::ranges::sort(vs);
     return *this;
   }
-  constexpr polygon &reunique() {
+  CEXP polygon &reunique() {
     vs = uniq(vs);
     return *this;
   }
 
-  constexpr auto prev(typename vec<point<FP>>::const_iterator it) const { return --(it == vs.begin() ? it = vs.end() : it); }
-  constexpr auto next(typename vec<point<FP>>::const_iterator it) const { return ++it == vs.end() ? vs.begin() : it; }
-  constexpr u32 prev(u32 idx) const { return idx == 0 ? (u32)vs.size() - 1 : idx - 1; }
-  constexpr u32 next(u32 idx) const { return idx + 1 == (u32)vs.size() ? 0 : idx + 1; }
+  CEXP auto prev(TPN vec<point<FP>>::const_iterator it) const { return --(it == vs.begin() ? it = vs.end() : it); }
+  CEXP auto next(TPN vec<point<FP>>::const_iterator it) const { return ++it == vs.end() ? vs.begin() : it; }
+  CEXP u32 prev(u32 idx) const { return idx == 0 ? (u32)vs.size() - 1 : idx - 1; }
+  CEXP u32 next(u32 idx) const { return idx + 1 == (u32)vs.size() ? 0 : idx + 1; }
 
-  constexpr FP circum() const {
+  CEXP FP circum() const {
     FP ret = dist_PP(vs.back(), vs.front());
     for (u32 i = 0; i < (u32)vs.size() - 1; ++i) ret += dist_PP(vs[i], vs[i + 1]);
     return ret;
   }
-  constexpr FP area() const {
+  CEXP FP area() const {
     if (vs.size() < 3) return 0;
     FP ret = vs.back() ^ vs.front();
     for (u32 i = 0; i < (u32)vs.size() - 1; ++i) ret += vs[i] ^ vs[i + 1];
     return ret / 2;
   }
-  constexpr bool is_convex() const {
+  CEXP bool is_convex() const {
     bool flag[2] = {false, false};
     u32 n = (u32)vs.size();
     if (n < 3) return true;

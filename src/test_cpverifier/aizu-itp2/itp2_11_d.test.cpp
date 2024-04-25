@@ -11,7 +11,7 @@ int main() {
   vecu _;
   for (auto i : tifa_libs::gosper<>{}) {
     std::cout << i << ":";
-    for (u32 j = 0; j < n; ++j)
+    flt_ (u32, j, 0, n)
       if ((i >> j) & 1) std::cout << ' ' << j;
     std::cout << '\n';
   }

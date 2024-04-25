@@ -2,7 +2,7 @@
 
 #include "../../code/ds/d_ary_heap.hpp"
 
-constexpr int D = 3;
+CEXP int D = 3;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -10,7 +10,7 @@ int main() {
   u32 n, q;
   std::cin >> n >> q;
   vvec<i32> v(n);
-  for (u32 i = 0; i < q; ++i) {
+  flt_ (u32, i, 0, q) {
     u32 op, t;
     std::cin >> op >> t;
     if (op == 0) {

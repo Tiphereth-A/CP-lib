@@ -11,13 +11,13 @@ int main() {
   std::cin >> n >> m >> k;
   mat a(n, m), b(m, k);
   char ch;
-  for (u32 i = 0; i < n; ++i)
-    for (u32 j = 0; j < m; ++j) {
+  flt_ (u32, i, 0, n)
+    flt_ (u32, j, 0, m) {
       std::cin >> ch;
       a(i, j) = ch & 1;
     }
-  for (u32 i = 0; i < m; ++i)
-    for (u32 j = 0; j < k; ++j) {
+  flt_ (u32, i, 0, m)
+    flt_ (u32, j, 0, k) {
       std::cin >> ch;
       b(i, j) = ch & 1;
     }

@@ -11,7 +11,7 @@ vec<T> exp_fpssps(u32 n, vec<T> g) {
   static conv_subset<T, N> ss;
   g.resize(1 << n);
   vec<T> h{1};
-  for (u32 k = 1; k <= n; ++k) {
+  fle_ (u32, k, 1, n) {
     auto a = ss.conv(h, {begin(g) + (1 << (k - 1)), begin(g) + (1 << k)});
     std::copy(begin(a), end(a), std::back_inserter(h));
   }

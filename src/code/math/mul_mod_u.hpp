@@ -5,9 +5,9 @@
 
 namespace tifa_libs::math {
 
-constexpr u64 mul_mod_u(u64 a, u64 b, u64 mod) {
+CEXP u64 mul_mod_u(u64 a, u64 b, u64 mod) {
   if (std::bit_width(a) + std::bit_width(b) <= 64) return a * b % mod;
-  else return (u64)((u128)a * b % mod);
+  return (u64)((u128)a * b % mod);
 }
 
 }  // namespace tifa_libs::math

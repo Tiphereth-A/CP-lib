@@ -8,13 +8,13 @@ namespace tifa_libs::graph {
 
 template <class T, bool with_deg>
 class steiner_tree {
-  alistw<T, with_deg> const& e;
-  vecu const& a;
+  alistw<T, with_deg> CR e;
+  vecu CR a;
 
  public:
   vvecu dp;
 
-  steiner_tree(alistw<T, with_deg> const& E, vecu const& A) : e(E), a(A) { build(); }
+  steiner_tree(alistw<T, with_deg> CR E, vecu CR A) : e(E), a(A) { build(); }
 
   void build() {
     dp = vvecu(e.g.size(), vecu(1 << a.size(), INT32_MAX));
@@ -38,13 +38,13 @@ class steiner_tree {
     for (u32 s = 1; s < (1_u32 << a.size()); ++s) {
       for (u32 i = 0; i < e.g.size(); ++i) {
         for (u32 ss = s & (s - 1); ss; ss = s & (ss - 1))
-          dp[i][s] = std::min(dp[i][s], dp[i][ss] + dp[i][s ^ ss]);
+          dp[i][s] = min(dp[i][s], dp[i][ss] + dp[i][s ^ ss]);
         if (dp[i][s] != INT32_MAX) q.emplace(-dp[i][s], i);
       }
       dij(s);
     }
   }
-  constexpr u32 val() { return dp[a[0]][(1 << a.size()) - 1]; }
+  CEXP u32 val() { return dp[a[0]][(1 << a.size()) - 1]; }
 };
 
 }  // namespace tifa_libs::graph

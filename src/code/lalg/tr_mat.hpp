@@ -6,11 +6,11 @@
 namespace tifa_libs::math {
 
 template <class Mat>
-constexpr auto trace(Mat const &mat) {
+CEXP auto trace(Mat CR mat) {
   u32 n = mat.row();
   assert(n == mat.col());
-  typename Mat::value_type ret{};
-  for (u32 i = 0; i < n; ++i) ret += mat(i, i);
+  TPN Mat::value_type ret{};
+  flt_ (u32, i, 0, n) ret += mat(i, i);
   return ret;
 }
 

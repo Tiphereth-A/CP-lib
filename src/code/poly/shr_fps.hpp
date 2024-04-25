@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-constexpr poly<mint, ccore> shr_fps(poly<mint, ccore> const &p, usz x) {
+CEXP poly<mint, ccore> shr_fps(poly<mint, ccore> CR p, usz x) {
   if (!x) return p;
   auto _ = p;
   if (x >= p.size()) {
@@ -17,7 +17,7 @@ constexpr poly<mint, ccore> shr_fps(poly<mint, ccore> const &p, usz x) {
   return _;
 }
 template <class mint, class ccore>
-constexpr poly<mint, ccore> shr_strip_fps(poly<mint, ccore> const &p, usz x) {
+CEXP poly<mint, ccore> shr_strip_fps(poly<mint, ccore> CR p, usz x) {
   auto _ = shr_fps(p, x);
   _.strip();
   return _;

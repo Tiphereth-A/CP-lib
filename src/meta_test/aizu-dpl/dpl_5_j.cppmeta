@@ -2,7 +2,7 @@
 
 #include "../../code/comb/ball_box_iia.hpp"
 
-constexpr u32 MOD = 1000000000 + 7;
+CEXP u32 MOD = 1000000000 + 7;
 
 #define GENTCs_pmttd0
 #define GENTCs_p3nttd0

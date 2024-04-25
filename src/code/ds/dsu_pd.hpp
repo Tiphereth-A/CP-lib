@@ -10,21 +10,21 @@ class dsu_pd {
   vecp<u32, i32> edges;
 
  public:
-  explicit constexpr dsu_pd(u32 sz) : p(sz, -1) {}
+  explicit CEXP dsu_pd(u32 sz) : p(sz, -1) {}
 
-  constexpr i32 find(u32 x) { return p[x] < 0 ? (i32)x : find((u32)p[x]); }
-  constexpr u32 size(u32 x) { return (u32)-p[(u32)find(x)]; }
-  constexpr u32 time() { return (u32)edges.size(); }
-  constexpr bool same(u32 x, u32 y) { return find(x) == find(y); }
-  constexpr bool merge(u32 x, u32 y) {
+  CEXP i32 find(u32 x) { return p[x] < 0 ? (i32)x : find((u32)p[x]); }
+  CEXP u32 size(u32 x) { return (u32)-p[(u32)find(x)]; }
+  CEXP u32 time() { return (u32)edges.size(); }
+  CEXP bool same(u32 x, u32 y) { return find(x) == find(y); }
+  CEXP bool merge(u32 x, u32 y) {
     if ((x = (u32)find(x)) == (y = (u32)find(y))) return false;
-    if (p[x] > p[y]) std::swap(x, y);
+    if (p[x] > p[y]) swap(x, y);
     edges.emplace_back(y, p[y]);
     p[x] += p[y];
     p[y] = (i32)x;
     return true;
   }
-  constexpr void rollback(u32 t) {
+  CEXP void rollback(u32 t) {
     while (edges.size() > t) {
       auto [i, pi] = edges.back();
       edges.pop_back();

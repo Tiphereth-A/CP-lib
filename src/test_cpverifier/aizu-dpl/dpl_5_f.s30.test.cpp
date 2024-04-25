@@ -4,7 +4,7 @@
 #include "../../code/comb/ball_box_idl.hpp"
 #include "../../code/comb/binom.hpp"
 
-constexpr u32 MOD = 1000000000 + 7;
+CEXP u32 MOD = 1000000000 + 7;
 
 #include "../../code/math/mint_s30.hpp"
 

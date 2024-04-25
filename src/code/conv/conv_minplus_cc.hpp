@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 //! assume a and b are convex, aka. $a_{i-1} - a_{i-2} \leq a_i - a_{i-1}$ and it also holds for b
 template <class T>
-constexpr vec<T> conv_minplus_cc(vec<T> const& a, vec<T> const& b) {
+CEXP vec<T> conv_minplus_cc(vec<T> CR a, vec<T> CR b) {
   u32 n = (u32)a.size(), m = (u32)b.size();
   vec<T> c(n + m - 1);
   c[0] = a[0] + b[0];

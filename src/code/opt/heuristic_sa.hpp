@@ -6,7 +6,7 @@
 namespace tifa_libs::opt {
 
 template <class T, class Fg, class Ff, class Ft = f64, class Tt = f64>
-requires requires(Ff fit, Fg gen, T const& sample, Tt t) {
+requires requires(Ff fit, Fg gen, cT_(T) sample, Tt t) {
   { fit(sample) } -> std::same_as<Ft>;
   { gen(sample, t) } -> std::same_as<T>;
 }
@@ -18,7 +18,7 @@ class heuristic_sa {
 
  public:
   // Find minimum argument of f(x)
-  explicit constexpr heuristic_sa(Fg gen, Ff f, Tt Tmax = 1e10, Tt Tmin = 1e-10, Tt dT = 1 - 1e-5) : gen(gen), f(f), Tmax(Tmax), Tmin(Tmin), dT(dT), g(0, 1) {}
+  explicit CEXP heuristic_sa(Fg gen, Ff f, Tt Tmax = 1e10, Tt Tmin = 1e-10, Tt dT = 1 - 1e-5) : gen(gen), f(f), Tmax(Tmax), Tmin(Tmin), dT(dT), g(0, 1) {}
 
   std::pair<Ft, T> operator()(T init_val) {
     T ans = init_val, now = ans;

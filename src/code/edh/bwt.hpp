@@ -5,7 +5,7 @@
 
 namespace tifa_libs {
 
-constexpr strn bwt(strn s) {
+CEXP strn bwt(strn s) {
   s += s[0];
   str::suffixarray<strn> sa(s);
   strn ret = s;

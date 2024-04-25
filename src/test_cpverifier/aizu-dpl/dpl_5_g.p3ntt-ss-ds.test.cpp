@@ -4,7 +4,7 @@
 #include "../../code/comb/ball_box_dia.hpp"
 #include "../../code/comb/gen_bell.hpp"
 
-constexpr u32 MOD = 1000000000 + 7;
+CEXP u32 MOD = 1000000000 + 7;
 
 #include "../../code/math/mint_ds.hpp"
 #include "../../code/math/mint_ss.hpp"

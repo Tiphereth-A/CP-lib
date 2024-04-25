@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 template <class G, class T>
-constexpr vec<T> tree_sumvw(G const &tr, vec<T> const &v_weight) {
+CEXP vec<T> tree_sumvw(G CR tr, vec<T> CR v_weight) {
   vec<T> sumvw = v_weight;
   dfs(
       tr, tr.root,

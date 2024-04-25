@@ -8,12 +8,12 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-constexpr FP area_PoC(polygon<FP> const &po, circle<FP> const &c) {
+CEXP FP area_PoC(polygon<FP> CR po, circle<FP> CR c) {
   FP ans{};
   u32 sz = (u32)po.vs.size();
   if (sz < 3) return ans;
-  for (u32 i = 0; i < sz; ++i) ans += sarea_CT(c, po[i], po[po.next(i)]);
-  return std::abs(ans);
+  flt_ (u32, i, 0, sz) ans += sarea_CT(c, po[i], po[po.next(i)]);
+  return abs(ans);
 }
 
 }  // namespace tifa_libs::geo

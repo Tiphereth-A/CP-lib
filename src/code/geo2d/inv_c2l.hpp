@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 
 // geometry inverse of a circle which pass through the inversion center
 template <class FP>
-constexpr line<FP> inv_C2L(circle<FP> const &c, circle<FP> const &c1) {
+CEXP line<FP> inv_C2L(circle<FP> CR c, circle<FP> CR c1) {
   point v = (c1.o - c.o).do_rot90();
   return {inv_P2P(c, c1.o + v), inv_P2P(c, c1.o - v)};
 }

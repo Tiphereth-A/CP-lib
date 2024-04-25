@@ -12,9 +12,9 @@ requires requires(T x, T y) {
   x.cost() < y.cost();
   x < y;
 }
-std::optional<T> astar(T const &s) {
+std::optional<T> astar(T CR s) {
   struct C {
-    constexpr bool operator()(T const &a, T const &b) const { return b.cost() < a.cost(); }
+    CEXP bool operator()(cT_(T) a, cT_(T) b) const { return b.cost() < a.cost(); }
   };
   pq<T, C> pq;
   std::set<T> vis;

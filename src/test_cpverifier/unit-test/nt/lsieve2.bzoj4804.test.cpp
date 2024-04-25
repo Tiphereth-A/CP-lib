@@ -5,14 +5,14 @@
 
 #include "../base.hpp"
 
-void test(strn const& data) {
+void test(cT_(strn) data) {
   strn path = "src/data/bzoj/4804/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 
   u32 t;
   fin >> t;
   vecu ns(t);
-  for (u32 i = 0; i < t; ++i) fin >> ns[i];
+  flt_(u32, i, 0, t) fin >> ns[i];
 
   u32 n = *std::ranges::max_element(ns);
   tifa_libs::math::lsieve2 ls(n);
@@ -23,7 +23,7 @@ void test(strn const& data) {
     else return lst *= p;
   });
   vecu64 f(n + 1);
-  for (u32 i = 1; i <= n; ++i) f[i] = f[i - 1] + g[i];
+  fle_(u32, i, 1, n) f[i] = f[i - 1] + g[i];
 
   for (u32 n : ns) {
     u64 got = 0;

@@ -9,8 +9,8 @@ namespace tifa_libs::math {
 
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class poly>
-constexpr poly gen_stirling2_col(u32 n, u32 k, vecu64 const& fact, vecu64 const& ifact) {
-  using mint = typename poly::value_type;
+CEXP poly gen_stirling2_col(u32 n, u32 k, vecu64 CR fact, vecu64 CR ifact) {
+  using mint = TPN poly::value_type;
   if (k > n) return poly(n + 1);
 
   auto dfs = [&](auto&& dfs, poly& f, u32 n) -> void {
@@ -40,8 +40,8 @@ constexpr poly gen_stirling2_col(u32 n, u32 k, vecu64 const& fact, vecu64 const&
 }
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class poly>
-constexpr poly gen_stirling2_col(u32 n, u32 k) {
-  using mint = typename poly::value_type;
+CEXP poly gen_stirling2_col(u32 n, u32 k) {
+  using mint = TPN poly::value_type;
   return gen_stirling2_col<poly>(n, k, gen_fact(n + 1, mint::mod()), gen_ifact(n + 1, mint::mod()));
 }
 

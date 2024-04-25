@@ -23,9 +23,9 @@ int main() {
 
   volatile unsigned n = 3000;
   bitset<30> ans;
-  for (volatile unsigned i = 1; i <= n; ++i)
-    for (volatile unsigned j = 1; j <= n; j += 2)
-      for (volatile unsigned k = 1; k <= n; k += 4) ans |= i | j | k;
+  for (unsigned i = 1; i <= n; ++i)
+    for (unsigned j = 1; j <= n; j += 2)
+      for (unsigned k = 1; k <= n; k += 4) ans |= i | j | k;
 
   auto ed = chrono::high_resolution_clock::now();
   cout << fixed << setprecision(6) << chrono::duration_cast<chrono::nanoseconds>(ed - st).count() * 1e-6l << " ms" << endl;

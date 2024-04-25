@@ -11,16 +11,16 @@ struct lca_hld {
   tree_dfs_info<tree> info;
   vecu top;
 
-  constexpr lca_hld(tree& tr) {
+  CEXP lca_hld(tree& tr) {
     info.template reset_dfs_info<td_dep | td_fa>(tr);
     top = tree_top(tr, info);
   }
 
-  constexpr u32 operator()(u32 u, u32 v) const {
+  CEXP u32 operator()(u32 u, u32 v) const {
     while (top[u] != top[v]) info.dep[top[u]] < info.dep[top[v]] ? v = info.fa[top[v]] : u = info.fa[top[u]];
     return info.dep[u] > info.dep[v] ? v : u;
   }
-  constexpr ptt<vecpt<u32>> getchain(u32 u, u32 v) {
+  CEXP ptt<vecpt<u32>> getchain(u32 u, u32 v) {
     u32 lca = (*this)(u, v);
     vecpt<u32> retu, retv;
     while (top[u] != top[lca]) {

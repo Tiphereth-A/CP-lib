@@ -16,20 +16,20 @@ requires requires(Fu update, Fq query, Fc clear, Fr reset, u32 now) {
   clear(now);
   reset();
 }
-constexpr void dsu_on_tree(G const& tr, tree_dfs_info<G>& info, Fu&& update, Fq&& query, Fc&& clear, Fr&& reset) {
-  constexpr bool F = is_alist<G>;
+CEXP void dsu_on_tree(G CR tr, tree_dfs_info<G>& info, Fu&& update, Fq&& query, Fc&& clear, Fr&& reset) {
+  CEXP bool F = is_alist<G>;
   if (info.dfn.empty() || info.maxson.empty() || info.maxdfn.empty() || info.euler.empty()) info.template reset_dfs_info<td_dfn | td_maxson | td_maxdfn | td_euler>(tr);
 
   auto dfs = [&](auto&& dfs, u32 now, u32 fa = -1_u32, bool keep = false) -> void {
     for (auto v : tr.g[now])
-      if constexpr (F) {
+      if CEXP (F) {
         if (v != fa && v != info.maxson[now]) dfs(dfs, v, now, false);
       } else {
         if (v.first != fa && v.first != info.maxson[now]) dfs(dfs, v.first, now, false);
       }
     if (info.sz[now] > 1) dfs(dfs, info.maxson[now], now, true);
     for (auto v : tr.g[now])
-      if constexpr (F) {
+      if CEXP (F) {
         if (v != fa && v != info.maxson[now])
           for (u32 i = info.dfn[v]; i <= info.maxdfn[v]; ++i) update(info.euler[i]);
       } else {

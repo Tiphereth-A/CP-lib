@@ -12,7 +12,7 @@
 
 using mint = tifa_libs::math::mint_ss<998244353>;
 
-void test(strn const& data) {
+void test(cT_(strn) data) {
   strn path = "src/data/loj/6680/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 
@@ -28,9 +28,9 @@ void test(strn const& data) {
 
   vec<mint> f(n + 1);
   f[1] = 1;
-  for (u32 i = 2; i <= n; ++i) f[i] = f[i - 1] + g[i].first + g[i].first - g[i].second;
+  fle_(u32, i, 2, n) f[i] = f[i - 1] + g[i].first + g[i].first - g[i].second;
   u64 got = f[1].val();
-  for (u32 i = 2; i <= n; ++i) got ^= f[i].val();
+  fle_(u32, i, 2, n) got ^= f[i].val();
 
   u64 want;
   fans >> want;

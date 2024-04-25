@@ -4,7 +4,7 @@
 #include "../../code/comb/gen_bernoulli.hpp"
 #include "../../code/io/fastio.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_s63.hpp"
 #include "../../code/poly/polymtt.hpp"

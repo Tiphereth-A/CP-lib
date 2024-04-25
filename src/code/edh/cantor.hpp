@@ -7,7 +7,7 @@ namespace tifa_libs {
 
 //! [0, n)
 //! p \in [1, n], a_i == a_j \iff i == j
-constexpr vecu cantor_seq(vecu const &p) {
+CEXP vecu cantor_seq(vecu CR p) {
   u32 n = (u32)p.size();
   ds::fenwick<u32> tr(n + 1);
   vecu s(n);

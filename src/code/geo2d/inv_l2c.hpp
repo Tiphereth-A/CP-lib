@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 
 // geometry inverse of a line
 template <class FP>
-constexpr circle<FP> inv_L2C(circle<FP> const &c, line<FP> const &l) {
+CEXP circle<FP> inv_L2C(circle<FP> CR c, line<FP> CR l) {
   point p1 = inv_P2P(c, l.l), p2 = inv_P2P(c, l.r);
   return make_C_PPP(p1, p2, c.o);
 }

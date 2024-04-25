@@ -2,7 +2,7 @@
 
 #include "../../code/io/fastio.hpp"
 #include "../../code/str/run_hash.hpp"
-
+//
 #define GENTCs_hashstrs
 #define GENTCs_hashstrd0
 

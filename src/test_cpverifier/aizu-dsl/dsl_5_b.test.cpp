@@ -13,8 +13,8 @@ int main() {
     tr.add(xl + 1, yl + 1, xr + 1, yr + 1, 1);
   }
   u32 mx = 0;
-  for (u32 i = 1; i <= 1001; ++i)
-    for (u32 j = 1; j <= 1001; ++j) mx = std::max(mx, tr.sum(i, j));
+  fle_ (u32, i, 1, 1001)
+    fle_ (u32, j, 1, 1001) mx = tifa_libs::max(mx, tr.sum(i, j));
   std::cout << mx << '\n';
   return 0;
 }

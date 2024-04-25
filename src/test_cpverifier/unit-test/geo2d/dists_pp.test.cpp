@@ -12,13 +12,13 @@ using tifa_libs::geo::dist_PP_Ma, tifa_libs::geo::dist_PP, tifa_libs::geo::dist_
 using tifa_libs::geo::point;
 
 template <class T>
-void test_norm_subadditivity(point<T> const& x, point<T> const& y) {
+void test_norm_subadditivity(point<T> CR x, point<T> CR y) {
   point<T> O(0, 0), xy = x + y;
 
   T d1x = dist_PP_Ma(x, O), d1y = dist_PP_Ma(y, O), d1xy = dist_PP_Ma(xy, O);
   check_bool(!is_gt(d1xy, d1x + d1y), check_param(x), check_param(y), check_param(xy), check_param(d1x), check_param(d1y), check_param(d1xy));
 
-  if constexpr (!std::is_integral_v<T>) {
+  if CEXP (!std::is_integral_v<T>) {
     T d2x = dist_PP(x, O), d2y = dist_PP(y, O), d2xy = dist_PP(xy, O);
     check_bool(!is_gt(d2xy, d2x + d2y), check_param(x), check_param(y), check_param(xy), check_param(d2x), check_param(d2y), check_param(d2xy));
   }
@@ -28,23 +28,23 @@ void test_norm_subadditivity(point<T> const& x, point<T> const& y) {
 }
 
 template <class T>
-void test_norm_absolute_homogeneity(point<T> const& x, T s) {
+void test_norm_absolute_homogeneity(point<T> CR x, T s) {
   point<T> O(0, 0), sx = s * x;
 
   T d1x = dist_PP_Ma(x, O), d1sx = dist_PP_Ma(sx, O);
-  check_bool(is_eq(d1sx, std::abs(s) * d1x), check_param(x), check_param(s), check_param(sx), check_param(d1x), check_param(d1sx));
+  check_bool(is_eq(d1sx, std::abs(s) * d1x), check_param(x), check_param(s), check_param(sx), check_param(d1x), check_param(std::abs(s) * d1x), check_param(d1sx));
 
-  if constexpr (!std::is_integral_v<T>) {
+  if CEXP (!std::is_integral_v<T>) {
     T d2x = dist_PP(x, O), d2sx = dist_PP(sx, O);
-    check_bool(is_eq(d2sx, std::abs(s) * d2x), check_param(x), check_param(s), check_param(sx), check_param(d2x), check_param(d2sx));
+    check_bool(is_eq(d2sx, std::abs(s) * d2x), check_param(x), check_param(s), check_param(sx), check_param(d2x), check_param(std::abs(s) * d2x), check_param(d2sx));
   }
 
   T dinfx = dist_PP_Ch(x, O), dinfsx = dist_PP_Ch(sx, O);
-  check_bool(is_eq(dinfsx, std::abs(s) * dinfx), check_param(x), check_param(s), check_param(sx), check_param(dinfx), check_param(dinfsx));
+  check_bool(is_eq(dinfsx, std::abs(s) * dinfx), check_param(x), check_param(s), check_param(sx), check_param(dinfx), check_param(std::abs(s) * dinfx), check_param(dinfsx));
 }
 
 template <class T>
-void test_norm_non_negativity(point<T> const& x) {
+void test_norm_non_negativity(point<T> CR x) {
   point<T> O(0, 0);
 
   T d1x = dist_PP_Ma(x, O);
@@ -52,7 +52,7 @@ void test_norm_non_negativity(point<T> const& x) {
   T d1O = dist_PP_Ma(O, O);
   check_bool(is_zero(d1O), check_param(d1O));
 
-  if constexpr (!std::is_integral_v<T>) {
+  if CEXP (!std::is_integral_v<T>) {
     T d2x = dist_PP(x, O);
     check_bool(is_pos(d2x), check_param(x), check_param(d2x));
     T d2O = dist_PP(O, O);
@@ -66,10 +66,10 @@ void test_norm_non_negativity(point<T> const& x) {
 }
 
 template <class T>
-void test_norm_equivalence(point<T> const& x) {
+void test_norm_equivalence(point<T> CR x) {
   point<T> O(0, 0);
 
-  if constexpr (!std::is_integral_v<T>) {
+  if CEXP (!std::is_integral_v<T>) {
     T d1x = dist_PP_Ma(x, O), d2x = dist_PP(x, O), dinfx = dist_PP_Ch(x, O);
 
     check_bool(!is_lt(d1x, d2x) && !is_lt(d2x, d1x / 2), check_param(x), check_param(d1x), check_param(d2x), check_param(d1x / 2));
@@ -83,13 +83,13 @@ void test_norm_equivalence(point<T> const& x) {
 }
 
 template <class T>
-void test_distance_translation_invariant(point<T> const& x, point<T> const& y, point<T> const& a) {
+void test_distance_translation_invariant(point<T> CR x, point<T> CR y, point<T> CR a) {
   point<T> xa = x + a, ya = y + a;
 
   T d1xy = dist_PP_Ma(x, y), d1xaya = dist_PP_Ma(xa, ya);
   check_bool(is_eq(d1xy, d1xaya), check_param(x), check_param(y), check_param(a), check_param(xa), check_param(ya), check_param(d1xy), check_param(d1xaya));
 
-  if constexpr (!std::is_integral_v<T>) {
+  if CEXP (!std::is_integral_v<T>) {
     T d2xy = dist_PP(x, y), d2xaya = dist_PP(xa, ya);
     check_bool(is_eq(d2xy, d2xaya), check_param(x), check_param(y), check_param(a), check_param(xa), check_param(ya), check_param(d2xy), check_param(d2xaya));
   }
@@ -99,13 +99,13 @@ void test_distance_translation_invariant(point<T> const& x, point<T> const& y, p
 }
 
 template <class T>
-void test_distance_absolute_homogeneity(point<T> const& x, point<T> const& y, T s) {
+void test_distance_absolute_homogeneity(point<T> CR x, point<T> CR y, T s) {
   point<T> sx = s * x, sy = s * y;
 
   T d1xy = dist_PP_Ma(x, y), d1sxsy = dist_PP_Ma(sx, sy);
   check_bool(is_eq(d1sxsy, std::abs(s) * d1xy), check_param(x), check_param(y), check_param(s), check_param(sx), check_param(sy), check_param(d1xy), check_param(d1sxsy));
 
-  if constexpr (!std::is_integral_v<T>) {
+  if CEXP (!std::is_integral_v<T>) {
     T d2xy = dist_PP(x, y), d2sxsy = dist_PP(sx, sy);
     check_bool(is_eq(d2sxsy, std::abs(s) * d2xy), check_param(x), check_param(y), check_param(s), check_param(sx), check_param(sy), check_param(d2xy), check_param(d2sxsy));
   }
@@ -115,7 +115,7 @@ void test_distance_absolute_homogeneity(point<T> const& x, point<T> const& y, T 
 }
 
 template <class T>
-void single_test(point<T> const& x, point<T> const& y, point<T> const& a, T s) {
+void single_test(point<T> CR x, point<T> CR y, point<T> CR a, T s) {
   // norm properties
   test_norm_subadditivity(x, y);
   test_norm_subadditivity(y, x);

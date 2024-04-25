@@ -4,7 +4,7 @@
 #include "../../code/io/fastio.hpp"
 #include "../../code/math/ssts_pim_cnt.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_d63.hpp"
 #include "../../code/math/mint_ss.hpp"
@@ -23,7 +23,7 @@ int main() {
   vecu s(n);
   tifa_libs::fin >> s;
   auto v = tifa_libs::math::ssts_pim_cnt<poly>(s, t).data();
-  for (u32 i = 1; i <= t; ++i) tifa_libs::fout.write(v[i]).space_if(i != t);
+  fle_ (u32, i, 1, t) tifa_libs::fout.write(v[i]).space_if(i != t);
   tifa_libs::fout.linebreak();
   return 0;
 }

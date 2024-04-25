@@ -15,10 +15,8 @@ auto mapping(F f, T a) {
 }
 auto composition(F f, F g) {
   return F{f.first * g.first, f.first * g.second + f.second};
-  /*
-  g(x) = g.mul * x + g.add
-  f(g(x)) = f.mul * (g.mul * x + g.add) + f.add = f.mul * g.mul * x + f.mul * g.add + f.add
-  */
+  // g(x) = g.mul * x + g.add
+  // f(g(x)) = f.mul * (g.mul * x + g.add) + f.add = f.mul * g.mul * x + f.mul * g.add + f.add
 }
 auto id() { return F(1, 0); }
 
@@ -27,7 +25,7 @@ int main() {
   mint x, y;
   tifa_libs::fin >> n >> q;
   tifa_libs::ds::fhq_treap_w<T, op, e, F, mapping, composition, id, true> tr(n + q);
-  for (u32 i = 0; i < n; ++i)
+  flt_ (u32, i, 0, n)
     tifa_libs::fin >> x, tr.insert(T{x, 1});
   for (u32 i = 0, opt, l, r; i < q; ++i) {
     tifa_libs::fin >> opt >> l;

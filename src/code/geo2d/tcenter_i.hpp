@@ -7,14 +7,14 @@ namespace tifa_libs::geo {
 
 // radius of inscribed circle
 template <class FP>
-constexpr FP radius_I(triangle<FP> const &t) {
+CEXP FP radius_I(triangle<FP> CR t) {
   auto [a, b, c] = t.edges();
   return 2 * t.area() / (a + b + c);
 }
 
 // incenter (X1)
 template <class FP>
-constexpr point<FP> center_I(triangle<FP> const &t) { return t.trilinears(1, 1, 1); }
+CEXP point<FP> center_I(triangle<FP> CR t) { return t.trilinears(1, 1, 1); }
 
 }  // namespace tifa_libs::geo
 

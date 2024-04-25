@@ -34,9 +34,6 @@ notebook:
     - util: 共同依赖
       code_ext: hpp
       test_ext: cpp
-    - fp_const: 一些浮点常数
-      code_ext: hpp
-      test_ext: cpp
     - fp_comp: 浮点数比较
       code_ext: hpp
       test_ext: cpp
@@ -158,7 +155,7 @@ notebook:
     - segtree: 线段树
       code_ext: hpp
       test_ext: cpp
-    - segtree_old: 旧版线段树
+    - segtree_ctor: 常用线段树构造
       code_ext: hpp
       test_ext: cpp
     - lichao_segtree: 李超线段树(线段添加,定点最值)
@@ -759,9 +756,6 @@ notebook:
     - prime_seq: 素数序列
       code_ext: hpp
       test_ext: cpp
-    - atkin: Atkin 筛法
-      code_ext: hpp
-      test_ext: cpp
     - lsieve: 线性筛
       code_ext: hpp
       test_ext: cpp
@@ -780,10 +774,7 @@ notebook:
     - is_proot_nimber: 是否为原根(Nimber)
       code_ext: hpp
       test_ext: cpp
-    - proot_u32: 原根(32 位)
-      code_ext: hpp
-      test_ext: cpp
-    - proot_u64: 原根(64 位)
+    - proot: 原根
       code_ext: hpp
       test_ext: cpp
     - proot_gint: 原根(Gauss 整数)
@@ -898,10 +889,10 @@ notebook:
     - kahan: Kahan 求和
       code_ext: hpp
       test_ext: cpp
-    - basis_r: 实数线性基
+    - basis_z2: 异或线性基
       code_ext: hpp
       test_ext: cpp
-    - basis_z2: 异或线性基
+    - basis_r: 实数线性基
       code_ext: hpp
       test_ext: cpp
     - mex: mex
@@ -1044,22 +1035,13 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     conv:
-    - dft_traits: DFT traits
-      code_ext: hpp
-      test_ext: cpp
     - fft: 快速 Fourier 变换
       code_ext: hpp
       test_ext: cpp
     - ntt: 数论变换
       code_ext: hpp
       test_ext: cpp
-    - ntt32: 数论变换(u32)
-      code_ext: hpp
-      test_ext: cpp
     - ntt_doubling: NTT doubling
-      code_ext: hpp
-      test_ext: cpp
-    - cntt: 扩域 NTT
       code_ext: hpp
       test_ext: cpp
     - conv_naive: 卷积(暴力)
@@ -1078,9 +1060,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - conv_u128: 卷积(三模 NTT,高精度整数用)
-      code_ext: hpp
-      test_ext: cpp
-    - conv_cntt: 卷积(扩域 NTT)
       code_ext: hpp
       test_ext: cpp
     - conv_czt: 卷积(Chirp-Z 变换)
@@ -1135,16 +1114,10 @@ notebook:
     - polymtt: 多项式(基于 MTT)
       code_ext: hpp
       test_ext: cpp
-    - poly3ntt: 多项式(基于三模 MTT)
+    - poly3ntt: 多项式(基于三模 NTT)
       code_ext: hpp
       test_ext: cpp
     - polyntt: 多项式(基于 NTT)
-      code_ext: hpp
-      test_ext: cpp
-    - polyntt32: 多项式(基于 NTT 32)
-      code_ext: hpp
-      test_ext: cpp
-    - polycntt: 多项式(基于 CNTT)
       code_ext: hpp
       test_ext: cpp
     - shl_fps: 多项式左移

@@ -2,7 +2,7 @@
 
 #include "../../code/io/fastio.hpp"
 
-constexpr u32 MOD = 1000000007;
+CEXP u32 MOD = 1000000007;
 
 #define GENTCs_3nttu64
 #define GENTCs_3ntts

@@ -6,10 +6,10 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0>
-requires requires(Is0 is0, typename Mat::value_type t) {
+requires requires(Is0 is0, TPN Mat::value_type t) {
   { is0(t) } -> std::same_as<bool>;
 }
-constexpr void uhb(Mat &mat, Is0 &&is0) {
+CEXP void uhb(Mat &mat, Is0 &&is0) {
   u32 n = mat.row();
   assert(n == mat.col());
   if (n <= 2) return;
@@ -25,8 +25,8 @@ constexpr void uhb(Mat &mat, Is0 &&is0) {
     for (u32 j = i + 2; j < n; ++j) {
       if (is0(mat(j, i))) continue;
       auto _ = mat(j, i) / mat(i + 1, i);
-      for (u32 k = i; k < n; ++k) mat(j, k) -= _ * mat(i + 1, k);
-      for (u32 k = 0; k < n; ++k) mat(k, i + 1) += _ * mat(k, j);
+      flt_ (u32, k, i, n) mat(j, k) -= _ * mat(i + 1, k);
+      flt_ (u32, k, 0, n) mat(k, i + 1) += _ * mat(k, j);
     }
   }
 }

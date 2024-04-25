@@ -10,7 +10,7 @@ namespace tifa_libs::opt {
 // @param f: f(u32, u32, u32) -> bool
 // f(r, x, y): $a_{r,x}\leq a_{r,y}$
 template <class Ft>
-constexpr vecu smawk(u32 n, u32 m, Ft&& f) {
+CEXP vecu smawk(u32 n, u32 m, Ft&& f) {
   vecu ans(n);
   auto run = [&](auto&& run, u32 u, u32 d, u32 l, u32 r) -> void {
     if (u == d) return;

@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 template <class EW = u32>
 class dinic {
-  struct YYZ {
+  struct TIFA {
     u32 to;
     EW w;
     u32 inv;
@@ -15,12 +15,12 @@ class dinic {
   const u32 N;
 
  public:
-  vvec<YYZ> e;
+  vvec<TIFA> e;
   vecu dep, cur;
 
-  constexpr dinic(u32 n) : N(n), e(n) {}
+  CEXP dinic(u32 n) : N(n), e(n) {}
 
-  constexpr ptt<u32> add(u32 u, u32 v, EW w, EW rw = 0) {
+  CEXP ptt<u32> add(u32 u, u32 v, EW w, EW rw = 0) {
     u32 lstu = (u32)e[u].size(), lstv = (u32)e[v].size();
     e[u].push_back({v, w, lstv}), e[v].push_back({u, rw, lstu});
     return {u, e[u].size() - 1};
@@ -46,13 +46,13 @@ class dinic {
     cur = vecu(N, 0);
     return dep[t];
   }
-  constexpr u64 dfs(u32 u, u32 t, EW lim = std::numeric_limits<EW>::max()) {
+  CEXP u64 dfs(u32 u, u32 t, EW lim = std::numeric_limits<EW>::max()) {
     if (u == t || lim == 0) return lim;
     u64 ret = 0;
     for (u32& i = cur[u]; i < e[u].size(); ++i) {
       auto v = e[u][i];
       if (dep[v.to] == dep[u] + 1 && v.w) {
-        u64 flow = dfs(v.to, t, std::min(v.w, lim));
+        u64 flow = dfs(v.to, t, min(v.w, lim));
         if (flow) {
           e[u][i].w -= flow;
           e[v.to][e[u][i].inv].w += flow;

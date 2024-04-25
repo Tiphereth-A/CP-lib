@@ -10,53 +10,53 @@ class gint {
   T r_, i_;
 
  public:
-  constexpr gint(T const &real = T{}, T const &imag = T{}) : r_(real), i_(imag) {}
+  CEXP gint(cT_(T) real = T{}, cT_(T) imag = T{}) : r_(real), i_(imag) {}
 
-  constexpr T const &real() const { return r_; }
-  constexpr T const &imag() const { return i_; }
-  constexpr T norm() const { return r_ * r_ - i_ * i_ * M; }
-  constexpr T &real() { return r_; }
-  constexpr T &imag() { return i_; }
-  constexpr void real(T const &x) { r_ = x; }
-  constexpr void imag(T const &x) { i_ = x; }
-  constexpr gint &operator+=(T const &x) {
+  CEXP T CR real() const { return r_; }
+  CEXP T CR imag() const { return i_; }
+  CEXP T norm() const { return r_ * r_ - i_ * i_ * M; }
+  CEXP T &real() { return r_; }
+  CEXP T &imag() { return i_; }
+  CEXP void real(cT_(T) x) { r_ = x; }
+  CEXP void imag(cT_(T) x) { i_ = x; }
+  CEXP gint &operator+=(cT_(T) x) {
     r_ += x;
     return *this;
   }
-  constexpr gint &operator-=(T const &x) {
+  CEXP gint &operator-=(cT_(T) x) {
     r_ -= x;
     return *this;
   }
-  constexpr gint &operator*=(T const &x) {
+  CEXP gint &operator*=(cT_(T) x) {
     r_ *= x;
     i_ *= x;
     return *this;
   }
-  constexpr gint &operator/=(T const &x) {
+  CEXP gint &operator/=(cT_(T) x) {
     r_ /= x;
     i_ /= x;
     return *this;
   }
-  constexpr gint &operator+=(gint const &x) {
+  CEXP gint &operator+=(gint CR x) {
     r_ += x.real();
     i_ += x.imag();
     return *this;
   }
-  constexpr gint &operator-=(gint const &x) {
+  CEXP gint &operator-=(gint CR x) {
     r_ -= x.real();
     i_ -= x.imag();
     return *this;
   }
-  constexpr gint &operator*=(gint const &x) {
+  CEXP gint &operator*=(gint CR x) {
     T _ = r_ * x.real() + i_ * x.imag() * M;
     i_ = r_ * x.imag() + i_ * x.real();
     r_ = _;
     return *this;
   }
-  constexpr gint &operator/=(gint const &x) {
+  CEXP gint &operator/=(gint CR x) {
     const T _ = r_ * x.real() - i_ * x.imag() * M;
     const T n_ = x.norm();
-    if constexpr (std::is_integral_v<T>) {
+    if CEXP (std::is_integral_v<T>) {
       auto div = [](T x, T y) {
         T a = x * 2 + y, b = y * 2;
         return a / b - (a % b < 0);
@@ -69,27 +69,27 @@ class gint {
     }
     return *this;
   }
-  constexpr gint &operator%=(gint const &x) { return *this -= *this / x * x; }
-  friend constexpr gint operator+(gint x, T const &y) { return x += y; }
-  friend constexpr gint operator-(gint x, T const &y) { return x -= y; }
-  friend constexpr gint operator*(gint x, T const &y) { return x *= y; }
-  friend constexpr gint operator/(gint x, T const &y) { return x /= y; }
-  friend constexpr gint operator+(gint x, gint const &y) { return x += y; }
-  friend constexpr gint operator-(gint x, gint const &y) { return x -= y; }
-  friend constexpr gint operator*(gint x, gint const &y) { return x *= y; }
-  friend constexpr gint operator/(gint x, gint const &y) { return x /= y; }
-  friend constexpr gint operator%(gint x, gint const &y) { return x %= y; }
-  constexpr gint operator+() const { return *this; }
-  constexpr gint operator-() const { return gint(-r_, -i_); }
-  friend constexpr gint conj(gint const &x) { return gint{x.r_, -x.i_}; }
-  friend constexpr T norm(gint const &x) { return x.norm(); }
-  friend constexpr gint gcd(gint m, gint n) {
-    while (n != gint{}) std::swap(m %= n, n);
+  CEXP gint &operator%=(gint CR x) { return *this -= *this / x * x; }
+  friend CEXP gint operator+(gint x, cT_(T) y) { return x += y; }
+  friend CEXP gint operator-(gint x, cT_(T) y) { return x -= y; }
+  friend CEXP gint operator*(gint x, cT_(T) y) { return x *= y; }
+  friend CEXP gint operator/(gint x, cT_(T) y) { return x /= y; }
+  friend CEXP gint operator+(gint x, gint CR y) { return x += y; }
+  friend CEXP gint operator-(gint x, gint CR y) { return x -= y; }
+  friend CEXP gint operator*(gint x, gint CR y) { return x *= y; }
+  friend CEXP gint operator/(gint x, gint CR y) { return x /= y; }
+  friend CEXP gint operator%(gint x, gint CR y) { return x %= y; }
+  CEXP gint operator+() const { return *this; }
+  CEXP gint operator-() const { return gint(-r_, -i_); }
+  friend CEXP gint conj(gint CR x) { return gint{x.r_, -x.i_}; }
+  friend CEXP T norm(gint CR x) { return x.norm(); }
+  friend CEXP gint gcd(gint m, gint n) {
+    while (n != gint{}) swap(m %= n, n);
     return m;
   }
-  friend constexpr bool operator==(gint const &x, gint const &y) { return x.real() == y.real() && x.imag() == y.imag(); }
+  friend CEXP bool operator==(gint CR x, gint CR y) { return x.real() == y.real() && x.imag() == y.imag(); }
   friend std::istream &operator>>(std::istream &is, gint &x) { return is >> x.r_ >> x.i_; }
-  friend std::ostream &operator<<(std::ostream &os, gint const &x) { return os << x.real() << ' ' << x.imag(); }
+  friend std::ostream &operator<<(std::ostream &os, gint CR x) { return os << x.real() << ' ' << x.imag(); }
 };
 
 }  // namespace tifa_libs::math

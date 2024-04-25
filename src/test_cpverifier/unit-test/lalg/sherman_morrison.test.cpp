@@ -20,36 +20,36 @@ template <class mint>
 void single_test(u32 n) {
   tifa_libs::rand::Gen<std::uniform_int_distribution<u32>> gen(1, std::numeric_limits<u32>::max());
   using mat = tifa_libs::math::matrix<mint>;
-  auto is_0 = [](mint const& x) { return x.val() == 0; };
+  auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
   auto ge = [&is_0](mat& m, bool f) { return tifa_libs::math::ge_basic(m, is_0, f); };
 
   mat L(n, n), U(n, n);
-  for (u32 i = 0; i < n; ++i)
-    for (u32 j = 0; j <= i; ++j) L(i, j) = gen();
-  for (u32 i = 0; i < n; ++i)
-    for (u32 j = i; j < n; ++j) U(i, j) = gen();
+  flt_(u32, i, 0, n)
+    fle_(u32, j, 0, i) L(i, j) = gen();
+  flt_(u32, i, 0, n)
+    flt_(u32, j, i, n) U(i, j) = gen();
 
   mat I(n, n);
-  for (u32 i = 0; i < n; ++i) I(i, i) = 1;
+  flt_(u32, i, 0, n) I(i, i) = 1;
 
   mat A = L * U;
   mat inv_A = tifa_libs::math::inv_mat(A, is_0, ge).value();
   check(A * inv_A, I, check_param(L), check_param(U), check_param(A), check_param(inv_A));
   mat B = inv_A;
   vec<mint> u(n), v = A.data().back();
-  for (u32 i = 0; i < n; ++i) u[i] = A(i, n - 1);
+  flt_(u32, i, 0, n) u[i] = A(i, n - 1);
   tifa_libs::math::sherman_morrison(B, u, v);
   mat A2 = A + A.submat(0, n, n - 1, n) * A.submat(n - 1, n, 0, n);
-  for (u32 i = 0; i < n; ++i)
-    for (u32 j = 0; j < n; ++j) {
+  flt_(u32, i, 0, n)
+    flt_(u32, j, 0, n) {
       mint want = A(i, j) + u[i] * v[j];
       check(A2(i, j), want, check_param(A), check_param(u), check_param(v), check_param(A2));
     }
   check(B * A2, I, check_param(A), check_param(A2), check_param(B));
 }
 
-constexpr u32 MOD = 998244353;
-constexpr u64 MOD64 = 3'799'912'185'593'857;
+CEXP u32 MOD = 998244353;
+CEXP u64 MOD64 = 3'799'912'185'593'857;
 
 using mintd31 = tifa_libs::math::mint_d31<-1>;
 using mintd63 = tifa_libs::math::mint_d63<-1>;

@@ -7,14 +7,14 @@
 
 namespace tifa_libs::math {
 
-constexpr u64 sqrfree_cnt(u64 n) {
+CEXP u64 sqrfree_cnt(u64 n) {
   if (n <= 3) return n;
-  const u32 I = (u32)std::min(ikth_root(n, 5) * 2, ikth_root(n / 4, 3)), D = isqrt(n / I);
+  const u32 I = (u32)min(ikth_root(n, 5) * 2, ikth_root(n / 4, 3)), D = isqrt(n / I);
   auto mu = lsieve_func{}.reset_lsieve_func<ls_mu>(D + 1).mu;
   u64 ans = 0;
-  for (u32 i = 1; i <= D; ++i)
+  fle_ (u32, i, 1, D)
     if (mu[i]) ans += (u64)mu[i] * (n / ((u64)i * i));
-  for (u32 i = 1; i <= D; ++i) mu[i] += mu[i - 1];
+  fle_ (u32, i, 1, D) mu[i] += mu[i - 1];
   vec<i32> mu_large(I + 1);
   for (u32 i = I - 1; i >= 1; --i) {
     const u32 xi = isqrt(n / i), h = isqrt(xi), tlim = 2 * h - (h == xi / h);

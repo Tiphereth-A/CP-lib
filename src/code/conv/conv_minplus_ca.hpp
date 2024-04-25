@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 //! assume a is convex, aka. $a_{i-1} - a_{i-2} \leq a_i - a_{i-1}$
 //! assume b is arbitary, aka. $b_i = b_j \iff i = j$
 template <class T>
-constexpr vec<T> conv_minplus_ca(vec<T> const& a, vec<T> const& b) {
+CEXP vec<T> conv_minplus_ca(vec<T> CR a, vec<T> CR b) {
   u32 n = (u32)a.size(), m = (u32)b.size();
   vecu argmin = opt::smawk(
       n + m - 1, m,

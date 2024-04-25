@@ -7,13 +7,13 @@
 
 namespace tifa_libs::math {
 
-constexpr std::optional<ptt<u32>> crt_mod(vec<i32> const &a, vecu const &m, u32 const mod) {
+CEXP std::optional<ptt<u32>> crt_mod(vec<i32> CR a, vecu CR m, u32 const mod) {
   if (a.size() != m.size()) return {};
   vecu m_cpy(m);
   u32 n = (u32)a.size();
-  for (u32 i = 0; i < n; ++i) {
+  flt_ (u32, i, 0, n) {
     u32 &mi = m_cpy[i];
-    for (u32 j = 0; j < i; ++j) {
+    flt_ (u32, j, 0, i) {
       u32 &mj = m_cpy[j], d = gcd(mi, mj);
       if (d == 1) continue;
       if (safe_mod(a[i], d) != safe_mod(a[j], d)) return {};
@@ -29,7 +29,7 @@ constexpr std::optional<ptt<u32>> crt_mod(vec<i32> const &a, vecu const &m, u32 
   }
   m_cpy.push_back(mod);
   vec<i32> pp(n + 1, 1), res(n + 1);
-  for (u32 i = 0; i < n; ++i) {
+  flt_ (u32, i, 0, n) {
     i64 u = safe_mod((safe_mod(a[i], m_cpy[i]) - res[i]) * (i64)inverse((u64)pp[i], m_cpy[i]), m_cpy[i]);
     for (u32 j = i + 1; j <= n; ++j) {
       res[j] = (i32)((res[j] + u * pp[j]) % m_cpy[j]);

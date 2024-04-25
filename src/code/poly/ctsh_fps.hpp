@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-constexpr poly<mint, ccore> ctsh_fps(poly<mint, ccore> const &f, mint c, vecu64 const &ifact, u32 m = 0) {
+CEXP poly<mint, ccore> ctsh_fps(poly<mint, ccore> CR f, mint c, vecu64 CR ifact, u32 m = 0) {
   using poly_t = poly<mint, ccore>;
   u32 n = f.size(), k = f.size() - 1;
   if (!m) m = n;
@@ -28,7 +28,7 @@ constexpr poly<mint, ccore> ctsh_fps(poly<mint, ccore> const &f, mint c, vecu64 
     return pref;
   }
   poly_t d(k + 1);
-  for (u32 i = 0; i <= k; ++i) {
+  fle_ (u32, i, 0, k) {
     d[i] = ifact[i], (d[i] *= ifact[k - i]) *= f[i];
     if ((k - i) & 1) d[i] = -d[i];
   }
@@ -37,15 +37,15 @@ constexpr poly<mint, ccore> ctsh_fps(poly<mint, ccore> const &f, mint c, vecu64 
   auto dh = d * h;
   poly_t ret(m);
   mint cur = t;
-  for (u32 i = 1; i <= k; ++i) cur *= t - i;
-  for (u32 i = 0; i < m; ++i) {
+  fle_ (u32, i, 1, k) cur *= t - i;
+  flt_ (u32, i, 0, m) {
     ret[i] = cur * dh[k + i];
     (cur *= t + i + 1) *= h[i];
   }
   return ret;
 }
 template <class mint, class ccore>
-constexpr poly<mint, ccore> ctsh_fps(poly<mint, ccore> const &f, mint c, u32 m = 0) { return ctsh_fps<mint, ccore>(f, c, gen_ifact(f.size(), mint::mod()), m); }
+CEXP poly<mint, ccore> ctsh_fps(poly<mint, ccore> CR f, mint c, u32 m = 0) { return ctsh_fps<mint, ccore>(f, c, gen_ifact(f.size(), mint::mod()), m); }
 
 }  // namespace tifa_libs::math
 

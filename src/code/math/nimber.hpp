@@ -8,25 +8,25 @@ namespace tifa_libs::math {
 template <std::unsigned_integral T, T (*prod)(T, T)>
 struct nimber {
   T x;
-  constexpr nimber(T _x = 0) : x(_x) {}
+  CEXP nimber(T _x = 0) : x(_x) {}
 
-  constexpr nimber& operator+=(nimber const& p) {
+  CEXP nimber& operator+=(nimber CR p) {
     x ^= p.x;
     return *this;
   }
-  constexpr nimber& operator-=(nimber const& p) {
+  CEXP nimber& operator-=(nimber CR p) {
     x ^= p.x;
     return *this;
   }
-  constexpr nimber& operator*=(nimber const& p) {
+  CEXP nimber& operator*=(nimber CR p) {
     x = prod(x, p.x);
     return *this;
   }
-  constexpr nimber operator+(nimber const& p) const { return x ^ p.x; }
-  constexpr nimber operator-(nimber const& p) const { return x ^ p.x; }
-  constexpr nimber operator*(nimber const& p) const { return prod(x, p.x); }
-  constexpr bool operator==(nimber const& p) const { return x == p.x; }
-  friend std::ostream& operator<<(std::ostream& os, nimber const& p) { return os << p.x; }
+  CEXP nimber operator+(nimber CR p) const { return x ^ p.x; }
+  CEXP nimber operator-(nimber CR p) const { return x ^ p.x; }
+  CEXP nimber operator*(nimber CR p) const { return prod(x, p.x); }
+  CEXP bool operator==(nimber CR p) const { return x == p.x; }
+  friend std::ostream& operator<<(std::ostream& os, nimber CR p) { return os << p.x; }
 };
 
 using nimber16 = nimber<u16, nimprod16>;

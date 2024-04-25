@@ -8,25 +8,25 @@ namespace tifa_libs::ds {
 template <class T, bool persistent = false>
 class leftist_tree {
   u32 cnt;
-  struct YYZ {
+  struct TIFA {
     u32 l, r;
     u32 dist, rt;
     T w;
     bool del;
-    constexpr YYZ() {}
-    constexpr YYZ(u32 l, u32 r, u32 dist_, u32 rt_, T w_, bool del_ = false) : l(l), r(r), dist(dist_), rt(rt_), w(w_), del(del_) {}
+    CEXP TIFA() {}
+    CEXP TIFA(u32 l, u32 r, u32 dist_, u32 rt_, T w_, bool del_ = false) : l(l), r(r), dist(dist_), rt(rt_), w(w_), del(del_) {}
   };
 
-  constexpr u32 merge_(u32 x, u32 y) {
+  CEXP u32 merge_(u32 x, u32 y) {
     if (!~x || !~y) return x & y;
-    if (t[y].w < t[x].w || (t[y].w == t[x].w && x > y)) std::swap(x, y);
-    if constexpr (persistent) t.push_back(t[x]), t.back().rt = x = (u32)t.size() - 1;
+    if (t[y].w < t[x].w || (t[y].w == t[x].w && x > y)) swap(x, y);
+    if CEXP (persistent) t.push_back(t[x]), t.back().rt = x = (u32)t.size() - 1;
     t[x].r = merge_(t[x].r, y);
-    if (!~t[x].l || t[t[x].r].dist > t[t[x].l].dist) std::swap(t[x].l, t[x].r);
+    if (!~t[x].l || t[t[x].r].dist > t[t[x].l].dist) swap(t[x].l, t[x].r);
     t[x].dist = (!~t[x].r ? 0 : t[t[x].r].dist + 1);
     return x;
   }
-  constexpr void del(u32 x) {
+  CEXP void del(u32 x) {
     t[x].del = true;
     t[x].rt = merge_(t[x].l, t[x].r);
     if (~t[x].l) t[t[x].l].rt = t[x].rt;
@@ -34,32 +34,32 @@ class leftist_tree {
   }
 
  public:
-  vec<YYZ> t;
+  vec<TIFA> t;
 
-  constexpr explicit leftist_tree(vec<T> const& a) : t() {
+  CEXP explicit leftist_tree(vec<T> CR a) : t() {
     for (auto x : a) newheap(x);
   }
-  constexpr explicit leftist_tree(u32 n = 0) : t() {
+  CEXP explicit leftist_tree(u32 n = 0) : t() {
     t.reserve(n);
-    for (u32 i = 0; i < n; ++i) newheap();
+    flt_ (u32, i, 0, n) newheap();
   }
 
-  constexpr u32 newheap(T w = T{}) {
+  CEXP u32 newheap(T w = T{}) {
     t.emplace_back(-1_u32, -1_u32, 0, t.size(), w, false);
     return (u32)t.size() - 1;
   }
-  constexpr u32 gf(u32 x) { return t[x].rt == x ? x : t[x].rt = gf(t[x].rt); }
-  constexpr bool same(u32 x, u32 y) {
+  CEXP u32 gf(u32 x) { return t[x].rt == x ? x : t[x].rt = gf(t[x].rt); }
+  CEXP bool same(u32 x, u32 y) {
     if (t[x].del || t[y].del) return false;
     if ((x = gf(x)) == (y = gf(y))) return false;
     return true;
   }
-  constexpr void merge(u32 x, u32 y) {
+  CEXP void merge(u32 x, u32 y) {
     if (t[x].del || t[y].del) return;
     if ((x = gf(x)) == (y = gf(y))) return;
     t[x].rt = t[y].rt = merge_(x, y);
   }
-  constexpr std::optional<T> pop(u32 x) {
+  CEXP std::optional<T> pop(u32 x) {
     if (t[x].del) return {};
     T ret = t[x = gf(x)].w;
     del(x);

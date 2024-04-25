@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr);
   u32 n, q;
   std::cin >> n >> q;
-  tifa_libs::ndvec<2, i32> nv(n, 0);
+  tifa_libs::ndvec<2, i32> nv(n, 0u);
   i32 x;
   for (u32 i = 0, op, t; i < q; ++i) {
     std::cin >> op >> t;

@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-constexpr poly<mint, ccore> exp_fps(poly<mint, ccore> p, u32 n = 0) {
+CEXP poly<mint, ccore> exp_fps(poly<mint, ccore> p, u32 n = 0) {
   assert(p[0] == 0);
   if (!n) n = p.size();
   p[0] += 1;

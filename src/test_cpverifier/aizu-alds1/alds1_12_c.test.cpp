@@ -16,6 +16,6 @@ int main() {
     }
   }
   auto dis = tifa_libs::graph::dijkstra(g, 0, fn_0);
-  for (u32 i = 0; i < n; ++i) std::cout << i << ' ' << dis[i] << '\n';
+  flt_ (u32, i, 0, n) std::cout << i << ' ' << dis[i] << '\n';
   return 0;
 }

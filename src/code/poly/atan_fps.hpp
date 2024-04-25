@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-constexpr poly<mint, ccore> atan_fps(poly<mint, ccore> const& p) {
+CEXP poly<mint, ccore> atan_fps(poly<mint, ccore> CR p) {
   u32 n = p.size();
   auto _ = p;
   (_ *= _).resize(n);

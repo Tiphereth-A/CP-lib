@@ -5,94 +5,181 @@
 
 namespace tifa_libs::ds {
 namespace segtree_impl_ {
-template <bool use_tag, class T, auto op, auto e, class F, auto mapping, auto composition, auto id>
-requires requires(T val, T val_l, T val_r, F tag) {
+template <bool enable_tag, class T, auto op, auto e, class F, auto mapping, auto composition, auto id>
+requires requires(T val, T val2, F tag, F tag2) {
   { e() } -> std::same_as<T>;
-  { op(val_l, val_r) } -> std::same_as<T>;
+  { op(val, val2) } -> std::same_as<T>;
+  { mapping(val, tag) } -> std::same_as<T>;
+  { composition(tag, tag2) } -> std::same_as<F>;
   { id() } -> std::same_as<F>;
-  { mapping(tag, val) } -> std::same_as<T>;
 }
 class segtree {
-  vec<T> t;
-  vec<F> sign;
-  vecb set_sign;
-  u32 n;
+  const T E = e();
+  const F ID = id();
+  u32 sz, lbn, n;
+  vec<T> val;
+  vec<F> tag;
+  vecb vset;
 
  public:
-  explicit constexpr segtree(vec<T> const &a) : t(a.size() * 4), sign(), set_sign(), n((u32)a.size()) {
-    if constexpr (use_tag) sign.resize(t.size()), set_sign.resize(t.size());
-    build(a, 1, 0, n - 1);
-  }
-  explicit constexpr segtree(u32 N = 0) : t(N * 4), sign(), set_sign(), n(N) {
-    if constexpr (use_tag) sign.resize(t.size()), set_sign.resize(t.size());
-    if (n) build(vec<T>(n, e()), 1, 0, n - 1);
-  }
+  template <class V>
+  explicit CEXP segtree(V &&a) { reset(std::forward<V>(a)); }
+  explicit CEXP segtree(u32 n = 0) : segtree(vec<T>(n, e())) {}
 
-  constexpr void update(u32 L, u32 R, F f) { update(1, 0, n - 1, L, R, f); }
-  constexpr void update(u32 pos, F f) { update(1, 0, n - 1, pos, pos, f); }
-  constexpr void set(u32 L, u32 R, T f) { set(1, 0, n - 1, L, R, f); }
-  constexpr void set(u32 pos, T f) { set(1, 0, n - 1, pos, pos, f); }
-  constexpr T query(u32 L, u32 R) { return query(1, 0, n - 1, L, R); }
-  constexpr T query(u32 pos) { return query(1, 0, n - 1, pos, pos); }
+  template <class V>
+  CEXP void reset(V &&a) {
+    if (a.empty()) {
+      sz = lbn = n = 0, val.clear(), tag.clear(), vset.clear();
+      return;
+    }
+    sz = (u32)a.size(), lbn = (u32)std::bit_width(sz - 1), n = 1_u32 << lbn;
+    if (!n) return;
+    val = vec<T>(n * 2, E);
+    std::ranges::copy(a, val.begin() + n);
+    if CEXP (enable_tag) tag = vec<F>(n, ID), vset = vecb(n);
+    for (u32 i = n - 1; i; --i) pushup(i);
+  }
+  //! 0-indexed, [l, r)
+  CEXP void update(u32 l, u32 r, cT_(F) v) { upd_set<true>(l, r, v); }
+  //! 0-indexed, [l, r)
+  // set(3, 7, v): val[[3, 4), [4, 6), [6, 7)] <- v
+  //! val[[4, 6)] != op(val[[3, 4)], val[[6, 7)])
+  CEXP void set(u32 l, u32 r, cT_(F) v) { upd_set<false>(l, r, v); }
+  //! 0-indexed, [l, r)
+  CEXP T query(u32 l, u32 r) {
+    assert(l <= r && r <= sz);
+    if (l == r) return E;
+    l += n, r += n;
+    u32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r);
+    for (u32 i = lbn, ie = (u32)max(1, (i32)min(zl, zr)); i >= ie; --i) {
+      if (zl < i) pushdown(l >> i);
+      if (zr < i) pushdown((r - 1) >> i);
+    }
+    T ql = E, qr = E;
+    while (l < r) {
+      if (l & 1) ql = op(ql, val[l++]);
+      if (r & 1) qr = op(val[--r], qr);
+      l /= 2, r /= 2;
+    }
+    return op(ql, qr);
+  }
+  CEXP void update(u32 x, cT_(F) v) { upd_set<true>(x, v); }
+  CEXP void set(u32 x, cT_(T) v) { upd_set<false>(x, v); }
+  CEXP T query(u32 x) {
+    assert(x < sz);
+    x += n;
+    for (u32 i = lbn; i; --i) pushdown(x >> i);
+    return val[x];
+  }
+  template <class G>
+  requires requires(G check, T val) {
+    { check(val) } -> std::same_as<bool>;
+  }
+  CEXP u32 max_right(u32 l, G &&chk) {
+    assert(l <= sz && chk(ID));
+    if (l == n) return n;
+    l += n;
+    for (u32 i = lbn; i; --i) pushdown(l >> i);
+    T _ = E;
+    do {
+      if (!chk(op(_, val[l >>= std::countr_zero(l)]))) {
+        while (l < n) {
+          pushdown(l), l *= 2;
+          if (chk(op(_, val[l]))) _ = op(_, val[l++]);
+        }
+        return l - n;
+      }
+      _ = op(_, val[l++]);
+    } while (!std::has_single_bit(l));
+    return sz;
+  }
+  template <class G>
+  requires requires(G check, T val) {
+    { check(val) } -> std::same_as<bool>;
+  }
+  CEXP u32 min_left(u32 r, G chk) {
+    assert(r <= sz && chk(ID));
+    if (!r) return 0;
+    r += n;
+    for (u32 i = lbn; i; --i) pushdown((r - 1) >> i);
+    T _ = E;
+    do {
+      if (!(--r, r >>= std::countr_one(r))) r = 1;
+      if (!chk(op(val[r], _))) {
+        while (r < n) {
+          pushdown(r), r = r * 2 + 1;
+          if (chk(op(val[r], _))) _ = op(val[r--], _);
+        }
+        return r + 1 - n;
+      }
+      _ = op(val[r], _);
+    } while (!std::has_single_bit(r));
+    return 0;
+  }
 
  private:
-  constexpr void pushup(u32 x) { t[x] = op(t[x * 2], t[x * 2 + 1]); }
-  constexpr void all_update(u32 x, F f) {
-    t[x] = mapping(f, t[x]);
-    if constexpr (use_tag) sign[x] = composition(f, sign[x]);
-  }
-  constexpr void all_set(u32 x, T f) {
-    t[x] = f;
-    if constexpr (use_tag) sign[x] = id(), set_sign[x] = 1;
-  }
-  constexpr void pushdown(u32 x) {
-    if constexpr (use_tag) {
-      if (set_sign[x]) all_set(x * 2, t[x]), all_set(x * 2 + 1, t[x]), set_sign[x] = 0;
-      else all_update(x * 2, sign[x]), all_update(x * 2 + 1, sign[x]), sign[x] = id();
+  CEXP void compose(F &a, cT_(F) b) const { a = a == ID ? b : composition(a, b); }
+  CEXP void pushup(u32 x) { val[x] = op(val[x * 2], val[x * 2 + 1]); }
+  template <bool upd>
+  CEXP void apply(u32 x, std::conditional_t<upd, cT_(F), cT_(T)> f) {
+    if constexpr (upd) {
+      if (f == ID) return;
+      val[x] = mapping(val[x], f);
+      if CEXP (enable_tag)
+        if (x < n) compose(tag[x], f);
+    } else {
+      val[x] = f;
+      if CEXP (enable_tag)
+        if (x < n) tag[x] = ID, vset[x] = 1;
     }
   }
-  constexpr void build(vec<T> const &a, u32 x, u32 l, u32 r) {
-    if constexpr (use_tag) sign[x] = id();
-    if (l == r) return void(t[x] = a[l]);
-    u32 mid = l + (r - l) / 2;
-    build(a, x * 2, l, mid), build(a, x * 2 + 1, mid + 1, r);
-    pushup(x);
+  CEXP void pushdown(u32 x) {
+    if CEXP (enable_tag) {
+      if (vset[x]) {
+        val[x * 2] = val[x * 2 + 1] = val[x];
+        if (x * 2 < n) tag[x * 2] = tag[x * 2 + 1] = ID, vset[x * 2] = vset[x * 2 + 1] = 1;
+        vset[x] = 0;
+      } else if (tag[x] != ID) {
+        val[x * 2] = mapping(val[x * 2], tag[x]), val[x * 2 + 1] = mapping(val[x * 2 + 1], tag[x]);
+        if (x * 2 < n) compose(tag[x * 2], tag[x]), compose(tag[x * 2 + 1], tag[x]);
+        tag[x] = ID;
+      }
+    }
   }
-  constexpr void update(u32 x, u32 l, u32 r, u32 L, u32 R, F f) {
-    assert(R >= l && L <= r);
-    if (L <= l && R >= r) return void(all_update(x, f));
-    pushdown(x);
-    u32 mid = l + (r - l) / 2;
-    if (L <= mid) update(x * 2, l, mid, L, R, f);
-    if (R > mid) update(x * 2 + 1, mid + 1, r, L, R, f);
-    pushup(x);
+  template <bool upd>
+  CEXP void upd_set(u32 l, u32 r, std::conditional_t<upd, cT_(F), cT_(T)> v) {
+    assert(l <= r && r <= sz);
+    if (l == r) return;
+    l += n, r += n;
+    u32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), zm = min(zl, zr);
+    for (u32 i = lbn, ie = (u32)max(1, (i32)zm); i >= ie; --i) {
+      if (zl < i) pushdown(l >> i);
+      if (zr < i) pushdown((r - 1) >> i);
+    }
+    u32 l2 = l, r2 = r;
+    while (l2 < r2) {
+      if (l2 & 1) apply<upd>(l2++, v);
+      if (r2 & 1) apply<upd>(--r2, v);
+      l2 /= 2, r2 /= 2;
+    }
+    fle_ (u32, i, zm + 1, lbn) {
+      if (zl < i) pushup(l >> i);
+      if (zr < i) pushup((r - 1) >> i);
+    }
   }
-  constexpr void set(u32 x, u32 l, u32 r, u32 L, u32 R, T f) {
-    assert(R >= l && L <= r);
-    if (L <= l && R >= r) return void(all_set(x, f));
-    pushdown(x);
-    u32 mid = l + (r - l) / 2;
-    if (L <= mid) set(x * 2, l, mid, L, R, f);
-    if (R > mid) set(x * 2 + 1, mid + 1, r, L, R, f);
-    pushup(x);
-  }
-  constexpr T query(u32 x, u32 l, u32 r, u32 L, u32 R) {
-    assert(R >= l && L <= r);
-    if (L <= l && R >= r) return t[x];
-    pushdown(x);
-    u32 mid = l + (r - l) / 2;
-    T ret = e();
-    if (L <= mid) ret = op(ret, query(x * 2, l, mid, L, R));
-    if (R > mid) ret = op(ret, query(x * 2 + 1, mid + 1, r, L, R));
-    return ret;
+  template <bool upd>
+  CEXP void upd_set(u32 x, std::conditional_t<upd, cT_(F), cT_(T)> v) {
+    assert(x < sz);
+    x += n;
+    for (u32 i = lbn; i; --i) pushdown(x >> i);
+    if CEXP (upd) val[x] = mapping(val[x], v);
+    else val[x] = v;
+    fle_ (u32, i, 1, lbn) pushup(x >> i);
   }
 };
 }  // namespace segtree_impl_
 
 template <class T, auto op, auto e, class F, auto mapping, auto composition, auto id>
-requires requires(F tag_l, F tag_r) {
-  { composition(tag_l, tag_r) } -> std::same_as<F>;
-}
 using segtree = segtree_impl_::segtree<true, T, op, e, F, mapping, composition, id>;
 template <class T, auto op, auto e>
 using segtree_notag = segtree_impl_::segtree<false, T, op, e, T, op, op, e>;

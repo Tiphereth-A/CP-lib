@@ -6,11 +6,11 @@
 namespace tifa_libs::graph {
 namespace ringcnt4_impl_ {
 template <bool with_deg>
-constexpr u64 run(alist<with_deg> const& dg, alist<with_deg> const& dgv) {
+CEXP u64 run(alist<with_deg> CR dg, alist<with_deg> CR dgv) {
   u64 ans = 0;
   u32 n = (u32)dg.g.size();
   vecu64 cnt1(n), cnt2(n);
-  for (u32 u = 0; u < n; ++u) {
+  flt_ (u32, u, 0, n) {
     for (u32 v : dg.g[u])
       for (u32 w : dg.g[v]) ++cnt1[w];
     for (u32 v : dgv.g[u])
@@ -34,11 +34,11 @@ constexpr u64 run(alist<with_deg> const& dg, alist<with_deg> const& dgv) {
 
 //! should be simple undirected graph
 template <bool with_deg>
-constexpr u64 ringcnt4(alist<with_deg> const& fg) {
+CEXP u64 ringcnt4(alist<with_deg> CR fg) {
   auto&& g = fg.g;
   u32 n = (u32)g.size();
   alist dg(n), dgv(n);
-  for (u32 u = 0; u < n; ++u)
+  flt_ (u32, u, 0, n)
     for (u32 v : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[v].size(), v) ? dg : dgv).add_arc(u, v);
   return ringcnt4_impl_::run(dg, dgv);
 }

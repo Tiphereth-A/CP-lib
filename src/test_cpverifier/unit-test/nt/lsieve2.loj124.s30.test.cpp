@@ -9,7 +9,7 @@
 
 using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
-void test(strn const& data) {
+void test(cT_(strn) data) {
   strn path = "src/data/loj/124/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 
@@ -23,7 +23,7 @@ void test(strn const& data) {
     return lst;
   });
   mint res = 0;
-  for (u32 i = 1; i <= n; ++i) res += dk[i];
+  fle_(u32, i, 1, n) res += dk[i];
 
   u64 got = res.val(), want;
   fans >> want;

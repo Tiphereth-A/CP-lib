@@ -4,7 +4,7 @@
 #include "../../code/math/youngt.hpp"
 #include "../../code/opt/lis.hpp"
 
-constexpr u32 inf = 1145141919;
+CEXP u32 inf = 1145141919;
 
 int main() {
   std::ios::sync_with_stdio(false);

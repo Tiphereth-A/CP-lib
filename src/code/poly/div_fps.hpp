@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-constexpr poly<mint, ccore> div_fps(poly<mint, ccore> p, poly<mint, ccore> q) {
+CEXP poly<mint, ccore> div_fps(poly<mint, ccore> p, poly<mint, ccore> q) {
   u32 n = p.size(), m = q.size();
   if (n < m) return poly<mint, ccore>{};
   p.reverse(), q.reverse(), q.resize(n - m + 1);

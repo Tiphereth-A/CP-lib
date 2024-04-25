@@ -17,8 +17,8 @@ class interp_newton {
   vec<T> fit;
 
  public:
-  explicit constexpr interp_newton() {}
-  constexpr interp_newton &insert(T const &x, T const &y) {
+  explicit CEXP interp_newton() {}
+  CEXP interp_newton &insert(cT_(T) x, cT_(T) y) {
     points.emplace_back(x, y);
     u32 n = (u32)points.size();
     if (n == 1) {
@@ -28,18 +28,18 @@ class interp_newton {
       base.push_back(0);
       for (u32 i = m; i; --i) base[i] = base[i - 1];
       base[0] = 0;
-      for (u32 i = 0; i < m; ++i) base[i] = base[i] - points[n - 2].first * base[i + 1];
+      flt_ (u32, i, 0, m) base[i] = base[i] - points[n - 2].first * base[i + 1];
     }
     diffs.emplace_back(points.size());
     diffs[n - 1][n - 1] = y;
     if (n > 1)
       for (u32 i = n - 2; ~i; --i) diffs[n - 1][i] = (diffs[n - 2][i] - diffs[n - 1][i + 1]) / (points[i].first - points[n - 1].first);
     fit.push_back(0);
-    for (u32 i = 0; i < n; ++i) fit[i] = fit[i] + diffs[n - 1][0] * base[i];
+    flt_ (u32, i, 0, n) fit[i] = fit[i] + diffs[n - 1][0] * base[i];
     return *this;
   }
-  constexpr vec<T> coeffs() const { return fit; }
-  constexpr T eval(T const &x) {
+  CEXP vec<T> coeffs() const { return fit; }
+  CEXP T eval(cT_(T) x) {
     T ans{};
     for (auto it = fit.rbegin(); it != fit.rend(); ++it) ans = ans * x + *it;
     return ans;

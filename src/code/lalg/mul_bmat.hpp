@@ -6,10 +6,10 @@
 namespace tifa_libs::math {
 
 template <usz I, usz J, usz K>
-constexpr bitmat<I, K> mul_bmat(bitmat<I, J> const &l, bitmat<K, J> const &trans_r) {
+CEXP bitmat<I, K> mul_bmat(bitmat<I, J> CR l, bitmat<K, J> CR trans_r) {
   bitmat<I, K> ret;
-  for (usz i = 0; i < I; ++i)
-    for (u32 k = 0; k < K; ++k) ret[i][k] = (l[i] & trans_r[k]).count() & 1;
+  flt_ (usz, i, 0, I)
+    flt_ (u32, k, 0, K) ret[i][k] = (l[i] & trans_r[k]).count() & 1;
   return ret;
 }
 

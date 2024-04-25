@@ -3,10 +3,9 @@
 #include "../../code/io/fastio.hpp"
 #include "../../code/poly/cbm2n_fps.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #define GENTCs_pntt
-#define GENTCs_pcntts
 
 int main() {
   u32 n;

@@ -4,7 +4,7 @@
 #include "../../code/io/ios_container.hpp"
 #include "../../code/math/berlekamp_massey.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_ss.hpp"
 

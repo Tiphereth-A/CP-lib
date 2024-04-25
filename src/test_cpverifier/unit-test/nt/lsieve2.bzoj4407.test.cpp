@@ -9,16 +9,16 @@
 
 using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
-void test(strn const& data) {
+void test(cT_(strn) data) {
   strn path = "src/data/bzoj/4407/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 
   u32 t, k;
   fin >> t >> k;
   vecu ns(t), ms(t);
-  for (u32 i = 0; i < t; ++i) {
+  flt_(u32, i, 0, t) {
     fin >> ns[i] >> ms[i];
-    if (ns[i] > ms[i]) std::swap(ns[i], ms[i]);
+    if (ns[i] > ms[i]) tifa_libs::swap(ns[i], ms[i]);
   }
   u32 n = *std::ranges::max_element(ns);
   tifa_libs::math::lsieve2 ls(n);
@@ -29,10 +29,10 @@ void test(strn const& data) {
         else return lst *= pk;
       });
   std::partial_sum(g.begin(), g.end(), g.begin());
-  for (u32 i = 0; i < t; ++i) {
+  flt_(u32, i, 0, t) {
     mint res = 0;
     for (u32 n = ns[i], m = ms[i], l = 1, r, d1, d2; l <= n; l = r + 1) {
-      r = std::min(n / (d1 = n / l), m / (d2 = m / l));
+      r = tifa_libs::min(n / (d1 = n / l), m / (d2 = m / l));
       res += (g[r] - g[l - 1]) * d1 * d2;
     }
 

@@ -4,7 +4,7 @@
 #include "../../code/nt/lcm.hpp"
 #include "../../code/nt/rgcd.hpp"
 
-constexpr u32 LIMIT = 1e7;
+CEXP u32 LIMIT = 1e7;
 
 int main() {
   u64 n;

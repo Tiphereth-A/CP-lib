@@ -10,10 +10,10 @@ vec<u64> Josephus_bf(u64 n, u64 k, u64 m) {
   assert(m <= 10000);
   vec<u64> ans(m);
   std::list<u64> l;
-  for (u64 i = 0; i < n; ++i) l.push_back(i);
+  flt_(u64, i, 0, n) l.push_back(i);
   auto it = l.begin();
-  for (u32 i = 0; i < m; ++i) {
-    for (u32 j = 1; j < k; ++j)
+  flt_(u32, i, 0, m) {
+    flt_(u32, j, 1, k)
       if (++it == l.end()) it = l.begin();
     ans[i] = *it;
     if ((it = l.erase(it)) == l.end()) it = l.begin();
@@ -22,9 +22,9 @@ vec<u64> Josephus_bf(u64 n, u64 k, u64 m) {
 }
 
 void test(u64 n, u64 k) {
-  u64 m = std::min(10000_u64, n);
+  u64 m = tifa_libs::min(10000_u64, n);
   auto wants = Josephus_bf(n, k, m);
-  for (u32 i = 1; i <= m; ++i) {
+  fle_(u32, i, 1, m) {
     u64 got = tifa_libs::util::Josephus(n, k, i);
     check(got, wants[i - 1], check_param(n), check_param(k), check_param(i));
   }

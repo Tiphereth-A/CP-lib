@@ -1,15 +1,17 @@
 #ifndef TIFALIBS_BIT_CNTLSB
 #define TIFALIBS_BIT_CNTLSB
 
+#include "../util/util.hpp"
+
 namespace tifa_libs::bit {
 
 template <class T>
-constexpr int cntlsb(T x) {
-  constexpr int nd = sizeof(T) * 8;
+CEXP int cntlsb(T x) {
+  CEXP int nd = sizeof(T) * 8;
   static_assert(nd <= 64);
-  if constexpr (nd <= sizeof(unsigned) * 8) return __builtin_clrsb(x);
-  else if constexpr (nd <= sizeof(unsigned long) * 8) return __builtin_clrsbl(x);
-  else return __builtin_clrsbll(x);
+  if CEXP (nd <= sizeof(unsigned) * 8) return __builtin_clrsb(x);
+  else if CEXP (nd <= sizeof(unsigned long) * 8) return __builtin_clrsbl(x);
+  return __builtin_clrsbll(x);
 }
 
 }  // namespace tifa_libs::bit

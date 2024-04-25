@@ -6,21 +6,21 @@
 namespace tifa_libs::math {
 
 // (derangement) !i for i=0..n-1
-constexpr vecu64 gen_derange(u32 n, u64 mod) {
+CEXP vecu64 gen_derange(u32 n, u64 mod) {
   vecu64 d{0, mod > 1};
   if (n > 2) d.reserve(n);
   else {
     d.resize(n);
     return d;
   }
-  for (u32 i = 2; i < n; ++i) d.push_back(mul_mod_u(i, d[i - 1] + d[i - 2], mod));
+  flt_ (u32, i, 2, n) d.push_back(mul_mod_u(i, d[i - 1] + d[i - 2], mod));
   return d;
 }
 template <class mint>
-constexpr vec<mint> gen_derange(u32 n) {
+CEXP vec<mint> gen_derange(u32 n) {
   vec<mint> d(n);
   auto _ = gen_derange(n, mint::mod());
-  for (u32 i = 0; i < n; ++i) d[i] = _[i];
+  flt_ (u32, i, 0, n) d[i] = _[i];
   return d;
 }
 

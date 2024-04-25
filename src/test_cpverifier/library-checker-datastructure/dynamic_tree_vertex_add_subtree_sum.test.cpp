@@ -14,7 +14,7 @@ int main() {
   for (auto &x : a) std::cin >> x;
   tifa_libs::ds::link_cut_tree<u64, op, inv_op> lct(n, a);
   for (u32 i = 1, u, v; i < n; ++i) std::cin >> u >> v, lct.link(u, v);
-  for (u32 i = 0; i < m; ++i) {
+  flt_ (u32, i, 0, m) {
     u32 opt, u, v;
     std::cin >> opt >> u >> v;
     if (opt == 0) {

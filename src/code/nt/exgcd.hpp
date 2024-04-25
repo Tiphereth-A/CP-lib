@@ -7,9 +7,9 @@ namespace tifa_libs::math {
 
 // Binary exgcd
 template <uint_c U, bool only_x = false>
-constexpr auto exgcd_b(U a, U b) {
+CEXP auto exgcd_b(U a, U b) {
   using T = to_sint_t<U>;
-  if constexpr (only_x) {
+  if CEXP (only_x) {
     if (!a) return std::make_tuple(b, (T)0);
     if (!b) return std::make_tuple(a, (T)1);
   } else {
@@ -45,15 +45,15 @@ constexpr auto exgcd_b(U a, U b) {
   }
   if (T u_ = u + (T)b, v_ = v - (T)a; abs(u_) + abs(v_) <= abs(u) + abs(v)) u = u_, v = v_;
   if (T u_ = u - (T)b, v_ = v + (T)a; abs(u_) + abs(v_) <= abs(u) + abs(v)) u = u_, v = v_;
-  if constexpr (only_x) return std::make_tuple(U(y << r), u);
+  if CEXP (only_x) return std::make_tuple(U(y << r), u);
   else return std::make_tuple(U(y << r), u, v);
 }
 // @return then return tuple(g, x[, y]) s.t. g = gcd(a, b), xa + yb = g, |x| + |y| is the minimal (primary) and x <= y (secondarily)
 template <sint_c T, bool only_x = false>
-constexpr auto exgcd(T a, T b) {
+CEXP auto exgcd(T a, T b) {
   using U = to_uint_t<T>;
   if (auto [x, y] = std::minmax(a, b); x >= 0 && y <= T(U(-1) >> sizeof(U))) return exgcd_b<U, only_x>((U)a, (U)b);
-  if constexpr (only_x) {
+  if CEXP (only_x) {
     T s = 1, u = 0;
     while (b) {
       T c = a / b;

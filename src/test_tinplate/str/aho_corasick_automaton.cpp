@@ -10,7 +10,7 @@ int main() {
   std::cin >> n;
   vecu ans(n);
   tifa_libs::str::aho_corasick_automaton acam;
-  for (u32 i = 0; i < n; ++i) std::cin >> s, acam.insert(s, i);
+  flt_ (u32, i, 0, n) std::cin >> s, acam.insert(s, i);
   acam.getfail();
   std::cin >> s;
   vecu sz(acam.sz), in(acam.sz);
@@ -35,17 +35,14 @@ int main() {
 /*
 给你一个文本串 $S$ 和 $n$ 个模式串 $T_{1 \sim n}$, 请你分别求出每个模式串 $T_i$ 在 $S$ 中出现的次数
 
-## 输入格式
+## 输入
 
 第一行包含一个正整数 $n$ 表示模式串的个数
-
 接下来 $n$ 行, 第 $i$ 行包含一个由小写英文字母构成的非空字符串 $T_i$
-
 最后一行包含一个由小写英文字母构成的非空字符串 $S$
+数据不保证任意两个模式串不相同
 
-**数据不保证任意两个模式串不相同**
-
-## 输出格式
+## 输出
 
 输出包含 $n$ 行, 其中第 $i$ 行包含一个非负整数表示 $T_i$ 在 $S$ 中出现的次数
 */
@@ -58,7 +55,7 @@ aa
 abaa
 abaaa
 abaaabaa
-=================
+============
 6
 0
 3

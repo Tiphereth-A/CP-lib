@@ -14,7 +14,7 @@ int main() {
   std::cin >> p0 >> p1;
   u32 q;
   std::cin >> q;
-  for (u32 i = 0; i < q; ++i) {
+  flt_ (u32, i, 0, q) {
     point p;
     std::cin >> p;
     if (tifa_libs::is_pos(tifa_libs::geo::cross(p0, p1, p))) std::cout << "COUNTER_CLOCKWISE\n";

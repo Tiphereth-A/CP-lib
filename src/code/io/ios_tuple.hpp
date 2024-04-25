@@ -9,9 +9,9 @@ std::istream &operator>>(std::istream &is, std::tuple<Ts...> &p) {
   return is;
 }
 template <class... Ts>
-std::ostream &operator<<(std::ostream &os, std::tuple<Ts...> const &p) {
+std::ostream &operator<<(std::ostream &os, std::tuple<Ts...> CR p) {
   std::apply(
-      [&](Ts const &...targs) {
+      [&](Ts CR... targs) {
         usz n = 0;
         ((os << targs << (++n != sizeof...(Ts) ? " " : "")), ...);
       },

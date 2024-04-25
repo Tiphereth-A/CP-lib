@@ -3,11 +3,10 @@
 #include "../../code/io/fastio.hpp"
 #include "../../code/poly/sqrt_fps.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #define GENTCs_p3ntts
 #define GENTCs_p3nttd0
-#define GENTCs_pcntts
 #define GENTCs_pmtts
 #define GENTCs_pmttd0
 #define GENTCs_pntt

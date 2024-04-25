@@ -4,7 +4,7 @@
 #include "../../code/comb/gen_stirling1_row.hpp"
 #include "../../code/io/fastio.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_ss.hpp"
 #include "../../code/poly/polymtt.hpp"

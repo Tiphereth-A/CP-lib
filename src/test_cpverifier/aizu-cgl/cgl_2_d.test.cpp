@@ -14,7 +14,7 @@ int main() {
   std::cout << std::fixed << std::setprecision(10);
   u32 q;
   std::cin >> q;
-  for (u32 i = 0; i < q; ++i) {
+  flt_ (u32, i, 0, q) {
     line l1, l2;
     std::cin >> l1 >> l2;
     std::cout << tifa_libs::geo::dist_SS(l1, l2) << '\n';

@@ -18,7 +18,7 @@ void rsort32(vec<T>& a) {
     ++_2[*i >> 16 & 255];
     ++_3[*i >> 24 & 255];
   }
-  for (u32 i = 1; i < 256; ++i) {
+  flt_ (u32, i, 1, 256) {
     _0[i] += _0[i - 1];
     _1[i] += _1[i - 1];
     _2[i] += _2[i - 1];
@@ -28,7 +28,7 @@ void rsort32(vec<T>& a) {
   for (u32* i = b_ + n; --i >= b_;) a_[--_1[*i >> 8 & 255]] = *i;
   for (u32* i = a_ + n; --i >= a_;) b_[--_2[*i >> 16 & 255]] = *i;
   for (u32* i = b_ + n; --i >= b_;) a_[--_3[*i >> 24 & 255]] = *i;
-  if constexpr (std::is_signed_v<T>) {
+  if CEXP (std::is_signed_v<T>) {
     u32 i = n;
     while (i && a[i - 1] < 0) --i;
     std::rotate(a_, a_ + i, a_ + n);

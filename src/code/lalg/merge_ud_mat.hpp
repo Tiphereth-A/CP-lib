@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 // [u] [d] -> [u; d]
 template <class T>
-constexpr matrix<T> merge_ud_mat(matrix<T> const &u, matrix<T> const &d) {
+CEXP matrix<T> merge_ud_mat(matrix<T> CR u, matrix<T> CR d) {
   u32 c_ = u.col();
   assert(c_ == d.col());
   u32 ur_ = u.row(), dr_ = d.row(), r_ = ur_ + dr_;

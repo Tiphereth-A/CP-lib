@@ -7,17 +7,17 @@ namespace tifa_libs::graph {
 
 //! will change input graph
 template <class T, bool with_deg>
-constexpr std::optional<amat<T, with_deg>> floyd(amat<T, with_deg>& g, T INF = std::numeric_limits<T>::max() / 2 - 1) {
+CEXP std::optional<amat<T, with_deg>> floyd(amat<T, with_deg>& g, T INF = std::numeric_limits<T>::max() / 2 - 1) {
   u32 n = (u32)g.g.size();
-  for (u32 k = 0; k < n; ++k)
-    for (u32 x = 0; x < n; ++x) {
+  flt_ (u32, k, 0, n)
+    flt_ (u32, x, 0, n) {
       if (g.g[x][k] == INF) continue;
-      for (u32 y = 0; y < n; ++y) {
+      flt_ (u32, y, 0, n) {
         if (g.g[k][y] == INF) continue;
-        g.g[x][y] = std::min(g.g[x][y], g.g[x][k] + g.g[k][y]);
+        g.g[x][y] = min(g.g[x][y], g.g[x][k] + g.g[k][y]);
       }
     }
-  for (u32 x = 0; x < n; ++x)
+  flt_ (u32, x, 0, n)
     if (g.g[x][x] < 0) return {};
   return g;
 }

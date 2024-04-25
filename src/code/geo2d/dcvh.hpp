@@ -15,10 +15,10 @@ class dcvh {
     int sgn_ = 1;
     std::set<point<FP>> vs;
 
-    constexpr DHCVH() {}
-    explicit constexpr DHCVH(int sgn_) : sgn_(sgn_) {}
+    CEXP DHCVH() {}
+    explicit CEXP DHCVH(int sgn_) : sgn_(sgn_) {}
 
-    constexpr bool contains(point<FP> const &p) const {
+    CEXP bool contains(point<FP> CR p) const {
       auto it = vs.lower_bound({p.x, -std::numeric_limits<FP>::max()});
       if (it == vs.end()) return false;
       if (it->x == p.x) return sgn(p.y - it->y) * sgn_ <= 0;
@@ -26,13 +26,13 @@ class dcvh {
       auto j = it;
       return sgn_cross(*(--j), *it, p) * sgn_ <= 0;
     }
-    constexpr bool erase(typename std::set<point<FP>>::const_iterator it) {
+    CEXP bool erase(TPN std::set<point<FP>>::const_iterator it) {
       if (it == vs.begin()) return false;
       auto j = it, k = it;
       if (++k == vs.end()) return false;
       return sgn_cross(*(--j), *it, *k) * sgn_ >= 0 ? vs.erase(it), true : false;
     }
-    constexpr DHCVH &insert(point<FP> const &p) {
+    CEXP DHCVH &insert(point<FP> CR p) {
       if (contains(p)) return *this;
       auto _ = vs.lower_bound({p.x, -std::numeric_limits<FP>::max()});
       if (_ != vs.end() && _->x == p.x) vs.erase(_);
@@ -49,15 +49,15 @@ class dcvh {
   } hcvh_up{1}, hcvh_down{-1};
 
  public:
-  constexpr dcvh() {}
+  CEXP dcvh() {}
 
-  constexpr bool contains(point<FP> const &p) const { return hcvh_up.contains(p) && hcvh_down.contains(p); }
-  constexpr dcvh &insert(point<FP> const &p) {
+  CEXP bool contains(point<FP> CR p) const { return hcvh_up.contains(p) && hcvh_down.contains(p); }
+  CEXP dcvh &insert(point<FP> CR p) {
     hcvh_up.insert(p);
     hcvh_down.insert(p);
     return *this;
   }
-  constexpr cvh<FP> to_CVH() const {
+  CEXP cvh<FP> to_CVH() const {
     cvh<FP> ret;
     std::ranges::copy(hcvh_up.vs, ret.vs.begin()), std::ranges::copy(hcvh_down.vs, std::back_inserter(ret.vs));
     argsort(ret.vs);

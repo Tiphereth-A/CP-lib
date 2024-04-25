@@ -8,10 +8,10 @@ namespace tifa_libs::math {
 namespace poly3ntt_impl_ {
 template <class mint0, class mint1, class mint2>
 struct cconv_3ntt {
-  std::tuple<NTT32<mint0>, NTT32<mint1>, NTT32<mint2>> ccore;
-  static constexpr auto ct_cat = ct_3NTT;
+  std::tuple<NTT<mint0>, NTT<mint1>, NTT<mint2>> ccore;
+  static CEXP auto ct_cat = ct_3NTT;
   template <class mint>
-  constexpr void conv(vec<mint> &l, vec<mint> const &r, u32 sz = 0) { l = conv_3ntt(ccore, l, r, sz); }
+  CEXP void conv(vec<mint> &l, vec<mint> CR r, u32 sz = 0) { l = conv_3ntt(ccore, l, r, sz); }
 };
 }  // namespace poly3ntt_impl_
 

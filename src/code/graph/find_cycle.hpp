@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 template <bool directed, bool with_deg>
-constexpr vecpt<u32> find_cycle(alist<with_deg> const& fg) {
+CEXP vecpt<u32> find_cycle(alist<with_deg> CR fg) {
   auto&& g = fg.g;
 
   for (u32 i = 0; i < g.size(); ++i)
@@ -22,7 +22,7 @@ constexpr vecpt<u32> find_cycle(alist<with_deg> const& fg) {
     vis[now] = 1;
     for (u32 to : g[now]) {
       if (fin) return -1_u32;
-      if constexpr (!directed)
+      if CEXP (!directed)
         if (to == fa) continue;
       if (pidx[to] == pidx[now]) {
         cycle.emplace_back(now, to);

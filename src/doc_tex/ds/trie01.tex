@@ -1,7 +1,7 @@
 支持可持久化
 
 \verb|void add(u64 bit, T val, int idx, u64 xor_val)|: 先将当前 Trie 树包含的所有路径临时异或 \verb|xor_val|, 之后将 \verb|bit| 对应路径上的所有点的权值均加 \verb|val|. 先将当前 Trie 树包含的所有路径临时异或 \verb|xor_val|, 之后若 \verb|idx| 不为 \(-1\) 则在所有匹配结点的 \verb|idxs| 里加入 \verb|idx|.
-    
+
 \verb|u32 find(u64 bit, u64 xor_val)|: 先将当前 Trie 树包含的所有路径临时异或 \verb|xor_val|, 之后返回 \verb|bit| 的匹配结点编号, 未找到则返回 \(0\).
 
 \verb|std::pair<u64, u32> kth_element(T k, u64 xor_val)|: 先将当前 Trie 树包含的所有路径临时异或 \verb|xor_val|, 之后返回所有结点中第 \(k\) 小 (最小: \verb|0|; 最大: \verb|data[root].val - 1|) 的路径与编号.

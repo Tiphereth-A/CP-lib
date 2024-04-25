@@ -12,7 +12,7 @@ requires requires(poly<mint, ccore> f, size_t n, G g, DG dg) {
   { g(f, n) } -> std::same_as<poly<mint, ccore>>;
   { dg(f, n) } -> std::same_as<poly<mint, ccore>>;
 }
-constexpr poly<mint, ccore> ode_fps(G&& g, DG&& dg, mint a, u32 n) {
+CEXP poly<mint, ccore> ode_fps(G&& g, DG&& dg, mint a, u32 n) {
   poly<mint, ccore> f{a};
   for (u32 i = 1; i < n; i *= 2) {
     poly<mint, ccore> r = exp_fps(int_fps(-dg(f, i * 2))),

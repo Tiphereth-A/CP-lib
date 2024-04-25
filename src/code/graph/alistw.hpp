@@ -14,13 +14,13 @@ struct alistw {
   vecu deg_in;
 
   //! vertex ID: [0, n)
-  explicit constexpr alistw(u32 n = 0) : g(n), cnt_arc(0), deg_in(0) {
-    if constexpr (with_deg) deg_in.resize(n);
+  explicit CEXP alistw(u32 n = 0) : g(n), cnt_arc(0), deg_in(0) {
+    if CEXP (with_deg) deg_in.resize(n);
   }
 
-  constexpr void add_arc(u32 u, u32 v, T const& w) {
+  CEXP void add_arc(u32 u, u32 v, cT_(T) w) {
     g[u].emplace_back(v, w), ++cnt_arc;
-    if constexpr (with_deg) ++deg_in[v];
+    if CEXP (with_deg) ++deg_in[v];
   }
 };
 

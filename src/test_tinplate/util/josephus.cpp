@@ -5,7 +5,7 @@
 int main() {
   u32 t_;
   std::cin >> t_;
-  for (u32 kase = 1; kase <= t_; ++kase) {
+  fle_ (u32, kase, 1, t_) {
     u64 n, m, k;
     std::cin >> n >> m >> k;
     std::cout << "Case #" << kase << ": " << tifa_libs::util::Josephus(n, k, m) + 1 << '\n';
@@ -14,29 +14,23 @@ int main() {
 }
 
 /*
-Tonight $n$ young men are going to participate in Peter's campfire party. They decide to play an ancient counting-out game which was first described by Titus Flavius Josephus. Here is a brief introduction to the game.
+今晚有 $n$ 个年轻人要参加彼得的篝火晚会. 他们决定玩一个古老的点数游戏, 在开始游戏之前, 这些年轻人将站在篝火周围形成一个圆圈, 第一个加入圆圈的人将开始游戏. 点数将从第一个人开始, 在圆圈中逆时针方向重复进行. 也就是说, 第一个人将在开始时报出一, 逆时针方向的第二个人将报出二, 以此类推, 直到一个可怜的人报出$k$, 随后离开圆圈成为旁观者. 游戏将继续进行, 剩下的人重复进行, 从逆时针方向中的下一个人开始, 他将成为新的第一个人, 方向相同, 直到所有年轻人离开圆圈为止
+彼得想成为第 $m$ 个离开圆圈的人, 因为他坚信这个数字对他来说是幸运的. 作为一个精明的程序员, 你能指出他在游戏开始前应该站在什么地方, 以便他实现他的目标吗?
+为了清晰起见, 假设加入圆圈的第一个人的索引是 $1$, 在他逆时针方向上的下一个人的索引是 $2$, 依此类推. 根据定义, 该方向上的最后一个人的索引应该是 $n$, 你的任务是确定彼得想要站的位置的索引
 
-Before starting the game, these young men will stand in a circle around the campfire and the first man to join the circle will start the game. Counting will begin at the first man and proceed around the circle in the counterclockwise direction repeatedly. That is, the first man will report one at the beginning, and the second one in the counterclockwise direction will report two, and so forth, until a poor man reports $k$ and consequently leaves the circle to become a bystander. The game will be repeated with the remaining men, restarting from the next man in the counterclockwise direction who will be the new first man, going in the same direction, until all the young men have left the circle.
+## 输入
 
-Peter wanna be the $m$\-th one who left the circle since he strongly believes this number is lucky for him. As a sophisticated programmer, can you point out the right place he should stand at before the game start so that he can achieve his goal?
+输入包含多个测试用例, 第一行包含一个正整数$T$, 表示测试用例的数量, 最多为 $1000$
+对于每个测试用例, 只有一行包含三个整数 $n, m$ 和 $k$, 其中 $1 \le n, m, k \le 10^{18}$ 且 $n \ge m$
+保证所有测试用例中 $\min{m, k}$ (即$m$和$k$的最小值) 的总和不超过 $2 \times 10^6$
 
-For the sake of clarity, we assume the index of the first man to join the circle is $1$, the index of the next man in his counterclockwise direction is $2$, and so on. By the definition, the index of the last man in that direction should be $n$, and your task is to determine the index of the place Peter wants.
+## 输出
 
-**Input**
+对于每个测试用例, 输出一行, 包含"Case #x: y" (不带引号), 其中$x$是从$1$开始的测试用例编号, $y$是正确位置的索引
 
-The input contains several test cases, and the first line contains a positive integer $T$ indicating the number of test cases which is up to $1000$.
+## 提示
 
-For each test case, the only line contains three integers $n, m$ and $k$ where $1 \le n, m, k \le 10^{18}$ and $n \ge m$.
-
-We guarantee that the sum of $\min\{m, k\}$ (i.e. the minimum of $m$ and $k$) in all test cases is no larger than $2 \times 10^6$.
-
-**Output**
-
-For each test case, output a line containing "Case #x: y" (without quotes), where x is the test case number starting from $1$, and y is the index of the right place.
-
-**Note**
-
-The sample cases indeed show the order of the young men to leave the circle when $(n, k)$ is set to $(10, 2)$ and $(10, 3)$ respectively.
+样例展示了当 $(n, k)$ 分别为 $(10, 2)$ 和 $(10, 3)$ 时离开圆圈的顺序
 */
 
 /*

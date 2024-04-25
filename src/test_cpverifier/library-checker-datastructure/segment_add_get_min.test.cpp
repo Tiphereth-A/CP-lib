@@ -4,7 +4,7 @@
 #include "../../code/edh/discretization.hpp"
 #include "../../code/io/fastio.hpp"
 
-i64 op(i64 x, i64 y) { return std::min(x, y); }
+i64 op(i64 x, i64 y) { return tifa_libs::min(x, y); }
 
 int main() {
   u32 n, q;
@@ -20,9 +20,9 @@ int main() {
     seg k;
   };
   vec<que> qu(q);
-  for (u32 i = 0; i < n; ++i)
+  flt_ (u32, i, 0, n)
     tifa_libs::fin >> se[i].l >> se[i].r >> se[i].a >> se[i].b, se[i].r -= 1, lsh.push_back(se[i].l), lsh.push_back(se[i].r);
-  for (u32 i = 0; i < q; ++i) {
+  flt_ (u32, i, 0, q) {
     tifa_libs::fin >> qu[i].opt;
     if (qu[i].opt)
       tifa_libs::fin >> qu[i].pos, lsh.push_back(qu[i].pos);
@@ -31,9 +31,9 @@ int main() {
   }
   lsh = tifa_libs::uniq<vec<i64>>(lsh);
   tifa_libs::ds::lichao_segtree<i64, op> tr(lsh);
-  for (u32 i = 0; i < n; ++i)
+  flt_ (u32, i, 0, n)
     tr.add(se[i].a, se[i].b, se[i].l, se[i].r);
-  for (u32 i = 0; i < q; ++i)
+  flt_ (u32, i, 0, q)
     if (qu[i].opt) {
       i64 ret = tr.query(qu[i].pos);
       if (ret == INT64_MAX) tifa_libs::fout << "INFINITY\n";

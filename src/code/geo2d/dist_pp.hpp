@@ -7,7 +7,7 @@ namespace tifa_libs::geo {
 
 // distance of two points (Euclidian)
 template <class FP>
-constexpr FP dist_PP(point<FP> const &p1, point<FP> const &p2) { return (p1 - p2).norm(); }
+CEXP FP dist_PP(point<FP> CR p1, point<FP> CR p2) { return (p1 - p2).norm(); }
 
 }  // namespace tifa_libs::geo
 

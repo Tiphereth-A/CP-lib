@@ -6,7 +6,7 @@
 namespace tifa_libs::opt {
 
 template <iterable_c T>
-constexpr u32 lcs_circ(T const& a, T const& b) {
+CEXP u32 lcs_circ(cT_(T) a, cT_(T) b) {
   T b_(b.size() * 2);
   std::ranges::copy(b, b_.begin()), std::ranges::copy(b, std::back_inserter(b_));
   vvecb left(a.size() + 1, vecb(b_.size() + 1)), up = left;
@@ -28,7 +28,7 @@ constexpr u32 lcs_circ(T const& a, T const& b) {
       }
     u32 now = 0;
     for (u32 x = 1; x <= a.size(); ++x) now += up[x][i + b.size()];
-    ret = std::max(ret, now);
+    ret = max(ret, now);
   }
   return ret;
 }

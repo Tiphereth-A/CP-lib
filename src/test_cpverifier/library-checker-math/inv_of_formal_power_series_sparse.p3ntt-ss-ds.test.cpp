@@ -4,7 +4,7 @@
 #include "../../code/io/fastio.hpp"
 #include "../../code/poly/inv_fpssp.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_ds.hpp"
 #include "../../code/math/mint_ss.hpp"

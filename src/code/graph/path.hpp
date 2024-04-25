@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 template <class G>
-constexpr std::optional<vecu> path(G const &g, u32 from, u32 to) {
+CEXP std::optional<vecu> path(G CR g, u32 from, u32 to) {
   vecu ret;
   bool failed = true;
   auto dfs = [&](auto &&dfs, u32 now, u32 fa) -> void {
@@ -17,7 +17,7 @@ constexpr std::optional<vecu> path(G const &g, u32 from, u32 to) {
     }
     for (auto v : g.g[now]) {
       u32 to = 0;
-      if constexpr (is_alist<G>) to = v;
+      if CEXP (is_alist<G>) to = v;
       else to = v.first;
       if (to == fa) continue;
       dfs(dfs, to, now);

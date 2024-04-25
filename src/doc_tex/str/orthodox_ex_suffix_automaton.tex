@@ -5,7 +5,7 @@ u32 n;
 std::string s;
 std::cin >> n;
 tifa_libs::str::orthodox_ex_suffix_automaton sam;
-for (u32 i = 0; i < n; ++i) std::cin >> s, sam.insert(s);
+flt_(u32, i, 0, n) std::cin >> s, sam.insert(s);
 sam.build();
 \end{minted}
 

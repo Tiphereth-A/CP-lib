@@ -3,7 +3,7 @@
 #include "../../code/nt/gcd.hpp"
 #include "../../code/nt/rgcd.hpp"
 
-constexpr u32 LIMIT = 1e7;
+CEXP u32 LIMIT = 1e7;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -11,7 +11,7 @@ int main() {
   tifa_libs::math::RGCD rgcd(LIMIT);
   u32 x, y;
   std::cin >> x >> y;
-  if (std::max(x, y) < LIMIT) std::cout << rgcd(x, y) << '\n';
+  if (tifa_libs::max(x, y) < LIMIT) std::cout << rgcd(x, y) << '\n';
   else std::cout << tifa_libs::math::gcd(x, y) << '\n';
   return 0;
 }

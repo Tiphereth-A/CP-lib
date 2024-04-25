@@ -10,7 +10,7 @@ tifa_libs::rand::Gen<std::uniform_int_distribution<char>> g('\x21', '\x7f');
 
 void test(u32 n) {
   strn s(n+1, '\x20');
-  for (u32 i = 1; i <= n; ++i) s[i] = g();
+  fle_(u32, i, 1, n) s[i] = g();
   strn bwt_s = tifa_libs::bwt(s);
   strn bwt_inv_s = tifa_libs::bwt_inv(bwt_s);
   check(bwt_inv_s, s, check_param(bwt_s));

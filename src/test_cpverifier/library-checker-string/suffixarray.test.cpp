@@ -10,6 +10,6 @@ int main() {
   u32 n = (u32)s.size();
   s = " " + s;
   tifa_libs::str::suffixarray sa(s);
-  for (u32 i = 1; i <= n; ++i) std::cout << sa.sa[i] - 1 << " \n"[i == n];
+  fle_ (u32, i, 1, n) std::cout << sa.sa[i] - 1 << " \n"[i == n];
   return 0;
 }

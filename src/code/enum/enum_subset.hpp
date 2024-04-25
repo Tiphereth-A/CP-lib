@@ -11,19 +11,19 @@ class enum_subset {
   static inline u32 b_;
   u32 now_;
 
-  static constexpr u32 num_begin() { return b_; }
-  static constexpr u32 num_end() { return 0; }
+  static CEXP u32 num_begin() { return b_; }
+  static CEXP u32 num_end() { return 0; }
 
  public:
-  static constexpr void set(u32 b) { b_ = b; }
-  static constexpr enum_subset begin() { return num_begin(); }
-  static constexpr enum_subset end() { return num_end(); }
+  static CEXP void set(u32 b) { b_ = b; }
+  static CEXP enum_subset begin() { return num_begin(); }
+  static CEXP enum_subset end() { return num_end(); }
 
-  constexpr enum_subset(u32 now = num_begin()) : now_(now) { assert(now <= num_begin()); }
+  CEXP enum_subset(u32 now = num_begin()) : now_(now) { assert(now <= num_begin()); }
 
-  constexpr u32 operator*() const { return now_; }
-  constexpr bool operator!=(enum_subset const& x) const { return **this != *x; }
-  constexpr void operator++() { now_ = (now_ - 1) & b_; }
+  CEXP u32 operator*() const { return now_; }
+  CEXP bool operator!=(enum_subset CR x) const { return **this != *x; }
+  CEXP void operator++() { now_ = (now_ - 1) & b_; }
 };
 
 }  // namespace tifa_libs

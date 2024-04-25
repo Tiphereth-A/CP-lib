@@ -3,7 +3,7 @@
 
 #include "../../code/ds/segtree.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_d31.hpp"
 
@@ -13,17 +13,15 @@ using F = std::pair<mint, mint>;  // mul add
 
 auto op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
 auto e() { return T{0, 0}; }
-auto mapping(F f, T a) {
+auto mapping(T a, F f) {
   return T{f.first * a.first + f.second * a.second, a.second};
 }
 auto composition(F f, F g) {
-  return F{f.first * g.first, f.first * g.second + f.second};
-  /*
-  g(x) = g.mul * x + g.add
-  f(g(x)) = f.mul * (g.mul * x + g.add) + f.add = f.mul * g.mul * x + f.mul * g.add + f.add
-  */
+  return F{f.first * g.first, g.first * f.second + g.second};
+  // g(x) = g.mul * x + g.add
+  // f(g(x)) = f.mul * (g.mul * x + g.add) + f.add = f.mul * g.mul * x + f.mul * g.add + f.add
 }
-auto id() { return F(1, 0); }
+auto id() { return F{1, 0}; }
 
 int main() {
   mint::set_mod(MOD);
@@ -34,13 +32,12 @@ int main() {
   vec<T> a(n);
   for (auto &x : a) std::cin >> x.first, x.second = 1;
   tifa_libs::ds::segtree<T, op, e, F, mapping, composition, id> segt(a);
-  for (u32 i = 1; i <= q; ++i) {
+  fle_ (u32, i, 1, q) {
     u32 opt, l, r;
     std::cin >> opt >> l;
     if (opt == 0) {
       mint x, y;
       std::cin >> r >> x >> y;
-      --r;
       segt.update(l, r, F{x, y});
     } else
       std::cout << segt.query(l).first << '\n';

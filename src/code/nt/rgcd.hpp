@@ -9,38 +9,36 @@ namespace tifa_libs::math {
 class RGCD {
   struct F3 {
     u32 a, b, c;
-    constexpr F3(u32 _a = 0, u32 _b = 0, u32 _c = 0) : a(_a), b(_b), c(_c) {}
+    CEXP F3(u32 _a = 0, u32 _b = 0, u32 _c = 0) : a(_a), b(_b), c(_c) {}
   };
   vec<F3> fs;
   vvecu g_;
 
  public:
-  explicit constexpr RGCD(u32 n) : fs(n), g_(isqrt(n) + 1, decltype(g_)::value_type(isqrt(n) + 1)) {
+  explicit CEXP RGCD(u32 n) : fs(n), g_(isqrt(n) + 1, decltype(g_)::value_type(isqrt(n) + 1)) {
     fs[1] = {1, 1, 1};
     lsieve(
         n,
         [this](u32 p) { fs[p] = {1, 1, p}; },
         [this](u32 i, u32 j) {
-          tifa_said((u64)i * j == u64(i * j));
           F3 &now = fs[i * j];
           now = fs[i];
-          if ((now.a *= j) > now.b) std::swap(now.a, now.b);
-          if (now.b > now.c) std::swap(now.b, now.c);
+          if ((now.a *= j) > now.b) swap(now.a, now.b);
+          if (now.b > now.c) swap(now.b, now.c);
         },
         [this](u32 i, u32 j) {
-          tifa_said((u64)i * j == u64(i * j));
           F3 &now = fs[i * j];
           now = fs[i];
-          if ((now.a *= j) > now.b) std::swap(now.a, now.b);
-          if (now.b > now.c) std::swap(now.b, now.c);
+          if ((now.a *= j) > now.b) swap(now.a, now.b);
+          if (now.b > now.c) swap(now.b, now.c);
         });
     for (u32 i = 1; i < g_.size(); ++i) {
       g_[i][0] = g_[0][i] = g_[i][i] = (u32)i;
-      for (u32 j = 1; j < i; ++j) g_[i][j] = g_[j][i] = g_[j][i % j];
+      flt_ (u32, j, 1, i) g_[i][j] = g_[j][i] = g_[j][i % j];
     }
   }
 
-  constexpr u32 operator()(u32 x, u32 y) const {
+  CEXP u32 operator()(u32 x, u32 y) const {
     assert(x < fs.size() && y < fs.size());
     if (x < g_.size() && y < g_.size()) return g_[x][y];
     u32 ans = 1, _;

@@ -13,6 +13,6 @@ int main() {
     std::cin >> x >> y;
     nv[x][y] = 1 - nv[x][y];
   }
-  for (u32 i = 0; i < n; ++i) std::cout << nv[i] << '\n';
+  flt_ (u32, i, 0, n) std::cout << nv[i] << '\n';
   return 0;
 }

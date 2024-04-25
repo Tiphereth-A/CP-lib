@@ -38,27 +38,21 @@ int main() {
 }
 
 /*
-Life is a game.
+生活就是一场游戏
+世界可以看作是一个有 $n$ 个城市和 $m$ 条城市之间的无向连接图. 现在, 你作为生活游戏玩家, 要在这个世界图上进行生活游戏
+最初, 你在第 $x$ 个城市, 并且拥有 $k$ 点社交能力. 你可以通过生活和工作来获得社交能力点. 具体来说, 你可以在第 $i$ 个城市生活和工作获得 $a_i$ 点社交能力. 但在这个问题中, 你不能在同一个城市重复获得社交能力点, 所以你想要环游世界并获得更多的社交能力点. 然而, 路途并不容易. 具体来说, 对于第 $i$ 条道路, 有一个能力门槛 $w_i$, 你必须至少拥有 $w_i$ 点社交能力才能通过这条道路. 此外, 当通过道路时, 你的社交能力点不会减少, 但如果你想要通过第 $i$ 条道路, 你只需至少有 $w_i$ 点社交能力
+所以你可以看到, 生活游戏就是不断地生活、工作和旅行. 有 $q$ 个游戏存档. 对于每个游戏存档, 给定初始城市和社交能力点, 并且玩家还没有在任何城市生活或工作. 现在, 你, 真实的生活游戏玩家, 需要确定你在游戏结束时可能拥有的最大社交能力点数, 并输出给定游戏存档的结果
 
-The world can be regarded as an undirected connected graph of $n$ cities and $m$ undirected roads between the cities. Now you, the life game player, are going to play the life game on the world graph.
+## 输入
 
-Initially, you are at the $x$\-th city and of $k$ social ability points. You can earn social ability points by living and working. Specifically, you can earn $a_i$ social ability points by living and working in the $i$\-th city. But in this problem, you cannot earn social ability points duplicatedly in one city, so you want to travel the world and earn more social ability points. However, the roads are not easy. Specifically, there is an ability threshold $w_i$ for the $i$\-th road, you should be of at least $w_i$ social ability points to go through the road. Moreover, Your social ability point will not decrease when passing roads but just need to be at least $w_i$ if you want to go through the $i$\-th road.
+第一行包含三个整数 $n,m,q,(1\le n,m,q \le 10^5)$, 分别表示城市数量、道路数量和游戏存档数量
+第二行包含 $n$ 个整数 $a_1, a_2, \cdots, a_n,(1\le a_i \le 10^4)$, 表示每个城市的社交能力点奖励
+接下来的 $m$ 行, 每行包含三个整数 $u, v, w,(1\le u < v \le n, 1\le w \le 10^9)$, 表示城市 $u,v$ 之间由能力门槛为 $w$ 的道路双向连接
+接下来的 $q$ 行, 每行包含两个整数 $x, k,(1\le x \le n, 1\le k \le 10^9)$, 表示游戏存档的初始城市和社交能力点
 
-So as you can see, the life game is just living, working and traveling repeatedly. There are $q$ game saves. For each game save, the initial city and social ability point is given and the player has not lived or worked in any city. Now you, the real life game player, need to determine the maximum possible number of social ability points you can have in the end of the game and output it for each given game save.
+## 输出
 
-**Input**
-
-The first line contains three integers $n,m,q\,(1\le n,m,q \le 10^5)$, denoting the number of cities, roads and game saves respectively.
-
-The second line contains $n$ integers $a_1, a_2, \cdots, a_n\,(1\le a_i \le 10^4)$, denoting the bonus social ability points for the cities.
-
-Following $m$ lines each contains three integers $u, v, w\,(1\le u < v \le n, 1\le w \le 10^9)$, denoting that cities $u,v$ are undirectedly connected by a road of ability threshold $w$.
-
-Following $q$ lines each contains two integers $x, k\,(1\le x \le n, 1\le k \le 10^9)$, denoting the game saves.
-
-**Output**
-
-For each game save, output one line containing one integer, denoting the maximum possible number of social ability points you can have.
+对于每个游戏存档, 输出一行, 包含一个整数, 表示你可能拥有的最大社交能力点数
 */
 
 /*
@@ -76,7 +70,7 @@ For each game save, output one line containing one integer, denoting the maximum
 7 8 37
 1 7
 8 30
-==============
+=====================
 16
 36
 */

@@ -7,7 +7,7 @@ namespace tifa_libs::geo {
 
 // 9-point center (X5)
 template <class FP>
-constexpr point<FP> center_N(triangle<FP> const &t) {
+CEXP point<FP> center_N(triangle<FP> CR t) {
   auto [A, B, C] = t.angles();
   return t.trilinears(std::cos(B - C), std::cos(C - A), std::cos(A - B));
 }

@@ -6,7 +6,7 @@
 namespace tifa_libs::str {
 
 // @return {p, l, r}, uniqued
-constexpr vec<pt3<u32>> run_zfunc(strn const& s) {
+CEXP vec<pt3<u32>> run_zfunc(cT_(strn) s) {
   vec<pt3<u32>> rs;
 
   auto rec = [&](auto&& rec, u32 l, u32 r) -> void {
@@ -21,9 +21,9 @@ constexpr vec<pt3<u32>> run_zfunc(strn const& s) {
       std::ranges::reverse(tl);
       auto zl = z_func(tl), zr = z_func(tr);
       zl.push_back(0);
-      for (u32 k = 1; k <= mid; ++k) {
-        u32 li = m - k - zl[k], ri = m + std::min(r - m, zr[len - k]);
-        if (rev) std::swap(li = l + r - li, ri = l + r - ri);
+      fle_ (u32, k, 1, mid) {
+        u32 li = m - k - zl[k], ri = m + min(r - m, zr[len - k]);
+        if (rev) swap(li = l + r - li, ri = l + r - ri);
         if (ri - li < 2 * k) continue;
         if (li > 0 && s[li - 1] == s[li - 1 + k]) continue;
         if (ri < s.size() && s[ri] == s[ri - k]) continue;

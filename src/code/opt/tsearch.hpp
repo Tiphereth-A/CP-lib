@@ -1,14 +1,13 @@
 #ifndef TIFALIBS_OPT_TSEARCH
 #define TIFALIBS_OPT_TSEARCH
 
-#include "../util/fp_const.hpp"
 #include "../util/traits.hpp"
 
 namespace tifa_libs::opt {
 
 // @return $\argmin_{l\leq x\leq r}\{f\}$
 template <arithm_c I, class F>
-constexpr auto tsearch(I l, I r, F&& f) {
+CEXP auto tsearch(I l, I r, F&& f) {
   using T = decltype(f(l));
   assert(l <= r);
   I ml, mr;
@@ -17,7 +16,7 @@ constexpr auto tsearch(I l, I r, F&& f) {
   fml = f(ml = l + (r - l) * (1 - phi_v<PT>)), fmr = f(mr = r - (r - l) * (1 - phi_v<PT>));
 
   do {
-    if constexpr (is_int_v<I>) {
+    if CEXP (is_int_v<I>) {
       if (r - l < 8) {
         I x = l, fx = fl;
         if (fr < fx) x = r, fx = fr;
@@ -29,7 +28,7 @@ constexpr auto tsearch(I l, I r, F&& f) {
         }
         return std::make_pair(x, fx);
       }
-    } else if ((r - l) / std::max({l, r, (I)1}) < eps_v<I>) return std::make_pair(l, fl);
+    } else if ((r - l) / max({l, r, (I)1}) < eps_v<I>) return std::make_pair(l, fl);
     if (fml < fmr) {
       r = mr, fr = fmr;
       mr = ml, fmr = fml;

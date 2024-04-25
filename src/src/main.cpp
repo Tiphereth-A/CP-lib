@@ -3,15 +3,15 @@
 using namespace std;
 using i64 = int64_t;
 
-#define for_(i, l, r, ...) for (i64 i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i <= i##e; ++i)
+#define fle_(i, l, r, ...) for (i64 i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i <= i##e; ++i)
 #define fors_(i, l, r, s, ...) for (i64 i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i <= i##e; i += s)
 #define rfor_(i, r, l, ...) for (i64 i = (r), i##e = (l)__VA_OPT__(, ) __VA_ARGS__; i >= i##e; --i)
 #define rfors_(i, r, l, s, ...) for (i64 i = (r), i##e = (l)__VA_OPT__(, ) __VA_ARGS__; i >= i##e; i -= s)
 
 template <class... T>
-void inc(T &...x) { ((++x), ...); }
+void inc(T&... x) { ((++x), ...); }
 template <class... T>
-void debug([[maybe_unused]] T const &...args) {
+void debug([[maybe_unused]] T const&... args) {
 #ifdef LOCAL_
   size_t n = 0;
   ((cerr << args << (++n != sizeof...(T) ? " " : "\n")), ...);

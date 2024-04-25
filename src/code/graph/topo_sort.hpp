@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 //! return empty vector if @fg is not DAG
 template <bool with_deg>
-constexpr vecu topo_sort(alist<with_deg> const& fg) {
+CEXP vecu topo_sort(alist<with_deg> CR fg) {
   u32 n = (u32)fg.g.size();
   vecb vis(n), _(n);
   vecu ans;
@@ -23,7 +23,7 @@ constexpr vecu topo_sort(alist<with_deg> const& fg) {
     }
     return true;
   };
-  for (u32 i = 0; i < n; ++i)
+  flt_ (u32, i, 0, n)
     if (!vis[i] && !dfs(dfs, i)) return {};
   std::ranges::reverse(ans);
   return ans;

@@ -12,21 +12,21 @@ class Stirling2 {
 
  public:
   //! @param p MUST be prime
-  explicit constexpr Stirling2() : mCn(), S(mint::mod()) {
+  explicit CEXP Stirling2() : mCn(), S(mint::mod()) {
     u32 p = mint::mod();
     assert(p < 32768);
     S[0] = {1};
-    for (u32 i = 1; i < p; ++i) {
+    flt_ (u32, i, 1, p) {
       S[i].assign(i + 1, 0);
-      for (u32 j = 0; j <= i; ++j) {
+      fle_ (u32, j, 0, i) {
         if (j) S[i][j] += S[i - 1][j - 1];
         if (j < i) S[i][j] += S[i - 1][j] * j;
       }
     }
   }
 
-  static constexpr u32 mod() { return mint::mod(); }
-  constexpr mint operator()(i64 m_, i64 n_) const {
+  static CEXP u32 mod() { return mint::mod(); }
+  CEXP mint operator()(i64 m_, i64 n_) const {
     if (n_ < 0 || n_ > m_) return 0;
     if (!m_) return 1;
     u32 p = mod();

@@ -3,7 +3,7 @@
 
 #include "../../code/ds/segtree.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_ss.hpp"
 
@@ -13,12 +13,12 @@ using T = std::pair<Ty, Ty>;
 using F = T;
 
 auto op(T a, T b) {  // b(a(x))
-  swap(a, b);
+  tifa_libs::swap(a, b);
   return T{a.first * b.first, a.first * b.second + a.second};
 }
 auto e() { return T{1, 0}; }
 auto id() { return e(); }
-auto mapping(F f, T a) { return op(f, a); }
+auto mapping(T a, F f) { return op(f, a); }
 auto composition(F, F) { return F(1, 0); }
 
 int main() {
@@ -40,7 +40,7 @@ int main() {
       u32 x, y;
       Ty z;
       std::cin >> x >> y >> z;
-      auto ret = seg.query(x, y - 1);
+      auto ret = seg.query(x, y);
       std::cout << ret.first * z + ret.second << '\n';
     }
   }

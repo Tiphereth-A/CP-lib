@@ -6,7 +6,6 @@
 #include "../../code/tree/dfs_info.hpp"
 #include "../../code/tree/tree.hpp"
 
-
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
@@ -19,7 +18,7 @@ int main() {
   }
   auto fa = tifa_libs::graph::domtree(g).get_domtree(0);
   tifa_libs::graph::tree tr(n);
-  for (u32 i = 1; i < n; ++i)
+  flt_ (u32, i, 1, n)
     if (~fa[i]) tr.add_arc(fa[i], i);
   tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree> dfs;
   dfs.reset_dfs_info<tifa_libs::graph::td_sz>(tr);
@@ -30,19 +29,15 @@ int main() {
 /*
 给定一张有向图, 求从 1 号点出发, 每个点能支配的点的个数 (包括自己)
 
-## 输入格式
+## 输入
 
 第一行两个正整数 $n,m$, 表示点数和边数
-
 接下来 $m$ 行, 每行输入两个整数 $u,v$, 表示有一条 $u$ 到 $v$ 的有向边
+$n\le2*10^5,m\le3*10^5$
 
-## 输出格式
+## 输出
 
 一行输出 $n$ 个整数, 表示每个点能支配的点的个数
-
-## 提示
-
-$n\le2*10^5,m\le3*10^5$
 */
 
 /*

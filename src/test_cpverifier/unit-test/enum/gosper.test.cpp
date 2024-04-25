@@ -13,7 +13,7 @@ template <u32 ID>
 void test(u32 n, u32 kmax) {
   using gosper = tifa_libs::gosper<ID>;
   tifa_libs::math::Binom<mint> binom(n);
-  for (u32 k = 1; k <= kmax; ++k) {
+  fle_(u32, k, 1, kmax) {
     gosper::set(n, k);
     gosper gs;
     u32 cnt = 0, cnt_correct = binom.mCn(n, k).val();

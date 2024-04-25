@@ -10,6 +10,6 @@ int main() {
   vec<i32> a(n);
   for (auto &x : a) std::cin >> x;
   tifa_libs::ds::cartesian_tree tr(a);
-  for (u32 i = 0; i < n; ++i) std::cout << tr.t[i].fa << ' ';
+  flt_ (u32, i, 0, n) std::cout << tr.t[i].fa << ' ';
   return 0;
 }

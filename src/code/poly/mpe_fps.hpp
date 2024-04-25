@@ -9,12 +9,12 @@ namespace tifa_libs::math {
 // Multi-point evaluation based on Tellegen's Principle
 // @return {f(a[0]), f(a[1]), ..., f(a.back())}
 template <class mint, class ccore>
-constexpr poly<mint, ccore> mpe_fps(poly<mint, ccore> f, poly<mint, ccore> a) {
+CEXP poly<mint, ccore> mpe_fps(poly<mint, ccore> f, poly<mint, ccore> a) {
   using poly_t = poly<mint, ccore>;
   class SegTree {
     vec<poly_t> t;
 
-    constexpr void init_(poly_t const &a, u32 k, u32 l, u32 r) {
+    CEXP void init_(cT_(poly_t) a, u32 k, u32 l, u32 r) {
       if (l == r) {
         t[k] = poly_t{1, -a[l]};
         return;
@@ -24,7 +24,7 @@ constexpr poly<mint, ccore> mpe_fps(poly<mint, ccore> f, poly<mint, ccore> a) {
       init_(a, k * 2 + 1, m + 1, r);
       t[k] = t[k * 2] * t[k * 2 + 1];
     }
-    static constexpr poly_t mult(poly_t const &f, poly_t g) {
+    static CEXP poly_t mult(cT_(poly_t) f, poly_t g) {
       u32 m = g.size();
       g.reverse();
       g.conv(f);
@@ -32,7 +32,7 @@ constexpr poly<mint, ccore> mpe_fps(poly<mint, ccore> f, poly<mint, ccore> a) {
       g.resize(f.size());
       return g;
     }
-    constexpr void calc_(poly_t f, poly_t &res, u32 k, u32 l, u32 r) const {
+    CEXP void calc_(poly_t f, poly_t &res, u32 k, u32 l, u32 r) const {
       f.resize(r - l + 1);
       if (l == r) {
         res[l] = f[0];
@@ -44,9 +44,9 @@ constexpr poly<mint, ccore> mpe_fps(poly<mint, ccore> f, poly<mint, ccore> a) {
     }
 
    public:
-    explicit constexpr SegTree(poly_t const &a) : t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
+    explicit CEXP SegTree(poly_t CR a) : t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
 
-    constexpr poly_t operator()(poly_t const &f) const {
+    CEXP poly_t operator()(poly_t CR f) const {
       poly_t res(f.size());
       calc_(mult(f, inv_fps(t[1])), res, 1, 0, t.size() / 4 - 1);
       return res;
@@ -54,7 +54,7 @@ constexpr poly<mint, ccore> mpe_fps(poly<mint, ccore> f, poly<mint, ccore> a) {
   };
 
   u32 n = f.size(), m = a.size();
-  f.resize(std::max(n, m)), a.resize(std::max(n, m));
+  f.resize(max(n, m)), a.resize(max(n, m));
   auto _ = SegTree(a)(f);
   _.resize(m);
   return _;

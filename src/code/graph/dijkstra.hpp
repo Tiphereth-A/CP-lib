@@ -9,10 +9,8 @@ namespace tifa_libs::graph {
 
 // relax(now, to)
 template <class T, class F, bool with_deg>
-requires(!sint_c<T>) && requires(F relex, u32 now, u32 to) {
-  relex(now, to);
-}
-constexpr vec<T> dijkstra(alistw<T, with_deg> const &fg, u32 s, F &&relax, T INF = std::numeric_limits<T>::max() / 2 - 1) {
+requires(!sint_c<T>) && requires(F relex, u32 now, u32 to) { relex(now, to); }
+CEXP vec<T> dijkstra(alistw<T, with_deg> CR fg, u32 s, F &&relax, T INF = std::numeric_limits<T>::max() / 2 - 1) {
   auto &&g = fg.g;
   vec<T> dis(g.size(), INF);
   vecb vis(g.size());

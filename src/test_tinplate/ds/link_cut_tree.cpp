@@ -13,7 +13,7 @@ int main() {
   vecu64 a(n);
   for (auto &x : a) x = 1;
   tifa_libs::ds::link_cut_tree<u64, op, inv_op> lct(n, a);
-  for (u32 i = 0; i < m; ++i) {
+  flt_ (u32, i, 0, m) {
     char opt;
     u32 u, v;
     std::cin >> opt >> u >> v;
@@ -28,15 +28,13 @@ int main() {
 }
 
 /*
-You are given a tree with $N$ vertices. Its edges are $(u_i, v_i)$. Its $i$-th vertex has a value $a_i$ written on it.
+给你一棵有 $N$ 个顶点的树. 它的边是 $(u_i, v_i)$. 第 $i$ 个顶点上有一个值 $a_i$
+处理 $Q$ 个查询. 保证每次查询后的图是一棵树
+- 0 $u$ $v$ $w$ $x$: 删除边 $(u, v)$ 并添加边 $(w, x)$
+- 1 $p$ $x$: $a_p \gets a_p + x$
+- 2 $v$ $p$: 对于边 $(v, p)$, 其中 $p$ 被认为是父节点, 输出 $v$ 子树中所有顶点权重的总和
 
-Process $Q$ queries. It is guaranteed that the graph is a tree after each query.
-
-- `0 $u$ $v$ $w$ $x$`: Remove an edge $(u, v)$ and add an edge $(w, x)$.
-- `1 $p$ $x$`: $a_p \gets a_p + x$
-- `2 $v$ $p$`: For an edge $(v, p)$ where $p$ is considered the parent, output the sum of weights of all vertices in the subtree of $v$.
-
-## input
+## 输入
 
 $N$ $Q$
 $a_0$ $a_1$ ... $a_{N - 1}$
@@ -64,7 +62,7 @@ $\textrm{Query}_{Q - 1}$
 2 0 2
 0 2 3 3 1
 2 1 4
-============
+=======================
 10011
 110011
 110011

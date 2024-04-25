@@ -8,20 +8,20 @@
 namespace tifa_libs::math {
 
 class mpi {
-  static constexpr u32 D = 100000000, lgD = 8;
+  static CEXP u32 D = 100000000, lgD = 8;
   bool neg;
   vecu dt;
 
  public:
-  explicit constexpr mpi() : neg(false), dt() {}
-  constexpr mpi(bool n, vecu const& d) : neg(n), dt(d) {}
+  explicit CEXP mpi() : neg(false), dt() {}
+  CEXP mpi(bool n, vecu CR d) : neg(n), dt(d) {}
   template <int_c T>
-  constexpr mpi(T x) : neg(false) {
-    if constexpr (is_sint_v<T>)
+  CEXP mpi(T x) : neg(false) {
+    if CEXP (is_sint_v<T>)
       if (x < 0) neg = true, x = -x;
     while (x) dt.push_back(u32(to_uint_t<T>(x) % D)), x /= (T)D;
   }
-  constexpr mpi(strn s) : neg(false) {
+  CEXP mpi(strn s) : neg(false) {
     assert(!s.empty());
     if (s.size() == 1u) {
       if (s[0] == '0') return;
@@ -42,14 +42,14 @@ class mpi {
     if (_) dt.push_back(_);
   }
 
-  static constexpr u32 digit() { return D; }
-  static constexpr u32 log_digit() { return lgD; }
-  constexpr void set_neg(bool s) { neg = s; }
-  constexpr bool is_neg() const { return neg; }
-  constexpr vecu& data() { return dt; }
-  constexpr vecu const& data() const { return dt; }
+  static CEXP u32 digit() { return D; }
+  static CEXP u32 log_digit() { return lgD; }
+  CEXP void set_neg(bool s) { neg = s; }
+  CEXP bool is_neg() const { return neg; }
+  CEXP vecu& data() { return dt; }
+  CEXP vecu CR data() const { return dt; }
 
-  friend constexpr mpi operator+(mpi const& l, mpi const& r) {
+  friend CEXP mpi operator+(mpi CR l, mpi CR r) {
     if (l.neg == r.neg) return {l.neg, add_(l.dt, r.dt)};
     if (leq_(l.dt, r.dt)) {
       auto c = sub_(r.dt, l.dt);
@@ -58,53 +58,53 @@ class mpi {
     auto c = sub_(l.dt, r.dt);
     return {is0_(c) ? false : l.neg, c};
   }
-  friend constexpr mpi operator-(mpi const& l, mpi const& r) { return l + (-r); }
-  friend constexpr mpi operator*(mpi const& l, mpi const& r) {
+  friend CEXP mpi operator-(mpi CR l, mpi CR r) { return l + (-r); }
+  friend CEXP mpi operator*(mpi CR l, mpi CR r) {
     auto c = mul_(l.dt, r.dt);
     bool n = is0_(c) ? false : (l.neg ^ r.neg);
     return {n, c};
   }
-  friend constexpr ptt<mpi> divmod(mpi const& l, mpi const& r) {
+  friend CEXP ptt<mpi> divmod(mpi CR l, mpi CR r) {
     auto dm = divmod_newton_(l.dt, r.dt);
     return {mpi{is0_(dm.first) ? false : l.neg != r.neg, dm.first}, mpi{is0_(dm.second) ? false : l.neg, dm.second}};
   }
-  friend constexpr mpi operator/(mpi const& l, mpi const& r) { return divmod(l, r).first; }
-  friend constexpr mpi operator%(mpi const& l, mpi const& r) { return divmod(l, r).second; }
+  friend CEXP mpi operator/(mpi CR l, mpi CR r) { return divmod(l, r).first; }
+  friend CEXP mpi operator%(mpi CR l, mpi CR r) { return divmod(l, r).second; }
 
-  constexpr mpi& operator+=(mpi const& r) { return (*this) = (*this) + r; }
-  constexpr mpi& operator-=(mpi const& r) { return (*this) = (*this) - r; }
-  constexpr mpi& operator*=(mpi const& r) { return (*this) = (*this) * r; }
-  constexpr mpi& operator/=(mpi const& r) { return (*this) = (*this) / r; }
-  constexpr mpi& operator%=(mpi const& r) { return (*this) = (*this) % r; }
+  CEXP mpi& operator+=(mpi CR r) { return (*this) = (*this) + r; }
+  CEXP mpi& operator-=(mpi CR r) { return (*this) = (*this) - r; }
+  CEXP mpi& operator*=(mpi CR r) { return (*this) = (*this) * r; }
+  CEXP mpi& operator/=(mpi CR r) { return (*this) = (*this) / r; }
+  CEXP mpi& operator%=(mpi CR r) { return (*this) = (*this) % r; }
 
-  constexpr mpi operator-() const {
+  CEXP mpi operator-() const {
     if (is_zero()) return *this;
     return {!neg, dt};
   }
-  constexpr mpi operator+() const { return *this; }
-  friend constexpr mpi abs(mpi const& m) { return {false, m.dt}; }
-  constexpr bool is_zero() const { return is0_(dt); }
+  CEXP mpi operator+() const { return *this; }
+  friend CEXP mpi abs(mpi CR m) { return {false, m.dt}; }
+  CEXP bool is_zero() const { return is0_(dt); }
 
-  friend constexpr bool operator==(mpi const& l, mpi const& r) { return l.neg == r.neg && l.dt == r.dt; }
+  friend CEXP bool operator==(mpi CR l, mpi CR r) { return l.neg == r.neg && l.dt == r.dt; }
   // clang-format off
-  friend constexpr auto operator<=>(mpi const& l, mpi const& r) { return l == r ? 0 : neq_lt_(l, r) ? -1 : 1; }
+  friend CEXP auto operator<=>(mpi  CR l, mpi  CR r) { return l == r ? 0 : neq_lt_(l, r) ? -1 : 1; }
   // clang-format on
 
-  constexpr u32 size() const { return (u32)dt.size(); }
-  constexpr void shrink() { shrink_(dt); }
+  CEXP u32 size() const { return (u32)dt.size(); }
+  CEXP void shrink() { shrink_(dt); }
 
-  constexpr strn to_str() const {
+  CEXP strn to_str() const {
     if (is_zero()) return "0";
     strn res;
     if (neg) res.push_back('-');
     for (u32 i = size() - 1; ~i; --i) res += itos_((u32)dt[i], i != size() - 1);
     return res;
   }
-  constexpr i64 to_i64() const {
+  CEXP i64 to_i64() const {
     i64 res = to_i64_(dt);
     return neg ? -res : res;
   }
-  constexpr i128 to_i128() const {
+  CEXP i128 to_i128() const {
     i128 res = 0;
     for (u32 i = (u32)dt.size() - 1; ~i; --i) res = res * D + dt[i];
     return neg ? -res : res;
@@ -116,30 +116,30 @@ class mpi {
     m = mpi{s};
     return is;
   }
-  friend std::ostream& operator<<(std::ostream& os, mpi const& m) { return os << m.to_str(); }
+  friend std::ostream& operator<<(std::ostream& os, mpi CR m) { return os << m.to_str(); }
 
  private:
-  static constexpr bool lt_(vecu const& a, vecu const& b) {
+  static CEXP bool lt_(vecu CR a, vecu CR b) {
     if (a.size() != b.size()) return a.size() < b.size();
     for (u32 i = (u32)a.size() - 1; ~i; --i)
       if (a[i] != b[i]) return a[i] < b[i];
     return false;
   }
-  static constexpr bool leq_(vecu const& a, vecu const& b) { return a == b || lt_(a, b); }
+  static CEXP bool leq_(vecu CR a, vecu CR b) { return a == b || lt_(a, b); }
   // a < b (s.t. a != b)
-  static constexpr bool neq_lt_(mpi const& l, mpi const& r) {
+  static CEXP bool neq_lt_(mpi CR l, mpi CR r) {
     assert(l != r);
     if (l.neg != r.neg) return l.neg;
     return lt_(l.dt, r.dt) ^ l.neg;
   }
-  static constexpr bool is0_(vecu const& a) { return a.empty(); }
-  static constexpr bool is1_(vecu const& a) { return a.size() == 1 && a[0] == 1; }
-  static constexpr void shrink_(vecu& a) {
+  static CEXP bool is0_(vecu CR a) { return a.empty(); }
+  static CEXP bool is1_(vecu CR a) { return a.size() == 1 && a[0] == 1; }
+  static CEXP void shrink_(vecu& a) {
     while (a.size() && !a.back()) a.pop_back();
   }
 
-  static constexpr vecu add_(vecu const& a, vecu const& b) {
-    vecu c(std::max(a.size(), b.size()) + 1);
+  static CEXP vecu add_(vecu CR a, vecu CR b) {
+    vecu c(max(a.size(), b.size()) + 1);
     for (u32 i = 0; i < a.size(); ++i) c[i] += a[i];
     for (u32 i = 0; i < b.size(); ++i) c[i] += b[i];
     for (u32 i = 0; i < c.size() - 1; ++i)
@@ -147,7 +147,7 @@ class mpi {
     shrink_(c);
     return c;
   }
-  static constexpr vecu sub_(vecu const& a, vecu const& b) {
+  static CEXP vecu sub_(vecu CR a, vecu CR b) {
     assert(leq_(b, a));
     vecu c = a;
     u32 borrow = 0;
@@ -161,7 +161,7 @@ class mpi {
     shrink_(c);
     return c;
   }
-  static constexpr vecu mul_3ntt_(vecu const& a, vecu const& b) {
+  static CEXP vecu mul_3ntt_(vecu CR a, vecu CR b) {
     if (a.empty() || b.empty()) return {};
     auto m = conv_u128(a, b);
     vecu c;
@@ -176,7 +176,7 @@ class mpi {
     shrink_(c);
     return c;
   }
-  static constexpr vecu mul_bf_(vecu const& a, vecu const& b) {
+  static CEXP vecu mul_bf_(vecu CR a, vecu CR b) {
     if (a.empty() || b.empty()) return {};
     vecu64 prod(a.size() + b.size() - 1 + 1);
     for (u32 i = 0; i < a.size(); ++i)
@@ -190,28 +190,28 @@ class mpi {
     shrink_(c);
     return c;
   }
-  static constexpr vecu mul_(vecu const& a, vecu const& b) {
+  static CEXP vecu mul_(vecu CR a, vecu CR b) {
     if (is0_(a) || is0_(b)) return {};
     if (is1_(a)) return b;
     if (is1_(b)) return a;
-    if (std::min(a.size(), b.size()) <= 128) return a.size() < b.size() ? mul_bf_(b, a) : mul_bf_(a, b);
+    if (min(a.size(), b.size()) <= 128) return a.size() < b.size() ? mul_bf_(b, a) : mul_bf_(a, b);
     return mul_3ntt_(a, b);
   }
   // 0 <= A < 1e16, 1 <= B < 1e8
-  static constexpr ptt<vecu> divmod_li_(vecu const& a, vecu const& b) {
+  static CEXP ptt<vecu> divmod_li_(vecu CR a, vecu CR b) {
     assert(a.size() <= 2 && b.size() == 1);
     i64 va = to_i64_(a);
     u32 vb = b[0];
     return {itov_(va / vb), itov_(va % vb)};
   }
   // 0 <= A < 1e16, 1 <= B < 1e16
-  static constexpr ptt<vecu> divmod_ll_(vecu const& a, vecu const& b) {
+  static CEXP ptt<vecu> divmod_ll_(vecu CR a, vecu CR b) {
     assert(a.size() <= 2 && b.size() && b.size() <= 2);
     i64 va = to_i64_(a), vb = to_i64_(b);
     return {itov_(va / vb), itov_(va % vb)};
   }
   // 1 <= B < 1e8
-  static constexpr ptt<vecu> divmod_1e8_(vecu const& a, vecu const& b) {
+  static CEXP ptt<vecu> divmod_1e8_(vecu CR a, vecu CR b) {
     assert(b.size() == 1);
     if (b[0] == 1) return {a, {}};
     if (a.size() <= 2) return divmod_li_(a, b);
@@ -228,10 +228,10 @@ class mpi {
     return {quo, d ? vecu{u32(d)} : vecu{}};
   }
   // 0 <= A, 1 <= B
-  static constexpr ptt<vecu> divmod_bf_(vecu const& a, vecu const& b) {
+  static CEXP ptt<vecu> divmod_bf_(vecu CR a, vecu CR b) {
     assert(!is0_(b) && b.size());
     if (b.size() == 1) return divmod_1e8_(a, b);
-    if (std::max(a.size(), b.size()) <= 2) return divmod_ll_(a, b);
+    if (max(a.size(), b.size()) <= 2) return divmod_ll_(a, b);
     if (lt_(a, b)) return {{}, a};
     // B >= 1e8, A >= B
     u32 norm = D / (b.back() + 1);
@@ -259,7 +259,7 @@ class mpi {
   }
 
   // 1 / a, abserr = B^{-deg}
-  static constexpr vecu inv_(vecu const& a, u32 deg) {
+  static CEXP vecu inv_(vecu CR a, u32 deg) {
     assert(!a.empty() && D / 2 <= a.back() && a.back() < D);
     u32 k = deg, c = (u32)a.size();
     while (k > 64) k = (k + 1) / 2;
@@ -269,7 +269,7 @@ class mpi {
     while (k < deg) {
       vecu s = mul_(z, z);
       s.insert(s.begin(), 0);
-      u32 d = std::min(c, 2 * k + 1);
+      u32 d = min(c, 2 * k + 1);
       vecu t{a.end() - d, a.end()}, u = mul_(s, t);
       u.erase(u.begin(), u.begin() + d);
       vecu w(k + 1), w2 = add_(z, z);
@@ -281,7 +281,7 @@ class mpi {
     return z;
   }
 
-  static constexpr ptt<vecu> divmod_newton_(vecu const& a, vecu const& b) {
+  static CEXP ptt<vecu> divmod_newton_(vecu CR a, vecu CR b) {
     assert(!is0_(b));
     if (b.size() <= 64) return divmod_bf_(a, b);
     if ((int)(a.size() - b.size()) <= 64) return divmod_bf_(a, b);
@@ -301,10 +301,10 @@ class mpi {
     return {q, q2};
   }
 
-  static constexpr strn itos_(u32 x, bool zero_padding) {
+  static CEXP strn itos_(u32 x, bool zero_padding) {
     assert(x < D);
     strn res;
-    for (u32 i = 0; i < lgD; ++i) res.push_back(char(48 + x % 10)), x /= 10;
+    flt_ (u32, i, 0, lgD) res.push_back(char(48 + x % 10)), x /= 10;
     if (!zero_padding) {
       while (res.size() && res.back() == '0') res.pop_back();
       assert(!res.empty());
@@ -313,13 +313,13 @@ class mpi {
     return res;
   }
   template <int_c T>
-  static constexpr vecu itov_(T x) {
-    if constexpr (is_sint_v<T>) assert(x >= 0);
+  static CEXP vecu itov_(T x) {
+    if CEXP (is_sint_v<T>) assert(x >= 0);
     vecu res;
     while (x) res.push_back((u32)(x % D)), x /= D;
     return res;
   }
-  static constexpr i64 to_i64_(vecu const& a) {
+  static CEXP i64 to_i64_(vecu CR a) {
     i64 res = 0;
     for (u32 i = (u32)a.size() - 1; ~i; --i) res = res * D + a[i];
     return res;

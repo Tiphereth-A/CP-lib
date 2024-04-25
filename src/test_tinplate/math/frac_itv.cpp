@@ -17,27 +17,17 @@ int main() {
 }
 
 /*
-Many problems require printing the probability of something. Moreover, it is common that if the answer is $\frac{a}{b}$, you should output $a\times b^{-1}\pmod p$ ($p$ is a prime number). In these problems, you cannot know the exact value of the probability. It's so confusing!!! Now, we want to reverse engineer the exact probability from such calculated output value $x$. We do so by guessing the probability is the one with the minimum $b$ such that $a\times b^{-1}\equiv x\pmod p$. Now we invite you to solve this problem with us!
+给你两个正整数 $p$ 和 $x$, 其中 $p$ 是一个质数
+请找到最小的正整数 $b$, 使得存在一些正整数 $a$ 满足 $a<b$ 且 $a\equiv bx\pmod p$
 
-You are given two positive integers $p$ and $x$, where $p$ is a prime number.
+## 输入
 
-Please find the smallest positive integer $b$ such that there exist some positive integer $a$ satisfying $a<b$ and $a\equiv bx\pmod p$.
+第一行包含一个整数 $T$, 表示有 $T$ 个测试. 每个测试由一行组成, 包含两个整数 $p$ 和 $x$
+$1\leq T\leq 2\times 10^5$, $3\leq p\leq 10^{15}$, $p$ 是质数, $1<x<p$
 
-**Input**
+## 输出
 
-The first line contains an integer $T$ indicating there are $T$ tests. Each test consists of a single line containing two integers: $p,x$.
-
-* $1\leq T\leq 2\times 10^5$
-
-* $3\leq p\leq 10^{15}$
-
-* $p$ is a prime
-
-* $1<x<p$
-
-**Output**
-
-For each test, output a line containing a string represents the fraction $\frac{a}{b}$ using the format "a/b" (without quotes).
+对于每个测试, 输出一行包含一个字符串, 表示分数 $\frac{a}{b}$, 使用格式 "a/b"（不含引号）
 */
 
 /*

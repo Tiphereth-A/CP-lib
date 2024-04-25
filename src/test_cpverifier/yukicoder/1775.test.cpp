@@ -12,34 +12,34 @@ int main() {
   u64 n, m, x, y, z;
   std::cin >> n >> m >> x >> y >> z;
   --x, --y, --z;
-  for (u64 i = 0; i < n; ++i)
-    for (u64 j = 0; j < i; ++j) w[i][j] = w[j][i] = g();
+  flt_ (u64, i, 0, n)
+    flt_ (u64, j, 0, i) w[i][j] = w[j][i] = g();
   for (u64 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     --u, --v;
     w[u][v] = w[v][u] = 0;
   }
   dp[0][0][x][x] = 1;
-  for (u64 L = 1; L <= n; ++L) {
+  fle_ (u64, L, 1, n) {
     memset(nx, 0, sizeof(nx));
-    for (u32 ky = 0; ky < 2; ++ky)
-      for (u32 kz = 0; kz < 2; ++kz)
-        for (u64 c = 0; c < n; ++c)
-          for (u64 d = 0; d < n; ++d) {
+    flt_ (u32, ky, 0, 2)
+      flt_ (u32, kz, 0, 2)
+        flt_ (u64, c, 0, n)
+          flt_ (u64, d, 0, n) {
             if (w[c][d] == 0) continue;
             if (ky == 1 && d == y) continue;
             if (kz == 1 && d == z) continue;
             u32 nky = ky | (d == y), nkz = kz | (d == z);
-            for (u64 p = 0; p < n; ++p)
+            flt_ (u64, p, 0, n)
               if (p != d) nx[nky][nkz][d][c] += dp[ky][kz][c][p];
           }
-    for (u32 ky = 0; ky < 2; ++ky)
-      for (u32 kz = 0; kz < 2; ++kz)
-        for (u64 i = 0; i < n; ++i)
-          for (u64 j = 0; j < n; ++j)
+    flt_ (u32, ky, 0, 2)
+      flt_ (u32, kz, 0, 2)
+        flt_ (u64, i, 0, n)
+          flt_ (u64, j, 0, n)
             if (w[i][j] != 0) nx[ky][kz][i][j] *= w[i][j];
-    std::swap(dp, nx);
-    for (u64 i = 0; i < n; ++i)
+    tifa_libs::swap(dp, nx);
+    flt_ (u64, i, 0, n)
       if (dp[1][1][x][i] != 0) {
         std::cout << L << '\n';
         return 0;

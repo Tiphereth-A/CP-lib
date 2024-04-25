@@ -13,7 +13,7 @@ int main() {
   vecu a(n);
   std::cin >> a;
   vvec<tifa_libs::math::rational<i64>> dp(1 << n);
-  for (u32 i = 0; i < n; ++i) dp[1 << i].emplace_back((i64)a[i]);
+  flt_(u32, i, 0, n) dp[1 << i].emplace_back((i64)a[i]);
   for (u32 i = 0, ed_ = 1 << n; i < ed_; ++i) {
     if (std::popcount(i) <= 1) continue;
     tifa_libs::enum_subset<>::set(i);

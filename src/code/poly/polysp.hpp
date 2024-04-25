@@ -9,10 +9,10 @@ template <class mint>
 using polysp = vec<std::pair<u32, mint>>;
 
 template <class mint, class ccore>
-constexpr polysp<mint> poly2sp(poly<mint, ccore> const& p, u32 n = 0) {
+CEXP polysp<mint> poly2sp(poly<mint, ccore> CR p, u32 n = 0) {
   if (!n) n = p.size();
   polysp<mint> fs;
-  for (u32 i = 0; i < n; ++i)
+  flt_ (u32, i, 0, n)
     if (p[i] != 0) fs.emplace_back(i, p[i]);
   return fs;
 }

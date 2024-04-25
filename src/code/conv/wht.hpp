@@ -6,10 +6,10 @@
 namespace tifa_libs::math {
 
 template <class T>
-constexpr void wht(vec<T>& f, u32 n = 0) {
+CEXP void wht(vec<T>& f, u32 n = 0) {
   if (!n) n = (u32)f.size();
   for (u32 i = 1; i < n; i *= 2)
-    for (u32 j = 0; j < n; ++j)
+    flt_ (u32, j, 0, n)
       if (!(j & i)) {
         T x = f[j], y = f[j | i];
         f[j] = x + y;
@@ -17,10 +17,10 @@ constexpr void wht(vec<T>& f, u32 n = 0) {
       }
 }
 template <class T>
-constexpr void iwht(vec<T>& f, u32 n = 0) {
+CEXP void iwht(vec<T>& f, u32 n = 0) {
   if (!n) n = (u32)f.size();
   wht(f, n);
-  if constexpr (std::is_integral_v<T>)
+  if CEXP (std::is_integral_v<T>)
     for (auto& x : f) x /= n;
   else {
     T _ = T(1) / T(n);

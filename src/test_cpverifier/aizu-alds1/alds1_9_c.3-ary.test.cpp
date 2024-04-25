@@ -2,7 +2,7 @@
 
 #include "../../code/ds/d_ary_heap.hpp"
 
-constexpr int D = 3;
+CEXP int D = 3;
 
 int main() {
   std::ios::sync_with_stdio(false);

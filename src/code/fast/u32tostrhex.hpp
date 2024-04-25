@@ -6,8 +6,8 @@
 namespace tifa_libs {
 
 template <bool lower = true>
-constexpr u32 u32tostrhex(u32 x, char *s) {
-  constexpr char uppert[513] =
+CEXP u32 u32tostrhex(u32 x, char *s) {
+  CEXP char uppert[513] =
       "000102030405060708090A0B0C0D0E0F"
       "101112131415161718191A1B1C1D1E1F"
       "202122232425262728292A2B2C2D2E2F"
@@ -24,7 +24,7 @@ constexpr u32 u32tostrhex(u32 x, char *s) {
       "D0D1D2D3D4D5D6D7D8D9DADBDCDDDEDF"
       "E0E1E2E3E4E5E6E7E8E9EAEBECEDEEEF"
       "F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF";
-  constexpr char lowert[513] =
+  CEXP char lowert[513] =
       "000102030405060708090a0b0c0d0e0f"
       "101112131415161718191a1b1c1d1e1f"
       "202122232425262728292a2b2c2d2e2f"
@@ -42,7 +42,7 @@ constexpr u32 u32tostrhex(u32 x, char *s) {
       "e0e1e2e3e4e5e6e7e8e9eaebecedeeef"
       "f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff";
   const char *lut = nullptr;
-  if constexpr (lower) lut = lowert;
+  if CEXP (lower) lut = lowert;
   else lut = uppert;
   for (int i = 3; ~i; x >>= 8, --i) {
     int pos = (x & 255) * 2;

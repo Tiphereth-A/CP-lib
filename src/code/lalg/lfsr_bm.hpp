@@ -9,12 +9,12 @@ template <class T, class Is0>
 requires requires(Is0 is0, T t) {
   { is0(t) } -> std::same_as<bool>;
 }
-constexpr vec<T> lfsr_bm(vec<T> const& s, Is0&& is0) {
+CEXP vec<T> lfsr_bm(vec<T> CR s, Is0&& is0) {
   vec<T> C{1}, B(C);
   T b(1);
   for (u32 n = 0, n_ed = (u32)s.size(), l = 0, x = 1; n < n_ed; ++n) {
     T d(s[n]);
-    for (u32 i = 1; i <= l; ++i) d += C[i] * s[n - i];
+    fle_ (u32, i, 1, l) d += C[i] * s[n - i];
     if (is0(d)) ++x;
     else if (l * 2 > n) {
       if (C.size() < B.size() + x) C.resize(B.size() + x);

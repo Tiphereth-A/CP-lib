@@ -7,7 +7,7 @@ namespace tifa_libs::opt {
 
 // @return INDEX of LIS in @a
 template <class T, class C = std::less<T>>
-constexpr vecu lis(vec<T> const& a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}) {
+CEXP vecu lis(vec<T> CR a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}) {
   vec<T> f{inf};
   vecu g;
   for (auto i : a) {

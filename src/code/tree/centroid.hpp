@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 // @return centroid, at MOST 2
-constexpr vecu tree_centroid(tree const &tr) {
+CEXP vecu tree_centroid(cT_(tree) tr) {
   vecu sz(tr.g.size()), ans;
 
   auto dfs = [&](auto &&dfs, u32 now, u32 fa = -1_u32) -> void {
@@ -16,9 +16,9 @@ constexpr vecu tree_centroid(tree const &tr) {
       if (to != fa) {
         dfs(dfs, to, now);
         sz[now] += sz[to];
-        max_sz = std::max(max_sz, sz[to]);
+        max_sz = max(max_sz, sz[to]);
       }
-    if (std::max(max_sz, (u32)tr.g.size() - sz[now]) <= tr.g.size() / 2) ans.push_back(now);
+    if (max(max_sz, (u32)tr.g.size() - sz[now]) <= tr.g.size() / 2) ans.push_back(now);
   };
 
   dfs(dfs, tr.root);

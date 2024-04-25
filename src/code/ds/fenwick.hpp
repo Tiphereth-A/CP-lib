@@ -11,21 +11,25 @@ class fenwick {
 
  public:
   //! [1, sz)
-  explicit constexpr fenwick(u32 sz) : a(sz) { assert(sz > 1); }
+  explicit CEXP fenwick(u32 sz) : a(sz) { assert(sz > 1); }
 
   //! [pos, sz), pos > 0
-  constexpr void add(u32 pos, T const &x) {
+  CEXP void add(u32 pos, cT_(T) x) {
     if (!pos) return;
     for (; pos < a.size(); pos += bit::lowbit(pos)) a[pos] += x;
   }
-  //! [1, pos)
-  constexpr T sum(u32 pos) {
+  //! [l, r], l > 0
+  CEXP void add(u32 l, u32 r, cT_(T) x) { add(l, x), add(r + 1, -x); }
+  //! [1, pos]
+  CEXP T sum(u32 pos) {
     T ret = 0;
-    for (pos = std::min(pos, (u32)a.size() - 1); pos; pos -= bit::lowbit(pos)) ret += a[pos];
+    for (pos = min(pos, (u32)a.size() - 1); pos; pos -= bit::lowbit(pos)) ret += a[pos];
     return ret;
   }
+  //! [l, r]
+  CEXP T sum(u32 l, u32 r) { return sum(r) - sum(l - 1); }
   //! for weighted fenwick
-  constexpr T kth_max(u32 k) {
+  CEXP T kth_max(u32 k) {
     u32 now = 0, n = std::bit_ceil(a.size());
     T s{};
     while (n) {

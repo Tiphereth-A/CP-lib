@@ -11,7 +11,7 @@ int main() {
   u32 n;
   std::cin >> n;
   tifa_libs::str::suffixarray sa(t);
-  for (u32 i = 0; i < n; ++i) {
+  flt_ (u32, i, 0, n) {
     std::cin >> s;
     s = " " + s;
     std::cout << bool(sa.frequency(s)) << '\n';

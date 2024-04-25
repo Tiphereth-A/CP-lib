@@ -7,9 +7,9 @@ namespace tifa_libs::geo {
 
 // (a - o) * (b - o)
 template <class FP>
-constexpr FP dot(point<FP> const &o, point<FP> const &a, point<FP> const &b) { return (a.x - o.x) * (b.x - o.x) + (a.y - o.y) * (b.y - o.y); }
+CEXP FP dot(point<FP> CR o, point<FP> CR a, point<FP> CR b) { return (a.x - o.x) * (b.x - o.x) + (a.y - o.y) * (b.y - o.y); }
 template <class FP>
-constexpr int sgn_dot(point<FP> const &o, point<FP> const &a, point<FP> const &b) { return sgn(dot(o, a, b)); }
+CEXP int sgn_dot(point<FP> CR o, point<FP> CR a, point<FP> CR b) { return sgn(dot(o, a, b)); }
 
 }  // namespace tifa_libs::geo
 

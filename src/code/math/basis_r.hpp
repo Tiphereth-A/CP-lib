@@ -1,80 +1,75 @@
 #ifndef TIFALIBS_MATH_BASIS_R
 #define TIFALIBS_MATH_BASIS_R
 
-#include "../util/util.hpp"
+#include "../util/fp_comp.hpp"
 
 namespace tifa_libs::math {
 
 template <std::floating_point FP>
-class basisR {
-  vvec<FP> base;
-  constexpr bool is_zero(FP x) const { return std::abs(x) < eps_v; }
-
- public:
+struct basisR {
+  vvec<FP> basis;
   const u32 vec_len;
-  const FP eps_v;
 
-  explicit constexpr basisR(u32 vec_len, FP eps_v = 1e-4) : vec_len(vec_len), eps_v(eps_v) {}
+  explicit CEXP basisR(u32 vec_len) : vec_len(vec_len) {}
 
-  constexpr vec<FP> &operator[](u32 i) { return base[i]; }
-  constexpr vec<FP> const &operator[](u32 i) const { return base[i]; }
-  constexpr vvec<FP> &data() { return base; }
-  constexpr vvec<FP> const &data() const { return base; }
-
-  constexpr u32 rank() const {
-    u32 res = 0;
-    for (u32 i = 0; i < base.size(); ++i)
-      res += !is_zero(base[i][i]);
-    return res;
-  }
-
-  constexpr bool insert(vec<FP> x) {
+  CEXP bool insert(vec<FP> x) {
     x.resize(vec_len);
-    bool status = false;
-    for (u32 i = base.size() - 1; ~i; --i) {
-      if (is_zero(x[i]))
-        continue;
-      if (!is_zero(base[i][i])) {
-        FP __ = x[i] / base[i][i];
+    bool status = 0;
+    for (u32 i = (u32)basis.size() - 1; ~i; --i) {
+      if (is_zero(x[i])) continue;
+      if (!is_zero(basis[i][i])) {
+        FP _ = x[i] / basis[i][i];
         x[i] = 0;
-        for (u32 j = 0; j < i; ++j)
-          x[j] -= base[i][j] * __;
+        flt_ (u32, j, 0, i) x[j] -= basis[i][j] * _;
       } else {
-        for (u32 j = 0; j < i; ++j)
-          if (!is_zero(x[j]) && !is_zero(base[j][j])) {
-            FP __ = x[j] / base[j][j];
+        flt_ (u32, j, 0, i)
+          if (!is_zero(x[j]) && !is_zero(basis[j][j])) {
+            FP _ = x[j] / basis[j][j];
             x[j] = 0;
-            for (u32 k = 0; k < j; ++k)
-              x[k] -= base[j][k] * __;
+            flt_ (u32, k, 0, j) x[k] -= basis[j][k] * _;
           }
-        for (u32 j = i + 1; j < base.size(); ++j)
-          if (!is_zero(base[j][i]) && !is_zero(x[i])) {
-            FP __ = base[j][i] / x[i];
-            base[j][i] = 0;
-            for (u32 k = 0; k < i; ++k)
-              base[j][k] -= x[k] * __;
+        for (u32 j = i + 1; j < basis.size(); ++j)
+          if (!is_zero(basis[j][i]) && !is_zero(x[i])) {
+            FP _ = basis[j][i] / x[i];
+            basis[j][i] = 0;
+            flt_ (u32, k, 0, i) basis[j][k] -= x[k] * _;
           }
-        base[i] = x;
-        status = true;
+        basis[i] = x, status = 1;
         break;
       }
     }
     return status;
   }
-
+  CEXP bool test(vec<FP> x) const {
+    for (u32 i = (u32)basis.size() - 1; ~i; --i) {
+      if (is_zero(x[i])) continue;
+      if (!is_zero(basis[i][i])) {
+        FP _ = x[i] / basis[i][i];
+        x[i] = 0;
+        flt_ (u32, j, 0, i) x[j] -= basis[i][j] * _;
+      } else return 0;
+    }
+    return 1;
+  }
+  CEXP u32 rank() const {
+    u32 res = 0;
+    for (u32 i = 0; i < basis.size(); ++i)
+      res += !is_zero(basis[i][i]);
+    return res;
+  }
   // @return std::nullopt if x is linear independent with current basis, else
   // return the solution
-  constexpr std::optional<vec<FP>> coord(vec<FP> x) {
+  CEXP std::optional<vec<FP>> coord(vec<FP> x) {
     vec<FP> res(vec_len);
-    for (u32 i = base.size() - 1; ~i; --i)
+    for (u32 i = basis.size() - 1; ~i; --i)
       if (!is_zero(x[i])) {
-        if (is_zero(base[i][i]))
+        if (is_zero(basis[i][i]))
           return {};
-        FP __ = x[i] / base[i][i];
-        res[i] = __;
+        FP _ = x[i] / basis[i][i];
+        res[i] = _;
         x[i] = 0;
-        for (u32 j = 0; j <= i; ++j)
-          x[j] -= base[i][j] * __;
+        fle_ (u32, j, 0, i)
+          x[j] -= basis[i][j] * _;
       }
     return res;
   }

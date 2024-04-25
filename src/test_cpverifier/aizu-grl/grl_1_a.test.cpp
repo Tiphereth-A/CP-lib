@@ -12,7 +12,7 @@ int main() {
     std::cin >> u >> v >> w;
     g.add_arc(u, v, w);
   }
-  constexpr u32 INF = std::numeric_limits<u32>::max() / 2 - 1;
+  CEXP u32 INF = std::numeric_limits<u32>::max() / 2 - 1;
   auto d = tifa_libs::graph::dijkstra(g, r, fn_0, INF);
   for (u32 i : d)
     if (i == INF) std::cout << "INF\n";

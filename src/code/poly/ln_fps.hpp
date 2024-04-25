@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-constexpr poly<mint, ccore> ln_fps(poly<mint, ccore> const &p, u32 n = 0) {
+CEXP poly<mint, ccore> ln_fps(poly<mint, ccore> CR p, u32 n = 0) {
   assert(p[0] == 1);
   if (!n) n = p.size();
   auto _ = deriv_fps(p).pre(n);

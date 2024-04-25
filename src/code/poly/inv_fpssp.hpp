@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-constexpr poly<mint, ccore> inv_fpssp(poly<mint, ccore> const& p, u32 n = 0) {
+CEXP poly<mint, ccore> inv_fpssp(poly<mint, ccore> CR p, u32 n = 0) {
   assert(!p.data().empty() && p[0] != 0);
   if (!n) n = p.size();
   auto ps = poly2sp(p, n);

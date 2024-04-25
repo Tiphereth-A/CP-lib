@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class FP>
-constexpr FP kahan(vec<FP> const &vec) {
+CEXP FP kahan(vec<FP> CR vec) {
   FP sum = 0, c = 0;
   for (auto x : vec) {
     FP y = x - c, t = sum + y;

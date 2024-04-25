@@ -19,6 +19,6 @@ int main() {
     if (tifa_libs::is_lt(p[i].y, p[now].y) || (tifa_libs::is_eq(p[i].y, p[now].y) && tifa_libs::is_lt(p[i].x, p[now].x))) now = i;
   for (u32 i = now; i < p.vs.size(); ++i) std::cout << p[i] << '\n';
   if (now)
-    for (u32 i = 0; i < now; ++i) std::cout << p[i] << '\n';
+    flt_ (u32, i, 0, now) std::cout << p[i] << '\n';
   return 0;
 }

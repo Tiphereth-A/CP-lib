@@ -17,7 +17,7 @@ int main() {
   }
   auto ans = tifa_libs::graph::tree_hash_rooted(tr, tifa_libs::hash_splitmix64());
   std::map<u64, vecu> dict;
-  for (u32 i = 0; i < n; ++i) dict[ans[i]].push_back(i);
+  flt_ (u32, i, 0, n) dict[ans[i]].push_back(i);
   std::cout << dict.size() << '\n';
   u32 cnt = 0;
   for (auto&& [k, v] : dict) {

@@ -5,7 +5,7 @@
 
 namespace tifa_libs::str {
 
-constexpr vecu duval(strnv s) {
+CEXP vecu duval(strnv s) {
   const u32 n = (u32)s.size();
   vecu res{0};
   while (res.back() != n) {

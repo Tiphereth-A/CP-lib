@@ -5,7 +5,7 @@
 #include "../../code/lalg/leqs_solver.hpp"
 #include "../../code/lalg/trans_mat.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/math/mint_d31.hpp"
 
@@ -21,7 +21,7 @@ int main() {
   mat a(n, m), b(n, 1);
   std::cin >> a >> b;
 
-  auto is_0 = [](mint const &x) { return x.val() == 0; };
+  auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
   auto ge = [&is_0](mat &m, bool f) { return tifa_libs::math::ge_basic(m, is_0, f); };
 
   auto res_ = tifa_libs::math::leqs_solver(a, b, is_0, ge);

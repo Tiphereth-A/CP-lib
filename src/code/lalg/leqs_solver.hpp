@@ -13,7 +13,7 @@ requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
   { is0(t) } -> std::same_as<bool>;
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
-constexpr std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> const &b, Is0 &&is0, Ge &&ge) {
+CEXP std::optional<matrix<T>> leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&is0, Ge &&ge) {
   u32 r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
   matrix<T> Ab = merge_lr_mat(A, b);
@@ -21,14 +21,14 @@ constexpr std::optional<matrix<T>> leqs_solver(matrix<T> const &A, matrix<T> con
   if (rk > c_) return {};
   if (!is0(Ab(rk - 1, c_))) {
     bool f = true;
-    for (u32 i = 0; i < c_; ++i)
+    flt_ (u32, i, 0, c_)
       if (!is0(Ab(rk - 1, i))) {
         f = false;
         break;
       }
     if (f) return {};
   }
-  for (u32 i = rk; i < r_; ++i)
+  flt_ (u32, i, rk, r_)
     if (!is0(Ab(i, c_))) return {};
   vecb used(c_, false);
   vecu idxs;

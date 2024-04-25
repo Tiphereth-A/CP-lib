@@ -7,7 +7,7 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-constexpr FP dist3_PL(point3d<FP> const &p, line3d<FP> const &l) { return ((l.r - l.l) / (p - l.l)).norm() / (l.r - l.l).norm(); }
+CEXP FP dist3_PL(cT_(point3d<FP>) p, cT_(line3d<FP>) l) { return ((l.r - l.l) / (p - l.l)).norm() / (l.r - l.l).norm(); }
 
 }  // namespace tifa_libs::geo
 

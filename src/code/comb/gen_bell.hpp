@@ -8,18 +8,18 @@
 namespace tifa_libs::math {
 
 // bell[i] = B_i, i=0,1,...,n
-template <class poly, std::same_as<typename poly::value_type> mint>
-constexpr poly gen_bell(u32 n, vec<mint> const& fact, vec<mint> const& ifact) {
+template <class poly, std::same_as<TPN poly::value_type> mint>
+CEXP poly gen_bell(u32 n, vec<mint> CR fact, vec<mint> CR ifact) {
   poly b(n + 1);
-  for (u32 i = 1; i <= n; ++i) b[i] = ifact[i];
+  fle_ (u32, i, 1, n) b[i] = ifact[i];
   b = exp_fps(b);
-  for (u32 i = 1; i <= n; ++i) b[i] *= fact[i];
+  fle_ (u32, i, 1, n) b[i] *= fact[i];
   return b;
 }
 // bell[i] = B_i, i=0,1,...,n
 template <class poly>
-constexpr poly gen_bell(u32 n) {
-  using mint = typename poly::value_type;
+CEXP poly gen_bell(u32 n) {
+  using mint = TPN poly::value_type;
   return gen_bell<poly, mint>(n, gen_fact<mint>(n + 1), gen_ifact<mint>(n + 1));
 }
 

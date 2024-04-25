@@ -6,9 +6,9 @@
 namespace tifa_libs::math {
 
 template <class poly>
-constexpr auto ball_box_dil(u32 ball, u32 box, poly const& s2r) { return box > ball ? 0 : s2r[box]; }
+CEXP auto ball_box_dil(u32 ball, u32 box, cT_(poly) s2r) { return box > ball ? 0 : s2r[box]; }
 template <class poly>
-constexpr auto ball_box_dil(u32 ball, u32 box) { return ball_box_dil<poly>(ball, box, gen_stirling2_row<poly>(ball)); }
+CEXP auto ball_box_dil(u32 ball, u32 box) { return ball_box_dil<poly>(ball, box, gen_stirling2_row<poly>(ball)); }
 
 }  // namespace tifa_libs::math
 

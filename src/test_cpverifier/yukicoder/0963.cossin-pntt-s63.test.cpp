@@ -4,7 +4,7 @@
 
 #include "../../code/poly/cossin_fps.hpp"
 
-constexpr u32 MOD = 1012924417;
+CEXP u32 MOD = 1012924417;
 
 #include "../../code/math/mint_s63.hpp"
 #include "../../code/poly/polyntt.hpp"
@@ -18,7 +18,7 @@ int main() {
   u32 n;
   std::cin >> n;
   mint fact_n = 1;
-  for (u32 i = 1; i <= n; ++i) fact_n *= i;
+  fle_(u32, i, 1, n) fact_n *= i;
   auto [fc, fs] = tifa_libs::math::cossin_fps(poly{0, 1}, n + 1);
   std::cout << ((fs + 1) * inv_fps(fc, n + 1))[n] * 2 * fact_n << '\n';
   return 0;

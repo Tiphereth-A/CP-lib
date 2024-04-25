@@ -19,50 +19,50 @@ enum tree_dfs_info_mask {
 
 template <class G>
 struct tree_dfs_info {
-  using weight_type = typename G::weight_type;
+  using weight_type = TPN G::weight_type;
 
   vecu dfn, sz, fa, dep, maxson, maxdfn, euler;
   vvecu go;
   vec<weight_type> dis;
 
   template <int state>
-  constexpr tree_dfs_info& reset_dfs_info(G const& tree) {
+  CEXP tree_dfs_info& reset_dfs_info(G CR tree) {
     u32 n = (u32)tree.g.size();
-    if constexpr (state & td_dfn) dfn = vecu(n);
-    if constexpr (state & (td_sz | td_maxson)) sz = vecu(n);
-    if constexpr (state & td_fa) fa = vecu(n);
-    if constexpr (state & td_dep) dep = vecu(n);
-    if constexpr (state & td_maxson) maxson = vecu(n, n);
-    if constexpr (state & td_maxdfn) maxdfn = vecu(n);
-    if constexpr (state & td_euler) euler = vecu(n);
-    if constexpr (state & td_go) go = vvecu(n, vecu(21u, n));
-    if constexpr (state & td_dis) dis = vec<weight_type>(n);
+    if CEXP (state & td_dfn) dfn = vecu(n);
+    if CEXP (state & (td_sz | td_maxson)) sz = vecu(n);
+    if CEXP (state & td_fa) fa = vecu(n);
+    if CEXP (state & td_dep) dep = vecu(n);
+    if CEXP (state & td_maxson) maxson = vecu(n, n);
+    if CEXP (state & td_maxdfn) maxdfn = vecu(n);
+    if CEXP (state & td_euler) euler = vecu(n);
+    if CEXP (state & td_go) go = vvecu(n, vecu(21u, n));
+    if CEXP (state & td_dis) dis = vec<weight_type>(n);
 
     u32 cnt = 0;
     dfs(
         tree, tree.root,
         [&](u32 u, u32 f) {
-          if constexpr (state & td_dfn) dfn[u] = cnt;
-          if constexpr (state & td_euler) euler[cnt] = u;
-          if constexpr (state & (td_dfn | td_maxdfn | td_euler)) ++cnt;
-          if constexpr (state & (td_sz | td_maxson)) sz[u] = 1;
-          if constexpr (state & td_fa) fa[u] = f;
-          if constexpr (state & td_go) {
+          if CEXP (state & td_dfn) dfn[u] = cnt;
+          if CEXP (state & td_euler) euler[cnt] = u;
+          if CEXP (state & (td_dfn | td_maxdfn | td_euler)) ++cnt;
+          if CEXP (state & (td_sz | td_maxson)) sz[u] = 1;
+          if CEXP (state & td_fa) fa[u] = f;
+          if CEXP (state & td_go) {
             go[u][0] = f;
             for (u32 i = 1; i <= 20u && go[u][i - 1] < n; i++) go[u][i] = go[go[u][i - 1]][i - 1];
           }
         },
-        [&](u32 to, u32 u, weight_type const& w = 1) {
-          if constexpr (state & td_dep) dep[to] = dep[u] + 1;
-          if constexpr (state & td_dis) dis[to] = dis[u] + w;
+        [&](u32 to, u32 u, cT_(weight_type) w = 1) {
+          if CEXP (state & td_dep) dep[to] = dep[u] + 1;
+          if CEXP (state & td_dis) dis[to] = dis[u] + w;
         },
-        [&](u32 to, u32 u, weight_type const& = 1) {
-          if constexpr (state & (td_sz | td_maxson)) sz[u] += sz[to];
-          if constexpr (state & td_maxson)
+        [&](u32 to, u32 u, cT_(weight_type) = 1) {
+          if CEXP (state & (td_sz | td_maxson)) sz[u] += sz[to];
+          if CEXP (state & td_maxson)
             if (maxson[u] == n || sz[to] > sz[maxson[u]]) maxson[u] = to;
         },
         [&](u32 u, u32) {
-          if constexpr (state & td_maxdfn) maxdfn[u] = cnt - 1;
+          if CEXP (state & td_maxdfn) maxdfn[u] = cnt - 1;
         });
     return *this;
   }

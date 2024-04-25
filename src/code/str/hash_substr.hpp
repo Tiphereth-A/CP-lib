@@ -11,9 +11,9 @@ class hash_substr {
   vec<mint> hash;
 
  public:
-  explicit constexpr hash_substr() {}
+  explicit CEXP hash_substr() {}
 
-  constexpr void set(strnv s) {
+  CEXP void set(strnv s) {
     hash.resize(1, 0), hash.reserve(s.size() + 1);
     for (char c : s) hash.push_back(hash.back() * base + (u32)c + 1);
     if (p.size() <= s.size()) {
@@ -22,10 +22,10 @@ class hash_substr {
       while (p.size() <= s.size()) p.push_back(p.back() * base);
     }
   }
-  constexpr u32 size() const { return u32(hash.size() - 1); }
-  constexpr mint get(u32 pos, u32 len = -1_u32) const {
+  CEXP u32 size() const { return u32(hash.size() - 1); }
+  CEXP mint get(u32 pos, u32 len = -1_u32) const {
     assert(!p.empty() && pos < hash.size());
-    return hash[pos + std::min(len, (u32)hash.size() - 1 - pos)] - hash[pos] * p[len];
+    return hash[pos + min(len, (u32)hash.size() - 1 - pos)] - hash[pos] * p[len];
   }
 };
 

@@ -14,6 +14,6 @@ int main() {
   }
   tifa_libs::graph::domtree dt(g);
   auto res = dt.get_domtree(s);
-  for (u32 i = 0; i < n; ++i) std::cout << (i32)res[i] << " \n"[i == n - 1];
+  flt_ (u32, i, 0, n) std::cout << (i32)res[i] << " \n"[i == n - 1];
   return 0;
 }

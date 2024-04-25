@@ -14,11 +14,11 @@ class min25_sieve {
   u64 m, sqm, s;
   vecu p;
 
-  constexpr u64 idx(u64 n) const { return n <= sqm ? s - n : div_u64d(m, n); }
+  CEXP u64 idx(u64 n) const { return n <= sqm ? s - n : div_u64d(m, n); }
 
  public:
   // m^{3/2} in u64
-  explicit constexpr min25_sieve(u64 m) : m(m), sqm(isqrt(m)) {
+  explicit CEXP min25_sieve(u64 m) : m(m), sqm(isqrt(m)) {
     assert(m < (1ll << 42));
     if (m) {
       u64 hls = div_u64d(m, sqm);
@@ -28,18 +28,18 @@ class min25_sieve {
     }
   }
 
-  constexpr vec<T> sum_pk(u32 k) const {
+  CEXP vec<T> sum_pk(u32 k) const {
     auto sik = sum_ik<T>[k];
     if (!m) return {};
     u64 hls = div_u64d(m, sqm);
     if (hls != 1 && div_u64d(m, hls - 1) == sqm) --hls;
     vec<T> h(s);
-    for (u64 i = 1; i < hls; ++i) h[i] = sik(div_u64d(m, i)) - 1;
-    for (u64 i = 1; i <= sqm; ++i) h[s - i] = sik(i) - 1;
+    flt_ (u64, i, 1, hls) h[i] = sik(div_u64d(m, i)) - 1;
+    fle_ (u64, i, 1, sqm) h[s - i] = sik(i) - 1;
     for (u32 x : p) {
       T _ = x, pi = h[s - x + 1];
       _ = qpow(_, k);
-      u64 x2 = u64(x) * x, mx = std::min(hls, div_u64d(m, x2) + 1);
+      u64 x2 = u64(x) * x, mx = min(hls, div_u64d(m, x2) + 1);
       for (u64 i = 1, ix = x; i < mx; ++i, ix += x) h[i] -= ((ix < hls ? h[ix] : h[s - div_u64d(m, ix)]) - pi) * _;
       for (u64 n = sqm; n >= x2; --n) h[s - n] -= (h[s - div_u64d(n, x)] - pi) * _;
     }
@@ -47,7 +47,7 @@ class min25_sieve {
     return h;
   }
 
-  constexpr T run(vec<T> fprime) const {
+  CEXP T run(vec<T> fprime) const {
     if (!m) return {};
     assert(fprime.size() == s);
     T ans = fprime[idx(m)] + 1;

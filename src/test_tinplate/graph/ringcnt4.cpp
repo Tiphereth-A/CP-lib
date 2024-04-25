@@ -26,11 +26,11 @@ int main() {
     tifa_libs::graph::alist g(n);
     for (auto [u, v] : edges) g.add_arc(u, v), g.add_arc(v, u);
     tifa_libs::graph::alist dg(n), dgv(n);
-    for (u32 u = 0; u < n; ++u)
+    flt_ (u32, u, 0, n)
       for (u32 v : g.g[u]) (std::make_pair(g.g[u].size(), u) < std::make_pair(g.g[v].size(), v) ? dg : dgv).add_arc(u, v);
     // 菊花图
     mint ans0 = 0;
-    for (u32 u = 0; u < n; ++u)
+    flt_ (u32, u, 0, n)
       if (g.g[u].size() >= 4) ans0 += inv24 * g.g[u].size() * (g.g[u].size() - 1) * (g.g[u].size() - 2) * (g.g[u].size() - 3);
     // 四元环
     mint ans1 = tifa_libs::graph::ringcnt4_impl_::run(dg, dgv);
@@ -43,7 +43,7 @@ int main() {
     });
     // P4+中间一点连出一条边
     mint ans3 = 0;
-    for (u32 u = 0; u < n; ++u) {
+    flt_ (u32, u, 0, n) {
       if (g.g[u].size() < 2) continue;
       for (u32 v : g.g[u]) {
         if (g.g[v].size() < 3) continue;
@@ -53,7 +53,7 @@ int main() {
     ans3 -= ans2 * 2;
     // P5
     mint ans4 = 0;
-    for (u32 u = 0; u < n; ++u) {
+    flt_ (u32, u, 0, n) {
       mint _ = 0;
       for (u32 v : g.g[u]) {
         ans4 += _ * (g.g[v].size() - 1);
@@ -68,29 +68,19 @@ int main() {
 }
 
 /*
-An algorithm master in graph theory would never endure any disconnected subgraph.
+皮卡德要求你计算, 从一个给定的简单无向图中以相等的概率从所有可能的方式中选择四条不同的边, 选择的边诱导的子图是连通的概率. 这里我们说图中的一组边与该组边中所有顶点组成的边为诱导子图
+为了避免任何精度问题, 皮卡德将概率表示为 $p$, 边数表示为 $m$, 你应该报告值 $\left(p \cdot \binom{m}{4}\right) \bmod (10^9 + 7)$. 很容易证明 $p \cdot \binom{m}{4}$ 是一个整数
 
-An esthetician would only consider edge-induced subgraphs as necessary subgraphs.
+## 输入
 
-An OCD patient would always choose a subgraph from a given simple undirected graph randomly.
+输入包含多个测试用例, 第一行包含一个正整数 $T$, 表示测试用例的数量, 最多为 $10$
+对于每个测试用例, 第一行包含两个整数 $n$ 和 $m$, 表示给定简单无向图中的顶点数和边数, 其中 $4 \leq n \leq 10^5$, $4 \leq m \leq 2 \times 10^5$
+接下来的 $m$ 行描述图的所有边, 其中第 $i$ 行包含两个整数 $u$ 和 $v$, 表示第 $u$ 个顶点和第 $v$ 个顶点之间的一条边, 其中 $1 \leq u, v \leq n$ 且 $u \neq v$
+保证给定的图中不包含环或多重边
 
-Those are why Picard asks you to calculate, for choosing four different edges from a given simple undirected graph with equal probability among all possible ways, the probability that the edge-induced subgraph formed by chosen edges is connected. Here we say a subset of edges in the graph together with all vertices that are endpoints of edges in the subset form an edge-induced subgraph.
+## 输出
 
-To avoid any precision issue, Picard denotes the probability as $p$ and the number of edges as $m$, and you should report the value $\left(p \cdot \binom{m}{4}\right) \bmod (10^9 + 7)$. It is easy to show that $p \cdot \binom{m}{4}$ is an integer.
-
-**Input**
-
-The input contains several test cases, and the first line contains a positive integer $T$ indicating the number of test cases which is up to $10$.
-
-For each test case, the first line contains two integers $n$ and $m$ indicating the numbers of vertices and edges in the given simple undirected graph respectively, where $4 \leq n \leq 10^5$ and $4 \leq m \leq 2 \times 10^5$.
-
-The following $m$ lines describe all edges of the graph, the $i$\-th line of which contains two integers $u$ and $v$ which represent an edge between the $u$\-th vertex and the $v$\-th vertex, where $1 \leq u, v \leq n$ and $u \neq v$.
-
-We guarantee that the given graph contains no loops or multiple edges.
-
-**Output**
-
-For each test case, output a line containing an integer corresponding to the value $\left(p \cdot \binom{m}{4}\right) \bmod (10^9 + 7)$, where $p$ indicates the probability which you are asked to calculate.
+对于每个测试用例, 输出一行, 包含一个整数, 对应于值 $\left(p \cdot \binom{m}{4}\right) \bmod (10^9 + 7)$, 其中 $p$ 表示你需要计算的概率
 */
 
 /*

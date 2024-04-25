@@ -14,14 +14,14 @@ template <usz R, usz C = R>
 using bitmat = arr<std::bitset<C>, R>;
 
 template <usz R, usz C>
-constexpr matrix<bool> bitmat2mat(bitmat<R, C> const &bmat) {
+CEXP matrix<bool> bitmat2mat(cT_(bitmat<R, C>) bmat) {
   matrix<bool> ret(R, C);
   ret.apply([&bmat](u32 i, u32 j, auto &b) { b = bmat[i][j]; });
   return ret;
 }
 
 template <usz R, usz C = R>
-constexpr bitmat<R, C> mat2bitmat(matrix<bool> const &mat) {
+CEXP bitmat<R, C> mat2bitmat(cT_(matrix<bool>) mat) {
   u32 r = mat.row(), c = mat.col();
   assert(r <= R && c <= C);
   bitmat<R, C> ret;
@@ -63,7 +63,7 @@ std::ostream &print_bitmat(std::ostream &os, bitmat<R, C> &bmat, u32 r, u32 c) {
 template <usz R, usz C>
 std::istream &operator>>(std::istream &is, bitmat<R, C> &bmat) { return read_bitmat(is, bmat, R, C); }
 template <usz R, usz C>
-std::ostream &operator<<(std::ostream &os, bitmat<R, C> const &bmat) { return print_bitmat(os, bmat, R, C); }
+std::ostream &operator<<(std::ostream &os, bitmat<R, C> CR bmat) { return print_bitmat(os, bmat, R, C); }
 
 #undef FOR1_
 #undef FOR2_

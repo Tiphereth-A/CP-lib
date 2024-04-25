@@ -12,8 +12,8 @@ namespace tifa_libs::math {
 // 3. xr/yr be minimal
 // 4. 0 <= xl,xr,yl,yr <= n
 template <uint_c T>
-constexpr ptt<ptt<T>> rational_approx(T n, ptt<T> const& f) {
-  auto ff = [](ptt<T> const& a, u32 b, ptt<T> const& c) { return ptt<T>{a.first * b + c.first, a.second * b + c.second}; };
+CEXP ptt<ptt<T>> rational_approx(T n, ptt<T> CR f) {
+  auto ff = [](ptt<T> CR a, u32 b, ptt<T> CR c) { return ptt<T>{a.first * b + c.first, a.second * b + c.second}; };
   ptt<T> lo{0, 1}, hi{1, 0};
   while (true) {
     u32 n1 = opt::bsearch([&](u32 x) {

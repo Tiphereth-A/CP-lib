@@ -15,11 +15,11 @@ class kosaraju {
   vecu scc_id;
   vvecu belongs;
 
-  explicit constexpr kosaraju(alist<with_deg> const &g) : kosaraju(g, alistr(g)) {}
-  constexpr kosaraju(alist<with_deg> const &g, alist<with_deg> const &rev_g) : g(g.g), rev_g(rev_g.g) { build(); }
+  explicit CEXP kosaraju(cT_(alist<with_deg>) g) : kosaraju(g, alistr(g)) {}
+  CEXP kosaraju(cT_(alist<with_deg>) g, cT_(alist<with_deg>) rev_g) : g(g.g), rev_g(rev_g.g) { build(); }
 
  private:
-  constexpr void build() {
+  CEXP void build() {
     vecb vis(g.size());
     vecu ord;
     auto dfs = [&, this](auto &&dfs, u32 idx) {

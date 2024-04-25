@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-constexpr vec<T> karatsuba(vec<T> const &a, vec<T> const &b) {
+CEXP vec<T> karatsuba(vec<T> CR a, vec<T> CR b) {
   if (a.empty() && b.empty()) return {};
   if (a.size() < b.size()) return karatsuba(b, a);
   if (a.size() < 32) return conv_naive(a, b);

@@ -15,7 +15,7 @@ class LucasPP {
  public:
   // mod = p ** q
   // @param p MUSU be prime
-  constexpr LucasPP(u32 p, u32 q) : p(p), q(q) {
+  CEXP LucasPP(u32 p, u32 q) : p(p), q(q) {
     assert(p <= 100'000'000 && q > 0);
     m_ = 1;
     while (q--) {
@@ -25,7 +25,7 @@ class LucasPP {
     no_proot = (p == 2 && q >= 3);
     facp.resize(m_);
     facp[0] = facp[1] = 1;
-    for (u32 i = 2; i < m_; ++i)
+    flt_ (u32, i, 2, m_)
       if (i % p == 0) {
         facp[i] = facp[i - 1];
         facp[i + 1] = facp[i - 1] * (i + 1) % m_;
@@ -34,9 +34,9 @@ class LucasPP {
     ifacp = gen_invseq(facp, m_);
   }
 
-  constexpr u64 mod() const { return m_; }
+  CEXP u64 mod() const { return m_; }
 
-  constexpr u64 operator()(i64 m, i64 n) const {
+  CEXP u64 operator()(i64 m, i64 n) const {
     if (m < n || n < 0) return 0;
     i64 r = m - n;
     i32 e0 = 0, eq = 0;

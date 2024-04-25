@@ -3,8 +3,18 @@
 
 #include <bits/stdc++.h>
 
-template <class T>
-constexpr T abs(T x) { return x < 0 ? -x : x; }
+#define CEXP constexpr
+#define TPN typename
+#define CR const&
+
+#define cT_(...) std::conditional_t<sizeof(__VA_ARGS__) <= sizeof(size_t), __VA_ARGS__, __VA_ARGS__ CR>
+#define fle_(T, i, l, r, ...) for (T i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i <= i##e; ++i)
+#define flt_(T, i, l, r, ...) for (T i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i < i##e; ++i)
+
+#ifdef ONLINE_JUDGE
+#undef assert
+#define assert(x) 42
+#endif
 
 using i8 = int8_t;
 using i16 = int16_t;
@@ -63,36 +73,31 @@ using vecu64 = vec<u64>;
 using vecb = vec<bool>;
 using vvecb = vvec<bool>;
 
-#ifdef ONLINE_JUDGE
-#undef assert
-#define assert(x) 42
-#endif
-
-#if __cplusplus >= 202302l
-#define tifa_said(exp) [[assume(exp)]]
-#elif defined __clang__
-#define tifa_said(exp) __builtin_assume(exp)
-#elif defined __GNUC__
-#define tifa_said(exp) __attribute__((assume(exp)))
-#elif defined _MSC_VER
-#define tifa_said(exp) __assume(exp)
-#endif
-
 using namespace std::literals;
 
-constexpr i8 operator""_i8(unsigned long long x) { return (i8)x; }
-constexpr i16 operator""_i16(unsigned long long x) { return (i16)x; }
-constexpr i32 operator""_i32(unsigned long long x) { return (i32)x; }
-constexpr i64 operator""_i64(unsigned long long x) { return (i64)x; }
-constexpr isz operator""_iz(unsigned long long x) { return (isz)x; }
+CEXP i8 operator""_i8(unsigned long long x) { return (i8)x; }
+CEXP i16 operator""_i16(unsigned long long x) { return (i16)x; }
+CEXP i32 operator""_i32(unsigned long long x) { return (i32)x; }
+CEXP i64 operator""_i64(unsigned long long x) { return (i64)x; }
+CEXP isz operator""_iz(unsigned long long x) { return (isz)x; }
 
-constexpr u8 operator""_u8(unsigned long long x) { return (u8)x; }
-constexpr u16 operator""_u16(unsigned long long x) { return (u16)x; }
-constexpr u32 operator""_u32(unsigned long long x) { return (u32)x; }
-constexpr u64 operator""_u64(unsigned long long x) { return (u64)x; }
-constexpr usz operator""_uz(unsigned long long x) { return (usz)x; }
+CEXP u8 operator""_u8(unsigned long long x) { return (u8)x; }
+CEXP u16 operator""_u16(unsigned long long x) { return (u16)x; }
+CEXP u32 operator""_u32(unsigned long long x) { return (u32)x; }
+CEXP u64 operator""_u64(unsigned long long x) { return (u64)x; }
+CEXP usz operator""_uz(unsigned long long x) { return (usz)x; }
 
 inline const auto fn_0 = [](auto&&...) {};
 inline const auto fn_is0 = [](auto x) { return x == 0; };
+
+// std::sqrt(std::numeric_limits<FP>::epsilon())
+template <std::floating_point FP>
+CEXP inline FP eps_v = FP(1e-8L);
+
+namespace tifa_libs {
+using std::min, std::max, std::swap;
+template <class T>
+constexpr T abs(T x) { return x < 0 ? -x : x; }
+}  // namespace tifa_libs
 
 #endif

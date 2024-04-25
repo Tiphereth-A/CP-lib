@@ -18,7 +18,7 @@ using tifa_libs::is_zero, tifa_libs::is_eq;
 using tifa_libs::geo::point, tifa_libs::geo::line, tifa_libs::geo::triangle;
 
 template <class T>
-void test_e(triangle<T> const& t) {
+void test_e(triangle<T> CR t) {
   point<T> ea = tifa_libs::geo::center_EA(t), eb = tifa_libs::geo::center_EB(t), ec = tifa_libs::geo::center_EC(t);
   point<T> i = tifa_libs::geo::center_I(t);
   point<T> he = tifa_libs::geo::center_H(triangle<T>(ea, eb, ec));
@@ -27,7 +27,7 @@ void test_e(triangle<T> const& t) {
 }
 
 template <class T>
-void test_g(triangle<T> const& t) {
+void test_g(triangle<T> CR t) {
   point<T> g = tifa_libs::geo::center_G(t);
   point<T> mab = mid_point(t.A, t.B), mbc = mid_point(t.B, t.C), mca = mid_point(t.C, t.A);
 
@@ -37,7 +37,7 @@ void test_g(triangle<T> const& t) {
 }
 
 template <class T>
-void test_h(triangle<T> const& t) {
+void test_h(triangle<T> CR t) {
   point<T> h = tifa_libs::geo::center_H(t);
   point<T> uva = (t.A - h).do_unit(), uvb = (t.B - h).do_unit(), uvc = (t.C - h).do_unit();
   point<T> uab = (t.A - t.B).do_unit(), ubc = (t.B - t.C).do_unit(), uca = (t.C - t.A).do_unit();
@@ -54,7 +54,7 @@ void test_h(triangle<T> const& t) {
 }
 
 template <class T>
-void test_i(triangle<T> const& t) {
+void test_i(triangle<T> CR t) {
   point<T> i = tifa_libs::geo::center_I(t);
 
   T dist_ai = tifa_libs::geo::dist_PP(t.A, i), dist_bi = tifa_libs::geo::dist_PP(t.B, i), dist_ci = tifa_libs::geo::dist_PP(t.C, i);
@@ -74,7 +74,7 @@ void test_i(triangle<T> const& t) {
 }
 
 template <class T>
-void test_o(triangle<T> const& t) {
+void test_o(triangle<T> CR t) {
   point<T> o = tifa_libs::geo::center_O(t);
 
   T R = tifa_libs::geo::radius_O(t), diam = R * 2;
@@ -101,7 +101,7 @@ void test_o(triangle<T> const& t) {
 }
 
 template <class T>
-void test_n(triangle<T> const& t) {
+void test_n(triangle<T> CR t) {
   point<T> n = tifa_libs::geo::center_N(t);
   point<T> o = tifa_libs::geo::center_O(t), h = tifa_libs::geo::center_H(t), g = tifa_libs::geo::center_G(t), i = tifa_libs::geo::center_I(t);
 
@@ -120,12 +120,12 @@ void test_n(triangle<T> const& t) {
 }
 
 template <class T>
-void test_x(triangle<T> const& t) {
+void test_x(triangle<T> CR t) {
   point<T> x = tifa_libs::geo::center_X(t);
   point<T> uva = (t.A - x).do_unit(), uvb = (t.B - x).do_unit(), uvc = (t.C - x).do_unit();
   T ang_axb = std::abs(tifa_libs::geo::ang_PP(uva, uvb)), ang_bxc = std::abs(tifa_libs::geo::ang_PP(uvb, uvc)), ang_cxa = std::abs(tifa_libs::geo::ang_PP(uvc, uva));
 
-  constexpr T _60 = tifa_libs::pi_v<T> / 3, _120 = tifa_libs::pi_v<T> / 1.5;
+  CEXP T _60 = std::numbers::pi_v<T> / 3, _120 = std::numbers::pi_v<T> / 1.5;
 
   check_bool((is_eq(ang_axb, _120) && is_eq(ang_bxc, _120) && is_eq(ang_cxa, _120)) ||
                  (is_eq(ang_axb, _60) && is_eq(ang_bxc, _60) && is_eq(ang_cxa, _120)) ||

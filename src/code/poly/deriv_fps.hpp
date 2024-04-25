@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-constexpr poly<mint, ccore> deriv_fps(poly<mint, ccore> const &p) {
+CEXP poly<mint, ccore> deriv_fps(poly<mint, ccore> CR p) {
   auto _ = p;
   for (u32 i = 1; i < _.size(); ++i) _[i - 1] = _[i] * i;
   _.data().back() = 0;

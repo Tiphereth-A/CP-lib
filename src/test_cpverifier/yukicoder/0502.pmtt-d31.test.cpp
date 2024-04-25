@@ -3,7 +3,7 @@
 
 #include "../../code/math/fact_mint.hpp"
 
-constexpr u64 MOD = 1000000007;
+CEXP u64 MOD = 1000000007;
 
 #include "../../code/math/mint_d31.hpp"
 #include "../../code/poly/polymtt.hpp"

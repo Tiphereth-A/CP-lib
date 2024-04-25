@@ -19,7 +19,7 @@ gint<mint, M> proot_gint() {
   auto pf = pfactors(ord);
   while (true) {
     bool ok = 1;
-    for (auto [q, k] : pf)
+    for (u64 q : pf)
       if (qpow(r, ord / q) == gint{1}) {
         ok = 0;
         break;

@@ -8,10 +8,9 @@
 #include "../../../code/poly/atan_fps.hpp"
 #include "../../../code/poly/cossin_fps.hpp"
 #include "../../../code/poly/polyntt.hpp"
-#include "../../../code/poly/polyntt32.hpp"
 #include "../base.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 using mints30 = tifa_libs::math::mint_s30<MOD>;
 using mints63 = tifa_libs::math::mint_s63<MOD>;
 using mintss = tifa_libs::math::mint_ss<MOD>;
@@ -19,17 +18,15 @@ using mintss = tifa_libs::math::mint_ss<MOD>;
 using pnm30 = tifa_libs::math::polyntt<mints30>;
 using pnm63 = tifa_libs::math::polyntt<mints63>;
 using pnms = tifa_libs::math::polyntt<mintss>;
-using pn32m30 = tifa_libs::math::polyntt32<mints30>;
-using pn32ms = tifa_libs::math::polyntt32<mintss>;
 
 tifa_libs::rand::Gen<std::uniform_int_distribution<u64>> gen;
 
 template <class poly>
 void test(u32 n) {
-  using mint = typename poly::value_type;
+  using mint = TPN poly::value_type;
   poly p(n + 1);
   p[0] = 0;
-  for (u32 i = 1; i <= n; ++i) p[i] = mint(gen());
+  fle_(u32, i, 1, n) p[i] = mint(gen());
   const u32 sz = n + 1;
 
   auto sqrt_1mpp = tifa_libs::math::sqrt_fps(-p * p + 1, sz).value();
@@ -57,16 +54,16 @@ int main() {
   auto tcase = tifa_libs::unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test<pnm30>(1000); break;
-    case tifa_libs::unittest::ts_random_00: test<pnm63>(1000); break;
-    case tifa_libs::unittest::ts_random_01: test<pnms>(1000); break;
-    case tifa_libs::unittest::ts_random_02: test<pn32m30>(1000); break;
-    case tifa_libs::unittest::ts_random_03: test<pn32ms>(1000); break;
-    case tifa_libs::unittest::ts_random_04: test<pnm30>(100000); break;
-    case tifa_libs::unittest::ts_random_05: test<pnm63>(100000); break;
-    case tifa_libs::unittest::ts_random_06: test<pnms>(100000); break;
-    case tifa_libs::unittest::ts_random_07: test<pn32m30>(100000); break;
-    case tifa_libs::unittest::ts_random_08: test<pn32ms>(100000); break;
+    case tifa_libs::unittest::ts_example_00: test<pnm30>(100); break;
+    case tifa_libs::unittest::ts_random_00: test<pnm63>(100); break;
+    case tifa_libs::unittest::ts_random_01: test<pnms>(100); break;
+    case tifa_libs::unittest::ts_random_02: test<pnm30>(1000); break;
+    case tifa_libs::unittest::ts_random_03: test<pnm63>(1000); break;
+    case tifa_libs::unittest::ts_random_04: test<pnms>(1000); break;
+    case tifa_libs::unittest::ts_random_05: test<pnm30>(100000); break;
+    case tifa_libs::unittest::ts_random_06: test<pnm63>(100000); break;
+    case tifa_libs::unittest::ts_random_07: test<pnms>(100000); break;
+    case tifa_libs::unittest::ts_random_08: break;
     case tifa_libs::unittest::ts_random_09: break;
     default: break;
   }

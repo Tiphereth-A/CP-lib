@@ -3,7 +3,7 @@
 
 #include "../../code/math/qpow.hpp"
 
-constexpr u64 MOD = 1'000'000'007;
+CEXP u64 MOD = 1'000'000'007;
 
 #include "../../code/math/mint_d31.hpp"
 

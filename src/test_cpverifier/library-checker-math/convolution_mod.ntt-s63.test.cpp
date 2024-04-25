@@ -3,7 +3,7 @@
 
 #include "../../code/io/fastio.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/conv/conv_dft.hpp"
 #include "../../code/conv/ntt.hpp"

@@ -7,19 +7,19 @@ namespace tifa_libs::ds {
 
 template <class T = i32, bool persistent = false>
 struct trie01 {
-  struct YYZ {
+  struct TIFA {
     u32 nxt[2];
     T val;
     vecu idxs;
 
-    YYZ() : nxt{0, 0}, val(0), idxs() {}
+    TIFA() : nxt{0, 0}, val(0), idxs() {}
   };
 
   const i32 MAX_DEP;
-  vec<YYZ> data;
+  vec<TIFA> data;
   u32 root;
 
-  constexpr explicit trie01(i32 max_depth = 32) : MAX_DEP(max_depth), data(2), root(1) {
+  CEXP explicit trie01(i32 max_depth = 32) : MAX_DEP(max_depth), data(2), root(1) {
     assert(max_depth > 0);
     data.reserve(1_u64 << (max_depth / 2));
   }
@@ -34,7 +34,7 @@ struct trie01 {
 
  private:
   u32 add_(u32 t, u64 bit, int idx, int dep, T x, u64 xv, bool need = true) {
-    if constexpr (persistent)
+    if CEXP (persistent)
       if (need) t = (u32)data.size(), data.emplace_back();
     if (!~dep) {
       data[t].val += x;

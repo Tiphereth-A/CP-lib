@@ -8,7 +8,7 @@ void solve() {
   vecu a(n);
   for (auto& i : a) std::cin >> i;
   auto p = tifa_libs::cantor_inv_seq(a);
-  for (u32 i = 0; i < n; ++i) std::cout << p[i] << " \n"[i == n - 1];
+  flt_ (u32, i, 0, n) std::cout << p[i] << " \n"[i == n - 1];
 }
 
 int main() {
@@ -21,23 +21,16 @@ int main() {
 }
 
 /*
-Given N and K find the N -th permutation of the integers from 1 to K when those permutations are
-lexicographically ordered. N starts from 0. Since N is very large N will be represented by a sequence
-of K non-negative integers S1, S2, . . . , Sk. From this sequence of integers N can be calculated with
-the following expression.
+给定 $N$ 和 $K$, 找出整数 1 到 $K$ 的排列中第 $N$ 个排列, $N$ 从 $0$ 开始计数. 由于 N 非常大, N 将由一系列 $K$ 个非负整数 $S_1,S_2,\dots,S_k$ 表示. 通过这些整数序列, 可以用以下表达式计算出 $N$
+$\sum_{i=1}^K S_i*(K-i)!$
 
-\sum_{i=1}^K S_i*(K-i)!
+## 输入
 
-**Input**
+第一行包含一个整数 $T~(\le 10)$, 表示测试用例的数量. 每个测试用例由 2 行组成. 第一行包含一个整数 $K~(1 \le K \le 50000)$. 接下来的一行包含 $K$ 个整数 $S_1,S_2,\dots,S_k.~(0 \le Si \le K - i)$
 
-First line of the input contains T (<= 10) the number of test cases. Each of these test cases consists of
-2 lines. First line contains a integer K (1 <= K <= 50000). Next line contains K integers S1, S2, . . . , Sk.
-(0 <= Si <= K - i).
+## 输出
 
-**Output**
-
-For each test case output contains N -th permutation of the integers from 1 to K. These K integers
-should be separated by a single space
+对于每个测试用例，输出包含整数 $1$ 到 $K$ 的第 $N$ 个排列. 用单个空格分隔
 */
 
 /*

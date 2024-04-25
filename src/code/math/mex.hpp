@@ -6,12 +6,12 @@
 
 namespace tifa_libs::math {
 
-constexpr u32 mex_uniqued(vecu const& x) {
+CEXP u32 mex_uniqued(vecu CR x) {
   for (u32 i = 0; i < x.size(); ++i)
     if (x[i] != i) return i;
   return (u32)x.size();
 }
-constexpr u32 mex(vecu const& x) { return mex_uniqued(uniq(x)); }
+CEXP u32 mex(vecu CR x) { return mex_uniqued(uniq(x)); }
 
 }  // namespace tifa_libs::math
 

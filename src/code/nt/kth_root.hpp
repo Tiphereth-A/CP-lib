@@ -8,7 +8,7 @@
 
 namespace tifa_libs::math {
 
-constexpr std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
+CEXP std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
   if (k > 0 && !(a % p)) return 0;
   k %= p - 1;
   u64 g = gcd(k, p - 1);
@@ -30,9 +30,9 @@ constexpr std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
     u64 _m = qpow_mod(c, mul_mod_u(v, qpow_mod(p, s - 1, m - 1), m - 1), m);
     for (u32 i = 0; i <= v; ++i, _a = mul_mod_u(_a, _m, m)) mp[_a] = i;
     _m = inverse(qpow_mod(c, qpow_mod(p, s - 1, m - 1), m), m);
-    for (u32 i = e; i < s; ++i) {
+    flt_ (u32, i, e, s) {
       u64 _ = mul_mod_u(a, inverse(qpow_mod(ans, pe, m), m), m), t = qpow_mod(_, qpow_mod(p, s - 1 - i, m - 1), m);
-      for (u32 j = 0; j <= v; ++j) {
+      fle_ (u32, j, 0, v) {
         if (mp.find(t) != mp.end()) {
           u32 x = mp[t];
           ans = mul_mod_u(ans, qpow_mod(c, mul_mod_u(j + v * x, qpow_mod(p, i - e, m - 1), m - 1), m), m);

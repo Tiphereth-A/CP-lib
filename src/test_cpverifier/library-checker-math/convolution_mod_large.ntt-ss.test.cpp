@@ -4,7 +4,7 @@
 #include "../../code/conv/conv_ntt_large.hpp"
 #include "../../code/io/fastio.hpp"
 
-constexpr u32 MOD = 998244353;
+CEXP u32 MOD = 998244353;
 
 #include "../../code/conv/ntt.hpp"
 #include "../../code/math/mint_ss.hpp"
