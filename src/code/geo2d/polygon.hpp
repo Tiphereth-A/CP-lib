@@ -2,6 +2,7 @@
 #define TIFALIBS_GEO2D_POLYGON
 
 #include "../edh/discretization.hpp"
+#include "../math/kahan.hpp"
 #include "cross.hpp"
 #include "dist_pp.hpp"
 
@@ -42,13 +43,13 @@ struct polygon {
   CEXP u32 next(u32 idx) const { return idx + 1 == (u32)vs.size() ? 0 : idx + 1; }
 
   CEXP FP circum() const {
-    FP ret = dist_PP(vs.back(), vs.front());
+    math::kahan<FP> ret = dist_PP(vs.back(), vs.front());
     for (u32 i = 0; i < (u32)vs.size() - 1; ++i) ret += dist_PP(vs[i], vs[i + 1]);
     return ret;
   }
   CEXP FP area() const {
     if (vs.size() < 3) return 0;
-    FP ret = vs.back() ^ vs.front();
+    math::kahan<FP> ret = vs.back() ^ vs.front();
     for (u32 i = 0; i < (u32)vs.size() - 1; ++i) ret += vs[i] ^ vs[i + 1];
     return ret / 2;
   }

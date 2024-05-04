@@ -25,9 +25,9 @@ struct cvh : public polygon<FP> {
   }
 
   CEXP cvh &init() {
+    this->reunique();
     u32 n = (u32)this->vs.size();
     if (n <= 1) return *this;
-    this->resort();
     vec<point<FP>> cvh(n * 2);
     u32 sz_cvh = 0;
     for (u32 i = 0; i < n; cvh[sz_cvh++] = this->vs[i++])

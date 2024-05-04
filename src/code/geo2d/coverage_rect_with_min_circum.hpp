@@ -14,7 +14,7 @@ CEXP polygon<FP> coverage_rect_with_min_circum(cT_(cvh<FP>) ch) {
   if (n == 2) return polygon{vec<point<FP>>{ch[0], ch[0], ch[1], ch[1]}};
   FP ans = std::numeric_limits<FP>::max();
   u32 r = 1, p = 1, q = 1;
-  u32 ans_i = 0, ans_r, ans_p, ans_q;
+  u32 ans_i = 0, ans_r = 0, ans_p = 0, ans_q = 0;
   flt_ (u32, i, 0, n) {
     while (!is_neg(cross(ch.vs[i], ch.vs[ch.next(i)], ch.vs[ch.next(r)]) - cross(ch.vs[i], ch.vs[ch.next(i)], ch.vs[r]))) r = ch.next(r);
     while (!is_neg(dot(ch.vs[i], ch.vs[ch.next(i)], ch.vs[ch.next(p)]) - dot(ch.vs[i], ch.vs[ch.next(i)], ch.vs[p]))) p = ch.next(p);

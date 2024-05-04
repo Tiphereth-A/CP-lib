@@ -9,7 +9,7 @@
 
 using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
-void test(cT_(strn) data) {
+void test(strn CR data) {
   strn path = "src/data/bzoj/4407/" + data;
   std::ifstream fin(path + ".in"), fans(path + ".out");
 

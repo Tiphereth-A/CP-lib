@@ -5,16 +5,21 @@
 
 namespace tifa_libs::math {
 
-template <class FP>
-CEXP FP kahan(vec<FP> CR vec) {
-  FP sum = 0, c = 0;
-  for (auto x : vec) {
-    FP y = x - c, t = sum + y;
-    c = (t - sum) - y;
-    sum = t;
+template <std::floating_point FP>
+class kahan {
+  FP sum, c;
+
+ public:
+  CEXP kahan(FP val = 0) : sum(val), c(0) {}
+
+  CEXP kahan& operator+=(FP x) {
+    FP y = x - c;
+    volatile FP t = sum + y, z = t - sum;
+    c = z - y, sum = t;
+    return *this;
   }
-  return sum;
-}
+  CEXP operator FP() const { return sum; }
+};
 
 }  // namespace tifa_libs::math
 

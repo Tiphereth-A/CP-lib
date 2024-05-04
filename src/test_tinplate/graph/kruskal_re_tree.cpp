@@ -12,7 +12,7 @@ int main() {
   std::cin >> n >> m >> q;
   vecu nw(n);
   for (auto& x : nw) std::cin >> x;
-  vec<std::tuple<u32, u32, u32>> e(m);
+  vec<pt3<u32>> e(m);
   for (auto& [w, u, v] : e) std::cin >> u >> v >> w, --u, --v;
   std::ranges::sort(e);
   auto [tr, ew] = tifa_libs::graph::kruskal_re_tree(e, n);

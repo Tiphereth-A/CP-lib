@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_GEO2D_MAKE_C_RPL
 #define TIFALIBS_GEO2D_MAKE_C_RPL
 
+#include "dist_pl.hpp"
 #include "ins_cl.hpp"
 
 namespace tifa_libs::geo {
@@ -14,10 +15,10 @@ CEXP std::optional<ptt<circle<FP>>> make_C_rPL(FP r, point<FP> CR p, line<FP> CR
   point dir = l.direction();
   dir *= r / dir.norm();
   point dirl = rot90(dir), dirr = rot270(dir);
-  if (is_zero(dis)) return {{p + dirl, r}, {p + dirr, r}};
+  if (is_zero(dis)) return ptt<circle<FP>>{{p + dirl, r}, {p + dirr, r}};
   circle c{p, r};
   if (auto ps = ins_CL(c, {l.l + dirl, l.r + dirl}); !ps.has_value() && !(ps = ins_CL(c, {l.l + dirr, l.r + dirr})).has_value()) return {};
-  else return {{ps.value().first, r}, {ps.value().second, r}};
+  else return ptt<circle<FP>>{{ps.value().first, r}, {ps.value().second, r}};
 }
 
 }  // namespace tifa_libs::geo

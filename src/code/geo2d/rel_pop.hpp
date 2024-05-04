@@ -2,6 +2,7 @@
 #define TIFALIBS_GEO2D_REL_POP
 
 #include "cvh.hpp"
+#include "dot.hpp"
 #include "is_on_s.hpp"
 
 namespace tifa_libs::geo {

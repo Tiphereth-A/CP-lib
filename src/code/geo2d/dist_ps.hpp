@@ -7,13 +7,16 @@
 
 namespace tifa_libs::geo {
 
+// the point which is min dist_PP from a point to another point which belongs to a segment
+template <class FP>
+CEXP point<FP> dist_PS_P(point<FP> CR p, line<FP> CR s) {
+  if (s.l == s.r) return s.l;
+  if (point<FP> h = proj(s, p); is_in_middle(s.l, h, s.r)) return h;
+  return is_lt(dist_PP(s.l, p), dist_PP(s.r, p)) ? s.l : s.r;
+}
 // min dist_PP from a point to another point which belongs to a segment
 template <class FP>
-CEXP FP dist_PS(point<FP> CR p, line<FP> CR s) {
-  if (s.l == s.r) return dist_PP(s.l, p);
-  if (point h = proj(s, p); is_in_middle(s.l, h, s.r)) return dist_PP(p, h);
-  return min(dist_PP(s.l, p), dist_PP(s.r, p));
-}
+CEXP FP dist_PS(point<FP> CR p, line<FP> CR s) { return dist_PP(dist_PS_P(p, s), p); }
 
 }  // namespace tifa_libs::geo
 
