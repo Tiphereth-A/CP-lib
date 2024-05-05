@@ -11,7 +11,7 @@ struct cvh : public polygon<FP> {
   CEXP cvh() {}
   explicit CEXP cvh(u32 sz) : polygon<FP>(sz) {}
   explicit CEXP cvh(vec<point<FP>> CR vs_, bool inited = false, bool strict = true) : polygon<FP>(vs_) {
-    if (!inited) strict ? init() : init_nonstrict();
+    if (!inited) strict ? init<true>() : init<false>();
   }
 
   friend std::istream &operator>>(std::istream &is, cvh &ch) {
@@ -24,6 +24,7 @@ struct cvh : public polygon<FP> {
     return os << ch.vs.back();
   }
 
+  template <bool strict = true>
   CEXP cvh &init() {
     this->reunique();
     u32 n = (u32)this->vs.size();
@@ -31,23 +32,15 @@ struct cvh : public polygon<FP> {
     vec<point<FP>> cvh(n * 2);
     u32 sz_cvh = 0;
     for (u32 i = 0; i < n; cvh[sz_cvh++] = this->vs[i++])
-      while (sz_cvh > 1 && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) <= 0) --sz_cvh;
+      if CEXP (strict)
+        while (sz_cvh > 1 && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) <= 0) --sz_cvh;
+      else
+        while (sz_cvh > 1 && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) < 0) --sz_cvh;
     for (u32 i = n - 2, t = sz_cvh; ~i; cvh[sz_cvh++] = this->vs[i--])
-      while (sz_cvh > t && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) <= 0) --sz_cvh;
-    cvh.resize(sz_cvh - 1);
-    this->vs = cvh;
-    return *this;
-  }
-  CEXP cvh &init_nonstrict() {
-    this->reunique();
-    u32 n = (u32)this->vs.size();
-    if (n <= 1) return *this;
-    vec<point<FP>> cvh(n * 2);
-    u32 sz_cvh = 0;
-    for (u32 i = 0; i < n; cvh[sz_cvh++] = this->vs[i++])
-      while (sz_cvh > 1 && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) < 0) --sz_cvh;
-    for (u32 i = n - 2, t = sz_cvh; ~i; cvh[sz_cvh++] = this->vs[i--])
-      while (sz_cvh > t && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) < 0) --sz_cvh;
+      if CEXP (strict)
+        while (sz_cvh > t && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) <= 0) --sz_cvh;
+      else
+        while (sz_cvh > t && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) < 0) --sz_cvh;
     cvh.resize(sz_cvh - 1);
     this->vs = cvh;
     return *this;
@@ -91,7 +84,6 @@ struct cvh : public polygon<FP> {
     this->vs = result;
     return *this;
   }
-
   CEXP cvh &do_minkowski_sum(cvh<FP> CR r) { return do_minkowski_sum_nonstrict(r).init(); }
 
   CEXP cvh &do_ins_CVHhP(line<FP> CR l) {

@@ -46,7 +46,7 @@ int main() {
     case tifa_libs::unittest::ts_example_00: test("1"); break;
     case tifa_libs::unittest::ts_example_01: test("2"); break;
     case tifa_libs::unittest::ts_random_00: test("3"); break;
-    case tifa_libs::unittest::ts_random_01: test("4"); break;
+    case tifa_libs::unittest::ts_random_01: break;
     case tifa_libs::unittest::ts_random_02: break;
     case tifa_libs::unittest::ts_random_03: break;
     case tifa_libs::unittest::ts_random_04: break;

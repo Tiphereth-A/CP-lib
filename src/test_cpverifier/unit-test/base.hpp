@@ -16,7 +16,8 @@ template <class T>
 strn to_str(T CR x) {
   std::stringstream ss;
   ss << std::fixed << std::setprecision(12) << x;
-  return ss.str();
+  auto str = ss.str();
+  return str.length() <= 1024 ? str : str.substr(0, 1024) + "... (length = " + std::to_string(str.length()) + ")";
 }
 
 template <class T, class... Ts>

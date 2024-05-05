@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum"
 
-#include "../../code/ds/segtree_beats.hpp"
+#include "../../code/ds/segbeats_cmmashm.hpp"
 #include "../../code/io/fastio.hpp"
 
 int main() {
@@ -8,7 +8,7 @@ int main() {
   tifa_libs::fin >> n >> q;
   vec<i64> a(n);
   for (auto& x : a) tifa_libs::fin >> x;
-  tifa_libs::ds::segtree_beats<i64> seg(a);
+  tifa_libs::ds::segbeats_cmmashm<i64> seg(a);
   for (u32 i = 0, opt, l, r; i < q; ++i) {
     tifa_libs::fin >> opt >> l >> r;
     --r;

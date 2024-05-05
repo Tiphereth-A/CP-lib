@@ -1,12 +1,12 @@
-#ifndef TIFALIBS_DS_SEGTREE_BEATS
-#define TIFALIBS_DS_SEGTREE_BEATS
+#ifndef TIFALIBS_DS_SEGBEATS_CMMASHM
+#define TIFALIBS_DS_SEGBEATS_CMMASHM
 
 #include "../util/util.hpp"
 
 namespace tifa_libs::ds {
 
 template <class T, class T1 = T>
-class segtree_beats {
+class segbeats_cmmashm {
   struct TIFA {
     T1 sum;
     T _min, secmin, cntmin;
@@ -22,8 +22,8 @@ class segtree_beats {
   T INF;
 
  public:
-  explicit CEXP segtree_beats(vec<T> CR a) : n(a.size()), t(a.size() * 4), sign(a.size() * 4), INF(std::numeric_limits<T>::max()) { build(a, 1, 0, n - 1); }
-  explicit CEXP segtree_beats(u32 N) : n(N), t(N * 4), sign(N * 4), INF(std::numeric_limits<T>::max()) { build(vec<T>(n, 0), 1, 0, n - 1); }
+  explicit CEXP segbeats_cmmashm(vec<T> CR a) : n(a.size()), t(a.size() * 4), sign(a.size() * 4), INF(std::numeric_limits<T>::max()) { build(a, 1, 0, n - 1); }
+  explicit CEXP segbeats_cmmashm(u32 N) : n(N), t(N * 4), sign(N * 4), INF(std::numeric_limits<T>::max()) { build(vec<T>(n, 0), 1, 0, n - 1); }
 
   CEXP void add(u32 x, u32 l, u32 r, u32 L, u32 R, T k) {
     assert(R >= l && L <= r);

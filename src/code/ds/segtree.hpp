@@ -6,11 +6,11 @@
 namespace tifa_libs::ds {
 namespace segtree_impl_ {
 template <bool enable_tag, class T, auto op, auto e, class F, auto mapping, auto composition, auto id>
-requires requires(T val, T val2, F tag, F tag2) {
+requires requires(T val, T new_val, F tag, F new_tag) {
   { e() } -> std::same_as<T>;
-  { op(val, val2) } -> std::same_as<T>;
+  { op(val, new_val) } -> std::same_as<T>;
   { mapping(val, tag) } -> std::same_as<T>;
-  { composition(tag, tag2) } -> std::same_as<F>;
+  { composition(tag, new_tag) } -> std::same_as<F>;
   { id() } -> std::same_as<F>;
 }
 class segtree {

@@ -12,7 +12,7 @@ int main() {
   std::cin >> n;
   cvh p(n);
   std::cin >> p;
-  p.init_nonstrict();
+  p.template init<false>();
   std::cout << p.vs.size() << '\n';
   u32 now = 0;
   for (u32 i = 1; i < p.vs.size(); ++i)

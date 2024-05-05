@@ -1,6 +1,6 @@
 #define PROBLEM "https://www.luogu.com.cn/problem/P6242"
 
-#include "../../code/ds/segtree_beats.hpp"
+#include "../../code/ds/segbeats_cmmashm.hpp"
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -9,7 +9,7 @@ int main() {
   std::cin >> n >> m;
   vec<i32> a(n);
   for (auto& x : a) std::cin >> x;
-  tifa_libs::ds::segtree_beats<i32, i64> seg(a);
+  tifa_libs::ds::segbeats_cmmashm<i32, i64> seg(a);
   for (u32 i = 0, opt, l, r; i < m; ++i) {
     std::cin >> opt >> l >> r;
     --l, --r;

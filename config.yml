@@ -158,10 +158,10 @@ notebook:
     - segtree_ctor: 常用线段树构造
       code_ext: hpp
       test_ext: cpp
-    - lichao_segtree: 李超线段树(线段添加,定点最值)
+    - lichao_segtree: 李超线段树(线段添加--定点最值)
       code_ext: hpp
       test_ext: cpp
-    - segtree_beats: 吉如一线段树
+    - segbeats_cmmashm: 吉如一线段树(最大最小,加--历史最大,和)
       code_ext: hpp
       test_ext: cpp
     - weighted_segtree: 权值线段树
