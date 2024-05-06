@@ -19,7 +19,7 @@ strn single_proceed(u32 n, u32 m, std::istream& fin) {
     if (tifa_libs::geo::relation_CvhP(poly2, i) != tifa_libs::geo::outside_pop) return RES_Yn[0];
   for (auto CR i : poly2.vs)
     if (tifa_libs::geo::relation_CvhP(poly1, i) != tifa_libs::geo::outside_pop) return RES_Yn[0];
-  if (poly1.vs.size() > 1 && poly2.vs.size() > 1) {
+  if (poly1.size() > 1 && poly2.size() > 1) {
     for (auto it = poly1.vs.begin(), itn = it + 1; it != poly1.vs.end(); ++it, ++itn) {
       if (itn == poly1.vs.end()) itn = poly1.vs.begin();
       for (auto it2 = poly2.vs.begin(), it2n = it2 + 1; it2 != poly2.vs.end(); ++it2, ++it2n) {
@@ -28,10 +28,10 @@ strn single_proceed(u32 n, u32 m, std::istream& fin) {
       }
     }
   } else {
-    if (poly1.vs.size() == 1 && poly2.vs.size() == 1) return RES_Yn[!tifa_libs::is_eq(poly1[0].x, poly2[0].x) || !tifa_libs::is_eq(poly1[0].y, poly2[0].y)];
-    if (poly1.vs.size() == 1 && poly2.vs.size() == 2) return RES_Yn[!tifa_libs::geo::is_on_S<data_t>({poly2[0], poly2[1]}, poly1[0])];
-    if (poly1.vs.size() == 2 && poly2.vs.size() == 1) return RES_Yn[!tifa_libs::geo::is_on_S<data_t>({poly1[0], poly1[1]}, poly2[0])];
-    if (poly1.vs.size() == 2 && poly2.vs.size() == 2) return RES_Yn[!tifa_libs::geo::is_ins_SS<data_t>({poly1[0], poly1[1]}, {poly2[0], poly2[1]})];
+    if (poly1.size() == 1 && poly2.size() == 1) return RES_Yn[!tifa_libs::is_eq(poly1[0].x, poly2[0].x) || !tifa_libs::is_eq(poly1[0].y, poly2[0].y)];
+    if (poly1.size() == 1 && poly2.size() == 2) return RES_Yn[!tifa_libs::geo::is_on_S<data_t>({poly2[0], poly2[1]}, poly1[0])];
+    if (poly1.size() == 2 && poly2.size() == 1) return RES_Yn[!tifa_libs::geo::is_on_S<data_t>({poly1[0], poly1[1]}, poly2[0])];
+    if (poly1.size() == 2 && poly2.size() == 2) return RES_Yn[!tifa_libs::geo::is_ins_SS<data_t>({poly1[0], poly1[1]}, {poly2[0], poly2[1]})];
   }
   return RES_Yn[1];
 }

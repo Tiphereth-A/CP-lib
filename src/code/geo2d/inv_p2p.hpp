@@ -6,10 +6,18 @@
 namespace tifa_libs::geo {
 
 // geometry inverse of a point
+// @param rc reference circle
 template <class FP>
-CEXP point<FP> inv_P2P(circle<FP> CR c, point<FP> CR p) {
-  point v = p - c.o;
-  return c.o + v * (c.r * c.r / v.norm2());
+CEXP point<FP> inv_P2P(circle<FP> CR rc, point<FP> CR p) {
+  point v = p - rc.o;
+  return rc.o + v * (rc.r * rc.r / v.norm2());
+}
+// rc.r == 1
+// @param rc reference circle
+template <class FP>
+CEXP point<FP> inv_P2P(point<FP> CR ro, point<FP> CR p) {
+  point v = p - ro;
+  return ro + v / v.norm2();
 }
 
 }  // namespace tifa_libs::geo

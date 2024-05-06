@@ -9,7 +9,7 @@ namespace tifa_libs::graph {
 // edge: {w, u, v}
 template <class T>
 CEXP vec<std::tuple<T, u32, u32>> cle(u32 n, u32 root, vec<std::tuple<T, u32, u32>> CR arcs) {
-  ds::SkewHeap<T> heap;
+  ds::skew_heap<T> heap;
   ds::dsu_basic<> uf(n);
   vecu used(n, -1_u32), from(n), come(n, -1_u32);
   vec<T> from_cost(n);

@@ -50,14 +50,14 @@ $1 \leq T \leq 160000$
 $0 \leq |A|, |B| < 16^{16\times 10^5}$
 The sum of (the number of characters in $A$) $+$ (the number of characters in $B$) over all test cases does not exceed $3200002$.
 
-**input**
+input
 
 $T$
 $A$ $B$
 $\vdots$
 $A$ $B$
 
-**output**
+output
 
 $AB$
 $\vdots$

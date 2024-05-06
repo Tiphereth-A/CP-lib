@@ -25,6 +25,8 @@ struct polygon {
     for (auto it = p.vs.begin(); it != p.vs.end() - 1; ++it) os << *it << ' ';
     return os << p.vs.back();
   }
+
+  CEXP u32 size() const { return (u32)vs.size(); }
   CEXP point<FP> &operator[](u32 x) { return vs[x]; }
   CEXP point<FP> CR operator[](u32 x) const { return vs[x]; }
 
@@ -39,23 +41,24 @@ struct polygon {
 
   CEXP auto prev(TPN vec<point<FP>>::const_iterator it) const { return --(it == vs.begin() ? it = vs.end() : it); }
   CEXP auto next(TPN vec<point<FP>>::const_iterator it) const { return ++it == vs.end() ? vs.begin() : it; }
-  CEXP u32 prev(u32 idx) const { return idx == 0 ? (u32)vs.size() - 1 : idx - 1; }
-  CEXP u32 next(u32 idx) const { return idx + 1 == (u32)vs.size() ? 0 : idx + 1; }
+  CEXP u32 prev(u32 idx) const { return idx == 0 ? size() - 1 : idx - 1; }
+  CEXP u32 next(u32 idx) const { return idx + 1 == size() ? 0 : idx + 1; }
 
   CEXP FP circum() const {
     math::kahan<FP> ret = dist_PP(vs.back(), vs.front());
-    for (u32 i = 0; i < (u32)vs.size() - 1; ++i) ret += dist_PP(vs[i], vs[i + 1]);
+    flt_ (u32, i, 0, size() - 1) ret += dist_PP(vs[i], vs[i + 1]);
     return ret;
   }
-  CEXP FP area() const {
-    if (vs.size() < 3) return 0;
+  CEXP FP area2() const {
+    if (size() < 3) return 0;
     math::kahan<FP> ret = vs.back() ^ vs.front();
-    for (u32 i = 0; i < (u32)vs.size() - 1; ++i) ret += vs[i] ^ vs[i + 1];
-    return ret / 2;
+    flt_ (u32, i, 0, size() - 1) ret += vs[i] ^ vs[i + 1];
+    return ret;
   }
+  CEXP f128 area() const { return area2() * .5l; }
   CEXP bool is_convex() const {
     bool flag[2] = {false, false};
-    u32 n = (u32)vs.size();
+    u32 n = size();
     if (n < 3) return true;
     for (u32 i = 0, j = next(i), k = next(j); i < n; ++i, j = next(j), k = next(k)) {
       auto sgn = sgn_cross(vs[i], vs[j], vs[k]);
@@ -63,6 +66,20 @@ struct polygon {
       if (flag[0] && flag[1]) return false;
     }
     return true;
+  }
+  // @return nullopt if @p on board of polygon, otherwise winding number
+  CEXP std::optional<u32> winding(point<FP> CR p) const {
+    u32 cnt = 0;
+    flt_ (u32, i, 0, size()) {
+      auto &&u = vs[i], &&v = vs[next(i)];
+      if (!sgn_cross(p, u, v) && !sgn_dot(p, u, v)) return {};
+      if (is_zero(u.y - v.y)) continue;
+      if (is_lt(u.y, v.y) && !is_pos(u, v, p)) continue;
+      if (is_gt(u.y, v.y) && !is_neg(u, v, p)) continue;
+      if (is_lt(u.y, p.y) && !is_lt(v.y, p.y)) ++cnt;
+      if (!is_lt(u.y, p.y) && is_lt(v.y, p.y)) --cnt;
+    }
+    return cnt;
   }
 };
 

@@ -9,7 +9,7 @@ namespace tifa_libs::geo {
 template <class FP>
 CEXP FP min_dis_CVH(cT_(cvh<FP>) ch1, cT_(cvh<FP>) ch2) {
   u32 is = 0, js = 0;
-  u32 szl = (u32)ch1.vs.size(), szr = (u32)ch2.vs.size();
+  u32 szl = ch1.size(), szr = ch2.size();
   FP ans = std::numeric_limits<FP>::max();
   flt_ (u32, i, 0, szl) is = ch1[i].y < ch1[is].y ? i : is;
   flt_ (u32, i, 0, szr) js = ch2[i].y < ch2[js].y ? i : js;

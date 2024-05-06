@@ -9,11 +9,7 @@
 
 using mint = tifa_libs::math::mint_d31<-1>;
 #endif
-#ifdef GENTC_ds
-#include "../../code/math/mint_ds.hpp"
 
-using mint = tifa_libs::math::mint_ds<-1>;
-#endif
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
@@ -22,9 +18,6 @@ int main() {
   u32 n, MOD;
   std::cin >> n >> MOD;
 #ifdef GENTC_d31
-  mint::set_mod(MOD);
-#endif
-#ifdef GENTC_ds
   mint::set_mod(MOD);
 #endif
   if (!n) {

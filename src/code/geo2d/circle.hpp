@@ -18,9 +18,9 @@ struct circle {
   friend std::ostream &operator<<(std::ostream &os, circle CR c) { return os << c.o << ' ' << c.r; }
   friend CEXP bool operator==(circle CR l, circle CR r) { return l.o == r.o && l.r == r.r; }
 
-  CEXP FP area(FP angle = std::numbers::pi_v<FP> * 2) const { return angle * r * r / 2; }
-  CEXP FP crown_area(FP angle = std::numbers::pi_v<FP> * 2) const { return (angle - std::sin(angle)) * r * r / 2; }
-  CEXP FP arc(FP angle = std::numbers::pi_v<FP> * 2) const { return angle * r; }
+  CEXP FP area(FP angle = pi_v<FP> * 2) const { return angle * r * r / 2; }
+  CEXP FP crown_area(FP angle = pi_v<FP> * 2) const { return (angle - std::sin(angle)) * r * r / 2; }
+  CEXP FP arc(FP angle = pi_v<FP> * 2) const { return angle * r; }
 };
 
 }  // namespace tifa_libs::geo

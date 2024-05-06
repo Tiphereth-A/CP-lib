@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_QPOW_MOD
 #define TIFALIBS_MATH_QPOW_MOD
 
-#include "mul_mod_u.hpp"
+#include "mul_mod.hpp"
 
 namespace tifa_libs::math {
 

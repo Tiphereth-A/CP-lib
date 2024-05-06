@@ -7,10 +7,20 @@
 namespace tifa_libs::geo {
 
 // geometry inverse of a circle which pass through the inversion center
+// @param rc reference circle
+// @param o circle center
 template <class FP>
-CEXP line<FP> inv_C2L(circle<FP> CR c, circle<FP> CR c1) {
-  point v = (c1.o - c.o).do_rot90();
-  return {inv_P2P(c, c1.o + v), inv_P2P(c, c1.o - v)};
+CEXP line<FP> inv_C2L(circle<FP> CR rc, point<FP> CR o) {
+  point v = (o - rc.o).do_rot90();
+  return {inv_P2P(rc, o + v), inv_P2P(rc, o - v)};
+}
+// rc.r == 1
+// @param rc reference circle
+// @param o circle center
+template <class FP>
+CEXP line<FP> inv_C2L(point<FP> CR ro, point<FP> CR o) {
+  point v = (o - ro).do_rot90();
+  return {inv_P2P(ro, o + v), inv_P2P(ro, o - v)};
 }
 
 }  // namespace tifa_libs::geo

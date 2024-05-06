@@ -15,7 +15,7 @@ using Line2 = tifa_libs::geo::line<data_t>;
 using Triangle = tifa_libs::geo::triangle<data_t>;
 using Circle2 = tifa_libs::geo::circle<data_t>;
 
-constexpr data_t PI = std::numbers::pi_v<data_t>;
+constexpr data_t PI = pi_v<data_t>;
 
 strn single_proceed(strnv s, std::istream& fin) {
   std::stringstream ss;

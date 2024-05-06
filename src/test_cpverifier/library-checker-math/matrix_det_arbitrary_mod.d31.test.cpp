@@ -8,6 +8,7 @@
 #include "../../code/math/mint_d31.hpp"
 
 using mint = tifa_libs::math::mint_d31<-1>;
+
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {

@@ -9,19 +9,11 @@
 
 using mint = tifa_libs::math::mint_d31<-1>;
 #endif
-#ifdef GENTC_ds
-#include "../../code/math/mint_ds.hpp"
-
-using mint = tifa_libs::math::mint_ds<-1>;
-#endif
 
 int main() {
   u32 t, MOD;
   tifa_libs::fin >> t >> MOD;
 #ifdef GENTC_d31
-  mint::set_mod(MOD);
-#endif
-#ifdef GENTC_ds
   mint::set_mod(MOD);
 #endif
   if (MOD < 1e7) {

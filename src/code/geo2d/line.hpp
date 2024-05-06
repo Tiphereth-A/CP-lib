@@ -10,7 +10,7 @@ struct line {
   point<FP> l, r;
   CEXP line() {}
   CEXP line(point<FP> CR s, point<FP> CR t) : l(s), r(t) {}
-  CEXP line(point<FP> CR s, FP angle_x) : l(s), r(s + is_eq(angle_x, std::numbers::pi_v<FP> / 2) ? point<FP>{0, 1} : point<FP>{1, std::tan(angle_x)}) { assert(angle_x > 0 && angle_x < std::numbers::pi_v<FP>); }
+  CEXP line(point<FP> CR s, FP angle_x) : l(s), r(s + is_eq(angle_x, pi_v<FP> / 2) ? point<FP>{0, 1} : point<FP>{1, std::tan(angle_x)}) { assert(angle_x > 0 && angle_x < pi_v<FP>); }
   // ax + by + c = 0
   CEXP line(FP a, FP b, FP c) {
     if (is_zero(a)) l = {0, -c / b}, r = {1, -c / b};
@@ -37,10 +37,11 @@ struct line {
     return -sgn(vl ^ vr);
   }
 
+  CEXP int toleft(point<FP> CR p) const { return sgn_cross(l, r, p); }
   // half plane
-  CEXP bool is_include_strict(point<FP> CR p) const { return is_pos(cross(l, r, p)); }
+  CEXP bool is_include_strict(point<FP> CR p) const { return toleft(p) > 0; }
   // half plane
-  CEXP bool is_include(point<FP> CR p) const { return !is_neg(cross(l, r, p)); }
+  CEXP bool is_include(point<FP> CR p) const { return toleft(p) >= 0; }
 
   // translate @dist along the direction of half plane
   CEXP line& do_push(FP dist) {

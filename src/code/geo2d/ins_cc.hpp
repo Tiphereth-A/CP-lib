@@ -12,7 +12,7 @@ template <class FP>
 CEXP std::optional<ptt<point<FP>>> ins_CC(circle<FP> CR c1, circle<FP> CR c2) {
   assert(!is_eq(c1.o.x, c2.o.x) || !is_eq(c1.o.y, c2.o.y) || !is_eq(c1.r, c2.r));
   auto state = relation_CC(c1, c2);
-  if (state == RELCC::lyingin_cc || state == RELCC::lyingout_cc) return {};
+  if (state == lyingin_cc || state == lyingout_cc) return {};
   FP d = min(dist_PP(c1.o, c2.o), c1.r + c2.r);
   FP y = (c1.r * c1.r - c2.r * c2.r + d * d) / (2 * d), x = std::sqrt(c1.r * c1.r - y * y);
   point dr = (c2.o - c1.o).do_unit();

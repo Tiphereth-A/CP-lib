@@ -15,7 +15,7 @@ int main() {
     cvh poly(n);
     std::cin >> poly;
     poly.init();
-    std::cout << poly.vs.size() << '\n';
+    std::cout << poly.size() << '\n';
     for (auto CR i : poly.vs) std::cout << i << '\n';
   }
   return 0;

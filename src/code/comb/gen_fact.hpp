@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_COMB_GEN_FACT
 #define TIFALIBS_COMB_GEN_FACT
 
-#include "../math/mul_mod_u.hpp"
+#include "../math/mul_mod.hpp"
 
 namespace tifa_libs::math {
 

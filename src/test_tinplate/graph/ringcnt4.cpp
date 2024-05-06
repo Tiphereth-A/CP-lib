@@ -3,13 +3,13 @@
 #include "../../code/graph/ringcnt4.hpp"
 
 #include "../../code/graph/ringenum3.hpp"
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mint_s30.hpp"
 // clang-format off
 #include "../../code/io/ios_pair.hpp"
 #include "../../code/io/ios_container.hpp"
 // clang-format on
 
-using mint = tifa_libs::math::mint_ss<1'000'000'000 + 7>;
+using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
 int main() {
   std::ios::sync_with_stdio(false);
@@ -72,14 +72,12 @@ int main() {
 为了避免任何精度问题, 皮卡德将概率表示为 $p$, 边数表示为 $m$, 你应该报告值 $\left(p \cdot \binom{m}{4}\right) \bmod (10^9 + 7)$. 很容易证明 $p \cdot \binom{m}{4}$ 是一个整数
 
 ## 输入
-
 输入包含多个测试用例, 第一行包含一个正整数 $T$, 表示测试用例的数量, 最多为 $10$
 对于每个测试用例, 第一行包含两个整数 $n$ 和 $m$, 表示给定简单无向图中的顶点数和边数, 其中 $4 \leq n \leq 10^5$, $4 \leq m \leq 2 \times 10^5$
 接下来的 $m$ 行描述图的所有边, 其中第 $i$ 行包含两个整数 $u$ 和 $v$, 表示第 $u$ 个顶点和第 $v$ 个顶点之间的一条边, 其中 $1 \leq u, v \leq n$ 且 $u \neq v$
 保证给定的图中不包含环或多重边
 
 ## 输出
-
 对于每个测试用例, 输出一行, 包含一个整数, 对应于值 $\left(p \cdot \binom{m}{4}\right) \bmod (10^9 + 7)$, 其中 $p$ 表示你需要计算的概率
 */
 

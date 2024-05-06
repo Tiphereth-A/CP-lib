@@ -2,7 +2,7 @@
 #define TIFALIBS_GRAPH_CHROM_NUM
 
 #include "../bit/parity.hpp"
-#include "../math/mul_mod_s.hpp"
+#include "../math/mul_mod.hpp"
 #include "alist.hpp"
 
 namespace tifa_libs::graph {

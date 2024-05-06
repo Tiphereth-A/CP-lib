@@ -5,7 +5,6 @@
 
 #include "../../../code/lalg/mat.hpp"
 #include "../../../code/math/mint_d31.hpp"
-#include "../../../code/math/mint_ds.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
 
@@ -21,23 +20,22 @@ void test(u32 n) {
   check(a * b, b, check_param(n), check_param(period), check_param(a));
 }
 
-using mint1 = tifa_libs::math::mint_d31<-1>;
-using mint2 = tifa_libs::math::mint_ds<-1>;
+using mint = tifa_libs::math::mint_d31<-1>;
 
 int main() {
   auto tcase = tifa_libs::unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test<mint1>(2); break;
-    case tifa_libs::unittest::ts_random_00: test<mint2>(2); break;
-    case tifa_libs::unittest::ts_random_01: test<mint1>(10); break;
-    case tifa_libs::unittest::ts_random_02: test<mint2>(10); break;
-    case tifa_libs::unittest::ts_random_03: test<mint1>(5000); break;
-    case tifa_libs::unittest::ts_random_04: test<mint2>(5000); break;
-    case tifa_libs::unittest::ts_random_05: test<mint1>(1919810); break;
-    case tifa_libs::unittest::ts_random_06: test<mint2>(1919810); break;
-    case tifa_libs::unittest::ts_random_07: test<mint1>(1'000'000'000); break;
-    case tifa_libs::unittest::ts_random_08: test<mint2>(1'000'000'000); break;
+    case tifa_libs::unittest::ts_example_00: test<mint>(2); break;
+    case tifa_libs::unittest::ts_random_00: test<mint>(10); break;
+    case tifa_libs::unittest::ts_random_01: test<mint>(5000); break;
+    case tifa_libs::unittest::ts_random_02: test<mint>(1919810); break;
+    case tifa_libs::unittest::ts_random_03: test<mint>(1'000'000'000); break;
+    case tifa_libs::unittest::ts_random_04: break;
+    case tifa_libs::unittest::ts_random_05: break;
+    case tifa_libs::unittest::ts_random_06: break;
+    case tifa_libs::unittest::ts_random_07: break;
+    case tifa_libs::unittest::ts_random_08: break;
     case tifa_libs::unittest::ts_random_09: break;
     default: break;
   }

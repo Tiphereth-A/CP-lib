@@ -18,7 +18,7 @@ int main() {
 #ifdef GENTC_3nttu64_s30
   vecu64 a(n), b(m);
 #endif
-#ifdef GENTC_3nttu64_ss
+#ifdef GENTC_3nttu64_s63
   vecu64 a(n), b(m);
 #endif
 #ifdef GENTC_3ntt_s30_s30
@@ -27,16 +27,10 @@ int main() {
 #ifdef GENTC_3ntt_s30_s63
   vec<mint> a(n), b(m);
 #endif
-#ifdef GENTC_3ntt_s30_ss
+#ifdef GENTC_3ntt_s63_s30
   vec<mint> a(n), b(m);
 #endif
-#ifdef GENTC_3ntt_ss_s30
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_ss_s63
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_ss_ss
+#ifdef GENTC_3ntt_s63_s63
   vec<mint> a(n), b(m);
 #endif
 #ifdef GENTC_3ntt_s30_d31
@@ -45,16 +39,10 @@ int main() {
 #ifdef GENTC_3ntt_s30_d63
   vec<mint> a(n), b(m);
 #endif
-#ifdef GENTC_3ntt_s30_ds
+#ifdef GENTC_3ntt_s63_d31
   vec<mint> a(n), b(m);
 #endif
-#ifdef GENTC_3ntt_ss_d31
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_ss_d63
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_ss_ds
+#ifdef GENTC_3ntt_s63_d63
   vec<mint> a(n), b(m);
 #endif
 #ifdef GENTC_mtt_s30
@@ -63,16 +51,10 @@ int main() {
 #ifdef GENTC_mtt_s63
   vec<mint> a(n), b(m);
 #endif
-#ifdef GENTC_mtt_ss
-  vec<mint> a(n), b(m);
-#endif
 #ifdef GENTC_mtt_d31
   vec<mint> a(n), b(m);
 #endif
 #ifdef GENTC_mtt_d63
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_mtt_ds
   vec<mint> a(n), b(m);
 #endif
   tifa_libs::fin >> a >> b;
@@ -80,7 +62,7 @@ int main() {
   ntt3_t ntt3;
   tifa_libs::fout << tifa_libs::math::conv_3ntt_u64(ntt3, a, b, MOD) << '\n';
 #endif
-#ifdef GENTC_3nttu64_ss
+#ifdef GENTC_3nttu64_s63
   ntt3_t ntt3;
   tifa_libs::fout << tifa_libs::math::conv_3ntt_u64(ntt3, a, b, MOD) << '\n';
 #endif
@@ -92,19 +74,11 @@ int main() {
   ntt3_t ntt3;
   tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt3, a, b) << '\n';
 #endif
-#ifdef GENTC_3ntt_s30_ss
+#ifdef GENTC_3ntt_s63_s30
   ntt3_t ntt3;
   tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt3, a, b) << '\n';
 #endif
-#ifdef GENTC_3ntt_ss_s30
-  ntt3_t ntt3;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt3, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_ss_s63
-  ntt3_t ntt3;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt3, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_ss_ss
+#ifdef GENTC_3ntt_s63_s63
   ntt3_t ntt3;
   tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt3, a, b) << '\n';
 #endif
@@ -116,19 +90,11 @@ int main() {
   ntt3_t ntt3;
   tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt3, a, b) << '\n';
 #endif
-#ifdef GENTC_3ntt_s30_ds
+#ifdef GENTC_3ntt_s63_d31
   ntt3_t ntt3;
   tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt3, a, b) << '\n';
 #endif
-#ifdef GENTC_3ntt_ss_d31
-  ntt3_t ntt3;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt3, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_ss_d63
-  ntt3_t ntt3;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt3, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_ss_ds
+#ifdef GENTC_3ntt_s63_d63
   ntt3_t ntt3;
   tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt3, a, b) << '\n';
 #endif
@@ -140,19 +106,11 @@ int main() {
   tifa_libs::math::FFT<long double> fft;
   tifa_libs::fout << tifa_libs::math::conv_mtt(fft, a, b) << '\n';
 #endif
-#ifdef GENTC_mtt_ss
-  tifa_libs::math::FFT<long double> fft;
-  tifa_libs::fout << tifa_libs::math::conv_mtt(fft, a, b) << '\n';
-#endif
 #ifdef GENTC_mtt_d31
   tifa_libs::math::FFT<long double> fft;
   tifa_libs::fout << tifa_libs::math::conv_mtt(fft, a, b) << '\n';
 #endif
 #ifdef GENTC_mtt_d63
-  tifa_libs::math::FFT<long double> fft;
-  tifa_libs::fout << tifa_libs::math::conv_mtt(fft, a, b) << '\n';
-#endif
-#ifdef GENTC_mtt_ds
   tifa_libs::math::FFT<long double> fft;
   tifa_libs::fout << tifa_libs::math::conv_mtt(fft, a, b) << '\n';
 #endif

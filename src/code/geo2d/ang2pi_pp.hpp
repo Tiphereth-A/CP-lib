@@ -9,7 +9,7 @@ namespace tifa_libs::geo {
 template <class FP>
 CEXP FP ang2pi_PP(point<FP> CR p1, point<FP> CR p2) {
   FP res = ang_PP(p1, p2);
-  return is_neg(res) ? res + 2 * std::numbers::pi_v<FP> : res;
+  return is_neg(res) ? res + 2 * pi_v<FP> : res;
 }
 
 }  // namespace tifa_libs::geo

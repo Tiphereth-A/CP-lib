@@ -14,37 +14,50 @@ struct point {
   friend std::ostream &operator<<(std::ostream &os, point CR p) { return os << p.x << ' ' << p.y; }
 
   // s * r + t * (1 - r)
-  friend CEXP point lerp(point CR s, point CR t, FP r) { return s * r + t * (1 - r); }
+  template <std::floating_point T>
+  friend CEXP point lerp(point CR s, point CR t, T r) { return s * r + t * (1 - r); }
   friend CEXP point mid_point(point CR s, point CR t) { return lerp(s, t, .5); }
 
-  CEXP point &operator+=(FP n) {
+  template <arithm_c T>
+  CEXP point &operator+=(T n) {
     this->x += n;
     this->y += n;
     return *this;
   }
-  CEXP point &operator-=(FP n) {
+  template <arithm_c T>
+  CEXP point &operator-=(T n) {
     this->x -= n;
     this->y -= n;
     return *this;
   }
-  CEXP point &operator*=(FP n) {
+  template <arithm_c T>
+  CEXP point &operator*=(T n) {
     this->x *= n;
     this->y *= n;
     return *this;
   }
-  CEXP point &operator/=(FP n) {
+  template <arithm_c T>
+  CEXP point &operator/=(T n) {
     this->x /= n;
     this->y /= n;
     return *this;
   }
-  friend CEXP point operator+(point x, FP n) { return x += n; }
-  friend CEXP point operator+(FP n, point x) { return x += n; }
-  friend CEXP point operator-(point x, FP n) { return x -= n; }
-  friend CEXP point operator-(FP n, point x) { return x -= n; }
-  friend CEXP point operator*(point x, FP n) { return x *= n; }
-  friend CEXP point operator*(FP n, point x) { return x *= n; }
-  friend CEXP point operator/(point x, FP n) { return x /= n; }
-  friend CEXP point operator/(FP n, point x) { return x /= n; }
+  template <arithm_c T>
+  friend CEXP point operator+(point x, T n) { return x += n; }
+  template <arithm_c T>
+  friend CEXP point operator+(T n, point x) { return x += n; }
+  template <arithm_c T>
+  friend CEXP point operator-(point x, T n) { return x -= n; }
+  template <arithm_c T>
+  friend CEXP point operator-(T n, point x) { return x -= n; }
+  template <arithm_c T>
+  friend CEXP point operator*(point x, T n) { return x *= n; }
+  template <arithm_c T>
+  friend CEXP point operator*(T n, point x) { return x *= n; }
+  template <arithm_c T>
+  friend CEXP point operator/(point x, T n) { return x /= n; }
+  template <arithm_c T>
+  friend CEXP point operator/(T n, point x) { return x /= n; }
 
   CEXP point &operator+=(point CR p) {
     this->x += p.x;
@@ -69,16 +82,26 @@ struct point {
   CEXP FP operator*(point CR p) const { return x * p.x + y * p.y; }
   CEXP FP operator^(point CR p) const { return x * p.y - y * p.x; }
 
-  CEXP auto arg() const { return std::atan2(y, x); }
+  CEXP FP arg() const {
+    static_assert(std::is_floating_point_v<FP>);
+    return std::atan2(y, x);
+  }
   CEXP FP norm2() const { return x * x + y * y; }
-  CEXP FP norm() const { return std::hypot(x, y); }
-  CEXP point &do_unit() { return *this /= norm(); }
+  CEXP FP norm() const {
+    static_assert(std::is_floating_point_v<FP>);
+    return std::hypot(x, y);
+  }
+  CEXP point &do_unit() {
+    static_assert(std::is_floating_point_v<FP>);
+    return *this /= norm();
+  }
 
   static CEXP u32 QUAD__[9] = {6, 7, 8, 5, 0, 1, 4, 3, 2};
   // 4 3 2
   // 5 0 1
   // 6 7 8
   CEXP u32 quad() const { return QUAD__[(sgn(y) + 1) * 3 + sgn(x) + 1]; }
+  CEXP int toleft(point CR p) const { return sgn(*this ^ p); }
 
   CEXP point &do_rot(FP theta) {
     FP x0 = x, y0 = y, ct = std::cos(theta), st = std::sin(theta);

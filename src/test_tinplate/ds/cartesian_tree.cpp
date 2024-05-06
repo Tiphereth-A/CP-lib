@@ -25,13 +25,11 @@ int main() {
 2. 节点 $i$ 的权值为 $p_i$, 每个节点的权值满足小根堆的性质
 
 ## 输入
-
 第一行一个整数 $n$
 第二行一个排列 $p_{1 \dots n}$
 $1 \le n \le 10^7$
 
 ## 输出
-
 设 $l_i,r_i$ 分别表示节点 $i$ 的左右儿子的编号 (若不存在则为 $0$)
 一行两个整数, 分别表示 $\operatorname{xor}_{i = 1}^n i \times (l_i + 1)$ 和 $\operatorname{xor}_{i = 1}^n i \times (r_i + 1)$
 

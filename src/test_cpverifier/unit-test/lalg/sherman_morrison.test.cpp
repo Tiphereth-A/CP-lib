@@ -9,10 +9,8 @@
 #include "../../../code/math/mint_2e61n1.hpp"
 #include "../../../code/math/mint_d31.hpp"
 #include "../../../code/math/mint_d63.hpp"
-#include "../../../code/math/mint_ds.hpp"
 #include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/mint_s63.hpp"
-#include "../../../code/math/mint_ss.hpp"
 #include "../../../code/rand/gen.hpp"
 #include "../base.hpp"
 
@@ -53,19 +51,15 @@ CEXP u64 MOD64 = 3'799'912'185'593'857;
 
 using mintd31 = tifa_libs::math::mint_d31<-1>;
 using mintd63 = tifa_libs::math::mint_d63<-1>;
-using mintds = tifa_libs::math::mint_ds<-1>;
 using mints30 = tifa_libs::math::mint_s30<MOD>;
 using mints63 = tifa_libs::math::mint_s63<MOD64>;
-using mintss = tifa_libs::math::mint_ss<MOD>;
 
 void test(u32 n) {
   single_test<tifa_libs::math::mint_2e61n1>(n);
   single_test<mintd31>(n);
   single_test<mintd63>(n);
-  single_test<mintds>(n);
   single_test<mints30>(n);
   single_test<mints63>(n);
-  single_test<mintss>(n);
 }
 
 int main() {
@@ -73,7 +67,6 @@ int main() {
 
   mintd31::set_mod(MOD);
   mintd63::set_mod(MOD64);
-  mintds::set_mod(MOD);
 
   switch (tcase) {
     case tifa_libs::unittest::ts_example_00: test(4); break;

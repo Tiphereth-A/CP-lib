@@ -19,7 +19,7 @@ strn single_proceed(u32 n, std::istream& fin) {
   vl.emplace_back(vp.back(), vp.front());
   fle_ (u32, i, 0, n - 2) vl.emplace_back(vp[i], vp[i + 1]);
   ConvexHull2 cvh = tifa_libs::geo::ins_hPs(vl);
-  ss << (cvh.reunique().vs.size() > 1) << '\n';
+  ss << (cvh.reunique().size() > 1) << '\n';
 
   return ss.str();
 }

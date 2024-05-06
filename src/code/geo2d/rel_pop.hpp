@@ -20,12 +20,12 @@ CEXP RELPoP relation_PoP(polygon<FP> CR po, point<FP> CR p) {
   for (auto &&now : po.vs)
     if (now == p) return onendpoint_pop;
   bool result = false;
-  for (u32 i = 0; i < po.vs.size(); ++i) {
-    point now_p = po.vs[i], next_p = po.vs[po.next(i)];
-    if (is_on_S({now_p, next_p}, p)) return onborder_pop;
-    if (!is_gt(now_p.y, next_p.y)) swap(now_p, next_p);
-    if (is_gt(p.y, now_p.y) || !is_gt(p.y, next_p.y)) continue;
-    result ^= sgn_cross(p, now_p, next_p) > 0;
+  for (u32 i = 0; i < po.size(); ++i) {
+    point u = po.vs[i], v = po.vs[po.next(i)];
+    if (is_on_S({u, v}, p)) return onborder_pop;
+    if (!is_gt(u.y, v.y)) swap(u, v);
+    if (is_gt(p.y, u.y) || !is_gt(p.y, v.y)) continue;
+    result ^= sgn_cross(p, u, v) > 0;
   }
   return result ? inside_pop : outside_pop;
 }
@@ -34,7 +34,7 @@ template <class FP>
 CEXP RELPoP relation_CvhP(cT_(cvh<FP>) cvh, point<FP> CR p) {
   for (auto &&now : cvh.vs)
     if (now == p) return onendpoint_pop;
-  u32 sz = (u32)cvh.vs.size();
+  u32 sz = cvh.size();
   flt_ (u32, i, 0, sz)
     if (is_on_S({cvh.vs[i], cvh.vs[cvh.next(i)]}, p)) return onborder_pop;
   if (sz < 3) return outside_pop;

@@ -2,10 +2,10 @@
 
 #include "../../code/nt/min25_sieve.hpp"
 
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mint_s30.hpp"
 #include "../../code/math/qpow.hpp"
 
-using mint = tifa_libs::math::mint_ss<1'000'000'000 + 7>;
+using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
 mint f(u64 p, u64 c) {
   auto _ = tifa_libs::math::qpow(mint(p), c);
@@ -29,11 +29,9 @@ int main() {
 定义积性函数 $f(x)$, 且 $f(p^k)=p^k(p^k-1)$ ($p$ 是质数), 求 $\sum_{i=1}^n f(i)$ 对 $10^9+7$ 取模
 
 ## 输入
-
 一行一个整数 $n$
 
 ## 输出
-
 一个整数表示答案
 */
 

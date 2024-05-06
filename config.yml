@@ -255,10 +255,10 @@ notebook:
     - max_area_t: 凸包内面积最大的三角形
       code_ext: hpp
       test_ext: cpp
-    - coverage_rect_with_min_area: 最小面积覆盖矩形
+    - coverage_rect_min_area: 最小面积覆盖矩形
       code_ext: hpp
       test_ext: cpp
-    - coverage_rect_with_min_circum: 最小周长覆盖矩形
+    - coverage_rect_min_circum: 最小周长覆盖矩形
       code_ext: hpp
       test_ext: cpp
     - max_dis_cvh: 两凸包中的点的最远距离
@@ -282,16 +282,16 @@ notebook:
     - extan_cc: 两圆的外切线
       code_ext: hpp
       test_ext: cpp
-    - inv_c2c: 未经过反演中心的圆的几何反演
+    - inv_p2p: 点的反演
       code_ext: hpp
       test_ext: cpp
-    - inv_c2l: 经过反演中心的圆的几何反演
+    - inv_l2c: 直线的反演
       code_ext: hpp
       test_ext: cpp
-    - inv_l2c: 直线的几何反演
+    - inv_c2c: 圆的反演(未经过反演中心)
       code_ext: hpp
       test_ext: cpp
-    - inv_p2p: 点的几何反演
+    - inv_c2l: 圆的反演(经过反演中心)
       code_ext: hpp
       test_ext: cpp
     - dist_pl: 点与直线距离
@@ -306,7 +306,13 @@ notebook:
     - ins_ll: 直线交点
       code_ext: hpp
       test_ext: cpp
-    - is_ins_ss: 判断线段是否相交
+    - is_ins_sl: 判断线段与直线是否相交
+      code_ext: hpp
+      test_ext: cpp
+    - is_ins_ss: 判断两线段是否相交
+      code_ext: hpp
+      test_ext: cpp
+    - any_ins_ss: 判断多条线段是否相交
       code_ext: hpp
       test_ext: cpp
     - is_on_s: 判断点是否在直线上
@@ -318,19 +324,22 @@ notebook:
     - proj: 点在直线上的投影与对称点
       code_ext: hpp
       test_ext: cpp
-    - make_c_ppp: 根据三点构造圆
+    - make_c_ppp: 构造圆(经过的三点)
       code_ext: hpp
       test_ext: cpp
-    - make_c_rcc_ex: 根据半径和两外切圆构造圆
+    - make_c_rpp: 构造圆(半径和经过的两点)
       code_ext: hpp
       test_ext: cpp
-    - make_c_rll: 根据半径和两切线构造圆
+    - make_c_rpl: 构造圆(半径,切线和经过的一点)
       code_ext: hpp
       test_ext: cpp
-    - make_c_rpl: 根据半径,切线和经过的一点构造圆
+    - make_c_rll: 构造圆(半径和两切线)
       code_ext: hpp
       test_ext: cpp
-    - make_c_rpp: 根据半径和经过的两点构造圆
+    - make_c_rcc_ex: 构造圆(半径和两外切圆)
+      code_ext: hpp
+      test_ext: cpp
+    - make_c_pcc_ex: 构造圆(经过的一点和两外切圆)
       code_ext: hpp
       test_ext: cpp
     - min_cover_c: 最小覆盖圆
@@ -412,6 +421,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - tcenter_x: 三角形 Fermat 点
+      code_ext: hpp
+      test_ext: cpp
+    - aunion_cs: 圆的面积并
+      code_ext: hpp
+      test_ext: cpp
+    - aunion_pos: 多边形的面积并
       code_ext: hpp
       test_ext: cpp
     geo3d:
@@ -841,16 +856,10 @@ notebook:
     - mint_2e61n1: 模整数类(固定,61-1)
       code_ext: hpp
       test_ext: cpp
-    - mint_ss: 模整数类(静态,简单实现)
-      code_ext: hpp
-      test_ext: cpp
     - mint_s30: 模整数类(静态,30)
       code_ext: hpp
       test_ext: cpp
     - mint_s63: 模整数类(静态,63)
-      code_ext: hpp
-      test_ext: cpp
-    - mint_ds: 模整数类(动态,简单实现)
       code_ext: hpp
       test_ext: cpp
     - mint_d31: 模整数类(动态,31)
@@ -859,10 +868,7 @@ notebook:
     - mint_d63: 模整数类(动态,63)
       code_ext: hpp
       test_ext: cpp
-    - mul_mod_s: 有符号模乘法
-      code_ext: hpp
-      test_ext: cpp
-    - mul_mod_u: 无符号模乘法
+    - mul_mod: 模乘法
       code_ext: hpp
       test_ext: cpp
     - qpow_mod: 模快速幂

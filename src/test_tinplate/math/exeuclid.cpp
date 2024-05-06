@@ -2,7 +2,7 @@
 
 #include "../../code/math/exeuclid.hpp"
 
-#include "../../code/math/mint_ss.hpp"
+#include "../../code/math/mint_s30.hpp"
 
 template <class T>
 struct exeuclid_node {
@@ -19,7 +19,7 @@ struct exeuclid_node {
   }
 };
 
-using mint = tifa_libs::math::mint_ss<998244353>;
+using mint = tifa_libs::math::mint_s30<998244353>;
 using node = exeuclid_node<mint>;
 
 int main() {
@@ -41,12 +41,10 @@ int main() {
 给定 $n,\,a,\,b,\,c$ , 分别求 $\sum\limits_{i=0}^{n}\lfloor \frac{ai+b}{c} \rfloor\,,\  \sum\limits_{i=0}^{n}{\lfloor \frac{ai+b}{c} \rfloor}^2\,,\  \sum\limits_{i=0}^{n}i\lfloor \frac{ai+b}{c} \rfloor$ , 答案对 $998244353$ 取模. 多组数据
 
 ## 输入
-
 第一行给出数据组数 $t$
 接下来 $t$ 行, 每行有四个整数, 分别为每组数据的 $n,\ a,\ b,\ c$
 
 ## 输出
-
 对于每组数据, 输出一行三个整数, 为三个答案对 $998244353$ 取模的结果
 */
 

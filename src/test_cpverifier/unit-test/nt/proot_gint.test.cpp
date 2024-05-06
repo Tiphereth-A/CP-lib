@@ -3,14 +3,14 @@
 
 #include "../../../code/nt/proot_gint.hpp"
 
+#include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/mint_s63.hpp"
-#include "../../../code/math/mint_ss.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../../../code/nt/jacobi_sym.hpp"
 #include "../base.hpp"
 
 template <u32 MOD>
-using mint = tifa_libs::math::mint_ss<MOD>;
+using mint = tifa_libs::math::mint_s30<MOD>;
 template <u64 MOD>
 using mint64 = tifa_libs::math::mint_s63<MOD>;
 
@@ -41,17 +41,17 @@ void test_proot_gint() {
   for (auto k : pf) pf_v.push_back((decltype(mod))k);
 
   __single_test<mint, 2>(mod, pf_v);
-  __single_test<mint, 3>(mod, pf_v);
-  __single_test<mint, 5>(mod, pf_v);
-  __single_test<mint, 7>(mod, pf_v);
-  __single_test<mint, 11>(mod, pf_v);
+  if CEXP (mint::mod() > 3) __single_test<mint, 3>(mod, pf_v);
+  if CEXP (mint::mod() > 5) __single_test<mint, 5>(mod, pf_v);
+  if CEXP (mint::mod() > 7) __single_test<mint, 7>(mod, pf_v);
+  if CEXP (mint::mod() > 11) __single_test<mint, 11>(mod, pf_v);
 
   __single_test<mint, -1>(mod, pf_v);
   __single_test<mint, -2>(mod, pf_v);
-  __single_test<mint, -3>(mod, pf_v);
-  __single_test<mint, -5>(mod, pf_v);
-  __single_test<mint, -7>(mod, pf_v);
-  __single_test<mint, -11>(mod, pf_v);
+  if CEXP (mint::mod() > 3) __single_test<mint, -3>(mod, pf_v);
+  if CEXP (mint::mod() > 5) __single_test<mint, -5>(mod, pf_v);
+  if CEXP (mint::mod() > 7) __single_test<mint, -7>(mod, pf_v);
+  if CEXP (mint::mod() > 11) __single_test<mint, -11>(mod, pf_v);
 }
 
 int main() {
@@ -60,7 +60,6 @@ int main() {
   switch (tcase) {
       // small prime
     case tifa_libs::unittest::ts_example_00:
-      test_proot_gint<mint<2>>();
       test_proot_gint<mint<3>>();
       test_proot_gint<mint<5>>();
       test_proot_gint<mint<7>>();
@@ -94,7 +93,7 @@ int main() {
       break;
     case tifa_libs::unittest::ts_random_05:
       test_proot_gint<mint<1004535809>>();
-      test_proot_gint<mint<2013265921>>();
+      test_proot_gint<mint64<2013265921>>();
       break;
       // larger prime in u64
     case tifa_libs::unittest::ts_random_06:

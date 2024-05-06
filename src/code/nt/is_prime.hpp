@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_IS_PRIME
 #define TIFALIBS_MATH_IS_PRIME
 
-#include "../math/mul_mod_u.hpp"
+#include "../math/mul_mod.hpp"
 #include "../math/qpow_mod.hpp"
 
 namespace tifa_libs::math {

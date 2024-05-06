@@ -51,7 +51,6 @@
 
 % User defined command
 \newcommand{\lcm}{\operatorname{lcm}}
-\newcommand{\subjectto}{~s.t.~}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
 

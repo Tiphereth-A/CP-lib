@@ -2,8 +2,7 @@
 #define TIFALIBS_MATH_LAGRANGE_INTERP0
 
 #include "../comb/gen_ifact.hpp"
-#include "mul_mod_s.hpp"
-#include "mul_mod_u.hpp"
+#include "mul_mod.hpp"
 
 namespace tifa_libs::math {
 

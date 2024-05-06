@@ -6,10 +6,19 @@
 namespace tifa_libs::geo {
 
 // geometry inverse of a circle which DOES NOT pass through the inversion center
+// @param cc reference circle
 template <class FP>
-CEXP circle<FP> inv_C2C(circle<FP> CR c, circle<FP> CR c1) {
-  point v = (c1.o - c.o).do_unit();
-  point p1 = inv_P2P(c, c1.o + v * c1.r), p2 = inv_P2P(c, c1.o - v * c1.r);
+CEXP circle<FP> inv_C2C(circle<FP> CR rc, circle<FP> CR c) {
+  point v = (c.o - rc.o).do_unit();
+  point p1 = inv_P2P(rc, c.o + v * c.r), p2 = inv_P2P(rc, c.o - v * c.r);
+  return {mid_point(p1, p2), dist_PP(p1, p2) / 2};
+}
+// cc.r == 1
+// @param cc reference circle
+template <class FP>
+CEXP circle<FP> inv_C2C(point<FP> CR ro, circle<FP> CR c) {
+  point v = (c.o - ro).do_unit();
+  point p1 = inv_P2P(ro, c.o + v * c.r), p2 = inv_P2P(ro, c.o - v * c.r);
   return {mid_point(p1, p2), dist_PP(p1, p2) / 2};
 }
 

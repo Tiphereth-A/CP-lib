@@ -93,6 +93,7 @@ inline const auto fn_is0 = [](auto x) { return x == 0; };
 // std::sqrt(std::numeric_limits<FP>::epsilon())
 template <std::floating_point FP>
 CEXP inline FP eps_v = FP(1e-8L);
+using std::numbers::pi_v;
 
 namespace tifa_libs {
 using std::min, std::max, std::swap;

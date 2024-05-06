@@ -2,7 +2,7 @@
 #define TIFALIBS_MATH_PFACTORS
 
 #include "../edh/discretization.hpp"
-#include "../math/mul_mod_u.hpp"
+#include "../math/mul_mod.hpp"
 #include "../rand/gen.hpp"
 #include "gcd.hpp"
 #include "is_prime.hpp"

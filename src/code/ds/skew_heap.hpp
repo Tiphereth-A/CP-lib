@@ -6,7 +6,7 @@
 namespace tifa_libs::ds {
 
 template <class T, class C = std::less<T>>
-class SkewHeap {
+class skew_heap {
   static CEXP C comp_{};
   struct TIFA {
     T k, lz;

@@ -13,11 +13,11 @@ int main() {
   cvh p(n);
   std::cin >> p;
   p.template init<false>();
-  std::cout << p.vs.size() << '\n';
+  std::cout << p.size() << '\n';
   u32 now = 0;
-  for (u32 i = 1; i < p.vs.size(); ++i)
+  for (u32 i = 1; i < p.size(); ++i)
     if (tifa_libs::is_lt(p[i].y, p[now].y) || (tifa_libs::is_eq(p[i].y, p[now].y) && tifa_libs::is_lt(p[i].x, p[now].x))) now = i;
-  for (u32 i = now; i < p.vs.size(); ++i) std::cout << p[i] << '\n';
+  for (u32 i = now; i < p.size(); ++i) std::cout << p[i] << '\n';
   if (now)
     flt_ (u32, i, 0, now) std::cout << p[i] << '\n';
   return 0;

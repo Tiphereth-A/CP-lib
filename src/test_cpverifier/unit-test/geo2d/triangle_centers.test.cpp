@@ -125,7 +125,7 @@ void test_x(triangle<T> CR t) {
   point<T> uva = (t.A - x).do_unit(), uvb = (t.B - x).do_unit(), uvc = (t.C - x).do_unit();
   T ang_axb = std::abs(tifa_libs::geo::ang_PP(uva, uvb)), ang_bxc = std::abs(tifa_libs::geo::ang_PP(uvb, uvc)), ang_cxa = std::abs(tifa_libs::geo::ang_PP(uvc, uva));
 
-  CEXP T _60 = std::numbers::pi_v<T> / 3, _120 = std::numbers::pi_v<T> / 1.5;
+  CEXP T _60 = pi_v<T> / 3, _120 = pi_v<T> / 1.5;
 
   check_bool((is_eq(ang_axb, _120) && is_eq(ang_bxc, _120) && is_eq(ang_cxa, _120)) ||
                  (is_eq(ang_axb, _60) && is_eq(ang_bxc, _60) && is_eq(ang_cxa, _120)) ||

@@ -9,7 +9,7 @@ template <class FP>
 CEXP point<FP> massp(polygon<FP> CR po) {
   point<FP> ret{};
   math::kahan<FP> area{};
-  u32 n = (u32)po.vs.size();
+  u32 n = po.size();
   if (n == 0) return ret;
   if (n == 1) return po.vs[0];
   for (u32 i = 1; i < n - 1; ++i) {
@@ -18,7 +18,7 @@ CEXP point<FP> massp(polygon<FP> CR po) {
     area += _;
     ret += (po.vs[0] + po.vs[i] + po.vs[i + 1]) * (_ / 3);
   }
-  if (!is_zero<FP>(area)) ret /= area;
+  if (!is_zero<FP>(area)) ret /= (FP)area;
   return ret;
 }
 

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_COMB_GEN_INVSEQ
 #define TIFALIBS_COMB_GEN_INVSEQ
 
-#include "../math/mul_mod_u.hpp"
+#include "../math/mul_mod.hpp"
 #include "../nt/inverse.hpp"
 
 namespace tifa_libs::math {

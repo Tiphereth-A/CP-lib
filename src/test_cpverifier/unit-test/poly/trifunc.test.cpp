@@ -3,7 +3,6 @@
 
 #include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/mint_s63.hpp"
-#include "../../../code/math/mint_ss.hpp"
 #include "../../../code/poly/asin_fps.hpp"
 #include "../../../code/poly/atan_fps.hpp"
 #include "../../../code/poly/cossin_fps.hpp"
@@ -13,11 +12,9 @@
 CEXP u32 MOD = 998244353;
 using mints30 = tifa_libs::math::mint_s30<MOD>;
 using mints63 = tifa_libs::math::mint_s63<MOD>;
-using mintss = tifa_libs::math::mint_ss<MOD>;
 
 using pnm30 = tifa_libs::math::polyntt<mints30>;
 using pnm63 = tifa_libs::math::polyntt<mints63>;
-using pnms = tifa_libs::math::polyntt<mintss>;
 
 tifa_libs::rand::Gen<std::uniform_int_distribution<u64>> gen;
 
@@ -26,7 +23,7 @@ void test(u32 n) {
   using mint = TPN poly::value_type;
   poly p(n + 1);
   p[0] = 0;
-  fle_(u32, i, 1, n) p[i] = mint(gen());
+  fle_ (u32, i, 1, n) p[i] = mint(gen());
   const u32 sz = n + 1;
 
   auto sqrt_1mpp = tifa_libs::math::sqrt_fps(-p * p + 1, sz).value();
@@ -56,13 +53,13 @@ int main() {
   switch (tcase) {
     case tifa_libs::unittest::ts_example_00: test<pnm30>(100); break;
     case tifa_libs::unittest::ts_random_00: test<pnm63>(100); break;
-    case tifa_libs::unittest::ts_random_01: test<pnms>(100); break;
-    case tifa_libs::unittest::ts_random_02: test<pnm30>(1000); break;
-    case tifa_libs::unittest::ts_random_03: test<pnm63>(1000); break;
-    case tifa_libs::unittest::ts_random_04: test<pnms>(1000); break;
-    case tifa_libs::unittest::ts_random_05: test<pnm30>(100000); break;
-    case tifa_libs::unittest::ts_random_06: test<pnm63>(100000); break;
-    case tifa_libs::unittest::ts_random_07: test<pnms>(100000); break;
+    case tifa_libs::unittest::ts_random_01: test<pnm30>(1000); break;
+    case tifa_libs::unittest::ts_random_02: test<pnm63>(1000); break;
+    case tifa_libs::unittest::ts_random_03: test<pnm30>(100000); break;
+    case tifa_libs::unittest::ts_random_04: test<pnm63>(100000); break;
+    case tifa_libs::unittest::ts_random_05: break;
+    case tifa_libs::unittest::ts_random_06: break;
+    case tifa_libs::unittest::ts_random_07: break;
     case tifa_libs::unittest::ts_random_08: break;
     case tifa_libs::unittest::ts_random_09: break;
     default: break;
