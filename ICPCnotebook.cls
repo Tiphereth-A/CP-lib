@@ -47,7 +47,12 @@
 \setmathrm{CMU Serif}
 \setmathsf{CMU Sans Serif}
 \newfontfamily\cnfont{Noto Sans CJK SC}
+\newfontfamily\jpfont{Noto Sans CJK JP}
 \setTransitionsForChinese{\begingroup\cnfont}{\endgroup}
+\setTransitionTo{Hiragana}{\begingroup\jpfont}
+\setTransitionFrom{Hiragana}{\endgroup}
+\setTransitionTo{Katakana}{\begingroup\jpfont}
+\setTransitionFrom{Katakana}{\endgroup}
 
 % User defined command
 \newcommand{\lcm}{\operatorname{lcm}}
