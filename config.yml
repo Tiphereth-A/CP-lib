@@ -588,6 +588,9 @@ notebook:
     - chordal: 弦图
       code_ext: hpp
       test_ext: cpp
+    - hungarian: 匈牙利算法
+      code_ext: hpp
+      test_ext: cpp
     tree:
     - tree: 树
       code_ext: hpp

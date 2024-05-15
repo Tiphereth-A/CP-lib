@@ -5,8 +5,6 @@
 
 namespace tifa_libs::graph {
 
-#define FOR(i, a, b) for (u32 i = (a); i < (b); ++i)
-
 // @return {w, u, v} edges in Gomory--Hu tree
 template <class EW>
 CEXP vec<std::tuple<EW, u32, u32>> gomory_hu(u32 n, vec<std::tuple<EW, u32, u32>> CR ed) {
