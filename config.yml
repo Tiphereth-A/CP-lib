@@ -591,6 +591,12 @@ notebook:
     - hungarian: 匈牙利算法
       code_ext: hpp
       test_ext: cpp
+    - cliques: 极大团枚举
+      code_ext: hpp
+      test_ext: cpp
+    - clique_calc: 全部团计算
+      code_ext: hpp
+      test_ext: cpp
     tree:
     - tree: 树
       code_ext: hpp
