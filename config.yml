@@ -597,6 +597,12 @@ notebook:
     - clique_calc: 全部团计算
       code_ext: hpp
       test_ext: cpp
+    - blossom: 带花树
+      code_ext: hpp
+      test_ext: cpp
+    - blossomw: 带权带花树
+      code_ext: hpp
+      test_ext: cpp
     tree:
     - tree: 树
       code_ext: hpp
