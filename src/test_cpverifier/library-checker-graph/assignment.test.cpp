@@ -15,7 +15,7 @@ int main() {
   flt_ (u32, i, 0, n)
     flt_ (u32, j, 0, n)
       std::cin >> x, mcmf.add(i, j + n, 1, x);
-  auto [flow, cost] = mcmf();
+  auto [flow, cost] = mcmf.get();
   std::cout << cost << '\n';
   vecu ans(n);
   flt_ (u32, i, 0, n)

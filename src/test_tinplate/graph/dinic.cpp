@@ -10,7 +10,7 @@ int main() {
   --s, --t;
   tifa_libs::graph::dinic maxflow(n);
   for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w, --u, --v, maxflow.add(u, v, w);
-  std::cout << maxflow(s, t);
+  std::cout << maxflow.get(s, t);
   return 0;
 }
 

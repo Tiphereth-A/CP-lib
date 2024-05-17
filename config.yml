@@ -552,10 +552,16 @@ notebook:
     - e_bcc: 边双连通分量
       code_ext: hpp
       test_ext: cpp
-    - dinic: 网络最大流(dinic)
+    - dinic: 网络最大流(Dinic)
       code_ext: hpp
       test_ext: cpp
     - ssp: 最小费用最大流(SSP)
+      code_ext: hpp
+      test_ext: cpp
+    - hungarian: 匈牙利算法
+      code_ext: hpp
+      test_ext: cpp
+    - hopkap: Hopcroft--Karp 算法
       code_ext: hpp
       test_ext: cpp
     - steiner_tree: 斯坦纳树
@@ -586,9 +592,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - chordal: 弦图
-      code_ext: hpp
-      test_ext: cpp
-    - hungarian: 匈牙利算法
       code_ext: hpp
       test_ext: cpp
     - cliques: 极大团枚举

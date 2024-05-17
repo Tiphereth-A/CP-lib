@@ -18,7 +18,7 @@ CEXP vec<std::tuple<EW, u32, u32>> gomory_hu(u32 n, vec<std::tuple<EW, u32, u32>
       auto &e = D.e[ed][loc], &e_rev = D.e[e.to][e.inv];
       e.w = e_rev.w = (e.w + e_rev.w) / 2;
     }
-    ans.emplace_back(D(i, par[i]), i, par[i]);
+    ans.emplace_back(D.get(i, par[i]), i, par[i]);
     for (u32 j = i + 1; j < n; ++j)
       if (par[j] == par[i] && D.dep[j]) par[j] = i;
   }

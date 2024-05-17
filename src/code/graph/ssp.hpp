@@ -1,28 +1,29 @@
 #ifndef TIFALIBS_GRAPH_DINIC
 #define TIFALIBS_GRAPH_DINIC
 
-#include "../util/util.hpp"
+#include "bm.hpp"
+#include "dijkstra.hpp"
 
 namespace tifa_libs::graph {
 
-template <class EW = u32, class EC = i32>
+template <class W = u32, class C = i32>
 class ssp {
   struct TIFA {
-    u32 to;
-    EW w;
-    EC c;
-    u32 inv;
+    u32 to, inv;
+    W w;
+    C c;
   };
   const u32 N, S, T;
-  vec<i64> dis;
-  vec<EW> flow;
+  vec<W> flow;
   vecpt<u32> pre;
 
-  bool spfa(u64 inflow) {
-    dis = vec<i64>(N, std::numeric_limits<i64>::max() / 2 - 1);
+  template <class EW>
+  bool sssp(EW inflow) {
+    using SW = std::make_signed_t<EW>;
+    vec<SW> dis(N, std::numeric_limits<SW>::max() / 2 - 1);
     vecb inq(N);
     std::queue<u32> q({S});
-    dis[S] = 0, flow[S] = EW(inflow), flow[T] = 0, inq[S] = 1;
+    dis[S] = 0, flow[S] = W(inflow), flow[T] = 0, inq[S] = 1;
     while (!q.empty()) {
       u32 u = q.front();
       q.pop(), inq[u] = 0;
@@ -38,29 +39,31 @@ class ssp {
     }
     return flow[T];
   }
-  CEXP void update(u64& retflow, i64& retcost) {
+  template <class EW, class EC>
+  CEXP void update(EW& retflow, EC& retcost) {
     retflow += flow[T];
     for (u32 u = T; u != S; u = pre[u].first) {
       e[pre[u].first][pre[u].second].w -= flow[T];
       e[u][e[pre[u].first][pre[u].second].inv].w += flow[T];
-      retcost += i64(flow[T]) * e[pre[u].first][pre[u].second].c;
+      retcost += EC(flow[T]) * e[pre[u].first][pre[u].second].c;
     }
   }
 
  public:
   vvec<TIFA> e;
 
-  CEXP ssp(u32 n, u32 s, u32 t) : N(n), S(s), T(t), dis(), flow(n), pre(n), e(n) {}
+  CEXP ssp(u32 n, u32 s, u32 t) : N(n), S(s), T(t), flow(n), pre(n), e(n) {}
 
-  CEXP void add(u32 u, u32 v, EW w, EC c) {
+  CEXP void add(u32 u, u32 v, cT_(W) w, cT_(C) c) {
     u32 temu = u32(e[u].size()), temv = u32(e[v].size());
-    e[u].push_back({v, w, c, temv}), e[v].push_back({u, 0, -c, temu});
+    e[u].push_back({v, temv, w, c}), e[v].push_back({u, temu, 0, -c});
   }
-  CEXP std::pair<u64, i64> operator()(u64 inflow = std::numeric_limits<u64>::max()) {
-    u64 retflow = 0;
-    i64 retcost = 0;
-    bool flag = inflow == std::numeric_limits<EW>::max();
-    while (spfa(flag ? inflow : inflow - retflow)) update(retflow, retcost);
+  template <class EW = u64, class EC = i64>
+  CEXP std::pair<EW, EC> get(EW inflow = std::numeric_limits<EW>::max()) {
+    EW retflow = 0;
+    EC retcost = 0;
+    bool flag = inflow == std::numeric_limits<W>::max();
+    while (sssp(flag ? inflow : inflow - retflow)) update(retflow, retcost);
     return {retflow, retcost};
   }
 };
