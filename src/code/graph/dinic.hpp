@@ -11,13 +11,13 @@ class dinic {
     u32 to;
     T w, inv;
   };
-  const u32 N;
+  const u32 n;
 
  public:
   vvec<TIFA> e;
   vecu dep, cur;
 
-  CEXP dinic(u32 n) : N(n), e(n) {}
+  CEXP dinic(u32 n) : n(n), e(n) {}
 
   CEXP ptt<u32> add(u32 u, u32 v, T w, T rw = 0) {
     u32 lstu = (u32)e[u].size(), lstv = (u32)e[v].size();
@@ -34,7 +34,7 @@ class dinic {
 
  private:
   bool bfs(u32 s, u32 t) {
-    dep = vecu(N, 0);
+    dep = vecu(n, 0);
     std::queue<u32> q({s});
     dep[s] = 1;
     while (!q.empty()) {
@@ -43,7 +43,7 @@ class dinic {
       for (auto v : e[u])
         if (!dep[v.to] && v.w) dep[v.to] = dep[u] + 1, q.push(v.to);
     }
-    cur = vecu(N, 0);
+    cur = vecu(n, 0);
     return dep[t];
   }
   template <class EW>

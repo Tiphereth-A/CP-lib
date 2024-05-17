@@ -552,7 +552,10 @@ notebook:
     - e_bcc: 边双连通分量
       code_ext: hpp
       test_ext: cpp
-    - dinic: 网络最大流(Dinic)
+    - dinic: 最大流(Dinic)
+      code_ext: hpp
+      test_ext: cpp
+    - hlpp: 最大流(HLPP)
       code_ext: hpp
       test_ext: cpp
     - ssp: 最小费用最大流(SSP)
