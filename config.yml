@@ -161,7 +161,10 @@ notebook:
     - lichao_segtree: 李超线段树(线段添加--定点最值)
       code_ext: hpp
       test_ext: cpp
-    - segbeats_cmmashm: 吉如一线段树(最大最小,加--历史最大,和)
+    - segbeats_ca_ms: 吉如一线段树(最值,加--最值,和)
+      code_ext: hpp
+      test_ext: cpp
+    - segbeats_ca_msh: 吉如一线段树(最值,加--最值,历史最值,和)
       code_ext: hpp
       test_ext: cpp
     - weighted_segtree: 权值线段树

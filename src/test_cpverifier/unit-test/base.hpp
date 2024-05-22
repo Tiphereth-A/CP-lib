@@ -94,7 +94,7 @@ inline TESTCASE pre_test() {
 #define check(got, want, ...) ::tifa_libs::unittest::detail__::check_(__PRETTY_FUNCTION__, #got, got, #want, want __VA_OPT__(, ) __VA_ARGS__)
 #define check_bool(expression, ...) ::tifa_libs::unittest::detail__::check_bool_(__PRETTY_FUNCTION__, #expression, expression __VA_OPT__(, ) __VA_ARGS__)
 #define check_param(x) \
-  std::pair<std::string, decltype(x)> { #x " = ", x }
+  std::pair<std::string, decltype(x)> { #x, x }
 
 }  // namespace tifa_libs::unittest
 
