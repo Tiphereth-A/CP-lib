@@ -1,23 +1,22 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../../code/geo2d/fermatp.hpp"
+#include "../../../code/geo2d/femwebp.hpp"
 
 #include "../base.hpp"
 
-
-using tifa_libs::geo::point, tifa_libs::geo::polygon;
+using tifa_libs::geo::point;
 
 template <class T>
 void single_test(vec<point<T>> CR v) {
   check_bool(v.size() >= 3, check_param(v));
 
-  polygon<T> poly(v);
-  point<T> fp_poly = fermatp(poly);
+  point<T> fw = femwebp(v);
 
-  point<T> sum(0, 0);
-  for (auto CR i : v) sum += (i - fp_poly).do_unit();
-  check_bool(tifa_libs::is_lt(sum.norm(), (T)2), check_param(v), check_param(fp_poly), check_param(sum));
+  point<T> sum;
+  for (auto CR i : v)
+    if (i != fw) sum += (i - fw).do_unit();
+  check_bool(tifa_libs::is_lt(sum.norm(), (T)1), check_param(v), check_param(fw), check_param(sum));
 }
 
 template <tifa_libs::arithm_c T>

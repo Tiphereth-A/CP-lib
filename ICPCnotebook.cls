@@ -79,6 +79,20 @@
 \newcommand{\dstirlingII}[2]{\genstirlingII{0}{#1}{#2}}
 \newcommand{\tstirlingII}[2]{\genstirlingII{1}{#1}{#2}}
 
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\arccot}{\operatorname{arccot}}
+\newcommand{\arcsec}{\operatorname{arcsec}}
+\newcommand{\arccsc}{\operatorname{arccsc}}
+\newcommand{\arcsinh}{\operatorname{arcsinh}}
+\newcommand{\arccosh}{\operatorname{arccosh}}
+\newcommand{\arctanh}{\operatorname{arctanh}}
+\newcommand{\arccoth}{\operatorname{arccoth}}
+\newcommand{\arcsech}{\operatorname{arcsech}}
+\newcommand{\arccsch}{\operatorname{arccsch}}
+
+\newcommand{\md}{\mathrm{d}}
+
 \newcommand{\fullref}[1]{\ref{#1}.\nameref{#1} (\pageref{#1} 页)}
 
 

@@ -360,12 +360,6 @@ notebook:
     - dist_pp: 两点间距离
       code_ext: hpp
       test_ext: cpp
-    - dist_pp_ch: 两点间距离(Chebyshev)
-      code_ext: hpp
-      test_ext: cpp
-    - dist_pp_ma: 两点间距离(Manhattan)
-      code_ext: hpp
-      test_ext: cpp
     - distsp_pp: 球面上两点间距离
       code_ext: hpp
       test_ext: cpp
@@ -384,10 +378,10 @@ notebook:
     - cnt_intp_po: 多边形整点计数
       code_ext: hpp
       test_ext: cpp
-    - fermatp: 多边形 Fermat 点
+    - femwebp: Fermat--Weber 点
       code_ext: hpp
       test_ext: cpp
-    - massp: 多边形重心
+    - massp: 重心
       code_ext: hpp
       test_ext: cpp
     - rel_cc: 两圆的关系
@@ -1343,9 +1337,6 @@ notebook:
     - sudoku: 数独求解
       code_ext: hpp
       test_ext: cpp
-    - texas_holdem: 德州扑克
-      code_ext: hpp
-      test_ext: cpp
     - npuzzle_data: N puzzle 数据类
       code_ext: hpp
       test_ext: cpp
@@ -1376,7 +1367,7 @@ cheatsheets:
   decimal: Python Decimal
   bash: Bash 简单用法
   vim: Vim 简单用法
-  lgv: lgv 定理
+  integral: 积分表
 default_code_style: common
 code_styles:
   C: cpp

@@ -25,6 +25,44 @@
 
 \(\operatorname{haf}(A)\) 的定义参见 \fullref{sec:图的完美匹配计数}
 
+\subsubsection{邻接矩阵行列式的意义}
+
+在无向图中取若干个环, 一种取法权值就是边权的乘积, 对行列式的贡献是 \((-1)^{e}\), 其中 \(e\) 是偶环的个数
+
+
+\subsubsection{LGV 引理}
+
+\paragraph{定义}
+
+\(\omega(P)\) 表示 \(P\) 这条路径上所有边的边权之积. (路径计数时, 可以将边权都设为 \(1\)) (事实上, 边权可以为生成函数)
+
+\(e(u, v)\) 表示 \(u\) 到 \(v\) 的 \textbf{每一条} 路径 \(P\) 的 \(\omega(P)\) 之和, 即 \(e(u, v)=\sum\limits_{P:u\rightarrow v}\omega(P)\).
+
+起点集合 \(A\), 是有向无环图点集的一个子集, 大小为 \(n\).
+
+终点集合 \(B\), 也是有向无环图点集的一个子集, 大小也为 \(n\).
+
+一组 \(A\rightarrow B\) 的不相交路径 \(S\): \(S_i\) 是一条从 \(A_i\) 到 \(B_{\sigma(S)_i}\) 的路径(\(\sigma(S)\) 是一个排列), 对于任何 \(i\ne j\), \(S_i\) 和 \(S_j\) 没有公共顶点.
+
+\(t(\sigma)\) 表示排列 \(\sigma\) 的逆序对个数.
+
+\paragraph{引理}
+
+\[
+    M = \begin{bmatrix}
+        e(A_1,B_1) & e(A_1,B_2) & \cdots & e(A_1,B_n) \\
+        e(A_2,B_1) & e(A_2,B_2) & \cdots & e(A_2,B_n) \\
+        \vdots     & \vdots     & \ddots & \vdots     \\
+        e(A_n,B_1) & e(A_n,B_2) & \cdots & e(A_n,B_n)
+    \end{bmatrix}
+\]
+
+\[
+    \det(M)=\sum\limits_{S:A\rightarrow B}(-1)^{t(\sigma(S))}\prod\limits_{i=1}^n \omega(S_i)
+\]
+
+其中 \(\sum\limits_{S:A\rightarrow B}\) 表示满足上文要求的 \(A\rightarrow B\) 的每一组不相交路径 \(S\).
+
 \subsection{组合数学}
 
 \subsubsection{组合数相关公式}
@@ -129,12 +167,34 @@
 如: 长为 \(n\) 的项链, 珠子可以染 \(m\) 种颜色, 则总方案数为
 
 \[
-    \frac{1}{n}\sum_{k=0}^{n-1} m^{\gcd(n,k)}
+    \frac{1}{n}\sum_{k=0}^{n-1} m^{(n,k)}
 \]
+
+\subsubsection{自然数幂次和关于次数的EGF}
+
+\begin{equation}
+    \begin{aligned} 
+        F(x)= & \sum_{k=0}^\infty \frac{\sum_{i=0}^n i^k}{k!}x^k \\ 
+        =     & \sum_{i=0}^n \mathrm{e}^{ix}                     \\
+        =     & \frac{\mathrm{e}^{(n+1)x-1}}{\mathrm{e}^x-1}
+    \end{aligned}
+\end{equation}
+
 
 \subsection{初等数论}
 
-\subsubsection{Dirichlet 卷积相关公式}
+\subsubsection{数论函数相关}
+
+\begin{multicols}{3}
+    \(\displaystyle \sum_{\delta\mid n}\varphi(\delta)d\left(\frac{n}{\delta}\right) = \sigma(n)\) \\
+    \(\displaystyle \sum_{\delta\mid n}\left|\mu(\delta)\right| = 2^{\omega(n)}\) \\
+    \(\displaystyle \sum_{\delta\mid n}2^{\omega(\delta)} = d(n^2)\) \\
+    \(\displaystyle \sum_{\delta\mid n}d(\delta^2) = d^2(n)\) \\
+    \(\displaystyle \sum_{\delta\mid n}d\left(\frac{n}{\delta}\right)2^{\omega(\delta)} = d^2(n)\) \\
+    \(\displaystyle \sum_{\delta\mid n}\frac{\mu(\delta)}{\delta} = \frac{\varphi(n)}{n}\) \\
+    \(\displaystyle \sum_{\delta\mid n}\frac{\mu(\delta)}{\varphi(\delta)} = d(n)\) \\
+    \(\displaystyle \sum_{\delta\mid n}\frac{\mu^2(\delta)}{\varphi(\delta)} = \frac{n}{\varphi(n)}\)
+\end{multicols}
 
 \begin{equation}
     \sum_{i=1}^n\sum_{j=1}^m(i,j)^k=\sum_{D=1}^{\min\{n,m\}}\left\lfloor\frac{n}{D}\right\rfloor\left\lfloor\frac{m}{D}\right\rfloor\{\operatorname{id}_k*\mu\}(D)
@@ -142,6 +202,96 @@
 
 \begin{equation}
     \{\operatorname{id}_k*\mu\}(p^s)=p^{ks}-p^{k(s-1)}
+\end{equation}
+
+\begin{equation}
+    \sum_{i = 1} ^ n \left[(i, n) = 1\right] i = n \frac {\varphi(n) + e(n)} 2
+\end{equation}
+
+\begin{equation}
+    \sum_{i = 1} ^ n \sum_{j = 1} ^ i \left[(i, j) = d\right] = S_\varphi \left( \left\lfloor \frac n d \right\rfloor \right)
+\end{equation}
+
+\begin{equation}
+    \sum_{i = 1} ^ n \sum_{j = 1} ^ m \left[(i, j) = d\right] = \sum_{d \mid  k} \mu\left( \frac k d \right) \left\lfloor \frac n k \right\rfloor \left\lfloor \frac m k \right\rfloor
+\end{equation}
+
+\begin{equation}
+    \sum_{i = 1} ^ n f(i) \sum_{j = 1} ^ {\left\lfloor \frac n i \right\rfloor} g(j) = \sum_{i = 1} ^ n g(i) \sum_{j = 1} ^ {\left\lfloor \frac n i \right\rfloor} f(j)
+\end{equation}
+
+\begin{equation}
+    \mu^2(n) = \sum_{d^2 \mid n} \mu (d)
+\end{equation}
+
+\begin{equation}
+    \prod_{k=1,(k, m) = 1}^{m} k \equiv
+    \begin{cases}
+        -1 \pmod m, & m = 4, p^q, 2p^q \\
+        1 \pmod m,  & \text{otherwise} \\
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \sigma_k(n) = \sum_{d\mid n}d^k = \prod_{i=1}^{\omega(n)}\frac{p_i^{(a_i+1)k}-1}{p_i^k-1}
+\end{equation}
+
+\begin{eqnarray}
+    &&J_k(n) = n^k\prod_{p\mid n}\left(1-\frac{1}{p^k}\right) \\
+    &&\sum_{\delta\mid n}J_k(\delta) = n^k \\
+    &&\sum_{\delta\mid n}\delta^sJ_r(\delta)J_s\left(\frac{n}{\delta}\right) = J_{r+s}(n)
+\end{eqnarray}
+
+其中 \(J_k(n)\) 是不大于 \(n\) 的正整数构成的 \(k\) 元组中, 与 \(n\) 构成互素 \((k + 1)\) 元组的个数
+
+\begin{equation}
+    \sum_{i=1}^{n} \sum_{j=1}^{n} [(i,j)=1]ij =  \sum_{i=1}^{n} i^2\varphi(i)
+\end{equation}
+
+\begin{equation}
+    n\mid \varphi(a^n-1)
+\end{equation}
+
+\begin{equation}
+    \sum_{\substack{1 \leq k \leq n,~(k, n) = 1}}f(\gcd(k-1, n)) = \varphi(n)\sum_{d\mid n}\frac{(\mu*f)(d)}{\varphi(d)}
+\end{equation}
+
+\begin{equation}
+    \varphi([m, n])\varphi(\gcd(m,n)) = \varphi(m)\varphi(n)
+\end{equation}
+
+\begin{equation}
+    \sum_{\delta\mid n}d^3(\delta) = \left(\sum_{\delta\mid n}d(\delta)\right)^2
+\end{equation}
+
+\begin{equation}
+    d(uv) = \sum_{\delta\mid (u, v)}\mu(\delta)d\left(\frac{u}{\delta}\right)d\left(\frac{v}{\delta}\right)
+\end{equation}
+
+\begin{equation}
+    \sigma_k(u)\sigma_k(v) = \sum_{\delta\mid (u, v)}\delta^k\sigma_k(\frac{uv}{\delta^2})
+\end{equation}
+
+\begin{equation}
+    \mu(n) = \sum_{k=1}^n[(k, n)=1]\cos{2\pi \frac{k}{n}}
+\end{equation}
+
+\begin{equation}
+    \varphi(n) = \sum_{k=1}^n[(k, n)=1] = \sum_{k=1}^n(k, n)\cos{2\pi \frac{k}{n}}
+\end{equation}
+
+\begin{equation}
+    \begin{cases}
+        S(n) = \sum_{k=1}^n(f * g)(k) \\
+        \sum_{k=1}^nS(\lfloor \frac n k \rfloor) = \sum_{i=1}^nf(i)\sum_{j=1}^{\lfloor n/i \rfloor}(g * 1)(j)
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \begin{cases}
+        S(n) = \sum_{k=1}^n(f \cdot g)(k), g \text{ completely multiplicative} \\
+        \sum_{k=1}^nS\left(\left\lfloor \frac n k \right\rfloor\right)g(k) = \sum_{k=1}^n(f * 1)(k)g(k)
+    \end{cases}
 \end{equation}
 
 \subsubsection{升幂引理}
@@ -163,17 +313,43 @@
 
 其中 \(0<n<m\), \(k>0\), \(m\perp n\), 且 \(m\), \(n\) 中恰有一个奇数
 
+\subsection{概率论与统计}
+
+\begin{equation}
+    D(X)=E(X-E(X))^2=E\left(X^2\right)-(E(X))^2
+\end{equation}
+
+\begin{equation}
+    D(X+Y)=D(X)+D(Y)D(aX)=a^2D(X)
+\end{equation}
+
+\begin{equation}
+    E[x]=\sum_{i=1}^{\infty}P(X\geq i)
+\end{equation}
+
+\(m\) 个数的方差: \(\displaystyle s^2=\frac{\sum_{i=1}^m x_i^2}m-\overline x^2\)
+
+\subsection{kMAX-MIN 反演}
+
+\begin{equation}
+    \operatorname{k-max} S=\sum_{T\subset S, T\neq \emptyset}(-1)^{|T|-k}\binom{|T|-1}{k-1}\min T
+\end{equation}
+
+\begin{equation}
+    \max S=\sum_{T\subset S, T\neq \emptyset}(-1)^{|T|-1}\min T
+\end{equation}
+
 \subsection{杂项}
+
+\begin{equation}
+    a>b,(a,b)=1 \implies (a^m-b^m,a^n-b^n)=a^{(m,n)}-b^{(m,n)}
+\end{equation}
 
 \begin{equation}
     \lfloor x\rfloor=\begin{cases}
         \displaystyle x+\frac{\arctan\cot\pi x}{\pi}-\frac{1}{2}, & x\notin\mathrm{Z} \\
         x,                                                        & x\in\mathrm{Z}
     \end{cases}
-\end{equation}
-
-\begin{equation}
-    \varphi(xy)=\varphi(x)\varphi(y)\frac{(x,y)}{\varphi((x,y))}
 \end{equation}
 
 \begin{equation}
@@ -191,4 +367,46 @@
                                        \dfrac{a}{1-r}+\dfrac{rd}{(1-r)^2}, & |r|<1
                                    \end{cases}\qquad(n\to+\infty)
     \end{aligned}
+\end{equation}
+
+\begin{equation}
+    S_j = \sum_{k=1}^nx_k^j 
+\end{equation}
+
+\begin{eqnarray}
+    &h_m = \sum_{1\leq j_1 < \cdots < j_m \leq n} x_{j_1}\cdots x_{j_m}\\
+    &H_m = \sum_{1\leq j_1 \leq \cdots \leq j_m \leq n} x_{j_1}\cdots x_{j_m}
+\end{eqnarray}
+
+\begin{eqnarray}
+    h_n = \frac{1}{n}\sum_{k=1}^n(-1)^{k+1}S_kh_{n-k} 
+    H_n = \frac{1}{n}\sum_{k=1}^nS_kH_{n-k} 
+\end{eqnarray}
+
+\begin{equation}
+    \sum_{k=0}^nkc^k = \frac{nc^{n+2}-(n+1)c^{n+1}+c}{(c-1)^2}
+\end{equation}
+
+\begin{equation}
+    \sum_{i=1}^n\frac{1}{n}\approx\ln\left(n + \frac 1 2\right) + \frac{1}{24(n+0.5)^2}+\Gamma,\qquad \Gamma\approx0.5772156649015328606065
+\end{equation}
+
+\begin{equation}
+    n! = \sqrt{2\pi n}\left(\frac{n}{\mathrm{e}}\right)^n\left(1+\frac{1}{12n}+\frac{1}{288n^2}+O\left(\frac{1}{n^3}\right)\right)
+\end{equation}
+
+\begin{equation}
+    (\max-\min){\{x_a-x_b, y_a-y_b, z_a-z_b\}} = \frac{1}{2}\sum_{cyc}\left| (x_a-y_a)-(x_b-y_b) \right|
+\end{equation}
+
+\begin{equation}
+    \sum_{cyc}(a+b) = \frac{(a+b+c)^3 - a^3 - b^3 - c^3}{3}
+\end{equation}
+
+划分问题: \(n\) 个 \(k-1\) 维向量最多把 \(k\) 维空间分为 \(\sum_{i=0}^{k}\binom{n}{i}\) 份.
+
+设 \(U\), \(V\), \(W\), \(u\), \(v\), \(w\) 是四面体的边长 (\(U\), \(V\), \(W\) 构成三角形; \(u\) 是 \(U\) 的对边), 则该四面体的面积为
+
+\begin{equation}
+    V = \frac{\sqrt{ 4u^2v^2w^2 - \sum_{cyc}{u^2(v^2+w^2-U^2)^2} + \prod_{cyc}{(v^2+w^2-U^2)} }}{12}
 \end{equation}

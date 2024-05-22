@@ -1,0 +1,119 @@
+\subsection*{\(ax^2+bx+c~(a>0)\)}
+
+\[
+    \int \dfrac{x}{ax^2+bx+c} \md x = \dfrac{1}{2a} \ln |ax^2+bx+c| - \dfrac{b}{2a} \int \dfrac{\md x}{ax^2+bx+c}
+\]
+
+\subsection*{\(\sqrt{\pm ax^2+bx+c}~(a>0)\)}
+
+\[
+    \int \dfrac{\md x}{\sqrt{ax^2+bx+c}} = \dfrac{1}{\sqrt{a}} \ln | 2ax+b+2\sqrt{a}\sqrt{ax^2+bx+c} | + C
+\]
+
+\[
+    \int \sqrt{ax^2+bx+c} \md x = \dfrac{2ax+b}{4a}\sqrt{ax^2+bx+c} + \dfrac{4ac-b^2}{8\sqrt{a^3}}\ln |2ax+b+2\sqrt{a}\sqrt{ax^2+bx+c}| + C
+\]
+
+\[
+    \int \dfrac{x}{\sqrt{ax^2+bx+c}} \md x = \dfrac{1}{a}\sqrt{ax^2+bx+c} - \dfrac{b}{2\sqrt{a^3}}\ln | 2ax+b+2\sqrt{a}\sqrt{ax^2+bx+c} | + C
+\]
+
+\[
+    \int \dfrac{\md x}{\sqrt{c+bx-ax^2}} = -\dfrac{1}{\sqrt{a}} \arcsin \dfrac{2ax-b}{\sqrt{b^2+4ac}} + C 
+\]
+
+\[
+    \int \sqrt{c+bx-ax^2} \md x = \dfrac{2ax-b}{4a}\sqrt{c+bx-ax^2} + \dfrac{b^2+4ac}{8\sqrt{a^3}}\arcsin\dfrac{2ax-b}{\sqrt{b^2+4ac}} + C
+\]
+
+\[
+    \int \dfrac{x}{\sqrt{c+bx-ax^2}} \md x = -\dfrac{1}{a}\sqrt{c+bx-ax^2} + \dfrac{b}{2\sqrt{a^3}}\arcsin\dfrac{2ax-b}{\sqrt{b^2+4ac}} + C
+\]
+
+\subsection*{\(\sqrt{\pm\dfrac{x-a}{x-b}}\) 或 \(\sqrt{(x-a)(x-b)}\)}
+
+\[
+    \int \dfrac{\md x}{\sqrt{(x-a)(b-x)}} = 2\arcsin\sqrt\dfrac{x-a}{b-x} + C~~(a<b)
+\]
+
+\[
+    \int \sqrt{(x-a)(b-x)} \md x = \dfrac{2x-a-b}{4}\sqrt{(x-a)(b-x)} + \dfrac{(b-a)^2}{4}\arcsin\sqrt\dfrac{x-a}{b-x} + C,~~(a<b)
+\]
+
+\subsection*{三角函数的积分}
+
+\[
+    \begin{aligned}
+        \int \cos^m x \sin^n x \md x   = & \dfrac{1}{m+n} \cos^{m-1} x \sin^{n+1}x + \dfrac{m-1}{m+n}\int\cos^{m-2}x\sin^nx\md x       \\
+        =                                & -\dfrac{1}{m+n} \cos^{m+1} x \sin^{n-1}x + \dfrac{n-1}{m+1} \int \cos^m x\sin^{n-2} x \md x
+    \end{aligned}
+\]
+
+\[
+    \int \dfrac{\md x}{a + b \sin x} = \begin{cases}
+        \dfrac{2}{\sqrt{a^2-b^2}}\arctan\dfrac{a\tan\dfrac{x}{2}+b}{\sqrt{a^2-b^2}} + C                                                & (a^2 > b^2) \\
+        \dfrac{1}{\sqrt{b^2-a^2}}\ln \left| \dfrac{a\tan\dfrac{x}{2}+b-\sqrt{b^2-a^2}}{a\tan\dfrac{x}{2}+b+\sqrt{b^2-a^2}} \right| + C & (a^2 < b^2)
+    \end{cases}
+\]
+
+\[
+    \int \dfrac{\md x}{a + b \cos x} = \begin{cases}
+        \dfrac{2}{a+b}\sqrt\dfrac{a+b}{a-b} \arctan\left(\sqrt\dfrac{a-b}{a+b}\tan\dfrac{x}{2}\right) + C                                                 & (a^2 > b^2) \\
+        \dfrac{1}{a+b}\sqrt\dfrac{a+b}{a-b} \ln \left| \dfrac{\tan\dfrac{x}{2}+\sqrt\dfrac{a+b}{b-a}}{\tan\dfrac{x}{2}-\sqrt\dfrac{a+b}{b-a}} \right| + C & (a^2 < b^2)
+    \end{cases}
+\]
+
+\begin{multicols}{2}
+    \(\displaystyle \int \dfrac{\md x}{a^2\cos^2x+b^2\sin^2x} = \dfrac{1}{ab} \arctan\left( \dfrac{b}{a}\tan x \right) + C\) \\
+    \(\displaystyle \int \dfrac{\md x}{a^2\cos^2x-b^2\sin^2x} = \dfrac{1}{2ab}\ln\left|\dfrac{b\tan x+a}{b\tan x-a}\right| + C\)
+\end{multicols}
+
+\subsection*{反三角函数的积分 (\(a>0\))}
+
+\[
+    \int x \arcsin \dfrac{x}{a} \md x= (\dfrac{x^2}{2}-\dfrac{a^2}{4})\arcsin \dfrac{x}{a} + \dfrac{x}{4} \sqrt{x^2-x^2}+C
+\]
+
+\[
+    \int x^2 \arcsin \dfrac{x}{a} \md x = \dfrac{x^3}{3}\arcsin \dfrac{x}{a}+\dfrac{1}{9}(x^2+2 a^2)\sqrt{a^2-x^2}+C
+\]
+
+\[
+    \int x \arccos \dfrac{x}{a} \md x= (\dfrac{x^2}{2}-\dfrac{a^2}{4})\arccos \dfrac{x}{a} - \dfrac{x}{4} \sqrt{a^2-x^2}+C
+\]
+
+\[
+    \int x^2 \arccos \dfrac{x}{a}\md x= \dfrac{x^3}{3}\arccos \dfrac{x}{a} - \dfrac{1}{9}(x^2+2a^2)\sqrt{a^2-x^2}+C
+\]
+
+\[
+    \int x\arctan \dfrac{x}{a} \md x = \dfrac{1}{2}(a^2+x^2)\arctan \dfrac{x}{a} -\dfrac{a}{2}x+C
+\]
+
+\[
+    \int x^2 \arctan \dfrac{x}{a} \md x= \dfrac{x^3}{3} \arctan \dfrac{x}{a} - \dfrac{a}{6}x^2 + \dfrac{a^3}{6} \ln (a^2+x^2)+C
+\]
+
+\subsection*{指数函数的积分}
+
+\begin{multicols}{2}
+    \(\displaystyle \int x a^x \md x = \dfrac{x}{\ln a}a^x-\dfrac{1}{(\ln a)^2}a^x+C\) \\
+    \(\displaystyle \int x^n a^x \md x= \dfrac{1}{\ln a}x^n a^x-\dfrac{n}{\ln a}\int x^{n-1}a^x \md x\) \\
+    \(\displaystyle \int \mathrm{e}^{ax} \sin bx \md x = \dfrac{1}{a^2+b^2}\mathrm{e}^{ax}(a \sin bx - b \cos bx)+C\) \\
+    \(\displaystyle \int \mathrm{e}^{ax} \cos bx \md x = \dfrac{1}{a^2+b^2}\mathrm{e}^{ax}(b \sin bx + a \cos bx)+C\)
+\end{multicols}
+
+\[
+    \int \mathrm{e}^{ax} \sin ^ n bx \md x=\dfrac{1}{a^2+b^2 n^2}\mathrm{e}^{ax} \sin ^ {n-1} bx (a \sin bx -nb \cos bx) +\dfrac{n(n-1)b^2}{a^2+b^2 n^2}\int \mathrm{e}^{ax} \sin ^{n-2} bx \md x
+\]
+
+\[
+    \int \mathrm{e}^{ax} \cos ^ n bx \md x=\dfrac{1}{a^2+b^2 n^2}\mathrm{e}^{ax} \cos ^ {n-1} bx (a \cos bx +nb \sin bx) +\dfrac{n(n-1)b^2}{a^2+b^2 n^2}\int \mathrm{e}^{ax} \cos ^{n-2} bx \md x
+\]
+
+\subsection*{对数函数的积分}
+
+\begin{multicols}{2}
+    \(\displaystyle \int \dfrac{\md x}{x \ln x} =\ln \big | \ln x \big |+C\) \\
+    \(\displaystyle \int (\ln x)^{n} \md x = x(\ln x)^ n - n \int (\ln x)^{n-1} \md x\)
+\end{multicols}

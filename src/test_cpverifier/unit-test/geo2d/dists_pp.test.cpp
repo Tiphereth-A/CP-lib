@@ -2,8 +2,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/geo2d/dist_pp.hpp"
-#include "../../../code/geo2d/dist_pp_ch.hpp"
-#include "../../../code/geo2d/dist_pp_ma.hpp"
 #include "../base.hpp"
 
 using tifa_libs::is_gt, tifa_libs::is_eq, tifa_libs::is_lt;
