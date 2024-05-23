@@ -378,10 +378,10 @@ notebook:
     - cnt_intp_po: 多边形整点计数
       code_ext: hpp
       test_ext: cpp
-    - femwebp: Fermat--Weber 点
+    - femwebp: 点集的 Fermat--Weber 点
       code_ext: hpp
       test_ext: cpp
-    - massp: 重心
+    - massp: 点集的重心
       code_ext: hpp
       test_ext: cpp
     - rel_cc: 两圆的关系

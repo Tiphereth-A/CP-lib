@@ -10,11 +10,10 @@
 
 \[
     \begin{aligned}
-                 & F_m(x) =\sum_{i=0}^{\infty}f(i,m)x^i =F_{m-1}(x)+x^m F_m(x)                     \\
-        \implies & F_m(x)=\frac{1}{1-x^m}F_{m-1}(x)                                                \\
-        \implies & F_m(x)=\prod_{i=1}^{\infty}\frac{1}{1-x^i}                                      \\
-        \implies & \ln F_m(x)=-\sum_{i=1}^{\infty}\ln(1-x^i)                                       \\
-        \implies & \ln F_m(x)=\sum_{i=1}^{\infty}\sum_{j=1}^{\infty} \frac{x^{ij}}{j}              \\
+                 & F_m(x) =\sum_{i=0}^{\infty}f(i,m)x^i =F_{m-1}(x)+x^m F_m(x)                                        \\
+        \implies & F_m(x)=\frac{1}{1-x^m}F_{m-1}(x)                                                                   \\
+        \implies & F_m(x)=\prod_{i=1}^{\infty}\frac{1}{1-x^i}                                                         \\
+        \implies & \ln F_m(x)=-\sum_{i=1}^{\infty}\ln(1-x^i) =\sum_{i=1}^{\infty}\sum_{j=1}^{\infty} \frac{x^{ij}}{j} \\
         \implies & F_m(x)=\exp\left(\sum_{i=1}^{\infty}\sum_{j=1}^{\infty} \frac{x^{ij}}{j}\right)
     \end{aligned}
 \]

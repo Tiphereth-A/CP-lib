@@ -106,7 +106,7 @@
 \setlength{\cftsecnumwidth}{3em}
 
 \RequirePackage{fancyhdr}
-\RequirePackage[inner=2cm, outer=1cm, top=1.7cm, bottom=0.5cm]{geometry}
+\RequirePackage[inner=2cm, outer=0.9cm, top=1.7cm, bottom=0.0cm]{geometry}
 
 \setlength{\headsep}{0.1cm}
 \setlength{\footskip}{0.7cm}
@@ -114,12 +114,18 @@
 \fancypagestyle{fancy} {
 	\fancyhead[L]{\nouppercase\leftmark}
 	\fancyhead[R]{\nouppercase\rightmark}
-	\fancyfoot[C]{\thepage}
+	\fancyhead[C]{\thepage}
+	\fancyfoot{}
 }
 
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.5pt}
 
+\RequirePackage{titlesec}
+\titlespacing*{\section}{0pt}{0.6ex}{0.6ex}
+\titlespacing*{\subsection}{0pt}{0.6ex}{0.6ex}
+\titlespacing*{\subsubsection}{0pt}{0.6ex}{0.6ex}
+\titlespacing*{\paragraph}{0pt}{0.6ex}{0.6ex}
 
 % Code style
 \RequirePackage{minted}
@@ -132,7 +138,7 @@
 	breakanywhere,
 	baselinestretch=0.9,
 	tabsize=2,
-	fontsize=\normalsize,
+	fontsize=\footnotesize,
 	frame=single,
 	framesep=0.8mm,
 	framerule=0.3pt,
