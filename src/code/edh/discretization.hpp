@@ -7,7 +7,7 @@ namespace tifa_libs {
 
 template <iterable_c T = vec<int>>
 CEXP T uniq(T v) {
-  std::ranges::sort(v);
+  std::sort(v.begin(), v.end());
   auto [f, l] = std::ranges::unique(v);
   v.erase(f, l);
   return v;

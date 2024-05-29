@@ -5,13 +5,8 @@
 
 namespace tifa_libs::math {
 
-template <std::floating_point FP, class F>
-requires requires(FP fp, F f) {
-  { f(fp) } -> std::same_as<FP>;
-}
+template <std::floating_point FP, FP (*f)(FP)>
 class simpson_impl {
-  F f;
-
   static CEXP FP sps(FP l, FP r, FP fl, FP fmid, FP fr) { return (fl + 4 * fmid + fr) * (r - l) / 6; }
   CEXP FP asr(FP l, FP r, FP area, FP eps, i64 dep) const {
     FP mid = r - (r - l) * .5;
@@ -23,7 +18,7 @@ class simpson_impl {
   }
 
  public:
-  explicit CEXP simpson_impl(F func) : f(func) {}
+  explicit CEXP simpson_impl() {}
   CEXP FP operator()(FP l, FP r, FP eps = eps_v<FP>, i64 min_dep = -1) const { return asr(l, r, sps(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, min_dep); }
 };
 

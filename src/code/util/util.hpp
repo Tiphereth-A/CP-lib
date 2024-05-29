@@ -90,9 +90,10 @@ CEXP usz operator""_uz(unsigned long long x) { return (usz)x; }
 inline const auto fn_0 = [](auto&&...) {};
 inline const auto fn_is0 = [](auto x) { return x == 0; };
 
-// std::sqrt(std::numeric_limits<FP>::epsilon())
 template <std::floating_point FP>
-CEXP inline FP eps_v = FP(1e-8L);
+inline FP eps_v = std::sqrt(std::numeric_limits<FP>::epsilon());
+template <std::floating_point FP>
+CEXP void set_eps(FP v) { eps_v<FP> = v; }
 using std::numbers::pi_v;
 
 namespace tifa_libs {

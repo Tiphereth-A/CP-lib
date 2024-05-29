@@ -5,12 +5,8 @@
 
 namespace tifa_libs::math {
 
-template <std::floating_point FP, class F>
-requires requires(FP fp, F f) {
-  { f(fp) } -> std::same_as<FP>;
-}
+template <std::floating_point FP, FP (*f)(FP)>
 class romberg_impl {
-  F f;
   CEXP FP ctqf(FP a, FP b, FP h) const {
     FP ans = 0;
     for (FP i = a + h * .5; i < b; i += h) ans += f(i);
@@ -18,7 +14,7 @@ class romberg_impl {
   }
 
  public:
-  explicit CEXP romberg_impl(F func) : f(func) {}
+  explicit CEXP romberg_impl() {}
 
   CEXP FP operator()(FP a, FP b, FP eps = eps_v<FP>) const {
     FP h = b - a;

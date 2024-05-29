@@ -28,9 +28,9 @@ void test(strn CR data) {
 
   vec<mint> f(n + 1);
   f[1] = 1;
-  fle_(u32, i, 2, n) f[i] = f[i - 1] + g[i].first + g[i].first - g[i].second;
+  fle_ (u32, i, 2, n) f[i] = f[i - 1] + g[i].first + g[i].first - g[i].second;
   u64 got = f[1].val();
-  fle_(u32, i, 2, n) got ^= f[i].val();
+  fle_ (u32, i, 2, n) got ^= f[i].val();
 
   u64 want;
   fans >> want;
@@ -41,42 +41,18 @@ int main() {
   auto tcase = tifa_libs::unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00:
-      test("1");
-      test("2");
-      break;
-    case tifa_libs::unittest::ts_example_01:
-      test("3");
-      test("4");
-      break;
-    case tifa_libs::unittest::ts_random_00:
-      test("5");
-      test("6");
-      break;
-    case tifa_libs::unittest::ts_random_01:
-      test("7");
-      test("8");
-      break;
-    case tifa_libs::unittest::ts_random_02:
-      test("9");
-      test("10");
-      break;
-    case tifa_libs::unittest::ts_random_03:
-      test("11");
-      test("12");
-      break;
-    case tifa_libs::unittest::ts_random_04:
-      test("13");
-      test("14");
-      break;
-    case tifa_libs::unittest::ts_random_05:
-      test("15");
-      test("16");
-      break;
-    case tifa_libs::unittest::ts_random_06: test("17"); break;
-    case tifa_libs::unittest::ts_random_07: test("18"); break;
-    case tifa_libs::unittest::ts_random_08: test("19"); break;
-    case tifa_libs::unittest::ts_random_09: test("20"); break;
+    case tifa_libs::unittest::ts_example_00: test("1"), test("13"); break;
+    case tifa_libs::unittest::ts_example_01: test("2"), test("14"); break;
+    case tifa_libs::unittest::ts_random_00: test("3"), test("15"); break;
+    case tifa_libs::unittest::ts_random_01: test("4"), test("16"); break;
+    case tifa_libs::unittest::ts_random_02: test("5"), test("17"); break;
+    case tifa_libs::unittest::ts_random_03: test("6"), test("18"); break;
+    case tifa_libs::unittest::ts_random_04: test("7"), test("19"); break;
+    case tifa_libs::unittest::ts_random_05: test("8"), test("20"); break;
+    case tifa_libs::unittest::ts_random_06: test("9"); break;
+    case tifa_libs::unittest::ts_random_07: test("10"); break;
+    case tifa_libs::unittest::ts_random_08: test("11"); break;
+    case tifa_libs::unittest::ts_random_09: test("12"); break;
     default: break;
   }
 

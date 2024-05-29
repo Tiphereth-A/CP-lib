@@ -109,6 +109,7 @@ struct point {
     y = x0 * st + y0 * ct;
     return *this;
   }
+  friend CEXP point rot(point p, FP theta) { return p.do_rot(theta); }
   CEXP point &do_rot90() {
     FP tmp = x;
     x = -y;

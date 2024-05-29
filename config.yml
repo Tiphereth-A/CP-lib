@@ -426,6 +426,9 @@ notebook:
     - aunion_pos: 多边形的面积并
       code_ext: hpp
       test_ext: cpp
+    - maxv_cvh_cnt: 最大点数凸包
+      code_ext: hpp
+      test_ext: cpp
     geo3d:
     - point3d: 三维点
       code_ext: hpp
