@@ -19,7 +19,7 @@ template <class FP>
 CEXP RELPoC relation_PoC(polygon<FP> CR po, circle<FP> CR c) {
   auto x = covered_poc;
   if (relation_PoP(po, c.o) != inside_pop) return otherwise_poc;
-  for (u32 i = 0; i < po.size(); ++i) {
+  flt_ (u32, i, 0, po.size()) {
     RELCS state = relation_CS(c, {po.vs[i], po.vs[po.next(i)]});
     if (state == intersect_cs) return otherwise_poc;
     if (state == tagante_cs) x = touchin_poc;

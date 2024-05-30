@@ -28,7 +28,7 @@ class e_bcc {
     auto dfs = [&](auto &&dfs, u32 u, u32 fa, u32 inv_from) -> void {
       dfn[u] = low[u] = cnt++;
       s.push(u);
-      for (u32 i = 0; i < g[u].size(); ++i) {
+      flt_ (u32, i, 0, (u32)g[u].size()) {
         auto v = g[u][i];
         if (v.to == fa && i == inv_from) continue;
         if (dfn[v.to] == n) {
@@ -39,10 +39,9 @@ class e_bcc {
       if (low[u] == dfn[u]) {
         belongs.push_back(vecu());
         do {
-          u32 v = s.top();
+          const u32 v = s.top();
           s.pop();
-          ebcc_id[v] = id;
-          belongs[id].push_back(v);
+          ebcc_id[v] = id, belongs[id].push_back(v);
           if (v == u) return void(++id);
         } while (1);
       }

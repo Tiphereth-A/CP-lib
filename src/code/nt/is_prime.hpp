@@ -15,10 +15,7 @@ CEXP bool is_prime(u64 n) {
     for (u64 i : bases) {
       if (!(i % n)) continue;
       u64 t = d, y = qpow_mod(i, t, n);
-      while (t != n - 1 && y != 1 && y != n - 1) {
-        y = mul_mod_u(y, y, n);
-        t *= 2;
-      }
+      while (t != n - 1 && y != 1 && y != n - 1) y = mul_mod_u(y, y, n), t *= 2;
       if (y != n - 1 && (~t & 1)) return false;
     }
     return true;

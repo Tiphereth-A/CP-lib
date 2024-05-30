@@ -14,10 +14,10 @@ requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
 CEXP std::optional<matrix<T>> leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&is0, Ge &&ge) {
-  u32 r_ = A.row(), c_ = A.col();
+  const u32 r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
   matrix<T> Ab = merge_lr_mat(A, b);
-  u32 rk = (u32)do_rank(Ab, std::forward<Ge>(ge));
+  const u32 rk = (u32)do_rank(Ab, std::forward<Ge>(ge));
   if (rk > c_) return {};
   if (!is0(Ab(rk - 1, c_))) {
     bool f = true;
@@ -42,9 +42,9 @@ CEXP std::optional<matrix<T>> leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&
   {
     auto &v = sol.data()[0];
     for (u32 y = rk - 1; ~y; --y) {
-      u32 f = idxs[y];
+      const u32 f = idxs[y];
       v[f] = Ab(y, c_);
-      for (u32 x = f + 1; x < c_; x++) v[f] -= Ab(y, x) * v[x];
+      flt_ (u32, x, f + 1, c_) v[f] -= Ab(y, x) * v[x];
       v[f] /= Ab(y, f);
     }
   }

@@ -24,15 +24,15 @@ class sat2 {
   CEXP std::optional<vecu> solve() {
     std::partial_sum(st.begin(), st.end(), st.begin());
     *std::move_backward(st.begin(), st.end() - 1, st.end()) = 0;
-    vecu tos(e.size());
-    for (auto CR[u, v] : e) tos[st[u]++] = v;
+    vecu to(e.size());
+    for (auto CR[u, v] : e) to[st[u]++] = v;
     *std::move_backward(st.begin(), st.end() - 1, st.end()) = 0;
     vecu ans(n, -1_u32), lst;
     auto f = [&](auto &&f, u32 v) -> bool {
       lst.push_back(v / 2);
       ans[v / 2] = v & 1;
-      for (u32 i = st[v]; i < st[v + 1]; ++i)
-        if (u32 to = tos[i]; (~ans[to / 2] && ans[to / 2] != (to & 1)) || (!~ans[to / 2] && !f(f, to))) return false;
+      flt_ (u32, i, st[v], st[v + 1])
+        if (const u32 _ = to[i]; (~ans[_ / 2] && ans[_ / 2] != (_ & 1)) || (!~ans[_ / 2] && !f(f, _))) return false;
       return true;
     };
     flt_ (u32, i, 0, n)

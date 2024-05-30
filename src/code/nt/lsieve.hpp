@@ -16,10 +16,7 @@ CEXP vecu lsieve(u32 n, F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime) {
   vecu p;
   p.reserve(n <= 170 ? 16 : n / 10);
   flt_ (u32, i, 2, n) {
-    if (!vis[i]) {
-      p.push_back(i);
-      cb_prime(i);
-    }
+    if (!vis[i]) p.push_back(i), cb_prime(i);
     for (u32 j : p) {
       if (i * j >= n) break;
       vis[i * j] = true;

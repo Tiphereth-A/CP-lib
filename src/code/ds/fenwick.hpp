@@ -30,15 +30,13 @@ class fenwick {
   CEXP T sum(u32 l, u32 r) { return sum(r) - sum(l - 1); }
   //! for weighted fenwick
   CEXP T kth_max(u32 k) {
-    u32 now = 0, n = std::bit_ceil(a.size());
+    const u32 n = std::bit_ceil(a.size());
+    u32 now = 0;
     T s{};
     while (n) {
-      u32 to = now | n;
+      const u32 to = now | n;
       if (to >= a.size()) continue;
-      if (T x = s + a[to]; x < k) {
-        now = to;
-        s = x;
-      }
+      if (T x = s + a[to]; x < k) now = to, s = x;
     }
     return now + 1;
   }

@@ -18,19 +18,19 @@ struct basisR {
     for (u32 i = (u32)basis.size() - 1; ~i; --i) {
       if (is_zero(x[i])) continue;
       if (!is_zero(basis[i][i])) {
-        FP _ = x[i] / basis[i][i];
+        const FP _ = x[i] / basis[i][i];
         x[i] = 0;
         flt_ (u32, j, 0, i) x[j] -= basis[i][j] * _;
       } else {
         flt_ (u32, j, 0, i)
           if (!is_zero(x[j]) && !is_zero(basis[j][j])) {
-            FP _ = x[j] / basis[j][j];
+            const FP _ = x[j] / basis[j][j];
             x[j] = 0;
             flt_ (u32, k, 0, j) x[k] -= basis[j][k] * _;
           }
-        for (u32 j = i + 1; j < basis.size(); ++j)
+        flt_ (u32, j, i + 1, (u32)basis.size())
           if (!is_zero(basis[j][i]) && !is_zero(x[i])) {
-            FP _ = basis[j][i] / x[i];
+            const FP _ = basis[j][i] / x[i];
             basis[j][i] = 0;
             flt_ (u32, k, 0, i) basis[j][k] -= x[k] * _;
           }
@@ -44,7 +44,7 @@ struct basisR {
     for (u32 i = (u32)basis.size() - 1; ~i; --i) {
       if (is_zero(x[i])) continue;
       if (!is_zero(basis[i][i])) {
-        FP _ = x[i] / basis[i][i];
+        const FP _ = x[i] / basis[i][i];
         x[i] = 0;
         flt_ (u32, j, 0, i) x[j] -= basis[i][j] * _;
       } else return 0;
@@ -53,8 +53,7 @@ struct basisR {
   }
   CEXP u32 rank() const {
     u32 res = 0;
-    for (u32 i = 0; i < basis.size(); ++i)
-      res += !is_zero(basis[i][i]);
+    flt_ (u32, i, 0, (u32)basis.size()) res += !is_zero(basis[i][i]);
     return res;
   }
   // @return std::nullopt if x is linear independent with current basis, else
@@ -63,13 +62,10 @@ struct basisR {
     vec<FP> res(vec_len);
     for (u32 i = basis.size() - 1; ~i; --i)
       if (!is_zero(x[i])) {
-        if (is_zero(basis[i][i]))
-          return {};
-        FP _ = x[i] / basis[i][i];
-        res[i] = _;
-        x[i] = 0;
-        fle_ (u32, j, 0, i)
-          x[j] -= basis[i][j] * _;
+        if (is_zero(basis[i][i])) return {};
+        const FP _ = x[i] / basis[i][i];
+        res[i] = _, x[i] = 0;
+        fle_ (u32, j, 0, i) x[j] -= basis[i][j] * _;
       }
     return res;
   }

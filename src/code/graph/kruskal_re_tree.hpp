@@ -18,7 +18,7 @@ CEXP std::pair<tree, vec<EW>> kruskal_re_tree(vec<std::tuple<EW, u32, u32>> CR s
   for (auto [w, u, v] : sorted_a) {
     u = (u32)dsu.find(u), v = (u32)dsu.find(v);
     if (u != v) {
-      u32 t = cnt++;
+      const u32 t = cnt++;
       w_[t] = w;
       tr.add_arc(t, u), tr.add_arc(t, v);
       dsu.merge(t, u), dsu.merge(t, v);

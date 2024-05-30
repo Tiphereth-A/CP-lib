@@ -10,7 +10,7 @@ template <uint_c T, uint_c U>
 CEXP std::common_type_t<T, U> gcd__(T u, U v) {
   using W = std::common_type_t<T, U>;
   if (!u || !v) return u ^ v;
-  auto k = std::__countr_zero(u | v);
+  const auto k = std::__countr_zero(u | v);
   u >>= k, v >>= k;
   do {
     if (W _ = v >> std::__countr_zero(v); u > _) v = u - _, u = _;

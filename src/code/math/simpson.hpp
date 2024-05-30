@@ -9,10 +9,9 @@ template <std::floating_point FP, FP (*f)(FP)>
 class simpson_impl {
   static CEXP FP sps(FP l, FP r, FP fl, FP fmid, FP fr) { return (fl + 4 * fmid + fr) * (r - l) / 6; }
   CEXP FP asr(FP l, FP r, FP area, FP eps, i64 dep) const {
-    FP mid = r - (r - l) * .5;
-    FP lmid = mid - (mid - l) * .5, rmid = r - (r - mid) * .5;
-    FP fl = f(l), flmid = f(lmid), fmid = f(mid), frmid = f(rmid), fr = f(r);
-    FP ls = sps(l, mid, fl, flmid, fmid), rs = sps(mid, r, fmid, frmid, fr);
+    const FP mid = r - (r - l) * .5, lmid = mid - (mid - l) * .5, rmid = r - (r - mid) * .5;
+    const FP fl = f(l), flmid = f(lmid), fmid = f(mid), frmid = f(rmid), fr = f(r);
+    const FP ls = sps(l, mid, fl, flmid, fmid), rs = sps(mid, r, fmid, frmid, fr);
     if (abs(ls + rs - area) <= 15 * eps && dep <= 0) return ls + rs + (ls + rs - area) / 15;
     return asr(l, mid, ls, eps * .5, dep - 1) + asr(mid, r, rs, eps * .5, dep - 1);
   }

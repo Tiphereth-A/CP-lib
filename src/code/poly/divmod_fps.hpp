@@ -12,9 +12,7 @@ CEXP ptt<poly<mint, ccore>> divmod_fps(poly<mint, ccore> CR p, poly<mint, ccore>
   auto d = div_fps(p, q);
   d.strip();
   auto r = d;
-  r.conv(q), r.resize(m - 1);
-  r = p - r;
-  r.resize(m - 1), r.strip();
+  r.conv(q), r.resize(m - 1), (r = p - r).resize(m - 1), r.strip();
   return {d, r};
 }
 

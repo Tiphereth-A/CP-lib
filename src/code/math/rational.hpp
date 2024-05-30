@@ -13,7 +13,7 @@ struct rational {
     assert(den != 0);
     if (num == 0) den = 1;
     else {
-      T g = (T)gcd(num, den);
+      const T g = (T)gcd(num, den);
       num /= g, den /= g;
       if CEXP (std::is_signed_v<T>)
         if (den < 0) num = -num, den = -den;
@@ -29,13 +29,13 @@ struct rational {
     return *this;
   }
   CEXP rational &operator*=(T x) {
-    T g = (T)gcd(x, den);
+    const T g = (T)gcd(x, den);
     num *= x / g, den /= g;
     return *this;
   }
   CEXP rational &operator/=(T x) {
     assert(x);
-    T g = (T)gcd(x, num);
+    const T g = (T)gcd(x, num);
     num /= g, den *= x / g;
     if CEXP (std::is_signed_v<T>)
       if (den < 0) num = -num, den = -den;
@@ -54,12 +54,12 @@ struct rational {
     return *this;
   }
   CEXP rational &operator*=(rational CR x) {
-    T g1 = (T)gcd(num, x.den), g2 = (T)gcd(x.num, den);
+    const T g1 = (T)gcd(num, x.den), g2 = (T)gcd(x.num, den);
     num = num / g1 * (x.num / g2), den = den / g2 * (x.den / g1);
     return *this;
   }
   CEXP rational &operator/=(rational CR x) {
-    T g1 = (T)gcd(num, x.num), g2 = (T)gcd(den, x.den);
+    const T g1 = (T)gcd(num, x.num), g2 = (T)gcd(den, x.den);
     num = num / g1 * (x.den / g2), den = den / g2 * (x.num / g1);
     if CEXP (std::is_signed_v<T>)
       if (den < 0) num = -num, den = -den;
@@ -84,7 +84,7 @@ struct rational {
     return *this;
   }
   friend CEXP int operator<=>(rational CR x, rational CR y) {
-    auto _ = (x - y).num;
+    const auto _ = (x - y).num;
     return _ < 0 ? -1 : _ > 0;
   }
   friend CEXP bool operator==(rational CR x, rational CR y) { return x.num == y.num && x.den == y.den; }

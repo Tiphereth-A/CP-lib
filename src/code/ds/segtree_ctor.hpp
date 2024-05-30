@@ -37,7 +37,7 @@ CEXP auto segtl_addmin_ctor(vec<T> CR a) { return segtree<T, min_<T>, v_<T, INF>
 template <class T>
 CEXP auto segtl_addsum_ctor(vec<T> CR a) {
   vec<P<T>> b(a.size());
-  for (u32 i = 0; i < a.size(); ++i) b[i] = {a[i], 1};
+  flt_ (u32, i, 0, (u32)a.size()) b[i] = {a[i], 1};
   return segtree<P<T>, add_<P<T>>, pe_<T>, T, padd_<T>, add_<T>, e_<T>>(b);
 }
 template <class T, T NINF>
@@ -47,7 +47,7 @@ CEXP auto segtl_setmin_ctor(vec<T> CR a) { return segtree<T, min_<T>, v_<T, INF>
 template <class T, T DEF_VAL>
 CEXP auto segtl_setsum_ctor(vec<T> CR a) {
   vec<P<T>> b(a.size());
-  for (u32 i = 0; i < a.size(); ++i) b[i] = {a[i], 1};
+  flt_ (u32, i, 0, (u32)a.size()) b[i] = {a[i], 1};
   return segtree<P<T>, add_<P<T>>, pe_<T>, T, pset_<T>, set_<T>, v_<T, DEF_VAL>>(b);
 }
 }  // namespace segtree_ctor_impl_

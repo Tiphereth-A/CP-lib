@@ -8,7 +8,7 @@ namespace tifa_libs {
 //! [0, n)
 //! p \in [1, n], a_i == a_j \iff i == j
 CEXP vecu cantor_inv_seq(vecu CR s) {
-  u32 n = (u32)s.size();
+  const u32 n = (u32)s.size();
   ds::weighted_segtree tr(n + 1);
   fle_ (u32, i, 1, n) tr.ins(i);
   vecu p(n);

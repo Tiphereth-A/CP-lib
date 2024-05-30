@@ -14,9 +14,9 @@ CEXP poly<mint, ccore> exp_fpssp(poly<mint, ccore> CR p, vecu64 CR inv, u32 n = 
   polysp<mint> ps = poly2sp(p, n);
   poly<mint, ccore> g(n);
   g[0] = 1;
-  for (u32 k = 0; k < n - 1; ++k) {
+  flt_ (u32, k, 0, n - 1) {
     for (auto& [j, pj] : ps) {
-      u32 i = j - 1;
+      const u32 i = j - 1;
       if (k < i) break;
       g[k + 1] += pj * g[k - i] * j;
     }

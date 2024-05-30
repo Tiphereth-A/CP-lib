@@ -28,29 +28,24 @@ class gint {
     return *this;
   }
   CEXP gint &operator*=(cT_(T) x) {
-    r_ *= x;
-    i_ *= x;
+    r_ *= x, i_ *= x;
     return *this;
   }
   CEXP gint &operator/=(cT_(T) x) {
-    r_ /= x;
-    i_ /= x;
+    r_ /= x, i_ /= x;
     return *this;
   }
   CEXP gint &operator+=(gint CR x) {
-    r_ += x.real();
-    i_ += x.imag();
+    r_ += x.real(), i_ += x.imag();
     return *this;
   }
   CEXP gint &operator-=(gint CR x) {
-    r_ -= x.real();
-    i_ -= x.imag();
+    r_ -= x.real(), i_ -= x.imag();
     return *this;
   }
   CEXP gint &operator*=(gint CR x) {
-    T _ = r_ * x.real() + i_ * x.imag() * M;
-    i_ = r_ * x.imag() + i_ * x.real();
-    r_ = _;
+    const T _ = r_ * x.real() + i_ * x.imag() * M;
+    i_ = r_ * x.imag() + i_ * x.real(), r_ = _;
     return *this;
   }
   CEXP gint &operator/=(gint CR x) {
@@ -58,14 +53,12 @@ class gint {
     const T n_ = x.norm();
     if CEXP (std::is_integral_v<T>) {
       auto div = [](T x, T y) {
-        T a = x * 2 + y, b = y * 2;
+        const T a = x * 2 + y, b = y * 2;
         return a / b - (a % b < 0);
       };
-      i_ = div(i_ * x.real() - r_ * x.imag(), n_);
-      r_ = div(_, n_);
+      i_ = div(i_ * x.real() - r_ * x.imag(), n_), r_ = div(_, n_);
     } else {
-      i_ = (i_ * x.real() - r_ * x.imag()) / n_;
-      r_ = _ / n_;
+      i_ = (i_ * x.real() - r_ * x.imag()) / n_, r_ = _ / n_;
     }
     return *this;
   }

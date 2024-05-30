@@ -29,7 +29,7 @@ class v_bcc {
       dfn[u] = low[u] = cnt++;
       if (u == fa && g[u].size() == 0) cut[u] = 1, belongs.push_back(vecu(1, u)), ++id;
       s.push(u);
-      for (u32 i = 0; i < g[u].size(); ++i) {
+      flt_ (u32, i, 0, (u32)g[u].size()) {
         auto v = g[u][i];
         if (v.to == fa && i == inv_from) continue;
         if (dfn[v.to] == n) {

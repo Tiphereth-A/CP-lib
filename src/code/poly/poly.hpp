@@ -36,7 +36,7 @@ class poly {
   }
   friend CEXP std::ostream &operator<<(std::ostream &os, poly CR poly) {
     if (!poly.size()) return os;
-    for (u32 i = 1; i < poly.size(); ++i) os << poly[i - 1] << ' ';
+    flt_ (u32, i, 1, (u32)poly.size()) os << poly[i - 1] << ' ';
     return os << poly.d.back();
   }
 
@@ -109,24 +109,21 @@ class poly {
 
   CEXP poly &operator+=(poly CR r) {
     if (!r.size()) return *this;
-    resize(max(size(), r.size()));
-    apply_range(0, r.size(), [&r](u32 i, auto &v) { v += r[i]; });
+    resize(max(size(), r.size())), apply_range(0, r.size(), [&r](u32 i, auto &v) { v += r[i]; });
     return *this;
   }
   friend CEXP poly operator+(poly l, poly CR r) { return l += r; }
 
   CEXP poly &operator-=(poly CR r) {
     if (!r.size()) return *this;
-    resize(max(size(), r.size()));
-    apply_range(0, r.size(), [&r](u32 i, auto &v) { v -= r[i]; });
+    resize(max(size(), r.size())), apply_range(0, r.size(), [&r](u32 i, auto &v) { v -= r[i]; });
     return *this;
   }
   friend CEXP poly operator-(poly l, poly CR r) { return l -= r; }
 
   CEXP poly &operator*=(poly CR r) {
     if (!r.size()) {
-      resize(1);
-      d[0] = 0;
+      resize(1), d[0] = 0;
       return *this;
     }
     conv(r);

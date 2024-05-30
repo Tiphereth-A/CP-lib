@@ -11,8 +11,8 @@ namespace tifa_libs::geo {
 template <class FP>
 CEXP circle<FP> min_cover_C(vec<point<FP>> CR vp) {
   circle<FP> ret{vp.front(), 0};
-  u32 sz = (u32)vp.size();
-  flt_ (u32, i, 1, sz) {
+  const u32 n = (u32)vp.size();
+  flt_ (u32, i, 1, n) {
     if (relation_CP(ret, vp[i]) != outside_cp) continue;
     ret = circle<FP>{vp[i], 0};
     flt_ (u32, j, 0, i) {

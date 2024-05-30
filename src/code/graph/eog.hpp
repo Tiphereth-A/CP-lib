@@ -18,8 +18,7 @@ struct eog {
   }
 
   CEXP void add_arc(u32 u, u32 v) {
-    e.emplace_back(v, head[u]);
-    head[u] = u32(e.size() - 1), ++cnt_arc;
+    e.emplace_back(v, head[u]), head[u] = u32(e.size() - 1), ++cnt_arc;
     if CEXP (with_deg) ++deg_in[v], ++deg_out[u];
   }
   CEXP void pop_startwith(u32 now) {

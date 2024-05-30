@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 
 // Calculate binom(m, n) mod p, p can be ANY INTEGER
 class ExLucas {
-  u32 m_;
+  const u32 m_;
   vecu64 ms;
   vec<LucasPP> cs;
 

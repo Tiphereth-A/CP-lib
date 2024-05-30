@@ -26,12 +26,10 @@ class suffix_automaton {
 
   CEXP void extend(u32 c) {
     u32 cur = sz++;
-    st.push_back(TIFA());
-    st[cur].len = st[last].len + 1;
+    st.push_back(TIFA()), st[cur].len = st[last].len + 1;
     st[cur].times = 1;                   // app 2
     st[cur].firstpos = st[cur].len - 1;  // app 3
     u32 p = last;
-
     while (~p && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
     if (!~p) st[cur].link = 0;
     else {
@@ -40,12 +38,9 @@ class suffix_automaton {
       else {
         u32 clone = sz++;
         st.push_back(TIFA());
-        st[clone].nex = st[q].nex;
-        st[clone].len = st[p].len + 1;
-        st[clone].link = st[q].link;
+        st[clone].nex = st[q].nex, st[clone].len = st[p].len + 1, st[clone].link = st[q].link;
         st[clone].firstpos = st[q].firstpos;  // app 3
         st[clone].is_clone = 1;               // app 3
-
         while (~p && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
         st[q].link = st[cur].link = clone;
       }
@@ -92,7 +87,7 @@ class suffix_automaton {
   //! default: each character of t is lowercase English letters.
   CEXP ptt<u32> lcs(strnv t) {
     u32 v = 0, len = 0, ret = 0, end = 0, base = u32('a');
-    for (u32 i = 0; i < t.size(); ++i) {
+    flt_ (u32, i, 0, (u32)t.size()) {
       while (v && !st[v].nex[u32(t[i]) - base]) v = st[v].link, len = st[v].len;
       if (st[v].nex[u32(t[i]) - base]) v = st[v].nex[u32(t[i]) - base], ++len;
       if (len > ret) ret = len, end = i;

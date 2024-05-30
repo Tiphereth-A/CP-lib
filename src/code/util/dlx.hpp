@@ -23,22 +23,14 @@ class DLX {
 #define dlxfor_(i, l, dir) for (u32 ied__ = (l), i = dir##_(ied__); i != ied__; i = dir##_(i))
 
   CEXP void remove_(u32 col) {
-    r_(l_(col)) = r_(col);
-    l_(r_(col)) = l_(col);
+    r_(l_(col)) = r_(col), l_(r_(col)) = l_(col);
     dlxfor_ (i, col, d)
-      dlxfor_ (j, i, r) {
-        u_(d_(j)) = u_(j);
-        d_(u_(j)) = d_(j);
-        --cnt_col[col_(j)];
-      }
+      dlxfor_ (j, i, r) u_(d_(j)) = u_(j), d_(u_(j)) = d_(j), --cnt_col[col_(j)];
   }
   CEXP void resume_(u32 col) {
     r_(l_(col)) = l_(r_(col)) = col;
     dlxfor_ (i, col, u)
-      dlxfor_ (j, i, r) {
-        u_(d_(j)) = d_(u_(j)) = j;
-        ++cnt_col[col_(j)];
-      }
+      dlxfor_ (j, i, r) u_(d_(j)) = d_(u_(j)) = j, ++cnt_col[col_(j)];
   }
   template <class F>
   CEXP bool dance_(vecu &ans, F &&cb) {
@@ -62,10 +54,9 @@ class DLX {
   CEXP void ins_row_(u32 row, vecu CR cols) {
     assert(row > 0);
     u32 n = (u32)data.size();
-    for (u32 i = 0; i < cols.size(); ++i) {
+    flt_ (u32, i, 0, (u32)cols.size()) {
       data.emplace_back(n + i - 1, n + i + 1, u_(cols[i]), cols[i], row, cols[i]);
-      u_(cols[i]) = d_(u_(cols[i])) = n + i;
-      ++cnt_col[cols[i]];
+      u_(cols[i]) = d_(u_(cols[i])) = n + i, ++cnt_col[cols[i]];
       if (d_(cols[i]) == cols[i]) d_(cols[i]) = n + i;
     }
     r_(l_(n) = u32(data.size() - 1)) = n;
@@ -75,11 +66,10 @@ class DLX {
   explicit CEXP DLX(cT_(vvecb) grid, bool multi_ans = false) : data(), cnt_col(), mans(multi_ans) {
     u32 col = (u32)grid[0].size();
     assert(col > 0);
-    cnt_col.resize(col + 1);
-    data.reserve(col + 1);
+    cnt_col.resize(col + 1), data.reserve(col + 1);
     fle_ (u32, i, 0, col) data.emplace_back(i - 1, i + 1, i, i, 0, i);
     r_(l_(0) = col) = 0;
-    for (u32 i = 0; i < grid.size(); ++i) {
+    flt_ (u32, i, 0, (u32)grid.size()) {
       vecu _;
       _.reserve(col);
       flt_ (u32, j, 0, col)

@@ -33,15 +33,14 @@ class kosaraju {
       scc_id[idx] = cnt;
       for (auto to : rev_g[idx]) rdfs(rdfs, to, cnt);
     };
-    for (u32 i = 0; i < g.size(); ++i) dfs(dfs, i);
+    flt_ (u32, i, 0, (u32)g.size()) dfs(dfs, i);
     std::ranges::reverse(ord);
     scc_id.resize(g.size(), -1_u32);
     u32 cnt = 0;
     for (u32 i : ord)
       if (!~scc_id[i]) rdfs(rdfs, i, cnt++);
-    dag.g.resize(cnt);
-    belongs.resize(cnt);
-    for (u32 i = 0; i < g.size(); ++i) {
+    dag.g.resize(cnt), belongs.resize(cnt);
+    flt_ (u32, i, 0, (u32)g.size()) {
       belongs[scc_id[i]].push_back(i);
       for (auto to : g[i])
         if (u32 x = scc_id[i], y = scc_id[to]; x != y) dag.add_arc(x, y);

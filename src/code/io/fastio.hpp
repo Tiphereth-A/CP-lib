@@ -29,15 +29,9 @@ class fastin {
   fastin &read(T &n) {
     bool is_neg = false;
     char ch = get();
-    while (!isdigit(ch)) {
-      is_neg |= ch == '-';
-      ch = get();
-    }
+    while (!isdigit(ch)) is_neg |= ch == '-', ch = get();
     n = 0;
-    while (isdigit(ch)) {
-      (n *= 10) += ch & 15;
-      ch = get();
-    }
+    while (isdigit(ch)) (n *= 10) += ch & 15, ch = get();
     if (is_neg) n = -n;
     return *this;
   }
@@ -47,17 +41,13 @@ class fastin {
     char ch = get();
     while (!isdigit(ch)) ch = get();
     n = 0;
-    while (isdigit(ch)) {
-      (n *= 10) += ch & 15;
-      ch = get();
-    }
+    while (isdigit(ch)) (n *= 10) += ch & 15, ch = get();
     return *this;
   }
   template <mint_c T>
   fastin &read(T &n) {
     decltype(std::declval<T>().sval()) x;
-    read(x);
-    n = T(x);
+    read(x), n = T(x);
     return *this;
   }
   //! ignore cntrl and space
@@ -133,8 +123,7 @@ class fastout {
 
   fastout &operator=(fastout CR r) {
     if (&r == this) return *this;
-    f_ = r.f_;
-    now_ = bf_ + (r.now_ - r.bf_);
+    f_ = r.f_, now_ = bf_ + (r.now_ - r.bf_);
     memcpy(bf_, r.bf_, sizeof(*bf_) * (r.now_ - r.bf_));
     return *this;
   }
@@ -159,9 +148,7 @@ class fastout {
     const char *n_ = n;
     while (now_ + len >= end_) {
       memcpy(now_, n_, l_ = usz(end_ - now_));
-      now_ += l_;
-      n_ += l_;
-      len -= l_;
+      now_ += l_, n_ += l_, len -= l_;
       flush();
     }
     memcpy(now_, n_, len);
@@ -186,9 +173,8 @@ class fastout {
       return write(now_ib_);
     }
     now_ib_ = int_bf_ + INTBUF - 1;
-    do {
-      *(--(now_ib_)) = char(n % 10) | '0';
-    } while (n /= 10);
+    do {*(--(now_ib_)) = char(n % 10) | '0';}
+    while (n /= 10);
     return write(now_ib_);
   }
   template <mint_c T>

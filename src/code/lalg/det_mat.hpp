@@ -11,9 +11,9 @@ requires requires(Ge ge, Mat A, bool clear_u) {
 }
 CEXP auto det(Mat mat, Ge&& ge) {
   using T = TPN Mat::value_type;
-  u32 n = mat.row();
+  const u32 n = mat.row();
   assert(n == mat.col());
-  i64 rk_ = ge(mat, false);
+  const i64 rk_ = ge(mat, false);
   if CEXP (std::is_same_v<T, bool>) return abs(rk_) == n;
   else {
     if ((u32)abs(rk_) != n) return T{};

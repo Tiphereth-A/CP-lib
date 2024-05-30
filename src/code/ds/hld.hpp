@@ -22,7 +22,7 @@ class hld {
   }
   explicit CEXP hld(graph::tree& tr, vec<T> CR a) : hld(tr) {
     vec<T> b(a.size());
-    for (u32 i = 0; i < a.size(); ++i) b[info.dfn[i]] = a[i];
+    flt_ (u32, i, 0, (u32)a.size()) b[info.dfn[i]] = a[i];
     build(b);
   }
 

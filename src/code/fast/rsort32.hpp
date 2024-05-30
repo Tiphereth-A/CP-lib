@@ -9,7 +9,7 @@ template <class T>
 requires(sizeof(T) == 4)
 void rsort32(vec<T>& a) {
   static u32 _0[256], _1[256], _2[256], _3[256];
-  u32 n = (u32)a.size();
+  const u32 n = (u32)a.size();
   vecu b(n);
   u32 *a_ = a.data(), *b_ = b.data();
   for (u32 *_ = a_ + n, *i = a_; i < _; ++i) {

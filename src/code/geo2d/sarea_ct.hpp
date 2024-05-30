@@ -13,7 +13,7 @@ namespace tifa_libs::geo {
 template <class FP>
 CEXP FP sarea_CT(circle<FP> CR c, point<FP> CR p1, point<FP> CR p2) {
   if (is_zero(cross(c.o, p1, p2))) return FP{};
-  auto is = ins_CL(c, {p1, p2});
+  const auto is = ins_CL(c, {p1, p2});
   if (!is.has_value()) return c.area(ang_PP(p1 - c.o, p2 - c.o));
   bool b1 = is_gt(dist_PP(p1, c.o), c.r), b2 = is_gt(dist_PP(p2, c.o), c.r);
   if (b1 && b2) {

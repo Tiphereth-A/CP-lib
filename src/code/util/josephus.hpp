@@ -19,10 +19,7 @@ CEXP u64 j2(u64 n, u64 k, u64 m) {
   while (m) {
     u64 _ = (n2 - ret) / (k - 1);
     if (m <= _) return (ret + m * k) % (n2 + m);
-    else {
-      ret = (((ret + _ * k) % (n2 + _)) + k) % (n2 + _ + 1);
-      n2 += _ + 1, m -= _ + 1;
-    }
+    else ret = (((ret + _ * k) % (n2 + _)) + k) % (n2 + _ + 1), n2 += _ + 1, m -= _ + 1;
   }
   return ret;
 }

@@ -15,21 +15,16 @@ std::optional<vec<T>> bellman_ford(alistw<T, with_deg> CR fg, u32 s, F &&cb_rela
   vecb vis(g.size());
   vecu dep(g.size());
   std::queue<u32> q({s});
-  dis[s] = 0;
-  vis[s] = true;
-  dep[s] = 1;
+  dis[s] = 0, vis[s] = true, dep[s] = 1;
   while (!q.empty()) {
-    u32 now = q.front();
-    q.pop();
-    vis[now] = false;
-    for (auto [to, w] : g[now])
-      if (dis[now] + w < dis[to]) {
-        cb_relax(now, to);
-        dis[to] = dis[now] + w;
-        if (vis[to]) continue;
-        if (++dep[to] > g.size()) return {};
-        vis[to] = true;
-        q.push(to);
+    const u32 u = q.front();
+    q.pop(), vis[u] = false;
+    for (auto [v, w] : g[u])
+      if (dis[u] + w < dis[v]) {
+        cb_relax(u, v), dis[v] = dis[u] + w;
+        if (vis[v]) continue;
+        if (++dep[v] > g.size()) return {};
+        vis[v] = true, q.push(v);
       }
   }
   return dis;

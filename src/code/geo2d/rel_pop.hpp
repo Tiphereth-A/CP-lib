@@ -20,7 +20,7 @@ CEXP RELPoP relation_PoP(polygon<FP> CR po, point<FP> CR p) {
   for (auto &&now : po.vs)
     if (now == p) return onendpoint_pop;
   bool result = false;
-  for (u32 i = 0; i < po.size(); ++i) {
+  flt_ (u32, i, 0, po.size()) {
     point u = po.vs[i], v = po.vs[po.next(i)];
     if (is_on_S({u, v}, p)) return onborder_pop;
     if (!is_gt(u.y, v.y)) swap(u, v);
@@ -34,10 +34,10 @@ template <class FP>
 CEXP RELPoP relation_CvhP(cT_(cvh<FP>) cvh, point<FP> CR p) {
   for (auto &&now : cvh.vs)
     if (now == p) return onendpoint_pop;
-  u32 sz = cvh.size();
-  flt_ (u32, i, 0, sz)
+  const u32 n = cvh.size();
+  flt_ (u32, i, 0, n)
     if (is_on_S({cvh.vs[i], cvh.vs[cvh.next(i)]}, p)) return onborder_pop;
-  if (sz < 3) return outside_pop;
+  if (n < 3) return outside_pop;
   if (is_pos(cross(cvh.vs[0], p, cvh.vs[1])) || is_pos(cross(cvh.vs[0], cvh.vs.back(), p))) return outside_pop;
   auto it = std::lower_bound(cvh.vs.begin() + 1, cvh.vs.end(), p, [&](point<FP> CR l, point<FP> CR r) { return is_pos(cross(cvh.vs[0], l, r)); }) - 1;
   auto next_it = cvh.next(it);

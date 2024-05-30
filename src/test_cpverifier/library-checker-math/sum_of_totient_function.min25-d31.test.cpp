@@ -24,7 +24,7 @@ int main() {
 
   tifa_libs::math::min25_sieve<mint, f> min25(n);
   auto h0 = min25.sum_pk(0), h1 = min25.sum_pk(1);
-  for (u32 i = 0; i < h1.size(); ++i) h1[i] -= h0[i];
+  flt_ (u32, i, 0, (u32)h1.size()) h1[i] -= h0[i];
   std::cout << min25.run(h1) << '\n';
   return 0;
 }

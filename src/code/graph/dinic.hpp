@@ -38,7 +38,7 @@ class dinic {
     std::queue<u32> q({s});
     dep[s] = 1;
     while (!q.empty()) {
-      u32 u = q.front();
+      const u32 u = q.front();
       q.pop();
       for (auto v : e[u])
         if (!dep[v.to] && v.w) dep[v.to] = dep[u] + 1, q.push(v.to);
@@ -55,8 +55,7 @@ class dinic {
       if (dep[v.to] == dep[u] + 1 && v.w) {
         EW flow = dfs<EW>(v.to, t, min(v.w, lim));
         if (flow) {
-          e[u][i].w -= flow;
-          e[v.to][e[u][i].inv].w += flow;
+          e[u][i].w -= flow, e[v.to][e[u][i].inv].w += flow;
           ret += flow, lim -= flow;
           if (!lim) break;
         } else dep[v.to] = 0;

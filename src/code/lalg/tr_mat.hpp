@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 template <class Mat>
 CEXP auto trace(Mat CR mat) {
-  u32 n = mat.row();
+  const u32 n = mat.row();
   assert(n == mat.col());
   TPN Mat::value_type ret{};
   flt_ (u32, i, 0, n) ret += mat(i, i);

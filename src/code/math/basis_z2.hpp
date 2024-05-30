@@ -19,7 +19,7 @@ struct basisZ2 {
       else {
         flt_ (u32, j, 0, i)
           if (x[j]) x ^= basis[j];
-        for (u32 j = i + 1; j < basis.size(); ++j)
+        flt_ (u32, j, i + 1, (u32)basis.size())
           if (basis[j][i]) basis[j] ^= x;
         basis[i] = x, status = 1;
         break;
@@ -37,7 +37,7 @@ struct basisZ2 {
   }
   CEXP u32 rank() const {
     u32 res = 0;
-    for (u32 i = 0; i < basis.size(); ++i) res += basis[i][i];
+    flt_ (u32, i, 0, (u32)basis.size()) res += basis[i][i];
     return res;
   }
   CEXP std::bitset<N> max_span() const {
@@ -51,8 +51,7 @@ struct basisZ2 {
     for (u32 i = basis.size() - 1; ~i; --i)
       if (x[i]) {
         if (!basis[i][i]) return {};
-        res.set(i);
-        x ^= basis[i];
+        res.set(i), x ^= basis[i];
       }
     return res;
   }

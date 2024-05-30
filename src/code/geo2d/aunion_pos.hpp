@@ -21,7 +21,7 @@ CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) {
       if (i == j) continue;
       auto CR pj = pos[j];
       flt_ (u32, k, 0, pj.size()) {
-        line<FP> s{pj[k], pj[pj.next(k)]};
+        const line<FP> s{pj[k], pj[pj.next(k)]};
         if (!le.toleft(s.l) && !le.toleft(s.r)) evt.emplace_back(s.l, 0), evt.emplace_back(s.r, 0);
         else if (!is_ins_SL(s, le)) {
           if (point<FP> u = ins_LL(le, s); le.toleft(s.l) < 0 && le.toleft(s.r) >= 0) evt.emplace_back(u, -1);

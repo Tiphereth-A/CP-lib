@@ -11,9 +11,8 @@ CEXP void wht(vec<T>& f, u32 n = 0) {
   for (u32 i = 1; i < n; i *= 2)
     flt_ (u32, j, 0, n)
       if (!(j & i)) {
-        T x = f[j], y = f[j | i];
-        f[j] = x + y;
-        f[j | i] = x - y;
+        const T x = f[j], y = f[j | i];
+        f[j] = x + y, f[j | i] = x - y;
       }
 }
 template <class T>
@@ -23,7 +22,7 @@ CEXP void iwht(vec<T>& f, u32 n = 0) {
   if CEXP (std::is_integral_v<T>)
     for (auto& x : f) x /= n;
   else {
-    T _ = T(1) / T(n);
+    const T _ = T(1) / T(n);
     for (auto& x : f) x *= _;
   }
 }

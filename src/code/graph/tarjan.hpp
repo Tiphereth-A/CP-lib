@@ -26,10 +26,8 @@ struct tarjan {
       if (low[u] == dfn[u]) {
         belongs.push_back(vecu());
         do {
-          u32 v = s.back();
-          s.pop_back(), ins[v] = 0;
-          scc_id[v] = id;
-          belongs[id].push_back(v);
+          const u32 v = s.back();
+          s.pop_back(), ins[v] = 0, belongs[scc_id[v] = id].push_back(v);
           if (v == u) return void(++id);
         } while (1);
       }

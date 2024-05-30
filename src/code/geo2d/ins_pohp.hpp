@@ -10,8 +10,8 @@ CEXP cvh<FP> ins_PohP(cT_(cvh<FP>) poly, line<FP> CR l) {
   u32 n = poly.size();
   vec<point<FP>> vs;
   flt_ (u32, i, 0, n) {
-    point p1 = poly.vs[i], p2 = poly.vs[poly.next(i)];
-    int d1 = l.toleft(p1), d2 = l.toleft(p2);
+    const point p1 = poly.vs[i], p2 = poly.vs[poly.next(i)];
+    const int d1 = l.toleft(p1), d2 = l.toleft(p2);
     if (d1 >= 0) vs.push_back(p1);
     if (d1 * d2 < 0) vs.push_back(ins_LL({p1, p2}, l));
   }

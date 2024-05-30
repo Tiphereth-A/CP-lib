@@ -50,7 +50,7 @@ class Youngt {
 
   friend std::ostream& operator<<(std::ostream& os, Youngt CR yt) {
     for (u32 i = 0; i < yt.height() - 1; ++i)
-      for (u32 j = 0; j < yt.d[i].size(); ++j) os << yt.d[i][j] << " \n"[j == yt.d[i].size() - 1];
+      flt_ (u32, j, 0, (u32)yt.d[i].size()) os << yt.d[i][j] << " \n"[j == yt.d[i].size() - 1];
     os << yt.d.back()[0];
     for (u32 j = 1; j < yt.d.back().size(); ++j) os << ' ' << yt.d.back()[j];
     return os;

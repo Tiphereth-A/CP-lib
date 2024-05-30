@@ -8,8 +8,7 @@
   CEXP auto operator op(std::pair<T, U> l, std::pair<T, U> CR r) { return std::pair<T, U>{l.first op r.first, l.second op r.second}; } \
   template <class T, class U>                                                                                                          \
   CEXP std::pair<T, U> &operator op##=(std::pair<T, U> &l, std::pair<T, U> CR r) {                                                     \
-    l.first op## = r.first;                                                                                                            \
-    l.second op## = r.second;                                                                                                          \
+    l.first op## = r.first, l.second op## = r.second;                                                                                  \
     return l;                                                                                                                          \
   }
 

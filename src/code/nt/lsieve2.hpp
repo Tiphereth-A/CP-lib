@@ -37,9 +37,9 @@ class lsieve2 {
   CEXP vec<T> run(F fpi, T init = T{1}) {
     vec<T> v(fr.size());
     v[1] = init;
-    for (u32 i = 0; i < pr.size(); ++i)
+    flt_ (u32, i, 0, (u32)pr.size())
       for (u32 p = pr[i].first, e = pr[i].second, pe = p, ex = 1; ex <= e; ++ex, pe *= p) v[pe] = fpi(p, ex);
-    for (u32 i = 2; i < fr.size(); ++i) v[i] = v[i / fr[i]] * v[fr[i]];
+    flt_ (u32, i, 2, (u32)fr.size()) v[i] = v[i / fr[i]] * v[fr[i]];
     return v;
   }
 };

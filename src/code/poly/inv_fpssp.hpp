@@ -13,7 +13,7 @@ CEXP poly<mint, ccore> inv_fpssp(poly<mint, ccore> CR p, u32 n = 0) {
   poly<mint, ccore> g(n);
   auto _ = ps[0].second.inv();
   g[0] = _;
-  for (u32 k = 1; k < n; k++) {
+  flt_ (u32, k, 1, n) {
     for (auto& [j, fj] : ps) {
       if (k < j) break;
       g[k] += g[k - j] * fj;

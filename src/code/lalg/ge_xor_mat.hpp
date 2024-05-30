@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 template <class Mat, class Is0>
 requires std::same_as<TPN Mat::value_type, bool>
 CEXP i32 ge_xor(Mat &mat, Is0, bool clear_u = true) {
-  u32 r_ = mat.row(), c_ = mat.col(), rk_max = min(r_, c_);
+  const u32 r_ = mat.row(), c_ = mat.col(), rk_max = min(r_, c_);
   u32 rk = 0;
   bool neg = false;
   for (u32 i = 0, now_row = 0, j_ = i; i < mat.row(); ++i) {
@@ -21,7 +21,7 @@ CEXP i32 ge_xor(Mat &mat, Is0, bool clear_u = true) {
     for (u32 j = clear_u ? 0 : rk + 1; j < mat.row(); ++j) {
       if (j == rk || !mat(j, j_)) continue;
       mat(j, j_) = false;
-      for (u32 k = j_ + 1; k < c_; ++k)
+      flt_ (u32, k, j_ + 1, c_)
         if (mat(rk, k)) mat(j, k) = !mat(j, k);
     }
     if (++rk >= rk_max) break;

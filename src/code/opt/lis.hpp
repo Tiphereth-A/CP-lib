@@ -19,11 +19,7 @@ CEXP vecu lis(vec<T> CR a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}
   T val = inf;
   vecu ret;
   for (u32 i = u32(g.size() - 1), now = u32(f.size() - 1); ~i; --i)
-    if (g[i] == now && val > a[i]) {
-      ret.push_back((u32)i);
-      --now;
-      val = a[i];
-    }
+    if (g[i] == now && val > a[i]) ret.push_back((u32)i), --now, val = a[i];
   std::ranges::reverse(ret);
   return ret;
 }

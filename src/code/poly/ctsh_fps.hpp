@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 template <class mint, class ccore>
 CEXP poly<mint, ccore> ctsh_fps(poly<mint, ccore> CR f, mint c, vecu64 CR ifact, u32 m = 0) {
   using poly_t = poly<mint, ccore>;
-  u32 n = f.size(), k = f.size() - 1;
+  const u32 n = f.size(), k = f.size() - 1;
   if (!m) m = n;
   u64 t = c.val();
   if (t <= k) {
@@ -18,7 +18,7 @@ CEXP poly<mint, ccore> ctsh_fps(poly<mint, ccore> CR f, mint c, vecu64 CR ifact,
     for (u32 i = (u32)t; i <= k && ptr < m; ++i) ret[ptr++] = f[i];
     if (k + 1 < t + m) {
       auto suf = ctsh_fps<mint, ccore>(f, k + 1, ifact, m - ptr);
-      for (u32 i = k + 1; i < t + m; ++i) ret[ptr++] = suf[i - (k + 1)];
+      flt_ (u64, i, k + 1, t + m) ret[ptr++] = suf[(u32)i - (k + 1)];
     }
     return ret;
   }
@@ -38,10 +38,7 @@ CEXP poly<mint, ccore> ctsh_fps(poly<mint, ccore> CR f, mint c, vecu64 CR ifact,
   poly_t ret(m);
   mint cur = t;
   fle_ (u32, i, 1, k) cur *= t - i;
-  flt_ (u32, i, 0, m) {
-    ret[i] = cur * dh[k + i];
-    (cur *= t + i + 1) *= h[i];
-  }
+  flt_ (u32, i, 0, m) ret[i] = cur * dh[k + i], (cur *= t + i + 1) *= h[i];
   return ret;
 }
 template <class mint, class ccore>

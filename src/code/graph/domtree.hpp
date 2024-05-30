@@ -13,19 +13,15 @@ class domtree {
   vecu arr, par, rev, dsu, label;
 
   void dfs(u32 u) {
-    rev[arr[u] = label[t] = sdom[t] = dsu[t] = t] = u;
-    ++t;
+    rev[arr[u] = label[t] = sdom[t] = dsu[t] = t] = u, ++t;
     for (u32 w : g.g[u]) {
-      if (!~arr[w]) {
-        dfs(w);
-        par[arr[w]] = arr[u];
-      }
+      if (!~arr[w]) dfs(w), par[arr[w]] = arr[u];
       rg.add_arc(arr[w], arr[u]);
     }
   }
   u32 find(u32 u, int x = 0) {
     if (u == dsu[u]) return x ? -1_u32 : u;
-    u32 v = find(dsu[u], x + 1);
+    const u32 v = find(dsu[u], x + 1);
     if (!~v) return u;
     if (sdom[label[dsu[u]]] < sdom[label[u]]) label[u] = label[dsu[u]];
     dsu[u] = v;

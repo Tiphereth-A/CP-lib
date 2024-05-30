@@ -11,7 +11,7 @@ requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
 CEXP std::optional<matrix<T>> inv_mat(matrix<T> CR mat, Is0&& is0, Ge&& ge) {
-  u32 n = mat.row();
+  const u32 n = mat.row();
   if (n != mat.col()) return {};
   matrix<T> ret(n, n);
   flt_ (u32, i, 0, n) ret(i, i) = 1;

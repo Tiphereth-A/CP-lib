@@ -10,7 +10,7 @@ namespace tifa_libs::geo {
 template <std::floating_point FP>
 CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) {
   using arc_t = std::tuple<point<FP>, FP, FP, FP>;
-  u32 n = (u32)cs.size();
+  const u32 n = (u32)cs.size();
   vvec<arc_t> arcs(n);
   auto cut = [&](circle<FP> CR ci, u32 i) {
     vecp<FP, int> evt;
@@ -20,11 +20,11 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) {
       if (i == j) continue;
       circle<FP> CR cj = cs[j];
       if (auto _ = relation_CC(ci, cj); is_lt(ci.r, cj.r) && (_ == lyingin_cc || _ == touchin_cc)) ++init;
-      auto inters = ins_CC(ci, cj);
-      if (!inters.has_value()) continue;
-      if (inters.value().first == inters.value().second) evt.emplace_back((inters.value().first - ci.o).arg(), 0);
+      const auto icij = ins_CC(ci, cj);
+      if (!icij.has_value()) continue;
+      if (icij.value().first == icij.value().second) evt.emplace_back((icij.value().first - ci.o).arg(), 0);
       else {
-        point<FP> dl = inters.value().first - ci.o, dr = inters.value().second - ci.o;
+        point<FP> dl = icij.value().first - ci.o, dr = icij.value().second - ci.o;
         FP argl = dl.arg(), argr = dr.arg();
         if (is_eq(argl, -pi_v<FP>)) argl = pi_v<FP>;
         if (is_eq(argr, -pi_v<FP>)) argr = pi_v<FP>;

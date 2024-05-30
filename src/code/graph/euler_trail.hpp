@@ -17,16 +17,11 @@ CEXP std::optional<vecpt<u32>> run_(u32 n, u32 m, cT_(vvecpt<u32>) g, u32 s) {
     auto [i, p] = stk.back();
     auto &it = its[i];
     if (it == g[i].end()) {
-      ret.emplace_back(i, p);
-      stk.pop_back();
+      ret.emplace_back(i, p), stk.pop_back();
       continue;
     }
     auto [j, e] = *(it++);
-    if (!vis[e]) {
-      --f[i], ++f[j];
-      stk.emplace_back(j, e);
-      vis[e] = true;
-    }
+    if (!vis[e]) --f[i], ++f[j], stk.emplace_back(j, e), vis[e] = true;
   }
   if (ret.size() != m + 1) return {};
   for (i32 i : f)
@@ -51,14 +46,12 @@ CEXP std::optional<vecpt<u32>> euler_trail(u32 n, cT_(vecpt<u32>) edges) {
     ++e;
   }
   u32 s = 0;
-  for (u32 i = 1; i < g.size(); ++i)
+  flt_ (u32, i, 1, (u32)g.size())
     if (!g[i].empty()) s = i;
-  for (u32 i = 0; i < g.size(); ++i)
+  flt_ (u32, i, 0, (u32)g.size())
     if CEXP (directed) {
       if (deg_in[i] < g[i].size()) s = i;
-    } else {
-      if (g[i].size() & 1) s = i;
-    }
+    } else if (g[i].size() & 1) s = i;
   return euler_trail_impl_::run_<cycle>(n, (u32)edges.size(), g, s);
 }
 

@@ -16,8 +16,7 @@ struct matp {
 
   explicit CEXP matp() {}
   CEXP matp(u64 x00, u64 x01, u64 x10, u64 x11) : a00(1, x00), a01(1, x01), a10(1, x10), a11(1, x11) {}
-  CEXP matp(cT_(poly_t) a00, cT_(poly_t) a01,
-            cT_(poly_t) a10, cT_(poly_t) a11) : a00(a00), a01(a01), a10(a10), a11(a11) {}
+  CEXP matp(cT_(poly_t) a00, cT_(poly_t) a01, cT_(poly_t) a10, cT_(poly_t) a11) : a00(a00), a01(a01), a10(a10), a11(a11) {}
 
   CEXP matp& operator*=(matp CR r) {
     poly_t _00 = a00 * r.a00 + a01 * r.a10, _01 = a00 * r.a01 + a01 * r.a11,
@@ -38,8 +37,7 @@ template <class mint, class ccore>
 CEXP void ngcd_(matp<mint, ccore>& m, pttp<mint, ccore>& p) {
   auto [q, r] = divmod_fps(p.first, p.second);
   poly<mint, ccore> b0 = m.a00 - m.a10 * q, b1 = m.a01 - m.a11 * q;
-  b0.strip(), b1.strip();
-  swap(b0, m.a10), swap(b1, m.a11), swap(b0, m.a00), swap(b1, m.a01);
+  b0.strip(), b1.strip(), swap(b0, m.a10), swap(b1, m.a11), swap(b0, m.a00), swap(b1, m.a01);
   p = {p.second, r};
 }
 

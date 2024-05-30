@@ -22,13 +22,10 @@ struct DLL {
       ss >> tmp, ss >> std::hex >> syms[tmp];
     }
     pclose(cmd);
-
     // obtain base address of requested library
     command = "awk '{if(index($6, \"" + strn(file) + "\") != 0 && $3 == \"00000000\") print substr($1, 1, index($1, \"-\") - 1)}' /proc/" + std::to_string(getpid()) + "/maps";
     cmd = popen(command.c_str(), "r");
-    while (fgets(buf, 1024, cmd))
-      base = reinterpret_cast<char *>(std::stoul(buf, nullptr, 16));
-
+    while (fgets(buf, 1024, cmd)) base = reinterpret_cast<char *>(std::stoul(buf, nullptr, 16));
     pclose(cmd);
   }
   template <TPN R = void, TPN... T>

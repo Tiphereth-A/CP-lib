@@ -25,7 +25,7 @@ int main() {
   tifa_libs::huffman<u32> hf(w);
   auto x = hf.encode();
   u64 ans = 0;
-  for (u32 i = 0; i < w.size(); ++i) ans += w[i] * x[i].size();
+  flt_ (u32, i, 0, (u32)w.size()) ans += w[i] * x[i].size();
   std::cout << ans << '\n';
   return 0;
 }

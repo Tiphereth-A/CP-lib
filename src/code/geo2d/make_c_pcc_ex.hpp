@@ -19,12 +19,12 @@ CEXP vec<circle<FP>> make_C_PCC_ex(point<FP> CR p, circle<FP> c1, circle<FP> c2)
   if (relation_CC(c1, c2) == lyingin_cc || relation_CP(c1, p) != outside_cp || relation_CP(c2, p) != outside_cp) return {};
   vec<line<FP>> vl;
   if (auto _ = intan_CC(c1 = inv_C2C(p, c1), c2 = inv_C2C(p, c2)); _.has_value()) {
-    auto &&[l1, l2] = _.value();
+    auto CR[l1, l2] = _.value();
     if (!is_on_same_L(p, l1.l, l1.r)) vl.push_back(l1);
     if (!is_on_same_L(p, l2.l, l2.r)) vl.push_back(l2);
   }
   if (auto _ = extan_CC(c1, c2); _.has_value()) {
-    auto &&[l1, l2] = _.value();
+    auto CR[l1, l2] = _.value();
     if (!is_on_same_L(p, l1.l, l1.r)) vl.push_back(l1);
     if (!is_on_same_L(p, l2.l, l2.r)) vl.push_back(l2);
   }

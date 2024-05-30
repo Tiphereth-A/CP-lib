@@ -9,8 +9,8 @@ namespace tifa_libs::math {
 //! assume b is arbitary, aka. $b_i = b_j \iff i = j$
 template <class T>
 CEXP vec<T> conv_minplus_ca(vec<T> CR a, vec<T> CR b) {
-  u32 n = (u32)a.size(), m = (u32)b.size();
-  vecu argmin = opt::smawk(
+  const u32 n = (u32)a.size(), m = (u32)b.size();
+  const vecu argmin = opt::smawk(
       n + m - 1, m,
       [&](u32 k, u32 j1, u32 j2) -> bool {
         i32 i1 = (i32)k - (i32)j1, i2 = (i32)k - (i32)j2;
@@ -19,10 +19,7 @@ CEXP vec<T> conv_minplus_ca(vec<T> CR a, vec<T> CR b) {
         return a[i1] + b[j1] < a[i2] + b[j2];
       });
   vec<T> c(n + m - 1);
-  for (u32 k = 0; k < n + m - 1; ++k) {
-    u32 j = argmin[k];
-    c[k] = a[k - j] + b[j];
-  }
+  flt_ (u32, k, 0, n + m - 1) c[k] = a[k - argmin[k]] + b[argmin[k]];
   return c;
 }
 

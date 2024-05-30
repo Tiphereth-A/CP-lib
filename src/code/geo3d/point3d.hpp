@@ -19,45 +19,33 @@ struct point3d {
   friend CEXP point3d mid_point(point3d CR s, point3d CR t) { return lerp(s, t, .5); }
 
   CEXP point3d &operator+=(FP n) {
-    this->x += n;
-    this->y += n;
-    this->z += n;
+    this->x += n, this->y += n, this->z += n;
     return *this;
   }
   CEXP point3d operator+(FP n) const { return point3d(*this) += n; }
   CEXP point3d &operator-=(FP n) {
-    this->x -= n;
-    this->y -= n;
-    this->z -= n;
+    this->x -= n, this->y -= n, this->z -= n;
     return *this;
   }
   CEXP point3d operator-(FP n) const { return point3d(*this) -= n; }
   CEXP point3d &operator*=(FP n) {
-    this->x *= n;
-    this->y *= n;
-    this->z *= n;
+    this->x *= n, this->y *= n, this->z *= n;
     return *this;
   }
   CEXP point3d operator*(FP n) const { return point3d(*this) *= n; }
   CEXP point3d &operator/=(FP n) {
-    this->x /= n;
-    this->y /= n;
-    this->z /= n;
+    this->x /= n, this->y /= n, this->z /= n;
     return *this;
   }
   CEXP point3d operator/(FP n) const { return point3d(*this) /= n; }
 
   CEXP point3d &operator+=(point3d CR p) {
-    this->x += p.x;
-    this->y += p.y;
-    this->z += p.z;
+    this->x += p.x, this->y += p.y, this->z += p.z;
     return *this;
   }
   CEXP point3d operator+(point3d CR p) const { return point3d(*this) += p; }
   CEXP point3d &operator-=(point3d CR p) {
-    this->x -= p.x;
-    this->y -= p.y;
-    this->z -= p.z;
+    this->x -= p.x, this->y -= p.y, this->z -= p.z;
     return *this;
   }
   CEXP point3d operator-(point3d CR p) const { return point3d(*this) -= p; }
@@ -79,26 +67,23 @@ struct point3d {
   CEXP point3d &do_unit() { return *this /= norm(); }
 
   CEXP point3d &do_rotx(FP theta) {
-    FP y0 = y, z0 = z, ct = std::cos(theta), st = std::sin(theta);
-    y = y0 * ct - z0 * st;
-    z = y0 * st + z0 * ct;
+    const FP y0 = y, z0 = z, ct = std::cos(theta), st = std::sin(theta);
+    y = y0 * ct - z0 * st, z = y0 * st + z0 * ct;
     return *this;
   }
   CEXP point3d &do_roty(FP theta) {
-    FP x0 = x, z0 = z, ct = std::cos(theta), st = std::sin(theta);
-    z = z0 * ct - x0 * st;
-    x = z0 * st + x0 * ct;
+    const FP x0 = x, z0 = z, ct = std::cos(theta), st = std::sin(theta);
+    z = z0 * ct - x0 * st, x = z0 * st + x0 * ct;
     return *this;
   }
   CEXP point3d &do_rotz(FP theta) {
-    FP x0 = x, y0 = y, ct = std::cos(theta), st = std::sin(theta);
-    x = x0 * ct - y0 * st;
-    y = x0 * st + y0 * ct;
+    const FP x0 = x, y0 = y, ct = std::cos(theta), st = std::sin(theta);
+    x = x0 * ct - y0 * st, y = x0 * st + y0 * ct;
     return *this;
   }
   CEXP point3d &do_rot(point3d e, FP theta) {
     e.do_unit();
-    FP a = e.x, b = e.y, c = e.z, x0 = x, y0 = y, z0 = z, ct = std::cos(theta), st = std::sin(theta);
+    const FP a = e.x, b = e.y, c = e.z, x0 = x, y0 = y, z0 = z, ct = std::cos(theta), st = std::sin(theta);
     x = x0 * (ct + a * a * (1 - ct)) + y0 * (a * b * (1 - ct) - c * st) + z0 * (a * c * (1 - ct) + b * st);
     y = x0 * (a * b * (1 - ct) + c * st) + y0 * (ct + b * b * (1 - ct)) + z0 * (b * c * (1 - ct) - a * st);
     z = x0 * (a * c * (1 - ct) - b * st) + y0 * (b * c * (1 - ct) + a * st) + z0 * (ct + c * c * (1 - ct));

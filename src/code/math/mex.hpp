@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 CEXP u32 mex_uniqued(vecu CR x) {
-  for (u32 i = 0; i < x.size(); ++i)
+  flt_ (u32, i, 0, (u32)x.size())
     if (x[i] != i) return i;
   return (u32)x.size();
 }

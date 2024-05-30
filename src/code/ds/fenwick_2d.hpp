@@ -17,18 +17,13 @@ class fenwick2d {
   CEXP u32 col() const { return a[0].size(); }
 
   //! [x, row) * [y, col), x > 0, y > 0
-  CEXP void add(u32 x, u32 y, cT_(T) val) {
+  CEXP void add(u32 x, u32 y, cT_(T) v) {
     if (!x || !y || x >= row() || y >= col()) return;
     for (; x < row(); x += bit::lowbit(x))
-      for (u32 j = y; j < col(); j += bit::lowbit(j)) a[x][j] += val;
+      for (u32 j = y; j < col(); j += bit::lowbit(j)) a[x][j] += v;
   }
   //! [xl, xr) * [yl, yr), x > 0, y > 0
-  CEXP void add(u32 xl, u32 yl, u32 xr, u32 yr, cT_(T) val) {
-    add(xl, yl, val);
-    add(xl, yr, -val);
-    add(xr, yl, -val);
-    add(xr, yr, val);
-  }
+  CEXP void add(u32 xl, u32 yl, u32 xr, u32 yr, cT_(T) v) { add(xl, yl, v), add(xl, yr, -v), add(xr, yl, -v), add(xr, yr, v); }
   //! [1, x) * [1, y), x > 0, y > 0
   CEXP T sum(u32 x, u32 y) {
     T ret = 0;

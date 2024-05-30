@@ -9,7 +9,7 @@ template <bool directed, bool with_deg>
 CEXP vecpt<u32> find_cycle(alist<with_deg> CR fg) {
   auto&& g = fg.g;
 
-  for (u32 i = 0; i < g.size(); ++i)
+  flt_ (u32, i, 0, (u32)g.size())
     for (u32 j : g[i])
       if (i == j) return vecpt<u32>{{i, i}};
 
@@ -38,7 +38,7 @@ CEXP vecpt<u32> find_cycle(alist<with_deg> CR fg) {
     return pidx[now] = -1_u32;
   };
 
-  for (u32 i = 0; i < g.size(); ++i) {
+  flt_ (u32, i, 0, (u32)g.size()) {
     if (vis[i]) continue;
     dfs(dfs, i, i, -1_u32);
     if (fin) {

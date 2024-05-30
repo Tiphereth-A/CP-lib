@@ -9,7 +9,7 @@ namespace tifa_libs {
 //! tree root = n
 // prüfer code of vertex i is code[i], code[0] = 0
 CEXP vecu prufer_inv(vecu CR code) {
-  u32 n = u32(code.size() + 1);
+  const u32 n = u32(code.size() + 1);
   vecu deg(n + 1);
   for (u32 i = 1; i < n - 1; ++i) ++deg[code[i]];
   vecu fa(n);

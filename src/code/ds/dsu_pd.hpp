@@ -20,17 +20,15 @@ class dsu_pd {
     if ((x = (u32)find(x)) == (y = (u32)find(y))) return false;
     if (p[x] > p[y]) swap(x, y);
     edges.emplace_back(y, p[y]);
-    p[x] += p[y];
-    p[y] = (i32)x;
+    p[x] += p[y], p[y] = (i32)x;
     return true;
   }
   CEXP void rollback(u32 t) {
     while (edges.size() > t) {
-      auto [i, pi] = edges.back();
+      const auto [i, pi] = edges.back();
       edges.pop_back();
       assert(p[(u32)p[i]] < 0);
-      p[(u32)p[i]] -= pi;
-      p[i] = pi;
+      p[(u32)p[i]] -= pi, p[i] = pi;
     }
   }
 };

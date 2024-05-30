@@ -15,13 +15,13 @@ CEXP FP min_dis_Ps(vec<point<FP>> CR vp, u32 l, u32 r) {
       flt_ (u32, j, l, i) ret = min(ret, dist_PP(vp[i], vp[j]));
     return ret;
   }
-  u32 mid = r - (r - l) / 2;
+  const u32 mid = r - (r - l) / 2;
   ret = min(min_dis_Ps(vp, l, mid), min_dis_Ps(vp, mid, r));
   vec<point<FP>> q;
   flt_ (u32, i, l, r)
     if (abs(vp[i].x - vp[mid].x) <= ret) q.push_back(vp[i]);
   std::ranges::stable_sort(q, [](point<FP> CR l, point<FP> CR r) -> bool { return l.y < r.y; });
-  for (u32 i = 1; i < q.size(); ++i)
+  flt_ (u32, i, 1, (u32)q.size())
     for (u32 j = i - 1; ~j && q[j].y >= q[i].y - ret; --j) ret = min(ret, dist_PP(q[i], q[j]));
   return ret;
 }

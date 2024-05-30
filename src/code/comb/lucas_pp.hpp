@@ -7,25 +7,24 @@
 namespace tifa_libs::math {
 
 class LucasPP {
-  u32 p, q;
+  const u32 p, q;
+  const bool no_proot;
   u64 m_;
-  bool no_proot;
   vecu64 facp, ifacp;
 
  public:
   // mod = p ** q
   // @param p MUSU be prime
-  CEXP LucasPP(u32 p, u32 q) : p(p), q(q) {
+  CEXP LucasPP(u32 p, u32 q) : p(p), q(q), no_proot(p == 2 && q >= 3) {
     assert(p <= 100'000'000 && q > 0);
     m_ = 1;
     while (q--) {
       m_ *= p;
       assert(m_ <= 100'000'000);
     }
-    no_proot = (p == 2 && q >= 3);
     facp.resize(m_);
     facp[0] = facp[1] = 1;
-    flt_ (u32, i, 2, m_)
+    flt_ (u64, i, 2, m_)
       if (i % p == 0) {
         facp[i] = facp[i - 1];
         facp[i + 1] = facp[i - 1] * (i + 1) % m_;

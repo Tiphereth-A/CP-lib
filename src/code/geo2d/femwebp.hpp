@@ -6,7 +6,6 @@
 
 namespace tifa_libs::geo {
 
-// simulated annealing
 template <class FP>
 point<FP> femwebp(vec<point<FP>> CR vp) {
   auto Tl = [&](point<FP> CR y) {
@@ -15,8 +14,7 @@ point<FP> femwebp(vec<point<FP>> CR vp) {
     for (auto&& p : vp)
       if (p != y) {
         FP d = (y - p).norm();
-        y2 += p / d;
-        sd += 1 / d;
+        y2 += p / d, sd += 1 / d;
       }
     return y2 / (FP)sd;
   };

@@ -19,8 +19,7 @@ class dsu_basic {
     if ((x = (u32)find(x)) == (y = (u32)find(y))) return false;
     if CEXP (RANK_)
       if (p[x] > p[y]) swap(x, y);
-    p[x] += p[y];
-    p[y] = (i32)x;
+    p[x] += p[y], p[y] = (i32)x;
     return true;
   }
 };

@@ -14,11 +14,7 @@ struct polyhedron {
 
     explicit CEXP phd_face(cT_(plane<FP>) pl, u32 n1 = 0, u32 n2 = 0, u32 n3 = 0) : pl(pl), nid{n1, n2, n3} {}
 
-    CEXP void bind(u32 n1, u32 n2, u32 n3) {
-      nid[0] = n1;
-      nid[1] = n2;
-      nid[2] = n3;
-    }
+    CEXP void bind(u32 n1, u32 n2, u32 n3) { nid[0] = n1, nid[1] = n2, nid[2] = n3; }
   };
 
   struct phd_edge {

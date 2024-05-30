@@ -9,7 +9,7 @@ namespace tifa_libs {
 //! tree root = n
 // father ID of i is fa[i], fa[0] = 0
 CEXP vecu prufer(vecu CR fa) {
-  u32 n = (u32)fa.size();
+  const u32 n = (u32)fa.size();
   vecu deg(n + 1);
   flt_ (u32, i, 1, n) ++deg[fa[i]];
   vecu code(n);

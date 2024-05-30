@@ -25,10 +25,7 @@ class orthodox_ex_suffix_automaton {
     st[cur].len = st[last].len + 1;
     u32 p = st[last].link;
 
-    while (~p && !st[p].nex[c]) {
-      st[p].nex[c] = cur;
-      p = st[p].link;
-    }
+    while (~p && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
     if (!~p) st[cur].link = 0;
     else {
       u32 q = st[p].nex[c];
@@ -38,14 +35,8 @@ class orthodox_ex_suffix_automaton {
         st.push_back(TIFA());
         flt_ (u32, i, 0, SZ)
           if (st[q].nex[i] && st[st[q].nex[i]].len) st[clone].nex[i] = st[q].nex[i];
-
-        st[clone].len = st[p].len + 1;
-        st[clone].link = st[q].link;
-
-        while (~p && st[p].nex[c] == q) {
-          st[p].nex[c] = clone;
-          p = st[p].link;
-        }
+        st[clone].len = st[p].len + 1, st[clone].link = st[q].link;
+        while (~p && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
         st[q].link = st[cur].link = clone;
       }
     }
@@ -54,7 +45,7 @@ class orthodox_ex_suffix_automaton {
   CEXP void insert(strnv s) {
     u32 u = 0;
     for (auto cc : s) {
-      u32 c = cc - BASE;
+      const u32 c = cc - BASE;
       if (!st[u].nex[c]) st[u].nex[c] = sz++, st.push_back(TIFA());
       u = st[u].nex[c];
     }
@@ -65,8 +56,7 @@ class orthodox_ex_suffix_automaton {
       if (st[0].nex[i]) q.push({0, i});
     while (q.size()) {
       auto [last, c] = q.front();
-      q.pop();
-      last = extend(last, c);
+      q.pop(), last = extend(last, c);
       flt_ (u32, i, 0, SZ)
         if (st[last].nex[i]) q.push({last, i});
     }

@@ -32,7 +32,7 @@ class RGCD {
           if ((now.a *= j) > now.b) swap(now.a, now.b);
           if (now.b > now.c) swap(now.b, now.c);
         });
-    for (u32 i = 1; i < g_.size(); ++i) {
+    flt_ (u32, i, 1, (u32)g_.size()) {
       g_[i][0] = g_[0][i] = g_[i][i] = (u32)i;
       flt_ (u32, j, 1, i) g_[i][j] = g_[j][i] = g_[j][i % j];
     }

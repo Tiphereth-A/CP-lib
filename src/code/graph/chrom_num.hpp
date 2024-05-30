@@ -21,7 +21,7 @@ CEXP u32 calc(u32 n, vecpt<i32> hist) {
 template <bool with_deg>
 CEXP u32 chrom_num(alist<with_deg> CR fg) {
   auto&& g = fg.g;
-  u32 n = (u32)g.size();
+  const u32 n = (u32)g.size();
   vecu adj(n), dp(1 << n);
   flt_ (u32, i, 0, n)
     for (u32 to : g[i]) adj[i] |= 1 << to, adj[to] |= 1 << i;

@@ -9,13 +9,13 @@ template <usz R, usz C>
 CEXP u32 ge_bmat(bitmat<R, C> &bmat, bool clear_u = true) {
   CEXP usz rk_max = min(R, C);
   u32 rk = 0;
-  for (u32 i = 0, now_row = 0, j_ = i; i < R; ++i) {
+  for (u32 i = 0, now_r = 0, j_ = i; i < R; ++i) {
     j_ = max(j_, i);
     if (!bmat[rk][i]) {
-      now_row = rk;
-      for (u32 j = now_row + 1; j < R; ++j)
-        if (bmat[j][i]) now_row = j;
-      if (now_row != rk) swap(bmat[now_row], bmat[rk]);
+      now_r = rk;
+      for (u32 j = now_r + 1; j < R; ++j)
+        if (bmat[j][i]) now_r = j;
+      if (now_r != rk) swap(bmat[now_r], bmat[rk]);
       while (j_ < C && !bmat[rk][j_]) ++j_;
       if (j_ == C) break;
     }

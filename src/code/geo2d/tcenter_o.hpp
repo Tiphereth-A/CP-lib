@@ -15,7 +15,7 @@ template <class FP>
 CEXP point<FP> center_O(triangle<FP> CR t) {
   // auto [A, B, C] = t.angles();
   // return t.trilinears(std::cos(A), std::cos(B), std::cos(C));
-  point<FP> p1 = mid_point(t.B, t.C), p2 = mid_point(t.C, t.A);
+  const point<FP> p1 = mid_point(t.B, t.C), p2 = mid_point(t.C, t.A);
   return ins_LL<FP>({p1, p1 + (t.B - t.C).do_rot90()}, {p2, p2 + (t.C - t.A).do_rot90()});
 }
 

@@ -12,6 +12,7 @@ namespace johnson_impl_ {
 // @return dis, with dis[u][v] = minimum distance between u and v
 template <class T>
 CEXP std::optional<vvec<T>> johnson(u32 n, cT_(vec<std::tuple<T, u32, u32>>) arcs, T const INF = std::numeric_limits<T>::max() / 2 - 1) {
+  using U = to_uint_t<T>;
   vvec<T> dis(n);
   alistw<T, false> fg(n);
   for (auto [w, u, v] : arcs) fg.add_arc(u, v, w);
@@ -22,7 +23,6 @@ CEXP std::optional<vvec<T>> johnson(u32 n, cT_(vec<std::tuple<T, u32, u32>>) arc
     flt_ (u32, i, 0, n) fg.add_arc(n, i, 0);
     auto h = bellman_ford(fg, n, fn_0, INF);
     if (!h) return {};
-    using U = to_uint_t<T>;
     alistw<U, false> fg2(n);
     for (auto [w, u, v] : arcs) fg2.add_arc(u, v, U(w - h.value()[v] + h.value()[u]));
     flt_ (u32, i, 0, n) {

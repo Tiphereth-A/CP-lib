@@ -37,7 +37,6 @@ struct tree_dfs_info {
     if CEXP (state & td_euler) euler = vecu(n);
     if CEXP (state & td_go) go = vvecu(n, vecu(21u, n));
     if CEXP (state & td_dis) dis = vec<weight_type>(n);
-
     u32 cnt = 0;
     dfs(
         tree, tree.root,

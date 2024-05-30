@@ -15,9 +15,7 @@ class rpow {
 
   CEXP void reset(u64 base, u32 mod) {
     if (b_ == base % mod && m_ == mod) return;
-    b_ = base % mod;
-    m_ = mod;
-    b0[0] = b1[0] = 1;
+    b_ = base % mod, m_ = mod, b0[0] = b1[0] = 1;
     flt_ (u32, i, 1, 65536) b0[i] = mul_mod_u(b0[i - 1], b_, m_);
     u64 _(mul_mod_u(b0.back(), b_, m_));
     flt_ (u32, i, 1, 65536) b1[i] = mul_mod_u(b1[i - 1], _, m_);

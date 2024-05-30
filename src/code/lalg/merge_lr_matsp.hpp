@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 // [l] [r] -> [l r]
 template <class T>
 CEXP matsp<T> merge_lr_matsp(cT_(matsp<T>) l, cT_(matsp<T>) r) {
-  u32 r_ = l.row(), lc_ = l.col();
+  const u32 r_ = l.row(), lc_ = l.col();
   assert(r_ == r.row());
   matsp<T> ret(r_, lc_ + r.col());
   flt_ (u32, i, 0, r_)

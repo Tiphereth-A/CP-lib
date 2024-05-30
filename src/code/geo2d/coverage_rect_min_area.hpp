@@ -9,7 +9,7 @@ namespace tifa_libs::geo {
 // Coverage rectangle with min area
 template <class FP>
 CEXP polygon<FP> coverage_rect_min_area(cvh<FP> CR ch) {
-  u32 n = ch.size();
+  const u32 n = ch.size();
   if (n == 0) return ch;
   if (n == 1) return polygon{vec<point<FP>>{ch[0], ch[0], ch[0], ch[0]}};
   if (n == 2) return polygon{vec<point<FP>>{ch[0], ch[0], ch[1], ch[1]}};

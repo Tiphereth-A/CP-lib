@@ -17,7 +17,7 @@ struct TIFA {
 // max number of vertices in vp which forms a convex hull
 template <class FP>
 CEXP u32 maxv_cvh_cnt(vec<point<FP>> CR vp) {
-  u32 n = (u32)vp.size();
+  const u32 n = (u32)vp.size();
   vec<maxv_cvh_cnt_impl_::TIFA<FP>> vl;
   flt_ (u32, i, 0, n)
     flt_ (u32, j, 0, n) {

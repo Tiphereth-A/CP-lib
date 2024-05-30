@@ -14,13 +14,12 @@ struct FFT {
 
   CEXP u32 size() const { return (u32)rev.size(); }
   CEXP void bzr(u32 len) {
-    u32 n = max<u32>(std::bit_ceil(len), 2);
+    const u32 n = max<u32>(std::bit_ceil(len), 2);
     if (n == size()) return;
     rev.resize(n, 0);
-    u32 k = (u32)(std::bit_width(n) - 1);
+    const u32 k = (u32)(std::bit_width(n) - 1);
     flt_ (u32, i, 0, n) rev[i] = (rev[i / 2] / 2) | ((i & 1) << (k - 1));
-    w.resize(n);
-    w[0].real(1);
+    w.resize(n), w[0].real(1);
     flt_ (u32, i, 1, n) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
   }
 
@@ -36,9 +35,8 @@ struct FFT {
         auto l = f.begin() + j, r = f.begin() + j + i / 2;
         auto p = w.begin();
         for (u32 k = 0; k < i / 2; ++k, ++l, ++r, p += d) {
-          C tmp = *r * *p;
-          *r = *l - tmp;
-          *l = *l + tmp;
+          const C _ = *r * *p;
+          *r = *l - _, *l = *l + _;
         }
       }
 #pragma GCC diagnostic warning "-Wsign-conversion"

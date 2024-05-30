@@ -7,11 +7,11 @@ namespace tifa_libs::math {
 
 template <class Mat>
 CEXP Mat pow(Mat mat, u64 b) {
-  u32 n = mat.row();
+  const u32 n = mat.row();
   assert(n == mat.col());
   Mat res(n, n);
   flt_ (u32, i, 0, n) res(i, i) = 1;
-  for (; b; b >>= 1, mat *= mat)
+  for (; b; b /= 2, mat *= mat)
     if (b & 1) res *= mat;
   return res;
 }

@@ -12,8 +12,7 @@ CEXP void dfs(vecu CR pre, vecu CR in, vecu& post, u32& p, u32 l, u32 r) {
   u32 m = -1_u32;
   flt_ (u32, i, l, r)
     if (in[i] == rt) m = i;
-  dfs(pre, in, post, p, l, m);
-  dfs(pre, in, post, p, m + 1, r);
+  dfs(pre, in, post, p, l, m), dfs(pre, in, post, p, m + 1, r);
   post.push_back(rt);
 }
 }  // namespace btree_make_post_pi_impl_

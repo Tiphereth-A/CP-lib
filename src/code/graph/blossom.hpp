@@ -48,7 +48,7 @@ class blossom {
     white[s] = 1, first[s] = 0, label[s] = {0, 0};
     std::queue<u32> q({s});
     while (!q.empty()) {
-      u32 a = q.front();
+      const u32 a = q.front();
       q.pop();
       for (auto b : g[a]) {
         assert(b);

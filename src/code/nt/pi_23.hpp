@@ -17,14 +17,14 @@ CEXP u64 pi_23(u64 n) {
   vecu64 ns;
   ns.reserve(n2 * 2 + 2);
   ns.push_back(0);
-  fle_ (u32, i, 1, n2) ns.push_back(div_u64d(n, i));
+  fle_ (u64, i, 1, n2) ns.push_back(div_u64d(n, i));
   for (u64 i = ns.back() - 1; i; --i) ns.push_back(i);
   u32 nsz = (u32)ns.size();
   vecu64 h = ns;
   for (auto &i : h) --i;
   while (prime[pidx] <= n6) {
-    u32 p = prime[pidx];
-    u64 p2 = (u64)p * p;
+    const u32 p = prime[pidx];
+    const u64 p2 = (u64)p * p;
     for (u64 i = 1, n = ns[i]; i < nsz && n >= p2; n = ns[++i]) h[i] -= h[i * p <= n2 ? i * p : nsz - div_u64d(n, p)] - pi;
     ++pidx, ++pi;
   }
@@ -36,8 +36,8 @@ CEXP u64 pi_23(u64 n) {
     for (u32 dst = pid; cur * prime[dst] < n23; ++dst) rec(rec, cur * prime[dst], dst, true);
   };
   while (prime[pidx] <= n3) {
-    u32 p = prime[pidx];
-    u64 p2 = (u64)p * p;
+    const u32 p = prime[pidx];
+    const u64 p2 = (u64)p * p;
     fle_ (u64, i, 1, n3) {
       if (p2 > ns[i]) break;
       u64 id = i * p <= n2 ? i * p : nsz - div_u64d(ns[i], p);
@@ -51,10 +51,10 @@ CEXP u64 pi_23(u64 n) {
   }
   for (usz i = bit.size() - 1; i; --i)
     if (usz j = i + (i & -i); j < bit.size()) bit[i] += bit[j];
-  for (u32 i = 1; i < bit.size(); ++i) h[i + n3] += (u64)bit[i];
+  flt_ (u32, i, 1, (u32)bit.size()) h[i + n3] += (u64)bit[i];
   while (prime[pidx] <= n2) {
-    u32 p = prime[pidx];
-    u64 p2 = (u64)p * p;
+    const u32 p = prime[pidx];
+    const u64 p2 = (u64)p * p;
     for (u64 i = 1, n = ns[i]; i < nsz && n >= p2; n = ns[++i]) h[i] -= h[i * p <= n2 ? i * p : nsz - div_u64d(n, p)] - pi;
     ++pidx, ++pi;
   }

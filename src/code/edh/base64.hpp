@@ -13,9 +13,8 @@ class Base64 {
 
  public:
   static CEXP strn encode(vec<usz> CR a) {
-    usz x = *std::ranges::max_element(a);
-    std::bit_width(x);
-    usz N = a.size(), B = max(6_uz, (usz)std::bit_width(x));
+    const usz x = *std::ranges::max_element(a);
+    const usz N = a.size(), B = max(6_uz, (usz)std::bit_width(x));
     strn S((B * N + 11) / 6, 0);
     S[0] = (char)B;
     flt_ (usz, i, 0, N)
@@ -26,7 +25,7 @@ class Base64 {
   }
   static CEXP vec<usz> decode(strn S) {
     for (auto &c : S) c = ibase(c);
-    usz B = (usz)S[0], M = (usz)S.size() - 1;
+    const usz B = (usz)S[0], M = (usz)S.size() - 1;
     vec<usz> a(6 * M / B, 0);
     flt_ (usz, i, 0, M)
       flt_ (usz, j, 0, 6)

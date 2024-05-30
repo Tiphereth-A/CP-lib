@@ -13,7 +13,7 @@ template <class T>
 CEXP T sum_i2(T n) { return sum_i1(n) * (n * 2 + 1) / 3; }
 template <class T>
 CEXP T sum_i3(T n) {
-  auto _ = sum_i1(n);
+  const auto _ = sum_i1(n);
   return _ * _;
 }
 template <class T>
@@ -22,12 +22,12 @@ template <class T>
 CEXP T sum_i5(T n) { return sum_i3(n) * (sum_i1(n) * 4 - 1) / 3; }
 template <class T>
 CEXP T sum_i6(T n) {
-  auto _ = sum_i1(n);
+  const auto _ = sum_i1(n);
   return sum_i2(n) * (_ * (_ * 2 - 1) * 6 + 1) / 7;
 }
 template <class T>
 CEXP T sum_i7(T n) {
-  auto _ = sum_i3(n);
+  const auto _ = sum_i3(n);
   return _ * _ * 2 - sum_i5(n);
 }
 

@@ -12,8 +12,9 @@ CEXP std::optional<u64> qresidue(u64 a, u64 p) {
   if (!f(a, p)) return {};
   u64 r = 2;
   while (f(r, p)) ++r;
-  int n = std::countr_zero(p - 1);
-  u64 m = (p - 1) >> n, g = qpow_mod(r, m, p), e = 0, b = qpow_mod(a, m / 2, p), am = qpow_mod(a, m, p);
+  const int n = std::countr_zero(p - 1);
+  const u64 m = (p - 1) >> n, g = qpow_mod(r, m, p), b = qpow_mod(a, m / 2, p), am = qpow_mod(a, m, p);
+  u64 e = 0;
   flt_ (int, k, 1, n) e |= (u64)(qpow_mod(am * inverse(qpow_mod(g, e, p), p) % p, 1 << (n - 1 - k), p) == p - 1) << k;
   return a * b % p * inverse(qpow_mod(g, e / 2, p), p) % p;
 }

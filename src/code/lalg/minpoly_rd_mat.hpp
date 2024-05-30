@@ -11,7 +11,7 @@ requires requires(Is0 is0, TPN Mat::value_type t) {
 }
 auto minpoly(Mat CR mat, Gn &gen, Is0 &&is0) {
   using T = TPN Mat::value_type;
-  u32 n = mat.row();
+  const u32 n = mat.row();
   assert(n == mat.col());
   auto gen2 = [&gen](u32 n) {
     vec<T> v(n);

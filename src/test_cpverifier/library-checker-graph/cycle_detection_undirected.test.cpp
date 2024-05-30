@@ -34,7 +34,7 @@ int main() {
     return 0;
   }
   std::cout << res.size() << '\n';
-  for (u32 i = 0; i < res.size(); ++i) std::cout << res[i].first << " \n"[i + 1 == res.size()];
-  for (u32 i = 0; i < res.size(); ++i) std::cout << edges[res[i]] - 1 << " \n"[i + 1 == res.size()];
+  flt_ (u32, i, 0, (u32)res.size()) std::cout << res[i].first << " \n"[i + 1 == res.size()];
+  flt_ (u32, i, 0, (u32)res.size()) std::cout << edges[res[i]] - 1 << " \n"[i + 1 == res.size()];
   return 0;
 }

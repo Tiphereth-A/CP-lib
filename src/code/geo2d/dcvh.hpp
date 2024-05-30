@@ -12,7 +12,7 @@ class dcvh {
  protected:
   // Dynamic half Convex Hull
   struct DHCVH {
-    int sgn_ = 1;
+    const int sgn_ = 1;
     std::set<point<FP>> vs;
 
     CEXP DHCVH() {}

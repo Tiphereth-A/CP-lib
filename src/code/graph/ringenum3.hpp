@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 namespace ringenum3_impl_ {
 template <class F, bool with_deg>
 CEXP void run(alist<with_deg> CR dg, F&& func) {
-  u32 n = (u32)dg.g.size();
+  const u32 n = (u32)dg.g.size();
   vecb vis(n);
   flt_ (u32, u, 0, n) {
     for (u32 v : dg.g[u]) vis[v].flip();

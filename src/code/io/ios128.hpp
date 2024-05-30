@@ -26,10 +26,7 @@ inline std::ostream &operator<<(std::ostream &os, u128 n) {
   return os;
 }
 inline std::ostream &operator<<(std::ostream &os, i128 n) {
-  if (n < 0) {
-    os << '-';
-    n = -n;
-  }
+  if (n < 0) (os << '-'), n = -n;
   return os << (u128)n;
 }
 

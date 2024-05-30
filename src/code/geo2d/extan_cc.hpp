@@ -16,8 +16,8 @@ CEXP std::optional<ptt<line<FP>>> extan_CC(circle<FP> CR c1, circle<FP> CR c2) {
     point dr = (c2.o - c1.o).do_unit().do_rot90() * c1.r;
     return ptt<line<FP>>{{c1.o + dr, c2.o + dr}, {c1.o - dr, c2.o - dr}};
   }
-  point p = (c2.o * c1.r - c1.o * c2.r) / (c1.r - c2.r);
-  auto ps = tan_CP(c1, p), qs = tan_CP(c2, p);
+  const point p = (c2.o * c1.r - c1.o * c2.r) / (c1.r - c2.r);
+  const auto ps = tan_CP(c1, p), qs = tan_CP(c2, p);
   if (!ps.has_value() || !qs.has_value()) return {};
   // c1 counter-clock wise
   return ptt<line<FP>>{{ps.value().first, qs.value().first}, {ps.value().second, qs.value().second}};

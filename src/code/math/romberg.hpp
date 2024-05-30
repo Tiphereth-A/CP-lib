@@ -1,14 +1,14 @@
 #ifndef TIFALIBS_MATH_ROMBERG
 #define TIFALIBS_MATH_ROMBERG
 
-#include "../util/util.hpp"
+#include "kahan.hpp"
 
 namespace tifa_libs::math {
 
 template <std::floating_point FP, FP (*f)(FP)>
 class romberg_impl {
   CEXP FP ctqf(FP a, FP b, FP h) const {
-    FP ans = 0;
+    kahan<FP> ans = 0;
     for (FP i = a + h * .5; i < b; i += h) ans += f(i);
     return ans;
   }
@@ -20,9 +20,7 @@ class romberg_impl {
     FP h = b - a;
     FP T1 = (f(a) + f(b)) * h * .5, T2 = 0, S1 = 0, S2 = 0, C1 = 0, C2 = 0, R1 = 0, R2 = 0;
     for (int k = 1; k < 4; h *= .5, ++k) {
-      T2 = (T1 + h * ctqf(a, b, h)) * .5;
-      S2 = (4 * T2 - T1) / 3;
-      T1 = T2;
+      T2 = (T1 + h * ctqf(a, b, h)) * .5, S2 = (4 * T2 - T1) / 3, T1 = T2;
       if (k == 1) {
         S1 = S2;
         continue;

@@ -12,7 +12,7 @@ requires requires(Is0 is0, TPN Mat::value_type t) {
 }
 auto det_rd(Mat mat, Gn &gen, Is0 &&is0) {
   using T = TPN Mat::value_type;
-  u32 n = mat.row();
+  const u32 n = mat.row();
   assert(n == mat.col());
   auto gen2 = [&gen](u32 n) {
     vec<T> v(n);
@@ -25,7 +25,7 @@ auto det_rd(Mat mat, Gn &gen, Is0 &&is0) {
     flt_ (u32, i, 0, n) v[i] *= diag[i];
     v = mat.lproj(v);
   }
-  vec<T> mp = lfsr_bm(_, std::forward<Is0>(is0));
+  const vec<T> mp = lfsr_bm(_, std::forward<Is0>(is0));
   T res = mp.back() / std::reduce(diag.begin(), diag.end(), T(1), std::multiplies<T>());
   return (n & 1) == 1 ? -res : res;
 }

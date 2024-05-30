@@ -43,9 +43,6 @@ notebook:
     - fp_range_is_in_middle: 判断浮点数是否在浮点数区间中
       code_ext: hpp
       test_ext: cpp
-    - fp2uint: 浮点数到 uint
-      code_ext: hpp
-      test_ext: cpp
     - traits: traits
       code_ext: hpp
       test_ext: cpp

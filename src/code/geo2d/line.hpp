@@ -32,7 +32,7 @@ struct line {
   friend CEXP auto operator<=>(line CR l, line CR r) {
     if (l == r) return 0;
     if (l.is_same_dir(r)) return r.is_include_strict(l.l) ? -1 : 1;
-    auto vl = l.direction(), vr = r.direction();
+    const auto vl = l.direction(), vr = r.direction();
     if (vl.quad() != vr.quad()) return (i32)vl.quad() - (i32)vr.quad();
     return -sgn(vl ^ vr);
   }
@@ -45,9 +45,8 @@ struct line {
 
   // translate @dist along the direction of half plane
   CEXP line& do_push(FP dist) {
-    point delta = direction().do_rot90().do_unit() * dist;
-    l += delta;
-    r += delta;
+    const point delta = direction().do_rot90().do_unit() * dist;
+    l += delta, r += delta;
     return *this;
   }
 };

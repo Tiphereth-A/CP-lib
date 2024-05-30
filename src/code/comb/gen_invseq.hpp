@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 
 // i^{-1} for i in v
 CEXP vecu64 gen_invseq(vecu64 CR v, u64 mod) {
-  u32 n = (u32)v.size();
+  const u32 n = (u32)v.size();
   if (n == 0) return {};
   if (n == 1) return {inverse(v[0], mod)};
   vecu64 ans(n);

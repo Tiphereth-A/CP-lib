@@ -49,13 +49,13 @@ struct trie01 {
 
   u32 find_(u32 t, u64 bit, int dep, u64 xv) const {
     if (!~dep) return t;
-    auto to = data[t].nxt[(xv ^ bit) >> dep & 1];
+    const auto to = data[t].nxt[(xv ^ bit) >> dep & 1];
     return to ? find_(to, bit, dep - 1, xv) : 0;
   }
 
   std::pair<u64, u32> kth_(u32 t, T k, int idx, u64 xv) const {
     if (!~idx) return {0, t};
-    bool f = xv >> idx & 1;
+    const bool f = xv >> idx & 1;
     if (auto _ = data[t].nxt[f]; (_ ? data[_].val : 0) <= k) {
       auto ret = kth_(data[t].nxt[f ^ 1], k - (_ ? data[_].val : 0), idx - 1, xv);
       ret.first |= 1_u64 << idx;
@@ -66,7 +66,7 @@ struct trie01 {
   T cntle_(u32 t, u64 bit, int idx, u64 xv) const {
     if (!~idx) return 0;
     T ret = 0;
-    bool f = xv >> idx & 1;
+    const bool f = xv >> idx & 1;
     if ((bit >> idx & 1) && data[t].nxt[f]) ret += data[data[t].nxt[f]].val;
     if (auto _ = data[t].nxt[(xv ^ bit) >> idx & 1]; _) ret += cntle_(_, bit, idx - 1, xv);
     return ret;

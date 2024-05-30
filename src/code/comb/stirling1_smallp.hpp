@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 template <class mint>
 class Stirling1 {
-  Lucas<mint> mCn;
+  const Lucas<mint> mCn;
   vvec<mint> s;
 
  public:
@@ -29,12 +29,13 @@ class Stirling1 {
   template <bool with_sgn = true>
   CEXP mint operator()(i64 m_, i64 n_) const {
     if (n_ < 0 || n_ > m_) return 0;
-    u32 p = mod();
-    u64 m = (u64)m_, n = (u64)n_;
-    u64 i = m / p;
+    const u32 p = mod();
+    const u64 m = (u64)m_, n = (u64)n_;
+    const u64 i = m / p;
     if (i > n) return 0;
     u64 a = (n - i) / (p - 1);
-    u32 j = m % p, b = (n - i) % (p - 1);
+    const u32 j = m % p;
+    u32 b = (n - i) % (p - 1);
     if (!b && j) {
       b += p - 1;
       if (a) --a;

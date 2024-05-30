@@ -35,7 +35,7 @@ class NPuzzleData {
   CEXP vec<NPuzzleData> next() {
     strn moves;
     {
-      char lst = moves.back();
+      const char lst = moves.back();
       if (pos0 / k && lst != 'D') moves += 'U';
       if (pos0 / k != k - 1 && lst != 'U') moves += 'D';
       if (pos0 % k && lst != 'R') moves += 'L';
@@ -52,7 +52,7 @@ class NPuzzleData {
   CEXP void move(char dir) {
     moves.push_back(dir);
     ++cost_;
-    u32 _ = pos0;
+    const u32 _ = pos0;
     switch (dir) {
       case 'U': pos0 -= k; break;
       case 'D': pos0 += k; break;
@@ -67,7 +67,7 @@ class NPuzzleData {
   friend std::istream &operator>>(std::istream &is, NPuzzleData &np) {
     for (auto &i : np.node) is >> i;
     np.pos0 = u32(std::ranges::find(np.node, 0) - np.node.begin());
-    for (u32 p = 0; p < np.node.size(); ++p)
+    flt_ (u32, p, 0, (u32)np.node.size())
       if (np.node[p]) np.cost_ += pos_cost[p][fin_pos[np.node[p]]];
     return is;
   }

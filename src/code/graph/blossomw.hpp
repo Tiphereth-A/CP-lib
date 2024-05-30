@@ -122,7 +122,7 @@ struct blossomw {
   }
   CEXP void expand_blossom(u32 b) {
     for (auto t : flo[b]) set_st(t, t);
-    u32 xr = flo_from[b][g[b][par[b]].u], pr = get_pr(b, xr);
+    const u32 xr = flo_from[b][g[b][par[b]].u], pr = get_pr(b, xr);
     for (u32 i = 0; i < pr; i += 2) {
       u32 xs = flo[b][i], xns = flo[b][i + 1];
       par[xs] = g[xns][xs].u, s[xs] = 1, s[xns] = slack[xs] = slack[xns] = 0, q_push(xns);
@@ -135,7 +135,7 @@ struct blossomw {
     st[b] = 0;
   }
   bool on_found_edge(TIFA CR e) {
-    u32 u = st[e.u], v = st[e.v];
+    const u32 u = st[e.u], v = st[e.v];
     if (!~s[v]) {
       par[v] = e.u, s[v] = 1, slack[v] = 0;
       u32 nu = st[match[v]];
@@ -155,7 +155,7 @@ struct blossomw {
     if (q.empty()) return 0;
     while (1) {
       while (!q.empty()) {
-        u32 u = q.front();
+        const u32 u = q.front();
         q.pop();
         if (s[st[u]] == 1) continue;
         fle_ (u32, v, 1, n)

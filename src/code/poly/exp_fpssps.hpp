@@ -13,7 +13,7 @@ vec<T> exp_fpssps(u32 n, vec<T> g) {
   vec<T> h{1};
   fle_ (u32, k, 1, n) {
     auto a = ss.conv(h, {begin(g) + (1 << (k - 1)), begin(g) + (1 << k)});
-    std::copy(begin(a), end(a), std::back_inserter(h));
+    std::ranges::copy(a, std::back_inserter(h));
   }
   return h;
 }

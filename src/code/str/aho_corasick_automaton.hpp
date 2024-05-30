@@ -35,7 +35,7 @@ class aho_corasick_automaton {
     flt_ (u32, i, 0, SZ)
       if (t[0].nex[i]) q.push(t[0].nex[i]);
     while (!q.empty()) {
-      u32 u = q.front();
+      const u32 u = q.front();
       q.pop();
       flt_ (u32, i, 0, SZ) {
         if (t[u].nex[i]) t[t[u].nex[i]].fail = t[t[u].fail].nex[i], q.push(t[u].nex[i]);
@@ -44,7 +44,7 @@ class aho_corasick_automaton {
     }
   }
   CEXP void build(vec<strn> CR s_) {
-    for (u32 i = 0; i < s_.size(); ++i) insert(s_[i], i);
+    flt_ (u32, i, 0, (u32)s_.size()) insert(s_[i], i);
     getfail();
   }
 };

@@ -14,7 +14,7 @@ poly<mint, ccore> czt_fps(poly<mint, ccore> f, mint c, u32 m = -1_u32, mint a = 
   static rpow rp, irp;
   if (!~m) m = f.size();
   if (f.data().empty() || !m) return poly_t{};
-  u32 n = f.size();
+  const u32 n = f.size();
   if (a != 1) {
     mint x = 1;
     flt_ (u32, i, 0, n) f[i] *= x, x *= a;
@@ -29,8 +29,8 @@ poly<mint, ccore> czt_fps(poly<mint, ccore> f, mint c, u32 m = -1_u32, mint a = 
   rp.reset(c.val(), mod), irp.reset(c.inv().val(), mod);
   poly_t cc(m + n), icc(max(m, n));
   cc[0] = icc[0] = 1;
-  for (u32 i = 1; i < m + n; ++i) cc[i] = rp(u32((i * (i - 1_u64) / 2) % (mod - 1)));
-  for (u32 i = 1; i < max(m, n); ++i) icc[i] = irp(u32((i * (i - 1_u64) / 2) % (mod - 1)));
+  flt_ (u32, i, 1, m + n) cc[i] = rp(u32((i * (i - 1_u64) / 2) % (mod - 1)));
+  flt_ (u32, i, 1, max(m, n)) icc[i] = irp(u32((i * (i - 1_u64) / 2) % (mod - 1)));
   flt_ (u32, i, 1, n) f[i] *= icc[i];
   std::ranges::reverse(f.data());
   f.conv(cc, n + m);

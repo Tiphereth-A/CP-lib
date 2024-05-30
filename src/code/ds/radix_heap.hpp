@@ -22,16 +22,16 @@ class radix_heap {
 
   CEXP void emplace(K key, cT_(V) val) {
     ++s;
-    K b = (K)std::bit_width(key ^ last);
+    const K b = (K)std::bit_width(key ^ last);
     vs[b].emplace_back(key, val), ms[b] = min(key, ms[b], comp);
   }
 
   CEXP std::pair<K, V> top() {
     if (!~ms[0]) {
-      u32 idx = u32(std::ranges::find_if(ms, [](auto x) { return !!~x; }) - ms.begin());
+      const u32 idx = u32(std::ranges::find_if(ms, [](auto x) { return !!~x; }) - ms.begin());
       last = ms[idx];
       for (auto &p : vs[idx]) {
-        K b = (K)std::bit_width(p.first ^ last);
+        const K b = (K)std::bit_width(p.first ^ last);
         vs[b].emplace_back(p), ms[b] = min(p.first, ms[b], comp);
       }
       vs[idx].clear(), ms[idx] = K(-1);

@@ -27,8 +27,7 @@ inline vec<T> unordered_stl_hacker(usz n) {
   if CEXP (std::is_same_v<strn, T>) {
     // Edit these if need
     const usz len = 15;
-    const strn pref = "";
-    const strn alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
+    const strn pref = "", alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
 
     rand::Gen<std::uniform_int_distribution<usz>> gen(0, alphabet.size() - 1);
     auto gen_str_with_divisible_hash = [&](usz mod) -> strn {
@@ -43,41 +42,29 @@ inline vec<T> unordered_stl_hacker(usz n) {
     vec<T> ans1;
     i64 op1 = 0;
     for (usz i = 0, psb = 0, cnt = 0, lst = bc[0]; i < n; ++i) {
-      T nw = gen_str_with_divisible_hash(lst);
-      ans1.push_back(nw);
-      op1 += cnt;
-      if (i >= lst) {
-        lst = bc[++psb];
-        cnt = 1;
-      } else ++cnt;
+      const T nw = gen_str_with_divisible_hash(lst);
+      ans1.push_back(nw), op1 += cnt;
+      if (i >= lst) lst = bc[++psb], cnt = 1;
+      else ++cnt;
     }
     vec<T> ans2;
     i64 op2 = 0;
     for (usz i = 0, cnt = 0, pr = bc.size() > 1 ? bc[bc.size() - 2] : 0, lst = bc.back(); i < n; ++i) {
-      T nw = gen_str_with_divisible_hash(lst);
-      ans2.push_back(nw);
-      op2 += i < pr ? 1 : cnt;
-      ++cnt;
+      const T nw = gen_str_with_divisible_hash(lst);
+      ans2.push_back(nw), op2 += i < pr ? 1 : cnt, ++cnt;
     }
     return op1 > op2 ? ans1 : ans2;
   } else if CEXP (std::is_integral_v<T>) {
     vec<T> ans1;
     i64 op1 = 0;
     for (usz i = 0, psb = 0, cnt = 0, lst = bc[0]; i < n; ++i) {
-      ans1.push_back(T(lst * cnt));
-      op1 += cnt;
-      if (i >= lst) {
-        lst = bc[++psb];
-        cnt = 1;
-      } else ++cnt;
+      ans1.push_back(T(lst * cnt)), op1 += cnt;
+      if (i >= lst) lst = bc[++psb], cnt = 1;
+      else ++cnt;
     }
     vec<T> ans2;
     i64 op2 = 0;
-    for (usz i = 0, cnt = 0, pr = bc.size() > 1 ? bc[bc.size() - 2] : 0, lst = bc.back(); i < n; ++i) {
-      ans2.push_back(T(lst * cnt));
-      op2 += i < pr ? 1 : cnt;
-      ++cnt;
-    }
+    for (usz i = 0, cnt = 0, pr = bc.size() > 1 ? bc[bc.size() - 2] : 0, lst = bc.back(); i < n; ++i) ans2.push_back(T(lst * cnt)), op2 += i < pr ? 1 : cnt, ++cnt;
     return op1 > op2 ? ans1 : ans2;
   }
 }

@@ -14,7 +14,7 @@ CEXP int parity(T x) {
   else if CEXP (nd <= sizeof(unsigned long) * 8) return __builtin_parityl(x);
   else if CEXP (nd <= nd_ull) return __builtin_parityll(x);
   else {
-    unsigned long long lo = x & (unsigned long long)(-1), hi = x >> nd_ull;
+    const unsigned long long lo = x & (unsigned long long)(-1), hi = x >> nd_ull;
     return __builtin_parityll(hi) ^ __builtin_parityll(lo);
   }
 }

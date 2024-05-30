@@ -38,12 +38,12 @@ class matrix {
   }
 
   friend std::istream &operator>>(std::istream &is, matrix &mat) {
-    u32 r_ = mat.row(), c_ = mat.col();
+    const u32 r_ = mat.row(), c_ = mat.col();
     FOR2_ (i, 0, r_, j, 0, c_) is >> mat(i, j);
     return is;
   }
   friend std::ostream &operator<<(std::ostream &os, matrix CR mat) {
-    u32 r_ = mat.row(), c_ = mat.col();
+    const u32 r_ = mat.row(), c_ = mat.col();
     FOR2_ (i, 0, r_ - 1, j, 0, c_) os << mat(i, j) << " \n"[j + 1 == c_];
     os << mat(r_ - 1, 0);
     FOR1_ (j, 1, c_) os << ' ' << mat(r_ - 1, j);
@@ -118,7 +118,7 @@ class matrix {
   }
 
   friend CEXP matrix operator*(matrix CR l, matrix CR r) {
-    u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
+    const u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
     assert(j_ == r.row());
     matrix ret(i_, k_);
     FOR1_ (i, 0, i_)
@@ -131,7 +131,7 @@ class matrix {
   CEXP matrix &operator*=(matrix CR r) { return *this = *this * r; }
 
   CEXP vec<T> lproj(vec<T> CR x) const {
-    u32 r_ = row(), c_ = col();
+    const u32 r_ = row(), c_ = col();
     assert(r_ == x.size());
     vec<T> ret(c_);
     flt_ (u32, i, 0, c_)

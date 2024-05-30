@@ -12,7 +12,8 @@ CEXP void ntt_doubling(NTT_t CR ntt, vec<mint>& f, u32 n = 0) {
   assert(std::has_single_bit(n) && f.size() >= n * 2);
   vec<mint> g(f.begin(), f.begin() + n);
   ntt.dit(g);
-  mint r = 1, zeta = qpow(ntt.G, (mint::mod() - 1) / (n * 2));
+  mint r = 1;
+  const mint zeta = qpow(ntt.G, (mint::mod() - 1) / (n * 2));
   flt_ (u32, i, 0, n) g[i] *= r, r *= zeta;
   ntt.dif(g);
   std::ranges::copy(g, f.begin() + n);

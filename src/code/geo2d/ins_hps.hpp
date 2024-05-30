@@ -20,7 +20,7 @@ CEXP cvh<FP> ins_hPs(vec<line<FP>> vl) {
   while (q.size() > 2 && !check(*(q.rbegin() + 1), q.back(), q.front())) q.pop_back();
   while (q.size() > 2 && !check(*(q.begin() + 1), q.front(), q.back())) q.pop_front();
   vec<point<FP>> ret;
-  for (u32 i = 0; i < q.size(); ++i) ret.push_back(ins_LL(q[i], q[(i + 1) % q.size()]));
+  flt_ (u32, i, 0, (u32)q.size()) ret.push_back(ins_LL(q[i], q[(i + 1) % q.size()]));
   return cvh{ret, true};
 }
 

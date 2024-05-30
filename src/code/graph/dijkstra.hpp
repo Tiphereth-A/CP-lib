@@ -17,16 +17,16 @@ CEXP vec<T> dijkstra(alistw<T, with_deg> CR fg, u32 s, F &&relax, T INF = std::n
   ds::rheap<T, u32> q;
   q.emplace(dis[s] = 0, s);
   while (!q.empty()) {
-    auto [dis_now, now] = q.top();
+    auto [dis_now, u] = q.top();
     if (dis_now > INF) dis_now = INF;
     q.pop();
-    if (vis[now]) continue;
-    vis[now] = true;
-    for (auto [to, w] : g[now])
-      if (dis[now] + w < dis[to]) {
-        relax(now, to);
-        dis[to] = dis[now] + w;
-        if (!vis[to]) q.emplace(dis[to], to);
+    if (vis[u]) continue;
+    vis[u] = true;
+    for (auto [v, w] : g[u])
+      if (dis[u] + w < dis[v]) {
+        relax(u, v);
+        dis[v] = dis[u] + w;
+        if (!vis[v]) q.emplace(dis[v], v);
       }
   }
   return dis;

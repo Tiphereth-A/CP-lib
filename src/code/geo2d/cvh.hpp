@@ -27,7 +27,7 @@ struct cvh : public polygon<FP> {
   template <bool strict = true>
   CEXP cvh &init() {
     this->reunique();
-    u32 n = this->size();
+    const u32 n = this->size();
     if (n <= 1) return *this;
     vec<point<FP>> cvh(n * 2);
     u32 sz_cvh = 0;
@@ -47,7 +47,7 @@ struct cvh : public polygon<FP> {
   }
 
   CEXP FP diameter() const {
-    u32 n = this->size();
+    const u32 n = this->size();
     if (n <= 1) return FP{};
     u32 is = 0, js = 0;
     flt_ (u32, k, 1, n) {
@@ -64,7 +64,7 @@ struct cvh : public polygon<FP> {
   }
 
   CEXP cvh &do_minkowski_sum_nonstrict(cvh<FP> CR r) {
-    u32 n = this->size(), m = r.size();
+    const u32 n = this->size(), m = r.size();
     if (!m) return *this;
     if (!n) return *this = r;
     vec<point<FP>> result;
@@ -87,7 +87,7 @@ struct cvh : public polygon<FP> {
   CEXP cvh &do_minkowski_sum(cvh<FP> CR r) { return do_minkowski_sum_nonstrict(r).init(); }
 
   CEXP cvh &do_ins_CVHhP(line<FP> CR l) {
-    u32 n = this->size();
+    const u32 n = this->size();
     vec<point<FP>> cvc;
     flt_ (u32, i, 0, n) {
       point p1 = this->vs[i], p2 = this->vs[this->next(i)];

@@ -13,7 +13,7 @@ CEXP triangle<FP> max_area_T(cT_(cvh<FP>) ch) {
   u32 j = 1, k = 2;
   FP ans = 0, tmp, new_tmp;
   u32 is = 0, js = 1, ks = 2;
-  for (u32 i = 0; i < ch.size(); ++i) {
+  flt_ (u32, i, 0, ch.size()) {
     if (i == j) j = ch.next(j);
     if (j == k) k = ch.next(k);
     if (is_gt(tmp = cross(ch.vs[i], ch.vs[j], ch.vs[k]), ans)) ans = tmp, is = i, js = j, ks = k;

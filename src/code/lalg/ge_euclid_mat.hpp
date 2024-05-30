@@ -12,11 +12,11 @@ requires requires(Is0 is0, Div div, TPN Mat::value_type t) {
 }
 CEXP i32 ge_euclid(Mat& mat, Is0&& is0, Div&& div, bool clear_u = true) {
   using T = TPN Mat::value_type;
-  u32 r_ = mat.row(), c_ = mat.col(), rk_max = min(r_, c_);
+  const u32 r_ = mat.row(), c_ = mat.col(), rk_max = min(r_, c_);
   u32 rk = 0;
   bool neg = false;
-  for (u32 i = 0, now_row = 0, j_ = i; i < mat.row(); ++i) {
-    neg ^= ge_impl_::swapr__(mat, now_row, rk, mat.row());
+  for (u32 i = 0, now_r = 0, j_ = i; i < mat.row(); ++i) {
+    neg ^= ge_impl_::swapr__(mat, now_r, rk, mat.row());
     j_ = max(j_, i);
     while (j_ < c_ && is0(mat(rk, j_))) ++j_;
     if (j_ == c_) break;

@@ -45,9 +45,8 @@ CEXP u32 u32tostrhex(u32 x, char *s) {
   if CEXP (lower) lut = lowert;
   else lut = uppert;
   for (int i = 3; ~i; x >>= 8, --i) {
-    int pos = (x & 255) * 2;
-    s[i * 2] = lut[pos];
-    s[i * 2 + 1] = lut[pos + 1];
+    const int pos = (x & 255) * 2;
+    s[i * 2] = lut[pos], s[i * 2 + 1] = lut[pos + 1];
   }
   return 0;
 }

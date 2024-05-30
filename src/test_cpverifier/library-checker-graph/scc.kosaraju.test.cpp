@@ -15,6 +15,6 @@ int main() {
   }
   tifa_libs::graph::kosaraju scc(g);
   std::cout << scc.dag.g.size() << '\n';
-  for (u32 i = 0; i < scc.dag.g.size(); ++i) std::cout << scc.belongs[i].size() << ' ' << scc.belongs[i] << '\n';
+  flt_ (u32, i, 0, (u32)scc.dag.g.size()) std::cout << scc.belongs[i].size() << ' ' << scc.belongs[i] << '\n';
   return 0;
 }

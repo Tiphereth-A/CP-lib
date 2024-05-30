@@ -7,9 +7,8 @@ namespace tifa_libs::math {
 
 template <class T>
 CEXP vec<T> conv_xor(vec<T> l, vec<T> r) {
-  wht(l);
-  wht(r);
-  for (u32 i = 0; i < l.size(); ++i) l[i] *= r[i];
+  wht(l),  wht(r);
+  flt_ (u32, i, 0, (u32)l.size()) l[i] *= r[i];
   iwht(l);
   return l;
 }

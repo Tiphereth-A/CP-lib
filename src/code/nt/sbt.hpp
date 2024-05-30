@@ -13,16 +13,16 @@ class SBT {
 
  public:
   explicit CEXP SBT() : lx(0), ly(1), x(1), y(1), rx(1), ry(0) {}
-  CEXP SBT(T X, T Y) : SBT() {
-    assert(x > 0 && Y > 0);
-    if (T g = gcd(X, Y); g > 1) X /= g, Y /= g;
-    while (min(X, Y))
-      if (X > Y) {
-        T _ = X / Y;
-        movr(_ - !(X -= _ * Y));
+  CEXP SBT(T x_, T y_) : SBT() {
+    assert(x_ > 0 && y_ > 0);
+    if (T g = gcd(x_, y_); g > 1) x_ /= g, y_ /= g;
+    while (min(x_, y_))
+      if (x_ > y_) {
+        const T _ = x_ / y_;
+        movr(_ - !(x_ -= _ * y_));
       } else {
-        T _ = Y / X;
-        movl(_ - !(Y -= _ * X));
+        const T _ = y_ / x_;
+        movl(_ - !(y_ -= _ * x_));
       }
   }
   explicit CEXP SBT(vec<T> CR seq_) : SBT() {
@@ -51,17 +51,13 @@ class SBT {
   CEXP void movl(T d = 1) {
     if (d <= 0) return;
     if (seq.empty() || seq.back() > 0) seq.push_back(0);
-    seq.back() -= d;
-    rx += lx * d, ry += ly * d;
-    x = rx + lx, y = ry + ly;
+    seq.back() -= d, rx += lx * d, ry += ly * d, x = rx + lx, y = ry + ly;
   }
   // move towards rchild with @d steps
   CEXP void movr(T d = 1) {
     if (d <= 0) return;
     if (seq.empty() || seq.back() < 0) seq.push_back(0);
-    seq.back() += d;
-    lx += rx * d, ly += ry * d;
-    x = rx + lx, y = ry + ly;
+    seq.back() += d, lx += rx * d, ly += ry * d, x = rx + lx, y = ry + ly;
   }
   // move towards fa with @d steps
   // @return true if succeed, or false if falied
@@ -70,15 +66,8 @@ class SBT {
     while (d) {
       if (seq.empty()) return false;
       T _ = min(d, abs(seq.back()));
-      if (seq.back() > 0) {
-        x -= rx * _, y -= ry * _;
-        lx = x - rx, ly = y - ry;
-        seq.back() -= _;
-      } else {
-        x -= lx * _, y -= ly * _;
-        rx = x - lx, ry = y - ly;
-        seq.back() += _;
-      }
+      if (seq.back() > 0) x -= rx * _, y -= ry * _, lx = x - rx, ly = y - ry, seq.back() -= _;
+      else x -= lx * _, y -= ly * _, rx = x - lx, ry = y - ly, seq.back() += _;
       d -= _;
       if (!seq.back()) seq.pop_back();
       if (!_) break;

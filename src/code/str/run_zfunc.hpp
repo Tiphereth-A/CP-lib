@@ -16,7 +16,7 @@ CEXP vec<pt3<u32>> run_zfunc(cT_(strn) s) {
     auto f = [&](bool rev) {
       auto t = s.substr(l, r - l);
       if (rev) std::ranges::reverse(t), m = l + r - m;
-      u32 len = r - l, mid = m - l;
+      const u32 len = r - l, mid = m - l;
       strn tl = t.substr(0, mid), tr = t.substr(mid, len - mid) + t;
       std::ranges::reverse(tl);
       auto zl = z_func(tl), zr = z_func(tr);
@@ -35,7 +35,7 @@ CEXP vec<pt3<u32>> run_zfunc(cT_(strn) s) {
   rec(rec, 0, (u32)s.size());
   std::ranges::sort(rs);
   vec<pt3<u32>> runs;
-  for (u32 i = 0; i < rs.size(); ++i) {
+  flt_ (u32, i, 0, (u32)rs.size()) {
     auto [l, r, t] = rs[i];
     if (i && l == get<0>(rs[i - 1]) && r == get<1>(rs[i - 1])) continue;
     runs.emplace_back(t, l, r);

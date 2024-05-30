@@ -36,7 +36,7 @@ CEXP void run(u64 n, vecu64 &p) {
     p.push_back(n);
     return;
   }
-  u64 g = rho(n);
+  const u64 g = rho(n);
   run(n / g, p), run(g, p);
 }
 }  // namespace pfactors_impl_

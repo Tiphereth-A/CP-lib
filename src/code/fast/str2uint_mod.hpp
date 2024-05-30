@@ -7,7 +7,7 @@
 namespace tifa_libs {
 
 CEXP u64 str2uint_mod(strnv s, u64 mod) {
-  u32 n = (u32)s.size();
+  const u32 n = (u32)s.size();
   if (!n) return 0;
   u64 ans = 0;
   for (u32 i = 0; i + 8 <= n; i += 8) ans = (math::mul_mod_u(ans, 100000000, mod) + str2uint_si64(s.data() + i)) % mod;

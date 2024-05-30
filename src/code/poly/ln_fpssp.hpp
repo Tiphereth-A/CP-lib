@@ -12,10 +12,10 @@ CEXP poly<mint, ccore> ln_fpssp(poly<mint, ccore> CR p, vecu64 CR inv, u32 n = 0
   if (!n) n = p.size();
   auto ps = poly2sp(p, n);
   poly<mint, ccore> g(n);
-  for (u32 k = 0; k < n - 1; ++k) {
+  flt_ (u32, k, 0, n - 1) {
     for (auto& [j, pj] : ps) {
       if (k < j) break;
-      u32 i = k - j + 1;
+      const u32 i = k - j + 1;
       g[k + 1] -= g[i] * pj * i;
     }
     g[k + 1] *= inv[k + 1];

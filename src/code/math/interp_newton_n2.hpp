@@ -20,7 +20,7 @@ class interp_newton {
   explicit CEXP interp_newton() {}
   CEXP interp_newton &insert(cT_(T) x, cT_(T) y) {
     points.emplace_back(x, y);
-    u32 n = (u32)points.size();
+    const u32 n = (u32)points.size();
     if (n == 1) {
       base.push_back(1);
     } else {
@@ -30,8 +30,7 @@ class interp_newton {
       base[0] = 0;
       flt_ (u32, i, 0, m) base[i] = base[i] - points[n - 2].first * base[i + 1];
     }
-    diffs.emplace_back(points.size());
-    diffs[n - 1][n - 1] = y;
+    diffs.emplace_back(points.size()), diffs[n - 1][n - 1] = y;
     if (n > 1)
       for (u32 i = n - 2; ~i; --i) diffs[n - 1][i] = (diffs[n - 2][i] - diffs[n - 1][i + 1]) / (points[i].first - points[n - 1].first);
     fit.push_back(0);

@@ -9,9 +9,9 @@ namespace tifa_libs::math {
 template <class mint, class ccore>
 CEXP poly<mint, ccore> cbm2n_fps(poly<mint, ccore> CR f, vec<mint> CR p) {
   using poly_t = poly<mint, ccore>;
-  u32 n = (u32)p.size();
+  const u32 n = (u32)p.size();
   assert(f.size() == n);
-  u32 m = std::bit_ceil(n);
+  const u32 m = std::bit_ceil(n);
   vec<poly_t> s(2 * m, poly_t{0, 1});
   flt_ (u32, i, 0, m)
     if (i < n) s[m + i][0] = -p[i];

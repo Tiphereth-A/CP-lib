@@ -15,9 +15,9 @@ CEXP int ffs(T x) {
   else if CEXP (nd <= nd_ull) return __builtin_ffsll(x);
   else {
     if (!x) return 0;
-    long long lo = x & (long long)(-1);
+    const long long lo = x & (long long)(-1);
     if (lo) return __builtin_ffsll(lo);
-    long long hi = x >> nd_ull;
+    const long long hi = x >> nd_ull;
     return __builtin_ffsll(hi) + 64;
   }
 }

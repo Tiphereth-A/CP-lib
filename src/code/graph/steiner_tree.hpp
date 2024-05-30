@@ -18,7 +18,7 @@ class steiner_tree {
 
   void build() {
     dp = vvecu(e.g.size(), vecu(1 << a.size(), INT32_MAX));
-    for (u32 i = 0; i < a.size(); ++i) dp[a[i]][1 << i] = 0;
+    flt_ (u32, i, 0, (u32)a.size()) dp[a[i]][1 << i] = 0;
     ds::rheapg<u32, u32> q;
     auto dij = [&](u32 s) {
       vecu vis(e.g.size(), 0);
@@ -35,8 +35,8 @@ class steiner_tree {
         }
       }
     };
-    for (u32 s = 1; s < (1_u32 << a.size()); ++s) {
-      for (u32 i = 0; i < e.g.size(); ++i) {
+    flt_ (u32, s, 1, 1_u32 << a.size()) {
+      flt_ (u32, i, 0, (u32)e.g.size()) {
         for (u32 ss = s & (s - 1); ss; ss = s & (ss - 1))
           dp[i][s] = min(dp[i][s], dp[i][ss] + dp[i][s ^ ss]);
         if (dp[i][s] != INT32_MAX) q.emplace(-dp[i][s], i);

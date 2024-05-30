@@ -18,8 +18,7 @@ CEXP auto exgcd_b(U a, U b) {
   }
   auto r = std::__countr_zero(a | b);
   a >>= r, b >>= r;
-  T x = (T)a, y = (T)b;
-  T s = 1, t = 0, u = 0, v = 1;
+  T x = (T)a, y = (T)b, s = 1, t = 0, u = 0, v = 1;
   while (x) {
     while (!(x & 1)) {
       x /= 2;
@@ -36,11 +35,11 @@ CEXP auto exgcd_b(U a, U b) {
   }
   if (y > 1) a /= (U)y, b /= (U)y;
   if (a && (U)abs(v) >= a) {
-    T _ = v / (T)a;
+    const T _ = v / (T)a;
     v -= _ * (T)a, u += _ * (T)b;
   }
   if (b && (U)abs(u) >= b) {
-    T _ = u / (T)b;
+    const T _ = u / (T)b;
     u -= _ * (T)b, v += _ * (T)a;
   }
   if (T u_ = u + (T)b, v_ = v - (T)a; abs(u_) + abs(v_) <= abs(u) + abs(v)) u = u_, v = v_;

@@ -17,7 +17,7 @@ class chordal {
   //! g.g[i] MUST be sorted
   explicit CEXP chordal(alist<with_deg> CR g) : g(g), deg(g.g.size()), peo(g.g.size()), rnk(g.g.size()) {
     for (auto& i : g.g) assert(std::ranges::is_sorted(i));
-    u32 n = (u32)g.g.size();
+    const u32 n = (u32)g.g.size();
     vecu l(n * 2 + 1), r, idx(n);
     std::iota(l.begin(), l.end(), 0);
     r = l;
@@ -48,7 +48,7 @@ class chordal {
           s.push_back(v);
           if (rnk[s.back()] < rnk[s[0]]) swap(s[0], s.back());
         }
-      for (u32 j = 1; j < s.size(); ++j)
+      flt_ (u32, j, 1, (u32)s.size())
         if (!std::ranges::binary_search(g.g[s[0]], s[j])) {
           if CEXP (!find_indcycle) return false;
           else {

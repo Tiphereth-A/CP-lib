@@ -17,9 +17,9 @@ int main() {
     } else {
       std::cout << "Yes\n";
       auto et = res.value();
-      for (u32 i = 0; i < et.size(); ++i) std::cout << et[i].first << " \n"[i + 1 == et.size()];
+      flt_ (u32, i, 0, (u32)et.size()) std::cout << et[i].first << " \n"[i + 1 == et.size()];
       if (et.size() == 1) std::cout << '\n';
-      for (u32 i = 1; i < et.size(); ++i) std::cout << et[i].second << " \n"[i + 1 == et.size()];
+      flt_ (u32, i, 1, (u32)et.size()) std::cout << et[i].second << " \n"[i + 1 == et.size()];
     }
   }
   return 0;

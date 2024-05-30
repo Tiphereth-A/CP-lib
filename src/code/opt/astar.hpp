@@ -27,10 +27,7 @@ std::optional<T> astar(T CR s) {
     if (now.solved()) return now;
     auto nxt = now.next();
     for (auto i : nxt)
-      if (!vis.count(i)) {
-        pq.push(i);
-        vis.insert(i);
-      }
+      if (!vis.count(i)) pq.push(i), vis.insert(i);
   }
   return std::nullopt;
 }

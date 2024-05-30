@@ -10,10 +10,9 @@ namespace tifa_libs::geo {
 template <class FP>
 CEXP std::optional<ptt<point<FP>>> tan_CP(circle<FP> CR c, point<FP> CR p) {
   point v = p - c.o;
-  FP x = v.norm2(), d = x - c.r * c.r;
+  const FP x = v.norm2(), d = x - c.r * c.r;
   if (is_neg(d)) return {};
-  point q1 = c.o + v * (c.r * c.r / x);
-  point q2 = v.do_rot90() * (c.r * std::sqrt(d) / x);
+  const point q1 = c.o + v * (c.r * c.r / x), q2 = v.do_rot90() * (c.r * std::sqrt(d) / x);
   // counter clock-wise
   return ptt<point<FP>>{q1 - q2, q1 + q2};
 }

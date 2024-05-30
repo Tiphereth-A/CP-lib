@@ -29,7 +29,7 @@ struct conv_subset {
   }
 
   CEXP void mobius(vec<arr_t>& a) const {
-    u32 n = (u32)a.size();
+    const u32 n = (u32)a.size();
     for (u32 w = n >> 1; w; w /= 2)
       for (u32 k = 0; k < n; k += w * 2)
         flt_ (u32, i, 0, w) sub(a[k + w + i], a[k + i], pc[k + w + i]);
@@ -37,16 +37,13 @@ struct conv_subset {
 
   CEXP vec<arr_t> lift(vec<T> CR a) const {
     vec<arr_t> A(a.size());
-    for (u32 i = 0; i < a.size(); ++i) {
-      std::ranges::fill(A[i], T());
-      A[i][pc[i]] = a[i];
-    }
+    flt_ (u32, i, 0, (u32)a.size()) std::ranges::fill(A[i], T()), A[i][pc[i]] = a[i];
     return A;
   }
 
   CEXP vec<T> unlift(vec<arr_t> CR A) const {
     vec<T> a(A.size());
-    for (u32 i = 0; i < A.size(); ++i) a[i] = A[i][pc[i]];
+    flt_ (u32, i, 0, (u32)A.size()) a[i] = A[i][pc[i]];
     return a;
   }
 

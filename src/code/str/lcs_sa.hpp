@@ -10,7 +10,7 @@ CEXP auto lcs_sa(cT_(strn) s, cT_(strn) t) {
   tifa_libs::str::suffixarray<> sa(" " + s + "#" + t);
   sa.get_height();
   pt3<u32> ans{};
-  for (u32 i = 2; i < sa.sa.size(); ++i) {
+  flt_ (u32, i, 2, (u32)sa.sa.size()) {
     if (sa.sa[i - 1] - 1 < s.size() && sa.sa[i] - 1 > s.size()) ans = max(ans, pt3<u32>{sa.height[i], sa.sa[i - 1] - 1, sa.sa[i] - 1});
     if (sa.sa[i] - 1 < s.size() && sa.sa[i - 1] - 1 > s.size()) ans = max(ans, pt3<u32>{sa.height[i], sa.sa[i] - 1, sa.sa[i - 1] - 1});
   }

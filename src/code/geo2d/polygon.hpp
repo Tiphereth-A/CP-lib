@@ -58,7 +58,7 @@ struct polygon {
   CEXP f128 area() const { return area2() * .5l; }
   CEXP bool is_convex() const {
     bool flag[2] = {false, false};
-    u32 n = size();
+    const u32 n = size();
     if (n < 3) return true;
     for (u32 i = 0, j = next(i), k = next(j); i < n; ++i, j = next(j), k = next(k)) {
       auto sgn = sgn_cross(vs[i], vs[j], vs[k]);

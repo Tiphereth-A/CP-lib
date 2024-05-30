@@ -16,8 +16,8 @@ CEXP ptt<ptt<T>> rational_approx(T n, ptt<T> CR f) {
   auto ff = [](ptt<T> CR a, u32 b, ptt<T> CR c) { return ptt<T>{a.first * b + c.first, a.second * b + c.second}; };
   ptt<T> lo{0, 1}, hi{1, 0};
   while (true) {
-    u32 n1 = opt::bsearch([&](u32 x) {
-      auto _ = ff(hi, x, lo);
+    const u32 n1 = opt::bsearch([&](u32 x) {
+      const auto _ = ff(hi, x, lo);
       return _.first <= n && _.second <= n && _.first * f.second <= _.second * f.first;
     });
     lo = ff(hi, n1, lo);
@@ -25,8 +25,8 @@ CEXP ptt<ptt<T>> rational_approx(T n, ptt<T> CR f) {
       hi = lo;
       break;
     }
-    u32 n2 = opt::bsearch([&](u32 x) {
-      auto _ = ff(lo, x, hi);
+    const u32 n2 = opt::bsearch([&](u32 x) {
+      const auto _ = ff(lo, x, hi);
       return _.first <= n && _.second <= n && f.first * _.second <= f.second * _.first;
     });
     hi = ff(lo, n2, hi);

@@ -21,9 +21,8 @@ CEXP u64 sqrfree_cnt(u64 n) {
     auto f = [xi, h, tlim](u32 i) -> u32 { return i < h ? i + 1 : u32(f64(xi) / (2 * h - (tlim & 1) - i)); };
     i64 sum = 1;
     for (u32 t = 1, l = 1; t < tlim; ++t) {
-      u32 r = f(t), q = f(tlim - t - 1);
-      sum -= i64(r - l) * (q <= D ? mu[q] : mu_large[(u64)i * r * r]);
-      l = r;
+      const u32 r = f(t), q = f(tlim - t - 1);
+      sum -= i64(r - l) * (q <= D ? mu[q] : mu_large[(u64)i * r * r]), l = r;
     }
     ans += u64(mu_large[i] = (i32)sum);
   }

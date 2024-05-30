@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_MATH_PERIOD_FIB
 #define TIFALIBS_MATH_PERIOD_FIB
 
-#include "../nt/lcm.hpp"
+#include "../math/isqrt.hpp"
+#include "lcm.hpp"
 
 namespace tifa_libs::math {
 
@@ -14,17 +15,14 @@ CEXP u64 period_fib(u32 n) {
   };
 
   u64 res = 1;
-  for (u32 i = 2; (u64)i * i <= n; ++i)
+  fle_ (u32, i, 2, isqrt(n))
     if (n % i == 0) {
       n /= i;
       u64 x = g(i), _ = n;
       while (n % i == 0) n /= i;
       x *= _ / n, res = lcm(res, x);
     }
-  if (n > 1) {
-    u64 x = g(n);
-    res = lcm(res, x);
-  }
+  if (n > 1) res = lcm(res, g(n));
   return res;
 }
 

@@ -14,9 +14,9 @@ CEXP std::optional<ptt<circle<FP>>> make_C_rPL(FP r, point<FP> CR p, line<FP> CR
   if (is_pos(dis - r * 2)) return {};
   point dir = l.direction();
   dir *= r / dir.norm();
-  point dirl = rot90(dir), dirr = rot270(dir);
+  const point dirl = rot90(dir), dirr = rot270(dir);
   if (is_zero(dis)) return ptt<circle<FP>>{{p + dirl, r}, {p + dirr, r}};
-  circle c{p, r};
+  const circle c{p, r};
   if (auto ps = ins_CL(c, {l.l + dirl, l.r + dirl}); !ps.has_value() && !(ps = ins_CL(c, {l.l + dirr, l.r + dirr})).has_value()) return {};
   else return ptt<circle<FP>>{{ps.value().first, r}, {ps.value().second, r}};
 }

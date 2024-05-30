@@ -20,26 +20,22 @@ struct point {
 
   template <arithm_c T>
   CEXP point &operator+=(T n) {
-    this->x += n;
-    this->y += n;
+    this->x += n, this->y += n;
     return *this;
   }
   template <arithm_c T>
   CEXP point &operator-=(T n) {
-    this->x -= n;
-    this->y -= n;
+    this->x -= n, this->y -= n;
     return *this;
   }
   template <arithm_c T>
   CEXP point &operator*=(T n) {
-    this->x *= n;
-    this->y *= n;
+    this->x *= n, this->y *= n;
     return *this;
   }
   template <arithm_c T>
   CEXP point &operator/=(T n) {
-    this->x /= n;
-    this->y /= n;
+    this->x /= n, this->y /= n;
     return *this;
   }
   template <arithm_c T>
@@ -60,13 +56,11 @@ struct point {
   friend CEXP point operator/(T n, point x) { return x /= n; }
 
   CEXP point &operator+=(point CR p) {
-    this->x += p.x;
-    this->y += p.y;
+    this->x += p.x, this->y += p.y;
     return *this;
   }
   CEXP point &operator-=(point CR p) {
-    this->x -= p.x;
-    this->y -= p.y;
+    this->x -= p.x, this->y -= p.y;
     return *this;
   }
   CEXP point operator+(point CR p) const { return point(*this) += p; }
@@ -74,7 +68,7 @@ struct point {
 
   CEXP point operator-() const { return point{-x, -y}; }
   CEXP auto operator<=>(point CR p) const {
-    if (auto c = comp(x, p.x); c) return c;
+    if (auto CR c = comp(x, p.x); c) return c;
     return comp(y, p.y);
   }
   CEXP bool operator==(point CR p) const { return is_eq(x, p.x) && is_eq(y, p.y); }
@@ -104,23 +98,20 @@ struct point {
   CEXP int toleft(point CR p) const { return sgn(*this ^ p); }
 
   CEXP point &do_rot(FP theta) {
-    FP x0 = x, y0 = y, ct = std::cos(theta), st = std::sin(theta);
-    x = x0 * ct - y0 * st;
-    y = x0 * st + y0 * ct;
+    const FP x0 = x, y0 = y, ct = std::cos(theta), st = std::sin(theta);
+    x = x0 * ct - y0 * st, y = x0 * st + y0 * ct;
     return *this;
   }
   friend CEXP point rot(point p, FP theta) { return p.do_rot(theta); }
   CEXP point &do_rot90() {
-    FP tmp = x;
-    x = -y;
-    y = tmp;
+    const FP _ = x;
+    x = -y, y = _;
     return *this;
   }
   friend CEXP point rot90(point p) { return p.do_rot90(); }
   CEXP point &do_rot270() {
-    FP tmp = y;
-    y = -x;
-    x = tmp;
+    const FP _ = y;
+    y = -x, x = _;
     return *this;
   }
   friend CEXP point rot270(point p) { return p.do_rot270(); }

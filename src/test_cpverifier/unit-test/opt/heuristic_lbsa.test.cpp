@@ -50,7 +50,7 @@ vec<point_t> parse_tsp_data(cT_(strn) name) {
 double fitness(vec<point_t> CR data, vecu CR seq) {
   check(data.size(), seq.size());
   double ans = std::hypot(data[seq[0]].first - data[seq.back()].first, data[seq[0]].second - data[seq.back()].second);
-  for (u32 i = 1; i < seq.size(); ++i) ans += std::hypot(data[seq[i]].first - data[seq[i - 1]].first, data[seq[i]].second - data[seq[i - 1]].second);
+  flt_ (u32, i, 1, (u32)seq.size()) ans += std::hypot(data[seq[i]].first - data[seq[i - 1]].first, data[seq[i]].second - data[seq[i - 1]].second);
   return ans;
 }
 

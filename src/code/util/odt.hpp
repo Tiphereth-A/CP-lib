@@ -22,10 +22,7 @@ class ODT {
   explicit CEXP ODT() : data() {}
   explicit CEXP ODT(vec<T> CR c) : ODT() {
     u32 cnt = 0;
-    for (auto &&i : c) {
-      data.emplace(cnt, cnt, i);
-      ++cnt;
-    }
+    for (auto &&i : c) data.emplace(cnt, cnt, i), ++cnt;
   }
 
   CEXP void clear() { data.clear(); }

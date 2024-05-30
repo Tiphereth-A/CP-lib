@@ -15,10 +15,7 @@ inline std::optional<u64> exbsgs(u64 a, u64 b, u64 m) {
   u64 cnt = 0, t = 1;
   for (u64 d = gcd(a, m); d != 1; d = gcd(a, m)) {
     if (b % d) return -1;
-    ++cnt;
-    b /= d;
-    m /= d;
-    (t *= a / d) %= m;
+    ++cnt, b /= d, m /= d, (t *= a / d) %= m;
     if (b == t) return cnt;
   }
   auto ans = bsgs(a, b * inverse(t, m) % m, m);

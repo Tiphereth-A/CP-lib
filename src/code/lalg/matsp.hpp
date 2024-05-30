@@ -46,7 +46,7 @@ class matsp {
   }
   template <class F>
   friend CEXP matsp merge(matsp l, matsp r, F f) {
-    u32 r_ = l.row(), c_ = l.col();
+    const u32 r_ = l.row(), c_ = l.col();
     assert(r_ == r.row() && c_ == r.col());
     matsp ret(r_, c_);
     flt_ (u32, i, 0, r_) {
@@ -58,8 +58,7 @@ class matsp {
         if (!l[i].empty()) ret[i] = l[i];
         continue;
       }
-      l.sort_row(i);
-      r.sort_row(i);
+      l.sort_row(i), r.sort_row(i);
       auto f1 = l.begin(), l1 = l.end(), f2 = r.begin(), l2 = r.end(), d = ret.d[i].begin();
       for (; f1 != l1; ++d) {
         if (f2 == l2) std::copy(f1, l1, d);
@@ -72,8 +71,7 @@ class matsp {
         } else {
           u32 j = u32(f1 - l.begin());
           *d = f(i, j, *f1, *f2);
-          ++f1;
-          ++f2;
+          ++f1, ++f2;
         }
       }
       std::copy(f2, l2, d);
@@ -113,7 +111,7 @@ class matsp {
   friend CEXP matsp operator-(matsp l, matsp CR r) { return l + (-r); }
   CEXP matsp &operator-=(matsp CR r) { return *this = *this - r; }
   friend CEXP matsp operator*(matsp l, matsp CR r) {
-    u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
+    const u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
     assert(j_ == r.row());
     matsp ret(i_, k_);
     flt_ (u32, i, 0, i_) {
@@ -129,7 +127,7 @@ class matsp {
   CEXP matsp &operator*=(matsp CR r) { return *this = *this - r; }
 
   CEXP vec<T> lproj(vec<T> CR x) const {
-    u32 r_ = row(), c_ = col();
+    const u32 r_ = row(), c_ = col();
     assert(r_ == x.size());
     vec<T> ret(c_);
     flt_ (u32, i, 0, c_)

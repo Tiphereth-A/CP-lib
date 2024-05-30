@@ -19,32 +19,25 @@ requires requires(Fu update, Fq query, Fc clear, Fr reset, u32 now) {
 CEXP void dsu_on_tree(G CR tr, tree_dfs_info<G>& info, Fu&& update, Fq&& query, Fc&& clear, Fr&& reset) {
   CEXP bool F = is_alist<G>;
   if (info.dfn.empty() || info.maxson.empty() || info.maxdfn.empty() || info.euler.empty()) info.template reset_dfs_info<td_dfn | td_maxson | td_maxdfn | td_euler>(tr);
-
   auto dfs = [&](auto&& dfs, u32 now, u32 fa = -1_u32, bool keep = false) -> void {
     for (auto v : tr.g[now])
       if CEXP (F) {
         if (v != fa && v != info.maxson[now]) dfs(dfs, v, now, false);
-      } else {
-        if (v.first != fa && v.first != info.maxson[now]) dfs(dfs, v.first, now, false);
-      }
+      } else if (v.first != fa && v.first != info.maxson[now]) dfs(dfs, v.first, now, false);
     if (info.sz[now] > 1) dfs(dfs, info.maxson[now], now, true);
     for (auto v : tr.g[now])
       if CEXP (F) {
         if (v != fa && v != info.maxson[now])
-          for (u32 i = info.dfn[v]; i <= info.maxdfn[v]; ++i) update(info.euler[i]);
-      } else {
-        if (v.first != fa && v.first != info.maxson[now])
-          for (u32 i = info.dfn[v.first]; i <= info.maxdfn[v.first]; ++i) update(info.euler[i]);
-      }
-    update(now);
-    query(now);
+          fle_ (u32, i, info.dfn[v], info.maxdfn[v]) update(info.euler[i]);
+      } else if (v.first != fa && v.first != info.maxson[now])
+        fle_ (u32, i, info.dfn[v.first], info.maxdfn[v.first]) update(info.euler[i]);
+    update(now), query(now);
     if (!keep) {
-      for (u32 i = info.dfn[now]; i <= info.maxdfn[now]; ++i) clear(info.euler[i]);
+      fle_ (u32, i, info.dfn[now], info.maxdfn[now]) clear(info.euler[i]);
       reset();
     }
     return;
   };
-
   dfs(dfs, tr.root);
 }
 

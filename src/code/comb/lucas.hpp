@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 template <class mint>
 class Lucas {
-  Binom<mint> mCn;
+  const Binom<mint> mCn;
 
   template <uint_c T>
   CEXP mint lucas__(T m, T n) const { return n == 0 ? 1 : mCn.mCn(m % mod(), n % mod()) * lucas__(m / mod(), n / mod()); }

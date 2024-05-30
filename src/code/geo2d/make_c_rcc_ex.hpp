@@ -11,7 +11,7 @@ namespace tifa_libs::geo {
 template <class FP>
 CEXP std::optional<ptt<circle<FP>>> make_C_rCC_ex(FP r, circle<FP> CR c1, circle<FP> CR c2) {
   if (relation_CC(c1, c2) == lyingin_cc) return {};
-  if (auto ps = ins_CC<FP>({c1.o, c1.r + r}, {c2.o, c2.r + r}); !ps.has_value()) return {};
+  if (auto CR ps = ins_CC<FP>({c1.o, c1.r + r}, {c2.o, c2.r + r}); !ps.has_value()) return {};
   else return ptt<circle<FP>>{{ps.value().first, r}, {ps.value().second, r}};
 }
 

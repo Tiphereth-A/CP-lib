@@ -7,10 +7,9 @@ namespace tifa_libs::math {
 
 template <class T>
 CEXP vec<T> berlekamp_massey(vec<T> CR a) {
-  u32 n = (u32)a.size();
+  const u32 n = (u32)a.size();
   vec<T> b{1}, c{1};
-  b.reserve(n + 1);
-  c.reserve(n + 1);
+  b.reserve(n + 1), c.reserve(n + 1);
   T y = 1;
   fle_ (u32, k, 1, n) {
     u32 l = (u32)c.size();
@@ -19,13 +18,12 @@ CEXP vec<T> berlekamp_massey(vec<T> CR a) {
     b.push_back(0);
     u32 m = (u32)b.size();
     if (x == 0) continue;
-    T d_ = x / y;
+    const T d_ = x / y;
     if (l < m) {
-      auto _ = c;
+      const auto _ = c;
       c.insert(c.begin(), m - l, 0);
       flt_ (u32, i, 0, m) c[m - 1 - i] -= d_ * b[m - 1 - i];
-      b = _;
-      y = x;
+      b = _, y = x;
     } else
       flt_ (u32, i, 0, m) c[l - 1 - i] -= d_ * b[m - 1 - i];
   }

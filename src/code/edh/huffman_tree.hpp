@@ -37,13 +37,13 @@ class huffman {
   }
 
  public:
-  explicit CEXP huffman(vec<T> CR weights, u32 child_sz = 2) : cnt_w((u32)weights.size()), cnt_l(), ch_sz(child_sz), data() {
+  explicit CEXP huffman(vec<T> CR weights, u32 child_sz = 2_u32) : cnt_w((u32)weights.size()), cnt_l(), ch_sz(child_sz), data() {
     assert(1 < child_sz && child_sz < weights.size());
     for (T now : weights) data.emplace_back(now);
-    for (u32 i = 0, iend = ((ch_sz - 1) - ((cnt_w - 1) % (ch_sz - 1))) % (ch_sz - 1); i < iend; ++i) data.emplace_back();
+    flt_ (u32, i, 0, ((ch_sz - 1) - ((cnt_w - 1) % (ch_sz - 1))) % (ch_sz - 1)) data.emplace_back();
     cnt_l = (u32)data.size();
     ds::rheap<T, u32> q;
-    for (u32 i = 0; i < data.size(); ++i) q.emplace(data[i].weight, i);
+    flt_ (u32, i, 0, (u32)data.size()) q.emplace(data[i].weight, i);
     while (q.size() > 1) {
       data.emplace_back(T{}, ch_sz);
       flt_ (u32, i, 0, ch_sz) {
@@ -52,7 +52,7 @@ class huffman {
         data.back().ch[i] = now_idx;
         q.pop();
       }
-      q.emplace(data.back().weight, data.size() - 1);
+      q.emplace(data.back().weight, u32(data.size() - 1));
     }
   }
 

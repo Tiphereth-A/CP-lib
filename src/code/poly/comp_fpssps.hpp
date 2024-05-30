@@ -13,24 +13,18 @@ vec<mint> comp_fpssps(u32 n, poly<mint, ccore> f, vec<mint> g, vecu64 CR fact, v
   assert(n <= N);
   static conv_subset<mint, N> ss;
   if (!f.size()) return vec<mint>(1 << n);
-  if (g[0] != 0) {
-    f = tsh_fps(f, g[0], fact, ifact);
-    g[0] = 0;
-  }
-  f.resize(n + 1);
-  g.resize(1 << n);
+  if (g[0] != 0) f = tsh_fps(f, g[0], fact, ifact), g[0] = 0;
+  f.resize(n + 1), g.resize(1 << n);
   fle_ (u32, i, 0, n) f[i] *= fact[i];
   v3ec<mint> h(n + 1, vvec<mint>(n + 1, vec<mint>{}));
   fle_ (u32, i, 0, n) h[0][i] = {f[i]};
   fle_ (u32, k, 1, n) {
     auto A = ss.lift({g.begin() + (1 << (k - 1)), g.begin() + (1 << k)});
     ss.zeta(A);
-    for (u32 j = 0; j <= n - k; ++j) {
+    fle_ (u32, j, 0, n - k) {
       h[k][j] = h[k - 1][j];
       auto B = ss.lift(h[k - 1][j + 1]);
-      ss.zeta(B);
-      ss.prod(B, A);
-      ss.mobius(B);
+      ss.zeta(B), ss.prod(B, A), ss.mobius(B);
       auto c = ss.unlift(B);
       std::ranges::copy(c, std::back_inserter(h[k][j]));
     }

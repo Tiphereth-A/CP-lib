@@ -12,8 +12,8 @@ CEXP bool any_ins_Ss(vec<line<FP>> CR ss) {
   if (ss.empty()) return false;
   using seq_t = std::tuple<FP, int, line<FP>>;
   const auto seqcmp = [](seq_t CR u, seq_t CR v) {
-    auto [u0, u1, u2] = u;
-    auto [v0, v1, v2] = v;
+    auto CR[u0, u1, u2] = u;
+    auto CR[v0, v1, v2] = v;
     if (is_eq(u0, v0)) return u1 == v1 ? u2 < v2 : u1 < v1;
     return is_lt(u0, v0);
   };

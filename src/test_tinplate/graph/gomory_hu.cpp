@@ -25,7 +25,7 @@ int main() {
     std::cin >> u >> v;
     auto vs = tifa_libs::graph::path(g, u, v).value();
     u32 ans = std::numeric_limits<u32>::max();
-    for (u32 j = 1; j < vs.size(); ++j) {
+    flt_ (u32, j, 1, (u32)vs.size()) {
       u32 from = vs[j - 1], to = vs[j];
       ans = tifa_libs::min(ans, mp[std::minmax(from, to)]);
     }

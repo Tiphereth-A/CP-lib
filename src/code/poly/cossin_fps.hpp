@@ -11,10 +11,9 @@ template <class mint, class ccore>
 requires(ccore::ct_cat == ct_NTT)
 CEXP ptt<poly<mint, ccore>> cossin_fps(poly<mint, ccore> p, u32 n = 0) {
   if (!n) n = (u32)p.size();
-  mint i = qpow(poly<mint, ccore>::conv_core.G, (mint::mod() - 1) / 4),
-       inv2 = (mint::mod() + 1) / 2;
+  const mint i = qpow(poly<mint, ccore>::conv_core.G, (mint::mod() - 1) / 4), inv2 = (mint::mod() + 1) / 2;
   (p *= i).resize(n);
-  auto expf = exp_fps(p), expnf = exp_fps(-p);
+  const auto expf = exp_fps(p), expnf = exp_fps(-p);
   return {(expf + expnf) * inv2, (expnf - expf) * (i * inv2)};
 }
 

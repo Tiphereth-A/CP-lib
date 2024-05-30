@@ -12,7 +12,7 @@ namespace tifa_libs::opt {
 template <class Ft>
 CEXP vecu smawk(u32 n, u32 m, Ft&& f) {
   vecu ans(n);
-  auto run = [&](auto&& run, u32 u, u32 d, u32 l, u32 r) -> void {
+  auto g = [&](auto&& g, u32 u, u32 d, u32 l, u32 r) -> void {
     if (u == d) return;
     assert(l < r);
     const u32 rmid = (u + d) / 2;
@@ -20,10 +20,9 @@ CEXP vecu smawk(u32 n, u32 m, Ft&& f) {
     for (u32 col = l + 1; col < r; ++col)
       if (!f(rmid, cm, col)) cm = col;
     ans[rmid] = cm;
-    run(run, u, rmid, l, cm + 1);
-    run(run, rmid + 1, d, cm, r);
+    g(g, u, rmid, l, cm + 1), g(g, rmid + 1, d, cm, r);
   };
-  run(run, 0, n, 0, m);
+  g(g, 0, n, 0, m);
   return ans;
 }
 

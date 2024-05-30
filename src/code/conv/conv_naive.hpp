@@ -10,7 +10,7 @@ requires(sizeof(U) <= sizeof(T))
 CEXP vec<T> conv_naive(vec<U> CR l, vec<U> CR r, u32 ans_size = 0) {
   if (l.empty() || r.empty()) return {};
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
-  u32 n = (u32)l.size(), m = (u32)r.size();
+  const u32 n = (u32)l.size(), m = (u32)r.size();
   vec<T> ans(ans_size);
   if (n < m)
     flt_ (u32, j, 0, m)

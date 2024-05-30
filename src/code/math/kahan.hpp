@@ -13,7 +13,7 @@ class kahan_fp {
   CEXP kahan_fp(FP val = 0) : sum(val), c(0) {}
 
   CEXP kahan_fp& operator+=(FP x) {
-    FP y = x - c;
+    const FP y = x - c;
     volatile FP t = sum + y, z = t - sum;
     c = z - y, sum = t;
     return *this;

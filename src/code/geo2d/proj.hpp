@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 // projection to a line
 template <class FP>
 CEXP point<FP> proj(line<FP> CR l, point<FP> CR p) {
-  point dir = l.direction();
+  const point dir = l.direction();
   return l.l + dir * (dir * (p - l.l) / dir.norm2());
 }
 // reflection about a line

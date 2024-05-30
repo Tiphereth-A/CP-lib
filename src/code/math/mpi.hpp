@@ -140,8 +140,8 @@ class mpi {
 
   static CEXP vecu add_(vecu CR a, vecu CR b) {
     vecu c(max(a.size(), b.size()) + 1);
-    for (u32 i = 0; i < a.size(); ++i) c[i] += a[i];
-    for (u32 i = 0; i < b.size(); ++i) c[i] += b[i];
+    flt_ (u32, i, 0, (u32)a.size()) c[i] += a[i];
+    flt_ (u32, i, 0, (u32)b.size()) c[i] += b[i];
     for (u32 i = 0; i < c.size() - 1; ++i)
       if (c[i] >= D) c[i] -= D, c[i + 1]++;
     shrink_(c);
@@ -151,7 +151,7 @@ class mpi {
     assert(leq_(b, a));
     vecu c = a;
     u32 borrow = 0;
-    for (u32 i = 0; i < a.size(); ++i) {
+    flt_ (u32, i, 0, (u32)a.size()) {
       if (i < b.size()) borrow += b[i];
       c[i] -= borrow;
       borrow = 0;
@@ -179,8 +179,8 @@ class mpi {
   static CEXP vecu mul_bf_(vecu CR a, vecu CR b) {
     if (a.empty() || b.empty()) return {};
     vecu64 prod(a.size() + b.size() - 1 + 1);
-    for (u32 i = 0; i < a.size(); ++i)
-      for (u32 j = 0; j < b.size(); ++j)
+    flt_ (u32, i, 0, (u32)a.size())
+      flt_ (u32, j, 0, (u32)b.size())
         if ((prod[i + j] += (u64)a[i] * b[j]) >= 4_u64 * D * D) prod[i + j] -= 4_u64 * D * D, prod[i + j + 1] += 4_u64 * D;
     vecu c(prod.size() + 1);
     u64 x = 0;
