@@ -9,7 +9,8 @@ template <class T = u32>
 class dinic {
   struct TIFA {
     u32 to;
-    T w, inv;
+    T w;
+    u32 inv;
   };
   const u32 n;
 

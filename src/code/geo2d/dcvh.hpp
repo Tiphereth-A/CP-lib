@@ -19,7 +19,7 @@ class dcvh {
     explicit CEXP DHCVH(int sgn_) : sgn_(sgn_) {}
 
     CEXP bool contains(point<FP> CR p) const {
-      auto it = vs.lower_bound({p.x, -std::numeric_limits<FP>::max()});
+      auto it = vs.lower_bound(point<FP>{p.x, -std::numeric_limits<FP>::max()});
       if (it == vs.end()) return false;
       if (it->x == p.x) return sgn(p.y - it->y) * sgn_ <= 0;
       if (it == vs.begin()) return false;
@@ -34,7 +34,7 @@ class dcvh {
     }
     CEXP DHCVH &insert(point<FP> CR p) {
       if (contains(p)) return *this;
-      auto _ = vs.lower_bound({p.x, -std::numeric_limits<FP>::max()});
+      auto _ = vs.lower_bound(point<FP>{p.x, -std::numeric_limits<FP>::max()});
       if (_ != vs.end() && _->x == p.x) vs.erase(_);
       vs.insert(p);
       auto i = vs.find(p), j = i;

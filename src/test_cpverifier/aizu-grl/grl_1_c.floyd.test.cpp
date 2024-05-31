@@ -15,12 +15,11 @@ int main() {
     std::cin >> u >> v >> w;
     g.set_arc(u, v, w);
   }
-  auto d = tifa_libs::graph::floyd(g, INF);
-  if (!d.has_value()) {
+  if (!tifa_libs::graph::floyd(g, INF)) {
     std::cout << "NEGATIVE CYCLE\n";
     return 0;
   }
-  for (auto CR i : d.value().g)
+  for (auto CR i : g.g)
     flt_ (u32, j, 0, n) {
       if (i[j] == INF) std::cout << "INF"
                                  << " \n"[j + 1 == n];

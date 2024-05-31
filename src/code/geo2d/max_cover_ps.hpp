@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GEO2D_MAX_COVER_PS
 #define TIFALIBS_GEO2D_MAX_COVER_PS
 
-#include "ang2pi_pp.hpp"
+#include "ang_pp.hpp"
 #include "dist_pp.hpp"
 
 namespace tifa_libs::geo {

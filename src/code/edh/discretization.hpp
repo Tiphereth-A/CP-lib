@@ -13,9 +13,9 @@ CEXP T uniq(T v) {
   return v;
 }
 template <iterable_c T = vec<int>>
-CEXP std::pair<T, vec<u32>> gen_id(T CR v) {
+CEXP std::pair<T, vecu> gen_id(T CR v) {
   const T _ = uniq(v);
-  vec<u32> _1;
+  vecu _1;
   _1.reserve(v.size());
   flt_ (u32, i, 0, (u32)v.size()) _1.push_back(u32(std::ranges::lower_bound(_, v[i]) - _.begin()));
   return {_, _1};

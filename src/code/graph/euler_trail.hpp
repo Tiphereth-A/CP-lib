@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_EULER_TRAIL
 #define TIFALIBS_GRAPH_EULER_TRAIL
 
-#include "../util/util.hpp"
+#include "alist.hpp"
 
 namespace tifa_libs::graph {
 namespace euler_trail_impl_ {
@@ -53,6 +53,26 @@ CEXP std::optional<vecpt<u32>> euler_trail(u32 n, cT_(vecpt<u32>) edges) {
       if (deg_in[i] < g[i].size()) s = i;
     } else if (g[i].size() & 1) s = i;
   return euler_trail_impl_::run_<cycle>(n, (u32)edges.size(), g, s);
+}
+template <class G>
+CEXP bool is_eulerian(G CR g) {
+  const u32 n = (u32)g.g.size();
+  assert(n == g.deg_in.size());
+  vecb vis(n);
+  u32 cnt = 0;
+  auto f = [&](auto &&f, u32 x) -> void {
+    for (auto v : g.g[x]) {
+      ++cnt;
+      if CEXP (is_alist<G>) {
+        if (!vis[v]) vis[v] = 1, f(f, v);
+      } else if (!vis[v.first]) vis[v.first] = 1, f(f, v.first);
+    }
+  };
+  vis[0] = 1, f(f, 0);
+  if (g.cnt_arc != cnt) return 0;
+  flt_ (u32, i, 0, n)
+    if (g.deg_in[i] != g.deg_out[i]) return 0;
+  return 1;
 }
 
 }  // namespace tifa_libs::graph

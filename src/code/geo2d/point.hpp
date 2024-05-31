@@ -80,6 +80,10 @@ struct point {
     static_assert(std::is_floating_point_v<FP>);
     return std::atan2(y, x);
   }
+  CEXP FP arg_2pi() const {
+    FP res = arg();
+    return is_neg(res) ? res + 2 * pi_v<FP> : res;
+  }
   CEXP FP norm2() const { return x * x + y * y; }
   CEXP FP norm() const {
     static_assert(std::is_floating_point_v<FP>);

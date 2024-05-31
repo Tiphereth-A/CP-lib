@@ -345,10 +345,7 @@ notebook:
     - min_cover_c: 最小覆盖圆
       code_ext: hpp
       test_ext: cpp
-    - ang2pi_pp: 两向量夹角(0 到 2pi 之间)
-      code_ext: hpp
-      test_ext: cpp
-    - ang_pp: 两向量夹角(-pi 到 pi 之间)
+    - ang_pp: 两向量夹角
       code_ext: hpp
       test_ext: cpp
     - cross: 叉乘

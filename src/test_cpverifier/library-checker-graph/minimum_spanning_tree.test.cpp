@@ -19,7 +19,7 @@ int main() {
   std::ranges::sort(e);
   auto tr = tifa_libs::graph::kruskal<u32>(e, n);
   u64 ret = 0;
-  vec<u32> es;
+  vecu es;
   flt_ (u32, i, 0, n)
     for (auto [to, w] : tr.g[i]) {
       ret += w;

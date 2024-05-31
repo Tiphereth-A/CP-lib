@@ -7,20 +7,25 @@
 
 namespace tifa_libs::graph {
 
-// @return sum of spanning trees of undirected graph g
-template <class T, class Ge, bool with_deg>
+template <bool inner, class T, bool with_deg, class Ge>
 requires requires(Ge ge, math::matrix<T> A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
-CEXP T kirchhoff(cT_(amat<T, with_deg>) g, Ge &&ge) {
+CEXP T kirchhoff(amat<T, with_deg> CR g, u32 r, Ge &&ge) {
   const u32 n = (u32)g.g.size();
+  if (n <= 1) return n;
   math::matrix<T> mat(n - 1, n - 1);
+
   flt_ (u32, i, 0, n)
-    flt_ (u32, j, i + 1, n) {
-      auto _ = g.g[i][j];
-      mat(i, i) += _;
-      if (j != n - 1) mat(j, j) += _, mat(i, j) -= _, mat(j, i) -= _;
-    }
+    flt_ (u32, j, 0, n)
+      if (i != j) {
+        auto _ = g.g[i][j];
+        if (i != r && j != r) mat(i - (i > r), j - (j > r)) -= _;
+        if CEXP (inner) {
+          if (j != r) mat(j - (j > r), j - (j > r)) += _;
+        } else if (i != r) mat(i - (i > r), i - (i > r)) += _;
+      }
+
   return math::det(mat, ge);
 }
 

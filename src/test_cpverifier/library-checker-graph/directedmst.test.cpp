@@ -13,7 +13,7 @@ int main() {
   auto res = tifa_libs::graph::cle(n, s, arcs);
 
   u64 cost = 0;
-  vec<u32> ans(n, -1_u32);
+  vecu ans(n, -1_u32);
   ans[s] = s;
   for (auto [w, u, v] : res) cost += w, ans[v] = u;
   std::cout << cost << '\n'

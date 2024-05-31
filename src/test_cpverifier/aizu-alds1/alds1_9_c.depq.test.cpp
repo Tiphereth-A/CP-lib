@@ -6,7 +6,7 @@ int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   strn s;
-  vec<u32> v;
+  vecu v;
   while (std::cin >> s) {
     if (s == "end") break;
     if (s[0] == 'i') {
