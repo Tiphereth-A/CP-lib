@@ -20,16 +20,12 @@ CEXP auto exgcd_b(U a, U b) {
   a >>= r, b >>= r;
   T x = (T)a, y = (T)b, s = 1, t = 0, u = 0, v = 1;
   while (x) {
-    while (!(x & 1)) {
-      x /= 2;
-      if (!((s | t) & 1)) s /= 2, t /= 2;
+    while (!(x & 1))
+      if (x /= 2; !((s | t) & 1)) s /= 2, t /= 2;
       else s = (s + (T)b) / 2, t = (t - (T)a) / 2;
-    }
-    while (!(y & 1)) {
-      y /= 2;
-      if (!((u | v) & 1)) u /= 2, v /= 2;
+    while (!(y & 1))
+      if (y /= 2; !((u | v) & 1)) u /= 2, v /= 2;
       else u = (u + (T)b) / 2, v = (v - (T)a) / 2;
-    }
     if (x >= y) x -= y, s -= u, t -= v;
     else y -= x, u -= s, v -= t;
   }

@@ -20,15 +20,12 @@ class rpow {
     u64 _(mul_mod_u(b0.back(), b_, m_));
     flt_ (u32, i, 1, 65536) b1[i] = mul_mod_u(b1[i - 1], _, m_);
   }
-
   CEXP void swap(rpow& r) {
     b0.swap(r.b0), b1.swap(r.b1);
     ::tifa_libs::swap(b_, r.b_), ::tifa_libs::swap(m_, r.m_);
   }
-
   CEXP u64 base() const { return b_; }
   CEXP u64 mod() const { return m_; }
-
   CEXP u64 operator()(u32 x) const { return mul_mod_u(b0[x & 65535], b1[x >> 16], m_); }
 };
 

@@ -13,8 +13,7 @@ class domtree {
   vecu arr, par, rev, dsu, label;
 
   void dfs(u32 u) {
-    rev[arr[u] = label[t] = sdom[t] = dsu[t] = t] = u, ++t;
-    for (u32 w : g.g[u]) {
+    for (rev[arr[u] = label[t] = sdom[t] = dsu[t] = t] = u, ++t; u32 w : g.g[u]) {
       if (!~arr[w]) dfs(w), par[arr[w]] = arr[u];
       rg.add_arc(arr[w], arr[u]);
     }
@@ -24,8 +23,7 @@ class domtree {
     const u32 v = find(dsu[u], x + 1);
     if (!~v) return u;
     if (sdom[label[dsu[u]]] < sdom[label[u]]) label[u] = label[dsu[u]];
-    dsu[u] = v;
-    return x ? v : label[u];
+    return dsu[u] = v, x ? v : label[u];
   }
 
  public:
@@ -35,8 +33,7 @@ class domtree {
 
   // @return p, parents of dominator tree, p_i = -1_u32 if not exist else parent of vertex i
   vecu get_domtree(u32 root) {
-    dfs(root);
-    std::iota(dom.begin(), dom.end(), 0);
+    dfs(root), std::iota(dom.begin(), dom.end(), 0);
     for (u32 i = t - 1; ~i; --i) {
       for (u32 w : rg.g[i]) sdom[i] = min(sdom[i], sdom[find(w)]);
       if (i) bucket[sdom[i]].push_back(i);
@@ -49,8 +46,7 @@ class domtree {
       if (dom[i] != sdom[i]) dom[i] = dom[dom[i]];
     vecu fa(n, -1_u32);
     flt_ (u32, i, 1, t) fa[rev[i]] = rev[dom[i]];
-    fa[root] = root;
-    return fa;
+    return fa[root] = root, fa;
   }
 };
 

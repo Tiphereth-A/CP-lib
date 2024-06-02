@@ -15,8 +15,7 @@ CEXP void ntt_doubling(NTT_t CR ntt, vec<mint>& f, u32 n = 0) {
   mint r = 1;
   const mint zeta = qpow(ntt.G, (mint::mod() - 1) / (n * 2));
   flt_ (u32, i, 0, n) g[i] *= r, r *= zeta;
-  ntt.dif(g);
-  std::ranges::copy(g, f.begin() + n);
+  ntt.dif(g), std::ranges::copy(g, f.begin() + n);
 }
 
 }  // namespace tifa_libs::math

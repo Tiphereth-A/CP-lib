@@ -20,17 +20,14 @@ CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) {
     flt_ (u32, j, 0, n) {
       if (i == j) continue;
       auto CR pj = pos[j];
-      flt_ (u32, k, 0, pj.size()) {
-        const line<FP> s{pj[k], pj[pj.next(k)]};
-        if (!le.toleft(s.l) && !le.toleft(s.r)) evt.emplace_back(s.l, 0), evt.emplace_back(s.r, 0);
+      flt_ (u32, k, 0, pj.size())
+        if (const line<FP> s{pj[k], pj[pj.next(k)]}; !le.toleft(s.l) && !le.toleft(s.r)) evt.emplace_back(s.l, 0), evt.emplace_back(s.r, 0);
         else if (!is_ins_SL(s, le)) {
           if (point<FP> u = ins_LL(le, s); le.toleft(s.l) < 0 && le.toleft(s.r) >= 0) evt.emplace_back(u, -1);
           else if (le.toleft(s.l) >= 0 && le.toleft(s.r) < 0) evt.emplace_back(u, 1);
         }
-      }
     }
-    std::ranges::sort(evt);
-    if (e.l > e.r) std::ranges::reverse(evt);
+    if (std::ranges::sort(evt); e.l > e.r) std::ranges::reverse(evt);
     int sum = 0;
     flt_ (u32, i, 0, (u32)evt.size()) {
       sum += evt[i].second;

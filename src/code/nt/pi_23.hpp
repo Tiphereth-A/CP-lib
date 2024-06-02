@@ -15,8 +15,7 @@ CEXP u64 pi_23(u64 n) {
   u32 pidx = 0;
   u64 pi = 0;
   vecu64 ns;
-  ns.reserve(n2 * 2 + 2);
-  ns.push_back(0);
+  ns.reserve(n2 * 2 + 2), ns.push_back(0);
   fle_ (u64, i, 1, n2) ns.push_back(div_u64d(n, i));
   for (u64 i = ns.back() - 1; i; --i) ns.push_back(i);
   u32 nsz = (u32)ns.size();
@@ -29,11 +28,11 @@ CEXP u64 pi_23(u64 n) {
     ++pidx, ++pi;
   }
   vec<i32> bit(nsz - n3);
-  auto dfs = [&](auto &&rec, u64 cur, u32 pid, bool flag) -> void {
+  auto f = [&](auto &&f, u64 cur, u32 pid, bool flag) -> void {
     if (flag)
       if (u64 id = cur <= n2 ? nsz - cur : div_u64d(n, cur); id > n3)
         for (id -= n3; id; id -= id & -id) --bit[id];
-    for (u32 dst = pid; cur * prime[dst] < n23; ++dst) rec(rec, cur * prime[dst], dst, true);
+    for (u32 dst = pid; cur * prime[dst] < n23; ++dst) f(f, cur * prime[dst], dst, true);
   };
   while (prime[pidx] <= n3) {
     const u32 p = prime[pidx];
@@ -46,8 +45,7 @@ CEXP u64 pi_23(u64 n) {
         for (id -= n3; id < bit.size(); id += id & -id) _ += bit[id];
       h[i] -= (u64)_ - pi;
     }
-    dfs(dfs, p, pidx, false);
-    ++pidx, ++pi;
+    f(f, p, pidx, false), ++pidx, ++pi;
   }
   for (usz i = bit.size() - 1; i; --i)
     if (usz j = i + (i & -i); j < bit.size()) bit[i] += bit[j];

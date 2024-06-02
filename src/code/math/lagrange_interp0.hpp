@@ -22,8 +22,7 @@ CEXP i64 lagrange_interp0(vec<i64> CR v, u64 x, u64 mod, vecu64 CR ifact) {
     i64 _ = v[i];
     if (i) _ = mul_mod_s(_, (i64)pre[i - 1], mod);
     if (i + 1 < n) _ = mul_mod_s(_, (i64)suc[i + 1], mod);
-    _ = mul_mod_s(mul_mod_s(_, (i64)ifact[i], mod), (i64)ifact[n - i - 1], mod);
-    ans = (ans + ((n - i) % 2 ? _ : (i64)mod - _)) % (i64)mod;
+    _ = mul_mod_s(mul_mod_s(_, (i64)ifact[i], mod), (i64)ifact[n - i - 1], mod), ans = (ans + ((n - i) % 2 ? _ : (i64)mod - _)) % (i64)mod;
   }
   return ans;
 }
@@ -31,9 +30,9 @@ CEXP i64 lagrange_interp0(vec<i64> CR v, u64 x, u64 mod) { return lagrange_inter
 template <class mint>
 CEXP mint lagrange_interp0(vec<mint> CR v, u64 x, vec<mint> CR ifact) {
   vec<i64> _(v.size());
-  for (u32 i = 0; i < (u32)v.size(); ++i) _[i] = v[i].val();
+  flt_ (u32, i, 0, (u32)v.size()) _[i] = v[i].val();
   vecu64 ifa(ifact.size());
-  for (u32 i = 0; i < (u32)ifact.size(); ++i) ifa[i] = ifact[i].val();
+  flt_ (u32, i, 0, (u32)ifact.size()) ifa[i] = ifact[i].val();
   return mint(lagrange_interp0(_, x, mint::mod(), ifa));
 }
 template <class mint>

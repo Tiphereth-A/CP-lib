@@ -6,8 +6,7 @@
 CEXP u32 LIMIT = 1e7;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   tifa_libs::math::RGCD rgcd(LIMIT);
   u32 x, y;
   std::cin >> x >> y;

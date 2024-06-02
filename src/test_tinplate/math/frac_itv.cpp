@@ -3,8 +3,7 @@
 #include "../../code/math/frac_itv.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 t;
   std::cin >> t;
   while (t--) {
@@ -13,7 +12,6 @@ int main() {
     auto res = tifa_libs::math::frac_itv(tifa_libs::math::rational{x - 1, p}, tifa_libs::math::rational{x, p});
     std::cout << (res.den * x) % p << '/' << res.den << '\n';
   }
-  return 0;
 }
 
 /*

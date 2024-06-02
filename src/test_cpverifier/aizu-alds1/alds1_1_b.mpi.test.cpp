@@ -5,8 +5,7 @@
 using tifa_libs::math::mpi;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   mpi x, y;
   std::cin >> x >> y;
   const mpi C = "214748364799824435319711451419198103141592653589793238462643"s;

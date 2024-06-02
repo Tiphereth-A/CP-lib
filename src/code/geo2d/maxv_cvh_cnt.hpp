@@ -20,16 +20,13 @@ CEXP u32 maxv_cvh_cnt(vec<point<FP>> CR vp) {
   const u32 n = (u32)vp.size();
   vec<maxv_cvh_cnt_impl_::TIFA<FP>> vl;
   flt_ (u32, i, 0, n)
-    flt_ (u32, j, 0, n) {
-      if (i == j) continue;
-      vl.emplace_back(i, j, vp[i], vp[j]);
-    }
+    flt_ (u32, j, 0, n)
+      if (i != j) vl.emplace_back(i, j, vp[i], vp[j]);
   std::sort(vl.begin(), vl.end());
   vec<i32> f(n + 1);
   u32 ans = 0;
   flt_ (u32, i, 0, n) {
-    std::ranges::fill(f, INT32_MIN);
-    f[i] = 0;
+    std::ranges::fill(f, INT32_MIN), f[i] = 0;
     flt_ (u32, j, 0, (u32)vl.size()) f[vl[j].r] = max(f[vl[j].r], f[vl[j].l] + 1);
     ans = (u32)max((i32)ans, f[i]);
   }

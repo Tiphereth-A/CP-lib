@@ -6,15 +6,12 @@ void solve() {
   u32 n;
   u64 k;
   std::cin >> n >> k;
-  auto x = tifa_libs::gray_code(n, k).to_string().substr(64 - n);
-  std::cout << x;
+  std::cout << tifa_libs::gray_code(n, k).to_string().substr(64 - n);
 }
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   solve();
-  return 0;
 }
 
 /*

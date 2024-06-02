@@ -18,8 +18,7 @@ CEXP poly<mint, ccore> pow_fpssp(poly<mint, ccore> CR p, u64 y, vecu64 CR inv, u
   if ((u128)l0 * y >= n) return poly<mint, ccore>(n);
   if (l0) {
     auto _ = shr_fps(p, l0), g = pow_fpssp(_, y, inv, u32(n - l0 * y));
-    g.resize(n);
-    return shl_fps(g, l0 * y);
+    return g.resize(n), shl_fps(g, l0 * y);
   }
   auto ps = poly2sp(p, n);
   poly<mint, ccore> g(n);

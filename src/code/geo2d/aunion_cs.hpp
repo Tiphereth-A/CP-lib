@@ -28,17 +28,14 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) {
         FP argl = dl.arg(), argr = dr.arg();
         if (is_eq(argl, -pi_v<FP>)) argl = pi_v<FP>;
         if (is_eq(argr, -pi_v<FP>)) argr = pi_v<FP>;
-        if (is_gt(argl, argr)) {
-          evt.emplace_back(argl, 1), evt.emplace_back(pi_v<FP>, -1);
-          evt.emplace_back(-pi_v<FP>, 1), evt.emplace_back(argr, -1);
-        } else evt.emplace_back(argl, 1), evt.emplace_back(argr, -1);
+        if (is_gt(argl, argr)) evt.emplace_back(argl, 1), evt.emplace_back(pi_v<FP>, -1), evt.emplace_back(-pi_v<FP>, 1), evt.emplace_back(argr, -1);
+        else evt.emplace_back(argl, 1), evt.emplace_back(argr, -1);
       }
     }
     std::ranges::sort(evt);
     int sum = init;
     flt_ (u32, i, 0, (u32)evt.size()) {
-      sum += evt[i].second;
-      if (!is_eq(evt[i].first, evt[i + 1].first)) arcs[(u32)sum].emplace_back(ci.o, ci.r, evt[i].first, evt[i + 1].first);
+      if (sum += evt[i].second; !is_eq(evt[i].first, evt[i + 1].first)) arcs[(u32)sum].emplace_back(ci.o, ci.r, evt[i].first, evt[i + 1].first);
       if (is_eq(evt[i + 1].first, pi_v<FP>)) break;
     }
   };

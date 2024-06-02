@@ -17,11 +17,7 @@ CEXP FP max_dis_CVH(cT_(cvh<FP>) ch1, cT_(cvh<FP>) ch2) {
     ans = max(ans, dist_PP(ch1[is], ch2[js]));
     int state;
     while ((state = sgn((ch1[is] - ch1[ch1.next(is)]) ^ (ch2[js] - ch2[ch2.next(js)]))) < 0) ans = max(ans, dist_PP(ch1[is], ch2[js = ch2.next(js)]));
-    ans = max(ans, dist_PP(ch2[js], ch1[ch1.next(is = ch1.next(is))]));
-    if (!state) {
-      ans = max(ans, dist_PP(ch1[is], ch2[js]));
-      js = ch2.next(js);
-    }
+    if (ans = max(ans, dist_PP(ch2[js], ch1[ch1.next(is = ch1.next(is))])); !state) ans = max(ans, dist_PP(ch1[is], ch2[js])), js = ch2.next(js);
   }
   return ans;
 }

@@ -13,7 +13,6 @@ class hlpp {
     T w, inv;
   };
   vecu h, gap;
-
   const u32 n, s, t;
   u32 level;
   vvecu B;
@@ -39,54 +38,42 @@ class hlpp {
     gap = vecu(n, 0);
     flt_ (u32, i, 0, n)
       if (h[i] != inf) ++gap[h[i]];
-    h[s] = n;
-    push(s);
+    h[s] = n, push(s);
     u32 u;
-    while ((u = select())) {
-      B[level].pop_back();
-      if (push(u)) {
+    while ((u = select()))
+      if (B[level].pop_back(); push(u)) {
         if (!--gap[h[u]])
           flt_ (u32, i, 0, n)
             if (i != s && h[i] > h[u] && h[i] < n + 1) h[i] = n + 1;
         relabel(u);
       }
-    }
     return exf[t];
   }
 
  private:
   bool bfs_init() {
-    h = vecu(n, inf);
+    h = vecu(n, inf), h[t] = 0;
     std::queue<u32> q({t});
-    h[t] = 0;
     while (!q.empty()) {
       u32 u = q.front();
-      q.pop();
-      for (auto [to, w, lstv] : e[u])
+      for (q.pop(); auto [to, w, lstv] : e[u])
         if (e[to][lstv].w && h[to] > h[u] + 1) h[to] = h[u] + 1, q.push(to);
     }
     return h[s] != inf;
   }
   CEXP bool push(u32 u) {
-    bool init = u == s;
-    for (auto &[to, w, lstv] : e[u]) {
+    for (bool init = u == s; auto &[to, w, lstv] : e[u]) {
       if (!w || (init == false && h[u] != h[to] + 1) || h[to] == inf) continue;
       T k = init ? w : min(w, exf[u]);
       if (to != s && to != t && !exf[to]) B[h[to]].push_back(to), level = max(level, h[to]);
-      exf[u] -= k, exf[to] += k, w -= k, e[to][lstv].w += k;
-      if (!exf[u]) return 0;
+      if (exf[u] -= k, exf[to] += k, w -= k, e[to][lstv].w += k; !exf[u]) return 0;
     }
     return 1;
   }
   CEXP void relabel(u32 u) {
-    h[u] = inf;
-    for (auto [to, w, _] : e[u])
+    for (h[u] = inf; auto [to, w, _] : e[u])
       if (w) h[u] = min(h[u], h[to]);
-    if (++h[u] < n) {
-      B[h[u]].push_back(u);
-      level = max(level, h[u]);
-      ++gap[h[u]];
-    }
+    if (++h[u] < n) B[h[u]].push_back(u), level = max(level, h[u]), ++gap[h[u]];
   }
 };
 

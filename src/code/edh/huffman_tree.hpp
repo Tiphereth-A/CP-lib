@@ -25,13 +25,11 @@ class huffman {
       auto [now_idx, now_code] = q.front();
       auto &ch = data[now_idx].ch;
       q.pop();
-      flt_ (u32, i, 0, ch_sz) {
-        auto &&next_child = ch[i];
-        if (next_child < cnt_l) {
+      flt_ (u32, i, 0, ch_sz)
+        if (auto &&next_child = ch[i]; next_child < cnt_l) {
           if (next_child < cnt_w) ret[next_child] = operate(now_code, i);
           continue;
         } else q.emplace(next_child, operate(now_code, i));
-      }
     }
     return ret;
   }
@@ -48,9 +46,7 @@ class huffman {
       data.emplace_back(T{}, ch_sz);
       flt_ (u32, i, 0, ch_sz) {
         auto [now_weight, now_idx] = q.top();
-        data.back().weight += now_weight;
-        data.back().ch[i] = now_idx;
-        q.pop();
+        data.back().weight += now_weight, data.back().ch[i] = now_idx, q.pop();
       }
       q.emplace(data.back().weight, u32(data.size() - 1));
     }

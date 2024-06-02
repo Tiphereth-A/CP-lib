@@ -12,8 +12,7 @@
 using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 T;
   std::cin >> T;
   const mint inv24 = mint(24).inv(), inv2 = mint(2).inv();
@@ -54,8 +53,7 @@ int main() {
     // P5
     mint ans4 = 0;
     flt_ (u32, u, 0, n) {
-      mint _ = 0;
-      for (u32 v : g.g[u]) {
+      for (mint _ = 0; u32 v : g.g[u]) {
         ans4 += _ * (g.g[v].size() - 1);
         _ += g.g[v].size() - 1;
       }
@@ -64,7 +62,6 @@ int main() {
     // total
     std::cout << ans0 + ans1 + ans2 + ans3 + ans4 << '\n';
   }
-  return 0;
 }
 
 /*

@@ -14,7 +14,6 @@ inline vec<T> unordered_stl_hacker(usz n) {
     vec<usz> ans;
     std::unordered_set<int> s;
     rand::Gen<std::uniform_int_distribution<int>> gen;
-
     while (s.size() < n) {
       if (ans.empty() || ans.back() != s.bucket_count()) ans.push_back(s.bucket_count());
       s.insert(gen());
@@ -28,7 +27,6 @@ inline vec<T> unordered_stl_hacker(usz n) {
     // Edit these if need
     const usz len = 15;
     const strn pref = "", alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
-
     rand::Gen<std::uniform_int_distribution<usz>> gen(0, alphabet.size() - 1);
     auto gen_str_with_divisible_hash = [&](usz mod) -> strn {
       strn s = pref;
@@ -43,8 +41,7 @@ inline vec<T> unordered_stl_hacker(usz n) {
     i64 op1 = 0;
     for (usz i = 0, psb = 0, cnt = 0, lst = bc[0]; i < n; ++i) {
       const T nw = gen_str_with_divisible_hash(lst);
-      ans1.push_back(nw), op1 += cnt;
-      if (i >= lst) lst = bc[++psb], cnt = 1;
+      if (ans1.push_back(nw), op1 += cnt; i >= lst) lst = bc[++psb], cnt = 1;
       else ++cnt;
     }
     vec<T> ans2;
@@ -57,11 +54,9 @@ inline vec<T> unordered_stl_hacker(usz n) {
   } else if CEXP (std::is_integral_v<T>) {
     vec<T> ans1;
     i64 op1 = 0;
-    for (usz i = 0, psb = 0, cnt = 0, lst = bc[0]; i < n; ++i) {
-      ans1.push_back(T(lst * cnt)), op1 += cnt;
-      if (i >= lst) lst = bc[++psb], cnt = 1;
+    for (usz i = 0, psb = 0, cnt = 0, lst = bc[0]; i < n; ++i)
+      if (ans1.push_back(T(lst * cnt)), op1 += cnt; i >= lst) lst = bc[++psb], cnt = 1;
       else ++cnt;
-    }
     vec<T> ans2;
     i64 op2 = 0;
     for (usz i = 0, cnt = 0, pr = bc.size() > 1 ? bc[bc.size() - 2] : 0, lst = bc.back(); i < n; ++i) ans2.push_back(T(lst * cnt)), op2 += i < pr ? 1 : cnt, ++cnt;

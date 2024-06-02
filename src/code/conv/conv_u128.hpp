@@ -17,19 +17,15 @@ vec<u128> conv_u128(vec<T> CR l, vec<T> CR r, u32 ans_size = 0) {
   using mint2 = mint_s30<m2>;
   static CEXP u32 r01 = inverse(m0, mint1::mod()), r02 = inverse(m0, mint2::mod()), r12 = inverse(m1, mint2::mod()), r02r12 = (u64)r02 * r12 % m2;
   static CEXP u64 w1 = m0, w2 = (u64)m0 * m1;
-
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   if (l.empty() && r.empty()) return {};
   if (min(l.size(), r.size()) < 128) return conv_naive<T, u128>(l, r, ans_size);
-
   static NTT<mint0> ntt0;
   static NTT<mint1> ntt1;
   static NTT<mint2> ntt2;
-
   const vec<mint0> d0 = conv_dft_u64<NTT<mint0>, mint0>(ntt0, l, r, ans_size);
   const vec<mint1> d1 = conv_dft_u64<NTT<mint1>, mint1>(ntt1, l, r, ans_size);
   const vec<mint2> d2 = conv_dft_u64<NTT<mint2>, mint2>(ntt2, l, r, ans_size);
-
   vec<u128> ret(ans_size);
   flt_ (u32, i, 0, ans_size) {
     const u64 n1 = d1[i].val(), n2 = d2[i].val(), a = d0[i].val(), b = (n1 + m1 - a) * r01 % m1;

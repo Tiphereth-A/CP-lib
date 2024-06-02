@@ -3,8 +3,7 @@
 #include "../../code/str/kmp.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s, p;
   std::cin >> s >> p;
   auto _ = tifa_libs::str::kmp(p, s);

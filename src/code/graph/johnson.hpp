@@ -5,8 +5,6 @@
 #include "dijkstra.hpp"
 
 namespace tifa_libs::graph {
-namespace johnson_impl_ {
-}  // namespace johnson_impl_
 
 //! edge: w u v
 // @return dis, with dis[u][v] = minimum distance between u and v

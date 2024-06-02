@@ -11,8 +11,7 @@ CEXP u32 MOD = 1000000000 + 7;
 using mint = tifa_libs::math::mint_s63<MOD>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, k;
   std::cin >> n >> k;
   tifa_libs::math::Binom<mint> binom(2001);

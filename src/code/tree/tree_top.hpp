@@ -14,16 +14,13 @@ CEXP vecu tree_top(G CR tr, tree_dfs_info<G> &info) {
   u32 cnt = 0;
   auto f = [&](auto &&f, u32 u, u32 top_) -> void {
     if CEXP (need_dfn) info.dfn[u] = cnt++;
-    top[u] = top_;
-    if (info.maxson[u] == tr.g.size()) return;
-    f(f, info.maxson[u], top_);
-    for (auto v : tr.g[u])
+    if (top[u] = top_; info.maxson[u] == tr.g.size()) return;
+    for (f(f, info.maxson[u], top_); auto v : tr.g[u])
       if CEXP (is_alist<G>) {
         if (top[v] == tr.g.size()) f(f, v, v);
       } else if (top[v.first] == tr.g.size()) f(f, v.first, v.first);
   };
-  f(f, tr.root, tr.root);
-  return top;
+  return f(f, tr.root, tr.root), top;
 }
 
 }  // namespace tifa_libs::graph

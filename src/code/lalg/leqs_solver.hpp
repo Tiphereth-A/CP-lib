@@ -35,8 +35,7 @@ CEXP std::optional<matrix<T>> leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&
   for (u32 i = 0, _ = 0; i < r_; ++i) {
     while (i + _ < c_ && is0(Ab(i, i + _))) ++_;
     if (i + _ >= c_) break;
-    used[i + _] = true;
-    idxs.push_back(i + _);
+    used[i + _] = true, idxs.push_back(i + _);
   }
   matrix<T> sol(c_ - rk + 1, c_);
   {
@@ -54,7 +53,7 @@ CEXP std::optional<matrix<T>> leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&
     v[s] = 1;
     for (u32 y = rk - 1; ~y; --y) {
       u32 f = idxs[y];
-      for (u32 x = f + 1; x < c_; x++) v[f] -= Ab(y, x) * v[x];
+      flt_ (u32, x, f + 1, c_) v[f] -= Ab(y, x) * v[x];
       v[f] /= Ab(y, f);
     }
   }

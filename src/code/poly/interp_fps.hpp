@@ -13,13 +13,9 @@ CEXP poly<mint, ccore> interp_fps(poly<mint, ccore> CR x, poly<mint, ccore> CR y
   using poly_t = poly<mint, ccore>;
   class SegTree {
     CEXP void init_(poly_t CR a, u32 k, u32 l, u32 r) {
-      if (l == r) {
-        t[k] = poly_t{-a[l], 1};
-        return;
-      }
-      u32 m = l + (r - l) / 2;
-      init_(a, k * 2, l, m), init_(a, k * 2 + 1, m + 1, r);
-      t[k] = t[k * 2] * t[k * 2 + 1];
+      if (l == r) return void(t[k] = poly_t{-a[l], 1});
+      const u32 m = l + (r - l) / 2;
+      init_(a, k * 2, l, m), init_(a, k * 2 + 1, m + 1, r), t[k] = t[k * 2] * t[k * 2 + 1];
     }
     CEXP poly_t calc_(cT_(poly_t) f, u32 k, u32 l, u32 r) const {
       if (l == r) return {f[l]};

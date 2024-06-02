@@ -22,11 +22,10 @@ inline std::istream &operator>>(std::istream &is, u128 &n) {
 }
 inline std::ostream &operator<<(std::ostream &os, u128 n) {
   if (n > 9) os << n / 10;
-  os << (uint_fast32_t)(n % 10);
-  return os;
+  return os << (uint_fast32_t)(n % 10);
 }
 inline std::ostream &operator<<(std::ostream &os, i128 n) {
-  if (n < 0) (os << '-'), n = -n;
+  if (n < 0) os << '-', n = -n;
   return os << (u128)n;
 }
 

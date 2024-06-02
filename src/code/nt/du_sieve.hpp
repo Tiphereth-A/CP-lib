@@ -18,10 +18,7 @@ class du_sieve {
     if (x <= sf_max) return sf(x);
     if (auto d = mem.find(x); d != mem.end()) return d->second;
     T ans = 0;
-    do_quot(
-        x,
-        [&](u64 l, u64 r, u64 q) { ans += (sg(r) - sg(l - 1)) * calc(q); },
-        2);
+    do_quot(x, [&](u64 l, u64 r, u64 q) { ans += (sg(r) - sg(l - 1)) * calc(q); }, 2);
     return mem[x] = (ans = sh(x) - ans) /= sg(1);
   }
 

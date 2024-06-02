@@ -23,8 +23,7 @@ auto id() { return F{1, 0}; }
 
 int main() {
   mint::set_mod(MOD);
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
   vec<T> a(n);

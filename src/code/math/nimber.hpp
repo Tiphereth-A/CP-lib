@@ -10,18 +10,9 @@ struct nimber {
   T x;
   CEXP nimber(T _x = 0) : x(_x) {}
 
-  CEXP nimber& operator+=(nimber CR p) {
-    x ^= p.x;
-    return *this;
-  }
-  CEXP nimber& operator-=(nimber CR p) {
-    x ^= p.x;
-    return *this;
-  }
-  CEXP nimber& operator*=(nimber CR p) {
-    x = prod(x, p.x);
-    return *this;
-  }
+  CEXP nimber& operator+=(nimber CR p) { return x ^= p.x, *this; }
+  CEXP nimber& operator-=(nimber CR p) { return x ^= p.x, *this; }
+  CEXP nimber& operator*=(nimber CR p) { return x = prod(x, p.x), *this; }
   CEXP nimber operator+(nimber CR p) const { return x ^ p.x; }
   CEXP nimber operator-(nimber CR p) const { return x ^ p.x; }
   CEXP nimber operator*(nimber CR p) const { return prod(x, p.x); }

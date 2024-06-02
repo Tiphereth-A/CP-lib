@@ -12,8 +12,7 @@ using mint = tifa_libs::math::mint_d63<-1>;
 
 int main() {
   mint::set_mod(MOD);
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   vec<mint> a(n);

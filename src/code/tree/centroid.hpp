@@ -9,14 +9,12 @@ namespace tifa_libs::graph {
 CEXP vecu tree_centroid(cT_(tree) tr) {
   vecu sz(tr.g.size()), ans;
   auto dfs = [&](auto &&dfs, u32 now, u32 fa = -1_u32) -> void {
-    sz[now] = 1;
     u32 max_sz = 0;
-    for (u32 to : tr.g[now])
+    for (sz[now] = 1; u32 to : tr.g[now])
       if (to != fa) dfs(dfs, to, now), sz[now] += sz[to], max_sz = max(max_sz, sz[to]);
     if (max(max_sz, (u32)tr.g.size() - sz[now]) <= tr.g.size() / 2) ans.push_back(now);
   };
-  dfs(dfs, tr.root);
-  return ans;
+  return dfs(dfs, tr.root), ans;
 }
 
 }  // namespace tifa_libs::graph

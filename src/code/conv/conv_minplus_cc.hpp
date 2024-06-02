@@ -11,11 +11,9 @@ CEXP vec<T> conv_minplus_cc(vec<T> CR a, vec<T> CR b) {
   const u32 n = (u32)a.size(), m = (u32)b.size();
   vec<T> c(n + m - 1);
   c[0] = a[0] + b[0];
-  for (u32 k = 0, i = 0; k < n + m - 2; ++k) {
-    const u32 j = k - i;
-    if (j == m - 1 || (i < n - 1 && a[i + 1] + b[j] < a[i] + b[j + 1])) c[k + 1] = a[++i] + b[j];
+  for (u32 k = 0, i = 0; k < n + m - 2; ++k)
+    if (const u32 j = k - i; j == m - 1 || (i < n - 1 && a[i + 1] + b[j] < a[i] + b[j + 1])) c[k + 1] = a[++i] + b[j];
     else c[k + 1] = a[i] + b[j + 1];
-  }
   return c;
 }
 

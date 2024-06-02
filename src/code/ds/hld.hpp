@@ -16,10 +16,7 @@ class hld {
   graph::tree_dfs_info<graph::tree> info;
   vecu top;
 
-  explicit CEXP hld(graph::tree& tr) : t(), tr(tr), info() {
-    info.template reset_dfs_info<graph::td_dep | graph::td_fa>(tr);
-    top = graph::tree_top<graph::tree, true>(tr, info);
-  }
+  explicit CEXP hld(graph::tree& tr) : t(), tr(tr), info() { info.template reset_dfs_info<graph::td_dep | graph::td_fa>(tr), top = graph::tree_top<graph::tree, true>(tr, info); }
   explicit CEXP hld(graph::tree& tr, vec<T> CR a) : hld(tr) {
     vec<T> b(a.size());
     flt_ (u32, i, 0, (u32)a.size()) b[info.dfn[i]] = a[i];

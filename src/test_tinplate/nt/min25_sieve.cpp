@@ -13,16 +13,13 @@ mint f(u64 p, u64 c) {
 }
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;
-
   tifa_libs::math::min25_sieve<mint, f> min25(n);
   auto h1 = min25.sum_pk(1), h2 = min25.sum_pk(2);
   flt_ (u32, i, 1, (u32)h2.size()) h2[i] -= h1[i];
   std::cout << min25.run(h2) << '\n';
-  return 0;
 }
 
 /*

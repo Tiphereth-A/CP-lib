@@ -18,18 +18,14 @@ struct triangle {
 
   friend std::istream &operator>>(std::istream &is, triangle &t) { return is >> t.A >> t.B >> t.C; }
   friend std::ostream &operator<<(std::ostream &os, triangle CR t) { return os << t.A << ' ' << t.B << ' ' << t.C; }
-
   friend CEXP bool operator==(triangle CR l, triangle CR r) { return l.A == r.A && l.B == r.B && l.C == r.C; }
-
   // (a, b, c)
   CEXP pt3<FP> edges() const { return {dist_PP(B, C), dist_PP(C, A), dist_PP(A, B)}; }
   // (A, B, C)
   CEXP pt3<FP> angles() const { return {abs(ang_PP(C - A, B - A)), abs(ang_PP(A - B, C - B)), abs(ang_PP(A - C, B - C))}; }
-
   CEXP point<FP> trilinears(FP x, FP y, FP z) const {
     auto [a, b, c] = edges();
-    x *= a, y *= b, z *= c;
-    return (A * x + B * y + C * z) / (x + y + z);
+    return x *= a, y *= b, z *= c, (A * x + B * y + C * z) / (x + y + z);
   }
   CEXP point<FP> barycentrics(FP u, FP v, FP w) const { return (A * u + B * v + C * w) / (u + v + w); }
   CEXP FP area() const { return abs(cross(A, B, C)) / 2; }

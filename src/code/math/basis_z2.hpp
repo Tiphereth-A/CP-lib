@@ -67,8 +67,7 @@ struct basisZ2 {
       return x;
     };
     basisZ2<N> ans;
-    vecpt<std::bitset<N>> ab;
-    for (auto x : r) {
+    for (vecpt<std::bitset<N>> ab; auto x : r) {
       auto y = f(x), xy = y ^ x;
       for (auto [a, b] : ab)
         if (auto _ = y ^ b; cvt(_) < cvt(y)) y = _, xy ^= a;

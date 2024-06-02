@@ -46,20 +46,16 @@ class link_cut_tree {
   }
   CEXP u32 lca(u32 u, u32 v, u32 root = 0) {
     if (u == v) return u;
-    ++u, ++v, ++root;
-    makeroot_(root);
-    access_(u);
+    ++u, ++v, ++root, makeroot_(root), access_(u);
     u32 ret = access_(v) - 1;
     return tr[u].fa ? ret : -1u;
   }
   CEXP ptt<T> query_subtree(u32 x, u32 y) {
-    ++x, ++y;
-    split_(x, y);
+    split_(++x, ++y);
     return {op(tr[x].sv, tr[x].val), op(tr[y].sv, tr[y].val)};
   }
   CEXP T query_path(u32 x, u32 y) {
-    ++x, ++y;
-    split_(x, y);
+    split_(++x, ++y);
     return tr[y].w;
   }
 
@@ -83,17 +79,13 @@ class link_cut_tree {
   CEXP void rotate(u32 x) {
     u32 y = tr[x].fa, z = tr[y].fa, ySon = which_(x), zSon = which_(y), B = tr[x].son[ySon ^ 1];
     if (noroot_(y)) tr[z].son[zSon] = x;
-    tr[x].fa = z;
-    tr[y].fa = x, tr[x].son[ySon ^ 1] = y;
-    if (B) tr[B].fa = y;
-    tr[y].son[ySon] = B;
-    update_(y);
+    if (tr[x].fa = z, tr[y].fa = x, tr[x].son[ySon ^ 1] = y; B) tr[B].fa = y;
+    tr[y].son[ySon] = B, update_(y);
   }
   CEXP void splay_(u32 x) {
     ppushdown_(x);
     while (noroot_(x)) {
-      u32 fa = tr[x].fa;
-      if (noroot_(fa)) {
+      if (u32 fa = tr[x].fa; noroot_(fa)) {
         if (which_(fa) ^ which_(x)) rotate(x);
         else rotate(fa);
       }
@@ -106,8 +98,7 @@ class link_cut_tree {
     for (; x; x = tr[y = x].fa) {
       splay_(x);
       tr[x].sv = inv_op(op(tr[x].sv, tr[tr[x].son[1]].s), tr[y].s);  // requirement of maintaining subtree
-      tr[x].son[1] = y;
-      update_(x);
+      tr[x].son[1] = y, update_(x);
     }
     return y;
   }
@@ -127,16 +118,11 @@ class link_cut_tree {
     makeroot_(x);
     if (findroot_(y) == x) return false;
     tr[y].sv = op(tr[y].sv, tr[x].s);  // requirement of maintaining subtree
-    tr[x].fa = y;
-    update_(y);
+    tr[x].fa = y, update_(y);
     return true;
   }
   CEXP bool cut_(u32 x, u32 y) {
-    makeroot_(x);
-    if (findroot_(y) == x && tr[x].fa == y && tr[y].son[0] == x) {
-      tr[y].son[0] = tr[x].fa = 0, update_(y);
-      return true;
-    }
+    if (makeroot_(x); findroot_(y) == x && tr[x].fa == y && tr[y].son[0] == x) return tr[y].son[0] = tr[x].fa = 0, update_(y), true;
     return false;
   }
 };

@@ -3,8 +3,7 @@
 #include "../../code/ds/fhq_treap.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   tifa_libs::ds::fhq_treap<i32, i32> treap;
@@ -18,7 +17,6 @@ int main() {
     else if (opt == 5) std::cout << treap.pre_w(x).second << '\n';
     else std::cout << treap.suf_w(x).second << '\n';
   }
-  return 0;
 }
 
 /*

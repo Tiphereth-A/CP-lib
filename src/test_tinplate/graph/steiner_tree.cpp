@@ -3,8 +3,7 @@
 #include "../../code/graph/steiner_tree.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, k;
   std::cin >> n >> m >> k;
   tifa_libs::graph::alistw<u32> e(n);
@@ -13,7 +12,6 @@ int main() {
   for (auto& x : a) std::cin >> x, --x;
   tifa_libs::graph::steiner_tree st(e, a);
   std::cout << st.val();
-  return 0;
 }
 
 /*

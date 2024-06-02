@@ -18,15 +18,12 @@ std::optional<T> astar(T CR s) {
   };
   pq<T, C> pq;
   std::set<T> vis;
-
   pq.push(s);
   vis.insert(s);
   while (!pq.empty()) {
     T now = pq.top();
-    pq.pop();
-    if (now.solved()) return now;
-    auto nxt = now.next();
-    for (auto i : nxt)
+    if (pq.pop(); now.solved()) return now;
+    for (auto nxt = now.next(); auto i : nxt)
       if (!vis.count(i)) pq.push(i), vis.insert(i);
   }
   return std::nullopt;

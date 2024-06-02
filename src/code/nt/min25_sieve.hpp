@@ -45,7 +45,6 @@ class min25_sieve {
     assert(h.size() == s);
     return h;
   }
-
   CEXP T run(vec<T> fprime) const {
     if (!m) return {};
     assert(fprime.size() == s);
@@ -54,8 +53,7 @@ class min25_sieve {
       ans += now * f(p[i], c + 1);
       u64 lim = div_u64d(m, prod);
       if (lim >= (u64)p[i] * p[i]) dfs(dfs, i, c + 1, p[i] * prod, now);
-      now *= f(p[i], c);
-      ans += now * (fprime[idx(lim)] - fprime[idx(p[i])]);
+      now *= f(p[i], c), ans += now * (fprime[idx(lim)] - fprime[idx(p[i])]);
       u32 j = i + 1;
       for (; j < p.size() && (u64)p[j] * p[j] * p[j] <= lim; ++j) dfs(dfs, j, 1, prod * p[j], now);
       for (; j < p.size() && (u64)p[j] * p[j] <= lim; ++j) {

@@ -21,13 +21,10 @@ CEXP T clique_calc(u32 n, arr<std::bitset<N>, N> CR adj, S&& sum, OP&& op, T e_s
     ans = sum(ans, t);
     flt_ (u32, v, now + 1, n) {
       if ((_ & adj[v]).count() != _.count()) continue;
-      _[v] = 1;
-      h(h, v, op(t, v));
-      _[v] = 0;
+      _[v] = 1, h(h, v, op(t, v)), _[v] = 0;
     }
   };
-  h(h, -1_u32, e_op);
-  return ans;
+  return h(h, -1_u32, e_op), ans;
 }
 
 }  // namespace tifa_libs::graph

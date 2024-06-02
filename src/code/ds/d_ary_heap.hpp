@@ -73,13 +73,11 @@ CEXP void make_dary_heap(I begin, I end, C &&comp = C{}) {
     if (idx == 0) return;
     --idx;
   }
-  if (idx > 0) {
-    u32 lidx_ngcd = d_ary_heap_impl_::idx_ngch_<D>(len);
-    for (;;) {
+  if (idx > 0)
+    for (u32 lidx_ngcd = d_ary_heap_impl_::idx_ngch_<D>(len);;) {
       if (I ch = d_ary_heap_impl_::l_ch_<D>(begin + d_ary_heap_impl_::ch1idx_<D>(idx), comp); comp(begin[idx], *ch)) swap(begin[idx], *ch);
       if (idx-- == lidx_ngcd) break;
     }
-  }
   for (;; --idx) {
     TPN std::iterator_traits<I>::value_type value = std::move(begin[idx]);
     u32 mdidx = idx;
@@ -90,17 +88,14 @@ CEXP void make_dary_heap(I begin, I end, C &&comp = C{}) {
       else if (idx_ch1 >= len) break;
       else ch = d_ary_heap_impl_::l_ch_<D>(begin + idx_ch1, int(len - idx_ch1), comp);
       if (!comp(value, *ch)) break;
-      begin[mdidx] = std::move(*ch);
-      mdidx = u32(ch - begin);
+      begin[mdidx] = std::move(*ch), mdidx = u32(ch - begin);
     }
-    begin[mdidx] = std::move(value);
-    if (idx == 0) break;
+    if (begin[mdidx] = std::move(value); idx == 0) break;
   }
 }
 template <int D, class I, class C = std::less<>>
 CEXP bool is_dary_heap(I begin, I end, C &&comp = C{}) {
-  u32 len = u32(end - begin);
-  flt_ (u32, i, 1, len)
+  flt_ (u32, i, 1, u32(end - begin))
     if (u32 p = d_ary_heap_impl_::pidx_<D>(i); comp(begin[p], begin[i])) return false;
   return true;
 }
@@ -111,8 +106,7 @@ CEXP void push_dary_heap(I begin, I end, C &&comp = C{}) {
   while (idx > 0) {
     u32 p = d_ary_heap_impl_::pidx_<D>(idx);
     if (!comp(begin[p], val)) break;
-    begin[idx] = std::move(begin[p]);
-    idx = p;
+    begin[idx] = std::move(begin[p]), idx = p;
   }
   begin[idx] = std::move(val);
 }
@@ -120,19 +114,14 @@ template <int D, class I, class C = std::less<>>
 CEXP void pop_dary_heap(I begin, I end, C &&comp = C{}) {
   u32 len = u32(end - begin) - 1;
   TPN std::iterator_traits<I>::value_type val = std::move(end[-1]);
-  end[-1] = std::move(begin[0]);
   u32 idx = 0;
-  for (;;) {
+  for (end[-1] = std::move(begin[0]);;) {
     if (u32 chls = d_ary_heap_impl_::chls_idx_<D>(idx), ch1 = chls - (D - 1); chls < len) {
       I ch = d_ary_heap_impl_::l_ch_<D>(begin + ch1, comp);
       if (!comp(val, *ch)) break;
-      begin[idx] = std::move(*ch);
-      idx = u32(ch - begin);
+      begin[idx] = std::move(*ch), idx = u32(ch - begin);
     } else if (ch1 < len) {
-      if (I ch = d_ary_heap_impl_::l_ch_<D>(begin + ch1, int(len - ch1), comp); comp(val, *ch)) {
-        begin[idx] = std::move(*ch);
-        idx = u32(ch - begin);
-      }
+      if (I ch = d_ary_heap_impl_::l_ch_<D>(begin + ch1, int(len - ch1), comp); comp(val, *ch)) begin[idx] = std::move(*ch), idx = u32(ch - begin);
       break;
     } else break;
   }

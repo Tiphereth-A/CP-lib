@@ -22,22 +22,15 @@ CEXP auto tsearch(I l, I r, F&& f) {
         if (fr < fx) x = r, fx = fr;
         if (fml < fx) x = ml, fx = fml;
         if (fmr < fx) x = mr, fx = fmr;
-        for (I i = l + 1; i < r; ++i) {
+        flt_ (I, i, l + 1, r) {
           if (i == ml || i == mr) continue;
           if (T fi = f(i); fi < fx) x = i, fx = fi;
         }
         return std::make_pair(x, fx);
       }
     } else if ((r - l) / max({l, r, (I)1}) < eps_v<I>) return std::make_pair(l, fl);
-    if (fml < fmr) {
-      r = mr, fr = fmr;
-      mr = ml, fmr = fml;
-      fml = f(ml = l - mr + r);
-    } else {
-      l = ml, fl = fml;
-      ml = mr, fml = fmr;
-      fmr = f(mr = r - ml + l);
-    }
+    if (fml < fmr) r = mr, fr = fmr, mr = ml, fmr = fml, fml = f(ml = l - mr + r);
+    else l = ml, fl = fml, ml = mr, fml = fmr, fmr = f(mr = r - ml + l);
   } while (1);
 }
 

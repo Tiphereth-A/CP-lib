@@ -10,8 +10,7 @@ CEXP u32 MOD = 998244353;
 using mint = tifa_libs::math::mint_s30<MOD>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   vec<mint> a(n + 1), b(n + 1);

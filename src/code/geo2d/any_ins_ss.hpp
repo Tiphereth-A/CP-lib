@@ -31,8 +31,7 @@ CEXP bool any_ins_Ss(vec<line<FP>> CR ss) {
   std::multiset<line<FP>, decltype(cmp)> s{cmp};
   for (auto CR[x, o, seg] : seq) {
     x_now = x;
-    auto it = s.lower_bound(seg);
-    if (!o) {
+    if (auto it = s.lower_bound(seg); !o) {
       if (it != s.end() && is_ins_SL(seg, *it)) return 1;
       if (it != s.begin() && is_ins_SL(seg, *prev(it))) return 1;
       s.insert(seg);

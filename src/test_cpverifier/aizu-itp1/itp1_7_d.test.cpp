@@ -3,8 +3,7 @@
 #include "../../code/lalg/mat.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, l;
   std::cin >> n >> m >> l;
   tifa_libs::math::matrix<u64> a(n, m), b(m, l);

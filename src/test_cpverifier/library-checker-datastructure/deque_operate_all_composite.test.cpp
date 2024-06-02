@@ -8,8 +8,7 @@ using T = ptt<mint>;
 T e() { return T{1, 0}; }
 T op(T b, T a) { return T{a.first * b.first, a.first * b.second + a.second}; }
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;
   tifa_libs::ds::deque_with_w<T, e, op> deq;

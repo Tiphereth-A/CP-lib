@@ -3,8 +3,7 @@
 #include "../../code/ds/depq.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 _tests = 1;
   fle_ (u32, _test, 1, _tests) {
     u32 n, q;

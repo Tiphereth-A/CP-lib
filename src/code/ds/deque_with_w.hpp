@@ -24,34 +24,28 @@ class deque_with_w {
   explicit CEXP deque_with_w() : q(2), s(2) { bf(); }
 
   CEXP void push_front(T x) {
-    q[0].push_back(x);
-    if (s[0].size()) s[0].push_back(op(x, s[0].back()));
+    if (q[0].push_back(x); s[0].size()) s[0].push_back(op(x, s[0].back()));
     else s[0].push_back(x);
   }
   CEXP void push_back(T x) {
-    q[1].push_back(x);
-    if (s[1].size()) s[1].push_back(op(s[1].back(), x));
+    if (q[1].push_back(x); s[1].size()) s[1].push_back(op(s[1].back(), x));
     else s[1].push_back(x);
   }
   CEXP T pop_front() {
     if (q[0].empty()) {
       const u32 _ = u32(q[1].size()) / 2;
-      q[0] = vec<T>(q[1].rbegin() + _, q[1].rend()), q[1] = vec<T>(q[1].end() - _, q[1].end());
-      bf();
+      q[0] = vec<T>(q[1].rbegin() + _, q[1].rend()), q[1] = vec<T>(q[1].end() - _, q[1].end()), bf();
     }
     const T ret = q[0].back();
-    q[0].pop_back(), s[0].pop_back();
-    return ret;
+    return q[0].pop_back(), s[0].pop_back(), ret;
   }
   CEXP T pop_back() {
     if (q[1].empty()) {
       const u32 _ = u32(q[0].size()) / 2;
-      q[1] = vec<T>(q[0].rbegin() + _, q[0].rend()), q[0] = vec<T>(q[0].end() - _, q[0].end());
-      bf();
+      q[1] = vec<T>(q[0].rbegin() + _, q[0].rend()), q[0] = vec<T>(q[0].end() - _, q[0].end()), bf();
     }
     const T ret = q[1].back();
-    q[1].pop_back(), s[1].pop_back();
-    return ret;
+    return q[1].pop_back(), s[1].pop_back(), ret;
   }
   CEXP T w() { return op(s[0].back(), s[1].back()); }
 };

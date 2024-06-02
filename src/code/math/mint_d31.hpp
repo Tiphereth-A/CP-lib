@@ -26,9 +26,7 @@ class mint_d31 : public mint<mint_d31<ID>, u32> {
     for (MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD /= 2);
     MASK = (1_u32 << OFFSET) - 1_u32;
     u32 t = 2, iv = MOD_ODD * (t - MOD_ODD * MOD_ODD);
-    iv *= t - MOD_ODD * iv, iv *= t - MOD_ODD * iv;
-    R = iv * (MOD_ODD * iv - t);
-    R2 = u32(-u64(MOD_ODD) % MOD_ODD);
+    iv *= t - MOD_ODD * iv, iv *= t - MOD_ODD * iv, R = iv * (MOD_ODD * iv - t), R2 = u32(-u64(MOD_ODD) % MOD_ODD);
   }
 
   CEXP mint_d31() {}
@@ -46,27 +44,20 @@ class mint_d31 : public mint<mint_d31<ID>, u32> {
     return ((h - this->v_) * R & MASK) * MOD_ODD + h;
   }
   CEXP raw_t &data_() { return this->v_; }
-
   CEXP mint_d31 neg_() const {
     mint_d31 res;
     raw_t h = this->v_ >> OFFSET;
-    res.v_ = (((MOD_ODD & -(h != 0)) - h) << OFFSET) | (-this->v_ & MASK);
-    return res;
+    return res.v_ = (((MOD_ODD & -(h != 0)) - h) << OFFSET) | (-this->v_ & MASK), res;
   }
   CEXP mint_d31 &adde_(mint_d31 CR r) {
     raw_t h = (this->v_ >> OFFSET) + (r.v_ >> OFFSET) - MOD_ODD;
-    this->v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((this->v_ + r.v_) & MASK);
-    return *this;
+    return this->v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((this->v_ + r.v_) & MASK), *this;
   }
   CEXP mint_d31 &sube_(mint_d31 CR r) {
     raw_t h = (this->v_ >> OFFSET) - (r.v_ >> OFFSET);
-    this->v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((this->v_ - r.v_) & MASK);
-    return *this;
+    return this->v_ = ((h + (MOD_ODD & -(h >> 31))) << OFFSET) | ((this->v_ - r.v_) & MASK), *this;
   }
-  CEXP mint_d31 &mule_(mint_d31 CR r) {
-    this->v_ = (redc((u64)(this->v_ >> OFFSET) * (r.v_ >> OFFSET)) << OFFSET) | ((this->v_ * r.v_) & MASK);
-    return *this;
-  }
+  CEXP mint_d31 &mule_(mint_d31 CR r) { return this->v_ = (redc((u64)(this->v_ >> OFFSET) * (r.v_ >> OFFSET)) << OFFSET) | ((this->v_ * r.v_) & MASK), *this; }
 };
 
 }  // namespace tifa_libs::math

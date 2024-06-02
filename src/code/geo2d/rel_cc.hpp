@@ -7,13 +7,11 @@
 namespace tifa_libs::geo {
 
 // relation between circle and circle
-enum RELCC {
-  lyingin_cc,
-  touchin_cc,
-  intersect_cc,
-  touchex_cc,
-  lyingout_cc
-};
+enum RELCC { lyingin_cc,
+             touchin_cc,
+             intersect_cc,
+             touchex_cc,
+             lyingout_cc };
 
 template <class FP>
 CEXP RELCC relation_CC(circle<FP> CR c1, circle<FP> CR c2) {

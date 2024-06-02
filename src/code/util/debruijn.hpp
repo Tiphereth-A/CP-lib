@@ -20,8 +20,7 @@ CEXP vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) {
         fle_ (u32, i, 1, p) ret.push_back(_[i]);
       if (ret.size() >= maxsz) return;
     } else {
-      _[t] = _[t - p];
-      if (ret.size() >= maxsz) return;
+      if (_[t] = _[t - p]; ret.size() >= maxsz) return;
       f(f, t + 1, p);
       while (++_[t] < k) {
         if (ret.size() >= maxsz) return;
@@ -29,9 +28,7 @@ CEXP vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) {
       }
     }
   };
-  f(f, 1, 1);
-  ret.resize(maxsz);
-  return ret;
+  return f(f, 1, 1), ret.resize(maxsz), ret;
 }
 
 }  // namespace tifa_libs::util

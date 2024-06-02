@@ -3,8 +3,7 @@
 #include "../../code/graph/floyd.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   CEXP i64 INF = std::numeric_limits<i64>::max() / 2 - 1;

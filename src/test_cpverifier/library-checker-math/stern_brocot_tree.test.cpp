@@ -6,8 +6,7 @@
 using sbt = tifa_libs::math::SBT<i64>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   int n;
   std::cin >> n;
   while (n--) {

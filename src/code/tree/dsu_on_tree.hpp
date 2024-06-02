@@ -17,16 +17,15 @@ requires requires(Fu update, Fq query, Fc clear, Fr reset, u32 now) {
   reset();
 }
 CEXP void dsu_on_tree(G CR tr, tree_dfs_info<G>& info, Fu&& update, Fq&& query, Fc&& clear, Fr&& reset) {
-  CEXP bool F = is_alist<G>;
   if (info.dfn.empty() || info.maxson.empty() || info.maxdfn.empty() || info.euler.empty()) info.template reset_dfs_info<td_dfn | td_maxson | td_maxdfn | td_euler>(tr);
-  auto dfs = [&](auto&& dfs, u32 now, u32 fa = -1_u32, bool keep = false) -> void {
+  auto f = [&](auto&& f, u32 now, u32 fa = -1_u32, bool keep = false) -> void {
     for (auto v : tr.g[now])
-      if CEXP (F) {
-        if (v != fa && v != info.maxson[now]) dfs(dfs, v, now, false);
-      } else if (v.first != fa && v.first != info.maxson[now]) dfs(dfs, v.first, now, false);
-    if (info.sz[now] > 1) dfs(dfs, info.maxson[now], now, true);
+      if CEXP (is_alist<G>) {
+        if (v != fa && v != info.maxson[now]) f(f, v, now, false);
+      } else if (v.first != fa && v.first != info.maxson[now]) f(f, v.first, now, false);
+    if (info.sz[now] > 1) f(f, info.maxson[now], now, true);
     for (auto v : tr.g[now])
-      if CEXP (F) {
+      if CEXP (is_alist<G>) {
         if (v != fa && v != info.maxson[now])
           fle_ (u32, i, info.dfn[v], info.maxdfn[v]) update(info.euler[i]);
       } else if (v.first != fa && v.first != info.maxson[now])
@@ -38,7 +37,7 @@ CEXP void dsu_on_tree(G CR tr, tree_dfs_info<G>& info, Fu&& update, Fq&& query, 
     }
     return;
   };
-  dfs(dfs, tr.root);
+  f(f, tr.root);
 }
 
 }  // namespace tifa_libs::graph

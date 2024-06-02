@@ -5,9 +5,7 @@
 #include "../../code/io/ios_container.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
-
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   vvec<i32> c1(n, vec<i32>(n));
@@ -17,8 +15,6 @@ int main() {
     for (auto &j : i) j = -j;
   std::cout << tifa_libs::graph::hungarian(c1).back() << '\n';
   std::cout << -tifa_libs::graph::hungarian(c2).back() << '\n';
-
-  return 0;
 }
 
 /*

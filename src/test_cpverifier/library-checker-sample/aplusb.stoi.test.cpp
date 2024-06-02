@@ -6,8 +6,7 @@
 CEXP u64 MOD = u64(1e9) + 1;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s, t;
   std::cin >> s >> t;
   char ans[16] = {0};

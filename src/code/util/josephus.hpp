@@ -16,11 +16,9 @@ CEXP u64 j2(u64 n, u64 k, u64 m) {
   if (k == 1) return m - 1;
   u64 n2 = n - m + 1, ret = j1(n2, k, 1);
   --m;
-  while (m) {
-    u64 _ = (n2 - ret) / (k - 1);
-    if (m <= _) return (ret + m * k) % (n2 + m);
+  while (m)
+    if (u64 _ = (n2 - ret) / (k - 1); m <= _) return (ret + m * k) % (n2 + m);
     else ret = (((ret + _ * k) % (n2 + _)) + k) % (n2 + _ + 1), n2 += _ + 1, m -= _ + 1;
-  }
   return ret;
 }
 }  // namespace josephus_impl_

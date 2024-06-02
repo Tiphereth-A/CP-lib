@@ -28,40 +28,33 @@ class persistent_segtree {
 
  private:
   CEXP void pushup(u32 x) {
-    t[x].w = 0;
-    if (t[x].ls) t[x].w = t[t[x].ls].w;
+    if (t[x].w = 0; t[x].ls) t[x].w = t[t[x].ls].w;
     if (t[x].rs) t[x].w += t[t[x].rs].w;
   }
   CEXP void build(u32& x, u32 l, u32 r, u32 pos) {
-    x = (++cnt);
-    if (l == r) {
+    if (x = ++cnt; l == r) {
       if (l == pos) ++t[x].w;
       return;
     }
     u32 mid = l + (r - l) / 2;
-    build(t[x].ls, l, mid, pos), build(t[x].rs, mid + 1, r, pos);
-    pushup(x);
+    build(t[x].ls, l, mid, pos), build(t[x].rs, mid + 1, r, pos), pushup(x);
   }
   CEXP void add_(u32 old_x, u32& x, u32 l, u32 r, u32 pos) {
     assert(pos >= l && pos <= r);
-    t[x = (++cnt)] = t[old_x];
-    if (l == r) return void(++t[x].w);
-    u32 mid = l + (r - l) / 2;
-    if (pos <= mid) add_(t[old_x].ls, t[x].ls, l, mid, pos);
+    if (t[x = (++cnt)] = t[old_x]; l == r) return void(++t[x].w);
+    if (u32 mid = l + (r - l) / 2; pos <= mid) add_(t[old_x].ls, t[x].ls, l, mid, pos);
     else add_(t[old_x].rs, t[x].rs, mid + 1, r, pos);
     pushup(x);
   }
   CEXP u32 kth_min_(u32 x, u32 y, u32 l, u32 r, u32 k) {
     if (l == r) return l;
-    u32 mid = l + (r - l) / 2, kk = t[t[y].ls].w - t[t[x].ls].w;
-    if (k <= kk) return kth_min_(t[x].ls, t[y].ls, l, mid, k);
-    return kth_min_(t[x].rs, t[y].rs, mid + 1, r, k - kk);
+    if (u32 mid = l + (r - l) / 2, kk = t[t[y].ls].w - t[t[x].ls].w; k <= kk) return kth_min_(t[x].ls, t[y].ls, l, mid, k);
+    else return kth_min_(t[x].rs, t[y].rs, mid + 1, r, k - kk);
   }
   CEXP u32 kth_max_(u32 x, u32 y, u32 l, u32 r, u32 k) {
     if (l == r) return l;
-    u32 mid = l + (r - l) / 2, kk = t[t[y].rs].w - t[t[x].rs].w;
-    if (k <= kk) return kth_max_(t[x].rs, t[y].rs, mid + 1, r, k);
-    return kth_max_(t[x].ls, t[y].ls, l, mid, k - kk);
+    if (u32 mid = l + (r - l) / 2, kk = t[t[y].rs].w - t[t[x].rs].w; k <= kk) return kth_max_(t[x].rs, t[y].rs, mid + 1, r, k);
+    else return kth_max_(t[x].ls, t[y].ls, l, mid, k - kk);
   }
   CEXP u32 frequency_(u32 x, u32 y, u32 l, u32 r, u32 L, u32 R) {
     assert(R >= l && L <= r);
@@ -73,15 +66,13 @@ class persistent_segtree {
   }
   CEXP u32 kth_min_(u32 y, u32 l, u32 r, u32 k) {
     if (l == r) return l;
-    u32 mid = l + (r - l) / 2, kk = t[t[y].ls].w;
-    if (k <= kk) return kth_min_(t[y].ls, l, mid, k);
-    return kth_min_(t[y].rs, mid + 1, r, k - kk);
+    if (u32 mid = l + (r - l) / 2, kk = t[t[y].ls].w; k <= kk) return kth_min_(t[y].ls, l, mid, k);
+    else return kth_min_(t[y].rs, mid + 1, r, k - kk);
   }
   CEXP u32 kth_max_(u32 y, u32 l, u32 r, u32 k) {
     if (l == r) return l;
-    u32 mid = l + (r - l) / 2, kk = t[t[y].rs].w;
-    if (k <= kk) return kth_max_(t[y].rs, mid + 1, r, k);
-    return kth_max_(t[y].ls, l, mid, k - kk);
+    if (u32 mid = l + (r - l) / 2, kk = t[t[y].rs].w; k <= kk) return kth_max_(t[y].rs, mid + 1, r, k);
+    else return kth_max_(t[y].ls, l, mid, k - kk);
   }
   CEXP u32 frequency_(u32 y, u32 l, u32 r, u32 L, u32 R) {
     assert(R >= l && L <= r);

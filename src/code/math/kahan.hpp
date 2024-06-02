@@ -15,12 +15,10 @@ class kahan_fp {
   CEXP kahan_fp& operator+=(FP x) {
     const FP y = x - c;
     volatile FP t = sum + y, z = t - sum;
-    c = z - y, sum = t;
-    return *this;
+    return c = z - y, sum = t, *this;
   }
   CEXP operator FP() const { return sum; }
 };
-
 template <class FP>
 using kahan = std::conditional_t<std::is_floating_point_v<FP>, kahan_fp<FP>, FP>;
 

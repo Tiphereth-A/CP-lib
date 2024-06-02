@@ -18,11 +18,9 @@ std::optional<vec<T>> bellman_ford(alistw<T, with_deg> CR fg, u32 s, F &&cb_rela
   dis[s] = 0, vis[s] = true, dep[s] = 1;
   while (!q.empty()) {
     const u32 u = q.front();
-    q.pop(), vis[u] = false;
-    for (auto [v, w] : g[u])
+    for (q.pop(), vis[u] = false; auto [v, w] : g[u])
       if (dis[u] + w < dis[v]) {
-        cb_relax(u, v), dis[v] = dis[u] + w;
-        if (vis[v]) continue;
+        if (cb_relax(u, v), dis[v] = dis[u] + w; vis[v]) continue;
         if (++dep[v] > g.size()) return {};
         vis[v] = true, q.push(v);
       }

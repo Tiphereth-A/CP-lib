@@ -12,8 +12,7 @@ template <tifa_libs::container_c T>
 std::ostream &operator<<(std::ostream &os, T CR x) {
   if (x.begin() == x.end()) return os;
   auto it = x.begin();
-  os << *it++;
-  for (; it != x.end(); ++it) os << ' ' << *it;
+  for (os << *it++; it != x.end(); ++it) os << ' ' << *it;
   return os;
 }
 

@@ -16,8 +16,7 @@ using mint3 = tifa_libs::math::mint_s63<754974721>;
 using poly = tifa_libs::math::poly3ntt<mint, mint1, mint2, mint3>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   auto g = [](cT_(poly) f, u32 n) { return ((f * f + 1) * mint(2).inv()).pre(n); };

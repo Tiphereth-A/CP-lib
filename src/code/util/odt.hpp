@@ -33,8 +33,7 @@ class ODT {
     auto it = find(x);
     if (it->l == x) return it;
     auto [l, r, v] = *it;
-    data.erase(it), data.emplace(l, x - 1, v);
-    return data.emplace(x, r, v).first;
+    return data.erase(it), data.emplace(l, x - 1, v), data.emplace(x, r, v).first;
   }
   //! [l, r]
   CEXP void assign(u32 l, u32 r, cT_(T) v) {

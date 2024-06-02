@@ -3,33 +3,27 @@
 #include "../../code/str/aho_corasick_automaton.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   strn s;
   std::cin >> n;
   vecu ans(n);
   tifa_libs::str::aho_corasick_automaton acam;
   flt_ (u32, i, 0, n) std::cin >> s, acam.insert(s, i);
-  acam.getfail();
-  std::cin >> s;
+  acam.getfail(), std::cin >> s;
   vecu sz(acam.sz), in(acam.sz);
   for (u32 i = 0, u = 0; i < s.size(); ++i) u = acam.t[u].nex[u32(s[i] - 'a')], sz[u] += 1;
-  for (u32 i = 0; i < acam.sz; ++i) ++in[acam.t[i].fail];
+  flt_ (u32, i, 0, acam.sz) ++in[acam.t[i].fail];
   std::queue<u32> q;
-  for (u32 i = 0; i < acam.sz; ++i)
+  flt_ (u32, i, 0, acam.sz)
     if (!in[i]) q.push(i);
   while (!q.empty()) {
     u32 u = q.front();
-    q.pop();
-    for (auto x : acam.t[u].end) ans[x] = sz[u];
+    for (q.pop(); auto x : acam.t[u].end) ans[x] = sz[u];
     u32 v = acam.t[u].fail;
-    sz[v] += sz[u];
-    --in[v];
-    if (!in[v]) q.push(v);
+    if (sz[v] += sz[u], --in[v]; !in[v]) q.push(v);
   }
   for (auto x : ans) std::cout << x << '\n';
-  return 0;
 }
 
 /*

@@ -3,8 +3,7 @@
 #include "../../code/graph/domtree.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, s;
   std::cin >> n >> m >> s;
   tifa_libs::graph::alist<> g(n);

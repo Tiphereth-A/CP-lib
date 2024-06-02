@@ -10,10 +10,7 @@ template <class mint>
 CEXP mint ball_box_ddl(u32, u32 box, vecu64 CR pows, Binom<mint> CR binom) {
   mint ans = 0;
   bool f = box & 1;
-  fle_ (u32, i, 1, box) {
-    f ? (ans += binom.mCn(box, i) * pows[i]) : (ans -= binom.mCn(box, i) * pows[i]);
-    f ^= 1;
-  }
+  fle_ (u32, i, 1, box) f ? (ans += binom.mCn(box, i) * pows[i]) : (ans -= binom.mCn(box, i) * pows[i]), f ^= 1;
   return ans;
 }
 template <class mint>

@@ -10,8 +10,7 @@ using mint = tifa_libs::math::mint_2e61n1;
 using hashstr = tifa_libs::str::hash_substr<mint>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s;
   std::cin >> s;
   {

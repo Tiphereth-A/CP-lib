@@ -3,8 +3,7 @@
 #include "../../code/graph/ssp.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   u32 s = n + n, t = n + n + 1;

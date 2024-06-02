@@ -9,10 +9,7 @@ namespace tifa_libs::math {
 CEXP vecu64 gen_derange(u32 n, u64 mod) {
   vecu64 d{0, mod > 1};
   if (n > 2) d.reserve(n);
-  else {
-    d.resize(n);
-    return d;
-  }
+  else return d.resize(n), d;
   flt_ (u32, i, 2, n) d.push_back(mul_mod_u(i, d[i - 1] + d[i - 2], mod));
   return d;
 }

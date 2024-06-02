@@ -21,9 +21,7 @@ class lichao_segtree {
 
   CEXP void add(T a, T b, T l, T r, u32 id = 1) {
     seg k = {id, a, b, l, r};
-    add(1, 0, sz - 1,
-        u32(std::ranges::lower_bound(lsh, l) - lsh.begin()),
-        u32(std::ranges::lower_bound(lsh, r) - lsh.begin()), k);
+    add(1, 0, sz - 1, u32(std::ranges::lower_bound(lsh, l) - lsh.begin()), u32(std::ranges::lower_bound(lsh, r) - lsh.begin()), k);
   }
   T query(T pos) { return query(1, 0, sz - 1, pos); }
 
@@ -37,8 +35,7 @@ class lichao_segtree {
       T tl = t[x].w(lsh[l]), tr = t[x].w(lsh[r]), kl = k.w(lsh[l]), kr = k.w(lsh[r]);
       if (pd(tl, kl) && pd(tr, kr)) return;
       if (!pd(tl, kl) && !pd(tr, kr)) return void(t[x] = k);
-      T in = (t[x].b - k.b) / (k.a - t[x].a);
-      if (pd(kl, tl)) {
+      if (T in = (t[x].b - k.b) / (k.a - t[x].a); pd(kl, tl)) {
         if (in <= lsh[mid]) add(x << 1, l, mid, L, R, k);
         else add(x << 1 | 1, mid + 1, r, L, R, t[x]), t[x] = k;
       } else if (in > lsh[mid]) add(x << 1 | 1, mid + 1, r, L, R, k);
@@ -52,9 +49,8 @@ class lichao_segtree {
     T MIN = std::numeric_limits<T>::lowest(), MAX = std::numeric_limits<T>::max();
     T ret = t[x].id ? t[x].w(pos) : (pd(MIN, MAX) ? MAX : MIN);
     if (l == r) return ret;
-    u32 mid = l + (r - l) / 2;
-    if (pos <= lsh[mid]) return op(ret, query(x << 1, l, mid, pos));
-    return op(ret, query(x << 1 | 1, mid + 1, r, pos));
+    if (u32 mid = l + (r - l) / 2; pos <= lsh[mid]) return op(ret, query(x << 1, l, mid, pos));
+    else return op(ret, query(x << 1 | 1, mid + 1, r, pos));
   }
 };
 }  // namespace tifa_libs::ds

@@ -14,8 +14,7 @@ class hash_substr {
   explicit CEXP hash_substr() {}
 
   CEXP void set(strnv s) {
-    hash.resize(1, 0), hash.reserve(s.size() + 1);
-    for (char c : s) hash.push_back(hash.back() * base + (u32)c + 1);
+    for (hash.resize(1, 0), hash.reserve(s.size() + 1); char c : s) hash.push_back(hash.back() * base + (u32)c + 1);
     if (p.size() <= s.size()) {
       if (p.empty()) p.push_back(1);
       p.reserve(s.size() + 1);

@@ -3,8 +3,7 @@
 #include "../../code/str/suffix_array.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn t, s;
   std::cin >> t;
   t = " " + t;

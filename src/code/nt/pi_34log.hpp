@@ -16,10 +16,7 @@ CEXP u64 pi_34log(u64 n) {
   for (u64 x = 2, pi = 0; x <= n2; ++x) {
     if (hs[x] == hs[x - 1]) continue;
     u64 x2 = x * x, mx = min(ndn2, div_u64d(n, x2) + 1), ix = x;
-    flt_ (u64, i, 1, mx) {
-      hl[i] -= (ix < ndn2 ? hl[ix] : hs[div_u64d(n, ix)]) - pi;
-      ix += x;
-    }
+    flt_ (u64, i, 1, mx) hl[i] -= (ix < ndn2 ? hl[ix] : hs[div_u64d(n, ix)]) - pi, ix += x;
     for (u64 n = n2; n >= x2; --n) hs[n] -= hs[div_u64d(n, x)] - pi;
     ++pi;
   }

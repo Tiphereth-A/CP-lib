@@ -6,8 +6,7 @@
 #include "../../code/tree/tree_sumvw.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, q;
   std::cin >> n >> m >> q;
   vecu nw(n);
@@ -22,8 +21,7 @@ int main() {
   auto sum_node_w = tifa_libs::graph::tree_sumvw(tr, nw);
   while (q--) {
     u32 x, k;
-    std::cin >> x >> k;
-    --x;
+    std::cin >> x >> k, --x;
     u64 ans = k + sum_node_w[x];
     while (x != tr.root) {
       u32 tem = x;

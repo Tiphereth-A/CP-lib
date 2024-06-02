@@ -6,8 +6,7 @@ auto op(u64 a, u64 b) { return a + b; }
 auto inv_op(u64 a, u64 b) { return a - b; }
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   vecu64 a(n);
@@ -16,15 +15,13 @@ int main() {
   flt_ (u32, i, 0, m) {
     char opt;
     u32 u, v;
-    std::cin >> opt >> u >> v;
-    --u, --v;
+    std::cin >> opt >> u >> v, --u, --v;
     if (opt == 'A') lct.link(u, v);
     else {
       auto ret = lct.query_subtree(u, v);
       std::cout << ret.first * ret.second << '\n';
     }
   }
-  return 0;
 }
 
 /*

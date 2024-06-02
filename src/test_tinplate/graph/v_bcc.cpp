@@ -3,8 +3,7 @@
 #include "../../code/graph/v_bcc.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   struct EW {
@@ -13,21 +12,17 @@ int main() {
   vvec<EW> e(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
-    if (u == v) continue;
-    --u, --v;
+    if (--u, --v; u == v) continue;
     u32 tem1 = u32(e[u].size()), tem2 = u32(e[v].size());
-    e[u].push_back({v, tem2});
-    e[v].push_back({u, tem1});
+    e[u].push_back({v, tem2}), e[v].push_back({u, tem1});
   }
   tifa_libs::graph::v_bcc<EW> bcc(e);
   std::cout << bcc.id << '\n';
-  for (u32 i = 0; i < bcc.id; ++i) {
+  flt_ (u32, i, 0, bcc.id) {
     std::cout << bcc.belongs[i].size() << ' ';
-    for (auto x : bcc.belongs[i])
-      std::cout << x + 1 << ' ';
+    for (auto x : bcc.belongs[i]) std::cout << x + 1 << ' ';
     std::cout << '\n';
   }
-  return 0;
 }
 
 /*

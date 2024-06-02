@@ -18,10 +18,8 @@ CEXP circle<FP> min_cover_C(vec<point<FP>> CR vp) {
     flt_ (u32, j, 0, i) {
       if (relation_CP(ret, vp[j]) != outside_cp) continue;
       ret = circle<FP>{mid_point(vp[i], vp[j]), dist_PP(vp[i], vp[j]) / 2};
-      flt_ (u32, k, 0, j) {
-        if (relation_CP(ret, vp[k]) != outside_cp) continue;
-        ret = make_C_PPP(vp[i], vp[j], vp[k]);
-      }
+      flt_ (u32, k, 0, j)
+        if (relation_CP(ret, vp[k]) == outside_cp) ret = make_C_PPP(vp[i], vp[j], vp[k]);
     }
   }
   return ret;

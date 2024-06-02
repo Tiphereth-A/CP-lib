@@ -25,20 +25,17 @@ class matsp {
   CEXP T &operator()(u32 r, u32 c) {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
-    d[r].emplace_back(c, T{});
-    return d[r].back().second;
+    return d[r].emplace_back(c, T{}), d[r].back().second;
   }
   CEXP T CR operator()(u32 r, u32 c) const {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
     return T{};
   }
-
   CEXP void shrink_row(u32 r) {
     d[r].erase(std::remove_if(d[r].begin(), d[r].end(), [](cT_(node) x) { return x.second == T{}; }), d[r].end());
   }
   CEXP void sort_row(u32 r) { std::ranges::sort(d[r]); }
-
   template <class F>
   CEXP void apply(F f) {
     flt_ (u32, i, 0, r)
@@ -62,48 +59,36 @@ class matsp {
       auto f1 = l.begin(), l1 = l.end(), f2 = r.begin(), l2 = r.end(), d = ret.d[i].begin();
       for (; f1 != l1; ++d) {
         if (f2 == l2) std::copy(f1, l1, d);
-        if (*f2 < *f1) {
-          *d = *f2;
-          ++f2;
-        } else if (*f1 < *f2) {
-          *d = *f1;
-          ++f1;
-        } else {
+        if (*f2 < *f1) *d = *f2, ++f2;
+        else if (*f1 < *f2) *d = *f1, ++f1;
+        else {
           u32 j = u32(f1 - l.begin());
-          *d = f(i, j, *f1, *f2);
-          ++f1, ++f2;
+          *d = f(i, j, *f1, *f2), ++f1, ++f2;
         }
       }
       std::copy(f2, l2, d);
     }
     return ret;
   }
-
   CEXP matsp operator-() const {
     matsp ret = *this;
-    ret.apply([](u32, u32, T &v) { v = -v; });
-    return ret;
+    return ret.apply([](u32, u32, T &v) { v = -v; }), ret;
   }
-
   friend CEXP matsp operator+(matsp l, cT_(T) v) { return l += v; }
   friend CEXP matsp operator+(cT_(T) v, matsp l) { return l += v; }
   CEXP matsp &operator+=(cT_(T) v) {
-    apply([&v](u32, u32, T &val) { val += v; });
-    return *this;
+    return apply([&v](u32, u32, T &val) { val += v; }), *this;
   }
   friend CEXP matsp operator-(matsp l, cT_(T) v) { return l -= v; }
   friend CEXP matsp operator-(cT_(T) v, matsp l) { return l -= v; }
   CEXP matsp &operator-=(cT_(T) v) {
-    apply([&v](u32, u32, T &val) { val -= v; });
-    return *this;
+    return apply([&v](u32, u32, T &val) { val -= v; }), *this;
   }
   friend CEXP matsp operator*(matsp l, cT_(T) v) { return l *= v; }
   friend CEXP matsp operator*(cT_(T) v, matsp l) { return l *= v; }
   CEXP matsp &operator*=(cT_(T) v) {
-    apply([&v](u32, u32, T &val) { val *= v; });
-    return *this;
+    return apply([&v](u32, u32, T &val) { val *= v; }), *this;
   }
-
   friend CEXP matsp operator+(matsp CR l, matsp CR r) {
     return merge(l, r, [](u32, u32, cT_(T) lv, cT_(T) rv) { return lv + rv; });
   }
@@ -125,7 +110,6 @@ class matsp {
     return ret;
   }
   CEXP matsp &operator*=(matsp CR r) { return *this = *this - r; }
-
   CEXP vec<T> lproj(vec<T> CR x) const {
     const u32 r_ = row(), c_ = col();
     assert(r_ == x.size());

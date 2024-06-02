@@ -7,8 +7,8 @@ namespace tifa_libs::math {
 
 // i^{b} from i=0..n-1
 CEXP vecu64 gen_pows(u32 n, u64 b, u64 mod) {
-  vecu64 ans(n);
   if (!n) return {};
+  vecu64 ans(n);
   if (!b) ans[0] = 1;
   if (n == 1) return ans;
   ans[1] = 1;

@@ -21,7 +21,6 @@ class Gen {
   CEXP void set_range(result_type a, result_type b) { dist = Distri(a, b); }
   CEXP random_engine& rand_eng() { return re; }
   CEXP Distri& distrib() { return dist; }
-
   void reset_seed() { re.seed((result_type)std::chrono::duration_cast<std::conditional_t<sizeof(TPN Distri::result_type) <= 4, std::chrono::seconds, std::chrono::nanoseconds>>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()); }
   CEXP result_type operator()() { return dist(re); }
   result_type next() { return dist(re); }

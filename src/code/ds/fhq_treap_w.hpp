@@ -37,10 +37,7 @@ class fhq_treap_w {
     return ret;
   }
   CEXP void rm(u32 u) { sta.push_back(u); }
-  CEXP void update(u32 u) {
-    t[u].w = op(t[t[u].son[0]].w, op(t[u].val, t[t[u].son[1]].w));
-    t[u].sz = t[t[u].son[0]].sz + t[t[u].son[1]].sz + 1;
-  }
+  CEXP void update(u32 u) { t[u].w = op(t[t[u].son[0]].w, op(t[u].val, t[t[u].son[1]].w)), t[u].sz = t[t[u].son[0]].sz + t[t[u].son[1]].sz + 1; }
   CEXP void reverse__(u32 u) {
     static_assert(reverse_);
     swap(t[u].son[0], t[u].son[1]), t[u].rev ^= 1;
@@ -65,59 +62,41 @@ class fhq_treap_w {
 
   CEXP void split(u32 u, u32 k, u32& x, u32& y) {
     if (!u) x = y = 0;
-    else {
-      pushdown(u);
-      if (t[t[u].son[0]].sz < k) x = u, split(t[u].son[1], k - t[t[u].son[0]].sz - 1, t[x].son[1], y), update(x);
-      else y = u, split(t[u].son[0], k, x, t[y].son[0]), update(y);
-    }
+    else if (pushdown(u); t[t[u].son[0]].sz < k) x = u, split(t[u].son[1], k - t[t[u].son[0]].sz - 1, t[x].son[1], y), update(x);
+    else y = u, split(t[u].son[0], k, x, t[y].son[0]), update(y);
   }
   CEXP u32 merge(u32 x, u32 y) {
     pushdown(x), pushdown(y);
     if (x && y) {
-      if (t[x].rad <= t[y].rad) {
-        t[x].son[1] = merge(t[x].son[1], y), update(x);
-        return x;
-      }
-      t[y].son[0] = merge(x, t[y].son[0]), update(y);
-      return y;
-    }
-    return x + y;
+      if (t[x].rad <= t[y].rad) return t[x].son[1] = merge(t[x].son[1], y), update(x), x;
+      return t[y].son[0] = merge(x, t[y].son[0]), update(y), y;
+    } else return x + y;
   }
   CEXP void insert(T w, u32 id_) {
     u32 x, y;
-    split(root, id_, x, y);
-    root = merge(merge(x, newnode(w)), y);
+    split(root, id_, x, y), root = merge(merge(x, newnode(w)), y);
   }
   CEXP void insert(T w) { insert(w, cnt); }
   CEXP void erase(u32 id_) {
     u32 x, y, z;
-    split(root, id_, x, y);
-    split(y, 1, z, y);
-    if (recovery) rm(z);
+    split(root, id_, x, y), split(y, 1, z, y);
+    if CEXP (recovery) rm(z);
     root = merge(x, y);
   }
   CEXP void update(u32 l, u32 r, F f) {
     u32 x, y, z;
-    split(root, r + 1, x, z);
-    split(x, l, x, y);
-    all_update(y, f);
-    root = merge(merge(x, y), z);
+    split(root, r + 1, x, z), split(x, l, x, y), all_update(y, f), root = merge(merge(x, y), z);
   }
   CEXP void reverse(u32 l, u32 r) {
-    assert(reverse_);
+    static_assert(reverse_);
     u32 x, y, z;
-    split(root, r + 1, x, z);
-    split(x, l, x, y);
-    reverse__(y);
-    root = merge(merge(x, y), z);
+    split(root, r + 1, x, z), split(x, l, x, y), reverse__(y), root = merge(merge(x, y), z);
   }
   CEXP T query(u32 l, u32 r) {
     u32 x, y, z;
-    split(root, r + 1, x, z);
-    split(x, l, x, y);
+    split(root, r + 1, x, z), split(x, l, x, y);
     T ret = t[y].w;
-    root = merge(merge(x, y), z);
-    return ret;
+    return root = merge(merge(x, y), z), ret;
   }
 };
 

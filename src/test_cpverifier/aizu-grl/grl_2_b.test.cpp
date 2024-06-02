@@ -3,8 +3,7 @@
 #include "../../code/graph/cle.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, r;
   std::cin >> n >> m >> r;
   vec<std::tuple<u64, u32, u32>> arcs(m);

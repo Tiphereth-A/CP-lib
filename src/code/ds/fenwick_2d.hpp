@@ -15,7 +15,6 @@ class fenwick2d {
 
   CEXP u32 row() const { return a.size(); }
   CEXP u32 col() const { return a[0].size(); }
-
   //! [x, row) * [y, col), x > 0, y > 0
   CEXP void add(u32 x, u32 y, cT_(T) v) {
     if (!x || !y || x >= row() || y >= col()) return;

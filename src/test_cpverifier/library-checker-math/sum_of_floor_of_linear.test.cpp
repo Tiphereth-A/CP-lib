@@ -11,8 +11,7 @@ struct exeuclid_node {
 };
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 t;
   std::cin >> t;
   exeuclid_node<u64> u(1, 0, 0), r(0, 1, 0);

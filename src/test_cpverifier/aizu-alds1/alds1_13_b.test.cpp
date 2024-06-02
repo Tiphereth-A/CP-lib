@@ -4,8 +4,7 @@
 #include "../../code/opt/astar.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   tifa_libs::game::NPuzzleData start(3);
   std::vector<u32> fin(9);
   std::iota(fin.begin(), fin.end(), 1);

@@ -41,25 +41,18 @@ struct cvh : public polygon<FP> {
         while (sz_cvh > t && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) <= 0) --sz_cvh;
       else
         while (sz_cvh > t && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) < 0) --sz_cvh;
-    cvh.resize(sz_cvh - 1);
-    this->vs = cvh;
-    return *this;
+    return cvh.resize(sz_cvh - 1), this->vs = cvh, *this;
   }
 
   CEXP FP diameter() const {
     const u32 n = this->size();
     if (n <= 1) return FP{};
     u32 is = 0, js = 0;
-    flt_ (u32, k, 1, n) {
-      is = this->vs[k] < this->vs[is] ? k : is;
-      js = this->vs[js] < this->vs[k] ? k : js;
-    }
+    flt_ (u32, k, 1, n) is = this->vs[k] < this->vs[is] ? k : is, js = this->vs[js] < this->vs[k] ? k : js;
     u32 i = is, j = js;
     FP ret = dist_PP(this->vs[i], this->vs[j]);
-    do {
-      (++(((this->vs[this->next(i)] - this->vs[i]) ^ (this->vs[this->next(j)] - this->vs[j])) >= 0 ? j : i)) %= n;
-      ret = max(ret, dist_PP(this->vs[i], this->vs[j]));
-    } while (i != is || j != js);
+    do (++(((this->vs[this->next(i)] - this->vs[i]) ^ (this->vs[this->next(j)] - this->vs[j])) >= 0 ? j : i)) %= n, ret = max(ret, dist_PP(this->vs[i], this->vs[j]));
+    while (i != is || j != js);
     return ret;
   }
 
@@ -78,14 +71,11 @@ struct cvh : public polygon<FP> {
       point diffl = this->vs[this->next(idxl)] - this->vs[idxl], diffr = r[r.next(idxr)] - r[idxr];
       bool f = !(idxl == midxl && fl) && ((idxr == midxr && fr) || is_pos(diffl ^ diffr));
       result.push_back(this->vs[idxl] + r[idxr] + (f ? diffl : diffr));
-      (f ? idxl : idxr) = (f ? this->next(idxl) : r.next(idxr));
-      (f ? fl : fr) |= !(f ? idxl : idxr);
+      (f ? idxl : idxr) = (f ? this->next(idxl) : r.next(idxr)), (f ? fl : fr) |= !(f ? idxl : idxr);
     }
-    this->vs = result;
-    return *this;
+    return this->vs = result, *this;
   }
   CEXP cvh &do_minkowski_sum(cvh<FP> CR r) { return do_minkowski_sum_nonstrict(r).init(); }
-
   CEXP cvh &do_ins_CVHhP(line<FP> CR l) {
     const u32 n = this->size();
     vec<point<FP>> cvc;
@@ -95,8 +85,7 @@ struct cvh : public polygon<FP> {
       if (d1 >= 0) cvc.push_back(p1);
       if (d1 * d2 < 0) cvc.push_back(ins_LL({p1, p2}, l));
     }
-    this->vs = cvc;
-    return *this;
+    return this->vs = cvc, *this;
   }
   template <class F>
   requires requires(F f, point<FP> i, point<FP> ni, point<FP> j) { f(i, ni, j); }

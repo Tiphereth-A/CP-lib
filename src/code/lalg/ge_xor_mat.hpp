@@ -12,8 +12,7 @@ CEXP i32 ge_xor(Mat &mat, Is0, bool clear_u = true) {
   u32 rk = 0;
   bool neg = false;
   for (u32 i = 0, now_row = 0, j_ = i; i < mat.row(); ++i) {
-    j_ = max(j_, i);
-    if (!mat(rk, i)) {
+    if (j_ = max(j_, i); !mat(rk, i)) {
       neg ^= ge_impl_::swapr__(mat, now_row, rk, mat.row());
       while (j_ < c_ && !mat(rk, j_)) ++j_;
       if (j_ == c_) break;

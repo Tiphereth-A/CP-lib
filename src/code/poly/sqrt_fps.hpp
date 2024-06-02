@@ -20,8 +20,7 @@ CEXP std::optional<poly<mint, ccore>> sqrt_fps(poly<mint, ccore> p, u32 n = 0) {
   else ans[0] = min(qres.value(), mint::mod() - qres.value());
   mint i2 = mint(2).inv();
   for (u32 i = 1; i < n; i *= 2) ans = (ans + p.pre(i * 2) * inv_fps(ans, i * 2)) * i2;
-  ans.resize(n);
-  return shl_fps(ans, cnt / 2);
+  return ans.resize(n), shl_fps(ans, cnt / 2);
 }
 
 }  // namespace tifa_libs::math

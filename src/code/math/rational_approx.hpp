@@ -20,8 +20,7 @@ CEXP ptt<ptt<T>> rational_approx(T n, ptt<T> CR f) {
       const auto _ = ff(hi, x, lo);
       return _.first <= n && _.second <= n && _.first * f.second <= _.second * f.first;
     });
-    lo = ff(hi, n1, lo);
-    if (lo.first * f.second == lo.second * f.first) {
+    if (lo = ff(hi, n1, lo); lo.first * f.second == lo.second * f.first) {
       hi = lo;
       break;
     }
@@ -29,8 +28,7 @@ CEXP ptt<ptt<T>> rational_approx(T n, ptt<T> CR f) {
       const auto _ = ff(lo, x, hi);
       return _.first <= n && _.second <= n && f.first * _.second <= f.second * _.first;
     });
-    hi = ff(lo, n2, hi);
-    if (hi.first * f.second == hi.second * f.first) {
+    if (hi = ff(lo, n2, hi); hi.first * f.second == hi.second * f.first) {
       lo = hi;
       break;
     }

@@ -3,8 +3,7 @@
 #include "../../code/ds/segtree_ctor.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
   auto tr = tifa_libs::ds::segtl_setmax_ctor<i32, -INT32_MAX>(vec<i32>(n, -INT32_MAX));

@@ -43,9 +43,8 @@ int main() {
       std::ranges::sort(tos);
       u32 cnt = 1, pre = tos[0];
       flt_ (u32, j, 1, (u32)tos.size())
-        if (tos[j] != pre) {
-          mat.set_arc(id, ids[pre], cnt), pre = tos[j], cnt = 1;
-        } else ++cnt;
+        if (tos[j] != pre) mat.set_arc(id, ids[pre], cnt), pre = tos[j], cnt = 1;
+        else ++cnt;
       mat.set_arc(id, ids[pre], cnt);
     }
     auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
@@ -55,7 +54,6 @@ int main() {
     flt_ (u32, i, 1, cnt_ids) ans *= fact[g.deg_out[inv_ids[i]] - 1];
     std::cout << ans << '\n';
   }
-  return 0;
 }
 
 /*

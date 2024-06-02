@@ -14,12 +14,11 @@ CEXP void uhb(Mat &mat, Is0 &&is0) {
   assert(n == mat.col());
   if (n <= 2) return;
   for (u32 i = 0, p; i < n - 2; ++i) {
-    p = i + 1;
-    for (; p != n; ++p)
+    for (p = i + 1; p != n; ++p)
       if (!is0(mat(p, i))) break;
     if (p == n) continue;
     if (p != i + 1) mat.swap_row(p, i + 1), mat.swap_col(p, i + 1);
-    for (u32 j = i + 2; j < n; ++j) {
+    flt_ (u32, j, i + 2, n) {
       if (is0(mat(j, i))) continue;
       const auto _ = mat(j, i) / mat(i + 1, i);
       flt_ (u32, k, i, n) mat(j, k) -= _ * mat(i + 1, k);

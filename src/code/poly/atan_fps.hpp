@@ -11,10 +11,7 @@ template <class mint, class ccore>
 CEXP poly<mint, ccore> atan_fps(poly<mint, ccore> CR p) {
   const u32 n = p.size();
   auto _ = p;
-  (_ *= _).resize(n);
-  _[0] += 1;
-  (_ = inv_fps(_) * deriv_fps(p)).resize(n);
-  return int_fps(_);
+  return (_ *= _).resize(n), _[0] += 1, (_ = inv_fps(_) * deriv_fps(p)).resize(n), int_fps(_);
 }
 
 }  // namespace tifa_libs::math

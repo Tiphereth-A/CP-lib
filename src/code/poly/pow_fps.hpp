@@ -22,16 +22,13 @@ CEXP poly<mint, ccore> pow_fps(poly<mint, ccore> CR p, u64 y, u32 n = 0) {
   if ((u128)l0 * y >= n) return poly<mint, ccore>(n);
   if (l0) {
     auto _ = shr_fps(p, l0), g = pow_fps(_, y, u32(n - l0 * y));
-    g.resize(n);
-    return shl_fps(g, l0 * y);
+    return g.resize(n), shl_fps(g, l0 * y);
   }
   auto _ = p;
   mint _0 = p[0];
   if (_0 != 1) _ *= _0.inv();
-  _ = exp_fps(ln_fps(_) * y);
-  if (_0 != 1) _ *= qpow(_0, y);
-  _.resize(n);
-  return _;
+  if (_ = exp_fps(ln_fps(_) * y); _0 != 1) _ *= qpow(_0, y);
+  return _.pre(n);
 }
 
 }  // namespace tifa_libs::math

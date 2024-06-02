@@ -6,8 +6,7 @@ u32 op(u32 x, u32 y) { return x + y; }
 u32 e() { return 0; }
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
   tifa_libs::ds::segtree_notag<u32, op, e> tr(n);

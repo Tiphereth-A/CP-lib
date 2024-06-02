@@ -24,21 +24,14 @@ class steiner_tree {
       vecu vis(e.g.size(), 0);
       while (!q.empty()) {
         auto [dis, u] = q.top();
-        q.pop();
-        if (vis[u]) continue;
-        vis[u] = 1;
-        for (auto [v, w] : e.g[u]) {
-          if (dp[v][s] > dp[u][s] + w) {
-            dp[v][s] = dp[u][s] + w;
-            q.emplace(-dp[v][s], v);
-          }
-        }
+        if (q.pop(); vis[u]) continue;
+        for (vis[u] = 1; auto [v, w] : e.g[u])
+          if (dp[v][s] > dp[u][s] + w) dp[v][s] = dp[u][s] + w, q.emplace(-dp[v][s], v);
       }
     };
     flt_ (u32, s, 1, 1_u32 << a.size()) {
       flt_ (u32, i, 0, (u32)e.g.size()) {
-        for (u32 ss = s & (s - 1); ss; ss = s & (ss - 1))
-          dp[i][s] = min(dp[i][s], dp[i][ss] + dp[i][s ^ ss]);
+        for (u32 ss = s & (s - 1); ss; ss = s & (ss - 1)) dp[i][s] = min(dp[i][s], dp[i][ss] + dp[i][s ^ ss]);
         if (dp[i][s] != INT32_MAX) q.emplace(-dp[i][s], i);
       }
       dij(s);

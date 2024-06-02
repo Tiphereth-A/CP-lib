@@ -10,7 +10,6 @@ CEXP bool is_prime(u64 n) {
   if (n <= 2) return n == 2;
   if (~n & 1) return false;
   if (n < 8 || n == 61) return true;
-
   auto f = [n, d = (n - 1) >> std::countr_zero(n - 1)](auto&& bases) -> bool {
     for (u64 i : bases) {
       if (!(i % n)) continue;
@@ -20,7 +19,6 @@ CEXP bool is_prime(u64 n) {
     }
     return true;
   };
-
   if (n < (1 << 30)) {
     CEXP u64 bases[3] = {2, 7, 61};
     return f(bases);

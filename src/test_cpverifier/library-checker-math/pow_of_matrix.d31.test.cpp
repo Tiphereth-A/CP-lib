@@ -13,8 +13,7 @@ using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
   mint::set_mod(MOD);
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n, k;
   std::cin >> n >> k;
   mat a(n, n);

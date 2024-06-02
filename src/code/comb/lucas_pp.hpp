@@ -22,19 +22,14 @@ class LucasPP {
       m_ *= p;
       assert(m_ <= 100'000'000);
     }
-    facp.resize(m_);
-    facp[0] = facp[1] = 1;
+    facp.resize(m_), facp[0] = facp[1] = 1;
     flt_ (u64, i, 2, m_)
-      if (i % p == 0) {
-        facp[i] = facp[i - 1];
-        facp[i + 1] = facp[i - 1] * (i + 1) % m_;
-        ++i;
-      } else facp[i] = facp[i - 1] * i % m_;
+      if (i % p == 0) facp[i] = facp[i - 1], facp[i + 1] = facp[i - 1] * (i + 1) % m_, ++i;
+      else facp[i] = facp[i - 1] * i % m_;
     ifacp = gen_invseq(facp, m_);
   }
 
   CEXP u64 mod() const { return m_; }
-
   CEXP u64 operator()(i64 m, i64 n) const {
     if (m < n || n < 0) return 0;
     i64 r = m - n;
@@ -42,10 +37,7 @@ class LucasPP {
     u32 i = 0;
     u64 res = 1;
     while (m) {
-      res = res * facp[(u64)m % m_] % m_ * ifacp[(u64)n % m_] % m_ * ifacp[(u64)r % m_] % m_;
-      m /= p;
-      n /= p;
-      r /= p;
+      res = res * facp[(u64)m % m_] % m_ * ifacp[(u64)n % m_] % m_ * ifacp[(u64)r % m_] % m_, m /= p, n /= p, r /= p;
       i32 eps = (i32)(m - n - r);
       if ((e0 += eps) >= (i32)q) return 0;
       if (++i >= q) eq += eps;

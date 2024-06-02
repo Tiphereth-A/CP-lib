@@ -27,7 +27,6 @@ struct NTT {
     const mint w = qpow(G, (mint::mod() - 1) / n);
     flt_ (u32, i, 1, n) root[i] = root[i - 1] * w;
   }
-
 #pragma GCC diagnostic ignored "-Wsign-conversion"
   CEXP void dif(vec<mint> &f, u32 n = 0) const {
     assert(size());

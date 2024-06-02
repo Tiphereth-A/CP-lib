@@ -8,8 +8,7 @@
 using point = tifa_libs::geo::point<double>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   point p0, p1;
   std::cin >> p0 >> p1;
   u32 q;

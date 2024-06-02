@@ -27,7 +27,6 @@ class mint {
   CEXP raw_type val() const { return d().val_(); }
   CEXP sraw_type sval() const { return (sraw_type)d().val_(); }
   CEXP raw_type &data() { return d().data_(); }
-
   template <int_c T>
   explicit CEXP operator T() const { return (T)val(); }
   CEXP mint &operator+=(mint CR r) { return d().adde_(r.d()); }
@@ -45,9 +44,7 @@ class mint {
   friend CEXP auto operator<=>(mint CR l, mint CR r) { return l.sval() - r.sval(); }
   friend std::istream &operator>>(std::istream &is, mint &x) {
     i64 _;
-    is >> _;
-    x = mint(_);
-    return is;
+    return is >> _, x = mint(_), is;
   }
   friend std::ostream &operator<<(std::ostream &os, mint CR x) { return os << x.val(); }
   friend CEXP mint abs(mint CR x) { return x.val(); }

@@ -27,5 +27,4 @@ int main() {
   tifa_libs::ndvec<5, int> v2(5u, 4u, 0u, 2u, 1u);
   OUTPUT_(v2.dim());
   OUTPUT_(v2);
-  return 0;
 }

@@ -30,8 +30,7 @@ class suffixarray {
       fle_ (u32, i, 1, n) ++cnt[rk[id[i]]];
       fle_ (u32, i, 1, m) cnt[i] += cnt[i - 1];
       for (u32 i = n; i >= 1; --i) sa[cnt[rk[id[i]]]--] = id[i];
-      std::ranges::copy(rk, oldrk.begin());
-      p = 0;
+      std::ranges::copy(rk, oldrk.begin()), p = 0;
       fle_ (u32, i, 1, n) {
         u32 x = sa[i], y = sa[i - 1];
         rk[x] = oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w] ? p : ++p;
@@ -76,11 +75,9 @@ class suffixarray {
   // the smallest rank of suffix that is greater than t and t isn't prefix of that
   CEXP u32 upper_bound(T t) const {
     u32 l = 1, r = u32(s.size() - 1), ret = u32(s.size());
-    while (r >= l) {
-      const u32 m = l + (r - l) / 2;
-      if (compare_substr(t, sa[m]) <= 1) l = m + 1;
+    while (r >= l)
+      if (const u32 m = l + (r - l) / 2; compare_substr(t, sa[m]) <= 1) l = m + 1;
       else r = m - 1, ret = m;
-    }
     return ret;
   }
   CEXP u32 frequency(T t) const { return upper_bound(t) - lower_bound(t); }

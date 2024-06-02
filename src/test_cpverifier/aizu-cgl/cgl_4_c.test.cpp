@@ -8,8 +8,7 @@ using cvh = tifa_libs::geo::cvh<double>;
 using line = tifa_libs::geo::line<double>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(8);
   u32 n;
   std::cin >> n;

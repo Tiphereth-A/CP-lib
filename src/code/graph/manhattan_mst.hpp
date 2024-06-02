@@ -15,8 +15,7 @@ auto manhattan_mst(vecpt<T> vp) {
   vec<std::tuple<T, u32, u32>> ret;
   flt_ (u32, k, 0, 4) {
     std::ranges::sort(id, [&](u32 i, u32 j) { return vp[i].first + vp[i].second < vp[j].first + vp[j].second; });
-    std::map<T, u32> mp;
-    for (auto i : id) {
+    for (std::map<T, u32> mp; auto i : id) {
       for (auto it = mp.lower_bound(-vp[i].second); it != mp.end(); mp.erase(it++)) {
         u32 j = it->second;
         if (T x_ = vp[i].first - vp[j].first, y_ = vp[i].second - vp[j].second; y_ > x_) break;

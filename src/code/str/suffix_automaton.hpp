@@ -37,8 +37,7 @@ class suffix_automaton {
       if (st[p].len + 1 == st[q].len) st[cur].link = q;
       else {
         u32 clone = sz++;
-        st.push_back(TIFA());
-        st[clone].nex = st[q].nex, st[clone].len = st[p].len + 1, st[clone].link = st[q].link;
+        st.push_back(TIFA()), st[clone].nex = st[q].nex, st[clone].len = st[p].len + 1, st[clone].link = st[q].link;
         st[clone].firstpos = st[q].firstpos;  // app 3
         st[clone].is_clone = 1;               // app 3
         while (~p && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
@@ -65,8 +64,7 @@ class suffix_automaton {
   }
   // app 1
   CEXP void getsz(u32 u = 0) {
-    st[u].sz = 1;
-    for (auto v : st[u].nex)
+    for (st[u].sz = 1; auto v : st[u].nex)
       if (v) {
         if (!st[v].sz) getsz(v);
         st[u].sz += st[v].sz;

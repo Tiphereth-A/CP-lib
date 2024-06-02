@@ -28,15 +28,10 @@ class segtree {
 
   template <class V>
   CEXP void reset(V &&a) {
-    if (a.empty()) {
-      sz = lbn = n = 0, val.clear(), tag.clear(), vset.clear();
-      return;
-    }
+    if (a.empty()) return sz = lbn = n = 0, val.clear(), tag.clear(), vset.clear();
     sz = (u32)a.size(), lbn = (u32)std::bit_width(sz - 1), n = 1_u32 << lbn;
     if (!n) return;
-    val = vec<T>(n * 2, E);
-    std::ranges::copy(a, val.begin() + n);
-    if CEXP (enable_tag) tag = vec<F>(n, ID), vset = vecb(n);
+    if CEXP (val = vec<T>(n * 2, E), std::ranges::copy(a, val.begin() + n); enable_tag) tag = vec<F>(n, ID), vset = vecb(n);
     for (u32 i = n - 1; i; --i) pushup(i);
   }
   //! 0-indexed, [l, r)
@@ -50,8 +45,7 @@ class segtree {
     assert(l <= r && r <= sz);
     if (l == r) return E;
     l += n, r += n;
-    u32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r);
-    for (u32 i = lbn, ie = (u32)max(1, (i32)min(zl, zr)); i >= ie; --i) {
+    for (u32 i = lbn, zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), ie = (u32)max(1, (i32)min(zl, zr)); i >= ie; --i) {
       if (zl < i) pushdown(l >> i);
       if (zr < i) pushdown((r - 1) >> i);
     }
@@ -83,10 +77,8 @@ class segtree {
     T _ = E;
     do {
       if (!chk(op(_, val[l >>= std::countr_zero(l)]))) {
-        while (l < n) {
-          pushdown(l), l *= 2;
-          if (chk(op(_, val[l]))) _ = op(_, val[l++]);
-        }
+        while (l < n)
+          if (pushdown(l), l *= 2; chk(op(_, val[l]))) _ = op(_, val[l++]);
         return l - n;
       }
       _ = op(_, val[l++]);
@@ -106,10 +98,8 @@ class segtree {
     do {
       if (!(--r, r >>= std::countr_one(r))) r = 1;
       if (!chk(op(val[r], _))) {
-        while (r < n) {
-          pushdown(r), r = r * 2 + 1;
-          if (chk(op(val[r], _))) _ = op(val[r--], _);
-        }
+        while (r < n)
+          if (pushdown(r), r = r * 2 + 1; chk(op(val[r], _))) _ = op(val[r--], _);
         return r + 1 - n;
       }
       _ = op(val[r], _);
@@ -122,26 +112,20 @@ class segtree {
   CEXP void pushup(u32 x) { val[x] = op(val[x * 2], val[x * 2 + 1]); }
   template <bool upd>
   CEXP void apply(u32 x, std::conditional_t<upd, cT_(F), cT_(T)> f) {
-    if constexpr (upd) {
+    if CEXP (upd) {
       if (f == ID) return;
-      val[x] = mapping(val[x], f);
-      if CEXP (enable_tag)
+      if CEXP (val[x] = mapping(val[x], f); enable_tag)
         if (x < n) compose(tag[x], f);
-    } else {
-      val[x] = f;
-      if CEXP (enable_tag)
-        if (x < n) tag[x] = ID, vset[x] = 1;
-    }
+    } else if CEXP (val[x] = f; enable_tag)
+      if (x < n) tag[x] = ID, vset[x] = 1;
   }
   CEXP void pushdown(u32 x) {
     if CEXP (enable_tag) {
       if (vset[x]) {
-        val[x * 2] = val[x * 2 + 1] = val[x];
-        if (x * 2 < n) tag[x * 2] = tag[x * 2 + 1] = ID, vset[x * 2] = vset[x * 2 + 1] = 1;
+        if (val[x * 2] = val[x * 2 + 1] = val[x]; x * 2 < n) tag[x * 2] = tag[x * 2 + 1] = ID, vset[x * 2] = vset[x * 2 + 1] = 1;
         vset[x] = 0;
       } else if (tag[x] != ID) {
-        val[x * 2] = mapping(val[x * 2], tag[x]), val[x * 2 + 1] = mapping(val[x * 2 + 1], tag[x]);
-        if (x * 2 < n) compose(tag[x * 2], tag[x]), compose(tag[x * 2 + 1], tag[x]);
+        if (val[x * 2] = mapping(val[x * 2], tag[x]), val[x * 2 + 1] = mapping(val[x * 2 + 1], tag[x]); x * 2 < n) compose(tag[x * 2], tag[x]), compose(tag[x * 2 + 1], tag[x]);
         tag[x] = ID;
       }
     }

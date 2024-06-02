@@ -12,7 +12,7 @@ poly ssts_pim_cnt(vec<T> CR s, u32 t, vec<mint> CR inv) {
   for (auto&& i : s) ++cnt[i];
   poly p(t + 1);
   fle_ (u32, x, 1, t)
-    for (u32 d = 1; d <= t / x; ++d)
+    fle_ (u32, d, 1, t / x)
       if (d & 1) p[d * x] += mint(cnt[x]) * inv[d];
       else p[d * x] -= mint(cnt[x]) * inv[d];
   return exp_fps(p);

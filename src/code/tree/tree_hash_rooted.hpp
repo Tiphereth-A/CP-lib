@@ -9,11 +9,7 @@ namespace tifa_libs::graph {
 template <class Hash, u64 OFFSET = 1>
 CEXP vecu64 tree_hash_rooted(cT_(tree) tr, Hash &&hasher) {
   vecu64 hash(tr.g.size(), OFFSET);
-  dfs(
-      tr, tr.root, fn_0, fn_0,
-      [&](u32 to, u32 u, u32 = 1) { hash[u] += hasher(hash[to]); },
-      fn_0);
-  return hash;
+  return dfs(tr, tr.root, fn_0, fn_0, [&](u32 to, u32 u, u32 = 1) { hash[u] += hasher(hash[to]); }, fn_0), hash;
 }
 
 }  // namespace tifa_libs::graph

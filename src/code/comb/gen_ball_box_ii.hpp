@@ -11,10 +11,9 @@ template <class poly>
 CEXP poly gen_ball_box_ii(u32 m, u32 n, vecu64 CR inv) {
   poly f(n + 1);
   fle_ (u32, i, 1, m)
-    for (u32 k = 1; k <= n / i; ++k) f[i * k] += inv[k];
+    fle_ (u32, k, 1, n / i) f[i * k] += inv[k];
   return exp_fps(f);
 }
-
 // f = \\prod_{i=1}^m 1/(1-x^i), deg(f) = n
 template <class poly>
 CEXP poly gen_ball_box_ii(u32 m, u32 n) { return gen_ball_box_ii<poly>(m, n, gen_inv(n + 1, poly::value_type::mod())); }

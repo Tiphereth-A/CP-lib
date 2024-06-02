@@ -14,19 +14,15 @@ CEXP vecu topo_sort(alist<with_deg> CR fg) {
   auto dfs = [&](auto&& dfs, u32 i) -> bool {
     if (_[i]) return false;
     if (!vis[i]) {
-      _[i] = true;
-      for (u32 to : fg.g[i])
+      for (_[i] = true; u32 to : fg.g[i])
         if (!dfs(dfs, to)) return false;
-      vis[i] = true;
-      ans.push_back(i);
-      _[i] = false;
+      vis[i] = true, ans.push_back(i), _[i] = false;
     }
     return true;
   };
   flt_ (u32, i, 0, n)
     if (!vis[i] && !dfs(dfs, i)) return {};
-  std::ranges::reverse(ans);
-  return ans;
+  return std::ranges::reverse(ans), ans;
 }
 
 }  // namespace tifa_libs::graph

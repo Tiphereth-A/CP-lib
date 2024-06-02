@@ -11,8 +11,7 @@ CEXP mint nth_term_lrec(u64 n, vec<mint> CR a, vec<mint> CR bm) {
   if (n < a.size()) return a[n];
   assert(!bm.empty() && bm[0] == 1);
   poly q(bm);
-  q.strip();
-  return bostan_mori(n, (poly(a) * q).pre(q.size() - 1), q);
+  return q.strip(), bostan_mori(n, (poly(a) * q).pre(q.size() - 1), q);
 }
 template <class poly, std::same_as<TPN poly::value_type> mint>
 CEXP mint nth_term_lrec(u64 n, vec<mint> CR a) {

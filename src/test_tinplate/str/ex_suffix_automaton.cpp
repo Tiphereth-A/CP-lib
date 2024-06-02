@@ -3,23 +3,20 @@
 #include "../../code/str/ex_suffix_automaton.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   strn s;
   std::cin >> n;
   tifa_libs::str::ex_suffix_automaton sam;
   flt_ (u32, i, 0, n) {
     std::cin >> s;
-    u32 last = 0;
-    for (auto c : s)
+    for (u32 last = 0; auto c : s)
       last = sam.extend(last, u32(c - 'a'));
   }
   u64 ans = 0;
-  for (u32 i = 1; i < sam.sz; ++i) ans += sam.st[i].len - sam.st[sam.st[i].link].len;
+  flt_ (u32, i, 1, sam.sz) ans += sam.st[i].len - sam.st[sam.st[i].link].len;
   std::cout << ans << '\n'
             << sam.sz;
-  return 0;
 }
 
 /*

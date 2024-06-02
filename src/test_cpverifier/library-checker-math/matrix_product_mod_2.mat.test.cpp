@@ -5,8 +5,7 @@
 using mat = tifa_libs::math::matrix<bool>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, k;
   std::cin >> n >> m >> k;
   mat a(n, m), b(m, k);

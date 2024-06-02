@@ -3,8 +3,7 @@
 #include "../../code/graph/chrom_num.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   tifa_libs::graph::alist g(n);

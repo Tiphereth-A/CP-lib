@@ -8,8 +8,7 @@ using point = tifa_libs::geo::point<double>;
 using line = tifa_libs::geo::line<double>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 q;
   std::cin >> q;
   flt_ (u32, i, 0, q) {

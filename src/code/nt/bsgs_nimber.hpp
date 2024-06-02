@@ -21,18 +21,15 @@ CEXP T bsgs_nimber(nimber<T, prod> CR a, nimber<T, prod> CR b) {
       hmap<T, i32> mp;
       nimber<T, prod> big = 1, now = 1;
       flt_ (u32, i, 0, step) mp[z.x] = i, z *= a, big *= a;
-      for (i32 step = 0; step < i32(p + 10); step += step) {
-        now *= big;
-        if (mp.find(now.x) != mp.end()) return (step + step) - mp[now.x];
-      }
+      for (i32 step = 0; step < i32(p + 10); step += step)
+        if (now *= big; mp.find(now.x) != mp.end()) return (step + step) - mp[now.x];
       return T(-1);
     };
     const auto xq = qpow(a, q), yq = qpow(b, q);
     if (xq == 1 && yq == 1) continue;
     if (xq == 1 && yq != 1) return T(-1);
-    T _ = f(xq, yq);
-    if (_ == T(-1)) return T(-1);
-    rem.push_back(_ % p), mod.push_back(p);
+    if (T _ = f(xq, yq); _ == T(-1)) return T(-1);
+    else rem.push_back(_ % p), mod.push_back(p);
   }
   return crt_mod(rem, mod).first;
 }

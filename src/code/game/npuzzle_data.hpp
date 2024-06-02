@@ -10,19 +10,17 @@ class NPuzzleData {
   static inline vecu fin_node, fin_pos;
   static inline vvecu pos_cost;
 
-  u32 k, pos0;
-  u32 cost_;
+  u32 k, pos0, cost_;
 
  public:
   static inline u32 limit = UINT32_MAX;
   static CEXP void set_fin(u32 k, vecu CR fin) {
     assert(fin.size() == k * k);
-    fin_node = fin;
-    fin_pos.resize(k * k);
-    for (u32 i = 0; i < k * k; ++i) fin_pos[fin_node[i]] = i;
+    fin_node = fin, fin_pos.resize(k * k);
+    flt_ (u32, i, 0, k * k) fin_pos[fin_node[i]] = i;
     pos_cost.resize(k * k, vecu(k * k));
-    for (u32 p = 1; p < k * k; ++p)
-      for (u32 q = 0; q < k * k; ++q) pos_cost[p][q] = u32(abs(i32(p / k) - i32(q / k)) + abs(i32(p % k) - i32(q % k)));
+    flt_ (u32, p, 1, k * k)
+      flt_ (u32, q, 0, k * k) pos_cost[p][q] = u32(abs(i32(p / k) - i32(q / k)) + abs(i32(p % k) - i32(q % k)));
   }
 
   vecu node;
@@ -44,14 +42,12 @@ class NPuzzleData {
     vec<NPuzzleData> ans;
     for (char d : moves) {
       auto nxt = *this;
-      nxt.move(d);
-      if (nxt.cost_ <= limit) ans.push_back(nxt);
+      if (nxt.move(d); nxt.cost_ <= limit) ans.push_back(nxt);
     }
     return ans;
   }
   CEXP void move(char dir) {
-    moves.push_back(dir);
-    ++cost_;
+    moves.push_back(dir), ++cost_;
     const u32 _ = pos0;
     switch (dir) {
       case 'U': pos0 -= k; break;
@@ -59,9 +55,7 @@ class NPuzzleData {
       case 'L': --pos0; break;
       case 'R': ++pos0; break;
     }
-    cost_ += pos_cost[_][fin_pos[node[pos0]]];
-    cost_ -= pos_cost[pos0][fin_pos[node[pos0]]];
-    swap(node[_], node[pos0]);
+    cost_ += pos_cost[_][fin_pos[node[pos0]]] - pos_cost[pos0][fin_pos[node[pos0]]], swap(node[_], node[pos0]);
   }
   CEXP auto operator<=>(NPuzzleData CR r) const { return node <=> r.node; }
   friend std::istream &operator>>(std::istream &is, NPuzzleData &np) {

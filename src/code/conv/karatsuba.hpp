@@ -29,8 +29,7 @@ CEXP vec<T> karatsuba(vec<T> CR a, vec<T> CR b) {
   std::ranges::copy(clu, std::back_inserter(c));
   c.resize(a.size() + b.size() - 1), c += cll;
   flt_ (u32, i, 0, (u32)cuu.size()) c[i + 2 * d] += cuu[i];
-  c.resize(a.size() + b.size() - 1);
-  return c;
+  return c.resize(a.size() + b.size() - 1), c;
 }
 
 }  // namespace tifa_libs::math

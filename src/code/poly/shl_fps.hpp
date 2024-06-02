@@ -8,13 +8,8 @@ namespace tifa_libs::math {
 template <class mint, class ccore>
 CEXP poly<mint, ccore> shl_fps(poly<mint, ccore> CR p, usz x) {
   if (!x) return p;
-  auto _ = p;
-  if (x >= _.size()) {
-    std::ranges::fill(_.data(), 0);
-    return _;
-  }
-  std::fill(_.data().begin(), std::move_backward(_.data().begin(), std::prev(_.data().end(), (isz)x), _.data().end()), 0);
-  return _;
+  if (auto _ = p; x >= _.size()) return std::ranges::fill(_.data(), 0), _;
+  else return std::fill(_.data().begin(), std::move_backward(_.data().begin(), std::prev(_.data().end(), (isz)x), _.data().end()), 0), _;
 }
 
 }  // namespace tifa_libs::math

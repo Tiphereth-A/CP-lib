@@ -7,9 +7,8 @@ namespace tifa_libs {
 
 CEXP vecu cantor_val2seq(u64 cv, vecu64 CR fact) {
   const u32 n = (u32)fact.size();
-  --cv;
   vecu s;
-  s.reserve(n);
+  s.reserve(n), --cv;
   for (u32 i = 0; i < n; cv %= fact[n - i - 1], ++i) s.push_back(u32(cv / fact[n - i - 1]));
   return s;
 }

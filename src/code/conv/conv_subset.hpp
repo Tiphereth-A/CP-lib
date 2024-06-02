@@ -27,26 +27,22 @@ struct conv_subset {
       for (u32 k = 0; k < (u32)a.size(); k += w * 2)
         flt_ (u32, i, 0, w) add(a[k + w + i], a[k + i], pc[k + w + i]);
   }
-
   CEXP void mobius(vec<arr_t>& a) const {
     const u32 n = (u32)a.size();
     for (u32 w = n >> 1; w; w /= 2)
       for (u32 k = 0; k < n; k += w * 2)
         flt_ (u32, i, 0, w) sub(a[k + w + i], a[k + i], pc[k + w + i]);
   }
-
   CEXP vec<arr_t> lift(vec<T> CR a) const {
     vec<arr_t> A(a.size());
     flt_ (u32, i, 0, (u32)a.size()) std::ranges::fill(A[i], T()), A[i][pc[i]] = a[i];
     return A;
   }
-
   CEXP vec<T> unlift(vec<arr_t> CR A) const {
     vec<T> a(A.size());
     flt_ (u32, i, 0, (u32)A.size()) a[i] = A[i][pc[i]];
     return a;
   }
-
   CEXP void prod(vec<arr_t>& A, vec<arr_t> CR B) const {
     u32 n = (u32)A.size(), d = (u32)std::countr_zero(n);
     flt_ (u32, i, 0, n) {
@@ -56,13 +52,9 @@ struct conv_subset {
       A[i].swap(c);
     }
   }
-
   CEXP vec<T> conv(vec<T> CR a, vec<T> CR b) const {
     vec<arr_t> A = lift(a), B = lift(b);
-    zeta(A), zeta(B);
-    prod(A, B);
-    mobius(A);
-    return unlift(A);
+    return zeta(A), zeta(B), prod(A, B), mobius(A), unlift(A);
   }
 };
 

@@ -17,16 +17,10 @@ CEXP u64 run(alist<with_deg> CR dg, alist<with_deg> CR dgv) {
       for (u32 w : dg.g[v])
         if (w != u) ++cnt2[w];
     for (u32 v : dg.g[u])
-      for (u32 w : dg.g[v]) {
-        ans += cnt1[w] * (cnt1[w] - 1) + cnt1[w] * cnt2[w] * 2;
-        cnt1[w] = 0;
-      }
+      for (u32 w : dg.g[v]) ans += cnt1[w] * (cnt1[w] - 1) + cnt1[w] * cnt2[w] * 2, cnt1[w] = 0;
     for (u32 v : dgv.g[u])
       for (u32 w : dg.g[v])
-        if (w != u) {
-          ans += cnt2[w] * (cnt2[w] - 1) / 2;
-          cnt2[w] = 0;
-        }
+        if (w != u) ans += cnt2[w] * (cnt2[w] - 1) / 2, cnt2[w] = 0;
   }
   return ans / 2;
 }

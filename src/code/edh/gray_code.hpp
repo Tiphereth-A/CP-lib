@@ -12,7 +12,6 @@ CEXP std::bitset<64> gray_code(u32 n, u64 k) {
   while (~--n) res.set(n, k >> n & 1);
   return res;
 }
-
 // all n-digit Gray code
 CEXP vecu gray_code(u32 n) {
   vecu ret(1 << n);

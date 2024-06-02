@@ -7,8 +7,7 @@
 using tri = tifa_libs::geo::triangle<double>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(12);
   tri t;
   std::cin >> t;

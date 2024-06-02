@@ -6,8 +6,7 @@
 
 int main() {
   tifa_libs::hash_splitmix64::set_seed();
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   tifa_libs::graph::tree tr(n);

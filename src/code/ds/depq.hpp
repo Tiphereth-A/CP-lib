@@ -39,8 +39,7 @@ CEXP void pdmin_(I b, TPN std::iterator_traits<I>::value_type v, u32 i, u32 l, C
   for (;;)
     if (u32 gch_lst = gchls_idx_(i); gch_lst < l) {
       auto it = b + gch_lst;
-      u32 h1m = gch_lst - 2 - !!c(it[-3], it[-2]), h2m = gch_lst - !!c(it[-1], it[0]);
-      u32 s = c(b[h2m], b[h1m]) ? h2m : h1m;
+      u32 h1m = gch_lst - 2 - !!c(it[-3], it[-2]), h2m = gch_lst - !!c(it[-1], it[0]), s = c(b[h2m], b[h1m]) ? h2m : h1m;
       if (!c(b[s], v)) break;
       b[i] = std::move(b[s]);
       if (u32 p = pidx_(i = s); c(b[p], v)) swap(b[p], v);
@@ -49,8 +48,7 @@ CEXP void pdmin_(I b, TPN std::iterator_traits<I>::value_type v, u32 i, u32 l, C
       if (ch1 >= l) break;
       u32 gch1 = gch_lst - 3, s = s_dec_(b, l, ch1, gch1, c);
       if (!c(b[s], v)) break;
-      b[i] = std::move(b[s]);
-      if ((i = s) < gch1) break;
+      if (b[i] = std::move(b[s]); (i = s) < gch1) break;
       if (u32 p = pidx_(i); c(b[p], v)) b[i] = std::move(b[p]), i = p;
       break;
     }
@@ -69,8 +67,7 @@ CEXP void pdmax_(I b, TPN std::iterator_traits<I>::value_type v, u32 i, u32 l, C
   for (;;)
     if (u32 gch_lst = gchls_idx_(i); gch_lst < l) {
       auto it = b + gch_lst;
-      u32 h1m = gch_lst - 2 - !!c(it[-2], it[-3]), h2m = gch_lst - !!c(it[0], it[-1]);
-      u32 s = c(b[h1m], b[h2m]) ? h2m : h1m;
+      u32 h1m = gch_lst - 2 - !!c(it[-2], it[-3]), h2m = gch_lst - !!c(it[0], it[-1]), s = c(b[h1m], b[h2m]) ? h2m : h1m;
       if (!c(v, b[s])) break;
       b[i] = std::move(b[s]);
       if (u32 p = pidx_(i = s); c(v, b[p])) swap(b[p], v);
@@ -79,8 +76,7 @@ CEXP void pdmax_(I b, TPN std::iterator_traits<I>::value_type v, u32 i, u32 l, C
       if (ch1 >= l) break;
       u32 gch1 = gch_lst - 3, s = l_dec_(b, l, ch1, gch1, c);
       if (!c(v, b[s])) break;
-      b[i] = std::move(b[s]);
-      if ((i = s) < gch1) break;
+      if (b[i] = std::move(b[s]); (i = s) < gch1) break;
       if (u32 p = pidx_(i); c(v, b[p])) b[i] = std::move(b[p]), i = p;
       break;
     }
@@ -101,22 +97,18 @@ CEXP bool is_minmax_heap(I begin, I end, C &&comp = C{}) {
   u32 l = u32(end - begin);
   auto f = [](u32 i, auto cf) {
     u32 ch1 = depq_impl_::ch1idx_(i), ch2 = ch1 + 1;
-    u32 gch1 = depq_impl_::ch1idx_(ch1), gch2 = gch1 + 1;
-    u32 gch3 = depq_impl_::ch1idx_(ch2), gch4 = gch3 + 1;
+    u32 gch1 = depq_impl_::ch1idx_(ch1), gch2 = gch1 + 1, gch3 = depq_impl_::ch1idx_(ch2), gch4 = gch3 + 1;
     return cf(ch1) && cf(ch2) && cf(gch1) && cf(gch2) && cf(gch3) && cf(gch4);
   };
   flt_ (u32, i, 0, l)
     if (depq_impl_::is_mini(i)) {
       if (!f(i, [&](u32 c) { return c >= l || !comp(begin[c], begin[i]); })) return false;
-    } else {
-      if (!f(i, [&](u32 c) { return c >= l || !comp(begin[i], begin[c]); })) return false;
-    }
+    } else if (!f(i, [&](u32 c) { return c >= l || !comp(begin[i], begin[c]); })) return false;
   return true;
 }
 template <class I, class C = std::less<>>
 void push_minmax_heap(I begin, I end, C &&comp = C{}) {
-  u32 len = u32(end - begin);
-  u32 idx = len - 1, parent = depq_impl_::pidx_(idx);
+  u32 len = u32(end - begin), idx = len - 1, parent = depq_impl_::pidx_(idx);
   TPN std::iterator_traits<I>::value_type value = std::move(end[-1]);
   if (depq_impl_::is_minni(len)) {
     if (idx == 0) static_cast<void>(0);
@@ -159,26 +151,21 @@ CEXP void make_minmax_heap(I begin, I end, C &&comp = C{}) {
   u32 l = u32(end - begin), idx = l / 2;
   if (idx == 0) return;
   if ((l & 1) == 0) {
-    --idx;
-    if (depq_impl_::is_mini(idx)) depq_impl_::pdmin_1ch_(begin, idx, comp);
+    if (--idx; depq_impl_::is_mini(idx)) depq_impl_::pdmin_1ch_(begin, idx, comp);
     else depq_impl_::pdmax_1ch_(begin, idx, comp);
     if (idx == 0) return;
   }
   if (l != 4) {
-    u32 lidx_ngch = l / 4;
-    for (;;) {
+    for (u32 lidx_ngch = l / 4;;) {
       int hib = depq_impl_::hib_(idx);
       u32 loplim = max(lidx_ngch, (1_u32 << hib) - 1);
-      --idx;
-      if (hib & 1)
+      if (--idx; hib & 1)
         for (;; --idx) {
-          depq_impl_::pdmax_1lvl_(begin, idx, comp);
-          if (idx == loplim) break;
+          if (depq_impl_::pdmax_1lvl_(begin, idx, comp); idx == loplim) break;
         }
       else {
         for (;; --idx) {
-          depq_impl_::pdmin_1lvl_(begin, idx, comp);
-          if (idx == loplim) break;
+          if (depq_impl_::pdmin_1lvl_(begin, idx, comp); idx == loplim) break;
         }
         if (idx == 0) return;
       }
@@ -186,24 +173,17 @@ CEXP void make_minmax_heap(I begin, I end, C &&comp = C{}) {
     }
   }
   int hib = depq_impl_::hib_(idx);
-  u32 loplim = (1_u32 << hib) - 1;
-  switch (hib & 1)
+  switch (u32 loplim = (1_u32 << hib) - 1; hib & 1)
     for (;;) {
       case 0:
-        for (;;) {
-          --idx;
-          depq_impl_::pdmin_(begin, std::move(begin[idx]), idx, l, comp);
-          if (idx == loplim) break;
-        }
+        for (;;)
+          if (--idx, depq_impl_::pdmin_(begin, std::move(begin[idx]), idx, l, comp); idx == loplim) break;
         if (idx == 0) return;
         loplim /= 2;
         [[fallthrough]];
       case 1:
-        for (;;) {
-          --idx;
-          depq_impl_::pdmax_(begin, std::move(begin[idx]), idx, l, comp);
-          if (idx == loplim) break;
-        }
+        for (;;)
+          if (--idx, depq_impl_::pdmax_(begin, std::move(begin[idx]), idx, l, comp); idx == loplim) break;
         loplim /= 2;
     }
 }

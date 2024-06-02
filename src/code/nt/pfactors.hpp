@@ -32,10 +32,7 @@ CEXP u64 rho(u64 n) {
 }
 CEXP void run(u64 n, vecu64 &p) {
   if (n < 2) return;
-  if (is_prime(n)) {
-    p.push_back(n);
-    return;
-  }
+  if (is_prime(n)) return p.push_back(n);
   const u64 g = rho(n);
   run(n / g, p), run(g, p);
 }
@@ -52,14 +49,12 @@ CEXP vecu64 pfactors(u64 n) {
   if (n < 2) return p;
   pfactors_impl_::run(n, p);
   if CEXP (unique) return uniq(p);
-  std::ranges::sort(p);
-  return p;
+  return std::ranges::sort(p), p;
 }
 CEXP vecp<u64, u32> pf_exp(u64 n) {
   auto p = pfactors<false>(n);
-  u64 lst = 0;
   vecp<u64, u32> ans;
-  for (u64 i : p)
+  for (u64 lst = 0; u64 i : p)
     if (i != lst) ans.emplace_back(lst = i, 1);
     else ++ans.back().second;
   return ans;

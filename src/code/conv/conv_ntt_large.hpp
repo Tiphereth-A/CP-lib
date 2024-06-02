@@ -10,7 +10,6 @@ CEXP vec<mint> conv_ntt_large(NTT_t &ntt, vec<mint> l, vec<mint> r, u32 ans_size
   const u32 n = (u32)l.size(), m = (u32)r.size(), len = NTT_t::max_size;
   if (n + m - 1 <= len) return conv_dft<NTT_t, mint>(ntt, l, r, ans_size);
   if (!ans_size) ans_size = n + m - 1;
-
   ntt.bzr(len);
   vvec<mint> as, bs;
   for (u32 i = 0; i < l.size(); i += len / 2) {
@@ -29,18 +28,16 @@ CEXP vec<mint> conv_ntt_large(NTT_t &ntt, vec<mint> l, vec<mint> r, u32 ans_size
   vec<mint> c(l.size() + r.size() - 1);
   flt_ (u32, i, 0, (u32)cs.size()) {
     const u32 ofs = len / 2 * i;
-    for (u32 j = 0, je = min(len, (u32)c.size() - ofs); j < je; ++j) c[j + ofs] += cs[i][j];
+    flt_ (u32, j, 0, min(len, (u32)c.size() - ofs)) c[j + ofs] += cs[i][j];
   }
-  c.resize(ans_size);
-  return c;
+  return c.resize(ans_size), c;
 }
 template <class NTT_t, std::same_as<TPN NTT_t::data_t> mint, class T = u64>
 CEXP vec<mint> conv_ntt_large_u64(NTT_t &ntt, vec<T> CR l, vec<T> CR r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   vec<mint> l_, r_;
-  l_.reserve(l.size()), r_.reserve(r.size());
-  for (auto i : l) l_.push_back(i);
-  for (auto i : r) r_.push_back(i);
+  for (l_.reserve(l.size()); auto i : l) l_.push_back(i);
+  for (r_.reserve(r.size()); auto i : r) r_.push_back(i);
   return conv_ntt_large(ntt, l_, r_, ans_size);
 }
 

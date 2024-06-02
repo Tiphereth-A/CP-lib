@@ -22,8 +22,7 @@ auto mapping(T a, F f) { return op(f, a); }
 auto composition(F, F) { return F(1, 0); }
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
   vec<T> a(n);

@@ -6,8 +6,7 @@
 using circ = tifa_libs::geo::circle<double>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   circ c1, c2;
   std::cin >> c1 >> c2;
   switch (tifa_libs::geo::relation_CC(c1, c2)) {

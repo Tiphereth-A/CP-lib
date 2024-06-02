@@ -26,24 +26,18 @@ class ssp {
     while (!q.empty()) {
       const u32 u = q.front();
       q.pop(), inq[u] = 0;
-      flt_ (u32, i, 0, (u32)e[u].size()) {
-        auto v = e[u][i];
-        if (dis[u] + v.c < dis[v.to] && v.w) {
-          dis[v.to] = dis[u] + v.c;
-          if (!inq[v.to]) q.push(v.to), inq[v.to] = 1;
+      flt_ (u32, i, 0, (u32)e[u].size())
+        if (auto v = e[u][i]; dis[u] + v.c < dis[v.to] && v.w) {
+          if (dis[v.to] = dis[u] + v.c; !inq[v.to]) q.push(v.to), inq[v.to] = 1;
           flow[v.to] = min(flow[u], v.w), pre[v.to] = {u, i};
         }
-      }
     }
     return flow[T];
   }
   template <class EW, class EC>
   CEXP void update(EW& retflow, EC& retcost) {
     retflow += flow[T];
-    for (u32 u = T; u != S; u = pre[u].first) {
-      e[pre[u].first][pre[u].second].w -= flow[T], e[u][e[pre[u].first][pre[u].second].inv].w += flow[T];
-      retcost += EC(flow[T]) * e[pre[u].first][pre[u].second].c;
-    }
+    for (u32 u = T; u != S; u = pre[u].first) e[pre[u].first][pre[u].second].w -= flow[T], e[u][e[pre[u].first][pre[u].second].inv].w += flow[T], retcost += EC(flow[T]) * e[pre[u].first][pre[u].second].c;
   }
 
  public:

@@ -24,27 +24,22 @@ class kosaraju {
     vecu ord;
     auto dfs = [&, this](auto &&dfs, u32 idx) {
       if (vis[idx]) return;
-      vis[idx] = true;
-      for (auto to : g[idx]) dfs(dfs, to);
+      for (vis[idx] = 1; auto to : g[idx]) dfs(dfs, to);
       ord.push_back(idx);
     };
     auto rdfs = [this](auto &&rdfs, u32 idx, u32 cnt) {
       if (~scc_id[idx]) return;
-      scc_id[idx] = cnt;
-      for (auto to : rev_g[idx]) rdfs(rdfs, to, cnt);
+      for (scc_id[idx] = cnt; auto to : rev_g[idx]) rdfs(rdfs, to, cnt);
     };
     flt_ (u32, i, 0, (u32)g.size()) dfs(dfs, i);
-    std::ranges::reverse(ord);
-    scc_id.resize(g.size(), -1_u32);
+    std::ranges::reverse(ord), scc_id.resize(g.size(), -1_u32);
     u32 cnt = 0;
     for (u32 i : ord)
       if (!~scc_id[i]) rdfs(rdfs, i, cnt++);
     dag.g.resize(cnt), belongs.resize(cnt);
-    flt_ (u32, i, 0, (u32)g.size()) {
-      belongs[scc_id[i]].push_back(i);
-      for (auto to : g[i])
+    flt_ (u32, i, 0, (u32)g.size())
+      for (belongs[scc_id[i]].push_back(i); auto to : g[i])
         if (u32 x = scc_id[i], y = scc_id[to]; x != y) dag.add_arc(x, y);
-    }
   }
 };
 

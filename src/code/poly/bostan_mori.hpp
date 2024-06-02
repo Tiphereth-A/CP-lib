@@ -15,18 +15,17 @@ vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) {
     vec<T> res(d);
     T q0 = 0;
     flt_ (u32, i, 0, len) q0 += q[i];
-    res.back() = len * q0.inv();
-    return res;
+    return res.back() = len * q0.inv(), res;
   }
   ntt_doubling(core, q, len);
   vec<T> a(len * 2);
-  for (u32 i = 0; i < len * 2; ++i) a[i] = q[i] * q[i ^ 1];
+  flt_ (u32, i, 0, len * 2) a[i] = q[i] * q[i ^ 1];
   for (u32 i = 0, j = 0; i < len * 2; i += 2, ++j) a[j] = inv2 * (a[i] + a[i + 1]);
   vec<T> w = coeff_(core, core2, a, n / 2, d);
-  for (u32 i = 0; i < len * 2; ++i) s[i] = 0;
+  flt_ (u32, i, 0, len * 2) s[i] = 0;
   for (u32 i = (n & 1) ^ 1, j = 0; j < d; ++j, i += 2) s[i] = w[j];
   core2.dif(s);
-  for (u32 i = 0; i < len * 2; ++i) s[i] *= q[i ^ 1];
+  flt_ (u32, i, 0, len * 2) s[i] *= q[i ^ 1];
   core2.dit(s);
   return vec<T>(s.begin() + d, s.begin() + d * 2);
 }

@@ -7,21 +7,10 @@ namespace tifa_libs::graph {
 namespace dfs_impl_ {
 template <class G, class Fb, class Fp, class Fs, class Fr>
 CEXP void dfs_(G CR fg, u32 u, u32 fa, Fb&& init, Fp&& pre_dfs, Fs&& post_dfs, Fr&& before_return) {
-  init(u, fa);
-  for (auto v : fg.g[u])
+  for (init(u, fa); auto v : fg.g[u])
     if CEXP (is_alist<G>) {
-      if (v != fa) {
-        pre_dfs(v, u);
-        dfs_(fg, v, u, std::forward<Fb>(init), std::forward<Fp>(pre_dfs), std::forward<Fs>(post_dfs), std::forward<Fr>(before_return));
-        post_dfs(v, u);
-      }
-    } else {
-      if (v.first != fa) {
-        pre_dfs(v.first, u, v.second);
-        dfs_(fg, v.first, u, std::forward<Fb>(init), std::forward<Fp>(pre_dfs), std::forward<Fs>(post_dfs), std::forward<Fr>(before_return));
-        post_dfs(v.first, u, v.second);
-      }
-    }
+      if (v != fa) pre_dfs(v, u), dfs_(fg, v, u, std::forward<Fb>(init), std::forward<Fp>(pre_dfs), std::forward<Fs>(post_dfs), std::forward<Fr>(before_return)), post_dfs(v, u);
+    } else if (v.first != fa) pre_dfs(v.first, u, v.second), dfs_(fg, v.first, u, std::forward<Fb>(init), std::forward<Fp>(pre_dfs), std::forward<Fs>(post_dfs), std::forward<Fr>(before_return)), post_dfs(v.first, u, v.second);
   before_return(u, fa);
 }
 }  // namespace dfs_impl_

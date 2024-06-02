@@ -13,10 +13,7 @@ CEXP int parity(T x) {
   if CEXP (nd <= sizeof(unsigned) * 8) return __builtin_parity(x);
   else if CEXP (nd <= sizeof(unsigned long) * 8) return __builtin_parityl(x);
   else if CEXP (nd <= nd_ull) return __builtin_parityll(x);
-  else {
-    const unsigned long long lo = x & (unsigned long long)(-1), hi = x >> nd_ull;
-    return __builtin_parityll(hi) ^ __builtin_parityll(lo);
-  }
+  else return __builtin_parityll(x >> nd_ull) ^ __builtin_parityll(x & (unsigned long long)(-1));
 }
 
 }  // namespace tifa_libs::bit

@@ -11,7 +11,7 @@ namespace tifa_libs {
 CEXP vecu prufer_inv(vecu CR code) {
   const u32 n = u32(code.size() + 1);
   vecu deg(n + 1);
-  for (u32 i = 1; i < n - 1; ++i) ++deg[code[i]];
+  flt_ (u32, i, 1, n - 1) ++deg[code[i]];
   vecu fa(n);
   for (u32 i = 1, j = 1; i < n; ++i, ++j) {
     while (deg[j]) ++j;

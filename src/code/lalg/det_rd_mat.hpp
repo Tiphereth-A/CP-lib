@@ -16,17 +16,15 @@ auto det_rd(Mat mat, Gn &gen, Is0 &&is0) {
   assert(n == mat.col());
   auto gen2 = [&gen](u32 n) {
     vec<T> v(n);
-    std::ranges::generate(v, gen);
-    return v;
+    return std::ranges::generate(v, gen), v;
   };
   vec<T> u = gen2(n), v = gen2(n), diag = gen2(n), _(n * 2);
-  for (u32 i = 0; i < n * 2; ++i) {
+  flt_ (u32, i, 0, n * 2) {
     _[i] = std::transform_reduce(u.begin(), u.end(), v.begin(), T{});
     flt_ (u32, i, 0, n) v[i] *= diag[i];
     v = mat.lproj(v);
   }
-  const vec<T> mp = lfsr_bm(_, std::forward<Is0>(is0));
-  T res = mp.back() / std::reduce(diag.begin(), diag.end(), T(1), std::multiplies<T>());
+  T res = lfsr_bm(_, std::forward<Is0>(is0)).back() / std::reduce(diag.begin(), diag.end(), T(1), std::multiplies<T>());
   return (n & 1) == 1 ? -res : res;
 }
 

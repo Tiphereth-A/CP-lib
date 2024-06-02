@@ -3,8 +3,7 @@
 #include "../../code/math/rational.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   int a, b;
   std::cin >> a >> b;
   tifa_libs::math::rational<int> c(a * 60 + b), d(720, 11), x(0);

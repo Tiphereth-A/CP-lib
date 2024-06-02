@@ -36,8 +36,7 @@ class Stirling2 {
     const u32 j = n % p;
     u32 b = (m - i) % (p - 1);
     if (!b) {
-      b += p - 1;
-      if (a) --a;
+      if (b += p - 1; a) --a;
       else return 0;
     }
     if (j > b) return 0;

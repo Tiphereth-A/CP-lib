@@ -6,8 +6,7 @@
 using cvh = tifa_libs::geo::cvh<double>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(12);
   u32 n;
   std::cin >> n;

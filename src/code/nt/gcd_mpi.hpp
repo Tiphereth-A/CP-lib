@@ -16,7 +16,6 @@ CEXP ptt<i32> shrink(u32 a) {
   return {x, a == 1 ? 0 : a == 5 ? 1 : a == 25 ? 2 : a == 125 ? 3 : a == 625 ? 4 : a == 3125 ? 5 : a == 15625 ? 6 : a == 78125 ? 7 : a == 390625 ? 8 : 9};
   // clang-format on
 }
-
 CEXP ptt<i32> shrink(mpi& a) {
   assert(!a.is_neg());
   if (a.data().empty()) return {0, 0};
@@ -46,8 +45,7 @@ CEXP mpi gcd_mpi(mpi a, mpi b) {
     if (b.data().empty()) break;
     if CEXP (FAST)
       if (a.data().size() <= 2) break;
-    a = a - b;
-    if (!a.data().empty())
+    if (a = a - b; !a.data().empty())
       while (true) {
         const u32 g = gcd(a.data()[0], mpi::digit());
         if (g == 1) break;

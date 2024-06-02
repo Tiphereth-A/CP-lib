@@ -28,21 +28,15 @@ class fhq_treap {
   }
   CEXP void preorder(u32 u, vecp<KEY, VAL>& ret) {
     if (!u) return;
-    ret.push_back(t[u].w);
-    preorder(t[u].son[0], ret);
-    preorder(t[u].son[1], ret);
+    ret.push_back(t[u].w), preorder(t[u].son[0], ret), preorder(t[u].son[1], ret);
   }
   CEXP void inorder(u32 u, vecp<KEY, VAL>& ret) {
     if (!u) return;
-    inorder(t[u].son[0], ret);
-    ret.push_back(t[u].w);
-    inorder(t[u].son[1], ret);
+    inorder(t[u].son[0], ret), ret.push_back(t[u].w), inorder(t[u].son[1], ret);
   }
   CEXP void postorder(u32 u, vecp<KEY, VAL>& ret) {
     if (!u) return;
-    preorder(t[u].son[0], ret);
-    preorder(t[u].son[1], ret);
-    ret.push_back(t[u].w);
+    postorder(t[u].son[0], ret), postorder(t[u].son[1], ret), ret.push_back(t[u].w);
   }
   CEXP void rm(u32 u) { sta.push_back(u); }
   CEXP void update(u32 u) { t[u].sz = t[t[u].son[0]].sz + t[t[u].son[1]].sz + 1; }
@@ -54,48 +48,33 @@ class fhq_treap {
 
   CEXP void split(u32 u, KEY k, u32& x, u32& y) {
     if (!u) x = y = 0;
-    else {
-      if (t[u].w.first <= k) x = u, split(t[u].son[1], k, t[u].son[1], y), update(x);
-      else y = u, split(t[u].son[0], k, x, t[y].son[0]), update(y);
-    }
+    else if (t[u].w.first <= k) x = u, split(t[u].son[1], k, t[u].son[1], y), update(x);
+    else y = u, split(t[u].son[0], k, x, t[y].son[0]), update(y);
   }
   CEXP void split_not_include(u32 u, KEY k, u32& x, u32& y) {
     if (!u) x = y = 0;
-    else {
-      if (t[u].w.first < k) x = u, split_not_include(t[u].son[1], k, t[u].son[1], y), update(x);
-      else y = u, split_not_include(t[u].son[0], k, x, t[y].son[0]), update(y);
-    }
+    else if (t[u].w.first < k) x = u, split_not_include(t[u].son[1], k, t[u].son[1], y), update(x);
+    else y = u, split_not_include(t[u].son[0], k, x, t[y].son[0]), update(y);
   }
   CEXP u32 merge(u32 x, u32 y) {
     if (x && y) {
-      if (t[x].rad <= t[y].rad) {
-        t[x].son[1] = merge(t[x].son[1], y), update(x);
-        return x;
-      }
-      t[y].son[0] = merge(x, t[y].son[0]), update(y);
-      return y;
-    }
-    return x + y;
+      if (t[x].rad <= t[y].rad) return t[x].son[1] = merge(t[x].son[1], y), update(x), x;
+      return t[y].son[0] = merge(x, t[y].son[0]), update(y), y;
+    } else return x + y;
   }
   CEXP void insert(std::pair<KEY, VAL> w) {
     u32 x, y;
-    split(root, w.first, x, y);
-    root = merge(merge(x, newnode(w)), y);
+    split(root, w.first, x, y), root = merge(merge(x, newnode(w)), y);
   }
   CEXP void erase(KEY key) {
     u32 x, y, z;
-    split(root, key, x, y);
-    split_not_include(x, key, x, z);
-    if (recovery) rm(z);
-    z = merge(t[z].son[0], t[z].son[1]);
-    root = merge(merge(x, z), y);
+    split(root, key, x, y), split_not_include(x, key, x, z);
+    if CEXP (recovery) rm(z);
+    root = merge(merge(x, z = merge(t[z].son[0], t[z].son[1])), y);
   }
   CEXP u32 key_req_rk(KEY key) {
     u32 x, y, ret;
-    split_not_include(root, key, x, y);
-    ret = t[x].sz + 1;
-    root = merge(x, y);
-    return ret;
+    return split_not_include(root, key, x, y), ret = t[x].sz + 1, root = merge(x, y), ret;
   }
   CEXP std::pair<KEY, VAL> rk_req_w(u32 u, u32 k) {
     while (1) {
@@ -110,47 +89,37 @@ class fhq_treap {
     u32 x, y;
     split(root, key - 1, x, y);
     std::pair<KEY, VAL> ret = rk_req_w(x, t[x].sz);
-    root = merge(x, y);
-    return ret;
+    return root = merge(x, y), ret;
   }
   CEXP std::pair<KEY, VAL> suf_w(KEY key) {
     u32 x, y;
     split(root, key, x, y);
     std::pair<KEY, VAL> ret = rk_req_w(y, 1);
-    root = merge(x, y);
-    return ret;
+    return root = merge(x, y), ret;
   }
   CEXP bool find(KEY key) {
     u32 x, y, z;
-    split(root, key, x, y);
-    split_not_include(x, key, x, z);
+    split(root, key, x, y), split_not_include(x, key, x, z);
     bool ret = t[z].sz;
-    root = merge(merge(x, z), y);
-    return ret;
+    return root = merge(merge(x, z), y), ret;
   }
   CEXP vecp<KEY, VAL> preorder() {
     vecp<KEY, VAL> ret;
-    preorder(root, ret);
-    return ret;
+    return preorder(root, ret), ret;
   }
   CEXP vecp<KEY, VAL> inorder() {
     vecp<KEY, VAL> ret;
-    inorder(root, ret);
-    return ret;
+    return inorder(root, ret), ret;
   }
   CEXP vecp<KEY, VAL> postorder() {
     vecp<KEY, VAL> ret;
-    postorder(root, ret);
-    return ret;
+    return postorder(root, ret), ret;
   }
   CEXP vecp<KEY, VAL> inorder(KEY key) {
     u32 x, y, z;
-    split(root, key, x, y);
-    split_not_include(x, key, x, z);
+    split(root, key, x, y), split_not_include(x, key, x, z);
     vecp<KEY, VAL> ret;
-    inorder(z, ret);
-    root = merge(merge(x, z), y);
-    return ret;
+    return inorder(z, ret), root = merge(merge(x, z), y), ret;
   }
 };
 

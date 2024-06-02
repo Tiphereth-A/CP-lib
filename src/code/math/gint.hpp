@@ -19,47 +19,25 @@ class gint {
   CEXP T &imag() { return i_; }
   CEXP void real(cT_(T) x) { r_ = x; }
   CEXP void imag(cT_(T) x) { i_ = x; }
-  CEXP gint &operator+=(cT_(T) x) {
-    r_ += x;
-    return *this;
-  }
-  CEXP gint &operator-=(cT_(T) x) {
-    r_ -= x;
-    return *this;
-  }
-  CEXP gint &operator*=(cT_(T) x) {
-    r_ *= x, i_ *= x;
-    return *this;
-  }
-  CEXP gint &operator/=(cT_(T) x) {
-    r_ /= x, i_ /= x;
-    return *this;
-  }
-  CEXP gint &operator+=(gint CR x) {
-    r_ += x.real(), i_ += x.imag();
-    return *this;
-  }
-  CEXP gint &operator-=(gint CR x) {
-    r_ -= x.real(), i_ -= x.imag();
-    return *this;
-  }
+  CEXP gint &operator+=(cT_(T) x) { return r_ += x, *this; }
+  CEXP gint &operator-=(cT_(T) x) { return r_ -= x, *this; }
+  CEXP gint &operator*=(cT_(T) x) { return r_ *= x, i_ *= x, *this; }
+  CEXP gint &operator/=(cT_(T) x) { return r_ /= x, i_ /= x, *this; }
+  CEXP gint &operator+=(gint CR x) { return r_ += x.real(), i_ += x.imag(), *this; }
+  CEXP gint &operator-=(gint CR x) { return r_ -= x.real(), i_ -= x.imag(), *this; }
   CEXP gint &operator*=(gint CR x) {
     const T _ = r_ * x.real() + i_ * x.imag() * M;
-    i_ = r_ * x.imag() + i_ * x.real(), r_ = _;
-    return *this;
+    return i_ = r_ * x.imag() + i_ * x.real(), r_ = _, *this;
   }
   CEXP gint &operator/=(gint CR x) {
-    const T _ = r_ * x.real() - i_ * x.imag() * M;
-    const T n_ = x.norm();
+    const T _ = r_ * x.real() - i_ * x.imag() * M, n_ = x.norm();
     if CEXP (std::is_integral_v<T>) {
       auto div = [](T x, T y) {
         const T a = x * 2 + y, b = y * 2;
         return a / b - (a % b < 0);
       };
       i_ = div(i_ * x.real() - r_ * x.imag(), n_), r_ = div(_, n_);
-    } else {
-      i_ = (i_ * x.real() - r_ * x.imag()) / n_, r_ = _ / n_;
-    }
+    } else i_ = (i_ * x.real() - r_ * x.imag()) / n_, r_ = _ / n_;
     return *this;
   }
   CEXP gint &operator%=(gint CR x) { return *this -= *this / x * x; }

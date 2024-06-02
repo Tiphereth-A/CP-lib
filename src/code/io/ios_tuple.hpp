@@ -5,8 +5,7 @@
 
 template <class... Ts>
 std::istream &operator>>(std::istream &is, std::tuple<Ts...> &p) {
-  std::apply([&](Ts &...targs) { ((is >> targs), ...); }, p);
-  return is;
+  return std::apply([&](Ts &...targs) { ((is >> targs), ...); }, p), is;
 }
 template <class... Ts>
 std::ostream &operator<<(std::ostream &os, std::tuple<Ts...> CR p) {

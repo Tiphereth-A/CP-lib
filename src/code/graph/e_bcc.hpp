@@ -19,36 +19,27 @@ class e_bcc {
   explicit e_bcc(cT_(vvec<EW>) G) : g(G) { build(); }
 
   void build() {
-    id = 0;
     u32 cnt = 0, n = u32(g.size());
-    dfn = low = ebcc_id = vecu(n, n);
-    cut = vecb(n, 0);
+    id = 0, dfn = low = ebcc_id = vecu(n, n), cut = vecb(n, 0);
     std::stack<u32> s;
-
-    auto dfs = [&](auto &&dfs, u32 u, u32 fa, u32 inv_from) -> void {
-      dfn[u] = low[u] = cnt++;
-      s.push(u);
+    auto f = [&](auto &&f, u32 u, u32 fa, u32 inv_from) -> void {
+      dfn[u] = low[u] = cnt++, s.push(u);
       flt_ (u32, i, 0, (u32)g[u].size()) {
         auto v = g[u][i];
         if (v.to == fa && i == inv_from) continue;
-        if (dfn[v.to] == n) {
-          dfs(dfs, v.to, u, v.inv);
-          low[u] = min(low[u], low[v.to]);
-        } else low[u] = min(low[u], dfn[v.to]);
+        if (dfn[v.to] == n) f(f, v.to, u, v.inv), low[u] = min(low[u], low[v.to]);
+        else low[u] = min(low[u], dfn[v.to]);
       }
       if (low[u] == dfn[u]) {
         belongs.push_back(vecu());
         do {
           const u32 v = s.top();
-          s.pop();
-          ebcc_id[v] = id, belongs[id].push_back(v);
-          if (v == u) return void(++id);
+          if (s.pop(), ebcc_id[v] = id, belongs[id].push_back(v); v == u) return void(++id);
         } while (1);
       }
     };
-
     flt_ (u32, i, 0, n)
-      if (dfn[i] == n) dfs(dfs, i, i, -1_u32);
+      if (dfn[i] == n) f(f, i, i, -1_u32);
   }
 };
 

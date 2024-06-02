@@ -20,12 +20,7 @@ CEXP void cliques(u32 n, arr<std::bitset<N>, N> CR adj, F&& f) {
     }
     B _ = P & ~adj[(P | X)._Find_first()];
     flt_ (u32, i, 0, n)
-      if (_[i]) {
-        R[i] = 1;
-        g(g, P & adj[i], X & adj[i], R);
-        R[i] = P[i] = 0;
-        X[i] = 1;
-      }
+      if (_[i]) R[i] = 1, g(g, P & adj[i], X & adj[i], R), R[i] = P[i] = 0, X[i] = 1;
   };
   g(g, ~B(), B(), B());
 }

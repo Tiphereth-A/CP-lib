@@ -17,10 +17,9 @@ CEXP vecu smawk(u32 n, u32 m, Ft&& f) {
     assert(l < r);
     const u32 rmid = (u + d) / 2;
     u32 cm = l;
-    for (u32 col = l + 1; col < r; ++col)
+    flt_ (u32, col, l + 1, r)
       if (!f(rmid, cm, col)) cm = col;
-    ans[rmid] = cm;
-    g(g, u, rmid, l, cm + 1), g(g, rmid + 1, d, cm, r);
+    ans[rmid] = cm, g(g, u, rmid, l, cm + 1), g(g, rmid + 1, d, cm, r);
   };
   g(g, 0, n, 0, m);
   return ans;

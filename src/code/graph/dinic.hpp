@@ -35,33 +35,25 @@ class dinic {
 
  private:
   bool bfs(u32 s, u32 t) {
-    dep = vecu(n, 0);
+    dep = vecu(n, 0), dep[s] = 1;
     std::queue<u32> q({s});
-    dep[s] = 1;
     while (!q.empty()) {
       const u32 u = q.front();
-      q.pop();
-      for (auto v : e[u])
+      for (q.pop(); auto v : e[u])
         if (!dep[v.to] && v.w) dep[v.to] = dep[u] + 1, q.push(v.to);
     }
-    cur = vecu(n, 0);
-    return dep[t];
+    return cur = vecu(n, 0), dep[t];
   }
   template <class EW>
   CEXP EW dfs(u32 u, u32 t, T lim = std::numeric_limits<T>::max()) {
     if (u == t || lim == 0) return lim;
     EW ret = 0;
-    for (u32& i = cur[u]; i < e[u].size(); ++i) {
-      auto v = e[u][i];
-      if (dep[v.to] == dep[u] + 1 && v.w) {
-        EW flow = dfs<EW>(v.to, t, min(v.w, lim));
-        if (flow) {
-          e[u][i].w -= flow, e[v.to][e[u][i].inv].w += flow;
-          ret += flow, lim -= flow;
-          if (!lim) break;
+    for (u32& i = cur[u]; i < e[u].size(); ++i)
+      if (auto v = e[u][i]; dep[v.to] == dep[u] + 1 && v.w) {
+        if (EW flow = dfs<EW>(v.to, t, min(v.w, lim)); flow) {
+          if (e[u][i].w -= flow, e[v.to][e[u][i].inv].w += flow, ret += flow, lim -= flow; !lim) break;
         } else dep[v.to] = 0;
       }
-    }
     return ret;
   }
 };

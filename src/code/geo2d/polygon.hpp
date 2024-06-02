@@ -25,25 +25,15 @@ struct polygon {
     for (auto it = p.vs.begin(); it != p.vs.end() - 1; ++it) os << *it << ' ';
     return os << p.vs.back();
   }
-
   CEXP u32 size() const { return (u32)vs.size(); }
   CEXP point<FP> &operator[](u32 x) { return vs[x]; }
   CEXP point<FP> CR operator[](u32 x) const { return vs[x]; }
-
-  CEXP polygon &resort() {
-    std::ranges::sort(vs);
-    return *this;
-  }
-  CEXP polygon &reunique() {
-    vs = uniq(vs);
-    return *this;
-  }
-
+  CEXP polygon &resort() { return std::ranges::sort(vs), *this; }
+  CEXP polygon &reunique() { return vs = uniq(vs), *this; }
   CEXP auto prev(TPN vec<point<FP>>::const_iterator it) const { return --(it == vs.begin() ? it = vs.end() : it); }
   CEXP auto next(TPN vec<point<FP>>::const_iterator it) const { return ++it == vs.end() ? vs.begin() : it; }
   CEXP u32 prev(u32 idx) const { return idx == 0 ? size() - 1 : idx - 1; }
   CEXP u32 next(u32 idx) const { return idx + 1 == size() ? 0 : idx + 1; }
-
   CEXP FP circum() const {
     math::kahan<FP> ret = dist_PP(vs.back(), vs.front());
     flt_ (u32, i, 0, size() - 1) ret += dist_PP(vs[i], vs[i + 1]);
@@ -61,8 +51,7 @@ struct polygon {
     const u32 n = size();
     if (n < 3) return true;
     for (u32 i = 0, j = next(i), k = next(j); i < n; ++i, j = next(j), k = next(k)) {
-      auto sgn = sgn_cross(vs[i], vs[j], vs[k]);
-      if (sgn) flag[(sgn + 1) / 2] = true;
+      if (auto sgn = sgn_cross(vs[i], vs[j], vs[k]); sgn) flag[(sgn + 1) / 2] = true;
       if (flag[0] && flag[1]) return false;
     }
     return true;

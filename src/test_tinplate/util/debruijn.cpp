@@ -20,7 +20,6 @@ int main() {
   vecu ans = n <= 20 ? tifa_libs::util::deBruijn(n, m, l) : prandom(m, l);
   flt_ (u32, i, 0, l) std::cout << a[ans[i]];
   std::cout << '\n';
-  return 0;
 }
 
 /*

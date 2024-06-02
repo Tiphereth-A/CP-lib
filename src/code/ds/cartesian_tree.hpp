@@ -15,7 +15,7 @@ class cartesian_tree {
   CEXP void build(vec<T> CR y) {
     vecu s(y.size() + 1);
     u32 top = 0;
-    for (u32 i = 0; i < y.size(); i++) {
+    flt_ (u32, i, 0, (u32)y.size()) {
       u32 k = top;
       while (k && y[s[k]] > y[i]) --k;
       if (k) t[s[k]].son[1] = i, t[i].fa = s[k];

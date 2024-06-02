@@ -18,8 +18,7 @@ CEXP poly<mint, ccore> ln_fpssp(poly<mint, ccore> CR p, vecu64 CR inv, u32 n = 0
       const u32 i = k - j + 1;
       g[k + 1] -= g[i] * pj * i;
     }
-    g[k + 1] *= inv[k + 1];
-    if (k + 1 < p.size()) g[k + 1] += p[k + 1];
+    if (g[k + 1] *= inv[k + 1]; k + 1 < p.size()) g[k + 1] += p[k + 1];
   }
   return g;
 }

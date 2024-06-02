@@ -26,14 +26,12 @@ class matrix {
   CEXP vvec<T> &data() { return d; }
   CEXP TPN vec<T>::reference operator()(u32 r, u32 c) { return d[r][c]; }
   CEXP TPN vec<T>::const_reference operator()(u32 r, u32 c) const { return d[r][c]; }
-
   template <class F>
   CEXP void apply(F &&f) { apply_range(0, row(), 0, col(), std::forward<F>(f)); }
   template <class F>
   requires requires(F f, u32 i, u32 j, T &val) { f(i, j, val); }
   CEXP void apply_range(u32 row_l, u32 row_r, u32 col_l, u32 col_r, F &&f) {
-    assert(row_l < row_r && row_r <= row());
-    assert(col_l < col_r && col_r <= col());
+    assert(row_l < row_r && row_r <= row() && col_l < col_r && col_r <= col());
     FOR2_ (i, row_l, row_r, j, col_l, col_r) f(i, j, (*this)(i, j));
   }
 
@@ -49,15 +47,11 @@ class matrix {
     FOR1_ (j, 1, c_) os << ' ' << mat(r_ - 1, j);
     return os;
   }
-
   CEXP matrix submat(u32 row_l, u32 row_r, u32 col_l, u32 col_r) const {
-    assert(row_l < row_r && row_r <= row());
-    assert(col_l < col_r && col_r <= col());
+    assert(row_l < row_r && row_r <= row() && col_l < col_r && col_r <= col());
     matrix ret(row_r - row_l, col_r - col_l);
-    ret.apply_range(0, ret.row(), 0, ret.col(), [this, row_l, col_l](u32 i, u32 j, T &v) { v = (*this)(i + row_l, j + col_l); });
-    return ret;
+    return ret.apply_range(0, ret.row(), 0, ret.col(), [this, row_l, col_l](u32 i, u32 j, T &v) { v = (*this)(i + row_l, j + col_l); }), ret;
   }
-
   CEXP void swap_row(u32 r1, u32 r2) {
     assert(r1 < row() && r2 < row());
     if (r1 == r2) return;
@@ -68,16 +62,13 @@ class matrix {
     if (c1 == c2) return;
     FOR1_ (i, 0, row()) swap((*this)(i, c1), (*this)(i, c2));
   }
-
   CEXP matrix operator-() const {
     if CEXP (std::is_same_v<T, bool>) return *this;
     else {
       matrix ret = *this;
-      ret.apply_range(0, row(), 0, col(), [](u32, u32, T &v) { v = -v; });
-      return ret;
+      return ret.apply_range(0, row(), 0, col(), [](u32, u32, T &v) { v = -v; }), ret;
     }
   }
-
   friend CEXP matrix operator+(matrix l, cT_(T) v) { return l += v; }
   friend CEXP matrix operator+(cT_(T) v, matrix l) { return l += v; }
   CEXP matrix &operator+=(cT_(T) v) {
@@ -101,7 +92,6 @@ class matrix {
     } else apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val *= v; });
     return *this;
   }
-
   friend CEXP matrix operator+(matrix l, matrix CR r) { return l += r; }
   CEXP matrix &operator+=(matrix CR r) {
     assert(row() == r.row() && col() == r.col());
@@ -116,7 +106,6 @@ class matrix {
     else apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val -= r(i, j); });
     return *this;
   }
-
   friend CEXP matrix operator*(matrix CR l, matrix CR r) {
     const u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
     assert(j_ == r.row());
@@ -129,7 +118,6 @@ class matrix {
     return ret;
   }
   CEXP matrix &operator*=(matrix CR r) { return *this = *this * r; }
-
   CEXP vec<T> lproj(vec<T> CR x) const {
     const u32 r_ = row(), c_ = col();
     assert(r_ == x.size());
@@ -139,7 +127,6 @@ class matrix {
       else ret[i] = std::transform_reduce(d[i].begin(), d[i].end(), x.begin(), T{});
     return ret;
   }
-
   CEXP bool operator==(matrix CR r) const {
     if (row() != r.row() || col() != r.col()) return 0;
     FOR1_ (i, 0, row())

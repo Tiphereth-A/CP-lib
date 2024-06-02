@@ -13,7 +13,6 @@ struct blossomw {
     T w;
   };
   vvec<TIFA> g;
-
   u32 n, nx;
   vec<T> lab;
   vecu match, slack, st, par, s, aux;
@@ -64,8 +63,7 @@ struct blossomw {
       for (auto t : flo[x]) q_push(t);
   }
   CEXP void set_st(u32 x, u32 b) {
-    st[x] = b;
-    if (x > n)
+    if (st[x] = b; x > n)
       for (auto t : flo[x]) set_st(t, b);
   }
   CEXP u32 get_pr(u32 b, u32 xr) {
@@ -76,8 +74,7 @@ struct blossomw {
   }
   CEXP void set_match(u32 u, u32 v) {
     auto [eu, ev, _] = g[u][v];
-    match[u] = ev;
-    if (u <= n) return;
+    if (match[u] = ev; u <= n) return;
     u32 xr = flo_from[u][eu], pr = get_pr(u, xr);
     flt_ (u32, i, 0, pr) set_match(flo[u][i], flo[u][i ^ 1]);
     set_match(xr, v), std::rotate(flo[u].begin(), flo[u].begin() + pr, flo[u].end());
@@ -85,10 +82,8 @@ struct blossomw {
   CEXP void augment(u32 u, u32 v) {
     while (1) {
       u32 xnv = st[match[u]];
-      set_match(u, v);
-      if (!xnv) return;
-      set_match(xnv, st[par[xnv]]);
-      u = st[par[xnv]], v = xnv;
+      if (set_match(u, v); !xnv) return;
+      set_match(xnv, st[par[xnv]]), u = st[par[xnv]], v = xnv;
     }
   }
   u32 lca(u32 u, u32 v) {
@@ -96,8 +91,7 @@ struct blossomw {
     for (++t; u || v; swap(u, v)) {
       if (!u) continue;
       if (aux[u] == t) return u;
-      aux[u] = t;
-      if ((u = st[match[u]])) u = st[par[u]];
+      if (aux[u] = t; (u = st[match[u]])) u = st[par[u]];
     }
     return 0;
   }
@@ -148,16 +142,13 @@ struct blossomw {
   }
   bool matching(T inf) {
     q = std::queue<u32>();
-    fle_ (u32, x, 1, nx) {
-      s[x] = -1_u32, slack[x] = 0;
-      if (st[x] == x && !match[x]) par[x] = s[x] = 0, q_push(x);
-    }
+    fle_ (u32, x, 1, nx)
+      if (s[x] = -1_u32, slack[x] = 0; st[x] == x && !match[x]) par[x] = s[x] = 0, q_push(x);
     if (q.empty()) return 0;
     while (1) {
       while (!q.empty()) {
         const u32 u = q.front();
-        q.pop();
-        if (s[st[u]] == 1) continue;
+        if (q.pop(); s[st[u]] == 1) continue;
         fle_ (u32, v, 1, n)
           if (g[u][v].w > 0 && st[u] != st[v]) {
             if (!e_delta(g[u][v])) {

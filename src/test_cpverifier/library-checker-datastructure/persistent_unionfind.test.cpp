@@ -5,8 +5,7 @@
 CEXP usz Q = 200005;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
   vvec<pt3<u32>> tr(Q), qry(Q);

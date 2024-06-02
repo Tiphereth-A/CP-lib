@@ -4,8 +4,7 @@
 #include "../../code/util/ndvec.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
   tifa_libs::ndvec<2, i32> nv(n, 0u);

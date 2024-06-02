@@ -3,8 +3,7 @@
 #include "../../code/ds/fenwick_2d.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, q;
   std::cin >> n >> m >> q;
   tifa_libs::ds::fenwick2d<i32> tr(n + 3, m + 3);

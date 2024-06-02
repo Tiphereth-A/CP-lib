@@ -3,8 +3,7 @@
 #include "../../code/graph/ssp.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, f;
   std::cin >> n >> m >> f;
   tifa_libs::graph::ssp mcmf(n, 0, n - 1);

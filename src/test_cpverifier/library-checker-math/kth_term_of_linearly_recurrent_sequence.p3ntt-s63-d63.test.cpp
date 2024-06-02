@@ -18,8 +18,7 @@ using poly = tifa_libs::math::poly3ntt<mint, mint1, mint2, mint3>;
 
 int main() {
   mint::set_mod(MOD);
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 d;
   u64 k;
   std::cin >> d >> k;

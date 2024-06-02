@@ -5,8 +5,7 @@
 i32 f(i32 x, i32 y) { return tifa_libs::min(x, y); }
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
   vec<i32> a(n);

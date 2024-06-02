@@ -19,15 +19,10 @@ CEXP vec<T> dijkstra(alistw<T, with_deg> CR fg, u32 s, F &&relax, T INF = std::n
   while (!q.empty()) {
     auto [dis_now, u] = q.top();
     if (dis_now > INF) dis_now = INF;
-    q.pop();
-    if (vis[u]) continue;
-    vis[u] = true;
-    for (auto [v, w] : g[u])
-      if (dis[u] + w < dis[v]) {
-        relax(u, v);
-        dis[v] = dis[u] + w;
-        if (!vis[v]) q.emplace(dis[v], v);
-      }
+    if (q.pop(); vis[u]) continue;
+    for (vis[u] = true; auto [v, w] : g[u])
+      if (dis[u] + w < dis[v])
+        if (relax(u, v), dis[v] = dis[u] + w; !vis[v]) q.emplace(dis[v], v);
   }
   return dis;
 }

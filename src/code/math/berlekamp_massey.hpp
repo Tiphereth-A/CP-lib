@@ -18,8 +18,7 @@ CEXP vec<T> berlekamp_massey(vec<T> CR a) {
     b.push_back(0);
     u32 m = (u32)b.size();
     if (x == 0) continue;
-    const T d_ = x / y;
-    if (l < m) {
+    if (const T d_ = x / y; l < m) {
       const auto _ = c;
       c.insert(c.begin(), m - l, 0);
       flt_ (u32, i, 0, m) c[m - 1 - i] -= d_ * b[m - 1 - i];
@@ -27,8 +26,7 @@ CEXP vec<T> berlekamp_massey(vec<T> CR a) {
     } else
       flt_ (u32, i, 0, m) c[l - 1 - i] -= d_ * b[m - 1 - i];
   }
-  std::ranges::reverse(c);
-  return c;
+  return std::ranges::reverse(c), c;
 }
 
 }  // namespace tifa_libs::math

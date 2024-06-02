@@ -15,7 +15,6 @@ CEXP T kirchhoff(amat<T, with_deg> CR g, u32 r, Ge &&ge) {
   const u32 n = (u32)g.g.size();
   if (n <= 1) return n;
   math::matrix<T> mat(n - 1, n - 1);
-
   flt_ (u32, i, 0, n)
     flt_ (u32, j, 0, n)
       if (i != j) {
@@ -25,7 +24,6 @@ CEXP T kirchhoff(amat<T, with_deg> CR g, u32 r, Ge &&ge) {
           if (j != r) mat(j - (j > r), j - (j > r)) += _;
         } else if (i != r) mat(i - (i > r), i - (i > r)) += _;
       }
-
   return math::det(mat, ge);
 }
 

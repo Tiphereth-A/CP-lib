@@ -8,12 +8,10 @@
 namespace tifa_libs::geo {
 
 // relation between polygon/convex hull and point
-enum RELPoP {
-  outside_pop,
-  onborder_pop,
-  onendpoint_pop,
-  inside_pop
-};
+enum RELPoP { outside_pop,
+              onborder_pop,
+              onendpoint_pop,
+              inside_pop };
 
 template <class FP>
 CEXP RELPoP relation_PoP(polygon<FP> CR po, point<FP> CR p) {
@@ -29,7 +27,6 @@ CEXP RELPoP relation_PoP(polygon<FP> CR po, point<FP> CR p) {
   }
   return result ? inside_pop : outside_pop;
 }
-
 template <class FP>
 CEXP RELPoP relation_CvhP(cT_(cvh<FP>) cvh, point<FP> CR p) {
   for (auto &&now : cvh.vs)

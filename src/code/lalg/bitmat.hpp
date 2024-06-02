@@ -19,7 +19,6 @@ CEXP matrix<bool> bitmat2mat(cT_(bitmat<R, C>) bmat) {
   ret.apply([&bmat](u32 i, u32 j, auto &b) { b = bmat[i][j]; });
   return ret;
 }
-
 template <usz R, usz C = R>
 CEXP bitmat<R, C> mat2bitmat(cT_(matrix<bool>) mat) {
   const u32 r = mat.row(), c = mat.col();
@@ -28,7 +27,6 @@ CEXP bitmat<R, C> mat2bitmat(cT_(matrix<bool>) mat) {
   FOR2_ (i, 0, r, j, 0, c) ret[i][j] = mat(i, j);
   return ret;
 }
-
 template <usz R, usz C>
 std::istream &read_bitmat(std::istream &is, bitmat<R, C> &bmat, u32 r, u32 c) {
   assert(r <= R && c <= C);
@@ -43,17 +41,13 @@ std::istream &read_bitmat_trans(std::istream &is, bitmat<R, C> &bmat, u32 r, u32
   FOR2_ (i, 0, r, j, 0, c) is >> ch, bmat[j][i] = ch & 1;
   return is;
 }
-
 template <usz R, usz C>
 std::ostream &print_bitmat(std::ostream &os, bitmat<R, C> &bmat, u32 r, u32 c) {
   assert(r <= R && c <= C);
-  FOR2_ (i, 0, r, j, 0, c) {
-    os << bmat[i][j];
-    if (j == c - 1 && i != r - 1) os << '\n';
-  }
+  FOR2_ (i, 0, r, j, 0, c)
+    if (os << bmat[i][j]; j == c - 1 && i != r - 1) os << '\n';
   return os;
 }
-
 template <usz R, usz C>
 std::istream &operator>>(std::istream &is, bitmat<R, C> &bmat) { return read_bitmat(is, bmat, R, C); }
 template <usz R, usz C>

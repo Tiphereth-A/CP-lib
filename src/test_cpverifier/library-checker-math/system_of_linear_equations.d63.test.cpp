@@ -14,8 +14,7 @@ using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
   mint::set_mod(MOD);
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   mat a(n, m), b(n, 1);

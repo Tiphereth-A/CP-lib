@@ -40,8 +40,7 @@ CEXP vec<pt3<u32>> run_zfunc(cT_(strn) s) {
     if (i && l == get<0>(rs[i - 1]) && r == get<1>(rs[i - 1])) continue;
     runs.emplace_back(t, l, r);
   }
-  std::ranges::sort(runs);
-  return runs;
+  return std::ranges::sort(runs), runs;
 }
 
 }  // namespace tifa_libs::str

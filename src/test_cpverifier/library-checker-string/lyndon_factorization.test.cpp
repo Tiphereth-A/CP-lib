@@ -4,8 +4,7 @@
 #include "../../code/str/lyndon.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s;
   std::cin >> s;
   std::cout << tifa_libs::str::duval(s) << '\n';

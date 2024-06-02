@@ -22,7 +22,6 @@ struct FFT {
     w.resize(n), w[0].real(1);
     flt_ (u32, i, 1, n) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
   }
-
   CEXP void dif(vec<C> &f, u32 n = 0) const {
     if (!n) n = size();
     if (f.size() < n) f.resize(n);

@@ -35,13 +35,11 @@ class SBT {
 
   friend CEXP auto operator<=>(SBT CR l, SBT CR r) { return l.x * r.y - r.x * l.y; }
   friend CEXP bool operator==(SBT CR l, SBT CR r) { return l.x == r.x && l.y == r.y; }
-
   CEXP ptt<T> current() const { return {x, y}; }
   CEXP ptt<T> lbound() const { return {lx, ly}; }
   CEXP ptt<T> rbound() const { return {rx, ry}; }
   // path from (1, 1) to @current(). rchild be positive and vice versa
   CEXP vec<T> path() const { return seq; }
-
   CEXP T dep() const {
     T res = 0;
     for (auto &&s : seq) res += abs(s);
@@ -68,13 +66,11 @@ class SBT {
       T _ = min(d, abs(seq.back()));
       if (seq.back() > 0) x -= rx * _, y -= ry * _, lx = x - rx, ly = y - ry, seq.back() -= _;
       else x -= lx * _, y -= ly * _, rx = x - lx, ry = y - ly, seq.back() += _;
-      d -= _;
-      if (!seq.back()) seq.pop_back();
+      if (d -= _; !seq.back()) seq.pop_back();
       if (!_) break;
     }
     return true;
   }
-
   static CEXP SBT lca(SBT CR l, SBT CR r) {
     SBT ret;
     for (u32 i = 0; i < min((u32)l.seq.size(), (u32)r.seq.size()); ++i) {

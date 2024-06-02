@@ -3,8 +3,7 @@
 #include "../../code/str/orthodox_ex_suffix_automaton.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   strn s;
   std::cin >> n;
@@ -15,7 +14,6 @@ int main() {
   for (u32 i = 1; i < sam.sz; ++i) ans += sam.st[i].len - sam.st[sam.st[i].link].len;
   std::cout << ans << '\n'
             << sam.sz;
-  return 0;
 }
 
 /*

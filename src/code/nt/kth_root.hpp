@@ -17,10 +17,7 @@ CEXP std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
   auto pethr = [](u64 a, u64 p, u32 e, u64 m) {
     u64 q = m - 1;
     u32 s = 0;
-    while (!(q % p)) {
-      q /= p;
-      ++s;
-    }
+    while (!(q % p)) q /= p, ++s;
     u64 pe = qpow_mod(p, e, m), ans = qpow_mod(a, (mul_mod_u(pe - 1, inverse(q, pe), pe) * q + 1) / pe, m), c = 2;
     while (qpow_mod(c, (m - 1) / p, m) == 1) ++c;
     c = qpow_mod(c, q, m);
@@ -46,10 +43,7 @@ CEXP std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
   };
   for (u64 d = 2; d * d <= g; ++d) {
     u32 n = 0;
-    while (!(g % d)) {
-      g /= d;
-      ++n;
-    }
+    while (!(g % d)) g /= d, ++n;
     if (n) a = pethr(a, d, n, p);
   }
   if (g > 1) a = pethr(a, g, 1, p);

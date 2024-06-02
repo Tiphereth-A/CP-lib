@@ -8,8 +8,7 @@ using poly = tifa_libs::geo::polygon<double>;
 using circ = tifa_libs::geo::circle<double>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(12);
   u32 n;
   double r;

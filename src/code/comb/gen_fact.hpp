@@ -7,8 +7,7 @@ namespace tifa_libs::math {
 
 // i! from i=0..n-1
 CEXP vecu64 gen_fact(u32 n, u64 mod) {
-  if (n == 0) return {};
-  if (n == 1) return {1};
+  if (n <= 1) return vecu64(n, 1);
   vecu64 ans(n);
   ans[0] = ans[1] = 1;
   flt_ (u32, i, 2, n) ans[i] = mul_mod_u(ans[i - 1], i, mod);

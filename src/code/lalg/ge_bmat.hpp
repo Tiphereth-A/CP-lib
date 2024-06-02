@@ -10,8 +10,7 @@ CEXP u32 ge_bmat(bitmat<R, C> &bmat, bool clear_u = true) {
   CEXP usz rk_max = min(R, C);
   u32 rk = 0;
   for (u32 i = 0, now_r = 0, j_ = i; i < R; ++i) {
-    j_ = max(j_, i);
-    if (!bmat[rk][i]) {
+    if (j_ = max(j_, i); !bmat[rk][i]) {
       now_r = rk;
       for (u32 j = now_r + 1; j < R; ++j)
         if (bmat[j][i]) now_r = j;

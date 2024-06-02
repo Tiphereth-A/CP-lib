@@ -5,8 +5,7 @@
 #include "../../code/edh/prufer_inv.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   u64 ans = 0;
@@ -22,7 +21,6 @@ int main() {
     flt_ (u64, i, 1, n) ans ^= i * f[i];
   }
   std::cout << ans << '\n';
-  return 0;
 }
 
 /*

@@ -3,8 +3,7 @@
 #include "../../code/nt/sqrfree_cnt.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;
   std::cout << tifa_libs::math::sqrfree_cnt(n) << '\n';

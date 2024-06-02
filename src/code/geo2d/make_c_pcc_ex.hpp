@@ -28,9 +28,8 @@ CEXP vec<circle<FP>> make_C_PCC_ex(point<FP> CR p, circle<FP> c1, circle<FP> c2)
     if (!is_on_same_L(p, l1.l, l1.r)) vl.push_back(l1);
     if (!is_on_same_L(p, l2.l, l2.r)) vl.push_back(l2);
   }
-  uniq(vl);
   vec<circle<FP>> vc;
-  for (auto CR l : vl) vc.push_back(inv_L2C(p, l));
+  for (uniq(vl); auto CR l : vl) vc.push_back(inv_L2C(p, l));
   return vc;
 }
 

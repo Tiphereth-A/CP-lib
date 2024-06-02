@@ -7,11 +7,9 @@
 namespace tifa_libs::geo {
 
 // relation between circle and point
-enum RELCP {
-  outside_cp,
-  onborder_cp,
-  inside_cp,
-};
+enum RELCP { outside_cp,
+             onborder_cp,
+             inside_cp };
 
 template <class FP>
 CEXP RELCP relation_CP(circle<FP> CR c, point<FP> CR p) {

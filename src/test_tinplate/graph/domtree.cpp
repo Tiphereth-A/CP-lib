@@ -7,23 +7,17 @@
 #include "../../code/tree/tree.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   tifa_libs::graph::alist<> g(n);
-  for (u32 i = 0, u, v; i < m; ++i) {
-    std::cin >> u >> v;
-    g.add_arc(u - 1, v - 1);
-  }
+  for (u32 i = 0, u, v; i < m; ++i) std::cin >> u >> v, g.add_arc(u - 1, v - 1);
   auto fa = tifa_libs::graph::domtree(g).get_domtree(0);
   tifa_libs::graph::tree tr(n);
   flt_ (u32, i, 1, n)
     if (~fa[i]) tr.add_arc(fa[i], i);
   tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree> dfs;
-  dfs.reset_dfs_info<tifa_libs::graph::td_sz>(tr);
-  std::cout << dfs.sz << '\n';
-  return 0;
+  dfs.reset_dfs_info<tifa_libs::graph::td_sz>(tr), std::cout << dfs.sz << '\n';
 }
 
 /*

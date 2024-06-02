@@ -12,8 +12,7 @@ using mint = tifa_libs::math::mint_s30<MOD>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   if (n == 0) {

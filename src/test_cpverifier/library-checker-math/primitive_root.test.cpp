@@ -3,8 +3,7 @@
 #include "../../code/nt/proot.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   i64 q;
   std::cin >> q;
   while (q--) {

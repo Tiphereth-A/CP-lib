@@ -9,7 +9,6 @@ namespace tifa_libs::geo {
 // radius of circumscribed circle
 template <class FP>
 CEXP FP radius_O(triangle<FP> CR t) { return dist_PP(t.B, t.C) / std::sin(abs(ang_PP(t.B - t.A, t.C - t.A))) / 2; }
-
 // circumcenter (X3)
 template <class FP>
 CEXP point<FP> center_O(triangle<FP> CR t) {

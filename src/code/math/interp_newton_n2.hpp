@@ -21,9 +21,8 @@ class interp_newton {
   CEXP interp_newton &insert(cT_(T) x, cT_(T) y) {
     points.emplace_back(x, y);
     const u32 n = (u32)points.size();
-    if (n == 1) {
-      base.push_back(1);
-    } else {
+    if (n == 1) base.push_back(1);
+    else {
       u32 m = (u32)base.size();
       base.push_back(0);
       for (u32 i = m; i; --i) base[i] = base[i - 1];

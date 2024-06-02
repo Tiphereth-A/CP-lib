@@ -20,13 +20,11 @@ CEXP vec<pt3<u32>> run_hash(strnv s) {
     for (u32 i = n, top = 0, lt = 0; i; --i) {
       while (top) {
         const u32 x = min(st[top] - i, st[top - 1] - st[top]);
-        lt = s[i - 1] == s[st[top] - 1] ? lcpf_hash(hs, hs, i - 1, st[top] - 1, x) : 0;
-        if ((lt == x && st[top] - i < st[top - 1] - st[top]) || (lt < x && ((s[i + lt - 1] < s[st[top] + lt - 1]) ^ inv))) --top, lt = 0;
+        if (lt = s[i - 1] == s[st[top] - 1] ? lcpf_hash(hs, hs, i - 1, st[top] - 1, x) : 0; (lt == x && st[top] - i < st[top - 1] - st[top]) || (lt < x && ((s[i + lt - 1] < s[st[top] + lt - 1]) ^ inv))) --top, lt = 0;
         else break;
       }
       const u32 j = st[top], x = i > 1 && s[i - 2] == s[j - 2] ? lcsf_hash(hs, hs, i - 1, j - 1, j - i) : 0;
-      st[++top] = i;
-      if (x < j - i)
+      if (st[++top] = i; x < j - i)
         if (u32 y = s[i + lt - 1] == s[j + lt - 1] ? lt + lcpf_hash(hs, hs, i + lt - 1, j + lt - 1, n) : lt;
             x + y >= j - i) runs.emplace_back(j - i, i - x - 1, j + y - 1);
     }

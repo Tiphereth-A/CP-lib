@@ -8,19 +8,17 @@ namespace tifa_libs::math {
 
 template <class mint, class FP>
 CEXP vec<mint> conv_mtt(FFT<FP> &fft, vec<mint> CR l, vec<mint> CR r, u32 ans_size = 0) {
+  using C = TPN FFT<FP>::C;
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   if (ans_size < 32) return conv_naive(l, r, ans_size);
-  using C = TPN FFT<FP>::C;
   if (l.size() == 1) {
     vec<mint> ans = r;
-    ans.resize(ans_size);
-    for (auto &i : ans) i *= l[0];
+    for (ans.resize(ans_size); auto &i : ans) i *= l[0];
     return ans;
   }
   if (r.size() == 1) {
     vec<mint> ans = l;
-    ans.resize(ans_size);
-    for (auto &i : ans) i *= r[0];
+    for (ans.resize(ans_size); auto &i : ans) i *= r[0];
     return ans;
   }
   fft.bzr(max({(u32)l.size(), (u32)r.size(), min(u32(l.size() + r.size() - 1), ans_size)}));

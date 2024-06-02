@@ -9,8 +9,7 @@ template <iterable_c T = vec<int>>
 CEXP T uniq(T v) {
   std::sort(v.begin(), v.end());
   auto [f, l] = std::ranges::unique(v);
-  v.erase(f, l);
-  return v;
+  return v.erase(f, l), v;
 }
 template <iterable_c T = vec<int>>
 CEXP std::pair<T, vecu> gen_id(T CR v) {

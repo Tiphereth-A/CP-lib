@@ -6,8 +6,7 @@
 #include "../../code/tree/treew.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   vecu sign(n), min_(n);
@@ -40,7 +39,6 @@ int main() {
     std::cout << dp(dp, 0) << '\n';
     flt_ (u32, i, 0, k) sign[a[i]] = 0;
   }
-  return 0;
 }
 
 /*

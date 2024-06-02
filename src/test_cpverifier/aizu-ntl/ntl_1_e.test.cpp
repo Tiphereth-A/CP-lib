@@ -3,8 +3,7 @@
 #include "../../code/nt/exgcd.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   i64 a, b;
   std::cin >> a >> b;
   auto [g, x, y] = tifa_libs::math::exgcd(a, b);

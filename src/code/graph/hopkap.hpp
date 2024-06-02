@@ -20,8 +20,7 @@ inline vecpt<u32> hopkap(u32 l, u32 r, vecpt<u32> CR e) {
       if (!~nxt[i]) lev[i] = 1, q.push(i);
     while (!q.empty()) {
       u32 x = q.front();
-      q.pop();
-      for (u32 y : adj[x])
+      for (q.pop(); u32 y : adj[x])
         if (u32 z = pre[y]; !~z) max_lev = lev[x];
         else if (!lev[z]) lev[z] = lev[x] + 1, q.push(z);
       if (max_lev) break;
@@ -30,10 +29,8 @@ inline vecpt<u32> hopkap(u32 l, u32 r, vecpt<u32> CR e) {
     flt_ (u32, i, 0, l)
       if (lev[i] > max_lev) lev[i] = 0;
     auto f = [&](auto&& f, u32 x) -> bool {
-      for (; ptr[x] < adj[x].size(); ++ptr[x]) {
-        u32 y = adj[x][ptr[x]], z = pre[y];
-        if (!~z || (lev[z] == lev[x] + 1 && f(f, z))) return nxt[x] = y, pre[y] = x, ptr[x] = (u32)adj[x].size(), 1;
-      }
+      for (; ptr[x] < adj[x].size(); ++ptr[x])
+        if (u32 y = adj[x][ptr[x]], z = pre[y]; !~z || (lev[z] == lev[x] + 1 && f(f, z))) return nxt[x] = y, pre[y] = x, ptr[x] = (u32)adj[x].size(), 1;
       return 0;
     };
     flt_ (u32, i, 0, l)

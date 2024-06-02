@@ -26,16 +26,11 @@ struct segbeats_ca_ms {
   CEXP explicit segbeats_ca_ms(vec<T> CR a) { reset(a); }
 
   CEXP void reset(vec<T> CR a) {
-    if (a.empty()) {
-      n = lbn = 0;
-      return v.clear();
-    }
-    lbn = (u32)std::bit_width(a.size() - 1), n = 1_u32 << lbn;
-    v.resize(2 * n);
+    if (a.empty()) return n = lbn = 0, v.clear();
+    lbn = (u32)std::bit_width(a.size() - 1), n = 1_u32 << lbn, v.resize(2 * n);
     flt_ (u32, i, 0, (u32)a.size()) v[i + n].sum = v[i + n].max = v[i + n].min = a[i];
     for (u32 i = n - 1; i; --i) pushup(i);
   }
-
   CEXP void chmin(u32 l, u32 r, T x) { update_<1>(l, r, x); }
   CEXP void chmax(u32 l, u32 r, T x) { update_<2>(l, r, x); }
   CEXP void add(u32 l, u32 r, T x) { update_<3>(l, r, x); }
@@ -67,49 +62,31 @@ struct segbeats_ca_ms {
   CEXP void chmins_(u32 k, T x) {
     if (v[k].max <= x) return;
     if (v[k].max2 < x) return pdmin_(k, x);
-    pushdown(k);
-    chmins_(k * 2, x), chmins_(k * 2 + 1, x);
-    pushup(k);
+    pushdown(k), chmins_(k * 2, x), chmins_(k * 2 + 1, x), pushup(k);
   }
   CEXP void chmaxs_(u32 k, T x) {
     if (x <= v[k].min) return;
     if (x < v[k].min2) return pdmax_(k, x);
-    pushdown(k);
-    chmaxs_(k * 2, x), chmaxs_(k * 2 + 1, x);
-    pushup(k);
+    pushdown(k), chmaxs_(k * 2, x), chmaxs_(k * 2 + 1, x), pushup(k);
   }
 
   CEXP void pushup(u32 k) {
     TIFA &p = v[k], &l = v[k * 2], &r = v[k * 2 + 1];
     p.sum = l.sum + r.sum;
-    if (l.max == r.max) {
-      p.max = l.max;
-      p.max2 = max(l.max2, r.max2);
-      p.cmax = l.cmax + r.cmax;
-    } else {
+    if (l.max == r.max) p.max = l.max, p.max2 = max(l.max2, r.max2), p.cmax = l.cmax + r.cmax;
+    else {
       bool f = l.max > r.max;
-      p.max = f ? l.max : r.max;
-      p.cmax = f ? l.cmax : r.cmax;
-      p.max2 = max(f ? r.max : l.max, f ? l.max2 : r.max2);
+      p.max = f ? l.max : r.max, p.cmax = f ? l.cmax : r.cmax, p.max2 = max(f ? r.max : l.max, f ? l.max2 : r.max2);
     }
-    if (l.min == r.min) {
-      p.min = l.min;
-      p.min2 = min(l.min2, r.min2);
-      p.cmin = l.cmin + r.cmin;
-    } else {
+    if (l.min == r.min) p.min = l.min, p.min2 = min(l.min2, r.min2), p.cmin = l.cmin + r.cmin;
+    else {
       bool f = l.min < r.min;
-      p.min = f ? l.min : r.min;
-      p.cmin = f ? l.cmin : r.cmin;
-      p.min2 = min(f ? r.min : l.min, f ? l.min2 : r.min2);
+      p.min = f ? l.min : r.min, p.cmin = f ? l.cmin : r.cmin, p.min2 = min(f ? r.min : l.min, f ? l.min2 : r.min2);
     }
   }
-
   CEXP void pushdown(u32 k) {
     TIFA& p = v[k];
-    if (p.add) {
-      pdadd_(k * 2, p.add), pdadd_(k * 2 + 1, p.add);
-      p.add = 0;
-    }
+    if (p.add) pdadd_(k * 2, p.add), pdadd_(k * 2 + 1, p.add), p.add = 0;
     if (p.max < v[k * 2].max) pdmin_(k * 2, p.max);
     if (p.min > v[k * 2].min) pdmax_(k * 2, p.min);
     if (p.max < v[k * 2 + 1].max) pdmin_(k * 2 + 1, p.max);
@@ -117,27 +94,22 @@ struct segbeats_ca_ms {
   }
   CEXP void pdadd_(u32 k, T x) {
     TIFA& p = v[k];
-    p.sum += (TT)x << ((int)lbn + std::countl_zero(k) - 31);
-    p.max += x, p.min += x;
-    if (p.max2 != -INF) p.max2 += x;
+    if (p.sum += (TT)x << ((int)lbn + std::countl_zero(k) - 31), p.max += x, p.min += x; p.max2 != -INF) p.max2 += x;
     if (p.min2 != INF) p.min2 += x;
     p.add += x;
   }
   void pdmin_(u32 k, T x) {
     TIFA& p = v[k];
-    p.sum += ((TT)x - p.max) * p.cmax;
-    if (p.min == p.max) p.min = x;
+    if (p.sum += ((TT)x - p.max) * p.cmax; p.min == p.max) p.min = x;
     if (p.min2 == p.max) p.min2 = x;
     p.max = x;
   }
   void pdmax_(u32 k, T x) {
     TIFA& p = v[k];
-    p.sum += ((TT)x - p.min) * p.cmin;
-    if (p.max == p.min) p.max = x;
+    if (p.sum += ((TT)x - p.min) * p.cmin; p.max == p.min) p.max = x;
     if (p.max2 == p.min) p.max2 = x;
     p.min = x;
   }
-
   template <int tp>
   CEXP void update_(u32 l, u32 r, T x) {
     assert(l <= r);
@@ -159,13 +131,11 @@ struct segbeats_ca_ms {
       if (zr < i) pushup((r - 1) >> i);
     }
   }
-
   template <int tp>
   CEXP auto query_(u32 l, u32 r) {
     if (l == r) return e<tp>();
     l += n, r += n;
-    u32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r);
-    for (u32 i = lbn, ie = (u32)max(1, (i32)min(zl, zr)); i >= ie; --i) {
+    for (u32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), i = lbn, ie = (u32)max(1, (i32)min(zl, zr)); i >= ie; --i) {
       if (zl < i) pushdown(l >> i);
       if (zr < i) pushdown((r - 1) >> i);
     }

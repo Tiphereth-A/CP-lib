@@ -19,9 +19,7 @@ class dsu_pd {
   CEXP bool merge(u32 x, u32 y) {
     if ((x = (u32)find(x)) == (y = (u32)find(y))) return false;
     if (p[x] > p[y]) swap(x, y);
-    edges.emplace_back(y, p[y]);
-    p[x] += p[y], p[y] = (i32)x;
-    return true;
+    return edges.emplace_back(y, p[y]), p[x] += p[y], p[y] = (i32)x, true;
   }
   CEXP void rollback(u32 t) {
     while (edges.size() > t) {

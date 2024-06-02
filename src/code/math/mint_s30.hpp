@@ -13,8 +13,7 @@ class mint_s30 : public mint<mint_s30<MOD>, u32> {
   static CEXP u32 MOD2 = MOD << 1;
   static CEXP u32 R = []() {
     u32 t = 2, iv = MOD * (t - MOD * MOD);
-    iv *= t - MOD * iv, iv *= t - MOD * iv;
-    return iv * (MOD * iv - t);
+    return iv *= t - MOD * iv, iv *= t - MOD * iv, iv * (MOD * iv - t);
   }();
   static CEXP u32 R2 = -(u64)(MOD) % MOD;
 
@@ -42,24 +41,13 @@ class mint_s30 : public mint<mint_s30<MOD>, u32> {
   static CEXP raw_t mod_() { return MOD; }
   CEXP raw_t val_() const { return norm(reduce(this->v_)); }
   CEXP raw_t &data_() { return this->v_; }
-
   CEXP mint_s30 neg_() const {
     mint_s30 res;
-    res.v_ = (MOD2 & -(this->v_ != 0)) - this->v_;
-    return res;
+    return res.v_ = (MOD2 & -(this->v_ != 0)) - this->v_, res;
   }
-  CEXP mint_s30 &adde_(mint_s30 CR r) {
-    this->v_ += r.v_ - MOD2, this->v_ += MOD2 & -(this->v_ >> 31);
-    return *this;
-  }
-  CEXP mint_s30 &sube_(mint_s30 CR r) {
-    this->v_ -= r.v_, this->v_ += MOD2 & -(this->v_ >> 31);
-    return *this;
-  }
-  CEXP mint_s30 &mule_(mint_s30 CR r) {
-    this->v_ = reduce(u64(this->v_) * r.v_);
-    return *this;
-  }
+  CEXP mint_s30 &adde_(mint_s30 CR r) { return this->v_ += r.v_ - MOD2, this->v_ += MOD2 & -(this->v_ >> 31), *this; }
+  CEXP mint_s30 &sube_(mint_s30 CR r) { return this->v_ -= r.v_, this->v_ += MOD2 & -(this->v_ >> 31), *this; }
+  CEXP mint_s30 &mule_(mint_s30 CR r) { return this->v_ = reduce(u64(this->v_) * r.v_), *this; }
 };
 
 }  // namespace tifa_libs::math

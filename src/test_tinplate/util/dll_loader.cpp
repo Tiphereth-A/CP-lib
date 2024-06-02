@@ -17,14 +17,11 @@ int main(int, char **argv) {
     exit(0);
   }
   gmp = new tifa_libs::util::DLL(LIB_PATH);
-
   mpz_t a, b, q, r;
-
   gmp->call("__gmpz_init", a);
   gmp->call("__gmpz_init", b);
   gmp->call("__gmpz_init", q);
   gmp->call("__gmpz_init", r);
-
   [[maybe_unused]] auto _ = scanf("%d", &t);
   while (t--) {
     [[maybe_unused]] auto _ = scanf("%s%s", sa, sb);
@@ -34,12 +31,10 @@ int main(int, char **argv) {
     gmp->call("__gmpz_get_str", sq, -16, q);
     puts(sq);
   }
-
   gmp->call("__gmpz_clear", a);
   gmp->call("__gmpz_clear", b);
   gmp->call("__gmpz_clear", q);
   gmp->call("__gmpz_clear", r);
-  return 0;
 }
 
 /*

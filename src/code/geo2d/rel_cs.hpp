@@ -7,11 +7,9 @@
 namespace tifa_libs::geo {
 
 // relation between circle and segment/line
-enum RELCS {
-  otherwise_cs,
-  tagante_cs,
-  intersect_cs,
-};
+enum RELCS { otherwise_cs,
+             tagante_cs,
+             intersect_cs };
 
 template <class FP>
 CEXP RELCS relation_CS(circle<FP> CR c, line<FP> CR s) {

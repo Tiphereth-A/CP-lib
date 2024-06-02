@@ -24,7 +24,6 @@ class orthodox_ex_suffix_automaton {
     if (st[cur].len) return cur;
     st[cur].len = st[last].len + 1;
     u32 p = st[last].link;
-
     while (~p && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
     if (!~p) st[cur].link = 0;
     else {
@@ -43,8 +42,7 @@ class orthodox_ex_suffix_automaton {
     return cur;
   }
   CEXP void insert(strnv s) {
-    u32 u = 0;
-    for (auto cc : s) {
+    for (u32 u = 0; auto cc : s) {
       const u32 c = cc - BASE;
       if (!st[u].nex[c]) st[u].nex[c] = sz++, st.push_back(TIFA());
       u = st[u].nex[c];

@@ -13,10 +13,7 @@ class virtual_tree {
 
   CEXP void insert(u32 x) {
     u32 lca = lca_(x, st.back());
-    if (lca == st.back()) {
-      st.push_back(x);
-      return;
-    }
+    if (lca == st.back()) return st.push_back(x);
     while (st.size() > 1 && lca_.info.dep[st[st.size() - 2]] >= lca_.info.dep[lca]) vt.add_arc(st[st.size() - 2], st.back()), st.pop_back();
     if (lca_.info.dep[st.back()] > lca_.info.dep[lca]) vt.add_arc(lca, st.back()), st.pop_back();
     if (st.back() != lca) st.push_back(lca);
@@ -30,8 +27,7 @@ class virtual_tree {
 
   CEXP void build(vecu& a) {
     std::ranges::sort(a, [&](u32 a, u32 b) { return lca_.info.dfn[a] < lca_.info.dfn[b]; });
-    vt.g.clear(), st.push_back(tr.root);
-    for (u32 x : a) insert(x);
+    for (vt.g.clear(), st.push_back(tr.root); u32 x : a) insert(x);
     while (st.size() > 1) vt.add_arc(st[st.size() - 2], st.back()), st.pop_back();
     st.pop_back();
   }

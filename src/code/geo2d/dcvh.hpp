@@ -52,16 +52,10 @@ class dcvh {
   CEXP dcvh() {}
 
   CEXP bool contains(point<FP> CR p) const { return hcvh_up.contains(p) && hcvh_down.contains(p); }
-  CEXP dcvh &insert(point<FP> CR p) {
-    hcvh_up.insert(p);
-    hcvh_down.insert(p);
-    return *this;
-  }
+  CEXP dcvh &insert(point<FP> CR p) { return hcvh_up.insert(p), hcvh_down.insert(p), *this; }
   CEXP cvh<FP> to_CVH() const {
     cvh<FP> ret;
-    std::ranges::copy(hcvh_up.vs, ret.vs.begin()), std::ranges::copy(hcvh_down.vs, std::back_inserter(ret.vs));
-    argsort(ret.vs);
-    return ret;
+    return std::ranges::copy(hcvh_up.vs, ret.vs.begin()), std::ranges::copy(hcvh_down.vs, std::back_inserter(ret.vs)), argsort(ret.vs), ret;
   }
 };
 

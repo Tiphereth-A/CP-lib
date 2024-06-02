@@ -23,8 +23,7 @@ using mint = tifa_libs::math::mint_s30<998244353>;
 using node = exeuclid_node<mint>;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 t;
   std::cin >> t;
   node u(1, 0, 0, 0, 0, 0), r(0, 1, 1, 0, 0, 0);
@@ -34,7 +33,6 @@ int main() {
     auto ans = tifa_libs::math::exeuclid(a, c, b, n, u, r);
     std::cout << (ans.f + b / c) << ' ' << (ans.sqr_f + (b / c) * (b / c)) << ' ' << ans.i_f << '\n';
   }
-  return 0;
 }
 
 /*

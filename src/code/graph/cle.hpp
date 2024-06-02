@@ -13,17 +13,14 @@ CEXP vec<std::tuple<T, u32, u32>> cle(u32 n, u32 root, vec<std::tuple<T, u32, u3
   ds::dsu_basic<> uf(n);
   vecu used(n, -1_u32), from(n), come(n, -1_u32);
   vec<T> from_cost(n);
-
   used[root] = root;
   vecu par_e(arcs.size(), -1_u32), stem(n, -1_u32), idxs;
-
   flt_ (u32, i, 0, (u32)arcs.size()) {
     auto [w, u, v] = arcs[i];
     come[v] = heap.push(come[v], w, i);
   }
-
   T costs = 0;
-  for (u32 start = 0; start < n; start++) {
+  flt_ (u32, start, 0, n) {
     if (~used[start]) continue;
     u32 now = start;
     vecu chi_e;
@@ -35,21 +32,11 @@ CEXP vec<std::tuple<T, u32, u32>> cle(u32 n, u32 root, vec<std::tuple<T, u32, u3
       u32 src = (u32)uf.find(std::get<1>(arcs[node.idx]));
       T cost = heap.weight(come[now]);
       u32 idx = node.idx;
-      come[now] = heap.pop(come[now]);
-      if (src == now) continue;
-
-      from[now] = src, from_cost[now] = cost;
-      if (!~stem[now]) stem[now] = idx;
-      costs += cost;
-      idxs.push_back(idx);
-      while (cyc) {
-        par_e[chi_e.back()] = idx;
-        chi_e.pop_back();
-        --cyc;
-      }
-      chi_e.push_back(idx);
-
-      if (used[src] == start) {
+      if (come[now] = heap.pop(come[now]); src == now) continue;
+      if (from[now] = src, from_cost[now] = cost; !~stem[now]) stem[now] = idx;
+      costs += cost, idxs.push_back(idx);
+      while (cyc) par_e[chi_e.back()] = idx, chi_e.pop_back(), --cyc;
+      if (chi_e.push_back(idx); used[src] == start) {
         u32 p = now;
         do {
           if (~come[p]) heap.apply(come[p], -from_cost[p]);
@@ -58,8 +45,7 @@ CEXP vec<std::tuple<T, u32, u32>> cle(u32 n, u32 root, vec<std::tuple<T, u32, u3
             u32 newheap = heap.merge(come[now], come[p]);
             come[now = (u32)uf.find(now)] = newheap;
           }
-          p = (u32)uf.find(from[p]);
-          ++cyc;
+          p = (u32)uf.find(from[p]), ++cyc;
         } while (p != now);
       } else now = src;
     }

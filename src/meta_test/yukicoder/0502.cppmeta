@@ -10,8 +10,7 @@ CEXP u64 MOD = 1000000007;
 int main() {
 #define GENTCs_pmttd1
 #define GENTCs_p3nttd1
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;
   std::cout << tifa_libs::math::fact_mint<poly>(n) << '\n';

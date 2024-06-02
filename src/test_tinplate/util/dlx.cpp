@@ -7,22 +7,15 @@ void solve() {
   std::cin >> n >> m;
   vvecb maps(n, vecb(m));
   for (u32 i = 0, x; i < n; ++i)
-    flt_ (u32, j, 0, m) {
-      std::cin >> x;
-      maps[i][j] = x;
-    }
-  auto res = tifa_libs::util::DLX(maps).dance(fn_0);
-  if (res.has_value())
+    flt_ (u32, j, 0, m) std::cin >> x, maps[i][j] = x;
+  if (auto res = tifa_libs::util::DLX(maps).dance(fn_0); res.has_value())
     for (auto i : res.value()) std::cout << i << ' ';
-  else
-    std::cout << "No Solution!";
+  else std::cout << "No Solution!";
 }
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   solve();
-  return 0;
 }
 
 /*

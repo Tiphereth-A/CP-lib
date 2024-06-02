@@ -15,7 +15,6 @@ class fenwick2d_rr {
 
   CEXP u32 row() const { return a.size(); }
   CEXP u32 col() const { return a[0].size(); }
-
   //! [x, row) * [y, col), x > 0, y > 0
   CEXP void add(u32 x, u32 y, cT_(T) v) { a.add(x, y, v), ax.add(x, y, v * (x - 1)), ay.add(x, y, v * (y - 1)), axy.add(x, y, v * (x - 1) * (y - 1)); }
   //! [xl, xr) * [yl, yr), x > 0, y > 0

@@ -21,22 +21,18 @@ class heuristic_lbsa {
   // Find minimum argument of f(x)
   explicit CEXP heuristic_lbsa(Ff f, cT_(Cont) init, u32 L, Tt p0 = .2) : f(f), g_idx(0, (u32)init.size() - 1), g(0, 1), x(init), fx(f(init)), tlist() {
     const Tt lp0 = std::log(p0);
-    while (tlist.size() < L) {
-      auto [fy, y] = gen();
-      if (fy < fx) swap(fx, fy), swap(x, y);
+    while (tlist.size() < L)
+      if (auto [fy, y] = gen(); fy < fx) swap(fx, fy), swap(x, y);
       else tlist.push((fx - fy) / lp0);
-    }
   }
 
   std::pair<Ft, Cont> operator()(u32 K, u32 M) {
     flt_ (u32, k, 0, K) {
       Tt tmax = tlist.top(), t = 0;
       u32 c = 0;
-      flt_ (u32, m, 0, M) {
-        auto [fy, y] = gen();
-        if (fy < fx) swap(fx, fy), swap(x, y);
+      flt_ (u32, m, 0, M)
+        if (auto [fy, y] = gen(); fy < fx) swap(fx, fy), swap(x, y);
         else if (Tt r = g.next(); std::exp((fx - fy) / tmax) > r) t += (fx - fy) / std::log(r), ++c;
-      }
       if (c) tlist.pop(), tlist.push(t / c);
     }
     return {fx, x};
@@ -46,8 +42,7 @@ class heuristic_lbsa {
   static CEXP void inv_(TPN Cont::iterator l, TPN Cont::iterator r) { std::reverse(l, std::next(r)); }
   static CEXP void ins_(TPN Cont::iterator l, TPN Cont::iterator r) {
     auto x = *r;
-    std::move_backward(l, r, std::next(r));
-    *l = x;
+    std::move_backward(l, r, std::next(r)), *l = x;
   }
   static CEXP void swap_(TPN Cont::iterator l, TPN Cont::iterator r) { std::iter_swap(l, r); }
   std::pair<Ft, Cont> gen() {
@@ -55,9 +50,7 @@ class heuristic_lbsa {
     while (l == r) r = g_idx.next();
     if (l > r) swap(l, r);
     Cont c0 = x, c1 = x, c2 = x;
-    inv_(c0.begin() + l, c0.begin() + r);
-    ins_(c1.begin() + l, c1.begin() + r);
-    swap_(c2.begin() + l, c2.begin() + r);
+    inv_(c0.begin() + l, c0.begin() + r), ins_(c1.begin() + l, c1.begin() + r), swap_(c2.begin() + l, c2.begin() + r);
     Ft f0 = f(c0), f1 = f(c1), f2 = f(c2);
     if (f0 > f1) swap(f0, f1), swap(c0, c1);
     if (f0 > f2) swap(f0, f2), swap(c0, c2);

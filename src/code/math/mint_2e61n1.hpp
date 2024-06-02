@@ -9,8 +9,7 @@ class mint_2e61n1 : public mint<mint_2e61n1, u64> {
   using base = mint<mint_2e61n1, u64>;
   friend base;
 
-  static CEXP u64 MOD = (1ull << 61) - 1;
-  static CEXP u64 _30 = (1 << 30) - 1, _31 = (1u << 31) - 1;
+  static CEXP u64 MOD = (1ull << 61) - 1, _30 = (1 << 30) - 1, _31 = (1u << 31) - 1;
 
  public:
   static CEXP bool FIXED_MOD = true;
@@ -30,20 +29,12 @@ class mint_2e61n1 : public mint<mint_2e61n1, u64> {
   static CEXP raw_t mod_() { return MOD; }
   CEXP raw_t val_() const { return this->v_; }
   CEXP raw_t &data_() { return this->v_; }
-
   CEXP mint_2e61n1 neg_() const { return mint_2e61n1(MOD - val_()); }
-  CEXP mint_2e61n1 &adde_(mint_2e61n1 CR r) {
-    data_() = mod_(val_() + r.val_());
-    return *this;
-  }
-  CEXP mint_2e61n1 &sube_(mint_2e61n1 CR r) {
-    val_() < r.val_() ? data_() = mod_(val_() + MOD - r.val_()) : data_() -= r.val_();
-    return *this;
-  }
+  CEXP mint_2e61n1 &adde_(mint_2e61n1 CR r) { return data_() = mod_(val_() + r.val_()), *this; }
+  CEXP mint_2e61n1 &sube_(mint_2e61n1 CR r) { return val_() < r.val_() ? data_() = mod_(val_() + MOD - r.val_()) : data_() -= r.val_(), *this; }
   CEXP mint_2e61n1 &mule_(mint_2e61n1 CR r) {
     raw_t au = val_() >> 31, ad = val_() & _31, bu = r.val_() >> 31, bd = r.val_() & _31, _ = ad * bu + au * bd;
-    data_() = mod_(((au * bu) << 1) + ad * bd + ((_ & _30) << 31) + (_ >> 30));
-    return *this;
+    return data_() = mod_(((au * bu) << 1) + ad * bd + ((_ & _30) << 31) + (_ >> 30)), *this;
   }
 };
 

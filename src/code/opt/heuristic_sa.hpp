@@ -23,13 +23,8 @@ class heuristic_sa {
   std::pair<Ft, T> operator()(T init_val) {
     T ans = init_val, now = ans;
     Ft ans_f = f(ans);
-    for (Tt t = Tmax; t > Tmin; t *= dT) {
-      now = gen(ans, t);
-      if (Ft now_f = f(now); now_f <= ans_f || std::exp((ans_f - now_f) / t) > g.next()) {
-        ans_f = now_f;
-        ans = now;
-      }
-    }
+    for (Tt t = Tmax; t > Tmin; t *= dT)
+      if (Ft now_f = f(now = gen(ans, t)); now_f <= ans_f || std::exp((ans_f - now_f) / t) > g.next()) ans_f = now_f, ans = now;
     return {ans_f, ans};
   }
 };

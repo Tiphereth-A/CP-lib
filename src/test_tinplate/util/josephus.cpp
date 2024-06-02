@@ -10,7 +10,6 @@ int main() {
     std::cin >> n >> m >> k;
     std::cout << "Case #" << kase << ": " << tifa_libs::util::Josephus(n, k, m) + 1 << '\n';
   }
-  return 0;
 }
 
 /*

@@ -6,8 +6,7 @@ const strn S = "eBAAAAOsGTbTzuYGNS9PWVKfXhPlFNJUm+eodLZXfBQRZmxLCirhInNmgBO7FwaB
 CEXP u64 mod = 1000000007, Z = 100000;
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
 
   auto a = tifa_libs::Base64::decode(S);
   u64 n;

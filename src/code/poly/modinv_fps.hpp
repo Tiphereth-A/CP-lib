@@ -10,10 +10,7 @@ CEXP std::optional<poly<mint, ccore>> modinv_fps(poly<mint, ccore> CR f, poly<mi
   using poly_t = poly<mint, ccore>;
   auto m = gcd_fps_impl_::pgcd_(f, g);
   if (poly_t _ = (m * ptt<poly_t>{f, g}).first; _.size() != 1) return {};
-  else {
-    auto _1 = divmod_fps((m * ptt<poly_t>(poly_t(1, 1), g)).first, g);
-    return _1.second * _[0].inv();
-  }
+  else return divmod_fps((m * ptt<poly_t>(poly_t(1, 1), g)).first, g).second * _[0].inv();
 }
 
 }  // namespace tifa_libs::math

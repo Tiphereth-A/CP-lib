@@ -12,8 +12,7 @@ template <class T>
 CEXP treew<T> kruskal(vec<std::tuple<T, u32, u32>> sorted_a, u32 n) {
   treew<T> tr(n);
   ds::dsu_basic dsu(n);
-  u32 m = n - 1;
-  for (auto [w, u, v] : sorted_a) {
+  for (u32 m = n - 1; auto [w, u, v] : sorted_a) {
     if (dsu.merge(u, v)) tr.add_arc(u, v, w), tr.add_arc(v, u, w), --m;
     if (!m) break;
   }

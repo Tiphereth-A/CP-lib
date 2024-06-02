@@ -18,13 +18,10 @@ CEXP void wht(vec<T>& f, u32 n = 0) {
 template <class T>
 CEXP void iwht(vec<T>& f, u32 n = 0) {
   if (!n) n = (u32)f.size();
-  wht(f, n);
-  if CEXP (std::is_integral_v<T>)
+  if CEXP (wht(f, n); std::is_integral_v<T>)
     for (auto& x : f) x /= n;
-  else {
-    const T _ = T(1) / T(n);
-    for (auto& x : f) x *= _;
-  }
+  else
+    for (const T _ = T(1) / T(n); auto& x : f) x *= _;
 }
 
 }  // namespace tifa_libs::math

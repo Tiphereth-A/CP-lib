@@ -3,40 +3,29 @@
 #include "../../code/graph/tarjan.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   vecu a(n);
   for (auto& x : a) std::cin >> x;
   vvecu e(n);
-  for (u32 i = 0, u, v; i < m; ++i) {
-    std::cin >> u >> v;
-    --u, --v;
-    e[u].push_back(v);
-  }
+  for (u32 i = 0, u, v; i < m; ++i) std::cin >> u >> v, e[u - 1].push_back(v - 1);
   tifa_libs::graph::tarjan scc;
   scc.build(e);
   vvecu g(scc.id);
   vecu in(scc.id), b(scc.id), dp(scc.id, 1'000'000'000);
   for (u32 i = 0, x, y; i < n; ++i) {
-    b[x = scc.scc_id[i]] += a[i];
-    for (auto v : e[i])
+    for (b[x = scc.scc_id[i]] += a[i]; auto v : e[i])
       if (x != (y = scc.scc_id[v])) g[x].push_back(y), ++in[y];
   }
   auto dfs = [&](auto&& dfs, u32 u) -> void {
     if (dp[u] != 1'000'000'000) return;
-    dp[u] = b[u];
-    for (auto v : g[u]) {
-      dfs(dfs, v);
-      dp[u] = tifa_libs::max(dp[u], b[u] + dp[v]);
-    }
+    for (dp[u] = b[u]; auto v : g[u]) dfs(dfs, v), dp[u] = tifa_libs::max(dp[u], b[u] + dp[v]);
   };
   u32 ret = 0;
-  for (u32 i = 0; i < scc.id; ++i)
+  flt_ (u32, i, 0, scc.id)
     if (!in[i]) dfs(dfs, i), ret = tifa_libs::max(ret, dp[i]);
   std::cout << ret;
-  return 0;
 }
 
 /*

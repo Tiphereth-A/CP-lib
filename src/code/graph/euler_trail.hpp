@@ -20,14 +20,12 @@ CEXP std::optional<vecpt<u32>> run_(u32 n, u32 m, cT_(vvecpt<u32>) g, u32 s) {
       ret.emplace_back(i, p), stk.pop_back();
       continue;
     }
-    auto [j, e] = *(it++);
-    if (!vis[e]) --f[i], ++f[j], stk.emplace_back(j, e), vis[e] = true;
+    if (auto [j, e] = *(it++); !vis[e]) --f[i], ++f[j], stk.emplace_back(j, e), vis[e] = true;
   }
   if (ret.size() != m + 1) return {};
   for (i32 i : f)
     if (i < 0) return {};
-  std::ranges::reverse(ret);
-  return ret;
+  return std::ranges::reverse(ret), ret;
 }
 }  // namespace euler_trail_impl_
 

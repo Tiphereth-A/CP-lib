@@ -3,8 +3,7 @@
 #include "../../code/edh/hash_splitmix64.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 q;
   std::cin >> q;
   tifa_libs::hmap<u64, u64> hm;

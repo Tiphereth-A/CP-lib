@@ -3,8 +3,7 @@
 #include "../../code/ds/depq.hpp"
 
 int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s;
   vecu v;
   while (std::cin >> s) {
