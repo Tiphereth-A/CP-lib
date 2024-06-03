@@ -7,7 +7,7 @@
 
 namespace tifa_libs::graph {
 
-template <bool inner, class T, bool with_deg, class Ge>
+template <bool outer, class T, bool with_deg, class Ge>
 requires requires(Ge ge, math::matrix<T> A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
@@ -20,7 +20,7 @@ CEXP T kirchhoff(amat<T, with_deg> CR g, u32 r, Ge &&ge) {
       if (i != j) {
         auto _ = g.g[i][j];
         if (i != r && j != r) mat(i - (i > r), j - (j > r)) -= _;
-        if CEXP (inner) {
+        if CEXP (outer) {
           if (j != r) mat(j - (j > r), j - (j > r)) += _;
         } else if (i != r) mat(i - (i > r), i - (i > r)) += _;
       }
