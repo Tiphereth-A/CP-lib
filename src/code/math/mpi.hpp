@@ -8,13 +8,14 @@
 namespace tifa_libs::math {
 
 class mpi {
-  static CEXP u32 D = 100000000, lgD = 8;
   bool neg;
   vecu dt;
 
  public:
+  static CEXP u32 D = 100000000, lgD = 8;
   explicit CEXP mpi() : neg(false), dt() {}
-  CEXP mpi(bool n, vecu CR d) : neg(n), dt(d) {}
+  CEXP mpi(bool n, itlu x) : neg(n), dt(x) {}
+  CEXP mpi(bool n, spnu d) : neg(n), dt(d.begin(), d.end()) {}
   template <int_c T>
   CEXP mpi(T x) : neg(false) {
     if CEXP (is_sint_v<T>)
@@ -32,9 +33,9 @@ class mpi {
     u32 l = 0;
     if (s[0] == '-') ++l, neg = true;
     u32 _ = 0;
-    if ((s.size() - l) & 7) {
-      for (u32 i = l; i < l + ((s.size() - l) & 7); ++i) _ = _ * 10 + (s[i] & 15);
-      l += (s.size() - l) & 7;
+    if (u32 ofs = u32(s.size() - l) & 7; ofs) {
+      flt_ (u32, i, l, l + ofs) _ = _ * 10 + (s[i] & 15);
+      l += ofs;
     }
     if (l) s = s.substr(l);
     for (u32 ie = (u32)s.size(); ie >= lgD; ie -= lgD)
@@ -42,8 +43,6 @@ class mpi {
     if (_) dt.push_back(_);
   }
 
-  static CEXP u32 digit() { return D; }
-  static CEXP u32 log_digit() { return lgD; }
   CEXP void set_neg(bool s) { neg = s; }
   CEXP bool is_neg() const { return neg; }
   CEXP vecu& data() { return dt; }
@@ -110,7 +109,7 @@ class mpi {
   friend std::ostream& operator<<(std::ostream& os, mpi CR m) { return os << m.to_str(); }
 
  private:
-  static CEXP bool lt_(vecu CR a, vecu CR b) {
+  static CEXP bool lt_(spnu a, spnu b) {
     if (a.size() != b.size()) return a.size() < b.size();
     for (u32 i = (u32)a.size() - 1; ~i; --i)
       if (a[i] != b[i]) return a[i] < b[i];
@@ -123,8 +122,8 @@ class mpi {
     if (l.neg != r.neg) return l.neg;
     return lt_(l.dt, r.dt) ^ l.neg;
   }
-  static CEXP bool is0_(vecu CR a) { return a.empty(); }
-  static CEXP bool is1_(vecu CR a) { return a.size() == 1 && a[0] == 1; }
+  static CEXP bool is0_(spnu a) { return a.empty(); }
+  static CEXP bool is1_(spnu a) { return a.size() == 1 && a[0] == 1; }
   static CEXP void shrink_(vecu& a) {
     while (a.size() && !a.back()) a.pop_back();
   }
@@ -160,9 +159,9 @@ class mpi {
     }
     return shrink_(c), c;
   }
-  static CEXP vecu mul_bf_(vecu CR a, vecu CR b) {
+  static CEXP vecu mul_bf_(spnu a, spnu b) {
     if (a.empty() || b.empty()) return {};
-    vecu64 prod(a.size() + b.size() - 1 + 1);
+    vecuu prod(a.size() + b.size() - 1 + 1);
     flt_ (u32, i, 0, (u32)a.size())
       flt_ (u32, j, 0, (u32)b.size())
         if ((prod[i + j] += (u64)a[i] * b[j]) >= 4_u64 * D * D) prod[i + j] -= 4_u64 * D * D, prod[i + j + 1] += 4_u64 * D;
@@ -181,14 +180,14 @@ class mpi {
     return mul_3ntt_(a, b);
   }
   // 0 <= A < 1e16, 1 <= B < 1e8
-  static CEXP ptt<vecu> divmod_li_(vecu CR a, vecu CR b) {
+  static CEXP ptt<vecu> divmod_li_(spnu a, spnu b) {
     assert(a.size() <= 2 && b.size() == 1);
     i64 va = to_i64_(a);
     u32 vb = b[0];
     return {itov_(va / vb), itov_(va % vb)};
   }
   // 0 <= A < 1e16, 1 <= B < 1e16
-  static CEXP ptt<vecu> divmod_ll_(vecu CR a, vecu CR b) {
+  static CEXP ptt<vecu> divmod_ll_(spnu a, spnu b) {
     assert(a.size() <= 2 && b.size() && b.size() <= 2);
     i64 va = to_i64_(a), vb = to_i64_(b);
     return {itov_(va / vb), itov_(va % vb)};
@@ -293,7 +292,7 @@ class mpi {
     while (x) res.push_back((u32)(x % D)), x /= D;
     return res;
   }
-  static CEXP i64 to_i64_(vecu CR a) {
+  static CEXP i64 to_i64_(spnu a) {
     i64 res = 0;
     for (u32 i = (u32)a.size() - 1; ~i; --i) res = res * D + a[i];
     return res;

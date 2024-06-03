@@ -5,10 +5,10 @@
 
 #include "../base.hpp"
 
-vec<u64> Josephus_bf(u64 n, u64 k, u64 m) {
+vecuu Josephus_bf(u64 n, u64 k, u64 m) {
   assert(m && k && m <= n);
   assert(m <= 10000);
-  vec<u64> ans(m);
+  vecuu ans(m);
   std::list<u64> l;
   flt_(u64, i, 0, n) l.push_back(i);
   auto it = l.begin();

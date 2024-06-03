@@ -9,7 +9,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  vecu64 a(n);
+  vecuu a(n);
   for (auto &x : a) x = 1;
   tifa_libs::ds::link_cut_tree<u64, op, inv_op> lct(n, a);
   flt_ (u32, i, 0, m) {

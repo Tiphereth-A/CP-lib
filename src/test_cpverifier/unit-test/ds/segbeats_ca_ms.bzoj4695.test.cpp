@@ -11,7 +11,7 @@ void test(strn CR data) {
 
   u32 n;
   fin >> n;
-  vec<i64> a(n);
+  vecii a(n);
   for (auto& i : a) fin >> i;
   tifa_libs::ds::segbeats_ca_ms<i64> seg(a);
   u32 q;

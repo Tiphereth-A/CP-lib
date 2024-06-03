@@ -9,7 +9,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  vec<pt3<u32>> edges(m);
+  vec<pt3u> edges(m);
   ++n;
   for (auto& [w, u, v] : edges) std::cin >> u >> v >> w;
   auto gh_edges = tifa_libs::graph::gomory_hu(n, edges);
@@ -17,7 +17,7 @@ int main() {
   std::cin >> q;
   tifa_libs::graph::alistw<u32> g(n);
   for (auto&& [w, u, v] : gh_edges) g.add_arc(u, v, w), g.add_arc(v, u, w);
-  std::map<ptt<u32>, u32> mp;
+  std::map<pttu, u32> mp;
   for (auto&& [w, u, v] : gh_edges) mp[std::minmax(u, v)] = w;
   for (u32 i = 0, u, v; i < q; ++i) {
     std::cin >> u >> v;

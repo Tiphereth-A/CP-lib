@@ -5,14 +5,14 @@
 
 CEXP u32 MOD = 998244353;
 
-#define GENTCs_p3ntts
-#define GENTCs_p3nttd0
+#define GENTCs_p3ntts30s
+#define GENTCs_p3ntts30d_0
 #define GENTCs_pmtts
 #define GENTCs_pmttd0
 #define GENTCs_pntt
 
 int main() {
-#define GENTCs_p3nttd1
+#define GENTCs_p3ntts30d_1
 #define GENTCs_pmttd1
   u32 n, m;
   tifa_libs::fin >> n >> m;

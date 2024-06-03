@@ -14,7 +14,8 @@ struct polygon {
 
   CEXP polygon() {}
   explicit CEXP polygon(u32 sz) : vs(sz) {}
-  explicit CEXP polygon(vec<point<FP>> CR vs_) : vs(vs_) {}
+  CEXP polygon(itl<point<FP>> vs_) : vs(vs_) {}
+  CEXP polygon(spn<point<FP>> vs_) : vs(vs_.begin(), vs_.end()) {}
 
   friend std::istream &operator>>(std::istream &is, polygon &p) {
     for (auto &i : p.vs) is >> i;

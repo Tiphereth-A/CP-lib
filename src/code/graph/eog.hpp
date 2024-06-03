@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 template <bool with_deg = false>
 struct eog {
   vecu head;
-  vecpt<u32> e;
+  vecptu e;
   u32 cnt_arc;
   vecu deg_in, deg_out;
 

@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  vecpt<i64> vp(n);
+  vecptii vp(n);
   for (auto& [x, y] : vp) std::cin >> x >> y;
   auto res = tifa_libs::graph::manhattan_mst(vp);
   std::ranges::sort(res);

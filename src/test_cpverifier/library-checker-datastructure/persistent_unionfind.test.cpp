@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  vvec<pt3<u32>> tr(Q), qry(Q);
+  vvec<pt3u> tr(Q), qry(Q);
   std::bitset<Q> ans;
   u32 cnt = 0;
   fle_ (u32, i, 1, q) {

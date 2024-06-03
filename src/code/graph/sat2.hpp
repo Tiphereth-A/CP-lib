@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 class sat2 {
   const u32 n;
   vecu st;
-  vecpt<u32> e;
+  vecptu e;
 
  public:
   CEXP sat2(u32 n) : n(n), st(2 * n + 1) {}

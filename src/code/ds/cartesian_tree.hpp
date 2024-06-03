@@ -12,7 +12,11 @@ class cartesian_tree {
     arr<u32, 2> son{-1u, -1u};
   };
 
-  CEXP void build(vec<T> CR y) {
+ public:
+  u32 root;
+  vec<TIFA> t;
+
+  explicit CEXP cartesian_tree(vec<T> CR y) : root(), t(y.size()) {
     vecu s(y.size() + 1);
     u32 top = 0;
     flt_ (u32, i, 0, (u32)y.size()) {
@@ -24,12 +28,6 @@ class cartesian_tree {
     }
     t[root = s[1]].fa = s[1];
   }
-
- public:
-  u32 root;
-  vec<TIFA> t;
-
-  explicit CEXP cartesian_tree(vec<T> CR y) : root(), t(y.size()) { build(y); }
 };
 
 }  // namespace tifa_libs::ds

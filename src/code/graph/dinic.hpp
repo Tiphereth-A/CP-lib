@@ -20,7 +20,7 @@ class dinic {
 
   CEXP dinic(u32 n) : n(n), e(n) {}
 
-  CEXP ptt<u32> add(u32 u, u32 v, T w, T rw = 0) {
+  CEXP pttu add(u32 u, u32 v, T w, T rw = 0) {
     u32 lstu = (u32)e[u].size(), lstv = (u32)e[v].size();
     e[u].push_back({v, w, lstv}), e[v].push_back({u, rw, lstu});
     return {u, e[u].size() - 1};

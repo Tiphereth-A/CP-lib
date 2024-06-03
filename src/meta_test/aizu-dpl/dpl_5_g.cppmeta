@@ -6,11 +6,13 @@
 CEXP u32 MOD = 1000000000 + 7;
 
 #define GENTCs_pmttd0
-#define GENTCs_p3nttd0
+#define GENTCs_p3ntts30d_0
+#define GENTCs_p3ntts63d_0
 
 int main() {
 #define GENTCs_pmttd1
-#define GENTCs_p3nttd1
+#define GENTCs_p3ntts30d_1
+#define GENTCs_p3ntts63d_1
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, k;
   std::cin >> n >> k;

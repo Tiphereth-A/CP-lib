@@ -31,9 +31,9 @@ CEXP T v_() { return val; }
 template <class T>
 CEXP P<T> pe_() { return {0, 0}; }
 template <class T, T NINF>
-CEXP auto segtl_addmax_ctor(vec<T> CR a) { return segtree<T, max_<T>, v_<T, NINF>, T, add_<T>, add_<T>, e_<T>>(a); }
+CEXP auto segtl_addmax_ctor(spn<T> a) { return segtree<T, max_<T>, v_<T, NINF>, T, add_<T>, add_<T>, e_<T>>(a); }
 template <class T, T INF>
-CEXP auto segtl_addmin_ctor(vec<T> CR a) { return segtree<T, min_<T>, v_<T, INF>, T, add_<T>, add_<T>, e_<T>>(a); }
+CEXP auto segtl_addmin_ctor(spn<T> a) { return segtree<T, min_<T>, v_<T, INF>, T, add_<T>, add_<T>, e_<T>>(a); }
 template <class T>
 CEXP auto segtl_addsum_ctor(vec<T> CR a) {
   vec<P<T>> b(a.size());
@@ -41,11 +41,11 @@ CEXP auto segtl_addsum_ctor(vec<T> CR a) {
   return segtree<P<T>, add_<P<T>>, pe_<T>, T, padd_<T>, add_<T>, e_<T>>(b);
 }
 template <class T, T NINF>
-CEXP auto segtl_setmax_ctor(vec<T> CR a) { return segtree<T, max_<T>, v_<T, NINF>, T, set_<T>, set_<T>, v_<T, NINF>>(a); }
+CEXP auto segtl_setmax_ctor(spn<T> a) { return segtree<T, max_<T>, v_<T, NINF>, T, set_<T>, set_<T>, v_<T, NINF>>(a); }
 template <class T, T INF>
-CEXP auto segtl_setmin_ctor(vec<T> CR a) { return segtree<T, min_<T>, v_<T, INF>, T, set_<T>, set_<T>, v_<T, INF>>(a); }
+CEXP auto segtl_setmin_ctor(spn<T> a) { return segtree<T, min_<T>, v_<T, INF>, T, set_<T>, set_<T>, v_<T, INF>>(a); }
 template <class T, T DEF_VAL>
-CEXP auto segtl_setsum_ctor(vec<T> CR a) {
+CEXP auto segtl_setsum_ctor(spn<T> a) {
   vec<P<T>> b(a.size());
   flt_ (u32, i, 0, (u32)a.size()) b[i] = {a[i], 1};
   return segtree<P<T>, add_<P<T>>, pe_<T>, T, pset_<T>, set_<T>, v_<T, DEF_VAL>>(b);

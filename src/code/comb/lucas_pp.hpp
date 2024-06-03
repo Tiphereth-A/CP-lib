@@ -10,7 +10,7 @@ class LucasPP {
   const u32 p, q;
   const bool no_proot;
   u64 m_;
-  vecu64 facp, ifacp;
+  vecuu facp, ifacp;
 
  public:
   // mod = p ** q

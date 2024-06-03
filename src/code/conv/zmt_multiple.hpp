@@ -6,14 +6,14 @@
 namespace tifa_libs::math {
 
 template <class T>
-CEXP void zt_multiple(vec<T>& a, vecu CR pf) {
+CEXP void zt_multiple(vec<T>& a, spnu pf) {
   for (u32 p : pf)
     for (u64 k = (a.size() - 1) / p; k; --k) a[k] += a[k * p];
 }
 template <class T>
 CEXP void zt_multiple(vec<T>& a) { zt_multiple(a, prime_seq(a.size() - 1)); }
 template <class T>
-CEXP void mt_multiple(vec<T>& a, vecu CR pf) {
+CEXP void mt_multiple(vec<T>& a, spnu pf) {
   for (u32 p : pf)
     for (u64 k = 1; k * p < a.size(); ++k) a[k] -= a[k * p];
 }

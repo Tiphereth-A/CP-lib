@@ -10,7 +10,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  vec<u64> v(n);
+  vecuu v(n);
   for (auto& i : v) std::cin >> i;
   arr<B, N> adj;
   for (u32 i = 0, u, v; i < m; ++i) {

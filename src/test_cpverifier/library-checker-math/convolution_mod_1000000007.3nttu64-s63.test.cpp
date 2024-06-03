@@ -16,7 +16,7 @@ using ntt3_t = std::tuple<tifa_libs::math::NTT<mint0>, tifa_libs::math::NTT<mint
 int main() {
   u32 n, m;
   tifa_libs::fin >> n >> m;
-  vecu64 a(n), b(m);
+  vecuu a(n), b(m);
   tifa_libs::fin >> a >> b;
   ntt3_t ntt3;
   tifa_libs::fout << tifa_libs::math::conv_3ntt_u64(ntt3, a, b, MOD) << '\n';

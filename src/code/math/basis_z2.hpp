@@ -40,7 +40,7 @@ struct basisZ2 {
     flt_ (u32, i, 0, (u32)basis.size()) res += basis[i][i];
     return res;
   }
-  CEXP std::bitset<N> max_span() const {
+  CEXP std::bitset<N> max_spn() const {
     std::bitset<N> ret;
     for (auto &&i : basis) ret ^= i;
     return ret;

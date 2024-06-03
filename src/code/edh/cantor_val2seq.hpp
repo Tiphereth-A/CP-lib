@@ -5,7 +5,7 @@
 
 namespace tifa_libs {
 
-CEXP vecu cantor_val2seq(u64 cv, vecu64 CR fact) {
+CEXP vecu cantor_val2seq(u64 cv, spnuu fact) {
   const u32 n = (u32)fact.size();
   vecu s;
   s.reserve(n), --cv;

@@ -10,7 +10,7 @@ template <class FP = f64>
 struct cconv_mtt : public FFT<FP> {
   static CEXP auto ct_cat = ct_FFT;
   template <class mint>
-  CEXP void conv(vec<mint>& l, vec<mint> CR r, u32 sz = 0) { l = conv_mtt(*this, l, r, sz); }
+  CEXP void conv(vec<mint>& l, vec<mint> CR r, u32 sz = 0) { l = conv_mtt<mint>(*this, l, r, sz); }
 };
 }  // namespace polymtt_impl_
 

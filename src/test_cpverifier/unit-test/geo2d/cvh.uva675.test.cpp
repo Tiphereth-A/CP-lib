@@ -9,7 +9,7 @@ using data_t = f64;
 using Point2 = tifa_libs::geo::point<data_t>;
 using ConvexHull2 = tifa_libs::geo::cvh<data_t>;
 
-strn single_proceed(vec<Point2> CR vp) {
+strn single_proceed(spn<Point2> vp) {
   std::stringstream ss;
   ss << std::fixed << std::setprecision(0);
 

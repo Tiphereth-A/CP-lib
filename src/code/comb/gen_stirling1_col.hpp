@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 
 // stirling1[i] = {i \\brack k}, i=0,1,...,n
 template <class poly, bool with_sgn = true>
-CEXP poly gen_stirling1_col(u32 n, u32 k, vecu64 CR fact, vecu64 CR inv, vecu64 CR invfact) {
+CEXP poly gen_stirling1_col(u32 n, u32 k, spnuu fact, spnuu inv, spnuu invfact) {
   if (n < k) return poly(n + 1);
   poly f(n + 1);
   fle_ (u32, i, 1, n) f[i] = inv[i];

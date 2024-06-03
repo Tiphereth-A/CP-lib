@@ -10,13 +10,13 @@ CEXP i64 INF = std::numeric_limits<i64>::max() / 2;
 int main() {
   u32 n, q;
   tifa_libs::fin >> n >> q;
-  vec<i64> a(n);
+  vecii a(n);
   for (auto& x : a) tifa_libs::fin >> x;
   tifa_libs::graph::tree tr(n);
   for (u32 i = 1, p; i < n; ++i) tifa_libs::fin >> p, tr.add_arc((u32)p, (u32)i), tr.add_arc((u32)i, (u32)p);
 
-  vvecpt<i32> upd(n);
-  vvec<i32> que(n);
+  vvecpti upd(n);
+  vveci que(n);
   flt_ (u32, i, 0, n) upd[i].emplace_back(0, a[i]);
   fle_ (u32, i, 1, q) {
     u32 c, u;
@@ -29,7 +29,7 @@ int main() {
   }
 
   tifa_libs::ds::fenwick<i64> bit(q + 2);
-  vec<i64> ans(q + 1, INF);
+  vecii ans(q + 1, INF);
 
   tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree> info;
   tifa_libs::graph::dsu_on_tree(

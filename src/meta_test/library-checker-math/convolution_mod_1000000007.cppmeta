@@ -16,10 +16,10 @@ int main() {
   u32 n, m;
   tifa_libs::fin >> n >> m;
 #ifdef GENTC_3nttu64_s30
-  vecu64 a(n), b(m);
+  vecuu a(n), b(m);
 #endif
 #ifdef GENTC_3nttu64_s63
-  vecu64 a(n), b(m);
+  vecuu a(n), b(m);
 #endif
 #ifdef GENTC_3ntt_s30_s30
   vec<mint> a(n), b(m);

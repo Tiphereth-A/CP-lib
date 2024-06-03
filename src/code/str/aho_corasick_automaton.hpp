@@ -41,7 +41,7 @@ class aho_corasick_automaton {
         else t[u].nex[i] = t[t[u].fail].nex[i];
     }
   }
-  CEXP void build(vec<strn> CR s_) {
+  CEXP void build(spn<strn> s_) {
     flt_ (u32, i, 0, (u32)s_.size()) insert(s_[i], i);
     getfail();
   }

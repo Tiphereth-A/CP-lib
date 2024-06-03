@@ -12,7 +12,7 @@ class Base64 {
   // clang-format on
 
  public:
-  static CEXP strn encode(vec<usz> CR a) {
+  static CEXP strn encode(spn<usz> a) {
     const usz x = *std::ranges::max_element(a), N = a.size(), B = max(6_uz, (usz)std::bit_width(x));
     strn S((B * N + 11) / 6, 0);
     S[0] = (char)B;

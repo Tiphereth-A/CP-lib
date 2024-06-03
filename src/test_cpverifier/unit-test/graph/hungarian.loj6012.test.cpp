@@ -10,7 +10,7 @@ strn single_proceed(std::istream &fin) {
 
   u32 n;
   fin >> n;
-  vvec<i32> c1(n, vec<i32>(n));
+  vveci c1(n, veci(n));
   for (auto &i : c1) fin >> i;
   auto c2 = c1;
   for (auto &i : c2)

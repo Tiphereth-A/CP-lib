@@ -7,7 +7,7 @@ int main() {
   u32 n;
   std::cin >> n;
   int x;
-  vec<pt3<u32>> edges;
+  vec<pt3u> edges;
   flt_ (u32, i, 0, n)
     flt_ (u32, j, 0, n) {
       std::cin >> x;

@@ -25,7 +25,7 @@ struct segbeats_ca_ms {
   CEXP explicit segbeats_ca_ms(u32 _n) : segbeats_ca_ms(vec<T>(_n)) {}
   CEXP explicit segbeats_ca_ms(vec<T> CR a) { reset(a); }
 
-  CEXP void reset(vec<T> CR a) {
+  CEXP void reset(spn<T> a) {
     if (a.empty()) return n = lbn = 0, v.clear();
     lbn = (u32)std::bit_width(a.size() - 1), n = 1_u32 << lbn, v.resize(2 * n);
     flt_ (u32, i, 0, (u32)a.size()) v[i + n].sum = v[i + n].max = v[i + n].min = a[i];

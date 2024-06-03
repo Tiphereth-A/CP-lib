@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 namespace crt_impl_ {
-CEXP std::optional<ptt<i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1) {
+CEXP std::optional<pttii> crt2(i64 a0, u64 m0, i64 a1, u64 m1) {
   if (m0 < m1) return crt2(a1, m1, a0, m0);
   auto [d, x] = inv_gcd(m0, m1);
   const i64 a1_a0 = a1 - a0, a1_a0_d = a1_a0 / (i64)d;
@@ -19,7 +19,7 @@ CEXP std::optional<ptt<i64>> crt2(i64 a0, u64 m0, i64 a1, u64 m1) {
 }  // namespace crt_impl_
 
 // Returns (remainder, modular)
-CEXP std::optional<ptt<u64>> crt(vec<i64> CR a, vecu64 CR m) {
+CEXP std::optional<pttuu> crt(spnii a, spnuu m) {
   if (a.size() != m.size()) return {};
   i64 A = 0;
   u64 M = 1;

@@ -50,7 +50,7 @@ class DLX {
     }
     return resume_(now), ret;
   }
-  CEXP void ins_row_(u32 row, vecu CR cols) {
+  CEXP void ins_row_(u32 row, spnu cols) {
     assert(row > 0);
     u32 n = (u32)data.size();
     flt_ (u32, i, 0, (u32)cols.size())

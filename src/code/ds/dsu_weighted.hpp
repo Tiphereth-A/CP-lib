@@ -6,8 +6,8 @@
 namespace tifa_libs::ds {
 
 class dsu_weighted {
-  vec<i32> p;
-  vec<i64> dep;
+  veci p;
+  vecii dep;
 
  public:
   explicit CEXP dsu_weighted(u32 n) : p(n, -1), dep(n) {}

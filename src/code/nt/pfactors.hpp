@@ -30,7 +30,7 @@ CEXP u64 rho(u64 n) {
     } while (g == 1);
   return g == n ? rho(n) : g;
 }
-CEXP void run(u64 n, vecu64 &p) {
+CEXP void run(u64 n, vecuu &p) {
   if (n < 2) return;
   if (is_prime(n)) return p.push_back(n);
   const u64 g = rho(n);
@@ -39,8 +39,8 @@ CEXP void run(u64 n, vecu64 &p) {
 }  // namespace pfactors_impl_
 
 template <bool unique = true>
-CEXP vecu64 pfactors(u64 n) {
-  vecu64 p;
+CEXP vecuu pfactors(u64 n) {
+  vecuu p;
   if (u32 _ = (u32)std::countr_zero(n) & 63; _) {
     n >>= _;
     if CEXP (unique) p.push_back(2);

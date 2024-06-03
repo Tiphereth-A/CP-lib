@@ -8,8 +8,8 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  vec<pt3<u32>> e(m);
-  std::map<pt3<u32>, u32> id;
+  vec<pt3u> e(m);
+  std::map<pt3u, u32> id;
   u32 cnt = 0;
   for (auto& [w, u, v] : e) {
     std::cin >> u >> v >> w;

@@ -22,7 +22,7 @@ CEXP void run(alist<with_deg> CR dg, F&& func) {
 //! should be simple undirected graph
 // func(u, v, w) forall {u,v,w} is C3
 template <class F>
-CEXP void ringenum3(vecu CR deg, vecpt<u32> CR edges, F&& func) {
+CEXP void ringenum3(spnu deg, vecptu CR edges, F&& func) {
   alist<false> dg((u32)deg.size());
   for (auto [u, v] : edges) {
     if (deg[u] < deg[v] || (deg[u] == deg[v] && u > v)) swap(u, v);
@@ -34,12 +34,12 @@ CEXP void ringenum3(vecu CR deg, vecpt<u32> CR edges, F&& func) {
 //! should be simple undirected graph
 // func(u, v, w) forall {u,v,w} is C3
 template <class F>
-CEXP void ringenum3(u32 n, vecpt<u32> CR edges, F&& func) {
+CEXP void ringenum3(u32 n, vecptu CR edges, F&& func) {
   vecu deg(n);
   for (auto [u, v] : edges) ++deg[u], ++deg[v];
   ringenum3(deg, edges, std::forward<F>(func));
 }
-CEXP u64 ringcnt3(u32 n, vecpt<u32> CR edges) {
+CEXP u64 ringcnt3(u32 n, vecptu CR edges) {
   u64 ans = 0;
   ringenum3(n, edges, [&](u32, u32, u32) { ++ans; });
   return ans;

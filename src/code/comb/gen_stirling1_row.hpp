@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 
 // stirling1[i] = {n \\brace i}, i=0,1,...,n
 template <class poly, bool with_sgn = true>
-CEXP poly gen_stirling1_row(u32 n, vecu64 CR fact, vecu64 CR ifact) {
+CEXP poly gen_stirling1_row(u32 n, spnuu fact, spnuu ifact) {
   using mint = TPN poly::value_type;
   if (!n) return poly{1};
   poly f{0, 1};

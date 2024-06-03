@@ -6,7 +6,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  auto tr = tifa_libs::ds::segtl_setsum_ctor<i64, -INT32_MAX>(vec<i64>(n));
+  auto tr = tifa_libs::ds::segtl_setsum_ctor<i64, -INT32_MAX>(vecii(n));
   flt_ (u32, i, 0, q) {
     u32 op, u, v;
     i64 w;

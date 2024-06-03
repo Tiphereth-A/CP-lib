@@ -4,14 +4,14 @@
 
 CEXP u32 MOD = 1012924417;
 
-#define GENTCs_p3ntts
-#define GENTCs_p3nttd0
+#define GENTCs_p3ntts30s
+#define GENTCs_p3ntts30d_0
 #define GENTCs_pmtts
 #define GENTCs_pmttd0
 #define GENTCs_pntt
 
 int main() {
-#define GENTCs_p3nttd1
+#define GENTCs_p3ntts30d_1
 #define GENTCs_pmttd1
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;

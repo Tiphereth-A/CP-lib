@@ -14,12 +14,12 @@ CEXP u64 pi_23(u64 n) {
   auto prime = prime_seq((u32)n2 + 1000);
   u32 pidx = 0;
   u64 pi = 0;
-  vecu64 ns;
+  vecuu ns;
   ns.reserve(n2 * 2 + 2), ns.push_back(0);
   fle_ (u64, i, 1, n2) ns.push_back(div_u64d(n, i));
   for (u64 i = ns.back() - 1; i; --i) ns.push_back(i);
   u32 nsz = (u32)ns.size();
-  vecu64 h = ns;
+  vecuu h = ns;
   for (auto &i : h) --i;
   while (prime[pidx] <= n6) {
     const u32 p = prime[pidx];
@@ -27,7 +27,7 @@ CEXP u64 pi_23(u64 n) {
     for (u64 i = 1, n = ns[i]; i < nsz && n >= p2; n = ns[++i]) h[i] -= h[i * p <= n2 ? i * p : nsz - div_u64d(n, p)] - pi;
     ++pidx, ++pi;
   }
-  vec<i32> bit(nsz - n3);
+  veci bit(nsz - n3);
   auto f = [&](auto &&f, u64 cur, u32 pid, bool flag) -> void {
     if (flag)
       if (u64 id = cur <= n2 ? nsz - cur : div_u64d(n, cur); id > n3)

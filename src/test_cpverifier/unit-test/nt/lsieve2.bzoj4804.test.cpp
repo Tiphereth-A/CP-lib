@@ -17,12 +17,12 @@ void test(strn CR data) {
   u32 n = *std::ranges::max_element(ns);
   tifa_libs::math::lsieve2 ls(n);
   u64 lst = 1;
-  vecu64 g = ls.template run<u64>([&](u32 p, u32 e) {
+  vecuu g = ls.template run<u64>([&](u32 p, u32 e) {
     if (e == 1) return lst = p - 2;
     else if (e == 2) return lst = u64(p - 1) * (p - 1);
     else return lst *= p;
   });
-  vecu64 f(n + 1);
+  vecuu f(n + 1);
   fle_(u32, i, 1, n) f[i] = f[i - 1] + g[i];
 
   for (u32 n : ns) {

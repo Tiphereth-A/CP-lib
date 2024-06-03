@@ -6,13 +6,13 @@
 namespace tifa_libs::graph {
 
 template <bool directed, bool with_deg>
-CEXP vecpt<u32> find_cycle(alist<with_deg> CR fg) {
+CEXP vecptu find_cycle(alist<with_deg> CR fg) {
   auto&& g = fg.g;
   flt_ (u32, i, 0, (u32)g.size())
     for (u32 j : g[i])
-      if (i == j) return vecpt<u32>{{i, i}};
+      if (i == j) return vecptu{{i, i}};
   vecu pidx(g.size(), -1_u32), vis(g.size(), 0);
-  vecpt<u32> cycle;
+  vecptu cycle;
   bool fin = false;
   auto f = [&](auto&& f, u32 now, u32 pval, u32 fa) -> u32 {
     for (pidx[now] = pval, vis[now] = 1; u32 to : g[now]) {
@@ -32,7 +32,7 @@ CEXP vecpt<u32> find_cycle(alist<with_deg> CR fg) {
     if (vis[i]) continue;
     if (f(f, i, i, -1_u32); fin) return std::ranges::reverse(cycle), cycle;
   }
-  return vecpt<u32>{};
+  return vecptu{};
 }
 
 }  // namespace tifa_libs::graph

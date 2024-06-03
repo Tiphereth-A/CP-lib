@@ -10,13 +10,13 @@ class Youngt {
   u32 n;
 
  public:
-  CEXP explicit Youngt(vecu CR l) {
+  CEXP explicit Youngt(spnu l) {
     for (auto i : l) insert(i);
   }
-  CEXP Youngt(std::initializer_list<u32> l = {}) {
+  CEXP Youngt(itlu l = {}) {
     for (auto i : l) insert(i);
   }
-  CEXP Youngt(std::initializer_list<std::initializer_list<u32>> l) {
+  CEXP Youngt(itl<itlu> l) {
     for (auto&& i : l) d.emplace_back(i);
   }
 
@@ -24,11 +24,11 @@ class Youngt {
   CEXP u32 height() const { return (u32)d.size(); }
   // width() == len(longest incresing seq.)
   CEXP u32 width() const { return (u32)d[0].size(); }
-  CEXP cT_(u32) size() const { return n; }
+  CEXP u32 CR size() const { return n; }
   CEXP vvecu& data() { return d; }
-  CEXP cT_(vvecu) data() const { return d; }
+  CEXP vvecu CR data() const { return d; }
   CEXP u32& operator()(u32 h, u32 w) { return d[h][w]; }
-  CEXP cT_(u32) operator()(u32 h, u32 w) const { return d[h][w]; }
+  CEXP u32 CR operator()(u32 h, u32 w) const { return d[h][w]; }
   CEXP u32 hook(u32 h, u32 w) const {
     assert(h < height() && w < d[h].size());
     return u32(d[h].size() - w + h);

@@ -17,13 +17,13 @@ class hld {
   vecu top;
 
   explicit CEXP hld(graph::tree& tr) : t(), tr(tr), info() { info.template reset_dfs_info<graph::td_dep | graph::td_fa>(tr), top = graph::tree_top<graph::tree, true>(tr, info); }
-  explicit CEXP hld(graph::tree& tr, vec<T> CR a) : hld(tr) {
+  explicit CEXP hld(graph::tree& tr, spn<T> a) : hld(tr) {
     vec<T> b(a.size());
     flt_ (u32, i, 0, (u32)a.size()) b[info.dfn[i]] = a[i];
     build(b);
   }
 
-  CEXP void build(vec<T> CR a) { t.reset(a); }
+  CEXP void build(spn<T> a) { t.reset(a); }
   CEXP void chain_update(u32 u, u32 v, cT_(F) f) {
     while (top[u] != top[v]) {
       if (info.dep[top[u]] < info.dep[top[v]]) swap(u, v);

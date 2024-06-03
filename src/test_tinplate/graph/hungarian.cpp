@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  vvec<i32> c1(n, vec<i32>(n));
+  vveci c1(n, veci(n));
   for (auto &i : c1) std::cin >> i;
   auto c2 = c1;
   for (auto &i : c2)

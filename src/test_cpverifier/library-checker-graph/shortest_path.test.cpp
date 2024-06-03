@@ -11,9 +11,9 @@ int main() {
     tifa_libs::fin >> a >> b >> c;
     g.add_arc(a, b, c);
   }
-  vec<i32> pre(n, -1);
+  veci pre(n, -1);
   auto dis = tifa_libs::graph::dijkstra(g, s, [&pre](u32 now, u32 to) { pre[to] = (i32)now; });
-  vec<i32> ans;
+  veci ans;
   for (i32 now = pre[t]; ~now; now = pre[(usz)now]) ans.push_back(now);
   if (ans.empty()) {
     tifa_libs::fout << "-1\n";

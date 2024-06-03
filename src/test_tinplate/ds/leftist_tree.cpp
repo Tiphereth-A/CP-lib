@@ -6,7 +6,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  vec<i32> a(n);
+  veci a(n);
   for (auto& x : a) std::cin >> x;
   tifa_libs::ds::leftist_tree<i32> tr(a);
   u32 opt, x, y;

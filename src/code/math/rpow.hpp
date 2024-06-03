@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 class rpow {
-  vecu64 b0, b1;
+  vecuu b0, b1;
   u64 b_, m_;
 
  public:

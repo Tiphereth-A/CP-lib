@@ -20,7 +20,7 @@ CEXP poly gen_bell(u32 n, vec<mint> CR fact, vec<mint> CR ifact) {
 template <class poly>
 CEXP poly gen_bell(u32 n) {
   using mint = TPN poly::value_type;
-  return gen_bell<poly, mint>(n, gen_fact<mint>(n + 1), gen_ifact<mint>(n + 1));
+  return gen_bell<poly>(n, gen_fact<mint>(n + 1), gen_ifact<mint>(n + 1));
 }
 
 }  // namespace tifa_libs::math

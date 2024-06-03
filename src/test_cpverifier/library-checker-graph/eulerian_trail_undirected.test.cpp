@@ -9,7 +9,7 @@ int main() {
   while (t--) {
     u32 n, m;
     std::cin >> n >> m;
-    vecpt<u32> e(m);
+    vecptu e(m);
     for (auto& [u, v] : e) std::cin >> u >> v;
     if (auto res = tifa_libs::graph::euler_trail<false>(n, e); !res.has_value()) {
       std::cout << "No\n";

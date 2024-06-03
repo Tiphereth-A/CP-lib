@@ -23,7 +23,7 @@ CEXP u32 maxv_cvh_cnt(vec<point<FP>> CR vp) {
     flt_ (u32, j, 0, n)
       if (i != j) vl.emplace_back(i, j, vp[i], vp[j]);
   std::sort(vl.begin(), vl.end());
-  vec<i32> f(n + 1);
+  veci f(n + 1);
   u32 ans = 0;
   flt_ (u32, i, 0, n) {
     std::ranges::fill(f, INT32_MIN), f[i] = 0;

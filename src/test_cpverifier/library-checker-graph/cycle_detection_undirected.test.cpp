@@ -8,7 +8,7 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   tifa_libs::graph::alist g(n);
-  tifa_libs::hmap<ptt<u32>, u32> edges;
+  tifa_libs::hmap<pttu, u32> edges;
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     if (u == v) {

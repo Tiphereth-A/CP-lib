@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 // Calculate binom(m, n) mod p, p can be ANY INTEGER
 class ExLucas {
   const u32 m_;
-  vecu64 ms;
+  vecuu ms;
   vec<LucasPP> cs;
 
  public:
@@ -27,7 +27,7 @@ class ExLucas {
 
   CEXP u64 operator()(i64 m, i64 n) const {
     if (m_ == 1 || m < n || n < 0) return 0;
-    vec<i64> b;
+    vecii b;
     for (b.reserve(cs.size()); auto CR i : cs) b.push_back((i64)i(m, n));
     return crt(b, ms)->first;
   }

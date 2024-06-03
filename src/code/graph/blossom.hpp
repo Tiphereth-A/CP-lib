@@ -11,19 +11,19 @@ class blossom {
   vvecu g;
   vecu mate, first;
   vecb white;
-  vecpt<u32> label;
+  vecptu label;
 
  public:
   CEXP explicit blossom(u32 n) { init(n); }
 
-  CEXP void init(u32 n_) { n = n_, g = vvecu(n + 1), mate = first = vecu(n + 1), label = vecpt<u32>(n + 1), white = vecb(n + 1); }
+  CEXP void init(u32 n_) { n = n_, g = vvecu(n + 1), mate = first = vecu(n + 1), label = vecptu(n + 1), white = vecb(n + 1); }
   CEXP void add_edge(u32 u, u32 v) { g[u].push_back(v), g[v].push_back(u); }
-  vecpt<u32> operator()() {
+  vecptu operator()() {
     fle_ (u32, s, 1, n)
       if (!mate[s]) augment(s);
     fle_ (u32, s, 1, n)
       if (!mate[s] && !white[s]) assert(!augment(s));
-    vecpt<u32> ans;
+    vecptu ans;
     fle_ (u32, s, 1, n)
       if (s < mate[s]) ans.emplace_back(s, mate[s]);
     return ans;
@@ -48,7 +48,7 @@ class blossom {
           u32 x = gf(a), y = gf(b), lca = 0;
           while (x || y) {
             if (y) swap(x, y);
-            if (label[x] == ptt<u32>{a, b}) {
+            if (label[x] == pttu{a, b}) {
               lca = x;
               break;
             }

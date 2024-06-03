@@ -28,7 +28,7 @@ class hlpp {
 
   CEXP hlpp(u32 n, u32 s, u32 t) : n(n), s(s), t(t), level(0), B(n), e(n), exf(n + 1) {}
 
-  CEXP ptt<u32> add(u32 u, u32 v, T w, T rw = 0) {
+  CEXP pttu add(u32 u, u32 v, T w, T rw = 0) {
     const u32 lstu = (u32)e[u].size(), lstv = (u32)e[v].size();
     e[u].push_back({v, w, lstv}), e[v].push_back({u, rw, lstu});
     return {u, e[u].size() - 1};

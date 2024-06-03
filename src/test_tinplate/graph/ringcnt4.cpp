@@ -19,7 +19,7 @@ int main() {
   while (T--) {
     u32 n, m;
     std::cin >> n >> m;
-    vecpt<u32> edges(m);
+    vecptu edges(m);
     std::cin >> edges;
     for (auto &[u, v] : edges) --u, --v;
     tifa_libs::graph::alist g(n);

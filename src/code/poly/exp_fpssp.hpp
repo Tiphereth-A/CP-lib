@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-CEXP poly<mint, ccore> exp_fpssp(poly<mint, ccore> CR p, vecu64 CR inv, u32 n = 0) {
+CEXP poly<mint, ccore> exp_fpssp(poly<mint, ccore> CR p, spnuu inv, u32 n = 0) {
   if (p.data().empty()) return p;
   assert(p[0] == 0);
   if (!n) n = p.size();

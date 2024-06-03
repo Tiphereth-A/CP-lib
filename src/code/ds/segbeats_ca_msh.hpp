@@ -125,7 +125,7 @@ class segbeats_ca_msh {
       tag[x] = {0, 0, 0, 0, 0, 0};
     }
   }
-  CEXP void build(vec<T> CR a, u32 x, u32 l, u32 r) {
+  CEXP void build(spn<T> a, u32 x, u32 l, u32 r) {
     if (l == r) {
       t[x].hismax = t[x].sum = t[x].min = t[x].max = a[l], t[x].min2 = INF, t[x].max2 = -INF, t[x].cmin = t[x].cmax = 1;
       return;

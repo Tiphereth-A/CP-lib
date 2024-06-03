@@ -10,7 +10,7 @@ namespace polyntt_impl_ {
 template <class mint>
 struct cconv_ntt : public NTT<mint> {
   static CEXP auto ct_cat = ct_NTT;
-  CEXP void conv(vec<mint> &l, vec<mint> CR r, u32 sz = 0) { l = conv_dft(*this, l, r, sz); }
+  CEXP void conv(vec<mint> &l, vec<mint> CR r, u32 sz = 0) { l = conv_dft<cconv_ntt, mint>(*this, l, r, sz); }
 };
 }  // namespace polyntt_impl_
 

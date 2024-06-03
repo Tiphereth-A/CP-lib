@@ -15,7 +15,7 @@ CEXP u64 sqrfree_cnt(u64 n) {
   fle_ (u32, i, 1, D)
     if (mu[i]) ans += (u64)mu[i] * (n / ((u64)i * i));
   fle_ (u32, i, 1, D) mu[i] += mu[i - 1];
-  vec<i32> mu_large(I + 1);
+  veci mu_large(I + 1);
   for (u32 i = I - 1; i >= 1; --i) {
     const u32 xi = isqrt(n / i), h = isqrt(xi), tlim = 2 * h - (h == xi / h);
     auto f = [xi, h, tlim](u32 i) -> u32 { return i < h ? i + 1 : u32(f64(xi) / (2 * h - (tlim & 1) - i)); };

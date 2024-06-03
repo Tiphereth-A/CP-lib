@@ -9,7 +9,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore, u32 N = 21>
-vec<mint> comp_fpssps(u32 n, poly<mint, ccore> f, vec<mint> g, vecu64 CR fact, vecu64 CR ifact) {
+vec<mint> comp_fpssps(u32 n, poly<mint, ccore> f, vec<mint> g, spnuu fact, spnuu ifact) {
   assert(n <= N);
   static conv_subset<mint, N> ss;
   if (!f.size()) return vec<mint>(1 << n);

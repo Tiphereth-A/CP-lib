@@ -8,7 +8,7 @@ namespace tifa_libs {
 //! vertex ID starts at 1
 //! tree root = n
 // father ID of i is fa[i], fa[0] = 0
-CEXP vecu prufer(vecu CR fa) {
+CEXP vecu prufer(spnu fa) {
   const u32 n = (u32)fa.size();
   vecu deg(n + 1);
   flt_ (u32, i, 1, n) ++deg[fa[i]];

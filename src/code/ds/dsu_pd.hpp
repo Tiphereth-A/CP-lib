@@ -6,7 +6,7 @@
 namespace tifa_libs::ds {
 
 class dsu_pd {
-  vec<i32> p;
+  veci p;
   vecp<u32, i32> edges;
 
  public:

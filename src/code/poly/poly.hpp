@@ -10,7 +10,7 @@ enum ccore_t { ct_FFT, ct_3NTT, ct_NTT };
 // clang-format on
 
 template <class mint, class ccore>
-requires requires(ccore cc, vec<mint> l, vec<mint> CR r, u32 sz) {
+requires requires(ccore cc, vec<mint> l, vec<mint> r, u32 sz) {
   { ccore::ct_cat } -> std::same_as<ccore_t CR>;
   cc.conv(l, r);
   cc.conv(l, r, sz);
@@ -26,9 +26,8 @@ class poly {
 
   explicit CEXP poly(u32 sz = 1, cT_(value_type) val = value_type{}) : d(sz, val) {}
   CEXP poly(TPN data_type::const_iterator begin, TPN data_type::const_iterator end) : d(begin, end) {}
-  CEXP poly(std::initializer_list<value_type> v) : d(v) {}
-  template <class T>
-  explicit CEXP poly(vec<T> CR v) : d(v) {}
+  CEXP poly(itl<value_type> v) : d(v) {}
+  CEXP poly(spn<value_type> v) : d(v.begin(), v.end()) {}
 
   friend CEXP std::istream &operator>>(std::istream &is, poly &poly) {
     for (auto &val : poly.d) is >> val;

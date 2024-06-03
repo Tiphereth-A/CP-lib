@@ -83,7 +83,7 @@ class suffix_automaton {
   }
   // app 4
   //! default: each character of t is lowercase English letters.
-  CEXP ptt<u32> lcs(strnv t) {
+  CEXP pttu lcs(strnv t) {
     u32 v = 0, len = 0, ret = 0, end = 0, base = u32('a');
     flt_ (u32, i, 0, (u32)t.size()) {
       while (v && !st[v].nex[u32(t[i]) - base]) v = st[v].link, len = st[v].len;

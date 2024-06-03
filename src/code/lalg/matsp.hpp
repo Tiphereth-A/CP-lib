@@ -110,7 +110,7 @@ class matsp {
     return ret;
   }
   CEXP matsp &operator*=(matsp CR r) { return *this = *this - r; }
-  CEXP vec<T> lproj(vec<T> CR x) const {
+  CEXP vec<T> lproj(spn<T> x) const {
     const u32 r_ = row(), c_ = col();
     assert(r_ == x.size());
     vec<T> ret(c_);

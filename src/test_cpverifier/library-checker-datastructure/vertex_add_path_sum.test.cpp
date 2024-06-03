@@ -15,7 +15,7 @@ F id() { return 0; }
 int main() {
   u32 n, q;
   tifa_libs::fin >> n >> q;
-  vec<i64> b(n);
+  vecii b(n);
   vec<T> a(n);
   for (auto& x : b) tifa_libs::fin >> x;
   tifa_libs::graph::tree tr_(n);

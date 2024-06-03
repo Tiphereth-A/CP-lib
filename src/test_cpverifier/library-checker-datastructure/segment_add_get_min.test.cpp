@@ -9,7 +9,7 @@ i64 op(i64 x, i64 y) { return tifa_libs::min(x, y); }
 int main() {
   u32 n, q;
   tifa_libs::fin >> n >> q;
-  vec<i64> lsh;
+  vecii lsh;
   struct seg {
     i64 a, b, l, r;
   };
@@ -29,7 +29,7 @@ int main() {
     else
       tifa_libs::fin >> qu[i].k.l >> qu[i].k.r >> qu[i].k.a >> qu[i].k.b, qu[i].k.r -= 1, lsh.push_back(qu[i].k.l), lsh.push_back(qu[i].k.r);
   }
-  lsh = tifa_libs::uniq<vec<i64>>(lsh);
+  lsh = tifa_libs::uniq<vecii>(lsh);
   tifa_libs::ds::lichao_segtree<i64, op> tr(lsh);
   flt_ (u32, i, 0, n)
     tr.add(se[i].a, se[i].b, se[i].l, se[i].r);

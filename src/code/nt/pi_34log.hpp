@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 CEXP u64 pi_34log(u64 n) {
   if (n < 2) return 0;
   const u64 n2 = isqrt(n), ndn2 = div_u64d(n, n2);
-  vecu64 hl(ndn2);
+  vecuu hl(ndn2);
   flt_ (u64, i, 1, ndn2) hl[i] = div_u64d(n, i) - 1;
   vecu hs(n2 + 1);
   std::iota(hs.begin(), hs.end(), -1_u32);

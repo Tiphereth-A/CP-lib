@@ -6,7 +6,7 @@
 int main() {
   u32 n, q;
   tifa_libs::fin >> n >> q;
-  vec<i64> a(n);
+  vecii a(n);
   for (auto& i : a) tifa_libs::fin >> i;
   tifa_libs::ds::segbeats_ca_ms<i64, i128> seg(a);
   for (u32 i = 0, opt, l, r; i < q; ++i) {

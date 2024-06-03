@@ -6,7 +6,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  vec<i32> a(n);
+  veci a(n);
   for (auto &x : a) std::cin >> x;
   tifa_libs::ds::cartesian_tree tr(a);
   i64 retl = 0, retr = 0;

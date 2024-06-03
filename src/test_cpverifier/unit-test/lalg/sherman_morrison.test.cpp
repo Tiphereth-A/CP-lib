@@ -3,9 +3,9 @@
 
 #include "../../../code/lalg/sherman_morrison.hpp"
 
-#include "../../../code/lalg/mat.hpp"
 #include "../../../code/lalg/ge_basic_mat.hpp"
 #include "../../../code/lalg/inv_mat.hpp"
+#include "../../../code/lalg/mat.hpp"
 #include "../../../code/math/mint_2e61n1.hpp"
 #include "../../../code/math/mint_d31.hpp"
 #include "../../../code/math/mint_d63.hpp"
@@ -22,24 +22,24 @@ void single_test(u32 n) {
   auto ge = [&is_0](mat& m, bool f) { return tifa_libs::math::ge_basic(m, is_0, f); };
 
   mat L(n, n), U(n, n);
-  flt_(u32, i, 0, n)
-    fle_(u32, j, 0, i) L(i, j) = gen();
-  flt_(u32, i, 0, n)
-    flt_(u32, j, i, n) U(i, j) = gen();
+  flt_ (u32, i, 0, n)
+    fle_ (u32, j, 0, i) L(i, j) = gen();
+  flt_ (u32, i, 0, n)
+    flt_ (u32, j, i, n) U(i, j) = gen();
 
   mat I(n, n);
-  flt_(u32, i, 0, n) I(i, i) = 1;
+  flt_ (u32, i, 0, n) I(i, i) = 1;
 
   mat A = L * U;
   mat inv_A = tifa_libs::math::inv_mat(A, is_0, ge).value();
   check(A * inv_A, I, check_param(L), check_param(U), check_param(A), check_param(inv_A));
   mat B = inv_A;
   vec<mint> u(n), v = A.data().back();
-  flt_(u32, i, 0, n) u[i] = A(i, n - 1);
+  flt_ (u32, i, 0, n) u[i] = A(i, n - 1);
   tifa_libs::math::sherman_morrison(B, u, v);
   mat A2 = A + A.submat(0, n, n - 1, n) * A.submat(n - 1, n, 0, n);
-  flt_(u32, i, 0, n)
-    flt_(u32, j, 0, n) {
+  flt_ (u32, i, 0, n)
+    flt_ (u32, j, 0, n) {
       mint want = A(i, j) + u[i] * v[j];
       check(A2(i, j), want, check_param(A), check_param(u), check_param(v), check_param(A2));
     }

@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  vvec<i32> v(n);
+  vveci v(n);
   flt_ (u32, i, 0, q) {
     u32 op, t;
     std::cin >> op >> t;

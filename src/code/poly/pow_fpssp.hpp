@@ -10,7 +10,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-CEXP poly<mint, ccore> pow_fpssp(poly<mint, ccore> CR p, u64 y, vecu64 CR inv, u32 n = 0) {
+CEXP poly<mint, ccore> pow_fpssp(poly<mint, ccore> CR p, u64 y, spnuu inv, u32 n = 0) {
   if (!n) n = p.size();
   if (!y) return poly<mint, ccore>{1}.pre(n);
   if (p.data().empty()) return p.pre(n);

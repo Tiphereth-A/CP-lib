@@ -6,15 +6,15 @@
 
 namespace tifa_libs::math {
 
-CEXP i64 lagrange_interp0(vec<i64> CR v, u64 x, u64 mod, vecu64 CR ifact) {
+CEXP i64 lagrange_interp0(spnii v, u64 x, u64 mod, spnuu ifact) {
   const u32 n = (u32)v.size();
   assert(n);
   if (n == 1) return v[0];
   if (x < n) return v[x];
-  vecu64 pre(n);
+  vecuu pre(n);
   flt_ (u32, i, 0, n) pre[i] = x - i;
   flt_ (u32, i, 1, n) pre[i] = mul_mod_u(pre[i], pre[i - 1], mod);
-  vecu64 suc(n);
+  vecuu suc(n);
   flt_ (u32, i, 0, n) suc[i] = x - i;
   for (u32 i = n - 2; ~i; --i) suc[i] = mul_mod_u(suc[i], suc[i + 1], mod);
   i64 ans = 0;
@@ -26,12 +26,12 @@ CEXP i64 lagrange_interp0(vec<i64> CR v, u64 x, u64 mod, vecu64 CR ifact) {
   }
   return ans;
 }
-CEXP i64 lagrange_interp0(vec<i64> CR v, u64 x, u64 mod) { return lagrange_interp0(v, x, mod, gen_ifact((u32)v.size(), mod)); }
+CEXP i64 lagrange_interp0(spnii v, u64 x, u64 mod) { return lagrange_interp0(v, x, mod, gen_ifact((u32)v.size(), mod)); }
 template <class mint>
 CEXP mint lagrange_interp0(vec<mint> CR v, u64 x, vec<mint> CR ifact) {
-  vec<i64> _(v.size());
+  vecii _(v.size());
   flt_ (u32, i, 0, (u32)v.size()) _[i] = v[i].val();
-  vecu64 ifa(ifact.size());
+  vecuu ifa(ifact.size());
   flt_ (u32, i, 0, (u32)ifact.size()) ifa[i] = ifact[i].val();
   return mint(lagrange_interp0(_, x, mint::mod(), ifa));
 }

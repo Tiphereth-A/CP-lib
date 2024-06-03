@@ -9,7 +9,7 @@ int main() {
   std::cin >> t;
   while (t--) {
     u64 n;
-    ptt<u64> r;
+    pttuu r;
     std::cin >> n >> r;
     std::cout << tifa_libs::math::rational_approx(n, r) << '\n';
   }

@@ -6,7 +6,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 l, r, m;
   std::cin >> l >> r >> m;
-  vecpt<u32> edges(m);
+  vecptu edges(m);
   ++l, ++r;
   for (auto& [u, v] : edges) std::cin >> u >> v;
   auto ans = tifa_libs::graph::hopkap(l, r, edges);

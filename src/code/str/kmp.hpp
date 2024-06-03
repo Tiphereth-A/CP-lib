@@ -6,9 +6,9 @@
 namespace tifa_libs::str {
 
 // @return nxt of pattern
-inline vec<i32> kmp_nxt(strnv pattern) {
+inline veci kmp_nxt(strnv pattern) {
   i32 n = (i32)pattern.size();
-  vec<i32> nxt((u32)n);
+  veci nxt((u32)n);
   i32 i, j;
 #pragma GCC diagnostic ignored "-Wsign-conversion"
   for (nxt[0] = j = -1, i = 1; i < n; nxt[i++] = j) {
@@ -22,7 +22,7 @@ inline vec<i32> kmp_nxt(strnv pattern) {
 // find pattern in text
 // @return matched position in s
 inline vecu kmp(strnv pattern, strnv text) {
-  vec<i32> nxt = kmp_nxt(pattern);
+  veci nxt = kmp_nxt(pattern);
   vecu ret;
   i32 n = (i32)pattern.size(), m = (i32)text.size(), i, j;
 #pragma GCC diagnostic ignored "-Wsign-conversion"

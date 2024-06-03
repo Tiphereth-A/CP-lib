@@ -41,6 +41,8 @@ using pt3 = std::tuple<T, T, T>;
 template <class T>
 using pt4 = std::tuple<T, T, T, T>;
 
+template <class E>
+using itl = std::initializer_list<E>;
 template <class T, usz N>
 using arr = std::array<T, N>;
 template <class T>
@@ -57,6 +59,10 @@ template <class T>
 using vecpt = vec<ptt<T>>;
 template <class T>
 using vvecpt = vvec<ptt<T>>;
+template <class T>
+using ptvec = ptt<vec<T>>;
+template <class T>
+using ptvvec = ptt<vvec<T>>;
 
 template <class T, class C = std::less<T>>
 using pq = std::priority_queue<T, vec<T>, C>;
@@ -65,16 +71,16 @@ using pqg = std::priority_queue<T, vec<T>, std::greater<T>>;
 
 using strn = std::string;
 using strnv = std::string_view;
+template <class T, usz ext = std::dynamic_extent>
+using spn = std::span<T const, ext>;
 
-using vecu = vec<u32>;
-using vvecu = vvec<u32>;
-using v3ecu = v3ec<u32>;
-using vecu64 = vec<u64>;
-using vecb = vec<bool>;
-using vvecb = vvec<bool>;
+#define mk_(V, A, T) using V##A = V<T>;
+#define mk(A, T) mk_(ptt, A, T) mk_(pt3, A, T) mk_(pt4, A, T) mk_(vec, A, T) mk_(vvec, A, T) mk_(v3ec, A, T) mk_(vecpt, A, T) mk_(vvecpt, A, T) mk_(ptvec, A, T) mk_(ptvvec, A, T) mk_(spn, A, T) mk_(itl, A, T)
+mk(b, bool) mk(i, i32) mk(u, u32) mk(ii, i64) mk(uu, u64);
+#undef mk
+#undef mk_
 
 using namespace std::literals;
-
 CEXP i8 operator""_i8(unsigned long long x) { return (i8)x; }
 CEXP i16 operator""_i16(unsigned long long x) { return (i16)x; }
 CEXP i32 operator""_i32(unsigned long long x) { return (i32)x; }

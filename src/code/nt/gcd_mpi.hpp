@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 namespace gcd_mpi_impl_ {
 // @return {x, y} s.t. a = 2^x 5^y
-CEXP ptt<i32> shrink(u32 a) {
+CEXP ptti shrink(u32 a) {
   assert(a > 0);
   const int x = std::countr_zero(a);
   a >>= x;
@@ -16,14 +16,14 @@ CEXP ptt<i32> shrink(u32 a) {
   return {x, a == 1 ? 0 : a == 5 ? 1 : a == 25 ? 2 : a == 125 ? 3 : a == 625 ? 4 : a == 3125 ? 5 : a == 15625 ? 6 : a == 78125 ? 7 : a == 390625 ? 8 : 9};
   // clang-format on
 }
-CEXP ptt<i32> shrink(mpi& a) {
+CEXP ptti shrink(mpi& a) {
   assert(!a.is_neg());
   if (a.data().empty()) return {0, 0};
-  ptt<i32> res{0, 0};
+  ptti res{0, 0};
   while (true) {
-    const u32 g = gcd(mpi::digit(), a.data()[0]);
+    const u32 g = gcd(mpi::D, a.data()[0]);
     if (g == 1) break;
-    if (g != mpi::digit()) a *= mpi::digit() / g;
+    if (g != mpi::D) a *= mpi::D / g;
     a.data().erase(begin(a.data()));
     const auto s = shrink(g);
     res.first += s.first, res.second += s.second;
@@ -39,7 +39,7 @@ CEXP mpi gcd_mpi(mpi a, mpi b) {
     if (max(a.data().size(), b.data().size()) <= 2) return gcd(a.to_i64(), b.to_i64());
   if (a.data().empty()) return b;
   if (b.data().empty()) return a;
-  const ptt<i32> s = gcd_mpi_impl_::shrink(a), t = gcd_mpi_impl_::shrink(b);
+  const ptti s = gcd_mpi_impl_::shrink(a), t = gcd_mpi_impl_::shrink(b);
   if (a < b) swap(a, b);
   while (true) {
     if (b.data().empty()) break;
@@ -47,9 +47,9 @@ CEXP mpi gcd_mpi(mpi a, mpi b) {
       if (a.data().size() <= 2) break;
     if (a = a - b; !a.data().empty())
       while (true) {
-        const u32 g = gcd(a.data()[0], mpi::digit());
+        const u32 g = gcd(a.data()[0], mpi::D);
         if (g == 1) break;
-        if (g != mpi::digit()) a *= mpi::digit() / g;
+        if (g != mpi::D) a *= mpi::D / g;
         a.data().erase(begin(a.data()));
       }
     if (a < b) swap(a, b);

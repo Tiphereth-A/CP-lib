@@ -14,7 +14,7 @@ class ssp {
   };
   const u32 N, S, T;
   vec<W> flow;
-  vecpt<u32> pre;
+  vecptu pre;
 
   template <class EW>
   bool sssp(EW inflow) {

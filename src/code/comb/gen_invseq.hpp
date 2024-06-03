@@ -7,11 +7,11 @@
 namespace tifa_libs::math {
 
 // i^{-1} for i in v
-CEXP vecu64 gen_invseq(vecu64 CR v, u64 mod) {
+CEXP vecuu gen_invseq(spnuu v, u64 mod) {
   const u32 n = (u32)v.size();
   if (n == 0) return {};
   if (n == 1) return {inverse(v[0], mod)};
-  vecu64 ans(n);
+  vecuu ans(n);
   ans[0] = v[1];
   flt_ (u32, i, 1, n) ans[i] = mul_mod_u(ans[i - 1], v[i], mod);
   u64 _ = inverse(ans.back(), mod);

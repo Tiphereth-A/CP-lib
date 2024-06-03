@@ -10,7 +10,7 @@ template <class EW>
 CEXP vec<std::tuple<EW, u32, u32>> gomory_hu(u32 n, vec<std::tuple<EW, u32, u32>> CR ed) {
   vecu par(n);
   dinic<EW> D(n);
-  vecpt<u32> ed_locs;
+  vecptu ed_locs;
   for (auto [w, u, v] : ed) ed_locs.push_back(D.add(u, v, w, w));
   vec<std::tuple<EW, u32, u32>> ans;
   flt_ (u32, i, 1, n) {

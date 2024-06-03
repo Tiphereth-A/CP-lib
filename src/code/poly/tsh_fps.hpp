@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 template <class mint, class ccore>
-CEXP poly<mint, ccore> tsh_fps(poly<mint, ccore> CR f, mint c, vecu64 CR fact, vecu64 CR ifact) {
+CEXP poly<mint, ccore> tsh_fps(poly<mint, ccore> CR f, mint c, spnuu fact, spnuu ifact) {
   const u32 n = f.size();
   if (n == 1) return f;
   poly<mint, ccore> s = f, p(f.size());

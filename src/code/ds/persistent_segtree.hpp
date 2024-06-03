@@ -16,7 +16,7 @@ class persistent_segtree {
   vecu root;
 
  public:
-  CEXP persistent_segtree(vecu CR a, u32 N) : n(N), cnt(0), t(a.size() * 24, TIFA()), root(a.size()) {
+  CEXP persistent_segtree(spnu a, u32 N) : n(N), cnt(0), t(a.size() * 24, TIFA()), root(a.size()) {
     build(root[0], 0, n - 1, a[0]);
     flt_ (u32, i, 1, (u32)a.size()) add_(root[i - 1], root[i], 0, n - 1, a[i]);
   }

@@ -12,9 +12,9 @@ class rus4_st {
   vec<st_array<T, op, e>> d;
 
  public:
-  CEXP rus4_st(std::span<T> a, u32 block_size) { reset(a, block_size); }
+  CEXP rus4_st(spn<T> a, u32 block_size) { reset(a, block_size); }
 
-  CEXP void reset(std::span<T> a, u32 block_size) {
+  CEXP void reset(spn<T> a, u32 block_size) {
     sz = (u32)a.size(), B = block_size, d.clear();
     vec<T> ds;
     for (u32 l = 0; l < sz; l += B) d.emplace_back(a.subspan(l, l + B > sz ? std::dynamic_extent : B)), ds.push_back(d.back().query());

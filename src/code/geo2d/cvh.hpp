@@ -10,7 +10,7 @@ template <class FP>
 struct cvh : public polygon<FP> {
   CEXP cvh() {}
   explicit CEXP cvh(u32 sz) : polygon<FP>(sz) {}
-  explicit CEXP cvh(vec<point<FP>> CR vs_, bool inited = false, bool strict = true) : polygon<FP>(vs_) {
+  CEXP cvh(spn<point<FP>> vs_, bool inited = false, bool strict = true) : polygon<FP>(vs_) {
     if (!inited) strict ? init<true>() : init<false>();
   }
 

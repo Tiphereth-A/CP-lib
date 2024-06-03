@@ -9,7 +9,7 @@ template <bool with_deg>
 CEXP u64 run(alist<with_deg> CR dg, alist<with_deg> CR dgv) {
   const u32 n = (u32)dg.g.size();
   u64 ans = 0;
-  vecu64 cnt1(n), cnt2(n);
+  vecuu cnt1(n), cnt2(n);
   flt_ (u32, u, 0, n) {
     for (u32 v : dg.g[u])
       for (u32 w : dg.g[v]) ++cnt1[w];

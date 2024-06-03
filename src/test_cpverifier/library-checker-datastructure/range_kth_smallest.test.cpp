@@ -7,7 +7,7 @@
 int main() {
   u32 n, q;
   tifa_libs::fin >> n >> q;
-  vec<i32> _(n);
+  veci _(n);
   for (auto &x : _) tifa_libs::fin >> x;
   auto [b, a] = tifa_libs::gen_id(_);
   tifa_libs::ds::persistent_segtree seg(a, (u32)b.size() + 1);

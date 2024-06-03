@@ -9,10 +9,10 @@ namespace tifa_libs::str {
 
 // @return {p, l, r}, uniqued
 template <class hashstr_t>
-CEXP vec<pt3<u32>> run_hash(strnv s) {
+CEXP vec<pt3u> run_hash(strnv s) {
   const u32 n = (u32)s.size();
   vecu st(n + 1);
-  vec<pt3<u32>> runs;
+  vec<pt3u> runs;
   hashstr_t hs;
   hs.set(s);
   flt_ (u32, inv, 0, 2) {

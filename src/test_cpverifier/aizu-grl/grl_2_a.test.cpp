@@ -6,7 +6,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  vec<pt3<u32>> e(m);
+  vec<pt3u> e(m);
   for (auto& [w, u, v] : e) std::cin >> u >> v >> w;
   std::ranges::sort(e);
   auto tr = tifa_libs::graph::kruskal<u32>(e, n);

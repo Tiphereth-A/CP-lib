@@ -11,9 +11,9 @@ class st_array {
 
  public:
   explicit CEXP st_array() {}
-  explicit CEXP st_array(std::span<T> a) { reset(a); }
+  explicit CEXP st_array(spn<T> a) { reset(a); }
 
-  CEXP void reset(std::span<T> a) {
+  CEXP void reset(spn<T> a) {
     const u32 n = (u32)a.size();
     st = vvec<T>((u32)std::bit_width(n), vec<T>(n, e()));
     std::ranges::copy(a, st[0].begin());

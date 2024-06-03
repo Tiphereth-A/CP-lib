@@ -20,7 +20,7 @@ strn single_proceed(std::istream &fin) {
     --v;
   }
   tifa_libs::graph::alistw<u64> mct(n);
-  vvec<u64> mat(n, vecu64(n, std::numeric_limits<u64>::max()));
+  vvecuu mat(n, vecuu(n, std::numeric_limits<u64>::max()));
   for (auto mct_edges = tifa_libs::graph::gomory_hu(n, edges); auto &&[w, u, v] : mct_edges) {
     mct.add_arc(u, v, w);
     mct.add_arc(v, u, w);

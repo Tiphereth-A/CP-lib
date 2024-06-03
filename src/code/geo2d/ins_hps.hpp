@@ -21,7 +21,7 @@ CEXP cvh<FP> ins_hPs(vec<line<FP>> vl) {
   while (q.size() > 2 && !check(*(q.begin() + 1), q.front(), q.back())) q.pop_front();
   vec<point<FP>> ret;
   flt_ (u32, i, 0, (u32)q.size()) ret.push_back(ins_LL(q[i], q[(i + 1) % q.size()]));
-  return cvh{ret, true};
+  return cvh<FP>{ret, true};
 }
 
 }  // namespace tifa_libs::geo

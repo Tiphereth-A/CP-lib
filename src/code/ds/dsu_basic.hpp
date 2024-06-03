@@ -7,7 +7,7 @@ namespace tifa_libs::ds {
 
 template <bool RANK_ = false>
 class dsu_basic {
-  vec<i32> p;
+  veci p;
 
  public:
   explicit CEXP dsu_basic(u32 sz) : p(sz, -1) {}

@@ -13,16 +13,16 @@ enum lsieve_state { ls_mpf = 1,
 
 struct lsieve_func {
   vecu prime, mpf, phi;
-  vec<i32> mu;
-  vecu64 sigma, tau;
+  veci mu;
+  vecuu sigma, tau;
 
   template <int state>
   CEXP lsieve_func& reset_lsieve_func(u32 n) {
     if CEXP (state | ls_mpf) mpf = vecu(n), mpf[1] = 1;
     if CEXP (state | ls_phi) phi = vecu(n), phi[1] = 1;
-    if CEXP (state | ls_mu) mu = vec<i32>(n), mu[1] = 1;
-    if CEXP (state | ls_sigma) pw = vecu64(n), sigma = vecu64(n), sigma[1] = 1;
-    if CEXP (state | ls_tau) pc = vecu(n, 1), tau = vecu64(n), tau[1] = 1;
+    if CEXP (state | ls_mu) mu = veci(n), mu[1] = 1;
+    if CEXP (state | ls_sigma) pw = vecuu(n), sigma = vecuu(n), sigma[1] = 1;
+    if CEXP (state | ls_tau) pc = vecu(n, 1), tau = vecuu(n), tau[1] = 1;
 
     prime = lsieve(n, [&](u32 p) {
           if CEXP (state | ls_mpf) mpf[p] = p;
@@ -43,7 +43,7 @@ struct lsieve_func {
   }
 
  private:
-  vecu64 pw;
+  vecuu pw;
   vecu pc;
 };
 
