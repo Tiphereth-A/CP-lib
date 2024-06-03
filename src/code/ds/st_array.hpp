@@ -5,22 +5,28 @@
 
 namespace tifa_libs::ds {
 
-template <class T, T (*op)(T, T)>
+template <class T, T (*op)(T, T), T (*e)()>
 class st_array {
   vvec<T> st;
 
  public:
-  explicit CEXP st_array(vec<T> CR a) : st((u32)std::bit_width(a.size()), vec<T>(a.size())) {
-    const u32 n = a.size();
-    st[0] = a;
+  explicit CEXP st_array() {}
+  explicit CEXP st_array(std::span<T> a) { reset(a); }
+
+  CEXP void reset(std::span<T> a) {
+    const u32 n = (u32)a.size();
+    st = vvec<T>((u32)std::bit_width(n), vec<T>(n, e()));
+    std::ranges::copy(a, st[0].begin());
     flt_ (u32, j, 1, (u32)std::bit_width(n))
       flt_ (u32, i, 0, n) st[j][i] = op(st[j - 1][i], st[j - 1][min(n - 1, i + (1 << (j - 1)))]);
   }
-
-  //! [l, r]
+  CEXP u32 height() const { return (u32)st.size(); }
+  CEXP u32 size() const { return (u32)st[0].size(); }
+  CEXP T query(u32 l = 0) const { return query(l, size()); }
   CEXP T query(u32 l, u32 r) const {
-    const u32 k = (u32)(std::bit_width(1 + r - l) - 1);
-    return op(st[k][l], st[k][r + 1 - (1 << k)]);
+    if (r <= l) return e();
+    const u32 k = (u32)(std::bit_width(r - l) - 1);
+    return op(st[k][l], st[k][r - (1 << k)]);
   }
 };
 

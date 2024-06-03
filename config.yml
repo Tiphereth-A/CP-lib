@@ -149,6 +149,9 @@ notebook:
     - st_array: ST 表 - 数列
       code_ext: hpp
       test_ext: cpp
+    - rus4_st: 分块 ST 表
+      code_ext: hpp
+      test_ext: cpp
     - segtree: 线段树
       code_ext: hpp
       test_ext: cpp
