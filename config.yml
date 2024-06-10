@@ -479,6 +479,9 @@ notebook:
     - simplex: 单纯形法
       code_ext: hpp
       test_ext: cpp
+    - knapsack_mixed: 混合背包
+      code_ext: hpp
+      test_ext: cpp
     graph:
     - alist: 邻接表
       code_ext: hpp

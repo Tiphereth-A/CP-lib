@@ -44,15 +44,20 @@ struct cvh : public polygon<FP> {
     return cvh.resize(sz_cvh - 1), this->vs = cvh, *this;
   }
 
-  CEXP FP diameter() const {
+  template <bool get_index = false>
+  CEXP auto diameter() const {
     const u32 n = this->size();
-    if (n <= 1) return FP{};
+    if (n <= 1) return std::conditional_t<get_index, std::tuple<FP, u32, u32>, FP>{};
     u32 is = 0, js = 0;
     flt_ (u32, k, 1, n) is = this->vs[k] < this->vs[is] ? k : is, js = this->vs[js] < this->vs[k] ? k : js;
     u32 i = is, j = js;
-    FP ret = dist_PP(this->vs[i], this->vs[j]);
-    do (++(((this->vs[this->next(i)] - this->vs[i]) ^ (this->vs[this->next(j)] - this->vs[j])) >= 0 ? j : i)) %= n, ret = max(ret, dist_PP(this->vs[i], this->vs[j]));
-    while (i != is || j != js);
+    std::conditional_t<get_index, std::tuple<FP, u32, u32>, FP> ret;
+    if CEXP (get_index) ret = {dist_PP(this->vs[i], this->vs[j]), i, j};
+    else ret = dist_PP(this->vs[i], this->vs[j]);
+    do {
+      if CEXP ((++(((this->vs[this->next(i)] - this->vs[i]) ^ (this->vs[this->next(j)] - this->vs[j])) >= 0 ? j : i)) %= n; get_index) ret = max(ret, std::make_tuple(dist_PP(this->vs[i], this->vs[j]), i, j));
+      else ret = max(ret, dist_PP(this->vs[i], this->vs[j]));
+    } while (i != is || j != js);
     return ret;
   }
 
