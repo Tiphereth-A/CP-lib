@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_GEO2D_FEMWEBP
 #define TIFALIBS_GEO2D_FEMWEBP
 
-#include "../math/kahan.hpp"
 #include "massp.hpp"
 
 namespace tifa_libs::geo {

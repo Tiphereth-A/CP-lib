@@ -2,6 +2,7 @@
 #define TIFALIBS_GEO2D_LINE
 
 #include "cross.hpp"
+#include "point.hpp"
 
 namespace tifa_libs::geo {
 

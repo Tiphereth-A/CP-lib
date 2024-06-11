@@ -3,6 +3,7 @@
 
 #include "../math/kahan.hpp"
 #include "cross.hpp"
+#include "point.hpp"
 
 namespace tifa_libs::geo {
 

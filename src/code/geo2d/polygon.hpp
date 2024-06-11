@@ -46,7 +46,10 @@ struct polygon {
     flt_ (u32, i, 0, size() - 1) ret += vs[i] ^ vs[i + 1];
     return ret;
   }
-  CEXP f128 area() const { return area2() * .5l; }
+  CEXP FP area() const {
+    static_assert(std::floating_point<FP>);
+    return area2() * (FP).5;
+  }
   CEXP bool is_convex() const {
     bool flag[2] = {false, false};
     const u32 n = size();

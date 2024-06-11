@@ -433,19 +433,19 @@ notebook:
     - line3d: 三维线
       code_ext: hpp
       test_ext: cpp
-    - plane: 平面
+    - planev: 平面(视图)
       code_ext: hpp
       test_ext: cpp
-    - dist3_pl: dist3_pl
+    - dist3_pl: 三维点与三维线的距离
       code_ext: hpp
       test_ext: cpp
-    - sdist3_plp: sdist3_plp
+    - sdist3_plp: 平面与三维点的有向距离
       code_ext: hpp
       test_ext: cpp
-    - rel_plp: rel_plp
+    - rel_plp: 平面与三维点的关系
       code_ext: hpp
       test_ext: cpp
-    - polyhedron: 多面体
+    - polygon3d: 多面体
       code_ext: hpp
       test_ext: cpp
     opt:

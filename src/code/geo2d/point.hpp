@@ -7,6 +7,8 @@ namespace tifa_libs::geo {
 
 template <class FP>
 struct point {
+  using FP_t = FP;
+  
   FP x, y;
   explicit CEXP point(FP x = FP{}, FP y = FP{}) : x(x), y(y) {}
 
