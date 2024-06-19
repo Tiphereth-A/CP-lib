@@ -13,7 +13,7 @@ class fastin {
   FILE *f_;
 
  public:
-  explicit fastin(FILE *f = stdin) : f_(f) {}
+  fastin(FILE *f = stdin) : f_(f) {}
 
   char get() { return now_ == end_ && (end_ = (now_ = bf_) + fread(bf_, 1, BUF, f_), now_ == end_) ? EOF : *(now_)++; }
   char peek() { return now_ == end_ && (end_ = (now_ = bf_) + fread(bf_, 1, BUF, f_), now_ == end_) ? EOF : *(now_); }
@@ -49,12 +49,6 @@ class fastin {
   fastin &read(T &n) {
     while (!isgraph(n = get()));
     return *this;
-  }
-  fastin &read(char *n) {
-    char *n_ = n;
-    while (!isgraph(*n_ = get()));
-    while (isgraph(*(++n_) = get()));
-    return *n_ = '\0', *this;
   }
   fastin &read(strn &n) {
     n.clear();
@@ -103,13 +97,7 @@ class fastout {
   const char *const end_ = bf_ + BUF;
 
  public:
-  explicit fastout(FILE *file = stdout) : f_(file), now_(bf_) {}
-
-  fastout &operator=(fastout CR r) {
-    if (&r == this) return *this;
-    return f_ = r.f_, now_ = bf_ + (r.now_ - r.bf_), memcpy(bf_, r.bf_, sizeof(*bf_) * (r.now_ - r.bf_)), *this;
-  }
-  fastout(fastout CR r) { *this = r; }
+  fastout(FILE *file = stdout) : f_(file), now_(bf_) {}
   ~fastout() { flush(); }
 
   void flush() { fwrite(bf_, 1, usz(now_ - bf_), f_), now_ = bf_; }
@@ -147,13 +135,7 @@ class fastout {
   fastout &write(std::pair<T, U> CR p) { return write(p.first).space().write(p.second); }
   template <class... Ts>
   fastout &write(std::tuple<Ts...> CR p) {
-    std::apply(
-        [&](Ts CR... targs) {
-          usz n{0};
-          ((write(targs).space_if(++n != sizeof...(Ts))), ...);
-        },
-        p);
-    return *this;
+    return std::apply([&](Ts CR... targs) { usz n{0}; ((write(targs).space_if(++n != sizeof...(Ts))), ...); }, p), *this;
   }
   template <container_c T>
   fastout &write(T CR p) {

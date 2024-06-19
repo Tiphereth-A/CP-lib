@@ -22,7 +22,7 @@ class suffix_automaton {
   vec<TIFA> st;
   vvecu e;
 
-  explicit CEXP suffix_automaton() : last(0), sz(1), st(1) { st[0].len = 0, st[0].link = -1u; }
+  CEXPE suffix_automaton() : last(0), sz(1), st(1) { st[0].len = 0, st[0].link = -1u; }
 
   CEXP void extend(u32 c) {
     u32 cur = sz++;

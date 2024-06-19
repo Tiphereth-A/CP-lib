@@ -59,7 +59,7 @@ class DLX {
   }
 
  public:
-  explicit CEXP DLX(cT_(vvecb) grid, bool multi_ans = false) : data(), cnt_col(), mans(multi_ans) {
+  CEXPE DLX(cT_(vvecb) grid, bool multi_ans = false) : data(), cnt_col(), mans(multi_ans) {
     u32 col = (u32)grid[0].size();
     assert(col > 0);
     cnt_col.resize(col + 1), data.reserve(col + 1);

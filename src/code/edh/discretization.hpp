@@ -5,13 +5,9 @@
 
 namespace tifa_libs {
 
-template <iterable_c T = vec<int>>
-CEXP T uniq(T v) {
-  std::sort(v.begin(), v.end());
-  auto [f, l] = std::ranges::unique(v);
-  return v.erase(f, l), v;
-}
-template <iterable_c T = vec<int>>
+template <iterable_c T>
+CEXP T uniq(T v) { return std::sort(v.begin(), v.end()), v.erase(std::unique(v.begin(), v.end()), v.end()), v; }
+template <iterable_c T>
 CEXP std::pair<T, vecu> gen_id(T CR v) {
   const T _ = uniq(v);
   vecu _1;

@@ -18,7 +18,7 @@ class min25_sieve {
 
  public:
   // m^{3/2} in u64
-  explicit CEXP min25_sieve(u64 m) : m(m), sqm(isqrt(m)) {
+  CEXPE min25_sieve(u64 m) : m(m), sqm(isqrt(m)) {
     assert(m < (1ll << 42));
     if (m) {
       u64 hls = div_u64d(m, sqm);

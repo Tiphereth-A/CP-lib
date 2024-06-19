@@ -26,7 +26,7 @@ class NPuzzleData {
   vecu node;
   strn moves;
 
-  CEXP explicit NPuzzleData(u32 k) : k(k), pos0(0), cost_(0), node(k * k), moves() { assert(k < 65535); }
+  CEXPE NPuzzleData(u32 k) : k(k), pos0(0), cost_(0), node(k * k), moves() { assert(k < 65535); }
 
   CEXP auto CR cost() const { return cost_; }
   CEXP bool solved() { return node == fin_node; }

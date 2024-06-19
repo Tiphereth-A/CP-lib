@@ -24,7 +24,7 @@ class poly {
   using ccore_type = ccore;
   static inline ccore_type conv_core;
 
-  explicit CEXP poly(u32 sz = 1, cT_(value_type) val = value_type{}) : d(sz, val) {}
+  CEXPE poly(u32 sz = 1, cT_(value_type) val = value_type{}) : d(sz, val) {}
   CEXP poly(TPN data_type::const_iterator begin, TPN data_type::const_iterator end) : d(begin, end) {}
   CEXP poly(itl<value_type> v) : d(v) {}
   CEXP poly(spn<value_type> v) : d(v.begin(), v.end()) {}

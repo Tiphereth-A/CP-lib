@@ -14,7 +14,7 @@ struct amat {
   vecu deg_in, deg_out;
 
   //! vertex ID: [0, n)
-  explicit CEXP amat(u32 n, T const v = T{}) : g(n, vec<T>(n, v)), cnt_arc(0) {
+  CEXPE amat(u32 n, T const v = T{}) : g(n, vec<T>(n, v)), cnt_arc(0) {
     flt_ (u32, i, 0, n) g[i][i] = 0;
     if CEXP (with_deg) deg_in.resize(n), deg_out.resize(n);
   }

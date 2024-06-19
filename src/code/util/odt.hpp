@@ -19,8 +19,8 @@ class ODT {
   std::set<TIFA> data;
 
  public:
-  explicit CEXP ODT() : data() {}
-  explicit CEXP ODT(vec<T> CR c) : ODT() {
+  CEXPE ODT() : data() {}
+  CEXPE ODT(vec<T> CR c) : ODT() {
     u32 cnt = 0;
     for (auto &&i : c) data.emplace(cnt, cnt, i), ++cnt;
   }

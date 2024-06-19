@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_GEO2D_CVH
 #define TIFALIBS_GEO2D_CVH
 
+#include "dot.hpp"
 #include "ins_ll.hpp"
 #include "polygon.hpp"
 
@@ -9,7 +10,7 @@ namespace tifa_libs::geo {
 template <class FP>
 struct cvh : public polygon<FP> {
   CEXP cvh() {}
-  explicit CEXP cvh(u32 sz) : polygon<FP>(sz) {}
+  CEXPE cvh(u32 sz) : polygon<FP>(sz) {}
   CEXP cvh(spn<point<FP>> vs_, bool inited = false, bool strict = true) : polygon<FP>(vs_) {
     if (!inited) strict ? init<true>() : init<false>();
   }
@@ -28,64 +29,70 @@ struct cvh : public polygon<FP> {
   CEXP cvh &init() {
     this->reunique();
     const u32 n = this->size();
-    if (n <= 1) return *this;
+    if (n <= 2) return *this;
     vec<point<FP>> cvh(n * 2);
-    u32 sz_cvh = 0;
-    for (u32 i = 0; i < n; cvh[sz_cvh++] = this->vs[i++])
+    u32 m = 0;
+    for (u32 i = 0; i < n; cvh[m++] = (*this)[i++])
       if CEXP (strict)
-        while (sz_cvh > 1 && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) <= 0) --sz_cvh;
+        while (m > 1 && sgn_cross(cvh[m - 2], cvh[m - 1], (*this)[i]) <= 0) --m;
       else
-        while (sz_cvh > 1 && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) < 0) --sz_cvh;
-    for (u32 i = n - 2, t = sz_cvh; ~i; cvh[sz_cvh++] = this->vs[i--])
+        while (m > 1 && sgn_cross(cvh[m - 2], cvh[m - 1], (*this)[i]) < 0) --m;
+    for (u32 i = n - 2, t = m; ~i; cvh[m++] = (*this)[i--])
       if CEXP (strict)
-        while (sz_cvh > t && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) <= 0) --sz_cvh;
+        while (m > t && sgn_cross(cvh[m - 2], cvh[m - 1], (*this)[i]) <= 0) --m;
       else
-        while (sz_cvh > t && sgn_cross(cvh[sz_cvh - 2], cvh[sz_cvh - 1], this->vs[i]) < 0) --sz_cvh;
-    return cvh.resize(sz_cvh - 1), this->vs = cvh, *this;
+        while (m > t && sgn_cross(cvh[m - 2], cvh[m - 1], (*this)[i]) < 0) --m;
+    cvh.resize(m - 1);
+    u32 p = 0;
+    flt_ (u32, i, 1, m - 1)
+      if (cvh[i] < cvh[p]) p = i;
+    return std::ranges::rotate(cvh, cvh.begin() + p), this->vs = cvh, *this;
   }
-
+  // @return true if @p in convex hull (include border)
+  CEXP bool contains(point<FP> CR p) const {
+    auto it = std::lower_bound(this->vs.begin() + 1, this->vs.end(), p, [&](point<FP> CR l, point<FP> CR r) { return is_pos(cross((*this)[0], l, r)); }) - 1;
+    auto next_it = this->next(it);
+    if (auto res = sgn_cross(p, *it, *next_it); res) return ~res;
+    else return !res && !is_pos(dot(p, *it, *next_it));
+  }
   template <bool get_index = false>
   CEXP auto diameter() const {
     const u32 n = this->size();
-    if (n <= 1) return std::conditional_t<get_index, std::tuple<FP, u32, u32>, FP>{};
+    if (n <= 1) return std::conditional_t<get_index, edge_t<FP>, FP>{};
     u32 is = 0, js = 0;
-    flt_ (u32, k, 1, n) is = this->vs[k] < this->vs[is] ? k : is, js = this->vs[js] < this->vs[k] ? k : js;
+    flt_ (u32, k, 1, n)
+      if ((*this)[js] < (*this)[k]) js = k;
     u32 i = is, j = js;
-    std::conditional_t<get_index, std::tuple<FP, u32, u32>, FP> ret;
-    if CEXP (get_index) ret = {dist_PP(this->vs[i], this->vs[j]), i, j};
-    else ret = dist_PP(this->vs[i], this->vs[j]);
+    std::conditional_t<get_index, edge_t<FP>, FP> ret;
+    if CEXP (get_index) ret = {dist_PP((*this)[i], (*this)[j]), i, j};
+    else ret = dist_PP((*this)[i], (*this)[j]);
     do {
-      if CEXP ((++(((this->vs[this->next(i)] - this->vs[i]) ^ (this->vs[this->next(j)] - this->vs[j])) >= 0 ? j : i)) %= n; get_index) ret = max(ret, std::make_tuple(dist_PP(this->vs[i], this->vs[j]), i, j));
-      else ret = max(ret, dist_PP(this->vs[i], this->vs[j]));
+      if CEXP ((++((((*this)[this->next(i)] - (*this)[i]) ^ ((*this)[this->next(j)] - (*this)[j])) >= 0 ? j : i)) %= n; get_index) ret = max(ret, edge_t<FP>{dist_PP((*this)[i], (*this)[j]), i, j});
+      else ret = max(ret, dist_PP((*this)[i], (*this)[j]));
     } while (i != is || j != js);
     return ret;
   }
-
-  CEXP cvh &do_minkowski_sum_nonstrict(cvh<FP> CR r) {
+  CEXP cvh &do_minkowski_sum(cvh<FP> CR r) {
     const u32 n = this->size(), m = r.size();
     if (!m) return *this;
     if (!n) return *this = r;
-    vec<point<FP>> result;
-    result.reserve(n + m);
-    u32 midxl = 0;
-    flt_ (u32, i, 1, n) midxl = this->vs[i] < this->vs[midxl] ? i : midxl;
-    u32 midxr = 0;
-    flt_ (u32, i, 1, m) midxr = r[i] < r[midxr] ? i : midxr;
-    bool fl = false, fr = false;
-    for (u32 idxl = midxl, idxr = midxr; !(idxl == midxl && fl) || !(idxr == midxr && fr);) {
-      point diffl = this->vs[this->next(idxl)] - this->vs[idxl], diffr = r[r.next(idxr)] - r[idxr];
-      bool f = !(idxl == midxl && fl) && ((idxr == midxr && fr) || is_pos(diffl ^ diffr));
-      result.push_back(this->vs[idxl] + r[idxr] + (f ? diffl : diffr));
-      (f ? idxl : idxr) = (f ? this->next(idxl) : r.next(idxr)), (f ? fl : fr) |= !(f ? idxl : idxr);
+    vec<point<FP>> res{(*this)[0] + r[0]};
+    res.reserve(n + m);
+    u32 i = 0, j = 0;
+    while (i < n && j < m) {
+      auto dl = (*this)[this->next(i)] - (*this)[i], dr = r[r.next(j)] - r[j];
+      bool f = !is_neg(dl ^ dr);
+      res.push_back(res.back() + (f ? dl : dr)), ++(f ? i : j);
     }
-    return this->vs = result, *this;
+    while (i < n) res.push_back(res.back() + ((*this)[this->next(i)] - (*this)[i])), ++i;
+    while (j < m) res.push_back(res.back() + (r[r.next(j)] - r[j])), ++j;
+    return this->vs = res, *this;
   }
-  CEXP cvh &do_minkowski_sum(cvh<FP> CR r) { return do_minkowski_sum_nonstrict(r).init(); }
   CEXP cvh &do_ins_CVHhP(line<FP> CR l) {
     const u32 n = this->size();
     vec<point<FP>> cvc;
     flt_ (u32, i, 0, n) {
-      point p1 = this->vs[i], p2 = this->vs[this->next(i)];
+      point p1 = (*this)[i], p2 = (*this)[this->next(i)];
       int d1 = l.toleft(p1), d2 = l.toleft(p2);
       if (d1 >= 0) cvc.push_back(p1);
       if (d1 * d2 < 0) cvc.push_back(ins_LL({p1, p2}, l));

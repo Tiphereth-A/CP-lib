@@ -15,7 +15,7 @@ class radix_heap {
   K last;
 
  public:
-  CEXP explicit radix_heap() : s(0), last(0) { std::ranges::fill(ms, K(-1)); }
+  CEXPE radix_heap() : s(0), last(0) { std::ranges::fill(ms, K(-1)); }
 
   CEXP u32 size() const { return s; }
   CEXP bool empty() const { return !s; }

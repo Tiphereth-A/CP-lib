@@ -6,9 +6,8 @@
 
 namespace tifa_libs::graph {
 
-// edge: {w, u, v}
 template <class T>
-CEXP vec<std::tuple<T, u32, u32>> cle(u32 n, u32 root, vec<std::tuple<T, u32, u32>> CR arcs) {
+CEXP vec<edge_t<T>> cle(u32 n, u32 root, vec<edge_t<T>> CR arcs) {
   ds::skew_heap<T> heap;
   ds::dsu_basic<> uf(n);
   vecu used(n, -1_u32), from(n), come(n, -1_u32);
@@ -22,14 +21,13 @@ CEXP vec<std::tuple<T, u32, u32>> cle(u32 n, u32 root, vec<std::tuple<T, u32, u3
   T costs = 0;
   flt_ (u32, start, 0, n) {
     if (~used[start]) continue;
-    u32 now = start;
+    u32 now = start, cyc = 0;
     vecu chi_e;
-    u32 cyc = 0;
     while (!~used[now] || used[now] == start) {
       used[now] = start;
       auto &node = heap.d[come[now]];
       if (!~come[now]) return {};
-      u32 src = (u32)uf.find(std::get<1>(arcs[node.idx]));
+      u32 src = (u32)uf.find(arcs[node.idx].u);
       T cost = heap.weight(come[now]);
       u32 idx = node.idx;
       if (come[now] = heap.pop(come[now]); src == now) continue;
@@ -50,9 +48,8 @@ CEXP vec<std::tuple<T, u32, u32>> cle(u32 n, u32 root, vec<std::tuple<T, u32, u3
       } else now = src;
     }
   }
-
   vecu vis_e(arcs.size());
-  vec<std::tuple<T, u32, u32>> res;
+  vec<edge_t<T>> res;
   for (u32 _ = (u32)idxs.size(); _--;) {
     const u32 i = idxs[_];
     if (vis_e[i]) continue;

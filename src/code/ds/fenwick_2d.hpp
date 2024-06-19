@@ -11,7 +11,7 @@ class fenwick2d {
 
  public:
   //! [1, row) * [1, col)
-  explicit CEXP fenwick2d(u32 row, u32 col) : a(row, vec<T>(col)) { assert(row > 1 && col > 1); }
+  CEXPE fenwick2d(u32 row, u32 col) : a(row, vec<T>(col)) { assert(row > 1 && col > 1); }
 
   CEXP u32 row() const { return a.size(); }
   CEXP u32 col() const { return a[0].size(); }

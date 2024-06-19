@@ -56,7 +56,7 @@ class fhq_treap_w {
  public:
   u32 root;
 
-  explicit CEXP fhq_treap_w(u32 MAX_N) : gen(), t(MAX_N + 1), sta(), cnt(0), root(0) {
+  CEXPE fhq_treap_w(u32 MAX_N) : gen(), t(MAX_N + 1), sta(), cnt(0), root(0) {
     if CEXP (recovery) sta.reserve(MAX_N + 1);
   }
 

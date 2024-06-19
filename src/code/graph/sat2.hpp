@@ -11,7 +11,7 @@ class sat2 {
   vecptu e;
 
  public:
-  CEXP sat2(u32 n) : n(n), st(2 * n + 1) {}
+  CEXPE sat2(u32 n) : n(n), st(2 * n + 1) {}
 
   // $(c_x = v_x) \lor (c_y = v_y)$
   CEXP void add(u32 x, bool vx, u32 y, bool vy) { x = x * 2 + vx, y = y * 2 + vy, e.emplace_back(x ^ 1, y), e.emplace_back(y ^ 1, x), ++st[x ^ 1], ++st[y ^ 1]; }

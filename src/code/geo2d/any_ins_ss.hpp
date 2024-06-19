@@ -10,7 +10,9 @@ namespace tifa_libs::geo {
 template <class FP>
 CEXP bool any_ins_Ss(vec<line<FP>> CR ss) {
   if (ss.empty()) return false;
-  using seq_t = std::tuple<FP, int, line<FP>>;
+  // clang-format off
+  struct seq_t { FP f; int i; line<FP> l; };
+  // clang-format on
   const auto seqcmp = [](seq_t CR u, seq_t CR v) {
     auto CR[u0, u1, u2] = u;
     auto CR[v0, v1, v2] = v;

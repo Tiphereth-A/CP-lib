@@ -12,7 +12,7 @@ class hash_splitmix64 {
 
  public:
   explicit hash_splitmix64() { set_seed(); }
-  explicit CEXP hash_splitmix64(u64 s) { set_seed(s); }
+  CEXPE hash_splitmix64(u64 s) { set_seed(s); }
 
   static void set_seed() { seed = (u64)std::chrono::steady_clock::now().time_since_epoch().count(); }
   static CEXP void set_seed(u64 s) { seed = s; }

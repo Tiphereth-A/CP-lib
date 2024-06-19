@@ -11,7 +11,7 @@ class hash_substr {
   vec<mint> hash;
 
  public:
-  explicit CEXP hash_substr() {}
+  CEXPE hash_substr() {}
 
   CEXP void set(strnv s) {
     for (hash.resize(1, 0), hash.reserve(s.size() + 1); char c : s) hash.push_back(hash.back() * base + (u32)c + 1);

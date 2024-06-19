@@ -17,7 +17,7 @@ class interp_newton {
   vec<T> fit;
 
  public:
-  explicit CEXP interp_newton() {}
+  CEXPE interp_newton() {}
   CEXP interp_newton &insert(cT_(T) x, cT_(T) y) {
     points.emplace_back(x, y);
     const u32 n = (u32)points.size();

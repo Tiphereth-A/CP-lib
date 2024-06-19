@@ -25,7 +25,7 @@ CEXP poly<mint, ccore> interp_fps(poly<mint, ccore> CR x, poly<mint, ccore> CR y
 
    public:
     vec<poly_t> t;
-    explicit CEXP SegTree(poly_t CR a) : t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
+    CEXPE SegTree(poly_t CR a) : t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
     CEXP poly_t operator()(poly_t CR f) const { return calc_(f, 1, 0, t.size() / 4 - 1); }
   };
 

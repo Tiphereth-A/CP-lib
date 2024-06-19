@@ -14,7 +14,7 @@ struct matp {
   using poly_t = poly<mint, ccore>;
   poly_t a00, a01, a10, a11;
 
-  explicit CEXP matp() {}
+  CEXPE matp() {}
   CEXP matp(u64 x00, u64 x01, u64 x10, u64 x11) : a00(1, x00), a01(1, x01), a10(1, x10), a11(1, x11) {}
   CEXP matp(cT_(poly_t) a00, cT_(poly_t) a01, cT_(poly_t) a10, cT_(poly_t) a11) : a00(a00), a01(a01), a10(a10), a11(a11) {}
 

@@ -23,7 +23,9 @@ template <class mint>
 CEXP vec<mint> gen_invseq(vec<mint> CR v) {
   u32 n = (u32)v.size();
   vec<mint> ans(n);
-  auto _ = gen_invseq(v, mint::mod());
+  vecuu v2(n);
+  flt_ (u32, i, 0, n) v2[i] = v[i].val();
+  auto _ = gen_invseq(v2, mint::mod());
   flt_ (u32, i, 0, n) ans[i] = _[i];
   return ans;
 }

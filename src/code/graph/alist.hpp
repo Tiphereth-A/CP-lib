@@ -14,7 +14,7 @@ struct alist {
   vecu deg_in, deg_out;
 
   //! vertex ID: [0, n)
-  explicit CEXP alist(u32 n = 0) : g(n), cnt_arc(0) {
+  CEXPE alist(u32 n = 0) : g(n), cnt_arc(0) {
     if CEXP (with_deg) deg_in.resize(n), deg_out.resize(n);
   }
 

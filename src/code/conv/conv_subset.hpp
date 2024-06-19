@@ -18,7 +18,7 @@ struct conv_subset {
   }
 
  public:
-  explicit CEXP conv_subset() : pc(1u << N) {
+  CEXPE conv_subset() : pc(1u << N) {
     for (u32 i = 1; i < (1u << N); ++i) pc[i] = pc[i - (i & -i)] + 1;
   }
 

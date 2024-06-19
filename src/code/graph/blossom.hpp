@@ -14,7 +14,7 @@ class blossom {
   vecptu label;
 
  public:
-  CEXP explicit blossom(u32 n) { init(n); }
+  CEXPE blossom(u32 n) { init(n); }
 
   CEXP void init(u32 n_) { n = n_, g = vvecu(n + 1), mate = first = vecu(n + 1), label = vecptu(n + 1), white = vecb(n + 1); }
   CEXP void add_edge(u32 u, u32 v) { g[u].push_back(v), g[v].push_back(u); }

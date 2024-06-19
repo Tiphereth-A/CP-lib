@@ -1,11 +1,11 @@
 #ifndef TIFALIBS_STR_SUFFIX_ARRAY
 #define TIFALIBS_STR_SUFFIX_ARRAY
 
-#include "../util/util.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::str {
 
-template <class T = strn>
+template <iterable_c T = strn>
 class suffixarray {
   T s;
 
@@ -13,7 +13,7 @@ class suffixarray {
   vecu sa, rk, height;
 
   // s must start from 1
-  explicit CEXP suffixarray(cT_(T) s_) : s(s_), sa(s.size()), rk(s.size()) {
+  CEXPE suffixarray(cT_(T) s_) : s(s_), sa(s.size()), rk(s.size()) {
     const u32 n = u32(s.size() - 1);
     u32 m = 0, p;
     for (auto x : s_) m = max(m, u32(x));

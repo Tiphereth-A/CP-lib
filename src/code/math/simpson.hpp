@@ -17,7 +17,7 @@ class simpson_impl {
   }
 
  public:
-  explicit CEXP simpson_impl() {}
+  CEXPE simpson_impl() {}
   CEXP FP operator()(FP l, FP r, FP eps = eps_v<FP>, i64 min_dep = -1) const { return asr(l, r, sps(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, min_dep); }
 };
 

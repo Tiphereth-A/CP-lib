@@ -13,7 +13,7 @@ class mpi {
 
  public:
   static CEXP u32 D = 100000000, lgD = 8;
-  explicit CEXP mpi() : neg(false), dt() {}
+  CEXPE mpi() : neg(false), dt() {}
   CEXP mpi(bool n, itlu x) : neg(n), dt(x) {}
   CEXP mpi(bool n, spnu d) : neg(n), dt(d.begin(), d.end()) {}
   template <int_c T>

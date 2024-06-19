@@ -6,7 +6,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, r;
   std::cin >> n >> m >> r;
-  vec<std::tuple<u64, u32, u32>> arcs(m);
+  vec<edge_t<u64>> arcs(m);
   for (auto& [w, u, v] : arcs) std::cin >> u >> v >> w;
   auto res = tifa_libs::graph::cle(n, r, arcs);
   u64 ans = 0;

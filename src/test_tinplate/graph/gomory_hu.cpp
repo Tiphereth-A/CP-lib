@@ -9,7 +9,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  vec<pt3u> edges(m);
+  vec<edge_tu> edges(m);
   ++n;
   for (auto& [w, u, v] : edges) std::cin >> u >> v >> w;
   auto gh_edges = tifa_libs::graph::gomory_hu(n, edges);

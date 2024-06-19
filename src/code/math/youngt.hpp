@@ -10,7 +10,7 @@ class Youngt {
   u32 n;
 
  public:
-  CEXP explicit Youngt(spnu l) {
+  CEXPE Youngt(spnu l) {
     for (auto i : l) insert(i);
   }
   CEXP Youngt(itlu l = {}) {

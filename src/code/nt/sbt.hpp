@@ -12,7 +12,14 @@ class SBT {
   vec<T> seq;
 
  public:
-  explicit CEXP SBT() : lx(0), ly(1), x(1), y(1), rx(1), ry(0) {}
+  CEXPE SBT() : lx(0), ly(1), x(1), y(1), rx(1), ry(0) {}
+  CEXPE SBT(spn<T> seq_) : SBT() {
+    for (auto d : seq_) {
+      assert(d != 0);
+      if (d > 0) movr(d);
+      if (d < 0) movl(d);
+    }
+  }
   CEXP SBT(T x_, T y_) : SBT() {
     assert(x_ > 0 && y_ > 0);
     if (T g = gcd(x_, y_); g > 1) x_ /= g, y_ /= g;
@@ -24,13 +31,6 @@ class SBT {
         const T _ = y_ / x_;
         movl(_ - !(y_ -= _ * x_));
       }
-  }
-  explicit CEXP SBT(vec<T> CR seq_) : SBT() {
-    for (auto &&d : seq_) {
-      assert(d != 0);
-      if (d > 0) movr(d);
-      if (d < 0) movl(d);
-    }
   }
 
   friend CEXP auto operator<=>(SBT CR l, SBT CR r) { return l.x * r.y - r.x * l.y; }

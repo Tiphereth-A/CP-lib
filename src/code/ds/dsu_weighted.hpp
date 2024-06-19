@@ -10,7 +10,7 @@ class dsu_weighted {
   vecii dep;
 
  public:
-  explicit CEXP dsu_weighted(u32 n) : p(n, -1), dep(n) {}
+  CEXPE dsu_weighted(u32 n) : p(n, -1), dep(n) {}
 
   CEXP i32 find(u32 x) {
     if (p[x] < 0) return (i32)x;

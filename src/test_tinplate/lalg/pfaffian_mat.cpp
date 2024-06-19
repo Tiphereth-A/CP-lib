@@ -1,0 +1,43 @@
+#define PROBLEM "https://www.luogu.com.cn/problem/P10216"
+
+#include "../../code/lalg/pfaffian_mat.hpp"
+
+#include "../../code/lalg/mat.hpp"
+#include "../../code/math/mint_s30.hpp"
+
+CEXP u32 MOD = 1'000'000'007;
+
+using mint = tifa_libs::math::mint_s30<MOD>;
+using mat = tifa_libs::math::matrix<mint>;
+
+int main() {
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
+  u32 n;
+  std::cin >> n;
+  mat a(n, n);
+  flt_ (u32, i, 0, n - 1)
+    flt_ (u32, j, i + 1, n) std::cin >> a(i, j);
+  auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
+  std::cout << tifa_libs::math::pfaffian(a, is_0) << '\n';
+}
+
+/*
+给定偶数 $n$ 与反对称矩阵 $\mathbf{A}=(a_{i,j})_{1\le i<j\le n}$, 求 $\textup{pf}(\mathbf{A})$ 对 $10^9+7$ 取模的结果
+
+## 输入格式
+第一行一个正整数 $n$, 保证 $n$ 是偶数
+接下来 $n-1$ 行, 第 $i$ 行有 $n-i$ 个非负整数, 其中第 $j$ 个整数表示 $a_{i,i+j}$
+$2\leq n\le 500$, $0\le a_{i,j}<10^9+7$
+
+## 输出格式
+一行一个非负整数, 表示答案
+*/
+
+/*
+4
+1 2 3
+4 5
+6
+========
+8
+*/

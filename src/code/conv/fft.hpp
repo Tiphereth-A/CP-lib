@@ -10,7 +10,7 @@ struct FFT {
   using C = std::complex<FP>;
   using data_t = C;
 
-  explicit CEXP FFT() : rev(), w() {}
+  CEXPE FFT() : rev(), w() {}
 
   CEXP u32 size() const { return (u32)rev.size(); }
   CEXP void bzr(u32 len) {

@@ -11,7 +11,7 @@ class fenwick_rr {
 
  public:
   //! [1, sz)
-  explicit CEXP fenwick_rr(u32 sz) : a(sz), ai(sz) {}
+  CEXPE fenwick_rr(u32 sz) : a(sz), ai(sz) {}
 
   //! [pos, sz), pos > 0
   CEXP void add(u32 pos, cT_(T) x) { a.add(pos, x), ai.add(pos, x * (pos - 1)); }

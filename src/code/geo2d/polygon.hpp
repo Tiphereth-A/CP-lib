@@ -13,7 +13,7 @@ struct polygon {
   vec<point<FP>> vs;
 
   CEXP polygon() {}
-  explicit CEXP polygon(u32 sz) : vs(sz) {}
+  CEXPE polygon(u32 sz) : vs(sz) {}
   CEXP polygon(itl<point<FP>> vs_) : vs(vs_) {}
   CEXP polygon(spn<point<FP>> vs_) : vs(vs_.begin(), vs_.end()) {}
 

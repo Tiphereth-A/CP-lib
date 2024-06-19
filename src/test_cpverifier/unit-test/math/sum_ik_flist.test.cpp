@@ -7,13 +7,12 @@
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
 
-
 using tifa_libs::math::mpi;
 
 void test_sum_ik_flist(u64 n) {
   auto sumik_mpi = [](u64 k, u64 n) {
     mpi ret = 0;
-    fle_(u64, i, 1, n) ret += qpow(mpi(i), k);
+    fle_ (u64, i, 1, n) ret += qpow(mpi(i), k);
     return ret;
   };
 
@@ -29,7 +28,7 @@ int main() {
 
   switch (tcase) {
     case tifa_libs::unittest::ts_example_00:
-      flt_(u64, i, 0, 10) test_sum_ik_flist(i);
+      flt_ (u64, i, 0, 10) test_sum_ik_flist(i);
       break;
     case tifa_libs::unittest::ts_example_01: test_sum_ik_flist(42); break;
     case tifa_libs::unittest::ts_random_00: test_sum_ik_flist(114514); break;

@@ -2,7 +2,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/geo2d/cvh.hpp"
-#include "../../../code/geo2d/rel_pop.hpp"
 #include "../base.hpp"
 
 using data_t = f128;
@@ -23,12 +22,11 @@ strn single_proceed(std::istream &fin) {
   }
   polya.init();
   polyb.init();
-  polya.do_minkowski_sum(polyb);
+  polya.do_minkowski_sum(polyb).init();
   fle_ (u32, i, 1, q) {
     data_t x, y;
     fin >> x >> y;
-    auto res = tifa_libs::geo::relation_CvhP(polya, Point2{x, y});
-    ss << (res != tifa_libs::geo::outside_pop) << ' ';
+    ss << polya.contains(Point2{x, y}) << ' ';
   }
 
   return ss.str();

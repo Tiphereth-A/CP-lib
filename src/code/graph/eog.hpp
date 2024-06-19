@@ -13,7 +13,7 @@ struct eog {
   vecu deg_in, deg_out;
 
   //! vertex ID: [0, n)
-  explicit CEXP eog(u32 n = 0) : head(n, -1_u32), e(), cnt_arc(0), deg_in(0), deg_out(0) {
+  CEXPE eog(u32 n = 0) : head(n, -1_u32), e(), cnt_arc(0), deg_in(0), deg_out(0) {
     if CEXP (with_deg) deg_in.resize(n), deg_out.resize(n);
   }
 

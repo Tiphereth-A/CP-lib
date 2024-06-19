@@ -40,8 +40,7 @@ void check_bool_(strn CR pretty_func, strn CR expression, bool res, Ts... param)
 
 }  // namespace detail__
 
-enum TESTCASE { ts_local,
-                ts_example_00,
+enum TESTCASE { ts_example_00,
                 ts_example_01,
                 ts_random_00,
                 ts_random_01,
@@ -66,10 +65,22 @@ inline const std::map<pttu, TESTCASE> testcase_id{
     {{841413509, 58432763}, ts_random_06},
     {{251229786, 256388306}, ts_random_07},
     {{118232767, 222490630}, ts_random_08},
-    {{907649120, 290651129}, ts_random_09}};
+    {{907649120, 290651129}, ts_random_09},
+    {{0, 1}, ts_example_00},
+    {{0, 2}, ts_example_01},
+    {{0, 3}, ts_random_00},
+    {{0, 4}, ts_random_01},
+    {{0, 5}, ts_random_02},
+    {{0, 6}, ts_random_03},
+    {{0, 7}, ts_random_04},
+    {{0, 8}, ts_random_06},
+    {{0, 9}, ts_random_05},
+    {{0, 10}, ts_random_07},
+    {{0, 11}, ts_random_08},
+    {{0, 12}, ts_random_09}
+};
 
 inline void post_test([[maybe_unused]] pttu CR p = {0, 0}) {
-#ifndef LOCAL_
   static pttu p_{0, 0};
   if (p.first || p.second) {
     p_ = p;
@@ -77,18 +88,13 @@ inline void post_test([[maybe_unused]] pttu CR p = {0, 0}) {
   }
   std::cout << p_.first + p_.second << '\n';
   exit(0);
-#endif
 }
 
 inline TESTCASE pre_test() {
-#ifndef LOCAL_
   pttu p;
   std::cin >> p.first >> p.second;
   post_test(p);
   return testcase_id.at(p);
-#else
-  return ts_local;
-#endif
 }
 
 #define check(got, want, ...) ::tifa_libs::unittest::detail__::check_(__PRETTY_FUNCTION__, #got, got, #want, want __VA_OPT__(, ) __VA_ARGS__)

@@ -21,7 +21,7 @@ class deque_with_w {
   }
 
  public:
-  explicit CEXP deque_with_w() : q(2), s(2) { bf(); }
+  CEXPE deque_with_w() : q(2), s(2) { bf(); }
 
   CEXP void push_front(T x) {
     if (q[0].push_back(x); s[0].size()) s[0].push_back(op(x, s[0].back()));

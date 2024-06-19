@@ -9,7 +9,16 @@ namespace tifa_libs::geo {
 // @return ans, which ans[i] means area covered at least i+1 times
 template <std::floating_point FP>
 CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) {
-  using arc_t = std::tuple<point<FP>, FP, FP, FP>;
+  struct arc_t {
+    point<FP> p;
+    FP _0, _1, _2;
+    CEXP auto operator<=>(arc_t CR r) const {
+      if (auto CR c = p <=> r.p; c) return c;
+      if (auto CR c = comp(_0, r._0); c) return c;
+      if (auto CR c = comp(_1, r._1); c) return c;
+      return comp(_2, r._2);
+    }
+  };
   const u32 n = (u32)cs.size();
   vvec<arc_t> arcs(n);
   auto cut = [&](circle<FP> CR ci, u32 i) {
@@ -52,7 +61,7 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) {
   vec<FP> ans(n);
   flt_ (u32, i, 0, n) {
     FP sum = 0;
-    std::ranges::sort(arcs[i]);
+    std::sort(arcs[i].begin(), arcs[i].end());
     u32 cnt = 0;
     flt_ (u32, j, 0, (u32)arcs[i].size())
       if (j > 0 && eq(arcs[i][j], arcs[i][j - 1])) arcs[i + (++cnt)].push_back(arcs[i][j]);

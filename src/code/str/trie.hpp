@@ -17,7 +17,7 @@ class Trie {
   u32 sz;
 
  public:
-  CEXP Trie() : data(1), sz(0) {}
+  CEXPE Trie() : data(1), sz(0) {}
 
   CEXP void insert(strnv str) {
     u32 p = 0;

@@ -30,8 +30,7 @@ struct blossomw {
   }
 
   CEXP void add_edge(u32 u, u32 v, T w) { g[u][v].w = g[v][u].w = w; }
-  // {u, v, w}
-  auto operator()(T inf = std::numeric_limits<T>::max()) {
+  vec<edge_t<T>> operator()(T inf = std::numeric_limits<T>::max()) {
     nx = n, st[0] = 0;
     fle_ (u32, i, 1, 2 * n) aux[i] = 0;
     fle_ (u32, i, 1, n) match[i] = 0, st[i] = i, flo[i].clear();
@@ -41,9 +40,9 @@ struct blossomw {
         flo_from[u][v] = (u == v ? u : 0), wmax = max(wmax, g[u][v].w);
     fle_ (u32, u, 1, n) lab[u] = wmax;
     while (matching(inf));
-    vec<std::tuple<u32, u32, T>> ans;
+    vec<edge_t<T>> ans;
     fle_ (u32, u, 1, n)
-      if (match[u] && match[u] < u) ans.emplace_back(u, match[u], g[u][match[u]].w);
+      if (match[u] && match[u] < u) ans.emplace_back(g[u][match[u]].w, u, match[u]);
     return ans;
   }
 

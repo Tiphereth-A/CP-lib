@@ -18,7 +18,7 @@ class aho_corasick_automaton {
   vec<TIFA> t;
   u32 sz;
 
-  explicit CEXP aho_corasick_automaton() : t(1), sz(1) {}
+  CEXPE aho_corasick_automaton() : t(1), sz(1) {}
 
   CEXP void insert(strnv s, u32 id = -1u) {
     u32 u = 0;

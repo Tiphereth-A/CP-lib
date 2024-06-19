@@ -14,8 +14,8 @@ int main() {
   }
   auto res = bl();
   i64 sumw = 0;
-  for (auto [_, __, w] : res) sumw += w;
+  for (auto [w, u, v] : res) sumw += w;
   std::cout << res.size() << ' ' << sumw << '\n';
-  for (auto [u, v, _] : res) std::cout << u - 1 << ' ' << v - 1 << '\n';
+  for (auto [w, u, v] : res) std::cout << u - 1 << ' ' << v - 1 << '\n';
   return 0;
 }

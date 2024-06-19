@@ -7,12 +7,12 @@ namespace tifa_libs::graph {
 
 // @return {w, u, v} edges in Gomory--Hu tree
 template <class EW>
-CEXP vec<std::tuple<EW, u32, u32>> gomory_hu(u32 n, vec<std::tuple<EW, u32, u32>> CR ed) {
+CEXP vec<edge_t<EW>> gomory_hu(u32 n, vec<edge_t<EW>> CR ed) {
   vecu par(n);
   dinic<EW> D(n);
   vecptu ed_locs;
   for (auto [w, u, v] : ed) ed_locs.push_back(D.add(u, v, w, w));
-  vec<std::tuple<EW, u32, u32>> ans;
+  vec<edge_t<EW>> ans;
   flt_ (u32, i, 1, n) {
     for (auto [ed, loc] : ed_locs) {
       auto &e = D.e[ed][loc], &e_rev = D.e[e.to][e.inv];

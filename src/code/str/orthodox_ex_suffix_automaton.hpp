@@ -17,7 +17,7 @@ class orthodox_ex_suffix_automaton {
   u32 sz;
   vec<TIFA> st;
 
-  explicit CEXP orthodox_ex_suffix_automaton() : sz(1) { st.push_back(TIFA()), st[0].len = 0, st[0].link = -1u; }
+  CEXPE orthodox_ex_suffix_automaton() : sz(1) { st.push_back(TIFA()), st[0].len = 0, st[0].link = -1u; }
 
   CEXP u32 extend(u32 last, u32 c) {
     u32 cur = st[last].nex[c];

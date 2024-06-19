@@ -1,19 +1,19 @@
 #ifndef TIFALIBS_COMB_STIRLING1_SMALLP
 #define TIFALIBS_COMB_STIRLING1_SMALLP
 
-#include "lucas.hpp"
+#include "binom.hpp"
 
 namespace tifa_libs::math {
 
 template <class mint>
 class Stirling1 {
-  const Lucas<mint> mCn;
+  const Binom<mint> mCn;
   vvec<mint> s;
 
  public:
   static CEXP u32 mod() { return mint::mod(); }
   //! @param p MUST be prime
-  explicit CEXP Stirling1() : mCn(), s(mint::mod()) {
+  CEXPE Stirling1() : mCn(mint::mod()), s(mint::mod()) {
     u32 p = mint::mod();
     assert(p < 32768);
     s[0] = {1};
@@ -40,7 +40,7 @@ class Stirling1 {
       else return 0;
     }
     if (i < a || b > j) return 0;
-    mint res = mCn((i64)i, (i64)a) * s[j][b];
+    mint res = mCn.lucas(i, a) * s[j][b];
     if CEXP (with_sgn)
       if ((i + a) & 1) res = -res;
     return res;

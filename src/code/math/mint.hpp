@@ -28,7 +28,7 @@ class mint {
   CEXP sraw_type sval() const { return (sraw_type)d().val_(); }
   CEXP raw_type &data() { return d().data_(); }
   template <int_c T>
-  explicit CEXP operator T() const { return (T)val(); }
+  CEXPE operator T() const { return (T)val(); }
   CEXP mint &operator+=(mint CR r) { return d().adde_(r.d()); }
   CEXP mint &operator-=(mint CR r) { return d().sube_(r.d()); }
   CEXP mint &operator*=(mint CR r) { return d().mule_(r.d()); }

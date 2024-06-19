@@ -11,7 +11,7 @@ class fenwick2d_rr {
 
  public:
   //! [1, row) * [1, col)
-  explicit CEXP fenwick2d_rr(u32 row, u32 col) : a(row, col), ax(row, col), ay(row, col), axy(row, col) {}
+  CEXPE fenwick2d_rr(u32 row, u32 col) : a(row, col), ax(row, col), ay(row, col), axy(row, col) {}
 
   CEXP u32 row() const { return a.size(); }
   CEXP u32 col() const { return a[0].size(); }

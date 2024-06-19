@@ -15,7 +15,7 @@ class chordal {
 
   // @param g simple UNDIRECTED graph
   //! g.g[i] MUST be sorted
-  explicit CEXP chordal(alist<with_deg> CR g) : g(g), deg(g.g.size()), peo(g.g.size()), rnk(g.g.size()) {
+  CEXPE chordal(alist<with_deg> CR g) : g(g), deg(g.g.size()), peo(g.g.size()), rnk(g.g.size()) {
     for (auto& i : g.g) assert(std::ranges::is_sorted(i));
     const u32 n = (u32)g.g.size();
     vecu l(n * 2 + 1), r, idx(n);

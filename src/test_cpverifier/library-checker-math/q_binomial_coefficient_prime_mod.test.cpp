@@ -1,0 +1,29 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod"
+
+#include "../../code/comb/qbinom.hpp"
+#include "../../code/io/fastio.hpp"
+#include "../../code/math/mint_d31.hpp"
+
+using mint = tifa_libs::math::mint_d31<-1>;
+
+int main() {
+  u32 t, MOD, q;
+  tifa_libs::fin >> t >> MOD >> q;
+  mint::set_mod(MOD);
+  if (!q) {
+    while (t--) {
+      i64 n, k;
+      tifa_libs::fin >> n >> k;
+      tifa_libs::fout << !(n < k || k < 0) << '\n';
+    }
+    return 0;
+  }
+  tifa_libs::math::QBinom<mint> mCn(std::min(MOD - 1, 10'000'000_u32), q);
+  while (t--) {
+    i64 n, k;
+    tifa_libs::fin >> n >> k;
+    tifa_libs::fout << mCn.qmCn(n, k) << '\n';
+  }
+
+  return 0;
+}

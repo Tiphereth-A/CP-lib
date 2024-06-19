@@ -21,6 +21,6 @@ int main() {
   tifa_libs::fin >> s;
   auto res = tifa_libs::str::run_hash<hashstr>(s);
   tifa_libs::fout << res.size() << '\n';
-  for (auto& i : res) tifa_libs::fout << i << '\n';
+  for (auto& [a, b, c] : res) tifa_libs::fout << a << ' ' << b << ' ' << c << '\n';
   return 0;
 }

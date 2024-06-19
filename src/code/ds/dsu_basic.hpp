@@ -10,7 +10,7 @@ class dsu_basic {
   veci p;
 
  public:
-  explicit CEXP dsu_basic(u32 sz) : p(sz, -1) {}
+  CEXPE dsu_basic(u32 sz) : p(sz, -1) {}
 
   CEXP i32 find(u32 x) { return p[x] < 0 ? (i32)x : p[x] = find((u32)p[x]); }
   CEXP u32 size(u32 x) { return (u32)-p[(u32)find(x)]; }

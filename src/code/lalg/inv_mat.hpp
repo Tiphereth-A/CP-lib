@@ -18,7 +18,7 @@ CEXP std::optional<matrix<T>> inv_mat(matrix<T> CR mat, Is0&& is0, Ge&& ge) {
   if ((u64)abs(ge(ret = merge_lr_mat(mat, ret), true)) != n) return {};
   flt_ (u32, i, 0, n)
     if (is0(ret(i, i))) return {};
-  ret.apply_range(0, n, n, n * 2, [&ret](u32 i, u32, T& val) { val /= ret(i, i); });
+  if CEXP (!std::is_same_v<T, bool>) ret.apply_range(0, n, n, n * 2, [&ret](u32 i, u32, T& val) { val /= ret(i, i); });
   return ret.submat(0, n, n, n * 2);
 }
 

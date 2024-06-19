@@ -10,7 +10,7 @@ class rpow {
   u64 b_, m_;
 
  public:
-  explicit CEXP rpow() : b0(65536), b1(65536), b_(), m_() {}
+  CEXPE rpow() : b0(65536), b1(65536), b_(), m_() {}
   CEXP rpow(u64 base_, u32 mod_) : rpow() { reset(base_, mod_); }
 
   CEXP void reset(u64 base, u32 mod) {

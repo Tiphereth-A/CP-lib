@@ -11,7 +11,7 @@ class fenwick {
 
  public:
   //! [1, sz)
-  explicit CEXP fenwick(u32 sz) : a(sz) { assert(sz > 1); }
+  CEXPE fenwick(u32 sz) : a(sz) { assert(sz > 1); }
 
   //! [pos, sz), pos > 0
   CEXP void add(u32 pos, cT_(T) x) {

@@ -18,7 +18,7 @@ struct trie01 {
   vec<TIFA> data;
   u32 root;
 
-  CEXP explicit trie01(i32 max_depth = 32) : MAX_DEP(max_depth), data(2), root(1) {
+  CEXPE trie01(i32 max_depth = 32) : MAX_DEP(max_depth), data(2), root(1) {
     assert(max_depth > 0);
     data.reserve(1_u64 << (max_depth / 2));
   }

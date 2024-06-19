@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 namespace nim_prod_impl_ {
 struct calc8 {
   u16 dp[1 << 8][1 << 8];
-  explicit CEXP calc8() : dp() {
+  CEXPE calc8() : dp() {
     dp[0][0] = dp[0][1] = dp[1][0] = 0, dp[1][1] = 1;
     fle_ (u32, e, 1, 3) {
       const u32 p = 1 << e, q = p >> 1;
@@ -45,7 +45,7 @@ struct calc16 {
   }
 
  public:
-  explicit CEXP calc16() : base(), exp(), log() {
+  CEXPE calc16() : base(), exp(), log() {
     base[0] = 1;
     flt_ (u32, i, 1, 16) base[i] = naive(base[i - 1], proot);
     exp[0] = 1;

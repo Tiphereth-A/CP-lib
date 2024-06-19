@@ -6,7 +6,7 @@
 namespace tifa_libs::geo {
 
 template <class P>
-CEXP typename P::FP_t cross(P CR o, P CR a, P CR b) { return (a - o) ^ (b - o); }
+CEXP auto cross(P CR o, P CR a, P CR b) { return (a - o) ^ (b - o); }
 template <class P>
 requires std::floating_point<typename P::FP_t>
 CEXP auto cross_unit(P CR o, P CR a, P CR b) { return (a - o).do_unit() ^ (b - o).do_unit(); }

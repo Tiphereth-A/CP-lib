@@ -436,6 +436,9 @@ notebook:
     - planev: 平面(视图)
       code_ext: hpp
       test_ext: cpp
+    - dist3_pp: 三维点之间的距离
+      code_ext: hpp
+      test_ext: cpp
     - dist3_pl: 三维点与三维线的距离
       code_ext: hpp
       test_ext: cpp
@@ -445,7 +448,7 @@ notebook:
     - rel_plp: 平面与三维点的关系
       code_ext: hpp
       test_ext: cpp
-    - polygon3d: 多面体
+    - cvh3d: 三维凸包
       code_ext: hpp
       test_ext: cpp
     opt:
@@ -650,13 +653,10 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     comb:
-    - binom: 组合数
+    - binom: 二项式系数
       code_ext: hpp
       test_ext: cpp
-    - lucas: Lucas 定理(模素数)
-      code_ext: hpp
-      test_ext: cpp
-    - lucas_pp: Lucas 定理(模素数幂次)
+    - qbinom: Gauss 二项式系数
       code_ext: hpp
       test_ext: cpp
     - exlucas: Lucas 定理(任意模数)
@@ -828,10 +828,7 @@ notebook:
     - kth_root: K 次剩余
       code_ext: hpp
       test_ext: cpp
-    - pi_34log: pi(n) 实现一
-      code_ext: hpp
-      test_ext: cpp
-    - pi_23: pi(n) 实现二
+    - pi_min25: pi(n)(min25 筛)
       code_ext: hpp
       test_ext: cpp
     - du_sieve: 杜教筛
@@ -908,9 +905,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - simpson: 自适应 Simpson 积分
-      code_ext: hpp
-      test_ext: cpp
-    - romberg: Romberg 积分
       code_ext: hpp
       test_ext: cpp
     - kahan: Kahan 求和
@@ -1022,7 +1016,10 @@ notebook:
     - uhb_mat: 转为上 Hessenberg 矩阵
       code_ext: hpp
       test_ext: cpp
-    - hafnian_mat: 图的完美匹配计数
+    - hafnian_mat: 矩阵的 Hafnian
+      code_ext: hpp
+      test_ext: cpp
+    - pfaffian_mat: 矩阵的 Pfaffian
       code_ext: hpp
       test_ext: cpp
     - leqs_solver: 求线性方程组的解和解空间
@@ -1038,6 +1035,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - ge_bmat: 静态 Bool 矩阵 Gauss 消元
+      code_ext: hpp
+      test_ext: cpp
+    - inv_bmat: 静态 Bool 矩阵求逆
       code_ext: hpp
       test_ext: cpp
     - matsp: 稀疏矩阵

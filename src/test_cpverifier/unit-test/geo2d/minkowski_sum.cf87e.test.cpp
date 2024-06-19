@@ -2,7 +2,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../code/geo2d/cvh.hpp"
-#include "../../../code/geo2d/rel_pop.hpp"
 #include "../base.hpp"
 
 using data_t = f128;
@@ -23,7 +22,7 @@ strn single_proceed(std::istream &fin) {
   fin >> b;
   ConvexHull2 poly2(b);
   fin >> poly2;
-  poly.do_minkowski_sum(poly2.init());
+  poly.do_minkowski_sum(poly2.init()).init();
   fin >> c;
   poly2.vs.resize(c);
   fin >> poly2;
@@ -32,7 +31,7 @@ strn single_proceed(std::istream &fin) {
   data_t x, y;
   for (u32 i = 1; i <= n; ++i) {
     fin >> x >> y;
-    ss << RES_YN[tifa_libs::geo::relation_CvhP(poly, Point2{x * 3, y * 3}) != tifa_libs::geo::outside_pop] << ' ';
+    ss << RES_YN[poly.contains(Point2{x * 3, y * 3})] << ' ';
   }
 
   return ss.str();

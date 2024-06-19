@@ -32,10 +32,7 @@ class gint {
   CEXP gint &operator/=(gint CR x) {
     const T _ = r_ * x.real() - i_ * x.imag() * M, n_ = x.norm();
     if CEXP (std::is_integral_v<T>) {
-      auto div = [](T x, T y) {
-        const T a = x * 2 + y, b = y * 2;
-        return a / b - (a % b < 0);
-      };
+      auto div = [](T x, T y) { const T a = x * 2 + y, b = y * 2; return a / b - (a % b < 0); };
       i_ = div(i_ * x.real() - r_ * x.imag(), n_), r_ = div(_, n_);
     } else i_ = (i_ * x.real() - r_ * x.imag()) / n_, r_ = _ / n_;
     return *this;

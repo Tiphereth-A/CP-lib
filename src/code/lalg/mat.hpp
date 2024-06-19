@@ -18,7 +18,7 @@ class matrix {
   using value_type = T;
 
   CEXP matrix(u32 row, u32 col, cT_(T) v = T{}) : d(row, vec<T>(col, v)) { assert(row > 0 && col > 0); }
-  explicit CEXP matrix(cT_(vvec<T>) data) : d(data) { assert(data.size() > 0 && data[0].size() > 0); }
+  CEXPE matrix(cT_(vvec<T>) data) : d(data) { assert(data.size() > 0 && data[0].size() > 0); }
 
   CEXP u32 row() const { return (u32)d.size(); }
   CEXP u32 col() const { return (u32)d[0].size(); }
@@ -32,7 +32,8 @@ class matrix {
   requires requires(F f, u32 i, u32 j, T &val) { f(i, j, val); }
   CEXP void apply_range(u32 row_l, u32 row_r, u32 col_l, u32 col_r, F &&f) {
     assert(row_l < row_r && row_r <= row() && col_l < col_r && col_r <= col());
-    FOR2_ (i, row_l, row_r, j, col_l, col_r) f(i, j, (*this)(i, j));
+    T val;
+    FOR2_ (i, row_l, row_r, j, col_l, col_r) f(i, j, val = (*this)(i, j)), (*this)(i, j) = val;
   }
 
   friend std::istream &operator>>(std::istream &is, matrix &mat) {

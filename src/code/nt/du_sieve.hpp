@@ -7,6 +7,11 @@
 namespace tifa_libs::math {
 
 template <class T, class SF, class SG, class SH>
+requires requires(u64 x, SF f, SG g, SH h) {
+  { f(x) } -> std::same_as<T>;
+  { g(x) } -> std::same_as<T>;
+  { h(x) } -> std::same_as<T>;
+}
 class du_sieve {
   const u64 sf_max;
   SF sf;

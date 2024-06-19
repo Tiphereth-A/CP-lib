@@ -6,10 +6,9 @@
 
 namespace tifa_libs::graph {
 
-//! edge: w u v
-//! MUST be sorted
+//! edge MUST be sorted
 template <class EW>
-CEXP std::pair<tree, vec<EW>> kruskal_re_tree(vec<std::tuple<EW, u32, u32>> CR sorted_a, u32 n) {
+CEXP std::pair<tree, vec<EW>> kruskal_re_tree(vec<edge_t<EW>> CR sorted_a, u32 n) {
   tree tr(2 * n - 1, 2 * n - 1);
   n = u32((tr.g.size() + 1) / 2);
   vec<EW> w_(2 * n - 1);

@@ -9,7 +9,7 @@ template <class FP>
 struct point3d {
   using FP_t = FP;
   FP x, y, z;
-  explicit CEXP point3d(FP x = FP{}, FP y = FP{}, FP z = FP{}) : x(x), y(y), z(z) {}
+  CEXPE point3d(FP x = FP{}, FP y = FP{}, FP z = FP{}) : x(x), y(y), z(z) {}
 
   friend std::istream &operator>>(std::istream &is, point3d &p) { return is >> p.x >> p.y >> p.z; }
   friend std::ostream &operator<<(std::ostream &os, point3d CR p) { return os << p.x << ' ' << p.y << ' ' << p.z; }

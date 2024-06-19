@@ -13,7 +13,7 @@ strn single_proceed(std::istream &fin) {
 
   u32 n, m;
   fin >> n >> m;
-  vec<std::tuple<u64, u32, u32>> edges(m);
+  vec<edge_t<u64>> edges(m);
   for (auto &[w, u, v] : edges) {
     fin >> u >> v >> w;
     --u;

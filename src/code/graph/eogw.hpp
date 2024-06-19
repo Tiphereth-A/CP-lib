@@ -7,14 +7,17 @@ namespace tifa_libs::graph {
 
 template <class T, bool with_deg = false>
 struct eogw {
+  // clang-format off
+  struct TIFA { u32 to; T w; u32 nxt; };
+  // clang-format on
   using weight_type = T;
   vecu head;
-  vec<std::tuple<u32, T, u32>> e;
+  vec<TIFA> e;
   u32 cnt_arc;
   vecu deg_in, deg_out;
 
   //! vertex ID: [0, n)
-  explicit CEXP eogw(u32 n = 0) : head(n, -1_u32), e(), cnt_arc(0), deg_in(0), deg_out(0) {
+  CEXPE eogw(u32 n = 0) : head(n, -1_u32), e(), cnt_arc(0), deg_in(0), deg_out(0) {
     if CEXP (with_deg) deg_in.resize(n), deg_out.resize(n);
   }
 

@@ -19,7 +19,7 @@ class heuristic_lbsa {
 
  public:
   // Find minimum argument of f(x)
-  explicit CEXP heuristic_lbsa(Ff f, cT_(Cont) init, u32 L, Tt p0 = .2) : f(f), g_idx(0, (u32)init.size() - 1), g(0, 1), x(init), fx(f(init)), tlist() {
+  CEXP heuristic_lbsa(Ff f, cT_(Cont) init, u32 L, Tt p0 = .2) : f(f), g_idx(0, (u32)init.size() - 1), g(0, 1), x(init), fx(f(init)), tlist() {
     const Tt lp0 = std::log(p0);
     while (tlist.size() < L)
       if (auto [fy, y] = gen(); fy < fx) swap(fx, fy), swap(x, y);

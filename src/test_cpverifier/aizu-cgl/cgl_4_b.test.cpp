@@ -3,7 +3,7 @@
 
 #include "../../code/geo2d/cvh.hpp"
 
-using cvh = tifa_libs::geo::cvh<double>;
+using cvh = tifa_libs::geo::cvh<f64>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

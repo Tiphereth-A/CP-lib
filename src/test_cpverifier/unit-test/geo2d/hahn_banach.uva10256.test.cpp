@@ -1,8 +1,9 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
+#include "../../../code/geo2d/cvh.hpp"
 #include "../../../code/geo2d/is_ins_ss.hpp"
-#include "../../../code/geo2d/rel_pop.hpp"
+#include "../../../code/geo2d/is_on_s.hpp"
 #include "../base.hpp"
 
 using data_t = f64;
@@ -16,9 +17,9 @@ strn single_proceed(u32 n, u32 m, std::istream& fin) {
   poly1.init();
   poly2.init();
   for (auto CR i : poly1.vs)
-    if (tifa_libs::geo::relation_CvhP(poly2, i) != tifa_libs::geo::outside_pop) return RES_Yn[0];
+    if (poly2.contains(i)) return RES_Yn[0];
   for (auto CR i : poly2.vs)
-    if (tifa_libs::geo::relation_CvhP(poly1, i) != tifa_libs::geo::outside_pop) return RES_Yn[0];
+    if (poly1.contains(i)) return RES_Yn[0];
   if (poly1.size() > 1 && poly2.size() > 1) {
     for (auto it = poly1.vs.begin(), itn = it + 1; it != poly1.vs.end(); ++it, ++itn) {
       if (itn == poly1.vs.end()) itn = poly1.vs.begin();

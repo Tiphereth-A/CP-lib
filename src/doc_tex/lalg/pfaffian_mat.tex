@@ -1,0 +1,50 @@
+对长度为 \(2n\) 的排列 \(\pi\), 若
+
+\begin{itemize}
+    \item \(\forall 1\le i\le n,~\pi_{2i-1}<\pi_{2i}\)
+    \item \(\forall 1\le i< n,~\pi_{2i-1}<\pi_{2i+1}\)
+\end{itemize}
+
+则称 \(\pi\) 为完美匹配. 对 \(2n\times 2n\) 的反对称矩阵 \(A\), 其 Pfaffian \(\operatorname{pf}(A)\) 定义为
+
+\[
+    \operatorname{pf}(A):=\frac{1}{n!2^n}\sum_{\pi\in \mathfrak{M}_{2n}}\operatorname{sgn}(\pi)\prod_{i=1}^n a_{\pi(2j-1),\pi(2j)}
+\]
+
+其中 \(\mathfrak{M}_{2n}\) 为全体长度为 \(2n\) 的完美匹配构成的集合. \(\operatorname{sgn}(\pi)\) 为排列 \(\pi\) 逆序对数的奇偶性, 奇数为 \(-1\), 偶数为 \(1\)
+
+\paragraph{性质}
+
+若以 \(A\) 为邻接矩阵的有向图为平面图, 则 \(\operatorname{pf}(A)\) 为该图的完美匹配数量 (FKT 算法)
+
+类似行列式, 
+
+\begin{itemize}
+    \item 对一行和一列乘同一个常数, Pfaffian 也会乘相同的常数
+    \item 同时互换两个不同的行和相应的列会改变 Pfaffian 的符号
+    \item 一行和相应列的倍数与另一行和相应列相加不会改变 Pfaffian
+\end{itemize}
+
+另外,
+
+\begin{itemize}
+    \item \(\operatorname{pf}\left(A^T\right)=(-1)^n\operatorname{pf}(A)\)
+    \item \(\operatorname{pf}(\lambda A)=\lambda^n\operatorname{pf}(A)\)
+    \item \(\operatorname{pf}(A)^2=\operatorname{det}(A)\)
+    \item 对 \(2n\times 2n\) 的反对称矩阵 \(B\), \(\operatorname{pf}\left(BAB^T\right)=\operatorname{det}(B)\operatorname{pf}(A)\)
+    \item 对非负整数 \(m\), \(\operatorname{pf}\left(A^{2m+1}\right)=(-1)^{nm}\operatorname{pf}(A)^{2m+1}\)
+\end{itemize}
+
+和 \fullref{sec:矩阵的-hafnian} 的关系相当于行列式与积和式的关系, 参见 \fullref{ssec:lalg}
+
+\paragraph{输入}
+
+\verb|mat|: \(2n\times 2n\) 反对称矩阵的 \textbf{上三角矩阵}
+
+\paragraph{输出}
+
+\verb|mat| 的 Pfaffian
+
+\paragraph{复杂度} \(O\left(n^3\right)\)
+
+\paragraph{参考资料} \cite{enwiki:1229899175} \cite{enwiki:1216412359}

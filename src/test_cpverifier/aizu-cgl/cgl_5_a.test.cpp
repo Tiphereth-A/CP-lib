@@ -13,7 +13,7 @@ int main() {
   std::cin >> n;
   vec<point> vp(n);
   for (auto &i : vp) std::cin >> i;
-  std::ranges::sort(vp);
-  std::cout << tifa_libs::geo::min_dis_Ps(vp, 0, n) << '\n';
+  auto [l, r] = tifa_libs::geo::min_dis_Ps(vp);
+  std::cout << tifa_libs::geo::dist_PP(vp[l], vp[r]) << '\n';
   return 0;
 }

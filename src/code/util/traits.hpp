@@ -12,7 +12,7 @@ concept iterable_c = requires(T v) {
 };
 
 template <class T>
-concept container_c = iterable_c<T> && !std::derived_from<T, std::basic_string<TPN T::value_type>> && !std::derived_from<T, std::basic_string_view<TPN T::value_type>>;
+concept container_c = iterable_c<T> && !std::same_as<std::remove_cvref_t<T>, strn> && !std::same_as<std::remove_cvref_t<T>, strnv>;
 
 template <class T>
 CEXP bool is_char_v = std::is_same_v<T, char> || std::is_same_v<T, signed char> || std::is_same_v<T, unsigned char>;

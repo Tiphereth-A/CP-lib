@@ -8,9 +8,9 @@ namespace tifa_libs::geo {
 template <class FP>
 struct point {
   using FP_t = FP;
-  
+
   FP x, y;
-  explicit CEXP point(FP x = FP{}, FP y = FP{}) : x(x), y(y) {}
+  CEXPE point(FP x = FP{}, FP y = FP{}) : x(x), y(y) {}
 
   friend std::istream &operator>>(std::istream &is, point &p) { return is >> p.x >> p.y; }
   friend std::ostream &operator<<(std::ostream &os, point CR p) { return os << p.x << ' ' << p.y; }

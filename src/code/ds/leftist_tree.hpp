@@ -31,10 +31,10 @@ class leftist_tree {
  public:
   vec<TIFA> t;
 
-  CEXP explicit leftist_tree(vec<T> CR a) : t() {
+  CEXPE leftist_tree(vec<T> CR a) : t() {
     for (auto x : a) newheap(x);
   }
-  CEXP explicit leftist_tree(u32 n = 0) : t() {
+  CEXPE leftist_tree(u32 n = 0) : t() {
     t.reserve(n);
     flt_ (u32, i, 0, n) newheap();
   }

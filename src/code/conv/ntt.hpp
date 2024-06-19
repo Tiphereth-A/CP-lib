@@ -16,7 +16,7 @@ struct NTT {
 
   const mint G = proot(mint::mod());
 
-  explicit CEXP NTT() : root() {}
+  CEXPE NTT() : root() {}
 
   CEXP u32 size() const { return (u32)root.size(); }
   CEXP void bzr(u32 len = max_size) {

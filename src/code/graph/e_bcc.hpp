@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 template <class EW>
 class e_bcc {
-  const vvec<EW> &g;
+  vvec<EW> CR g;
 
  public:
   u32 id;
@@ -16,14 +16,14 @@ class e_bcc {
   vvecu belongs;
 
   //! EW need rev_edge
-  explicit e_bcc(cT_(vvec<EW>) G) : g(G) { build(); }
+  CEXPE e_bcc(vvec<EW> CR G) : g(G) { build(); }
 
-  void build() {
+  CEXP void build() {
     u32 cnt = 0, n = u32(g.size());
     id = 0, dfn = low = ebcc_id = vecu(n, n), cut = vecb(n, 0);
-    std::stack<u32> s;
+    vecu s;
     auto f = [&](auto &&f, u32 u, u32 fa, u32 inv_from) -> void {
-      dfn[u] = low[u] = cnt++, s.push(u);
+      dfn[u] = low[u] = cnt++, s.push_back(u);
       flt_ (u32, i, 0, (u32)g[u].size()) {
         auto v = g[u][i];
         if (v.to == fa && i == inv_from) continue;
@@ -33,8 +33,8 @@ class e_bcc {
       if (low[u] == dfn[u]) {
         belongs.push_back(vecu());
         do {
-          const u32 v = s.top();
-          if (s.pop(), ebcc_id[v] = id, belongs[id].push_back(v); v == u) return void(++id);
+          const u32 v = s.back();
+          if (s.pop_back(), ebcc_id[v] = id, belongs[id].push_back(v); v == u) return void(++id);
         } while (1);
       }
     };

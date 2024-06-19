@@ -10,7 +10,7 @@ struct basisR {
   vvec<FP> basis;
   const u32 vec_len;
 
-  explicit CEXP basisR(u32 vec_len) : vec_len(vec_len) {}
+  CEXPE basisR(u32 vec_len) : vec_len(vec_len) {}
 
   CEXP bool insert(vec<FP> x) {
     x.resize(vec_len);

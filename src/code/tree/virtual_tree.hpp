@@ -23,7 +23,7 @@ class virtual_tree {
  public:
   tree vt;
 
-  explicit CEXP virtual_tree(tree& tr) : tr(tr), lca_(tr), vt((u32)tr.g.size()) {}
+  CEXPE virtual_tree(tree& tr) : tr(tr), lca_(tr), vt((u32)tr.g.size()) {}
 
   CEXP void build(vecu& a) {
     std::ranges::sort(a, [&](u32 a, u32 b) { return lca_.info.dfn[a] < lca_.info.dfn[b]; });

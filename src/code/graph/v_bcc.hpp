@@ -16,15 +16,15 @@ class v_bcc {
   vvecu belongs;
 
   //! EW need rev_edge
-  explicit v_bcc(cT_(vvec<EW>) G) : g(G) { build(); }
+  CEXPE v_bcc(cT_(vvec<EW>) G) : g(G) { build(); }
 
-  void build() {
+  CEXP void build() {
     u32 cnt = 0, n = u32(g.size());
     id = 0, dfn = low = vecu(n, n), cut = vecb(n, 0);
-    std::stack<u32> s;
+    vecu s;
     auto dfs = [&](auto &&dfs, u32 u, u32 fa, u32 inv_from) -> void {
       if (dfn[u] = low[u] = cnt++; u == fa && g[u].size() == 0) cut[u] = 1, belongs.push_back(vecu(1, u)), ++id;
-      s.push(u);
+      s.push_back(u);
       flt_ (u32, i, 0, (u32)g[u].size()) {
         auto v = g[u][i];
         if (v.to == fa && i == inv_from) continue;
@@ -32,7 +32,7 @@ class v_bcc {
           if (dfs(dfs, v.to, u, v.inv), low[u] = min(low[u], low[v.to]); low[v.to] >= dfn[u]) {
             u32 p;
             cut[u] = 1, belongs.push_back(vecu(1, u));
-            do p = s.top(), s.pop(), belongs[id].push_back(p);
+            do p = s.back(), s.pop_back(), belongs[id].push_back(p);
             while (p != v.to);
             ++id;
           }

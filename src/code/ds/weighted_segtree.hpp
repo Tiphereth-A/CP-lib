@@ -10,7 +10,7 @@ class weighted_segtree {
   vecu t;
 
  public:
-  explicit CEXP weighted_segtree(u32 N) : n(N), t(N * 4) {}
+  CEXPE weighted_segtree(u32 N) : n(N), t(N * 4) {}
 
   CEXP void ins(u32 pos) { ins_(1, 0, n - 1, pos); }
   CEXP void del(u32 pos) { del_(1, 0, n - 1, pos); }

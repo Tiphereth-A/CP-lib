@@ -11,7 +11,7 @@ class hash_substr2 {
   hash_substr<mint1, base> h1;
 
  public:
-  explicit CEXP hash_substr2() {}
+  CEXPE hash_substr2() {}
 
   CEXP void set(strnv s) { h0.set(s), h1.set(s); }
   CEXP u32 size() const { return h0.size(); }

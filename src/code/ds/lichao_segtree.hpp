@@ -17,7 +17,7 @@ class lichao_segtree {
   vec<seg> t;
 
  public:
-  explicit CEXP lichao_segtree(spn<T> LSH) : lsh(LSH.begin(), LSH.end()), t(LSH.size() * 4) { sz = (u32)lsh.size(); }
+  CEXPE lichao_segtree(spn<T> LSH) : lsh(LSH.begin(), LSH.end()), t(LSH.size() * 4) { sz = (u32)lsh.size(); }
 
   CEXP void add(T a, T b, T l, T r, u32 id = 1) {
     seg k = {id, a, b, l, r};

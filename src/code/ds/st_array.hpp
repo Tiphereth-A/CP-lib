@@ -10,8 +10,8 @@ class st_array {
   vvec<T> st;
 
  public:
-  explicit CEXP st_array() {}
-  explicit CEXP st_array(spn<T> a) { reset(a); }
+  CEXPE st_array() {}
+  CEXPE st_array(spn<T> a) { reset(a); }
 
   CEXP void reset(spn<T> a) {
     const u32 n = (u32)a.size();

@@ -44,7 +44,7 @@ class fhq_treap {
  public:
   u32 root;
 
-  explicit CEXP fhq_treap() : gen(), t(1), sta(), cnt(0), root(0) {}
+  CEXPE fhq_treap() : gen(), t(1), sta(), cnt(0), root(0) {}
 
   CEXP void split(u32 u, KEY k, u32& x, u32& y) {
     if (!u) x = y = 0;

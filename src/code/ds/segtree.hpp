@@ -23,8 +23,8 @@ class segtree {
 
  public:
   template <class V>
-  explicit CEXP segtree(V &&a) { reset(std::forward<V>(a)); }
-  explicit CEXP segtree(u32 n = 0) : segtree(vec<T>(n, e())) {}
+  CEXPE segtree(V &&a) { reset(std::forward<V>(a)); }
+  CEXPE segtree(u32 n = 0) : segtree(vec<T>(n, e())) {}
 
   template <class V>
   CEXP void reset(V &&a) {
