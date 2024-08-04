@@ -1001,12 +1001,6 @@ notebook:
     - pow_mat: 矩阵快速幂
       code_ext: hpp
       test_ext: cpp
-    - rk_mat: 秩
-      code_ext: hpp
-      test_ext: cpp
-    - tr_mat: 迹
-      code_ext: hpp
-      test_ext: cpp
     - trans_mat: 转置
       code_ext: hpp
       test_ext: cpp

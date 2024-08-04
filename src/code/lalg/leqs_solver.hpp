@@ -3,7 +3,6 @@
 
 #include "mat.hpp"
 #include "merge_lr_mat.hpp"
-#include "rk_mat.hpp"
 #include "trans_mat.hpp"
 
 namespace tifa_libs::math {
@@ -17,7 +16,7 @@ CEXP std::optional<matrix<T>> leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&
   const u32 r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
   matrix<T> Ab = merge_lr_mat(A, b);
-  const u32 rk = (u32)do_rank(Ab, std::forward<Ge>(ge));
+  const u32 rk = (u32)abs(ge(Ab, false));
   if (rk > c_) return {};
   if (!is0(Ab(rk - 1, c_))) {
     bool f = true;
