@@ -3,7 +3,6 @@
 
 #include "../../code/lalg/ge_basic_mat.hpp"
 #include "../../code/lalg/mat.hpp"
-#include "../../code/lalg/rk_mat.hpp"
 
 CEXP u32 MOD = 998244353;
 
@@ -23,7 +22,6 @@ int main() {
   mat a(n, m);
   std::cin >> a;
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-  auto ge = [&is_0](mat &m, bool f) { return tifa_libs::math::ge_basic(m, is_0, f); };
-  std::cout << tifa_libs::math::do_rank(a, ge);
+  std::cout << abs(tifa_libs::math::ge_basic(a, is_0, false));
   return 0;
 }
