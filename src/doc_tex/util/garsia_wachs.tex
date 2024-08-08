@@ -1,0 +1,13 @@
+用于构建最优二叉查找树和 Huffman 码的算法
+
+传入 \(n\) 个数 \(v_1,\dots,v_n\), 每次挑选最小的两个数删除, 并将这两个数的和插入, 直到序列中只剩一个数
+
+\paragraph{输入}
+
+\verb|v|: 长度为 \(n+2\) 的数组, 其中 \(v_0=v_{n+1}=\infty\), \(v_1,\dots,v_n\) 为实际参与合并的数据
+
+\verb|f(m0, m1, r, j, a)|: 合并结点时调用的函数, 我们将编号为 \verb|m0| 和 \verb|m1| 的结点合并, 新结点的编号为 \verb|r|, 值为 \verb|a|, 在 \verb|v| 中的下标为 \verb|j|. 其中对于初始的 \(v_i\), 其编号为 \(i\). 注意编号和 \verb|v| 的下标没有对应关系, 且 \(v_j=a\) 只在调用函数时成立
+
+\paragraph{复杂度} 在认为 \verb|std::vector| 插入和删除的复杂度都是 \(O(1)\) 时为 \(O(n\log n)\)
+
+\paragraph{参考文献} \cite{garsia1977new} \cite{kingston1988new}
