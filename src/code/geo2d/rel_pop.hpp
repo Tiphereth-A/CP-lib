@@ -1,8 +1,8 @@
 #ifndef TIFALIBS_GEO2D_REL_POP
 #define TIFALIBS_GEO2D_REL_POP
 
-#include "polygon.hpp"
 #include "is_on_s.hpp"
+#include "polygon.hpp"
 
 namespace tifa_libs::geo {
 

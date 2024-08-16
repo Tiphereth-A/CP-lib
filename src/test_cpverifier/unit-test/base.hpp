@@ -77,8 +77,7 @@ inline const std::map<pttu, TESTCASE> testcase_id{
     {{0, 9}, ts_random_05},
     {{0, 10}, ts_random_07},
     {{0, 11}, ts_random_08},
-    {{0, 12}, ts_random_09}
-};
+    {{0, 12}, ts_random_09}};
 
 inline void post_test([[maybe_unused]] pttu CR p = {0, 0}) {
   static pttu p_{0, 0};
@@ -101,6 +100,31 @@ inline TESTCASE pre_test() {
 #define check_bool(expression, ...) ::tifa_libs::unittest::detail__::check_bool_(__PRETTY_FUNCTION__, #expression, expression __VA_OPT__(, ) __VA_ARGS__)
 #define check_param(x) \
   std::pair<std::string, decltype(x)> { #x, x }
+
+inline ptt<strn> get_fname_in_ans(strn CR source_oj, strn CR source_id, strn CR data) {
+  std::cerr << "===== " << __PRETTY_FUNCTION__ << " start =====\n";
+  strn path = "src/data/" + source_oj + "/" + source_id + "/" + data;
+  strn fi = path + ".in", fo = path + ".out", fa = path + ".ans";
+  std::filebuf fb;
+  if (!fb.open(fi, std::ios::in)) {
+    std::cerr << "error: failed opening " << fi << '\n';
+    exit(1);
+  }
+  fb.close();
+  if (fb.open(fo, std::ios::in)) fa = fo;
+  else {
+    std::cerr << "warning: failed opening " << fo << ", trying " << fa << '\n';
+    if (!fb.open(fa, std::ios::in)) {
+      std::cerr << "error: failed opening " << fa << '\n';
+      exit(1);
+    }
+  }
+  fb.close();
+  std::cerr << "fname_in: " << fi << '\n';
+  std::cerr << "fname_ans: " << fa << '\n';
+  std::cerr << "====== " << __PRETTY_FUNCTION__ << " end ======\n";
+  return {fi, fa};
+}
 
 }  // namespace tifa_libs::unittest
 

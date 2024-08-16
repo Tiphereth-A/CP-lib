@@ -13,8 +13,8 @@
 using mint = tifa_libs::math::mint_s30<998244353>;
 
 void test(strn CR data) {
-  strn path = "src/data/loj/6680/" + data;
-  std::ifstream fin(path + ".in"), fans(path + ".out");
+  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("loj", "6680", data);
+  std::ifstream fin(fn_in), fans(fn_ans);
 
   u32 n;
   fin >> n;

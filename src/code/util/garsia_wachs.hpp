@@ -10,7 +10,7 @@ template <class T, class F>
 requires requires(F f, u32 m0, u32 m1, u32 r, u32 j, T a) { f(m0, m1, r, j, a); }
 void garsia_wachs(vec<T>& v, F&& f) {
   u32 n = (u32)v.size() - 2, cnt = n + 1, k, j;
-  vecu idx(n);
+  vecu idx(n + 1);
   std::iota(idx.begin(), idx.end(), 0);
   while (n-- > 1) {
     for (k = 1; k <= n; ++k)

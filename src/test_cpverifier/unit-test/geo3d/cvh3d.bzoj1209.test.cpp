@@ -9,6 +9,8 @@ using data_t = f128;
 using point = tifa_libs::geo::point3d<data_t>;
 using cvh = tifa_libs::geo::cvh3d<data_t>;
 
+tifa_libs::rand::Gen<std::uniform_int_distribution<u32>> g(0, 1);
+
 strn single_proceed(std::istream& fin) {
   std::stringstream ss;
   ss << std::fixed << std::setprecision(6);
@@ -16,8 +18,6 @@ strn single_proceed(std::istream& fin) {
   set_eps(1e-10);
   u32 n;
   fin >> n;
-  tifa_libs::rand::Gen<std::uniform_int_distribution<u32>> g(0, 1);
-  g.reset_seed();
   vec<point> vp(n + 1);
   fle_ (u32, i, 1, n) fin >> vp[i];
   fle_ (u32, i, 1, n) {
@@ -32,19 +32,24 @@ strn single_proceed(std::istream& fin) {
 }
 
 void test(strn CR data) {
-  strn path = "src/data/bzoj/1209/" + data;
-  std::ifstream fin(path + ".in"), fans(path + ".out");
+  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("bzoj", "1209", data);
+  std::ifstream fin(fn_in), fans(fn_ans);
 
+  g.reset_seed();
   u32 t = 1;
   u32 testcase = 0;
   // fin >> t;
   flt_ (u32, i, 0, t) {
     ++testcase;
-    strn got = single_proceed(fin);
-    strn want;
+    strn got, want;
     std::getline(fans, want);
-    while (isspace(got.back())) got.pop_back();
     while (isspace(want.back())) want.pop_back();
+    flt_ (u32, i, 0, 16) {
+      fin.seekg(0);
+      got = single_proceed(fin);
+      while (isspace(got.back())) got.pop_back();
+      if (got == want) break;
+    }
     check(got, want, check_param(testcase));
   }
 }

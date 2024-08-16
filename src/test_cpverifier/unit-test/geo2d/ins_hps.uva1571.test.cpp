@@ -25,8 +25,8 @@ strn single_proceed(u32 n, std::istream& fin) {
 }
 
 void test(strn CR data) {
-  strn path = "src/data/uva/1571/" + data;
-  std::ifstream fin(path + ".in"), fans(path + ".out");
+  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("uva", "1571", data);
+  std::ifstream fin(fn_in), fans(fn_ans);
 
   u32 n;
   u32 testcase = 0;

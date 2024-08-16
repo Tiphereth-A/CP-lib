@@ -10,8 +10,8 @@
 using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
 
 void test(strn CR data) {
-  strn path = "src/data/loj/124/sieve" + data;
-  std::ifstream fin(path + ".in"), fans(path + ".out");
+  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("loj", "124", "sieve" + data);
+  std::ifstream fin(fn_in), fans(fn_ans);
 
   u32 n, k;
   fin >> n >> k;

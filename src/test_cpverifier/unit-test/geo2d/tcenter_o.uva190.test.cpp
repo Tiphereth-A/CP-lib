@@ -42,8 +42,8 @@ strn single_proceed(Triangle2 CR t) {
 }
 
 void test(strn CR data) {
-  strn path = "src/data/uva/190/" + data;
-  std::ifstream fin(path + ".in"), fans(path + ".out");
+  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("uva", "190", data);
+  std::ifstream fin(fn_in), fans(fn_ans);
 
   Triangle2 t;
   u32 testcase = 0;

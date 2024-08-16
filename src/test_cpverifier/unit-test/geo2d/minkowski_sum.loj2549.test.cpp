@@ -33,8 +33,8 @@ strn single_proceed(std::istream &fin) {
 }
 
 void test(strn CR data) {
-  strn path = "src/data/loj/2549/war" + data;
-  std::ifstream fin(path + ".in"), fans(path + ".out");
+  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("loj", "2549", "war" + data);
+  std::ifstream fin(fn_in), fans(fn_ans);
 
   u32 t = 1;
   u32 testcase = 0;
