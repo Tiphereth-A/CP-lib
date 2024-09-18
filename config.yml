@@ -849,6 +849,9 @@ notebook:
     - period_fib: 模 Fibonacci 循环节
       code_ext: hpp
       test_ext: cpp
+    - norm_fact: 二平方和分解
+      code_ext: hpp
+      test_ext: cpp
     math:
     - div64: 64 位整数除法
       code_ext: hpp
