@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 template <class mint, class ccore>
 CEXP poly<mint, ccore> comp_fps(poly<mint, ccore> f, poly<mint, ccore> g) {
   using poly_t = poly<mint, ccore>;
-  auto& core = poly<mint, ccore>::conv_core;
+  auto& core = poly_t::conv_core;
   auto dfs = [&](auto&& dfs, poly_t b, u32 n, u32 h, u32 k) -> poly_t {
     if (!n) {
       poly_t _{b.data().begin(), b.data().begin() + k};
@@ -36,7 +36,7 @@ CEXP poly<mint, ccore> comp_fps(poly<mint, ccore> f, poly<mint, ccore> g) {
     flt_ (u32, i, 0, k) std::copy(aa.data().begin() + i * h * 2, aa.data().begin() + i * h * 2 + n + 1, a.data().begin() + i * h);
     return a;
   };
-  const u32 n = max(f.size(), g.size()), h = std::bit_ceil(n );
+  const u32 n = max(f.size(), g.size()), h = std::bit_ceil(n);
   poly_t b(h);
   auto _ = g[0];
   f.resize(n), g.resize(n), g[0] = 0;
@@ -44,6 +44,7 @@ CEXP poly<mint, ccore> comp_fps(poly<mint, ccore> f, poly<mint, ccore> g) {
   poly_t a = dfs(dfs, b, n - 1, h, 1).pre(n);
   return a.reverse(), a[0] += _, a;
 }
+
 }  // namespace tifa_libs::math
 
 #endif

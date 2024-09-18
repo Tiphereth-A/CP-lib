@@ -79,9 +79,6 @@ notebook:
     - josephus: Josephus 问题
       code_ext: hpp
       test_ext: cpp
-    - dll_loader: 在运行时加载库
-      code_ext: hpp
-      test_ext: cpp
     - garsia_wachs: Garsia--Wachs 算法
       code_ext: hpp
       test_ext: cpp
