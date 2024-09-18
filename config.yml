@@ -1210,6 +1210,9 @@ notebook:
     - ode_fps: 多项式 ODE
       code_ext: hpp
       test_ext: cpp
+    - comp_fps: 多项式复合
+      code_ext: hpp
+      test_ext: cpp
     - cbm2n_fps: 单项式基转 Newton 基
       code_ext: hpp
       test_ext: cpp
