@@ -18,11 +18,11 @@ struct lsieve_func {
 
   template <int state>
   CEXP lsieve_func& reset_lsieve_func(u32 n) {
-    if CEXP (state | ls_mpf) mpf = vecu(n), mpf[1] = 1;
-    if CEXP (state | ls_phi) phi = vecu(n), phi[1] = 1;
-    if CEXP (state | ls_mu) mu = veci(n), mu[1] = 1;
-    if CEXP (state | ls_sigma) pw = vecuu(n), sigma = vecuu(n), sigma[1] = 1;
-    if CEXP (state | ls_tau) pc = vecu(n, 1), tau = vecuu(n), tau[1] = 1;
+    if CEXP (state | ls_mpf) mpf = vecu(n), (n > 1) && (mpf[1] = 1);
+    if CEXP (state | ls_phi) phi = vecu(n), (n > 1) && (phi[1] = 1);
+    if CEXP (state | ls_mu) mu = veci(n), (n > 1) && (mu[1] = 1);
+    if CEXP (state | ls_sigma) pw = vecuu(n), sigma = vecuu(n), (n > 1) && (sigma[1] = 1);
+    if CEXP (state | ls_tau) pc = vecu(n, 1), tau = vecuu(n), (n > 1) && (tau[1] = 1);
 
     prime = lsieve(n, [&](u32 p) {
           if CEXP (state | ls_mpf) mpf[p] = p;
