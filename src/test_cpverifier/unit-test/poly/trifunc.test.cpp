@@ -20,7 +20,7 @@ tifa_libs::rand::Gen<std::uniform_int_distribution<u64>> gen;
 
 template <class poly>
 void test(u32 n) {
-  using mint = TPN poly::value_type;
+  using mint = TPN poly::val_t;
   poly p(n + 1);
   p[0] = 0;
   fle_ (u32, i, 1, n) p[i] = mint(gen());

@@ -20,13 +20,13 @@ class mint {
   CEXP mint(T v) : v_(D::mod_(v)) {}
   CEXP operator D() { return d(); }
 
-  using raw_type = Rt;
-  using sraw_type = to_sint_t<Rt>;
-  static CEXP raw_type mod() { return D::mod_(); }
-  static CEXP sraw_type smod() { return (sraw_type)D::mod_(); }
-  CEXP raw_type val() const { return d().val_(); }
-  CEXP sraw_type sval() const { return (sraw_type)d().val_(); }
-  CEXP raw_type &data() { return d().data_(); }
+  using raw_t = Rt;
+  using sraw_t = to_sint_t<Rt>;
+  static CEXP raw_t mod() { return D::mod_(); }
+  static CEXP sraw_t smod() { return (sraw_t)D::mod_(); }
+  CEXP raw_t val() const { return d().val_(); }
+  CEXP sraw_t sval() const { return (sraw_t)d().val_(); }
+  CEXP raw_t &data() { return d().data_(); }
   template <int_c T>
   CEXPE operator T() const { return (T)val(); }
   CEXP mint &operator+=(mint CR r) { return d().adde_(r.d()); }

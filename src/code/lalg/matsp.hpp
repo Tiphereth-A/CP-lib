@@ -14,7 +14,7 @@ class matsp {
   data_t d;
 
  public:
-  using value_type = T;
+  using val_t = T;
 
   CEXP matsp(u32 row, u32 col) : r(row), c(col), d(r) { assert(row > 0 && col > 0); }
 

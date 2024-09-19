@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_BASIS_R
 #define TIFALIBS_MATH_BASIS_R
 
-#include "../util/fp_comp.hpp"
+#include "../util/fp_func.hpp"
 
 namespace tifa_libs::math {
 

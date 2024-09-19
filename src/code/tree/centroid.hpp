@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 // @return centroid, at MOST 2
-CEXP vecu tree_centroid(cT_(tree) tr) {
+CEXP vecu tree_centroid(tree CR tr) {
   vecu sz(tr.g.size()), ans;
   auto dfs = [&](auto &&dfs, u32 now, u32 fa = -1_u32) -> void {
     u32 max_sz = 0;

@@ -6,11 +6,11 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0>
-requires requires(Is0 is0, TPN Mat::value_type t) {
+requires requires(Is0 is0, TPN Mat::val_t t) {
   { is0(t) } -> std::same_as<bool>;
 }
 CEXP auto pfaffian(Mat mat, Is0 is0) {
-  using T = TPN Mat::value_type;
+  using T = TPN Mat::val_t;
   const u32 n = mat.row();
   assert(n == mat.col() && !(n & 1));
   bool neg = 0;

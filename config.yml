@@ -34,13 +34,7 @@ notebook:
     - util: 共同依赖
       code_ext: hpp
       test_ext: cpp
-    - fp_comp: 浮点数比较
-      code_ext: hpp
-      test_ext: cpp
-    - fp_range_is_intersect: 判断浮点数区间是否相交
-      code_ext: hpp
-      test_ext: cpp
-    - fp_range_is_in_middle: 判断浮点数是否在浮点数区间中
+    - fp_func: 浮点数比较与常用函数
       code_ext: hpp
       test_ext: cpp
     - traits: traits
@@ -489,7 +483,7 @@ notebook:
     - alist: 邻接表
       code_ext: hpp
       test_ext: cpp
-    - alistw: 带边权邻接表
+    - alists: 静态邻接表
       code_ext: hpp
       test_ext: cpp
     - amat: 邻接矩阵
@@ -498,13 +492,7 @@ notebook:
     - eog: 链式前向星
       code_ext: hpp
       test_ext: cpp
-    - eogw: 带边权链式前向星
-      code_ext: hpp
-      test_ext: cpp
-    - alistr: 邻接表反图
-      code_ext: hpp
-      test_ext: cpp
-    - alistrw: 带权邻接表反图
+    - make_alistr: 建邻接表反图
       code_ext: hpp
       test_ext: cpp
     - dfs: 邻接表 DFS
@@ -614,9 +602,6 @@ notebook:
       test_ext: cpp
     tree:
     - tree: 树
-      code_ext: hpp
-      test_ext: cpp
-    - treew: 带权树
       code_ext: hpp
       test_ext: cpp
     - dfs_info: 常用树 DFS
@@ -1210,7 +1195,13 @@ notebook:
     - ode_fps: 多项式 ODE
       code_ext: hpp
       test_ext: cpp
+    - powem_fps: 多项式幂枚举
+      code_ext: hpp
+      test_ext: cpp
     - comp_fps: 多项式复合
+      code_ext: hpp
+      test_ext: cpp
+    - compinv_fps: 多项式复合逆
       code_ext: hpp
       test_ext: cpp
     - cbm2n_fps: 单项式基转 Newton 基

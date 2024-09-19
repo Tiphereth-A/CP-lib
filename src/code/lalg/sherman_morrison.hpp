@@ -5,8 +5,8 @@
 
 namespace tifa_libs::math {
 
-template <class Mat, class T = TPN Mat::value_type>
-requires std::same_as<T, TPN Mat::value_type>
+template <class Mat, class T = TPN Mat::val_t>
+requires std::same_as<T, TPN Mat::val_t>
 CEXP void sherman_morrison(Mat &inv_A, vec<T> CR u, vec<T> CR v) {
   const u32 n = inv_A.row();
   assert(n == inv_A.col());

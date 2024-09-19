@@ -7,9 +7,9 @@ namespace tifa_libs::graph {
 
 template <class T, bool with_deg = false>
 struct amat {
-  using weight_type = T;
-  using value_type = vvec<T>;
-  value_type g;
+  using w_t = T;
+  using val_t = vvec<T>;
+  val_t g;
   u32 cnt_arc;
   vecu deg_in, deg_out;
 

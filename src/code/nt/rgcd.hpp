@@ -15,7 +15,7 @@ class RGCD {
   vvecu g_;
 
  public:
-  CEXPE RGCD(u32 n) : fs(n), g_(isqrt(n) + 1, decltype(g_)::value_type(isqrt(n) + 1)) {
+  CEXPE RGCD(u32 n) : fs(n), g_(isqrt(n) + 1, vvecu::value_type(isqrt(n) + 1)) {
     fs[1] = {1, 1, 1};
     lsieve(n, [this](u32 p) { fs[p] = {1, 1, p}; }, [this](u32 i, u32 j) {
           F3 &now = fs[i * j];

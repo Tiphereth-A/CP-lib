@@ -2,6 +2,8 @@
 
 #include "../../code/graph/steiner_tree.hpp"
 
+#include "../../code/graph/alist.hpp"
+
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, k;

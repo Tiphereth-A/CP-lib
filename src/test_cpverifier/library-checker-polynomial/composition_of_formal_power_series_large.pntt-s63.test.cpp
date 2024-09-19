@@ -15,8 +15,8 @@ using poly = tifa_libs::math::polyntt<mint>;
 int main() {
   u32 n;
   tifa_libs::fin >> n;
-  poly g(n), f(n);
-  tifa_libs::fin >> g.data() >> f.data();
+  poly f(n), g(n);
+  tifa_libs::fin >> f.data() >> g.data();
   tifa_libs::fout << tifa_libs::math::comp_fps(f, g).data();
   return 0;
 }

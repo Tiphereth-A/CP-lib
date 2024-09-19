@@ -8,7 +8,7 @@ using data_t = f64;
 using Point2 = tifa_libs::geo::point<data_t>;
 using ConvexHull2 = tifa_libs::geo::cvh<data_t>;
 
-constexpr data_t PI = pi_v<data_t>;
+CEXP data_t PI = pi_v<data_t>;
 
 strn single_proceed(std::istream& fin) {
   std::stringstream ss;

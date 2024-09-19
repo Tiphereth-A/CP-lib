@@ -43,8 +43,8 @@ class mint_s63 : public mint<mint_s63<MOD>, u64> {
   CEXP mint_s63(T v) { this->v_ = mod_(v); }
 
  private:
-  using raw_t = TPN base::raw_type;
-  using sraw_t = TPN base::sraw_type;
+  using raw_t = TPN base::raw_t;
+  using sraw_t = TPN base::sraw_t;
   template <int_c T>
   static CEXP raw_t mod_(T v) { return redc_mul(norm(i64(v % (std::conditional_t<sint_c<T>, i64, u64>)mod_())), R2); }
   static CEXP raw_t mod_() { return MOD; }

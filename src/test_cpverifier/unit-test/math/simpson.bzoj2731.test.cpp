@@ -30,7 +30,7 @@ T f(T pos) {
   return (T)ans;
 }
 
-constexpr data_t EPS = 1e-10l;
+CEXP data_t EPS = 1e-10l;
 
 strn single_proceed(std::istream &fin) {
   std::stringstream ss;

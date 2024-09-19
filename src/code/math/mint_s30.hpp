@@ -32,8 +32,8 @@ class mint_s30 : public mint<mint_s30<MOD>, u32> {
   CEXP mint_s30(T v) { this->v_ = mod_(v); }
 
  private:
-  using raw_t = TPN base::raw_type;
-  using sraw_t = TPN base::sraw_type;
+  using raw_t = TPN base::raw_t;
+  using sraw_t = TPN base::sraw_t;
   template <sint_c T>
   static CEXP raw_t mod_(T v) { return reduce(u64(v % (i32)mod_() + (i32)mod_()) * R2); }
   template <uint_c T>

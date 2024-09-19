@@ -3,6 +3,7 @@
 
 #include "../../../code/graph/chordal.hpp"
 
+#include "../../../code/graph/alist.hpp"
 #include "../base.hpp"
 
 void test(strn data) {
@@ -11,7 +12,7 @@ void test(strn data) {
 
   u32 n, m;
   fin >> n >> m;
-  tifa_libs::graph::alist<> g(n);
+  tifa_libs::graph::alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     fin >> u >> v;
     --u;
@@ -20,7 +21,7 @@ void test(strn data) {
     g.add_arc(v, u);
   }
   for (auto& i : g.g) std::ranges::sort(i);
-  tifa_libs::graph::chordal<> chd(g);
+  tifa_libs::graph::chordal chd(g);
   u32 got = chd.chromatic_number();
   u32 want;
   fans >> want;

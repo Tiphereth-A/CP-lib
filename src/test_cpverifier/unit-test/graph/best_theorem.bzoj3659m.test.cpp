@@ -1,6 +1,7 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
+#include "../../../code/graph/alist.hpp"
 #include "../../../code/graph/euler_trail.hpp"
 #include "../../../code/graph/kirchhoff.hpp"
 #include "../../../code/lalg/ge_euclid_mat.hpp"

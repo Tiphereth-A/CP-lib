@@ -20,7 +20,7 @@ CEXP auto tree_diam(G& tree) {
 // diam
 template <class G>
 CEXP auto tree_diam_d(G CR tree) {
-  using T = TPN G::weight_type;
+  using T = TPN G::w_t;
   vec<T> mdis(tree.g.size());
   T d = 0;
   dfs(tree, tree.root, fn_0, fn_0, [&](u32 to, u32 u, cT_(T) w = 1) { d = max(d, mdis[u] + mdis[to] + w), mdis[u] = max(mdis[u], mdis[to] + w); }, fn_0);

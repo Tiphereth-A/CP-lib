@@ -21,7 +21,7 @@ int main() {
   std::cin >> n;
   auto g = [](cT_(poly) f, u32 n) { return ((f * f + 1) * mint(2).inv()).pre(n); };
   auto dg = [](cT_(poly) f, u32 n) { return f.pre(n); };
-  mint ans = tifa_libs::math::ode_fps<mint, TPN poly::ccore_type>(g, dg, 1, n + 1)[n] * 2;
+  mint ans = tifa_libs::math::ode_fps<mint, TPN poly::ccore_t>(g, dg, 1, n + 1)[n] * 2;
   fle_(u32, i, 2, n) ans *= i;
   std::cout << ans << '\n';
   return 0;

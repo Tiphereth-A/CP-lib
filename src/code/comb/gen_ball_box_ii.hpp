@@ -16,7 +16,7 @@ CEXP poly gen_ball_box_ii(u32 m, u32 n, spnuu inv) {
 }
 // f = \\prod_{i=1}^m 1/(1-x^i), deg(f) = n
 template <class poly>
-CEXP poly gen_ball_box_ii(u32 m, u32 n) { return gen_ball_box_ii<poly>(m, n, gen_inv(n + 1, poly::value_type::mod())); }
+CEXP poly gen_ball_box_ii(u32 m, u32 n) { return gen_ball_box_ii<poly>(m, n, gen_inv(n + 1, poly::val_t::mod())); }
 
 }  // namespace tifa_libs::math
 

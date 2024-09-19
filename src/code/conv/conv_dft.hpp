@@ -16,7 +16,7 @@ CEXP vec<DFT_data_t> conv_dft(DFT_t &dft, vec<DFT_data_t> l, vec<DFT_data_t> r, 
   return dft.dit(l), l.resize(ans_size), l;
 }
 template <class DFT_t, class mint, class T = u64>
-CEXP vec<mint> conv_dft_u64(DFT_t &dft, vec<T> CR l, vec<T> CR r, u32 ans_size = 0) {
+CEXP vec<mint> conv_dft_um(DFT_t &dft, vec<T> CR l, vec<T> CR r, u32 ans_size = 0) {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   vec<mint> l_, r_;
   for (l_.reserve(l.size()); auto CR i : l) l_.push_back(i);

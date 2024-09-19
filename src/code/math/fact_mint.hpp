@@ -7,8 +7,8 @@ namespace tifa_libs::math {
 
 template <class poly>
 CEXP auto fact_mint(u64 n) {
-  using mint = TPN poly::value_type;
-  using ccore = TPN poly::ccore_type;
+  using mint = TPN poly::val_t;
+  using ccore = TPN poly::ccore_t;
   if (n <= 1) return mint(1);
   if (n >= mint::mod()) return mint(0);
   u64 v = 1;

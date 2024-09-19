@@ -23,7 +23,7 @@ CEXP poly gen_stirling1_col(u32 n, u32 k, spnuu fact, spnuu inv, spnuu invfact) 
 // stirling1[i] = {i \\brack k}, i=0,1,...,n
 template <class poly, bool with_sgn = true>
 CEXP poly gen_stirling1_col(u32 n, u32 k) {
-  using mint = TPN poly::value_type;
+  using mint = TPN poly::val_t;
   auto fact = gen_fact(n + 1, mint::mod());
   return gen_stirling1_col<poly, with_sgn>(n, k, fact, gen_inv(n + 1, mint::mod()), gen_invseq(fact, mint::mod()));
 }

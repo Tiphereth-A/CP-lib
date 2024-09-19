@@ -2,21 +2,21 @@
 #define TIFALIBS_GRAPH_KOSARAJU
 
 #include "alist.hpp"
-#include "alistr.hpp"
+#include "make_alistr.hpp"
 
 namespace tifa_libs::graph {
 
 template <bool with_deg = false>
 class kosaraju {
-  const alist<with_deg>::value_type &g, &rev_g;
+  alist<with_deg> CR g, &rev_g;
 
  public:
   alist<with_deg> dag;
   vecu scc_id;
   vvecu belongs;
 
-  CEXPE kosaraju(cT_(alist<with_deg>) g) : kosaraju(g, alistr(g)) {}
-  CEXP kosaraju(cT_(alist<with_deg>) g, cT_(alist<with_deg>) rev_g) : g(g.g), rev_g(rev_g.g) { build(); }
+  CEXPE kosaraju(alist<with_deg> CR g) : kosaraju(g, make_alistr(g)) {}
+  CEXP kosaraju(alist<with_deg> CR g, alist<with_deg> CR rev_g) : g(g), rev_g(rev_g) { build(); }
 
  private:
   CEXP void build() {

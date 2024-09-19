@@ -1,10 +1,7 @@
 计算 \(f(x) \bmod m\), 其中 \(f(i) = v_i,~i = 0,1,\dots,|v|-1\)
 
 \[
-    \begin{aligned}
-        f(x) & =\sum_{i=0}^{n-1} v_i \prod_{j\ne i} \frac{x-x_j}{x_i-x_j}   =\sum_{i=0}^{n-1} v_i \prod_{j\ne i} \frac{x-j}{i-j} \\
-             & =\sum_{i=0}^{n-1} (-1)^{n-i-1} v_i \frac{(\prod_{j<i} x-j)(\prod_{j>i} x-j)}{i!(n-i-1)!}
-    \end{aligned}
+    f(x) =\sum_{i=0}^{n-1} v_i \prod_{j\ne i} \frac{x-x_j}{x_i-x_j}   =\sum_{i=0}^{n-1} v_i \prod_{j\ne i} \frac{x-j}{i-j} =\sum_{i=0}^{n-1} (-1)^{n-i-1} v_i \frac{(\prod_{j<i} x-j)(\prod_{j>i} x-j)}{i!(n-i-1)!}
 \]
 
 \paragraph{复杂度}

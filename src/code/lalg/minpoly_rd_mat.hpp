@@ -6,11 +6,11 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Gn, class Is0>
-requires requires(Is0 is0, TPN Mat::value_type t) {
+requires requires(Is0 is0, TPN Mat::val_t t) {
   { is0(t) } -> std::same_as<bool>;
 }
 auto minpoly(Mat CR mat, Gn &gen, Is0 &&is0) {
-  using T = TPN Mat::value_type;
+  using T = TPN Mat::val_t;
   const u32 n = mat.row();
   assert(n == mat.col());
   auto gen2 = [&gen](u32 n) {

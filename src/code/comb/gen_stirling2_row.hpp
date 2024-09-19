@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 // stirling2[i] = {n \\brace i}, i=0,1,...,n
 template <class poly>
 CEXP poly gen_stirling2_row(u32 n, spnuu pows, spnuu ifact) {
-  using mint = TPN poly::value_type;
+  using mint = TPN poly::val_t;
   if (!n) return poly{1};
   u64 mod = mint::mod();
   poly a(n + 1), b(n + 1);
@@ -20,7 +20,7 @@ CEXP poly gen_stirling2_row(u32 n, spnuu pows, spnuu ifact) {
 // stirling2[i] = {n \\brace i}, i=0,1,...,n
 template <class poly>
 CEXP poly gen_stirling2_row(u32 n) {
-  using mint = TPN poly::value_type;
+  using mint = TPN poly::val_t;
   return gen_stirling2_row<poly>(n, gen_pows(n + 1, n, mint::mod()), gen_ifact(n + 1, mint::mod()));
 }
 

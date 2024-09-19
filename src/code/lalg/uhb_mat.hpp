@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0>
-requires requires(Is0 is0, TPN Mat::value_type t) {
+requires requires(Is0 is0, TPN Mat::val_t t) {
   { is0(t) } -> std::same_as<bool>;
 }
 CEXP void uhb(Mat &mat, Is0 &&is0) {

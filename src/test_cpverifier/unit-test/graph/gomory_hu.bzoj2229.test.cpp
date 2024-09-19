@@ -3,7 +3,7 @@
 
 #include "../../../code/graph/gomory_hu.hpp"
 
-#include "../../../code/graph/alistw.hpp"
+#include "../../../code/graph/alist.hpp"
 #include "../../../code/graph/dfs.hpp"
 #include "../base.hpp"
 

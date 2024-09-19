@@ -14,9 +14,9 @@ CEXP vecuu conv_3ntt_u64(NTT<mint0> &ntt0, NTT<mint1> &ntt1, NTT<mint2> &ntt2, v
   const u64 r01 = mint1(m0).inv().val(), r02 = mint2(m0).inv().val(), r12 = mint2(m1).inv().val(), r02r12 = (u32)mul_mod_u(r02, r12, m2);
   const u64 w1 = m0 % mod, w2 = mul_mod_u(m0, m1, mod);
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
-  const vec<mint0> d0 = conv_dft_u64<NTT<mint0>, mint0>(ntt0, l, r, ans_size);
-  const vec<mint1> d1 = conv_dft_u64<NTT<mint1>, mint1>(ntt1, l, r, ans_size);
-  const vec<mint2> d2 = conv_dft_u64<NTT<mint2>, mint2>(ntt2, l, r, ans_size);
+  const vec<mint0> d0 = conv_dft_um<NTT<mint0>, mint0>(ntt0, l, r, ans_size);
+  const vec<mint1> d1 = conv_dft_um<NTT<mint1>, mint1>(ntt1, l, r, ans_size);
+  const vec<mint2> d2 = conv_dft_um<NTT<mint2>, mint2>(ntt2, l, r, ans_size);
   vecuu ret(ans_size);
   flt_ (u32, i, 0, ans_size) {
     const u64 n1 = d1[i].val(), n2 = d2[i].val(), a = d0[i].val();

@@ -1,16 +1,16 @@
 #ifndef TIFALIBS_GRAPH_FIND_CYCLE
 #define TIFALIBS_GRAPH_FIND_CYCLE
 
-#include "alist.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::graph {
 
-template <bool directed, bool with_deg>
-CEXP vecptu find_cycle(alist<with_deg> CR fg) {
-  auto&& g = fg.g;
-  flt_ (u32, i, 0, (u32)g.size())
-    for (u32 j : g[i])
-      if (i == j) return vecptu{{i, i}};
+template <bool directed, class G>
+requires(adjlist_c<G> && !adjlistw_c<G>)
+CEXP vecptu find_cycle(G CR g) {
+  flt_ (u32, i, 0, g.size())
+    for (auto j : g[i])
+      if (i == (u32)j) return vecptu{{i, i}};
   vecu pidx(g.size(), -1_u32), vis(g.size(), 0);
   vecptu cycle;
   bool fin = false;
@@ -28,7 +28,7 @@ CEXP vecptu find_cycle(alist<with_deg> CR fg) {
     }
     return pidx[now] = -1_u32;
   };
-  flt_ (u32, i, 0, (u32)g.size()) {
+  flt_ (u32, i, 0, g.size()) {
     if (vis[i]) continue;
     if (f(f, i, i, -1_u32); fin) return std::ranges::reverse(cycle), cycle;
   }

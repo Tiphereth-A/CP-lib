@@ -2,8 +2,8 @@
 
 #include "../../code/graph/clique_calc.hpp"
 
-constexpr u32 N = 128;
-constexpr u32 MOD = 998244353;
+CEXP u32 N = 128;
+CEXP u32 MOD = 998244353;
 using B = std::bitset<N>;
 
 int main() {

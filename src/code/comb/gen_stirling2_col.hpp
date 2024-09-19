@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class poly>
 CEXP poly gen_stirling2_col(u32 n, u32 k, spnuu fact, spnuu ifact) {
-  using mint = TPN poly::value_type;
+  using mint = TPN poly::val_t;
   if (k > n) return poly(n + 1);
   auto g = [&](auto&& g, poly& f, u32 n) -> void {
     if (n == 1) return;
@@ -30,7 +30,7 @@ CEXP poly gen_stirling2_col(u32 n, u32 k, spnuu fact, spnuu ifact) {
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class poly>
 CEXP poly gen_stirling2_col(u32 n, u32 k) {
-  using mint = TPN poly::value_type;
+  using mint = TPN poly::val_t;
   return gen_stirling2_col<poly>(n, k, gen_fact(n + 1, mint::mod()), gen_ifact(n + 1, mint::mod()));
 }
 

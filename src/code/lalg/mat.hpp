@@ -15,7 +15,7 @@ class matrix {
   vvec<T> d;
 
  public:
-  using value_type = T;
+  using val_t = T;
 
   CEXP matrix(u32 row, u32 col, cT_(T) v = T{}) : d(row, vec<T>(col, v)) { assert(row > 0 && col > 0); }
   CEXPE matrix(cT_(vvec<T>) data) : d(data) { assert(data.size() > 0 && data[0].size() > 0); }

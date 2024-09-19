@@ -1,0 +1,5 @@
+求 \(\left[x^n\right]f(x)^kg(x),~i=0,\dots,m\), 其中 \(m\leq n=\deg(f)-1\)
+
+考虑二维 GF \(\displaystyle\sum_{i}\sum_{j}x^iy^j\left[x^i\right]f(x)^jg(x)=\sum_{j}y^jf(x)^jg(x)=\frac{g(x)}{1-yf(x)}\). 所以答案为 \(\left[x^n\right]\dfrac{g(x)}{1-yf(x)}\). 接下来考虑求 \(\left[x^n\right]\dfrac{p(x,y)}{q(x,y)}\), 方法类似 \fullref{sec:bostan--mori-算法}
+
+\paragraph{复杂度} \(O(n\log^2 n)\)

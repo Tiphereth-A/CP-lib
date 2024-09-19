@@ -2,6 +2,7 @@
 
 #include "../../code/graph/kirchhoff.hpp"
 
+#include "../../code/graph/alist.hpp"
 #include "../../code/graph/euler_trail.hpp"
 #include "../../code/lalg/ge_euclid_mat.hpp"
 #include "../../code/math/mint_s30.hpp"
@@ -28,7 +29,7 @@ int main() {
     }
     vecb vis(n);
     auto f = [&](auto &&f, u32 x) -> void {
-      for (auto v : g.g[x])
+      for (auto v : g[x])
         if (!vis[v]) vis[v] = 1, f(f, v);
     };
     vis[0] = 1, f(f, 0);
@@ -38,7 +39,7 @@ int main() {
       if (vis[i]) ids[i] = cnt_ids++, inv_ids.push_back(i);
     tifa_libs::graph::amat<mint> mat(cnt_ids);
     flt_ (u32, id, 0, cnt_ids) {
-      auto &tos = g.g[inv_ids[id]];
+      auto &tos = g[inv_ids[id]];
       if (tos.empty()) continue;
       std::ranges::sort(tos);
       u32 cnt = 1, pre = tos[0];

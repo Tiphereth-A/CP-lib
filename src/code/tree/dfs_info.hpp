@@ -2,6 +2,7 @@
 #define TIFALIBS_TREE_DFS_INFO
 
 #include "../graph/dfs.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::graph {
 
@@ -15,13 +16,13 @@ enum tree_dfs_info_mask { td_dfn = 1,
                           td_go = 128,
                           td_dis = 256 };
 
-template <class G>
+template <tree_c G>
 struct tree_dfs_info {
-  using weight_type = TPN G::weight_type;
+  using w_t = std::conditional_t<std::is_void_v<TPN G::w_t>, u32, TPN G::w_t>;
 
   vecu dfn, sz, fa, dep, maxson, maxdfn, euler;
   vvecu go;
-  vec<weight_type> dis;
+  vec<w_t> dis;
 
   template <int state>
   CEXP tree_dfs_info& reset_dfs_info(G CR tree) {
@@ -34,7 +35,7 @@ struct tree_dfs_info {
     if CEXP (state & td_maxdfn) maxdfn = vecu(n);
     if CEXP (state & td_euler) euler = vecu(n);
     if CEXP (state & td_go) go = vvecu(n, vecu(21u, n));
-    if CEXP (state & td_dis) dis = vec<weight_type>(n);
+    if CEXP (state & td_dis) dis = vec<w_t>(n);
     u32 cnt = 0;
     dfs(tree, tree.root, [&](u32 u, u32 f) {
           if CEXP (state & td_dfn) dfn[u] = cnt;
@@ -45,9 +46,9 @@ struct tree_dfs_info {
           if CEXP (state & td_go) {
             go[u][0] = f;
             for (u32 i = 1; i <= 20u && go[u][i - 1] < n; i++) go[u][i] = go[go[u][i - 1]][i - 1];
-          } }, [&](u32 to, u32 u, cT_(weight_type) w = 1) {
+          } }, [&](u32 to, u32 u, cT_(w_t) w = 1) {
           if CEXP (state & td_dep) dep[to] = dep[u] + 1;
-          if CEXP (state & td_dis) dis[to] = dis[u] + w; }, [&](u32 to, u32 u, cT_(weight_type) = 1) {
+          if CEXP (state & td_dis) dis[to] = dis[u] + w; }, [&](u32 to, u32 u, cT_(w_t) = 1) {
           if CEXP (state & (td_sz | td_maxson)) sz[u] += sz[to];
           if CEXP (state & td_maxson)
             if (maxson[u] == n || sz[to] > sz[maxson[u]]) maxson[u] = to; }, [&](u32 u, u32) {

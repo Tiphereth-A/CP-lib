@@ -34,8 +34,8 @@ class mint_d31 : public mint<mint_d31<ID>, u32> {
   CEXP mint_d31(T v) { this->v_ = mod_(v); }
 
  private:
-  using raw_t = TPN base::raw_type;
-  using sraw_t = TPN base::sraw_type;
+  using raw_t = TPN base::raw_t;
+  using sraw_t = TPN base::sraw_t;
   template <int_c T>
   static CEXP raw_t mod_(T v) { return tsf(norm(i32(v % (std::conditional_t<sint_c<T>, i32, u32>)mod_()))); }
   static CEXP raw_t mod_() { return MOD; }

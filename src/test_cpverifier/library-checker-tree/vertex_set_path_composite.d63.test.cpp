@@ -13,16 +13,16 @@ using Ty = mint;
 using T = std::pair<Ty, Ty>;
 using F = T;
 
-constexpr auto op_ab(T a, T b) {  // a(b(x))
+CEXP auto op_ab(T a, T b) {  // a(b(x))
   return T{a.first * b.first, a.first * b.second + a.second};
 }
-constexpr auto op_ba(T a, T b) {  // b(a(x))
+CEXP auto op_ba(T a, T b) {  // b(a(x))
   return op_ab(b, a);
 }
-constexpr auto e() { return T{1, 0}; }
-constexpr auto id() { return F{1, 0}; }
-constexpr auto mapping(T, F a) { return T{a}; }
-constexpr auto composition(F, F) { return F{1, 0}; }
+CEXP auto e() { return T{1, 0}; }
+CEXP auto id() { return F{1, 0}; }
+CEXP auto mapping(T, F a) { return T{a}; }
+CEXP auto composition(F, F) { return F{1, 0}; }
 
 int main() {
   mint::set_mod(MOD);

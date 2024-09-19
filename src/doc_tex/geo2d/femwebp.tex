@@ -2,34 +2,18 @@
 
 \paragraph{Weiszfeld 算法}
 
-给定点集 \(X:=\{x_1,\dots,x_m\}\), 设结果为 \(y\),
+给定点集 \(X:=\{x_1,\dots,x_m\}\), 设结果为 \(y\), \(\displaystyle\tilde{T}(y)=\left(\sum_{x_i\neq y} \frac{1}{\lVert y-x_i\rVert}\right)^{-1}\sum_{x_i\neq y} \frac{x_i}{\lVert y-x_i\rVert}\).
 
-\[
-    \tilde{T}(y)=\left(\sum_{x_i\neq y} \frac{1}{\lVert y-x_i\rVert}\right)^{-1}\sum_{x_i\neq y} \frac{x_i}{\lVert y-x_i\rVert}.
-\]
-
-则 Weiszfeld 算法迭代格式为
-
-\[
-    y\gets T_0(y)=\begin{cases}
-        \tilde{T}(y), & \text{if } y\notin\{x_1,\dots,x_m\}, \\
-        x_i,          & \text{if } y=x_i.
-    \end{cases}
-\]
+则 Weiszfeld 算法迭代格式为 \(\displaystyle y\gets T_0(y)=\begin{cases}
+    \tilde{T}(y), & \text{if } y\notin\{x_1,\dots,x_m\}, \\
+    x_i,          & \text{if } y=x_i.
+\end{cases}\)
 
 \paragraph{改进的 Weiszfeld 算法}
 
-令 \(\eta(y)=[y\in\{x_1,\dots,x_m\}]\),
+令 \(\eta(y)=[y\in\{x_1,\dots,x_m\}]\), \(\displaystyle r(y)=\left\lVert\sum_{x_i\neq y} \frac{y-x_i}{\lVert y-x_i\rVert}\right\rVert\).
 
-\[
-    r(y)=\left\lVert\sum_{x_i\neq y} \frac{y-x_i}{\lVert y-x_i\rVert}\right\rVert.
-\]
-
-则改进的 Weiszfeld 算法迭代格式为
-
-\[
-    y\gets T(y)=\left(1-\frac{\eta(y)}{r(y)}\right)\tilde{T}(y)+\min\left\{1,\frac{\eta(y)}{r(y)}\right\}y
-\]
+则改进的 Weiszfeld 算法迭代格式为 \(\displaystyle y\gets T(y)=\left(1-\frac{\eta(y)}{r(y)}\right)\tilde{T}(y)+\min\left\{1,\frac{\eta(y)}{r(y)}\right\}y\).
 
 当 \(y\notin\{x_1,\dots,x_m\}\) 时有 \(T(y)=T_0(y)=\tilde{T}(y)\)
 

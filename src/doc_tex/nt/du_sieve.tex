@@ -1,13 +1,5 @@
 求数论函数 \(f\) 的前缀和
 
-对任意数论函数 \(f\), \(g\), 设 \(h=f*g\), 其中 \(*\) 代表 Dirichlet 卷积, 则
+对任意数论函数 \(f\), \(g\), 设 \(h=f*g\), 其中 \(*\) 代表 Dirichlet 卷积, 则 \(\displaystyle\sum_{n=1}^x f(n)=\frac{1}{g(1)} \left(\sum_{n=1}^x h(n)-\sum_{d=2}^xg(d)\sum_{n=1}^{\lfloor x/d\rfloor}f(n)\right)\)
 
-\[
-    \sum_{n=1}^x f(n)=\frac{1}{g(1)} \left(\sum_{n=1}^x h(n)-\sum_{d=2}^xg(d)\sum_{n=1}^{\lfloor x/d\rfloor}f(n)\right)
-\]
-
-\paragraph{复杂度}~\\
-
-若 \(\sum_{n=1}^x g(n)\) 和 \(\sum_{n=1}^x h(n)\) 均可在 \(O(1)\) 中求出, 则时间复杂度为 \(O\left(n^{3/4}\right)\)
-
-若还能在 \(O(n)\) 的时间中求出 \(\sum_{i=1}^k f(i),~k=1,2,\dots,O\left(n^{2/3}\right)\), 则时间复杂度为 \(O\left(n^{2/3}\right)\)
+\paragraph{复杂度} 若 \(\sum_{n=1}^x g(n)\) 和 \(\sum_{n=1}^x h(n)\) 均可在 \(O(1)\) 中求出, 则时间复杂度为 \(O\left(n^{3/4}\right)\). 若还能在 \(O(n)\) 的时间中求出 \(\sum_{i=1}^k f(i)\), \(k=1,\dots,O\left(n^{2/3}\right)\), 则时间复杂度为 \(O\left(n^{2/3}\right)\)

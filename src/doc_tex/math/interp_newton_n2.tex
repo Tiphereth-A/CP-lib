@@ -1,8 +1,4 @@
-对给定的点 \((x_0,y_0),(x_1,y_1),\dots,(x_{n-1},y_{n-1})\), Newton 插值得到的结果为
-
-\[
-    f(x)=f[x_0]+\sum_{i=1}^{n-1}f[x_0,x_1,\dots,x_i]\prod_{k=0}^{i-1}(x-x_i)
-\]
+对给定的点 \((x_0,y_0),(x_1,y_1),\dots,(x_{n-1},y_{n-1})\), Newton 插值得到的结果为 \(\displaystyle f(x)=f[x_0]+\sum_{i=1}^{n-1}f[x_0,x_1,\dots,x_i]\prod_{k=0}^{i-1}(x-x_i)\)
 
 其中 \(f[x_0,x_1,\dots,x_i]\) 为有限差分, 定义如下:
 

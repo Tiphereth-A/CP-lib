@@ -18,8 +18,8 @@ class mint_2e61n1 : public mint<mint_2e61n1, u64> {
   CEXP mint_2e61n1(T v) { this->v_ = mod_(v); }
 
  private:
-  using raw_t = TPN base::raw_type;
-  using sraw_t = TPN base::sraw_type;
+  using raw_t = TPN base::raw_t;
+  using sraw_t = TPN base::sraw_t;
   // clang-format off
   template <uint_c T>
   static CEXP raw_t mod_(T x) { return x < MOD ? (raw_t)x : (x = T(((raw_t)x & MOD) + ((raw_t)x >> 61))) >= MOD ? x - MOD : (raw_t)x; }

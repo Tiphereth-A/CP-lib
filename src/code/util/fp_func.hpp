@@ -1,5 +1,5 @@
-#ifndef TIFALIBS_UTIL_FP_COMP
-#define TIFALIBS_UTIL_FP_COMP
+#ifndef TIFALIBS_UTIL_FP_FUNC
+#define TIFALIBS_UTIL_FP_FUNC
 
 #include "traits.hpp"
 
@@ -30,6 +30,18 @@ template <class FP>
 CEXP bool is_eq(FP l, FP r) { return !comp(l, r); }
 template <class FP>
 CEXP bool is_gt(FP l, FP r) { return comp(l, r) > 0; }
+
+//! containing endpoints
+template <arithm_c FP>
+CEXP bool is_in_middle(FP l, FP mid, FP r) { return is_eq(l, mid) || is_eq(r, mid) || ((l < mid) ^ (r < mid)); }
+
+//! containing endpoints
+template <class FP>
+CEXP bool is_intersect(FP l1, FP r1, FP l2, FP r2) {
+  if (l1 > r1) swap(l1, r1);
+  if (l2 > r2) swap(l2, r2);
+  return !(is_lt(r1, l2) || is_lt(r2, l1));
+}
 
 }  // namespace tifa_libs
 

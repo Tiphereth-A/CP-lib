@@ -2,7 +2,7 @@
 #define TIFALIBS_GRAPH_KRUSKAL
 
 #include "../ds/dsu_basic.hpp"
-#include "../tree/treew.hpp"
+#include "../tree/tree.hpp"
 
 namespace tifa_libs::graph {
 

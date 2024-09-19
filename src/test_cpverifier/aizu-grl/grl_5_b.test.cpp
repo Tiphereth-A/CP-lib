@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_B"
 
 #include "../../code/tree/height.hpp"
-#include "../../code/tree/treew.hpp"
+#include "../../code/tree/tree.hpp"
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

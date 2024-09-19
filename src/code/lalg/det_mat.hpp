@@ -10,7 +10,7 @@ requires requires(Ge ge, Mat A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
 CEXP auto det(Mat mat, Ge&& ge) {
-  using T = TPN Mat::value_type;
+  using T = TPN Mat::val_t;
   const u32 n = mat.row();
   assert(n == mat.col());
   const i64 rk_ = ge(mat, false);

@@ -5,7 +5,7 @@
 
 namespace tifa_libs {
 
-// enumerate x : \varnothing\ne x \subset b
+// enumerate x : $\varnothing\ne x \subset b$
 template <u32 = 0>
 class enum_subset {
   static inline u32 b_;

@@ -2,7 +2,7 @@
 
 #include "../../code/graph/cliques.hpp"
 
-constexpr u32 N = 128;
+CEXP u32 N = 128;
 using B = std::bitset<N>;
 
 int main() {

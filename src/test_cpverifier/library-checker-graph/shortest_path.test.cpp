@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 
+#include "../../code/graph/alist.hpp"
 #include "../../code/graph/dijkstra.hpp"
 #include "../../code/io/fastio.hpp"
 

@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/cycle_detection_undirected"
 
 #include "../../code/edh/hash_splitmix64.hpp"
+#include "../../code/graph/alist.hpp"
 #include "../../code/graph/find_cycle.hpp"
 
 int main() {

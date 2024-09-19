@@ -5,7 +5,7 @@
 
 namespace tifa_libs {
 
-// enumerate x : x \in {n} and x \superset b
+// enumerate x : $b \subset x \subset n$
 template <u32 = 0>
 class enum_supset {
   static inline u32 b_, n_;

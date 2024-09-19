@@ -1,40 +1,41 @@
 #ifndef TIFALIBS_GRAPH_RINGCNT4
 #define TIFALIBS_GRAPH_RINGCNT4
 
-#include "alist.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::graph {
 namespace ringcnt4_impl_ {
-template <bool with_deg>
-CEXP u64 run(alist<with_deg> CR dg, alist<with_deg> CR dgv) {
-  const u32 n = (u32)dg.g.size();
+template <class G>
+requires(adjlist_c<G> && !adjlistw_c<G>)
+CEXP u64 run(G CR dg, G CR dgv) {
+  const u32 n = dg.size();
   u64 ans = 0;
   vecuu cnt1(n), cnt2(n);
   flt_ (u32, u, 0, n) {
-    for (u32 v : dg.g[u])
-      for (u32 w : dg.g[v]) ++cnt1[w];
-    for (u32 v : dgv.g[u])
-      for (u32 w : dg.g[v])
-        if (w != u) ++cnt2[w];
-    for (u32 v : dg.g[u])
-      for (u32 w : dg.g[v]) ans += cnt1[w] * (cnt1[w] - 1) + cnt1[w] * cnt2[w] * 2, cnt1[w] = 0;
-    for (u32 v : dgv.g[u])
-      for (u32 w : dg.g[v])
-        if (w != u) ans += cnt2[w] * (cnt2[w] - 1) / 2, cnt2[w] = 0;
+    for (auto v : dg[u])
+      for (auto w : dg[(u32)v]) ++cnt1[(u32)w];
+    for (auto v : dgv[u])
+      for (auto w : dg[(u32)v])
+        if ((u32)w != u) ++cnt2[(u32)w];
+    for (auto v : dg[u])
+      for (auto w : dg[(u32)v]) ans += cnt1[(u32)w] * (cnt1[(u32)w] - 1) + cnt1[(u32)w] * cnt2[(u32)w] * 2, cnt1[(u32)w] = 0;
+    for (auto v : dgv[u])
+      for (auto w : dg[(u32)v])
+        if ((u32)w != u) ans += cnt2[(u32)w] * (cnt2[(u32)w] - 1) / 2, cnt2[(u32)w] = 0;
   }
   return ans / 2;
 }
 }  // namespace ringcnt4_impl_
 
 //! should be simple undirected graph
-template <bool with_deg>
-CEXP u64 ringcnt4(alist<with_deg> CR fg) {
-  auto&& g = fg.g;
-  const u32 n = (u32)g.size();
-  alist dg(n), dgv(n);
+template <class G>
+requires(adjlist_c<G> && !adjlistw_c<G>)
+CEXP u64 ringcnt4(G CR g) {
+  const u32 n = g.size();
+  G dg(n), dgv(n);
   flt_ (u32, u, 0, n)
-    for (u32 v : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[v].size(), v) ? dg : dgv).add_arc(u, v);
-  return ringcnt4_impl_::run(dg, dgv);
+    for (auto v : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[(u32)v].size(), (u32)v) ? dg : dgv).add_arc(u, (u32)v);
+  return dg.build(), dgv.build(), ringcnt4_impl_::run(dg, dgv);
 }
 
 }  // namespace tifa_libs::graph

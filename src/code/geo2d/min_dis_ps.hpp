@@ -28,7 +28,7 @@ CEXP pttu min_dis_Ps(vec<point<FP>> CR vp) {
     if (is_lt(_, d)) d = _, a = x.second, b = y.second;
   };
   std::multiset<T, decltype([](T CR l, T CR r) { return is_lt(l.first.y, r.first.y); })> st;
-  std::vector<typename decltype(st)::const_iterator> qt(n);
+  std::vector<TPN decltype(st)::const_iterator> qt(n);
   for (u32 i = 0, r = 0; i < n; ++i) {
     auto& p = vpi[i];
     while (r < i && !is_lt(dis1(vpi[r].first.x - p.first.x), d)) st.erase(qt[r++]);

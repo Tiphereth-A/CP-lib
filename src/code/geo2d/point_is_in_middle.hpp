@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_GEO2D_POINT_IS_IN_MIDDLE
 #define TIFALIBS_GEO2D_POINT_IS_IN_MIDDLE
 
-#include "../util/fp_range_is_in_middle.hpp"
 #include "point.hpp"
 
 namespace tifa_libs::geo {

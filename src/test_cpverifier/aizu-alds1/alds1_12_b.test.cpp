@@ -1,5 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_12_B"
 
+#include "../../code/graph/alist.hpp"
 #include "../../code/graph/dijkstra.hpp"
 
 int main() {

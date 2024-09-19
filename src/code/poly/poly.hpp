@@ -19,15 +19,15 @@ class poly {
   vec<mint> d;
 
  public:
-  using value_type = mint;
-  using data_type = vec<value_type>;
-  using ccore_type = ccore;
-  static inline ccore_type conv_core;
+  using val_t = mint;
+  using data_t = vec<val_t>;
+  using ccore_t = ccore;
+  static inline ccore_t conv_core;
 
-  CEXPE poly(u32 sz = 1, cT_(value_type) val = value_type{}) : d(sz, val) {}
-  CEXP poly(TPN data_type::const_iterator begin, TPN data_type::const_iterator end) : d(begin, end) {}
-  CEXP poly(itl<value_type> v) : d(v) {}
-  CEXP poly(spn<value_type> v) : d(v.begin(), v.end()) {}
+  CEXPE poly(u32 sz = 1, cT_(val_t) val = val_t{}) : d(sz, val) {}
+  CEXP poly(TPN data_t::const_iterator begin, TPN data_t::const_iterator end) : d(begin, end) {}
+  CEXP poly(itl<val_t> v) : d(v) {}
+  CEXP poly(spn<val_t> v) : d(v.begin(), v.end()) {}
 
   friend CEXP std::istream &operator>>(std::istream &is, poly &poly) {
     for (auto &val : poly.d) is >> val;
@@ -44,12 +44,12 @@ class poly {
       if (i != 0) return 0;
     return 1;
   }
-  CEXP data_type &data() { return d; }
-  CEXP data_type CR data() const { return d; }
-  CEXP value_type &operator[](u32 x) { return d[x]; }
-  CEXP value_type CR operator[](u32 x) const { return d[x]; }
-  CEXP value_type operator()(value_type x) const {
-    value_type ans = 0;
+  CEXP data_t &data() { return d; }
+  CEXP data_t CR data() const { return d; }
+  CEXP val_t &operator[](u32 x) { return d[x]; }
+  CEXP val_t CR operator[](u32 x) const { return d[x]; }
+  CEXP val_t operator()(val_t x) const {
+    val_t ans = 0;
     for (u32 i = size() - 1; ~i; --i) ans = ans * x + d[i];
     return ans;
   }
@@ -68,7 +68,7 @@ class poly {
   }
   CEXP void strip() {
     auto it = std::find_if(d.rbegin(), d.rend(), [](cT_(mint) x) { return x.val() != 0; });
-    if (d.resize(usz(d.rend() - it)); d.empty()) d.push_back(value_type(0));
+    if (d.resize(usz(d.rend() - it)); d.empty()) d.push_back(val_t(0));
   }
   friend poly stripped(poly p) { return p.strip(), p; }
   CEXP void reverse(u32 n = 0) { std::reverse(d.begin(), d.begin() + (n ? n : size())); }
@@ -77,15 +77,15 @@ class poly {
     poly ret = *this;
     return ret.apply([](u32, auto &v) { v = -v; }), ret;
   }
-  friend CEXP poly operator+(poly p, value_type c) { return p[0] += c, p; }
-  friend CEXP poly operator+(value_type c, poly CR p) { return p + c; }
-  friend CEXP poly operator-(poly p, value_type c) { return p[0] -= c, p; }
-  friend CEXP poly operator-(value_type c, poly CR p) { return p - c; }
-  CEXP poly &operator*=(value_type c) {
+  friend CEXP poly operator+(poly p, val_t c) { return p[0] += c, p; }
+  friend CEXP poly operator+(val_t c, poly CR p) { return p + c; }
+  friend CEXP poly operator-(poly p, val_t c) { return p[0] -= c, p; }
+  friend CEXP poly operator-(val_t c, poly CR p) { return p - c; }
+  CEXP poly &operator*=(val_t c) {
     return apply([&c](u32, auto &v) { v *= c; }), *this;
   }
-  friend CEXP poly operator*(poly p, value_type c) { return p *= c; }
-  friend CEXP poly operator*(value_type c, poly p) { return p *= c; }
+  friend CEXP poly operator*(poly p, val_t c) { return p *= c; }
+  friend CEXP poly operator*(val_t c, poly p) { return p *= c; }
   CEXP poly &operator+=(poly CR r) {
     if (!r.size()) return *this;
     resize(max(size(), r.size())), apply_range(0, r.size(), [&r](u32 i, auto &v) { v += r[i]; });

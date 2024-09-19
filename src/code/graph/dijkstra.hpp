@@ -3,15 +3,13 @@
 
 #include "../ds/radix_heap.hpp"
 #include "../util/traits.hpp"
-#include "alistw.hpp"
 
 namespace tifa_libs::graph {
 
 // relax(now, to)
-template <class T, class F, bool with_deg>
+template <adjlistw_c G, class F, class T = TPN G::w_t>
 requires(!sint_c<T>) && requires(F relex, u32 now, u32 to) { relex(now, to); }
-CEXP vec<T> dijkstra(alistw<T, with_deg> CR fg, u32 s, F &&relax, T INF = std::numeric_limits<T>::max() / 2 - 1) {
-  auto &&g = fg.g;
+CEXP vec<T> dijkstra(G CR g, u32 s, F &&relax, T INF = std::numeric_limits<T>::max() / 2 - 1) {
   vec<T> dis(g.size(), INF);
   vecb vis(g.size());
   ds::rheap<T, u32> q;

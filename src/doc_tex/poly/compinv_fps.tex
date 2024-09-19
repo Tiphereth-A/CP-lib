@@ -1,0 +1,22 @@
+如果 \(f(x)\) 与 \(g(x)\) 互为复合逆, 则有
+
+\[
+    \begin{aligned}
+        \left[x^n\right]f(x)=&\frac{1}{n}\left[x^{n-1}\right]\left(\frac{x}{g(x)}\right)^n \\
+        \left[x^n\right]h(f(x))=&\frac{1}{n}\left[x^{n-1}\right]h'(x)\left(\frac{x}{g(x)}\right)^n
+    \end{aligned}
+\]
+
+可得
+
+\[
+    f(x)\equiv x\left(\sum_{k=1}^nx^{n-k}\frac{n}{k}\left[x^n\right]g^k(x)\right)^{-1/n}\equiv \frac{x}{g_1}\left(\sum_{k=1}^n\frac{n}{k}\left(\frac{x}{g_1}\right)^{n-k}\left[y^n\right]\left(\frac{g(y)}{g_1}\right)^k\right)^{-1/n}\pmod{x^{n + 1}} 
+\]
+
+其中 \(g_1=\left[x^1\right]g(x)\)
+
+求 \(\left[x^n\right]\left(\dfrac{g(x)}{g_1}\right)^k\) 的方法参考 \fullref{sec:多项式幂枚举}
+
+\paragraph{复杂度} \(O(n\log^2 n)\)
+
+\paragraph{参考文献} \cite{kinoshita2024power} \cite{antileafstandard}

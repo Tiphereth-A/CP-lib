@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 template <class Mat>
 CEXP auto hafnian(Mat CR mat) {
-  using T = TPN Mat::value_type;
+  using T = TPN Mat::val_t;
   const u32 n = mat.row(), h = n / 2 + 1;
   assert(n == mat.col() && !(n & 1));
   auto add = [&h](vec<T> &x, spn<T> a, spn<T> b) {

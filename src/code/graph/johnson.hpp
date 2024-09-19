@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_GRAPH_JOHNSON
 #define TIFALIBS_GRAPH_JOHNSON
 
+#include "alist.hpp"
 #include "bm.hpp"
 #include "dijkstra.hpp"
 
@@ -11,16 +12,16 @@ template <class T>
 CEXP std::optional<vvec<T>> johnson(u32 n, vec<edge_t<T>> CR arcs, T const INF = std::numeric_limits<T>::max() / 2 - 1) {
   using U = to_uint_t<T>;
   vvec<T> dis(n);
-  alistw<T, false> fg(n);
-  for (auto [w, u, v] : arcs) fg.add_arc(u, v, w);
+  alistw<T> g(n);
+  for (auto [w, u, v] : arcs) g.add_arc(u, v, w);
   if CEXP (!is_sint_v<T>) {
-    flt_ (u32, i, 0, n) dis[i] = dijkstra(fg, i, fn_0, INF);
+    flt_ (u32, i, 0, n) dis[i] = dijkstra(g, i, fn_0, INF);
   } else {
-    fg.g.push_back({});
-    flt_ (u32, i, 0, n) fg.add_arc(n, i, 0);
-    auto h = bellman_ford(fg, n, fn_0, INF);
+    g.g.push_back({});
+    flt_ (u32, i, 0, n) g.add_arc(n, i, 0);
+    auto h = bellman_ford(g, n, fn_0, INF);
     if (!h) return {};
-    alistw<U, false> fg2(n);
+    alistw<U> fg2(n);
     for (auto [w, u, v] : arcs) fg2.add_arc(u, v, U(w - h.value()[v] + h.value()[u]));
     flt_ (u32, i, 0, n) {
       auto dis2 = dijkstra(fg2, i, fn_0, (U)INF);

@@ -10,7 +10,7 @@ using Point2 = tifa_libs::geo::point<data_t>;
 using Line2 = tifa_libs::geo::line<data_t>;
 using ConvexHull2 = tifa_libs::geo::cvh<data_t>;
 
-constexpr data_t PI = std::numbers::pi_v<data_t>;
+CEXP data_t PI = std::numbers::pi_v<data_t>;
 
 strn single_proceed(std::istream &fin) {
   std::stringstream ss;

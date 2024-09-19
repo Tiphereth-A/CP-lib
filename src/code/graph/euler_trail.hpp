@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_EULER_TRAIL
 #define TIFALIBS_GRAPH_EULER_TRAIL
 
-#include "alist.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::graph {
 namespace euler_trail_impl_ {
@@ -32,7 +32,7 @@ CEXP std::optional<vecptu> run_(u32 n, u32 m, cT_(vvecptu) g, u32 s) {
 // @return vector of {v, eid} of Eulerian trail if found
 // edges[eid[i]] = v[i-1] -> v[i], eid[0] = -1
 template <bool directed, bool cycle = false>
-CEXP std::optional<vecptu> euler_trail(u32 n, cT_(vecptu) edges) {
+CEXP std::optional<vecptu> euler_trail(u32 n, vecptu CR edges) {
   vvecptu g(n);
   vecu deg_in(0);
   if CEXP (directed) deg_in.resize(n);
@@ -52,19 +52,15 @@ CEXP std::optional<vecptu> euler_trail(u32 n, cT_(vecptu) edges) {
     } else if (g[i].size() & 1) s = i;
   return euler_trail_impl_::run_<cycle>(n, (u32)edges.size(), g, s);
 }
-template <class G>
+template <adjlist_c G>
 CEXP bool is_eulerian(G CR g) {
-  const u32 n = (u32)g.g.size();
+  const u32 n = g.size();
   assert(n == g.deg_in.size());
   vecb vis(n);
   u32 cnt = 0;
   auto f = [&](auto &&f, u32 x) -> void {
-    for (auto v : g.g[x]) {
-      ++cnt;
-      if CEXP (is_alist<G>) {
-        if (!vis[v]) vis[v] = 1, f(f, v);
-      } else if (!vis[v.first]) vis[v.first] = 1, f(f, v.first);
-    }
+    for (auto v : g[x])
+      if (++cnt; !vis[(u32)v]) vis[(u32)v] = 1, f(f, (u32)v);
   };
   vis[0] = 1, f(f, 0);
   if (g.cnt_arc != cnt) return 0;

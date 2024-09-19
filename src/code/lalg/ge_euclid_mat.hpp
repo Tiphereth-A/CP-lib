@@ -6,12 +6,12 @@
 namespace tifa_libs::math {
 
 template <class Mat, class Is0, class Div>
-requires requires(Is0 is0, Div div, TPN Mat::value_type t) {
+requires requires(Is0 is0, Div div, TPN Mat::val_t t) {
   { is0(t) } -> std::same_as<bool>;
-  { div(t, t) } -> std::same_as<TPN Mat::value_type>;
+  { div(t, t) } -> std::same_as<TPN Mat::val_t>;
 }
 CEXP i32 ge_euclid(Mat& mat, Is0&& is0, Div&& div, bool clear_u = true) {
-  using T = TPN Mat::value_type;
+  using T = TPN Mat::val_t;
   const u32 r_ = mat.row(), c_ = mat.col(), rk_max = min(r_, c_);
   u32 rk = 0;
   bool neg = false;

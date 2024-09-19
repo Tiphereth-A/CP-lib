@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/chromatic_number"
 
+#include "../../code/graph/alist.hpp"
 #include "../../code/graph/chrom_num.hpp"
 
 int main() {

@@ -98,7 +98,7 @@ inline const auto fn_is0 = [](auto x) { return x == 0; };
 namespace tifa_libs {
 using std::min, std::max, std::swap;
 template <class T>
-constexpr T abs(T x) { return x < 0 ? -x : x; }
+CEXP T abs(T x) { return x < 0 ? -x : x; }
 }  // namespace tifa_libs
 
 #endif

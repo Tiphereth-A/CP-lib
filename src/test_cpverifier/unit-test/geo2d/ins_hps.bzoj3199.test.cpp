@@ -4,6 +4,7 @@
 #include "../../../code/geo2d/ins_hps.hpp"
 
 #include "../../../code/geo2d/proj.hpp"
+#include "../../../code/graph/alist.hpp"
 #include "../../../code/graph/dijkstra.hpp"
 #include "../base.hpp"
 

@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 template <class T = u32>
 class hlpp {
-  static constexpr u32 inf = 0x3f3f3f3f;
+  static CEXP u32 inf = 0x3f3f3f3f;
   struct TIFA {
     u32 to;
     T w, inv;

@@ -1,24 +1,29 @@
 #ifndef TIFALIBS_GRAPH_PATH
 #define TIFALIBS_GRAPH_PATH
 
-#include "alist.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::graph {
 
-template <class G>
+template <adjlist_c G>
 CEXP std::optional<vecu> path(G CR g, u32 from, u32 to) {
   vecu ret;
   bool failed = true;
   auto dfs = [&](auto &&dfs, u32 now, u32 fa) -> void {
     ret.push_back(now);
     if (now == to) return void(failed = false);
-    for (auto v : g.g[now]) {
-      u32 to = 0;
-      if CEXP (is_alist<G>) to = v;
-      else to = v.first;
-      if (to == fa) continue;
-      if (dfs(dfs, to, now); !failed) return;
-    }
+    if CEXP (adjlistw_c<G>)
+      for (auto &&[v, w] : g[now]) {
+        u32 to = 0;
+        if ((to = v) == fa) continue;
+        if (dfs(dfs, to, now); !failed) return;
+      }
+    else
+      for (auto v : g[now]) {
+        u32 to = 0;
+        if ((to = (u32)v) == fa) continue;
+        if (dfs(dfs, to, now); !failed) return;
+      }
     if (!failed) return;
     ret.pop_back();
   };

@@ -1,21 +1,22 @@
 #ifndef TIFALIBS_GRAPH_TOPO_SORT
 #define TIFALIBS_GRAPH_TOPO_SORT
 
-#include "alist.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::graph {
 
-//! return empty vector if @fg is not DAG
-template <bool with_deg>
-CEXP vecu topo_sort(alist<with_deg> CR fg) {
-  u32 n = (u32)fg.g.size();
+//! return empty vector if @g is not DAG
+template <class G>
+requires(adjlist_c<G> && !adjlistw_c<G>)
+CEXP vecu topo_sort(G CR g) {
+  const u32 n = g.size();
   vecb vis(n), _(n);
   vecu ans;
   auto dfs = [&](auto&& dfs, u32 i) -> bool {
     if (_[i]) return false;
     if (!vis[i]) {
-      for (_[i] = true; u32 to : fg.g[i])
-        if (!dfs(dfs, to)) return false;
+      for (_[i] = true; auto to : g[i])
+        if (!dfs(dfs, (u32)to)) return false;
       vis[i] = true, ans.push_back(i), _[i] = false;
     }
     return true;

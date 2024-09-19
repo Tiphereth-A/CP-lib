@@ -3,7 +3,7 @@
 
 #include "../bit/parity.hpp"
 #include "../math/mul_mod.hpp"
-#include "alist.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::graph {
 namespace chrom_num_impl_ {
@@ -18,13 +18,12 @@ CEXP u32 calc(u32 n, vecpti hist) {
 }
 }  // namespace chrom_num_impl_
 
-template <bool with_deg>
-CEXP u32 chrom_num(alist<with_deg> CR fg) {
-  auto&& g = fg.g;
-  const u32 n = (u32)g.size();
+template <adjlist_c G>
+CEXP u32 chrom_num(G CR g) {
+  const u32 n = g.size();
   vecu adj(n), dp(1 << n);
   flt_ (u32, i, 0, n)
-    for (u32 to : g[i]) adj[i] |= 1 << to, adj[to] |= 1 << i;
+    for (auto to : g[i]) adj[i] |= 1 << (u32)to, adj[(u32)to] |= 1 << i;
   dp[0] = 1;
   flt_ (u32, i, 1, 1u << n) {
     u32 k = i & (i - 1);
