@@ -3,22 +3,44 @@
 
 #include "../fast/u32tostr.hpp"
 #include "../util/traits.hpp"
+#ifdef __linux__
+#include <sys/mman.h>
+#include <sys/stat.h>
+#endif
 
 namespace tifa_libs {
 namespace fastio_impl_ {
 //! UB if EOF occured during reading
 template <u32 BUF>
 class fastin {
-  char bf_[BUF], *now_ = bf_, *end_ = bf_;
-  FILE *f_;
+  FILE *f_ = nullptr;
+#ifdef __linux__
+  char *bg, *ed, *p;
+  struct stat Fl;
 
  public:
-  fastin(FILE *f = stdin) : f_(f) {}
+  fastin(FILE *f = stdin) { rebind(f); }
+  ~fastin() { rebind(); }
+  void rebind(FILE *f = nullptr) {
+    if (!f_) munmap(bg, Fl.st_size + 1);
+    if (!f) return;
+    auto fd = fileno(f_ = f);
+    fstat(fd, &Fl), p = (bg = (char *)mmap(0, Fl.st_size + 4, PROT_READ, MAP_PRIVATE, fd, 0)), ed = bg + Fl.st_size, madvise(bg, Fl.st_size + 4, MADV_SEQUENTIAL);
+  }
+  char peek() { return *p; }
+  char get() { return *p++; }
+  bool iseof() { return p == ed; }
 
-  char get() { return now_ == end_ && (end_ = (now_ = bf_) + fread(bf_, 1, BUF, f_), now_ == end_) ? EOF : *(now_)++; }
-  char peek() { return now_ == end_ && (end_ = (now_ = bf_) + fread(bf_, 1, BUF, f_), now_ == end_) ? EOF : *(now_); }
-  void rebind(FILE *f) { f_ = f, now_ = end_ = bf_; }
+#else
+  char buf[BUF], *ed, *p;
+
+ public:
+  fastin(FILE *f = stdin) { rebind(f); }
+  void rebind(FILE *f) { f_ = f, p = ed = buf; }
+  char peek() { return p == ed && (ed = (p = buf) + fread(buf, 1, BUF, f_), p == ed) ? EOF : *p; }
+  char get() { return p == ed && (ed = (p = buf) + fread(buf, 1, BUF, f_), p == ed) ? EOF : *p++; }
   bool iseof() { return peek() == EOF; }
+#endif
   template <class T>
   requires(sint_c<T> && !char_c<T>)
   fastin &read(T &n) {
@@ -91,42 +113,42 @@ class fastin {
 };
 template <u32 BUF, u32 INTBUF>
 class fastout {
-  char int_bf_[INTBUF], *now_ib_ = int_bf_;
-  FILE *f_;
-  char *now_, bf_[BUF];
-  const char *const end_ = bf_ + BUF;
+  FILE *f_ = nullptr;
+  char int_buf[INTBUF], *p_ib = int_buf;
+  char buf[BUF], *p;
+  const char *const ed = buf + BUF;
 
  public:
-  fastout(FILE *file = stdout) : f_(file), now_(bf_) {}
+  fastout(FILE *f = stdout) { rebind(f); }
   ~fastout() { flush(); }
-
-  void flush() { fwrite(bf_, 1, usz(now_ - bf_), f_), now_ = bf_; }
-  void rebind(FILE *file) { f_ = file; }
+  void rebind(FILE *f) { f_ = f, p = buf; }
+  void flush() { fwrite(buf, 1, usz(p - buf), f_), p = buf; }
   template <char_c T>
   fastout &write(T n) {
-    if (now_ == end_) flush();
-    return *(now_++) = n, *this;
+    if (p == ed) [[unlikely]]
+      flush();
+    return *(p++) = n, *this;
   }
   fastout &write(const char *n) {
     usz len = strlen(n), l_;
     const char *n_ = n;
-    while (now_ + len >= end_) memcpy(now_, n_, l_ = usz(end_ - now_)), now_ += l_, n_ += l_, len -= l_, flush();
-    return memcpy(now_, n_, len), now_ += len, *this;
+    while (p + len >= ed) memcpy(p, n_, l_ = usz(ed - p)), p += l_, n_ += l_, len -= l_, flush();
+    return memcpy(p, n_, len), p += len, *this;
   }
   template <class T>
   requires(sint_c<T> && !char_c<T>)
   fastout &write(T n) {
-    if (n < 0) write('-'), n = -n;
-    return write(to_uint_t<T>(n));
+    if (n < 0) write('-');
+    return write(n < 0 ? -to_uint_t<T>(n) : to_uint_t<T>(n));
   }
   template <class T>
   requires(uint_c<T> && !char_c<T>)
   fastout &write(T n) {
-    if CEXP (sizeof(T) <= 4) return memset(now_ib_ = int_bf_, 0, 11), u32tostr(n, now_ib_), write(now_ib_);
-    now_ib_ = int_bf_ + INTBUF - 1;
-    do *(--(now_ib_)) = char(n % 10) | '0';
+    if CEXP (sizeof(T) <= 4) return memset(p_ib = int_buf, 0, 11), u32tostr(n, p_ib), write(p_ib);
+    p_ib = int_buf + INTBUF - 1;
+    do *(--(p_ib)) = char(n % 10) | '0';
     while (n /= 10);
-    return write(now_ib_);
+    return write(p_ib);
   }
   template <mint_c T>
   fastout &write(T n) { return write(n.val()); }
