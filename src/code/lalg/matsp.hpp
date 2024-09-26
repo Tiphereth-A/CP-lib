@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_LALG_MATSP
 #define TIFALIBS_LALG_MATSP
 
-#include "../util/util.hpp"
+#include "../fast/rsort32.hpp"
 
 namespace tifa_libs::math {
 
@@ -35,7 +35,7 @@ class matsp {
   CEXP void shrink_row(u32 r) {
     d[r].erase(std::remove_if(d[r].begin(), d[r].end(), [](cT_(node) x) { return x.second == T{}; }), d[r].end());
   }
-  CEXP void sort_row(u32 r) { std::ranges::sort(d[r]); }
+  CEXP void sort_row(u32 r) { sort(d[r]); }
   template <class F>
   CEXP void apply(F f) {
     flt_ (u32, i, 0, r)

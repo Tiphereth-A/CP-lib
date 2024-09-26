@@ -13,7 +13,7 @@ struct Node {
 };
 
 vec<Node> v;
-vec<std::pair<data_t, data_t>> seg;
+vecpt<data_t> seg;
 template <class T>
 T f(T pos) {
   seg.clear();

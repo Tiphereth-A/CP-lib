@@ -10,7 +10,7 @@
 #include "../../../code/math/nimber.hpp"
 #include "../base.hpp"
 
-tifa_libs::rand::Gen<std::uniform_int_distribution<u64>> g;
+tifa_libs::rand::Gen<u64> g;
 
 template <class T>
 void test_karatsuba(u64 n) {

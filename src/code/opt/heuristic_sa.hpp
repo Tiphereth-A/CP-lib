@@ -14,7 +14,7 @@ class heuristic_sa {
   Fg gen;
   Ff f;
   const Tt Tmax, Tmin, dT;
-  rand::Gen<std::uniform_real_distribution<Tt>> g;
+  rand::Gen<Tt> g;
 
  public:
   // Find minimum argument of f(x)

@@ -1284,7 +1284,7 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     rand:
-    - gen: 随机数生成辅助类
+    - gen: 伪随机数生成器
       code_ext: hpp
       test_ext: cpp
     edh:

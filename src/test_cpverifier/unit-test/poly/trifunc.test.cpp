@@ -16,7 +16,7 @@ using mints63 = tifa_libs::math::mint_s63<MOD>;
 using pnm30 = tifa_libs::math::polyntt<mints30>;
 using pnm63 = tifa_libs::math::polyntt<mints63>;
 
-tifa_libs::rand::Gen<std::uniform_int_distribution<u64>> gen;
+tifa_libs::rand::Gen<u64> gen;
 
 template <class poly>
 void test(u32 n) {

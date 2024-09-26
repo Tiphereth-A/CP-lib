@@ -5,24 +5,30 @@
 
 namespace tifa_libs {
 
-template <class T>
-requires(sizeof(T) == 4)
-void rsort32(vec<T>& a) {
-  static u32 _0[256], _1[256], _2[256], _3[256];
+template <class C>
+requires(std::contiguous_iterator<TPN C::iterator> && std::integral<TPN C::value_type> && sizeof(TPN C::value_type) == 4)
+void rsort32(C& a) {
+  if (a.size() <= 1) return;
+  u32 _0[256]{}, _1[256]{}, _2[256]{}, _3[256]{};
   const u32 n = (u32)a.size();
   vecu b(n);
-  u32 *a_ = a.data(), *b_ = b.data();
+  u32 *a_ = (u32*)a.data(), *b_ = (u32*)b.data();
   for (u32 *_ = a_ + n, *i = a_; i < _; ++i) ++_0[*i & 255], ++_1[*i >> 8 & 255], ++_2[*i >> 16 & 255], ++_3[*i >> 24 & 255];
   flt_ (u32, i, 1, 256) _0[i] += _0[i - 1], _1[i] += _1[i - 1], _2[i] += _2[i - 1], _3[i] += _3[i - 1];
   for (u32* i = a_ + n; --i >= a_;) b_[--_0[*i & 255]] = *i;
   for (u32* i = b_ + n; --i >= b_;) a_[--_1[*i >> 8 & 255]] = *i;
   for (u32* i = a_ + n; --i >= a_;) b_[--_2[*i >> 16 & 255]] = *i;
   for (u32* i = b_ + n; --i >= b_;) a_[--_3[*i >> 24 & 255]] = *i;
-  if CEXP (std::is_signed_v<T>) {
+  if CEXP (std::is_signed_v<TPN C::value_type>) {
     u32 i = n;
     while (i && a[i - 1] < 0) --i;
     std::rotate(a_, a_ + i, a_ + n);
   }
+}
+template <class C>
+void sort(C& a) {
+  if CEXP (std::contiguous_iterator<TPN C::iterator> && std::integral<TPN C::value_type> && sizeof(TPN C::value_type) == 4) rsort32(a);
+  else std::sort(a.begin(), a.end());
 }
 
 }  // namespace tifa_libs

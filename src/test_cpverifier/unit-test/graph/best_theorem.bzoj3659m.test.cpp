@@ -1,6 +1,7 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
+#include "../../../code/fast/rsort32.hpp"
 #include "../../../code/graph/alist.hpp"
 #include "../../../code/graph/euler_trail.hpp"
 #include "../../../code/graph/kirchhoff.hpp"
@@ -36,7 +37,7 @@ strn single_proceed(std::istream &fin) {
   flt_ (u32, id, 0, cnt_ids) {
     auto &tos = g.g[inv_ids[id]];
     if (tos.empty()) continue;
-    std::ranges::sort(tos);
+    tifa_libs::sort(tos);
     u32 cnt = 1, pre = tos[0];
     flt_ (u32, j, 1, (u32)tos.size())
       if (tos[j] != pre) {

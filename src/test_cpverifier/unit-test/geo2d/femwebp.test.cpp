@@ -21,7 +21,7 @@ void single_test(vec<point<T>> CR v) {
 
 template <tifa_libs::arithm_c T>
 void test(T lim) {
-  tifa_libs::rand::Gen<std::conditional_t<std::is_integral_v<T>, std::uniform_int_distribution<T>, std::uniform_real_distribution<T>>> g(std::is_signed_v<T> ? -lim : 0, lim);
+  tifa_libs::rand::Gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
 
   vec<point<T>> v{point<T>(g(), g()), point<T>(g(), g()), point<T>(g(), g())};
   single_test(v);

@@ -6,7 +6,7 @@
 #include "../../../code/edh/bwt_inv.hpp"
 #include "../base.hpp"
 
-tifa_libs::rand::Gen<std::uniform_int_distribution<char>> g('\x21', '\x7f');
+tifa_libs::rand::Gen<char> g('\x21', '\x7f');
 
 void test(u32 n) {
   strn s(n+1, '\x20');

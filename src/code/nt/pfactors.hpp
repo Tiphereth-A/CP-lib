@@ -9,10 +9,10 @@
 
 namespace tifa_libs::math {
 namespace pfactors_impl_ {
-static rand::Gen<std::uniform_int_distribution<u64>> e;
-static auto __ = []() { e.reset_seed(); return 0; }();
+static rand::Gen<u64> e;
+static auto __ = []() { e.seed(); return 0; }();
 CEXP u64 rho(u64 n) {
-  e.set_range(1, n - 1);
+  e.range(1, n - 1);
   auto f = [n, r = e()](u64 x) { return (mul_mod_u(x, x, n) + r) % n; };
   u64 g = 1, x = 0, y = e(), yy = 0;
   const u32 LIM = 128;

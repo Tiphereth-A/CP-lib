@@ -1,6 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/counting_spanning_tree_directed"
 
+#include "../../code/fast/rsort32.hpp"
 #include "../../code/graph/alist.hpp"
 #include "../../code/graph/kirchhoff.hpp"
 #include "../../code/lalg/ge_euclid_mat.hpp"
@@ -25,7 +26,7 @@ int main() {
   flt_ (u32, id, 0, n) {
     auto &tos = g.g[id];
     if (tos.empty()) continue;
-    std::ranges::sort(tos);
+    tifa_libs::sort(tos);
     u32 cnt = 1, pre = tos[0];
     flt_ (u32, j, 1, (u32)tos.size())
       if (tos[j] != pre) {

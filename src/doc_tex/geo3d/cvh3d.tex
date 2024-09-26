@@ -3,8 +3,8 @@
 使用时建议先对点随机扰动一下, 以防止初始单纯形构造有误
 
 \begin{minted}{cpp}
-rand::Gen<std::uniform_int_distribution<u32>> g(0, 1);
-g.reset_seed();
+rand::Gen<u32> g(0, 1);
+g.seed();
 for(auto& [x, y, z]: points) {
   x += g() ? eps_v<FP> : -eps_v<FP>;
   y += g() ? eps_v<FP> : -eps_v<FP>;

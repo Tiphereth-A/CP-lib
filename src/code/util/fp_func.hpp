@@ -19,8 +19,10 @@ CEXP bool is_zero(FP x) { return !sgn(x); }
 template <class FP>
 CEXP bool is_pos(FP x) { return sgn(x) > 0; }
 
-template <int_c T>
+template <sint_c T>
 CEXP int comp(T l, T r) { return sgn(l - r); }
+template <uint_c T>
+CEXP int comp(T l, T r) { return (!!(l - r)) | -(l < r); }
 template <std::floating_point FP>
 CEXP int comp(FP l, FP r) { return sgn((l - r) / max({abs(l), abs(r), FP(1)})); }
 

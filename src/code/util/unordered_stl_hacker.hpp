@@ -13,7 +13,7 @@ inline vec<T> unordered_stl_hacker(usz n) {
   auto get_bucket_counts = [n]() {
     vec<usz> ans;
     std::unordered_set<int> s;
-    rand::Gen<std::uniform_int_distribution<int>> gen;
+    rand::Gen<int> gen;
     while (s.size() < n) {
       if (ans.empty() || ans.back() != s.bucket_count()) ans.push_back(s.bucket_count());
       s.insert(gen());
@@ -27,7 +27,7 @@ inline vec<T> unordered_stl_hacker(usz n) {
     // Edit these if need
     const usz len = 15;
     const strn pref = "", alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
-    rand::Gen<std::uniform_int_distribution<usz>> gen(0, alphabet.size() - 1);
+    rand::Gen<usz> gen(0, alphabet.size() - 1);
     auto gen_str_with_divisible_hash = [&](usz mod) -> strn {
       strn s = pref;
       while (true) {

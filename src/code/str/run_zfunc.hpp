@@ -37,7 +37,7 @@ CEXP vec<pt3u> run_zfunc(strnv s) {
   vec<pt3u> runs;
   flt_ (u32, i, 0, (u32)rs.size()) {
     auto [l, r, t] = rs[i];
-    if (i && l == get<0>(rs[i - 1]) && r == get<1>(rs[i - 1])) continue;
+    if (i && l == rs[i - 1]._0 && r == rs[i - 1]._1) continue;
     runs.emplace_back(t, l, r);
   }
   return std::ranges::sort(runs), runs;

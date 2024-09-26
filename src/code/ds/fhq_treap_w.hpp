@@ -25,7 +25,7 @@ class fhq_treap_w {
     bool rev;
     CEXP TIFA(T W = e(), T VAL = e(), u32 SZ = 0, i32 RAD = 0, F SIGN = id()) : w(W), val(VAL), sign(SIGN), sz(SZ), rad(RAD), rev(0) {}
   };
-  rand::Gen<std::uniform_int_distribution<i32>> gen;
+  rand::Gen<i32> gen;
   vec<TIFA> t;
   vecu sta;
   u32 cnt;

@@ -7,7 +7,7 @@ tifa_libs::math::nimber64 dp[2][2][128][128], nx[2][2][128][128], w[128][128];
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  tifa_libs::rand::Gen<std::uniform_int_distribution<u64>> g(1, std::numeric_limits<u64>::max());
+  tifa_libs::rand::Gen<u64> g(1, std::numeric_limits<u64>::max());
   u64 n, m, x, y, z;
   std::cin >> n >> m >> x >> y >> z;
   --x, --y, --z;

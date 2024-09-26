@@ -73,8 +73,8 @@ inline const std::map<pttu, TESTCASE> testcase_id{
     {{0, 5}, ts_random_02},
     {{0, 6}, ts_random_03},
     {{0, 7}, ts_random_04},
-    {{0, 8}, ts_random_06},
-    {{0, 9}, ts_random_05},
+    {{0, 8}, ts_random_05},
+    {{0, 9}, ts_random_06},
     {{0, 10}, ts_random_07},
     {{0, 11}, ts_random_08},
     {{0, 12}, ts_random_09}};

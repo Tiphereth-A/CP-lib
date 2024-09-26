@@ -1,12 +1,13 @@
 #ifndef TIFALIBS_EDH_DISCRETIZATION
 #define TIFALIBS_EDH_DISCRETIZATION
 
+#include "../fast/rsort32.hpp"
 #include "../util/traits.hpp"
 
 namespace tifa_libs {
 
 template <iterable_c T>
-CEXP T uniq(T v) { return std::sort(v.begin(), v.end()), v.erase(std::unique(v.begin(), v.end()), v.end()), v; }
+CEXP T uniq(T v) { return sort(v), v.erase(std::unique(v.begin(), v.end()), v.end()), v; }
 template <iterable_c T>
 CEXP std::pair<T, vecu> gen_id(T CR v) {
   const T _ = uniq(v);

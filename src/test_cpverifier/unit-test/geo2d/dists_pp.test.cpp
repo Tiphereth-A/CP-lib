@@ -133,7 +133,7 @@ void single_test(point<T> CR x, point<T> CR y, point<T> CR a, T s) {
 
 template <tifa_libs::arithm_c T>
 void test(T lim) {
-  tifa_libs::rand::Gen<std::conditional_t<std::is_integral_v<T>, std::uniform_int_distribution<T>, std::uniform_real_distribution<T>>> g(std::is_signed_v<T> ? -lim : 0, lim);
+  tifa_libs::rand::Gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
   single_test(point<T>(g(), g()), point<T>(g(), g()), point<T>(g(), g()), g());
 }
 

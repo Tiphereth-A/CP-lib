@@ -11,8 +11,8 @@ requires requires(Ff f, cT_(Cont) t) {
 }
 class heuristic_lbsa {
   Ff f;
-  rand::Gen<std::uniform_int_distribution<u32>> g_idx;
-  rand::Gen<std::uniform_real_distribution<Tt>> g;
+  rand::Gen<u32> g_idx;
+  rand::Gen<Tt> g;
   Cont x;
   Ft fx;
   pq<Tt> tlist;
@@ -46,8 +46,8 @@ class heuristic_lbsa {
   }
   static CEXP void swap_(TPN Cont::iterator l, TPN Cont::iterator r) { std::iter_swap(l, r); }
   std::pair<Ft, Cont> gen() {
-    u32 l = g_idx.next(), r = g_idx.next();
-    while (l == r) r = g_idx.next();
+    u32 l = g_idx(), r = g_idx();
+    while (l == r) r = g_idx();
     if (l > r) swap(l, r);
     Cont c0 = x, c1 = x, c2 = x;
     inv_(c0.begin() + l, c0.begin() + r), ins_(c1.begin() + l, c1.begin() + r), swap_(c2.begin() + l, c2.begin() + r);

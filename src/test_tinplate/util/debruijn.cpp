@@ -5,7 +5,7 @@
 #include "../../code/rand/gen.hpp"
 
 vecu prandom(u32 m, u32 l) {
-  tifa_libs::rand::Gen<std::uniform_int_distribution<u32>> gen(0, m - 1);
+  tifa_libs::rand::Gen<u32> gen(0, m - 1);
   vecu ret(l);
   flt_ (u32, i, 0, l) ret[i] = gen();
   return ret;

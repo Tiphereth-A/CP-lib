@@ -16,7 +16,7 @@
 
 template <class mint>
 void single_test(u32 n) {
-  tifa_libs::rand::Gen<std::uniform_int_distribution<u32>> gen(1, std::numeric_limits<u32>::max());
+  tifa_libs::rand::Gen<u32> gen(1, std::numeric_limits<u32>::max());
   using mat = tifa_libs::math::matrix<mint>;
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
   auto ge = [&is_0](mat& m, bool f) { return tifa_libs::math::ge_basic(m, is_0, f); };
