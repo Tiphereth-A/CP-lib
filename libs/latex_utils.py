@@ -1,3 +1,4 @@
+import re
 from libs.decorator import withlog
 
 
@@ -10,21 +11,13 @@ class TextLaTeXBase:
         return self._str
 
     def get_label_name(self) -> str:
-        return self._str.casefold() \
-            .replace(' ', '-') \
-            .replace('_', '-') \
-            .replace('\\', '')
+        return re.sub(r'[,.;@?!&$#/ \(\)\*]', '-', self._str.casefold().replace('\\', ''))
 
 
 class PathLaTeX(TextLaTeXBase):
     def __init__(self, path: str):
         super().__init__(path)
         self._str = self._str.replace('\\', '/')
-
-    def get_label_name(self) -> str:
-        return super().get_label_name() \
-            .replace('/', '-') \
-            .replace('.', '-')
 
 
 class NameLaTeX(TextLaTeXBase):
