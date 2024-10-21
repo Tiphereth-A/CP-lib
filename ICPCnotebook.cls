@@ -25,6 +25,7 @@
 \RequirePackage{pgfplots}
 \RequirePackage{pdflscape}
 \RequirePackage{pdfpages}
+\RequirePackage{qrcode}
 \RequirePackage{seqsplit}
 \RequirePackage{subcaption}
 \RequirePackage{svg}
@@ -126,6 +127,8 @@
 \titlespacing*{\subsection}{0pt}{0.6ex}{0.6ex}
 \titlespacing*{\subsubsection}{0pt}{0.6ex}{0.6ex}
 \titlespacing*{\paragraph}{0pt}{0.6ex}{0.6ex}
+
+\qrset{link, height=1cm}
 
 % Code style
 \RequirePackage{minted}
