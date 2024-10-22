@@ -9,7 +9,7 @@ namespace tifa_libs::graph {
 template <class T>
 CEXP vec<edge_t<T>> cle(u32 n, u32 root, vec<edge_t<T>> CR arcs) {
   ds::skew_heap<T> heap;
-  ds::dsu_basic<> uf(n);
+  ds::dsu_basic uf(n);
   vecu used(n, -1_u32), from(n), come(n, -1_u32);
   vec<T> from_cost(n);
   used[root] = root;
