@@ -5,7 +5,6 @@
 
 namespace tifa_libs::ds {
 
-template <bool RANK_ = false>
 class dsu_basic {
   veci p;
 
@@ -17,8 +16,7 @@ class dsu_basic {
   CEXP bool same(u32 x, u32 y) { return find(x) == find(y); }
   CEXP bool merge(u32 x, u32 y) {
     if ((x = (u32)find(x)) == (y = (u32)find(y))) return false;
-    if CEXP (RANK_)
-      if (p[x] > p[y]) swap(x, y);
+    if (p[x] > p[y]) swap(x, y);
     return p[x] += p[y], p[y] = (i32)x, true;
   }
 };

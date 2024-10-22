@@ -16,8 +16,7 @@ class ExLucas {
     u64 m_;
     vecuu facp, ifacp;
     CEXP TIFA(u32 p, u32 q) : p(p), q(q), no_proot(p == 2 && q >= 3) {
-      assert(p <= 100'000'000 && q > 0);
-      m_ = 1;
+      assert(p <= 100'000'000 && q > 0), m_ = 1;
       while (q--) (m_ *= p), assert(m_ <= 100'000'000);
       facp.resize(m_), facp[0] = facp[1] = 1;
       flt_ (u64, i, 2, m_)

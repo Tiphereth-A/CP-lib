@@ -36,8 +36,7 @@ class huffman {
 
  public:
   CEXPE huffman(vec<T> CR weights, u32 child_sz = 2_u32) : cnt_w((u32)weights.size()), cnt_l(), ch_sz(child_sz), data() {
-    assert(1 < child_sz && child_sz < weights.size());
-    for (T now : weights) data.emplace_back(now);
+    for (assert(1 < child_sz && child_sz < weights.size()); T now : weights) data.emplace_back(now);
     flt_ (u32, i, 0, ((ch_sz - 1) - ((cnt_w - 1) % (ch_sz - 1))) % (ch_sz - 1)) data.emplace_back();
     cnt_l = (u32)data.size();
     ds::rheap<T, u32> q;

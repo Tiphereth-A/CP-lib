@@ -13,8 +13,7 @@ struct QBinom {
 
   static CEXP u64 mod() { return mint::mod(); }
   CEXPE QBinom(u32 max_m, u32 q) : qfact(2) {
-    assert(q);
-    qfact[0] = qfact[1] = 1;
+    assert(q), qfact[0] = qfact[1] = 1;
     mint x = 1;
     fle_ (u32, i, 2, max_m)
       if ((x = x * q + 1).val()) qfact.push_back(x);

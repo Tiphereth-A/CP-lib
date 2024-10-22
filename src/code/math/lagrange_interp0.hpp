@@ -8,8 +8,7 @@ namespace tifa_libs::math {
 
 CEXP i64 lagrange_interp0(spnii v, u64 x, u64 mod, spnuu ifact) {
   const u32 n = (u32)v.size();
-  assert(n);
-  if (n == 1) return v[0];
+  if (assert(n); n == 1) return v[0];
   if (x < n) return v[x];
   vecuu pre(n);
   flt_ (u32, i, 0, n) pre[i] = x - i;

@@ -35,8 +35,7 @@ CEXP std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
           ans = mul_mod_u(ans, qpow_mod(c, mul_mod_u(j + v * x, qpow_mod(p, i - e, m - 1), m - 1), m), m);
           break;
         }
-        t = mul_mod_u(t, _m, m);
-        assert(j != v);
+        t = mul_mod_u(t, _m, m), assert(j != v);
       }
     }
     return ans;

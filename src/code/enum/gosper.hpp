@@ -14,10 +14,7 @@ class gosper {
   static CEXP u64 num_end() { return 1_u64 << n_; }
 
  public:
-  static CEXP void set(u32 n, u32 k) {
-    assert(k && k <= n && n < 64);
-    n_ = n, k_ = k;
-  }
+  static CEXP void set(u32 n, u32 k) { assert(k && k <= n && n < 64), n_ = n, k_ = k; }
   static CEXP gosper begin() { return num_begin(); }
   static CEXP gosper end() { return num_end(); }
 

@@ -12,9 +12,8 @@ namespace tifa_libs::math {
 // @return g s.t. $g(f(x)) \equiv x \pmod{\deg(f)+1}$
 template <class mint, class ccore>
 CEXP poly<mint, ccore> compinv_fps(poly<mint, ccore> CR f, spnuu inv, u32 n = 0) {
-  assert(f.size() > 1 && f[0] == 0 && f[1] != 0);
   using poly_t = poly<mint, ccore>;
-  if (!n) n = (u32)f.size();
+  if (assert(f.size() > 1 && f[0] == 0 && f[1] != 0); !n) n = (u32)f.size();
   if (n < 2) return poly_t{0, f[1].inv()}.pre(n);
   poly_t h = powem_fps(f) * (n - 1);
   flt_ (u32, k, 1, n) h[k] *= inv[k];

@@ -19,8 +19,7 @@ class min25_sieve {
  public:
   // m^{3/2} in u64
   CEXPE min25_sieve(u64 m) : m(m), sqm(isqrt(m)) {
-    assert(m < (1ll << 42));
-    if (m) {
+    if (assert(m < (1ll << 42)); m) {
       u64 hls = div_u64d(m, sqm);
       if (hls != 1 && div_u64d(m, hls - 1) == sqm) --hls;
       s = hls + sqm, p = prime_seq((u32)sqm);

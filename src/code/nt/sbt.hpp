@@ -15,8 +15,7 @@ class SBT {
   CEXPE SBT() : lx(0), ly(1), x(1), y(1), rx(1), ry(0) {}
   CEXPE SBT(spn<T> seq_) : SBT() {
     for (auto d : seq_) {
-      assert(d != 0);
-      if (d > 0) movr(d);
+      if (assert(d != 0); d > 0) movr(d);
       if (d < 0) movl(d);
     }
   }

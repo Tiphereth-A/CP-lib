@@ -15,8 +15,7 @@ class NPuzzleData {
  public:
   static inline u32 limit = UINT32_MAX;
   static CEXP void set_fin(u32 k, vecu CR fin) {
-    assert(fin.size() == k * k);
-    fin_node = fin, fin_pos.resize(k * k);
+    assert(fin.size() == k * k), fin_node = fin, fin_pos.resize(k * k);
     flt_ (u32, i, 0, k * k) fin_pos[fin_node[i]] = i;
     pos_cost.resize(k * k, vecu(k * k));
     flt_ (u32, p, 1, k * k)

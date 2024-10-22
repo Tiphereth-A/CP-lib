@@ -37,14 +37,12 @@ class blossom {
     else match(k, v), match(v, k);
   }
   bool augment(u32 s) {
-    assert(s);
-    white[s] = 1, first[s] = 0, label[s] = {0, 0};
+    assert(s), white[s] = 1, first[s] = 0, label[s] = {0, 0};
     std::queue<u32> q({s});
     while (!q.empty()) {
       const u32 a = q.front();
-      for (q.pop(); auto b : g[a]) {
-        assert(b);
-        if (white[b]) {
+      for (q.pop(); auto b : g[a])
+        if (assert(b); white[b]) {
           u32 x = gf(a), y = gf(b), lca = 0;
           while (x || y) {
             if (y) swap(x, y);
@@ -55,13 +53,9 @@ class blossom {
             label[x] = {a, b}, x = gf(label[mate[x]].first);
           }
           for (u32 v : {gf(a), gf(b)})
-            while (v != lca) {
-              assert(!white[v]);
-              q.push(v), white[v] = true, first[v] = lca, v = gf(label[mate[v]].first);
-            }
+            while (v != lca) assert(!white[v]), q.push(v), white[v] = true, first[v] = lca, v = gf(label[mate[v]].first);
         } else if (!mate[b]) return match(mate[b] = a, b), white = vecb(n + 1), true;
         else if (!white[mate[b]]) white[mate[b]] = true, label[first[mate[b]] = b] = {0, 0}, label[mate[b]] = {a, 0}, q.push(mate[b]);
-      }
     }
     return false;
   }

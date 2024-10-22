@@ -15,10 +15,7 @@ class enum_supset {
   static CEXP u32 num_end() { return 1_u32 << n_; }
 
  public:
-  static CEXP void set(u32 b, u32 n) {
-    assert((u32)std::countl_one(b) <= n && n < 32);
-    b_ = b, n_ = n;
-  }
+  static CEXP void set(u32 b, u32 n) { assert((u32)std::countl_one(b) <= n && n < 32), b_ = b, n_ = n; }
   static CEXP enum_supset begin() { return num_begin(); }
   static CEXP enum_supset end() { return num_end(); }
 

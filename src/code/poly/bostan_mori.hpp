@@ -34,8 +34,7 @@ vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) {
 // @return [x^k]p/q
 template <class mint, class ccore>
 CEXP auto bostan_mori(u64 n, poly<mint, ccore> CR p, poly<mint, ccore> CR q) {
-  assert(p.size() == q.size() - 1 && !p.empty());
-  if CEXP (ccore::ct_cat != ct_NTT) {
+  if CEXP (assert(p.size() == q.size() - 1 && !p.empty()); ccore::ct_cat != ct_NTT) {
     auto p_ = p, q_ = q;
     while (n) {
       auto _ = q_;

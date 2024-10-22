@@ -15,6 +15,7 @@ CEXP bool is_char_v = std::is_same_v<T, char> || std::is_same_v<T, signed char> 
 template <class T>
 concept char_c = is_char_v<T>;
 
+#pragma GCC diagnostic ignored "-Wpedantic"
 template <class T>
 CEXP bool is_s128_v = std::is_same_v<T, __int128_t> || std::is_same_v<T, __int128>;
 template <class T>
@@ -27,6 +28,7 @@ template <class T>
 CEXP bool is_i128_v = is_s128_v<T> || is_u128_v<T>;
 template <class T>
 concept i128_c = is_u128_v<T>;
+#pragma GCC diagnostic warning "-Wpedantic"
 
 template <class T>
 CEXP bool is_int_v = std::is_integral_v<T> || is_i128_v<T>;

@@ -62,8 +62,7 @@ CEXP bool is_eulerian(G CR g) {
     for (auto v : g[x])
       if (++cnt; !vis[(u32)v]) vis[(u32)v] = 1, f(f, (u32)v);
   };
-  vis[0] = 1, f(f, 0);
-  if (g.cnt_arc != cnt) return 0;
+  if (vis[0] = 1, f(f, 0); g.cnt_arc != cnt) return 0;
   flt_ (u32, i, 0, n)
     if (g.deg_in[i] != g.deg_out[i]) return 0;
   return 1;

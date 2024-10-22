@@ -11,8 +11,7 @@ requires requires(Is0 is0, TPN Mat::val_t t) {
 }
 CEXP void uhb(Mat &mat, Is0 &&is0) {
   const u32 n = mat.row();
-  assert(n == mat.col());
-  if (n <= 2) return;
+  if (assert(n == mat.col()); n <= 2) return;
   for (u32 i = 0, p; i < n - 2; ++i) {
     for (p = i + 1; p != n; ++p)
       if (!is0(mat(p, i))) break;

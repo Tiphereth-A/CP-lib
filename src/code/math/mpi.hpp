@@ -23,11 +23,9 @@ class mpi {
     while (x) dt.push_back(u32(to_uint_t<T>(x) % D)), x /= (T)D;
   }
   CEXP mpi(strn s) : neg(false) {
-    assert(!s.empty());
-    if (s.size() == 1u) {
+    if (assert(!s.empty()); s.size() == 1u) {
       if (s[0] == '0') return;
-      assert(isdigit(s[0]));
-      dt.push_back(s[0] & 15);
+      assert(isdigit(s[0])), dt.push_back(s[0] & 15);
       return;
     }
     u32 l = 0;
@@ -118,8 +116,7 @@ class mpi {
   static CEXP bool leq_(vecu CR a, vecu CR b) { return a == b || lt_(a, b); }
   // a < b (s.t. a != b)
   static CEXP bool neq_lt_(mpi CR l, mpi CR r) {
-    assert(l != r);
-    if (l.neg != r.neg) return l.neg;
+    if (assert(l != r); l.neg != r.neg) return l.neg;
     return lt_(l.dt, r.dt) ^ l.neg;
   }
   static CEXP bool is0_(spnu a) { return a.empty(); }
@@ -194,24 +191,18 @@ class mpi {
   }
   // 1 <= B < 1e8
   static CEXP ptt<vecu> divmod_1e8_(vecu CR a, vecu CR b) {
-    assert(b.size() == 1);
-    if (b[0] == 1) return {a, {}};
+    if (assert(b.size() == 1); b[0] == 1) return {a, {}};
     if (a.size() <= 2) return divmod_li_(a, b);
     vecu quo(a.size());
     u64 d = 0;
     u32 b0 = b[0];
-    for (u32 i = (u32)a.size() - 1; ~i; --i) {
-      d = d * D + a[i];
-      assert(d < (u64)D * b0);
-      quo[i] = u32(d / b0), d = d % b0;
-    }
+    for (u32 i = (u32)a.size() - 1; ~i; --i) d = d * D + a[i], assert(d < (u64)D * b0), quo[i] = u32(d / b0), d = d % b0;
     shrink_(quo);
     return {quo, d ? vecu{u32(d)} : vecu{}};
   }
   // 0 <= A, 1 <= B
   static CEXP ptt<vecu> divmod_bf_(vecu CR a, vecu CR b) {
-    assert(!is0_(b) && b.size());
-    if (b.size() == 1) return divmod_1e8_(a, b);
+    if (assert(!is0_(b) && b.size()); b.size() == 1) return divmod_1e8_(a, b);
     if (max(a.size(), b.size()) <= 2) return divmod_ll_(a, b);
     if (lt_(a, b)) return {{}, a};
     // B >= 1e8, A >= B
@@ -258,8 +249,7 @@ class mpi {
     return z.erase(z.begin(), z.begin() + k - deg), z;
   }
   static CEXP ptt<vecu> divmod_newton_(vecu CR a, vecu CR b) {
-    assert(!is0_(b));
-    if (b.size() <= 64) return divmod_bf_(a, b);
+    if (assert(!is0_(b)); b.size() <= 64) return divmod_bf_(a, b);
     if ((int)(a.size() - b.size()) <= 64) return divmod_bf_(a, b);
     u32 norm = D / (b.back() + 1);
     vecu x = mul_(a, {norm}), y = mul_(b, {norm});

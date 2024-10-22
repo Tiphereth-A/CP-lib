@@ -3,8 +3,7 @@
 \begin{minted}{cpp}
 template <class T>
 vector<Point<T>> convex_hull(vector<Point<T>> p) {
-  assert(!p.empty());
-  sort(p.begin(), p.end(), [](const Point<i64> &a, const Point<i64> &b) { return a.x < b.x; });
+  assert(!p.empty()), sort(p.begin(), p.end(), [](const Point<i64> &a, const Point<i64> &b) { return a.x < b.x; });
   vector<Point<T>> u{p[0]}, d{p.back()};
   for (usz i = 1; i < p.size(); ++i) {
     while (u.size() >= 2 && ((u.back() - u[u.size() - 2]) ^ (p[i] - u.back())) > 0) u.pop_back();

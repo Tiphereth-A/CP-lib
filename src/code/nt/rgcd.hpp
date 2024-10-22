@@ -33,8 +33,7 @@ class RGCD {
   }
 
   CEXP u32 operator()(u32 x, u32 y) const {
-    assert(x < fs.size() && y < fs.size());
-    if (x < g_.size() && y < g_.size()) return g_[x][y];
+    if (assert(x < fs.size() && y < fs.size()); x < g_.size() && y < g_.size()) return g_[x][y];
     u32 ans = 1, _;
     for (u32 i : {fs[x].a, fs[x].b, fs[x].c}) y /= (_ = i < g_.size() ? g_[i][y % i] : (y % i == 0) * (i - 1) + 1), ans *= _;
     return ans;

@@ -19,10 +19,12 @@ class fastin {
   struct stat Fl;
 
  public:
-  fastin(FILE *f = stdin) { rebind(f); }
+  fastin(FILE *f = stdin) { assert(f), rebind(f); }
   ~fastin() { rebind(); }
   void rebind(FILE *f = nullptr) {
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
     if (!f_) munmap(bg, Fl.st_size + 1);
+#pragma GCC diagnostic warning "-Wmaybe-uninitialized"
     if (!f) return;
     auto fd = fileno(f_ = f);
     fstat(fd, &Fl), p = (bg = (char *)mmap(0, Fl.st_size + 4, PROT_READ, MAP_PRIVATE, fd, 0)), ed = bg + Fl.st_size, madvise(bg, Fl.st_size + 4, MADV_SEQUENTIAL);

@@ -61,8 +61,7 @@ class DLX {
  public:
   CEXPE DLX(cT_(vvecb) grid, bool multi_ans = false) : data(), cnt_col(), mans(multi_ans) {
     u32 col = (u32)grid[0].size();
-    assert(col > 0);
-    cnt_col.resize(col + 1), data.reserve(col + 1);
+    assert(col > 0), cnt_col.resize(col + 1), data.reserve(col + 1);
     fle_ (u32, i, 0, col) data.emplace_back(i - 1, i + 1, i, i, 0, i);
     r_(l_(0) = col) = 0;
     flt_ (u32, i, 0, (u32)grid.size()) {

@@ -24,9 +24,7 @@ class dsu_pd {
   CEXP void rollback(u32 t) {
     while (edges.size() > t) {
       const auto [i, pi] = edges.back();
-      edges.pop_back();
-      assert(p[(u32)p[i]] < 0);
-      p[(u32)p[i]] -= pi, p[i] = pi;
+      edges.pop_back(), assert(p[(u32)p[i]] < 0), p[(u32)p[i]] -= pi, p[i] = pi;
     }
   }
 };

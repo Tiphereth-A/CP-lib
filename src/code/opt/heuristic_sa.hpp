@@ -6,7 +6,7 @@
 namespace tifa_libs::opt {
 
 template <class T, class Fg, class Ff, class Ft = f64, class Tt = f64>
-requires requires(Ff fit, Fg gen, cT_(T) sample, Tt t) {
+requires requires(Ff fit, Fg gen, T sample, Tt t) {
   { fit(sample) } -> std::same_as<Ft>;
   { gen(sample, t) } -> std::same_as<T>;
 }
@@ -26,6 +26,14 @@ class heuristic_sa {
     for (Tt t = Tmax; t > Tmin; t *= dT)
       if (Ft now_f = f(now = gen(ans, t)); now_f <= ans_f || std::exp((ans_f - now_f) / t) > g.next()) ans_f = now_f, ans = now;
     return {ans_f, ans};
+  }
+
+  std::pair<Ft, T> run_until(T init_val, i64 cast_ns = 1e9) {
+    auto st = std::chrono::high_resolution_clock::now();
+    Ft f;
+    do std::tie(f, init_val) = (*this)(init_val);
+    while (std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now() - st).count() >= cast_ns);
+    return {f, init_val};
   }
 };
 

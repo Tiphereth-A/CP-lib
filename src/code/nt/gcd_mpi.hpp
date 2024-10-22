@@ -17,8 +17,7 @@ CEXP ptti shrink(u32 a) {
   // clang-format on
 }
 CEXP ptti shrink(mpi& a) {
-  assert(!a.is_neg());
-  if (a.data().empty()) return {0, 0};
+  if (assert(!a.is_neg()); a.data().empty()) return {0, 0};
   ptti res{0, 0};
   while (true) {
     const u32 g = gcd(mpi::D, a.data()[0]);

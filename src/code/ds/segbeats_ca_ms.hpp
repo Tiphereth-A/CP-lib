@@ -112,8 +112,7 @@ struct segbeats_ca_ms {
   }
   template <int tp>
   CEXP void update_(u32 l, u32 r, T x) {
-    assert(l <= r);
-    if (l == r) return;
+    if (assert(l <= r); l == r) return;
     l += n, r += n;
     u32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), zm = min(zl, zr);
     for (u32 i = lbn; i >= 1; i--) {

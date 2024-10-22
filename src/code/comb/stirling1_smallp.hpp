@@ -15,8 +15,7 @@ class Stirling1 {
   //! @param p MUST be prime
   CEXPE Stirling1() : mCn(mint::mod()), s(mint::mod()) {
     u32 p = mint::mod();
-    assert(p < 32768);
-    s[0] = {1};
+    assert(p < 32768), s[0] = {1};
     flt_ (u32, i, 1, p) {
       s[i].assign(i + 1, 0);
       fle_ (u32, j, 0, i) {

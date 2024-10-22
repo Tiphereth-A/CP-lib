@@ -37,8 +37,7 @@ struct NTT {
     assert(n <= max_size), sz = n;
   }
   CEXP void dif(vec<mint> &f, u32 n = 0) const {
-    assert(size());
-    if (!n) n = size();
+    if (assert(size()); !n) n = size();
     if (f.size() < n) f.resize(n);
     assert(std::has_single_bit(n) && n <= size());
     const u32 l = (u32)std::countr_zero(n);

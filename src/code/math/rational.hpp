@@ -10,8 +10,7 @@ struct rational {
   T num, den;
 
   CEXP rational(T numerator = T(0), T denominator = T(1)) : num(numerator), den(denominator) {
-    assert(den != 0);
-    if (num == 0) den = 1;
+    if (assert(den != 0); num == 0) den = 1;
     else {
       const T g = (T)gcd(num, den);
       if CEXP (num /= g, den /= g; std::is_signed_v<T>)

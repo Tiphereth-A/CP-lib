@@ -25,8 +25,7 @@ class segbeats_ca_msh {
   CEXPE segbeats_ca_msh(u32 N) : n(N), t(N * 4), tag(N * 4), INF(std::numeric_limits<T>::max()) { build(vec<T>(n, 0), 1, 0, n - 1); }
 
   CEXP void add(u32 x, u32 l, u32 r, u32 L, u32 R, T k) {
-    assert(R >= l && L <= r);
-    if (L <= l && r <= R) return all_update(x, l, r, k, k, k, k, k, k);
+    if (assert(R >= l && L <= r); L <= l && r <= R) return all_update(x, l, r, k, k, k, k, k, k);
     pushdown(x, l, r);
     u32 mid = l + (r - l) / 2;
     if (L <= mid) add(x * 2, l, mid, L, R, k);
@@ -34,8 +33,7 @@ class segbeats_ca_msh {
     pushup(x);
   }
   CEXP void chmax(u32 x, u32 l, u32 r, u32 L, u32 R, T k) {
-    assert(R >= l && L <= r);
-    if (k <= t[x].min) return;
+    if (assert(R >= l && L <= r); k <= t[x].min) return;
     if (L <= l && r <= R && k < t[x].min2) return all_update(x, l, r, k - t[x].min, 0, 0, k - t[x].min, 0, 0);
     pushdown(x, l, r);
     u32 mid = l + (r - l) / 2;
@@ -44,8 +42,7 @@ class segbeats_ca_msh {
     pushup(x);
   }
   CEXP void chmin(u32 x, u32 l, u32 r, u32 L, u32 R, T k) {
-    assert(R >= l && L <= r);
-    if (k >= t[x].max) return;
+    if (assert(R >= l && L <= r); k >= t[x].max) return;
     if (L <= l && r <= R && k > t[x].max2) return all_update(x, l, r, 0, k - t[x].max, 0, 0, k - t[x].max, 0);
     pushdown(x, l, r);
     u32 mid = l + (r - l) / 2;
@@ -54,8 +51,7 @@ class segbeats_ca_msh {
     pushup(x);
   }
   CEXP T1 querys(u32 x, u32 l, u32 r, u32 L, u32 R) {
-    assert(R >= l && L <= r);
-    if (L <= l && r <= R) return t[x].sum;
+    if (assert(R >= l && L <= r); L <= l && r <= R) return t[x].sum;
     pushdown(x, l, r);
     u32 mid = l + (r - l) / 2;
     T1 ret = 0;
@@ -64,8 +60,7 @@ class segbeats_ca_msh {
     return ret;
   }
   CEXP T querymax(u32 x, u32 l, u32 r, u32 L, u32 R) {
-    assert(R >= l && L <= r);
-    if (L <= l && r <= R) return t[x].max;
+    if (assert(R >= l && L <= r); L <= l && r <= R) return t[x].max;
     pushdown(x, l, r);
     u32 mid = l + (r - l) / 2;
     T ret = -INF;
@@ -74,8 +69,7 @@ class segbeats_ca_msh {
     return ret;
   }
   CEXP T queryhismax(u32 x, u32 l, u32 r, u32 L, u32 R) {
-    assert(R >= l && L <= r);
-    if (L <= l && r <= R) return t[x].hismax;
+    if (assert(R >= l && L <= r); L <= l && r <= R) return t[x].hismax;
     pushdown(x, l, r);
     u32 mid = l + (r - l) / 2;
     T ret = -INF;

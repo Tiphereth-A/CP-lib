@@ -10,10 +10,10 @@ vecuu Josephus_bf(u64 n, u64 k, u64 m) {
   assert(m <= 10000);
   vecuu ans(m);
   std::list<u64> l;
-  flt_(u64, i, 0, n) l.push_back(i);
+  flt_ (u64, i, 0, n) l.push_back(i);
   auto it = l.begin();
-  flt_(u32, i, 0, m) {
-    flt_(u32, j, 1, k)
+  flt_ (u32, i, 0, m) {
+    flt_ (u32, j, 1, k)
       if (++it == l.end()) it = l.begin();
     ans[i] = *it;
     if ((it = l.erase(it)) == l.end()) it = l.begin();
@@ -24,7 +24,7 @@ vecuu Josephus_bf(u64 n, u64 k, u64 m) {
 void test(u64 n, u64 k) {
   u64 m = tifa_libs::min(10000_u64, n);
   auto wants = Josephus_bf(n, k, m);
-  fle_(u32, i, 1, m) {
+  fle_ (u32, i, 1, m) {
     u64 got = tifa_libs::util::Josephus(n, k, i);
     check(got, wants[i - 1], check_param(n), check_param(k), check_param(i));
   }

@@ -42,8 +42,7 @@ class segtree {
   CEXP void set(u32 l, u32 r, cT_(F) v) { upd_set<false>(l, r, v); }
   //! 0-indexed, [l, r)
   CEXP T query(u32 l, u32 r) {
-    assert(l <= r && r <= sz);
-    if (l == r) return E;
+    if (assert(l <= r && r <= sz); l == r) return E;
     l += n, r += n;
     for (u32 i = lbn, zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), ie = (u32)max(1, (i32)min(zl, zr)); i >= ie; --i) {
       if (zl < i) pushdown(l >> i);
@@ -60,8 +59,7 @@ class segtree {
   CEXP void update(u32 x, cT_(F) v) { upd_set<true>(x, v); }
   CEXP void set(u32 x, cT_(T) v) { upd_set<false>(x, v); }
   CEXP T query(u32 x) {
-    assert(x < sz);
-    x += n;
+    assert(x < sz), x += n;
     for (u32 i = lbn; i; --i) pushdown(x >> i);
     return val[x];
   }
@@ -70,8 +68,7 @@ class segtree {
     { check(val) } -> std::same_as<bool>;
   }
   CEXP u32 max_right(u32 l, G &&chk) {
-    assert(l <= sz && chk(ID));
-    if (l == n) return n;
+    if (assert(l <= sz && chk(ID)); l == n) return n;
     l += n;
     for (u32 i = lbn; i; --i) pushdown(l >> i);
     T _ = E;
@@ -90,8 +87,7 @@ class segtree {
     { check(val) } -> std::same_as<bool>;
   }
   CEXP u32 min_left(u32 r, G chk) {
-    assert(r <= sz && chk(ID));
-    if (!r) return 0;
+    if (assert(r <= sz && chk(ID)); !r) return 0;
     r += n;
     for (u32 i = lbn; i; --i) pushdown((r - 1) >> i);
     T _ = E;
@@ -132,8 +128,7 @@ class segtree {
   }
   template <bool upd>
   CEXP void upd_set(u32 l, u32 r, std::conditional_t<upd, cT_(F), cT_(T)> v) {
-    assert(l <= r && r <= sz);
-    if (l == r) return;
+    if (assert(l <= r && r <= sz); l == r) return;
     l += n, r += n;
     u32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), zm = min(zl, zr);
     for (u32 i = lbn, ie = (u32)max(1, (i32)zm); i >= ie; --i) {
@@ -153,8 +148,7 @@ class segtree {
   }
   template <bool upd>
   CEXP void upd_set(u32 x, std::conditional_t<upd, cT_(F), cT_(T)> v) {
-    assert(x < sz);
-    x += n;
+    assert(x < sz), x += n;
     for (u32 i = lbn; i; --i) pushdown(x >> i);
     if CEXP (upd) val[x] = mapping(val[x], v);
     else val[x] = v;

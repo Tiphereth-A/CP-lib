@@ -25,8 +25,7 @@ class mint_d63 : public mint<mint_d63<ID>, u64> {
  public:
   static CEXP bool FIXED_MOD = false;
   static CEXP void set_mod(u64 m) {
-    assert(!((m & 1) == 0 || m == 1 || m >> 63));
-    MOD = m;
+    assert(!((m & 1) == 0 || m == 1 || m >> 63)), MOD = m;
     u64 t = 2, iv = MOD * (t - MOD * MOD);
     iv *= t - MOD * iv, iv *= t - MOD * iv, iv *= t - MOD * iv, R = iv * (t - MOD * iv), R2 = -MOD % MOD;
     flt_ (u32, i, 0, 64)
