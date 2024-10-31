@@ -980,6 +980,9 @@ notebook:
     - inv_mat: 逆矩阵
       code_ext: hpp
       test_ext: cpp
+    - adj_mat: 伴随矩阵
+      code_ext: hpp
+      test_ext: cpp
     - merge_lr_mat: 横向合并
       code_ext: hpp
       test_ext: cpp
