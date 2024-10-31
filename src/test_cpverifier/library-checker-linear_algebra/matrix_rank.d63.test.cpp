@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_rank"
 
-#include "../../code/lalg/ge_basic_mat.hpp"
+#include "../../code/lalg/ge_mat.hpp"
 #include "../../code/lalg/mat.hpp"
 
 CEXP u32 MOD = 998244353;
@@ -23,6 +23,6 @@ int main() {
   mat a(n, m);
   std::cin >> a;
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-  std::cout << abs(tifa_libs::math::ge_basic(a, is_0, false));
+  std::cout << abs(tifa_libs::math::ge_mat(a, is_0, false));
   return 0;
 }

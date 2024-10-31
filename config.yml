@@ -965,16 +965,7 @@ notebook:
     - det_mat: 行列式
       code_ext: hpp
       test_ext: cpp
-    - ge_swapr_mat_: ge_swapr_mat_
-      code_ext: hpp
-      test_ext: cpp
-    - ge_basic_mat: Gauss 消元(普通)
-      code_ext: hpp
-      test_ext: cpp
-    - ge_euclid_mat: Gauss 消元(辗转相除)
-      code_ext: hpp
-      test_ext: cpp
-    - ge_xor_mat: Gauss 消元(异或)
+    - ge_mat: Gauss 消元
       code_ext: hpp
       test_ext: cpp
     - inv_mat: 逆矩阵

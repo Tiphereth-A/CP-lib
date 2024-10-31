@@ -4,7 +4,7 @@
 #include "../../code/fast/rsort32.hpp"
 #include "../../code/graph/alist.hpp"
 #include "../../code/graph/kirchhoff.hpp"
-#include "../../code/lalg/ge_euclid_mat.hpp"
+#include "../../code/lalg/ge_mat.hpp"
 
 CEXP u32 MOD = 998244353;
 
@@ -35,8 +35,7 @@ int main() {
     mat.set_arc(id, pre, cnt);
   }
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-  auto div = [](cT_(mint) x, cT_(mint) y) -> mint { return x.val() / y.val(); };
-  auto ge = [&](tifa_libs::math::matrix<mint> &A, bool clear_u) { return tifa_libs::math::ge_euclid(A, is_0, div, clear_u); };
+  auto ge = [&](tifa_libs::math::matrix<mint> &A, bool clear_u) { return tifa_libs::math::ge_mat<mint, decltype(is_0), true>(A, is_0, clear_u); };
   std::cout << tifa_libs::graph::kirchhoff<true>(mat, r, ge) << '\n';
   return 0;
 }

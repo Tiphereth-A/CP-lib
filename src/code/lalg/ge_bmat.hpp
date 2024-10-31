@@ -9,20 +9,20 @@ template <usz R, usz C>
 CEXP u32 ge_bmat(bitmat<R, C> &bmat, bool clear_u = true) {
   CEXP usz rk_max = min(R, C);
   u32 rk = 0;
-  for (u32 i = 0, now_r = 0, j_ = i; i < R; ++i) {
-    if (j_ = max(j_, i); !bmat[rk][i]) {
-      now_r = rk;
-      for (u32 j = now_r + 1; j < R; ++j)
-        if (bmat[j][i]) now_r = j;
-      if (now_r != rk) swap(bmat[now_r], bmat[rk]);
-      else std::stable_sort(bmat.begin() + rk, bmat.end(), [](auto const &l, auto const &r) { return l._Find_first() < r._Find_first(); });
-      while (j_ < C && !bmat[rk][j_]) ++j_;
-      if (j_ == C) break;
+  for (u32 i = 0, c = 0; i < R; c = max(c, ++i)) {
+    if (!bmat[i][c]) {
+      u32 i2 = i;
+      flt_ (u32, j, i + 1, R)
+        if (bmat[j][c]) {
+          i2 = j;
+          break;
+        }
+      if (i2 != i) swap(bmat[i2], bmat[i]);
+      else std::stable_sort(bmat.begin() + i, bmat.end(), [](auto const &l, auto const &r) { return l._Find_first() > r._Find_first(); });
+      if (!bmat[i][c] && (c = bmat[i]._Find_next(c)) == C) break;
     }
-    for (u32 j = clear_u ? 0 : rk + 1; j < R; ++j) {
-      if (j == rk || !bmat[j][j_]) continue;
-      bmat[j] ^= bmat[rk];
-    }
+    flt_ (u32, j, clear_u ? 0 : i + 1, R)
+      if (j != i && bmat[j][c]) bmat[j] ^= bmat[i];
     if (++rk >= rk_max) break;
   }
   return rk;

@@ -3,7 +3,7 @@
 
 #include "../../../code/lalg/sherman_morrison.hpp"
 
-#include "../../../code/lalg/ge_basic_mat.hpp"
+#include "../../../code/lalg/ge_mat.hpp"
 #include "../../../code/lalg/inv_mat.hpp"
 #include "../../../code/lalg/mat.hpp"
 #include "../../../code/math/mint_2e61n1.hpp"
@@ -19,7 +19,7 @@ void single_test(u32 n) {
   tifa_libs::rand::Gen<u32> gen(1, std::numeric_limits<u32>::max());
   using mat = tifa_libs::math::matrix<mint>;
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-  auto ge = [&is_0](mat& m, bool f) { return tifa_libs::math::ge_basic(m, is_0, f); };
+  auto ge = [&is_0](mat& m, bool f) { return tifa_libs::math::ge_mat(m, is_0, f); };
 
   mat L(n, n), U(n, n);
   flt_ (u32, i, 0, n)

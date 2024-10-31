@@ -2,7 +2,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod"
 
 #include "../../code/lalg/det_mat.hpp"
-#include "../../code/lalg/ge_euclid_mat.hpp"
+#include "../../code/lalg/ge_mat.hpp"
 #include "../../code/lalg/mat.hpp"
 //
 #include "../../code/math/mint_d31.hpp"
@@ -23,8 +23,7 @@ int main() {
   mat a(n, n);
   std::cin >> a;
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-  auto div = [](cT_(mint) x, cT_(mint) y) -> mint { return x.val() / y.val(); };
-  auto ge = [&is_0, &div](mat &m, bool f) { return tifa_libs::math::ge_euclid(m, is_0, div, f); };
+  auto ge = [&is_0](mat &m, bool f) { return tifa_libs::math::ge_mat<mint, decltype(is_0), true>(m, is_0, f); };
   std::cout << det(a, ge);
   return 0;
 }

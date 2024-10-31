@@ -2,7 +2,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 
 #include "../../code/lalg/det_mat.hpp"
-#include "../../code/lalg/ge_basic_mat.hpp"
+#include "../../code/lalg/ge_mat.hpp"
 #include "../../code/lalg/mat.hpp"
 
 CEXP u32 MOD = 998244353;
@@ -19,7 +19,7 @@ int main() {
   mat a(n, n);
   std::cin >> a;
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-  auto ge = [&is_0](mat &m, bool f) { return tifa_libs::math::ge_basic(m, is_0, f); };
+  auto ge = [&is_0](mat &m, bool f) { return tifa_libs::math::ge_mat(m, is_0, f); };
   std::cout << det(a, ge);
   return 0;
 }

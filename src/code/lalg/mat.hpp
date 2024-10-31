@@ -51,7 +51,8 @@ class matrix {
   CEXP matrix submat(u32 row_l, u32 row_r, u32 col_l, u32 col_r) const {
     assert(row_l < row_r && row_r <= row() && col_l < col_r && col_r <= col());
     matrix ret(row_r - row_l, col_r - col_l);
-    return ret.apply_range(0, ret.row(), 0, ret.col(), [this, row_l, col_l](u32 i, u32 j, T &v) { v = (*this)(i + row_l, j + col_l); }), ret;
+    FOR1_ (i, row_l, row_r) std::copy(d[i].begin() + col_l, d[i].begin() + col_r, ret.d[i - row_l].begin());
+    return ret;
   }
   CEXP void swap_row(u32 r1, u32 r2) {
     if (assert(r1 < row() && r2 < row()); r1 == r2) return;
@@ -65,20 +66,20 @@ class matrix {
     if CEXP (std::is_same_v<T, bool>) return *this;
     else {
       matrix ret = *this;
-      return ret.apply_range(0, row(), 0, col(), [](u32, u32, T &v) { v = -v; }), ret;
+      return ret.apply([](u32, u32, T &v) { v = -v; }), ret;
     }
   }
   friend CEXP matrix operator+(matrix l, cT_(T) v) { return l += v; }
   friend CEXP matrix operator+(cT_(T) v, matrix l) { return l += v; }
   CEXP matrix &operator+=(cT_(T) v) {
-    if CEXP (std::is_same_v<T, bool>) apply_range(0, row(), 0, col(), [&v](u32, u32, auto &val) { val = val ^ v; });
-    else apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val += v; });
+    if CEXP (std::is_same_v<T, bool>) apply([&v](u32, u32, auto &val) { val = val ^ v; });
+    else apply([&v](u32, u32, T &val) { val += v; });
     return *this;
   }
   friend CEXP matrix operator-(matrix l, cT_(T) v) { return l -= v; }
   CEXP matrix &operator-=(cT_(T) v) {
-    if CEXP (std::is_same_v<T, bool>) apply_range(0, row(), 0, col(), [&v](u32, u32, auto &val) { val = val ^ v; });
-    else apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val -= v; });
+    if CEXP (std::is_same_v<T, bool>) apply([&v](u32, u32, auto &val) { val = val ^ v; });
+    else apply([&v](u32, u32, T &val) { val -= v; });
     return *this;
   }
   friend CEXP matrix operator*(matrix l, cT_(T) v) { return l *= v; }
@@ -86,21 +87,21 @@ class matrix {
   CEXP matrix &operator*=(cT_(T) v) {
     if CEXP (std::is_same_v<T, bool>) {
       if (!v)
-        for (auto &i : d) i.clear(), i.resize(col());
+        for (auto &i : d) std::ranges::fill(i, false);
       return *this;
-    } else apply_range(0, row(), 0, col(), [&v](u32, u32, T &val) { val *= v; });
+    } else apply([&v](u32, u32, T &val) { val *= v; });
     return *this;
   }
   friend CEXP matrix operator+(matrix l, matrix CR r) { return l += r; }
   CEXP matrix &operator+=(matrix CR r) {
-    if CEXP (assert(row() == r.row() && col() == r.col()); std::is_same_v<T, bool>) apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, auto &val) { val = val ^ r(i, j); });
-    else apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val += r(i, j); });
+    if CEXP (assert(row() == r.row() && col() == r.col()); std::is_same_v<T, bool>) apply([&r](u32 i, u32 j, auto &val) { val = val ^ r(i, j); });
+    else apply([&r](u32 i, u32 j, T &val) { val += r(i, j); });
     return *this;
   }
   friend CEXP matrix operator-(matrix l, matrix CR r) { return l -= r; }
   CEXP matrix &operator-=(matrix CR r) {
-    if CEXP (assert(row() == r.row() && col() == r.col()); std::is_same_v<T, bool>) apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, auto &val) { val = val ^ r(i, j); });
-    else apply_range(0, row(), 0, col(), [&r](u32 i, u32 j, T &val) { val -= r(i, j); });
+    if CEXP (assert(row() == r.row() && col() == r.col()); std::is_same_v<T, bool>) apply([&r](u32 i, u32 j, auto &val) { val = val ^ r(i, j); });
+    else apply([&r](u32 i, u32 j, T &val) { val -= r(i, j); });
     return *this;
   }
   friend CEXP matrix operator*(matrix CR l, matrix CR r) {
