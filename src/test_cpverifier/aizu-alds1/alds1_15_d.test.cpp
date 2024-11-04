@@ -6,7 +6,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s;
   std::cin >> s;
-  std::map<char, u32> mp;
+  map<char, u32> mp;
   for (char c : s) ++mp[c];
   vec<char> dict;
   vecu w;

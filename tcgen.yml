@@ -1,3 +1,51 @@
+hashseto: |
+  #ifdef GENTC_hashset_std
+  template <class T>
+  using hashset = std::unordered_set<T>;
+  #endif
+  #ifdef GENTC_hashset_pbds
+  template <class T>
+  using hashset = hset<T>;
+  #endif
+
+hashsets: |
+  #ifdef GENTC_hashset_std_splitmix64
+  #include "../../code/edh/hash_splitmix64.hpp"
+
+  template <class T>
+  using hashset = std::unordered_set<T, tifa_libs::hash_splitmix64>;
+  #endif
+  #ifdef GENTC_hashset_pbds_splitmix64
+  #include "../../code/edh/hash_splitmix64.hpp"
+
+  template <class T>
+  using hashset = hset<T, tifa_libs::hash_splitmix64>;
+  #endif
+
+hashmapo: |
+  #ifdef GENTC_hashmap_std
+  template <class K, class V>
+  using hashmap = std::unordered_map<K, V>;
+  #endif
+  #ifdef GENTC_hashmap_pbds
+  template <class K, class V>
+  using hashmap = hmap<K, V>;
+  #endif
+
+hashmaps: |
+  #ifdef GENTC_hashmap_std_splitmix64
+  #include "../../code/edh/hash_splitmix64.hpp"
+
+  template <class K, class V>
+  using hashmap = std::unordered_map<K, V, tifa_libs::hash_splitmix64>;
+  #endif
+  #ifdef GENTC_hashmap_pbds_splitmix64
+  #include "../../code/edh/hash_splitmix64.hpp"
+
+  template <class K, class V>
+  using hashmap = hmap<K, V, tifa_libs::hash_splitmix64>;
+  #endif
+
 hashstrs: |
   #ifdef GENTC_hashstr1
   #include "../../code/math/mint_2e61n1.hpp"

@@ -14,7 +14,7 @@ int main() {
     std::cin >> n;
     cvh poly(n);
     std::cin >> poly;
-    std::map<point, vecu> mp;
+    map<point, vecu> mp;
     flt_ (u32, i, 0, n) mp[poly.vs[i]].push_back(i);
     poly.init();
     auto [dis, i, j] = poly.template diameter<true>();

@@ -30,7 +30,7 @@ strn single_proceed(std::istream &fin) {
     tifa_libs::graph::dfs(mct, r, fn_0, [&](u32 v, u32 u, u64 w) { mat[r][v] = std::min({mat[r][v], mat[r][u], w}); }, fn_0, fn_0);
     mat[r][r] = 0;
   }
-  std::map<u64, u32> cnts;
+  map<u64, u32> cnts;
   flt_ (u32, i, 0, n)
     flt_ (u32, j, i + 1, n) ++cnts[mat[i][j]];
   fin >> q;

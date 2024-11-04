@@ -35,21 +35,25 @@ using f128 = long double;
 using strn = std::string;
 using strnv = std::string_view;
 
+using std::numbers::pi_v;
+template <std::floating_point FP>
+inline FP eps_v = std::sqrt(std::numeric_limits<FP>::epsilon());
+template <std::floating_point FP>
+CEXP void set_eps(FP v) { eps_v<FP> = v; }
+CEXP u32 TIME = ((__TIME__[0] & 15) << 20) | ((__TIME__[1] & 15) << 16) | ((__TIME__[3] & 15) << 12) | ((__TIME__[4] & 15) << 8) | ((__TIME__[6] & 15) << 4) | (__TIME__[7] & 15);
+
+template <class T>
+struct chash {
+  CEXP static u64 C = u64(pi_v<f128> * 2e18) | 71;
+  CEXP u64 operator()(T x) const { return __builtin_bswap64(((u64)x ^ TIME) * C); }
+};
+
 // clang-format off
 template <class T, T v> using ic = std::integral_constant<T, v>;
 template <class T> using ptt = std::pair<T, T>;
-template <class T> struct edge_t {
-  T w; u32 u, v;
-  CEXP auto operator<=>(edge_t CR) const = default;
-};
-template <class T> struct pt3 {
-  T _0, _1, _2;
-  CEXP auto operator<=>(pt3 CR) const = default;
-};
-template <class T> struct pt4 {
-  T _0, _1, _2, _3;
-  CEXP auto operator<=>(pt4 CR) const = default;
-};
+template <class T> struct edge_t { T w; u32 u, v; CEXP auto operator<=>(edge_t CR) const = default; };
+template <class T> struct pt3 { T _0, _1, _2; CEXP auto operator<=>(pt3 CR) const = default; };
+template <class T> struct pt4 { T _0, _1, _2, _3; CEXP auto operator<=>(pt4 CR) const = default; };
 template <class E> using itl = std::initializer_list<E>;
 template <class T> using vec = std::vector<T>;
 template <class T> using vvec = vec<vec<T>>;
@@ -64,8 +68,25 @@ template <class T, usz N> using arr = std::array<T, N>;
 template <class U, class T> using vecp = vec<std::pair<U, T>>;
 template <class U, class T> using vvecp = vvec<std::pair<U, T>>;
 
+#ifdef PB_DS_ASSOC_CNTNR_HPP
+template <class T, class C = std::less<T>> using set = __gnu_pbds::tree<T, __gnu_pbds::null_type, C>;
+template <class K, class V, class C = std::less<K>> using map = __gnu_pbds::tree<K, V, C>;
+// hset<u64> s({}, {}, {}, {}, {1<<16});
+template <class T, class HF = chash<T>> using hset = __gnu_pbds::gp_hash_table<T, __gnu_pbds::null_type, HF>;
+// hmap<u64, int> s({}, {}, {}, {}, {1<<16});
+template <class K, class V, class HF = chash<K>> using hmap = __gnu_pbds::gp_hash_table<K, V, HF>;
+#else
+using std::set, std::map;
+template <class T, class HF = chash<T>> using hset = std::unordered_set<T, HF>;
+template <class K, class V, class HF = chash<K>> using hmap = std::unordered_map<K, V, HF>;
+#endif
+
+#ifdef PB_DS_PRIORITY_QUEUE_HPP
+template <class T, class C = std::less<T>> using pq = __gnu_pbds::priority_queue<T, C>;
+#else
 template <class T, class C = std::less<T>> using pq = std::priority_queue<T, vec<T>, C>;
-template <class T> using pqg = std::priority_queue<T, vec<T>, std::greater<T>>;
+#endif
+template <class T> using pqg = pq<T, std::greater<T>>;
 // clang-format on
 
 #define mk_(V, A, T) using V##A = V<T>;
@@ -85,12 +106,6 @@ CEXP u16 operator""_u16(unsigned long long x) { return (u16)x; }
 CEXP u32 operator""_u32(unsigned long long x) { return (u32)x; }
 CEXP u64 operator""_u64(unsigned long long x) { return (u64)x; }
 CEXP usz operator""_uz(unsigned long long x) { return (usz)x; }
-
-using std::numbers::pi_v;
-template <std::floating_point FP>
-inline FP eps_v = std::sqrt(std::numeric_limits<FP>::epsilon());
-template <std::floating_point FP>
-CEXP void set_eps(FP v) { eps_v<FP> = v; }
 
 inline const auto fn_0 = [](auto&&...) {};
 inline const auto fn_is0 = [](auto x) { return x == 0; };

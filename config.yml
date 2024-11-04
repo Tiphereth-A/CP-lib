@@ -732,18 +732,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     nt:
-    - bsgs: BSGS
-      code_ext: hpp
-      test_ext: cpp
-    - exbsgs: 任意模数 BSGS
-      code_ext: hpp
-      test_ext: cpp
-    - crt_mod: 模 CRT
-      code_ext: hpp
-      test_ext: cpp
-    - crt: CRT
-      code_ext: hpp
-      test_ext: cpp
     - euler_phi_u32: Euler 函数(32 位)
       code_ext: hpp
       test_ext: cpp
@@ -769,6 +757,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - inverse: 逆元
+      code_ext: hpp
+      test_ext: cpp
+    - crt_mod: 模 CRT
+      code_ext: hpp
+      test_ext: cpp
+    - crt: CRT
       code_ext: hpp
       test_ext: cpp
     - is_prime: 素数判定
@@ -799,6 +793,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - proot_gint: 原根(Gauss 整数)
+      code_ext: hpp
+      test_ext: cpp
+    - bsgs: 离散对数(BSGS)
+      code_ext: hpp
+      test_ext: cpp
+    - exbsgs: 离散对数(任意模数 BSGS)
       code_ext: hpp
       test_ext: cpp
     - jacobi_sym: Jacobi 符号

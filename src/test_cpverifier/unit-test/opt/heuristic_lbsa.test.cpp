@@ -64,7 +64,7 @@ void test(const char* const name, double optimal, u32 L, double p0, u32 K, u32 M
   auto [f_solution, solution] = sa(K, M);
 
   {
-    std::set<u32> sol_unique;
+    set<u32> sol_unique;
     for (auto i : solution) sol_unique.insert(i);
     check(sol_unique.size(), solution.size());
   }

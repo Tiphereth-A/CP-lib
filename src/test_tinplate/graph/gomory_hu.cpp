@@ -17,7 +17,7 @@ int main() {
   std::cin >> q;
   tifa_libs::graph::alistw<u32> g(n);
   for (auto&& [w, u, v] : gh_edges) g.add_arc(u, v, w), g.add_arc(v, u, w);
-  std::map<pttu, u32> mp;
+  map<pttu, u32> mp;
   for (auto&& [w, u, v] : gh_edges) mp[std::minmax(u, v)] = w;
   for (u32 i = 0, u, v; i < q; ++i) {
     std::cin >> u >> v;

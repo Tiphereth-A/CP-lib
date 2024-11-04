@@ -9,7 +9,7 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   vec<edge_tu> e(m);
-  std::map<edge_tu, u32> id;
+  map<edge_tu, u32> id;
   u32 cnt = 0;
   for (auto& [w, u, v] : e) {
     std::cin >> u >> v >> w;

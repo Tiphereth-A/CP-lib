@@ -22,7 +22,7 @@ strn single_proceed(std::istream &fin) {
   vec<Point2> vp(n);
   for (auto &p : vp) fin >> p;
   if (!n) return "0\n";
-  std::map<Point2, u32> ids;
+  map<Point2, u32> ids;
   flt_ (u32, i, 0, n) ids[vp[i]] = i + 1;
   u32 pos = 0;
   vecb skip(n);

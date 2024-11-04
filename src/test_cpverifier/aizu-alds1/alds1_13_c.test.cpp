@@ -8,8 +8,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   tifa_libs::game::NPuzzleData start(4);
   std::vector<u32> fin(16);
-  std::iota(fin.begin(), fin.end(), 1);
-  fin.back() = 0;
+  std::iota(fin.begin(), fin.end() - 1, 1);
   tifa_libs::game::NPuzzleData::set_fin(4, fin);
   tifa_libs::game::NPuzzleData::limit = 100;
   std::cin >> start;

@@ -1,7 +1,6 @@
 #ifndef TIFALIBS_MATH_BSGS_NIMBER
 #define TIFALIBS_MATH_BSGS_NIMBER
 
-#include "../edh/hash_splitmix64.hpp"
 #include "../math/nimber.hpp"
 #include "../math/qpow.hpp"
 

@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 
 template <class poly, class T, std::same_as<TPN poly::val_t> mint>
 poly ssts_pim_cnt(vec<T> CR s, u32 t, vec<mint> CR inv) {
-  std::map<T, u32> cnt;
+  map<T, u32> cnt;
   for (auto&& i : s) ++cnt[i];
   poly p(t + 1);
   fle_ (u32, x, 1, t)

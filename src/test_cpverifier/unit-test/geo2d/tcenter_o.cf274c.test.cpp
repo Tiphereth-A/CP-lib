@@ -20,19 +20,19 @@ strn single_proceed(std::istream &fin) {
   set_eps<data_t>(1e-9);
   u32 n;
   fin >> n;
-  std::set<Point2> exists;
+  set<Point2> exists;
   vec<Point2> vp;
   vp.reserve(n);
   data_t x, y;
   for (u32 i = 1; i <= n; ++i) {
     fin >> x >> y;
-    exists.emplace(x, y);
+    exists.insert(Point2{x, y});
     vp.emplace_back(x, y);
   }
   struct Comp {
     bool operator()(const Circle2 &lhs, const Circle2 &rhs) const { return lhs.o == rhs.o ? lhs.r < rhs.r : lhs.o < rhs.o; }
   };
-  std::set<Circle2, Comp> circles;
+  set<Circle2, Comp> circles;
   fle_ (u32, i, 0, n - 1)
     fle_ (u32, j, i + 1, n - 1)
       fle_ (u32, k, j + 1, n - 1) {
@@ -40,11 +40,11 @@ strn single_proceed(std::istream &fin) {
         Triangle2 t{vp[i], vp[j], vp[k]};
         if (t.is_obtuse()) continue;
         if (t.is_right()) {
-          if (tifa_libs::is_zero(dot(vp[i], vp[j], vp[k])) && !exists.count(tifa_libs::geo::reflect({vp[j], vp[k]}, vp[i]))) continue;
-          if (tifa_libs::is_zero(dot(vp[j], vp[k], vp[i])) && !exists.count(tifa_libs::geo::reflect({vp[k], vp[i]}, vp[j]))) continue;
-          if (tifa_libs::is_zero(dot(vp[k], vp[i], vp[j])) && !exists.count(tifa_libs::geo::reflect({vp[i], vp[j]}, vp[k]))) continue;
+          if (tifa_libs::is_zero(dot(vp[i], vp[j], vp[k])) && exists.find(tifa_libs::geo::reflect({vp[j], vp[k]}, vp[i])) == exists.end()) continue;
+          if (tifa_libs::is_zero(dot(vp[j], vp[k], vp[i])) && exists.find(tifa_libs::geo::reflect({vp[k], vp[i]}, vp[j])) == exists.end()) continue;
+          if (tifa_libs::is_zero(dot(vp[k], vp[i], vp[j])) && exists.find(tifa_libs::geo::reflect({vp[i], vp[j]}, vp[k])) == exists.end()) continue;
         }
-        circles.emplace(tifa_libs::geo::center_O(t), tifa_libs::geo::radius_O(t));
+        circles.insert(Circle2{tifa_libs::geo::center_O(t), tifa_libs::geo::radius_O(t)});
       }
   data_t ans = -1;
   for (auto [o, r] : circles) {

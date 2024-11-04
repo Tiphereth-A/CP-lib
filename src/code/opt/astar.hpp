@@ -16,7 +16,7 @@ std::optional<T> astar(T CR s) {
   struct C {
     CEXP bool operator()(cT_(T) a, cT_(T) b) const { return b.cost() < a.cost(); }
   };
-  pq<T, C> pq;
+  std::priority_queue<T, vec<T>, C> pq;
   std::set<T> vis;
   pq.push(s);
   vis.insert(s);

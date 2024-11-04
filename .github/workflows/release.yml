@@ -65,23 +65,10 @@ jobs:
             py3-pygments
             inkscape
           pre_compile: |
-            tlmgr update --self && tlmgr update --all
-            wget -O fira.zip "https://github.com/mozilla/Fira/archive/refs/tags/4.202.zip"
-            wget -O firacode.zip "https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip"
-            wget -O notosans.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"
-            wget -O notosanscjksc.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
-            wget -O notosanscjkjp.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip"
-            wget "https://mirrors.ctan.org/fonts/cm-unicode.zip"
-            unzip fira.zip -d fira
-            unzip firacode.zip -d firacode
-            unzip notosans.zip -d notosans
-            unzip notosanscjksc.zip -d notosanscjksc
-            unzip notosanscjkjp.zip -d notosanscjkjp
-            unzip ./cm-unicode.zip
-            for i in woff2 ttf; do cp -r fira/Fira-4.202/$i /usr/share/fonts/$i; done
-            for i in woff2 ttf; do cp -r firacode/$i /usr/share/fonts/$i; done
-            cp -r notosans notosanscjksc notosanscjkjp cm-unicode/fonts/otf/* /usr/share/fonts
+            echo "::group::Apply fonts"
+            cp -r fonts/* /usr/share/fonts
             fc-cache -f
+            echo "::endgroup::"
           root_file: notebook.tex
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4

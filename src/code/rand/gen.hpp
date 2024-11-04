@@ -27,7 +27,7 @@ class Gen {
   }
 
  public:
-  CEXPE Gen(T a = std::numeric_limits<T>::min(), T b = std::numeric_limits<T>::max(), res_t sd = res_t(std::atoi(__TIME__) * 10000 + std::atoi(&__TIME__[3]) * 100 + std::atoi(&__TIME__[6]))) : a_(a), b_(b) { assert(a < b || (std::is_integral_v<T> && a == b)), seed(sd); }
+  CEXPE Gen(T a = std::numeric_limits<T>::min(), T b = std::numeric_limits<T>::max(), res_t sd = (res_t)TIME) : a_(a), b_(b) { assert(a < b || (std::is_integral_v<T> && a == b)), seed(sd); }
 
   CEXP void range(T min, T max) { assert(min < max || (std::is_integral_v<T> && min == max)), a_ = min, b_ = max; }
   void seed() { seed((res_t)std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()); }

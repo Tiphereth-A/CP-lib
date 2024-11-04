@@ -32,10 +32,6 @@ class hash_splitmix64 {
     return ret;
   }
 };
-template <class T>
-using hset = std::unordered_set<T, hash_splitmix64>;
-template <class K, class V>
-using hmap = std::unordered_map<K, V, hash_splitmix64>;
 
 }  // namespace tifa_libs
 

@@ -21,7 +21,7 @@ CEXP std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
     u64 pe = qpow_mod(p, e, m), ans = qpow_mod(a, (mul_mod_u(pe - 1, inverse(q, pe), pe) * q + 1) / pe, m), c = 2;
     while (qpow_mod(c, (m - 1) / p, m) == 1) ++c;
     c = qpow_mod(c, q, m);
-    std::map<u64, u32> mp;
+    map<u64, u32> mp;
     u64 _a = 1;
     const u32 v = isqrt((s - e) * p) + 1;
     u64 _m = qpow_mod(c, mul_mod_u(v, qpow_mod(p, s - 1, m - 1), m - 1), m);

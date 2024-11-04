@@ -13,7 +13,7 @@ strn single_proceed(spn<Point2> vp) {
   std::stringstream ss;
   ss << std::fixed << std::setprecision(0);
 
-  std::map<Point2, int> id;
+  map<Point2, int> id;
   int cnt = 0;
   for (auto CR p : vp)
     if (!id[p]) id[p] = ++cnt;

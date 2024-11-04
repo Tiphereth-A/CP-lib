@@ -12,7 +12,7 @@ class dcvh {
   // Dynamic half Convex Hull
   struct DHCVH {
     const int sgn_;
-    std::set<point<FP>> vs;
+    set<point<FP>> vs;
 
     CEXPE DHCVH(int sgn_ = 1) : sgn_(sgn_) {}
 
@@ -24,7 +24,8 @@ class dcvh {
       auto j = it;
       return sgn_cross(*(--j), *it, p) * sgn_ <= 0;
     }
-    CEXP bool erase(TPN std::set<point<FP>>::const_iterator it) {
+    template <class IT>
+    CEXP bool erase(IT it) {
       if (it == vs.begin()) return false;
       auto j = it, k = it;
       if (++k == vs.end()) return false;
