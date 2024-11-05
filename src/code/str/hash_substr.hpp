@@ -11,14 +11,12 @@ class hash_substr {
   vec<mint> hash;
 
  public:
-  CEXPE hash_substr() {}
-
   CEXP void set(strnv s) {
-    for (hash.resize(1, 0), hash.reserve(s.size() + 1); char c : s) hash.push_back(hash.back() * base + (u32)c + 1);
-    if (p.size() <= s.size()) {
-      if (p.empty()) p.push_back(1);
-      p.reserve(s.size() + 1);
-      while (p.size() <= s.size()) p.push_back(p.back() * base);
+    const u32 n = (u32)s.size();
+    for (hash.resize(1, 0), hash.reserve(n + 1); char c : s) hash.push_back(hash.back() * base + (u32)c + 1);
+    if (p.size() <= n) {
+      if (p.reserve(n + 1); p.empty()) p.push_back(1);
+      while (p.size() <= n) p.push_back(p.back() * base);
     }
   }
   CEXP u32 size() const { return u32(hash.size() - 1); }

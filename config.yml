@@ -1241,6 +1241,9 @@ notebook:
     - hash_substr2: 双模子串 Hash
       code_ext: hpp
       test_ext: cpp
+    - hash_substr_2d: 二维子串 Hash
+      code_ext: hpp
+      test_ext: cpp
     - lcpf_hash: 子串 Hash 的最长公共前缀
       code_ext: hpp
       test_ext: cpp
