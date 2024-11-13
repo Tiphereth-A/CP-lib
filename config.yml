@@ -931,6 +931,9 @@ notebook:
     - nimber: Nimber
       code_ext: hpp
       test_ext: cpp
+    - trygub: Trygub number
+      code_ext: hpp
+      test_ext: cpp
     - exeuclid: 类 Euclid 算法
       code_ext: hpp
       test_ext: cpp
