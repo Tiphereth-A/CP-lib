@@ -1,49 +1,63 @@
 %-*- coding: utf-8 -*-
-
 \documentclass[10pt]{ICPCnotebook}
-%\usepackage[UTF8]{ctex}
 
-\title{\vspace{-4ex}\Large{ICPC Notebook}}
-\author{Tifa, tan60}
-\date{\today}
 
 \begin{document}
-    \maketitle
+\begin{titlepage}
+    \vspace*{3cm}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[height=6cm]{img/cplib-logo-ba-style.png}
+    \end{figure}
 
-    \pagestyle{plain}
+    \vspace*{6cm}
+    \begin{center}
+        \large \url{https://github.com/Tiphereth-A/CP-lib}
+    \end{center}
 
-	\pagenumbering{gobble}
+    \vspace*{0.3cm}
+    \begin{center}
+        Tifa, tan60
+    \end{center}
 
-    \paragraph{项目地址} \url{https://github.com/Tiphereth-A/CP-lib}
+    \vspace*{0.2cm}
+    \begin{center}
+        \today
+    \end{center}
+\end{titlepage}
 
-    本书代码默认数组下标从 \(0\) 开始 (\([0, n)\)), 故需注意题目下标是从 \(0\) 开始 (\([0, n)\)) 还是从 \(1\) 开始 (\([1, n]\))
+\pagestyle{plain}
 
-    \inputminted{cpp}{src/src/main.cpp}
+\pagenumbering{gobble}
 
-    \inputminted{cpp}{src/src/test.cpp}
-    
-    \inputminted{yaml}{src/src/.clang-format}
+本书代码默认数组下标从 \(0\) 开始 (\([0, n)\)), 故需注意题目下标是从 \(0\) 开始 (\([0, n)\)) 还是从 \(1\) 开始 (\([1, n]\))
 
-    \inputminted{bash}{src/src/run.sh}
+\inputminted{cpp}{src/src/main.cpp}
 
-    \newpage
-    \begin{multicols}{2}
-        \tableofcontents
-    \end{multicols}
+\inputminted{cpp}{src/src/test.cpp}
 
-    \newpage
-	\pagestyle{fancy}
-	\pagenumbering{arabic}
-	\setcounter{page}{1}
+\inputminted{yaml}{src/src/.clang-format}
 
-    \input{_gen/contents_notebook.tex}
-    \input{_gen/contents_cheatsheet.tex}
+\inputminted{bash}{src/src/run.sh}
 
-    \section{TCSCS}
-    \label{sec:theoretical-computer-science-cheat-sheet}
+\newpage
+\begin{multicols}{2}
+    \tableofcontents
+\end{multicols}
 
-    \includepdf[pages=-,pagecommand={}]{src/src/cheat.pdf}
-    
-    \bibliographystyle{plain}
-    \bibliography{notebook}
+\newpage
+\pagestyle{fancy}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{_gen/contents_notebook.tex}
+\input{_gen/contents_cheatsheet.tex}
+
+\section{TCSCS}
+\label{sec:theoretical-computer-science-cheat-sheet}
+
+\includepdf[pages=-,pagecommand={}]{src/src/cheat.pdf}
+
+\bibliographystyle{plain}
+\bibliography{notebook}
 \end{document}
