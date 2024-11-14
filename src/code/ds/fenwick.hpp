@@ -12,6 +12,14 @@ class fenwick {
  public:
   //! [1, sz)
   CEXPE fenwick(u32 sz) : a(sz) { assert(sz > 1); }
+  //! [1, sz)
+  CEXP fenwick(spn<T> data) : fenwick((u32)data.size()) {
+    const u32 sz = (u32)data.size();
+    flt_ (u32, i, 1, sz) {
+      a[i] += data[i];
+      if (u32 j = i + bit::lowbit(i); j < sz) a[j] += a[i];
+    }
+  }
 
   //! [pos, sz), pos > 0
   CEXP void add(u32 pos, cT_(T) x) {
