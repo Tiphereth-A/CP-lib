@@ -2,6 +2,7 @@
 
 #include "../../code/ds/fenwick.hpp"
 #include "../../code/io/fastio.hpp"
+#include "../../code/tree/dfs_info.hpp"
 #include "../../code/tree/dsu_on_tree.hpp"
 #include "../../code/tree/tree.hpp"
 
@@ -31,9 +32,9 @@ int main() {
   tifa_libs::ds::fenwick<i64> bit(q + 2);
   vecii ans(q + 1, INF);
 
-  tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree> info;
+  tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree, tifa_libs::graph::td_dfn_tag, tifa_libs::graph::td_maxson_tag, tifa_libs::graph::td_maxdfn_tag, tifa_libs::graph::td_euler_tag> info(tr);
   tifa_libs::graph::dsu_on_tree(
-      tr, info,
+      tr, info.dfn, info.sz, info.maxson, info.maxdfn, info.euler,
       [&](u32 i) {
         for (auto&& [j, x] : upd[i]) bit.add(j + 1, x);
       },

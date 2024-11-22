@@ -5,29 +5,30 @@
 
 namespace tifa_libs::math {
 
-template <class F1, class F2, class F3>
-requires requires(F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime, u32 p, u32 q) {
-  cb_prime(p);
-  cb_coprime(p, q);
-  cb_not_coprime(p, q);
-}
-CEXP vecu lsieve(u32 n, F1 cb_prime, F2 cb_coprime, F3 cb_not_coprime) {
-  vecb vis(n);
-  vecu p;
-  p.reserve(n <= 170 ? 16 : n / 10);
-  flt_ (u32, i, 2, n) {
-    if (!vis[i]) p.push_back(i), cb_prime(i);
-    for (u32 j : p) {
-      if (i * j >= n) break;
-      if (vis[i * j] = true; i % j) cb_coprime(i, j);
-      else {
-        cb_not_coprime(i, j);
-        break;
+template <class... Ts>
+struct lsieve : Ts... {
+  vecb not_prime;
+  vecu primes;
+
+  CEXPE lsieve(u32 n) : Ts(n)..., not_prime(n) {
+    if (n < 2) return;
+    // clang-format off
+    primes.reserve(n / (n >= 5e5 ? 12 : n >= 1e4 ? 8 : n >= 1150 ? 6 : n >= 120 ? 4 : n >= 8 ? 2 : 1));
+    // clang-format on
+    flt_ (u32, i, 2, n) {
+      if (!not_prime[i]) primes.push_back(i), (..., Ts::prime(i));
+      for (auto j : primes) {
+        if (i * j >= n) break;
+        if (not_prime[i * j] = true; i % j) (..., Ts::coprime(i, j));
+        else {
+          (..., Ts::not_coprime(i, j));
+          break;
+        }
       }
     }
+    primes.shrink_to_fit();
   }
-  return p;
-}
+};
 
 }  // namespace tifa_libs::math
 

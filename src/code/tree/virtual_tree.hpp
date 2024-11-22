@@ -7,7 +7,7 @@
 namespace tifa_libs::graph {
 
 class virtual_tree {
-  tree& tr;
+  tree CR tr;
   lca_hld lca_;
   vecu st;
 
@@ -21,9 +21,10 @@ class virtual_tree {
   }
 
  public:
+  using tree_info_t = lca_hld::tree_info_t;
   tree vt;
 
-  CEXPE virtual_tree(tree& tr) : tr(tr), lca_(tr), vt((u32)tr.g.size()) {}
+  CEXPE virtual_tree(tree CR tr, tree_info_t CR info) : tr(tr), lca_(tr, info), vt((u32)tr.g.size()) {}
 
   CEXP void build(vecu& a) {
     std::ranges::sort(a, [&](u32 a, u32 b) { return lca_.info.dfn[a] < lca_.info.dfn[b]; });

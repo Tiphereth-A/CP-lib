@@ -3,14 +3,14 @@
 
 #include "../math/ikth_root.hpp"
 #include "../math/isqrt.hpp"
+#include "lsieve.hpp"
 #include "lsieve_func.hpp"
 
 namespace tifa_libs::math {
 
-CEXP u64 sqrfree_cnt(u64 n) {
+CEXP u64 sqrfree_cnt(u64 n, veci mu) {
   if (n <= 3) return n;
   const u32 I = (u32)min(ikth_root(n, 5) * 2, ikth_root(n / 4, 3)), D = isqrt(n / I);
-  auto mu = lsieve_func{}.reset_lsieve_func<ls_mu>(D + 1).mu;
   u64 ans = 0;
   fle_ (u32, i, 1, D)
     if (mu[i]) ans += (u64)mu[i] * (n / ((u64)i * i));
@@ -27,6 +27,10 @@ CEXP u64 sqrfree_cnt(u64 n) {
     ans += u64(mu_large[i] = (i32)sum);
   }
   return ans - u64(i64(I - 1) * mu[D]);
+}
+CEXP u64 sqrfree_cnt(u64 n) {
+  const u32 I = (u32)min(ikth_root(n, 5) * 2, ikth_root(n / 4, 3)), D = isqrt(n / I);
+  return sqrfree_cnt(n, lsieve<ls_mu_tag>(D + 1).mu);
 }
 
 }  // namespace tifa_libs::math

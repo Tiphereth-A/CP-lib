@@ -8,10 +8,11 @@
 namespace tifa_libs::graph {
 
 struct lca_hld {
-  tree_dfs_info<tree> info;
+  using tree_info_t = graph::tree_dfs_info<graph::tree, graph::td_dfn_tag, graph::td_maxson_tag, graph::td_dep_tag, graph::td_fa_tag>;
+  tree_info_t CR info;
   vecu top;
 
-  CEXP lca_hld(tree& tr) { info.template reset_dfs_info<td_dep | td_fa>(tr), top = tree_top(tr, info); }
+  CEXP lca_hld(tree CR tr, tree_info_t CR info) : info{info} { top = tree_top(tr, info.dfn, info.maxson); }
 
   CEXP u32 operator()(u32 u, u32 v) const {
     while (top[u] != top[v]) info.dep[top[u]] < info.dep[top[v]] ? v = info.fa[top[v]] : u = info.fa[top[u]];

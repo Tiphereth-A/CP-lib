@@ -495,9 +495,6 @@ notebook:
     - make_alistr: 建邻接表反图
       code_ext: hpp
       test_ext: cpp
-    - dfs: 邻接表 DFS
-      code_ext: hpp
-      test_ext: cpp
     - kruskal: 最小生成树(Kruskal)
       code_ext: hpp
       test_ext: cpp

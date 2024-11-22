@@ -8,7 +8,7 @@
 #define TPN typename
 #define CR const&
 
-#define cT_(...) std::conditional_t<sizeof(__VA_ARGS__) <= sizeof(size_t), __VA_ARGS__, __VA_ARGS__ CR>
+#define cT_(...) std::conditional_t<sizeof(__VA_ARGS__) <= sizeof(size_t) * 2, __VA_ARGS__, __VA_ARGS__ CR>
 #define fle_(T, i, l, r, ...) for (T i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i <= i##e; ++i)
 #define flt_(T, i, l, r, ...) for (T i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i < i##e; ++i)
 

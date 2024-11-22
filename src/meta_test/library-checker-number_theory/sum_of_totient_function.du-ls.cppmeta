@@ -2,6 +2,7 @@
 
 #include "../../code/math/isqrt.hpp"
 #include "../../code/nt/du_sieve.hpp"
+#include "../../code/nt/lsieve.hpp"
 #include "../../code/nt/lsieve_func.hpp"
 
 CEXP u32 MOD = 998244353;
@@ -16,7 +17,7 @@ int main() {
   std::cin >> n;
   vec<mint> sphi;
   {
-    auto _ = tifa_libs::math::lsieve_func().reset_lsieve_func<tifa_libs::math::ls_phi>(tifa_libs::math::isqrt(n)).phi;
+    auto _ = tifa_libs::math::lsieve<tifa_libs::math::ls_phi_tag>(tifa_libs::math::isqrt(n)).phi;
     sphi.reserve(_.size());
     for (auto i : _) sphi.push_back(i);
     std::partial_sum(sphi.begin(), sphi.end(), sphi.begin());

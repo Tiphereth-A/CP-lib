@@ -4,7 +4,6 @@
 #include "../../../code/graph/gomory_hu.hpp"
 
 #include "../../../code/graph/alist.hpp"
-#include "../../../code/graph/dfs.hpp"
 #include "../base.hpp"
 
 u32 q;
@@ -26,8 +25,13 @@ strn single_proceed(std::istream &fin) {
     mct.add_arc(v, u, w);
     mat[u][v] = mat[v][u] = w;
   }
+  auto dfs = [&](auto &&dfs, u32 r, u32 u, u32 fa) -> void {
+    for (auto [v, w] : mct.g[u])
+      if (v != fa) mat[r][v] = std::min({mat[r][v], mat[r][u], w}), dfs(dfs, r, v, u);
+    ;
+  };
   flt_ (u32, r, 0, n) {
-    tifa_libs::graph::dfs(mct, r, fn_0, [&](u32 v, u32 u, u64 w) { mat[r][v] = std::min({mat[r][v], mat[r][u], w}); }, fn_0, fn_0);
+    dfs(dfs, r, r, -1_u32);
     mat[r][r] = 0;
   }
   map<u64, u32> cnts;

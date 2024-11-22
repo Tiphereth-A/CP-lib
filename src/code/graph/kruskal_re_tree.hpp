@@ -12,7 +12,7 @@ CEXP std::pair<tree, vec<EW>> kruskal_re_tree(vec<edge_t<EW>> CR sorted_a, u32 n
   tree tr(2 * n - 1, 2 * n - 1);
   n = u32((tr.g.size() + 1) / 2);
   vec<EW> w_(2 * n - 1);
-  ds::dsu_basic dsu(2 * n - 1);
+  ds::dsu_basic<false> dsu(2 * n - 1);
   u32 m = n - 1, cnt = n;
   for (auto [w, u, v] : sorted_a) {
     if (u = (u32)dsu.find(u), v = (u32)dsu.find(v); u != v) {

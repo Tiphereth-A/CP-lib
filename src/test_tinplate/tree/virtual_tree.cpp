@@ -21,7 +21,8 @@ int main() {
     };
     dfs(dfs, 0, 0, INT32_MAX);
   }
-  tifa_libs::graph::virtual_tree vt(tr);
+  tifa_libs::graph::virtual_tree::tree_info_t info(tr);
+  tifa_libs::graph::virtual_tree vt(tr, info);
   u32 m, k;
   std::cin >> m;
   flt_ (u32, i, 0, m) {

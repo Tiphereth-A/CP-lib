@@ -14,7 +14,8 @@ int main() {
       tr.add_arc(i, x), tr.add_arc(x, i);
     }
   }
-  tifa_libs::graph::lca_hld lca(tr);
+  tifa_libs::graph::lca_hld::tree_info_t info(tr);
+  tifa_libs::graph::lca_hld lca(tr, info);
   u32 q;
   std::cin >> q;
   for (u32 i = 0, u, v; i < q; ++i) {
