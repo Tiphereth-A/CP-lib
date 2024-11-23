@@ -69,12 +69,11 @@ concept tree_c = adjlist_c<T> && requires(T g) { g.root; };
 template <class T>
 concept treew_c = adjlistw_c<T> && requires(T g) { g.root; };
 
-//! only for template without non-type argument
-template <class, template <class...> class>
-struct is_specialization : std::false_type {};
-template <template <class...> class T, class... Args>
-struct is_specialization<T<Args...>, T> : std::true_type {};
-static_assert(is_specialization<vecu, std::vector>::value);
+template <typename, template <typename...> typename>
+CEXP bool specialized_from = false;
+template <template <typename...> typename T, typename... Args>
+CEXP bool specialized_from<T<Args...>, T> = true;
+static_assert(specialized_from<vecu, std::vector>);
 
 template <class T>
 struct to_sint : std::make_signed<T> {};
