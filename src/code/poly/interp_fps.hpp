@@ -8,9 +8,9 @@ namespace tifa_libs::math {
 
 // Lagrange interpolation in O(n \log^2 n)
 // @return f s.t. f(x[i]) = y[i]
-template <class mint, class ccore>
-CEXP poly<mint, ccore> interp_fps(poly<mint, ccore> CR x, poly<mint, ccore> CR y) {
-  using poly_t = poly<mint, ccore>;
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto interp_fps(poly<ccore, mint, args...> CR x, poly<ccore, mint, args...> CR y) {
+  using poly_t = poly<ccore, mint, args...>;
   class SegTree {
     CEXP void init_(poly_t CR a, u32 k, u32 l, u32 r) {
       if (l == r) return void(t[k] = poly_t{-a[l], 1});
@@ -30,7 +30,7 @@ CEXP poly<mint, ccore> interp_fps(poly<mint, ccore> CR x, poly<mint, ccore> CR y
   };
 
   assert(x.size() == y.size());
-  const u32 n = x.size();
+  const u32 n = (u32)x.size();
   SegTree sgt(x);
   poly_t t = mpe_fps(deriv_fps(sgt.t[1]), x);
   flt_ (u32, i, 0, n) t[i] = y[i] * t[i].inv();

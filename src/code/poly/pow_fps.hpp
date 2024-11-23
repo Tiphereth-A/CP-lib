@@ -9,17 +9,17 @@
 
 namespace tifa_libs::math {
 
-template <class mint, class ccore>
-CEXP poly<mint, ccore> pow_fps(poly<mint, ccore> CR p, u64 y, u32 n = 0) {
-  if (!n) n = p.size();
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto pow_fps(poly<ccore, mint, args...> CR p, u64 y, u32 n = 0) {
+  if (!n) n = (u32)p.size();
   if (y == 0) {
-    poly<mint, ccore> _(n);
+    poly<ccore, mint, args...> _(n);
     if (n) _[0] = 1;
     return _;
   }
   if (y == 1) return p;
-  u32 l0 = u32(std::ranges::find_if(p.data(), [](cT_(mint) x) { return x != 0; }) - p.data().begin());
-  if ((u128)l0 * y >= n) return poly<mint, ccore>(n);
+  u32 l0 = u32(std::ranges::find_if(p, [](cT_(mint) x) { return x != 0; }) - p.begin());
+  if ((u128)l0 * y >= n) return poly<ccore, mint, args...>(n);
   if (l0) {
     auto _ = shr_fps(p, l0), g = pow_fps(_, y, u32(n - l0 * y));
     return g.resize(n), shl_fps(g, l0 * y);

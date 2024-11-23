@@ -13,7 +13,7 @@ CEXP v3ecu sudoku_solver(cT_(vvecu) data, bool get_all_solution = false) {
   bool not_filled = true;
   flt_ (u32, i, 0, n2)
     flt_ (u32, j, 0, n2)
-      fle_ (u32, k, 1, n2) {
+      flt_ (u32, k, 1, n2 + 1) {
         if (data[i][j] && data[i][j] != k) continue;
         not_filled |= data[i][j] == 0;
         auto _ = (k - 1) * n4 + i * n2 + j;

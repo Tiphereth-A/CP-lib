@@ -19,7 +19,7 @@ int main() {
   vvecpti upd(n);
   vveci que(n);
   flt_ (u32, i, 0, n) upd[i].emplace_back(0, a[i]);
-  fle_ (u32, i, 1, q) {
+  flt_ (u32, i, 1, q + 1) {
     u32 c, u;
     tifa_libs::fin >> c >> u;
     if (c == 0) {
@@ -32,7 +32,7 @@ int main() {
   tifa_libs::ds::fenwick<i64> bit(q + 2);
   vecii ans(q + 1, INF);
 
-  tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree, tifa_libs::graph::td_dfn_tag, tifa_libs::graph::td_maxson_tag, tifa_libs::graph::td_maxdfn_tag, tifa_libs::graph::td_euler_tag> info(tr);
+  tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree, tifa_libs::graph::tdi_dfn, tifa_libs::graph::tdi_maxson, tifa_libs::graph::tdi_maxdfn, tifa_libs::graph::tdi_euler> info(tr);
   tifa_libs::graph::dsu_on_tree(
       tr, info.dfn, info.sz, info.maxson, info.maxdfn, info.euler,
       [&](u32 i) {

@@ -21,7 +21,7 @@ class segbeats_ca_msh {
   T INF;
 
  public:
-  CEXPE segbeats_ca_msh(vec<T> CR a) : n(a.size()), t(a.size() * 4), tag(a.size() * 4), INF(std::numeric_limits<T>::max()) { build(a, 1, 0, n - 1); }
+  CEXPE segbeats_ca_msh(vec<T> CR a) : n((u32)a.size()), t(a.size() * 4), tag(a.size() * 4), INF(std::numeric_limits<T>::max()) { build(a, 1, 0, n - 1); }
   CEXPE segbeats_ca_msh(u32 N) : n(N), t(N * 4), tag(N * 4), INF(std::numeric_limits<T>::max()) { build(vec<T>(n, 0), 1, 0, n - 1); }
 
   CEXP void add(u32 x, u32 l, u32 r, u32 L, u32 R, T k) {
@@ -121,7 +121,7 @@ class segbeats_ca_msh {
   }
   CEXP void build(spn<T> a, u32 x, u32 l, u32 r) {
     if (l == r) {
-      t[x].hismax = t[x].sum = t[x].min = t[x].max = a[l], t[x].min2 = INF, t[x].max2 = -INF, t[x].cmin = t[x].cmax = 1;
+      t[x].sum = t[x].hismax = t[x].min = t[x].max = a[l], t[x].min2 = INF, t[x].max2 = -INF, t[x].cmin = t[x].cmax = 1;
       return;
     }
     u32 mid = l + (r - l) / 2;

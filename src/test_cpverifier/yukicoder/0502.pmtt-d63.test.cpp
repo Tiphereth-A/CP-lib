@@ -5,10 +5,11 @@
 
 CEXP u64 MOD = 1000000007;
 
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_d63.hpp"
 #include "../../code/poly/polymtt.hpp"
 
-using mint = tifa_libs::math::mint_d63<-1>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
 using poly = tifa_libs::math::polymtt<mint>;
 
 int main() {

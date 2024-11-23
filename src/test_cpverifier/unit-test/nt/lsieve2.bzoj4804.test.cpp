@@ -12,9 +12,9 @@ void test(strn CR data) {
   u32 t;
   fin >> t;
   vecu ns(t);
-  flt_(u32, i, 0, t) fin >> ns[i];
+  flt_ (u32, i, 0, t) fin >> ns[i];
 
-  u32 n = *std::ranges::max_element(ns);
+  u32 n = std::ranges::max(ns);
   tifa_libs::math::lsieve2 ls(n);
   u64 lst = 1;
   vecuu g = ls.template run<u64>([&](u32 p, u32 e) {
@@ -23,7 +23,7 @@ void test(strn CR data) {
     else return lst *= p;
   });
   vecuu f(n + 1);
-  fle_(u32, i, 1, n) f[i] = f[i - 1] + g[i];
+  flt_ (u32, i, 1, n + 1) f[i] = f[i - 1] + g[i];
 
   for (u32 n : ns) {
     u64 got = 0;

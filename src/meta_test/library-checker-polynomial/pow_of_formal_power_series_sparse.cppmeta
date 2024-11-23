@@ -22,6 +22,6 @@ int main() {
   tifa_libs::fin >> n >> k >> m;
   poly p(n);
   for (u32 i = 0, x; i < k; ++i) tifa_libs::fin >> x >> p[x];
-  tifa_libs::fout << tifa_libs::math::pow_fpssp(p, m).data();
+  tifa_libs::fout << tifa_libs::math::pow_fpssp(p, m);
   return 0;
 }

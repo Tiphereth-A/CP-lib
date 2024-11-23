@@ -5,14 +5,14 @@
 
 namespace tifa_libs::math {
 
-template <class mint, class ccore>
-CEXP poly<mint, ccore> shr_fps(poly<mint, ccore> CR p, usz x) {
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto shr_fps(poly<ccore, mint, args...> CR p, usz x) {
   if (!x) return p;
-  if (auto _ = p; x >= p.size()) return std::ranges::fill(_.data(), 0), _;
-  else return std::fill(std::move(_.data().begin() + (isz)x, _.data().end(), _.data().begin()), _.data().end(), 0), _;
+  if (auto _ = p; x >= p.size()) return std::ranges::fill(_, 0), _;
+  else return std::fill(std::move(_.begin() + (isz)x, _.end(), _.begin()), _.end(), 0), _;
 }
-template <class mint, class ccore>
-CEXP poly<mint, ccore> shr_strip_fps(poly<mint, ccore> CR p, usz x) {
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto shr_strip_fps(poly<ccore, mint, args...> CR p, usz x) {
   auto _ = shr_fps(p, x);
   return _.strip(), _;
 }

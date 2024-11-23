@@ -5,7 +5,7 @@
 int main() {
   u32 t_;
   std::cin >> t_;
-  fle_ (u32, kase, 1, t_) {
+  flt_ (u32, kase, 1, t_ + 1) {
     u64 n, m, k;
     std::cin >> n >> m >> k;
     std::cout << "Case #" << kase << ": " << tifa_libs::util::Josephus(n, k, m) + 1 << '\n';

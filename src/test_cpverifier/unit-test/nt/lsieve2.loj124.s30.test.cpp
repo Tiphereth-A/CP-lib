@@ -3,11 +3,12 @@
 
 #include "../../../code/nt/lsieve2.hpp"
 
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
 
-using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 1'000'000'000 + 7>;
 
 void test(strn CR data) {
   auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("loj", "124", "sieve" + data);
@@ -23,7 +24,7 @@ void test(strn CR data) {
     return lst;
   });
   mint res = 0;
-  fle_ (u32, i, 1, n) res += dk[i];
+  flt_ (u32, i, 1, n + 1) res += dk[i];
 
   u64 got = res.val(), want;
   fans >> want;

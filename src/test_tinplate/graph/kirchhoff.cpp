@@ -6,9 +6,10 @@
 #include "../../code/graph/alist.hpp"
 #include "../../code/graph/euler_trail.hpp"
 #include "../../code/lalg/ge_mat.hpp"
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_s30.hpp"
 
-using mint = tifa_libs::math::mint_s30<1'000'003>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 1'000'003>;
 
 int main() {
   vec<mint> fact(200'005);

@@ -10,8 +10,8 @@ namespace tifa_libs::math {
 template <class poly>
 CEXP poly gen_ball_box_ii(u32 m, u32 n, spnuu inv) {
   poly f(n + 1);
-  fle_ (u32, i, 1, m)
-    fle_ (u32, k, 1, n / i) f[i * k] += inv[k];
+  flt_ (u32, i, 1, m + 1)
+    flt_ (u32, k, 1, n / i + 1) f[i * k] += inv[k];
   return exp_fps(f);
 }
 // f = \\prod_{i=1}^m 1/(1-x^i), deg(f) = n

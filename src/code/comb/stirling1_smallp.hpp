@@ -18,7 +18,7 @@ class Stirling1 {
     assert(p < 32768), s[0] = {1};
     flt_ (u32, i, 1, p) {
       s[i].assign(i + 1, 0);
-      fle_ (u32, j, 0, i) {
+      flt_ (u32, j, 0, i + 1) {
         if (j) s[i][j] += s[i - 1][j - 1];
         if (j < i) s[i][j] += s[i - 1][j] * (p - i + 1);
       }
@@ -32,8 +32,8 @@ class Stirling1 {
     const u64 m = (u64)m_, n = (u64)n_, i = m / p;
     if (i > n) return 0;
     u64 a = (n - i) / (p - 1);
-    const u32 j = m % p;
-    u32 b = (n - i) % (p - 1);
+    const u32 j = u32(m % p);
+    u32 b = u32((n - i) % (p - 1));
     if (!b && j) {
       if (b += p - 1; a) --a;
       else return 0;

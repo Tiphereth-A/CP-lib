@@ -5,15 +5,15 @@
 
 namespace tifa_libs::math {
 
-template <class mint, class ccore>
-CEXP ptt<poly<mint, ccore>> divmod_fps(poly<mint, ccore> CR p, poly<mint, ccore> CR q) {
-  const u32 n = p.size(), m = q.size();
-  if (n < m) return {poly<mint, ccore>{}, p};
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto divmod_fps(poly<ccore, mint, args...> CR p, poly<ccore, mint, args...> CR q) {
+  const u32 n = (u32)p.size(), m = (u32)q.size();
+  if (n < m) return std::make_pair(poly<ccore, mint, args...>{}, p);
   auto d = div_fps(p, q);
   d.strip();
   auto r = d;
   r.conv(q), r.resize(m - 1), (r = p - r).resize(m - 1), r.strip();
-  return {d, r};
+  return std::make_pair(d, r);
 }
 
 }  // namespace tifa_libs::math

@@ -20,7 +20,7 @@ strn single_proceed(data_t x, data_t y, std::istream& fin) {
   l.reserve(n + 1);
   Point2 prev, now;
   fin >> prev;
-  fle_ (u32, i, 1, n) {
+  flt_ (u32, i, 1, n + 1) {
     fin >> now;
     l.emplace_back(prev, now);
     prev = now;

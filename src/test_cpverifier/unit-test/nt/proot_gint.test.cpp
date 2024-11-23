@@ -3,6 +3,7 @@
 
 #include "../../../code/nt/proot_gint.hpp"
 
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/mint_s63.hpp"
 #include "../../../code/math/qpow.hpp"
@@ -10,9 +11,9 @@
 #include "../base.hpp"
 
 template <u32 MOD>
-using mint = tifa_libs::math::mint_s30<MOD>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
 template <u64 MOD>
-using mint64 = tifa_libs::math::mint_s63<MOD>;
+using mint64 = tifa_libs::math::mint<tifa_libs::math::mint_s63, MOD>;
 
 template <class mint, i64 M>
 void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> CR pf_v) {

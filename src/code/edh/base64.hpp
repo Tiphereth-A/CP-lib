@@ -13,7 +13,7 @@ class Base64 {
 
  public:
   static CEXP strn encode(spn<usz> a) {
-    const usz x = *std::ranges::max_element(a), N = a.size(), B = max(6_uz, (usz)std::bit_width(x));
+    const usz x = std::ranges::max(a), N = a.size(), B = max(6_usz, (usz)std::bit_width(x));
     strn S((B * N + 11) / 6, 0);
     S[0] = (char)B;
     flt_ (usz, i, 0, N)

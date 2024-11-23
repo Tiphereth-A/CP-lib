@@ -8,9 +8,10 @@
 
 CEXP u32 MOD = 998244353;
 
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_d63.hpp"
 
-using mint = tifa_libs::math::mint_d63<-1>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
 
 int main() {
   mint::set_mod(MOD);
@@ -19,7 +20,7 @@ int main() {
   std::cin >> n;
   vec<mint> sphi;
   {
-    auto _ = tifa_libs::math::lsieve<tifa_libs::math::ls_phi_tag>(tifa_libs::math::isqrt(n)).phi;
+    auto _ = tifa_libs::math::lsieve<tifa_libs::math::ls_phi>(tifa_libs::math::isqrt(n)).phi;
     sphi.reserve(_.size());
     for (auto i : _) sphi.push_back(i);
     std::partial_sum(sphi.begin(), sphi.end(), sphi.begin());

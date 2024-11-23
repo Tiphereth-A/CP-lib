@@ -25,23 +25,23 @@ struct blossomw {
     lab = vec<T>(n * 2 + 1), match = vecu(n * 2 + 1), slack = vecu(n * 2 + 1), st = vecu(n * 2 + 1);
     par = vecu(n * 2 + 1), s = vecu(n * 2 + 1), aux = vecu(n * 2 + 1);
     flo_from = vvecu(n * 2 + 1, vecu(n + 1)), flo = vvecu(n * 2 + 1);
-    fle_ (u32, u, 1, n)
-      fle_ (u32, v, 1, n) g[u][v] = {u, v, 0};
+    flt_ (u32, u, 1, n + 1)
+      flt_ (u32, v, 1, n + 1) g[u][v] = {u, v, 0};
   }
 
   CEXP void add_edge(u32 u, u32 v, T w) { g[u][v].w = g[v][u].w = w; }
   vec<edge_t<T>> operator()(T inf = std::numeric_limits<T>::max()) {
     nx = n, st[0] = 0;
-    fle_ (u32, i, 1, 2 * n) aux[i] = 0;
-    fle_ (u32, i, 1, n) match[i] = 0, st[i] = i, flo[i].clear();
+    flt_ (u32, i, 1, 2 * n + 1) aux[i] = 0;
+    flt_ (u32, i, 1, n + 1) match[i] = 0, st[i] = i, flo[i].clear();
     T wmax = 0;
-    fle_ (u32, u, 1, n)
-      fle_ (u32, v, 1, n)
+    flt_ (u32, u, 1, n + 1)
+      flt_ (u32, v, 1, n + 1)
         flo_from[u][v] = (u == v ? u : 0), wmax = max(wmax, g[u][v].w);
-    fle_ (u32, u, 1, n) lab[u] = wmax;
+    flt_ (u32, u, 1, n + 1) lab[u] = wmax;
     while (matching(inf));
     vec<edge_t<T>> ans;
-    fle_ (u32, u, 1, n)
+    flt_ (u32, u, 1, n + 1)
       if (match[u] && match[u] < u) ans.emplace_back(g[u][match[u]].w, u, match[u]);
     return ans;
   }
@@ -53,7 +53,7 @@ struct blossomw {
   }
   CEXP void set_slack(u32 x) {
     slack[x] = 0;
-    fle_ (u32, u, 1, n)
+    flt_ (u32, u, 1, n + 1)
       if (g[u][x].w > 0 && st[u] != x && s[st[u]] == 0) upd_slack(u, x);
   }
   void q_push(u32 x) {
@@ -103,12 +103,12 @@ struct blossomw {
       for (u32 y; x != anc; x = st[par[y]]) flo[b].push_back(x), flo[b].push_back(y = st[match[x]]), q_push(y);
     };
     blossom(u), std::reverse(flo[b].begin() + 1, flo[b].end()), blossom(v), set_st(b, b);
-    fle_ (u32, x, 1, nx) g[b][x].w = g[x][b].w = 0;
-    fle_ (u32, x, 1, n) flo_from[b][x] = 0;
+    flt_ (u32, x, 1, nx + 1) g[b][x].w = g[x][b].w = 0;
+    flt_ (u32, x, 1, n + 1) flo_from[b][x] = 0;
     for (auto xs : flo[b]) {
-      fle_ (u32, x, 1, nx)
+      flt_ (u32, x, 1, nx + 1)
         if (g[b][x].w == 0 || e_delta(g[xs][x]) < e_delta(g[b][x])) g[b][x] = g[xs][x], g[x][b] = g[x][xs];
-      fle_ (u32, x, 1, n)
+      flt_ (u32, x, 1, n + 1)
         if (flo_from[xs][x]) flo_from[b][x] = xs;
     }
     set_slack(b);
@@ -141,14 +141,14 @@ struct blossomw {
   }
   bool matching(T inf) {
     q = std::queue<u32>();
-    fle_ (u32, x, 1, nx)
+    flt_ (u32, x, 1, nx + 1)
       if (s[x] = -1_u32, slack[x] = 0; st[x] == x && !match[x]) par[x] = s[x] = 0, q_push(x);
     if (q.empty()) return 0;
     while (1) {
       while (!q.empty()) {
         const u32 u = q.front();
         if (q.pop(); s[st[u]] == 1) continue;
-        fle_ (u32, v, 1, n)
+        flt_ (u32, v, 1, n + 1)
           if (g[u][v].w > 0 && st[u] != st[v]) {
             if (!e_delta(g[u][v])) {
               if (on_found_edge(g[u][v])) return 1;
@@ -156,26 +156,26 @@ struct blossomw {
           }
       }
       T d = inf;
-      fle_ (u32, b, n + 1, nx)
+      flt_ (u32, b, n + 1, nx + 1)
         if (st[b] == b && s[b] == 1) d = min(d, lab[b] / 2);
-      fle_ (u32, x, 1, nx)
+      flt_ (u32, x, 1, nx + 1)
         if (st[x] == x && slack[x]) {
           if (!~s[x]) d = min(d, e_delta(g[slack[x]][x]));
           else if (!s[x]) d = min(d, e_delta(g[slack[x]][x]) / 2);
         }
-      fle_ (u32, u, 1, n) {
+      flt_ (u32, u, 1, n + 1) {
         if (!s[st[u]]) {
           if (lab[u] <= d) return 0;
           lab[u] -= d;
         } else if (s[st[u]] == 1) lab[u] += d;
       }
-      fle_ (u32, b, n + 1, nx)
+      flt_ (u32, b, n + 1, nx + 1)
         if (st[b] == b && ~s[b]) lab[b] += (!s[b] ? 1 : -1) * d * 2;
       q = std::queue<u32>();
-      fle_ (u32, x, 1, nx)
+      flt_ (u32, x, 1, nx + 1)
         if (st[x] == x && slack[x] && st[slack[x]] != x && !e_delta(g[slack[x]][x]))
           if (on_found_edge(g[slack[x]][x])) return 1;
-      fle_ (u32, b, n + 1, nx)
+      flt_ (u32, b, n + 1, nx + 1)
         if (st[b] == b && s[b] == 1 && !lab[b]) expand_blossom(b);
     }
     return 0;

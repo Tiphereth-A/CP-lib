@@ -5,10 +5,10 @@
 
 namespace tifa_libs::math {
 
-template <class mint, class ccore>
-CEXP poly<mint, ccore> div_fps(poly<mint, ccore> p, poly<mint, ccore> q) {
-  const u32 n = p.size(), m = q.size();
-  if (n < m) return poly<mint, ccore>{};
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto div_fps(poly<ccore, mint, args...> p, poly<ccore, mint, args...> q) {
+  const u32 n = (u32)p.size(), m = (u32)q.size();
+  if (n < m) return poly<ccore, mint, args...>{};
   return p.reverse(), q.reverse(), q.resize(n - m + 1), p.conv(inv_fps(q)), p.resize(n - m + 1), p.reverse(), p;
 }
 

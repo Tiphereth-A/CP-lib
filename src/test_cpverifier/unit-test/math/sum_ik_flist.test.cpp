@@ -12,7 +12,7 @@ using tifa_libs::math::mpi;
 void test_sum_ik_flist(u64 n) {
   auto sumik_mpi = [](u64 k, u64 n) {
     mpi ret = 0;
-    fle_ (u64, i, 1, n) ret += qpow(mpi(i), k);
+    flt_ (u64, i, 1, n + 1) ret += qpow(mpi(i), k);
     return ret;
   };
 

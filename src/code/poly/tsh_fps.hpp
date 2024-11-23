@@ -7,11 +7,11 @@
 
 namespace tifa_libs::math {
 
-template <class mint, class ccore>
-CEXP poly<mint, ccore> tsh_fps(poly<mint, ccore> CR f, mint c, spnuu fact, spnuu ifact) {
-  const u32 n = f.size();
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c, spnuu fact, spnuu ifact) {
+  const u32 n = (u32)f.size();
   if (n == 1) return f;
-  poly<mint, ccore> s = f, p(f.size());
+  poly<ccore, mint, args...> s = f, p((u32)f.size());
   flt_ (u32, i, 0, n) p[n - i - 1] = f[i] * fact[i];
   mint _ = 1;
   for (u32 i = 0; i < n; ++i, _ *= c) s[i] = _ * ifact[i];
@@ -19,11 +19,11 @@ CEXP poly<mint, ccore> tsh_fps(poly<mint, ccore> CR f, mint c, spnuu fact, spnuu
   flt_ (u32, i, 0, n) s[n - i - 1] = p[i] * ifact[n - i - 1];
   return s;
 }
-template <class mint, class ccore>
-CEXP poly<mint, ccore> tsh_fps(poly<mint, ccore> CR f, mint c) {
-  const u32 n = f.size();
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c) {
+  const u32 n = (u32)f.size();
   if (n == 1) return f;
-  return tsh_fps<mint, ccore>(f, c, gen_fact(n, mint::mod()), gen_ifact(n, mint::mod()));
+  return tsh_fps(f, c, gen_fact(n, mint::mod()), gen_ifact(n, mint::mod()));
 }
 
 }  // namespace tifa_libs::math

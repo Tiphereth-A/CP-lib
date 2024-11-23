@@ -19,8 +19,8 @@ strn single_proceed(std::istream& fin) {
   u32 n;
   fin >> n;
   vec<point> vp(n + 1);
-  fle_ (u32, i, 1, n) fin >> vp[i];
-  fle_ (u32, i, 1, n) {
+  flt_ (u32, i, 1, n + 1) fin >> vp[i];
+  flt_ (u32, i, 1, n + 1) {
     vp[i].x += g() ? eps_v<data_t> : -eps_v<data_t>;
     vp[i].y += g() ? eps_v<data_t> : -eps_v<data_t>;
     vp[i].z += g() ? eps_v<data_t> : -eps_v<data_t>;

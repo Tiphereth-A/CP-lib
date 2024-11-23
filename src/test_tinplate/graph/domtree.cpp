@@ -16,7 +16,7 @@ int main() {
   tifa_libs::graph::tree tr(n);
   flt_ (u32, i, 1, n)
     if (~fa[i]) tr.add_arc(fa[i], i);
-  tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree, tifa_libs::graph::td_sz_tag> dfs(tr);
+  tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree, tifa_libs::graph::tdi_sz> dfs(tr);
   std::cout << dfs.sz << '\n';
 }
 

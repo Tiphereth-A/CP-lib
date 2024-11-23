@@ -17,7 +17,7 @@ int main() {
   std::cin >> n;
   vec<mint> sphi;
   {
-    auto _ = tifa_libs::math::lsieve<tifa_libs::math::ls_phi_tag>(tifa_libs::math::isqrt(n)).phi;
+    auto _ = tifa_libs::math::lsieve<tifa_libs::math::ls_phi>(tifa_libs::math::isqrt(n)).phi;
     sphi.reserve(_.size());
     for (auto i : _) sphi.push_back(i);
     std::partial_sum(sphi.begin(), sphi.end(), sphi.begin());

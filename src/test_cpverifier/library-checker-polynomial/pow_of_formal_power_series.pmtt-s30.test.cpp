@@ -6,10 +6,11 @@
 
 CEXP u32 MOD = 998244353;
 
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_s30.hpp"
 #include "../../code/poly/polymtt.hpp"
 
-using mint = tifa_libs::math::mint_s30<MOD>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
 using poly = tifa_libs::math::polymtt<mint>;
 
 int main() {
@@ -17,7 +18,7 @@ int main() {
   u64 m;
   tifa_libs::fin >> n >> m;
   poly a(n);
-  tifa_libs::fin >> a.data();
-  tifa_libs::fout << tifa_libs::math::pow_fps(a, m).data() << '\n';
+  tifa_libs::fin >> a;
+  tifa_libs::fout << tifa_libs::math::pow_fps(a, m) << '\n';
   return 0;
 }

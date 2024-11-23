@@ -7,11 +7,12 @@
 CEXP u32 MOD0 = 998244353;
 CEXP u32 MOD1 = 1000000007;
 
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_d31.hpp"
 #include "../../code/str/hash_substr2.hpp"
 
-using mint0 = tifa_libs::math::mint_d31<-1>;
-using mint1 = tifa_libs::math::mint_d31<-2>;
+using mint0 = tifa_libs::math::mint<tifa_libs::math::mint_d31, __LINE__>;
+using mint1 = tifa_libs::math::mint<tifa_libs::math::mint_d31, __LINE__>;
 using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
 
 int main() {

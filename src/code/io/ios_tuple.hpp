@@ -5,17 +5,11 @@
 
 template <class... Ts>
 std::istream &operator>>(std::istream &is, std::tuple<Ts...> &p) {
-  return std::apply([&](Ts &...targs) { ((is >> targs), ...); }, p), is;
+  return std::apply([&](Ts &...ts) { ((is >> ts), ...); }, p), is;
 }
 template <class... Ts>
 std::ostream &operator<<(std::ostream &os, std::tuple<Ts...> CR p) {
-  std::apply(
-      [&](Ts CR... targs) {
-        usz n = 0;
-        ((os << targs << (++n != sizeof...(Ts) ? " " : "")), ...);
-      },
-      p);
-  return os;
+  return std::apply([&, n = 0](Ts const &...ts) mutable { ((os << ts << (++n != sizeof...(Ts) ? " " : "")), ...); }, p), os;
 }
 
 #endif

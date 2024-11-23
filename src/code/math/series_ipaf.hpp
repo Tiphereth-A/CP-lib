@@ -17,7 +17,7 @@ CEXP mint series_ipaf(vec<mint> CR f, cT_(mint) a, Binom<mint> CR C) {
   flt_ (u32, i, 0, (u32)g.size()) g[i] = f[i] * _0, _0 *= a;
   flt_ (u32, i, 1, (u32)g.size()) g[i] += g[i - 1];
   mint c = 0, _1 = 1;
-  fle_ (u32, i, 0, K) c += C.mCn(K + 1, i) * _1 * g[K - i], _1 *= -a;
+  flt_ (u32, i, 0, K + 1) c += C.mCn(K + 1, i) * _1 * g[K - i], _1 *= -a;
   return c / qpow(-a + 1, K + 1);
 }
 template <class mint>

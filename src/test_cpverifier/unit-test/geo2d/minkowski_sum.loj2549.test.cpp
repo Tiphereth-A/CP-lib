@@ -23,7 +23,7 @@ strn single_proceed(std::istream &fin) {
   polya.init();
   polyb.init();
   polya.do_minkowski_sum(polyb).init();
-  fle_ (u32, i, 1, q) {
+  flt_ (u32, i, 1, q + 1) {
     data_t x, y;
     fin >> x >> y;
     ss << polya.contains(Point2{x, y}) << ' ';

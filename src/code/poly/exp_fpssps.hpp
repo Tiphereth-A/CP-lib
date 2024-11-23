@@ -6,11 +6,11 @@
 namespace tifa_libs::math {
 
 template <class T, u32 N = 21>
-vec<T> exp_fpssps(u32 n, vec<T> g) {
+auto exp_fpssps(u32 n, vec<T> g) {
   static conv_subset<T, N> ss;
   assert(n <= N && g[0] == 0), g.resize(1 << n);
   vec<T> h{1};
-  fle_ (u32, k, 1, n) {
+  flt_ (u32, k, 1, n + 1) {
     auto a = ss.conv(h, {begin(g) + (1 << (k - 1)), begin(g) + (1 << k)});
     std::ranges::copy(a, std::back_inserter(h));
   }

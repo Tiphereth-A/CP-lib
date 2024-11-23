@@ -4,16 +4,17 @@
 #include "../../../code/enum/gosper.hpp"
 
 #include "../../../code/comb/binom.hpp"
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_s30.hpp"
 #include "../base.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 998244353>;
 
 template <u32 ID>
 void test(u32 n, u32 kmax) {
   using gosper = tifa_libs::gosper<ID>;
   tifa_libs::math::Binom<mint> binom(n);
-  fle_(u32, k, 1, kmax) {
+  flt_ (u32, k, 1, kmax + 1) {
     gosper::set(n, k);
     gosper gs;
     u32 cnt = 0, cnt_correct = binom.mCn(n, k).val();

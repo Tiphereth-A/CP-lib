@@ -6,10 +6,11 @@
 
 CEXP u32 MOD = 998244353;
 
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_d63.hpp"
 #include "../../code/poly/polymtt.hpp"
 
-using mint = tifa_libs::math::mint_d63<-1>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
 using poly = tifa_libs::math::polymtt<mint>;
 
 int main() {
@@ -17,6 +18,6 @@ int main() {
   u32 n, k;
   tifa_libs::fin >> n >> k;
   auto ans = tifa_libs::math::gen_stirling2_col<poly>(n, k);
-  fle_ (u32, i, k, n) tifa_libs::fout << ans[i] << " \n"[i == n];
+  flt_ (u32, i, k, n + 1) tifa_libs::fout << ans[i] << " \n"[i == n];
   return 0;
 }

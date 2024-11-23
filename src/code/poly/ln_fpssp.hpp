@@ -6,11 +6,11 @@
 
 namespace tifa_libs::math {
 
-template <class mint, class ccore>
-CEXP poly<mint, ccore> ln_fpssp(poly<mint, ccore> CR p, spnuu inv, u32 n = 0) {
-  if (assert(!p.data().empty() && p[0] == 1); !n) n = p.size();
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto ln_fpssp(poly<ccore, mint, args...> CR p, spnuu inv, u32 n = 0) {
+  if (assert(!p.empty() && p[0] == 1); !n) n = (u32)p.size();
   auto ps = poly2sp(p, n);
-  poly<mint, ccore> g(n);
+  poly<ccore, mint, args...> g(n);
   flt_ (u32, k, 0, n - 1) {
     for (auto& [j, pj] : ps) {
       if (k < j) break;
@@ -21,9 +21,9 @@ CEXP poly<mint, ccore> ln_fpssp(poly<mint, ccore> CR p, spnuu inv, u32 n = 0) {
   }
   return g;
 }
-template <class mint, class ccore>
-CEXP poly<mint, ccore> ln_fpssp(poly<mint, ccore> CR p, u32 n = 0) {
-  if (!n) n = p.size();
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto ln_fpssp(poly<ccore, mint, args...> CR p, u32 n = 0) {
+  if (!n) n = (u32)p.size();
   return ln_fpssp(p, gen_inv(n, mint::mod()), n);
 }
 

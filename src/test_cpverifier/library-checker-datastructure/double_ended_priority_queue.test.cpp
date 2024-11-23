@@ -5,7 +5,7 @@
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 _tests = 1;
-  fle_ (u32, _test, 1, _tests) {
+  flt_ (u32, _test, 1, _tests + 1) {
     u32 n, q;
     std::cin >> n >> q;
     vec<int> a(n);

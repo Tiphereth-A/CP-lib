@@ -44,7 +44,7 @@ CEXP u64 pi_min25(u64 n) {
     u32 e = s[(m / q - 1) / 2] - cnt_p;
     if (e < cx + 1) break;
     u64 t = 0;
-    fle_ (u32, cy, cx + 1, e) t += s[(div_u64d(m, r[cy]) - 1) / 2];
+    flt_ (u32, cy, cx + 1, e + 1) t += s[(div_u64d(m, r[cy]) - 1) / 2];
     l[0] += t - u64(e - cx) * (cnt_p + cx - 1);
   }
   return l[0] + 1;

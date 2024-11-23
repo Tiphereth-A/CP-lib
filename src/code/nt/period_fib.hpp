@@ -15,7 +15,7 @@ CEXP u64 period_fib(u32 n) {
   };
 
   u64 res = 1;
-  fle_ (u32, i, 2, isqrt(n))
+  flt_ (u32, i, 2, isqrt(n) + 1)
     if (n % i == 0) {
       n /= i;
       u64 x = g(i), _ = n;

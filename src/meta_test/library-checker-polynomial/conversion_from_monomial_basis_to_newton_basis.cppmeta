@@ -12,7 +12,7 @@ int main() {
   tifa_libs::fin >> n;
   poly f(n);
   vec<mint> p(n);
-  tifa_libs::fin >> f.data() >> p;
-  tifa_libs::fout << tifa_libs::math::cbm2n_fps(f, p).data() << '\n';
+  tifa_libs::fin >> f >> p;
+  tifa_libs::fout << tifa_libs::math::cbm2n_fps(f, p) << '\n';
   return 0;
 }

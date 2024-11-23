@@ -6,6 +6,7 @@
 #include "../../../code/lalg/ge_mat.hpp"
 #include "../../../code/lalg/inv_mat.hpp"
 #include "../../../code/lalg/mat.hpp"
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_2e61n1.hpp"
 #include "../../../code/math/mint_d31.hpp"
 #include "../../../code/math/mint_d63.hpp"
@@ -23,7 +24,7 @@ void single_test(u32 n) {
 
   mat L(n, n), U(n, n);
   flt_ (u32, i, 0, n)
-    fle_ (u32, j, 0, i) L(i, j) = gen();
+    flt_ (u32, j, 0, i + 1) L(i, j) = gen();
   flt_ (u32, i, 0, n)
     flt_ (u32, j, i, n) U(i, j) = gen();
 
@@ -49,13 +50,14 @@ void single_test(u32 n) {
 CEXP u32 MOD = 998244353;
 CEXP u64 MOD64 = 3'799'912'185'593'857;
 
-using mintd31 = tifa_libs::math::mint_d31<-1>;
-using mintd63 = tifa_libs::math::mint_d63<-1>;
-using mints30 = tifa_libs::math::mint_s30<MOD>;
-using mints63 = tifa_libs::math::mint_s63<MOD64>;
+using mint2e61n1 = tifa_libs::math::mint<tifa_libs::math::mint_2e61n1>;
+using mintd31 = tifa_libs::math::mint<tifa_libs::math::mint_d31, __LINE__>;
+using mintd63 = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
+using mints30 = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
+using mints63 = tifa_libs::math::mint<tifa_libs::math::mint_s63, MOD64>;
 
 void test(u32 n) {
-  single_test<tifa_libs::math::mint_2e61n1>(n);
+  single_test<mint2e61n1>(n);
   single_test<mintd31>(n);
   single_test<mintd63>(n);
   single_test<mints30>(n);

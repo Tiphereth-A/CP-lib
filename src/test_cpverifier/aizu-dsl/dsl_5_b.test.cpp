@@ -12,8 +12,8 @@ int main() {
     tr.add(xl + 1, yl + 1, xr + 1, yr + 1, 1);
   }
   u32 mx = 0;
-  fle_ (u32, i, 1, 1001)
-    fle_ (u32, j, 1, 1001) mx = tifa_libs::max(mx, tr.sum(i, j));
+  flt_ (u32, i, 1, 1002)
+    flt_ (u32, j, 1, 1002) mx = tifa_libs::max(mx, tr.sum(i, j));
   std::cout << mx << '\n';
   return 0;
 }

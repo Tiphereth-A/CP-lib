@@ -1,6 +1,7 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/mint_s63.hpp"
 #include "../../../code/poly/asin_fps.hpp"
@@ -10,8 +11,8 @@
 #include "../base.hpp"
 
 CEXP u32 MOD = 998244353;
-using mints30 = tifa_libs::math::mint_s30<MOD>;
-using mints63 = tifa_libs::math::mint_s63<MOD>;
+using mints30 = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
+using mints63 = tifa_libs::math::mint<tifa_libs::math::mint_s63, MOD>;
 
 using pnm30 = tifa_libs::math::polyntt<mints30>;
 using pnm63 = tifa_libs::math::polyntt<mints63>;
@@ -23,7 +24,7 @@ void test(u32 n) {
   using mint = TPN poly::val_t;
   poly p(n + 1);
   p[0] = 0;
-  fle_ (u32, i, 1, n) p[i] = mint(gen());
+  flt_ (u32, i, 1, n + 1) p[i] = mint(gen());
   const u32 sz = n + 1;
 
   auto sqrt_1mpp = tifa_libs::math::sqrt_fps(-p * p + 1, sz).value();

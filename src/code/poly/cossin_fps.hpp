@@ -7,14 +7,14 @@
 namespace tifa_libs::math {
 
 // @return [cos(p(x)), sin(p(x))]
-template <class mint, class ccore>
-requires(ccore::ct_cat == ct_NTT)
-CEXP ptt<poly<mint, ccore>> cossin_fps(poly<mint, ccore> p, u32 n = 0) {
+template <template <class... Ts> class ccore, class mint, class... args>
+requires(ccore<mint, args...>::ct_cat == ct_NTT)
+CEXP auto cossin_fps(poly<ccore, mint, args...> p, u32 n = 0) {
   if (!n) n = (u32)p.size();
-  const mint i = qpow(poly<mint, ccore>::conv_core.G, (mint::mod() - 1) / 4), inv2 = (mint::mod() + 1) / 2;
+  const mint i = qpow(poly<ccore, mint, args...>::conv_core.G, (mint::mod() - 1) / 4), inv2 = (mint::mod() + 1) / 2;
   (p *= i).resize(n);
   const auto expf = exp_fps(p), expnf = exp_fps(-p);
-  return {(expf + expnf) * inv2, (expnf - expf) * (i * inv2)};
+  return std::make_pair((expf + expnf) * inv2, (expnf - expf) * (i * inv2));
 }
 
 }  // namespace tifa_libs::math

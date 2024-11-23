@@ -31,7 +31,7 @@ CEXP vec<T> hungarian(vvec<T> CR g, T INF = std::numeric_limits<T>::max()) {
           if (min_to[w] > g[j][w] - ys[j] - yt[w]) min_to[w] = g[j][w] - ys[j] - yt[w], prv[w] = w_now;
           if (_ > min_to[w]) _ = min_to[w_nxt = w];
         }
-      fle_ (u32, w, 0, W) {
+      flt_ (u32, w, 0, W + 1) {
         if (vis[w]) ys[job[w]] += _, yt[w] -= _;
         else min_to[w] -= _;
       }

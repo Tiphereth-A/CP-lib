@@ -16,7 +16,7 @@ int main() {
   for (auto& i : a) std::cin >> i;
   hashmap<u32, vecu> hm;
   flt_ (u32, i, 0, n) hm[a[i]].push_back(i);
-  fle_ (u32, i, 1, q, l, r, x) {
+  flt_ (u32, i, 1, q + 1, l, r, x) {
     std::cin >> l >> r >> x;
     if (l == r) {
       std::cout << "0\n";

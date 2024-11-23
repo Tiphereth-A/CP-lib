@@ -21,7 +21,7 @@ CEXP vec<pt3u> run_zfunc(strnv s) {
       std::ranges::reverse(tl);
       auto zl = z_func(tl), zr = z_func(tr);
       zl.push_back(0);
-      fle_ (u32, k, 1, mid) {
+      flt_ (u32, k, 1, mid + 1) {
         u32 li = m - k - zl[k], ri = m + min(r - m, zr[len - k]);
         if (rev) swap(li = l + r - li, ri = l + r - ri);
         if (ri - li < 2 * k) continue;

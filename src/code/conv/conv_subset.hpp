@@ -14,7 +14,7 @@ struct conv_subset {
     flt_ (u32, i, 0, d) l[i] += r[i];
   }
   CEXP void sub(arr_t& l, cT_(arr_t) r, u32 d) const {
-    fle_ (u32, i, d, N) l[i] -= r[i];
+    flt_ (u32, i, d, N + 1) l[i] -= r[i];
   }
 
  public:
@@ -47,7 +47,7 @@ struct conv_subset {
     u32 n = (u32)A.size(), d = (u32)std::countr_zero(n);
     flt_ (u32, i, 0, n) {
       arr_t c;
-      fle_ (u32, j, 0, d)
+      flt_ (u32, j, 0, d + 1)
         for (u32 k = 0; k <= d - j; ++k) c[j + k] += A[i][j] * B[i][k];
       A[i].swap(c);
     }

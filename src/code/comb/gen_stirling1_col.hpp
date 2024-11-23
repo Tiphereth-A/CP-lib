@@ -13,9 +13,9 @@ template <class poly, bool with_sgn = true>
 CEXP poly gen_stirling1_col(u32 n, u32 k, spnuu fact, spnuu inv, spnuu invfact) {
   if (n < k) return poly(n + 1);
   poly f(n + 1);
-  fle_ (u32, i, 1, n) f[i] = inv[i];
+  flt_ (u32, i, 1, n + 1) f[i] = inv[i];
   f = pow_fps(f, k) * invfact[k];
-  fle_ (u32, i, k, n) f[i] *= fact[i];
+  flt_ (u32, i, k, n + 1) f[i] *= fact[i];
   if CEXP (with_sgn)
     for (u32 i = k ^ 1; i <= n; i += 2) f[i] = -f[i];
   return f;

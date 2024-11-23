@@ -16,7 +16,7 @@ int main() {
   std::ranges::sort(e);
   auto [tr, ew] = tifa_libs::graph::kruskal_re_tree(e, n);
   n = (u32)tr.g.size();
-  tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree, tifa_libs::graph::td_go_tag> info(tr);
+  tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree, tifa_libs::graph::tdi_go> info(tr);
   nw.resize(n);
   auto sum_node_w = tifa_libs::graph::tree_sumvw(tr, nw);
   while (q--) {

@@ -14,9 +14,9 @@ int main() {
   p.template init<false>();
   std::cout << p.size() << '\n';
   u32 now = 0;
-  flt_ (u32, i, 1, (u32)p.size())
+  flt_ (u32, i, 1, p.size())
     if (tifa_libs::is_lt(p[i].y, p[now].y) || (tifa_libs::is_eq(p[i].y, p[now].y) && tifa_libs::is_lt(p[i].x, p[now].x))) now = i;
-  flt_ (u32, i, now, (u32)p.size()) std::cout << p[i] << '\n';
+  flt_ (u32, i, now, p.size()) std::cout << p[i] << '\n';
   if (now)
     flt_ (u32, i, 0, now) std::cout << p[i] << '\n';
   return 0;

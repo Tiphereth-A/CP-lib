@@ -36,8 +36,8 @@ CEXP vec<gint<i128, -1>> nfpp(u64 p, u32 e) {
   G _ = nfp(p);
   vec<G> pows(e + 1), ret(e + 1);
   pows[0] = 1;
-  fle_ (u32, i, 1, e) pows[i] = pows[i - 1] * _;
-  fle_ (u32, i, 0, e) ret[i] = pows[i] * conj(pows[e - i]);
+  flt_ (u32, i, 1, e + 1) pows[i] = pows[i - 1] * _;
+  flt_ (u32, i, 0, e + 1) ret[i] = pows[i] * conj(pows[e - i]);
   return ret;
 }
 CEXP vec<gint<i128, -1>> nf(u64 n) {

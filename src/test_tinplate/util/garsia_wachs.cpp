@@ -6,7 +6,7 @@ void solve() {
   u32 n;
   std::cin >> n;
   vecu v(n + 2);
-  fle_ (u32, i, 1, n) std::cin >> v[i];
+  flt_ (u32, i, 1, n + 1) std::cin >> v[i];
   v[0] = v[n + 1] = 0x3f3f3f3f;
   u32 ans = 0;
   tifa_libs::garsia_wachs(v, [&](u32, u32, u32, u32, u32 a) { ans += a; });

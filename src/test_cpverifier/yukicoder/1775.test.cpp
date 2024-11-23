@@ -19,7 +19,7 @@ int main() {
     w[u][v] = w[v][u] = 0;
   }
   dp[0][0][x][x] = 1;
-  fle_ (u64, L, 1, n) {
+  flt_ (u64, L, 1, n + 1) {
     memset(nx, 0, sizeof(nx));
     flt_ (u32, ky, 0, 2)
       flt_ (u32, kz, 0, 2)

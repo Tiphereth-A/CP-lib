@@ -20,11 +20,11 @@ strn single_proceed(std::istream& fin) {
   Polygon2 rect = tifa_libs::geo::coverage_rect_min_area(cvh.init());
   ss << rect.area() << ' ';
   u32 start = 0;
-  fle_ (u32, i, 0, 3) {
+  flt_ (u32, i, 0, 4) {
     if (tifa_libs::is_zero(rect[i].x)) rect[i].x = 0;
     if (tifa_libs::is_zero(rect[i].y)) rect[i].y = 0;
   }
-  fle_ (u32, i, 0, 3)
+  flt_ (u32, i, 0, 4)
     if (tifa_libs::is_lt(rect[i].y, rect[start].y) || (tifa_libs::is_eq(rect[i].y, rect[start].y) && tifa_libs::is_lt(rect[i].x, rect[start].x))) start = i;
   for (u32 i = start; i < 4; ++i) ss << rect[i] << ' ';
   for (u32 i = 0; i < start; ++i) ss << rect[i] << ' ';

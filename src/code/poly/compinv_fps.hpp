@@ -10,9 +10,9 @@
 namespace tifa_libs::math {
 
 // @return g s.t. $g(f(x)) \equiv x \pmod{\deg(f)+1}$
-template <class mint, class ccore>
-CEXP poly<mint, ccore> compinv_fps(poly<mint, ccore> CR f, spnuu inv, u32 n = 0) {
-  using poly_t = poly<mint, ccore>;
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto compinv_fps(poly<ccore, mint, args...> CR f, spnuu inv, u32 n = 0) {
+  using poly_t = poly<ccore, mint, args...>;
   if (assert(f.size() > 1 && f[0] == 0 && f[1] != 0); !n) n = (u32)f.size();
   if (n < 2) return poly_t{0, f[1].inv()}.pre(n);
   poly_t h = powem_fps(f) * (n - 1);
@@ -22,8 +22,8 @@ CEXP poly<mint, ccore> compinv_fps(poly<mint, ccore> CR f, spnuu inv, u32 n = 0)
   return g *= f[1].inv(), shl_fps(g, 1).pre(n);
 }
 // @return g s.t. $g(f(x)) \equiv x \pmod{\deg(f)+1}$
-template <class mint, class ccore>
-CEXP poly<mint, ccore> compinv_fps(poly<mint, ccore> CR f, u32 n = 0) { return compinv_fps(f, gen_inv(f.size(), mint::mod()), n); }
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto compinv_fps(poly<ccore, mint, args...> CR f, u32 n = 0) { return compinv_fps(f, gen_inv(f.size(), mint::mod()), n); }
 
 }  // namespace tifa_libs::math
 

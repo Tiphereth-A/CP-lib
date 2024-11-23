@@ -11,7 +11,7 @@ int main() {
   vvec<pt3u> tr(Q), qry(Q);
   std::bitset<Q> ans;
   u32 cnt = 0;
-  fle_ (u32, i, 1, q) {
+  flt_ (u32, i, 1, q + 1) {
     u32 t, u, v;
     i32 k;
     std::cin >> t >> k >> u >> v;

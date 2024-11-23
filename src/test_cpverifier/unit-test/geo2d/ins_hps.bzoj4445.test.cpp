@@ -23,7 +23,7 @@ strn single_proceed(std::istream &fin) {
   vec<Line2> vl;
   vl.reserve(n * 2);
   vl.emplace_back(vp[0], vp[1]);
-  fle_ (u32, i, 1, n - 1, nexti) {
+  flt_ (u32, i, 1, n, nexti) {
     nexti = (i + 1) % n;
     data_t a = vp[1].y - vp[0].y - vp[nexti].y + vp[i].y;
     data_t b = vp[0].x - vp[1].x - vp[i].x + vp[nexti].x;

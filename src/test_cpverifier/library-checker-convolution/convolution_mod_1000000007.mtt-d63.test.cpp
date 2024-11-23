@@ -6,9 +6,10 @@
 CEXP u32 MOD = 1000000007;
 
 #include "../../code/conv/conv_mtt.hpp"
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_d63.hpp"
 
-using mint = tifa_libs::math::mint_d63<-1>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
 
 int main() {
   mint::set_mod(MOD);

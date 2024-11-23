@@ -7,11 +7,11 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   tifa_libs::ds::fenwick_rr<i64> tr(n + 1);
-  for (i64 i = 1, a, b = 0; i <= n; ++i) std::cin >> a, tr.add(i, a - b), b = a;
+  for (i64 i = 1, a, b = 0; i <= n; ++i) std::cin >> a, tr.add((u32)i, a - b), b = a;
   for (i64 i = 0, op, l, r, k; i < m; ++i) {
     std::cin >> op >> l >> r;
-    if (op == 1) std::cin >> k, tr.add(l, k), tr.add(r + 1, -k);
-    else std::cout << tr.sum(r) - tr.sum(l - 1) << '\n';
+    if (op == 1) std::cin >> k, tr.add((u32)l, k), tr.add((u32)r + 1, -k);
+    else std::cout << tr.sum((u32)r) - tr.sum((u32)l - 1) << '\n';
   }
 }
 

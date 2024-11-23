@@ -3,6 +3,7 @@
 
 #include "../../../code/conv/karatsuba.hpp"
 
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_d31.hpp"
 #include "../../../code/math/mint_d63.hpp"
 #include "../../../code/math/mint_s30.hpp"
@@ -23,16 +24,21 @@ void test_karatsuba(u64 n) {
   check(d, c);
 }
 
+using mints30 = tifa_libs::math::mint<tifa_libs::math::mint_s30, 998244353>;
+using mints63 = tifa_libs::math::mint<tifa_libs::math::mint_s63, 998244353>;
+using mintd31 = tifa_libs::math::mint<tifa_libs::math::mint_d31, __LINE__>;
+using mintd63 = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
+
 int main() {
   auto tcase = tifa_libs::unittest::pre_test();
-  tifa_libs::math::mint_d31<-1>::set_mod(1000000000 + 7);
-  tifa_libs::math::mint_d63<-1>::set_mod(1000000000 + 7);
+  mintd31::set_mod(1000000000 + 7);
+  mintd63::set_mod(1000000000 + 7);
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test_karatsuba<tifa_libs::math::mint_s30<998244353>>(1000); break;
-    case tifa_libs::unittest::ts_example_01: test_karatsuba<tifa_libs::math::mint_s63<998244353>>(1000); break;
-    case tifa_libs::unittest::ts_random_00: test_karatsuba<tifa_libs::math::mint_d31<-1>>(1000); break;
-    case tifa_libs::unittest::ts_random_01: test_karatsuba<tifa_libs::math::mint_d63<-1>>(1000); break;
+    case tifa_libs::unittest::ts_example_00: test_karatsuba<mints30>(1000); break;
+    case tifa_libs::unittest::ts_example_01: test_karatsuba<mints63>(1000); break;
+    case tifa_libs::unittest::ts_random_00: test_karatsuba<mintd31>(1000); break;
+    case tifa_libs::unittest::ts_random_01: test_karatsuba<mintd63>(1000); break;
     case tifa_libs::unittest::ts_random_02: test_karatsuba<u32>(1000); break;
     case tifa_libs::unittest::ts_random_03: test_karatsuba<u64>(1000); break;
     case tifa_libs::unittest::ts_random_04: test_karatsuba<u128>(1000); break;

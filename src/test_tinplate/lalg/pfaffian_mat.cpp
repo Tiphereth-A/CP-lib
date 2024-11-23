@@ -3,11 +3,12 @@
 #include "../../code/lalg/pfaffian_mat.hpp"
 
 #include "../../code/lalg/mat.hpp"
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_s30.hpp"
 
 CEXP u32 MOD = 1'000'000'007;
 
-using mint = tifa_libs::math::mint_s30<MOD>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
 using mat = tifa_libs::math::matrix<mint>;
 
 int main() {

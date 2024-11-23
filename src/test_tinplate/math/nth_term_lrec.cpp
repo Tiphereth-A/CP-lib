@@ -2,10 +2,11 @@
 
 #include "../../code/math/nth_term_lrec.hpp"
 
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_s30.hpp"
 #include "../../code/poly/polyntt.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 998244353>;
 using poly = tifa_libs::math::polyntt<mint>;
 
 int main() {

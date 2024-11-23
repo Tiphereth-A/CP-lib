@@ -5,8 +5,7 @@
 
 namespace tifa_libs::graph {
 
-template <class G>
-requires(adjlist_c<G> || adjlistw_c<G>)
+template <adjlist_c G>
 CEXP auto make_alistr(G CR g) {
   const u32 n = g.size();
   G ret(n);

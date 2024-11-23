@@ -1,15 +1,12 @@
 #ifndef TIFALIBS_MATH_MINT_S63
 #define TIFALIBS_MATH_MINT_S63
 
-#include "mint.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::math {
 
 template <u64 MOD>
-class mint_s63 : public mint<mint_s63<MOD>, u64> {
-  using base = mint<mint_s63<MOD>, u64>;
-  friend base;
-
+class mint_s63 {
   static CEXP u64 R = []() {
     u64 t = 2, iv = MOD * (t - MOD * MOD);
     return iv *= t - MOD * iv, iv *= t - MOD * iv, iv *= t - MOD * iv, iv * (t - MOD * iv);
@@ -20,12 +17,10 @@ class mint_s63 : public mint<mint_s63<MOD>, u64> {
       if ((iv *= 2) >= MOD) iv -= MOD;
     return iv;
   }();
-
   static_assert(MOD & 1);
   static_assert(R * MOD == 1);
   static_assert((MOD >> 63) == 0);
   static_assert(MOD != 1);
-
   static CEXP u64 mulh(u64 x, u64 y) {
     u64 a = x >> 32, b = (u32)(x), c = y >> 32, d = (u32)(y), ad = a * d, bc = b * c;
     return a * c + (ad >> 32) + (bc >> 32) + (((ad & 0xFFFFFFFF) + (bc & 0xFFFFFFFF) + (b * d >> 32)) >> 32);
@@ -38,29 +33,28 @@ class mint_s63 : public mint<mint_s63<MOD>, u64> {
 
  public:
   static CEXP bool FIXED_MOD = true;
-  CEXP mint_s63() {}
-  template <int_c T>
-  CEXP mint_s63(T v) { this->v_ = mod_(v); }
 
- private:
-  using raw_t = TPN base::raw_t;
-  using sraw_t = TPN base::sraw_t;
+ protected:
+  using raw_t = u64;
+  raw_t v_;
+  CEXP mint_s63() : v_{} {}
+  CEXP mint_s63(int_c auto v) : v_{mod(v)} {}
   template <int_c T>
-  static CEXP raw_t mod_(T v) { return redc_mul(norm(i64(v % (std::conditional_t<sint_c<T>, i64, u64>)mod_())), R2); }
-  static CEXP raw_t mod_() { return MOD; }
-  CEXP raw_t val_() const {
-    raw_t res = -mulh(this->v_ * R, mod_());
+  static CEXP raw_t mod(T v) { return redc_mul(norm(i64(v % (std::conditional_t<sint_c<T>, i64, u64>)mod())), R2); }
+  static CEXP raw_t mod() { return MOD; }
+  CEXP raw_t val() const {
+    raw_t res = -mulh(this->v_ * R, mod());
     return res + (MOD & -(res >> 63));
   }
-  CEXP raw_t &data_() { return this->v_; }
-
-  CEXP mint_s63 neg_() const {
-    mint_s63 res;
-    return res.v_ = (MOD & -(this->v_ != 0)) - this->v_, res;
+  CEXP raw_t &data() { return v_; }
+  template <class mint>
+  CEXP auto neg() const {
+    mint res;
+    return res.v_ = (MOD & -(this->v_ != 0)) - v_, res;
   }
-  CEXP mint_s63 &adde_(mint_s63 CR r) { return this->v_ += r.v_ - MOD, this->v_ += MOD & -(this->v_ >> 63), *this; }
-  CEXP mint_s63 &sube_(mint_s63 CR r) { return this->v_ -= r.v_, this->v_ += MOD & -(this->v_ >> 63), *this; }
-  CEXP mint_s63 &mule_(mint_s63 CR r) { return this->v_ = redc_mul(this->v_, r.v_), *this; }
+  CEXP void add(mint_s63 CR r) { v_ += r.v_ - MOD, v_ += MOD & -(this->v_ >> 63); }
+  CEXP void sub(mint_s63 CR r) { v_ -= r.v_, v_ += MOD & -(this->v_ >> 63); }
+  CEXP void mul(mint_s63 CR r) { v_ = redc_mul(this->v_, r.v_); }
 };
 
 }  // namespace tifa_libs::math

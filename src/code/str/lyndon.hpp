@@ -10,7 +10,7 @@ CEXP vecu duval(strnv s) {
   vecu res{0};
   while (res.back() != n) {
     u32 l = 1;
-    fle_ (u32, i, res.back() + 1, n)
+    flt_ (u32, i, res.back() + 1, n + 1)
       if (i == n || s[i] < s[i - l]) {
         for (u32 j = res.back() + l; j < i + 1; j += l) res.push_back(j);
         break;

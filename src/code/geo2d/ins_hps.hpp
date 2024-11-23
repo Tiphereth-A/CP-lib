@@ -12,13 +12,13 @@ CEXP cvh<FP> ins_hPs(vec<line<FP>> vl) {
   if ((vl = uniq(vl)).size() < 3) return {};
   std::deque<line<FP>> q;
   for (auto it = vl.begin(); it != vl.end(); ++it) {
-    if (it != vl.begin() && is_same_dir(*it, *(it - 1))) continue;
-    while (q.size() > 1 && !check(*(q.rbegin() + 1), q.back(), *it)) q.pop_back();
-    while (q.size() > 1 && !check(*(q.begin() + 1), q.front(), *it)) q.pop_front();
+    if (it != vl.begin() && is_same_dir(*it, it[-1])) continue;
+    while (q.size() > 1 && !check(q.rbegin()[1], q.back(), *it)) q.pop_back();
+    while (q.size() > 1 && !check(q.begin()[1], q.front(), *it)) q.pop_front();
     q.push_back(*it);
   }
-  while (q.size() > 2 && !check(*(q.rbegin() + 1), q.back(), q.front())) q.pop_back();
-  while (q.size() > 2 && !check(*(q.begin() + 1), q.front(), q.back())) q.pop_front();
+  while (q.size() > 2 && !check(q.rbegin()[1], q.back(), q.front())) q.pop_back();
+  while (q.size() > 2 && !check(q.begin()[1], q.front(), q.back())) q.pop_front();
   vec<point<FP>> ret;
   flt_ (u32, i, 0, (u32)q.size()) ret.push_back(ins_LL(q[i], q[(i + 1) % q.size()]));
   return cvh<FP>{ret, true};

@@ -7,9 +7,9 @@ int main() {
   u32 n, q;
   std::cin >> n >> q;
   vecuu a(n + 1);
-  fle_ (u32, i, 1, n) std::cin >> a[i];
+  flt_ (u32, i, 1, n + 1) std::cin >> a[i];
   tifa_libs::ds::fenwick<u64> f(a);
-  fle_ (u32, i, 1, q) {
+  flt_ (u32, i, 1, q + 1) {
     u32 l, r;
     std::cin >> l >> r;
     std::cout << f.sum(r) - f.sum(l) << '\n';
