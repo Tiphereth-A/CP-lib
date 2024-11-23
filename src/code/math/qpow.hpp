@@ -8,8 +8,10 @@ namespace tifa_libs::math {
 template <class T>
 CEXP T qpow(T a, u64 b, cT_(T) init_v = T{1}) {
   T res = init_v;
-  for (; b; b >>= 1, a = a * a)
-    if (b & 1) res = res * a;
+  for (; b; b >>= 1, a = a * a) {
+    while (!(b & 1)) b >>= 1, a = a * a;
+    res = res * a;
+  }
   return res;
 }
 

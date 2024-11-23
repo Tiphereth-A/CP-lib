@@ -7,8 +7,10 @@ namespace tifa_libs::math {
 
 CEXP u64 qpow_mod(u64 a, u64 b, u64 mod) {
   u64 res(1);
-  for (a %= mod; b; b >>= 1, a = mul_mod_u(a, a, mod))
-    if (b & 1) res = mul_mod_u(res, a, mod);
+  for (a %= mod; b; b >>= 1, a = mul_mod_u(a, a, mod)) {
+    while (!(b & 1)) b >>= 1, a = mul_mod_u(a, a, mod);
+    res = mul_mod_u(res, a, mod);
+  }
   return res;
 }
 
