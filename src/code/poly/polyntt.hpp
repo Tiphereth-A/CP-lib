@@ -15,7 +15,7 @@ struct cconv_ntt : public NTT<mint> {
 }  // namespace polyntt_impl_
 
 template <class mint>
-using polyntt = poly<mint, polyntt_impl_::cconv_ntt<mint>>;
+using polyntt = poly<polyntt_impl_::cconv_ntt, mint>;
 
 }  // namespace tifa_libs::math
 

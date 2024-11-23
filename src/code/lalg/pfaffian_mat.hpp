@@ -23,7 +23,7 @@ CEXP auto pfaffian(Mat mat, Is0 is0) {
       }
     if (p != i + 1) {
       neg ^= 1;
-      fle_ (u32, j, 0, i) swap(mat(j, i + 1), mat(j, p));
+      flt_ (u32, j, 0, i + 1) swap(mat(j, i + 1), mat(j, p));
       flt_ (u32, j, i + 2, p) swap(mat(i + 1, j), mat(j, p)), mat(i + 1, j) = -mat(i + 1, j), mat(j, p) = -mat(j, p);
       mat(i + 1, p) = -mat(i + 1, p);
       flt_ (u32, j, p + 1, n) swap(mat(i + 1, j), mat(p, j));
@@ -32,7 +32,7 @@ CEXP auto pfaffian(Mat mat, Is0 is0) {
     flt_ (u32, j, i + 2, n)
       if (mat(i, j)) {
         T _2 = -mat(i, j) * _;
-        fle_ (u32, k, 0, i) mat(k, j) += _2 * mat(k, i + 1);
+        flt_ (u32, k, 0, i + 1) mat(k, j) += _2 * mat(k, i + 1);
         flt_ (u32, k, i + 2, j) mat(k, j) -= _2 * mat(i + 1, k);
         flt_ (u32, k, j + 1, n) mat(j, k) += _2 * mat(i + 1, k);
       }

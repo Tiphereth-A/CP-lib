@@ -21,13 +21,13 @@ strn single_proceed(spn<Point2> vp) {
   auto&& now = poly.vs;
   usz start = 0;
   int start_id = id[now[0]];
-  fle_ (usz, i, 1, now.size() - 1)
+  flt_ (usz, i, 1, now.size())
     if (id[now[i]] < start_id) {
       start = i;
       start_id = id[now[i]];
     }
-  fle_ (usz, i, start, now.size() - 1) ss << now[i].x << ", " << now[i].y << '\n';
-  fle_ (usz, i, 0, start) ss << now[i].x << ", " << now[i].y << '\n';
+  flt_ (usz, i, start, now.size()) ss << now[i].x << ", " << now[i].y << '\n';
+  flt_ (usz, i, 0, start + 1) ss << now[i].x << ", " << now[i].y << '\n';
 
   return ss.str();
 }
@@ -46,7 +46,7 @@ void test(strn CR data) {
       strn got = single_proceed(vp);
       isz cnt = std::ranges::count(got, ',');
       strn want;
-      fle_ (isz, i, 1, cnt) {
+      flt_ (isz, i, 1, cnt + 1) {
         strn _;
         std::getline(fans, _);
         while (isspace(_.back())) _.pop_back();

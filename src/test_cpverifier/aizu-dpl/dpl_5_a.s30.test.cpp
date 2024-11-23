@@ -5,9 +5,10 @@
 
 CEXP u32 MOD = 1000000000 + 7;
 
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_s30.hpp"
 
-using mint = tifa_libs::math::mint_s30<MOD>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

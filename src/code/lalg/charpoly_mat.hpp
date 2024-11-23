@@ -16,7 +16,7 @@ CEXP vec<T> charpoly(matrix<T> mat, Is0 &&is0) {
   uhb(mat, std::forward<Is0>(is0));
   vvec<T> p(n + 1);
   p[0].resize(1), p[0][0] = 1, p[1].resize(2), p[1][0] = -mat(0, 0), p[1][1] = 1;
-  fle_ (u32, i, 2, n) {
+  flt_ (u32, i, 2, n + 1) {
     vec<T> CR pc = p[i - 1];
     vec<T> &pi = p[i];
     pi.resize(p[i - 1].size() + 1);
@@ -26,7 +26,7 @@ CEXP vec<T> charpoly(matrix<T> mat, Is0 &&is0) {
     flt_ (u32, j, 1, i) {
       const T _ = (t *= mat(i - j, i - j - 1)) * mat(i - j - 1, i - 1);
       if (is0(_)) continue;
-      fle_ (u32, k, 0, i - j - 1) pi[k] -= _ * p[i - j - 1][k];
+      flt_ (u32, k, 0, i - j) pi[k] -= _ * p[i - j - 1][k];
     }
   }
   return p[n];

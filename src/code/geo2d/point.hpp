@@ -18,30 +18,18 @@ struct point {
   template <std::floating_point T>
   friend CEXP point lerp(point CR s, point CR t, T r) { return s * r + t * (1 - r); }
   friend CEXP point mid_point(point CR s, point CR t) { return lerp(s, t, .5); }
-  template <arithm_c T>
-  CEXP point &operator+=(T n) { return this->x += n, this->y += n, *this; }
-  template <arithm_c T>
-  CEXP point &operator-=(T n) { return this->x -= n, this->y -= n, *this; }
-  template <arithm_c T>
-  CEXP point &operator*=(T n) { return this->x *= n, this->y *= n, *this; }
-  template <arithm_c T>
-  CEXP point &operator/=(T n) { return this->x /= n, this->y /= n, *this; }
-  template <arithm_c T>
-  friend CEXP point operator+(point x, T n) { return x += n; }
-  template <arithm_c T>
-  friend CEXP point operator+(T n, point x) { return x += n; }
-  template <arithm_c T>
-  friend CEXP point operator-(point x, T n) { return x -= n; }
-  template <arithm_c T>
-  friend CEXP point operator-(T n, point x) { return x -= n; }
-  template <arithm_c T>
-  friend CEXP point operator*(point x, T n) { return x *= n; }
-  template <arithm_c T>
-  friend CEXP point operator*(T n, point x) { return x *= n; }
-  template <arithm_c T>
-  friend CEXP point operator/(point x, T n) { return x /= n; }
-  template <arithm_c T>
-  friend CEXP point operator/(T n, point x) { return x /= n; }
+  CEXP point &operator+=(arithm_c auto n) { return this->x += n, this->y += n, *this; }
+  CEXP point &operator-=(arithm_c auto n) { return this->x -= n, this->y -= n, *this; }
+  CEXP point &operator*=(arithm_c auto n) { return this->x *= n, this->y *= n, *this; }
+  CEXP point &operator/=(arithm_c auto n) { return this->x /= n, this->y /= n, *this; }
+  friend CEXP point operator+(point x, arithm_c auto n) { return x += n; }
+  friend CEXP point operator+(arithm_c auto n, point x) { return x += n; }
+  friend CEXP point operator-(point x, arithm_c auto n) { return x -= n; }
+  friend CEXP point operator-(arithm_c auto n, point x) { return x -= n; }
+  friend CEXP point operator*(point x, arithm_c auto n) { return x *= n; }
+  friend CEXP point operator*(arithm_c auto n, point x) { return x *= n; }
+  friend CEXP point operator/(point x, arithm_c auto n) { return x /= n; }
+  friend CEXP point operator/(arithm_c auto n, point x) { return x /= n; }
   CEXP point &operator+=(point CR p) { return this->x += p.x, this->y += p.y, *this; }
   CEXP point &operator-=(point CR p) { return this->x -= p.x, this->y -= p.y, *this; }
   CEXP point operator+(point CR p) const { return point(*this) += p; }

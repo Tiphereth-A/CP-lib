@@ -65,7 +65,7 @@ struct basisR {
         if (is_zero(basis[i][i])) return {};
         const FP _ = x[i] / basis[i][i];
         res[i] = _, x[i] = 0;
-        fle_ (u32, j, 0, i) x[j] -= basis[i][j] * _;
+        flt_ (u32, j, 0, i + 1) x[j] -= basis[i][j] * _;
       }
     return res;
   }

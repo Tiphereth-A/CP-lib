@@ -46,12 +46,12 @@ class dinic {
   }
   template <class EW>
   CEXP EW dfs(u32 u, u32 t, T lim = std::numeric_limits<T>::max()) {
-    if (u == t || lim == 0) return lim;
+    if (u == t || lim == 0) return (EW)lim;
     EW ret = 0;
     for (u32& i = cur[u]; i < e[u].size(); ++i)
       if (auto v = e[u][i]; dep[v.to] == dep[u] + 1 && v.w) {
         if (EW flow = dfs<EW>(v.to, t, min(v.w, lim)); flow) {
-          if (e[u][i].w -= flow, e[v.to][e[u][i].inv].w += flow, ret += flow, lim -= flow; !lim) break;
+          if (e[u][i].w -= (T)flow, e[v.to][e[u][i].inv].w += (T)flow, ret += flow, lim -= (T)flow; !lim) break;
         } else dep[v.to] = 0;
       }
     return ret;

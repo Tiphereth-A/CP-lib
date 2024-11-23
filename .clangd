@@ -1,3 +1,5 @@
+Diagnostics:
+  Suppress: c++98-compat-extra-semi
 CompileFlags:
   Add: [-xc++, -std=c++20, -Wall, -Wextra, -Wconversion, -Wpedantic, -Wparentheses, -Wzero-as-null-pointer-constant, -Wregister, -Wvolatile, -Wredundant-tags, -Wmismatched-tags, -Wextra-semi, -Wstrict-null-sentinel, -Wuseless-cast, -Woverloaded-virtual, -Wenum-conversion, -Wcomma-subscript, -Wno-variadic-macros]
   Compiler: g++

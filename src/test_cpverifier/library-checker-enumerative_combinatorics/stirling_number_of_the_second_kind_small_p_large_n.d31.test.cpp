@@ -3,9 +3,10 @@
 
 #include "../../code/comb/stirling2_smallp.hpp"
 //
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_d31.hpp"
 
-using mint = tifa_libs::math::mint_d31<-1>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_d31, __LINE__>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

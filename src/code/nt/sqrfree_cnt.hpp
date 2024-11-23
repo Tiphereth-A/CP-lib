@@ -12,9 +12,9 @@ CEXP u64 sqrfree_cnt(u64 n, veci mu) {
   if (n <= 3) return n;
   const u32 I = (u32)min(ikth_root(n, 5) * 2, ikth_root(n / 4, 3)), D = isqrt(n / I);
   u64 ans = 0;
-  fle_ (u32, i, 1, D)
+  flt_ (u32, i, 1, D + 1)
     if (mu[i]) ans += (u64)mu[i] * (n / ((u64)i * i));
-  fle_ (u32, i, 1, D) mu[i] += mu[i - 1];
+  flt_ (u32, i, 1, D + 1) mu[i] += mu[i - 1];
   veci mu_large(I + 1);
   for (u32 i = I - 1; i >= 1; --i) {
     const u32 xi = isqrt(n / i), h = isqrt(xi), tlim = 2 * h - (h == xi / h);
@@ -29,8 +29,9 @@ CEXP u64 sqrfree_cnt(u64 n, veci mu) {
   return ans - u64(i64(I - 1) * mu[D]);
 }
 CEXP u64 sqrfree_cnt(u64 n) {
+  if (n <= 3) return n;
   const u32 I = (u32)min(ikth_root(n, 5) * 2, ikth_root(n / 4, 3)), D = isqrt(n / I);
-  return sqrfree_cnt(n, lsieve<ls_mu_tag>(D + 1).mu);
+  return sqrfree_cnt(n, lsieve<ls_mu>(D + 1).mu);
 }
 
 }  // namespace tifa_libs::math

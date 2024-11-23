@@ -16,8 +16,8 @@ CEXP u32 lcs_circ(cT_(T) a, cT_(T) b) {
     left[x][y] = _ ^ up[x][y - 1], up[x][y] = _ ^ left[x - 1][y];
   };
   u32 ret = 0;
-  fle_ (u32, i, 1, (u32)a.size())
-    fle_ (u32, j, 1, (u32)b_.size()) f(i, j);
+  flt_ (u32, i, 1, (u32)a.size() + 1)
+    flt_ (u32, j, 1, (u32)b_.size() + 1) f(i, j);
   flt_ (u32, i, 0, (u32)b.size()) {
     if (i)
       for (u32 x = 1, y = i; x <= a.size() && y <= b_.size();) {
@@ -27,7 +27,7 @@ CEXP u32 lcs_circ(cT_(T) a, cT_(T) b) {
         ++(_ == up[x][y] ? x : y);
       }
     u32 now = 0;
-    fle_ (u32, x, 1, (u32)a.size()) now += up[x][i + b.size()];
+    flt_ (u32, x, 1, (u32)a.size() + 1) now += up[x][i + b.size()];
     ret = max(ret, now);
   }
   return ret;

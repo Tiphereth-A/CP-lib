@@ -13,13 +13,13 @@ class hld {
   segtree<T, op, e, F, mapping, composition, id> t;
 
  public:
-  using tree_info_t = graph::tree_dfs_info<graph::tree, graph::td_dfn_tag, graph::td_maxson_tag, graph::td_dep_tag, graph::td_fa_tag>;
+  using tree_info_t = graph::tree_dfs_info<graph::tree, graph::tdi_dfn, graph::tdi_maxson, graph::tdi_dep, graph::tdi_fa>;
 
   graph::tree CR tr;
   tree_info_t info;
   vecu top;
 
-  CEXP hld(graph::tree CR tr, tree_info_t CR info_) : t(), tr(tr), info{info_} { top = graph::tree_top<graph::tree, true>(tr, info.dfn, info.maxson); }
+  CEXP hld(graph::tree CR tr, tree_info_t CR info_) : t(), tr(tr), info{info_} { top = graph::tree_top<true>(tr, info.dfn, info.maxson); }
   CEXPE hld(graph::tree CR tr) : hld(tr, tree_info_t(tr)) {}
   CEXP hld(graph::tree CR tr, tree_info_t CR info_, spn<T> a) : hld(tr, info_) {
     vec<T> b(a.size());

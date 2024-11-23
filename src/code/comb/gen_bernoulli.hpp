@@ -12,9 +12,9 @@ template <class poly, std::same_as<TPN poly::val_t> mint>
 CEXP poly gen_bernoulli(u32 n, vec<mint> CR fact, vec<mint> CR ifact) {
   if (!n) return poly{1};
   poly b(n + 1);
-  fle_ (u32, i, 0, n) b[i] = ifact[i + 1];
+  flt_ (u32, i, 0, n + 1) b[i] = ifact[i + 1];
   b = inv_fps(b);
-  fle_ (u32, i, 1, n) b[i] *= fact[i];
+  flt_ (u32, i, 1, n + 1) b[i] *= fact[i];
   return b;
 }
 // bernoulli[i] = B_i, i=0,1,...,n

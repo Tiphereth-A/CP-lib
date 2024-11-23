@@ -45,7 +45,7 @@ class ExLucas {
  public:
   CEXPE ExLucas(u32 md) : m_(md) {
     assert(md < 100'000'000);
-    fle_ (u32, i, 2, isqrt(md))
+    flt_ (u32, i, 2, isqrt(md) + 1)
       if (md % i == 0) {
         u32 j = 0, k = 1;
         while (md % i == 0) md /= i, ++j, k *= i;

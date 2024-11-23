@@ -8,13 +8,13 @@
 
 namespace tifa_libs::math {
 
-template <class mint, class ccore>
-CEXP std::optional<poly<mint, ccore>> sqrt_fps(poly<mint, ccore> p, u32 n = 0) {
-  if (!n) n = p.size();
-  const u32 cnt = u32(std::find_if(p.data().begin(), p.data().begin() + n, [](cT_(mint) x) { return x.val() != 0; }) - p.data().begin());
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP std::optional<poly<ccore, mint, args...>> sqrt_fps(poly<ccore, mint, args...> p, u32 n = 0) {
+  if (!n) n = (u32)p.size();
+  const u32 cnt = u32(std::find_if(p.begin(), p.begin() + n, [](cT_(mint) x) { return x.val() != 0; }) - p.begin());
   if (cnt == n) return p.pre(n);
   if (cnt & 1) return {};
-  poly<mint, ccore> ans{0};
+  poly<ccore, mint, args...> ans{0};
   p = shr_fps(p, cnt);
   if (auto qres = qresidue(p[0].val(), mint::mod()); !qres.has_value()) return {};
   else ans[0] = min(qres.value(), mint::mod() - qres.value());

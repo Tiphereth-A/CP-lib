@@ -20,7 +20,7 @@ int main() {
   u32 m, n;
   tifa_libs::fin >> m >> n;
   poly a(m);
-  tifa_libs::fin >> a.data();
+  tifa_libs::fin >> a;
   vec<mint> b(1 << n);
   for (auto &i : b) tifa_libs::fin >> i;
   tifa_libs::fout << tifa_libs::math::comp_fpssps(n, a, b) << '\n';

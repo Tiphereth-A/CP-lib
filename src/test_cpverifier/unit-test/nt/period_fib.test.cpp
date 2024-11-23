@@ -4,6 +4,7 @@
 #include "../../../code/nt/period_fib.hpp"
 
 #include "../../../code/lalg/mat.hpp"
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_d31.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
@@ -20,7 +21,7 @@ void test(u32 n) {
   check(a * b, b, check_param(n), check_param(period), check_param(a));
 }
 
-using mint = tifa_libs::math::mint_d31<-1>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_d31, __LINE__>;
 
 int main() {
   auto tcase = tifa_libs::unittest::pre_test();

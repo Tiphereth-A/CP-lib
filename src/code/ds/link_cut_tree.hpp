@@ -24,7 +24,7 @@ class link_cut_tree {
   vec<TIFA> tr;
 
   CEXP link_cut_tree(u32 n, vec<T> A) : tr(n + 1) {
-    fle_ (u32, i, 1, n) tr[i].val = A[i - 1];
+    flt_ (u32, i, 1, n + 1) tr[i].val = A[i - 1];
   }
 
   CEXP void access(u32 x) { access_(x + 1); }

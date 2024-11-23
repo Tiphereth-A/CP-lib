@@ -11,7 +11,7 @@ int main() {
   u32 n;
   tifa_libs::fin >> n;
   poly f(n), g(n);
-  tifa_libs::fin >> f.data() >> g.data();
-  tifa_libs::fout << tifa_libs::math::comp_fps(f, g).data();
+  tifa_libs::fin >> f >> g;
+  tifa_libs::fout << tifa_libs::math::comp_fps(f, g);
   return 0;
 }

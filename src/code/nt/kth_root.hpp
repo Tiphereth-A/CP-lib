@@ -29,7 +29,7 @@ CEXP std::optional<u64> kth_root(u64 a, u64 k, u64 p) {
     _m = inverse(qpow_mod(c, qpow_mod(p, s - 1, m - 1), m), m);
     flt_ (u32, i, e, s) {
       u64 _ = mul_mod_u(a, inverse(qpow_mod(ans, pe, m), m), m), t = qpow_mod(_, qpow_mod(p, s - 1 - i, m - 1), m);
-      fle_ (u32, j, 0, v) {
+      flt_ (u32, j, 0, v + 1) {
         if (mp.find(t) != mp.end()) {
           u32 x = mp[t];
           ans = mul_mod_u(ans, qpow_mod(c, mul_mod_u(j + v * x, qpow_mod(p, i - e, m - 1), m - 1), m), m);

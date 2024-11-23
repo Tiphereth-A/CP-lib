@@ -58,7 +58,7 @@ class cvh3d {
       faces[1].in(4, 3, 2), faces[2].in(1, 3, 4), faces[3].in(1, 4, 2), faces[4].in(1, 2, 3);
       flt_ (u32, i, 1, (u32)vp.size()) {
         if (vp[i] == v(s, 0) || vp[i] == v(s, 1) || vp[i] == v(s, 2) || vp[i] == v(s, 3)) continue;
-        fle_ (u32, j, 1, 4)
+        flt_ (u32, j, 1, 5)
           if (relation_PlP(faces[j].p, vp[i]) == above_plp) {
             ptsid[j].push_back(i);
             break;

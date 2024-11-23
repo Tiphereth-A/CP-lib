@@ -5,9 +5,10 @@
 
 CEXP u64 MOD = 1'000'000'007;
 
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_d63.hpp"
 
-using mint = tifa_libs::math::mint_d63<-1>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
 
 int main() {
   mint::set_mod(MOD);

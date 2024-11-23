@@ -13,6 +13,6 @@ int main() {
     std::cin >> v >> w;
     kn.add(w, v);
   }
-  std::cout << *std::ranges::max_element(kn.result()) << '\n';
+  std::cout << std::ranges::max(kn.result()) << '\n';
   return 0;
 }

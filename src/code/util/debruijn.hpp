@@ -17,7 +17,7 @@ CEXP vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) {
     if (ret.size() >= maxsz) return;
     if (t > n) {
       if (!(n % p))
-        fle_ (u32, i, 1, p) ret.push_back(_[i]);
+        flt_ (u32, i, 1, p + 1) ret.push_back(_[i]);
       if (ret.size() >= maxsz) return;
     } else {
       if (_[t] = _[t - p]; ret.size() >= maxsz) return;

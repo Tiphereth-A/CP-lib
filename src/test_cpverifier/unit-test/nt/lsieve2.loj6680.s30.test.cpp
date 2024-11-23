@@ -7,10 +7,11 @@
 
 #include "../../../code/nt/lsieve2.hpp"
 
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_s30.hpp"
 #include "../base.hpp"
 
-using mint = tifa_libs::math::mint_s30<998244353>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 998244353>;
 
 void test(strn CR data) {
   auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("loj", "6680", data);
@@ -28,9 +29,9 @@ void test(strn CR data) {
 
   vec<mint> f(n + 1);
   f[1] = 1;
-  fle_ (u32, i, 2, n) f[i] = f[i - 1] + g[i].first + g[i].first - g[i].second;
+  flt_ (u32, i, 2, n + 1) f[i] = f[i - 1] + g[i].first + g[i].first - g[i].second;
   u64 got = f[1].val();
-  fle_ (u32, i, 2, n) got ^= f[i].val();
+  flt_ (u32, i, 2, n + 1) got ^= f[i].val();
 
   u64 want;
   fans >> want;

@@ -6,35 +6,28 @@
 
 namespace tifa_libs::math {
 
-template <class D, uint_c Rt>
-class mint {
-  CEXP D CR d() const { return static_cast<D CR>(*this); }
-  CEXP D &d() { return static_cast<D &>(*this); }
+template <template <u64 Arg> class D, u64 Arg = 998244353>
+struct mint : D<Arg> {
+  using base_t = D<Arg>;
 
- protected:
-  Rt v_{};
+  CEXP mint() : base_t() {}
+  CEXP mint(int_c auto v) : base_t(v) {}
 
- public:
-  CEXP mint() {}
-  template <int_c T>
-  CEXP mint(T v) : v_(D::mod_(v)) {}
-  CEXP operator D() { return d(); }
-
-  using raw_t = Rt;
-  using sraw_t = to_sint_t<Rt>;
-  static CEXP raw_t mod() { return D::mod_(); }
-  static CEXP sraw_t smod() { return (sraw_t)D::mod_(); }
-  CEXP raw_t val() const { return d().val_(); }
-  CEXP sraw_t sval() const { return (sraw_t)d().val_(); }
-  CEXP raw_t &data() { return d().data_(); }
+  using raw_t = base_t::raw_t;
+  using sraw_t = to_sint_t<raw_t>;
+  static CEXP raw_t mod() { return base_t::mod(); }
+  static CEXP sraw_t smod() { return (sraw_t)base_t::mod(); }
+  CEXP raw_t val() const { return base_t::val(); }
+  CEXP sraw_t sval() const { return (sraw_t)base_t::val(); }
+  CEXP raw_t &data() { return base_t::data(); }
   template <int_c T>
   CEXPE operator T() const { return (T)val(); }
-  CEXP mint &operator+=(mint CR r) { return d().adde_(r.d()); }
-  CEXP mint &operator-=(mint CR r) { return d().sube_(r.d()); }
-  CEXP mint &operator*=(mint CR r) { return d().mule_(r.d()); }
+  CEXP mint &operator+=(mint CR r) { return mint::add(r), *this; }
+  CEXP mint &operator-=(mint CR r) { return mint::sub(r), *this; }
+  CEXP mint &operator*=(mint CR r) { return mint::mul(r), *this; }
   CEXP mint &operator/=(mint CR r) { return *this = *this * r.inv(); }
   CEXP mint CR operator+() const { return *this; }
-  CEXP mint operator-() const { return d().neg_(); }
+  CEXP mint operator-() const { return base_t::template neg<mint>(); }
   CEXP mint inv() const { return inverse(val(), mod()); }
   friend CEXP mint operator+(mint l, mint CR r) { return l += r; }
   friend CEXP mint operator-(mint l, mint CR r) { return l -= r; }
@@ -47,7 +40,7 @@ class mint {
     return is >> _, x = mint(_), is;
   }
   friend std::ostream &operator<<(std::ostream &os, mint CR x) { return os << x.val(); }
-  friend CEXP mint abs(mint CR x) { return x.val(); }
+  friend CEXP auto abs(mint CR x) { return x.val(); }
 };
 
 }  // namespace tifa_libs::math

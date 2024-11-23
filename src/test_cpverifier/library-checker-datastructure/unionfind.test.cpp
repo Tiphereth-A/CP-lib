@@ -7,7 +7,7 @@ int main() {
   u32 n, q;
   std::cin >> n >> q;
   tifa_libs::ds::dsu_basic dsu(n + 1);
-  fle_ (u32, i, 1, q) {
+  flt_ (u32, i, 1, q + 1) {
     u32 t, u, v;
     std::cin >> t >> u >> v;
     if (t == 0)

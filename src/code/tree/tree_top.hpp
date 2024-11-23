@@ -5,8 +5,8 @@
 
 namespace tifa_libs::graph {
 
-template <tree_c G, bool need_dfn = false>
-CEXP vecu tree_top(G CR tr, std::conditional_t<need_dfn, vecu &, spnu> dfn, spnu maxson) {
+template <bool need_dfn = false>
+CEXP vecu tree_top(tree_c auto CR tr, std::conditional_t<need_dfn, vecu &, spnu> dfn, spnu maxson) {
   u32 n = (u32)tr.size();
   if CEXP (need_dfn) dfn = vecu(n);
   vecu top(n, n);

@@ -80,7 +80,7 @@ class chordal {
     }
     return res;
   }
-  CEXP u32 chromatic_number() const { return *std::ranges::max_element(deg) + 1; }
+  CEXP u32 chromatic_number() const { return std::ranges::max(deg) + 1; }
   CEXP vecu max_independent_set() const {
     vecu res;
     for (vecb vis(peo.size()); u32 u : peo) {

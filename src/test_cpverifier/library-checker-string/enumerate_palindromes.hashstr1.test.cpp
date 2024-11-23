@@ -3,10 +3,11 @@
 
 #include "../../code/util/util.hpp"
 //
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_2e61n1.hpp"
 #include "../../code/str/hash_substr.hpp"
 
-using mint = tifa_libs::math::mint_2e61n1;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_2e61n1>;
 using hashstr = tifa_libs::str::hash_substr<mint>;
 
 int main() {

@@ -125,7 +125,7 @@ struct segbeats_ca_ms {
       if (r2 & 1) apply_<tp>(--r2, x);
       l2 /= 2, r2 /= 2;
     }
-    fle_ (u32, i, zm + 1, lbn) {
+    flt_ (u32, i, zm + 1, lbn + 1) {
       if (zl < i) pushup(l >> i);
       if (zr < i) pushup((r - 1) >> i);
     }

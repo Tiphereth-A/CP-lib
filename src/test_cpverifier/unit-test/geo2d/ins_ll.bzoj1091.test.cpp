@@ -26,15 +26,15 @@ strn single_proceed(std::istream &fin) {
   vec<Point2> vp(p);
   fin >> vp;
   vl.emplace_back(vp[0], vp[p - 1]);
-  fle_ (u32, i, 0, p - 2) vl.emplace_back(vp[i + 1], vp[i]);
+  flt_ (u32, i, 0, p - 1) vl.emplace_back(vp[i + 1], vp[i]);
   std::sort(vl.begin() + 4, vl.end());
   data_t ans = std::numeric_limits<data_t>::max();
   Point2 INFP{1e5, 1e5};
   do {
     data_t now_ans = 0;
-    fle_ (u32, i, 4, (u32)vl.size() - 1) {
+    flt_ (u32, i, 4, (u32)vl.size()) {
       Point2 l = INFP, r = INFP;
-      fle_ (u32, j, 0, i - 1) {
+      flt_ (u32, j, 0, i) {
         if (!is_ins_LL(vl[i], vl[j])) continue;
         Point2 p = ins_LL(vl[i], vl[j]);
         if (p.x < 0 || p.y < 0 || p.x > n || p.y > m) continue;

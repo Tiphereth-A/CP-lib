@@ -19,7 +19,7 @@ strn single_proceed(std::istream& fin) {
   vec<Point2> v;
   data_t x, y, w, h, phi;
   data_t ans = 0;
-  fle_ (u32, i, 1, n) {
+  flt_ (u32, i, 1, n + 1) {
     fin >> x >> y >> w >> h >> phi;
     phi = phi * PI / 180;
     if (phi < 0) phi += 2 * PI;

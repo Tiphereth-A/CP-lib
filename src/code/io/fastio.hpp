@@ -27,7 +27,7 @@ class fastin {
 #pragma GCC diagnostic warning "-Wmaybe-uninitialized"
     if (!f) return;
     auto fd = fileno(f_ = f);
-    fstat(fd, &Fl), p = (bg = (char *)mmap(0, Fl.st_size + 4, PROT_READ, MAP_PRIVATE, fd, 0)), ed = bg + Fl.st_size, madvise(bg, Fl.st_size + 4, MADV_SEQUENTIAL);
+    fstat(fd, &Fl), p = (bg = (char *)mmap(nullptr, Fl.st_size + 4, PROT_READ, MAP_PRIVATE, fd, 0)), ed = bg + Fl.st_size, madvise(bg, Fl.st_size + 4, MADV_SEQUENTIAL);
   }
   char peek() { return *p; }
   char get() { return *p++; }
@@ -69,8 +69,7 @@ class fastin {
     return read(x), n = T(x), *this;
   }
   //! ignore cntrl and space
-  template <char_c T>
-  fastin &read(T &n) {
+  fastin &read(char_c auto &n) {
     while (!isgraph(n = get()));
     return *this;
   }
@@ -88,8 +87,7 @@ class fastin {
   fastin &read(std::tuple<Ts...> &p) {
     return std::apply([&](Ts &...targs) { ((read(targs)), ...); }, p), *this;
   }
-  template <container_c T>
-  fastin &read(T &p) {
+  fastin &read(container_c auto &p) {
     if (p.begin() == p.end()) return *this;
     for (auto &i : p) read(i);
     return *this;
@@ -108,8 +106,7 @@ class fastin {
     return *this;
   }
   //! NOT ignore cntrl and space
-  template <char_c T>
-  fastin &strict_read(T &n) { return n = get(), *this; }
+  fastin &strict_read(char_c auto &n) { return n = get(), *this; }
   template <class T>
   fastin &operator>>(T &val) { return read(val); }
 };
@@ -152,8 +149,7 @@ class fastout {
     while (n /= 10);
     return write(p_ib);
   }
-  template <mint_c T>
-  fastout &write(T n) { return write(n.val()); }
+  fastout &write(mint_c auto n) { return write(n.val()); }
   fastout &write(strn CR str) { return write(str.c_str()); }
   template <class T, class U>
   fastout &write(std::pair<T, U> CR p) { return write(p.first).space().write(p.second); }
@@ -161,8 +157,7 @@ class fastout {
   fastout &write(std::tuple<Ts...> CR p) {
     return std::apply([&](Ts CR... targs) { usz n{0}; ((write(targs).space_if(++n != sizeof...(Ts))), ...); }, p), *this;
   }
-  template <container_c T>
-  fastout &write(T CR p) {
+  fastout &write(container_c auto CR p) {
     if (p.begin() == p.end()) return *this;
     auto it = p.begin();
     for (write(*it++); it != p.end(); ++it) space().write(*it);

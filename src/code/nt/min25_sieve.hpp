@@ -33,7 +33,7 @@ class min25_sieve {
     if (hls != 1 && div_u64d(m, hls - 1) == sqm) --hls;
     vec<T> h(s);
     flt_ (u64, i, 1, hls) h[i] = sik(div_u64d(m, i)) - 1;
-    fle_ (u64, i, 1, sqm) h[s - i] = sik(i) - 1;
+    flt_ (u64, i, 1, sqm + 1) h[s - i] = sik(i) - 1;
     for (u32 x : p) {
       T _ = x, pi = h[s - x + 1];
       _ = qpow(_, k);

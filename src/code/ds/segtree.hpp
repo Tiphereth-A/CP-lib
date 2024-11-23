@@ -141,7 +141,7 @@ class segtree {
       if (r2 & 1) apply<upd>(--r2, v);
       l2 /= 2, r2 /= 2;
     }
-    fle_ (u32, i, zm + 1, lbn) {
+    flt_ (u32, i, zm + 1, lbn + 1) {
       if (zl < i) pushup(l >> i);
       if (zr < i) pushup((r - 1) >> i);
     }
@@ -152,7 +152,7 @@ class segtree {
     for (u32 i = lbn; i; --i) pushdown(x >> i);
     if CEXP (upd) val[x] = mapping(val[x], v);
     else val[x] = v;
-    fle_ (u32, i, 1, lbn) pushup(x >> i);
+    flt_ (u32, i, 1, lbn + 1) pushup(x >> i);
   }
 };
 }  // namespace segtree_impl_

@@ -14,7 +14,7 @@ ConvexHull2 single_proceed(std::istream& fin) {
   vec<Point2> v;
   data_t x, y;
   char c;
-  fle_ (u32, i, 1, n) {
+  flt_ (u32, i, 1, n + 1) {
     fin >> x >> y >> c;
     v.emplace_back(x, y);
   }

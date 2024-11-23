@@ -8,7 +8,7 @@
 namespace tifa_libs::graph {
 
 struct lca_hld {
-  using tree_info_t = graph::tree_dfs_info<graph::tree, graph::td_dfn_tag, graph::td_maxson_tag, graph::td_dep_tag, graph::td_fa_tag>;
+  using tree_info_t = graph::tree_dfs_info<graph::tree, graph::tdi_dfn, graph::tdi_maxson, graph::tdi_dep, graph::tdi_fa>;
   tree_info_t CR info;
   vecu top;
 

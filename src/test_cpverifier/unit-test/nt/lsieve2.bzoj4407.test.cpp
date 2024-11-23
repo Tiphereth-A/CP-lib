@@ -3,11 +3,12 @@
 
 #include "../../../code/nt/lsieve2.hpp"
 
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_s30.hpp"
 #include "../../../code/math/qpow.hpp"
 #include "../base.hpp"
 
-using mint = tifa_libs::math::mint_s30<1'000'000'000 + 7>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 1'000'000'000 + 7>;
 
 void test(strn CR data) {
   auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("bzoj", "4407", data);
@@ -16,11 +17,11 @@ void test(strn CR data) {
   u32 t, k;
   fin >> t >> k;
   vecu ns(t), ms(t);
-  flt_(u32, i, 0, t) {
+  flt_ (u32, i, 0, t) {
     fin >> ns[i] >> ms[i];
     if (ns[i] > ms[i]) tifa_libs::swap(ns[i], ms[i]);
   }
-  u32 n = *std::ranges::max_element(ns);
+  u32 n = std::ranges::max(ns);
   tifa_libs::math::lsieve2 ls(n);
   static mint pk, lst;
   vec<mint> g = ls.template run<mint>(
@@ -29,7 +30,7 @@ void test(strn CR data) {
         else return lst *= pk;
       });
   std::partial_sum(g.begin(), g.end(), g.begin());
-  flt_(u32, i, 0, t) {
+  flt_ (u32, i, 0, t) {
     mint res = 0;
     for (u32 n = ns[i], m = ms[i], l = 1, r, d1, d2; l <= n; l = r + 1) {
       r = tifa_libs::min(n / (d1 = n / l), m / (d2 = m / l));

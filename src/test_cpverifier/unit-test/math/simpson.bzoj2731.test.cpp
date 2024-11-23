@@ -43,7 +43,7 @@ strn single_proceed(std::istream &fin) {
   for (auto &[x, y, m] : v_) fin >> y >> x >> m;
   std::ranges::sort(v_, [](Node CR l, Node CR r) { return l.m > r.m; });
   v.push_back(v_.front());
-  fle_ (u32, i, 1, n - 1) {
+  flt_ (u32, i, 1, n) {
     auto &&now = v_[i];
     if (now.m == 0) break;
     if (std::ranges::none_of(v, [&now](Node CR x) { return now.x >= x.x && now.x + now.m <= x.x + x.m && now.y >= x.y && now.y + now.m <= x.y + x.m && now.x + now.y + now.m <= x.x + x.y + x.m; })) v.push_back(now);
@@ -60,7 +60,7 @@ strn single_proceed(std::istream &fin) {
   data_t ans = 0;
   tifa_libs::math::simpson_impl<f64, f<f64>> integral;
 
-  fle_ (u32, i, 1, (u32)pos.size() - 1) ans += integral(pos[i - 1] + EPS, pos[i] - 2 * EPS, EPS);
+  flt_ (u32, i, 1, (u32)pos.size()) ans += integral(pos[i - 1] + EPS, pos[i] - 2 * EPS, EPS);
   ss << ans;
 
   return ss.str();

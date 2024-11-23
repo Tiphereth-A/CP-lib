@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_CONV_CONV_U128
 #define TIFALIBS_CONV_CONV_U128
 
+#include "../math/mint.hpp"
 #include "../math/mint_s30.hpp"
 #include "conv_dft.hpp"
 #include "conv_naive.hpp"
@@ -12,9 +13,9 @@ namespace tifa_libs::math {
 template <class T>
 vec<u128> conv_u128(vec<T> CR l, vec<T> CR r, u32 ans_size = 0) {
   static CEXP u32 m0 = 167772161, m1 = 469762049, m2 = 754974721;
-  using mint0 = mint_s30<m0>;
-  using mint1 = mint_s30<m1>;
-  using mint2 = mint_s30<m2>;
+  using mint0 = mint<mint_s30, m0>;
+  using mint1 = mint<mint_s30, m1>;
+  using mint2 = mint<mint_s30, m2>;
   static CEXP u32 r01 = inverse(m0, mint1::mod()), r02 = inverse(m0, mint2::mod()), r12 = inverse(m1, mint2::mod()), r02r12 = (u64)r02 * r12 % m2;
   static CEXP u64 w1 = m0, w2 = (u64)m0 * m1;
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);

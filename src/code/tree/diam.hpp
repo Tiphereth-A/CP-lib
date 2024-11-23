@@ -9,9 +9,9 @@ namespace tifa_libs::graph {
 template <tree_c G>
 CEXP auto tree_diam(G& tree) {
   auto _ = tree.root;
-  auto d = tree_dfs_info<td_dis_tag<G>>(tree).dis;
+  auto d = tree_dfs_info<G, tdi_dis<G>>(tree).dis;
   const u32 u = tree.root = u32(std::ranges::max_element(d) - d.begin());
-  d = tree_dfs_info<td_dis_tag<G>>(tree).dis;
+  d = tree_dfs_info<G, tdi_dis<G>>(tree).dis;
   const u32 v = u32(std::ranges::max_element(d) - d.begin());
   tree.root = _;
   return std::make_tuple(u, v, d[v]);

@@ -33,9 +33,9 @@ strn single_proceed(std::istream &fin) {
     bool operator()(const Circle2 &lhs, const Circle2 &rhs) const { return lhs.o == rhs.o ? lhs.r < rhs.r : lhs.o < rhs.o; }
   };
   set<Circle2, Comp> circles;
-  fle_ (u32, i, 0, n - 1)
-    fle_ (u32, j, i + 1, n - 1)
-      fle_ (u32, k, j + 1, n - 1) {
+  flt_ (u32, i, 0, n)
+    flt_ (u32, j, i + 1, n)
+      flt_ (u32, k, j + 1, n) {
         if (tifa_libs::geo::is_on_same_L(vp[i], vp[j], vp[k])) continue;
         Triangle2 t{vp[i], vp[j], vp[k]};
         if (t.is_obtuse()) continue;

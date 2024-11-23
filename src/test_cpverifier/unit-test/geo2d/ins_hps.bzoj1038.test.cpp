@@ -26,7 +26,7 @@ strn single_proceed(std::istream &fin) {
   vl.emplace_back(x.back(), -1e12, x.back(), 1e12);
   vl.emplace_back(x.back(), 1e12, x.front(), 1e12);
   vl.emplace_back(x.front(), 1e12, x.front(), -1e12);
-  fle_ (u32, i, 0, n - 2) vl.emplace_back(x[i], y[i], x[i + 1], y[i + 1]);
+  flt_ (u32, i, 0, n - 1) vl.emplace_back(x[i], y[i], x[i + 1], y[i + 1]);
   ConvexHull2 cvh = tifa_libs::geo::ins_hPs(vl);
   data_t ans = std::numeric_limits<data_t>::max();
   std::ranges::sort(cvh.vs, [](auto CR lhs, auto CR rhs) { return lhs.x < rhs.x; });

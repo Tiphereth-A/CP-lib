@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 class rgcd {
-  struct ls_rgcd_tag {
+  struct ls_rgcd {
     struct F3 {
       u32 a, b, c;
       CEXP F3(u32 _a = 0, u32 _b = 0, u32 _c = 0) : a(_a), b(_b), c(_c) {}
@@ -15,7 +15,7 @@ class rgcd {
     vec<F3> fs;
 
    protected:
-    CEXPE ls_rgcd_tag(u32 n) : fs(n) { (n > 1) && ((fs[1] = {1, 1, 1}), 0); }
+    CEXPE ls_rgcd(u32 n) : fs(n) { (n > 1) && ((fs[1] = {1, 1, 1}), 0); }
 
     CEXP void prime(u32 p) { fs[p] = {1, 1, p}; }
     CEXP void coprime(u32 i, u32 j) {
@@ -32,7 +32,7 @@ class rgcd {
     }
   };
 
-  lsieve<ls_rgcd_tag> s;
+  lsieve<ls_rgcd> s;
   vvecu g_;
 
  public:

@@ -5,11 +5,11 @@
 
 namespace tifa_libs::math {
 
-template <class mint, class ccore>
-CEXP poly<mint, ccore> inv_fpssp(poly<mint, ccore> CR p, u32 n = 0) {
-  if (assert(!p.data().empty() && p[0] != 0); !n) n = p.size();
+template <template <class... Ts> class ccore, class mint, class... args>
+CEXP auto inv_fpssp(poly<ccore, mint, args...> CR p, u32 n = 0) {
+  if (assert(!p.empty() && p[0] != 0); !n) n = (u32)p.size();
   auto ps = poly2sp(p, n);
-  poly<mint, ccore> g(n);
+  poly<ccore, mint, args...> g(n);
   auto _ = ps[0].second.inv();
   g[0] = _;
   flt_ (u32, k, 1, n) {

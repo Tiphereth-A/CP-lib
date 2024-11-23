@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class poly>
-CEXP auto ball_box_dil(u32 ball, u32 box, cT_(poly) s2r) { return box > ball ? 0 : s2r[box]; }
+CEXP auto ball_box_dil(u32 ball, u32 box, poly CR s2r) { return box > ball ? 0 : s2r[box]; }
 template <class poly>
 CEXP auto ball_box_dil(u32 ball, u32 box) { return ball_box_dil<poly>(ball, box, gen_stirling2_row<poly>(ball)); }
 

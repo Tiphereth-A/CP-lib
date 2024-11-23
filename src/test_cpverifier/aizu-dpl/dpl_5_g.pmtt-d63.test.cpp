@@ -2,14 +2,14 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_G"
 
 #include "../../code/comb/ball_box_dia.hpp"
-#include "../../code/comb/gen_bell.hpp"
 
 CEXP u32 MOD = 1000000000 + 7;
 
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_d63.hpp"
 #include "../../code/poly/polymtt.hpp"
 
-using mint = tifa_libs::math::mint_d63<-1>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
 using poly = tifa_libs::math::polymtt<mint>;
 
 int main() {
@@ -17,7 +17,6 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, k;
   std::cin >> n >> k;
-  if (k >= n) std::cout << tifa_libs::math::gen_bell<poly>(n)[n] << '\n';  // unnecessary, just for test
-  else std::cout << tifa_libs::math::ball_box_dia<poly>(n, k) << '\n';
+  std::cout << tifa_libs::math::ball_box_dia<poly>(n, k) << '\n';
   return 0;
 }

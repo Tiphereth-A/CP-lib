@@ -17,7 +17,7 @@ int main() {
   u32 n;
   tifa_libs::fin >> n;
   poly a(n), b(n);
-  tifa_libs::fin >> a.data() >> b.data();
-  tifa_libs::fout << tifa_libs::math::interp_fps(a, b).data() << '\n';
+  tifa_libs::fin >> a >> b;
+  tifa_libs::fout << tifa_libs::math::interp_fps(a, b) << '\n';
   return 0;
 }

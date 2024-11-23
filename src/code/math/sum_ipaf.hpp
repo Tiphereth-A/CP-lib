@@ -24,7 +24,7 @@ CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n, Binom<mint> CR C) {
   flt_ (u32, i, 1, (u32)g.size()) g[i] += g[i - 1];
   mint c = 0, _1 = 1;
   const u32 K = u32(f.size() - 1);
-  fle_ (u32, i, 0, K) c += C.mCn(K + 1, i) * _1 * g[K - i], _1 *= -a;
+  flt_ (u32, i, 0, K + 1) c += C.mCn(K + 1, i) * _1 * g[K - i], _1 *= -a;
   c /= qpow(-a + 1, K + 1);
   mint _2 = 1, ia = a.inv();
   flt_ (u32, i, 0, (u32)g.size()) g[i] = (g[i] - c) * _2, _2 *= ia;

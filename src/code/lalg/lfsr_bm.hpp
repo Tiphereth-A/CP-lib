@@ -14,7 +14,7 @@ CEXP vec<T> lfsr_bm(vec<T> CR s, Is0&& is0) {
   T b(1);
   for (u32 n = 0, n_ed = (u32)s.size(), l = 0, x = 1; n < n_ed; ++n) {
     T d(s[n]);
-    fle_ (u32, i, 1, l) d += C[i] * s[n - i];
+    flt_ (u32, i, 1, l + 1) d += C[i] * s[n - i];
     if (is0(d)) ++x;
     else if (l * 2 > n) {
       if (C.size() < B.size() + x) C.resize(B.size() + x);

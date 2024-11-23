@@ -26,7 +26,7 @@ CEXP std::optional<pttu> crt_mod(spni a, vecu m, u32 const mod) {
   veci pp(n + 1, 1), res(n + 1);
   flt_ (u32, i, 0, n) {
     const i64 u = safe_mod((safe_mod(a[i], m[i]) - res[i]) * (i64)inverse((u64)pp[i], m[i]), m[i]);
-    fle_ (u32, j, i + 1, n) res[j] = (i32)((res[j] + u * pp[j]) % m[j]), pp[j] = (i32)((i64)pp[j] * m[i] % m[j]);
+    flt_ (u32, j, i + 1, n + 1) res[j] = (i32)((res[j] + u * pp[j]) % m[j]), pp[j] = (i32)((i64)pp[j] * m[i] % m[j]);
   }
   return std::make_pair(res.back(), pp.back());
 }

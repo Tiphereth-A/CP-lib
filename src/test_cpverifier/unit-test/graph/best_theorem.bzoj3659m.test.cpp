@@ -6,10 +6,11 @@
 #include "../../../code/graph/euler_trail.hpp"
 #include "../../../code/graph/kirchhoff.hpp"
 #include "../../../code/lalg/ge_mat.hpp"
+#include "../../../code/math/mint.hpp"
 #include "../../../code/math/mint_s30.hpp"
 #include "../base.hpp"
 
-using mint = tifa_libs::math::mint_s30<1'000'003>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 1'000'003>;
 vec<mint> fact(200'005);
 
 strn single_proceed(std::istream &fin) {

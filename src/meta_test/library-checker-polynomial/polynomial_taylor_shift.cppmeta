@@ -21,7 +21,7 @@ int main() {
   mint c;
   tifa_libs::fin >> n >> c;
   poly a(n);
-  tifa_libs::fin >> a.data();
-  tifa_libs::fout << tifa_libs::math::tsh_fps(a, c).data() << '\n';
+  tifa_libs::fin >> a;
+  tifa_libs::fout << tifa_libs::math::tsh_fps(a, c) << '\n';
   return 0;
 }

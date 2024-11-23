@@ -18,20 +18,20 @@ class suffixarray {
     u32 m = 0, p;
     for (auto x : s_) m = max(m, u32(x));
     vecu oldrk(n + n + 1), id(n + 1), cnt(m + 1, 0);
-    fle_ (u32, i, 1, n) ++cnt[rk[i] = u32(s[i])];
-    fle_ (u32, i, 1, m) cnt[i] += cnt[i - 1];
+    flt_ (u32, i, 1, n + 1) ++cnt[rk[i] = u32(s[i])];
+    flt_ (u32, i, 1, m + 1) cnt[i] += cnt[i - 1];
     for (u32 i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
     for (u32 w = 1;; w *= 2, m = p) {
       p = 0;
       for (u32 i = n; i > n - w; --i) id[++p] = i;
-      fle_ (u32, i, 1, n)
+      flt_ (u32, i, 1, n + 1)
         if (sa[i] > w) id[++p] = sa[i] - w;
       cnt = vecu(m + 1, 0);
-      fle_ (u32, i, 1, n) ++cnt[rk[id[i]]];
-      fle_ (u32, i, 1, m) cnt[i] += cnt[i - 1];
+      flt_ (u32, i, 1, n + 1) ++cnt[rk[id[i]]];
+      flt_ (u32, i, 1, m + 1) cnt[i] += cnt[i - 1];
       for (u32 i = n; i >= 1; --i) sa[cnt[rk[id[i]]]--] = id[i];
       std::ranges::copy(rk, oldrk.begin()), p = 0;
-      fle_ (u32, i, 1, n) {
+      flt_ (u32, i, 1, n + 1) {
         u32 x = sa[i], y = sa[i - 1];
         rk[x] = oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w] ? p : ++p;
       }

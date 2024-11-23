@@ -19,8 +19,8 @@ class hash_substr_2d {
       while (p.size() <= n) p.push_back(p.back() * base2);
     }
     flt_ (u32, i, 0, n) hs[i].set(s[i]);
-    fle_ (u32, i, 1, n)
-      fle_ (u32, j, 1, m) hash[i][j] = hash[i - 1][j] * base2 + hs[i - 1].get(j - 1, len_c);
+    flt_ (u32, i, 1, n + 1)
+      flt_ (u32, j, 1, m + 1) hash[i][j] = hash[i - 1][j] * base2 + hs[i - 1].get(j - 1, len_c);
   }
   CEXP u32 row() const { return u32(hash.size() - 1); }
   CEXP u32 col() const { return u32(hash[0].size() - 1); }

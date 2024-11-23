@@ -52,8 +52,7 @@ CEXP std::optional<vecptu> euler_trail(u32 n, vecptu CR edges) {
     } else if (g[i].size() & 1) s = i;
   return euler_trail_impl_::run_<cycle>(n, (u32)edges.size(), g, s);
 }
-template <adjlist_c G>
-CEXP bool is_eulerian(G CR g) {
+CEXP bool is_eulerian(adjlist_c auto CR g) {
   const u32 n = g.size();
   assert(n == g.deg_in.size());
   vecb vis(n);

@@ -11,7 +11,7 @@ CEXP vec<T> berlekamp_massey(vec<T> CR a) {
   vec<T> b{1}, c{1};
   b.reserve(n + 1), c.reserve(n + 1);
   T y = 1;
-  fle_ (u32, k, 1, n) {
+  flt_ (u32, k, 1, n + 1) {
     u32 l = (u32)c.size();
     T x = 0;
     flt_ (u32, i, 0, l) x += c[i] * a[k - l + i];

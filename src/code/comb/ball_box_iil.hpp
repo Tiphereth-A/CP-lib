@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class poly>
-CEXP auto ball_box_iil(u32 ball, u32 box, cT_(poly) bbiif) { return ball >= box ? bbiif[ball - box] : TPN poly::val_t{0}; }
+CEXP auto ball_box_iil(u32 ball, u32 box, poly CR bbiif) { return ball >= box ? bbiif[ball - box] : TPN poly::val_t{0}; }
 template <class poly>
 CEXP auto ball_box_iil(u32 ball, u32 box) { return ball_box_iil<poly>(ball, box, gen_ball_box_ii<poly>(box, ball)); }
 

@@ -16,6 +16,6 @@ int main() {
 #define GENTCs_pmttd1
   u32 n;
   tifa_libs::fin >> n;
-  tifa_libs::fout << tifa_libs::math::gen_partition<poly>(n).data();
+  tifa_libs::fout << tifa_libs::math::gen_partition<poly>(n);
   return 0;
 }

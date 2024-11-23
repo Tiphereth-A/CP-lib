@@ -38,10 +38,10 @@ struct lsieve_bf {
     }
     phi = vecu(n), (n > 1) && (phi[1] = 1);
     flt_ (u32, i, 2, n)
-      fle_ (u32, j, 1, i) phi[i] += (tifa_libs::math::gcd(i, j) == 1);
+      flt_ (u32, j, 1, i + 1) phi[i] += (tifa_libs::math::gcd(i, j) == 1);
     tau = vecu(n), (n > 1) && (tau[1] = 1);
     flt_ (u32, i, 2, n)
-      fle_ (u32, j, 1, i) tau[i] += (i % j == 0);
+      flt_ (u32, j, 1, i + 1) tau[i] += (i % j == 0);
     mu = veci(n), (n > 1) && (mu[1] = 1);
     flt_ (u32, i, 2, n) {
       mu[i] = 1;
@@ -58,7 +58,7 @@ struct lsieve_bf {
     }
     sigma = vecuu(n), (n > 1) && (sigma[1] = 1);
     flt_ (u32, i, 2, n)
-      fle_ (u32, j, 1, i) sigma[i] += (i % j == 0) * j;
+      flt_ (u32, j, 1, i + 1) sigma[i] += (i % j == 0) * j;
 
     return *this;
   }
@@ -84,7 +84,7 @@ void test(u32 n) {
   lsieve_bf lsb;
   lsb.reset_lsieve_bf(n);
 
-  tifa_libs::math::lsieve<tifa_libs::math::ls_mpf_tag, tifa_libs::math::ls_mu_tag, tifa_libs::math::ls_phi_tag, tifa_libs::math::ls_sigma_tag, tifa_libs::math::ls_tau_tag> lsf(n);
+  tifa_libs::math::lsieve<tifa_libs::math::ls_mpf, tifa_libs::math::ls_mu, tifa_libs::math::ls_phi, tifa_libs::math::ls_sigma, tifa_libs::math::ls_tau> lsf(n);
 
   check(lsf.primes, lsb.prime);
   flt_ (u32, i, 0, n) check(lsf.mpf[i], lsb.mpf[i], check_param(i));

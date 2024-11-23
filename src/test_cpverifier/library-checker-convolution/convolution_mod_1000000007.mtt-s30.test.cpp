@@ -6,9 +6,10 @@
 CEXP u32 MOD = 1000000007;
 
 #include "../../code/conv/conv_mtt.hpp"
+#include "../../code/math/mint.hpp"
 #include "../../code/math/mint_s30.hpp"
 
-using mint = tifa_libs::math::mint_s30<MOD>;
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
 
 int main() {
   u32 n, m;

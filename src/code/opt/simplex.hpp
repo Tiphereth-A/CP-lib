@@ -42,7 +42,7 @@ struct LPSolver {
     int x = m + phase - 1;
     while (1) {  // if phase=1, ignore artificial variable
       int s = -1;
-      fle_ (int, j, 0, n)
+      flt_ (int, j, 0, n + 1)
         if (N[j] != -phase) ltj(D[x]);
       // find most negative col for nonbasic (NB) variable
       if (D[x][s] >= -eps_v<T>) return 1;

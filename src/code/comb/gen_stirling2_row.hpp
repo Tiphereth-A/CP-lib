@@ -13,8 +13,8 @@ CEXP poly gen_stirling2_row(u32 n, spnuu pows, spnuu ifact) {
   if (!n) return poly{1};
   u64 mod = mint::mod();
   poly a(n + 1), b(n + 1);
-  fle_ (u32, i, 1, n) a[i] = mul_mod_u(pows[i], ifact[i], mod);
-  fle_ (u32, i, 0, n) b[i] = ((i & 1) ? mod - ifact[i] : ifact[i]);
+  flt_ (u32, i, 1, n + 1) a[i] = mul_mod_u(pows[i], ifact[i], mod);
+  flt_ (u32, i, 0, n + 1) b[i] = ((i & 1) ? mod - ifact[i] : ifact[i]);
   return (a *= b).resize(n + 1), a;
 }
 // stirling2[i] = {n \\brace i}, i=0,1,...,n

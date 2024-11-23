@@ -9,7 +9,7 @@ struct calc8 {
   u16 dp[1 << 8][1 << 8];
   CEXPE calc8() : dp() {
     dp[0][0] = dp[0][1] = dp[1][0] = 0, dp[1][1] = 1;
-    fle_ (u32, e, 1, 3) {
+    flt_ (u32, e, 1, 4) {
       const u32 p = 1 << e, q = p >> 1;
       const u16 ep = u16(1u << p), eq = u16(1u << q);
       flt_ (u16, i, 0, ep)

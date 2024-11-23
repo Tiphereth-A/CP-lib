@@ -15,16 +15,15 @@ struct QBinom {
   CEXPE QBinom(u32 max_m, u32 q) : qfact(2) {
     assert(q), qfact[0] = qfact[1] = 1;
     mint x = 1;
-    fle_ (u32, i, 2, max_m)
+    flt_ (u32, i, 2, max_m + 1)
       if ((x = x * q + 1).val()) qfact.push_back(x);
       else break;
-    fle_ (u32, i, 3, u32(qfact.size() - 1)) qfact[i] *= qfact[i - 1];
+    flt_ (u32, i, 3, (u32)qfact.size()) qfact[i] *= qfact[i - 1];
     iqfact = gen_invseq(qfact), binom = Binom<mint>(u32((max_m + qfact.size() - 2) / (qfact.size() - 1)));
   }
 
   // $\binom{m}{n}_q$
-  template <uint_c T>
-  CEXP mint qmCn(T m, T n) const {
+  CEXP mint qmCn(uint_c auto m, uint_c auto n) const {
     if (m < n) return 0;
     if (m < qfact.size()) return qfact[(usz)m] * iqfact[(usz)n] * iqfact[(usz)(m - n)];
     return binom.mCn(m / qfact.size(), n / qfact.size()) * qmCn(m % qfact.size(), n % qfact.size());
