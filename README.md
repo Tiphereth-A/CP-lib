@@ -12,3 +12,5 @@
 [![GitHub Workflow Status (with event) - flawfinder](https://img.shields.io/github/actions/workflow/status/Tiphereth-A/CP-lib/flawfinder.yml?label=flawfinder&logo=github)](https://github.com/Tiphereth-A/CP-lib/actions)
 
 My code library for Competitive Programming, powered by [competitive-verifier/competitive-verifier](https://github.com/competitive-verifier/competitive-verifier) & [Tiphereth-A/TINplate](https://github.com/Tiphereth-A/TINplate).
+
+You can use `manager.py` to create new files, lint files, generate necessary files to compile PDF. run `python manager.py --help` for help.
