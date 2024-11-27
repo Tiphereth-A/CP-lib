@@ -1,3 +1,4 @@
+#define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_large"
 
 #include "../../code/conv/conv_ntt_large.hpp"
@@ -5,7 +6,12 @@
 
 CEXP u32 MOD = 998244353;
 
-#define GENTCs_ntt
+#include "../../code/conv/ntt.hpp"
+#include "../../code/math/mint.hpp"
+#include "../../code/math/mint_s63.hpp"
+
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s63, MOD>;
+using ntt_t = tifa_libs::math::NTT<mint>;
 
 int main() {
   u32 n, m;
