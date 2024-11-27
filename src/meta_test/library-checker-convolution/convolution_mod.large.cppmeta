@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_large"
+#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
 #include "../../code/conv/conv_ntt_large.hpp"
 #include "../../code/io/fastio.hpp"
