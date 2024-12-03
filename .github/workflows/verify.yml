@@ -24,13 +24,11 @@ on:
         type: boolean
         default: false
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
 concurrency:
   group: ${{ github.head_ref || 'x' }}-${{ github.workflow }}-${{ github.ref }}-verify
   cancel-in-progress: true
@@ -46,12 +44,10 @@ jobs:
         with:
           cache-pip: true
 
-      # Initialize your own environment for resolving.
       - name: oj-resolve
         uses: competitive-verifier/actions/oj-resolve@v2
         with:
           output-path: verify_files.json
-          # Specify patterns
           include: |
                 src/code/
                 src/doc_md/
@@ -59,7 +55,6 @@ jobs:
           exclude: |
                 libs/
                 .github/
-          # If you have config.toml
           config: .verify-helper/config.toml
       - name: parse-doxygen
         uses: competitive-verifier/actions/parse-doxygen@v2
@@ -117,7 +112,15 @@ jobs:
         with:
           cache-pip: true
 
-      # Initialize your own environment for verification.
+      - name: Get storage information
+        run: |
+          echo "::group::df"
+          df -ha --o --total
+          echo "::endgroup::"
+          echo "::group::du"
+          du -ha | sort -hr
+          echo "::endgroup::"
+
       - name: Verify
         uses: competitive-verifier/actions/verify@v2
         with:
