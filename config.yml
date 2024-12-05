@@ -170,7 +170,7 @@ notebook:
     - hld: 重链剖分
       code_ext: hpp
       test_ext: cpp
-    - ostree: 顺序统计树
+    - ostree: 顺序统计树(multiset)
       code_ext: hpp
       test_ext: cpp
     - rbtree: 红黑树
