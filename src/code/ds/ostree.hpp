@@ -5,34 +5,103 @@
 
 namespace tifa_libs::ds {
 
-struct bst_tag {
+struct ostree_tag_base {
   template <class pointer>
-  CEXP u32 size(pointer p) const { return p ? p->sz : 0; }
+  static CEXP u32 size(pointer p) { return p ? p->sz : 0; }
   template <class pointer>
-  CEXP void insert_leaf(pointer &root, pointer p, pointer n, bool dir) {
-    if (!p) return void(root = n);
-    p->ch[dir] = n, n->fa = p;
-    auto now = p;
-    while (now) now->sz++, now = now->fa;
+  static CEXP u32 count(pointer p) { return p ? p->sz - size(p->ch[0]) - size(p->ch[1]) : 0; }
+  // [size(begin), size(begin->fa), ..., size(end)) += v
+  template <class pointer>
+  static CEXP void modify_size(pointer begin, i32 v, pointer end = nullptr) {
+    while (begin != end) begin->sz += (u32)v, begin = begin->fa;
+  }
+
+  template <class pointer, class F>
+  requires requires(pointer p, F &&f) { f(p); }
+  static CEXP void pre_order(pointer p, F &&f) {
+    if (p) f(p), pre_order(p->ch[0], std::forward<F>(f)), pre_order(p->ch[1], std::forward<F>(f));
+  }
+  template <class pointer, class F>
+  requires requires(pointer p, F f) { f(p); }
+  static CEXP void in_order(pointer p, F &&f) {
+    if (p) in_order(p->ch[0], std::forward<F>(f)), f(p), in_order(p->ch[1], std::forward<F>(f));
+  }
+  template <class pointer, class F>
+  requires requires(pointer p, F f) { f(p); }
+  static CEXP void post_order(pointer p, F &&f) {
+    if (p) post_order(p->ch[0], std::forward<F>(f)), post_order(p->ch[1], std::forward<F>(f)), f(p);
+  }
+
+  template <class pointer>
+  static CEXP pointer most(pointer p, bool dir) {
+    if (!p) return nullptr;
+    while (p->ch[dir]) p = p->ch[dir];
+    return p;
   }
   template <class pointer>
-  CEXP void erase_branch_leaf(pointer &root, pointer n) {
-    auto p = n->fa, s = n->ch[0] ? n->ch[0] : n->ch[1];
-    if (s) s->fa = p;
-    if (!p) return void(root = s);
-    p->ch[n->child_dir()] = s;
-    auto now = p;
-    while (now) now->sz--, now = now->fa;
+  static CEXP pointer neighbour(pointer p, bool dir) {
+    if (!p) return nullptr;
+    if (p->ch[dir]) return most(p->ch[dir], !dir);
+    while (p && p->fa && p->child_dir() == dir) p = p->fa;
+    return p ? p->fa : nullptr;
   }
   template <class pointer>
-  CEXP pointer rotate(pointer &root, pointer p, bool dir) {
+  static CEXP auto leftmost(pointer p) { return most(p, 0); }
+  template <class pointer>
+  static CEXP auto rightmost(pointer p) { return most(p, 1); }
+  template <class pointer>
+  static CEXP auto prev(pointer p) { return neighbour(p, 0); }
+  template <class pointer>
+  static CEXP auto next(pointer p) { return neighbour(p, 1); }
+
+  template <class pointer>
+  static CEXP pointer rotate(pointer &root, pointer p, bool dir) {
     auto g = p->fa, s = p->ch[!dir];
-    assert(s);
-    s->sz = p->sz, p->sz = size(p->ch[dir]) + size(s->ch[dir]) + 1;
+    u32 psz = p->sz, ssz = s->sz;
+    s->sz = psz, p->sz += size(s->ch[dir]) - ssz;
     auto c = s->ch[dir];
     if (c) c->fa = p;
     p->ch[!dir] = c, s->ch[dir] = p, p->fa = s, s->fa = g;
     return (g ? g->ch[p == g->ch[1]] : root) = s;
+  }
+};
+struct bst_tag : ostree_tag_base {
+  template <class pointer, class K, class Alloc, class Comp>
+  CEXP pointer insert(pointer &root, const K &data, Alloc &alloc, Comp compare) {
+    pointer now = root, p = nullptr;
+    bool dir = 0;
+    while (now)
+      if (dir = compare((p = now)->data, data), now = now->ch[dir]; !dir && !compare(data, p->data)) return ostree_tag_base::modify_size(p, 1), p;
+    pointer n = alloc.allocate(1);
+    n->fa = n->ch[0] = n->ch[1] = nullptr, n->data = data, n->sz = 1;
+    return ostree_tag_base::modify_size(p, 1), insert_leaf(root, p, n, dir), n;
+  }
+  template <class pointer, class Alloc, bool erase_node = true>
+  CEXP pointer erase(pointer &root, pointer p, Alloc &alloc) {
+    if (!p) return nullptr;
+    if CEXP (erase_node || ostree_tag_base::count(p) == 1) {
+      pointer result;
+      if (p->ch[0] && p->ch[1]) {
+        auto s = ostree_tag_base::leftmost(p->ch[1]);
+        std::swap(s->data, p->data), ostree_tag_base::modify_size(s, (i32)ostree_tag_base::count(p) - (i32)ostree_tag_base::count(s), p), result = p, p = s;
+      } else result = ostree_tag_base::next(p);
+      return ostree_tag_base::modify_size(p, -(i32)ostree_tag_base::count(p)), erase_branch_leaf(root, p), alloc.deallocate(p, 1), result;
+    } else return ostree_tag_base::modify_size(p, -1), p;
+  }
+
+  //! will NOT change sz
+  template <class pointer>
+  static CEXP void insert_leaf(pointer &root, pointer p, pointer n, bool dir) {
+    if (!p) return void(root = n);
+    p->ch[dir] = n, n->fa = p;
+  }
+  //! will NOT change sz
+  template <class pointer>
+  static CEXP void erase_branch_leaf(pointer &root, pointer n) {
+    auto p = n->fa, s = n->ch[0] ? n->ch[0] : n->ch[1];
+    if (s) s->fa = p;
+    if (!p) return void(root = s);
+    p->ch[n->child_dir()] = s;
   }
 };
 
@@ -47,17 +116,18 @@ struct ostree_node_t<bst_tag, K> {
   CEXP bool child_dir() const { return this == fa->ch[1]; }
 };
 
-template <class K, class tree_tag_t, class Comp = std::less<K>, template <class> class Alloc = std::pmr::polymorphic_allocator>
-requires requires(ostree_node_t<tree_tag_t, K> *&root, ostree_node_t<tree_tag_t, K> n, tree_tag_t tag, bool dir) {
+template <class K, std::derived_from<ostree_tag_base> tag_t, class Comp = std::less<K>, template <class> class Alloc = std::pmr::polymorphic_allocator>
+requires requires(ostree_node_t<tag_t, K> *&root, ostree_node_t<tag_t, K> n, tag_t tag, bool dir, K key, Alloc<K> alloc, Comp comp) {
   n.fa->ch[0]->ch[1]->data;
   n.sz;
+  { comp(key, key) } -> std::same_as<bool>;
   { n.child_dir() } -> std::same_as<bool>;
   { tag.size(&n) } -> std::same_as<u32>;
-  tag.insert_leaf(root, &n, &n, dir);
-  tag.erase_branch_leaf(root, &n);
+  tag.insert(root, key, alloc, comp);
+  tag.erase(root, &n, alloc);
 }
-struct ostree : protected tree_tag_t {
-  using node_t = ostree_node_t<tree_tag_t, K>;
+struct ostree : tag_t {
+  using node_t = ostree_node_t<tag_t, K>;
   using pointer = node_t *;
   using const_pointer = const node_t *;
   using pointer_const = node_t *const;
@@ -65,42 +135,12 @@ struct ostree : protected tree_tag_t {
   static constexpr Comp compare{};
   pointer root;
 
-  CEXP ostree() : tree_tag_t(), root{nullptr} {}
+  CEXP ostree() : tag_t(), root{nullptr} {}
   CEXP ~ostree() {
-    post_order([this](auto it) { alloc.deallocate(it, 1); });
+    tag_t::post_order(root, [this](auto it) { alloc.deallocate(it, 1); });
   }
-  CEXP u32 size() const { return tree_tag_t::size(root); }
-  template <class F>
-  requires requires(pointer p, F f) { f(p); }
-  CEXP void pre_order(F callback) {
-    auto f = [&](auto &&f, pointer p) {
-      if (!p) return;
-      callback(p), f(f, p->ch[0]), f(f, p->ch[1]);
-    };
-    f(f, root);
-  }
-  template <class F>
-  requires requires(pointer p, F f) { f(p); }
-  CEXP void in_order(F callback) {
-    auto f = [&](auto &&f, pointer p) {
-      if (!p) return;
-      f(f, p->ch[0]), callback(p), f(f, p->ch[1]);
-    };
-    f(f, root);
-  }
-  template <class F>
-  requires requires(pointer p, F f) { f(p); }
-  CEXP void post_order(F callback) {
-    auto f = [&](auto &&f, pointer p) {
-      if (!p) return;
-      f(f, p->ch[0]), f(f, p->ch[1]), callback(p);
-    };
-    f(f, root);
-  }
-  CEXP auto leftmost(const_pointer p) const { return most(p, 0); }
-  CEXP auto rightmost(const_pointer p) const { return most(p, 1); }
-  CEXP auto prev(const_pointer p) const { return neighbour(p, 0); }
-  CEXP auto next(const_pointer p) const { return neighbour(p, 1); }
+  CEXP u32 size() const { return tag_t::size(root); }
+
   CEXP pointer lower_bound(const K &key) const {
     const_pointer now = root, ans = nullptr;
     while (now) {
@@ -119,7 +159,7 @@ struct ostree : protected tree_tag_t {
   }
   CEXP pointer find(const K &key) const {
     auto p = lower_bound(key);
-    return (!p || p->data != key) ? nullptr : p;
+    return (!p || compare(p->data, key) || compare(key, p->data)) ? nullptr : p;
   }
   // Order start from 0
   CEXP u32 order_of_key(const K &key) const {
@@ -127,7 +167,7 @@ struct ostree : protected tree_tag_t {
     auto now = root;
     while (now) {
       if (!compare(now->data, key)) now = now->ch[0];
-      else ans += tree_tag_t::size(now->ch[0]) + 1, now = now->ch[1];
+      else ans += tag_t::size(now->ch[0]) + tag_t::count(now), now = now->ch[1];
     }
     return ans;
   }
@@ -135,49 +175,23 @@ struct ostree : protected tree_tag_t {
   CEXP const_pointer find_by_order(u32 order) const {
     const_pointer now = root, ans = nullptr;
     while (now && now->sz >= order)
-      if (auto lsize = tree_tag_t::size(now->ch[0]); order < lsize) now = now->ch[0];
+      if (auto lsz = tag_t::size(now->ch[0]), cnt = tag_t::count(now); order < lsz) now = now->ch[0];
       else {
-        if (ans = now; order == lsize) break;
-        now = now->ch[1], order -= lsize + 1;
+        if (ans = now; order < lsz + cnt) break;
+        now = now->ch[1], order -= lsz + cnt;
       }
     return ans;
   }
-  CEXP const_pointer insert(const K &data) {
-    pointer n = alloc.allocate(1);
-    n->fa = n->ch[0] = n->ch[1] = nullptr, n->data = data, n->sz = 1;
-    pointer now = root, p = nullptr;
-    bool dir = 0;
-    while (now) p = now, dir = compare(now->data, data), now = now->ch[dir];
-    return tree_tag_t::insert_leaf(root, p, n, dir), n;
-  }
+  CEXP const_pointer insert(const K &data) { return tag_t::insert(root, data, alloc, compare); }
+  //! count -= 1
   CEXP bool erase(const K &key) {
     if (auto p = find(key); !p) return false;
-    else return erase(p), true;
+    else return tag_t::template erase<pointer, K, Alloc, false>(root, p, alloc), true;
   }
-  CEXP const_pointer erase(pointer p) {
-    if (!p) return nullptr;
-    pointer result;
-    if (p->ch[0] && p->ch[1]) {
-      auto s = leftmost(p->ch[1]);
-      std::swap(s->data, p->data), result = p, p = s;
-    } else result = next(p);
-    return tree_tag_t::erase_branch_leaf(root, p), alloc.deallocate(p, 1), result;
-  }
+  CEXP const_pointer erase(pointer p) { return tag_t::erase(root, p, alloc); }
 
  private:
   Alloc<node_t> alloc;
-  CEXP pointer most(const_pointer p, bool dir) const {
-    if (!p) return nullptr;
-    while (p->ch[dir]) p = p->ch[dir];
-    return (pointer)p;
-  }
-  CEXP pointer neighbour(const_pointer p, bool dir) const {
-    if (!p) return nullptr;
-    if (p->ch[dir]) return most(p->ch[dir], !dir);
-    if (p == root) return nullptr;
-    while (p && p->fa && !p->child_dir()) p = p->fa;
-    return p ? p->fa : nullptr;
-  }
 };
 
 template <class K, class Comp = std::less<K>>

@@ -7,9 +7,9 @@ namespace tifa_libs::ds {
 
 struct rbt_tag : bst_tag {
   template <class pointer>
-  CEXP bool is_red(pointer p) const { return p ? p->red : false; }
+  static CEXP bool is_red(pointer p) { return p ? p->red : false; }
   template <class pointer>
-  CEXP void insert_leaf(pointer &root, pointer p, pointer n, bool dir) {
+  static CEXP void insert_leaf(pointer &root, pointer p, pointer n, bool dir) {
     n->red = p, bst_tag::insert_leaf(root, p, n, dir);
     while (is_red(p = n->fa)) {
       bool p_dir = p->child_dir();
@@ -24,7 +24,7 @@ struct rbt_tag : bst_tag {
     root->red = false;
   }
   template <class pointer>
-  CEXP void erase_branch_leaf(pointer &root, pointer n) {
+  static CEXP void erase_branch_leaf(pointer &root, pointer n) {
     bool n_dir = n == root ? false : n->child_dir();
     bst_tag::erase_branch_leaf(root, n);
     auto p = n->fa;
