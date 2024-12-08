@@ -9,6 +9,7 @@ template <class T>
 requires std::is_arithmetic_v<T>
 class Gen {
   using res_t = std::conditional_t<sizeof(T) <= 4, u32, u64>;
+  using res_wt = std::conditional_t<sizeof(T) <= 4, u64, u128>;
   // clang-format off
   struct mt19937_param { static CEXP u32 w = 32, n = 624, m = 397, r = 31, a = 0x9908b0df, u = 11, d = 0xffffffff, s = 7, b = 0x9d2c5680, t = 15, c = 0xefc60000, l = 18, f = 1812433253; };
   struct mt19937_64_param { static CEXP u64 w = 64, n = 312, m = 156, r = 31, a = 0xb5026f5aa96619e9, u = 29, d = 0x5555555555555555, s = 17, b = 0x71d67fffeda60000, t = 37, c = 0xfff7eee000000000, l = 43, f = 6364136223846793005; };
@@ -42,11 +43,14 @@ class Gen {
     res_t _ = x_[p_++];
     return _ ^= (_ >> pm::u) & pm::d, _ ^= (_ << pm::s) & pm::b, _ ^= (_ << pm::t) & pm::c, _ ^= (_ >> pm::l), _;
   }
-  CEXP T normalize(res_t x) const {
-    if CEXP (std::is_integral_v<T>) return (T)(x % ((i128)b_ - a_ + 1) + a_);
-    else return T(x / (f128)((u128)gen_max() + 1) * (b_ - a_) + a_);
+  CEXP T operator()() {
+    if CEXP (std::integral<T>) {
+      res_wt r = (res_wt)b_ - (res_wt)a_ + 1, p = r * next();
+      if (res_t l = (res_t)p, _ = res_t(res_wt(-(res_t)r) % r); l < r)
+        while (l < _) l = res_t(p = r * next());
+      return (T)(p >> pm::w) + a_;
+    } else return T(next() / (f128)((u128)gen_max() + 1) * (b_ - a_) + a_);
   }
-  CEXP T operator()() { return normalize(next()); }
 };
 
 }  // namespace tifa_libs::rand

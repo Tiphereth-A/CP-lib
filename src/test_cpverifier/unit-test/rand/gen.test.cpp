@@ -22,14 +22,13 @@ void test() {
     res_t x = g1.next(), y = g2();
     check(x, y, check_param(seed), check_param(i));
   }
-  int cnt_lt = 0, cnt_eq = 0;
+  int cnt_eq = 0;
   flt_ (u32, i, 0, N) {
     T x2 = g1(), y2 = u(g2);
-    cnt_lt += tifa_libs::is_lt(x2, y2);
     cnt_eq += tifa_libs::is_eq(x2, y2);
     if (i < 64) std::cerr << x2 << ' ' << y2 << '\n';
   };
-  check_bool(cnt_eq == N || abs(cnt_lt - (int)N / 2) / (double)N < 1e-2, check_param(cnt_lt), check_param(cnt_eq));
+  check_bool(cnt_eq == N, check_param(cnt_eq));
 }
 
 int main() {
