@@ -5,7 +5,8 @@
 
 namespace tifa_libs::ds {
 
-template <class T, T (*op)(T, T), T (*e)()>
+template <class T, auto op, T (*e)()>
+requires std::same_as<std::remove_cvref_t<decltype(op(T(), T()))>, T>
 class rus4_st {
   u32 sz, B;
   st_array<T, op, e> st;
