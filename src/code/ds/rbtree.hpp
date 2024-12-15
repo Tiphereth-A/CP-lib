@@ -5,12 +5,12 @@
 
 namespace tifa_libs::ds {
 
-struct rbt_tag : bst_tag {
-  template <class pointer>
+struct rbt_op_leaf : bst_op_leaf {
+  template <tp2_ds_c pointer>
   static CEXP bool is_red(pointer p) { return p ? p->red : false; }
-  template <class pointer>
+  template <tp2_ds_c pointer>
   static CEXP void insert_leaf(pointer &root, pointer p, pointer n, bool dir) {
-    n->red = p, bst_tag::insert_leaf(root, p, n, dir);
+    n->red = p, bst_op_leaf::insert_leaf(root, p, n, dir);
     while (is_red(p = n->fa)) {
       bool p_dir = p->child_dir();
       auto g = p->fa, u = g->ch[!p_dir];
@@ -23,10 +23,10 @@ struct rbt_tag : bst_tag {
     }
     root->red = false;
   }
-  template <class pointer>
+  template <tp2_ds_c pointer>
   static CEXP void erase_branch_leaf(pointer &root, pointer n) {
     bool n_dir = n == root ? false : n->child_dir();
-    bst_tag::erase_branch_leaf(root, n);
+    bst_op_leaf::erase_branch_leaf(root, n);
     auto p = n->fa;
     if (!p) {
       if (root) root->red = false;
@@ -48,7 +48,7 @@ struct rbt_tag : bst_tag {
     n->red = false;
   }
 };
-
+using rbt_tag = bst_op<rbt_op_leaf>;
 template <class K>
 struct ostree_node_t<rbt_tag, K> {
   ostree_node_t *fa, *ch[2];

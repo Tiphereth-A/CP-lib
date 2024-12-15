@@ -9,13 +9,13 @@ int main() {
   tifa_libs::ndvec<3, i32> nv(51, 51, 51);
   for (u32 i = 0, a, b, c; i < n; ++i) {
     std::cin >> a >> b >> c;
-    nv[a][b][c] = 1;
+    nv(a, b, c) = 1;
   }
   u32 q;
   std::cin >> q;
   for (u32 i = 0, a, b, c; i < q; ++i) {
     std::cin >> a >> b >> c;
-    std::cout << nv[a][b][c] << '\n';
+    std::cout << nv(a, b, c) << '\n';
   }
   return 0;
 }

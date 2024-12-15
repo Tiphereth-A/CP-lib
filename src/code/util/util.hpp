@@ -46,6 +46,7 @@ template <class T> using ptt = std::pair<T, T>;
 template <class T> struct edge_t { T w; u32 u, v; CEXP auto operator<=>(edge_t CR) const = default; };
 template <class T> struct pt3 { T _0, _1, _2; CEXP auto operator<=>(pt3 CR) const = default; };
 template <class T> struct pt4 { T _0, _1, _2, _3; CEXP auto operator<=>(pt4 CR) const = default; };
+template <class T> using alc = std::pmr::polymorphic_allocator<T>;
 template <class E> using itl = std::initializer_list<E>;
 template <class T> using vec = std::vector<T>;
 template <class T> using vvec = vec<vec<T>>;

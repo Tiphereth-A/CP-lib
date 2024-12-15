@@ -119,6 +119,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     ds:
+    - bt_trv: 树结点常见遍历操作
+      code_ext: hpp
+      test_ext: cpp
     - fenwick: 树状数组
       code_ext: hpp
       test_ext: cpp

@@ -41,6 +41,10 @@ template <class T> concept adjlistw_c = adjlist_c<T> && !std::is_void_v<TPN T::w
 template <class T> concept tree_c = adjlist_c<T> && requires(T g) { g.root; };
 // weighted
 template <class T> concept treew_c = adjlistw_c<T> && requires(T g) { g.root; };
+// tree pointer (for DS)
+template <class P> concept tp_ds_c = requires(P p) { p->ch; std::is_array_v<decltype(p->ch)>; std::rank_v<decltype(p->ch)> == 1; };
+// binary tree pointer (for DS)
+template <class P> concept tp2_ds_c = tp_ds_c<P> && std::extent_v<decltype(std::declval<P>()->ch)> == 2;
 
 template <class T> struct to_sint : std::make_signed<T> {};
 template <> struct to_sint<u128> { using type = u128; };

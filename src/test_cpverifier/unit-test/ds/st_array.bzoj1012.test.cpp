@@ -6,7 +6,6 @@
 #include "../base.hpp"
 
 i64 f(i64 x, i64 y) { return tifa_libs::max(x, y); }
-i64 e() { return 0; }
 
 void test(strn CR data) {
   auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("bzoj", "1012", data);
@@ -14,7 +13,7 @@ void test(strn CR data) {
 
   u32 m, d;
   fin >> m >> d;
-  tifa_libs::ds::st_array<i64, f, e> st;
+  tifa_libs::ds::st_array<i64, f> st;
   char op;
   i64 t = 0, u;
   for (u32 i = 1; i <= m; ++i) {

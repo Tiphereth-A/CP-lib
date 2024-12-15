@@ -27,7 +27,7 @@ int main() {
         break;
       case 3: tifa_libs::fout << tr.order_of_key(x) + (lb ? lb->data == x : false) << '\n'; break;
       case 4:
-        if (!lb) lb = tr.rightmost(tr.root);
+        if (!lb) lb = tifa_libs::ds::rightmost(tr.root);
         if (!lb) tifa_libs::fout << "-1\n";
         else if (lb->data <= x) tifa_libs::fout << lb->data << '\n';
         else if (auto pre = tr.prev(lb); !pre) tifa_libs::fout << "-1\n";
