@@ -14,8 +14,8 @@ requires requires(T val, T new_val, F tag, F new_tag) {
   { id() } -> std::same_as<F>;
 }
 class segtree {
-  const T E = e();
-  const F ID = id();
+  static inline const T E = e();
+  static inline const F ID = id();
   u32 sz, lbn, n;
   vec<T> val;
   vec<F> tag;
@@ -24,7 +24,7 @@ class segtree {
  public:
   template <class V>
   CEXPE segtree(V &&a) { reset(std::forward<V>(a)); }
-  CEXPE segtree(u32 n = 0) : segtree(vec<T>(n, e())) {}
+  CEXPE segtree(u32 n = 0) : segtree(vec<T>(n, E)) {}
 
   template <class V>
   CEXP void reset(V &&a) {

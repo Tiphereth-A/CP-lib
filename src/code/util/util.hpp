@@ -26,6 +26,8 @@ using f64 = double;
 using f128 = long double;
 using strn = std::string;
 using strnv = std::string_view;
+template <class T>
+using alc = std::pmr::polymorphic_allocator<T>;
 
 using std::numbers::pi_v;
 template <std::floating_point FP>
