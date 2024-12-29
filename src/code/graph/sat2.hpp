@@ -17,7 +17,7 @@ class sat2 {
   CEXP void add(u32 x, bool vx, u32 y, bool vy) { x = x * 2 + vx, y = y * 2 + vy, e.emplace_back(x ^ 1, y), e.emplace_back(y ^ 1, x), ++st[x ^ 1], ++st[y ^ 1]; }
   // @return a, a_i == 1 if c_i is true else a_i == 0
   CEXP std::optional<vecu> solve() {
-    std::partial_sum(st.begin(), st.end(), st.begin()), *std::move_backward(st.begin(), st.end() - 1, st.end()) = 0;
+    std::inclusive_scan(st.begin(), st.end(), st.begin()), *std::move_backward(st.begin(), st.end() - 1, st.end()) = 0;
     vecu to(e.size());
     for (auto CR[u, v] : e) to[st[u]++] = v;
     *std::move_backward(st.begin(), st.end() - 1, st.end()) = 0;

@@ -2,25 +2,23 @@
 
 \begin{tabular}{ll}
     \hline
-    代码                                  & 备注                       \\
+    代码                                    & 备注               \\
     \hline
-    \verb|class T|                        & 维护的数据                 \\
-    \verb|T (*op)(T, T)|                  & 维护的操作                 \\
-    \verb|T (*e)()|                       & T的幺元                    \\
+    \verb|class T|                        & 维护的数据            \\
+    \verb|T (*op)(T, T)|                  & 维护的操作            \\
     \verb|class F|                        & 修改的类型(会用于lazy标记) \\
     \verb|T (*mapping)(T, F) f(x)|        & 即修改怎么应用于数据       \\
-    \verb|F (*composition)(F, F) f(g(x))| & 即修改的复合               \\
-    \verb|F (*id)() id(x) = x|            & 即恒等映射                 \\
+    \verb|F (*composition)(F, F) f(g(x))| & 即修改的复合           \\
+    \verb|T e|                            & T的幺元             \\
+    \verb|F id; id(x) = x|                & 即恒等映射            \\
     \hline
 \end{tabular}
+
+没有区间操作用 \verb|segtree_notag|
 
 \paragraph{例子}
 
 另请参阅 \fullref{sec:常用线段树构造}
-
-\textbf{没有区间操作}
-
-\verb|F = T, maaping = op, id = composition = e|
 
 \textbf{维护}: 区间min; \textbf{操作}: 区间加
 
@@ -28,11 +26,11 @@
 
 \begin{minted}{cpp}
 op(T a, T b) = return T{min(a._min, b._min)}
-e() = return T{INT_MAX}
 F() = {int add}
 mapping(T a, F f) = return T{a.s + f.add * a.l, a.l}
 composition(F f, F g) = return F{f.add + g.add}
-id() = return F{0}
+e = T{INT_MAX}
+id = F{0}
 \end{minted}
 
 \textbf{维护}: 区间和; \textbf{操作}: 区间加,区间乘
@@ -41,11 +39,11 @@ id() = return F{0}
 
 \begin{minted}{cpp}
 op(T a, T b) = return T{a.s + b.s, a.l + b.l}
-e() = return T{0, 0}
 F() = {mint mul, add}
 mapping(T a, F f) = return T{a.s * f.mul + f.add * a.l, a.l}
 composition(F f, F g) = return F{f.mul * g.mul, f.mul * g.add + f.add};
 // g(x) = g.mul * x + g.add
 // f(g(x)) = f.mul * (g.mul * x + g.add) + f.add = f.mul * g.mul * x + f.mul * g.add + f.add
-id() = return F{1, 0}
+e = T{0, 0}
+id = F{1, 0}
 \end{minted}

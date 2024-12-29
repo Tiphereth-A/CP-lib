@@ -14,8 +14,6 @@ auto op(T a, T b) {  // b(a(x))
   tifa_libs::swap(a, b);
   return T{a.first * b.first, a.first * b.second + a.second};
 }
-auto e() { return T{1, 0}; }
-auto id() { return e(); }
 auto mapping(T a, F f) { return op(f, a); }
 auto composition(F, F) { return F(1, 0); }
 
@@ -26,7 +24,7 @@ int main() {
   std::cin >> n >> q;
   vec<T> a(n);
   for (auto& x : a) std::cin >> x.first >> x.second;
-  tifa_libs::ds::segtree<T, op, e, F, mapping, composition, id> seg(a);
+  tifa_libs::ds::segtree<T, op, F, mapping, composition> seg({1, 0}, {1, 0}, a);
   for (u32 i = 0, opt; i < q; ++i) {
     std::cin >> opt;
     if (opt == 0) {

@@ -52,7 +52,7 @@ class alists {
   CEXP void add_arc(u32 u, Ts&&... args) { b.emplace_back(u, ET{std::forward<Ts>(args)...}), ++h[u]; }
   CEXP void build() {
     if (cnt_arc) return;
-    std::partial_sum(h.begin(), h.end(), h.begin());
+    std::inclusive_scan(h.begin(), h.end(), h.begin());
     for (e.resize(cnt_arc = (u32)b.size()); auto CR[u, e] : b) e[--h[u]] = e;
     if CEXP (with_deg)
       for (auto CR[u, e] : b) ++deg_out[u], ++deg_in[e.to];

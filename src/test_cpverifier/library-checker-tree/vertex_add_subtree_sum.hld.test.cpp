@@ -7,10 +7,8 @@ using T = std::pair<i64, i32>;
 using F = i64;
 
 T op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
-T e() { return T{0, 0}; }
 T mapping(T a, F f) { return T{f + a.first, a.second}; }
 F composition(F f, F g) { return f + g; }
-F id() { return 0; }
 
 int main() {
   u32 n, q;
@@ -20,7 +18,7 @@ int main() {
   for (auto& x : b) tifa_libs::fin >> x;
   tifa_libs::graph::tree tr_(n);
   for (u32 i = 1, p; i < n; ++i) tifa_libs::fin >> p, tr_.add_arc((u32)p, (u32)i);
-  tifa_libs::ds::hld<T, op, e, F, mapping, composition, id> tr(tr_);
+  tifa_libs::ds::hld<T, op, F, mapping, composition> tr({0, 0}, 0, tr_);
   flt_ (u32, i, 0, n) a[tr.info.dfn[i]].first = b[i], a[tr.info.dfn[i]].second = 1;
   tr.build(a);
   for (u32 i = 0, opt, u; i < q; ++i) {

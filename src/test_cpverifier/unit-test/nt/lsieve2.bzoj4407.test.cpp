@@ -29,7 +29,7 @@ void test(strn CR data) {
         if (e == 1) return lst = (pk = tifa_libs::math::qpow<mint>(p, k)) - 1;
         else return lst *= pk;
       });
-  std::partial_sum(g.begin(), g.end(), g.begin());
+  std::inclusive_scan(g.begin(), g.end(), g.begin());
   flt_ (u32, i, 0, t) {
     mint res = 0;
     for (u32 n = ns[i], m = ms[i], l = 1, r, d1, d2; l <= n; l = r + 1) {

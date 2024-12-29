@@ -606,6 +606,9 @@ notebook:
     - blossomw: 带权带花树
       code_ext: hpp
       test_ext: cpp
+    - min_cycle_mean: 有向图最小平均权值圈
+      code_ext: hpp
+      test_ext: cpp
     tree:
     - tree: 树
       code_ext: hpp

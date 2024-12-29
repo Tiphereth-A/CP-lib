@@ -14,9 +14,9 @@ struct point {
 
   friend std::istream &operator>>(std::istream &is, point &p) { return is >> p.x >> p.y; }
   friend std::ostream &operator<<(std::ostream &os, point CR p) { return os << p.x << ' ' << p.y; }
-  // s * r + t * (1 - r)
+  // s + (t - s) * r
   template <std::floating_point T>
-  friend CEXP point lerp(point CR s, point CR t, T r) { return s * r + t * (1 - r); }
+  friend CEXP point lerp(point CR s, point CR t, T r) { return s + (t - s) * r; }
   friend CEXP point mid_point(point CR s, point CR t) { return lerp(s, t, .5); }
   CEXP point &operator+=(arithm_c auto n) { return this->x += n, this->y += n, *this; }
   CEXP point &operator-=(arithm_c auto n) { return this->x -= n, this->y -= n, *this; }

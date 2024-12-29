@@ -13,11 +13,9 @@ struct point3d {
 
   friend std::istream &operator>>(std::istream &is, point3d &p) { return is >> p.x >> p.y >> p.z; }
   friend std::ostream &operator<<(std::ostream &os, point3d CR p) { return os << p.x << ' ' << p.y << ' ' << p.z; }
-  // s * r + t * (1 - r)
-  friend CEXP point3d lerp(point3d CR s, point3d CR t, FP r) {
-    static_assert(std::floating_point<FP>);
-    return s * r + t * (1 - r);
-  }
+  // s + (t - s) * r
+  template <std::floating_point T>
+  friend CEXP point3d lerp(point3d CR s, point3d CR t, T r) { return s + (t - s) * r; }
   friend CEXP point3d mid_point(point3d CR s, point3d CR t) { return lerp(s, t, .5); }
   CEXP point3d &operator+=(FP n) { return this->x += n, this->y += n, this->z += n, *this; }
   CEXP point3d operator+(FP n) const { return point3d(*this) += n; }

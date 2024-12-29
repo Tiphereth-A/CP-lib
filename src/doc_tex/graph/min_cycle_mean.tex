@@ -1,0 +1,9 @@
+对有向图 \(G=\langle V,E\rangle\), 求 \(G\) 的所有圈中, 边权平均值的最小值
+
+加一个虚点 \(s\), 向所有点连权值任意的边, 令 \(d_j(i)\) 表示从 \(s\) 到 \(i\) 恰好走 \(j\) 条边的最短路长度
+
+则答案即为 \(\displaystyle\min_{v\in V;d_n(v)\neq\infty}\max_{k=0}^{n}\left\{\frac{d_n(v)-d_k(v)}{n-k}\right\}\)
+
+\paragraph{复杂度} \(O(|V||E|)\)
+
+\paragraph{参考文献} \cite{karp1978characterization}

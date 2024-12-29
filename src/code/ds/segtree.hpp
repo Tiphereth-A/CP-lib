@@ -5,26 +5,27 @@
 
 namespace tifa_libs::ds {
 namespace segtree_impl_ {
-template <bool enable_tag, class T, auto op, auto e, class F, auto mapping, auto composition, auto id>
+template <bool enable_tag, class T, auto op, class F, auto mapping, auto composition>
 requires requires(T val, T new_val, F tag, F new_tag) {
-  { e() } -> std::same_as<T>;
   { op(val, new_val) } -> std::same_as<T>;
   { mapping(val, tag) } -> std::same_as<T>;
   { composition(tag, new_tag) } -> std::same_as<F>;
-  { id() } -> std::same_as<F>;
 }
-class segtree {
-  static inline const T E = e();
-  static inline const F ID = id();
+struct segtree {
+  const T E;
+  const F ID;
+
+ private:
   u32 sz, lbn, n;
   vec<T> val;
   vec<F> tag;
   vecb vset;
 
  public:
+  CEXP segtree(cT_(T) e, cT_(F) id) : E(e), ID(id), sz(0), lbn(0), n(0), val{}, tag{}, vset{} {}
   template <class V>
-  CEXPE segtree(V &&a) { reset(std::forward<V>(a)); }
-  CEXPE segtree(u32 n = 0) : segtree(vec<T>(n, E)) {}
+  CEXP segtree(cT_(T) e, cT_(F) id, V &&a) : segtree(e, id) { reset(std::forward<V>(a)); }
+  CEXP segtree(cT_(T) e, cT_(F) id, u32 n) : segtree(e, id) { reset(vec<T>(n, e)); }
 
   template <class V>
   CEXP void reset(V &&a) {
@@ -157,10 +158,18 @@ class segtree {
 };
 }  // namespace segtree_impl_
 
-template <class T, auto op, auto e, class F, auto mapping, auto composition, auto id>
-using segtree = segtree_impl_::segtree<true, T, op, e, F, mapping, composition, id>;
-template <class T, auto op, auto e>
-using segtree_notag = segtree_impl_::segtree<false, T, op, e, T, op, op, e>;
+template <class T, auto op, class F, auto mapping, auto composition>
+using segtree = segtree_impl_::segtree<true, T, op, F, mapping, composition>;
+template <class T, auto op>
+class segtree_notag : public segtree_impl_::segtree<false, T, op, T, op, op> {
+  using base = segtree_impl_::segtree<false, T, op, T, op, op>;
+
+ public:
+  CEXPE segtree_notag(cT_(T) e) : base(e, e) {}
+  template <class V>
+  CEXP segtree_notag(cT_(T) e, V &&a) : base(e, e, std::forward<V>(a)) {}
+  CEXP segtree_notag(cT_(T) e, u32 n) : base(e, e, n) {}
+};
 
 }  // namespace tifa_libs::ds
 
