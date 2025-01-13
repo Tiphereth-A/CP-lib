@@ -6,16 +6,16 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  tifa_libs::ds::fhq_treap<i32, i32> treap;
+  tifa_libs::ds::fhq_treap<i32> treap;
   for (u32 i = 0, opt; i < n; ++i) {
     i32 x;
     std::cin >> opt >> x;
-    if (opt == 1) treap.insert({x, x});
+    if (opt == 1) treap.insert(x);
     else if (opt == 2) treap.erase(x);
-    else if (opt == 3) std::cout << treap.key_req_rk(x) << '\n';
-    else if (opt == 4) std::cout << treap.rk_req_w(treap.root, u32(x)).second << '\n';
-    else if (opt == 5) std::cout << treap.pre_w(x).second << '\n';
-    else std::cout << treap.suf_w(x).second << '\n';
+    else if (opt == 3) std::cout << treap.rank(x) << '\n';
+    else if (opt == 4) std::cout << treap.kth((u32)x).value() << '\n';
+    else if (opt == 5) std::cout << treap.prev(x).value() << '\n';
+    else std::cout << treap.next(x).value() << '\n';
   }
 }
 

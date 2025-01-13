@@ -5,121 +5,122 @@
 
 namespace tifa_libs::ds {
 
-template <class K, class V, bool recovery = false>
-class fhq_treap {
-  //! initial cnt = 1
+template <class T, bool recovery = false, class Comp = std::less<T>>
+struct fhq_treap {
+  static constexpr Comp compare{};
   struct TIFA {
-    std::pair<K, V> w;
-    u32 sz;
-    arr<u32, 2> son{};
-    i32 rad;
-    CEXP TIFA(cT_(std::pair<K, V>) W = {0, 0}, u32 SZ = 0, i32 RAD = 0) : w(W), sz(SZ), rad(RAD) {}
+    T val;
+    u32 r, sz, son[2];
   };
-  rand::Gen<i32> gen;
-  vec<TIFA> t;
-  vecu sta;
-  u32 cnt;
-
-  CEXP u32 newnode(cT_(std::pair<K, V>) w) {
-    u32 ret;
-    if (recovery && sta.size()) ret = *sta.rbegin(), sta.pop_back(), t[ret] = TIFA(w, 1, gen());
-    else ret = ++cnt, t.push_back(TIFA(w, 1, gen()));
-    return ret;
-  }
-  CEXP void preorder(u32 u, vecp<K, V>& ret) const {
-    if (!u) return;
-    ret.push_back(t[u].w), preorder(t[u].son[0], ret), preorder(t[u].son[1], ret);
-  }
-  CEXP void inorder(u32 u, vecp<K, V>& ret) const {
-    if (!u) return;
-    inorder(t[u].son[0], ret), ret.push_back(t[u].w), inorder(t[u].son[1], ret);
-  }
-  CEXP void postorder(u32 u, vecp<K, V>& ret) const {
-    if (!u) return;
-    postorder(t[u].son[0], ret), postorder(t[u].son[1], ret), ret.push_back(t[u].w);
-  }
-  CEXP void rm(u32 u) { sta.push_back(u); }
-  CEXP void update(u32 u) { t[u].sz = t[t[u].son[0]].sz + t[t[u].son[1]].sz + 1; }
-
- public:
+  rand::Gen<u32> rnd;
+  vec<TIFA> data;
+  vecu stk;
   u32 root;
 
-  CEXPE fhq_treap() : gen(), t(1), sta(), cnt(0), root(0) {}
+ private:
+  u32 new_node(cT_(T) val) {
+    u32 ret;
+    if CEXP (recovery && stk.size()) data[ret = stk.back()] = {val, rnd(), 1, {0, 0}}, stk.pop_back();
+    else ret = (u32)data.size(), data.push_back(TIFA{val, rnd(), 1, {0, 0}});
+    return ret;
+  }
+  void pushup(u32 pos) { data[pos].sz = data[data[pos].son[0]].sz + 1 + data[data[pos].son[1]].sz; }
+  template <bool strict = false>
+  pttu split_root(u32 pos, cT_(T) key) {
+    if (!pos) return {};
+    bool f;
+    if CEXP (strict) f = compare(data[pos].val, key);
+    else f = !compare(key, data[pos].val);
+    if (f) {
+      auto [l, r] = split_root<strict>(data[pos].son[1], key);
+      data[pos].son[1] = l;
+      pushup(pos);
+      return {pos, r};
+    }
+    auto [l, r] = split_root<strict>(data[pos].son[0], key);
+    data[pos].son[0] = r;
+    pushup(pos);
+    return {l, pos};
+  }
+  u32 merge_root(u32 l, u32 r) {
+    if (!l | !r) return l | r;
+    if (data[l].r < data[r].r) {
+      data[l].son[1] = merge_root(data[l].son[1], r), pushup(l);
+      return l;
+    }
+    data[r].son[0] = merge_root(l, data[r].son[0]), pushup(r);
+    return r;
+  }
 
-  CEXP u32 CR size() const { return cnt; }
-  CEXP void split(u32 u, cT_(K) k, u32& x, u32& y) {
-    if (!u) x = y = 0;
-    else if (t[u].w.first <= k) x = u, split(t[u].son[1], k, t[u].son[1], y), update(x);
-    else y = u, split(t[u].son[0], k, x, t[y].son[0]), update(y);
+ public:
+  CEXPE fhq_treap() : rnd{}, data{1}, stk{}, root{} { data[0].sz = {}; }
+  void insert(cT_(T) val) {
+    u32 tar = new_node(val);
+    auto dfs = [&](auto &&f, u32 &pos) -> void {
+      if (!pos) return void(pos = tar);
+      if (data[tar].r < data[pos].r) {
+        auto [l, r] = split_root<true>(pos, val);
+        data[tar].son[0] = l, data[tar].son[1] = r;
+        pos = tar;
+      } else f(f, compare(data[pos].val, val) ? data[pos].son[1] : data[pos].son[0]);
+      pushup(pos);
+    };
+    dfs(dfs, root);
   }
-  CEXP void split_not_include(u32 u, cT_(K) k, u32& x, u32& y) {
-    if (!u) x = y = 0;
-    else if (t[u].w.first < k) x = u, split_not_include(t[u].son[1], k, t[u].son[1], y), update(x);
-    else y = u, split_not_include(t[u].son[0], k, x, t[y].son[0]), update(y);
-  }
-  CEXP u32 merge(u32 x, u32 y) {
-    if (x && y) {
-      if (t[x].rad <= t[y].rad) return t[x].son[1] = merge(t[x].son[1], y), update(x), x;
-      return t[y].son[0] = merge(x, t[y].son[0]), update(y), y;
-    } else return x + y;
-  }
-  CEXP void insert(cT_(std::pair<K, V>) w) {
-    u32 x, y;
-    split(root, w.first, x, y), root = merge(merge(x, newnode(w)), y);
-  }
-  CEXP void erase(cT_(K) key) {
-    u32 x, y, z;
-    split(root, key, x, y), split_not_include(x, key, x, z);
-    if CEXP (recovery) rm(z);
-    root = merge(merge(x, z = merge(t[z].son[0], t[z].son[1])), y);
-  }
-  CEXP u32 key_req_rk(cT_(K) key) {
-    u32 x, y, ret;
-    return split_not_include(root, key, x, y), ret = t[x].sz + 1, root = merge(x, y), ret;
-  }
-  CEXP auto rk_req_w(u32 u, u32 k) {
-    while (1)
-      if (t[t[u].son[0]].sz >= k) u = t[u].son[0];
-      else {
-        if (t[t[u].son[0]].sz + 1 >= k) return t[u].w;
-        k -= t[t[u].son[0]].sz + 1, u = t[u].son[1];
+  bool erase(cT_(T) val) {
+    auto dfs = [&](auto &&f, u32 &pos) -> bool {
+      if (!pos) return false;
+      if (data[pos].val == val) {
+        if CEXP (recovery) stk.push_back(pos);
+        return pos = merge_root(data[pos].son[0], data[pos].son[1]), true;
       }
+      if (!f(f, compare(data[pos].val, val) ? data[pos].son[1] : data[pos].son[0])) return false;
+      return pushup(pos), true;
+    };
+    return dfs(dfs, root);
   }
-  CEXP auto pre_w(cT_(K) key) {
-    u32 x, y;
-    split(root, key - 1, x, y);
-    auto ret = rk_req_w(x, t[x].sz);
-    return root = merge(x, y), ret;
+  auto find(cT_(T) val) const {
+    u32 pos = root;
+    while (pos)
+      if (val == data[pos].val) return data.cbegin() + pos;
+      else pos = data[pos].son[!compare(val, data[pos].val)];
+    return data.cend();
   }
-  CEXP auto suf_w(cT_(K) key) {
-    u32 x, y;
-    split(root, key, x, y);
-    auto ret = rk_req_w(y, 1);
-    return root = merge(x, y), ret;
+  u32 rank(cT_(T) val) const {
+    u32 pos = root, res = 0;
+    while (pos)
+      if (compare(data[pos].val, val)) res += data[data[pos].son[0]].sz + 1, pos = data[pos].son[1];
+      else pos = data[pos].son[0];
+    return res + 1;
   }
-  CEXP bool find(cT_(K) key) {
-    u32 x, y, z;
-    split(root, key, x, y), split_not_include(x, key, x, z);
-    bool ret = t[z].sz;
-    return root = merge(merge(x, z), y), ret;
+  u32 count(cT_(T) val) const {
+    u32 rk = rank(val);
+    if (auto res = next(val); !res) return data[root].sz - rk + 1;
+    else return rank(res.value()) - rk;
   }
-  CEXP auto preorder() const {
-    vecp<K, V> ret;
-    return preorder(root, ret), ret;
+  std::optional<T> kth(u32 k) const {
+    if (k < 1 || k > data[root].sz) return {};
+    u32 pos = root;
+    while (true)
+      if (auto _ = data[pos].sz - data[data[pos].son[1]].sz; _ == k) return data[pos].val;
+      else if (_ < k) k -= _, pos = data[pos].son[1];
+      else pos = data[pos].son[0];
   }
-  CEXP auto inorder() const {
-    vecp<K, V> ret;
-    return inorder(root, ret), ret;
+  auto prev(cT_(T) val) const {
+    u32 pos = root;
+    std::pair<bool, T> res{false, {}};
+    while (pos)
+      if (!compare(data[pos].val, val)) pos = data[pos].son[0];
+      else res = {true, data[pos].val}, pos = data[pos].son[1];
+    return res.first ? std::optional<T>{res.second} : std::nullopt;
   }
-  CEXP auto postorder() const {
-    vecp<K, V> ret;
-    return postorder(root, ret), ret;
-  }
-  CEXP auto inorder(cT_(K) key) {
-    u32 x, y, z;
-    split(root, key, x, y), split_not_include(x, key, x, z);
-    vecp<K, V> ret;
-    return inorder(z, ret), root = merge(merge(x, z), y), ret;
+  auto next(cT_(T) val) const {
+    u32 pos = root;
+    std::pair<bool, T> res{false, {}};
+    while (pos)
+      if (!compare(val, data[pos].val)) pos = data[pos].son[1];
+      else res = {true, data[pos].val}, pos = data[pos].son[0];
+    return res.first ? std::optional<T>{res.second} : std::nullopt;
   }
 };
 

@@ -1,44 +1,41 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../../code/ds/rbtree.hpp"
+#include "../../../code/ds/fhq_treap.hpp"
 
-#include "../../../code/ds/bt_trv.hpp"
 #include "../base.hpp"
 
 void test(strn CR data) {
   auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("bzoj", "3224", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
-  u32 n, m;
-  fin >> n >> m;
-  tifa_libs::ds::rbtree<int> bt;
-
-  for (u32 i = 0, opt; i < m; ++i) {
-    int x, got, want;
+  u32 n;
+  fin >> n;
+  tifa_libs::ds::fhq_treap<i32> treap;
+  for (u32 i = 0, opt; i < n; ++i) {
+    i32 x, got, want;
     fin >> opt >> x;
     switch (opt) {
       case 1:
-        bt.insert(x);
+        treap.insert(x);
         break;
       case 2:
-        bt.erase(x);
+        treap.erase(x);
         break;
       case 3:
-        got = int(bt.order_of_key(x) + 1);
+        got = (int)treap.rank(x);
         fans >> want;
         break;
       case 4:
-        got = bt.find_by_order((u32)x - 1)->data;
+        got = treap.kth((u32)x).value();
         fans >> want;
         break;
-      case 5: {
-        auto it = bt.lower_bound(x);
-        got = (it ? bt.prev(it) : rightmost(bt.root))->data;
+      case 5:
+        got = treap.prev(x).value();
         fans >> want;
-      } break;
+        break;
       case 6:
-        got = bt.upper_bound(x)->data;
+        got = treap.next(x).value();
         fans >> want;
         break;
     }
