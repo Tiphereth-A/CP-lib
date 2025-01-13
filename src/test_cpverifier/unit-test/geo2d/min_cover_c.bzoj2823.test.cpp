@@ -17,7 +17,7 @@ strn single_proceed(std::istream& fin) {
   fin >> n;
   vec<Point2> vp(n);
   for (auto& i : vp) fin >> i;
-  std::ranges::shuffle(vp, std::mt19937{});
+  std::ranges::shuffle(vp, std::mt19937{std::default_random_engine{}()});
   auto ans = tifa_libs::geo::min_cover_C(vp);
   ss << ans;
 
