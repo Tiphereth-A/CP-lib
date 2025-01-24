@@ -125,8 +125,7 @@ jobs:
         with:
           cache-pip: true
 
-      - name: Get storage information before cleaning up
-        if: ${{ matrix.type == 'huge' }}
+      - name: Get storage information
         run: |
           echo "::group::free"
           free
@@ -148,7 +147,7 @@ jobs:
           sudo docker image prune --all --force
           sudo docker builder prune -a
 
-      - name: Get storage information before cleaning up
+      - name: Get storage information after cleaning up
         if: ${{ matrix.type == 'huge' }}
         run: |
           echo "::group::free"
@@ -174,6 +173,21 @@ jobs:
           prev-result: ${{ steps.restore-cached-results.outputs.cache-hit && 'merged-result.json' || ''}}
         env:
           YUKICODER_TOKEN: ${{secrets.YUKICODER_TOKEN}}
+
+      - name: Get storage information after verify
+        run: |
+          echo "::group::free"
+          free
+          echo "::endgroup::"
+          echo "::group::swapon"
+          swapon
+          echo "::endgroup::"
+          echo "::group::df"
+          df -ha --o --total
+          echo "::endgroup::"
+          echo "::group::du"
+          du -ha | sort -hr
+          echo "::endgroup::"
 
       - name: Upload result artifact
         uses: actions/upload-artifact@v4
