@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <uint_c T>
-CEXP ptt<T> inv_gcd(T n, T mod) {
+CEXP ptt<T> inv_gcd(T n, T mod) NE {
   using U = to_sint_t<T>;
   auto [g, x] = exgcd<U, true>(U(n % mod), (U)mod);
   return {g, safe_mod(x, mod)};

@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 // calculate area of triangle by the length of 3 edges
 // numerical stability improved
 template <class FP>
-CEXP FP area_T_abc(FP a, FP b, FP c) {
+CEXP FP area_T_abc(FP a, FP b, FP c) NE {
   if (a < b) swap(a, b);
   if (a < c) swap(a, c);
   if (b < c) swap(b, c);

@@ -6,7 +6,7 @@
 namespace tifa_libs {
 
 template <bool lower = true>
-CEXP u32 u32tostrhex(u32 x, char *s) {
+CEXP u32 u32tostrhex(u32 x, char *s) NE {
   CEXP char uppert[513] =
       "000102030405060708090A0B0C0D0E0F"
       "101112131415161718191A1B1C1D1E1F"

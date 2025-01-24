@@ -16,12 +16,12 @@ class chordal {
 
   // @param g simple UNDIRECTED graph
   //! g[i] MUST be sorted
-  CEXPE chordal(G CR g) : g(g), deg(g.size()), peo(g.size()), rnk(g.size()) {
+  CEXPE chordal(G CR g) NE : g(g), deg(g.size()), peo(g.size()), rnk(g.size()) {
     const u32 n = g.size();
     vecu l(n * 2 + 1), r, idx(n);
     std::iota(l.begin(), l.end(), 0), r = l;
-    auto ins = [&](u32 i, u32 j) { r[l[i] = l[j]] = i, r[l[j] = i] = j; };
-    auto del = [&](u32 i) { r[l[i]] = r[i], l[r[i]] = l[i]; };
+    auto ins = [&](u32 i, u32 j) NE { r[l[i] = l[j]] = i, r[l[j] = i] = j; };
+    auto del = [&](u32 i) NE { r[l[i]] = r[i], l[r[i]] = l[i]; };
     flt_ (u32, i, 0, n) ins(i, n);
     u32 li = n;
     flt_ (u32, i, 0, n) {
@@ -37,7 +37,7 @@ class chordal {
   }
 
   template <bool find_indcycle = false>
-  std::conditional_t<find_indcycle, std::optional<vecu>, bool> is_chordal_graph() const {
+  std::conditional_t<find_indcycle, std::optional<vecu>, bool> is_chordal_graph() CNE {
     for (u32 u : peo) {
       vecu s;
       for (s.reserve(g[u].size()); auto v : g[u])
@@ -56,7 +56,8 @@ class chordal {
                 pre[y] = t;
                 vecu path = {y};
                 while (path.back() != x) path.push_back(pre[path.back()]);
-                return path.push_back(z), path;
+                path.push_back(z);
+                return path;
               }
               for (u32 u : g[t])
                 if (u != z && !std::ranges::binary_search(g[u], z) && !~pre[u]) pre[u] = t, q.push(u);
@@ -68,7 +69,7 @@ class chordal {
     else return true;
   }
   // @return {x}, which $\{x\}+N(x)$ be a maximal clique
-  CEXP vecu maximal_cliques() const {
+  CEXP vecu maximal_cliques() CNE {
     vecu fst(peo.size(), -1_u32), n(peo.size()), res;
     for (u32 u : peo)
       for (auto v : g[u])
@@ -80,8 +81,8 @@ class chordal {
     }
     return res;
   }
-  CEXP u32 chromatic_number() const { return std::ranges::max(deg) + 1; }
-  CEXP vecu max_independent_set() const {
+  CEXP u32 chromatic_number() CNE { return std::ranges::max(deg) + 1; }
+  CEXP vecu max_independent_set() CNE {
     vecu res;
     for (vecb vis(peo.size()); u32 u : peo) {
       if (vis[u]) continue;

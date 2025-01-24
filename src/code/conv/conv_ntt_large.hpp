@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <ntt_c NTT_t, std::same_as<TPN NTT_t::data_t> mint>
-CEXP vec<mint> conv_ntt_large(NTT_t &ntt, vec<mint> l, vec<mint> r, u32 ans_size = 0) {
+CEXP vec<mint> conv_ntt_large(NTT_t &ntt, vec<mint> l, vec<mint> r, u32 ans_size = 0) NE {
   const u32 n = (u32)l.size(), m = (u32)r.size(), len = NTT_t::max_size;
   if (n + m - 1 <= len) return conv_dft<NTT_t, mint>(ntt, l, r, ans_size);
   if (!ans_size) ans_size = n + m - 1;
@@ -30,10 +30,11 @@ CEXP vec<mint> conv_ntt_large(NTT_t &ntt, vec<mint> l, vec<mint> r, u32 ans_size
     const u32 ofs = len / 2 * i;
     flt_ (u32, j, 0, min(len, (u32)c.size() - ofs)) c[j + ofs] += cs[i][j];
   }
-  return c.resize(ans_size), c;
+  c.resize(ans_size);
+  return c;
 }
 template <class NTT_t, std::same_as<TPN NTT_t::data_t> mint, class T = u64>
-CEXP vec<mint> conv_ntt_large_u64(NTT_t &ntt, vec<T> CR l, vec<T> CR r, u32 ans_size = 0) {
+CEXP vec<mint> conv_ntt_large_u64(NTT_t &ntt, vec<T> CR l, vec<T> CR r, u32 ans_size = 0) NE {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   vec<mint> l_, r_;
   for (l_.reserve(l.size()); auto i : l) l_.push_back(i);

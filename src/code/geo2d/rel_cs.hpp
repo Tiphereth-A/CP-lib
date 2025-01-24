@@ -12,7 +12,7 @@ enum RELCS { otherwise_cs,
              intersect_cs };
 
 template <class FP>
-CEXP RELCS relation_CS(circle<FP> CR c, line<FP> CR s) {
+CEXP RELCS relation_CS(circle<FP> CR c, line<FP> CR s) NE {
   const FP d = dist_PL(c.o, s);
   if (is_lt(d, c.r)) return intersect_cs;
   if (is_eq(d, c.r)) return tagante_cs;

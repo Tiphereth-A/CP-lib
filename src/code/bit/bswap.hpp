@@ -7,7 +7,7 @@ namespace tifa_libs::bit {
 
 // From GCC lib
 template <class T>
-CEXP T bswap(T x) {
+CEXP T bswap(T x) NE {
   if CEXP (sizeof(T) == 2) return __builtin_bswap16(x);
   if CEXP (sizeof(T) == 4) return __builtin_bswap32(x);
   if CEXP (sizeof(T) == 8) return __builtin_bswap64(x);

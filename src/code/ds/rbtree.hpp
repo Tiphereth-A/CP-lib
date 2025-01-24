@@ -7,9 +7,9 @@ namespace tifa_libs::ds {
 
 struct rbt_op_leaf : bst_op_leaf {
   template <tp2_ds_c pointer>
-  static CEXP bool is_red(pointer p) { return p ? p->red : false; }
+  static CEXP bool is_red(pointer p) NE { return p ? p->red : false; }
   template <tp2_ds_c pointer>
-  static CEXP void insert_leaf(pointer &root, pointer p, pointer n, bool dir) {
+  static CEXP void insert_leaf(pointer &root, pointer p, pointer n, bool dir) NE {
     n->red = p, bst_op_leaf::insert_leaf(root, p, n, dir);
     while (is_red(p = n->fa)) {
       bool p_dir = p->child_dir();
@@ -24,7 +24,7 @@ struct rbt_op_leaf : bst_op_leaf {
     root->red = false;
   }
   template <tp2_ds_c pointer>
-  static CEXP void erase_branch_leaf(pointer &root, pointer n) {
+  static CEXP void erase_branch_leaf(pointer &root, pointer n) NE {
     bool n_dir = n == root ? false : n->child_dir();
     bst_op_leaf::erase_branch_leaf(root, n);
     auto p = n->fa;
@@ -34,14 +34,21 @@ struct rbt_op_leaf : bst_op_leaf {
     } else if (auto s = p->ch[n_dir]; s) return void(s->red = false);
     while (p && !n->red) {
       auto s = p->ch[!n_dir];
-      if (is_red(s)) s->red = false, p->red = true, rotate(root, p, n_dir), s = p->ch[!n_dir];
+      if (is_red(s)) {
+        s->red = false, p->red = true;
+        rotate(root, p, n_dir), s = p->ch[!n_dir];
+      }
       auto c = s->ch[n_dir], d = s->ch[!n_dir];
       if (!is_red(c) && !is_red(d)) {
         if (s->red = true, n = p, p = n->fa; !p) break;
         n_dir = n->child_dir();
         continue;
       }
-      if (!is_red(d)) c->red = false, s->red = true, rotate(root, s, !n_dir), s = p->ch[!n_dir], c = s->ch[n_dir], d = s->ch[!n_dir];
+      if (!is_red(d)) {
+        c->red = false, s->red = true;
+        rotate(root, s, !n_dir);
+        s = p->ch[!n_dir], c = s->ch[n_dir], d = s->ch[!n_dir];
+      }
       s->red = p->red, p->red = d->red = false, rotate(root, p, n_dir), n = root;
       break;
     }
@@ -56,7 +63,7 @@ struct ostree_node_t<rbt_tag, K> {
   u32 sz;
   bool red;
   // @return child direction of this non-root point
-  CEXP bool child_dir() const { return this == fa->ch[1]; }
+  CEXP bool child_dir() CNE { return this == fa->ch[1]; }
 };
 
 template <class K, class Comp = std::less<K>>

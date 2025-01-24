@@ -7,9 +7,12 @@
 namespace tifa_libs {
 
 template <iterable_c T>
-CEXP T uniq(T v) { return sort(v), v.erase(std::unique(v.begin(), v.end()), v.end()), v; }
+CEXP T uniq(T v) NE {
+  sort(v), v.erase(std::unique(v.begin(), v.end()), v.end());
+  return v;
+}
 template <iterable_c T>
-CEXP std::pair<T, vecu> gen_id(T CR v) {
+CEXP std::pair<T, vecu> gen_id(T CR v) NE {
   const T _ = uniq(v);
   vecu _1;
   _1.reserve(v.size());

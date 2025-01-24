@@ -10,23 +10,23 @@ class lichao_segtree {
   struct seg {
     u32 id;
     T a, b, l, r;
-    CEXP T w(T x) const { return a * x + b; }
+    CEXP T w(T x) CNE { return a * x + b; }
   };
   u32 sz;
   vec<T> lsh;
   vec<seg> t;
 
  public:
-  CEXPE lichao_segtree(spn<T> LSH) : lsh(LSH.begin(), LSH.end()), t(LSH.size() * 4) { sz = (u32)lsh.size(); }
+  CEXPE lichao_segtree(spn<T> LSH) NE : lsh(LSH.begin(), LSH.end()), t(LSH.size() * 4) { sz = (u32)lsh.size(); }
 
   // $y = ax + b~(x \in [l, r])$
-  CEXP void add(T a, T b, T l, T r, u32 id = 1) { add(1, 0, sz - 1, u32(std::ranges::lower_bound(lsh, l) - lsh.begin()), u32(std::ranges::lower_bound(lsh, r) - lsh.begin()), {id, a, b, l, r}); }
-  T query(T pos) { return query(1, 0, sz - 1, pos); }
+  CEXP void add(T a, T b, T l, T r, u32 id = 1) NE { add(1, 0, sz - 1, u32(std::ranges::lower_bound(lsh, l) - lsh.begin()), u32(std::ranges::lower_bound(lsh, r) - lsh.begin()), {id, a, b, l, r}); }
+  T query(T pos) NE { return query(1, 0, sz - 1, pos); }
 
  private:
   // min: <=   max: >=
-  CEXP bool pd(T a, T b) const { return op(a, b) == a; }
-  CEXP void add(u32 x, u32 l, u32 r, u32 L, u32 R, seg CR k) {
+  CEXP bool pd(T a, T b) CNE { return op(a, b) == a; }
+  CEXP void add(u32 x, u32 l, u32 r, u32 L, u32 R, seg CR k) NE {
     u32 mid = l + (r - l) / 2;
     if (L <= l && R >= r) {
       if (!t[x].id) return void(t[x] = k);
@@ -43,7 +43,7 @@ class lichao_segtree {
     if (L <= mid) add(x << 1, l, mid, L, R, k);
     if (R > mid) add(x << 1 | 1, mid + 1, r, L, R, k);
   }
-  CEXP T query(u32 x, u32 l, u32 r, T pos) {
+  CEXP T query(u32 x, u32 l, u32 r, T pos) NE {
     T MIN = std::numeric_limits<T>::lowest(), MAX = std::numeric_limits<T>::max();
     T ret = t[x].id ? t[x].w(pos) : (pd(MIN, MAX) ? MAX : MIN);
     if (l == r) return ret;

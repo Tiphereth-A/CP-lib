@@ -9,7 +9,7 @@ template <class T, class Is0>
 requires requires(Is0 is0, T t) {
   { is0(t) } -> std::same_as<bool>;
 }
-CEXP vec<T> lfsr_bm(vec<T> CR s, Is0&& is0) {
+CEXP vec<T> lfsr_bm(vec<T> CR s, Is0&& is0) NE {
   vec<T> C{1}, B(C);
   T b(1);
   for (u32 n = 0, n_ed = (u32)s.size(), l = 0, x = 1; n < n_ed; ++n) {

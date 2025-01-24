@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class poly, class T, std::same_as<TPN poly::val_t> mint>
-poly ssts_pim_cnt(vec<T> CR s, u32 t, vec<mint> CR inv) {
+poly ssts_pim_cnt(vec<T> CR s, u32 t, vec<mint> CR inv) NE {
   map<T, u32> cnt;
   for (auto&& i : s) ++cnt[i];
   poly p(t + 1);
@@ -18,7 +18,7 @@ poly ssts_pim_cnt(vec<T> CR s, u32 t, vec<mint> CR inv) {
   return exp_fps(p);
 }
 template <class poly, class T>
-poly ssts_pim_cnt(vec<T> CR s, u32 t) {
+poly ssts_pim_cnt(vec<T> CR s, u32 t) NE {
   using mint = TPN poly::val_t;
   return ssts_pim_cnt<poly, T, mint>(s, t, gen_inv<mint>(t + 1));
 }

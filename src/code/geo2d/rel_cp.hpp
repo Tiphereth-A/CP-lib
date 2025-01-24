@@ -12,7 +12,7 @@ enum RELCP { outside_cp,
              inside_cp };
 
 template <class FP>
-CEXP RELCP relation_CP(circle<FP> CR c, point<FP> CR p) {
+CEXP RELCP relation_CP(circle<FP> CR c, point<FP> CR p) NE {
   const FP d = dist_PP(c.o, p);
   if (is_lt(d, c.r)) return inside_cp;
   if (is_eq(d, c.r)) return onborder_cp;

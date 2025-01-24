@@ -16,13 +16,13 @@ class e_bcc {
   vvecu belongs;
 
   //! EW need rev_edge
-  CEXPE e_bcc(vvec<EW> CR G) : g(G) { build(); }
+  CEXPE e_bcc(vvec<EW> CR G) NE : g(G) { build(); }
 
-  CEXP void build() {
+  CEXP void build() NE {
     u32 cnt = 0, n = u32(g.size());
     id = 0, dfn = low = ebcc_id = vecu(n, n), cut = vecb(n, 0);
     vecu s;
-    auto f = [&](auto &&f, u32 u, u32 fa, u32 inv_from) -> void {
+    auto f = [&](auto &&f, u32 u, u32 fa, u32 inv_from) NE -> void {
       dfn[u] = low[u] = cnt++, s.push_back(u);
       flt_ (u32, i, 0, (u32)g[u].size()) {
         auto v = g[u][i];

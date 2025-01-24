@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 // @return b s.t. $f(x) = \sum_{i=0}^{n-1} b_i \prod_{j=0}^{i-1}(x - p_j)$
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto cbm2n_fps(poly<ccore, mint, args...> CR f, vec<mint> CR p) {
+CEXP auto cbm2n_fps(poly<ccore, mint, args...> CR f, vec<mint> CR p) NE {
   using poly_t = poly<ccore, mint, args...>;
   const u32 n = (u32)p.size();
   assert(f.size() == n);

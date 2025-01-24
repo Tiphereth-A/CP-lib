@@ -6,7 +6,7 @@
 
 namespace tifa_libs {
 
-CEXP u64 str2uint_mod(strnv s, u64 mod) {
+CEXP u64 str2uint_mod(strnv s, u64 mod) NE {
   const u32 n = (u32)s.size();
   if (!n) return 0;
   u64 ans = 0;

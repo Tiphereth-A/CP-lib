@@ -10,9 +10,9 @@ class knapsack_mixed {
   vec<T> f;
 
  public:
-  CEXPE knapsack_mixed(u32 max_weight) : f(max_weight + 1) {}
+  CEXPE knapsack_mixed(u32 max_weight) NE : f(max_weight + 1) {}
   // count = 0 -> inf
-  CEXP void add(u32 weight, T value, u32 count = 1) {
+  CEXP void add(u32 weight, T value, u32 count = 1) NE {
     if (const u32 M = (u32)f.size() - 1; !count)
       flt_ (u32, i, weight, M + 1) f[i] = max(f[i], f[i - weight] + value);
     else
@@ -28,7 +28,7 @@ class knapsack_mixed {
         }
       }
   }
-  vec<T> CR result() const { return f; }
+  vec<T> CR result() CNE { return f; }
 };
 
 }  // namespace tifa_libs::opt

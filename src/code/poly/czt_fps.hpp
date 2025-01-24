@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 // @brief Chirp Z-Transform
 // @return {f(a*c^0), f(a*c^1), ..., f(a*c^{m-1})}
 template <template <class... Ts> class ccore, class mint, class... args>
-auto czt_fps(poly<ccore, mint, args...> f, mint c, u32 m = -1_u32, mint a = mint{1}) {
+auto czt_fps(poly<ccore, mint, args...> f, mint c, u32 m = -1_u32, mint a = mint{1}) NE {
   using poly_t = poly<ccore, mint, args...>;
   static rpow rp, irp;
   if (!~m) m = (u32)f.size();

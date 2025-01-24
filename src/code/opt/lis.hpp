@@ -7,7 +7,7 @@ namespace tifa_libs::opt {
 
 // @return INDEX of LIS in @a
 template <class T, class C = std::less<T>>
-CEXP vecu lis(vec<T> CR a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}) {
+CEXP vecu lis(vec<T> CR a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}) NE {
   vec<T> f{inf};
   vecu g;
   for (auto i : a) {
@@ -20,7 +20,8 @@ CEXP vecu lis(vec<T> CR a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}
   vecu ret;
   for (u32 i = u32(g.size() - 1), now = u32(f.size() - 1); ~i; --i)
     if (g[i] == now && val > a[i]) ret.push_back((u32)i), --now, val = a[i];
-  return std::ranges::reverse(ret), ret;
+  std::ranges::reverse(ret);
+  return ret;
 }
 
 }  // namespace tifa_libs::opt

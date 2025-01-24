@@ -12,7 +12,7 @@ class hash_substr_2d {
   vvec<mint> hash;
 
  public:
-  CEXP void set(spn<strn> s, u32 len_c) {
+  CEXP void set(spn<strn> s, u32 len_c) NE {
     const u32 n = (u32)s.size(), m = (u32)s[0].size();
     if (assert(0 < len_c && len_c <= m), hs.resize(n), hash = vvec<mint>(n + 1, vec<mint>(m + 1)); p.size() <= n) {
       if (p.reserve(n + 1); p.empty()) p.push_back(1);
@@ -22,9 +22,9 @@ class hash_substr_2d {
     flt_ (u32, i, 1, n + 1)
       flt_ (u32, j, 1, m + 1) hash[i][j] = hash[i - 1][j] * base2 + hs[i - 1].get(j - 1, len_c);
   }
-  CEXP u32 row() const { return u32(hash.size() - 1); }
-  CEXP u32 col() const { return u32(hash[0].size() - 1); }
-  CEXP mint get(u32 r, u32 c, u32 len_r = -1_u32) const {
+  CEXP u32 row() CNE { return u32(hash.size() - 1); }
+  CEXP u32 col() CNE { return u32(hash[0].size() - 1); }
+  CEXP mint get(u32 r, u32 c, u32 len_r = -1_u32) CNE {
     assert(!hs.empty() && r < hash.size() && c < hash[0].size());
     return hash[r + min(len_r, (u32)hash.size() - 1 - r)][c + 1] - hash[r][c + 1] * p[len_r];
   }

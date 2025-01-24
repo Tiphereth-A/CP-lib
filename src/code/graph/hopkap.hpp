@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 // @param l number of vertex in left side
 // @param r number of vertex in right side
 // @param e arc from left to right
-inline vecptu hopkap(u32 l, u32 r, vecptu CR e) {
+inline vecptu hopkap(u32 l, u32 r, vecptu CR e) NE {
   vvecu adj(l);
   vecu pre(r, -1_u32), nxt(l, -1_u32);
   for (auto [u, v] : e) adj[u].push_back(v);
@@ -28,9 +28,12 @@ inline vecptu hopkap(u32 l, u32 r, vecptu CR e) {
     if (!max_lev) break;
     flt_ (u32, i, 0, l)
       if (lev[i] > max_lev) lev[i] = 0;
-    auto f = [&](auto&& f, u32 x) -> bool {
+    auto f = [&](auto&& f, u32 x) NE -> bool {
       for (; ptr[x] < adj[x].size(); ++ptr[x])
-        if (u32 y = adj[x][ptr[x]], z = pre[y]; !~z || (lev[z] == lev[x] + 1 && f(f, z))) return nxt[x] = y, pre[y] = x, ptr[x] = (u32)adj[x].size(), 1;
+        if (u32 y = adj[x][ptr[x]], z = pre[y]; !~z || (lev[z] == lev[x] + 1 && f(f, z))) {
+          nxt[x] = y, pre[y] = x, ptr[x] = (u32)adj[x].size();
+          return 1;
+        }
       return 0;
     };
     flt_ (u32, i, 0, l)

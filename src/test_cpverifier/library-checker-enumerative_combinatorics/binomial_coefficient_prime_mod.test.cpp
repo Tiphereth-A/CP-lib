@@ -11,7 +11,7 @@ int main() {
   u32 t, MOD;
   tifa_libs::fin >> t >> MOD;
   mint::set_mod(MOD);
-  tifa_libs::math::Binom<mint> mCn(10'000'001);
+  tifa_libs::math::binom<mint> mCn(10'000'001);
   while (t--) {
     i64 n, k;
     tifa_libs::fin >> n >> k;

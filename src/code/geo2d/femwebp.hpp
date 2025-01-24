@@ -6,8 +6,8 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-point<FP> femwebp(vec<point<FP>> CR vp) {
-  auto Tl = [&](point<FP> CR y) {
+point<FP> femwebp(vec<point<FP>> CR vp) NE {
+  auto Tl = [&](point<FP> CR y) NE {
     point<FP> y2;
     math::kahan<FP> sd = 0;
     for (auto&& p : vp)
@@ -17,13 +17,13 @@ point<FP> femwebp(vec<point<FP>> CR vp) {
       }
     return y2 / (FP)sd;
   };
-  auto r = [&](point<FP> CR y) {
+  auto r = [&](point<FP> CR y) NE {
     point<FP> r;
     for (auto&& p : vp)
       if (p != y) r += (y - p).do_unit();
     return r.norm();
   };
-  auto T = [&](point<FP> CR y) {
+  auto T = [&](point<FP> CR y) NE {
     if (!std::ranges::count(vp, y)) return Tl(y);
     FP er = 1 / r(y);
     return max((FP)0, 1 - er) * Tl(y) + min((FP)1, er) * y;

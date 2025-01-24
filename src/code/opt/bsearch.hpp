@@ -9,7 +9,7 @@ template <class F>
 requires requires(F pred, u32 x) {
   { pred(x) } -> std::same_as<bool>;
 }
-CEXP u32 bsearch(F&& pred) {
+CEXP u32 bsearch(F&& pred) NE {
   u32 ok = 0, ng = 1;
   while (pred(ng)) ng *= 2;
   while (abs(i32(ok - ng)) > 1) {

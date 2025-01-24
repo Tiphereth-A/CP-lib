@@ -8,7 +8,7 @@ namespace tifa_libs {
 //! vertex ID starts at 1
 //! tree root = n
 // prüfer code of vertex i is code[i], code[0] = 0
-CEXP vecu prufer_inv(spnu code) {
+CEXP vecu prufer_inv(spnu code) NE {
   const u32 n = u32(code.size() + 1);
   vecu deg(n + 1);
   flt_ (u32, i, 1, n - 1) ++deg[code[i]];

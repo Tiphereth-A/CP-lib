@@ -12,7 +12,7 @@ struct cconv_3ntt {
   struct ntt3 { NTT<mint0> _0; NTT<mint1> _1; NTT<mint2> _2; } ccore;
   // clang-format on
   static CEXP auto ct_cat = ct_3NTT;
-  CEXP void conv(vec<mint> &l, vec<mint> CR r, u32 sz = 0) { l = conv_3ntt<mint, mint0, mint1, mint2>(ccore._0, ccore._1, ccore._2, l, r, sz); }
+  CEXP void conv(vec<mint> &l, vec<mint> CR r, u32 sz = 0) NE { l = conv_3ntt<mint, mint0, mint1, mint2>(ccore._0, ccore._1, ccore._2, l, r, sz); }
 };
 }  // namespace poly3ntt_impl_
 

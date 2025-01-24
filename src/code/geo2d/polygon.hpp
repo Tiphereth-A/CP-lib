@@ -12,45 +12,51 @@ template <class FP>
 struct polygon {
   vec<point<FP>> vs;
 
-  CEXP polygon() {}
-  CEXPE polygon(u32 sz) : vs(sz) {}
-  CEXP polygon(itl<point<FP>> vs_) : vs(vs_) {}
-  CEXP polygon(spn<point<FP>> vs_) : vs(vs_.begin(), vs_.end()) {}
+  CEXP polygon() = default;
+  CEXPE polygon(u32 sz) NE : vs(sz) {}
+  CEXP polygon(itl<point<FP>> vs_) NE : vs(vs_) {}
+  CEXP polygon(spn<point<FP>> vs_) NE : vs(vs_.begin(), vs_.end()) {}
 
-  friend std::istream &operator>>(std::istream &is, polygon &p) {
+  friend std::istream &operator>>(std::istream &is, polygon &p) NE {
     for (auto &i : p.vs) is >> i;
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, polygon CR p) {
+  friend std::ostream &operator<<(std::ostream &os, polygon CR p) NE {
     if (p.vs.empty()) return os;
     for (auto it = p.vs.begin(); it != p.vs.end() - 1; ++it) os << *it << ' ';
     return os << p.vs.back();
   }
-  CEXP u32 size() const { return (u32)vs.size(); }
-  CEXP point<FP> &operator[](u32 x) { return vs[x]; }
-  CEXP point<FP> CR operator[](u32 x) const { return vs[x]; }
-  CEXP polygon &resort() { return std::ranges::sort(vs), *this; }
-  CEXP polygon &reunique() { return vs = uniq(vs), *this; }
-  CEXP auto prev(TPN vec<point<FP>>::const_iterator it) const { return --(it == vs.begin() ? it = vs.end() : it); }
-  CEXP auto next(TPN vec<point<FP>>::const_iterator it) const { return ++it == vs.end() ? vs.begin() : it; }
-  CEXP u32 prev(u32 idx) const { return idx == 0 ? size() - 1 : idx - 1; }
-  CEXP u32 next(u32 idx) const { return idx + 1 == size() ? 0 : idx + 1; }
-  CEXP FP circum() const {
+  CEXP u32 size() CNE { return (u32)vs.size(); }
+  CEXP point<FP> &operator[](u32 x) NE { return vs[x]; }
+  CEXP point<FP> CR operator[](u32 x) CNE { return vs[x]; }
+  CEXP polygon &resort() NE {
+    std::ranges::sort(vs);
+    return *this;
+  }
+  CEXP polygon &reunique() NE {
+    vs = uniq(vs);
+    return *this;
+  }
+  CEXP auto prev(TPN vec<point<FP>>::const_iterator it) CNE { return --(it == vs.begin() ? it = vs.end() : it); }
+  CEXP auto next(TPN vec<point<FP>>::const_iterator it) CNE { return ++it == vs.end() ? vs.begin() : it; }
+  CEXP u32 prev(u32 idx) CNE { return idx == 0 ? size() - 1 : idx - 1; }
+  CEXP u32 next(u32 idx) CNE { return idx + 1 == size() ? 0 : idx + 1; }
+  CEXP FP circum() CNE {
     math::kahan<FP> ret = dist_PP(vs.back(), vs.front());
     flt_ (u32, i, 0, size() - 1) ret += dist_PP(vs[i], vs[i + 1]);
     return ret;
   }
-  CEXP FP area2() const {
+  CEXP FP area2() CNE {
     if (size() < 3) return 0;
     math::kahan<FP> ret = vs.back() ^ vs.front();
     flt_ (u32, i, 0, size() - 1) ret += vs[i] ^ vs[i + 1];
     return ret;
   }
-  CEXP FP area() const {
+  CEXP FP area() CNE {
     static_assert(std::floating_point<FP>);
     return area2() * (FP).5;
   }
-  CEXP bool is_convex() const {
+  CEXP bool is_convex() CNE {
     bool flag[2] = {false, false};
     const u32 n = size();
     if (n < 3) return true;
@@ -61,7 +67,7 @@ struct polygon {
     return true;
   }
   // @return nullopt if @p on board of polygon, otherwise winding number
-  CEXP std::optional<u32> winding(point<FP> CR p) const {
+  CEXP std::optional<u32> winding(point<FP> CR p) CNE {
     u32 cnt = 0;
     flt_ (u32, i, 0, size()) {
       auto &&u = vs[i], &&v = vs[next(i)];

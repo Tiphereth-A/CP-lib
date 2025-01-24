@@ -6,11 +6,11 @@
 namespace tifa_libs::opt {
 
 template <iterable_c T>
-CEXP u32 lcs_circ(cT_(T) a, cT_(T) b) {
+CEXP u32 lcs_circ(cT_(T) a, cT_(T) b) NE {
   T b_(b.size() * 2);
   std::ranges::copy(b, b_.begin()), std::ranges::copy(b, std::back_inserter(b_));
   vvecb left(a.size() + 1, vecb(b_.size() + 1)), up = left;
-  auto f = [&](u32 x, u32 y) {
+  auto f = [&](u32 x, u32 y) NE {
     assert(x && y);
     bool _ = (a[x - 1] == b_[y - 1]) || up[x][y - 1] || left[x - 1][y];
     left[x][y] = _ ^ up[x][y - 1], up[x][y] = _ ^ left[x - 1][y];

@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-CEXP u64 ikth_root(u64 a, u64 k) {
+CEXP u64 ikth_root(u64 a, u64 k) NE {
   if (assert(k); a <= 1 || k == 1) return a;
   if (k >= 64) return 1;
   u64 n = (u64)powl(a, 1.l / k);

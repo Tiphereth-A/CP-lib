@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 namespace ringenum3_impl_ {
 template <class F, class G>
 requires(adjlist_c<G> && !adjlistw_c<G>)
-CEXP void run(G CR dg, F&& func) {
+CEXP void run(G CR dg, F&& func) NE {
   const u32 n = dg.size();
   vecb vis(n);
   flt_ (u32, u, 0, n) {
@@ -24,7 +24,7 @@ CEXP void run(G CR dg, F&& func) {
 //! should be simple undirected graph
 // func(u, v, w) forall {u,v,w} is C3
 template <class F>
-CEXP void ringenum3(spnu deg, vecptu CR edges, F&& func) {
+CEXP void ringenum3(spnu deg, vecptu CR edges, F&& func) NE {
   alist dg((u32)deg.size());
   for (auto [u, v] : edges) {
     if (deg[u] < deg[v] || (deg[u] == deg[v] && u > v)) swap(u, v);
@@ -41,9 +41,9 @@ CEXP void ringenum3(u32 n, vecptu CR edges, F&& func) {
   for (auto [u, v] : edges) ++deg[u], ++deg[v];
   ringenum3(deg, edges, std::forward<F>(func));
 }
-CEXP u64 ringcnt3(u32 n, vecptu CR edges) {
+CEXP u64 ringcnt3(u32 n, vecptu CR edges) NE {
   u64 ans = 0;
-  ringenum3(n, edges, [&](u32, u32, u32) { ++ans; });
+  ringenum3(n, edges, [&](u32, u32, u32) NE { ++ans; });
   return ans;
 }
 

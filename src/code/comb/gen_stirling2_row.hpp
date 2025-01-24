@@ -8,18 +8,19 @@ namespace tifa_libs::math {
 
 // stirling2[i] = {n \\brace i}, i=0,1,...,n
 template <class poly>
-CEXP poly gen_stirling2_row(u32 n, spnuu pows, spnuu ifact) {
+CEXP poly gen_stirling2_row(u32 n, spnuu pows, spnuu ifact) NE {
   using mint = TPN poly::val_t;
   if (!n) return poly{1};
   u64 mod = mint::mod();
   poly a(n + 1), b(n + 1);
   flt_ (u32, i, 1, n + 1) a[i] = mul_mod_u(pows[i], ifact[i], mod);
   flt_ (u32, i, 0, n + 1) b[i] = ((i & 1) ? mod - ifact[i] : ifact[i]);
-  return (a *= b).resize(n + 1), a;
+  (a *= b).resize(n + 1);
+  return a;
 }
 // stirling2[i] = {n \\brace i}, i=0,1,...,n
 template <class poly>
-CEXP poly gen_stirling2_row(u32 n) {
+CEXP poly gen_stirling2_row(u32 n) NE {
   using mint = TPN poly::val_t;
   return gen_stirling2_row<poly>(n, gen_pows(n + 1, n, mint::mod()), gen_ifact(n + 1, mint::mod()));
 }

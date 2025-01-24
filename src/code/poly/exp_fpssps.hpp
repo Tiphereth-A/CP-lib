@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T, u32 N = 21>
-auto exp_fpssps(u32 n, vec<T> g) {
+auto exp_fpssps(u32 n, vec<T> g) NE {
   static conv_subset<T, N> ss;
   assert(n <= N && g[0] == 0), g.resize(1 << n);
   vec<T> h{1};

@@ -7,14 +7,14 @@ namespace tifa_libs::opt {
 
 // @return $\argmin_{l\leq x\leq r}\{f\}$
 template <arithm_c I, class F>
-CEXP auto tsearch(I l, I r, F&& f) {
+CEXP auto tsearch(I l, I r, F&& f) NE {
   using T = decltype(f(l));
   assert(l <= r);
   I ml, mr;
   T fl = f(l), fr = f(r), fml, fmr;
   using PT = std::conditional_t<std::is_floating_point_v<I>, I, f64>;
-  fml = f(ml = l + (r - l) * (1 - std::numbers::phi_v<PT>)), fmr = f(mr = r - (r - l) * (1 - std::numbers::phi_v<PT>));
-
+  fml = f(ml = l + (r - l) * (1 - std::numbers::phi_v<PT>));
+  fmr = f(mr = r - (r - l) * (1 - std::numbers::phi_v<PT>));
   do {
     if CEXP (is_int_v<I>) {
       if (r - l < 8) {

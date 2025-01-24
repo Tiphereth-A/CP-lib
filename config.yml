@@ -261,10 +261,7 @@ notebook:
     - max_area_t: 凸包内面积最大的三角形
       code_ext: hpp
       test_ext: cpp
-    - coverage_rect_min_area: 最小面积覆盖矩形
-      code_ext: hpp
-      test_ext: cpp
-    - coverage_rect_min_circum: 最小周长覆盖矩形
+    - coverage_rect: 覆盖矩形(最小面积,最小周长)
       code_ext: hpp
       test_ext: cpp
     - max_dis_cvh: 两凸包中的点的最远距离

@@ -10,19 +10,19 @@ namespace tifa_libs::ds {
 // (See http://www.boost.org/LICENSE_1_0.txt)
 namespace d_ary_heap_impl_ {
 template <int D>
-CEXP u32 ch1idx_(u32 i) { return i * D + 1; }
+CEXP u32 ch1idx_(u32 i) NE { return i * D + 1; }
 template <int D>
-CEXP u32 chls_idx_(u32 i) { return i * D + D; }
+CEXP u32 chls_idx_(u32 i) NE { return i * D + D; }
 template <int D>
-CEXP u32 gchls_idx_(u32 i) { return i * (D * D) + (D * D + D); }
+CEXP u32 gchls_idx_(u32 i) NE { return i * (D * D) + (D * D + D); }
 template <int D>
-CEXP u32 pidx_(u32 i) { return (i - 1) / D; }
+CEXP u32 pidx_(u32 i) NE { return (i - 1) / D; }
 template <int D>
-CEXP u32 gpidx_(u32 i) { return (i - (D + 1)) / (D * D); }
+CEXP u32 gpidx_(u32 i) NE { return (i - (D + 1)) / (D * D); }
 template <int D>
-CEXP u32 idx_ngch_(u32 l) { return gpidx_<D>(l - 1) + 1; }
+CEXP u32 idx_ngch_(u32 l) NE { return gpidx_<D>(l - 1) + 1; }
 template <int D, class I, class C>
-CEXP I l_ch_(I it_ch1, C &&c) {
+CEXP I l_ch_(I it_ch1, C &&c) NE {
   if CEXP (D == 1) return it_ch1;
   else if CEXP (D == 2) return it_ch1 + !!c(it_ch1[0], it_ch1[1]);
   else {
@@ -31,7 +31,7 @@ CEXP I l_ch_(I it_ch1, C &&c) {
   }
 }
 template <int D, class I, class C>
-CEXP I l_ch_(I it_ch1, int num_ch, C &&c) {
+CEXP I l_ch_(I it_ch1, int num_ch, C &&c) NE {
   if CEXP (D == 2) return it_ch1;
   else if CEXP (D == 3) {
     if (num_ch == 1) return it_ch1;
@@ -40,7 +40,9 @@ CEXP I l_ch_(I it_ch1, int num_ch, C &&c) {
     switch (num_ch) {
       case 1: return it_ch1;
       case 2: return it_ch1 + !!c(it_ch1[0], it_ch1[1]);
-      default: I largest = it_ch1 + !!c(it_ch1[0], it_ch1[1]); return c(*largest, it_ch1[2]) ? it_ch1 + 2 : largest;
+      default:
+        I largest = it_ch1 + !!c(it_ch1[0], it_ch1[1]);
+        return c(*largest, it_ch1[2]) ? it_ch1 + 2 : largest;
     }
   } else {
     switch (num_ch) {
@@ -51,7 +53,8 @@ CEXP I l_ch_(I it_ch1, int num_ch, C &&c) {
         return c(*l, it_ch1[2]) ? it_ch1 + 2 : l;
       }
       case 4: {
-        I hl1 = it_ch1 + !!c(it_ch1[0], it_ch1[1]), hl2 = it_ch1 + 2 + !!c(it_ch1[2], it_ch1[3]);
+        I hl1 = it_ch1 + !!c(it_ch1[0], it_ch1[1]),
+          hl2 = it_ch1 + 2 + !!c(it_ch1[2], it_ch1[3]);
         return c(*hl1, *hl2) ? hl2 : hl1;
       }
       default:
@@ -64,18 +67,20 @@ CEXP I l_ch_(I it_ch1, int num_ch, C &&c) {
 }  // namespace d_ary_heap_impl_
 
 template <int D, class I, class C = std::less<>>
-CEXP void make_dary_heap(I begin, I end, C &&comp = C{}) {
+CEXP void make_dary_heap(I begin, I end, C &&comp = C{}) NE {
   u32 len = u32(end - begin);
   if (len <= 1) return;
   u32 idx = (len - 2) / D;
   if (int num_ch_end = (len - 1) % D; num_ch_end) {
-    if (I chl = d_ary_heap_impl_::l_ch_<D>(begin + d_ary_heap_impl_::ch1idx_<D>(idx), num_ch_end, comp); comp(begin[idx], *chl)) swap(begin[idx], *chl);
+    I chl = d_ary_heap_impl_::l_ch_<D>(begin + d_ary_heap_impl_::ch1idx_<D>(idx), num_ch_end, comp);
+    if (comp(begin[idx], *chl)) swap(begin[idx], *chl);
     if (idx == 0) return;
     --idx;
   }
   if (idx > 0)
     for (u32 lidx_ngcd = d_ary_heap_impl_::idx_ngch_<D>(len);;) {
-      if (I ch = d_ary_heap_impl_::l_ch_<D>(begin + d_ary_heap_impl_::ch1idx_<D>(idx), comp); comp(begin[idx], *ch)) swap(begin[idx], *ch);
+      I ch = d_ary_heap_impl_::l_ch_<D>(begin + d_ary_heap_impl_::ch1idx_<D>(idx), comp);
+      if (comp(begin[idx], *ch)) swap(begin[idx], *ch);
       if (idx-- == lidx_ngcd) break;
     }
   for (;; --idx) {
@@ -94,13 +99,13 @@ CEXP void make_dary_heap(I begin, I end, C &&comp = C{}) {
   }
 }
 template <int D, class I, class C = std::less<>>
-CEXP bool is_dary_heap(I begin, I end, C &&comp = C{}) {
+CEXP bool is_dary_heap(I begin, I end, C &&comp = C{}) NE {
   flt_ (u32, i, 1, u32(end - begin))
     if (u32 p = d_ary_heap_impl_::pidx_<D>(i); comp(begin[p], begin[i])) return false;
   return true;
 }
 template <int D, class I, class C = std::less<>>
-CEXP void push_dary_heap(I begin, I end, C &&comp = C{}) {
+CEXP void push_dary_heap(I begin, I end, C &&comp = C{}) NE {
   TPN std::iterator_traits<I>::value_type val = std::move(end[-1]);
   u32 idx = u32(end - begin) - 1;
   while (idx > 0) {
@@ -111,7 +116,7 @@ CEXP void push_dary_heap(I begin, I end, C &&comp = C{}) {
   begin[idx] = std::move(val);
 }
 template <int D, class I, class C = std::less<>>
-CEXP void pop_dary_heap(I begin, I end, C &&comp = C{}) {
+CEXP void pop_dary_heap(I begin, I end, C &&comp = C{}) NE {
   u32 len = u32(end - begin) - 1;
   TPN std::iterator_traits<I>::value_type val = std::move(end[-1]);
   u32 idx = 0;
@@ -121,7 +126,8 @@ CEXP void pop_dary_heap(I begin, I end, C &&comp = C{}) {
       if (!comp(val, *ch)) break;
       begin[idx] = std::move(*ch), idx = u32(ch - begin);
     } else if (ch1 < len) {
-      if (I ch = d_ary_heap_impl_::l_ch_<D>(begin + ch1, int(len - ch1), comp); comp(val, *ch)) begin[idx] = std::move(*ch), idx = u32(ch - begin);
+      I ch = d_ary_heap_impl_::l_ch_<D>(begin + ch1, int(len - ch1), comp);
+      if (comp(val, *ch)) begin[idx] = std::move(*ch), idx = u32(ch - begin);
       break;
     } else break;
   }

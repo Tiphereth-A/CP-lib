@@ -14,7 +14,7 @@ enum RELPoC { otherwise_poc,
               covered_poc };
 
 template <class FP>
-CEXP RELPoC relation_PoC(polygon<FP> CR po, circle<FP> CR c) {
+CEXP RELPoC relation_PoC(polygon<FP> CR po, circle<FP> CR c) NE {
   auto x = covered_poc;
   if (relation_PoP(po, c.o) != inside_pop) return otherwise_poc;
   flt_ (u32, i, 0, po.size())

@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-CEXP u32 euler_phi_u32(u32 n) {
+CEXP u32 euler_phi_u32(u32 n) NE {
   u32 ans = n;
   for (u32 i = 2, ed = isqrt(n); i <= ed; ++i)
     if (!(n % i)) {

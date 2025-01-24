@@ -10,10 +10,10 @@ struct FFT {
   using C = std::complex<FP>;
   using data_t = C;
 
-  CEXPE FFT() : rev(), w() {}
+  CEXPE FFT() NE : rev(), w() {}
 
-  CEXP u32 size() const { return (u32)rev.size(); }
-  CEXP void bzr(u32 len) {
+  CEXP u32 size() CNE { return (u32)rev.size(); }
+  CEXP void bzr(u32 len) NE {
     const u32 n = max<u32>(std::bit_ceil(len), 2);
     if (n == size()) return;
     rev.resize(n, 0);
@@ -22,7 +22,7 @@ struct FFT {
     w.resize(n), w[0].real(1);
     flt_ (u32, i, 1, n) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
   }
-  CEXP void dif(vec<C> &f, u32 n = 0) const {
+  CEXP void dif(vec<C> &f, u32 n = 0) CNE {
     if (!n) n = size();
     if (f.size() < n) f.resize(n);
     assert(n <= size());
@@ -40,7 +40,7 @@ struct FFT {
       }
 #pragma GCC diagnostic warning "-Wsign-conversion"
   }
-  CEXP void dit(vec<C> &f, u32 n = 0) const {
+  CEXP void dit(vec<C> &f, u32 n = 0) CNE {
     if (!n) n = size();
     dif(f, n);
     flt_ (u32, i, 0, n) f[i] /= (FP)n;

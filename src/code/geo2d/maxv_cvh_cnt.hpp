@@ -7,14 +7,14 @@ namespace tifa_libs::geo {
 
 // max number of vertices in vp which forms a convex hull
 template <class FP>
-CEXP u32 maxv_cvh_cnt(vec<point<FP>> CR vp) {
+CEXP u32 maxv_cvh_cnt(vec<point<FP>> CR vp) NE {
   const u32 n = (u32)vp.size();
 
   struct TIFA {
     line<FP> ln;
     u32 l, r;
-    CEXP TIFA(u32 l, u32 r, point<FP> CR pl, point<FP> CR pr) : ln(pl, pr), l(l), r(r) {}
-    CEXP auto operator<=>(TIFA CR r) const { return ln <=> r.ln; }
+    CEXP TIFA(u32 l, u32 r, point<FP> CR pl, point<FP> CR pr) NE : ln(pl, pr), l(l), r(r) {}
+    CEXP auto operator<=>(TIFA CR r) CNE { return ln <=> r.ln; }
   };
   vec<TIFA> vl;
   flt_ (u32, i, 0, n)

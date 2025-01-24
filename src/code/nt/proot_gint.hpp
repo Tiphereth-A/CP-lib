@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 template <class mint, i64 M = -1>
-gint<mint, M> proot_gint() {
+gint<mint, M> proot_gint() NE {
   using gint = gint<mint, M>;
   const auto m = mint::mod();
   if (m == 998244353) return {1, 1};

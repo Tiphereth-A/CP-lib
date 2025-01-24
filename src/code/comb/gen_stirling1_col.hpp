@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 
 // stirling1[i] = {i \\brack k}, i=0,1,...,n
 template <class poly, bool with_sgn = true>
-CEXP poly gen_stirling1_col(u32 n, u32 k, spnuu fact, spnuu inv, spnuu invfact) {
+CEXP poly gen_stirling1_col(u32 n, u32 k, spnuu fact, spnuu inv, spnuu invfact) NE {
   if (n < k) return poly(n + 1);
   poly f(n + 1);
   flt_ (u32, i, 1, n + 1) f[i] = inv[i];
@@ -22,7 +22,7 @@ CEXP poly gen_stirling1_col(u32 n, u32 k, spnuu fact, spnuu inv, spnuu invfact) 
 }
 // stirling1[i] = {i \\brack k}, i=0,1,...,n
 template <class poly, bool with_sgn = true>
-CEXP poly gen_stirling1_col(u32 n, u32 k) {
+CEXP poly gen_stirling1_col(u32 n, u32 k) NE {
   using mint = TPN poly::val_t;
   auto fact = gen_fact(n + 1, mint::mod());
   return gen_stirling1_col<poly, with_sgn>(n, k, fact, gen_inv(n + 1, mint::mod()), gen_invseq(fact, mint::mod()));

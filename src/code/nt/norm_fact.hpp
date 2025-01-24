@@ -8,7 +8,7 @@
 
 namespace tifa_libs::math {
 namespace norm_fact_impl_ {
-CEXP gint<i128, -1> nfp(u64 p) {
+CEXP gint<i128, -1> nfp(u64 p) NE {
   if (p % 4 == 3) return {-1, -1};
   if (p == 2) return {1, 1};
   i64 x = 1;
@@ -29,7 +29,7 @@ CEXP gint<i128, -1> nfp(u64 p) {
   }
   return {x, y};
 }
-CEXP vec<gint<i128, -1>> nfpp(u64 p, u32 e) {
+CEXP vec<gint<i128, -1>> nfpp(u64 p, u32 e) NE {
   using G = gint<i128, -1>;
   if (p % 4 == 3) return {e & 1 ? 0 : (i64)qpow(p, e / 2)};
   if (p == 2) return {qpow(G{1, 1}, e)};
@@ -40,7 +40,7 @@ CEXP vec<gint<i128, -1>> nfpp(u64 p, u32 e) {
   flt_ (u32, i, 0, e + 1) ret[i] = pows[i] * conj(pows[e - i]);
   return ret;
 }
-CEXP vec<gint<i128, -1>> nf(u64 n) {
+CEXP vec<gint<i128, -1>> nf(u64 n) NE {
   using G = gint<i128, -1>;
   if (!n) return {{}};
   auto const pe = pf_exp(n);
@@ -60,12 +60,13 @@ CEXP vec<gint<i128, -1>> nf(u64 n) {
 }  // namespace norm_fact_impl_
 
 // find all non-negative integer pair (x, y) s.t. $x^2+y^2=n$ in lexicographic order
-CEXP vecptuu norm_fact(u64 n) {
+CEXP vecptuu norm_fact(u64 n) NE {
   if (!n) return {{0, 0}};
   vecptuu ans;
   for (auto& g : norm_fact_impl_::nf(n))
     if (ans.emplace_back(g.real(), g.imag()); !g.imag()) ans.emplace_back(g.imag(), g.real());
-  return std::ranges::sort(ans), ans;
+  std::ranges::sort(ans);
+  return ans;
 }
 
 }  // namespace tifa_libs::math

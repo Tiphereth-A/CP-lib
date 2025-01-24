@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 // Binary exgcd
 template <uint_c U, bool only_x = false>
-CEXP auto exgcd_b(U a, U b) {
+CEXP auto exgcd_b(U a, U b) NE {
   using T = to_sint_t<U>;
   if CEXP (only_x) {
     if (!a) return std::make_tuple(b, (T)0);
@@ -45,7 +45,7 @@ CEXP auto exgcd_b(U a, U b) {
 }
 // @return then return tuple(g, x[, y]) s.t. g = gcd(a, b), xa + yb = g, |x| + |y| is the minimal (primary) and x <= y (secondarily)
 template <sint_c T, bool only_x = false>
-CEXP auto exgcd(T a, T b) {
+CEXP auto exgcd(T a, T b) NE {
   using U = to_uint_t<T>;
   if (auto [x, y] = std::minmax(a, b); x >= 0 && y <= T(U(-1) >> sizeof(U))) return exgcd_b<U, only_x>((U)a, (U)b);
   if CEXP (only_x) {

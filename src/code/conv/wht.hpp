@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-CEXP void wht(vec<T>& f, u32 n = 0) {
+CEXP void wht(vec<T>& f, u32 n = 0) NE {
   if (!n) n = (u32)f.size();
   for (u32 i = 1; i < n; i *= 2)
     flt_ (u32, j, 0, n)
@@ -16,7 +16,7 @@ CEXP void wht(vec<T>& f, u32 n = 0) {
       }
 }
 template <class T>
-CEXP void iwht(vec<T>& f, u32 n = 0) {
+CEXP void iwht(vec<T>& f, u32 n = 0) NE {
   if (!n) n = (u32)f.size();
   if CEXP (wht(f, n); std::is_integral_v<T>)
     for (auto& x : f) x /= n;

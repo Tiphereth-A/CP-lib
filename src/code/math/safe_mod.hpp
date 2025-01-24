@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <sint_c T>
-CEXP T safe_mod(T x, to_uint_t<T> mod) { return ((x %= (T)mod) < 0 ? x + (T)mod : x); }
+CEXP T safe_mod(T x, to_uint_t<T> mod) NE { return ((x %= (T)mod) < 0 ? x + (T)mod : x); }
 
 }  // namespace tifa_libs::math
 

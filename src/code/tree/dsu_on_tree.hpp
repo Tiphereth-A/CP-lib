@@ -16,8 +16,8 @@ requires requires(Fu update, Fq query, Fc clear, Fr reset, u32 now) {
   clear(now);
   reset();
 }
-CEXP void dsu_on_tree(tree_c auto CR tr, spnu dfn, spnu sz, spnu maxson, spnu maxdfn, spnu euler, Fu&& update, Fq&& query, Fc&& clear, Fr&& reset) {
-  auto f = [&](auto&& f, u32 now, u32 fa = -1_u32, bool keep = false) -> void {
+CEXP void dsu_on_tree(tree_c auto CR tr, spnu dfn, spnu sz, spnu maxson, spnu maxdfn, spnu euler, Fu&& update, Fq&& query, Fc&& clear, Fr&& reset) NE {
+  auto f = [&](auto&& f, u32 now, u32 fa = -1_u32, bool keep = false) NE -> void {
     for (auto v : tr[now])
       if ((u32)v != fa && (u32)v != maxson[now]) f(f, (u32)v, now, false);
     if (sz[now] > 1) f(f, maxson[now], now, true);

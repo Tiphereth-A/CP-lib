@@ -23,7 +23,7 @@ int main() {
       if (e == 1) return lst = p - 1;
       else return lst = lst * p;
     });
-    std::inclusive_scan(sphi.begin(), sphi.end(), sphi.begin());
+    std::partial_sum(sphi.begin(), sphi.end(), sphi.begin());
   }
   auto sf = [sphi](u64 x) -> mint { return sphi[x]; };
   auto sg = [](u64 x) -> mint { return x; };

@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 // solve $a^x\equiv b \pmod m$
-inline std::optional<u64> exbsgs(u64 a, u64 b, u64 m) {
+inline std::optional<u64> exbsgs(u64 a, u64 b, u64 m) NE {
   if (m == 0) return -1;
   if (a %= m; (b %= m) == 1 || m == 1) return 0;
   u64 cnt = 0, t = 1;

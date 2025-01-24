@@ -12,37 +12,38 @@ class ODT {
     u32 l, r;
     mutable T v;
     //! [l, r]
-    CEXP TIFA(u32 l, u32 r, cT_(T) v) : l(l), r(r), v(v) {}
-    CEXP auto operator<=>(TIFA CR o) const { return (i32)l - (i32)o.l; }
+    CEXP TIFA(u32 l, u32 r, cT_(T) v) NE : l(l), r(r), v(v) {}
+    CEXP auto operator<=>(TIFA CR o) CNE { return (i32)l - (i32)o.l; }
   };
 
   std::set<TIFA> data;
 
  public:
-  CEXPE ODT() : data() {}
-  CEXPE ODT(vec<T> CR c) : ODT() {
+  CEXPE ODT() NE : data() {}
+  CEXPE ODT(vec<T> CR c) NE : ODT() {
     u32 cnt = 0;
     for (auto &&i : c) data.emplace(cnt, cnt, i), ++cnt;
   }
 
-  CEXP void clear() { data.clear(); }
+  CEXP void clear() NE { data.clear(); }
   //! [l, r]
-  CEXP void insert(u32 l, u32 r, cT_(T) v) { data.emplace(l, r, v); }
-  CEXP auto find(u32 x) const { return std::prev(data.upper_bound(TIFA{x, 0, 0})); }
-  CEXP auto split(u32 x) {
+  CEXP void insert(u32 l, u32 r, cT_(T) v) NE { data.emplace(l, r, v); }
+  CEXP auto find(u32 x) CNE { return std::prev(data.upper_bound(TIFA{x, 0, 0})); }
+  CEXP auto split(u32 x) NE {
     auto it = find(x);
     if (it->l == x) return it;
     auto [l, r, v] = *it;
-    return data.erase(it), data.emplace(l, x - 1, v), data.emplace(x, r, v).first;
+    data.erase(it), data.emplace(l, x - 1, v);
+    return data.emplace(x, r, v).first;
   }
   //! [l, r]
-  CEXP void assign(u32 l, u32 r, cT_(T) v) {
+  CEXP void assign(u32 l, u32 r, cT_(T) v) NE {
     auto itr = split(r + 1), itl = split(l);
     data.erase(itl, itr), data.emplace(l, r, v);
   }
   //! [l, r]
   // merge adjacent nodes with same value
-  CEXP void assign_merge(u32 l, u32 r, cT_(T) v) {
+  CEXP void assign_merge(u32 l, u32 r, cT_(T) v) NE {
     auto itl = find(l), itr = find(r);
     if (itr != data.end()) {
       if (itr != std::prev(data.end()) && itr->r == r && (++itr)->v == v) r = (itr++)->r;
@@ -57,13 +58,13 @@ class ODT {
   //! [l, r]
   // @param f: (iter) -> void
   template <class F>
-  CEXP void run(u32 l, u32 r, F f) {
+  CEXP void run(u32 l, u32 r, F f) NE {
     for (auto itr = split(r + 1), itl = split(l); itl != itr; ++itl) f(itl);
   }
   //! [l, r]
   // @param f: (iter_l, iter_r) -> auto
   template <class F>
-  CEXP auto run_no_split(u32 l, u32 r, F f) const { return f(find(l), find(r)); }
+  CEXP auto run_no_split(u32 l, u32 r, F f) CNE { return f(find(l), find(r)); }
 };
 
 }  // namespace tifa_libs

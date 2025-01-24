@@ -16,7 +16,7 @@ class cartesian_tree {
   u32 root;
   vec<TIFA> t;
 
-  CEXPE cartesian_tree(vec<T> CR y) : root(), t(y.size()) {
+  CEXPE cartesian_tree(vec<T> CR y) NE : root(), t(y.size()) {
     vecu s(y.size() + 1);
     u32 top = 0;
     flt_ (u32, i, 0, (u32)y.size()) {

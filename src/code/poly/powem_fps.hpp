@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto powem_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> g = {1}, u32 m = 0) {
+CEXP auto powem_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> g = {1}, u32 m = 0) NE {
   using poly_t = poly<ccore, mint, args...>;
   u32 n = (u32)f.size() - 1, k = 1, h = std::bit_ceil(n + 1);
   ccore<mint, args...> core2, core4;
@@ -28,7 +28,8 @@ CEXP auto powem_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> 
     n /= 2, h /= 2, k *= 2;
   }
   poly_t s{p.begin(), p.begin() + k}, t{q.begin(), q.begin() + k};
-  return t.push_back(1), s.reverse(), t.reverse(), (s * inv_fps(t, m + 1)).pre(m + 1);
+  t.push_back(1), s.reverse(), t.reverse();
+  return (s * inv_fps(t, m + 1)).pre(m + 1);
 }
 
 }  // namespace tifa_libs::math

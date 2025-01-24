@@ -9,7 +9,7 @@ template <class Mat, class Is0>
 requires requires(Is0 is0, TPN Mat::val_t t) {
   { is0(t) } -> std::same_as<bool>;
 }
-CEXP auto pfaffian(Mat mat, Is0 is0) {
+CEXP auto pfaffian(Mat mat, Is0 is0) NE {
   using T = TPN Mat::val_t;
   const u32 n = mat.row();
   assert(n == mat.col() && !(n & 1));
@@ -24,7 +24,10 @@ CEXP auto pfaffian(Mat mat, Is0 is0) {
     if (p != i + 1) {
       neg ^= 1;
       flt_ (u32, j, 0, i + 1) swap(mat(j, i + 1), mat(j, p));
-      flt_ (u32, j, i + 2, p) swap(mat(i + 1, j), mat(j, p)), mat(i + 1, j) = -mat(i + 1, j), mat(j, p) = -mat(j, p);
+      flt_ (u32, j, i + 2, p) {
+        swap(mat(i + 1, j), mat(j, p));
+        mat(i + 1, j) = -mat(i + 1, j), mat(j, p) = -mat(j, p);
+      }
       mat(i + 1, p) = -mat(i + 1, p);
       flt_ (u32, j, p + 1, n) swap(mat(i + 1, j), mat(p, j));
     }

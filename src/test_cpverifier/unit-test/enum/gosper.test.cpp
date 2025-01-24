@@ -13,7 +13,7 @@ using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 998244353>;
 template <u32 ID>
 void test(u32 n, u32 kmax) {
   using gosper = tifa_libs::gosper<ID>;
-  tifa_libs::math::Binom<mint> binom(n);
+  tifa_libs::math::binom<mint> binom(n);
   flt_ (u32, k, 1, kmax + 1) {
     gosper::set(n, k);
     gosper gs;

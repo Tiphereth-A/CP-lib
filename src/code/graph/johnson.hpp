@@ -9,7 +9,7 @@ namespace tifa_libs::graph {
 
 // @return dis, with dis[u][v] = minimum distance between u and v
 template <class T>
-CEXP std::optional<vvec<T>> johnson(u32 n, vec<edge_t<T>> CR arcs, T const INF = std::numeric_limits<T>::max() / 2 - 1) {
+CEXP std::optional<vvec<T>> johnson(u32 n, vec<edge_t<T>> CR arcs, T const INF = std::numeric_limits<T>::max() / 2 - 1) NE {
   using U = to_uint_t<T>;
   vvec<T> dis(n);
   alistw<T> g(n);

@@ -9,7 +9,7 @@ namespace tifa_libs::geo {
 // min coverage circle of a set of points
 //! shuffle `vp` first to improve accuracy
 template <class FP>
-CEXP circle<FP> min_cover_C(vec<point<FP>> CR vp) {
+CEXP circle<FP> min_cover_C(vec<point<FP>> CR vp) NE {
   circle<FP> ret{vp.front(), 0};
   const u32 n = (u32)vp.size();
   flt_ (u32, i, 1, n) {

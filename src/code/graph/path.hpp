@@ -6,10 +6,10 @@
 namespace tifa_libs::graph {
 
 template <adjlist_c G>
-CEXP std::optional<vecu> path(G CR g, u32 from, u32 to) {
+CEXP std::optional<vecu> path(G CR g, u32 from, u32 to) NE {
   vecu ret;
   bool failed = true;
-  auto dfs = [&](auto &&dfs, u32 now, u32 fa) -> void {
+  auto dfs = [&](auto &&dfs, u32 now, u32 fa) NE -> void {
     ret.push_back(now);
     if (now == to) return void(failed = false);
     if CEXP (adjlistw_c<G>)

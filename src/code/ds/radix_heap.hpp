@@ -15,17 +15,17 @@ class radix_heap {
   K last;
 
  public:
-  CEXPE radix_heap() : s(0), last(0) { std::ranges::fill(ms, K(-1)); }
+  CEXPE radix_heap() NE : s(0), last(0) { std::ranges::fill(ms, K(-1)); }
 
-  CEXP u32 size() const { return s; }
-  CEXP bool empty() const { return !s; }
-  CEXP void emplace(K key, cT_(V) val) {
+  CEXP u32 size() CNE { return s; }
+  CEXP bool empty() CNE { return !s; }
+  CEXP void emplace(K key, cT_(V) val) NE {
     const K b = (K)std::bit_width(key ^ last);
     ++s, vs[b].emplace_back(key, val), ms[b] = min(key, ms[b], comp);
   }
-  CEXP std::pair<K, V> top() {
+  CEXP std::pair<K, V> top() NE {
     if (!~ms[0]) {
-      const u32 idx = u32(std::ranges::find_if(ms, [](auto x) { return !!~x; }) - ms.begin());
+      const u32 idx = u32(std::ranges::find_if(ms, [](auto x) NE { return !!~x; }) - ms.begin());
       for (last = ms[idx]; auto &p : vs[idx]) {
         const K b = (K)std::bit_width(p.first ^ last);
         vs[b].emplace_back(p), ms[b] = min(p.first, ms[b], comp);
@@ -35,7 +35,7 @@ class radix_heap {
     return vs[0].back();
   }
 
-  CEXP void pop() {
+  CEXP void pop() NE {
     if (top(), --s, vs[0].pop_back(); vs[0].empty()) ms[0] = K(-1);
   }
 };

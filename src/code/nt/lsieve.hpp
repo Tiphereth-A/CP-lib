@@ -10,10 +10,10 @@ struct lsieve : Ts... {
   vecb not_prime;
   vecu primes;
 
-  CEXPE lsieve(u32 n) : Ts(n)..., not_prime(n) {
+  CEXPE lsieve(u32 n) NE : Ts(n)..., not_prime(n) {
     if (n < 2) return;
     // clang-format off
-    primes.reserve(std::max(127, int(n * (n >= 2e5 ? 1.6 : 1.7) / std::bit_width(n) + 1)));
+    primes.reserve((usz)std::max(127, int(n * (n >= 2e5 ? 1.6 : 1.7) / std::bit_width(n) + 1)));
     // clang-format on
     flt_ (u32, i, 2, n) {
       if (!not_prime[i]) primes.push_back(i), (..., Ts::prime(i));

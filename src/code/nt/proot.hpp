@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-CEXP u64 proot(u64 m) {
+CEXP u64 proot(u64 m) NE {
   if (m == 2) return 1;
   if (m == 3 || m == 5) return 2;
   if (m == 104857601 || m == 167772161 || m == 469762049 || m == 998244353 || m == 1004535809) return 3;

@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto inv_fpssp(poly<ccore, mint, args...> CR p, u32 n = 0) {
+CEXP auto inv_fpssp(poly<ccore, mint, args...> CR p, u32 n = 0) NE {
   if (assert(!p.empty() && p[0] != 0); !n) n = (u32)p.size();
   auto ps = poly2sp(p, n);
   poly<ccore, mint, args...> g(n);

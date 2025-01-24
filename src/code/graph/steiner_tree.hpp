@@ -13,14 +13,14 @@ class steiner_tree {
 
  public:
   vvecu dp;
-  steiner_tree(G CR e, vecu CR a) : e(e), a(a), dp(e.size(), vecu(1 << a.size(), INT32_MAX)) { build(); }
-  CEXP u32 val() { return dp[a[0]][(1 << a.size()) - 1]; }
+  steiner_tree(G CR e, vecu CR a) NE : e(e), a(a), dp(e.size(), vecu(1 << a.size(), INT32_MAX)) { build(); }
+  CEXP u32 val() NE { return dp[a[0]][(1 << a.size()) - 1]; }
 
  private:
-  void build() {
+  void build() NE {
     flt_ (u32, i, 0, (u32)a.size()) dp[a[i]][1 << i] = 0;
     ds::rheapg<u32, u32> q;
-    auto dij = [&](u32 s) {
+    auto dij = [&](u32 s) NE {
       vecu vis(e.size(), 0);
       while (!q.empty()) {
         auto [dis, u] = q.top();

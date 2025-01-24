@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <ntt_c NTT_t, std::same_as<TPN NTT_t::data_t> mint>
-CEXP void ntt_doubling(NTT_t CR ntt, vec<mint>& f, u32 n = 0) {
+CEXP void ntt_doubling(NTT_t CR ntt, vec<mint>& f, u32 n = 0) NE {
   if (!n) n = (u32)f.size() / 2;
   assert(std::has_single_bit(n) && f.size() >= n * 2);
   vec<mint> g(f.begin(), f.begin() + n);

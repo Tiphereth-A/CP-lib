@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-CEXP vec<T> berlekamp_massey(vec<T> CR a) {
+CEXP vec<T> berlekamp_massey(vec<T> CR a) NE {
   const u32 n = (u32)a.size();
   vec<T> b{1}, c{1};
   b.reserve(n + 1), c.reserve(n + 1);
@@ -26,7 +26,8 @@ CEXP vec<T> berlekamp_massey(vec<T> CR a) {
     } else
       flt_ (u32, i, 0, m) c[l - 1 - i] -= d_ * b[m - 1 - i];
   }
-  return std::ranges::reverse(c), c;
+  std::ranges::reverse(c);
+  return c;
 }
 
 }  // namespace tifa_libs::math

@@ -9,7 +9,7 @@ template <class Mat, class Ge>
 requires requires(Ge ge, Mat A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
-CEXP auto det(Mat mat, Ge&& ge) {
+CEXP auto det(Mat mat, Ge&& ge) NE {
   using T = TPN Mat::val_t;
   const u32 n = mat.row();
   assert(n == mat.col());

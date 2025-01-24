@@ -14,11 +14,11 @@ struct lca_hld {
 
   CEXP lca_hld(tree CR tr, tree_info_t CR info) : info{info} { top = tree_top(tr, info.dfn, info.maxson); }
 
-  CEXP u32 operator()(u32 u, u32 v) const {
+  CEXP u32 operator()(u32 u, u32 v) CNE {
     while (top[u] != top[v]) info.dep[top[u]] < info.dep[top[v]] ? v = info.fa[top[v]] : u = info.fa[top[u]];
     return info.dep[u] > info.dep[v] ? v : u;
   }
-  CEXP ptt<vecptu> getchain(u32 u, u32 v) {
+  CEXP ptt<vecptu> getchain(u32 u, u32 v) NE {
     u32 lca = (*this)(u, v);
     vecptu retu, retv;
     while (top[u] != top[lca]) retu.emplace_back(u, top[u]), u = info.fa[top[u]];

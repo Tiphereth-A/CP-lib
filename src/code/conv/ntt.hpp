@@ -20,23 +20,30 @@ struct NTT {
   u32 sz;
 
  public:
-  CEXPE NTT() : sz() {
+  CEXPE NTT() NE : sz() {
     if (inv2[0].val()) return;
     root[R] = qpow(G, mint::mod() >> R), iroot[R] = root[R].inv();
-    for (u32 i = R - 1; ~i; --i) root[i] = root[i + 1] * root[i + 1], iroot[i] = iroot[i + 1] * iroot[i + 1];
+    for (u32 i = R - 1; ~i; --i) {
+      root[i] = root[i + 1] * root[i + 1];
+      iroot[i] = iroot[i + 1] * iroot[i + 1];
+    }
     mint prod(1), iprod(1);
-    flt_ (u32, i, 0, R - 1) rate[i] = prod * root[i + 2], irate[i] = iprod * iroot[i + 2], prod *= iroot[i + 2], iprod *= root[i + 2];
+    flt_ (u32, i, 0, R - 1) {
+      rate[i] = prod * root[i + 2];
+      irate[i] = iprod * iroot[i + 2];
+      prod *= iroot[i + 2], iprod *= root[i + 2];
+    }
     mint i2 = mint::mod() / 2 + 1;
     inv2[0] = 1;
     flt_ (u32, i, 0, R) inv2[i + 1] = inv2[i] * i2;
   }
 
-  CEXP u32 size() const { return sz; }
-  CEXP void bzr(u32 len = max_size) {
+  CEXP u32 size() CNE { return sz; }
+  CEXP void bzr(u32 len = max_size) NE {
     const u32 n = std::bit_ceil(len);
     assert(n <= max_size), sz = n;
   }
-  CEXP void dif(vec<mint> &f, u32 n = 0) const {
+  CEXP void dif(vec<mint> &f, u32 n = 0) CNE {
     if (assert(size()); !n) n = size();
     if (f.size() < n) f.resize(n);
     assert(std::has_single_bit(n) && n <= size());
@@ -54,7 +61,7 @@ struct NTT {
       }
     }
   }
-  CEXP void dit(vec<mint> &f, u32 n = 0) const {
+  CEXP void dit(vec<mint> &f, u32 n = 0) CNE {
     assert(size());
     if (!n) n = size();
     if (f.size() < n) f.resize(n);

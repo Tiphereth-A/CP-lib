@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <usz N>
-CEXP std::optional<bitmat<N>> inv_bmat(bitmat<N> CR mat, u32 n) {
+CEXP std::optional<bitmat<N>> inv_bmat(bitmat<N> CR mat, u32 n) NE {
   bitmat<N, N * 2> _;
   flt_ (u32, i, 0, n) {
     for (auto p = mat[i]._Find_first(); p < n; p = mat[i]._Find_next(p)) _[i]._Unchecked_set(p);

@@ -9,9 +9,9 @@ template <u32 N = 64>
 struct basisZ2 {
   vec<std::bitset<N>> basis;
 
-  CEXP basisZ2() : basis(N) {}
+  CEXP basisZ2() NE : basis(N) {}
 
-  CEXP bool insert(std::bitset<N> x) {
+  CEXP bool insert(std::bitset<N> x) NE {
     bool status = 0;
     for (u32 i = N - 1; ~i; --i) {
       if (!(x[i])) continue;
@@ -27,7 +27,7 @@ struct basisZ2 {
     }
     return status;
   }
-  CEXP bool test(std::bitset<N> x) const {
+  CEXP bool test(std::bitset<N> x) CNE {
     for (u32 i = N - 1; ~i; --i) {
       if (!(x[i])) continue;
       if (basis[i][i]) x ^= basis[i];
@@ -35,18 +35,18 @@ struct basisZ2 {
     }
     return 1;
   }
-  CEXP u32 rank() const {
+  CEXP u32 rank() CNE {
     u32 res = 0;
     flt_ (u32, i, 0, (u32)basis.size()) res += basis[i][i];
     return res;
   }
-  CEXP std::bitset<N> max_spn() const {
+  CEXP std::bitset<N> max_spn() CNE {
     std::bitset<N> ret;
     for (auto &&i : basis) ret ^= i;
     return ret;
   }
   // @return std::nullopt if x is linear independent with current basis, else return the solution
-  CEXP std::optional<std::bitset<N>> coord(std::bitset<N> x) {
+  CEXP std::optional<std::bitset<N>> coord(std::bitset<N> x) NE {
     std::bitset<N> res;
     for (u32 i = basis.size() - 1; ~i; --i)
       if (x[i]) {
@@ -55,13 +55,13 @@ struct basisZ2 {
       }
     return res;
   }
-  CEXP basisZ2 meet(cT_(vec<std::bitset<N>>) r) const {
-    auto cvt = [](cT_(std::bitset<N>) x) {
+  CEXP basisZ2 meet(cT_(vec<std::bitset<N>>) r) CNE {
+    auto cvt = [](cT_(std::bitset<N>) x) NE {
       if CEXP (N <= 32) return x.to_ulong();
       else if CEXP (N <= 64) return x.to_ullong();
       else return x.to_string();
     };
-    auto f = [&, this](std::bitset<N> x) {
+    auto f = [&, this](std::bitset<N> x) NE {
       for (auto i : basis)
         if (auto y = x ^ i; cvt(y) < cvt(x)) x = y;
       return x;

@@ -8,23 +8,24 @@ namespace tifa_libs::geo {
 
 // Triangle inside with max area
 template <class FP>
-CEXP triangle<FP> max_area_T(cT_(cvh<FP>) ch) {
+CEXP triangle<FP> max_area_T(cT_(cvh<FP>) ch) NE {
   if (ch.size() < 3) return triangle<FP>{ch.vs[0], ch.vs[0], ch.vs[0]};
   u32 j = 1, k = 2;
-  FP ans = 0, tmp, new_tmp;
+  FP ans = 0, _, _2;
   u32 is = 0, js = 1, ks = 2;
   flt_ (u32, i, 0, ch.size()) {
     if (i == j) j = ch.next(j);
     if (j == k) k = ch.next(k);
-    if (is_gt(tmp = cross(ch.vs[i], ch.vs[j], ch.vs[k]), ans)) ans = tmp, is = i, js = j, ks = k;
+    if (is_gt(_ = cross(ch.vs[i], ch.vs[j], ch.vs[k]), ans)) ans = _, is = i, js = j, ks = k;
     bool f = true;
     while (f) {
-      if (f = false; is_gt(new_tmp = cross(ch.vs[i], ch.vs[j], ch.vs[ch.next(k)]), tmp)) {
-        if (k = ch.next(k); is_gt(tmp = new_tmp, ans)) ans = tmp, is = i, js = j, ks = k;
+      f = false;
+      if (is_gt(_2 = cross(ch.vs[i], ch.vs[j], ch.vs[ch.next(k)]), _)) {
+        if (k = ch.next(k); is_gt(_ = _2, ans)) ans = _, is = i, js = j, ks = k;
         f = true;
       }
-      if (is_gt(new_tmp = cross(ch.vs[i], ch.vs[ch.next(j)], ch.vs[k]), tmp)) {
-        if (j = ch.next(j); is_gt(tmp = new_tmp, ans)) ans = tmp, is = i, js = j, ks = k;
+      if (is_gt(_2 = cross(ch.vs[i], ch.vs[ch.next(j)], ch.vs[k]), _)) {
+        if (j = ch.next(j); is_gt(_ = _2, ans)) ans = _, is = i, js = j, ks = k;
         f = true;
       }
     }

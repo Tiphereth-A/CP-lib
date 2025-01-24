@@ -10,13 +10,21 @@ template <class T, class Is0, bool euclid = is_int_v<T>>
 requires(!euclid || !std::is_floating_point_v<T>) && requires(Is0 is0, T t) {
   { is0(t) } -> std::same_as<bool>;
 }
-CEXP i32 ge_mat(matrix<T>& mat, Is0 is0, bool clear_u = true) {
+CEXP i32 ge_mat(matrix<T>& mat, Is0 is0, bool clear_u = true) NE {
   const u32 R = mat.row(), C = mat.col(), rk_max = min(R, C);
   u32 rk = 0;
   bool neg = false;
-  auto swapr = [&](u32 i, u32 c) {
-    auto ir = mat.data().begin() + i, ir2 = std::max_element(ir, mat.data().end(), [&](auto CR l, auto CR r) { flt_ (u32, i, c, C) if (l[i] != r[i]) return l[i] < r[i]; return false; });
-    if (ir != ir2) return std::iter_swap(ir, ir2), true;
+  auto swapr = [&](u32 i, u32 c) NE {
+    auto ir = mat.data().begin() + i,
+         ir2 = std::max_element(ir, mat.data().end(), [&](auto CR l, auto CR r) NE {
+           flt_ (u32, i, c, C)
+             if (l[i] != r[i]) return l[i] < r[i];
+           return false;
+         });
+    if (ir != ir2) {
+      std::iter_swap(ir, ir2);
+      return true;
+    }
     return false;
   };
   for (u32 i = 0, c = 0; i < R; c = max(c, ++i)) {

@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 // i! from i=0..n-1
-CEXP vecuu gen_fact(u32 n, u64 mod) {
+CEXP vecuu gen_fact(u32 n, u64 mod) NE {
   if (n <= 1) return vecuu(n, 1);
   vecuu ans(n);
   ans[0] = ans[1] = 1;
@@ -15,7 +15,7 @@ CEXP vecuu gen_fact(u32 n, u64 mod) {
 }
 // i! from i=0..n-1
 template <class mint>
-CEXP vec<mint> gen_fact(u32 n) {
+CEXP vec<mint> gen_fact(u32 n) NE {
   vec<mint> ans(n);
   auto _ = gen_fact(n, mint::mod());
   flt_ (u32, i, 0, n) ans[i] = _[i];

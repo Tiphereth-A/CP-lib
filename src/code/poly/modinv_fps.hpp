@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP std::optional<poly<ccore, mint, args...>> modinv_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> CR g) {
+CEXP std::optional<poly<ccore, mint, args...>> modinv_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> CR g) NE {
   using poly_t = poly<ccore, mint, args...>;
   auto m = gcd_fps_impl_::pgcd_(f, g);
   if (poly_t _ = (m * ptt<poly_t>{f, g}).first; _.size() != 1) return {};

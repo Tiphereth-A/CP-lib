@@ -7,10 +7,10 @@ namespace tifa_libs::math {
 
 // @return f(g(x))
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto comp_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> g) {
+CEXP auto comp_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> g) NE {
   using poly_t = poly<ccore, mint, args...>;
   ccore<mint, args...> core2, core4;
-  auto dfs = [&](auto&& dfs, vec<mint> b, u32 n, u32 h, u32 k) -> vec<mint> {
+  auto dfs = [&](auto&& dfs, vec<mint> b, u32 n, u32 h, u32 k) NE -> vec<mint> {
     if (!n) {
       poly_t _{b.begin(), b.begin() + k};
       _.push_back(1), _.reverse(), (_ = inv_fps(_)).reverse();
@@ -44,7 +44,8 @@ CEXP auto comp_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> g) {
   flt_ (u32, i, 0, n) b[i] = -g[i];
   core2.bzr(h * 2), core4.bzr(h * 4);
   poly_t a(dfs(dfs, b, n - 1, h, 1));
-  return a.resize(n), a.reverse(), a[0] += _, a;
+  a.resize(n), a.reverse(), a[0] += _;
+  return a;
 }
 
 }  // namespace tifa_libs::math

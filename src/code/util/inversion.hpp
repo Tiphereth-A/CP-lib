@@ -8,7 +8,7 @@
 namespace tifa_libs {
 
 template <class T>
-CEXP u64 inversion(vec<T> CR v) {
+CEXP u64 inversion(vec<T> CR v) NE {
   u64 ans = 0;
   auto id = gen_id(v).second;
   ds::fenwick<u64> tr((u32)v.size() + 1);

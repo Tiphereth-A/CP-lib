@@ -1,19 +1,17 @@
 #ifndef TIFALIBS_LALG_POW_MAT
 #define TIFALIBS_LALG_POW_MAT
 
-#include "../util/util.hpp"
+#include "../math/qpow.hpp"
 
 namespace tifa_libs::math {
 
 template <class Mat>
-CEXP Mat pow(Mat mat, u64 b) {
+CEXP Mat pow(Mat CR mat, u64 b) NE {
   const u32 n = mat.row();
   assert(n == mat.col());
-  Mat res(n, n);
-  flt_ (u32, i, 0, n) res(i, i) = 1;
-  for (; b; b /= 2, mat *= mat)
-    if (b & 1) res *= mat;
-  return res;
+  Mat id(n, n);
+  flt_ (u32, i, 0, n) id(i, i) = 1;
+  return qpow(mat, b, id);
 }
 
 }  // namespace tifa_libs::math

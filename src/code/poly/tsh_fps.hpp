@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c, spnuu fact, spnuu ifact) {
+CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c, spnuu fact, spnuu ifact) NE {
   const u32 n = (u32)f.size();
   if (n == 1) return f;
   poly<ccore, mint, args...> s = f, p((u32)f.size());
@@ -20,7 +20,7 @@ CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c, spnuu fact, spnuu ifa
   return s;
 }
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c) {
+CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c) NE {
   const u32 n = (u32)f.size();
   if (n == 1) return f;
   return tsh_fps(f, c, gen_fact(n, mint::mod()), gen_ifact(n, mint::mod()));

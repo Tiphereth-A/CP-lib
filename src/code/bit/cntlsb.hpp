@@ -6,7 +6,7 @@
 namespace tifa_libs::bit {
 
 template <class T>
-CEXP int cntlsb(T x) {
+CEXP int cntlsb(T x) NE {
   CEXP int nd = sizeof(T) * 8;
   static_assert(nd <= 64);
   if CEXP (nd <= sizeof(unsigned) * 8) return __builtin_clrsb(x);

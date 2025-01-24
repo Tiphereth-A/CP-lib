@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 template <class U, class T = U>
 requires(sizeof(U) <= sizeof(T))
-CEXP vec<T> conv_naive(vec<U> CR l, vec<U> CR r, u32 ans_size = 0) {
+CEXP vec<T> conv_naive(vec<U> CR l, vec<U> CR r, u32 ans_size = 0) NE {
   if (l.empty() || r.empty()) return {};
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   vec<T> ans(ans_size);

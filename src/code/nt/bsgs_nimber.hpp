@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 
 // solve a^x=b
 template <std::unsigned_integral T, T (*prod)(T, T)>
-CEXP T bsgs_nimber(nimber<T, prod> CR a, nimber<T, prod> CR b) {
+CEXP T bsgs_nimber(nimber<T, prod> CR a, nimber<T, prod> CR b) NE {
   assert(a != 0 && b != 0);
   vec<T> rem, mod;
   for (T p : {3, 5, 17, 257, 641, 65537, 6700417}) {
@@ -16,7 +16,7 @@ CEXP T bsgs_nimber(nimber<T, prod> CR a, nimber<T, prod> CR b) {
     const T q = T(-1) / p;
     T step = 1;
     while (4 * step * step < p) step *= 2;
-    auto f = [&](nimber<T, prod> a, nimber<T, prod> z) -> T {
+    auto f = [&](nimber<T, prod> a, nimber<T, prod> z) NE -> T {
       hmap<T, i32> mp;
       nimber<T, prod> big = 1, now = 1;
       flt_ (u32, i, 0, step) mp[z.x] = i, z *= a, big *= a;

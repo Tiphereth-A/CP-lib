@@ -10,9 +10,9 @@ using T = std::pair<mint, usz>;   // sum len
 using F = std::pair<mint, mint>;  // mul add
 
 auto op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
-auto mapping(T a, F f) { return T{f.first * a.first + f.second * a.second, a.second}; }
-auto composition(F f, F g) {
-  return F{f.first * g.first, g.first * f.second + g.second};
+auto mapping(T& a, F f) { a.first = f.first * a.first + f.second * a.second; }
+auto composition(F& f, F g) {
+  f = F{f.first * g.first, g.first * f.second + g.second};
   // g(x) = g.mul * x + g.add
   // f(g(x)) = f.mul * (g.mul * x + g.add) + f.add = f.mul * g.mul * x + f.mul * g.add + f.add
 }

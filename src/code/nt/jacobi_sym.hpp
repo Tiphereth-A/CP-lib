@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-CEXP int jacobi_sym(u64 a, u64 p) {
+CEXP int jacobi_sym(u64 a, u64 p) NE {
   if (assert(p & 1); !a) return 0;
   int s = 1, _ = 0;
   while (a > 1) {

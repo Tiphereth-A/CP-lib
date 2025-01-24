@@ -15,8 +15,10 @@ namespace tifa_libs::geo {
 // make circle by point passed through and 2 external tagante circle
 // result size: 0 to 4
 template <class FP>
-CEXP vec<circle<FP>> make_C_PCC_ex(point<FP> CR p, circle<FP> c1, circle<FP> c2) {
-  if (relation_CC(c1, c2) == lyingin_cc || relation_CP(c1, p) != outside_cp || relation_CP(c2, p) != outside_cp) return {};
+CEXP vec<circle<FP>> make_C_PCC_ex(point<FP> CR p, circle<FP> c1, circle<FP> c2) NE {
+  if (relation_CC(c1, c2) == lyingin_cc ||
+      relation_CP(c1, p) != outside_cp ||
+      relation_CP(c2, p) != outside_cp) return {};
   vec<line<FP>> vl;
   if (auto _ = intan_CC(c1 = inv_C2C(p, c1), c2 = inv_C2C(p, c2)); _.has_value()) {
     auto CR[l1, l2] = _.value();

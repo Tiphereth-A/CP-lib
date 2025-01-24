@@ -9,23 +9,25 @@ namespace tifa_libs::geo {
 
 // @return ans, which ans[i] means area covered at least i+1 times
 template <std::floating_point FP>
-CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) {
+CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) NE {
   u32 n = (u32)pos.size();
   vvecpt<point<FP>> segs(n);
-  auto chk = [](point<FP> CR u, line<FP> CR e) { return !((u < e.l && u < e.r) || (u > e.l && u > e.r)); };
-  auto cut = [&](line<FP> CR e, u32 i) {
+  auto chk = [](point<FP> CR u, line<FP> CR e) NE { return !((u < e.l && u < e.r) || (u > e.l && u > e.r)); };
+  auto cut = [&](line<FP> CR e, u32 i) NE {
     const line<FP> le{e.l, e.r};
     vecp<point<FP>, int> evt;
     evt.emplace_back(e.l, 0), evt.emplace_back(e.r, 0);
     flt_ (u32, j, 0, n) {
       if (i == j) continue;
       auto CR pj = pos[j];
-      flt_ (u32, k, 0, pj.size())
-        if (const line<FP> s{pj[k], pj[pj.next(k)]}; !le.toleft(s.l) && !le.toleft(s.r)) evt.emplace_back(s.l, 0), evt.emplace_back(s.r, 0);
+      flt_ (u32, k, 0, pj.size()) {
+        const line<FP> s{pj[k], pj[pj.next(k)]};
+        if (!le.toleft(s.l) && !le.toleft(s.r)) evt.emplace_back(s.l, 0), evt.emplace_back(s.r, 0);
         else if (!is_ins_SL(s, le)) {
           if (point<FP> u = ins_LL(le, s); le.toleft(s.l) < 0 && le.toleft(s.r) >= 0) evt.emplace_back(u, -1);
           else if (le.toleft(s.l) >= 0 && le.toleft(s.r) < 0) evt.emplace_back(u, 1);
         }
+      }
     }
     if (std::ranges::sort(evt); e.l > e.r) std::ranges::reverse(evt);
     int sum = 0;

@@ -6,7 +6,7 @@
 
 namespace tifa_libs::game {
 
-CEXP v3ecu sudoku_solver(cT_(vvecu) data, bool get_all_solution = false) {
+CEXP v3ecu sudoku_solver(cT_(vvecu) data, bool get_all_solution = false) NE {
   const u32 n = math::isqrt(data.size()), n2 = (u32)data.size(), n4 = n2 * n2;
   assert(n <= 40 && n * n == n2);
   vvecb g(n2 * n4, vecb(4 * n4));
@@ -21,7 +21,7 @@ CEXP v3ecu sudoku_solver(cT_(vvecu) data, bool get_all_solution = false) {
       }
   if (!not_filled) return {data};
   v3ecu ans;
-  util::DLX(g, get_all_solution).dance([&](spnu res) -> void {
+  util::DLX(g, get_all_solution).dance([&](spnu res) NE -> void {
     vvecu dt = data;
     for (u32 _ : res) dt[(_ - 1) % n4 / n2][(_ - 1) % n2] = (_ - 1) / n4 + 1;
     ans.push_back(dt);

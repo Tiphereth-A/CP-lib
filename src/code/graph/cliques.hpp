@@ -11,9 +11,9 @@ namespace tifa_libs::graph {
 // @param R in clique
 template <usz N, class F>
 requires requires(F f, std::bitset<N> R) { f(R); }
-CEXP void cliques(u32 n, arr<std::bitset<N>, N> CR adj, F&& f) {
+CEXP void cliques(u32 n, arr<std::bitset<N>, N> CR adj, F&& f) NE {
   using B = std::bitset<N>;
-  auto g = [&](auto&& g, B P, B X, B R) -> void {
+  auto g = [&](auto&& g, B P, B X, B R) NE -> void {
     if (P.none()) {
       if (X.none()) f(R);
       return;

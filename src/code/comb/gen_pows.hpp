@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 // i^{b} from i=0..n-1
-CEXP vecuu gen_pows(u32 n, u64 b, u64 mod) {
+CEXP vecuu gen_pows(u32 n, u64 b, u64 mod) NE {
   if (!n) return {};
   vecuu ans(n);
   if (!b) ans[0] = 1;
@@ -17,7 +17,7 @@ CEXP vecuu gen_pows(u32 n, u64 b, u64 mod) {
 }
 // i^{b} from i=0..n-1
 template <class mint>
-CEXP vec<mint> gen_pows(u32 n, u64 b) {
+CEXP vec<mint> gen_pows(u32 n, u64 b) NE {
   vec<mint> ans(n);
   auto _ = gen_pows(n, b, mint::mod());
   flt_ (u32, i, 0, n) ans[i] = _[i];

@@ -11,7 +11,7 @@ class hash_substr {
   vec<mint> hash;
 
  public:
-  CEXP void set(strnv s) {
+  CEXP void set(strnv s) NE {
     const u32 n = (u32)s.size();
     for (hash.resize(1, 0), hash.reserve(n + 1); char c : s) hash.push_back(hash.back() * base + (u32)c + 1);
     if (p.size() <= n) {
@@ -19,8 +19,8 @@ class hash_substr {
       while (p.size() <= n) p.push_back(p.back() * base);
     }
   }
-  CEXP u32 size() const { return u32(hash.size() - 1); }
-  CEXP mint get(u32 pos, u32 len = -1_u32) const {
+  CEXP u32 size() CNE { return u32(hash.size() - 1); }
+  CEXP mint get(u32 pos, u32 len = -1_u32) CNE {
     assert(!p.empty() && pos < hash.size());
     return hash[pos + min(len, (u32)hash.size() - 1 - pos)] - hash[pos] * p[len];
   }
