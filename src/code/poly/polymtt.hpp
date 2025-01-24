@@ -9,7 +9,7 @@ namespace polymtt_impl_ {
 template <class mint, class FP>
 struct cconv_mtt : public FFT<FP> {
   static CEXP auto ct_cat = ct_FFT;
-  CEXP void conv(vec<mint>& l, vec<mint> CR r, u32 sz = 0) { l = conv_mtt(*this, l, r, sz); }
+  CEXP void conv(vec<mint>& l, vec<mint> CR r, u32 sz = 0) NE { l = conv_mtt(*this, l, r, sz); }
 };
 }  // namespace polymtt_impl_
 

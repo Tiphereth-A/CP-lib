@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 //! a < b
 template <uint_c T>
-CEXP rational<T> frac_itv(rational<T> a, rational<T> b) {
+CEXP rational<T> frac_itv(rational<T> a, rational<T> b) NE {
   const T _ = a.num / a.den;
   a.num -= _ * a.den, b.num -= _ * b.den;
   if (b.num > b.den) return {1 + _, 1};

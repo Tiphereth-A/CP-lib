@@ -7,12 +7,12 @@ namespace tifa_libs::math {
 
 template <class mint>
 class Stirling2 {
-  const Binom<mint> mCn;
+  const binom<mint> mCn;
   vvec<mint> S;
 
  public:
   //! @param p MUST be prime
-  CEXPE Stirling2() : mCn(mint::mod()), S(mint::mod()) {
+  CEXPE Stirling2() NE : mCn(mint::mod()), S(mint::mod()) {
     u32 p = mint::mod();
     assert(p < 32768), S[0] = {1};
     flt_ (u32, i, 1, p) {
@@ -24,8 +24,8 @@ class Stirling2 {
     }
   }
 
-  static CEXP u32 mod() { return mint::mod(); }
-  CEXP mint operator()(i64 m_, i64 n_) const {
+  static CEXP u32 mod() NE { return mint::mod(); }
+  CEXP mint operator()(i64 m_, i64 n_) CNE {
     if (n_ < 0 || n_ > m_) return 0;
     if (!m_) return 1;
     const u32 p = mod();

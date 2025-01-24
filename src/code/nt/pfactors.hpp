@@ -10,10 +10,10 @@
 namespace tifa_libs::math {
 namespace pfactors_impl_ {
 static rand::Gen<u64> e;
-static auto __ = []() { e.seed(); return 0; }();
-CEXP u64 rho(u64 n) {
+static auto __ = [] { e.seed(); return 0; }();
+CEXP u64 rho(u64 n) NE {
   e.range(1, n - 1);
-  auto f = [n, r = e()](u64 x) { return (mul_mod_u(x, x, n) + r) % n; };
+  auto f = [n, r = e()](u64 x) NE { return (mul_mod_u(x, x, n) + r) % n; };
   u64 g = 1, x = 0, y = e(), yy = 0;
   const u32 LIM = 128;
   for (u64 r = 1, q = 1; g == 1; r *= 2) {
@@ -30,7 +30,7 @@ CEXP u64 rho(u64 n) {
     } while (g == 1);
   return g == n ? rho(n) : g;
 }
-CEXP void run(u64 n, vecuu &p) {
+CEXP void run(u64 n, vecuu &p) NE {
   if (n < 2) return;
   if (is_prime(n)) return p.push_back(n);
   const u64 g = rho(n);
@@ -39,7 +39,7 @@ CEXP void run(u64 n, vecuu &p) {
 }  // namespace pfactors_impl_
 
 template <bool unique = true>
-CEXP vecuu pfactors(u64 n) {
+CEXP vecuu pfactors(u64 n) NE {
   vecuu p;
   if (u32 _ = (u32)std::countr_zero(n) & 63; _) {
     n >>= _;
@@ -49,9 +49,10 @@ CEXP vecuu pfactors(u64 n) {
   if (n < 2) return p;
   pfactors_impl_::run(n, p);
   if CEXP (unique) return uniq(p);
-  return std::ranges::sort(p), p;
+  std::ranges::sort(p);
+  return p;
 }
-CEXP vecp<u64, u32> pf_exp(u64 n) {
+CEXP vecp<u64, u32> pf_exp(u64 n) NE {
   auto p = pfactors<false>(n);
   vecp<u64, u32> ans;
   for (u64 lst = 0; u64 i : p)

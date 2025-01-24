@@ -7,12 +7,11 @@
 
 namespace tifa_libs::geo {
 
-//! containing endpoints
-template <class FP>
-CEXP bool is_on_S(line<FP> CR s, point<FP> CR p) { return is_on_same_L(s.l, s.r, p) && is_in_middle(s.l, p, s.r); }
-//! NOT containing endpoints
-template <class FP>
-CEXP bool is_on_S_strict(line<FP> CR s, point<FP> CR p) { return s.toleft(p) == 0 && sgn((p - s.l) * (s.l - s.r)) * sgn((p - s.r) * (s.l - s.r)) < 0; }
+template <class FP, bool contain_endpoints = true>
+CEXP bool is_on_S(line<FP> CR s, point<FP> CR p) NE {
+  if CEXP (contain_endpoints) return is_on_same_L(s.l, s.r, p) && is_in_middle(s.l, p, s.r);
+  else return s.toleft(p) == 0 && sgn((p - s.l) * (s.l - s.r)) * sgn((p - s.r) * (s.l - s.r)) < 0;
+}
 
 }  // namespace tifa_libs::geo
 

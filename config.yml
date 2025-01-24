@@ -261,10 +261,7 @@ notebook:
     - max_area_t: 凸包内面积最大的三角形
       code_ext: hpp
       test_ext: cpp
-    - coverage_rect_min_area: 最小面积覆盖矩形
-      code_ext: hpp
-      test_ext: cpp
-    - coverage_rect_min_circum: 最小周长覆盖矩形
+    - coverage_rect: 覆盖矩形(最小面积,最小周长)
       code_ext: hpp
       test_ext: cpp
     - max_dis_cvh: 两凸包中的点的最远距离
@@ -647,6 +644,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     comb:
+    - gen_fact: 阶乘模序列
+      code_ext: hpp
+      test_ext: cpp
+    - gen_ifact: 阶乘逆模序列
+      code_ext: hpp
+      test_ext: cpp
     - binom: 二项式系数
       code_ext: hpp
       test_ext: cpp
@@ -675,12 +678,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - gen_partition: 划分数序列
-      code_ext: hpp
-      test_ext: cpp
-    - gen_fact: 阶乘模序列
-      code_ext: hpp
-      test_ext: cpp
-    - gen_ifact: 阶乘逆模序列
       code_ext: hpp
       test_ext: cpp
     - gen_inv: 逆元序列
@@ -923,6 +920,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - mpi: 高精度整数
+      code_ext: hpp
+      test_ext: cpp
+    - fact_helper: 阶乘与阶乘逆辅助类
+      code_ext: hpp
+      test_ext: cpp
+    - factl_helper: 大数阶乘与阶乘逆辅助类
       code_ext: hpp
       test_ext: cpp
     - fact_mint: 快速阶乘取模

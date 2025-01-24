@@ -12,14 +12,14 @@ class SBT {
   vec<T> seq;
 
  public:
-  CEXPE SBT() : lx(0), ly(1), x(1), y(1), rx(1), ry(0) {}
-  CEXPE SBT(spn<T> seq_) : SBT() {
+  CEXPE SBT() NE : lx{0}, ly{1}, x{1}, y{1}, rx{1}, ry{0} {}
+  CEXPE SBT(spn<T> seq_) NE : SBT() {
     for (auto d : seq_) {
       if (assert(d != 0); d > 0) movr(d);
       if (d < 0) movl(d);
     }
   }
-  CEXP SBT(T x_, T y_) : SBT() {
+  CEXP SBT(T x_, T y_) NE : SBT() {
     assert(x_ > 0 && y_ > 0);
     if (T g = gcd(x_, y_); g > 1) x_ /= g, y_ /= g;
     while (min(x_, y_))
@@ -32,33 +32,33 @@ class SBT {
       }
   }
 
-  friend CEXP auto operator<=>(SBT CR l, SBT CR r) { return l.x * r.y - r.x * l.y; }
-  friend CEXP bool operator==(SBT CR l, SBT CR r) { return l.x == r.x && l.y == r.y; }
-  CEXP ptt<T> current() const { return {x, y}; }
-  CEXP ptt<T> lbound() const { return {lx, ly}; }
-  CEXP ptt<T> rbound() const { return {rx, ry}; }
+  friend CEXP auto operator<=>(SBT CR l, SBT CR r) NE { return l.x * r.y - r.x * l.y; }
+  friend CEXP bool operator==(SBT CR l, SBT CR r) NE { return l.x == r.x && l.y == r.y; }
+  CEXP ptt<T> current() CNE { return {x, y}; }
+  CEXP ptt<T> lbound() CNE { return {lx, ly}; }
+  CEXP ptt<T> rbound() CNE { return {rx, ry}; }
   // path from (1, 1) to @current(). rchild be positive and vice versa
-  CEXP vec<T> path() const { return seq; }
-  CEXP T dep() const {
+  CEXP vec<T> path() CNE { return seq; }
+  CEXP T dep() CNE {
     T res = 0;
     for (auto &&s : seq) res += abs(s);
     return res;
   }
   // move towards lchild with @d steps
-  CEXP void movl(T d = 1) {
+  CEXP void movl(T d = 1) NE {
     if (d <= 0) return;
     if (seq.empty() || seq.back() > 0) seq.push_back(0);
     seq.back() -= d, rx += lx * d, ry += ly * d, x = rx + lx, y = ry + ly;
   }
   // move towards rchild with @d steps
-  CEXP void movr(T d = 1) {
+  CEXP void movr(T d = 1) NE {
     if (d <= 0) return;
     if (seq.empty() || seq.back() < 0) seq.push_back(0);
     seq.back() += d, lx += rx * d, ly += ry * d, x = rx + lx, y = ry + ly;
   }
   // move towards fa with @d steps
   // @return true if succeed, or false if falied
-  CEXP bool movf(T d = 1) {
+  CEXP bool movf(T d = 1) NE {
     if (d <= 0) return true;
     while (d) {
       if (seq.empty()) return false;
@@ -70,7 +70,7 @@ class SBT {
     }
     return true;
   }
-  static CEXP SBT lca(SBT CR l, SBT CR r) {
+  static CEXP SBT lca(SBT CR l, SBT CR r) NE {
     SBT ret;
     for (u32 i = 0; i < min((u32)l.seq.size(), (u32)r.seq.size()); ++i) {
       T val1 = l.seq[i], val2 = r.seq[i];

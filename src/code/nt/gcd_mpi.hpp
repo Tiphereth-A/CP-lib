@@ -8,7 +8,7 @@
 namespace tifa_libs::math {
 namespace gcd_mpi_impl_ {
 // @return {x, y} s.t. a = 2^x 5^y
-CEXP ptti shrink(u32 a) {
+CEXP ptti shrink(u32 a) NE {
   assert(a > 0);
   const int x = std::countr_zero(a);
   a >>= x;
@@ -16,7 +16,7 @@ CEXP ptti shrink(u32 a) {
   return {x, a == 1 ? 0 : a == 5 ? 1 : a == 25 ? 2 : a == 125 ? 3 : a == 625 ? 4 : a == 3125 ? 5 : a == 15625 ? 6 : a == 78125 ? 7 : a == 390625 ? 8 : 9};
   // clang-format on
 }
-CEXP ptti shrink(mpi& a) {
+CEXP ptti shrink(mpi& a) NE {
   if (assert(!a.is_neg()); a.data().empty()) return {0, 0};
   ptti res{0, 0};
   while (true) {
@@ -32,7 +32,7 @@ CEXP ptti shrink(mpi& a) {
 }  // namespace gcd_mpi_impl_
 
 template <bool FAST = true>
-CEXP mpi gcd_mpi(mpi a, mpi b) {
+CEXP mpi gcd_mpi(mpi a, mpi b) NE {
   a.set_neg(false), b.set_neg(false);
   if CEXP (FAST)
     if (max(a.data().size(), b.data().size()) <= 2) return gcd(a.to_i64(), b.to_i64());

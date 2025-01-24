@@ -6,7 +6,7 @@ CEXP u32 MOD = 998244353;
 
 #define GENTCs_czts
 #define GENTCs_cztd0
-#define GENTCs_dftntt
+#define GENTCs_ntt
 
 int main() {
 #define GENTCs_cztd1

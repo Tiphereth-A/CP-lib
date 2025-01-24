@@ -6,7 +6,7 @@
 namespace tifa_libs::str {
 
 // @return nxt of pattern
-inline veci kmp_nxt(strnv pattern) {
+inline veci kmp_nxt(strnv pattern) NE {
   i32 n = (i32)pattern.size();
   veci nxt((u32)n);
   i32 i, j;
@@ -21,7 +21,7 @@ inline veci kmp_nxt(strnv pattern) {
 
 // find pattern in text
 // @return matched position in s
-inline vecu kmp(strnv pattern, strnv text) {
+inline vecu kmp(strnv pattern, strnv text) NE {
   veci nxt = kmp_nxt(pattern);
   vecu ret;
   i32 n = (i32)pattern.size(), m = (i32)text.size(), i, j;

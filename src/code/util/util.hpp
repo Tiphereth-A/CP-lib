@@ -5,8 +5,10 @@
 
 #define CEXP constexpr
 #define CEXPE constexpr explicit
-#define TPN typename
 #define CR const&
+#define TPN typename
+#define NE noexcept
+#define CNE const noexcept
 #define cT_(...) std::conditional_t<sizeof(__VA_ARGS__) <= sizeof(size_t) * 2, __VA_ARGS__, __VA_ARGS__ CR>
 #define flt_(T, i, l, r, ...) for (T i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i < i##e; ++i)
 #ifdef ONLINE_JUDGE
@@ -16,7 +18,7 @@
 
 #define mk_(w, t) \
   using w = t;    \
-  CEXP w operator""_##w(unsigned long long x) { return (w)x; }
+  CEXP w operator""_##w(unsigned long long x) NE { return (w)x; }
 mk_(i8, int8_t) mk_(u8, uint8_t) mk_(i16, int16_t) mk_(u16, uint16_t) mk_(i32, int32_t) mk_(u32, uint32_t) mk_(i64, int64_t) mk_(u64, uint64_t) mk_(isz, ptrdiff_t) mk_(usz, size_t);
 #undef mk_
 using i128 = __int128_t;
@@ -31,13 +33,13 @@ using std::numbers::pi_v;
 template <std::floating_point FP>
 inline FP eps_v = std::sqrt(std::numeric_limits<FP>::epsilon());
 template <std::floating_point FP>
-CEXP void set_eps(FP v) { eps_v<FP> = v; }
+CEXP void set_eps(FP v) NE { eps_v<FP> = v; }
 CEXP u32 TIME = ((__TIME__[0] & 15) << 20) | ((__TIME__[1] & 15) << 16) | ((__TIME__[3] & 15) << 12) | ((__TIME__[4] & 15) << 8) | ((__TIME__[6] & 15) << 4) | (__TIME__[7] & 15);
 
 template <class T>
 struct chash {
   CEXP static u64 C = u64(pi_v<f128> * 2e18) | 71;
-  CEXP u64 operator()(T x) const { return __builtin_bswap64(((u64)x ^ TIME) * C); }
+  CEXP u64 operator()(T x) CNE { return __builtin_bswap64(((u64)x ^ TIME) * C); }
 };
 
 // clang-format off
@@ -87,14 +89,14 @@ mk(b, bool) mk(i, i32) mk(u, u32) mk(ii, i64) mk(uu, u64);
 #undef mk
 #undef mk_
 
-inline const auto fn_0 = [](auto&&...) {};
-inline const auto fn_is0 = [](auto x) { return x == 0; };
+inline const auto fn_0 = [](auto&&...) NE {};
+inline const auto fn_is0 = [](auto x) NE { return x == 0; };
 
 using namespace std::literals;
 namespace tifa_libs {
 using std::min, std::max, std::swap;
 template <class T>
-CEXP T abs(T x) { return x < 0 ? -x : x; }
+CEXP T abs(T x) NE { return x < 0 ? -x : x; }
 }  // namespace tifa_libs
 
 #endif

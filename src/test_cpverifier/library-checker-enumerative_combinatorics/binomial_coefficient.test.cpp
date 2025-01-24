@@ -9,7 +9,7 @@ int main() {
   if (m == 1) {
     while (t--) tifa_libs::fout << "0\n";
   } else {
-    tifa_libs::math::ExLucas mCn(m);
+    tifa_libs::math::exlucas mCn(m);
     while (t--) {
       i64 n, k;
       tifa_libs::fin >> n >> k;

@@ -12,7 +12,7 @@ enum RELPLP { above_plp,
               below_plp };
 
 template <class FP>
-CEXP RELPLP relation_PlP(planev<FP> CR pl, point3d<FP> CR p) {
+CEXP RELPLP relation_PlP(planev<FP> CR pl, point3d<FP> CR p) NE {
   const FP d = (p - *pl.u) * pl.normal();
   if (is_pos(d)) return above_plp;
   if (is_neg(d)) return below_plp;

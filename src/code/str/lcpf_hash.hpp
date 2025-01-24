@@ -7,7 +7,7 @@ namespace tifa_libs::str {
 
 // @return length of longest common prefix of suffixes a[i, a.size()) and b[j, b.size())
 template <class hashstr_t>
-CEXP u32 lcpf_hash(hashstr_t CR a, hashstr_t CR b, u32 i, u32 j, u32 lmax = 0) {
+CEXP u32 lcpf_hash(hashstr_t CR a, hashstr_t CR b, u32 i, u32 j, u32 lmax = 0) NE {
   if (!lmax) lmax = (u32)max(a.size(), b.size());
   u32 l = 0, r = min({lmax, a.size() - i, b.size() - j}) + 1;
   while (l + 1 < r) {

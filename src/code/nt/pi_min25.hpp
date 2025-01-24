@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-CEXP u64 pi_min25(u64 n) {
+CEXP u64 pi_min25(u64 n) NE {
   if (n <= 1) return 0;
   if (n == 2) return 1;
   const u32 lim = isqrt(n);

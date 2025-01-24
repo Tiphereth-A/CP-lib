@@ -1,7 +1,7 @@
 #define UNITTEST
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../../code/geo2d/coverage_rect_min_area.hpp"
+#include "../../../code/geo2d/coverage_rect.hpp"
 
 #include "../base.hpp"
 
@@ -17,7 +17,7 @@ strn single_proceed(std::istream& fin) {
   fin >> n;
   ConvexHull2 cvh(n);
   fin >> cvh;
-  Polygon2 rect = tifa_libs::geo::coverage_rect_min_area(cvh.init());
+  Polygon2 rect = tifa_libs::geo::coverage_rect<tifa_libs::geo::CR_MIN_AREA, data_t>(cvh.init());
   ss << rect.area() << ' ';
   u32 start = 0;
   flt_ (u32, i, 0, 4) {

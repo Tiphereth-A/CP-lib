@@ -6,9 +6,9 @@
 
 namespace tifa_libs::math {
 
-CEXP std::optional<u64> qresidue(u64 a, u64 p) {
+CEXP std::optional<u64> qresidue(u64 a, u64 p) NE {
   if (!(a %= p)) return 0;
-  auto f = [](u64 a, u64 p) { return qpow_mod(a, p / 2, p) == 1; };
+  auto f = [](u64 a, u64 p) NE { return qpow_mod(a, p / 2, p) == 1; };
   if (!f(a, p)) return {};
   u64 r = 2;
   while (f(r, p)) ++r;

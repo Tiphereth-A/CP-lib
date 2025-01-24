@@ -6,10 +6,11 @@
 namespace tifa_libs::math {
 
 template <class Mat>
-CEXP Mat transpose(Mat CR mat) {
+CEXP Mat transpose(Mat CR mat) NE {
   const u32 r_ = mat.row(), c_ = mat.col();
   Mat ret(c_, r_);
-  return ret.apply_range(0, c_, 0, r_, [&mat](u32 i, u32 j, auto &val) { val = mat(j, i); }), ret;
+  ret.apply_range(0, c_, 0, r_, [&mat](u32 i, u32 j, auto &val) NE { val = mat(j, i); });
+  return ret;
 }
 
 }  // namespace tifa_libs::math

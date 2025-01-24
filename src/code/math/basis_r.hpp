@@ -10,9 +10,9 @@ struct basisR {
   vvec<FP> basis;
   const u32 vec_len;
 
-  CEXPE basisR(u32 vec_len) : vec_len(vec_len) {}
+  CEXPE basisR(u32 vec_len) NE : vec_len(vec_len) {}
 
-  CEXP bool insert(vec<FP> x) {
+  CEXP bool insert(vec<FP> x) NE {
     x.resize(vec_len);
     bool status = 0;
     for (u32 i = (u32)basis.size() - 1; ~i; --i) {
@@ -40,7 +40,7 @@ struct basisR {
     }
     return status;
   }
-  CEXP bool test(vec<FP> x) const {
+  CEXP bool test(vec<FP> x) CNE {
     for (u32 i = (u32)basis.size() - 1; ~i; --i) {
       if (is_zero(x[i])) continue;
       if (!is_zero(basis[i][i])) {
@@ -51,7 +51,7 @@ struct basisR {
     }
     return 1;
   }
-  CEXP u32 rank() const {
+  CEXP u32 rank() CNE {
     u32 res = 0;
     flt_ (u32, i, 0, (u32)basis.size()) res += !is_zero(basis[i][i]);
     return res;

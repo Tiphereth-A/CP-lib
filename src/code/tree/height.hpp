@@ -6,12 +6,12 @@
 namespace tifa_libs::graph {
 
 template <tree_c G>
-CEXP auto tree_height(G CR tr) {
+CEXP auto tree_height(G CR tr) NE {
   using T = TPN G::w_t;
   const u32 n = (u32)tr.size();
   vvec<T> _(n);
   flt_ (u32, i, 0, n) _[i].resize(tr[i].size(), T(-1));
-  auto f = [&](auto &&f, u32 u, u32 fa) -> T {
+  auto f = [&](auto &&f, u32 u, u32 fa) NE -> T {
     T ans = 0;
     auto &&es = tr[u];
     flt_ (u32, i, 0, (u32)es.size())

@@ -15,7 +15,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, k;
   std::cin >> n >> k;
-  tifa_libs::math::Binom<mint> binom(2001);
+  tifa_libs::math::binom<mint> binom(2001);
   std::cout << tifa_libs::math::ball_box_ida<mint>(n, k, binom) << '\n';
   return 0;
 }

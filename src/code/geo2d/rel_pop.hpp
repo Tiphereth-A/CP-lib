@@ -13,7 +13,7 @@ enum RELPoP { outside_pop,
               inside_pop };
 
 template <class FP>
-CEXP RELPoP relation_PoP(polygon<FP> CR po, point<FP> CR p) {
+CEXP RELPoP relation_PoP(polygon<FP> CR po, point<FP> CR p) NE {
   for (auto &&now : po.vs)
     if (now == p) return onendpoint_pop;
   bool result = false;

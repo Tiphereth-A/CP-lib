@@ -10,7 +10,7 @@ class trygub_num {
   std::map<int, i64> d;
 
  public:
-  void add(i64 x, int y) {
+  void add(i64 x, int y) NE {
     d[y] += x;
     auto it = d.find(y);
     while (1) {
@@ -21,7 +21,7 @@ class trygub_num {
     }
     if (!it->second) d.erase(it);
   }
-  i64 get(int k) {
+  i64 get(int k) NE {
     auto it = d.lower_bound(k);
     i64 res = (it != d.end() && it->first == k ? it->second : 0);
     return (res - (it != d.begin() && prev(it)->second < 0) + B) % B;

@@ -14,9 +14,9 @@ class dcvh {
     const int sgn_;
     set<point<FP>> vs;
 
-    CEXPE DHCVH(int sgn_ = 1) : sgn_(sgn_) {}
+    CEXPE DHCVH(int sgn_ = 1) NE : sgn_(sgn_) {}
 
-    CEXP bool contains(point<FP> CR p) const {
+    CEXP bool contains(point<FP> CR p) CNE {
       auto it = vs.lower_bound(point<FP>{p.x, -std::numeric_limits<FP>::max()});
       if (it == vs.end()) return false;
       if (it->x == p.x) return sgn(p.y - it->y) * sgn_ <= 0;
@@ -25,13 +25,15 @@ class dcvh {
       return sgn_cross(*(--j), *it, p) * sgn_ <= 0;
     }
     template <class IT>
-    CEXP bool erase(IT it) {
+    CEXP bool erase(IT it) NE {
       if (it == vs.begin()) return false;
       auto j = it, k = it;
       if (++k == vs.end()) return false;
-      return sgn_cross(*(--j), *it, *k) * sgn_ >= 0 ? vs.erase(it), true : false;
+      bool _ = sgn_cross(*(--j), *it, *k) * sgn_ >= 0;
+      if (_) vs.erase(it);
+      return _;
     }
-    CEXP DHCVH &insert(point<FP> CR p) {
+    CEXP DHCVH &insert(point<FP> CR p) NE {
       if (contains(p)) return *this;
       auto _ = vs.lower_bound(point<FP>{p.x, -std::numeric_limits<FP>::max()});
       if (_ != vs.end() && _->x == p.x) vs.erase(_);
@@ -48,13 +50,19 @@ class dcvh {
   } hcvh_up{1}, hcvh_down{-1};
 
  public:
-  CEXP dcvh() {}
+  CEXP dcvh() = default;
 
-  CEXP bool contains(point<FP> CR p) const { return hcvh_up.contains(p) && hcvh_down.contains(p); }
-  CEXP dcvh &insert(point<FP> CR p) { return hcvh_up.insert(p), hcvh_down.insert(p), *this; }
-  CEXP cvh<FP> to_CVH() const {
+  CEXP bool contains(point<FP> CR p) CNE { return hcvh_up.contains(p) && hcvh_down.contains(p); }
+  CEXP dcvh &insert(point<FP> CR p) NE {
+    hcvh_up.insert(p), hcvh_down.insert(p);
+    return *this;
+  }
+  CEXP cvh<FP> to_CVH() CNE {
     cvh<FP> ret;
-    return std::ranges::copy(hcvh_up.vs, ret.vs.begin()), std::ranges::copy(hcvh_down.vs, std::back_inserter(ret.vs)), argsort(ret.vs), ret;
+    std::ranges::copy(hcvh_up.vs, ret.vs.begin());
+    std::ranges::copy(hcvh_down.vs, std::back_inserter(ret.vs));
+    argsort(ret.vs);
+    return ret;
   }
 };
 

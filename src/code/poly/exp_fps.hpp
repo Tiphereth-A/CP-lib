@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto exp_fps(poly<ccore, mint, args...> p, u32 n = 0) {
+CEXP auto exp_fps(poly<ccore, mint, args...> p, u32 n = 0) NE {
   if (assert(p[0] == 0); !n) n = (u32)p.size();
   p[0] += 1;
   poly<ccore, mint, args...> a{1};

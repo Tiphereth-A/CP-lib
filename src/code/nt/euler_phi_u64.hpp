@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-inline u64 euler_phi_u64(u64 n) {
+inline u64 euler_phi_u64(u64 n) NE {
   if (n <= (u64)-1_u32) return euler_phi_u32((u32)n);
   for (const auto pf = pfactors(n); auto CR p : pf) n = n / p * (p - 1);
   return n;

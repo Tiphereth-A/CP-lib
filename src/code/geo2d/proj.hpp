@@ -7,13 +7,13 @@ namespace tifa_libs::geo {
 
 // projection to a line
 template <class FP>
-CEXP point<FP> proj(line<FP> CR l, point<FP> CR p) {
+CEXP point<FP> proj(line<FP> CR l, point<FP> CR p) NE {
   const point dir = l.direction();
   return l.l + dir * (dir * (p - l.l) / dir.norm2());
 }
 // reflection about a line
 template <class FP>
-CEXP point<FP> reflect(line<FP> CR l, point<FP> CR p) { return proj(l, p) * 2 - p; }
+CEXP point<FP> reflect(line<FP> CR l, point<FP> CR p) NE { return proj(l, p) * 2 - p; }
 
 }  // namespace tifa_libs::geo
 

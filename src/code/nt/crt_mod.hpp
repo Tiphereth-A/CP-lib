@@ -7,7 +7,7 @@
 
 namespace tifa_libs::math {
 
-CEXP std::optional<pttu> crt_mod(spni a, vecu m, u32 const mod) {
+CEXP std::optional<pttu> crt_mod(spni a, vecu m, u32 const mod) NE {
   if (a.size() != m.size()) return {};
   const u32 n = (u32)a.size();
   flt_ (u32, i, 0, n) {

@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 // partition[i] = p(i), i=0,1,...,n
 template <class poly>
-CEXP poly gen_partition(u32 n) {
+CEXP poly gen_partition(u32 n) NE {
   if (n == 0) return poly{1};
   poly p(n + 1);
   p[0] = 1;

@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 namespace bostan_mori_impl_ {
 template <class ccore_t, class T>
-vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) {
+vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) NE {
   static u32 len = core.size();
   static vec<T> s(len * 2);
   static CEXP T inv2 = (T::mod() + 1) / 2;
@@ -15,7 +15,8 @@ vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) {
     vec<T> res(d);
     T q0 = 0;
     flt_ (u32, i, 0, len) q0 += q[i];
-    return res.back() = len * q0.inv(), res;
+    res.back() = len * q0.inv();
+    return res;
   }
   ntt_doubling(core, q, len);
   vec<T> a(len * 2);
@@ -33,7 +34,7 @@ vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) {
 
 // @return [x^k]p/q
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto bostan_mori(u64 n, poly<ccore, mint, args...> CR p, poly<ccore, mint, args...> CR q) {
+CEXP auto bostan_mori(u64 n, poly<ccore, mint, args...> CR p, poly<ccore, mint, args...> CR q) NE {
   if CEXP (assert(p.size() == q.size() - 1 && !p.is_zero()); ccore<mint, args...>::ct_cat != ct_NTT) {
     auto p_ = p, q_ = q;
     while (n) {

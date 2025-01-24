@@ -9,7 +9,7 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-CEXP FP area_PoC(polygon<FP> CR po, circle<FP> CR c) {
+CEXP FP area_PoC(polygon<FP> CR po, circle<FP> CR c) NE {
   math::kahan<FP> ans{};
   const u32 n = po.size();
   if (n < 3) return ans;

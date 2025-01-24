@@ -13,7 +13,7 @@ struct LPSolver {
   int m, n;       // # m = contraints, # n = variables
   vec<int> N, B;  // N[j] = non-basic variable (j-th column), = 0
   vvec<T> D;      // B[j] = basic variable (j-th row)
-  CEXP LPSolver(vvec<T> CR A, vec<T> CR b, vec<T> CR c) : m(sz(b)), n(sz(c)), N(n + 1), B(m), D(m + 2, vec<T>(n + 2)) {
+  CEXP LPSolver(vvec<T> CR A, vec<T> CR b, vec<T> CR c) NE : m(sz(b)), n(sz(c)), N(n + 1), B(m), D(m + 2, vec<T>(n + 2)) {
     flt_ (int, i, 0, m)
       flt_ (int, j, 0, n) D[i][j] = A[i][j];
     flt_ (int, i, 0, m) B[i] = n + i, D[i][n] = -1, D[i][n + 1] = b[i];
@@ -25,8 +25,8 @@ struct LPSolver {
     N[n] = -1;
     D[m + 1][n] = 1;  // to find initial feasible
   }  // solution, minimize artificial variable
-  CEXP void pivot(int r, int s) {  // swap B[r] (row)
-    T inv = 1 / D[r][s];           // with N[r] (column)
+  CEXP void pivot(int r, int s) NE {  // swap B[r] (row)
+    T inv = 1 / D[r][s];              // with N[r] (column)
     for (int i = 0; i <= m + 1; ++i)
       if (i != r && abs(D[i][s]) > eps_v<T>) {
         T binv = D[i][s] * inv;
@@ -38,7 +38,7 @@ struct LPSolver {
     for (int j = 0; j < (n + 2); ++j) D[r][j] *= inv;  // scale r-th row
     swap(B[r], N[s]);
   }
-  CEXP bool simplex(int phase) {
+  CEXP bool simplex(int phase) NE {
     int x = m + phase - 1;
     while (1) {  // if phase=1, ignore artificial variable
       int s = -1;
@@ -57,7 +57,7 @@ struct LPSolver {
       pivot(r, s);
     }
   }
-  CEXP T solve(vec<T>& x) {  // 1. check if x=0 feasible
+  CEXP T solve(vec<T>& x) NE {  // 1. check if x=0 feasible
     int r = 0;
     for (int i = (1); i < m; ++i)
       if (D[i][n + 1] < D[r][n + 1]) r = i;

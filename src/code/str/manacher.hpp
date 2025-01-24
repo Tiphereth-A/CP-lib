@@ -5,7 +5,7 @@
 
 namespace tifa_libs::str {
 
-CEXP vecu manacher(strnv t) {
+CEXP vecu manacher(strnv t) NE {
   strn s{'\001', '\002'};
   for (char c : t) (s += c) += '\002';
   s += '\003';

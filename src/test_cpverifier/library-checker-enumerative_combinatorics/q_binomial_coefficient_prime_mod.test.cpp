@@ -19,7 +19,7 @@ int main() {
     }
     return 0;
   }
-  tifa_libs::math::QBinom<mint> mCn(std::min(MOD - 1, 10'000'000_u32), q);
+  tifa_libs::math::qbinom<mint> mCn(q);
   while (t--) {
     i64 n, k;
     tifa_libs::fin >> n >> k;

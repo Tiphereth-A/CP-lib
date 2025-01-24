@@ -7,12 +7,12 @@ namespace tifa_libs::opt {
 
 //! $h(r) = argmin_i a_{r,i}$ MUST be non-decreasing
 // a: $[0, n) \times [0, m)$
-// @param f: f(u32, u32, u32) -> bool
+// @param f: f(u32, u32, u32) NE -> bool
 // f(r, x, y): $a_{r,x}\leq a_{r,y}$
 template <class Ft>
-CEXP vecu smawk(u32 n, u32 m, Ft&& f) {
+CEXP vecu smawk(u32 n, u32 m, Ft&& f) NE {
   vecu ans(n);
-  auto g = [&](auto&& g, u32 u, u32 d, u32 l, u32 r) -> void {
+  auto g = [&](auto&& g, u32 u, u32 d, u32 l, u32 r) NE -> void {
     if (u == d) return;
     assert(l < r);
     const u32 rmid = (u + d) / 2;

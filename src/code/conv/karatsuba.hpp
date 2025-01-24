@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-CEXP vec<T> karatsuba(vec<T> CR a, vec<T> CR b) {
+CEXP vec<T> karatsuba(vec<T> CR a, vec<T> CR b) NE {
   if (a.empty() && b.empty()) return {};
   if (a.size() < b.size()) return karatsuba(b, a);
   if (a.size() < 32) return conv_naive(a, b);
@@ -23,13 +23,16 @@ CEXP vec<T> karatsuba(vec<T> CR a, vec<T> CR b) {
   const vec<T> bl(b.begin(), b.begin() + d), bu(b.begin() + d, b.end());
   vec<T> alu{al}, blu{bl};
   alu += au, blu += bu;
-  vec<T> cll = karatsuba(al, bl), cuu = karatsuba(au, bu), clu = karatsuba(alu, blu);
+  vec<T> cll = karatsuba(al, bl),
+         cuu = karatsuba(au, bu),
+         clu = karatsuba(alu, blu);
   (clu -= cll) -= cuu;
   vec<T> c(d);
   std::ranges::copy(clu, std::back_inserter(c));
   c.resize(a.size() + b.size() - 1), c += cll;
   flt_ (u32, i, 0, (u32)cuu.size()) c[i + 2 * d] += cuu[i];
-  return c.resize(a.size() + b.size() - 1), c;
+  c.resize(a.size() + b.size() - 1);
+  return c;
 }
 
 }  // namespace tifa_libs::math

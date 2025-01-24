@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto divmod_fps(poly<ccore, mint, args...> CR p, poly<ccore, mint, args...> CR q) {
+CEXP auto divmod_fps(poly<ccore, mint, args...> CR p, poly<ccore, mint, args...> CR q) NE {
   const u32 n = (u32)p.size(), m = (u32)q.size();
   if (n < m) return std::make_pair(poly<ccore, mint, args...>{}, p);
   auto d = div_fps(p, q);

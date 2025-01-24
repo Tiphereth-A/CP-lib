@@ -19,33 +19,36 @@ class fastin {
   struct stat Fl;
 
  public:
-  fastin(FILE *f = stdin) { assert(f), rebind(f); }
-  ~fastin() { rebind(); }
-  void rebind(FILE *f = nullptr) {
+  fastin(FILE *f = stdin) NE { assert(f), rebind(f); }
+  ~fastin() NE { rebind(); }
+  void rebind(FILE *f = nullptr) NE {
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
     if (!f_) munmap(bg, Fl.st_size + 1);
 #pragma GCC diagnostic warning "-Wmaybe-uninitialized"
     if (!f) return;
     auto fd = fileno(f_ = f);
-    fstat(fd, &Fl), p = (bg = (char *)mmap(nullptr, Fl.st_size + 4, PROT_READ, MAP_PRIVATE, fd, 0)), ed = bg + Fl.st_size, madvise(bg, Fl.st_size + 4, MADV_SEQUENTIAL);
+    fstat(fd, &Fl);
+    p = (bg = (char *)mmap(nullptr, Fl.st_size + 4, PROT_READ, MAP_PRIVATE, fd, 0));
+    ed = bg + Fl.st_size;
+    madvise(bg, Fl.st_size + 4, MADV_SEQUENTIAL);
   }
-  char peek() { return *p; }
-  char get() { return *p++; }
-  bool iseof() { return p == ed; }
+  char peek() NE { return *p; }
+  char get() NE { return *p++; }
+  bool iseof() NE { return p == ed; }
 
 #else
   char buf[BUF], *ed, *p;
 
  public:
-  fastin(FILE *f = stdin) { rebind(f); }
-  void rebind(FILE *f) { f_ = f, p = ed = buf; }
-  char peek() { return p == ed && (ed = (p = buf) + fread(buf, 1, BUF, f_), p == ed) ? EOF : *p; }
-  char get() { return p == ed && (ed = (p = buf) + fread(buf, 1, BUF, f_), p == ed) ? EOF : *p++; }
-  bool iseof() { return peek() == EOF; }
+  fastin(FILE *f = stdin) NE { rebind(f); }
+  void rebind(FILE *f) NE { f_ = f, p = ed = buf; }
+  char peek() NE { return p == ed && (ed = (p = buf) + fread(buf, 1, BUF, f_), p == ed) ? EOF : *p; }
+  char get() NE { return p == ed && (ed = (p = buf) + fread(buf, 1, BUF, f_), p == ed) ? EOF : *p++; }
+  bool iseof() NE { return peek() == EOF; }
 #endif
   template <class T>
   requires(sint_c<T> && !char_c<T>)
-  fastin &read(T &n) {
+  fastin &read(T &n) NE {
     bool is_neg = false;
     char ch = get();
     while (!isdigit(ch)) is_neg |= ch == '-', ch = get();
@@ -56,7 +59,7 @@ class fastin {
   }
   template <class T>
   requires(uint_c<T> && !char_c<T>)
-  fastin &read(T &n) {
+  fastin &read(T &n) NE {
     char ch = get();
     while (!isdigit(ch)) ch = get();
     n = 0;
@@ -64,16 +67,17 @@ class fastin {
     return *this;
   }
   template <mint_c T>
-  fastin &read(T &n) {
+  fastin &read(T &n) NE {
     decltype(std::declval<T>().sval()) x;
-    return read(x), n = T(x), *this;
+    read(x), n = T(x);
+    return *this;
   }
   //! ignore cntrl and space
-  fastin &read(char_c auto &n) {
+  fastin &read(char_c auto &n) NE {
     while (!isgraph(n = get()));
     return *this;
   }
-  fastin &read(strn &n) {
+  fastin &read(strn &n) NE {
     n.clear();
     char n_;
     while (!isgraph(n_ = get()));
@@ -82,23 +86,25 @@ class fastin {
     return *this;
   }
   template <class T, class U>
-  fastin &read(std::pair<T, U> &p) { return read(p.first).read(p.second); }
+  fastin &read(std::pair<T, U> &p) NE { return read(p.first).read(p.second); }
   template <class... Ts>
-  fastin &read(std::tuple<Ts...> &p) {
-    return std::apply([&](Ts &...targs) { ((read(targs)), ...); }, p), *this;
+  fastin &read(std::tuple<Ts...> &p) NE {
+    std::apply([&](Ts &...targs) NE { ((read(targs)), ...); }, p);
+    return *this;
   }
-  fastin &read(container_c auto &p) {
+  fastin &read(container_c auto &p) NE {
     if (p.begin() == p.end()) return *this;
     for (auto &i : p) read(i);
     return *this;
   }
-  fastin &getline(char *n) {
+  fastin &getline(char *n) NE {
     char *n_ = n;
     while (!isprint(*n_ = get()));
     while (isprint(*(++n_) = get()));
-    return *n_ = '\0', *this;
+    *n_ = '\0';
+    return *this;
   }
-  fastin &getline(strn &n) {
+  fastin &getline(strn &n) NE {
     char n_;
     while (!isprint(n_ = get()));
     n.push_back(n_);
@@ -106,9 +112,12 @@ class fastin {
     return *this;
   }
   //! NOT ignore cntrl and space
-  fastin &strict_read(char_c auto &n) { return n = get(), *this; }
+  fastin &strict_read(char_c auto &n) NE {
+    n = get();
+    return *this;
+  }
   template <class T>
-  fastin &operator>>(T &val) { return read(val); }
+  fastin &operator>>(T &val) NE { return read(val); }
 };
 template <u32 BUF, u32 INTBUF>
 class fastout {
@@ -118,57 +127,63 @@ class fastout {
   const char *const ed = buf + BUF;
 
  public:
-  fastout(FILE *f = stdout) { rebind(f); }
-  ~fastout() { flush(); }
-  void rebind(FILE *f) { f_ = f, p = buf; }
-  void flush() { fwrite(buf, 1, usz(p - buf), f_), p = buf; }
+  fastout(FILE *f = stdout) NE { rebind(f); }
+  ~fastout() NE { flush(); }
+  void rebind(FILE *f) NE { f_ = f, p = buf; }
+  void flush() NE { fwrite(buf, 1, usz(p - buf), f_), p = buf; }
   template <char_c T>
-  fastout &write(T n) {
+  fastout &write(T n) NE {
     if (p == ed) [[unlikely]]
       flush();
-    return *(p++) = n, *this;
+    *(p++) = n;
+    return *this;
   }
-  fastout &write(const char *n) {
+  fastout &write(const char *n) NE {
     usz len = strlen(n), l_;
     const char *n_ = n;
     while (p + len >= ed) memcpy(p, n_, l_ = usz(ed - p)), p += l_, n_ += l_, len -= l_, flush();
-    return memcpy(p, n_, len), p += len, *this;
+    memcpy(p, n_, len), p += len;
+    return *this;
   }
   template <class T>
   requires(sint_c<T> && !char_c<T>)
-  fastout &write(T n) {
+  fastout &write(T n) NE {
     if (n < 0) write('-');
     return write(n < 0 ? -to_uint_t<T>(n) : to_uint_t<T>(n));
   }
   template <class T>
   requires(uint_c<T> && !char_c<T>)
-  fastout &write(T n) {
-    if CEXP (sizeof(T) <= 4) return memset(p_ib = int_buf, 0, 11), u32tostr(n, p_ib), write(p_ib);
+  fastout &write(T n) NE {
+    if CEXP (sizeof(T) <= 4) {
+      memset(p_ib = int_buf, 0, 11), u32tostr(n, p_ib);
+      return write(p_ib);
+    }
     p_ib = int_buf + INTBUF - 1;
     do *(--(p_ib)) = char(n % 10) | '0';
     while (n /= 10);
     return write(p_ib);
   }
-  fastout &write(mint_c auto n) { return write(n.val()); }
-  fastout &write(strn CR str) { return write(str.c_str()); }
+  fastout &write(mint_c auto n) NE { return write(n.val()); }
+  fastout &write(strn CR str) NE { return write(str.c_str()); }
   template <class T, class U>
-  fastout &write(std::pair<T, U> CR p) { return write(p.first).space().write(p.second); }
+  fastout &write(std::pair<T, U> CR p) NE { return write(p.first).space().write(p.second); }
   template <class... Ts>
-  fastout &write(std::tuple<Ts...> CR p) {
-    return std::apply([&](Ts CR... targs) { usz n{0}; ((write(targs).space_if(++n != sizeof...(Ts))), ...); }, p), *this;
+  fastout &write(std::tuple<Ts...> CR p) NE {
+    std::apply([&](Ts CR... targs) NE { usz n{0}; ((write(targs).space_if(++n != sizeof...(Ts))), ...); }, p);
+    return *this;
   }
-  fastout &write(container_c auto CR p) {
+  fastout &write(container_c auto CR p) NE {
     if (p.begin() == p.end()) return *this;
     auto it = p.begin();
     for (write(*it++); it != p.end(); ++it) space().write(*it);
     return *this;
   }
-  fastout &linebreak() { return write('\n'); }
-  fastout &linebreak_if(bool flag) { return flag ? linebreak() : *this; }
-  fastout &space() { return write(' '); }
-  fastout &space_if(bool flag) { return flag ? space() : *this; }
+  fastout &linebreak() NE { return write('\n'); }
+  fastout &linebreak_if(bool flag) NE { return flag ? linebreak() : *this; }
+  fastout &space() NE { return write(' '); }
+  fastout &space_if(bool flag) NE { return flag ? space() : *this; }
   template <class T>
-  fastout &operator<<(T CR val) { return write(val); }
+  fastout &operator<<(T CR val) NE { return write(val); }
 };
 }  // namespace fastio_impl_
 inline fastio_impl_::fastin<0x200005> fin;

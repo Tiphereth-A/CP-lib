@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <class T>
-CEXP vec<T> conv_gcd(vec<T> l, vec<T> r) {
+CEXP vec<T> conv_gcd(vec<T> l, vec<T> r) NE {
   assert(l.size() == r.size());
   const auto pf = prime_seq((u32)l.size() - 1);
   zt_multiple(l, pf), zt_multiple(r, pf);

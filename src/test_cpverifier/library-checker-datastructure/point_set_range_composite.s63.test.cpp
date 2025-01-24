@@ -17,8 +17,8 @@ auto op(T a, T b) {  // b(a(x))
   tifa_libs::swap(a, b);
   return T{a.first * b.first, a.first * b.second + a.second};
 }
-auto mapping(T a, F f) { return op(f, a); }
-auto composition(F, F) { return F(1, 0); }
+void mapping(T& a, F f) { a = op(f, a); }
+void composition(F& x, F) { x = F(1, 0); }
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

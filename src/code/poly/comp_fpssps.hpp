@@ -9,8 +9,8 @@
 namespace tifa_libs::math {
 
 // @return $f(g(x_0, \dots, x_{n-1}))$
-template <class poly, u32 N = 21>
-auto comp_fpssps(u32 n, poly f, vec<TPN poly::val_t> g, spnuu fact, spnuu ifact) {
+template <class poly, class T, u32 N = 21>
+auto comp_fpssps(u32 n, poly f, vec<TPN poly::val_t> g, vec<T> CR fact, vec<T> CR ifact) NE {
   using mint = TPN poly::val_t;
   static conv_subset<mint, N> ss;
   if (assert(n <= N); !f.size()) return vec<mint>(1 << n);
@@ -34,9 +34,9 @@ auto comp_fpssps(u32 n, poly f, vec<TPN poly::val_t> g, spnuu fact, spnuu ifact)
 }
 // @return $f(g(x_0, \dots, x_{n-1}))$
 template <class poly, u32 N = 21>
-CEXP auto comp_fpssps(u32 n, poly CR f, vec<TPN poly::val_t> CR g) {
+CEXP auto comp_fpssps(u32 n, poly CR f, vec<TPN poly::val_t> CR g) NE {
   using mint = TPN poly::val_t;
-  return comp_fpssps<poly, N>(n, f, g, gen_fact(max((u32)f.size(), n) + 1, mint::mod()), gen_ifact(max((u32)f.size(), n) + 1, mint::mod()));
+  return comp_fpssps<poly, u64, N>(n, f, g, gen_fact(max((u32)f.size(), n) + 1, mint::mod()), gen_ifact(max((u32)f.size(), n) + 1, mint::mod()));
 }
 
 }  // namespace tifa_libs::math

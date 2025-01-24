@@ -6,14 +6,14 @@
 namespace tifa_libs::util {
 
 // Given alphabet $[0,k)$ constructs a cyclic string of length $k^n$ that contains every length $n$ string as substr
-CEXP vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) {
+CEXP vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) NE {
   if (k == 1) return {0};
   if (!maxsz) {
     maxsz = 1;
     flt_ (u32, i, 0, n) maxsz *= k;
   }
   vecu ret, _(n + 1);
-  auto f = [&](auto&& f, u32 t, u32 p) -> void {
+  auto f = [&](auto&& f, u32 t, u32 p) NE -> void {
     if (ret.size() >= maxsz) return;
     if (t > n) {
       if (!(n % p))
@@ -28,7 +28,8 @@ CEXP vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) {
       }
     }
   };
-  return f(f, 1, 1), ret.resize(maxsz), ret;
+  f(f, 1, 1), ret.resize(maxsz);
+  return ret;
 }
 
 }  // namespace tifa_libs::util

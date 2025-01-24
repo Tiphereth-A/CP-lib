@@ -6,7 +6,7 @@
 namespace tifa_libs::bit {
 
 template <class T>
-CEXP int parity(T x) {
+CEXP int parity(T x) NE {
   CEXP int nd = sizeof(T) * 8;
   static_assert(nd <= 128);
   CEXP int nd_ull = sizeof(unsigned long long) * 8;

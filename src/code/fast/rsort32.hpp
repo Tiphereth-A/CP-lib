@@ -7,7 +7,7 @@ namespace tifa_libs {
 
 template <class C>
 requires(std::contiguous_iterator<TPN C::iterator> && std::integral<TPN C::value_type> && sizeof(TPN C::value_type) == 4)
-void rsort32(C& a) {
+void rsort32(C& a) NE {
   if (a.size() <= 1) return;
   u32 _0[256]{}, _1[256]{}, _2[256]{}, _3[256]{};
   const u32 n = (u32)a.size();
@@ -26,7 +26,7 @@ void rsort32(C& a) {
   }
 }
 template <class C>
-void sort(C& a) {
+void sort(C& a) NE {
   if CEXP (std::contiguous_iterator<TPN C::iterator> && std::integral<TPN C::value_type> && sizeof(TPN C::value_type) == 4) rsort32(a);
   else std::sort(a.begin(), a.end());
 }

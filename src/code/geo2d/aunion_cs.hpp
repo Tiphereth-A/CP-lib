@@ -8,11 +8,11 @@ namespace tifa_libs::geo {
 
 // @return ans, which ans[i] means area covered at least i+1 times
 template <std::floating_point FP>
-CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) {
+CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) NE {
   struct arc_t {
     point<FP> p;
     FP _0, _1, _2;
-    CEXP auto operator<=>(arc_t CR r) const {
+    CEXP auto operator<=>(arc_t CR r) CNE {
       if (auto CR c = p <=> r.p; c) return c;
       if (auto CR c = comp(_0, r._0); c) return c;
       if (auto CR c = comp(_1, r._1); c) return c;
@@ -21,7 +21,7 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) {
   };
   const u32 n = (u32)cs.size();
   vvec<arc_t> arcs(n);
-  auto cut = [&](circle<FP> CR ci, u32 i) {
+  auto cut = [&](circle<FP> CR ci, u32 i) NE {
     vecp<FP, int> evt;
     evt.emplace_back(-pi_v<FP>, 0), evt.emplace_back(pi_v<FP>, 0);
     int init = 0;
@@ -37,23 +37,28 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) {
         FP argl = dl.arg(), argr = dr.arg();
         if (is_eq(argl, -pi_v<FP>)) argl = pi_v<FP>;
         if (is_eq(argr, -pi_v<FP>)) argr = pi_v<FP>;
-        if (is_gt(argl, argr)) evt.emplace_back(argl, 1), evt.emplace_back(pi_v<FP>, -1), evt.emplace_back(-pi_v<FP>, 1), evt.emplace_back(argr, -1);
-        else evt.emplace_back(argl, 1), evt.emplace_back(argr, -1);
+        if (is_gt(argl, argr)) {
+          evt.emplace_back(argl, 1);
+          evt.emplace_back(pi_v<FP>, -1);
+          evt.emplace_back(-pi_v<FP>, 1);
+          evt.emplace_back(argr, -1);
+        } else evt.emplace_back(argl, 1), evt.emplace_back(argr, -1);
       }
     }
     std::ranges::sort(evt);
     int sum = init;
     flt_ (u32, i, 0, (u32)evt.size()) {
-      if (sum += evt[i].second; !is_eq(evt[i].first, evt[i + 1].first)) arcs[(u32)sum].emplace_back(ci.o, ci.r, evt[i].first, evt[i + 1].first);
+      sum += evt[i].second;
+      if (!is_eq(evt[i].first, evt[i + 1].first)) arcs[(u32)sum].emplace_back(ci.o, ci.r, evt[i].first, evt[i + 1].first);
       if (is_eq(evt[i + 1].first, pi_v<FP>)) break;
     }
   };
-  auto oint = [](arc_t CR arc) {
+  auto oint = [](arc_t CR arc) NE {
     if (auto [cc, cr, l, r] = arc; is_eq(r - l, pi_v<FP> * 2)) return 2 * pi_v<FP> * cr * cr;
     else return cr * (cr * (r - l) + cc.x * (std::sin(r) - std::sin(l)) - cc.y * (std::cos(r) - std::cos(l)));
   };
   flt_ (u32, i, 0, n) cut(cs[i], i);
-  auto eq = [](arc_t CR u, arc_t CR v) {
+  auto eq = [](arc_t CR u, arc_t CR v) NE {
     auto [u1, u2, u3, u4] = u;
     auto [v1, v2, v3, v4] = v;
     return u1 == v1 && is_eq(u2, v2) && is_eq(u3, v3) && is_eq(u4, v4);

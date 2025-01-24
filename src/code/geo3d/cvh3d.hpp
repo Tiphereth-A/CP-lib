@@ -18,10 +18,10 @@ class cvh3d {
     planev<FP> p;
     u32 pid[3];
 
-    CEXP facet() {}
-    CEXP facet(u32 id, vec<point3d<FP>> CR vp, u32 id0, u32 id1, u32 id2) : id(id), p(vp[id0], vp[id1], vp[id2]), pid{id0, id1, id2} {}
-    CEXP facet(vec<point3d<FP>> CR vp, u32 id0, u32 id1, u32 id2) : facet(0, vp, id0, id1, id2) {}
-    CEXP void in(u32 n1, u32 n2, u32 n3) { n[0] = n1, n[1] = n2, n[2] = n3; }
+    CEXP facet() = default;
+    CEXP facet(u32 id, vec<point3d<FP>> CR vp, u32 id0, u32 id1, u32 id2) NE : id(id), p(vp[id0], vp[id1], vp[id2]), pid{id0, id1, id2} {}
+    CEXP facet(vec<point3d<FP>> CR vp, u32 id0, u32 id1, u32 id2) NE : facet(0, vp, id0, id1, id2) {}
+    CEXP void in(u32 n1, u32 n2, u32 n3) noexcept { n[0] = n1, n[1] = n2, n[2] = n3; }
   };
   u32 tm = 0, idx = 0;
   math::kahan<FP> suf_area = 0;
@@ -30,7 +30,7 @@ class cvh3d {
   //! 1-indexed
   vec<facet> faces;
   //! 1-indexed, no co-linear or co-plane
-  explicit cvh3d(vec<point3d<FP>> CR vp) {
+  explicit cvh3d(vec<point3d<FP>> CR vp) NE {
     faces.emplace_back(vp, 0, 0, 0), faces[0].isdel = 1;
     vvecu ptsid(5);
     {
@@ -51,7 +51,8 @@ class cvh3d {
       flt_ (u32, i, 0, 6)
         if (is_gt(dist3_PL(v(p, i), {v(s, 0), v(s, 1)}), dist3_PL(v(s, 2), {v(s, 0), v(s, 1)}))) sid[2] = pid[i];
       flt_ (u32, i, 1, (u32)vp.size())
-        if (is_gt(abs(sdist3_PlP(planev<FP>{v(s, 0), v(s, 1), v(s, 2)}, vp[i])), abs(sdist3_PlP(planev<FP>{v(s, 0), v(s, 1), v(s, 2)}, v(s, 3))))) sid[3] = i;
+        if (is_gt(abs(sdist3_PlP(planev<FP>{v(s, 0), v(s, 1), v(s, 2)}, vp[i])),
+                  abs(sdist3_PlP(planev<FP>{v(s, 0), v(s, 1), v(s, 2)}, v(s, 3))))) sid[3] = i;
       if (is_neg(sdist3_PlP(planev<FP>{v(s, 0), v(s, 1), v(s, 2)}, v(s, 3)))) swap(sid[1], sid[2]);
       faces.emplace_back(1, vp, sid[0], sid[2], sid[1]), faces.emplace_back(2, vp, sid[0], sid[1], sid[3]);
       faces.emplace_back(3, vp, sid[1], sid[2], sid[3]), faces.emplace_back(4, vp, sid[2], sid[0], sid[3]);
@@ -72,7 +73,7 @@ class cvh3d {
     };
     vec<edge> e1(vp.size()), e2(vp.size());
     vecu vistime(vp.size()), resfdel(vp.size()), resfnew(vp.size()), resptid(vp.size());
-    auto horizon = [&](auto &&f, u32 id, point3d<FP> CR p) -> u32 {
+    auto horizon = [&](auto &&f, u32 id, point3d<FP> CR p) NE -> u32 {
       if (relation_PlP(faces[id].p, p) != above_plp) return 0;
       if (faces[id].vistime == tm) return -1_u32;
       faces[id].vistime = tm, faces[id].isdel = 1, resfdel.push_back(faces[id].id);
@@ -101,7 +102,8 @@ class cvh3d {
       u32 pid = ptsid[nf][0];
       point3d<FP> p = vp[pid];
       flt_ (u32, i, 1, (u32)ptsid[nf].size())
-        if (is_gt(sdist3_PlP(faces[nf].p, vp[ptsid[nf][i]]), sdist3_PlP(faces[nf].p, p))) p = vp[pid = ptsid[nf][i]];
+        if (is_gt(sdist3_PlP(faces[nf].p, vp[ptsid[nf][i]]),
+                  sdist3_PlP(faces[nf].p, p))) p = vp[pid = ptsid[nf][i]];
       ++tm, resfdel.clear();
       u32 s = horizon(horizon, nf, p);
       ++tm, resfnew.clear();
@@ -126,7 +128,11 @@ class cvh3d {
       }
       if (*faces[fstf].p.v == *faces[lastf].p.u) faces[fstf].n[1] = lastf, faces[lastf].n[2] = fstf;
       else faces[fstf].n[2] = lastf, faces[lastf].n[1] = fstf;
-      for (resptid.clear(); auto i : resfdel) std::ranges::move(ptsid[i], std::back_inserter(resptid)), ptsid[i].clear();
+      resptid.clear();
+      for (auto i : resfdel) {
+        std::ranges::move(ptsid[i], std::back_inserter(resptid));
+        ptsid[i].clear();
+      }
       for (auto i : resptid) {
         if (vp[i] == p) continue;
         for (auto j : resfnew)
@@ -141,16 +147,17 @@ class cvh3d {
   }
   template <class F>
   requires requires(F op, math::kahan<FP> &v, planev<FP> p) { op(v, p); }
-  CEXP void dfs(F &&op) {
-    auto f = [&](auto &&f, u32 nf) -> void {
+  CEXP void dfs(F &&op) NE {
+    auto f = [&](auto &&f, u32 nf) NE -> void {
       if (faces[nf].vistime == tm) return;
       for (faces[nf].vistime = tm, op(suf_area, faces[nf].p); auto i : faces[nf].n) f(f, i);
     };
     ++tm, f(f, idx);
   }
-  CEXP FP surface_area() {
+  CEXP FP surface_area() NE {
     if (!is_zero((FP)suf_area)) return suf_area;
-    return dfs([](math::kahan<FP> &v, planev<FP> p) { v += p.area(); }), suf_area;
+    dfs([](math::kahan<FP> &v, planev<FP> p) NE { v += p.area(); });
+    return suf_area;
   }
 };
 

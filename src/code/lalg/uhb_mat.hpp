@@ -9,7 +9,7 @@ template <class Mat, class Is0>
 requires requires(Is0 is0, TPN Mat::val_t t) {
   { is0(t) } -> std::same_as<bool>;
 }
-CEXP void uhb(Mat &mat, Is0 &&is0) {
+CEXP void uhb(Mat &mat, Is0 &&is0) NE {
   const u32 n = mat.row();
   if (assert(n == mat.col()); n <= 2) return;
   for (u32 i = 0, p; i < n - 2; ++i) {

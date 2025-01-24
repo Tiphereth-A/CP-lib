@@ -15,19 +15,19 @@ class kosaraju {
   vecu scc_id;
   vvecu belongs;
 
-  CEXPE kosaraju(alist<with_deg> CR g) : kosaraju(g, make_alistr(g)) {}
-  CEXP kosaraju(alist<with_deg> CR g, alist<with_deg> CR rev_g) : g(g), rev_g(rev_g) { build(); }
+  CEXPE kosaraju(alist<with_deg> CR g) NE : kosaraju(g, make_alistr(g)) {}
+  CEXP kosaraju(alist<with_deg> CR g, alist<with_deg> CR rev_g) NE : g(g), rev_g(rev_g) { build(); }
 
  private:
-  CEXP void build() {
+  CEXP void build() NE {
     vecb vis(g.size());
     vecu ord;
-    auto dfs = [&, this](auto &&dfs, u32 idx) {
+    auto dfs = [&, this](auto &&dfs, u32 idx) NE {
       if (vis[idx]) return;
       for (vis[idx] = 1; auto to : g[idx]) dfs(dfs, to);
       ord.push_back(idx);
     };
-    auto rdfs = [this](auto &&rdfs, u32 idx, u32 cnt) {
+    auto rdfs = [this](auto &&rdfs, u32 idx, u32 cnt) NE {
       if (~scc_id[idx]) return;
       for (scc_id[idx] = cnt; auto to : rev_g[idx]) rdfs(rdfs, to, cnt);
     };

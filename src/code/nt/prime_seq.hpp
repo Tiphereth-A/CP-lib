@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-CEXP vecu prime_seq(u32 n) {
+CEXP vecu prime_seq(u32 n) NE {
   vecb sieve(n / 3 + 1, 1);
   for (u32 p = 5, d = 4, i = 1, sqn = isqrt(n); p <= sqn; p += d = 6 - d, ++i) {
     if (!sieve[i]) continue;

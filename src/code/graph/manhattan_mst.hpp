@@ -9,12 +9,12 @@ namespace tifa_libs::graph {
 // @return edges MAYBE in MST, {d(u, v), u, v}
 template <class T>
 requires std::is_signed_v<T>
-vec<edge_t<T>> manhattan_mst(vecpt<T> vp) {
+vec<edge_t<T>> manhattan_mst(vecpt<T> vp) NE {
   vecu id(vp.size());
   std::iota(id.begin(), id.end(), 0);
   vec<edge_t<T>> ret;
   flt_ (u32, k, 0, 4) {
-    std::ranges::sort(id, [&](u32 i, u32 j) { return vp[i].first + vp[i].second < vp[j].first + vp[j].second; });
+    std::ranges::sort(id, [&](u32 i, u32 j) NE { return vp[i].first + vp[i].second < vp[j].first + vp[j].second; });
     for (map<T, u32> mp; auto i : id) {
       for (auto it = mp.lower_bound(-vp[i].second); it != mp.end(); mp.erase(it++)) {
         u32 j = it->second;

@@ -6,18 +6,11 @@
 namespace tifa_libs::geo {
 
 // judge if segment and line are intersected
-//! containing endpoints
-template <class FP>
-CEXP bool is_ins_SL(line<FP> CR s, line<FP> CR l) {
+template <class FP, bool contain_endpoints = true>
+CEXP bool is_ins_SL(line<FP> CR s, line<FP> CR l) NE {
   const auto a = l.toleft(s.l), b = l.toleft(s.r);
-  return !a || !b || a != b;
-}
-// judge if segment and line are intersected
-//! NOT containing endpoints
-template <class FP>
-CEXP bool is_ins_SL_strict(line<FP> CR s, line<FP> CR l) {
-  const auto a = l.toleft(s.l), b = l.toleft(s.r);
-  return a && b && !(a + b);
+  if CEXP (contain_endpoints) return !a || !b || a != b;
+  else return a && b && !(a + b);
 }
 
 }  // namespace tifa_libs::geo

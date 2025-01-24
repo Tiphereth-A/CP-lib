@@ -10,16 +10,17 @@ class dsu_basic {
   veci p;
 
  public:
-  CEXPE dsu_basic(u32 sz) : p(sz, -1) {}
+  CEXPE dsu_basic(u32 sz) NE : p(sz, -1) {}
 
-  CEXP i32 find(u32 x) { return p[x] < 0 ? (i32)x : p[x] = find((u32)p[x]); }
-  CEXP u32 size(u32 x) { return (u32)-p[(u32)find(x)]; }
-  CEXP bool same(u32 x, u32 y) { return find(x) == find(y); }
-  CEXP bool merge(u32 x, u32 y) {
+  CEXP i32 find(u32 x) NE { return p[x] < 0 ? (i32)x : p[x] = find((u32)p[x]); }
+  CEXP u32 size(u32 x) NE { return (u32)-p[(u32)find(x)]; }
+  CEXP bool same(u32 x, u32 y) NE { return find(x) == find(y); }
+  CEXP bool merge(u32 x, u32 y) NE {
     if ((x = (u32)find(x)) == (y = (u32)find(y))) return false;
     if CEXP (union_by_size)
       if (p[x] > p[y]) swap(x, y);
-    return p[x] += p[y], p[y] = (i32)x, true;
+    p[x] += p[y], p[y] = (i32)x;
+    return true;
   }
 };
 

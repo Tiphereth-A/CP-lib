@@ -22,8 +22,8 @@ CEXP auto op_ba(T a, T b) {  // b(a(x))
 }
 CEXP auto e() { return T{1, 0}; }
 CEXP auto id() { return F{1, 0}; }
-CEXP auto mapping(T, F a) { return T{a}; }
-CEXP auto composition(F, F) { return F{1, 0}; }
+CEXP void mapping(T &x, F a) { x = a; }
+CEXP void composition(F &x, F) { x = F{1, 0}; }
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

@@ -7,8 +7,8 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-CEXP cvh<FP> ins_hPs(vec<line<FP>> vl) {
-  auto check = [](line<FP> CR u, line<FP> CR v, line<FP> CR w) -> bool { return w.is_include_strict(ins_LL(u, v)); };
+CEXP cvh<FP> ins_hPs(vec<line<FP>> vl) NE {
+  auto check = [](line<FP> CR u, line<FP> CR v, line<FP> CR w) NE -> bool { return w.is_include_strict(ins_LL(u, v)); };
   if ((vl = uniq(vl)).size() < 3) return {};
   std::deque<line<FP>> q;
   for (auto it = vl.begin(); it != vl.end(); ++it) {

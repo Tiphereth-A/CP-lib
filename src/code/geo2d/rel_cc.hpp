@@ -14,7 +14,7 @@ enum RELCC { lyingin_cc,
              lyingout_cc };
 
 template <class FP>
-CEXP RELCC relation_CC(circle<FP> CR c1, circle<FP> CR c2) {
+CEXP RELCC relation_CC(circle<FP> CR c1, circle<FP> CR c2) NE {
   const FP d = dist_PP(c1.o, c2.o);
   if (is_gt(d, c1.r + c2.r)) return lyingout_cc;
   if (is_eq(d, c1.r + c2.r)) return touchex_cc;

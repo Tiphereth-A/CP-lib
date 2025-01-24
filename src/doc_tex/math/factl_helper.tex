@@ -1,0 +1,7 @@
+类似 \fullref{sec:快速阶乘取模}, 适合多次查询
+
+\paragraph{复杂度}
+
+\(\displaystyle O\left(\frac{p}{b}+b\log b\right)\sim O(b)\), 其中 \(p\) 为模数, \(b\) 为块长 (代码中为 \verb|SZ|)
+
+\(b=O\left(\mathrm{e}^{W(2p \mathrm{e}^2)/2-1}\right)=O\left((p/\log p)^{1/2+\epsilon}\right)\) 时, 预处理取得最优复杂度 \(O\left((p\log p)^{1/2+\epsilon}\right)\)

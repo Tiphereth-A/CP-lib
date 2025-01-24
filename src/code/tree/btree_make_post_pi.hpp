@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 namespace btree_make_post_pi_impl_ {
-CEXP void dfs(spnu pre, spnu in, vecu& post, u32& p, u32 l, u32 r) {
+CEXP void dfs(spnu pre, spnu in, vecu& post, u32& p, u32 l, u32 r) NE {
   if (l >= r) return;
   u32 rt = pre[p++], m = -1_u32;
   flt_ (u32, i, l, r)
@@ -15,11 +15,12 @@ CEXP void dfs(spnu pre, spnu in, vecu& post, u32& p, u32 l, u32 r) {
 }
 }  // namespace btree_make_post_pi_impl_
 
-CEXP vecu btree_make_post_pi(spnu pre_order, spnu in_order) {
+CEXP vecu btree_make_post_pi(spnu pre_order, spnu in_order) NE {
   assert(pre_order.size() == in_order.size());
   vecu ret;
   u32 pos = 0;
-  return btree_make_post_pi_impl_::dfs(pre_order, in_order, ret, pos, 0, (u32)pre_order.size()), ret;
+  btree_make_post_pi_impl_::dfs(pre_order, in_order, ret, pos, 0, (u32)pre_order.size());
+  return ret;
 }
 
 }  // namespace tifa_libs::graph

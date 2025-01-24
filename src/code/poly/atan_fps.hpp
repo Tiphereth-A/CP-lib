@@ -8,10 +8,12 @@
 namespace tifa_libs::math {
 
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto atan_fps(poly<ccore, mint, args...> CR p) {
+CEXP auto atan_fps(poly<ccore, mint, args...> CR p) NE {
   const u32 n = (u32)p.size();
   auto _ = p;
-  return (_ *= _).resize(n), _[0] += 1, (_ = inv_fps(_) * deriv_fps(p)).resize(n), int_fps(_);
+  (_ *= _).resize(n), _[0] += 1;
+  (_ = inv_fps(_) * deriv_fps(p)).resize(n);
+  return int_fps(_);
 }
 
 }  // namespace tifa_libs::math

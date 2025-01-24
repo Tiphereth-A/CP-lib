@@ -7,8 +7,8 @@ using T = std::pair<i64, i32>;
 using F = i64;
 
 T op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
-T mapping(T a, F f) { return T{f + a.first, a.second}; }
-F composition(F f, F g) { return f + g; }
+void mapping(T& a, F f) { a.first += f; }
+void composition(F& f, F g) { f += g; }
 
 int main() {
   u32 n, q;

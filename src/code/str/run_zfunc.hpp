@@ -6,14 +6,14 @@
 namespace tifa_libs::str {
 
 // @return {p, l, r}, uniqued
-CEXP vec<pt3u> run_zfunc(strnv s) {
+CEXP vec<pt3u> run_zfunc(strnv s) NE {
   vec<pt3u> rs;
 
-  auto rec = [&](auto&& rec, u32 l, u32 r) -> void {
+  auto rec = [&](auto&& rec, u32 l, u32 r) NE -> void {
     if (r - l <= 1) return;
     u32 m = (l + r) / 2;
     rec(rec, l, m), rec(rec, m, r);
-    auto f = [&](bool rev) {
+    auto f = [&](bool rev) NE {
       strn t(s.substr(l, r - l));
       if (rev) std::ranges::reverse(t), m = l + r - m;
       const u32 len = r - l, mid = m - l;
@@ -40,7 +40,8 @@ CEXP vec<pt3u> run_zfunc(strnv s) {
     if (i && l == rs[i - 1]._0 && r == rs[i - 1]._1) continue;
     runs.emplace_back(t, l, r);
   }
-  return std::ranges::sort(runs), runs;
+  std::ranges::sort(runs);
+  return runs;
 }
 
 }  // namespace tifa_libs::str

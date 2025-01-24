@@ -17,9 +17,9 @@ class orthodox_ex_suffix_automaton {
   u32 sz;
   vec<TIFA> st;
 
-  CEXPE orthodox_ex_suffix_automaton() : sz(1) { st.push_back(TIFA()), st[0].len = 0, st[0].link = -1u; }
+  CEXPE orthodox_ex_suffix_automaton() NE : sz{1} { st.push_back(TIFA()), st[0].len = 0, st[0].link = -1u; }
 
-  CEXP u32 extend(u32 last, u32 c) {
+  CEXP u32 extend(u32 last, u32 c) NE {
     u32 cur = st[last].nex[c];
     if (st[cur].len) return cur;
     st[cur].len = st[last].len + 1;
@@ -41,14 +41,14 @@ class orthodox_ex_suffix_automaton {
     }
     return cur;
   }
-  CEXP void insert(strnv s) {
+  CEXP void insert(strnv s) NE {
     for (u32 u = 0; auto cc : s) {
       const u32 c = cc - BASE;
       if (!st[u].nex[c]) st[u].nex[c] = sz++, st.push_back(TIFA());
       u = st[u].nex[c];
     }
   }
-  void build() {
+  void build() NE {
     std::queue<std::pair<u32, char>> q;
     flt_ (u32, i, 0, SZ)
       if (st[0].nex[i]) q.push({0, i});

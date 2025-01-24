@@ -18,9 +18,9 @@ class aho_corasick_automaton {
   vec<TIFA> t;
   u32 sz;
 
-  CEXPE aho_corasick_automaton() : t(1), sz(1) {}
+  CEXPE aho_corasick_automaton() NE : t(1), sz(1) {}
 
-  CEXP void insert(strnv s, u32 id = -1u) {
+  CEXP void insert(strnv s, u32 id = -1u) NE {
     u32 u = 0;
     for (++t[u].tot; auto c : s) {
       u32 a = u32(c) - BASE;
@@ -29,7 +29,7 @@ class aho_corasick_automaton {
     }
     if (~id) t[u].end.push_back(id);
   }
-  void getfail() {
+  void getfail() NE {
     std::queue<u32> q;
     flt_ (u32, i, 0, SZ)
       if (t[0].nex[i]) q.push(t[0].nex[i]);
@@ -41,7 +41,7 @@ class aho_corasick_automaton {
         else t[u].nex[i] = t[t[u].fail].nex[i];
     }
   }
-  CEXP void build(spn<strn> s_) {
+  CEXP void build(spn<strn> s_) NE {
     flt_ (u32, i, 0, (u32)s_.size()) insert(s_[i], i);
     getfail();
   }

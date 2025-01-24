@@ -11,7 +11,7 @@ namespace tifa_libs::graph {
 // @return a vector of length J, with the j-th entry equaling the minimum cost to assign the first (j+1) jobs to distinct workers
 // Time: $O(J^2W)$
 template <class T>
-CEXP vec<T> hungarian(vvec<T> CR g, T INF = std::numeric_limits<T>::max()) {
+CEXP vec<T> hungarian(vvec<T> CR g, T INF = std::numeric_limits<T>::max()) NE {
   const u32 J = (u32)g.size(), W = (u32)g[0].size();
   assert(J <= W);
   vecu job(W + 1, -1_u32);

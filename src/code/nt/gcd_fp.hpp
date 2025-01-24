@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <std::floating_point T>
-CEXP T gcd_fp(T a, T b, T eps = 1e-2) {
+CEXP T gcd_fp(T a, T b, T eps = 1e-2) NE {
   if ((a = abs(a)) < (b = abs(b))) swap(a, b);
   while (a - b > eps) {
     if (b < eps) return a;

@@ -13,7 +13,7 @@ namespace tifa_libs::unittest {
 namespace detail__ {
 
 template <class T>
-strn to_str(T CR x) {
+strn to_str(T CR x) NE {
   std::stringstream ss;
   ss << std::fixed << std::setprecision(12) << x;
   auto str = ss.str();
@@ -79,7 +79,7 @@ inline const std::map<pttu, TESTCASE> testcase_id{
     {{0, 11}, ts_random_08},
     {{0, 12}, ts_random_09}};
 
-inline void post_test([[maybe_unused]] pttu CR p = {0, 0}) {
+inline void post_test([[maybe_unused]] pttu CR p = {0, 0}) NE {
   static pttu p_{0, 0};
   if (p.first || p.second) {
     p_ = p;
@@ -89,7 +89,7 @@ inline void post_test([[maybe_unused]] pttu CR p = {0, 0}) {
   exit(0);
 }
 
-inline TESTCASE pre_test() {
+inline TESTCASE pre_test() NE {
   pttu p;
   std::cin >> p.first >> p.second;
   post_test(p);
@@ -101,7 +101,7 @@ inline TESTCASE pre_test() {
 #define check_param(x) \
   std::pair<std::string, decltype(x)> { #x, x }
 
-inline ptt<strn> get_fname_in_ans(strn CR source_oj, strn CR source_id, strn CR data) {
+inline ptt<strn> get_fname_in_ans(strn CR source_oj, strn CR source_id, strn CR data) NE {
   std::cerr << "===== " << __PRETTY_FUNCTION__ << " start =====\n";
   strn path = "src/data/" + source_oj + "/" + source_id + "/" + data;
   strn fi = path + ".in", fo = path + ".out", fa = path + ".ans";

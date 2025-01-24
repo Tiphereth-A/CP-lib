@@ -12,20 +12,23 @@ class rus4_st {
   vec<st_array<T, op>> d;
 
  public:
-  CEXPE rus4_st(spn<T> a) : rus4_st(a, (u32)std::bit_width(a.size())) {}
-  CEXP rus4_st(spn<T> a, u32 block_size) { reset(a, block_size); }
+  CEXPE rus4_st(spn<T> a) NE : rus4_st(a, (u32)std::bit_width(a.size())) {}
+  CEXP rus4_st(spn<T> a, u32 block_size) NE { reset(a, block_size); }
 
-  CEXP void reset(spn<T> a, u32 block_size) {
+  CEXP void reset(spn<T> a, u32 block_size) NE {
     sz = (u32)a.size(), B = block_size, d.clear();
     vec<T> ds;
-    for (u32 l = 0; l < sz; l += B) d.emplace_back(a.subspan(l, l + B > sz ? std::dynamic_extent : B)), ds.push_back(d.back().query());
+    for (u32 l = 0; l < sz; l += B) {
+      d.emplace_back(a.subspan(l, l + B > sz ? std::dynamic_extent : B));
+      ds.push_back(d.back().query());
+    }
     st.reset(ds);
   }
-  CEXP u32 CR block_size() const { return B; }
-  CEXP u32 CR size() const { return sz; }
-  CEXP T query(u32 l = 0) const { return query(l, size()); }
+  CEXP u32 CR block_size() CNE { return B; }
+  CEXP u32 CR size() CNE { return sz; }
+  CEXP T query(u32 l = 0) CNE { return query(l, size()); }
   //! 0-indexed, [l, r)
-  CEXP T query(u32 l, u32 r) const {
+  CEXP T query(u32 l, u32 r) CNE {
     assert(l < r && r <= size());
     if (u32 L = l / B, R = r / B; L == R) return d[L].query(l % B, r % B);
     else {

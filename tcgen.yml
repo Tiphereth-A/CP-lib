@@ -508,7 +508,7 @@ mttd1: |
     mint::set_mod(MOD);
   #endif
 
-dftntt: |
+ntt: |
   #ifdef GENTC_ntt_s30
   #include "../../code/conv/conv_dft.hpp"
   #include "../../code/conv/ntt.hpp"
@@ -528,8 +528,8 @@ dftntt: |
   using ntt_t = tifa_libs::math::NTT<mint>;
   #endif
 
-ntt: |
-  #ifdef GENTC_ntt_s30
+ntt_large: |
+  #ifdef GENTC_ntt_large_s30
   #include "../../code/conv/ntt.hpp"
   #include "../../code/math/mint.hpp"
   #include "../../code/math/mint_s30.hpp"
@@ -537,7 +537,7 @@ ntt: |
   using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
   using ntt_t = tifa_libs::math::NTT<mint>;
   #endif
-  #ifdef GENTC_ntt_s63
+  #ifdef GENTC_ntt_large_s63
   #include "../../code/conv/ntt.hpp"
   #include "../../code/math/mint.hpp"
   #include "../../code/math/mint_s63.hpp"

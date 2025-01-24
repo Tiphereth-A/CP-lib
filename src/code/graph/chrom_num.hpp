@@ -8,7 +8,7 @@
 namespace tifa_libs::graph {
 namespace chrom_num_impl_ {
 template <u32 mod>
-CEXP u32 calc(u32 n, vecpti hist) {
+CEXP u32 calc(u32 n, vecpti hist) NE {
   flt_ (u32, c, 1, n + 1) {
     i64 _ = 0;
     for (auto& [i, x] : hist) _ += (x = (i32)math::mul_mod_s(x, i, mod));
@@ -18,7 +18,7 @@ CEXP u32 calc(u32 n, vecpti hist) {
 }
 }  // namespace chrom_num_impl_
 
-CEXP u32 chrom_num(adjlist_c auto CR g) {
+CEXP u32 chrom_num(adjlist_c auto CR g) NE {
   const u32 n = g.size();
   vecu adj(n), dp(1 << n);
   flt_ (u32, i, 0, n)

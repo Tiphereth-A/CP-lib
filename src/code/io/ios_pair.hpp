@@ -4,8 +4,8 @@
 #include "../util/util.hpp"
 
 template <class T, class U>
-std::istream &operator>>(std::istream &is, std::pair<T, U> &p) { return is >> p.first >> p.second; }
+std::istream &operator>>(std::istream &is, std::pair<T, U> &p) NE { return is >> p.first >> p.second; }
 template <class T, class U>
-std::ostream &operator<<(std::ostream &os, std::pair<T, U> CR p) { return os << p.first << ' ' << p.second; }
+std::ostream &operator<<(std::ostream &os, std::pair<T, U> CR p) NE { return os << p.first << ' ' << p.second; }
 
 #endif

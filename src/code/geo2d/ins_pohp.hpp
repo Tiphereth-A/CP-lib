@@ -6,7 +6,7 @@
 namespace tifa_libs::geo {
 
 template <class FP>
-CEXP cvh<FP> ins_PohP(cT_(cvh<FP>) poly, line<FP> CR l) {
+CEXP cvh<FP> ins_PohP(cT_(cvh<FP>) poly, line<FP> CR l) NE {
   u32 n = poly.size();
   vec<point<FP>> vs;
   flt_ (u32, i, 0, n) {

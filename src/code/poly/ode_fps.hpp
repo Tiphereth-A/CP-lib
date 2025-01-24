@@ -12,7 +12,7 @@ requires requires(poly f, size_t n, G g, DG dg) {
   { g(f, n) } -> std::same_as<poly>;
   { dg(f, n) } -> std::same_as<poly>;
 }
-CEXP auto ode_fps(G&& g, DG&& dg, TPN poly::val_t a, u32 n) {
+CEXP auto ode_fps(G&& g, DG&& dg, TPN poly::val_t a, u32 n) NE {
   poly f{a};
   for (u32 i = 1; i < n; i *= 2) {
     auto r = exp_fps(int_fps(-dg(f, i * 2))), h = int_fps(((g(f, i * 2) - (dg(f, i * 2) * f).pre(i * 2)) * r).pre(i * 2));

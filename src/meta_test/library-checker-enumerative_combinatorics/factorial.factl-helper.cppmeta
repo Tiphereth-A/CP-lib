@@ -1,0 +1,28 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/factorial"
+
+#include "../../code/math/factl_helper.hpp"
+
+CEXP u32 MOD = 998244353;
+
+#define GENTCs_p3ntts30s
+#define GENTCs_p3ntts63s
+#define GENTCs_p3ntts30d_0
+#define GENTCs_p3ntts63d_0
+#define GENTCs_pmtts
+#define GENTCs_pmttd0
+#define GENTCs_pntt
+
+int main() {
+#define GENTCs_p3ntts30d_1
+#define GENTCs_p3ntts63d_1
+#define GENTCs_pmttd1
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
+  u32 t;
+  std::cin >> t;
+  while (t--) {
+    u32 n;
+    std::cin >> n;
+    std::cout << tifa_libs::math::factl_helper<poly>::get_fact(n) << '\n';
+  }
+  return 0;
+}

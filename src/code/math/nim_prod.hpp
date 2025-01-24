@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 namespace nim_prod_impl_ {
 struct calc8 {
   u16 dp[1 << 8][1 << 8];
-  CEXPE calc8() : dp() {
+  CEXPE calc8() NE : dp() {
     dp[0][0] = dp[0][1] = dp[1][0] = 0, dp[1][1] = 1;
     flt_ (u32, e, 1, 4) {
       const u32 p = 1 << e, q = p >> 1;
@@ -35,8 +35,8 @@ struct calc16 {
   u32 log[1 << 16];
 
  private:
-  CEXP u16 d(u32 x) { return u16((x << 1) ^ (x < 32768u ? 0 : ppoly)); }
-  CEXP u16 naive(u16 i, u16 j) {
+  CEXP u16 d(u32 x) NE { return u16((x << 1) ^ (x < 32768u ? 0 : ppoly)); }
+  CEXP u16 naive(u16 i, u16 j) NE {
     if (min(i, j) <= 1u) return i * j;
     const u16 q = 8, eq = 1u << 8;
     const u16 iu = u16(i >> q), il = u16(i & (eq - 1)), ju = u16(j >> q), jl = u16(j & (eq - 1));
@@ -45,7 +45,7 @@ struct calc16 {
   }
 
  public:
-  CEXPE calc16() : base(), exp(), log() {
+  CEXPE calc16() NE : base(), exp(), log() {
     base[0] = 1;
     flt_ (u32, i, 1, 16) base[i] = naive(base[i - 1], proot);
     exp[0] = 1;
@@ -62,15 +62,15 @@ struct calc16 {
     for (u32 i = ie_; i < sizeof(exp) / sizeof(u16); ++i) exp[i] = 0;
     log[0] = ie_ + 1;
   }
-  CEXP u16 prod(u16 i, u16 j) const { return exp[log[i] + log[j]]; }
+  CEXP u16 prod(u16 i, u16 j) CNE { return exp[log[i] + log[j]]; }
   // exp[3] = 2^{15} = 32768
-  CEXP u16 Hprod(u16 i, u16 j) const { return exp[log[i] + log[j] + 3]; }
-  CEXP u16 H(u16 i) const { return exp[log[i] + 3]; }
-  CEXP u16 H2(u16 i) const { return exp[log[i] + 6]; }
+  CEXP u16 Hprod(u16 i, u16 j) CNE { return exp[log[i] + log[j] + 3]; }
+  CEXP u16 H(u16 i) CNE { return exp[log[i] + 3]; }
+  CEXP u16 H2(u16 i) CNE { return exp[log[i] + 6]; }
 } CEXP c16;
 
-CEXP u16 nimprod16(u16 i, u16 j) { return c16.prod(i, j); }
-CEXP u32 nimprod32(u32 i, u32 j) {
+CEXP u16 nimprod16(u16 i, u16 j) NE { return c16.prod(i, j); }
+CEXP u32 nimprod32(u32 i, u32 j) NE {
   const u16 iu = u16(i >> 16), il = u16(i & 65535), ju = u16(j >> 16), jl = u16(j & 65535);
   const u16 l = c16.prod(il, jl), ul = c16.prod(iu ^ il, ju ^ jl), uq = c16.Hprod(iu, ju);
   return (u32(ul ^ l) << 16) ^ uq ^ l;
@@ -82,11 +82,11 @@ CEXP u32 nimprod32(u32 i, u32 j) {
 // + (iu x ju x 2^{15}) + il x jl
 // (assign ju = 2^{15}, jl = 0)
 // = ((iu + il) x 2^{15}) * 2^{16} + (iu x 2^{15} x 2^{15})
-CEXP u32 H(u32 i) {
+CEXP u32 H(u32 i) NE {
   const u16 iu = u16(i >> 16), il = u16(i & 65535);
   return (u32(c16.H(iu ^ il)) << 16) ^ c16.H2(iu);
 }
-CEXP u64 nimprod64(u64 i, u64 j) {
+CEXP u64 nimprod64(u64 i, u64 j) NE {
   const u32 iu = u32(i >> 32), il = u32(i & u32(-1)), ju = u32(j >> 32), jl = u32(j & u32(-1));
   const u32 l = nimprod32(il, jl), ul = nimprod32(iu ^ il, ju ^ jl), uq = H(nimprod32(iu, ju));
   return (u64(ul ^ l) << 32) ^ uq ^ l;

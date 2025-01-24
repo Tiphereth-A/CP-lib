@@ -10,30 +10,30 @@ class Youngt {
   u32 n;
 
  public:
-  CEXPE Youngt(spnu l) {
+  CEXPE Youngt(spnu l) NE {
     for (auto i : l) insert(i);
   }
-  CEXP Youngt(itlu l = {}) {
+  CEXP Youngt(itlu l = {}) NE {
     for (auto i : l) insert(i);
   }
-  CEXP Youngt(itl<itlu> l) {
+  CEXP Youngt(itl<itlu> l) NE {
     for (auto&& i : l) d.emplace_back(i);
   }
 
   // height() == len(longest non-decresing seq.)
-  CEXP u32 height() const { return (u32)d.size(); }
+  CEXP u32 height() CNE { return (u32)d.size(); }
   // width() == len(longest incresing seq.)
-  CEXP u32 width() const { return (u32)d[0].size(); }
-  CEXP u32 CR size() const { return n; }
-  CEXP vvecu& data() { return d; }
-  CEXP vvecu CR data() const { return d; }
-  CEXP u32& operator()(u32 h, u32 w) { return d[h][w]; }
-  CEXP u32 CR operator()(u32 h, u32 w) const { return d[h][w]; }
-  CEXP u32 hook(u32 h, u32 w) const {
+  CEXP u32 width() CNE { return (u32)d[0].size(); }
+  CEXP u32 CR size() CNE { return n; }
+  CEXP vvecu& data() NE { return d; }
+  CEXP vvecu CR data() CNE { return d; }
+  CEXP u32& operator()(u32 h, u32 w) NE { return d[h][w]; }
+  CEXP u32 CR operator()(u32 h, u32 w) CNE { return d[h][w]; }
+  CEXP u32 hook(u32 h, u32 w) CNE {
     assert(h < height() && w < d[h].size());
     return u32(d[h].size() - w + h);
   }
-  CEXP void insert(u32 val) {
+  CEXP void insert(u32 val) NE {
     ++n;
     for (auto& i : d) {
       auto it = std::ranges::lower_bound(i, val);
@@ -42,7 +42,7 @@ class Youngt {
     }
     d.push_back({val});
   }
-  friend std::ostream& operator<<(std::ostream& os, Youngt CR yt) {
+  friend std::ostream& operator<<(std::ostream& os, Youngt CR yt) NE {
     for (u32 i = 0; i < yt.height() - 1; ++i)
       flt_ (u32, j, 0, (u32)yt.d[i].size()) os << yt.d[i][j] << " \n"[j == yt.d[i].size() - 1];
     os << yt.d.back()[0];

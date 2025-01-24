@@ -6,7 +6,7 @@
 namespace tifa_libs::str {
 
 // @return {sl, sr, tl, tr} s.t. s[sl..sr-1] == t[tl..tr-1]
-CEXP auto lcs_sa(strn CR s, strn CR t) {
+CEXP auto lcs_sa(strn CR s, strn CR t) NE {
   tifa_libs::str::suffixarray<> sa(" " + s + "#" + t);
   sa.get_height();
   pt3u ans{};

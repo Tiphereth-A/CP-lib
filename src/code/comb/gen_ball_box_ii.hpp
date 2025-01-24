@@ -7,8 +7,8 @@
 namespace tifa_libs::math {
 
 // f = \\prod_{i=1}^m 1/(1-x^i), deg(f) = n
-template <class poly>
-CEXP poly gen_ball_box_ii(u32 m, u32 n, spnuu inv) {
+template <class poly, class T>
+CEXP poly gen_ball_box_ii(u32 m, u32 n, vec<T> CR inv) NE {
   poly f(n + 1);
   flt_ (u32, i, 1, m + 1)
     flt_ (u32, k, 1, n / i + 1) f[i * k] += inv[k];
@@ -16,7 +16,7 @@ CEXP poly gen_ball_box_ii(u32 m, u32 n, spnuu inv) {
 }
 // f = \\prod_{i=1}^m 1/(1-x^i), deg(f) = n
 template <class poly>
-CEXP poly gen_ball_box_ii(u32 m, u32 n) { return gen_ball_box_ii<poly>(m, n, gen_inv(n + 1, poly::val_t::mod())); }
+CEXP poly gen_ball_box_ii(u32 m, u32 n) NE { return gen_ball_box_ii<poly>(m, n, gen_inv(n + 1, poly::val_t::mod())); }
 
 }  // namespace tifa_libs::math
 

@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 //! will change input graph
 // @return false if invalid (has nagative cycle), otherwise true
 template <class T, bool with_deg>
-CEXP bool floyd(amat<T, with_deg>& g, T INF = std::numeric_limits<T>::max() / 2 - 1) {
+CEXP bool floyd(amat<T, with_deg>& g, T INF = std::numeric_limits<T>::max() / 2 - 1) NE {
   u32 n = (u32)g.g.size();
   flt_ (u32, k, 0, n)
     flt_ (u32, x, 0, n)

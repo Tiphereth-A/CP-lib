@@ -6,8 +6,8 @@
 
 namespace tifa_libs::math {
 
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto exp_fpssp(poly<ccore, mint, args...> CR p, spnuu inv, u32 n = 0) {
+template <template <class... Ts> class ccore, class mint, class T, class... args>
+CEXP auto exp_fpssp(poly<ccore, mint, args...> CR p, vec<T> CR inv, u32 n = 0) NE {
   if (!p.size()) return p;
   if (assert(p[0] == 0); !n) n = (u32)p.size();
   polysp<mint> ps = poly2sp(p, n);
@@ -24,7 +24,7 @@ CEXP auto exp_fpssp(poly<ccore, mint, args...> CR p, spnuu inv, u32 n = 0) {
   return g;
 }
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto exp_fpssp(poly<ccore, mint, args...> CR p, u32 n = 0) {
+CEXP auto exp_fpssp(poly<ccore, mint, args...> CR p, u32 n = 0) NE {
   if (!n) n = (u32)p.size();
   return exp_fpssp(p, gen_inv(n, mint::mod()), n);
 }

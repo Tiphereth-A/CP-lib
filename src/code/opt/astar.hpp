@@ -12,9 +12,9 @@ requires requires(T x, T y) {
   x.cost() < y.cost();
   x < y;
 }
-std::optional<T> astar(T CR s) {
+std::optional<T> astar(T CR s) NE {
   struct C {
-    CEXP bool operator()(cT_(T) a, cT_(T) b) const { return b.cost() < a.cost(); }
+    CEXP bool operator()(cT_(T) a, cT_(T) b) CNE { return b.cost() < a.cost(); }
   };
   std::priority_queue<T, vec<T>, C> pq;
   std::set<T> vis;

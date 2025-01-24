@@ -9,13 +9,13 @@
 namespace tifa_libs::math {
 
 // Calculate $\binom{m}{n} \bmod p$, p can be ANY INTEGER
-class ExLucas {
+class exlucas {
   struct TIFA {
     const u32 p, q;
     const bool no_proot;
     u64 m_;
     vecuu facp, ifacp;
-    CEXP TIFA(u32 p, u32 q) : p(p), q(q), no_proot(p == 2 && q >= 3) {
+    CEXP TIFA(u32 p, u32 q) NE : p(p), q(q), no_proot(p == 2 && q >= 3) {
       assert(p <= 100'000'000 && q > 0), m_ = 1;
       while (q--) (m_ *= p), assert(m_ <= 100'000'000);
       facp.resize(m_), facp[0] = facp[1] = 1;
@@ -24,7 +24,7 @@ class ExLucas {
         else facp[i] = facp[i - 1] * i % m_;
       ifacp = gen_invseq(facp, m_);
     }
-    CEXP u64 operator()(i64 m, i64 n) const {
+    CEXP u64 operator()(i64 m, i64 n) CNE {
       if (m < n || n < 0) return 0;
       i64 r = m - n;
       i32 e0 = 0, eq = 0;
@@ -43,7 +43,7 @@ class ExLucas {
   vec<TIFA> cs;
 
  public:
-  CEXPE ExLucas(u32 md) : m_(md) {
+  CEXPE exlucas(u32 md) NE : m_(md) {
     assert(md < 100'000'000);
     flt_ (u32, i, 2, isqrt(md) + 1)
       if (md % i == 0) {
@@ -54,7 +54,7 @@ class ExLucas {
     if (md > 1) ms.push_back(md), cs.emplace_back(md, 1);
   }
 
-  CEXP u64 operator()(i64 m, i64 n) const {
+  CEXP u64 operator()(i64 m, i64 n) CNE {
     if (m_ == 1 || m < n || n < 0) return 0;
     vecii b;
     for (b.reserve(cs.size()); auto CR i : cs) b.push_back((i64)i(m, n));

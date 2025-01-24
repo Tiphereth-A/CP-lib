@@ -6,7 +6,7 @@
 
 namespace tifa_libs {
 
-CEXP u32 strhex2uint_si64(const char* const s) {
+CEXP u32 strhex2uint_si64(const char* const s) NE {
   u64 _ = *((u64*)(s));
   if CEXP (std::endian::native == std::endian::big) _ = bit::bswap(_);
   u64 _0 = _ & 0x4F4F4F4F4F4F4F4F, _1 = _0 & 0x4040404040404040;

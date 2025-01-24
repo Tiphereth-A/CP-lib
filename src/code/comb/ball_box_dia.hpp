@@ -6,9 +6,9 @@
 namespace tifa_libs::math {
 
 template <class poly>
-CEXP auto ball_box_dia(u32 ball, u32 box, poly CR s2r) { return std::reduce(s2r.begin(), s2r.begin() + (min(ball, box) + 1), TPN poly::val_t{}); }
+CEXP auto ball_box_dia(u32 ball, u32 box, poly CR s2r) NE { return std::reduce(s2r.begin(), s2r.begin() + (min(ball, box) + 1), TPN poly::val_t{}); }
 template <class poly>
-CEXP auto ball_box_dia(u32 ball, u32 box) { return ball_box_dia<poly>(ball, box, gen_stirling2_row<poly>(ball)); }
+CEXP auto ball_box_dia(u32 ball, u32 box) NE { return ball_box_dia<poly>(ball, box, gen_stirling2_row<poly>(ball)); }
 
 }  // namespace tifa_libs::math
 

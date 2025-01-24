@@ -6,8 +6,8 @@
 
 namespace tifa_libs::math {
 
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c, spnuu ifact, u32 m = 0) {
+template <template <class... Ts> class ccore, class mint, class T, class... args>
+CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c, vec<T> CR ifact, u32 m = 0) NE {
   using poly_t = poly<ccore, mint, args...>;
   const u32 n = (u32)f.size(), k = n - 1;
   if (!m) m = n;
@@ -23,9 +23,10 @@ CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c
     return ret;
   }
   if (t + m > mint::mod()) {
-    auto pref = ctsh_fps(f, mint(t), ifact, u32(mint::mod() - t)), suf = ctsh_fps(f, mint(0), ifact, m - (u32)pref.size());
-    std::ranges::copy(suf, std::back_inserter(pref));
-    return pref;
+    auto pre = ctsh_fps(f, mint(t), ifact, u32(mint::mod() - t)),
+         suf = ctsh_fps(f, mint(0), ifact, m - (u32)pre.size());
+    std::ranges::copy(suf, std::back_inserter(pre));
+    return pre;
   }
   poly_t d(k + 1);
   flt_ (u32, i, 0, k + 1) {
@@ -42,7 +43,7 @@ CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c
   return ret;
 }
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c, u32 m = 0) { return ctsh_fps(f, c, gen_ifact((u32)f.size(), mint::mod()), m); }
+CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c, u32 m = 0) NE { return ctsh_fps(f, c, gen_ifact((u32)f.size(), mint::mod()), m); }
 
 }  // namespace tifa_libs::math
 

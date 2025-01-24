@@ -19,7 +19,7 @@ class Gen {
 
   res_t x_[pm::n];
   u32 p_;
-  CEXP void gen() {
+  CEXP void gen() NE {
     CEXP res_t um = (~res_t()) << pm::r, lm = ~um;
     res_t _;
     flt_ (res_t, i, p_ = 0, pm::n - pm::m) _ = ((x_[i] & um) | (x_[i + 1] & lm)), x_[i] = (x_[i + pm::m] ^ (_ >> 1) ^ ((_ & 1) ? pm::a : 0));
@@ -28,22 +28,23 @@ class Gen {
   }
 
  public:
-  CEXPE Gen(T a = std::numeric_limits<T>::min(), T b = std::numeric_limits<T>::max(), res_t sd = (res_t)TIME) : a_(a), b_(b) { assert(a < b || (std::is_integral_v<T> && a == b)), seed(sd); }
+  CEXPE Gen(T a = std::numeric_limits<T>::min(), T b = std::numeric_limits<T>::max(), res_t sd = (res_t)TIME) NE : a_(a), b_(b) { assert(a < b || (std::is_integral_v<T> && a == b)), seed(sd); }
 
-  CEXP void range(T min, T max) { assert(min < max || (std::is_integral_v<T> && min == max)), a_ = min, b_ = max; }
-  void seed() { seed((res_t)std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()); }
-  CEXP void seed(res_t sd) {
+  CEXP void range(T min, T max) NE { assert(min < max || (std::is_integral_v<T> && min == max)), a_ = min, b_ = max; }
+  void seed() NE { seed((res_t)std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()); }
+  CEXP void seed(res_t sd) NE {
     x_[0] = sd & gen_max();
     flt_ (res_t, i, 1, p_ = pm::n) x_[i] = ((x_[i - 1] ^ (x_[i - 1] >> (pm::w - 2))) * pm::f + i % pm::n) & gen_max();
   }
-  CEXP res_t gen_min() const { return 0; }
-  CEXP res_t gen_max() const { return sizeof(res_t) * 8 == pm::w ? ~res_t() : ((res_t)1 << pm::w) - 1; }
-  CEXP res_t next() {
+  CEXP res_t gen_min() CNE { return 0; }
+  CEXP res_t gen_max() CNE { return sizeof(res_t) * 8 == pm::w ? ~res_t() : ((res_t)1 << pm::w) - 1; }
+  CEXP res_t next() NE {
     if (p_ >= pm::n) gen();
     res_t _ = x_[p_++];
-    return _ ^= (_ >> pm::u) & pm::d, _ ^= (_ << pm::s) & pm::b, _ ^= (_ << pm::t) & pm::c, _ ^= (_ >> pm::l), _;
+    _ ^= (_ >> pm::u) & pm::d, _ ^= (_ << pm::s) & pm::b, _ ^= (_ << pm::t) & pm::c, _ ^= (_ >> pm::l);
+    return _;
   }
-  CEXP T operator()() {
+  CEXP T operator()() NE {
     if CEXP (std::integral<T>) {
       res_wt r = (res_wt)b_ - (res_wt)a_ + 1, p = r * next();
       if (res_t l = (res_t)p, _ = res_t(res_wt(-(res_t)r) % r); l < r)

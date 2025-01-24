@@ -18,15 +18,15 @@ class dinic {
   vvec<TIFA> e;
   vecu dep, cur;
 
-  CEXPE dinic(u32 n) : n(n), e(n) {}
+  CEXPE dinic(u32 n) NE : n(n), e(n) {}
 
-  CEXP pttu add(u32 u, u32 v, T w, T rw = 0) {
+  CEXP pttu add(u32 u, u32 v, T w, T rw = 0) NE {
     u32 lstu = (u32)e[u].size(), lstv = (u32)e[v].size();
     e[u].push_back({v, w, lstv}), e[v].push_back({u, rw, lstu});
     return {u, e[u].size() - 1};
   }
   template <class EW = u64>
-  EW get(u32 s, u32 t) {
+  EW get(u32 s, u32 t) NE {
     EW ret = 0, flow;
     while (bfs(s, t))
       while ((flow = dfs<EW>(s, t))) ret += flow;
@@ -34,7 +34,7 @@ class dinic {
   }
 
  private:
-  bool bfs(u32 s, u32 t) {
+  bool bfs(u32 s, u32 t) NE {
     dep = vecu(n, 0), dep[s] = 1;
     std::queue<u32> q({s});
     while (!q.empty()) {
@@ -42,10 +42,11 @@ class dinic {
       for (q.pop(); auto v : e[u])
         if (!dep[v.to] && v.w) dep[v.to] = dep[u] + 1, q.push(v.to);
     }
-    return cur = vecu(n, 0), dep[t];
+    cur = vecu(n, 0);
+    return dep[t];
   }
   template <class EW>
-  CEXP EW dfs(u32 u, u32 t, T lim = std::numeric_limits<T>::max()) {
+  CEXP EW dfs(u32 u, u32 t, T lim = std::numeric_limits<T>::max()) NE {
     if (u == t || lim == 0) return (EW)lim;
     EW ret = 0;
     for (u32& i = cur[u]; i < e[u].size(); ++i)

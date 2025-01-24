@@ -16,33 +16,34 @@ class matsp {
  public:
   using val_t = T;
 
-  CEXP matsp(u32 row, u32 col) : r(row), c(col), d(r) { assert(row > 0 && col > 0); }
+  CEXP matsp(u32 row, u32 col) NE : r(row), c(col), d(r) { assert(row > 0 && col > 0); }
 
-  CEXP u32 CR row() const { return r; }
-  CEXP u32 CR col() const { return c; }
-  CEXP data_t CR data() const { return d; }
-  CEXP data_t &data() { return d; }
-  CEXP T &operator()(u32 r, u32 c) {
+  CEXP u32 CR row() CNE { return r; }
+  CEXP u32 CR col() CNE { return c; }
+  CEXP data_t CR data() CNE { return d; }
+  CEXP data_t &data() NE { return d; }
+  CEXP T &operator()(u32 r, u32 c) NE {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
-    return d[r].emplace_back(c, T{}), d[r].back().second;
+    d[r].emplace_back(c, T{});
+    return d[r].back().second;
   }
-  CEXP T CR operator()(u32 r, u32 c) const {
+  CEXP T CR operator()(u32 r, u32 c) CNE {
     for (auto &[c_, v] : d[r])
       if (c == c_) return v;
     return T{};
   }
-  CEXP void shrink_row(u32 r) {
-    d[r].erase(std::remove_if(d[r].begin(), d[r].end(), [](cT_(node) x) { return x.second == T{}; }), d[r].end());
+  CEXP void shrink_row(u32 r) NE {
+    d[r].erase(std::remove_if(d[r].begin(), d[r].end(), [](cT_(node) x) NE { return x.second == T{}; }), d[r].end());
   }
-  CEXP void sort_row(u32 r) { sort(d[r]); }
+  CEXP void sort_row(u32 r) NE { sort(d[r]); }
   template <class F>
-  CEXP void apply(F f) {
+  CEXP void apply(F f) NE {
     flt_ (u32, i, 0, r)
       for (auto &[j, v] : d[i]) f(i, j, v);
   }
   template <class F>
-  friend CEXP matsp merge(matsp l, matsp r, F f) {
+  friend CEXP matsp merge(matsp l, matsp r, F f) NE {
     const u32 r_ = l.row(), c_ = l.col();
     assert(r_ == r.row() && c_ == r.col());
     matsp ret(r_, c_);
@@ -70,32 +71,36 @@ class matsp {
     }
     return ret;
   }
-  CEXP matsp operator-() const {
+  CEXP matsp operator-() CNE {
     matsp ret = *this;
-    return ret.apply([](u32, u32, T &v) { v = -v; }), ret;
+    ret.apply([](u32, u32, T &v) NE { v = -v; });
+    return ret;
   }
-  friend CEXP matsp operator+(matsp l, cT_(T) v) { return l += v; }
-  friend CEXP matsp operator+(cT_(T) v, matsp l) { return l += v; }
-  CEXP matsp &operator+=(cT_(T) v) {
-    return apply([&v](u32, u32, T &val) { val += v; }), *this;
+  friend CEXP matsp operator+(matsp l, cT_(T) v) NE { return l += v; }
+  friend CEXP matsp operator+(cT_(T) v, matsp l) NE { return l += v; }
+  CEXP matsp &operator+=(cT_(T) v) NE {
+    apply([&v](u32, u32, T &val) NE { val += v; });
+    return *this;
   }
-  friend CEXP matsp operator-(matsp l, cT_(T) v) { return l -= v; }
-  friend CEXP matsp operator-(cT_(T) v, matsp l) { return l -= v; }
-  CEXP matsp &operator-=(cT_(T) v) {
-    return apply([&v](u32, u32, T &val) { val -= v; }), *this;
+  friend CEXP matsp operator-(matsp l, cT_(T) v) NE { return l -= v; }
+  friend CEXP matsp operator-(cT_(T) v, matsp l) NE { return l -= v; }
+  CEXP matsp &operator-=(cT_(T) v) NE {
+    apply([&v](u32, u32, T &val) NE { val -= v; });
+    return *this;
   }
-  friend CEXP matsp operator*(matsp l, cT_(T) v) { return l *= v; }
-  friend CEXP matsp operator*(cT_(T) v, matsp l) { return l *= v; }
-  CEXP matsp &operator*=(cT_(T) v) {
-    return apply([&v](u32, u32, T &val) { val *= v; }), *this;
+  friend CEXP matsp operator*(matsp l, cT_(T) v) NE { return l *= v; }
+  friend CEXP matsp operator*(cT_(T) v, matsp l) NE { return l *= v; }
+  CEXP matsp &operator*=(cT_(T) v) NE {
+    apply([&v](u32, u32, T &val) NE { val *= v; });
+    return *this;
   }
-  friend CEXP matsp operator+(matsp CR l, matsp CR r) {
-    return merge(l, r, [](u32, u32, cT_(T) lv, cT_(T) rv) { return lv + rv; });
+  friend CEXP matsp operator+(matsp CR l, matsp CR r) NE {
+    return merge(l, r, [](u32, u32, cT_(T) lv, cT_(T) rv) NE { return lv + rv; });
   }
-  CEXP matsp &operator+=(matsp CR r) { return *this = *this + r; }
-  friend CEXP matsp operator-(matsp l, matsp CR r) { return l + (-r); }
-  CEXP matsp &operator-=(matsp CR r) { return *this = *this - r; }
-  friend CEXP matsp operator*(matsp l, matsp CR r) {
+  CEXP matsp &operator+=(matsp CR r) NE { return *this = *this + r; }
+  friend CEXP matsp operator-(matsp l, matsp CR r) NE { return l + (-r); }
+  CEXP matsp &operator-=(matsp CR r) NE { return *this = *this - r; }
+  friend CEXP matsp operator*(matsp l, matsp CR r) NE {
     const u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
     assert(j_ == r.row());
     matsp ret(i_, k_);
@@ -109,8 +114,8 @@ class matsp {
     }
     return ret;
   }
-  CEXP matsp &operator*=(matsp CR r) { return *this = *this - r; }
-  CEXP vec<T> lproj(spn<T> x) const {
+  CEXP matsp &operator*=(matsp CR r) NE { return *this = *this - r; }
+  CEXP vec<T> lproj(spn<T> x) CNE {
     const u32 r_ = row(), c_ = col();
     assert(r_ == x.size());
     vec<T> ret(c_);

@@ -14,11 +14,11 @@ class min25_sieve {
   u64 m, sqm, s;
   vecu p;
 
-  CEXP u64 idx(u64 n) const { return n <= sqm ? s - n : div_u64d(m, n); }
+  CEXP u64 idx(u64 n) CNE { return n <= sqm ? s - n : div_u64d(m, n); }
 
  public:
   // m^{3/2} in u64
-  CEXPE min25_sieve(u64 m) : m(m), sqm(isqrt(m)) {
+  CEXPE min25_sieve(u64 m) NE : m(m), sqm(isqrt(m)) {
     if (assert(m < (1ll << 42)); m) {
       u64 hls = div_u64d(m, sqm);
       if (hls != 1 && div_u64d(m, hls - 1) == sqm) --hls;
@@ -26,7 +26,7 @@ class min25_sieve {
     }
   }
 
-  CEXP vec<T> sum_pk(u32 k) const {
+  CEXP vec<T> sum_pk(u32 k) CNE {
     auto sik = sum_ik<T>[k];
     if (!m) return {};
     u64 hls = div_u64d(m, sqm);
@@ -44,11 +44,11 @@ class min25_sieve {
     assert(h.size() == s);
     return h;
   }
-  CEXP T run(vec<T> fprime) const {
+  CEXP T run(vec<T> fprime) CNE {
     if (!m) return {};
     assert(fprime.size() == s);
     T ans = fprime[idx(m)] + 1;
-    auto dfs = [&, this](auto&& dfs, u32 i, u32 c, u64 prod, T now) -> void {
+    auto dfs = [&, this](auto&& dfs, u32 i, u32 c, u64 prod, T now) NE -> void {
       ans += now * f(p[i], c + 1);
       u64 lim = div_u64d(m, prod);
       if (lim >= (u64)p[i] * p[i]) dfs(dfs, i, c + 1, p[i] * prod, now);

@@ -13,18 +13,19 @@ requires requires(S sum, OP op, T val1, T val2, u32 v) {
   { sum(val1, val2) } -> std::same_as<T>;
   { op(val1, v) } -> std::same_as<T>;
 }
-CEXP T clique_calc(u32 n, arr<std::bitset<N>, N> CR adj, S&& sum, OP&& op, T e_sum = T(0), T e_op = T(1)) {
+CEXP T clique_calc(u32 n, arr<std::bitset<N>, N> CR adj, S&& sum, OP&& op, T e_sum = T(0), T e_op = T(1)) NE {
   using B = std::bitset<N>;
   B _{};
   T ans = e_sum;
-  auto h = [&](auto&& h, u32 now, T t) -> void {
+  auto h = [&](auto&& h, u32 now, T t) NE -> void {
     ans = sum(ans, t);
     flt_ (u32, v, now + 1, n) {
       if ((_ & adj[v]).count() != _.count()) continue;
       _[v] = 1, h(h, v, op(t, v)), _[v] = 0;
     }
   };
-  return h(h, -1_u32, e_op), ans;
+  h(h, -1_u32, e_op);
+  return ans;
 }
 
 }  // namespace tifa_libs::graph
