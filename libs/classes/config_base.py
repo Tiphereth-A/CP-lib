@@ -3,9 +3,10 @@ import yaml
 
 
 class ConfigBase:
-    def __init__(self, conf_path: str):
+    def __init__(self, conf_path: str, readonly: bool = False):
         self.__conf_path = conf_path
         self._config: dict = {}
+        self._readonly = readonly
         self.reload()
 
     def __str__(self) -> str:
@@ -18,6 +19,8 @@ class ConfigBase:
             self._config = yaml.safe_load(f)
 
     def output(self):
+        if self._readonly:
+            raise AssertionError(f"{self.__conf_path} is readonly")
         if not os.access(self.__conf_path, os.W_OK):
             raise PermissionError(f"{self.__conf_path} is inaccessible")
         with open(self.__conf_path, 'w', encoding='utf8') as f:

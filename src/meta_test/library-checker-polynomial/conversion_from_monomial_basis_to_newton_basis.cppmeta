@@ -5,7 +5,9 @@
 
 CEXP u32 MOD = 998244353;
 
-#define GENTCs_pntt
+// ---<GENTC>--- begin
+// ---<GENTC>--- append poly_nttmod
+// ---<GENTC>--- end
 
 int main() {
   u32 n;

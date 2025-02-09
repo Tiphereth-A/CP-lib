@@ -2,12 +2,14 @@
 
 #include "../../code/io/fastio.hpp"
 #include "../../code/str/run_hash.hpp"
-//
-#define GENTCs_hashstrs
-#define GENTCs_hashstrd0
+
+CEXP u32 MOD = 998244353;
+
+// ---<GENTC>--- begin
+// ---<GENTC>--- append hashstr
+// ---<GENTC>--- end
 
 int main() {
-#define GENTCs_hashstrd1
   strn s;
   tifa_libs::fin >> s;
   auto res = tifa_libs::str::run_hash<hashstr>(s);

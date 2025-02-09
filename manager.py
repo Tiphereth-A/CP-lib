@@ -14,6 +14,7 @@ from libs.classes.section import Section
 from libs.consts import CONFIG, CLEAN_EXT_NAME, CONFIG_TCGEN, CONTENTS_CS, CONTENTS_DIR, CONTENTS_NB
 from libs.decorator import withlog
 from libs.latex_utils import latex_input, latex_chapter, latex_listing_code_range, latex_section, latex_listing_code, PathLaTeX, NameLaTeX, LATEX_COMPILE_COMMAND_GROUP
+from libs.testcase_matrix import cppmeta_parser
 from libs.utils import get_full_filenames, file_preprocess, scandir_dir_merge, scandir_file_merge, parse_filename, unique
 
 
@@ -325,32 +326,27 @@ def _generate_testcode(source_dir: str, target_dir: str):
 
     Generate test code for cpverifier, only support *.cpp"""
 
-    def get_var(x: str) -> str:
-        return x.removeprefix('#ifdef GENTC_').rstrip().replace('_', '-')
-
     @withlog
     def get_codelines(file: str, **kwargs) -> list[str]:
-        kwargs.get('logger').debug(f"opening {file}")
         with open(file, 'r') as f:
-            raw_code = f.read()
-            for tck in CONFIG_TCGEN.get_keys():
-                raw_code = raw_code.replace(
-                    f"#define GENTCs_{tck}\n", CONFIG_TCGEN.get_content(tck))
-            return raw_code.splitlines(True)
+            kwargs.get('logger').debug(f"opening {file}")
+            return f.read().splitlines(True)
 
     @withlog
     def generate_testcode(_source_dir: str, _target_dir: str, **kwargs):
         _source_dir = os.path.join(CONFIG.get_src_dir(), _source_dir)
         _target_dir = os.path.join(CONFIG.get_src_dir(), _target_dir)
 
-        all_src_files: list[str] = get_full_filenames([_source_dir], ['cppmeta'])
+        all_src_files: list[str] = get_full_filenames(
+            [_source_dir], ['cppmeta'])
         kwargs.get('logger').info(f"{len(all_src_files)} file(s) found")
 
+        # remove generated files in previous
         all_tar_files: list[str] = get_full_filenames([_target_dir], ['cpp'])
         for file in all_tar_files:
-            with open(file, "r") as f:
+            with open(file, 'r') as f:
                 first_line = f.readline()
-                if first_line.strip() == "#define AUTO_GENERATED":
+                if first_line.strip() == '#define AUTO_GENERATED':
                     f.close()
                     os.remove(file)
 
@@ -360,28 +356,12 @@ def _generate_testcode(source_dir: str, target_dir: str):
             bname = bname.removesuffix('.cppmeta')
 
             code_lines = get_codelines(file)
-            var_list = set(get_var(x) for x in
-                           filter(lambda x: x.startswith('#ifdef GENTC_'), code_lines))
-            kwargs.get('logger').debug(f"variants: {var_list}")
+            parser = cppmeta_parser(bname, tfdir, code_lines)
 
-            for var in var_list:
-                tfile = os.path.join(
-                    tfdir, f"{bname}{'-' if bname.count('.') else '.'}{var}.test.cpp")
+            for tfile, content in parser.get_results():
                 kwargs.get('logger').debug(f"writing to {tfile}")
-
-                written_codes: list[str] = ['#define AUTO_GENERATED\n']
-                stk_var: list[str] = [var]
-
-                for cl in code_lines:
-                    if cl.startswith('#ifdef GENTC_'):
-                        stk_var.append(get_var(cl))
-                    elif cl.startswith('#endif'):
-                        stk_var.pop()
-                    elif stk_var[-1] == var:
-                        written_codes.append(cl)
-
                 with open(tfile, 'w') as tf:
-                    tf.writelines(written_codes)
+                    tf.writelines(content)
 
         kwargs.get('logger').info('finished')
 

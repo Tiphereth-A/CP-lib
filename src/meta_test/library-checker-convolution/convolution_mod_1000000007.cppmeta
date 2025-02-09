@@ -4,135 +4,15 @@
 
 CEXP u32 MOD = 1000000007;
 
-#define GENTCs_3nttu64
-#define GENTCs_3ntts
-#define GENTCs_3nttd0
-#define GENTCs_mtts
-#define GENTCs_mttd0
+// ---<GENTC>--- begin
+// ---<GENTC>--- append conv_anymod
+// ---<GENTC>--- end
 
 int main() {
-#define GENTCs_3nttd1
-#define GENTCs_mttd1
   u32 n, m;
   tifa_libs::fin >> n >> m;
-#ifdef GENTC_3nttu64_s30
-  vecuu a(n), b(m);
-#endif
-#ifdef GENTC_3nttu64_s63
-  vecuu a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_s30_s30
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_s30_s63
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_s63_s30
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_s63_s63
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_s30_d31
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_s30_d63
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_s63_d31
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_3ntt_s63_d63
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_mtt_s30
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_mtt_s63
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_mtt_d31
-  vec<mint> a(n), b(m);
-#endif
-#ifdef GENTC_mtt_d63
-  vec<mint> a(n), b(m);
-#endif
+  vec_t a(n), b(m);
   tifa_libs::fin >> a >> b;
-#ifdef GENTC_3nttu64_s30
-  ntt0_t ntt0;
-  ntt1_t ntt1;
-  ntt2_t ntt2;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt_u64(ntt0, ntt1, ntt2, a, b, MOD) << '\n';
-#endif
-#ifdef GENTC_3nttu64_s63
-  ntt0_t ntt0;
-  ntt1_t ntt1;
-  ntt2_t ntt2;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt_u64(ntt0, ntt1, ntt2, a, b, MOD) << '\n';
-#endif
-#ifdef GENTC_3ntt_s30_s30
-  ntt0_t ntt0;
-  ntt1_t ntt1;
-  ntt2_t ntt2;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt0, ntt1, ntt2, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_s30_s63
-  ntt0_t ntt0;
-  ntt1_t ntt1;
-  ntt2_t ntt2;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt0, ntt1, ntt2, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_s63_s30
-  ntt0_t ntt0;
-  ntt1_t ntt1;
-  ntt2_t ntt2;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt0, ntt1, ntt2, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_s63_s63
-  ntt0_t ntt0;
-  ntt1_t ntt1;
-  ntt2_t ntt2;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt0, ntt1, ntt2, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_s30_d31
-  ntt0_t ntt0;
-  ntt1_t ntt1;
-  ntt2_t ntt2;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt0, ntt1, ntt2, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_s30_d63
-  ntt0_t ntt0;
-  ntt1_t ntt1;
-  ntt2_t ntt2;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt0, ntt1, ntt2, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_s63_d31
-  ntt0_t ntt0;
-  ntt1_t ntt1;
-  ntt2_t ntt2;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt0, ntt1, ntt2, a, b) << '\n';
-#endif
-#ifdef GENTC_3ntt_s63_d63
-  ntt0_t ntt0;
-  ntt1_t ntt1;
-  ntt2_t ntt2;
-  tifa_libs::fout << tifa_libs::math::conv_3ntt(ntt0, ntt1, ntt2, a, b) << '\n';
-#endif
-#ifdef GENTC_mtt_s30
-  tifa_libs::math::FFT<long double> fft;
-  tifa_libs::fout << tifa_libs::math::conv_mtt(fft, a, b) << '\n';
-#endif
-#ifdef GENTC_mtt_s63
-  tifa_libs::math::FFT<long double> fft;
-  tifa_libs::fout << tifa_libs::math::conv_mtt(fft, a, b) << '\n';
-#endif
-#ifdef GENTC_mtt_d31
-  tifa_libs::math::FFT<long double> fft;
-  tifa_libs::fout << tifa_libs::math::conv_mtt(fft, a, b) << '\n';
-#endif
-#ifdef GENTC_mtt_d63
-  tifa_libs::math::FFT<long double> fft;
-  tifa_libs::fout << tifa_libs::math::conv_mtt(fft, a, b) << '\n';
-#endif
+  tifa_libs::fout << conv_func(a, b) << '\n';
   return 0;
 }

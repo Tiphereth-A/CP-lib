@@ -4,11 +4,11 @@
 
 CEXP u64 MOD = 1'000'000'007;
 
-#define GENTCs_mints
-#define GENTCs_mintd0
+// ---<GENTC>--- begin
+// ---<GENTC>--- append mints mintd
+// ---<GENTC>--- end
 
 int main() {
-#define GENTCs_mintd1
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   mint m;
   u64 n;

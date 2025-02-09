@@ -5,8 +5,9 @@
 
 CEXP u32 MOD = 998244353;
 
-#define GENTCs_mints
-#define GENTCs_mintd0
+// ---<GENTC>--- begin
+// ---<GENTC>--- append mints mintd
+// ---<GENTC>--- end
 using Ty = mint;
 using T = std::pair<Ty, Ty>;
 using F = T;
@@ -23,7 +24,6 @@ CEXP void mapping(T &x, F a) { x = a; }
 CEXP void composition(F &x, F) { x = F{1, 0}; }
 
 int main() {
-#define GENTCs_mintd1
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;

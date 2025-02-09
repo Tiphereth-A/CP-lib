@@ -5,7 +5,9 @@
 
 CEXP u32 MOD = 1012924417;
 
-#define GENTCs_pntt
+// ---<GENTC>--- begin
+// ---<GENTC>--- append poly_nttmod
+// ---<GENTC>--- end
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

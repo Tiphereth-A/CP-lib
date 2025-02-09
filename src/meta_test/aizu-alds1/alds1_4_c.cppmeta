@@ -2,8 +2,9 @@
 
 #include "../../code/util/util.hpp"
 //
-#define GENTCs_hashseto
-#define GENTCs_hashsets
+// ---<GENTC>--- begin
+// ---<GENTC>--- append hashset
+// ---<GENTC>--- end
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

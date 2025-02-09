@@ -9,8 +9,8 @@ namespace tifa_libs::math {
 
 // @param f $f(0),\dots,f(k-1)$, $k\leq n$
 // @return $\sum_{i=0}^{n-1}a^if(i)$
-template <class mint>
-CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n, binom<mint> CR C) NE {
+template <class mint, class fact>
+CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n, binom<mint, fact> CR C) NE {
   using fact_t = TPN binom<mint>::fact_t;
   if (!n) return mint(0);
   if (!a.val()) return f[0];
@@ -31,11 +31,11 @@ CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n, binom<mint> CR C) NE {
   flt_ (u32, i, 0, (u32)g.size()) g[i] = (g[i] - c) * _2, _2 *= ia;
   return lagrange_interp0(g, n - 1, fact_t::ifact) * qpow(a, n - 1) + c;
 }
-template <class mint>
+template <class mint, class fact = fact_helper<mint>>
 CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n) NE {
   if (!n) return mint(0);
   if (!a.val()) return f[0];
-  return sum_ipaf(f, a, n, binom<mint>((u32)(f.size() + 1)));
+  return sum_ipaf(f, a, n, binom<mint, fact>((u32)(f.size() + 1)));
 }
 
 }  // namespace tifa_libs::math

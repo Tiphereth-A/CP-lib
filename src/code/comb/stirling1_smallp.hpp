@@ -5,9 +5,9 @@
 
 namespace tifa_libs::math {
 
-template <class mint>
+template <class mint, class fact = fact_helper<mint>, bool with_sgn = true>
 class Stirling1 {
-  const binom<mint> mCn;
+  const binom<mint, fact> mCn;
   vvec<mint> s;
 
  public:
@@ -25,8 +25,8 @@ class Stirling1 {
     }
   }
 
-  template <bool with_sgn = true>
-  CEXP mint operator()(i64 m_, i64 n_) CNE {
+  template <std::signed_integral T>
+  CEXP mint operator()(T m_, T n_) CNE {
     if (n_ < 0 || n_ > m_) return 0;
     const u32 p = mod();
     const u64 m = (u64)m_, n = (u64)n_, i = m / p;
@@ -44,6 +44,8 @@ class Stirling1 {
       if ((i + a) & 1) res = -res;
     return res;
   }
+  template <std::unsigned_integral T>
+  CEXP mint operator()(T m_, T n_) CNE { return operator()(std::make_signed_t<T>(m_), std::make_signed_t<T>(n_)); }
 };
 
 }  // namespace tifa_libs::math

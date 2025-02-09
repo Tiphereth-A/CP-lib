@@ -30,7 +30,7 @@ CEXP i64 lagrange_interp0(spnii v, u64 x, u64 mod) NE { return lagrange_interp0(
 template <class mint>
 CEXP mint lagrange_interp0(vec<mint> CR v, u64 x, vec<mint> CR ifact) NE {
   vecii _(v.size());
-  flt_ (u32, i, 0, (u32)v.size()) _[i] = v[i].val();
+  flt_ (u32, i, 0, (u32)v.size()) _[i] = (i64)v[i].val();
   vecuu ifa(ifact.size());
   flt_ (u32, i, 0, (u32)ifact.size()) ifa[i] = ifact[i].val();
   return mint(lagrange_interp0(_, x, mint::mod(), ifa));
