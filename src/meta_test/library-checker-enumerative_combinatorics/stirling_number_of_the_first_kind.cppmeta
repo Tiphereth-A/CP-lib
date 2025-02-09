@@ -5,18 +5,11 @@
 
 CEXP u32 MOD = 998244353;
 
-#define GENTCs_p3ntts30s
-#define GENTCs_p3ntts63s
-#define GENTCs_p3ntts30d_0
-#define GENTCs_p3ntts63d_0
-#define GENTCs_pmtts
-#define GENTCs_pmttd0
-#define GENTCs_pntt
+// ---<GENTC>--- begin
+// ---<GENTC>--- append poly_anymod poly_nttmod
+// ---<GENTC>--- end
 
 int main() {
-#define GENTCs_p3ntts30d_1
-#define GENTCs_p3ntts63d_1
-#define GENTCs_pmttd1
   u32 n;
   tifa_libs::fin >> n;
   tifa_libs::fout << tifa_libs::math::gen_stirling1_row<poly>(n);

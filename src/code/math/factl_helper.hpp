@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class poly_t>
-struct factl_helper {
+struct factl_helper : fact_helper<TPN poly_t::val_t> {
   using val_t = TPN poly_t::val_t;
   using base_t = fact_helper<TPN poly_t::val_t>;
   static CEXP u32 LBSZ = 9;
@@ -16,20 +16,24 @@ struct factl_helper {
   static_assert(threshold > SZ * 2);
 
   factl_helper() = delete;
-
+  static CEXP void ensure(u32 sz = threshold) NE {
+    if (sz < threshold) [[unlikely]]
+      sz = threshold;
+    base_t::ensure(sz);
+  }
   static CEXP val_t get_fact(u64 n) NE {
     if (n >= base_t::mod()) [[unlikely]]
       return 0;
-    if (base_t::fact.empty()) [[unlikely]]
+    if (base_t::fact.size() < threshold) [[unlikely]]
       base_t::ensure(threshold);
-    return n < threshold ? base_t::fact[n] : fact_(n);
+    return n < base_t::fact.size() ? base_t::fact[n] : fact_(n);
   }
   static CEXP val_t get_ifact(u64 n) NE {
     if (n >= base_t::mod()) [[unlikely]]
       return 0;
-    if (base_t::fact.empty()) [[unlikely]]
+    if (base_t::fact.size() < threshold) [[unlikely]]
       base_t::ensure(threshold);
-    return n < threshold ? base_t::ifact[n] : fact_(n).inv();
+    return n < base_t::fact.size() ? base_t::ifact[n] : fact_(n).inv();
   }
 
  private:

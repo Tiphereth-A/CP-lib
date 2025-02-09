@@ -4,14 +4,11 @@
 
 CEXP u64 MOD = 1000000007;
 
-#define GENTCs_pmttd0
-#define GENTCs_p3ntts30d_0
-#define GENTCs_p3ntts63d_0
+// ---<GENTC>--- begin
+// ---<GENTC>--- append poly_anymod
+// ---<GENTC>--- end
 
 int main() {
-#define GENTCs_pmttd1
-#define GENTCs_p3ntts30d_1
-#define GENTCs_p3ntts63d_1
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;

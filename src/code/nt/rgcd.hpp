@@ -40,7 +40,7 @@ class rgcd {
  public:
   CEXPE rgcd(u32 n) NE : s(n), g_(isqrt(n) + 1, vvecu::value_type(isqrt(n) + 1)) {
     flt_ (u32, i, 1, (u32)g_.size()) {
-      g_[i][0] = g_[0][i] = g_[i][i] = (u32)i;
+      g_[i][0] = g_[0][i] = g_[i][i] = i;
       flt_ (u32, j, 1, i) g_[i][j] = g_[j][i] = g_[j][i % j];
     }
   }

@@ -5,8 +5,8 @@
 
 namespace tifa_libs::math {
 
-template <class mint>
-CEXP mint ball_box_ddm(u32 ball, u32 box, binom<mint> CR b) NE { return b.mPn(box, ball); }
+template <class mint, class fact>
+CEXP mint ball_box_ddm(u32 ball, u32 box, binom<mint, fact> CR b) NE { return b.mPn(box, ball); }
 
 }  // namespace tifa_libs::math
 

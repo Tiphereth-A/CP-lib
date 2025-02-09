@@ -4,8 +4,9 @@
 
 CEXP u32 MOD = 998244353;
 
-#define GENTCs_mints
-#define GENTCs_mintd0
+// ---<GENTC>--- begin
+// ---<GENTC>--- append mints mintd
+// ---<GENTC>--- end
 
 mint f(u64 p, u64 c) {
   u64 res = 1;
@@ -14,7 +15,6 @@ mint f(u64 p, u64 c) {
 }
 
 int main() {
-#define GENTCs_mintd1
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;
