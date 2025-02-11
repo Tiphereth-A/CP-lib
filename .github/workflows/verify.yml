@@ -107,7 +107,7 @@ jobs:
 
       - name: Restore cached results
         if: ${{ !inputs.ignore_prev_result }}
-        uses: actions/cache/restore@v4.1.2
+        uses: actions/cache/restore@v4.2.0
         id: restore-cached-results
         with:
           path: ${{github.workspace}}/merged-result.json
@@ -244,7 +244,7 @@ jobs:
           write-summary: true
       - name: Save result
         if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
-        uses: actions/cache/save@v4.1.2
+        uses: actions/cache/save@v4.2.0
         with:
           path: ${{github.workspace}}/merged-result.json
           key: ${{ runner.os }}-verify-result-${{ github.sha }}
