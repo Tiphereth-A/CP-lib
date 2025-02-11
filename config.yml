@@ -689,6 +689,9 @@ notebook:
     - gen_pows: 幂次模序列
       code_ext: hpp
       test_ext: cpp
+    - gen_ipowi: 二次超幂序列
+      code_ext: hpp
+      test_ext: cpp
     - gen_bernoulli: Bernoulli 数序列
       code_ext: hpp
       test_ext: cpp

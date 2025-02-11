@@ -2,18 +2,31 @@
 #define TIFALIBS_COMB_GEN_POWS
 
 #include "../math/qpow_mod.hpp"
+#include "../nt/lsieve.hpp"
 
 namespace tifa_libs::math {
+namespace gen_pows_impl_ {
+struct ls_pows {
+  static inline u64 b, mod;
+  vecuu pows;
+
+ protected:
+  CEXPE ls_pows(u32 n) NE : pows(n) {
+    if (n > 1) pows[1] = 1;
+  }
+  void prime(u32 p) NE { pows[p] = qpow_mod(p, b, mod); }
+  void coprime(u32 i, u32 j) NE { pows[i * j] = mul_mod_u(pows[i], pows[j], mod); }
+  void not_coprime(u32 i, u32 j) NE { coprime(i, j); }
+};
+}  // namespace gen_pows_impl_
 
 // i^{b} from i=0..n-1
 CEXP vecuu gen_pows(u32 n, u64 b, u64 mod) NE {
+  if (!b) return vecuu(n, mod > 1);
   if (!n) return {};
-  vecuu ans(n);
-  if (!b) ans[0] = 1;
-  if (n == 1) return ans;
-  ans[1] = 1;
-  flt_ (u32, i, 2, n) ans[i] = qpow_mod(i, b, mod);
-  return ans;
+  gen_pows_impl_::ls_pows::b = b;
+  gen_pows_impl_::ls_pows::mod = mod;
+  return lsieve<gen_pows_impl_::ls_pows>(n).pows;
 }
 // i^{b} from i=0..n-1
 template <class mint>
