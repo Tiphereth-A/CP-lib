@@ -36,9 +36,6 @@ concurrency:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        type: ["all", "normal", "huge"]
     steps:
       - uses: actions/checkout@v4
 
@@ -49,8 +46,6 @@ jobs:
 
       - name: oj-resolve
         uses: competitive-verifier/actions/oj-resolve@v2
-        env:
-          VERIFY_EXCLUDE: ${{ matrix.type == 'huge' && 'src/test_cpverifier/' || (matrix.type == 'normal' && 'src/test_cpverifier_huge/' || 'src/tinplate/') }}
         with:
           output-path: verify_files.json
           include: |
@@ -61,7 +56,7 @@ jobs:
           exclude: |
                 libs/
                 .github/
-                $VERIFY_EXCLUDE
+                src/tinplate/
           config: .verify-helper/config.toml
       - name: parse-doxygen
         uses: competitive-verifier/actions/parse-doxygen@v2
@@ -72,11 +67,10 @@ jobs:
         uses: competitive-verifier/actions/upload-verify-artifact@v2
         with:
           file: verify_files.json
-          artifact-name: ${{ runner.os }}-verify-files${{ matrix.type == 'all' && '-' || matrix.type }}json
+          artifact-name: ${{ runner.os }}-verify-files-json
 
       - name: Check bundled
         id: test-bundled
-        if: ${{ matrix.type == 'all' }}
         run: |
           echo "count=$(find .competitive-verifier/bundled/ -type f | wc -l)" >> $GITHUB_OUTPUT
       - name: Upload bundled
@@ -96,7 +90,6 @@ jobs:
       max-parallel: 16
       matrix:
         # prettier-ignore
-        type: ["normal", "huge"]
         index:
           ["00", "01", "02", "03", "04", "05", "06", "07",
            "08", "09", "10", "11", "12", "13", "14", "15"]
@@ -107,7 +100,7 @@ jobs:
 
       - name: Restore cached results
         if: ${{ !inputs.ignore_prev_result }}
-        uses: actions/cache/restore@v4.1.2
+        uses: actions/cache/restore@v4
         id: restore-cached-results
         with:
           path: ${{github.workspace}}/merged-result.json
@@ -118,7 +111,7 @@ jobs:
       - name: Download verify_files.json
         uses: competitive-verifier/actions/download-verify-artifact@v2
         with:
-          artifact-name: ${{ runner.os }}-verify-files${{ matrix.type }}json
+          artifact-name: ${{ runner.os }}-verify-files-json
 
       - name: Set up competitive-verifier
         uses: competitive-verifier/actions/setup@v2
@@ -141,14 +134,12 @@ jobs:
           echo "::endgroup::"
 
       - name: Clean up
-        if: ${{ matrix.type == 'huge' }}
         run: |
-          rm -rf fonts img src/cheatsheet src/data src/doc_tex src/meta_test src/meta_test_huge src/src src/test_tinplate
+          rm -rf fonts
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
           sudo docker image prune --all --force
 
       - name: Get storage information after cleaning up
-        if: ${{ matrix.type == 'huge' }}
         run: |
           echo "::group::free"
           free
@@ -192,7 +183,7 @@ jobs:
       - name: Upload result artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Result-${{ runner.os }}-${{ matrix.type }}-${{ matrix.index }}
+          name: Result-${{ runner.os }}-${{ matrix.index }}
           path: ${{runner.temp}}/result.json
           retention-days: 1
 
@@ -244,7 +235,7 @@ jobs:
           write-summary: true
       - name: Save result
         if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
-        uses: actions/cache/save@v4.1.2
+        uses: actions/cache/save@v4
         with:
           path: ${{github.workspace}}/merged-result.json
           key: ${{ runner.os }}-verify-result-${{ github.sha }}

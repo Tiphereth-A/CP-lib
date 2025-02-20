@@ -14,7 +14,6 @@ int main() {
   tifa_libs::fin >> n >> m;
   vec<mint> a(n), b(m);
   tifa_libs::fin >> a >> b;
-  ntt_t ntt;
-  tifa_libs::fout << tifa_libs::math::conv_ntt_large(ntt, a, b) << '\n';
+  tifa_libs::fout << conv_func(a, b) << '\n';
   return 0;
 }
