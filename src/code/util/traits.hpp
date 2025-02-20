@@ -47,8 +47,8 @@ template <class P> concept tp_ds_c = requires(P p) { p->ch; std::is_array_v<decl
 template <class P> concept tp2_ds_c = tp_ds_c<P> && std::extent_v<decltype(std::declval<P>()->ch)> == 2;
 
 template <class T> struct to_sint : std::make_signed<T> {};
-template <> struct to_sint<u128> { using type = u128; };
-template <> struct to_sint<i128> { using type = u128; };
+template <> struct to_sint<u128> { using type = i128; };
+template <> struct to_sint<i128> { using type = i128; };
 template <class T> using to_sint_t = TPN to_sint<T>::type;
 template <class T> struct to_uint : std::make_unsigned<T> {};
 template <> struct to_uint<u128> { using type = u128; };

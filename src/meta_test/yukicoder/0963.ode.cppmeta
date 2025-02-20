@@ -5,12 +5,7 @@
 CEXP u32 MOD = 1012924417;
 
 // ---<GENTC>--- begin
-// ---<GENTC>--- append poly_anymod poly_nttmod
-// ---<GENTC>--- exclude mints-s63.mints-s30.poly_anymod-p3ntt
-// ---<GENTC>--- exclude mints-s63.mints-s63.poly_anymod-p3ntt
-// ---<GENTC>--- exclude mintd-d63.mints-s30.poly_anymod-p3ntt
-// ---<GENTC>--- exclude mintd-d63.mints-s63.poly_anymod-p3ntt
-// ---<GENTC>--- exclude mints-s63.poly_anymod-pmtt
+// ---<GENTC>--- append poly_nttmod
 // ---<GENTC>--- end
 
 int main() {
