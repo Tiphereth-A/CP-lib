@@ -225,7 +225,7 @@ conv_anymod:
       after_include: |
         using vec_t = vec<mint>;
         auto conv_func(vec_t CR a, vec_t CR b) {
-          tifa_libs::math::FFT<long double> fft;
+          tifa_libs::math::FFT_R2<long double> fft;
           return tifa_libs::math::conv_mtt(fft, a, b);
         }
 conv_nttmod:

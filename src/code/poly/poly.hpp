@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 // clang-format off
-enum ccore_t { ct_FFT, ct_3NTT, ct_NTT };
+enum ccore_t { ct_FFT_R2, ct_3NTT, ct_NTT };
 // clang-format on
 
 template <template <class... Ts> class ccore, class mint, class... args>

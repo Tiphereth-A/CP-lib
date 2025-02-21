@@ -12,7 +12,7 @@ CEXP u32 MOD = 1000000007;
 using mint = tifa_libs::math::mint<tifa_libs::math::mint_s63, MOD>;
 using vec_t = vec<mint>;
 auto conv_func(vec_t CR a, vec_t CR b) {
-  tifa_libs::math::FFT<long double> fft;
+  tifa_libs::math::FFT_R2<long double> fft;
   return tifa_libs::math::conv_mtt(fft, a, b);
 }
 

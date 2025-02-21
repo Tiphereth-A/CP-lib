@@ -5,6 +5,7 @@
 
 namespace tifa_libs::math {
 
+CEXP inline u32 CONV_NAIVE_THRESHOLD = 16;
 template <class U, class T = U>
 requires(sizeof(U) <= sizeof(T))
 CEXP vec<T> conv_naive(vec<U> CR l, vec<U> CR r, u32 ans_size = 0) NE {

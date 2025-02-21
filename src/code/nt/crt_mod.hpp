@@ -2,33 +2,29 @@
 #define TIFALIBS_MATH_CRT_MOD
 
 #include "../math/safe_mod.hpp"
-#include "gcd.hpp"
-#include "inverse.hpp"
+#include "inv_gcd.hpp"
 
 namespace tifa_libs::math {
 
-CEXP std::optional<pttu> crt_mod(spni a, vecu m, u32 const mod) NE {
-  if (a.size() != m.size()) return {};
-  const u32 n = (u32)a.size();
-  flt_ (u32, i, 0, n) {
-    u32 &mi = m[i];
-    flt_ (u32, j, 0, i) {
-      u32 &mj = m[j], d = gcd(mi, mj);
-      if (d == 1) continue;
-      if (safe_mod(a[i], d) != safe_mod(a[j], d)) return {};
-      mi /= d, mj /= d;
-      if (u32 k = gcd(mi, d); k != 1)
-        while (d % k == 0) mi *= k, d /= k;
-      mj *= d;
-    }
-  }
+template <uint_c T = u64>
+CEXP std::optional<ptt<T>> crt_mod(vec<T> CR r, vec<T> m, u64 const mod) NE {
+  static_assert(sizeof(T) >= 8);
+  using S = to_sint_t<T>;
+  const u32 l = (u32)m.size();
+  assert(r.size() == l);
   m.push_back(mod);
-  veci pp(n + 1, 1), res(n + 1);
-  flt_ (u32, i, 0, n) {
-    const i64 u = safe_mod((safe_mod(a[i], m[i]) - res[i]) * (i64)inverse((u64)pp[i], m[i]), m[i]);
-    flt_ (u32, j, i + 1, n + 1) res[j] = (i32)((res[j] + u * pp[j]) % m[j]), pp[j] = (i32)((i64)pp[j] * m[i] % m[j]);
+  vec<T> p(l + 1, 1), x(l + 1);
+  flt_ (u32, i, 0, l) {
+    T b = r[i], n = m[i];
+    assert(n > 0);
+    auto [g, ip] = inv_gcd(p[i], n);
+    S q = S(b - x[i]) / (S)g;
+    if (S(b - x[i]) % (S)g) return {};
+    n /= g;
+    T t = (T)safe_mod(q % (S)n * (S)ip, n);
+    flt_ (u32, j, i + 1, l + 1) (x[j] += t * p[j]) %= m[j], (p[j] *= n) %= m[j];
   }
-  return std::make_pair(res.back(), pp.back());
+  return {{x.back(), p.back()}};
 }
 
 }  // namespace tifa_libs::math

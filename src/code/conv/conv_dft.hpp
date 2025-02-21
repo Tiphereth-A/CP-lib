@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 template <dft_c DFT_t, std::same_as<TPN DFT_t::data_t> DFT_data_t>
 CEXP vec<DFT_data_t> conv_dft(DFT_t &dft, vec<DFT_data_t> l, vec<DFT_data_t> r, u32 ans_size = 0) NE {
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
-  if (ans_size < 32) return conv_naive(l, r, ans_size);
+  if (min(l.size(), r.size()) < CONV_NAIVE_THRESHOLD) return conv_naive(l, r, ans_size);
   dft.bzr(max({(u32)l.size(), (u32)r.size(), min(u32(l.size() + r.size() - 1), ans_size)}));
   dft.dif(l), dft.dif(r);
   flt_ (u32, i, 0, dft.size()) l[i] *= r[i];

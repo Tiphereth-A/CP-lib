@@ -2,15 +2,15 @@
 #define TIFALIBS_CONV_CONV_MTT
 
 #include "conv_naive.hpp"
-#include "fft.hpp"
+#include "fft_r2.hpp"
 
 namespace tifa_libs::math {
 
 template <class mint, class FP>
-CEXP vec<mint> conv_mtt(FFT<FP> &fft, vec<mint> CR l, vec<mint> CR r, u32 ans_size = 0) NE {
-  using C = TPN FFT<FP>::C;
+CEXP vec<mint> conv_mtt(FFT_R2<FP> &fft, vec<mint> CR l, vec<mint> CR r, u32 ans_size = 0) NE {
+  using C = TPN FFT_R2<FP>::data_t;
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
-  if (ans_size < 32) return conv_naive(l, r, ans_size);
+  if (min(l.size(), r.size()) < CONV_NAIVE_THRESHOLD) return conv_naive(l, r, ans_size);
   if (l.size() == 1) {
     vec<mint> ans = r;
     for (ans.resize(ans_size); auto &i : ans) i *= l[0];

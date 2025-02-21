@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 
-template <class T, i64 M>
+template <class T, i64 M = -1>
 class gint {
   T r_, i_;
 

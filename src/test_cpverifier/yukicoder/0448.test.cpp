@@ -6,8 +6,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  veci r(n);
-  vecu m(n);
+  vecuu r(n), m(n);
   flt_ (u32, i, 0, n) std::cin >> r[i] >> m[i];
   auto res = tifa_libs::math::crt_mod(r, m, 1'000'000'007);
   if (!res) {

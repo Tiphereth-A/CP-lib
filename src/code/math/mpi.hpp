@@ -178,7 +178,7 @@ class mpi {
     if (is0_(a) || is0_(b)) return {};
     if (is1_(a)) return b;
     if (is1_(b)) return a;
-    if (min(a.size(), b.size()) <= 128) return a.size() < b.size() ? mul_bf_(b, a) : mul_bf_(a, b);
+    if (min(a.size(), b.size()) <= CONV_NAIVE_THRESHOLD) return a.size() < b.size() ? mul_bf_(b, a) : mul_bf_(a, b);
     return mul_3ntt_(a, b);
   }
   // 0 <= A < 1e16, 1 <= B < 1e8

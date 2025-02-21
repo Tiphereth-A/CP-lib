@@ -1,16 +1,21 @@
-#ifndef TIFALIBS_CONV_FFT
-#define TIFALIBS_CONV_FFT
+#ifndef TIFALIBS_CONV_FFT_R2
+#define TIFALIBS_CONV_FFT_R2
 
 #include "../util/util.hpp"
 
 namespace tifa_libs::math {
 
 template <std::floating_point FP>
-struct FFT {
+class FFT_R2 {
   using C = std::complex<FP>;
+  const FP TAU = std::acos((FP)-1.) * 2;
+  vecu rev;
+  vec<C> w;
+
+ public:
   using data_t = C;
 
-  CEXPE FFT() NE : rev(), w() {}
+  CEXPE FFT_R2() NE : rev(), w() {}
 
   CEXP u32 size() CNE { return (u32)rev.size(); }
   CEXP void bzr(u32 len) NE {
@@ -22,7 +27,7 @@ struct FFT {
     w.resize(n), w[0].real(1);
     flt_ (u32, i, 1, n) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
   }
-  CEXP void dif(vec<C> &f, u32 n = 0) CNE {
+  CEXP void dif(vec<data_t> &f, u32 n = 0) CNE {
     if (!n) n = size();
     if (f.size() < n) f.resize(n);
     assert(n <= size());
@@ -34,23 +39,17 @@ struct FFT {
         auto l = f.begin() + j, r = f.begin() + j + i / 2;
         auto p = w.begin();
         for (u32 k = 0; k < i / 2; ++k, ++l, ++r, p += d) {
-          const C _ = *r * *p;
+          const data_t _ = *r * *p;
           *r = *l - _, *l = *l + _;
         }
       }
 #pragma GCC diagnostic warning "-Wsign-conversion"
   }
-  CEXP void dit(vec<C> &f, u32 n = 0) CNE {
+  CEXP void dit(vec<data_t> &f, u32 n = 0) CNE {
     if (!n) n = size();
     dif(f, n);
     flt_ (u32, i, 0, n) f[i] /= (FP)n;
   }
-
- private:
-  const FP TAU = std::acos((FP)-1.) * 2;
-
-  vecu rev;
-  vec<C> w;
 };
 
 }  // namespace tifa_libs::math

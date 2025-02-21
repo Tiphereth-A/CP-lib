@@ -865,6 +865,9 @@ notebook:
     - gint: Gauss 整数
       code_ext: hpp
       test_ext: cpp
+    - eint: Eisenstein 整数
+      code_ext: hpp
+      test_ext: cpp
     - mint: 模整数类基类
       code_ext: hpp
       test_ext: cpp
@@ -1056,7 +1059,10 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     conv:
-    - fft: 快速 Fourier 变换
+    - fft_r2: 快速 Fourier 变换(Radix 2)
+      code_ext: hpp
+      test_ext: cpp
+    - fft_r3: 快速 Fourier 变换(Radix 3)
       code_ext: hpp
       test_ext: cpp
     - ntt: 数论变换
@@ -1068,7 +1074,13 @@ notebook:
     - conv_naive: 卷积(暴力)
       code_ext: hpp
       test_ext: cpp
+    - conv_naive_mod: 卷积(暴力,mod)
+      code_ext: hpp
+      test_ext: cpp
     - conv_dft: 卷积(FFT 或 NTT)
+      code_ext: hpp
+      test_ext: cpp
+    - conv_u64: 卷积(u64)
       code_ext: hpp
       test_ext: cpp
     - conv_mtt: 卷积(MTT)
@@ -1086,7 +1098,7 @@ notebook:
     - conv_czt: 卷积(Chirp-Z 变换)
       code_ext: hpp
       test_ext: cpp
-    - karatsuba: Karatsuba 乘法
+    - convcyc_naive: 循环卷积(暴力)
       code_ext: hpp
       test_ext: cpp
     - wht: Walsh Hadamard 变换
