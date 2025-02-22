@@ -2,8 +2,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution"
 
 #include "../../code/conv/conv_xor.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 #include "../../code/math/mint_d31.hpp"
+#include "../../code/io/ios_container.hpp"
 
 CEXP u32 MOD = 998244353;
 

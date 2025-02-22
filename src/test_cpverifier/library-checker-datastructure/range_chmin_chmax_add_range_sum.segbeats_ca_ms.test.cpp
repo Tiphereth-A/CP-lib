@@ -1,7 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum"
 
 #include "../../code/ds/segbeats_ca_ms.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
+#include "../../code/io/ios128.hpp"
 
 int main() {
   u32 n, q;

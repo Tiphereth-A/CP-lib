@@ -2,7 +2,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
 
 #include "../../code/conv/conv_subset.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 
 CEXP u32 MOD = 998244353;
 

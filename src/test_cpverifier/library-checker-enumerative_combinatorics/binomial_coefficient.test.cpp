@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient"
 
 #include "../../code/comb/exlucas.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 
 int main() {
   u32 t, m;

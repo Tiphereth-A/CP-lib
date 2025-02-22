@@ -1,7 +1,8 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/inv_of_polynomials"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 #include "../../code/poly/modinv_fps.hpp"
 
 CEXP u32 MOD = 998244353;

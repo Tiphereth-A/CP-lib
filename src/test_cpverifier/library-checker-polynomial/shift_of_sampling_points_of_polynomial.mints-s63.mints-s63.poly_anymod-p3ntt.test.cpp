@@ -1,7 +1,8 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 #include "../../code/poly/ctsh_fps.hpp"
 
 CEXP u32 MOD = 998244353;
