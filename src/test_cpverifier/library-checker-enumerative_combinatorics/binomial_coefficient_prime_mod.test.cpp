@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod"
 
 #include "../../code/comb/binom.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/math/mint_d31.hpp"
 

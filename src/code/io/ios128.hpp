@@ -1,9 +1,9 @@
 #ifndef TIFALIBS_IO_IOS128
 #define TIFALIBS_IO_IOS128
 
-#include "../util/util.hpp"
+#include "../util/traits.hpp"
 
-inline std::istream &operator>>(std::istream &is, i128 &n) NE {
+auto &operator>>(tifa_libs::istream_c auto &is, tifa_libs::s128_c auto &n) NE {
   bool neg = false;
   while (!neg && !isdigit(is.peek())) {
     if (is.peek() == '-') neg = true;
@@ -14,17 +14,20 @@ inline std::istream &operator>>(std::istream &is, i128 &n) NE {
   if (neg) n = -n;
   return is;
 }
-inline std::istream &operator>>(std::istream &is, u128 &n) NE {
+auto &operator>>(tifa_libs::istream_c auto &is, tifa_libs::u128_c auto &n) NE {
   while (!isdigit(is.peek())) is.get();
   n = 0;
   while (isdigit(is.peek())) (n *= 10) += is.get() & 15;
   return is;
 }
-inline std::ostream &operator<<(std::ostream &os, u128 n) NE {
-  if (n > 9) os << n / 10;
-  return os << (uint_fast32_t)(n % 10);
+auto &operator<<(tifa_libs::ostream_c auto &os, tifa_libs::u128_c auto n) NE {
+  static strn int_buf(40, '\0');
+  auto it = int_buf.end();
+  do *(--(it)) = char(n % 10) | '0';
+  while (n /= 10);
+  return os << int_buf.substr(usz(it - int_buf.begin()));
 }
-inline std::ostream &operator<<(std::ostream &os, i128 n) NE {
+auto &operator<<(tifa_libs::ostream_c auto &os, tifa_libs::s128_c auto n) NE {
   if (n < 0) os << '-', n = -n;
   return os << (u128)n;
 }

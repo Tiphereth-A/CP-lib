@@ -16,7 +16,6 @@ CEXP vec<T> convcyc_naive(vec<U> CR l, vec<U> CR r) NE {
     flt_ (u32, j, 0, n - i) ans[i + j] += (T)l[i] * (T)r[j];
     flt_ (u32, j, n - i, n) ans[i + j - n] += (T)l[i] * (T)r[j];
   }
-
   return ans;
 }
 

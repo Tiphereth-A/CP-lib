@@ -1,7 +1,9 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
+#include "../../code/io/ios_container.hpp"
 #include "../../code/poly/cbm2n_fps.hpp"
 
 CEXP u32 MOD = 998244353;

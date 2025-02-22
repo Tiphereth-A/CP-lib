@@ -1,7 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_2_64"
 
 #include "../../code/conv/conv_u64.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
+#include "../../code/io/ios_container.hpp"
 
 int main() {
   u32 n, m;

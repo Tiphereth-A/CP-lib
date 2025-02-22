@@ -14,8 +14,8 @@ struct circle {
   CEXP circle(point<FP> CR c, FP r) NE : o(c), r(r) {}
   CEXP circle(FP c_x, FP c_y, FP r_) NE : o(c_x, c_y), r(r_) {}
 
-  friend std::istream &operator>>(std::istream &is, circle &c) NE { return is >> c.o >> c.r; }
-  friend std::ostream &operator<<(std::ostream &os, circle CR c) NE { return os << c.o << ' ' << c.r; }
+  friend auto &operator>>(istream_c auto &is, circle &c) NE { return is >> c.o >> c.r; }
+  friend auto &operator<<(ostream_c auto &os, circle CR c) NE { return os << c.o << ' ' << c.r; }
   friend CEXP bool operator==(circle CR l, circle CR r) NE { return l.o == r.o && l.r == r.r; }
   friend CEXP bool operator<(circle CR l, circle CR r) NE { return l.o == r.o ? l.r < r.r : l.o < r.o; }
 

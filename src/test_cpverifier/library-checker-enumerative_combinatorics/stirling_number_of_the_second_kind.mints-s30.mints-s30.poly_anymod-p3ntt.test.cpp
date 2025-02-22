@@ -2,7 +2,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind"
 
 #include "../../code/comb/gen_stirling2_row.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 
 CEXP u32 MOD = 998244353;
 

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_GINT
 #define TIFALIBS_MATH_GINT
 
-#include "../util/util.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::math {
 
@@ -75,8 +75,8 @@ class gint {
     return m;
   }
   friend CEXP bool operator==(gint CR x, gint CR y) NE { return x.real() == y.real() && x.imag() == y.imag(); }
-  friend std::istream &operator>>(std::istream &is, gint &x) NE { return is >> x.r_ >> x.i_; }
-  friend std::ostream &operator<<(std::ostream &os, gint CR x) NE { return os << x.real() << ' ' << x.imag(); }
+  friend auto &operator>>(istream_c auto &is, gint &x) NE { return is >> x.r_ >> x.i_; }
+  friend auto &operator<<(ostream_c auto &os, gint CR x) NE { return os << x.real() << ' ' << x.imag(); }
 };
 
 }  // namespace tifa_libs::math

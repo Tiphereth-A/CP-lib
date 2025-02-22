@@ -1,7 +1,9 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/sharp_p_subset_sum"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
+#include "../../code/io/ios_container.hpp"
 #include "../../code/math/ssts_pim_cnt.hpp"
 
 CEXP u32 MOD = 998244353;
@@ -19,7 +21,6 @@ int main() {
   vecu s(n);
   tifa_libs::fin >> s;
   auto v = tifa_libs::math::ssts_pim_cnt<poly>(s, t);
-  flt_ (u32, i, 1, t + 1) tifa_libs::fout.write(v[i]).space_if(i != t);
-  tifa_libs::fout.linebreak();
+  flt_ (u32, i, 1, t + 1) tifa_libs::fout << v[i] << " \n"[i == t];
   return 0;
 }

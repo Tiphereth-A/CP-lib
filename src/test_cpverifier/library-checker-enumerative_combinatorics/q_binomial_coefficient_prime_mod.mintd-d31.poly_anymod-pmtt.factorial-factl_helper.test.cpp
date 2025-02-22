@@ -2,7 +2,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod"
 
 #include "../../code/comb/qbinom.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 
 CEXP u32 MOD = 998244353;
 

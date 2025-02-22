@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/ordered_set"
 
 #include "../../code/ds/fhq_treap.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 
 int main() {
   u32 n, q;

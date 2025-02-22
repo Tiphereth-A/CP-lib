@@ -1,7 +1,8 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 #include "../../code/poly/pow_fpssp.hpp"
 
 CEXP u32 MOD = 998244353;

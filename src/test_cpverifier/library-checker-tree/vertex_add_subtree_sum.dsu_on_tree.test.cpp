@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
 #include "../../code/ds/fenwick.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 #include "../../code/tree/dfs_info.hpp"
 #include "../../code/tree/dsu_on_tree.hpp"
 #include "../../code/tree/tree.hpp"

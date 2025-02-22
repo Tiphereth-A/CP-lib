@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GAME_NPUZZLE_DATA
 #define TIFALIBS_GAME_NPUZZLE_DATA
 
-#include "../util/util.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::game {
 
@@ -57,7 +57,7 @@ class NPuzzleData {
     swap(node[pre], node[p0]);
   }
   CEXP auto operator<=>(NPuzzleData CR r) CNE { return node <=> r.node; }
-  friend std::istream &operator>>(std::istream &is, NPuzzleData &np) NE {
+  friend auto &operator>>(istream_c auto &is, NPuzzleData &np) NE {
     for (auto &i : np.node) is >> i;
     np.p0 = u32(std::ranges::find(np.node, 0) - np.node.begin());
     flt_ (u32, p, 0, (u32)np.node.size())

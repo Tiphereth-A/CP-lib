@@ -12,8 +12,8 @@ struct point {
   FP x, y;
   CEXPE point(FP x = {}, FP y = {}) NE : x{x}, y{y} {}
 
-  friend std::istream &operator>>(std::istream &is, point &p) NE { return is >> p.x >> p.y; }
-  friend std::ostream &operator<<(std::ostream &os, point CR p) NE { return os << p.x << ' ' << p.y; }
+  friend auto &operator>>(istream_c auto &is, point &p) NE { return is >> p.x >> p.y; }
+  friend auto &operator<<(ostream_c auto &os, point CR p) NE { return os << p.x << ' ' << p.y; }
   // s + (t - s) * r
   template <std::floating_point T>
   friend CEXP point lerp(point CR s, point CR t, T r) NE { return s + (t - s) * r; }

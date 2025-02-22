@@ -2,7 +2,8 @@
 
 #include "../../code/ds/lichao_segtree.hpp"
 #include "../../code/edh/discretization.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 
 i64 op(i64 x, i64 y) { return tifa_libs::min(x, y); }
 
