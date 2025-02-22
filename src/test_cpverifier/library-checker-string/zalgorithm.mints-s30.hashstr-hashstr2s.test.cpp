@@ -1,7 +1,8 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 #include "../../code/str/lcpf_hash.hpp"
 
 CEXP u32 MOD = 998244353;

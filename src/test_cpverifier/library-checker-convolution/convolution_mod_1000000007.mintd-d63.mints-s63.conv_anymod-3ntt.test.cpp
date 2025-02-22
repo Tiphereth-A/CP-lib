@@ -1,7 +1,9 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
+#include "../../code/io/ios_container.hpp"
 
 CEXP u32 MOD = 1000000007;
 

@@ -115,7 +115,10 @@ notebook:
     - ios_container: 容器 IO
       code_ext: hpp
       test_ext: cpp
-    - fastio: 快速 IO
+    - fastin: 快速读入
+      code_ext: hpp
+      test_ext: cpp
+    - fastout: 快速输出
       code_ext: hpp
       test_ext: cpp
     ds:
@@ -1372,9 +1375,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - strhex2uint_si64: 16 进制字符串转 u32
-      code_ext: hpp
-      test_ext: cpp
-    - u32tostr: u32 转字符串
       code_ext: hpp
       test_ext: cpp
     - u32tostrhex: u32 转 16 进制字符串

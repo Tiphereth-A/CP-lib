@@ -49,9 +49,9 @@ std::ostream &print_bitmat(std::ostream &os, bitmat<R, C> &bmat, u32 r, u32 c) N
   return os;
 }
 template <usz R, usz C>
-std::istream &operator>>(std::istream &is, bitmat<R, C> &bmat) NE { return read_bitmat(is, bmat, R, C); }
+auto &operator>>(istream_c auto &is, bitmat<R, C> &bmat) NE { return read_bitmat(is, bmat, R, C); }
 template <usz R, usz C>
-std::ostream &operator<<(std::ostream &os, bitmat<R, C> CR bmat) NE { return print_bitmat(os, bmat, R, C); }
+auto &operator<<(ostream_c auto &os, bitmat<R, C> CR bmat) NE { return print_bitmat(os, bmat, R, C); }
 
 #undef FOR1_
 #undef FOR2_

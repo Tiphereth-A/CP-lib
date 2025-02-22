@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GEO3D_POINT3D
 #define TIFALIBS_GEO3D_POINT3D
 
-#include "../util/util.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::geo {
 
@@ -11,8 +11,8 @@ struct point3d {
   FP x, y, z;
   CEXPE point3d(FP x = FP{}, FP y = FP{}, FP z = FP{}) NE : x(x), y(y), z(z) {}
 
-  friend std::istream &operator>>(std::istream &is, point3d &p) NE { return is >> p.x >> p.y >> p.z; }
-  friend std::ostream &operator<<(std::ostream &os, point3d CR p) NE { return os << p.x << ' ' << p.y << ' ' << p.z; }
+  friend auto &operator>>(istream_c auto &is, point3d &p) NE { return is >> p.x >> p.y >> p.z; }
+  friend auto &operator<<(ostream_c auto &os, point3d CR p) NE { return os << p.x << ' ' << p.y << ' ' << p.z; }
   // s + (t - s) * r
   template <std::floating_point T>
   friend CEXP point3d lerp(point3d CR s, point3d CR t, T r) NE { return s + (t - s) * r; }

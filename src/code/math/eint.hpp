@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_EINT
 #define TIFALIBS_MATH_EINT
 
-#include "../util/util.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::math {
 
@@ -12,7 +12,7 @@ class eint {
  public:
   // $\omega$, $\omega^2$
   // $1+\omega+\omega^2=0$
-  CEXP static eint<T> w{0, 1}, w2{-T(1), -T(1)};
+  const static inline eint<T> w{0, 1}, w2{-T(1), -T(1)};
 
   CEXP eint(cT_(T) real = T{}, cT_(T) imag = T{}) NE : r_(real), i_(imag) {}
 
@@ -59,8 +59,8 @@ class eint {
   friend CEXP T norm(eint CR x) NE { return x.norm(); }
   friend CEXP eint conj(eint CR x) NE { return eint{x.r_ - x.i_, -x.i_}; }
   friend CEXP bool operator==(eint CR x, eint CR y) NE { return x.real() == y.real() && x.imag() == y.imag(); }
-  friend std::istream &operator>>(std::istream &is, eint &x) NE { return is >> x.r_ >> x.i_; }
-  friend std::ostream &operator<<(std::ostream &os, eint CR x) NE { return os << x.real() << ' ' << x.imag(); }
+  friend auto &operator>>(istream_c auto &is, eint &x) NE { return is >> x.r_ >> x.i_; }
+  friend auto &operator<<(ostream_c auto &os, eint CR x) NE { return os << x.real() << ' ' << x.imag(); }
 };
 
 }  // namespace tifa_libs::math

@@ -87,8 +87,8 @@ struct rational {
     return _ < 0 ? -1 : _ > 0;
   }
   friend CEXP bool operator==(rational CR x, rational CR y) NE { return x.num == y.num && x.den == y.den; }
-  friend std::istream &operator>>(std::istream &is, rational &x) NE { return is >> x.num >> x.den; }
-  friend std::ostream &operator<<(std::ostream &os, rational CR x) NE { return os << x.num << ' ' << x.den; }
+  friend auto &operator>>(istream_c auto &is, rational &x) NE { return is >> x.num >> x.den; }
+  friend auto &operator<<(ostream_c auto &os, rational CR x) NE { return os << x.num << ' ' << x.den; }
   template <arithm_c U>
   CEXP U convert_to() CNE { return U(num) / U(den); }
 };

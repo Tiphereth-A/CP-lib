@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_POLY_POLY
 #define TIFALIBS_POLY_POLY
 
-#include "../util/util.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::math {
 
@@ -27,11 +27,11 @@ struct poly : vec<mint> {
   CEXP poly(itl<val_t> v) NE : data_t(v) {}
   CEXP poly(spn<val_t> v) NE : data_t(v) {}
 
-  friend CEXP std::istream &operator>>(std::istream &is, poly &poly) NE {
+  friend CEXP auto &operator>>(istream_c auto &is, poly &poly) NE {
     for (auto &val : poly) is >> val;
     return is;
   }
-  friend CEXP std::ostream &operator<<(std::ostream &os, poly CR poly) NE {
+  friend CEXP auto &operator<<(ostream_c auto &os, poly CR poly) NE {
     if (!poly.size()) return os;
     flt_ (u32, i, 1, (u32)poly.size()) os << poly[i - 1] << ' ';
     return os << poly.back();

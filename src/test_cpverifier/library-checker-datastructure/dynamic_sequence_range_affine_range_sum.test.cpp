@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
 
 #include "../../code/ds/fhq_treap_w.hpp"
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 #include "../../code/math/mint.hpp"
 #include "../../code/math/mint_s30.hpp"
 

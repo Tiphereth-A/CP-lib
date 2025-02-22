@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/many_aplusb_128bit"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 
 int main() {
   u32 t;

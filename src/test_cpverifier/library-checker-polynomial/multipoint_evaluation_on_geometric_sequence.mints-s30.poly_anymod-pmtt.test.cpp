@@ -1,7 +1,8 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 #include "../../code/poly/czt_fps.hpp"
 
 CEXP u32 MOD = 998244353;

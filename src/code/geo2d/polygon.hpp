@@ -17,11 +17,11 @@ struct polygon {
   CEXP polygon(itl<point<FP>> vs_) NE : vs(vs_) {}
   CEXP polygon(spn<point<FP>> vs_) NE : vs(vs_.begin(), vs_.end()) {}
 
-  friend std::istream &operator>>(std::istream &is, polygon &p) NE {
+  friend auto &operator>>(istream_c auto &is, polygon &p) NE {
     for (auto &i : p.vs) is >> i;
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, polygon CR p) NE {
+  friend auto &operator<<(ostream_c auto &os, polygon CR p) NE {
     if (p.vs.empty()) return os;
     for (auto it = p.vs.begin(); it != p.vs.end() - 1; ++it) os << *it << ' ';
     return os << p.vs.back();

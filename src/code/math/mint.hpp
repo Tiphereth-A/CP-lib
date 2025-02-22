@@ -44,12 +44,12 @@ struct mint : D<Arg> {
   friend CEXP mint operator/(mint l, mint CR r) NE { return l /= r; }
   friend CEXP bool operator==(mint CR l, mint CR r) NE { return l.val() == r.val(); }
   friend CEXP auto operator<=>(mint CR l, mint CR r) NE { return l.sval() - r.sval(); }
-  friend std::istream &operator>>(std::istream &is, mint &x) NE {
+  friend auto &operator>>(istream_c auto &is, mint &x) NE {
     i64 _;
     is >> _, x = mint(_);
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, mint CR x) NE { return os << x.val(); }
+  friend auto &operator<<(ostream_c auto &os, mint CR x) NE { return os << x.val(); }
   friend CEXP auto abs(mint CR x) NE { return x.val(); }
 };
 

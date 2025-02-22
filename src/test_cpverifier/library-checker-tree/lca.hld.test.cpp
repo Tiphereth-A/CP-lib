@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
 #include "../../code/tree/lca_hld.hpp"
 #include "../../code/tree/tree.hpp"
 

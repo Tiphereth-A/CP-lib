@@ -1,7 +1,9 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/exp_of_set_power_series"
 
-#include "../../code/io/fastio.hpp"
+#include "../../code/io/fastin.hpp"
+#include "../../code/io/fastout.hpp"
+#include "../../code/io/ios_container.hpp"
 #include "../../code/poly/exp_fpssps.hpp"
 
 CEXP u32 MOD = 998244353;

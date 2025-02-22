@@ -15,11 +15,11 @@ struct cvh : public polygon<FP> {
     if (!inited) strict ? init<true>() : init<false>();
   }
 
-  friend std::istream &operator>>(std::istream &is, cvh &ch) NE {
+  friend auto &operator>>(istream_c auto &is, cvh &ch) NE {
     for (auto &i : ch.vs) is >> i;
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, cvh<FP> CR ch) NE {
+  friend auto &operator<<(ostream_c auto &os, cvh<FP> CR ch) NE {
     if (ch.vs.empty()) return os;
     for (auto it = ch.vs.begin(); it != ch.vs.end() - 1; ++it) os << *it << ' ';
     return os << ch.vs.back();

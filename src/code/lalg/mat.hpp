@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_LALG_MAT
 #define TIFALIBS_LALG_MAT
 
-#include "../util/util.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::math {
 
@@ -36,12 +36,12 @@ class matrix {
     FOR2_ (i, row_l, row_r, j, col_l, col_r) f(i, j, val = (*this)(i, j)), (*this)(i, j) = val;
   }
 
-  friend std::istream &operator>>(std::istream &is, matrix &mat) NE {
+  friend auto &operator>>(istream_c auto &is, matrix &mat) NE {
     const u32 r_ = mat.row(), c_ = mat.col();
     FOR2_ (i, 0, r_, j, 0, c_) is >> mat(i, j);
     return is;
   }
-  friend std::ostream &operator<<(std::ostream &os, matrix CR mat) NE {
+  friend auto &operator<<(ostream_c auto &os, matrix CR mat) NE {
     const u32 r_ = mat.row(), c_ = mat.col();
     FOR2_ (i, 0, r_ - 1, j, 0, c_) os << mat(i, j) << " \n"[j + 1 == c_];
     os << mat(r_ - 1, 0);

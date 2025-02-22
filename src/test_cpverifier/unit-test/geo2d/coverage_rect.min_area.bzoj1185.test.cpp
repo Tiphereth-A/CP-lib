@@ -10,7 +10,7 @@ using Polygon2 = tifa_libs::geo::polygon<data_t>;
 using ConvexHull2 = tifa_libs::geo::cvh<data_t>;
 
 strn single_proceed(std::istream& fin) {
-  std::stringstream ss;
+  std::ostringstream ss;
   ss << std::fixed << std::setprecision(5);
 
   u32 n;

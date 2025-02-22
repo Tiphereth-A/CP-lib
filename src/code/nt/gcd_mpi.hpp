@@ -17,13 +17,13 @@ CEXP ptti shrink(u32 a) NE {
   // clang-format on
 }
 CEXP ptti shrink(mpi& a) NE {
-  if (assert(!a.is_neg()); a.data().empty()) return {0, 0};
+  if (assert(!a.is_neg()); a.empty()) return {0, 0};
   ptti res{0, 0};
   while (true) {
-    const u32 g = gcd(mpi::D, a.data()[0]);
+    const u32 g = gcd(mpi::D, a[0]);
     if (g == 1) break;
     if (g != mpi::D) a *= mpi::D / g;
-    a.data().erase(begin(a.data()));
+    a.erase(a.begin());
     const auto s = shrink(g);
     res.first += s.first, res.second += s.second;
   }
@@ -35,27 +35,27 @@ template <bool FAST = true>
 CEXP mpi gcd_mpi(mpi a, mpi b) NE {
   a.set_neg(false), b.set_neg(false);
   if CEXP (FAST)
-    if (max(a.data().size(), b.data().size()) <= 2) return gcd(a.to_i64(), b.to_i64());
-  if (a.data().empty()) return b;
-  if (b.data().empty()) return a;
+    if (max(a.size(), b.size()) <= 2) return gcd(a.to_i64(), b.to_i64());
+  if (a.empty()) return b;
+  if (b.empty()) return a;
   const ptti s = gcd_mpi_impl_::shrink(a), t = gcd_mpi_impl_::shrink(b);
   if (a < b) swap(a, b);
   while (true) {
-    if (b.data().empty()) break;
+    if (b.empty()) break;
     if CEXP (FAST)
-      if (a.data().size() <= 2) break;
-    if (a = a - b; !a.data().empty())
+      if (a.size() <= 2) break;
+    if (a = a - b; !a.empty())
       while (true) {
-        const u32 g = gcd(a.data()[0], mpi::D);
+        const u32 g = gcd(a[0], mpi::D);
         if (g == 1) break;
         if (g != mpi::D) a *= mpi::D / g;
-        a.data().erase(begin(a.data()));
+        a.erase(a.begin());
       }
     if (a < b) swap(a, b);
   }
   assert(a >= b);
   mpi g;
-  if CEXP (FAST) g = b.data().empty() ? a : gcd(a.to_i64(), b.to_i64());
+  if CEXP (FAST) g = b.empty() ? a : gcd(a.to_i64(), b.to_i64());
   else g = a;
   const u32 e2 = (u32)min(s.first, t.first), e5 = (u32)min(s.second, t.second);
   if (e2) g *= qpow(mpi{2}, e2);
