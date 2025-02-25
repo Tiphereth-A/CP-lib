@@ -90,7 +90,7 @@ class fastin {
   SKIP(ndigit, !isdigit)
 #undef SKIP
   template <class T>
-  requires(std::integral<T> && !char_c<T>)
+  requires(imost64_c<T> && !char_c<T>)
   fastin &operator>>(T &n) NE {
     if CEXP (std::same_as<T, bool>) n = skip_ndigit().get() != '0';
     else {

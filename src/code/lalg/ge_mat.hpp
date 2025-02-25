@@ -6,7 +6,7 @@
 
 namespace tifa_libs::math {
 
-template <class T, class Is0, bool euclid = is_int_v<T>>
+template <class T, class Is0, bool euclid = int_c<T>>
 requires(!euclid || !std::is_floating_point_v<T>) && requires(Is0 is0, T t) {
   { is0(t) } -> std::same_as<bool>;
 }
@@ -16,7 +16,7 @@ CEXP i32 ge_mat(matrix<T>& mat, Is0 is0, bool clear_u = true) NE {
   bool neg = false;
   auto swapr = [&](u32 i, u32 c) NE {
     auto ir = mat.data().begin() + i,
-         ir2 = std::max_element(ir, mat.data().end(), [&](auto CR l, auto CR r) NE {
+         ir2 = max_element(ir, mat.data().end(), [&](auto CR l, auto CR r) NE {
            flt_ (u32, i, c, C)
              if (l[i] != r[i]) return l[i] < r[i];
            return false;

@@ -14,7 +14,7 @@ int main() {
     std::cin >> u >> v >> w;
     g.add_arc(u, v, w);
   }
-  CEXP i32 INF = std::numeric_limits<i32>::max() / 2 - 1;
+  CEXP i32 INF = tifa_libs::inf_v<i32>;
   auto d = tifa_libs::graph::bellman_ford(g, r, fn_0, INF);
   if (!d.has_value()) {
     std::cout << "NEGATIVE CYCLE\n";

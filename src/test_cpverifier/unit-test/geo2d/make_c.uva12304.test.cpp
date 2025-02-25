@@ -58,7 +58,7 @@ strn single_proceed(strnv s, std::istream& fin) {
       ss << '[' << angle1 << "]\n";
       return ss.str();
     }
-    if (angle1 > angle2) tifa_libs::swap(angle1, angle2);
+    if (angle1 > angle2) std::swap(angle1, angle2);
     ss << '[' << angle1 << ',' << angle2 << "]\n";
     return ss.str();
   }
@@ -70,7 +70,7 @@ strn single_proceed(strnv s, std::istream& fin) {
     auto cs = make_C_rPL(r, p, l);
     if (!cs.has_value()) return "[]\n";
     auto [cs0, cs1] = cs.value();
-    if (cs1.o < cs0.o) tifa_libs::swap(cs0, cs1);
+    if (cs1.o < cs0.o) std::swap(cs0, cs1);
     if (cs0.o == cs1.o) {
       ss << "[(" << cs0.o.x << ',' << cs0.o.y << ")]\n";
       return ss.str();
@@ -100,7 +100,7 @@ strn single_proceed(strnv s, std::istream& fin) {
       return ss.str();
     }
     auto [cs0, cs1] = cs.value();
-    if (cs1.o < cs0.o) tifa_libs::swap(cs0, cs1);
+    if (cs1.o < cs0.o) std::swap(cs0, cs1);
     if (cs0.o == cs1.o) {
       ss << "[(" << cs0.o.x << ',' << cs0.o.y << ")]\n";
       return ss.str();

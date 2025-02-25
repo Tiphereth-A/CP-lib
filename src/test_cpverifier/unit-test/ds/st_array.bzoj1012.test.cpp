@@ -5,7 +5,7 @@
 
 #include "../base.hpp"
 
-i64 f(i64 x, i64 y) { return tifa_libs::max(x, y); }
+i64 f(i64 x, i64 y) { return std::max(x, y); }
 
 void test(strn CR data) {
   auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("bzoj", "1012", data);

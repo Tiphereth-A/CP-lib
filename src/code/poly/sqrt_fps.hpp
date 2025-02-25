@@ -11,7 +11,7 @@ namespace tifa_libs::math {
 template <template <class... Ts> class ccore, class mint, class... args>
 CEXP std::optional<poly<ccore, mint, args...>> sqrt_fps(poly<ccore, mint, args...> p, u32 n = 0) NE {
   if (!n) n = (u32)p.size();
-  const u32 cnt = u32(std::find_if(p.begin(), p.begin() + n, [](cT_(mint) x) NE { return x.val() != 0; }) - p.begin());
+  const u32 cnt = u32(find_if(p.begin(), p.begin() + n, [](cT_(mint) x) NE { return x.val() != 0; }) - p.begin());
   if (cnt == n) return p.pre(n);
   if (cnt & 1) return {};
   poly<ccore, mint, args...> ans{0};

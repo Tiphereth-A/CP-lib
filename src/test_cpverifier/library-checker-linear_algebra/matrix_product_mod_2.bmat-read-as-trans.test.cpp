@@ -12,7 +12,7 @@ int main() {
   std::cin >> n >> m >> k;
 
 #define DO(num)                                            \
-  if (tifa_libs::max({n, m, k}) <= num) {                  \
+  if (std::max({n, m, k}) <= num) {                  \
     mat<num> a, b;                                         \
     tifa_libs::math::read_bitmat(std::cin, a, n, m);       \
     tifa_libs::math::read_bitmat_trans(std::cin, b, m, k); \

@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite/"
 
-#include "../../code/ds/hld.hpp"
+#include "../../code/tree/hld.hpp"
 #include "../../code/tree/lca_hld.hpp"
 
 CEXP u32 MOD = 998244353;
@@ -36,8 +36,8 @@ int main() {
   for (u32 i = 1, u, v; i < n; ++i) std::cin >> u >> v, tr.add_arc(u, v), tr.add_arc(v, u);
   tifa_libs::graph::lca_hld::tree_info_t info(tr);
   tifa_libs::graph::lca_hld lca(tr, info);
-  tifa_libs::ds::hld<T, op_ba, F, mapping, composition> hld(e(), id(), tr, info, a);
-  tifa_libs::ds::hld<T, op_ab, F, mapping, composition> hld1(e(), id(), tr, info, a);
+  tifa_libs::graph::hld<T, op_ba, F, mapping, composition> hld(e(), id(), tr, info, a);
+  tifa_libs::graph::hld<T, op_ab, F, mapping, composition> hld1(e(), id(), tr, info, a);
   for (u32 i = 0, opt; i < q; ++i) {
     std::cin >> opt;
     if (opt == 0) {

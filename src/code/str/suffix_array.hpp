@@ -1,11 +1,11 @@
 #ifndef TIFALIBS_STR_SUFFIX_ARRAY
 #define TIFALIBS_STR_SUFFIX_ARRAY
 
-#include "../util/traits.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::str {
 
-template <iterable_c T = strn>
+template <common_range T = strn>
 class suffixarray {
   T s;
 
@@ -30,7 +30,7 @@ class suffixarray {
       flt_ (u32, i, 1, n + 1) ++cnt[rk[id[i]]];
       flt_ (u32, i, 1, m + 1) cnt[i] += cnt[i - 1];
       for (u32 i = n; i >= 1; --i) sa[cnt[rk[id[i]]]--] = id[i];
-      std::ranges::copy(rk, oldrk.begin()), p = 0;
+      copy(rk, oldrk.begin()), p = 0;
       flt_ (u32, i, 1, n + 1) {
         u32 x = sa[i], y = sa[i - 1];
         rk[x] = oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w] ? p : ++p;

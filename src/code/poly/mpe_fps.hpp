@@ -36,7 +36,7 @@ CEXP auto mpe_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> a) NE
     }
 
    public:
-    CEXPE SegTree(poly_t CR a) NE : t(a.size() * 4) { init_(a, 1, 0, (u32)a.size() - 1); }
+    CEXPE SegTree(poly_t CR a) NE : t(a.size() * 4) { init_(a, 1, 0, u32(a.size() - 1)); }
     CEXP poly_t operator()(poly_t CR f) CNE {
       poly_t res((u32)f.size());
       calc_(mult(f, inv_fps(t[1])), res, 1, 0, u32(t.size() / 4 - 1));

@@ -11,21 +11,21 @@
 \begin{enumerate}
     \item \(p\geq q\) 时, 令 \(b'=a^{p/q}b\), 则 \(F(p,q,r,l,a,b)=F(p\bmod q,q,r,l,a,b')\)
     \item \(p<q\) 时, 交换 \(p,q\) 并回到上一步
-          
+
           注意到第 \(d\) 个 \(b\) 前有 \(\left\lfloor\frac{pd+r}{q}\right\rfloor\) 个 \(a\), 设第 \(\alpha\) 个 \(a\) 在第 \(\beta\) 个 \(b\) 之前, 则 \(\displaystyle \beta > \left\lfloor\frac{p\alpha+r}{q}\right\rfloor \implies \alpha \leq \left\lfloor\frac{q\beta-r-1}{p}\right\rfloor\)
-          
+
           即第 \(\beta\) 个 \(b\) 之前有 \(\left\lfloor\frac{q\beta-r-1}{p}\right\rfloor\) 个 \(a\)
-          
+
           迭代子问题应与原问题形式相同, 所以截掉第一个 \(a\) 之前的操作, 对之后的部分递归
-          
+
           假设现在去掉了第一个 \(a\) 以及它之前的 \(b\), 则剩余的第 \(c\) 个 \(a\) 与第 \(c-1\) 个 \(a\) 之间剩余的 \(b\) 的个数为
-          
+
           \[
               \left\lfloor\frac{q(c+1)-r-1}{p}\right\rfloor-\left\lfloor\frac{qc-r-1}{p}\right\rfloor=\left\lfloor\frac{qc+q-r-1}{p}\right\rfloor-\left\lfloor\frac{q(c-1)+q-r-1}{p}\right\rfloor
           \]
-          
+
           从而 \(\displaystyle F(p,q,r,l,a,b)=b^{\left\lfloor (q-r-1)/p \right\rfloor}aF(q,p,(q-r-1)\bmod p,c-1,b,a)b^{l-\left\lfloor (qc-r-1)/p \right\rfloor}\)
-          
+
           其中 \(c=\left\lfloor\dfrac{pl+r}{q}\right\rfloor\)
 \end{enumerate}
 

@@ -19,10 +19,16 @@ struct alist {
     g[u].push_back(v);
     if CEXP (++cnt_arc; with_deg) ++deg_in[v], ++deg_out[u];
   }
+  CEXP void add_edge(u32 u, u32 v) NE { add_arc(u, v), add_arc(v, u); }
   CEXP void build() CNE {}
   CEXP u32 size() CNE { return (u32)g.size(); }
   CEXP auto& operator[](u32 u) NE { return g[u]; }
   CEXP auto CR operator[](u32 u) CNE { return g[u]; }
+  template <class F>
+  requires requires(F f, u32 v) { f(v); }
+  CEXP void foreach(u32 u, F&& f) CNE {
+    for (auto v : g[u]) f(v);
+  }
 };
 template <class T, bool with_deg = false>
 struct alistw {
@@ -38,10 +44,16 @@ struct alistw {
     g[u].emplace_back(v, w);
     if CEXP (++cnt_arc; with_deg) ++deg_in[v], ++deg_out[u];
   }
+  CEXP void add_edge(u32 u, u32 v, cT_(T) w) NE { add_arc(u, v, w), add_arc(v, u, w); }
   CEXP void build() CNE {}
   CEXP u32 size() CNE { return (u32)g.size(); }
   CEXP auto& operator[](u32 u) NE { return g[u]; }
   CEXP auto CR operator[](u32 u) CNE { return g[u]; }
+  template <class F>
+  requires requires(F f, u32 v, T w) { f(v, w); }
+  CEXP void foreach(u32 u, F&& f) CNE {
+    for (auto [v, w] : g[u]) f(v, w);
+  }
 };
 
 }  // namespace tifa_libs::graph

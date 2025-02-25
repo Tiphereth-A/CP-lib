@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 template <class G>
-requires(adjlist_c<G> && !adjlistw_c<G>)
+requires(alist_c<G> && !alistw_c<G>)
 class domtree {
   u32 n, t;
   G CR g;

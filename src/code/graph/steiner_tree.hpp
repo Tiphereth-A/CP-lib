@@ -6,7 +6,7 @@
 
 namespace tifa_libs::graph {
 
-template <adjlistw_c G>
+template <alistw_c G>
 class steiner_tree {
   G CR e;
   vecu CR a;

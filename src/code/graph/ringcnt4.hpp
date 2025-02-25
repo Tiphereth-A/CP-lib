@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 namespace ringcnt4_impl_ {
 template <class G>
-requires(adjlist_c<G> && !adjlistw_c<G>)
+requires(alist_c<G> && !alistw_c<G>)
 CEXP u64 run(G CR dg, G CR dgv) NE {
   const u32 n = dg.size();
   u64 ans = 0;
@@ -32,7 +32,7 @@ CEXP u64 run(G CR dg, G CR dgv) NE {
 
 //! should be simple undirected graph
 template <class G>
-requires(adjlist_c<G> && !adjlistw_c<G>)
+requires(alist_c<G> && !alistw_c<G>)
 CEXP u64 ringcnt4(G CR g) NE {
   const u32 n = g.size();
   G dg(n), dgv(n);

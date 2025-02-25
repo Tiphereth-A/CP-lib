@@ -14,7 +14,7 @@ using T = std::pair<Ty, Ty>;
 using F = T;
 
 auto op(T a, T b) {  // b(a(x))
-  tifa_libs::swap(a, b);
+  std::swap(a, b);
   return T{a.first * b.first, a.first * b.second + a.second};
 }
 void mapping(T& a, F f) { a = op(f, a); }

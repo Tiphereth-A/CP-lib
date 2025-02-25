@@ -8,7 +8,7 @@ namespace tifa_libs::graph {
 
 // cb_relax(now, to)
 // @return false if negative cycle detected
-template <adjlistw_c G, class F>
+template <alistw_c G, class F>
 requires(!uint_c<TPN G::w_t>) && requires(F relex, u32 now, u32 to) { relex(now, to); }
 bool bellman_ford(G CR g, u32 s, F &&cb_relax, vec<TPN G::w_t> &dis) NE {
   const u32 n = g.size(), sn = math::isqrt(n);
@@ -34,10 +34,11 @@ bool bellman_ford(G CR g, u32 s, F &&cb_relax, vec<TPN G::w_t> &dis) NE {
   return true;
 }
 // cb_relax(now, to)
-template <adjlistw_c G, class F>
+template <alistw_c G, class F>
 std::optional<vec<TPN G::w_t>> bellman_ford(G CR g, u32 s, F &&cb_relax, TPN G::w_t INF = std::numeric_limits<TPN G::w_t>::max() / 2 - 1) NE {
   vec dis(g.size(), INF);
-  return bellman_ford(g, s, std::forward<F>(cb_relax), dis) ? std::optional{dis} : std::nullopt;
+  if (bellman_ford(g, s, std::forward<F>(cb_relax), dis)) return dis;
+  return {};
 }
 
 }  // namespace tifa_libs::graph

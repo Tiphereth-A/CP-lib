@@ -114,7 +114,7 @@ struct tree_dfs_info : Ts... {
 
  private:
   void dfs(G CR g, u32 u, u32 fa = -1_u32) NE {
-    if CEXP ((..., Ts::init(u, fa)); adjlistw_c<G>) {
+    if CEXP ((..., Ts::init(u, fa)); alistw_c<G>) {
       for (auto [v, w] : g[u])
         if (v != fa) (..., Ts::pre_dfs(v, u, w)), dfs(g, v, u), (..., Ts::post_dfs(v, u, w));
     } else

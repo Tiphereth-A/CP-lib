@@ -11,7 +11,7 @@ CEXP vecu lis(vec<T> CR a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}
   vec<T> f{inf};
   vecu g;
   for (auto i : a) {
-    auto it = std::ranges::lower_bound(f, i, comp);
+    auto it = lower_bound(f, i, comp);
     g.push_back(u32(it - f.begin()));
     if (it == f.end()) f.push_back(i);
     else *it = i;
@@ -20,7 +20,7 @@ CEXP vecu lis(vec<T> CR a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}
   vecu ret;
   for (u32 i = u32(g.size() - 1), now = u32(f.size() - 1); ~i; --i)
     if (g[i] == now && val > a[i]) ret.push_back((u32)i), --now, val = a[i];
-  std::ranges::reverse(ret);
+  reverse(ret);
   return ret;
 }
 

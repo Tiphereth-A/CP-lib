@@ -17,7 +17,10 @@ struct circle {
   friend auto &operator>>(istream_c auto &is, circle &c) NE { return is >> c.o >> c.r; }
   friend auto &operator<<(ostream_c auto &os, circle CR c) NE { return os << c.o << ' ' << c.r; }
   friend CEXP bool operator==(circle CR l, circle CR r) NE { return l.o == r.o && l.r == r.r; }
-  friend CEXP bool operator<(circle CR l, circle CR r) NE { return l.o == r.o ? l.r < r.r : l.o < r.o; }
+  friend CEXP auto operator<=>(circle CR l, circle CR r) NE {
+    if (auto c = l.o <=> r.o; c) return c;
+    return comp(l.r, r.r);
+  }
 
   CEXP FP area(FP angle = pi_v<FP> * 2) CNE { return angle * r * r / 2; }
   CEXP FP crown_area(FP angle = pi_v<FP> * 2) CNE { return (angle - std::sin(angle)) * r * r / 2; }

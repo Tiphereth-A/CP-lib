@@ -59,8 +59,8 @@ class dcvh {
   }
   CEXP cvh<FP> to_CVH() CNE {
     cvh<FP> ret;
-    std::ranges::copy(hcvh_up.vs, ret.vs.begin());
-    std::ranges::copy(hcvh_down.vs, std::back_inserter(ret.vs));
+    copy(hcvh_up.vs, ret.vs.begin());
+    copy(hcvh_down.vs, std::back_inserter(ret.vs));
     argsort(ret.vs);
     return ret;
   }

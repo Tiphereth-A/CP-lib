@@ -18,6 +18,7 @@ class dsu_weighted {
     dep[x] += dep[(u32)p[x]], p[x] = _;
     return _;
   }
+  CEXP u32 size() CNE { return (u32)p.size(); }
   CEXP u32 size(u32 x) NE { return (u32)-p[(u32)find(x)]; }
   CEXP i64 depth(u32 x) NE {
     find(x);

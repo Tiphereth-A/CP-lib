@@ -57,7 +57,7 @@ struct point {
     if (auto CR c = comp(x, p.x); c) return c;
     return comp(y, p.y);
   }
-  CEXP bool operator==(point CR p) CNE { return is_eq(x, p.x) && is_eq(y, p.y); }
+  CEXP bool operator==(point CR p) CNE { return (*this <=> p) == 0; }
   CEXP FP operator*(point CR p) CNE { return x * p.x + y * p.y; }
   CEXP FP operator^(point CR p) CNE { return x * p.y - y * p.x; }
   CEXP FP arg() CNE {

@@ -25,7 +25,7 @@ CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c
   if (t + m > mint::mod()) {
     auto pre = ctsh_fps(f, mint(t), ifact, u32(mint::mod() - t)),
          suf = ctsh_fps(f, mint(0), ifact, m - (u32)pre.size());
-    std::ranges::copy(suf, std::back_inserter(pre));
+    copy(suf, std::back_inserter(pre));
     return pre;
   }
   poly_t d(k + 1);

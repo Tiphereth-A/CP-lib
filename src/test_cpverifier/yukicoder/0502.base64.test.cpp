@@ -11,7 +11,7 @@ int main() {
   auto a = tifa_libs::Base64::decode(S);
   u64 n;
   std::cin >> n;
-  n = tifa_libs::min(n, mod);
+  n = std::min(n, mod);
   u64 x = a[n / Z];
   for (u64 b = n / Z * Z + 1; b <= n; b++) x = x * b % mod;
   std::cout << x << '\n';

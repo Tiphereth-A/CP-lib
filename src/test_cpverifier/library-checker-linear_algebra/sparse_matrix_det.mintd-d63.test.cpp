@@ -16,10 +16,10 @@ using mat = tifa_libs::math::matsp<mint>;
 int main() {
   mint::set_mod(MOD);
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  u64 n, k;
+  u32 n, k;
   std::cin >> n >> k;
   mat a(n, n);
-  for (u64 i = 0, x, y, z; i < k; ++i) {
+  for (u32 i = 0, x, y, z; i < k; ++i) {
     std::cin >> x >> y >> z;
     a(x, y) = z;
   }

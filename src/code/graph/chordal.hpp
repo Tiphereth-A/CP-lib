@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 template <class G>
-requires(adjlist_c<G> && !adjlistw_c<G>)
+requires(alist_c<G> && !alistw_c<G>)
 class chordal {
   G CR g;
   vecu deg;
@@ -32,7 +32,7 @@ class chordal {
         if (~idx[to]) ++deg[to], del(to), ins(to, n + (++idx[to]));
       peo[i] = v;
     }
-    std::ranges::reverse(peo);
+    reverse(peo);
     flt_ (u32, i, 0, n) rnk[peo[i]] = i;
   }
 
@@ -44,7 +44,7 @@ class chordal {
         if (rnk[u] < rnk[v])
           if (s.push_back(v); rnk[s.back()] < rnk[s[0]]) swap(s[0], s.back());
       flt_ (u32, j, 1, (u32)s.size())
-        if (!std::ranges::binary_search(g[s[0]], s[j])) {
+        if (!binary_search(g[s[0]], s[j])) {
           if CEXP (!find_indcycle) return false;
           else {
             u32 x = s[j], y = s[0], z = u;
@@ -52,7 +52,7 @@ class chordal {
             std::queue<u32> q({x});
             while (!q.empty()) {
               u32 t = q.front();
-              if (q.pop(); std::ranges::binary_search(g[t], y)) {
+              if (q.pop(); binary_search(g[t], y)) {
                 pre[y] = t;
                 vecu path = {y};
                 while (path.back() != x) path.push_back(pre[path.back()]);
@@ -60,7 +60,7 @@ class chordal {
                 return path;
               }
               for (u32 u : g[t])
-                if (u != z && !std::ranges::binary_search(g[u], z) && !~pre[u]) pre[u] = t, q.push(u);
+                if (u != z && !binary_search(g[u], z) && !~pre[u]) pre[u] = t, q.push(u);
             }
           }
         }
@@ -81,7 +81,7 @@ class chordal {
     }
     return res;
   }
-  CEXP u32 chromatic_number() CNE { return std::ranges::max(deg) + 1; }
+  CEXP u32 chromatic_number() CNE { return max(deg) + 1; }
   CEXP vecu max_independent_set() CNE {
     vecu res;
     for (vecb vis(peo.size()); u32 u : peo) {

@@ -27,7 +27,7 @@ auto comp_fpssps(u32 n, poly f, vec<TPN poly::val_t> g, vec<T> CR fact, vec<T> C
       auto B = ss.lift(h[k - 1][j + 1]);
       ss.zeta(B), ss.prod(B, A), ss.mobius(B);
       auto c = ss.unlift(B);
-      std::ranges::copy(c, std::back_inserter(h[k][j]));
+      copy(c, std::back_inserter(h[k][j]));
     }
   }
   return h[n][0];

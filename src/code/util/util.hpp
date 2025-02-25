@@ -92,9 +92,9 @@ mk(b, bool) mk(i, i32) mk(u, u32) mk(ii, i64) mk(uu, u64);
 inline const auto fn_0 = [](auto&&...) NE {};
 inline const auto fn_is0 = [](auto x) NE { return x == 0; };
 
+using namespace std::ranges;
 using namespace std::literals;
 namespace tifa_libs {
-using std::min, std::max, std::swap;
 template <class T>
 CEXP T abs(T x) NE { return x < 0 ? -x : x; }
 }  // namespace tifa_libs

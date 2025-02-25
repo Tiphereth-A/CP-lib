@@ -30,7 +30,7 @@ struct polygon {
   CEXP point<FP> &operator[](u32 x) NE { return vs[x]; }
   CEXP point<FP> CR operator[](u32 x) CNE { return vs[x]; }
   CEXP polygon &resort() NE {
-    std::ranges::sort(vs);
+    sort(vs);
     return *this;
   }
   CEXP polygon &reunique() NE {

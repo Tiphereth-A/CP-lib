@@ -25,7 +25,7 @@ int main() {
     auto c = a.meet(b);
     vecu ans;
     for (auto x : c.basis)
-      if (x.to_ulong()) ans.push_back(x.to_ulong());
+      if (x.to_ulong()) ans.push_back((u32)x.to_ulong());
     std::cout << ans.size() << ' ' << ans << '\n';
   }
   return 0;

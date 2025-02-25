@@ -115,7 +115,7 @@ struct ostree : tag_t {
   using const_pointer = const node_t *;
   using pointer_const = node_t *const;
 
-  static constexpr Comp compare{};
+  static CEXP Comp compare{};
   pointer root;
 
   CEXP ostree() NE : tag_t(), root{nullptr} {}

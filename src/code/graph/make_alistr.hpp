@@ -5,12 +5,12 @@
 
 namespace tifa_libs::graph {
 
-template <adjlist_c G>
+template <alist_c G>
 CEXP auto make_alistr(G CR g) NE {
   const u32 n = g.size();
   G ret(n);
   flt_ (u32, u, 0, n)
-    if CEXP (adjlistw_c<G>)
+    if CEXP (alistw_c<G>)
       for (auto&& [v, w] : g[u]) ret.add_arc(v, u, w);
     else
       for (auto v : g[u]) ret.add_arc(v, u);

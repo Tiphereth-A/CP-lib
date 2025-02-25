@@ -13,6 +13,7 @@ class dsu_basic {
   CEXPE dsu_basic(u32 sz) NE : p(sz, -1) {}
 
   CEXP i32 find(u32 x) NE { return p[x] < 0 ? (i32)x : p[x] = find((u32)p[x]); }
+  CEXP u32 size() CNE { return (u32)p.size(); }
   CEXP u32 size(u32 x) NE { return (u32)-p[(u32)find(x)]; }
   CEXP bool same(u32 x, u32 y) NE { return find(x) == find(y); }
   CEXP bool merge(u32 x, u32 y) NE {

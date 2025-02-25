@@ -21,10 +21,10 @@ class sat2 {
   }
   // @return a, a_i == 1 if c_i is true else a_i == 0
   CEXP std::optional<vecu> solve() NE {
-    std::inclusive_scan(st.begin(), st.end(), st.begin()), *std::move_backward(st.begin(), st.end() - 1, st.end()) = 0;
+    std::inclusive_scan(st.begin(), st.end(), st.begin()), *move_backward(st.begin(), st.end() - 1, st.end()).out = 0;
     vecu to(e.size());
     for (auto CR[u, v] : e) to[st[u]++] = v;
-    *std::move_backward(st.begin(), st.end() - 1, st.end()) = 0;
+    *move_backward(st.begin(), st.end() - 1, st.end()).out = 0;
     vecu ans(n, -1_u32), lst;
     auto f = [&](auto &&f, u32 v) NE -> bool {
       lst.push_back(v / 2), ans[v / 2] = v & 1;

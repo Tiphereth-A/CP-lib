@@ -7,7 +7,7 @@
 namespace tifa_libs::graph {
 namespace ringenum3_impl_ {
 template <class F, class G>
-requires(adjlist_c<G> && !adjlistw_c<G>)
+requires(alist_c<G> && !alistw_c<G>)
 CEXP void run(G CR dg, F&& func) NE {
   const u32 n = dg.size();
   vecb vis(n);

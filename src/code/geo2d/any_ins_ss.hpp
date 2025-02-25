@@ -24,7 +24,7 @@ CEXP bool any_ins_Ss(vec<line<FP>> CR ss) NE {
     if (is_gt(seg.l.x, seg.r.x)) swap(seg.l, seg.r);
     seq.emplace_back(seg.l.x, 0, seg), seq.emplace_back(seg.r.x, 1, seg);
   }
-  std::ranges::sort(seq, seqcmp);
+  sort(seq, seqcmp);
   FP x_now;
   auto cmp = [&](line<FP> CR u, line<FP> CR v) NE {
     if (is_eq(u.l.x, u.r.x) || is_eq(v.l.x, v.r.x)) return is_lt(u.l.y, v.l.y);

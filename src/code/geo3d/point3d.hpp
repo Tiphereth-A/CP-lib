@@ -53,7 +53,7 @@ struct point3d {
     if (auto c = comp(y, p.y); c) return c;
     return comp(z, p.z);
   }
-  CEXP bool operator==(point3d CR p) CNE { return is_eq(x, p.x) && is_eq(y, p.y) && is_eq(z, p.z); }
+  CEXP bool operator==(point3d CR p) CNE { return (*this <=> p) == 0; }
   CEXP FP operator*(point3d CR p) CNE { return x * p.x + y * p.y + z * p.z; }
   CEXP point3d operator^(point3d CR p) CNE { return point3d{y * p.z - z * p.y, z * p.x - x * p.z, x * p.y - y * p.x}; }
   CEXP auto norm2() CNE { return x * x + y * y + z * z; }

@@ -6,7 +6,7 @@
 namespace tifa_libs {
 
 template <class C>
-requires(std::contiguous_iterator<TPN C::iterator> && std::integral<TPN C::value_type> && sizeof(TPN C::value_type) == 4)
+requires(std::is_array_v<C> && std::integral<decltype(std::declval<C>()[0])> && sizeof(std::declval<C>()[0]) == 4) || (std::contiguous_iterator<TPN C::iterator> && std::integral<TPN C::value_type> && sizeof(TPN C::value_type) == 4)
 void rsort32(C& a) NE {
   if (a.size() <= 1) return;
   u32 _0[256]{}, _1[256]{}, _2[256]{}, _3[256]{};
@@ -22,13 +22,14 @@ void rsort32(C& a) NE {
   if CEXP (std::is_signed_v<TPN C::value_type>) {
     u32 i = n;
     while (i && a[i - 1] < 0) --i;
-    std::rotate(a_, a_ + i, a_ + n);
+    rotate(a_, a_ + n, a_ + i);
   }
 }
 template <class C>
+requires(std::is_array_v<C> && std::integral<decltype(std::declval<C>()[0])> && sizeof(std::declval<C>()[0]) == 4) || range<C>
 void sort(C& a) NE {
-  if CEXP (std::contiguous_iterator<TPN C::iterator> && std::integral<TPN C::value_type> && sizeof(TPN C::value_type) == 4) rsort32(a);
-  else std::sort(a.begin(), a.end());
+  if CEXP (std::is_array_v<C> || (std::contiguous_iterator<TPN C::iterator> && std::integral<TPN C::value_type> && sizeof(TPN C::value_type) == 4)) rsort32(a);
+  else std::ranges::sort(a);
 }
 
 }  // namespace tifa_libs

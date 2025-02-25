@@ -24,7 +24,7 @@ int main() {
     std::cin >> edges;
     for (auto &[u, v] : edges) --u, --v;
     tifa_libs::graph::alist g(n);
-    for (auto [u, v] : edges) g.add_arc(u, v), g.add_arc(v, u);
+    for (auto [u, v] : edges) g.add_edge(u, v);
     tifa_libs::graph::alist dg(n), dgv(n);
     flt_ (u32, u, 0, n)
       for (u32 v : g.g[u]) (std::make_pair(g.g[u].size(), u) < std::make_pair(g.g[v].size(), v) ? dg : dgv).add_arc(u, v);

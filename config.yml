@@ -40,9 +40,6 @@ notebook:
     - traits: traits
       code_ext: hpp
       test_ext: cpp
-    - inversion: 逆序对计数
-      code_ext: hpp
-      test_ext: cpp
     - pair_op: pair 运算
       code_ext: hpp
       test_ext: cpp
@@ -55,25 +52,13 @@ notebook:
     - vec_op: vec 运算
       code_ext: hpp
       test_ext: cpp
+    - strip: strip
+      code_ext: hpp
+      test_ext: cpp
     - ndvec: 高维 vector
       code_ext: hpp
       test_ext: cpp
-    - dlx: DLX
-      code_ext: hpp
-      test_ext: cpp
     - unordered_stl_hacker: unordered STL hacker
-      code_ext: hpp
-      test_ext: cpp
-    - odt: 珂朵莉树
-      code_ext: hpp
-      test_ext: cpp
-    - debruijn: de Bruijn 序列
-      code_ext: hpp
-      test_ext: cpp
-    - josephus: Josephus 问题
-      code_ext: hpp
-      test_ext: cpp
-    - garsia_wachs: Garsia--Wachs 算法
       code_ext: hpp
       test_ext: cpp
     bit:
@@ -146,6 +131,12 @@ notebook:
     - dsu_weighted: 带权并查集
       code_ext: hpp
       test_ext: cpp
+    - dsu_delineation: 并查集分划
+      code_ext: hpp
+      test_ext: cpp
+    - odt: 珂朵莉树
+      code_ext: hpp
+      test_ext: cpp
     - st_array: ST 表 - 数列
       code_ext: hpp
       test_ext: cpp
@@ -171,9 +162,6 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - persistent_segtree: 可持久化线段树
-      code_ext: hpp
-      test_ext: cpp
-    - hld: 重链剖分
       code_ext: hpp
       test_ext: cpp
     - ostree: 顺序统计树(multiset)
@@ -476,6 +464,9 @@ notebook:
     - alpha_beta: min-max 搜索
       code_ext: hpp
       test_ext: cpp
+    - dlx: DLX
+      code_ext: hpp
+      test_ext: cpp
     - smawk: SMAWK 算法
       code_ext: hpp
       test_ext: cpp
@@ -525,9 +516,6 @@ notebook:
     - johnson: 全源最短路(Johnson)
       code_ext: hpp
       test_ext: cpp
-    - kosaraju: 强连通分量(Kosaraju)
-      code_ext: hpp
-      test_ext: cpp
     - path: 求两点间的一条简单路径
       code_ext: hpp
       test_ext: cpp
@@ -540,6 +528,9 @@ notebook:
     - ringcnt4: 无向图四元环计数
       code_ext: hpp
       test_ext: cpp
+    - kosaraju: 强连通分量(Kosaraju)
+      code_ext: hpp
+      test_ext: cpp
     - tarjan: 强连通分量(tarjan)
       code_ext: hpp
       test_ext: cpp
@@ -547,6 +538,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - e_bcc: 边双连通分量
+      code_ext: hpp
+      test_ext: cpp
+    - e_tcc: 边三连通分量
       code_ext: hpp
       test_ext: cpp
     - dinic: 最大流(Dinic)
@@ -617,6 +611,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - tree_top: 树的 top 数组
+      code_ext: hpp
+      test_ext: cpp
+    - hld: 重链剖分
       code_ext: hpp
       test_ext: cpp
     - lca_hld: 树链剖分求 LCA
@@ -856,6 +853,9 @@ notebook:
     - do_quot: 整除分块
       code_ext: hpp
       test_ext: cpp
+    - inversion: 逆序对计数
+      code_ext: hpp
+      test_ext: cpp
     - rational: 有理数
       code_ext: hpp
       test_ext: cpp
@@ -919,6 +919,9 @@ notebook:
     - basis_r: 实数线性基
       code_ext: hpp
       test_ext: cpp
+    - debruijn: de Bruijn 序列
+      code_ext: hpp
+      test_ext: cpp
     - mex: mex
       code_ext: hpp
       test_ext: cpp
@@ -980,6 +983,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - youngt: Young 表
+      code_ext: hpp
+      test_ext: cpp
+    - josephus: Josephus 问题
       code_ext: hpp
       test_ext: cpp
     lalg:
@@ -1137,10 +1143,10 @@ notebook:
     - conv_lcm: 卷积(LCM)
       code_ext: hpp
       test_ext: cpp
-    - conv_minplus_ca: 卷积(min-plus,一个凸序列)
+    - conv_minplus_cv: 卷积(min-plus,一个凸序列)
       code_ext: hpp
       test_ext: cpp
-    - conv_minplus_cc: 卷积(min-plus,两个凸序列)
+    - conv_minplus_cv_cv: 卷积(min-plus,两个凸序列)
       code_ext: hpp
       test_ext: cpp
     poly:
@@ -1328,6 +1334,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - huffman_tree: Huffman 树
+      code_ext: hpp
+      test_ext: cpp
+    - garsia_wachs: Garsia--Wachs 算法
       code_ext: hpp
       test_ext: cpp
     - gray_code: Gray 码

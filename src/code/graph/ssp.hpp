@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_DINIC
 #define TIFALIBS_GRAPH_DINIC
 
-#include "../util/util.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::graph {
 
@@ -19,7 +19,7 @@ class ssp {
   template <class EW>
   bool sssp(EW inflow) NE {
     using SW = std::make_signed_t<EW>;
-    vec<SW> dis(N, std::numeric_limits<SW>::max() / 2 - 1);
+    vec<SW> dis(N, inf_v<SW>);
     vecb inq(N);
     std::queue<u32> q({S});
     dis[S] = 0, flow[S] = W(inflow), flow[T] = 0, inq[S] = 1;

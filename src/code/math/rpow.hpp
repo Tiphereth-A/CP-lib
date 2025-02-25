@@ -22,7 +22,7 @@ class rpow {
   }
   CEXP void swap(rpow& r) NE {
     b0.swap(r.b0), b1.swap(r.b1);
-    ::tifa_libs::swap(b_, r.b_), ::tifa_libs::swap(m_, r.m_);
+    std::swap(b_, r.b_), std::swap(m_, r.m_);
   }
   CEXP u64 base() CNE { return b_; }
   CEXP u64 mod() CNE { return m_; }

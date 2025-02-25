@@ -36,7 +36,7 @@ class Youngt {
   CEXP void insert(u32 val) NE {
     ++n;
     for (auto& i : d) {
-      auto it = std::ranges::lower_bound(i, val);
+      auto it = lower_bound(i, val);
       if (it == i.end()) return i.push_back(val);
       swap(val, *it);
     }

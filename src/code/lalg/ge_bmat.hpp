@@ -18,7 +18,7 @@ CEXP u32 ge_bmat(bitmat<R, C> &bmat, bool clear_u = true) NE {
           break;
         }
       if (i2 != i) swap(bmat[i2], bmat[i]);
-      else std::stable_sort(bmat.begin() + i, bmat.end(), [](auto CR l, auto CR r) NE { return l._Find_first() > r._Find_first(); });
+      else stable_sort(bmat.begin() + i, bmat.end(), [](auto CR l, auto CR r) NE { return l._Find_first() > r._Find_first(); });
       if (!bmat[i][c] && (c = (u32)bmat[i]._Find_next(c)) == C) break;
     }
     flt_ (u32, j, clear_u ? 0 : i + 1, R)

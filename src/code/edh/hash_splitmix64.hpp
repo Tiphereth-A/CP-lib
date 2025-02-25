@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_EDH_HASH_SPLITMIX64
 #define TIFALIBS_EDH_HASH_SPLITMIX64
 
-#include "../util/traits.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs {
 
@@ -29,7 +29,7 @@ class hash_splitmix64 {
     std::apply([&](Ts CR... targs) NE { ((ret = append(ret, (*this)(targs))), ...); }, tp);
     return ret;
   }
-  template <iterable_c T>
+  template <common_range T>
   u64 operator()(T CR tp) CNE {
     u64 ret = 0;
     for (auto &&i : tp) ret = append(ret, (*this)(i));

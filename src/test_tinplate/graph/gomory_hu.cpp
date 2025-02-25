@@ -25,7 +25,7 @@ int main() {
     u32 ans = std::numeric_limits<u32>::max();
     flt_ (u32, j, 1, (u32)vs.size()) {
       u32 from = vs[j - 1], to = vs[j];
-      ans = tifa_libs::min(ans, mp[std::minmax(from, to)]);
+      ans = std::min(ans, mp[std::minmax(from, to)]);
     }
     std::cout << ans << '\n';
   }

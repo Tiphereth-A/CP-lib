@@ -2,6 +2,7 @@
 
 #include "../../code/io/fastin.hpp"
 #include "../../code/io/fastout.hpp"
+#include "../../code/io/ios128.hpp"
 
 int main() {
   u32 t;

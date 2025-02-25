@@ -57,9 +57,10 @@ class NPuzzleData {
     swap(node[pre], node[p0]);
   }
   CEXP auto operator<=>(NPuzzleData CR r) CNE { return node <=> r.node; }
+  CEXP bool operator==(NPuzzleData CR r) CNE { return std::is_eq(*this <=> r); }
   friend auto &operator>>(istream_c auto &is, NPuzzleData &np) NE {
     for (auto &i : np.node) is >> i;
-    np.p0 = u32(std::ranges::find(np.node, 0) - np.node.begin());
+    np.p0 = u32(find(np.node, 0) - np.node.begin());
     flt_ (u32, p, 0, (u32)np.node.size())
       if (np.node[p]) np.cost_ += costs[p][fin_pos[np.node[p]]];
     return is;

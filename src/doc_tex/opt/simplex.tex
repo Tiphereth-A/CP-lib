@@ -22,19 +22,19 @@ T val = LPSolver(A, b, c).solve(x);
 
 \begin{tabular}{c|c}
     \hline
-    原问题                               & 对偶问题                                \\
+    原问题                             & 对偶问题                               \\
     \hline
-    \(\max_x c^T x\)                     & \(\min_y b^T y\)                        \\
+    \(\max_x c^T x\)                & \(\min_y b^T y\)                   \\
     \hline
-    \(n\) 个变量 \(x_1,\dots,x_n\)       & \(n\) 个限制条件 \(A^T y\gtreqqless c\) \\
-    \(x_i\geq 0\)                        & 第 \(i\) 个限制条件为 \(\geq c_i\)      \\
-    \(x_i\leq 0\)                        & 第 \(i\) 个限制条件为 \(\leq c_i\)      \\
-    \(x_i\in \mathrm{R}\)                & 第 \(i\) 个限制条件为 \(=c_i\)          \\
+    \(n\) 个变量 \(x_1,\dots,x_n\)     & \(n\) 个限制条件 \(A^T y\gtreqqless c\) \\
+    \(x_i\geq 0\)                   & 第 \(i\) 个限制条件为 \(\geq c_i\)        \\
+    \(x_i\leq 0\)                   & 第 \(i\) 个限制条件为 \(\leq c_i\)        \\
+    \(x_i\in \mathrm{R}\)           & 第 \(i\) 个限制条件为 \(=c_i\)            \\
     \hline
-    \(m\) 个限制条件 \(Ax\gtreqqless b\) & \(m\) 个变量 \(y_1,\dots,y_m\)          \\
-    第 \(i\) 个限制条件为 \(\geq b_i\)   & \(y_i\leq 0\)                           \\
-    第 \(i\) 个限制条件为 \(\leq b_i\)   & \(y_i\geq 0\)                           \\
-    第 \(i\) 个限制条件为 \(=b_i\)       & \(y_i\in \mathrm{R}\)                   \\
+    \(m\) 个限制条件 \(Ax\gtreqqless b\) & \(m\) 个变量 \(y_1,\dots,y_m\)        \\
+    第 \(i\) 个限制条件为 \(\geq b_i\)     & \(y_i\leq 0\)                      \\
+    第 \(i\) 个限制条件为 \(\leq b_i\)     & \(y_i\geq 0\)                      \\
+    第 \(i\) 个限制条件为 \(=b_i\)         & \(y_i\in \mathrm{R}\)              \\
     \hline
 \end{tabular}
 
@@ -42,10 +42,10 @@ T val = LPSolver(A, b, c).solve(x);
     \hline
     \multicolumn{2}{c}{原问题} & \multicolumn{2}{c}{对偶问题}                                            \\
     \hline
-    \(\max\)                   & \(3x_1+4x_2\)                & \(\min\)          & \(7y_1\)             \\
-    \(\textrm{s.t.}\)          & \(5x_1+6x_2=7\)              & \(\textrm{s.t.}\) & \(5y_1\geq 3\)       \\
-                               &                              &                   & \(6y_2\geq 4\)       \\
-                               & \(x_1\geq 0,x_2\geq 0\)      &                   & \(y_1\in\mathrm{R}\) \\
+    \(\max\)                & \(3x_1+4x_2\)            & \(\min\)          & \(7y_1\)             \\
+    \(\textrm{s.t.}\)       & \(5x_1+6x_2=7\)          & \(\textrm{s.t.}\) & \(5y_1\geq 3\)       \\
+                            &                          &                   & \(6y_2\geq 4\)       \\
+                            & \(x_1\geq 0,x_2\geq 0\)  &                   & \(y_1\in\mathrm{R}\) \\
     \hline
 \end{tabular}
 

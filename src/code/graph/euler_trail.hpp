@@ -25,7 +25,7 @@ CEXP std::optional<vecptu> run_(u32 n, u32 m, cT_(vvecptu) g, u32 s) NE {
   if (ret.size() != m + 1) return {};
   for (i32 i : f)
     if (i < 0) return {};
-  std::ranges::reverse(ret);
+  reverse(ret);
   return ret;
 }
 }  // namespace euler_trail_impl_
@@ -53,7 +53,7 @@ CEXP std::optional<vecptu> euler_trail(u32 n, vecptu CR edges) NE {
     } else if (g[i].size() & 1) s = i;
   return euler_trail_impl_::run_<cycle>(n, (u32)edges.size(), g, s);
 }
-CEXP bool is_eulerian(adjlist_c auto CR g) NE {
+CEXP bool is_eulerian(alist_c auto CR g) NE {
   const u32 n = g.size();
   assert(n == g.deg_in.size());
   vecb vis(n);

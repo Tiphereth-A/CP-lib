@@ -19,7 +19,7 @@ void test(strn CR data) {
   vecu ns(t), ms(t);
   flt_ (u32, i, 0, t) {
     fin >> ns[i] >> ms[i];
-    if (ns[i] > ms[i]) tifa_libs::swap(ns[i], ms[i]);
+    if (ns[i] > ms[i]) std::swap(ns[i], ms[i]);
   }
   u32 n = std::ranges::max(ns);
   tifa_libs::math::lsieve2 ls(n);
@@ -33,7 +33,7 @@ void test(strn CR data) {
   flt_ (u32, i, 0, t) {
     mint res = 0;
     for (u32 n = ns[i], m = ms[i], l = 1, r, d1, d2; l <= n; l = r + 1) {
-      r = tifa_libs::min(n / (d1 = n / l), m / (d2 = m / l));
+      r = std::min(n / (d1 = n / l), m / (d2 = m / l));
       res += (g[r] - g[l - 1]) * d1 * d2;
     }
 

@@ -10,7 +10,7 @@ int main() {
   tifa_libs::graph::alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
-    g.add_arc(u, v), g.add_arc(v, u);
+    g.add_edge(u, v);
   }
   std::cout << tifa_libs::graph::chrom_num(g) << '\n';
   return 0;

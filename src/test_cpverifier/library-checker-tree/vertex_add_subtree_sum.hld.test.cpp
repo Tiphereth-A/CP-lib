@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
-#include "../../code/ds/hld.hpp"
 #include "../../code/io/fastin.hpp"
 #include "../../code/io/fastout.hpp"
+#include "../../code/tree/hld.hpp"
 
 using T = std::pair<i64, i32>;
 using F = i64;
@@ -19,7 +19,7 @@ int main() {
   for (auto& x : b) tifa_libs::fin >> x;
   tifa_libs::graph::tree tr_(n);
   for (u32 i = 1, p; i < n; ++i) tifa_libs::fin >> p, tr_.add_arc((u32)p, (u32)i);
-  tifa_libs::ds::hld<T, op, F, mapping, composition> tr({0, 0}, 0, tr_);
+  tifa_libs::graph::hld<T, op, F, mapping, composition> tr({0, 0}, 0, tr_);
   flt_ (u32, i, 0, n) a[tr.info.dfn[i]].first = b[i], a[tr.info.dfn[i]].second = 1;
   tr.build(a);
   for (u32 i = 0, opt, u; i < q; ++i) {

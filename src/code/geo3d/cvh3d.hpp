@@ -129,10 +129,7 @@ class cvh3d {
       if (*faces[fstf].p.v == *faces[lastf].p.u) faces[fstf].n[1] = lastf, faces[lastf].n[2] = fstf;
       else faces[fstf].n[2] = lastf, faces[lastf].n[1] = fstf;
       resptid.clear();
-      for (auto i : resfdel) {
-        std::ranges::move(ptsid[i], std::back_inserter(resptid));
-        ptsid[i].clear();
-      }
+      for (auto i : resfdel) move(ptsid[i], std::back_inserter(resptid)), ptsid[i].clear();
       for (auto i : resptid) {
         if (vp[i] == p) continue;
         for (auto j : resfnew)

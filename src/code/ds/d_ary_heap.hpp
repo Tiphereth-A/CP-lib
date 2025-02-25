@@ -98,12 +98,16 @@ CEXP void make_dary_heap(I begin, I end, C &&comp = C{}) NE {
     if (begin[mdidx] = std::move(value); idx == 0) break;
   }
 }
+template <int D, common_range R, class C = std::less<>>
+CEXP void make_dary_heap(R CR r, C &&comp = C{}) NE { return make_dary_heap<D>(r.begin(), r.end(), std::forward<C>(comp)); }
 template <int D, class I, class C = std::less<>>
 CEXP bool is_dary_heap(I begin, I end, C &&comp = C{}) NE {
   flt_ (u32, i, 1, u32(end - begin))
     if (u32 p = d_ary_heap_impl_::pidx_<D>(i); comp(begin[p], begin[i])) return false;
   return true;
 }
+template <int D, common_range R, class C = std::less<>>
+CEXP void is_dary_heap(R CR r, C &&comp = C{}) NE { return is_dary_heap<D>(r.begin(), r.end(), std::forward<C>(comp)); }
 template <int D, class I, class C = std::less<>>
 CEXP void push_dary_heap(I begin, I end, C &&comp = C{}) NE {
   TPN std::iterator_traits<I>::value_type val = std::move(end[-1]);
@@ -115,6 +119,8 @@ CEXP void push_dary_heap(I begin, I end, C &&comp = C{}) NE {
   }
   begin[idx] = std::move(val);
 }
+template <int D, common_range R, class C = std::less<>>
+CEXP void push_dary_heap(R CR r, C &&comp = C{}) NE { return push_dary_heap<D>(r.begin(), r.end(), std::forward<C>(comp)); }
 template <int D, class I, class C = std::less<>>
 CEXP void pop_dary_heap(I begin, I end, C &&comp = C{}) NE {
   u32 len = u32(end - begin) - 1;
@@ -133,6 +139,8 @@ CEXP void pop_dary_heap(I begin, I end, C &&comp = C{}) NE {
   }
   begin[idx] = std::move(val);
 }
+template <int D, common_range R, class C = std::less<>>
+CEXP void pop_dary_heap(R CR r, C &&comp = C{}) NE { return pop_dary_heap<D>(r.begin(), r.end(), std::forward<C>(comp)); }
 
 }  // namespace tifa_libs::ds
 

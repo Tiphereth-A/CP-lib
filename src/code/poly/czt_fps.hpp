@@ -32,7 +32,7 @@ auto czt_fps(poly<ccore, mint, args...> f, mint c, u32 m = -1_u32, mint a = mint
   flt_ (u32, i, 1, m + n) cc[i] = rp(u32((i * (i - 1_u64) / 2) % (mod - 1)));
   flt_ (u32, i, 1, max(m, n)) icc[i] = irp(u32((i * (i - 1_u64) / 2) % (mod - 1)));
   flt_ (u32, i, 1, n) f[i] *= icc[i];
-  std::ranges::reverse(f), f.conv(cc, n + m);
+  reverse(f), f.conv(cc, n + m);
   poly_t ans(f.begin() + ((isz)n - 1), f.begin() + (isz(n + m) - 1));
   flt_ (u32, i, 1, m) ans[i] *= icc[i];
   return ans;

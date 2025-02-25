@@ -37,7 +37,7 @@ int main() {
         flt_ (u64, i, 0, n)
           flt_ (u64, j, 0, n)
             if (w[i][j] != 0) nx[ky][kz][i][j] *= w[i][j];
-    tifa_libs::swap(dp, nx);
+    std::swap(dp, nx);
     flt_ (u64, i, 0, n)
       if (dp[1][1][x][i] != 0) {
         std::cout << L << '\n';

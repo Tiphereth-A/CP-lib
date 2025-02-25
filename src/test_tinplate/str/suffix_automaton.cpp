@@ -11,7 +11,7 @@ int main() {
   u64 ans = 0;
   sam.build(), sam.gettimes();
   flt_ (u32, i, 1, sam.sz)
-    if (sam.st[i].times > 1) ans = tifa_libs::max(ans, (u64)sam.st[i].times * sam.st[i].len);
+    if (sam.st[i].times > 1) ans = std::max(ans, (u64)sam.st[i].times * sam.st[i].len);
   std::cout << ans;
 }
 

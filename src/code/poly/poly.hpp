@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_POLY_POLY
 #define TIFALIBS_POLY_POLY
 
+#include "../util/strip.hpp"
 #include "../util/traits.hpp"
 
 namespace tifa_libs::math {
@@ -26,6 +27,7 @@ struct poly : vec<mint> {
   CEXP poly(vec<val_t> &&v) NE : data_t(std::move(v)) {}
   CEXP poly(itl<val_t> v) NE : data_t(v) {}
   CEXP poly(spn<val_t> v) NE : data_t(v) {}
+  CEXP poly(common_range auto CR v) NE : data_t(v.begin(), v.end()) {}
 
   friend CEXP auto &operator>>(istream_c auto &is, poly &poly) NE {
     for (auto &val : poly) is >> val;
@@ -54,20 +56,22 @@ struct poly : vec<mint> {
   }
   template <class F>
   CEXP void apply(F &&f) NE { apply_range(0, (u32)data_t::size(), std::forward<F>(f)); }
-  CEXP poly pre(u32 size) CNE {
+  CEXP poly pre(u32 sz) CNE {
+    if (sz <= this->size()) return {this->begin(), this->begin() + sz};
     poly _ = *this;
-    _.resize(size);
+    _.resize(sz);
     return _;
   }
   CEXP void strip() NE {
-    auto it = std::find_if(data_t::rbegin(), data_t::rend(), [](cT_(mint) x) NE { return x.val() != 0; });
-    if (data_t::resize(usz(data_t::rend() - it)); data_t::empty()) data_t::push_back(val_t(0));
+    auto [_, r] = rstrip_view(*this, [](cT_(mint) x) NE { return x.val() == 0; });
+    if (data_t::erase(r, this->end()); data_t::empty()) data_t::push_back(val_t(0));
   }
-  friend poly stripped(poly p) NE {
-    p.strip();
-    return p;
+  friend poly stripped(poly CR p) NE {
+    poly ret(rstrip_view(p, [](cT_(mint) x) NE { return x.val() == 0; }));
+    if (ret.empty()) return {0};
+    return ret;
   }
-  CEXP void reverse(u32 n = 0) NE { std::reverse(data_t::begin(), data_t::begin() + (n ? n : (u32)data_t::size())); }
+  CEXP void reverse(u32 n = 0) NE { std::ranges::reverse(data_t::begin(), data_t::begin() + (n ? n : (u32)data_t::size())); }
   CEXP void conv(poly CR r, u32 ans_size = 0) NE { conv_core.conv(*this, r, ans_size); }
   CEXP poly operator-() CNE {
     poly ret = *this;
@@ -114,7 +118,12 @@ struct poly : vec<mint> {
     return *this;
   }
   friend CEXP poly operator*(poly l, poly CR r) NE { return l *= r; }
-  CEXP auto operator<=>(poly CR r) CNE { return data_t::operator<=>(stripped(*this), stripped(r)); }
+  CEXP auto operator<=>(poly CR r) CNE {
+    auto l_ = stripped(*this), r_ = stripped(r);
+    if (l_.size() != r_.size()) return l_.size() <=> r_.size();
+    return std::lexicographical_compare_three_way(l_.rbegin(), l_.rend(), r_.rbegin(), r_.rend());
+  }
+  CEXP bool operator==(poly CR r) CNE { return std::is_eq(*this <=> r); }
 };
 
 }  // namespace tifa_libs::math

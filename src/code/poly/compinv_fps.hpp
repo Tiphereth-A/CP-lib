@@ -24,7 +24,7 @@ CEXP auto compinv_fps(poly<ccore, mint, args...> CR f, vec<T> CR inv, u32 n = 0)
 }
 // @return g s.t. $g(f(x)) \equiv x \pmod{\deg(f)+1}$
 template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto compinv_fps(poly<ccore, mint, args...> CR f, u32 n = 0) NE { return compinv_fps(f, gen_inv(f.size(), mint::mod()), n); }
+CEXP auto compinv_fps(poly<ccore, mint, args...> CR f, u32 n = 0) NE { return compinv_fps(f, gen_inv((u32)f.size(), mint::mod()), n); }
 
 }  // namespace tifa_libs::math
 

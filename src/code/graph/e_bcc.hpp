@@ -1,45 +1,36 @@
 #ifndef TIFALIBS_GRAPH_E_BCC
 #define TIFALIBS_GRAPH_E_BCC
 
-#include "../util/util.hpp"
+#include "eog.hpp"
 
 namespace tifa_libs::graph {
 
-template <class EW>
-class e_bcc {
-  vvec<EW> CR g;
-
- public:
-  u32 id;
-  vecu ebcc_id, dfn, low;
-  vecb cut;
+struct e_bcc {
+  vecu dfn, low;
   vvecu belongs;
 
-  //! EW need rev_edge
-  CEXPE e_bcc(vvec<EW> CR G) NE : g(G) { build(); }
-
-  CEXP void build() NE {
-    u32 cnt = 0, n = u32(g.size());
-    id = 0, dfn = low = ebcc_id = vecu(n, n), cut = vecb(n, 0);
-    vecu s;
-    auto f = [&](auto &&f, u32 u, u32 fa, u32 inv_from) NE -> void {
-      dfn[u] = low[u] = cnt++, s.push_back(u);
-      flt_ (u32, i, 0, (u32)g[u].size()) {
-        auto v = g[u][i];
-        if (v.to == fa && i == inv_from) continue;
-        if (dfn[v.to] == n) f(f, v.to, u, v.inv), low[u] = min(low[u], low[v.to]);
-        else low[u] = min(low[u], dfn[v.to]);
-      }
+  //! g should be undirect
+  template <bool with_deg>
+  CEXP e_bcc(eog<with_deg> CR g) NE : dfn(g.size()), low(g.size()) {
+    vecu stk;
+    u32 tot = 0;
+    auto tarjan = [&](auto&& f, u32 u, u32 fa_eid) -> void {
+      dfn[u] = low[u] = ++tot;
+      stk.push_back(u);
+      g.foreach(u, [&](u32 eid, u32 v, u32) {
+        if (!dfn[v]) f(f, v, eid), low[u] = min(low[u], low[v]);
+        else if (eid != fa_eid && eid != (fa_eid ^ 1)) low[u] = min(low[u], dfn[v]);
+      });
       if (low[u] == dfn[u]) {
-        belongs.push_back(vecu());
-        do {
-          const u32 v = s.back();
-          if (s.pop_back(), ebcc_id[v] = id, belongs[id].push_back(v); v == u) return void(++id);
-        } while (1);
+        vecu res;
+        u32 p;
+        do res.push_back(p = stk.back()), stk.pop_back();
+        while (u != p);
+        belongs.emplace_back(std::move(res));
       }
     };
-    flt_ (u32, i, 0, n)
-      if (dfn[i] == n) f(f, i, i, -1_u32);
+    flt_ (u32, i, 0, g.size())
+      if (!dfn[i]) tarjan(tarjan, i, -1_u32);
   }
 };
 

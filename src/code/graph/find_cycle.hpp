@@ -6,7 +6,7 @@
 namespace tifa_libs::graph {
 
 template <bool directed, class G>
-requires(adjlist_c<G> && !adjlistw_c<G>)
+requires(alist_c<G> && !alistw_c<G>)
 CEXP vecptu find_cycle(G CR g) NE {
   flt_ (u32, i, 0, g.size())
     for (auto j : g[i])
@@ -37,7 +37,7 @@ CEXP vecptu find_cycle(G CR g) NE {
   flt_ (u32, i, 0, g.size()) {
     if (vis[i]) continue;
     if (f(f, i, i, -1_u32); fin) {
-      std::ranges::reverse(cycle);
+      reverse(cycle);
       return cycle;
     }
   }

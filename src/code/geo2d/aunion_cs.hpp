@@ -18,6 +18,7 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) NE {
       if (auto CR c = comp(_1, r._1); c) return c;
       return comp(_2, r._2);
     }
+    CEXP bool operator==(arc_t CR r) CNE { return (*this <=> r) == 0; }
   };
   const u32 n = (u32)cs.size();
   vvec<arc_t> arcs(n);
@@ -45,7 +46,7 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) NE {
         } else evt.emplace_back(argl, 1), evt.emplace_back(argr, -1);
       }
     }
-    std::ranges::sort(evt);
+    sort(evt);
     int sum = init;
     flt_ (u32, i, 0, (u32)evt.size()) {
       sum += evt[i].second;
@@ -66,7 +67,7 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) NE {
   vec<FP> ans(n);
   flt_ (u32, i, 0, n) {
     FP sum = 0;
-    std::sort(arcs[i].begin(), arcs[i].end());
+    sort(arcs[i]);
     u32 cnt = 0;
     flt_ (u32, j, 0, (u32)arcs[i].size())
       if (j > 0 && eq(arcs[i][j], arcs[i][j - 1])) arcs[i + (++cnt)].push_back(arcs[i][j]);

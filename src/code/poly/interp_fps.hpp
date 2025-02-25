@@ -25,8 +25,8 @@ CEXP auto interp_fps(poly<ccore, mint, args...> CR x, poly<ccore, mint, args...>
 
    public:
     vec<poly_t> t;
-    CEXPE SegTree(poly_t CR a) NE : t(a.size() * 4) { init_(a, 1, 0, a.size() - 1); }
-    CEXP poly_t operator()(poly_t CR f) CNE { return calc_(f, 1, 0, t.size() / 4 - 1); }
+    CEXPE SegTree(poly_t CR a) NE : t(a.size() * 4) { init_(a, 1, 0, u32(a.size() - 1)); }
+    CEXP poly_t operator()(poly_t CR f) CNE { return calc_(f, 1, 0, u32(t.size() / 4 - 1)); }
   };
 
   assert(x.size() == y.size());

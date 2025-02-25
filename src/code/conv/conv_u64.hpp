@@ -18,14 +18,14 @@ vecuu conv_u64(vec<T> CR a, vec<T> CR b, u32 ans_size = 0) NE {
   fft.bzr(n + m - 1);
   u32 s = fft.size();
   vec<EI> pa(s), pb(s);
-  for (u32 i = 0; i < std::min(s, n); ++i) pa[i].real(a[i]);
-  for (u32 i = s; i < std::min(2 * s, n); ++i) pa[i - s].imag(a[i]);
-  for (u32 i = 0; i < std::min(s, m); ++i) pb[i].real(b[i]);
-  for (u32 i = s; i < std::min(2 * s, m); ++i) pb[i - s].imag(b[i]);
+  for (u32 i = 0; i < min(s, n); ++i) pa[i].real(a[i]);
+  for (u32 i = s; i < min(2 * s, n); ++i) pa[i - s].imag(a[i]);
+  for (u32 i = 0; i < min(s, m); ++i) pb[i].real(b[i]);
+  for (u32 i = s; i < min(2 * s, m); ++i) pb[i - s].imag(b[i]);
   vec<EI> pc(4 * s);
   auto mul = [](auto&& mul, EI* p, EI* q, EI* to, u32 n) {
     if (n <= 27) {
-      std::fill_n(to, n, 0);
+      fill_n(to, n, 0);
       flt_ (u32, i, 0, n) {
         flt_ (u32, j, 0, n - i) to[i + j] += p[i] * q[j];
         flt_ (u32, j, n - i, n) to[i + j - n] += p[i] * q[j] * EI::w;
@@ -56,7 +56,7 @@ vecuu conv_u64(vec<T> CR a, vec<T> CR b, u32 ans_size = 0) NE {
     fft.dit(to + 2 * n, m, r);
     flt_ (u32, i, 0, n) to[2 * n + i] *= inv;
     flt_ (u32, i, 0, r) fft.twiddle(to + 2 * n + m * i, m, 3 * m - 2 * m / r * i, q + m * i);
-    std::fill_n(to, n, 0);
+    fill_n(to, n, 0);
     flt_ (u32, i, 0, n) {
       to[i] += (1 - EI::w) * to[n + i] + (1 - EI::w2) * conj(q[i]);
       if (i + m < n) to[i + m] += (EI::w2 - EI::w) * (to[n + i] - conj(q[i]));
@@ -66,8 +66,8 @@ vecuu conv_u64(vec<T> CR a, vec<T> CR b, u32 ans_size = 0) NE {
   };
   mul(mul, pa.data(), pb.data(), pc.data(), s);
   vec<T> ans(ans_size);
-  flt_ (u32, i, 0, std::min(s, ans_size)) ans[i] = pc[i].real();
-  flt_ (u32, i, s, std::min(2 * s, ans_size)) ans[i] = pc[i - s].imag();
+  flt_ (u32, i, 0, min(s, ans_size)) ans[i] = pc[i].real();
+  flt_ (u32, i, s, min(2 * s, ans_size)) ans[i] = pc[i - s].imag();
   return ans;
 }
 

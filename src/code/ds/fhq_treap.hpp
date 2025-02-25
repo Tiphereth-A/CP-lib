@@ -7,7 +7,7 @@ namespace tifa_libs::ds {
 
 template <class T, bool recovery = false, class Comp = std::less<T>>
 struct fhq_treap {
-  static constexpr Comp compare{};
+  static CEXP Comp compare{};
   struct TIFA {
     T val;
     u32 r, sz, son[2];

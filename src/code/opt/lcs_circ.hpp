@@ -1,14 +1,14 @@
 #ifndef TIFALIBS_OPT_LCS_CIRC
 #define TIFALIBS_OPT_LCS_CIRC
 
-#include "../util/traits.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::opt {
 
-template <iterable_c T>
+template <common_range T>
 CEXP u32 lcs_circ(cT_(T) a, cT_(T) b) NE {
   T b_(b.size() * 2);
-  std::ranges::copy(b, b_.begin()), std::ranges::copy(b, std::back_inserter(b_));
+  copy(b, b_.begin()), copy(b, std::back_inserter(b_));
   vvecb left(a.size() + 1, vecb(b_.size() + 1)), up = left;
   auto f = [&](u32 x, u32 y) NE {
     assert(x && y);

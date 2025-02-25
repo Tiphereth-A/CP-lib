@@ -16,8 +16,8 @@ CEXP auto powem_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> 
   flt_ (u32, i, 0, n + 1) p[i] = g[i], q[i] = -f[i];
   while (n) {
     pp.assign(k * h * 4, 0), qq.assign(k * h * 4, 0);
-    flt_ (u32, i, 0, k) std::copy(p.begin() + i * h, p.begin() + i * h + n + 1, pp.begin() + i * h * 2);
-    flt_ (u32, i, 0, k) std::copy(q.begin() + i * h, q.begin() + i * h + n + 1, qq.begin() + i * h * 2);
+    flt_ (u32, i, 0, k) copy(p.begin() + i * h, p.begin() + i * h + n + 1, pp.begin() + i * h * 2);
+    flt_ (u32, i, 0, k) copy(q.begin() + i * h, q.begin() + i * h + n + 1, qq.begin() + i * h * 2);
     qq[k * h * 2] += 1, core4.dif(pp), core4.dif(qq);
     for (u32 i = 0; i < k * h * 4; i += 2) swap(qq[i], qq[i + 1]);
     flt_ (u32, i, 0, k * h * 4) pp[i] *= qq[i];

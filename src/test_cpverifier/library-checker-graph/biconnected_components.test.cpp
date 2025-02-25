@@ -6,20 +6,14 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  struct EW {
-    u32 to, inv;
-  };
-  vvec<EW> e(n);
+  tifa_libs::graph::alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
-    if (u == v) continue;
-    u32 tem1 = u32(e[u].size()), tem2 = u32(e[v].size());
-    e[u].push_back({v, tem2});
-    e[v].push_back({u, tem1});
+    g.add_edge(u, v);
   }
-  tifa_libs::graph::v_bcc<EW> bcc(e);
-  std::cout << bcc.id << '\n';
-  for (u32 i = 0; i < bcc.id; ++i) {
+  tifa_libs::graph::v_bcc bcc(g);
+  std::cout << bcc.belongs.size() << '\n';
+  for (u32 i = 0; i < bcc.belongs.size(); ++i) {
     std::cout << bcc.belongs[i].size() << ' ';
     for (auto x : bcc.belongs[i])
       std::cout << x << ' ';

@@ -5,7 +5,7 @@
 #include "../../code/io/fastin.hpp"
 #include "../../code/io/fastout.hpp"
 
-i64 op(i64 x, i64 y) { return tifa_libs::min(x, y); }
+i64 op(i64 x, i64 y) { return std::min(x, y); }
 
 int main() {
   u32 n, q;

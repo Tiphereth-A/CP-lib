@@ -17,7 +17,7 @@ int main() {
     auto dfs = [&](auto&& dfs, u32 u, u32 fa, u32 min__) -> void {
       min_[u] = min__;
       for (auto [to, w] : trw.g[u])
-        if (to != fa) dfs(dfs, to, u, tifa_libs::min(min__, w));
+        if (to != fa) dfs(dfs, to, u, std::min(min__, w));
     };
     dfs(dfs, 0, 0, INT32_MAX);
   }
@@ -34,7 +34,7 @@ int main() {
       if (sign[u]) return min_[u];
       u64 ret = 0;
       for (u32 to : vt.vt.g[u]) ret += dp(dp, to);
-      return u ? tifa_libs::min(u64(min_[u]), ret) : ret;
+      return u ? std::min(u64(min_[u]), ret) : ret;
     };
     std::cout << dp(dp, 0) << '\n';
     flt_ (u32, i, 0, k) sign[a[i]] = 0;

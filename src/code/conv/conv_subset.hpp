@@ -35,7 +35,7 @@ struct conv_subset {
   }
   CEXP vec<arr_t> lift(spn<T> a) CNE {
     vec<arr_t> A(a.size());
-    flt_ (u32, i, 0, (u32)a.size()) std::ranges::fill(A[i], T()), A[i][pc[i]] = a[i];
+    flt_ (u32, i, 0, (u32)a.size()) fill(A[i], T()), A[i][pc[i]] = a[i];
     return A;
   }
   CEXP vec<T> unlift(spn<arr_t> A) CNE {

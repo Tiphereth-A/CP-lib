@@ -20,7 +20,7 @@ class lichao_segtree {
   CEXPE lichao_segtree(spn<T> LSH) NE : lsh(LSH.begin(), LSH.end()), t(LSH.size() * 4) { sz = (u32)lsh.size(); }
 
   // $y = ax + b~(x \in [l, r])$
-  CEXP void add(T a, T b, T l, T r, u32 id = 1) NE { add(1, 0, sz - 1, u32(std::ranges::lower_bound(lsh, l) - lsh.begin()), u32(std::ranges::lower_bound(lsh, r) - lsh.begin()), {id, a, b, l, r}); }
+  CEXP void add(T a, T b, T l, T r, u32 id = 1) NE { add(1, 0, sz - 1, u32(lower_bound(lsh, l) - lsh.begin()), u32(lower_bound(lsh, r) - lsh.begin()), {id, a, b, l, r}); }
   T query(T pos) NE { return query(1, 0, sz - 1, pos); }
 
  private:

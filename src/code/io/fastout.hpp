@@ -36,23 +36,23 @@ class fastout {
   fastout &operator<<(strn CR str) NE { return *this << str.c_str(); }
   fastout &operator<<(strnv str) NE { return write_str(str.data(), str.size()); }
   template <class T>
-  requires(sint_c<T> && !char_c<T> && sizeof(T) <= 8)
+  requires(smost64_c<T> && !char_c<T>)
   fastout &operator<<(T n) NE {
     if (n < 0) (*this << '-'), n = -n;
     return *this << to_uint_t<T>(n);
   }
   template <class T>
-  requires(uint_c<T> && !char_c<T> && sizeof(T) <= 8)
+  requires(umost64_c<T> && !char_c<T>)
   fastout &operator<<(T n) NE {
     if CEXP (std::same_as<T, bool>) return *this << (char(n | '0'));
     else {
       auto res = std::to_chars(int_buf, int_buf + INTBUF, n);
-      return write_str(int_buf, res.ptr - int_buf);
+      return write_str(int_buf, usz(res.ptr - int_buf));
     }
   }
   fastout &operator<<(std::floating_point auto n) NE {
     auto res = std::to_chars(int_buf, int_buf + INTBUF, n, fmt, precision);
-    return write_str(int_buf, res.ptr - int_buf);
+    return write_str(int_buf, usz(res.ptr - int_buf));
   }
   fastout &setf(std::chars_format f) NE {
     fmt = f;

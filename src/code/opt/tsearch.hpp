@@ -16,7 +16,7 @@ CEXP auto tsearch(I l, I r, F&& f) NE {
   fml = f(ml = l + (r - l) * (1 - std::numbers::phi_v<PT>));
   fmr = f(mr = r - (r - l) * (1 - std::numbers::phi_v<PT>));
   do {
-    if CEXP (is_int_v<I>) {
+    if CEXP (int_c<I>) {
       if (r - l < 8) {
         I x = l, fx = fl;
         if (fr < fx) x = r, fx = fr;

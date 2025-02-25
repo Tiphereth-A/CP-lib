@@ -19,7 +19,7 @@ class FFT_R2 {
 
   CEXP u32 size() CNE { return (u32)rev.size(); }
   CEXP void bzr(u32 len) NE {
-    const u32 n = max<u32>(std::bit_ceil(len), 2);
+    const u32 n = max(std::bit_ceil(len), 2_u32);
     if (n == size()) return;
     rev.resize(n, 0);
     const u32 k = (u32)(std::bit_width(n) - 1);

@@ -15,21 +15,20 @@ CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) NE {
   auto chk = [](point<FP> CR u, line<FP> CR e) NE { return !((u < e.l && u < e.r) || (u > e.l && u > e.r)); };
   auto cut = [&](line<FP> CR e, u32 i) NE {
     const line<FP> le{e.l, e.r};
-    vecp<point<FP>, int> evt;
-    evt.emplace_back(e.l, 0), evt.emplace_back(e.r, 0);
+    vecp<point<FP>, int> evt{{e.l, 0}, {e.r, 0}};
     flt_ (u32, j, 0, n) {
       if (i == j) continue;
       auto CR pj = pos[j];
       flt_ (u32, k, 0, pj.size()) {
         const line<FP> s{pj[k], pj[pj.next(k)]};
         if (!le.toleft(s.l) && !le.toleft(s.r)) evt.emplace_back(s.l, 0), evt.emplace_back(s.r, 0);
-        else if (!is_ins_SL(s, le)) {
+        else if (is_ins_SL(s, le)) {
           if (point<FP> u = ins_LL(le, s); le.toleft(s.l) < 0 && le.toleft(s.r) >= 0) evt.emplace_back(u, -1);
           else if (le.toleft(s.l) >= 0 && le.toleft(s.r) < 0) evt.emplace_back(u, 1);
         }
       }
     }
-    if (std::ranges::sort(evt); e.l > e.r) std::ranges::reverse(evt);
+    if (sort(evt); e.l > e.r) reverse(evt);
     int sum = 0;
     flt_ (u32, i, 0, (u32)evt.size()) {
       sum += evt[i].second;
@@ -44,7 +43,7 @@ CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) NE {
   }
   vec<FP> ans(n);
   flt_ (u32, i, 0, n) {
-    std::ranges::sort(segs[i]);
+    sort(segs[i]);
     FP sum = 0;
     u32 cnt = 0;
     flt_ (u32, j, 0, (u32)segs[i].size()) {

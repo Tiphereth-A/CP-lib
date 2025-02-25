@@ -24,7 +24,7 @@ point<FP> femwebp(vec<point<FP>> CR vp) NE {
     return r.norm();
   };
   auto T = [&](point<FP> CR y) NE {
-    if (!std::ranges::count(vp, y)) return Tl(y);
+    if (!count(vp, y)) return Tl(y);
     FP er = 1 / r(y);
     return max((FP)0, 1 - er) * Tl(y) + min((FP)1, er) * y;
   };

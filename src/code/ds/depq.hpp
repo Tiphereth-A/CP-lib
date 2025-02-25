@@ -116,6 +116,8 @@ CEXP bool is_minmax_heap(I begin, I end, C &&comp = C{}) NE {
     } else if (!f(i, [&](u32 c) { return c >= l || !comp(begin[i], begin[c]); })) return false;
   return true;
 }
+template <common_range R, class C = std::less<>>
+CEXP bool is_minmax_heap(R CR r, C &&comp = C{}) NE { return is_minmax_heap(r.begin(), r.end(), std::forward<C>(comp)); }
 template <class I, class C = std::less<>>
 void push_minmax_heap(I begin, I end, C &&comp = C{}) NE {
   u32 len = u32(end - begin), idx = len - 1, parent = depq_impl_::pidx_(idx);
@@ -147,12 +149,16 @@ void push_minmax_heap(I begin, I end, C &&comp = C{}) NE {
       } else break;
   begin[idx] = std::move(value);
 }
+template <common_range R, class C = std::less<>>
+CEXP bool push_minmax_heap(R CR r, C &&comp = C{}) NE { return push_minmax_heap(r.begin(), r.end(), std::forward<C>(comp)); }
 template <class I, class C = std::less<>>
 CEXP void pop_minmax_heap_min(I begin, I end, C &&comp = C{}) NE {
   u32 l = u32(end - begin) - 1;
   if (l == 0) return;
   depq_impl_::pdmin_(begin, std::exchange(end[-1], std::move(begin[0])), 0, l, comp);
 }
+template <common_range R, class C = std::less<>>
+CEXP bool pop_minmax_heap_min(R CR r, C &&comp = C{}) NE { return pop_minmax_heap_min(r.begin(), r.end(), std::forward<C>(comp)); }
 template <class I, class C = std::less<>>
 CEXP void pop_minmax_heap_max(I begin, I end, C &&comp = C{}) NE {
   u32 l = u32(end - begin) - 1;
@@ -160,6 +166,8 @@ CEXP void pop_minmax_heap_max(I begin, I end, C &&comp = C{}) NE {
   u32 idx = 1 + !!comp(begin[1], begin[2]);
   depq_impl_::pdmax_(begin, std::exchange(end[-1], std::move(begin[idx])), idx, l, std::forward<C>(comp));
 }
+template <common_range R, class C = std::less<>>
+CEXP bool pop_minmax_heap_max(R CR r, C &&comp = C{}) NE { return pop_minmax_heap_max(r.begin(), r.end(), std::forward<C>(comp)); }
 template <class I, class C = std::less<>>
 CEXP void make_minmax_heap(I begin, I end, C &&comp = C{}) NE {
   u32 l = u32(end - begin), idx = l / 2;
@@ -207,6 +215,8 @@ CEXP void make_minmax_heap(I begin, I end, C &&comp = C{}) NE {
         loplim /= 2;
     }
 }
+template <common_range R, class C = std::less<>>
+CEXP bool make_minmax_heap(R CR r, C &&comp = C{}) NE { return make_minmax_heap(r.begin(), r.end(), std::forward<C>(comp)); }
 
 }  // namespace tifa_libs::ds
 

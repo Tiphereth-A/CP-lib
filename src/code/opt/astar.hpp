@@ -1,14 +1,14 @@
 #ifndef TIFALIBS_OPT_ASTAR
 #define TIFALIBS_OPT_ASTAR
 
-#include "../util/traits.hpp"
+#include "../util/util.hpp"
 
 namespace tifa_libs::opt {
 
 template <class T>
 requires requires(T x, T y) {
   { x.solved() } -> std::same_as<bool>;
-  { x.next() } -> iterable_c;
+  { x.next() } -> range;
   x.cost() < y.cost();
   x < y;
 }

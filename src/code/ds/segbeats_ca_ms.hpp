@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_SEGBEATS_CA_MS
 #define TIFALIBS_DS_SEGBEATS_CA_MS
 
-#include "../util/util.hpp"
+#include "../util/traits.hpp"
 
 namespace tifa_libs::ds {
 
@@ -9,7 +9,7 @@ namespace tifa_libs::ds {
 template <class T, class TT = T>
 requires(sizeof(T) <= sizeof(TT))
 struct segbeats_ca_ms {
-  static CEXP T INF = std::numeric_limits<T>::max() / 2 - 1;
+  static CEXP T INF = inf_v<T>;
 
   struct TIFA {
     TT sum = 0;

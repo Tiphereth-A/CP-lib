@@ -7,7 +7,7 @@ namespace tifa_libs::graph {
 
 //! return empty vector if @g is not DAG
 template <class G>
-requires(adjlist_c<G> && !adjlistw_c<G>)
+requires(alist_c<G> && !alistw_c<G>)
 CEXP vecu topo_sort(G CR g) NE {
   const u32 n = g.size();
   vecb vis(n), _(n);
@@ -23,7 +23,7 @@ CEXP vecu topo_sort(G CR g) NE {
   };
   flt_ (u32, i, 0, n)
     if (!vis[i] && !dfs(dfs, i)) return {};
-  std::ranges::reverse(ans);
+  reverse(ans);
   return ans;
 }
 
