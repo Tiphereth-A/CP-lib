@@ -51,7 +51,7 @@ class matrix {
   CEXP matrix submat(u32 row_l, u32 row_r, u32 col_l, u32 col_r) CNE {
     assert(row_l < row_r && row_r <= row() && col_l < col_r && col_r <= col());
     matrix ret(row_r - row_l, col_r - col_l);
-    FOR1_ (i, row_l, row_r) std::copy(d[i].begin() + col_l, d[i].begin() + col_r, ret.d[i - row_l].begin());
+    FOR1_ (i, row_l, row_r) copy(d[i].begin() + col_l, d[i].begin() + col_r, ret.d[i - row_l].begin());
     return ret;
   }
   CEXP void swap_row(u32 r1, u32 r2) NE {
@@ -88,7 +88,7 @@ class matrix {
   CEXP matrix &operator*=(cT_(T) v) NE {
     if CEXP (std::is_same_v<T, bool>) {
       if (!v)
-        for (auto &i : d) std::ranges::fill(i, false);
+        for (auto &i : d) fill(i, false);
       return *this;
     } else apply([&v](u32, u32, T &val) NE { val *= v; });
     return *this;

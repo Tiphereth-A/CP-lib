@@ -18,7 +18,7 @@ CEXP pttu min_dis_Ps(vec<point<FP>> CR vp) NE {
   vec<T> vpi;
   vpi.reserve(n);
   flt_ (u32, i, 0, n) vpi.emplace_back(vp[i], i);
-  std::ranges::sort(vpi);
+  sort(vpi);
   FP d = std::numeric_limits<FP>::max();
   u32 a = -1_u32, b = -1_u32;
   auto upd = [&](T CR x, T CR y) NE {

@@ -16,7 +16,7 @@ struct fact_helper {
 
   // ensure fact.size() >= sz
   static CEXP void ensure(u32 sz = DEFUALT_MAX) NE {
-    if (sz = std::max(2_u32, std::min((u32)mod(), sz)); sz <= fact.size()) return;
+    if (sz = max(2_u32, min((u32)mod(), sz)); sz <= fact.size()) return;
     u32 pre = (u32)fact.size();
     fact.resize(sz), ifact.resize(sz);
     if (pre < 2) pre = 2, fact[0] = fact[1] = ifact[0] = ifact[1] = 1;

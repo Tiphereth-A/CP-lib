@@ -65,7 +65,7 @@ CEXP vecptuu norm_fact(u64 n) NE {
   vecptuu ans;
   for (auto& g : norm_fact_impl_::nf(n))
     if (ans.emplace_back(g.real(), g.imag()); !g.imag()) ans.emplace_back(g.imag(), g.real());
-  std::ranges::sort(ans);
+  tifa_libs::sort(ans);
   return ans;
 }
 

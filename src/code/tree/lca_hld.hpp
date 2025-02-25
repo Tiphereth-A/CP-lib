@@ -25,7 +25,7 @@ struct lca_hld {
     retu.emplace_back(u, lca);
     while (top[v] != top[lca]) retv.emplace_back(top[v], v), v = info.fa[top[v]];
     if (v != lca) retv.emplace_back(info.maxson[lca], v);
-    std::ranges::reverse(retv);
+    reverse(retv);
     return {retu, retv};
   }
 };

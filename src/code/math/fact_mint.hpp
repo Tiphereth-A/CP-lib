@@ -19,7 +19,7 @@ CEXP auto fact_mint(u64 n) NE {
          g2 = ctsh_fps(g, mint(d * v + v) * iv),
          g3 = ctsh_fps(g, mint(d * v + d + v) * iv);
     flt_ (u32, i, 0, (u32)d + 1) g[i] *= g1[i], g2[i] *= g3[i];
-    std::copy(g2.begin(), g2.end() - 1, std::back_inserter(g));
+    copy(g2.begin(), g2.end() - 1, std::back_inserter(g));
   }
   mint res = 1;
   u64 i = 0;

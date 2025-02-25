@@ -34,9 +34,9 @@ class matsp {
     return T{};
   }
   CEXP void shrink_row(u32 r) NE {
-    d[r].erase(std::remove_if(d[r].begin(), d[r].end(), [](cT_(node) x) NE { return x.second == T{}; }), d[r].end());
+    d[r].erase(remove_if(d[r].begin(), d[r].end(), [](cT_(node) x) NE { return x.second == T{}; }), d[r].end());
   }
-  CEXP void sort_row(u32 r) NE { sort(d[r]); }
+  CEXP void sort_row(u32 r) NE { tifa_libs::sort(d[r]); }
   template <class F>
   CEXP void apply(F f) NE {
     flt_ (u32, i, 0, r)
@@ -59,7 +59,7 @@ class matsp {
       l.sort_row(i), r.sort_row(i);
       auto f1 = l.data().begin(), l1 = l.data().end(), f2 = r.data().begin(), l2 = r.data().end(), d = ret.d[i].begin();
       for (; f1 != l1; ++d) {
-        if (f2 == l2) std::copy(f1, l1, d);
+        if (f2 == l2) copy(f1, l1, d);
         if (*f2 < *f1) *d = *f2, ++f2;
         else if (*f1 < *f2) *d = *f1, ++f1;
         else {
@@ -67,7 +67,7 @@ class matsp {
           *d = f(i, j, *f1, *f2), ++f1, ++f2;
         }
       }
-      std::copy(f2, l2, d);
+      copy(f2, l2, d);
     }
     return ret;
   }

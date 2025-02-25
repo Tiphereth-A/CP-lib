@@ -55,7 +55,7 @@ struct factl_helper : fact_helper<TPN poly_t::val_t> {
       }
       if (B > SZ) {
         vec<val_t> g = ctsh_fps(f, val_t(SZ), base_t::ifact, u32(B - SZ));
-        std::ranges::move(g, std::back_inserter(f));
+        move(g, std::back_inserter(f));
       } else f.resize(B);
       flt_ (u32, i, 0, (u32)B) f[i] *= val_t(i + 1) * SZ;
       f.insert(f.begin(), 1);

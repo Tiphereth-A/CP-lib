@@ -47,7 +47,7 @@ CEXP auto exgcd_b(U a, U b) NE {
 template <sint_c T, bool only_x = false>
 CEXP auto exgcd(T a, T b) NE {
   using U = to_uint_t<T>;
-  if (auto [x, y] = std::minmax(a, b); x >= 0 && y <= T(U(-1) >> sizeof(U))) return exgcd_b<U, only_x>((U)a, (U)b);
+  if (auto [x, y] = minmax(a, b); x >= 0 && y <= T(U(-1) >> sizeof(U))) return exgcd_b<U, only_x>((U)a, (U)b);
   if CEXP (only_x) {
     T s = 1, u = 0;
     while (b) {

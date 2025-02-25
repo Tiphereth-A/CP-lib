@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_POLY_POLY
 #define TIFALIBS_POLY_POLY
 
+#include "../util/strip.hpp"
 #include "../util/traits.hpp"
 
 namespace tifa_libs::math {
@@ -60,14 +61,13 @@ struct poly : vec<mint> {
     return _;
   }
   CEXP void strip() NE {
-    auto it = std::find_if(data_t::rbegin(), data_t::rend(), [](cT_(mint) x) NE { return x.val() != 0; });
-    if (data_t::resize(usz(data_t::rend() - it)); data_t::empty()) data_t::push_back(val_t(0));
+    auto r = rstrip(*this, [](cT_(mint) x) NE { return x.val() != 0; });
+    if (data_t::erase(r.begin(), r.end()); data_t::empty()) data_t::push_back(val_t(0));
   }
   friend poly stripped(poly p) NE {
-    p.strip();
-    return p;
+    return rstrip(p, [](cT_(mint) x) NE { return x.val() != 0; });
   }
-  CEXP void reverse(u32 n = 0) NE { std::reverse(data_t::begin(), data_t::begin() + (n ? n : (u32)data_t::size())); }
+  CEXP void reverse(u32 n = 0) NE { std::ranges::reverse(data_t::begin(), data_t::begin() + (n ? n : (u32)data_t::size())); }
   CEXP void conv(poly CR r, u32 ans_size = 0) NE { conv_core.conv(*this, r, ans_size); }
   CEXP poly operator-() CNE {
     poly ret = *this;

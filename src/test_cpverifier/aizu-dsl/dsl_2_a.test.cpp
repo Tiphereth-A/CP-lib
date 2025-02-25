@@ -2,7 +2,7 @@
 
 #include "../../code/ds/segtree.hpp"
 
-u32 op(u32 x, u32 y) { return tifa_libs::min(x, y); }
+u32 op(u32 x, u32 y) { return std::min(x, y); }
 void mapping(u32& x, u32 y) { x = op(x, y); }
 
 int main() {

@@ -26,7 +26,7 @@ CEXP vec<T> berlekamp_massey(vec<T> CR a) NE {
     } else
       flt_ (u32, i, 0, m) c[l - 1 - i] -= d_ * b[m - 1 - i];
   }
-  std::ranges::reverse(c);
+  reverse(c);
   return c;
 }
 

@@ -33,7 +33,7 @@ class virtual_tree {
   CEXPE virtual_tree(tree CR tr, tree_info_t CR info) NE : tr(tr), lca_(tr, info), vt((u32)tr.g.size()) {}
 
   CEXP void build(vecu& a) NE {
-    std::ranges::sort(a, [&](u32 a, u32 b) NE { return lca_.info.dfn[a] < lca_.info.dfn[b]; });
+    sort(a, [&](u32 a, u32 b) NE { return lca_.info.dfn[a] < lca_.info.dfn[b]; });
     for (vt.g.clear(), st.push_back(tr.root); u32 x : a) insert(x);
     while (st.size() > 1) vt.add_arc(st[st.size() - 2], st.back()), st.pop_back();
     st.pop_back();

@@ -15,13 +15,13 @@ auto minpoly(Mat CR mat, Gn &gen, Is0 &&is0) NE {
   assert(n == mat.col());
   auto gen2 = [&gen](u32 n) NE {
     vec<T> v(n);
-    std::ranges::generate(v, gen);
+    generate(v, gen);
     return v;
   };
   vec<T> u = gen2(n), v = gen2(n), _(n * 2);
   flt_ (u32, i, 0, n * 2) _[i] = std::transform_reduce(u.begin(), u.end(), v.begin(), T{}), v = mat.lproj(v);
   vec<T> res = lfsr_bm(_, std::forward<Is0>(is0));
-  std::ranges::reverse(res);
+  reverse(res);
   return res;
 }
 

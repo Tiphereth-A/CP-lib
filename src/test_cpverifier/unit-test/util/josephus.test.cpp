@@ -22,7 +22,7 @@ vecuu Josephus_bf(u64 n, u64 k, u64 m) {
 }
 
 void test(u64 n, u64 k) {
-  u64 m = tifa_libs::min(10000_u64, n);
+  u64 m = std::min(10000_u64, n);
   auto wants = Josephus_bf(n, k, m);
   flt_ (u32, i, 1, m + 1) {
     u64 got = tifa_libs::util::Josephus(n, k, i);

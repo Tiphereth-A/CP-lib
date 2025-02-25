@@ -49,7 +49,7 @@ CEXP vecuu pfactors(u64 n) NE {
   if (n < 2) return p;
   pfactors_impl_::run(n, p);
   if CEXP (unique) return uniq(p);
-  std::ranges::sort(p);
+  tifa_libs::sort(p);
   return p;
 }
 CEXP vecp<u64, u32> pf_exp(u64 n) NE {

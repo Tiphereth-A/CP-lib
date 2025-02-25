@@ -22,7 +22,7 @@ CEXP u64 max_cover_Ps(vec<point<FP>> CR vp, FP r) NE {
       FP delta = std::acos(dist / diam), polar = ang2pi_PP(vp[i], vp[j]);
       angs.emplace_back(polar - delta, 1), angs.emplace_back(polar + delta, -1);
     }
-    std::ranges::sort(angs);
+    sort(angs);
     u64 sum = 0;
     flt_ (u32, j, 0, (u32)angs.size()) ans = max(ans, sum += angs[j].second);
   }

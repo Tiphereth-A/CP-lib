@@ -23,7 +23,7 @@ CEXP vecu topo_sort(G CR g) NE {
   };
   flt_ (u32, i, 0, n)
     if (!vis[i] && !dfs(dfs, i)) return {};
-  std::ranges::reverse(ans);
+  reverse(ans);
   return ans;
 }
 

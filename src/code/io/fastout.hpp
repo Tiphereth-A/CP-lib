@@ -47,12 +47,12 @@ class fastout {
     if CEXP (std::same_as<T, bool>) return *this << (char(n | '0'));
     else {
       auto res = std::to_chars(int_buf, int_buf + INTBUF, n);
-      return write_str(int_buf, res.ptr - int_buf);
+      return write_str(int_buf, usz(res.ptr - int_buf));
     }
   }
   fastout &operator<<(std::floating_point auto n) NE {
     auto res = std::to_chars(int_buf, int_buf + INTBUF, n, fmt, precision);
-    return write_str(int_buf, res.ptr - int_buf);
+    return write_str(int_buf, usz(res.ptr - int_buf));
   }
   fastout &setf(std::chars_format f) NE {
     fmt = f;

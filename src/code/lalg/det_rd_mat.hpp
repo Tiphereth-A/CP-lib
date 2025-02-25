@@ -16,7 +16,7 @@ auto det_rd(Mat mat, Gn &gen, Is0 &&is0) NE {
   assert(n == mat.col());
   auto gen2 = [&gen](u32 n) NE {
     vec<T> v(n);
-    std::ranges::generate(v, gen);
+    generate(v, gen);
     return v;
   };
   vec<T> u = gen2(n), v = gen2(n), diag = gen2(n), _(n * 2);

@@ -5,31 +5,25 @@
 
 namespace tifa_libs {
 
-template <class T> concept iterable_c = requires(T v) { { v.begin() } -> std::same_as<TPN T::iterator>; { v.end() } -> std::same_as<TPN T::iterator>; };
-template <class T> concept container_c = iterable_c<T> && !std::same_as<std::remove_cvref_t<T>, strn> && !std::same_as<std::remove_cvref_t<T>, strnv>;
+template <class T> concept container_c = range<T> && !std::same_as<std::remove_cvref_t<T>, strn> && !std::same_as<std::remove_cvref_t<T>, strnv>;
 //! only for template without non-type argument
 template <class, template <class...> class> CEXP bool specialized_from_v = false;
 template <template <class...> class T, class... Args> CEXP bool specialized_from_v<T<Args...>, T> = true;
 static_assert(specialized_from_v<vecu, std::vector>);
 
-template <class T> CEXP bool is_char_v = std::is_same_v<T, char> || std::is_same_v<T, signed char> || std::is_same_v<T, unsigned char>;
-template <class T> concept char_c = is_char_v<T>;
+template <class T> concept char_c = std::same_as<T, char> || std::same_as<T, signed char> || std::same_as<T, unsigned char>;
 #pragma GCC diagnostic ignored "-Wpedantic"
-template <class T> CEXP bool is_s128_v = std::is_same_v<T, __int128_t> || std::is_same_v<T, __int128>;
-template <class T> concept s128_c = is_s128_v<T>;
-template <class T> CEXP bool is_u128_v = std::is_same_v<T, __uint128_t> || std::is_same_v<T, unsigned __int128>;
-template <class T> concept u128_c = is_u128_v<T>;
-template <class T> CEXP bool is_i128_v = is_s128_v<T> || is_u128_v<T>;
-template <class T> concept i128_c = is_u128_v<T>;
+template <class T> concept s128_c = std::same_as<T, __int128_t> || std::same_as<T, __int128>;
+template <class T> concept u128_c = std::same_as<T, __uint128_t> || std::same_as<T, unsigned __int128>;
+template <class T> concept i128_c = s128_c<T> || u128_c<T>;
 #pragma GCC diagnostic warning "-Wpedantic"
-template <class T> CEXP bool is_int_v = std::is_integral_v<T> || is_i128_v<T>;
-template <class T> concept int_c = is_int_v<T>;
-template <class T> CEXP bool is_sint_v = is_s128_v<T> || (is_int_v<T> && std::is_signed_v<T>);
-template <class T> concept sint_c = is_sint_v<T>;
-template <class T> CEXP bool is_uint_v = is_u128_v<T> || (is_int_v<T> && std::is_unsigned_v<T>);
-template <class T> concept uint_c = is_uint_v<T>;
-template <class T> CEXP bool is_arithm_v = std::is_arithmetic_v<T> || is_int_v<T>;
-template <class T> concept arithm_c = is_arithm_v<T>;
+template <class T> concept imost64_c = std::integral<T> && sizeof(T) * __CHAR_BIT__ <= 64;
+template <class T> concept smost64_c = imost64_c<T> && std::signed_integral<T>;
+template <class T> concept umost64_c = imost64_c<T> && std::unsigned_integral<T>;
+template <class T> concept int_c = i128_c<T> || imost64_c<T>;
+template <class T> concept sint_c = s128_c<T> || smost64_c<T>;
+template <class T> concept uint_c = u128_c<T> || umost64_c<T>;
+template <class T> concept arithm_c = std::is_arithmetic_v<T> || int_c<T>;
 template <class T> concept mint_c = requires(T x) { { x.mod() } -> uint_c; { x.val() } -> uint_c; };
 template <class T> concept dft_c = requires(T x, vec<TPN T::data_t> v, u32 n) { { x.size() } -> std::same_as<u32>; x.bzr(n); x.dif(v, n); x.dit(v, n); };
 template <class T> concept ntt_c = dft_c<T> && requires(T x) { T::max_size; T::G; };

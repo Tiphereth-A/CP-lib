@@ -34,7 +34,7 @@ struct mpi : vecu {
   CEXP mpi(bool n, spnu d) NE : vecu(d.begin(), d.end()), neg(n) {}
   template <int_c T>
   CEXP mpi(T x) NE : mpi() {
-    if CEXP (is_sint_v<T>)
+    if CEXP (sint_c<T>)
       if (x < 0) neg = true, x = -x;
     while (x) push_back(u32(to_uint_t<T>(x) % D)), x /= (T)D;
   }
@@ -272,7 +272,7 @@ struct mpi : vecu {
       vecu t{a.end() - d, a.end()}, u = mul_(s, t);
       u.erase(u.begin(), u.begin() + d);
       vecu w(k + 1), w2 = add_(z, z);
-      std::ranges::copy(w2, std::back_inserter(w));
+      copy(w2, std::back_inserter(w));
       (z = sub_(w, u)).erase(z.begin()), k *= 2;
     }
     z.erase(z.begin(), z.begin() + k - deg);
@@ -297,7 +297,7 @@ struct mpi : vecu {
   }
   template <int_c T>
   static CEXP vecu itov_(T x) NE {
-    if CEXP (is_sint_v<T>) assert(x >= 0);
+    if CEXP (sint_c<T>) assert(x >= 0);
     vecu res;
     while (x) res.push_back((u32)(x % D)), x /= D;
     return res;

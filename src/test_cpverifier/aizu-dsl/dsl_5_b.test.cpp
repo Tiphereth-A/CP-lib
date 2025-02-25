@@ -13,7 +13,7 @@ int main() {
   }
   u32 mx = 0;
   flt_ (u32, i, 1, 1002)
-    flt_ (u32, j, 1, 1002) mx = tifa_libs::max(mx, tr.sum(i, j));
+    flt_ (u32, j, 1, 1002) mx = std::max(mx, tr.sum(i, j));
   std::cout << mx << '\n';
   return 0;
 }

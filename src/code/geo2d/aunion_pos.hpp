@@ -29,7 +29,7 @@ CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) NE {
         }
       }
     }
-    if (std::ranges::sort(evt); e.l > e.r) std::ranges::reverse(evt);
+    if (sort(evt); e.l > e.r) reverse(evt);
     int sum = 0;
     flt_ (u32, i, 0, (u32)evt.size()) {
       sum += evt[i].second;
@@ -44,7 +44,7 @@ CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) NE {
   }
   vec<FP> ans(n);
   flt_ (u32, i, 0, n) {
-    std::ranges::sort(segs[i]);
+    sort(segs[i]);
     FP sum = 0;
     u32 cnt = 0;
     flt_ (u32, j, 0, (u32)segs[i].size()) {

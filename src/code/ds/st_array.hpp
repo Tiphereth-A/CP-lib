@@ -16,7 +16,7 @@ class st_array {
 
   CEXP void reset(spn<T> a) NE {
     const u32 n = (u32)a.size(), lbn = (u32)std::bit_width(n);
-    st = vvec<T>(lbn, vec<T>(n)), std::ranges::copy(a, st[0].begin());
+    st = vvec<T>(lbn, vec<T>(n)), copy(a, st[0].begin());
     flt_ (u32, j, 1, lbn)
       flt_ (u32, i, 0, n) st[j][i] = op(st[j - 1][i], st[j - 1][(u32)max(0, i32(i - (1 << (j - 1))))]);
   }

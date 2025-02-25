@@ -26,7 +26,7 @@ class FFT_R3 {
   CEXP void twiddle(data_t *p, u32 m, u32 t, data_t *to) CNE {
     assert(t <= 3 * m);
     if (!t || t == 3 * m) {
-      std::copy_n(p, m, to);
+      copy_n(p, m, to);
       return;
     }
     u32 n;

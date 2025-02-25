@@ -25,7 +25,7 @@ CEXP std::optional<vecptu> run_(u32 n, u32 m, cT_(vvecptu) g, u32 s) NE {
   if (ret.size() != m + 1) return {};
   for (i32 i : f)
     if (i < 0) return {};
-  std::ranges::reverse(ret);
+  reverse(ret);
   return ret;
 }
 }  // namespace euler_trail_impl_

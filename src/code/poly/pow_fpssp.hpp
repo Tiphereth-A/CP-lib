@@ -14,7 +14,7 @@ CEXP auto pow_fpssp(poly<ccore, mint, args...> CR p, u64 y, vec<T> CR inv, u32 n
   if (!n) n = (u32)p.size();
   if (!y) return poly<ccore, mint, args...>{1}.pre(n);
   if (p.is_zero()) return p.pre(n);
-  const u32 l0 = u32(std::ranges::find_if(p, [](cT_(mint) x) NE { return x.val() != 0; }) - p.begin());
+  const u32 l0 = u32(find_if(p, [](cT_(mint) x) NE { return x.val() != 0; }) - p.begin());
   if ((u128)l0 * y >= n) return poly<ccore, mint, args...>(n);
   if (l0) {
     auto _ = shr_fps(p, l0), g = pow_fpssp(_, y, inv, u32(n - l0 * y));

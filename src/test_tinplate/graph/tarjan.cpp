@@ -20,11 +20,11 @@ int main() {
   }
   auto dfs = [&](auto&& dfs, u32 u) -> void {
     if (dp[u] != 1'000'000'000) return;
-    for (dp[u] = b[u]; auto v : g[u]) dfs(dfs, v), dp[u] = tifa_libs::max(dp[u], b[u] + dp[v]);
+    for (dp[u] = b[u]; auto v : g[u]) dfs(dfs, v), dp[u] = std::max(dp[u], b[u] + dp[v]);
   };
   u32 ret = 0;
   flt_ (u32, i, 0, scc.id)
-    if (!in[i]) dfs(dfs, i), ret = tifa_libs::max(ret, dp[i]);
+    if (!in[i]) dfs(dfs, i), ret = std::max(ret, dp[i]);
   std::cout << ret;
 }
 

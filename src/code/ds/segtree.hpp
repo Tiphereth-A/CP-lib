@@ -35,7 +35,7 @@ struct segtree {
     }
     sz = (u32)a.size(), lbn = (u32)std::bit_width(sz - 1), n = 1_u32 << lbn;
     if (!n) return;
-    val = vec<T>(n * 2, E), std::ranges::copy(a, val.begin() + n);
+    val = vec<T>(n * 2, E), copy(a, val.begin() + n);
     if CEXP (enable_tag) tag = vec<F>(n, ID), vset = vecb(n);
     for (u32 i = n - 1; i; --i) pushup(i);
   }

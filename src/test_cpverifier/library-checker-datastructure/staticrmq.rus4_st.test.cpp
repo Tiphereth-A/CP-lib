@@ -2,7 +2,7 @@
 
 #include "../../code/ds/rus4_st.hpp"
 
-i32 f(i32 x, i32 y) { return tifa_libs::min(x, y); }
+i32 f(i32 x, i32 y) { return std::min(x, y); }
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

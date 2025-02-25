@@ -39,10 +39,10 @@ class heuristic_lbsa {
   }
 
  private:
-  static CEXP void inv_(TPN Cont::iterator l, TPN Cont::iterator r) NE { std::reverse(l, std::next(r)); }
+  static CEXP void inv_(TPN Cont::iterator l, TPN Cont::iterator r) NE { reverse(l, std::next(r)); }
   static CEXP void ins_(TPN Cont::iterator l, TPN Cont::iterator r) NE {
     auto x = *r;
-    std::move_backward(l, r, std::next(r)), *l = x;
+    move_backward(l, r, std::next(r)), *l = x;
   }
   static CEXP void swap_(TPN Cont::iterator l, TPN Cont::iterator r) NE { std::iter_swap(l, r); }
   std::pair<Ft, Cont> gen() NE {

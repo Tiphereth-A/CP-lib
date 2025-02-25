@@ -9,17 +9,13 @@ template <template <class... Ts> class ccore, class mint, class... args>
 CEXP auto shr_fps(poly<ccore, mint, args...> CR p, usz x) NE {
   if (!x) return p;
   auto _ = p;
-  if (x >= p.size()) {
-    std::ranges::fill(_, 0);
-    return _;
-  }
-  std::fill(std::move(_.begin() + (isz)x, _.end(), _.begin()), _.end(), 0);
+  fill(std::shift_left(_.begin(), _.end(), (isz)x), _.end(), 0);
   return _;
 }
 template <template <class... Ts> class ccore, class mint, class... args>
 CEXP auto shr_strip_fps(poly<ccore, mint, args...> CR p, usz x) NE {
-  auto _ = shr_fps(p, x);
-  _.strip();
+  auto _ = p;
+  _.erase(std::shift_left(_.begin(), _.end(), (isz)x), _.end());
   return _;
 }
 

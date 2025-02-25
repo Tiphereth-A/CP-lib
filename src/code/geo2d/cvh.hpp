@@ -46,12 +46,12 @@ struct cvh : public polygon<FP> {
     u32 p = 0;
     flt_ (u32, i, 1, m - 1)
       if (cvh[i] < cvh[p]) p = i;
-    std::ranges::rotate(cvh, cvh.begin() + p), this->vs = cvh;
+    rotate(cvh, cvh.begin() + p), this->vs = cvh;
     return *this;
   }
   // @return true if @p in convex hull (include border)
   CEXP bool contains(point<FP> CR p) CNE {
-    auto it = std::lower_bound(this->vs.begin() + 1, this->vs.end(), p, [&](point<FP> CR l, point<FP> CR r) NE { return is_pos(cross((*this)[0], l, r)); }) - 1;
+    auto it = lower_bound(this->vs.begin() + 1, this->vs.end(), p, [&](point<FP> CR l, point<FP> CR r) NE { return is_pos(cross((*this)[0], l, r)); }) - 1;
     auto next_it = this->next(it);
     if (auto res = sgn_cross(p, *it, *next_it); res) return ~res;
     else return !res && !is_pos(dot(p, *it, *next_it));
