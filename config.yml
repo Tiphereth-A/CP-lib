@@ -107,6 +107,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     ds:
+    - mono_stack: 单调栈
+      code_ext: hpp
+      test_ext: cpp
+    - mono_queue: 单调队列
+      code_ext: hpp
+      test_ext: cpp
     - bt_trv: 树结点常见遍历操作
       code_ext: hpp
       test_ext: cpp
@@ -450,6 +456,9 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - lis: 最长上升子序列
+      code_ext: hpp
+      test_ext: cpp
+    - hoverline: 悬线法
       code_ext: hpp
       test_ext: cpp
     - lcs_circ: 环序列的最长公共子序列长度
