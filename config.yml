@@ -1098,6 +1098,9 @@ notebook:
     - conv_dft: 卷积(FFT 或 NTT)
       code_ext: hpp
       test_ext: cpp
+    - conv_mval_dft: 卷积(多维,FFT 或 NTT)
+      code_ext: hpp
+      test_ext: cpp
     - conv_u64: 卷积(u64)
       code_ext: hpp
       test_ext: cpp
