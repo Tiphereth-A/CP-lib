@@ -1,0 +1,9 @@
+对两个序列 \(a\), \(b\), 其 Levenshtein 距离 \(\operatorname{lev}(a,b)\) 定义为通过对 \(a\) 进行 (插入, 删除, 修改) 单个元素使其变为 \(b\) 的最少操作次数. 令 \(a'\) 表示 \(a\) 删除第一个元素后的序列, 则
+
+\[
+    \operatorname{lev}(a,b)=\begin{cases}
+        \max\{|a|,|b|\},                                                                       & |a|=0 ~\text{or}~ |b|=0, \\
+        \operatorname{lev}(a',b'),                                                             & a_0=b_0,                 \\
+        1+\min\{\operatorname{lev}(a',b),\operatorname{lev}(a,b'),\operatorname{lev}(a',b')\}, & \text{otherwise}.
+    \end{cases}
+\]

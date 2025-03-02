@@ -1,13 +1,19 @@
-用于计算满足如下条件的矩阵 \(a\) 每行的 \(\operatorname{argmin}\):
+用于计算满足如下条件 (Monotone) 的矩阵 \(A\) 每行的 \(\operatorname{argmin}\):
 
 \begin{center}
-    令 \(h(r) = \operatorname{argmin}_i a_{r,i}\), 则 \(h\) 单调不降
+    令 \(h(r) = \max \operatorname{argmin}_i A_{r,i}\), 则 \(h\) 单调不降
 \end{center}
 
 不难发现可以分治: 对当前矩阵, 找到中间一行的 \(\operatorname{argmin}\), 然后就可根据这个将矩阵分为更小的两个矩阵
 
+如果 Monotone 矩阵 \(A\) 还满足任意 \(2\times 2\) 的子矩阵都是 Monotone 的, 则称 \(A\) 是 Totally monotone 的
+
+如果 Monotone 矩阵 \(A\) 还满足 \(\forall i,j,~A_{i,j}+A_{i+1,j+1}\leq A_{i+1,j}+A_{i,j+1}\), 则称 \(A\) 是 Monge 的
+
+显然若 \(A\) 是 Monge 的则一定是 Totally monotone 的
+
 \paragraph{复杂度} \(O(c(1+\log(r/c)))\), 其中 \(r\) 为矩阵行数, \(c\) 为矩阵列数
 
-\paragraph{参考文献}
+\paragraph{参考链接} \qrcode{https://www.itcsc.cuhk.edu.hk/Winter_School/Winter_School_2010/Title_Abstract/PPT_Mordecai.pdf} \qrcode{https://www.cse.ust.hk/faculty/golin/Talks/Revisiting_Monge.pdf}
 
-\cite{enwiki:1033199110}
+\paragraph{参考文献} \cite{aggarwal1986geometric} \cite{enwiki:1033199110}

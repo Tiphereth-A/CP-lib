@@ -1,0 +1,9 @@
+大概适用于 2D1D 四边形不等式
+
+\paragraph{输入} Monge 函数 \(w(x,y)\), 范围 \([0,n]\times[0,n]\)
+
+\paragraph{输出} \(a\), 其中 \(a_d=\texttt{dp}(n,d)\), \(\texttt{dp}(0,d)=0\), \(\texttt{dp}(i,d)=\min_{0\leq j<i}\{\texttt{dp}(j,d-1)+w(j,i)\},~(i>0)\)
+
+\paragraph{参考链接} \qrcode{https://www.itcsc.cuhk.edu.hk/Winter_School/Winter_School_2010/Title_Abstract/PPT_Mordecai.pdf} \qrcode{https://www.cse.ust.hk/faculty/golin/Talks/Revisiting_Monge.pdf}
+
+\paragraph{参考文献} \cite{larmore1991line}

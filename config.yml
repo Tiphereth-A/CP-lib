@@ -455,7 +455,19 @@ notebook:
     - tsearch: 三分
       code_ext: hpp
       test_ext: cpp
+    - knapsack_01: 01 背包
+      code_ext: hpp
+      test_ext: cpp
+    - knapsack_mixed: 混合背包
+      code_ext: hpp
+      test_ext: cpp
+    - knapsack_mixed_huge: 混合背包(贪心)
+      code_ext: hpp
+      test_ext: cpp
     - lis: 最长上升子序列
+      code_ext: hpp
+      test_ext: cpp
+    - lev_dis: Levenshtein 距离
       code_ext: hpp
       test_ext: cpp
     - hoverline: 悬线法
@@ -479,13 +491,16 @@ notebook:
     - smawk: SMAWK 算法
       code_ext: hpp
       test_ext: cpp
+    - larsch: LARSCH 算法
+      code_ext: hpp
+      test_ext: cpp
+    - larsch_2d: LARSCH 算法(2D)
+      code_ext: hpp
+      test_ext: cpp
     - astar: A* 算法
       code_ext: hpp
       test_ext: cpp
     - simplex: 单纯形法
-      code_ext: hpp
-      test_ext: cpp
-    - knapsack_mixed: 混合背包
       code_ext: hpp
       test_ext: cpp
     graph:

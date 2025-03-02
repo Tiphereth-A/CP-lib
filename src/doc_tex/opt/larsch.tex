@@ -1,0 +1,13 @@
+\fullref{sec:smawk-算法} 的变体, 大概适用于 1D1D 四边形不等式
+
+\paragraph{输入} Monge 函数 \(w(x,y)\), 范围 \([0,n]\times[0,n]\)
+
+\paragraph{输出} \(a\), 其中 \(a_i=\texttt{dp}(i)\), \(\texttt{dp}(0)=0\), \(\texttt{dp}(i)=\min_{0\leq j<i}\{\texttt{dp}(j)+w(j,i)\},~(i>0)\)
+
+易知 \(A\) 是 Monge 矩阵
+
+\paragraph{复杂度} \(O(n\log n)\)
+
+\paragraph{参考链接} \qrcode{https://www.itcsc.cuhk.edu.hk/Winter_School/Winter_School_2010/Title_Abstract/PPT_Mordecai.pdf} \qrcode{https://www.cse.ust.hk/faculty/golin/Talks/Revisiting_Monge.pdf} \qrcode{https://noshi91.hatenablog.com/entry/2023/02/18/005856}
+
+\paragraph{参考文献} \cite{larmore1991line}
