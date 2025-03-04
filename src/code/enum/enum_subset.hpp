@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_ENUM_ENUM_SUBSET
 #define TIFALIBS_ENUM_ENUM_SUBSET
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs {
 

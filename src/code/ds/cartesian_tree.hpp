@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_CARTESIAN_TREE
 #define TIFALIBS_DS_CARTESIAN_TREE
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::ds {
 

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_DSU_WEIGHTED
 #define TIFALIBS_DS_DSU_WEIGHTED
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::ds {
 

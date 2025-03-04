@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_FAST_UINT2STRHEX_32
 #define TIFALIBS_FAST_UINT2STRHEX_32
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs {
 

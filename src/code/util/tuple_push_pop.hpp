@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_UTIL_TUPLE_PUSH_POP
 #define TIFALIBS_UTIL_TUPLE_PUSH_POP
 
-#include "util.hpp"
+#include "alias_num.hpp"
 
 namespace tifa_libs {
 namespace tuple_push_pop_impl_ {

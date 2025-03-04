@@ -2,6 +2,7 @@
 #define TIFALIBS_MATH_INV_GCD
 
 #include "../math/safe_mod.hpp"
+#include "../util/alias_others.hpp"
 #include "exgcd.hpp"
 
 namespace tifa_libs::math {

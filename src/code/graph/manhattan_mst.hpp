@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_MANHATTAN_MST
 #define TIFALIBS_GRAPH_MANHATTAN_MST
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::graph {
 

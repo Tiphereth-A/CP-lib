@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_TARJAN
 #define TIFALIBS_GRAPH_TARJAN
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::graph {
 

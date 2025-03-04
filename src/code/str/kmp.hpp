@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_STR_KMP
 #define TIFALIBS_STR_KMP
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::str {
 

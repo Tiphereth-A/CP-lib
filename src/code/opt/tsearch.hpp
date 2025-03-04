@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_OPT_TSEARCH
 #define TIFALIBS_OPT_TSEARCH
 
-#include "../util/traits.hpp"
+#include "../util/consts.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::opt {
 

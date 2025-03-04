@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_IO_IOS_TUPLE
 #define TIFALIBS_IO_IOS_TUPLE
 
-#include "../util/traits.hpp"
+#include "../util/traits_others.hpp"
 
 template <class... Ts>
 auto &operator>>(tifa_libs::istream_c auto &is, std::tuple<Ts...> &p) NE {

@@ -2,7 +2,7 @@
 #define TIFALIBS_GRAPH_STEINER_TREE
 
 #include "../ds/radix_heap.hpp"
-#include "../util/traits.hpp"
+#include "../util/traits_graph.hpp"
 
 namespace tifa_libs::graph {
 

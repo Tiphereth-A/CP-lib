@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_LALG_HAFNIAN_MAT
 #define TIFALIBS_LALG_HAFNIAN_MAT
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

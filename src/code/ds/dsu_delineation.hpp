@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_DS_DSU_DELINEATION
 #define TIFALIBS_DS_DSU_DELINEATION
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_ds.hpp"
 
 namespace tifa_libs::ds {
 

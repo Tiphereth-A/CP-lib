@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_OPT_LCS_CIRC
 #define TIFALIBS_OPT_LCS_CIRC
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::opt {
 

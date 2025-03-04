@@ -2,7 +2,6 @@
 #define TIFALIBS_MATH_MEX
 
 #include "../edh/discretization.hpp"
-#include "../util/util.hpp"
 
 namespace tifa_libs::math {
 

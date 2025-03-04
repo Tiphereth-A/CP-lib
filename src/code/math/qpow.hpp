@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_QPOW
 #define TIFALIBS_MATH_QPOW
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::math {
 

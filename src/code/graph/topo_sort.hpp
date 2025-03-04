@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_GRAPH_TOPO_SORT
 #define TIFALIBS_GRAPH_TOPO_SORT
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_graph.hpp"
 
 namespace tifa_libs::graph {
 

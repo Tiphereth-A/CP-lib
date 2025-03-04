@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_LALG_MAT
 #define TIFALIBS_LALG_MAT
 
-#include "../util/traits.hpp"
+#include "../util/traits_others.hpp"
 
 namespace tifa_libs::math {
 

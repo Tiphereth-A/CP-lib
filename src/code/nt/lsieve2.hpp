@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_LSIEVE2
 #define TIFALIBS_MATH_LSIEVE2
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

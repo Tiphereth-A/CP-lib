@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_MONO_QUEUE
 #define TIFALIBS_DS_MONO_QUEUE
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::ds {
 

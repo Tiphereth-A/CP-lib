@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_FAST_RSORT32
 #define TIFALIBS_FAST_RSORT32
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs {
 

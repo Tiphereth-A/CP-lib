@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_TREE_DFS_INFO
 #define TIFALIBS_TREE_DFS_INFO
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_graph.hpp"
 
 namespace tifa_libs::graph {
 

@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_GRAPH_EULER_TRAIL
 #define TIFALIBS_GRAPH_EULER_TRAIL
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_graph.hpp"
 
 namespace tifa_libs::graph {
 namespace euler_trail_impl_ {

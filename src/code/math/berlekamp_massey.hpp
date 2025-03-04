@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_BERLEKAMP_MASSEY
 #define TIFALIBS_MATH_BERLEKAMP_MASSEY
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

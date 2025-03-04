@@ -2,7 +2,8 @@
 #define TIFALIBS_GRAPH_DIJKSTRA
 
 #include "../ds/radix_heap.hpp"
-#include "../util/traits.hpp"
+#include "../util/traits_graph.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::graph {
 

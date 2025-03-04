@@ -2,7 +2,8 @@
 #define TIFALIBS_CONV_NTT_DOUBLING
 
 #include "../math/qpow.hpp"
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::math {
 

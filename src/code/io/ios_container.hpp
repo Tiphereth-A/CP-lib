@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_IO_IOS_CONTAINER
 #define TIFALIBS_IO_IOS_CONTAINER
 
-#include "../util/traits.hpp"
+#include "../util/traits_others.hpp"
 
 auto &operator>>(tifa_libs::istream_c auto &is, tifa_libs::container_c auto &x) NE {
   for (auto &i : x) is >> i;

@@ -2,7 +2,7 @@
 #define TIFALIBS_FAST_STR2UINT_SI64
 
 #include "../bit/bswap.hpp"
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs {
 

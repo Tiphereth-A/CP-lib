@@ -1,6 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_9_C"
 
 #include "../../code/ds/d_ary_heap.hpp"
+#include "../../code/util/alias_others.hpp"
 
 CEXP int D = 3;
 

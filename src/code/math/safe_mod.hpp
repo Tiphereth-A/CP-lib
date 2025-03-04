@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_SAFE_MOD
 #define TIFALIBS_MATH_SAFE_MOD
 
-#include "../util/traits.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::math {
 

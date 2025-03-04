@@ -2,6 +2,7 @@
 #define TIFALIBS_DS_FHQ_TREAP
 
 #include "../rand/gen.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::ds {
 

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_SIMPSON
 #define TIFALIBS_MATH_SIMPSON
 
-#include "../util/util.hpp"
+#include "../util/consts.hpp"
 
 namespace tifa_libs::math {
 

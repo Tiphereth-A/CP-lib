@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_GRAPH_DINIC
 #define TIFALIBS_GRAPH_DINIC
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::graph {
 

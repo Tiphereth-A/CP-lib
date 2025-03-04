@@ -2,7 +2,6 @@
 #define TIFALIBS_EDH_HUFFMAN_TREE
 
 #include "../ds/radix_heap.hpp"
-#include "../util/util.hpp"
 
 namespace tifa_libs {
 

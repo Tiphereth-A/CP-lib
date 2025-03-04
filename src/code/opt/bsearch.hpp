@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_OPT_BSEARCH
 #define TIFALIBS_OPT_BSEARCH
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::opt {
 

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_IO_IOS_PAIR
 #define TIFALIBS_IO_IOS_PAIR
 
-#include "../util/traits.hpp"
+#include "../util/traits_others.hpp"
 
 template <class T, class U>
 auto &operator>>(tifa_libs::istream_c auto &is, std::pair<T, U> &p) NE { return is >> p.first >> p.second; }

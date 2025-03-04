@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_EINT
 #define TIFALIBS_MATH_EINT
 
-#include "../util/traits.hpp"
+#include "../util/traits_others.hpp"
 
 namespace tifa_libs::math {
 

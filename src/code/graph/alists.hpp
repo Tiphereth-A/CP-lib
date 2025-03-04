@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_ALISTS
 #define TIFALIBS_GRAPH_ALISTS
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::graph {
 namespace alists_impl_ {

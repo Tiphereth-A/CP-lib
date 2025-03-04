@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_LALG_LFSR_BM
 #define TIFALIBS_LALG_LFSR_BM
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

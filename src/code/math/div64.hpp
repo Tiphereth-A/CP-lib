@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_DIV64
 #define TIFALIBS_MATH_DIV64
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::math {
 

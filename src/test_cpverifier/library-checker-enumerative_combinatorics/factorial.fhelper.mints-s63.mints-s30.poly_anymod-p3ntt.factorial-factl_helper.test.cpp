@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/factorial"
 
-#include "../../code/util/util.hpp"
+#include "../../code/util/alias_num.hpp"
 
 CEXP u32 MOD = 998244353;
 

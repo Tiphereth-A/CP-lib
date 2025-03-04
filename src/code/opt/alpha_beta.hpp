@@ -2,7 +2,7 @@
 #define TIFALIBS_OPT_ALPHA_BETA
 
 #include "../tree/tree.hpp"
-#include "../util/traits.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::opt {
 

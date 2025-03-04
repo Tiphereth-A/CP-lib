@@ -2,7 +2,7 @@
 #define TIFALIBS_POLY_POLY
 
 #include "../util/strip.hpp"
-#include "../util/traits.hpp"
+#include "../util/traits_others.hpp"
 
 namespace tifa_libs::math {
 

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_MIN_MOD_LINEAR
 #define TIFALIBS_MATH_MIN_MOD_LINEAR
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::math {
 

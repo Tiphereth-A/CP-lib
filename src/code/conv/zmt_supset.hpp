@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_CONV_ZMT_SUPSET
 #define TIFALIBS_CONV_ZMT_SUPSET
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

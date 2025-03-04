@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_EXGCD
 #define TIFALIBS_MATH_EXGCD
 
-#include "../util/traits.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::math {
 

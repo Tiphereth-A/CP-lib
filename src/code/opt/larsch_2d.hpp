@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_OPT_LARSCH_2D
 #define TIFALIBS_OPT_LARSCH_2D
 
-#include "../util/traits.hpp"
+#include "../util/traits_math.hpp"
 #include "smawk.hpp"
 
 namespace tifa_libs::opt {

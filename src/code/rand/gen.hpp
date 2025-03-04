@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_RAND_GEN
 #define TIFALIBS_RAND_GEN
 
-#include "../util/util.hpp"
+#include "../util/consts.hpp"
 
 namespace tifa_libs::rand {
 

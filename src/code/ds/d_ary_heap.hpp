@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_D_ARY_HEAP
 #define TIFALIBS_DS_D_ARY_HEAP
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::ds {
 

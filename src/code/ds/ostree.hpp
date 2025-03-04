@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_DS_OSTREE
 #define TIFALIBS_DS_OSTREE
 
+#include "../util/alias_others.hpp"
 #include "bt_trv.hpp"
 
 namespace tifa_libs::ds {

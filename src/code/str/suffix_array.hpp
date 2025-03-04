@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_STR_SUFFIX_ARRAY
 #define TIFALIBS_STR_SUFFIX_ARRAY
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::str {
 

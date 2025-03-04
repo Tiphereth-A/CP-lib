@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_EDH_BWT_INV
 #define TIFALIBS_EDH_BWT_INV
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs {
 

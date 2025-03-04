@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_TREE_DSU_ON_TREE
 #define TIFALIBS_TREE_DSU_ON_TREE
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_graph.hpp"
 
 namespace tifa_libs::graph {
 

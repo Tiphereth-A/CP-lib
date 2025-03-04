@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_LALG_SHERMAN_MORRISON
 #define TIFALIBS_LALG_SHERMAN_MORRISON
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

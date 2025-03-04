@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_GRAPH_RINGCNT4
 #define TIFALIBS_GRAPH_RINGCNT4
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_graph.hpp"
 
 namespace tifa_libs::graph {
 namespace ringcnt4_impl_ {

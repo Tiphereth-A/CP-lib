@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_CONV_CONV_DFT
 #define TIFALIBS_CONV_CONV_DFT
 
-#include "../util/traits.hpp"
+#include "../util/traits_math.hpp"
 #include "conv_naive.hpp"
 
 namespace tifa_libs::math {

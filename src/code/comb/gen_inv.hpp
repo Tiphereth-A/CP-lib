@@ -2,6 +2,7 @@
 #define TIFALIBS_COMB_GEN_INV
 
 #include "../math/mul_mod.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

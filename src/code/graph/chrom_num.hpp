@@ -3,7 +3,8 @@
 
 #include "../bit/parity.hpp"
 #include "../math/mul_mod.hpp"
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_graph.hpp"
 
 namespace tifa_libs::graph {
 namespace chrom_num_impl_ {

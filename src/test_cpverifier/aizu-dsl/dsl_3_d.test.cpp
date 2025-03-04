@@ -1,6 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_3_D"
 
 #include "../../code/ds/mono_queue.hpp"
+#include "../../code/util/alias_others.hpp"
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_EDH_PRUFER
 #define TIFALIBS_EDH_PRUFER
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs {
 

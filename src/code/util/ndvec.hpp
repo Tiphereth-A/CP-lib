@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_UTIL_NDVEC
 #define TIFALIBS_UTIL_NDVEC
 
-#include "util.hpp"
+#include "alias_others.hpp"
 
 namespace tifa_libs {
 

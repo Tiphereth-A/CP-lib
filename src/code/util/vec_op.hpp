@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_UTIL_VEC_OP
 #define TIFALIBS_UTIL_VEC_OP
 
-#include "util.hpp"
+#include "alias_others.hpp"
 
 #define OO_PTEQ_(op)                                       \
   template <class T>                                       \

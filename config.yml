@@ -34,10 +34,28 @@ notebook:
     - util: 共同依赖
       code_ext: hpp
       test_ext: cpp
-    - fp_func: 浮点数比较与常用函数
+    - alias_num: 变量别名(数)
       code_ext: hpp
       test_ext: cpp
-    - traits: traits
+    - alias_others: 变量别名(其他)
+      code_ext: hpp
+      test_ext: cpp
+    - consts: 常量
+      code_ext: hpp
+      test_ext: cpp
+    - func_fp: 浮点数比较与常用函数
+      code_ext: hpp
+      test_ext: cpp
+    - traits_math: traits(数学)
+      code_ext: hpp
+      test_ext: cpp
+    - traits_graph: traits(图论)
+      code_ext: hpp
+      test_ext: cpp
+    - traits_ds: traits(数据结构)
+      code_ext: hpp
+      test_ext: cpp
+    - traits_others: traits(其他)
       code_ext: hpp
       test_ext: cpp
     - pair_op: pair 运算

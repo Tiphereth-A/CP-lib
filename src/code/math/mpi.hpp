@@ -4,7 +4,7 @@
 #include "../conv/conv_u128.hpp"
 #include "../fast/str2uint_si64.hpp"
 #include "../util/strip.hpp"
-#include "../util/traits.hpp"
+#include "../util/traits_others.hpp"
 
 namespace tifa_libs::math {
 

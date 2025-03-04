@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_ST_ARRAY
 #define TIFALIBS_DS_ST_ARRAY
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::ds {
 

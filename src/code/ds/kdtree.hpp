@@ -1,6 +1,8 @@
 #ifndef TIFALIBS_DS_KDTREE
 #define TIFALIBS_DS_KDTREE
 
+#include "../util/alias_others.hpp"
+#include "../util/traits_math.hpp"
 #include "bt_trv.hpp"
 
 namespace tifa_libs::ds {

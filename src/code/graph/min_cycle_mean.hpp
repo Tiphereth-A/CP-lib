@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_GRAPH_MIN_CYCLE_MEAN
 #define TIFALIBS_GRAPH_MIN_CYCLE_MEAN
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::graph {
 

@@ -2,6 +2,7 @@
 #define TIFALIBS_ENUM_GOSPER
 
 #include "../bit/lowbit.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs {
 

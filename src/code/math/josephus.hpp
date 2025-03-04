@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_JOSEPHUS
 #define TIFALIBS_MATH_JOSEPHUS
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::math {
 namespace josephus_impl_ {

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_SAT2
 #define TIFALIBS_GRAPH_SAT2
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::graph {
 

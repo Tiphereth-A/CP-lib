@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_STR_TRIE
 #define TIFALIBS_STR_TRIE
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::str {
 

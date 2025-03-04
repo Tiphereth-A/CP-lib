@@ -2,7 +2,7 @@
 #define TIFALIBS_MATH_MINT
 
 #include "../nt/inverse.hpp"
-#include "../util/traits.hpp"
+#include "../util/traits_others.hpp"
 
 namespace tifa_libs::math {
 

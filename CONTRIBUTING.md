@@ -1,6 +1,6 @@
 # First thing before contributing
 
-Read [util/util.hpp](src/code/util/util.hpp) and [util/traits.hpp](src/code/util/traits.hpp), use macros/traits/types/... from these header files wherever possible.
+Read `util/*.hpp`, use macros/traits/types/... from these header files wherever possible.
 
 Here are some examples:
 

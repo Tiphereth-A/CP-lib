@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_MATH_FACT_HELPER
 #define TIFALIBS_MATH_FACT_HELPER
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::math {
 

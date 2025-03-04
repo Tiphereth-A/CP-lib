@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/double_ended_priority_queue"
 
 #include "../../code/ds/depq.hpp"
+#include "../../code/util/alias_others.hpp"
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

@@ -3,6 +3,7 @@
 
 #include "../math/isqrt.hpp"
 #include "../math/qpow_mod.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

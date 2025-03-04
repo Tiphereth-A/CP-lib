@@ -2,6 +2,7 @@
 #define TIFALIBS_MATH_RATIONAL
 
 #include "../nt/gcd.hpp"
+#include "../util/traits_others.hpp"
 
 namespace tifa_libs::math {
 

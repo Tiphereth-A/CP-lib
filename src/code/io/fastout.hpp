@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_IO_FASTIO
 #define TIFALIBS_IO_FASTIO
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs {
 

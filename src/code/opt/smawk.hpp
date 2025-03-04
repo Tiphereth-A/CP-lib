@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_OPT_SMAWK
 #define TIFALIBS_OPT_SMAWK
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::opt {
 

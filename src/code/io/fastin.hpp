@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_IO_FASTIN
 #define TIFALIBS_IO_FASTIN
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_math.hpp"
 #ifdef __linux__
 #include <sys/mman.h>
 #include <sys/stat.h>

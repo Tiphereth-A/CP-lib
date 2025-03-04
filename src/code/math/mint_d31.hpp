@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_MINT_D31
 #define TIFALIBS_MATH_MINT_D31
 
-#include "../util/traits.hpp"
+#include "../util/traits_others.hpp"
 
 namespace tifa_libs::math {
 

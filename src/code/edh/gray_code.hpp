@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_EDH_GRAY_CODE
 #define TIFALIBS_EDH_GRAY_CODE
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs {
 

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_EDH_BASE64
 #define TIFALIBS_EDH_BASE64
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs {
 

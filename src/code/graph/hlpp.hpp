@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_HLPP
 #define TIFALIBS_GRAPH_HLPP
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::graph {
 

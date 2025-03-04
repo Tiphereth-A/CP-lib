@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_4_C"
 
-#include "../../code/util/util.hpp"
+#include "../../code/util/alias_others.hpp"
 //
 #include "../../code/edh/hash_splitmix64.hpp"
 

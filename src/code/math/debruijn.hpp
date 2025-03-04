@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_DEBRUIJN
 #define TIFALIBS_MATH_DEBRUIJN
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

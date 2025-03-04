@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_MATH_RPOW
 #define TIFALIBS_MATH_RPOW
 
+#include "../util/alias_others.hpp"
 #include "mul_mod.hpp"
 
 namespace tifa_libs::math {

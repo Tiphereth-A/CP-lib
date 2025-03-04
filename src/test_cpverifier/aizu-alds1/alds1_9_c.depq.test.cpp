@@ -1,6 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_9_C"
 
 #include "../../code/ds/depq.hpp"
+#include "../../code/util/alias_others.hpp"
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

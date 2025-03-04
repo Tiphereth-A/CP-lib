@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_OPT_LARSCH
 #define TIFALIBS_OPT_LARSCH
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::opt {
 

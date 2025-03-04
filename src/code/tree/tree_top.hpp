@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_TREE_TREE_TOP
 #define TIFALIBS_TREE_TREE_TOP
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_graph.hpp"
 
 namespace tifa_libs::graph {
 

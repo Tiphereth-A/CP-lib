@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_DS_SEGBEATS_CA_MS
 #define TIFALIBS_DS_SEGBEATS_CA_MS
 
-#include "../util/traits.hpp"
+#include "../util/traits_math.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::ds {
 

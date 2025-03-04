@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_OPT_LIS
 #define TIFALIBS_OPT_LIS
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::opt {
 

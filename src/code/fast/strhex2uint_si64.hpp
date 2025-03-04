@@ -2,7 +2,7 @@
 #define TIFALIBS_FAST_STRHEX2UINT_1E8
 
 #include "../bit/bswap.hpp"
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs {
 

@@ -2,6 +2,7 @@
 #define TIFALIBS_CONV_CONV_NAIVE_MOD
 
 #include "../math/mul_mod.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

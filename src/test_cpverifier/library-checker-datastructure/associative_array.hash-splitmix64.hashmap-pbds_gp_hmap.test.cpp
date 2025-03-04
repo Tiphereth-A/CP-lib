@@ -1,7 +1,7 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/associative_array"
 
-#include "../../code/util/util.hpp"
+#include "../../code/util/alias_others.hpp"
 //
 #include "../../code/edh/hash_splitmix64.hpp"
 

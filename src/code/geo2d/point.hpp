@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_GEO2D_POINT
 #define TIFALIBS_GEO2D_POINT
 
-#include "../util/fp_func.hpp"
+#include "../util/func_fp.hpp"
+#include "../util/traits_others.hpp"
 
 namespace tifa_libs::geo {
 

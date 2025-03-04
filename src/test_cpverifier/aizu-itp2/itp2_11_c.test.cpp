@@ -1,6 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/all/ITP2_11_C"
 
 #include "../../code/enum/enum_subset.hpp"
+#include "../../code/util/alias_others.hpp"
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

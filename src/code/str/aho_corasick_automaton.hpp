@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_STR_AHO_CORASICK_AUTOMATON
 #define TIFALIBS_STR_AHO_CORASICK_AUTOMATON
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::str {
 

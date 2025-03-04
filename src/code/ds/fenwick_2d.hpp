@@ -2,6 +2,7 @@
 #define TIFALIBS_DS_FENWICK_2D
 
 #include "../bit/lowbit.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::ds {
 

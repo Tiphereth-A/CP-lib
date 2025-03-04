@@ -1,7 +1,8 @@
-#ifndef TIFALIBS_UTIL_FP_FUNC
-#define TIFALIBS_UTIL_FP_FUNC
+#ifndef TIFALIBS_UTIL_FUNC_FP
+#define TIFALIBS_UTIL_FUNC_FP
 
-#include "traits.hpp"
+#include "consts.hpp"
+#include "traits_math.hpp"
 
 namespace tifa_libs {
 

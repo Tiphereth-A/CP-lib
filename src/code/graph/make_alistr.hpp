@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_MAKE_ALISTR
 #define TIFALIBS_GRAPH_MAKE_ALISTR
 
-#include "../util/traits.hpp"
+#include "../util/traits_graph.hpp"
 
 namespace tifa_libs::graph {
 

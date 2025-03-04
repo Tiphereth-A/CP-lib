@@ -2,6 +2,7 @@
 #define TIFALIBS_OPT_HEURISTIC_LBSA
 
 #include "../rand/gen.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::opt {
 

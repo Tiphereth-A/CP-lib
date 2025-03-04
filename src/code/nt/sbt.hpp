@@ -2,6 +2,7 @@
 #define TIFALIBS_MATH_SBT
 
 #include "../nt/gcd.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

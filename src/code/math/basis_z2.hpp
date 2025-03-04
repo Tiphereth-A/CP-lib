@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_BASIS_Z2
 #define TIFALIBS_MATH_BASIS_Z2
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

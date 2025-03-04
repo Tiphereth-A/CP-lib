@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_LICHAO_SEGTREE
 #define TIFALIBS_DS_LICHAO_SEGTREE
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::ds {
 

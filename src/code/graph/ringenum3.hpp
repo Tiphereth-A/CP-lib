@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_RINGENUM3
 #define TIFALIBS_GRAPH_RINGENUM3
 
-#include "../util/traits.hpp"
+#include "../util/traits_graph.hpp"
 #include "alist.hpp"
 
 namespace tifa_libs::graph {

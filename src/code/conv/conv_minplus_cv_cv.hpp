@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_CONV_CONV_MINPLUS_CV_CV
 #define TIFALIBS_CONV_CONV_MINPLUS_CV_CV
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

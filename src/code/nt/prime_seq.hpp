@@ -2,6 +2,7 @@
 #define TIFALIBS_MATH_PRIME_SEQ
 
 #include "../math/isqrt.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_BT_TRV
 #define TIFALIBS_DS_BT_TRV
 
-#include "../util/traits.hpp"
+#include "../util/traits_ds.hpp"
 
 namespace tifa_libs::ds {
 

@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_IO_IOS128
 #define TIFALIBS_IO_IOS128
 
-#include "../util/traits.hpp"
+#include "../util/traits_math.hpp"
+#include "../util/traits_others.hpp"
 
 auto &operator>>(tifa_libs::istream_c auto &is, tifa_libs::s128_c auto &n) NE {
   bool neg = false;

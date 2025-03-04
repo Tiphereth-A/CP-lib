@@ -21,7 +21,7 @@ class kahan_fp {
   CEXP operator FP() CNE { return sum; }
 };
 template <class FP>
-using kahan = std::conditional_t<std::is_floating_point_v<FP>, kahan_fp<FP>, FP>;
+using kahan = std::conditional_t<std::floating_point<FP>, kahan_fp<FP>, FP>;
 
 }  // namespace tifa_libs::math
 

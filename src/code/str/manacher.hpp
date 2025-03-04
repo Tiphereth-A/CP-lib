@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_STR_MANACHER
 #define TIFALIBS_STR_MANACHER
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::str {
 

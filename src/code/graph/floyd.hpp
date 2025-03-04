@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_FLOYD
 #define TIFALIBS_GRAPH_FLOYD
 
-#include "../util/traits.hpp"
+#include "../util/traits_math.hpp"
 #include "amat.hpp"
 
 namespace tifa_libs::graph {

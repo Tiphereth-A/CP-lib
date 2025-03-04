@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_STR_HASH_SUBSTR
 #define TIFALIBS_STR_HASH_SUBSTR
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::str {
 

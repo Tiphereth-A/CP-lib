@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_CONV_WHT
 #define TIFALIBS_CONV_WHT
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

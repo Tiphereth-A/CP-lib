@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_COMB_BALL_BOX_IIM
 #define TIFALIBS_COMB_BALL_BOX_IIM
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::math {
 

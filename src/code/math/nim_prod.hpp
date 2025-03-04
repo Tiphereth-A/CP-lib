@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_NIM_PROD
 #define TIFALIBS_MATH_NIM_PROD
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::math {
 namespace nim_prod_impl_ {
@@ -15,7 +15,7 @@ struct calc8 {
       flt_ (u16, i, 0, ep)
         flt_ (u16, j, i, ep) {
           if (i < eq && j < eq) continue;
-          if (min(i, j) <= 1u) {
+          if (std::min(i, j) <= 1u) {
             dp[i][j] = dp[j][i] = i * j;
             continue;
           }

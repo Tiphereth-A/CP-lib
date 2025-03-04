@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GRAPH_CLIQUE_ALL
 #define TIFALIBS_GRAPH_CLIQUE_ALL
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::graph {
 

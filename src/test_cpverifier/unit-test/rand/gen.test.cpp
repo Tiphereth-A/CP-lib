@@ -3,7 +3,7 @@
 
 #include "../../../code/rand/gen.hpp"
 
-#include "../../../code/util/fp_func.hpp"
+#include "../../../code/util/func_fp.hpp"
 #include "../base.hpp"
 
 template <class T>

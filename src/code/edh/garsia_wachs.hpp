@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_EDH_GARSIA_WACHS
 #define TIFALIBS_EDH_GARSIA_WACHS
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs {
 

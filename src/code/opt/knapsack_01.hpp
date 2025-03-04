@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_OPT_KNAPSACK_01
 #define TIFALIBS_OPT_KNAPSACK_01
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::opt {
 
@@ -12,7 +13,7 @@ template <int_c T>
 CEXP T knapsack_01(vecpt<T> CR a, T W) NE {
   const T vs = [k = std::views::keys(a)] { return std::reduce(k.begin(), k.end(), T{}); }();
   const T _1 = W, _2 = vs,
-          _3 = T(a.size() >= 128 ? -1_u64 : 1_u64 << ((a.size() + 1) / 2)),
+          _3 = T(a.size() >= 128 ? inf_v<T> : max(inf_v<T>, T(1_u64 << ((a.size() + 1) / 2)))),
           _min = min({_1, _2, _3});
   assert(0_isz <= (isz)_min && (usz)_min * a.size() < (usz)1e9);
   if (_min == _1) {

@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_STR_LCSF_HASH
 #define TIFALIBS_STR_LCSF_HASH
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::str {
 

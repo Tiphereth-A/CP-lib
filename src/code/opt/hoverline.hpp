@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_OPT_HOVERLINE
 #define TIFALIBS_OPT_HOVERLINE
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::opt {
 

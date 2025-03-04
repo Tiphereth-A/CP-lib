@@ -3,6 +3,7 @@
 
 #include "../math/div64.hpp"
 #include "../math/isqrt.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

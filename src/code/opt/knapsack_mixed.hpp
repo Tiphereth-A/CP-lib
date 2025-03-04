@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_OPT_KNAPSACK_MIXED
 #define TIFALIBS_OPT_KNAPSACK_MIXED
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::opt {
 

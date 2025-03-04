@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GEO2D_CROSS
 #define TIFALIBS_GEO2D_CROSS
 
-#include "../util/fp_func.hpp"
+#include "../util/func_fp.hpp"
 
 namespace tifa_libs::geo {
 

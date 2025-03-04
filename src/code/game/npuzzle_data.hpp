@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_GAME_NPUZZLE_DATA
 #define TIFALIBS_GAME_NPUZZLE_DATA
 
-#include "../util/traits.hpp"
+#include "../util/traits_others.hpp"
 
 namespace tifa_libs::game {
 

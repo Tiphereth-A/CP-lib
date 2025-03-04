@@ -3,6 +3,7 @@
 
 #include "../math/nimber.hpp"
 #include "../math/qpow.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::math {
 

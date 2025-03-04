@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_EDH_HASH_SPLITMIX64
 #define TIFALIBS_EDH_HASH_SPLITMIX64
 
-#include "../util/util.hpp"
+#include "../util/consts.hpp"
 
 namespace tifa_libs {
 

@@ -1,7 +1,8 @@
 #ifndef TIFALIBS_TREE_TREE_SUMVW
 #define TIFALIBS_TREE_TREE_SUMVW
 
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_graph.hpp"
 
 namespace tifa_libs::graph {
 

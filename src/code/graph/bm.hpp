@@ -2,7 +2,9 @@
 #define TIFALIBS_GRAPH_BM
 
 #include "../math/isqrt.hpp"
-#include "../util/traits.hpp"
+#include "../util/alias_others.hpp"
+#include "../util/traits_graph.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::graph {
 

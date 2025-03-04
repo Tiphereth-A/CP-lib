@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_DEQUE_WITH_W
 #define TIFALIBS_DS_DEQUE_WITH_W
 
-#include "../util/util.hpp"
+#include "../util/alias_others.hpp"
 
 namespace tifa_libs::ds {
 

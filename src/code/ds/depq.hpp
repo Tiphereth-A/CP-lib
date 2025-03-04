@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_DS_DEPQ
 #define TIFALIBS_DS_DEPQ
 
-#include "../util/util.hpp"
+#include "../util/alias_num.hpp"
 
 namespace tifa_libs::ds {
 
