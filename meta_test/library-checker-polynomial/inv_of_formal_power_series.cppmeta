@@ -1,0 +1,28 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series"
+
+#include "../../include/io/fastin.hpp"
+#include "../../include/io/fastout.hpp"
+#include "../../include/poly/inv_fps.hpp"
+
+CEXP u32 MOD = 998244353;
+
+// ---<GENTC>--- begin
+// ---<GENTC>--- append poly_anymod poly_nttmod
+// ---<GENTC>--- exclude mints-s30.mints-s30.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mints-s30.mints-s63.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mintd-d31.mints-s30.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mintd-d31.mints-s63.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mints-s63.mints-s30.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mints-s63.mints-s63.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mintd-d63.mints-s30.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mintd-d63.mints-s63.poly_anymod-p3ntt
+// ---<GENTC>--- end
+
+int main() {
+  u32 n;
+  tifa_libs::fin >> n;
+  poly p(n);
+  tifa_libs::fin >> p;
+  tifa_libs::fout << tifa_libs::math::inv_fps(p);
+  return 0;
+}

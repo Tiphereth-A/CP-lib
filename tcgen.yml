@@ -7,8 +7,8 @@ mints:
   default_content:
     requirements: null
     include:
-    - src/code/math/mint.hpp
-    - src/code/math/mint_$m.hpp
+    - include/math/mint.hpp
+    - include/math/mint_$m.hpp
     after_include: |
       using mint = tifa_libs::math::mint<tifa_libs::math::mint_$m, MOD>;
     main_begin: null
@@ -20,8 +20,8 @@ mintd:
   default_content:
     requirements: null
     include:
-    - src/code/math/mint.hpp
-    - src/code/math/mint_$m.hpp
+    - include/math/mint.hpp
+    - include/math/mint_$m.hpp
     after_include: |
       using mint = tifa_libs::math::mint<tifa_libs::math::mint_$m, __LINE__>;
     main_begin: |
@@ -46,7 +46,7 @@ hash:
         using hashfunc_t = chash<T>;
     splitmix64:
       include:
-      - src/code/edh/hash_splitmix64.hpp
+      - include/edh/hash_splitmix64.hpp
       after_include: |
         template <class>
         using hashfunc_t = tifa_libs::hash_splitmix64;
@@ -102,9 +102,9 @@ hashstr:
   member:
     hashstr1:
       include:
-      - src/code/math/mint.hpp
-      - src/code/math/mint_2e61n1.hpp
-      - src/code/str/hash_substr.hpp
+      - include/math/mint.hpp
+      - include/math/mint_2e61n1.hpp
+      - include/str/hash_substr.hpp
       after_include: |
         using mint = tifa_libs::math::mint<tifa_libs::math::mint_2e61n1>;
         using hashstr = tifa_libs::str::hash_substr<mint>;
@@ -112,7 +112,7 @@ hashstr:
       requirements:
       - [mints]
       include:
-      - src/code/str/hash_substr2.hpp
+      - include/str/hash_substr2.hpp
       after_include: |
         using mint0 = tifa_libs::math::mint<tifa_libs::math::mint_$mb0b, 998244353>;
         using mint1 = tifa_libs::math::mint<tifa_libs::math::mint_$mb0b, 1000000007>;
@@ -121,7 +121,7 @@ hashstr:
       requirements:
       - [mintd]
       include:
-      - src/code/str/hash_substr2.hpp
+      - include/str/hash_substr2.hpp
       after_include: |
         using mint0 = tifa_libs::math::mint<tifa_libs::math::mint_$mb0b, __LINE__>;
         using mint1 = tifa_libs::math::mint<tifa_libs::math::mint_$mb0b, __LINE__>;
@@ -142,7 +142,7 @@ poly_anymod:
       - [mints, mintd]
       - [mints] # `after_include` and `main_begin` will be ignored
       include:
-      - src/code/poly/poly3ntt.hpp
+      - include/poly/poly3ntt.hpp
       after_include: |
         using mint_$m1 = tifa_libs::math::mint<tifa_libs::math::mint_$mb1b, 167772161>;
         using mint_$m2 = tifa_libs::math::mint<tifa_libs::math::mint_$mb1b, 469762049>;
@@ -152,7 +152,7 @@ poly_anymod:
       requirements:
       - [mints, mintd]
       include:
-      - src/code/poly/polymtt.hpp
+      - include/poly/polymtt.hpp
       after_include: |
         using poly = tifa_libs::math::polymtt<mint>;
 poly_nttmod:
@@ -167,7 +167,7 @@ poly_nttmod:
       requirements:
       - [mints]
       include:
-      - src/code/poly/polyntt.hpp
+      - include/poly/polyntt.hpp
       after_include: |
         using poly = tifa_libs::math::polyntt<mint>;
 conv_anymod:
@@ -182,7 +182,7 @@ conv_anymod:
       requirements:
       - [mints]
       include:
-      - src/code/conv/conv_3ntt.hpp
+      - include/conv/conv_3ntt.hpp
       after_include: |
         using mint_$m0 = tifa_libs::math::mint<tifa_libs::math::mint_$mb0b, 167772161>;
         using mint_$m1 = tifa_libs::math::mint<tifa_libs::math::mint_$mb0b, 469762049>;
@@ -202,7 +202,7 @@ conv_anymod:
       - [mints, mintd]
       - [mints] # `after_include` and `main_begin` will be ignored
       include:
-      - src/code/conv/conv_3ntt.hpp
+      - include/conv/conv_3ntt.hpp
       after_include: |
         using mint_$m0 = tifa_libs::math::mint<tifa_libs::math::mint_$mb1b, 167772161>;
         using mint_$m1 = tifa_libs::math::mint<tifa_libs::math::mint_$mb1b, 469762049>;
@@ -221,7 +221,7 @@ conv_anymod:
       requirements:
       - [mints, mintd]
       include:
-      - src/code/conv/conv_mtt.hpp
+      - include/conv/conv_mtt.hpp
       after_include: |
         using vec_t = vec<mint>;
         auto conv_func(vec_t CR a, vec_t CR b) {
@@ -240,7 +240,7 @@ conv_nttmod:
       requirements:
       - [poly_nttmod]
       include:
-      - src/code/conv/conv_czt.hpp
+      - include/conv/conv_czt.hpp
       after_include: |
         using vec_t = poly;
         auto conv_func(vec_t CR a, vec_t CR b) {
@@ -250,8 +250,8 @@ conv_nttmod:
       requirements:
       - [mints]
       include:
-      - src/code/conv/conv_dft.hpp
-      - src/code/conv/ntt.hpp
+      - include/conv/conv_dft.hpp
+      - include/conv/ntt.hpp
       after_include: |
         using ntt_$m_t = tifa_libs::math::NTT<mint>;
         using vec_t = vec<mint>;
@@ -271,7 +271,7 @@ conv_large:
       requirements:
       - [mints]
       include:
-      - src/code/conv/ntt.hpp
+      - include/conv/ntt.hpp
       after_include: |
         using ntt_$m_t = tifa_libs::math::NTT<mint>;
         using vec_t = vec<mint>;
@@ -291,13 +291,13 @@ factorial:
       requirements:
       - [mints, mintd]
       include:
-      - src/code/math/fact_helper.hpp
+      - include/math/fact_helper.hpp
       after_include: |
         using fact_t = tifa_libs::math::fact_helper<mint>;
     factl_helper:
       requirements:
       - [poly_anymod, poly_nttmod]
       include:
-      - src/code/math/factl_helper.hpp
+      - include/math/factl_helper.hpp
       after_include: |
         using fact_t = tifa_libs::math::factl_helper<poly>;

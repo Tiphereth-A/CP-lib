@@ -1,0 +1,21 @@
+#define AUTO_GENERATED
+#define PROBLEM "https://yukicoder.me/problems/no/963"
+
+#include "../../include/poly/cossin_fps.hpp"
+
+CEXP u32 MOD = 1012924417;
+
+// ---<GENTC>--- begin
+// ---<GENTC>--- append poly_nttmod
+// ---<GENTC>--- end
+
+int main() {
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
+  u32 n;
+  std::cin >> n;
+  mint fact_n = 1;
+  flt_ (u32, i, 1, n + 1) fact_n *= i;
+  auto [fc, fs] = tifa_libs::math::cossin_fps(poly{0, 1}, n + 1);
+  std::cout << ((fs + 1) * inv_fps(fc, n + 1))[n] * 2 * fact_n << '\n';
+  return 0;
+}

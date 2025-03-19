@@ -19,9 +19,6 @@ class Config(ConfigBase):
     def _get_cheatsheet_raw(self) -> dict[str, str]:
         return self.items('cheatsheets')
 
-    def _get_src_dir_raw(self) -> str:
-        return self.items('src_dir')
-
     def _get_code_dir_raw(self) -> str:
         return self.items('notebook_code_dir')
 
@@ -56,28 +53,24 @@ class Config(ConfigBase):
         return self.items('formatting_commands')
 
     @withlog
-    def get_src_dir(self, **kwargs) -> str:
-        return self._get_src_dir_raw()
-
-    @withlog
     def get_code_dir(self, **kwargs) -> str:
-        return os.path.join(self.get_src_dir(), self._get_code_dir_raw())
+        return self._get_code_dir_raw()
 
     @withlog
     def get_doc_dir(self, **kwargs) -> str:
-        return os.path.join(self.get_src_dir(), self._get_doc_dir_raw())
+        return self._get_doc_dir_raw()
 
     @withlog
     def get_cvdoc_dir(self, **kwargs) -> str:
-        return os.path.join(self.get_src_dir(), self._get_cvdoc_dir_raw())
+        return self._get_cvdoc_dir_raw()
 
     @withlog
     def get_cheatsheet_dir(self, **kwargs) -> str:
-        return os.path.join(self.get_src_dir(), self._get_cheatsheet_dir_raw())
+        return self._get_cheatsheet_dir_raw()
 
     @withlog
     def get_test_dir(self, **kwargs) -> str:
-        return os.path.join(self.get_src_dir(), self._get_test_dir_raw())
+        return self._get_test_dir_raw()
 
     @withlog
     def get_notebook_file(self, **kwargs) -> str:

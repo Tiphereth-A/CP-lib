@@ -1,0 +1,20 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/composition_of_formal_power_series_large"
+
+#include "../../include/io/fastin.hpp"
+#include "../../include/io/fastout.hpp"
+#include "../../include/poly/comp_fps.hpp"
+
+CEXP u32 MOD = 998244353;
+
+// ---<GENTC>--- begin
+// ---<GENTC>--- append poly_nttmod
+// ---<GENTC>--- end
+
+int main() {
+  u32 n;
+  tifa_libs::fin >> n;
+  poly f(n), g(n);
+  tifa_libs::fin >> f >> g;
+  tifa_libs::fout << tifa_libs::math::comp_fps(f, g);
+  return 0;
+}

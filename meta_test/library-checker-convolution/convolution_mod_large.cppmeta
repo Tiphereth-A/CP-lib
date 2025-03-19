@@ -1,0 +1,21 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_large"
+
+#include "../../include/conv/conv_ntt_large.hpp"
+#include "../../include/io/fastin.hpp"
+#include "../../include/io/fastout.hpp"
+#include "../../include/io/ios_container.hpp"
+
+CEXP u32 MOD = 998244353;
+
+// ---<GENTC>--- begin
+// ---<GENTC>--- append conv_large
+// ---<GENTC>--- end
+
+int main() {
+  u32 n, m;
+  tifa_libs::fin >> n >> m;
+  vec<mint> a(n), b(m);
+  tifa_libs::fin >> a >> b;
+  tifa_libs::fout << conv_func(a, b) << '\n';
+  return 0;
+}

@@ -1,0 +1,26 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/associative_array"
+
+#include "../../include/util/alias_others.hpp"
+//
+// ---<GENTC>--- begin
+// ---<GENTC>--- append hashmap
+// ---<GENTC>--- exclude hash-default.hashmap-std_hmap
+// ---<GENTC>--- exclude hash-default.hashmap-pbds_cc_hmap
+// ---<GENTC>--- exclude hash-default.hashmap-pbds_gp_hmap
+// ---<GENTC>--- end
+
+int main() {
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
+  u64 q;
+  std::cin >> q;
+  hashmap<u64, u64> hm;
+  for (u64 i = 0, op, k, v; i < q; ++i) {
+    std::cin >> op >> k;
+    if (op) std::cout << hm[k] << '\n';
+    else {
+      std::cin >> v;
+      hm[k] = v;
+    }
+  }
+  return 0;
+}

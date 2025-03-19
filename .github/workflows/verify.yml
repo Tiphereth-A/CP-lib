@@ -6,18 +6,18 @@ on:
     paths:
       - '.github/**'
       - '.verify-helper/**'
-      - 'src/code/**'
-      - 'src/doc_md/**'
-      - 'src/test_cpverifier/**'
+      - 'include/**'
+      - 'doc_md/**'
+      - 'test_cpverifier/**'
   pull_request:
     branches:
       - master
     paths:
       - '.github/**'
       - '.verify-helper/**'
-      - 'src/code/**'
-      - 'src/doc_md/**'
-      - 'src/test_cpverifier/**'
+      - 'include/**'
+      - 'doc_md/**'
+      - 'test_cpverifier/**'
   workflow_dispatch:
     inputs:
       ignore_prev_result:
@@ -49,14 +49,14 @@ jobs:
         with:
           output-path: verify_files.json
           include: |
-                src/code/
-                src/doc_md/
-                src/test_cpverifier/
-                src/test_cpverifier_huge/
+                include/
+                doc_md/
+                test_cpverifier/
+                test_cpverifier_huge/
           exclude: |
                 libs/
                 .github/
-                src/tinplate/
+                tinplate/
           config: .verify-helper/config.toml
       - name: parse-doxygen
         uses: competitive-verifier/actions/parse-doxygen@v2

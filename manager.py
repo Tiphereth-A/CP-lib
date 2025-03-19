@@ -334,8 +334,8 @@ def _generate_testcode(source_dir: str, target_dir: str):
 
     @withlog
     def generate_testcode(_source_dir: str, _target_dir: str, **kwargs):
-        _source_dir = os.path.join(CONFIG.get_src_dir(), _source_dir)
-        _target_dir = os.path.join(CONFIG.get_src_dir(), _target_dir)
+        _source_dir = _source_dir
+        _target_dir = _target_dir
 
         all_src_files: list[str] = get_full_filenames(
             [_source_dir], ['cppmeta'])

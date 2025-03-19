@@ -1,4 +1,4 @@
-SRCDIRS := src src/test_tinplate src/test_cpverifier
+SRCDIRS := test_tinplate test_cpverifier
 SOURCES := $(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*/*.cpp))
 OBJECTS := $(SOURCES:.cpp=.o)
 

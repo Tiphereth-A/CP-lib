@@ -9,6 +9,7 @@ on:
       - '**.hpp'
       - '**.cpp'
       - '**.py'
+      - 'Makefile'
   pull_request:
     branches:
       - master
@@ -17,6 +18,7 @@ on:
       - '**.hpp'
       - '**.cpp'
       - '**.py'
+      - 'Makefile'
   schedule:
     - cron: '13 6 * * 4'
   workflow_dispatch:

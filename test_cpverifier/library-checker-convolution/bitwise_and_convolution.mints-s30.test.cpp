@@ -1,0 +1,24 @@
+#define AUTO_GENERATED
+#define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
+
+#include "../../include/conv/conv_and.hpp"
+#include "../../include/io/fastin.hpp"
+#include "../../include/io/fastout.hpp"
+#include "../../include/io/ios_container.hpp"
+
+CEXP u32 MOD = 998244353;
+
+#include "../../include/math/mint.hpp"
+#include "../../include/math/mint_s30.hpp"
+
+using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
+
+int main() {
+  u32 n;
+  tifa_libs::fin >> n;
+  vec<mint> a(1 << n), b(1 << n);
+  for (auto &i : a) tifa_libs::fin >> i;
+  for (auto &i : b) tifa_libs::fin >> i;
+  tifa_libs::fout << tifa_libs::math::conv_and(a, b) << '\n';
+  return 0;
+}
