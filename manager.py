@@ -44,7 +44,7 @@ def cli(level: str):
 
 @cli.command('clean')
 def _clean():
-    """Clean files"""
+    """Clean up nonessential files during PDF building"""
 
     @withlog
     def clean(logger: logging.Logger):
@@ -322,9 +322,7 @@ documentation_of: {_fixed_codepath}
 @click.option('-s', '--source-dir', help='Source dir', default='meta_test')
 @click.option('-t', '--target-dir', help='Target dir', default='test_cpverifier')
 def _generate_testcode(source_dir: str, target_dir: str):
-    """DO NOT USE THIS UNLESS YOU KNOW WHAT YOU ARE DOING
-
-    Generate test code for cpverifier, only support *.cpp"""
+    """Generate test codes from test matrices"""
 
     @withlog
     def get_codelines(file: str, **kwargs) -> list[str]:

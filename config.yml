@@ -1464,7 +1464,7 @@ code_styles:
   tex: tex
 test_commands:
   cpp:
-  - g++-12
+  - g++
   - -std=gnu++20
   - ${filename}
 formatting_commands:

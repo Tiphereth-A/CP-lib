@@ -1,4 +1,19 @@
-# CP-lib
+<h3 align="center">CP-lib</h3>
+  <p align="center">
+    My code library for competitive programming.
+    <br/>
+    powered by <a href="https://github.com/competitive-verifier/competitive-verifier">competitive-verifier/competitive-verifier</a> & <a href="https://github.com/Tiphereth-A/TINplate">Tiphereth-A/TINplate</a>.
+    <br/>
+    <br/>
+    <a href="https://github.com/Tiphereth-A/CP-lib/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Tiphereth-A/CP-lib/issues">Request Feature</a>
+    ·
+    <a href="https://github.com/Tiphereth-A/CP-lib/releases/latest">Latest Release</a>
+    ·
+    <a href="https://github.com/Tiphereth-A/CP-lib/blob/master/CITATION.bib">Citation File</a>
+  </p>
+</div>
 
 ![GitHub](https://img.shields.io/github/license/Tiphereth-A/CP-lib)
 ![Code Size](https://img.shields.io/github/languages/code-size/Tiphereth-A/CP-lib)
@@ -11,6 +26,25 @@
 [![GitHub Workflow Status (with event) - codeql](https://img.shields.io/github/actions/workflow/status/Tiphereth-A/CP-lib/codeql.yml?label=codeql&logo=github)](https://github.com/Tiphereth-A/CP-lib/actions)
 [![GitHub Workflow Status (with event) - flawfinder](https://img.shields.io/github/actions/workflow/status/Tiphereth-A/CP-lib/flawfinder.yml?label=flawfinder&logo=github)](https://github.com/Tiphereth-A/CP-lib/actions)
 
-My code library for Competitive Programming, powered by [competitive-verifier/competitive-verifier](https://github.com/competitive-verifier/competitive-verifier) & [Tiphereth-A/TINplate](https://github.com/Tiphereth-A/TINplate).
+## Features
 
-You can use `manager.py` to create new files, lint files, generate necessary files to compile PDF. run `python manager.py --help` for help.
+- Implementations of plenty of algorithms & data structures used in competitive programming.
+- Printable document generator.
+- Test matrix support.
+
+## Usage
+
+If you just want to use the library, just copy `include/*` to your path, or download `CP-lib.tar.gz` in [Releases](https://github.com/Tiphereth-A/CP-lib/releases/latest) and extract it to your path.
+
+You can also get the printable document (`notebook.pdf`, Chinese) in [Releases](https://github.com/Tiphereth-A/CP-lib/releases/latest).
+
+## Configuration
+
+There are two configuration files needed by manage script:
+
+- `tcgen.yml`: configuration about test matrices.
+- `config.yml`: all other configurations.
+
+## Contributing
+
+See [CONTRIBUTING](CONTRIBUTING.md).
