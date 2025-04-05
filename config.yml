@@ -78,6 +78,9 @@ notebook:
     - unordered_stl_hacker: unordered STL hacker
       code_ext: hpp
       test_ext: cpp
+    - bitset_getdata: bitset_getdata
+      code_ext: hpp
+      test_ext: cpp
     bit:
     - bswap: std::byteswap
       code_ext: hpp
@@ -957,12 +960,6 @@ notebook:
     - kahan: Kahan 求和
       code_ext: hpp
       test_ext: cpp
-    - basis_z2: 异或线性基
-      code_ext: hpp
-      test_ext: cpp
-    - basis_r: 实数线性基
-      code_ext: hpp
-      test_ext: cpp
     - debruijn: de Bruijn 序列
       code_ext: hpp
       test_ext: cpp
@@ -1109,6 +1106,12 @@ notebook:
       code_ext: hpp
       test_ext: cpp
     - sherman_morrison: Sherman--Morrison 公式
+      code_ext: hpp
+      test_ext: cpp
+    - basis_z2: 异或线性基
+      code_ext: hpp
+      test_ext: cpp
+    - basis_r: 实数线性基
       code_ext: hpp
       test_ext: cpp
     conv:

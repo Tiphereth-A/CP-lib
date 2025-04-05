@@ -8,7 +8,7 @@ namespace tifa_libs::geo {
 
 // max number of points covered by a circle with radius @r
 template <class FP>
-CEXP u64 max_cover_Ps(vec<point<FP>> CR vp, FP r) NE {
+CEXP u64 max_cover_Ps(vec<point<FP>> CR vp, FP r) NE {  //! BUG exists...
   if (is_neg(r)) return 0;
   if (is_zero(r)) return 1;
   const FP diam = r * 2;
@@ -23,8 +23,8 @@ CEXP u64 max_cover_Ps(vec<point<FP>> CR vp, FP r) NE {
       angs.emplace_back(polar - delta, 1), angs.emplace_back(polar + delta, -1);
     }
     sort(angs);
-    u64 sum = 0;
-    flt_ (u32, j, 0, (u32)angs.size()) ans = max(ans, sum += angs[j].second);
+    i64 sum = 0;
+    flt_ (u32, j, 0, (u32)angs.size()) ans = max(ans, (u64)max(0_i64, sum += angs[j].second));
   }
   return ans;
 }
