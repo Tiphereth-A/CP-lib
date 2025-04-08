@@ -65,6 +65,7 @@ class fastout {
     return *this;
   }
   fastout &operator<<(fastout &(*func)(fastout &)) NE { return func(*this); }
+  auto flags() CNE { return std::ios_base::dec; }
 };
 inline fastout fout;
 inline fastout &scientific(fastout &f) NE { return f.setf(std::chars_format::scientific); }

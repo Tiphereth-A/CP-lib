@@ -130,6 +130,7 @@ class fastin {
     return *this;
   }
   fastin &operator>>(fastin &(*func)(fastin &)) NE { return func(*this); }
+  auto flags() CNE { return std::ios_base::dec; }
 };
 inline fastin fin;
 inline fastin &ws(fastin &f) NE { return f.skip_cntrls(); }
