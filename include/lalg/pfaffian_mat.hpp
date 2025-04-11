@@ -31,6 +31,7 @@ CEXP auto pfaffian(Mat mat, Is0 is0) NE {
       mat(i + 1, p) = -mat(i + 1, p);
       flt_ (u32, j, p + 1, n) swap(mat(i + 1, j), mat(p, j));
     }
+    if (is0(mat(i, i + 1))) return T{};
     T _ = mat(i, i + 1).inv();
     flt_ (u32, j, i + 2, n)
       if (mat(i, j)) {
