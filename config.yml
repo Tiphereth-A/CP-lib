@@ -45,7 +45,10 @@ notebook:
     - func_fp: 浮点数比较与常用函数
       code_ext: hpp
       test_ext: cpp
-    - traits_math: traits(数学)
+    - traits_algebra: traits(代数)
+      code_ext: hpp
+      test_ext: cpp
+    - traits_math: traits(其他数学)
       code_ext: hpp
       test_ext: cpp
     - traits_graph: traits(图论)
