@@ -1,22 +1,28 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_1_B"
+#define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential"
 
 #include "../../include/ds/dsu_weighted.hpp"
+
+CEXP u32 MOD = 998244353;
+
+// ---<GENTC>--- begin
+// ---<GENTC>--- append mints mintd
+// ---<GENTC>--- end
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  tifa_libs::ds::dsu_weighted dsu(n);
+  tifa_libs::ds::dsu_weighted<mint> dsu(n);
   flt_ (u32, i, 0, q) {
     u32 op, u, v;
     std::cin >> op >> u >> v;
     if (op) {
-      if (!dsu.same(u, v)) std::cout << "?\n";
+      if (!dsu.same(u, v)) std::cout << "-1\n";
       else std::cout << dsu.diff(u, v) << '\n';
     } else {
       i64 k;
       std::cin >> k;
-      dsu.merge(u, v, k);
+      std::cout << dsu.merge(u, v, k) << '\n';
     }
   }
   return 0;
