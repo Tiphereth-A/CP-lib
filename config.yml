@@ -235,6 +235,9 @@ notebook:
     - kdtree: k-D Tree
       code_ext: hpp
       test_ext: cpp
+    - dbitset: 动态长度 bitset
+      code_ext: hpp
+      test_ext: cpp
     geo2d:
     - point: 点
       code_ext: hpp
