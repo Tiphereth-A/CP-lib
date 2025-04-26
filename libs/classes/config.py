@@ -31,14 +31,14 @@ class Config(ConfigBase):
     def _get_cheatsheet_dir_raw(self) -> str:
         return self.items('cheatsheet_dir')
 
-    def _get_test_dir_raw(self) -> str:
-        return self.items('test_dir')
+    def _get_usage_dir_raw(self) -> str:
+        return self.items('usage_dir')
 
     def _get_notebook_file_raw(self) -> str:
         return self.items('notebook_file')
 
-    def _get_export_testcode_in_notebook_raw(self) -> bool:
-        return self.items('export_testcode_in_notebook')
+    def _get_export_usage_code_in_notebook_raw(self) -> bool:
+        return self.items('export_usage_code_in_notebook')
 
     def _get_default_code_style_raw(self) -> str:
         return self.items('default_code_style')
@@ -46,8 +46,8 @@ class Config(ConfigBase):
     def _get_code_styles_raw(self) -> dict[str, str]:
         return self.items('code_styles')
 
-    def _get_test_commands_raw(self) -> dict[str, list[str]]:
-        return self.items('test_commands')
+    def _get_run_usage_commands_raw(self) -> dict[str, list[str]]:
+        return self.items('run_usage_commands')
 
     def _get_formatting_commands_raw(self) -> dict[str, list[str]]:
         return self.items('formatting_commands')
@@ -69,8 +69,8 @@ class Config(ConfigBase):
         return self._get_cheatsheet_dir_raw()
 
     @withlog
-    def get_test_dir(self, **kwargs) -> str:
-        return self._get_test_dir_raw()
+    def get_usage_dir(self, **kwargs) -> str:
+        return self._get_usage_dir_raw()
 
     @withlog
     def get_notebook_file(self, **kwargs) -> str:
@@ -151,8 +151,8 @@ class Config(ConfigBase):
             return cheatsheet
 
     @withlog
-    def export_testcode_in_notebook(self, **kwargs) -> bool:
-        return self._get_export_testcode_in_notebook_raw()
+    def export_usage_code_in_notebook(self, **kwargs) -> bool:
+        return self._get_export_usage_code_in_notebook_raw()
 
     @withlog
     def get_default_code_style(self, **kwargs) -> str:
@@ -175,15 +175,15 @@ class Config(ConfigBase):
         return [k for k, v in self._get_code_styles_raw().items() if v == code_style]
 
     @withlog
-    def get_test_command(self, code_style: str, filepath: str, **kwargs) -> list[str]:
+    def get_run_usage_command(self, code_style: str, filepath: str, **kwargs) -> list[str]:
         try:
-            result: list[str] = self._get_test_commands_raw()[code_style]
+            result: list[str] = self._get_run_usage_commands_raw()[code_style]
             result = [filepath if item ==
                       '${filename}' else item for item in result]
             return result
         except KeyError:
             kwargs.get('logger').warning(
-                rf"test command of code style '{code_style}' is not found, return empty command")
+                rf"run_usage command of code style '{code_style}' is not found, return empty command")
             return []
 
     @withlog

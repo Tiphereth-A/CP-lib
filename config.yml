@@ -2,9 +2,9 @@ notebook_code_dir: include
 notebook_doc_dir: doc_tex
 competitive_verifier_doc_dir: doc_md
 cheatsheet_dir: cheatsheet
-test_dir: test_tinplate
+usage_dir: usage
 notebook_file: notebook
-export_testcode_in_notebook: true
+export_usage_code_in_notebook: true
 notebook:
   chapters:
     util: 杂项
@@ -32,1419 +32,1419 @@ notebook:
     util:
     - util: 共同依赖
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - alias_num: 变量别名(数)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - alias_others: 变量别名(其他)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - consts: 常量
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - func_fp: 浮点数比较与常用函数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - traits_algebra: traits(代数)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - traits_math: traits(其他数学)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - traits_graph: traits(图论)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - traits_ds: traits(数据结构)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - traits_others: traits(其他)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - pair_op: pair 运算
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tuple_push_pop: tuple push 与 pop
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tuple_op: tuple 运算
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - vec_op: vec 运算
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - strip: strip
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ndvec: 高维 vector
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - unordered_stl_hacker: unordered STL hacker
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - bitset_getdata: bitset_getdata
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     bit:
     - bswap: std::byteswap
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cntlsb: 与符号位相同的高位长度
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - parity: popcount 奇偶性
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ffs: 末尾 1 的位置
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lowbit: lowbit
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     enum:
     - enum_subset: 枚举子集
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - enum_supset: 枚举超集
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gosper: 枚举 n 位二进制数中恰有 k 个 1 的数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     io:
     - ios128: 128 位整数的 IO
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ios_pair: pair IO
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ios_tuple: tuple IO
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ios_container: 容器 IO
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fastin: 快速读入
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fastout: 快速输出
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     ds:
     - mono_stack: 单调栈
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mono_queue: 单调队列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - bt_trv: 树结点常见遍历操作
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fenwick: 树状数组
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fenwick_rr: 树状数组(区间修改,区间查询)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fenwick_2d: 二维树状数组
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fenwick_2d_rr: 二维树状数组(区间修改,区间查询)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dsu_basic: 并查集
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dsu_pd: 离线可持久化并查集
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dsu_weighted: 带权并查集
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dsu_delineation: 并查集分划
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - odt: 珂朵莉树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - st_array: ST 表 - 数列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rus4_st: 分块 ST 表
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - segtree: 线段树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - segtree_ctor: 常用线段树构造
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lichao_segtree: 李超线段树(线段添加--定点最值)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - segbeats_ca_ms: 吉如一线段树(最值,加--最值,和)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - segbeats_ca_msh: 吉如一线段树(最值,加--最值,历史最值,和)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - weighted_segtree: 权值线段树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - persistent_segtree: 可持久化线段树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ostree: 顺序统计树(multiset)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rbtree: 红黑树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fhq_treap: 非旋treap
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fhq_treap_w: 维护区间操作的非旋treap
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - link_cut_tree: 动态树(LCT)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - leftist_tree: 可并堆(左偏树)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - skew_heap: 可并堆(斜堆)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - radix_heap: 基数堆
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - d_ary_heap: 多叉堆
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - depq: 双端优先队列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - deque_with_w: 带权双端队列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cartesian_tree: 笛卡尔树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - trie01: 0-1 Trie
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - kdtree: k-D Tree
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dbitset: 动态长度 bitset
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     geo2d:
     - point: 点
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - line: 线
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - triangle: 三角形
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - circle: 圆
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - polygon: 多边形
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cvh: 凸包
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dcvh: 动态凸包
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - make_p_polar: 根据极坐标构造点
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - area_cc: 两圆的面积交
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - area_poc: 多边形与圆的面积交
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - sarea_ct: 三角形与圆的面积交(带方向)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - area_triedges: 根据三角形的三边计算面积
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - argsort: 极角排序
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ins_hps: 半平面交
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ins_pohp: 多边形与半平面的交
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - max_area_t: 凸包内面积最大的三角形
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - coverage_rect: 覆盖矩形(最小面积,最小周长)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - max_dis_cvh: 两凸包中的点的最远距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - min_dis_cvh: 两凸包中的点的最近距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ins_cc: 两圆的交点
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ins_cl: 圆与直线的交点
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tan_cp: 过一点与圆的切点
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - intan_cc: 两圆的内切线
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - extan_cc: 两圆的外切线
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inv_p2p: 点的反演
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inv_l2c: 直线的反演
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inv_c2c: 圆的反演(未经过反演中心)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inv_c2l: 圆的反演(经过反演中心)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dist_pl: 点与直线距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dist_ps: 点与线段距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dist_ss: 线段与线段距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ins_ll: 直线交点
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - is_ins_sl: 判断线段与直线是否相交
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - is_ins_ss: 判断两线段是否相交
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - any_ins_ss: 判断多条线段是否相交
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - is_on_s: 判断点是否在直线上
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - is_on_same_l: 判断三点是否共线
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - proj: 点在直线上的投影与对称点
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - make_c_ppp: 构造圆(经过的三点)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - make_c_rpp: 构造圆(半径和经过的两点)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - make_c_rpl: 构造圆(半径,切线和经过的一点)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - make_c_rll: 构造圆(半径和两切线)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - make_c_rcc_ex: 构造圆(半径和两外切圆)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - make_c_pcc_ex: 构造圆(经过的一点和两外切圆)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - min_cover_c: 最小覆盖圆
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ang_pp: 两向量夹角
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cross: 叉乘
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dist_pp: 两点间距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - distsp_pp: 球面上两点间距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dot: 点乘
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - max_cover_ps: 圆能覆盖的最多点数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - min_dis_ps: 点集最小距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - point_is_in_middle: 点是否在两点连成的线段上
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cnt_intp_po: 多边形整点计数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - femwebp: 点集的 Fermat--Weber 点
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - massp: 点集的重心
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rel_cc: 两圆的关系
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rel_cp: 圆与点的关系
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rel_cs: 圆与线段的关系
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rel_poc: 多边形与圆的关系
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rel_pop: 多边形与点的关系
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tcenter_g: 三角形重心
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tcenter_h: 三角形垂心
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tcenter_i: 三角形内心
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tcenter_o: 三角形外心
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tcenter_e: 三角形旁心
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tcenter_n: 三角形九点圆圆心
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tcenter_x: 三角形 Fermat 点
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - aunion_cs: 圆的面积并
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - aunion_pos: 多边形的面积并
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - maxv_cvh_cnt: 最大点数凸包
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     geo3d:
     - point3d: 三维点
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - line3d: 三维线
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - planev: 平面(视图)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dist3_pp: 三维点之间的距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dist3_pl: 三维点与三维线的距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - sdist3_plp: 平面与三维点的有向距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rel_plp: 平面与三维点的关系
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cvh3d: 三维凸包
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     opt:
     - bsearch: 二分
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tsearch: 三分
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - knapsack_01: 01 背包
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - knapsack_mixed: 混合背包
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - knapsack_mixed_huge: 混合背包(贪心)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lis: 最长上升子序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lev_dis: Levenshtein 距离
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - hoverline: 悬线法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lcs_circ: 环序列的最长公共子序列长度
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - heuristic_sa: 模拟退火
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - heuristic_lbsa: List-Based 模拟退火
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - alpha_beta: min-max 搜索
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dlx: DLX
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - smawk: SMAWK 算法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - larsch: LARSCH 算法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - larsch_2d: LARSCH 算法(2D)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - astar: A* 算法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - simplex: 单纯形法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     graph:
     - alist: 邻接表
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - alists: 静态邻接表
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - amat: 邻接矩阵
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - eog: 链式前向星
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - make_alistr: 建邻接表反图
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - kruskal: 最小生成树(Kruskal)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - kruskal_re_tree: Kruskal 重构树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cle: 最小树形图(Chu--Liu--Edmonds)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dijkstra: 单源最短路(Dijkstra)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - bm: 单源最短路(Bellman--Ford)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - floyd: 全源最短路(Floyd)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - johnson: 全源最短路(Johnson)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - path: 求两点间的一条简单路径
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - chrom_num: 点染色数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ringenum3: 无向图三元环枚举
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ringcnt4: 无向图四元环计数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - kosaraju: 强连通分量(Kosaraju)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tarjan: 强连通分量(tarjan)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - v_bcc: 点双连通分量
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - e_bcc: 边双连通分量
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - e_tcc: 边三连通分量
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dinic: 最大流(Dinic)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - hlpp: 最大流(HLPP)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ssp: 最小费用最大流(SSP)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - hungarian: 匈牙利算法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - hopkap: Hopcroft--Karp 算法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - steiner_tree: 斯坦纳树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - find_cycle: 找环
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - topo_sort: 拓扑排序
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - kirchhoff: Kirchhoff 矩阵树定理
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - euler_trail: Euler 迹
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - manhattan_mst: 筛选 Manhattan 最小生成树中的边
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gomory_hu: 最小割树(Gomory--Hu)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - domtree: 支配树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - sat2: 2-Sat
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - chordal: 弦图
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cliques: 极大团枚举
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - clique_calc: 全部团计算
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - blossom: 带花树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - blossomw: 带权带花树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - min_cycle_mean: 有向图最小平均权值圈
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     tree:
     - tree: 树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dfs_info: 常用树 DFS
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tree_top: 树的 top 数组
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - hld: 重链剖分
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lca_hld: 树链剖分求 LCA
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - centroid: 重心
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tree_sumvw: 子树点权和
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - diam: 直径
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - height: 高度
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - virtual_tree: 虚树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tree_hash_rooted: 有根树 Hash
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - dsu_on_tree: DSU on tree
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - btree_make_post_pi: 根据前序中序遍历构造后序遍历
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     comb:
     - gen_fact: 阶乘模序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_ifact: 阶乘逆模序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - binom: 二项式系数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - qbinom: Gauss 二项式系数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - exlucas: Lucas 定理(任意模数)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_derange: 错排数序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_stirling1_row: 第一类 Stirling 数序列(行)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_stirling1_col: 第一类 Stirling 数序列(列)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_stirling2_row: 第二类 Stirling 数序列(行)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_stirling2_col: 第二类 Stirling 数序列(列)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_bell: Bell 数序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_partition: 划分数序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_inv: 逆元序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_invseq: 序列逆元
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_pows: 幂次模序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_ipowi: 二次超幂序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_bernoulli: Bernoulli 数序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - stirling1_smallp: 第一类 Stirling 数(小模数)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - stirling2_smallp: 第二类 Stirling 数(小模数)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gen_ball_box_ii: 球与盒(球相同,盒相同)序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_dda: 球与盒(球不同,盒不同)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_ddm: 球与盒(球不同,盒不同,至多装一个球)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_ddl: 球与盒(球不同,盒不同,至少装一个球)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_ida: 球与盒(球相同,盒不同)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_idm: 球与盒(球相同,盒不同,至多装一个球)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_idl: 球与盒(球相同,盒不同,至少装一个球)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_dia: 球与盒(球不同,盒相同)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_dim: 球与盒(球不同,盒相同,至多装一个球)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_dil: 球与盒(球不同,盒相同,至少装一个球)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_iia: 球与盒(球相同,盒相同)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_iim: 球与盒(球相同,盒相同,至多装一个球)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ball_box_iil: 球与盒(球相同,盒相同,至少装一个球)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     nt:
     - euler_phi_u32: Euler 函数(32 位)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - euler_phi_u64: Euler 函数(64 位)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gcd_mpi: 高精度整数 GCD
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gcd_fp: 浮点数 GCD
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gcd: 整数 GCD
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lcm: 整数 LCM
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - exgcd: exGCD
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inv_gcd: 逆元与 GCD
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inverse: 逆元
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - crt_mod: 模 CRT
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - crt: CRT
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - is_prime: 素数判定
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - prime_seq: 素数序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lsieve: 线性筛
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lsieve_func: 用线性筛计算常用积性函数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lsieve2: 线性筛实现2
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - pfactors: 质因子
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - is_proot: 是否为原根
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - is_proot_nimber: 是否为原根(Nimber)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - proot: 原根
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - proot_gint: 原根(Gauss 整数)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - bsgs: 离散对数(BSGS)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - exbsgs: 离散对数(任意模数 BSGS)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - jacobi_sym: Jacobi 符号
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - qresidue: 二次剩余
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rgcd: 固定值域的 GCD
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - kth_root: K 次剩余
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - pi_min25: pi(n)(min25 筛)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - du_sieve: 杜教筛
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - min25_sieve: min25 筛
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - bsgs_nimber: Nimber BSGS
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - sbt: Stern--Brocot 树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - sqrfree_cnt: 无平方因子数计数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - period_fib: 模 Fibonacci 循环节
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - norm_fact: 二平方和分解
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     math:
     - div64: 64 位整数除法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - do_quot: 整除分块
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inversion: 逆序对计数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rational: 有理数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rational_approx: 有理数近似
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - frac_itv: 区间内分母最小的分数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gint: Gauss 整数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - eint: Eisenstein 整数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mint: 模整数类基类
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mint_2e61n1: 模整数类(固定,61-1)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mint_s30: 模整数类(静态,30)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mint_s63: 模整数类(静态,63)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mint_d31: 模整数类(动态,31)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mint_d63: 模整数类(动态,63)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mul_mod: 模乘法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - qpow_mod: 模快速幂
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - qpow: 快速幂
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - qtetra_mod: 模超幂
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - rpow: 固定底数和模数的快速幂
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - safe_mod: 数学意义下有符号整数取模
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - simpson: 自适应 Simpson 积分
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - kahan: Kahan 求和
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - debruijn: de Bruijn 序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mex: mex
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - isqrt: 平方根下取整
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ikth_root: k 次根下取整
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mpi: 高精度整数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fact_helper: 阶乘与阶乘逆辅助类
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - factl_helper: 大数阶乘与阶乘逆辅助类
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fact_mint: 快速阶乘取模
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - sum_ik_flist: 简单的自然数幂和函数列表
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - interp_newton_n2: Newton 插值(朴素实现)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - nim_prod: Nim 积
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - nimber: Nimber
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - trygub: Trygub number
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - exeuclid: 类 Euclid 算法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - min_mod_linear: 模线性变换最小值
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lagrange_interp0: Lagrange 插值(从 0 开始的连续样本点)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - sum_ipaf: sum_ipaf
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - series_ipaf: series_ipaf
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - berlekamp_massey: Berlekamp--Massey 算法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - nth_term_lrec: 线性递推数列的第 N 项
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ssts_pim_cnt: 子集和原像大小
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - youngt: Young 表
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - josephus: Josephus 问题
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     lalg:
     - mat: 矩阵
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - det_mat: 行列式
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ge_mat: Gauss 消元
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inv_mat: 逆矩阵
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - adj_mat: 伴随矩阵
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - merge_lr_mat: 横向合并
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - merge_ud_mat: 纵向合并
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - pow_mat: 矩阵快速幂
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - trans_mat: 转置
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - charpoly_mat: 特征多项式
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - uhb_mat: 转为上 Hessenberg 矩阵
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - hafnian_mat: 矩阵的 Hafnian
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - pfaffian_mat: 矩阵的 Pfaffian
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - leqs_solver: 求线性方程组的解和解空间
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - bitmat: 静态 Bool 矩阵
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - trans_bmat: 静态 Bool 矩阵转置
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mul_bmat: 静态 Bool 矩阵乘法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ge_bmat: 静态 Bool 矩阵 Gauss 消元
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inv_bmat: 静态 Bool 矩阵求逆
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - matsp: 稀疏矩阵
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - merge_lr_matsp: 稀疏矩阵横向合并
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - merge_ud_matsp: 稀疏矩阵纵向合并
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lfsr_bm: 寻找最短 LFSR
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - minpoly_rd_mat: 求矩阵的最小多项式(随机化算法)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - det_rd_mat: 求矩阵的行列式(随机化算法)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - sherman_morrison: Sherman--Morrison 公式
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - basis_z2: 异或线性基
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - basis_r: 实数线性基
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     conv:
     - fft_r2: 快速 Fourier 变换(Radix 2)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - fft_r3: 快速 Fourier 变换(Radix 3)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ntt: 数论变换
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ntt_doubling: NTT doubling
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_naive: 卷积(暴力)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_naive_mod: 卷积(暴力,mod)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_dft: 卷积(FFT 或 NTT)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_mval_dft: 卷积(多维,FFT 或 NTT)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_u64: 卷积(u64)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_mtt: 卷积(MTT)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_ntt_large: 卷积(NTT,二倍极限长度)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_3ntt: 卷积(三模 NTT)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_u128: 卷积(三模 NTT,高精度整数用)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_czt: 卷积(Chirp-Z 变换)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - convcyc_naive: 循环卷积(暴力)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - wht: Walsh Hadamard 变换
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_xor: 卷积(异或)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - zmt_subset: Zeta--M\"obius 变换(子集)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - zmt_supset: Zeta--M\"obius 变换(超集)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_subset: 卷积(子集)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_and: 卷积(并)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_or: 卷积(交)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - zmt_divisor: Zeta--M\"obius 变换(因数)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - zmt_multiple: Zeta--M\"obius 变换(倍数)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_gcd: 卷积(GCD)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_lcm: 卷积(LCM)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_minplus_cv: 卷积(min-plus,一个凸序列)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - conv_minplus_cv_cv: 卷积(min-plus,两个凸序列)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     poly:
     - poly: 多项式抽象类
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - polymtt: 多项式(基于 MTT)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - poly3ntt: 多项式(基于三模 NTT)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - polyntt: 多项式(基于 NTT)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - shl_fps: 多项式左移
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - shr_fps: 多项式右移
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - deriv_fps: 多项式导数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - int_fps: 多项式积分
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inv_fps: 多项式逆函数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - div_fps: 多项式整除
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - divmod_fps: 多项式除法与取模
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - exp_fps: 多项式 exp
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ln_fps: 多项式 ln
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - pow_fps: 多项式 pow
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - sqrt_fps: 多项式 sqrt
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cossin_fps: 多项式 cos 与 sin
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - asin_fps: 多项式 asin
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - atan_fps: 多项式 atan
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - czt_fps: 多项式 Chirp-Z 变换
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gcd_fps: 多项式 GCD
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - modinv_fps: 多项式逆元
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - interp_fps: 多项式快速插值
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - mpe_fps: 多项式多点求值
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - tsh_fps: 多项式单点平移
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ctsh_fps: 多项式连续点值平移
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ode_fps: 多项式 ODE
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - powem_fps: 多项式幂枚举
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - comp_fps: 多项式复合
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - compinv_fps: 多项式复合逆
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cbm2n_fps: 单项式基转 Newton 基
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - bostan_mori: Bostan--Mori 算法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - polysp: 多项式转稀疏多项式
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - inv_fpssp: 稀疏多项式逆函数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ln_fpssp: 稀疏多项式 ln
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - exp_fpssp: 稀疏多项式 exp
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - pow_fpssp: 稀疏多项式 pow
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - comp_fpssps: 集合幂级数复合
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - exp_fpssps: 集合幂级数 exp
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     str:
     - kmp: KMP
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - z_func: Z 函数(扩展 KMP)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - manacher: Manacher
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - hash_substr: 单模子串 Hash
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - hash_substr2: 双模子串 Hash
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - hash_substr_2d: 二维子串 Hash
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lcpf_hash: 子串 Hash 的最长公共前缀
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lcsf_hash: 子串 Hash 的最长公共后缀
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - suffix_array: 后缀数组
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - suffix_automaton: 后缀自动机
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - orthodox_ex_suffix_automaton: 广义后缀自动机(离线)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - ex_suffix_automaton: 广义后缀自动机
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - aho_corasick_automaton: AC 自动机
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lyndon: Lyndon 分解
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - trie: Trie
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - lcs_sa: 最长公共子串(后缀数组)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - run_hash: Run(子串 Hash)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - run_zfunc: Run(Z 函数)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     rand:
     - gen: 伪随机数生成器
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     edh:
     - base64: Base64
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - hash_splitmix64: Hash splitmix64
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - discretization: 离散化
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - huffman_tree: Huffman 树
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - garsia_wachs: Garsia--Wachs 算法
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - gray_code: Gray 码
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cantor: Cantor 展开
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cantor_inv: 逆 Cantor 展开
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cantor_seq2val: Cantor 展开序列转整数
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - cantor_val2seq: Cantor 展开整数转序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - prufer: Pr\"ufer 序列
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - prufer_inv: Pr\"ufer 序列逆
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - bwt: Burrows--Wheeler 变换
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - bwt_inv: Burrows--Wheeler 逆变换
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     game:
     - sudoku: 数独求解
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - npuzzle_data: N puzzle 数据类
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     fast:
     - rsort32: 32 位整数基数排序
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - str2uint_si64: 字符串转 u32
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - str2uint_mod: 字符串转整数(取模)
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - strhex2uint_si64: 16 进制字符串转 u32
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
     - u32tostrhex: u32 转 16 进制字符串
       code_ext: hpp
-      test_ext: cpp
+      usage_ext: cpp
 cheatsheets:
   nt-const: 初等数论常数表
   seqences: 常见数列
@@ -1471,7 +1471,7 @@ code_styles:
   HPP: cpp
   hxx: cpp
   tex: tex
-test_commands:
+run_usage_commands:
   cpp:
   - g++
   - -std=gnu++20

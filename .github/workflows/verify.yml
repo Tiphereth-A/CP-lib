@@ -8,7 +8,7 @@ on:
       - '.verify-helper/**'
       - 'include/**'
       - 'doc_md/**'
-      - 'test_cpverifier/**'
+      - 'test/**'
   pull_request:
     branches:
       - master
@@ -17,7 +17,7 @@ on:
       - '.verify-helper/**'
       - 'include/**'
       - 'doc_md/**'
-      - 'test_cpverifier/**'
+      - 'test/**'
   workflow_dispatch:
     inputs:
       ignore_prev_result:
@@ -51,8 +51,7 @@ jobs:
           include: |
                 include/
                 doc_md/
-                test_cpverifier/
-                test_cpverifier_huge/
+                test/
           exclude: |
                 libs/
                 .github/

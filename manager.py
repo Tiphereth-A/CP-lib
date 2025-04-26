@@ -86,9 +86,9 @@ def _gen_nbc():
                 _partitioned_doc_filename = load_from(
                     os.path.join(CONFIG.get_doc_dir(), chapter))
                 __dict: dict[str, str] = dict(_partitioned_code_filename)
-                _partitioned_test_filename = load_from(
-                    os.path.join(CONFIG.get_test_dir(), chapter))
-                for k, v in _partitioned_test_filename:
+                _partitioned_usage_filename = load_from(
+                    os.path.join(CONFIG.get_usage_dir(), chapter))
+                for k, v in _partitioned_usage_filename:
                     try:
                         _sections_generated.append(
                             Section(chapter, k, k, __dict.pop(k), v))
@@ -112,8 +112,8 @@ def _gen_nbc():
 
                 for section in sections:
                     f.writelines(latex_section(NameLaTeX(section.title)))
-                    code_filepath, doc_filepath, _, test_filepath = section.get_filenames(
-                        CONFIG.get_code_dir(), CONFIG.get_doc_dir(), CONFIG.get_cvdoc_dir(), CONFIG.get_test_dir())
+                    code_filepath, doc_filepath, _, usage_filepath = section.get_filenames(
+                        CONFIG.get_code_dir(), CONFIG.get_doc_dir(), CONFIG.get_cvdoc_dir(), CONFIG.get_usage_dir())
                     f.writelines(latex_input(PathLaTeX(doc_filepath)))
                     if section.code_ext == 'hpp':
                         f.writelines(latex_listing_code_range(PathLaTeX(code_filepath), CONFIG.get_code_style(
@@ -121,11 +121,11 @@ def _gen_nbc():
                     else:
                         f.writelines(latex_listing_code(
                             PathLaTeX(code_filepath), CONFIG.get_code_style(section.code_ext)))
-                    if CONFIG.export_testcode_in_notebook():
-                        if not os.path.getsize(test_filepath):
+                    if CONFIG.export_usage_code_in_notebook():
+                        if not os.path.getsize(usage_filepath):
                             continue
                         f.writelines(latex_listing_code(
-                            PathLaTeX(test_filepath), CONFIG.get_code_style(section.test_ext)))
+                            PathLaTeX(usage_filepath), CONFIG.get_code_style(section.usage_ext)))
 
     @withlog
     def load_from(dir_name: str, **kwargs) -> list[tuple[str, str]]:
@@ -179,16 +179,16 @@ def _gen_csc():
     generate_cheatsheet_contents()
 
 
-@cli.command('test')
+@cli.command('run-usage')
 @click.option('-t', '--code-type', help='Code type, default: cpp', default='cpp')
 @click.option('-l', '--thlimit', type=int, default=8, help='Thread number limit, default 8')
-def _test(code_type: str, thlimit: int):
-    """Run test codes"""
+def _run_usage(code_type: str, thlimit: int):
+    """Run usage codes"""
 
     @withlog
-    def run_test_codes(_code_type: str, _thlimit: int, **kwargs):
+    def run_usage_codes(_code_type: str, _thlimit: int, **kwargs):
         all_files: list[str] = list(filter(lambda x: os.path.getsize(x), get_full_filenames(
-            [CONFIG.get_test_dir()], CONFIG.get_ext_names_by_code_style(_code_type))))
+            [CONFIG.get_usage_dir()], CONFIG.get_ext_names_by_code_style(_code_type))))
 
         kwargs.get('logger').info(f'{len(all_files)} file(s) found')
 
@@ -196,7 +196,8 @@ def _test(code_type: str, thlimit: int):
             for filepath in filepaths:
                 kwargs.get('logger').debug(
                     f'Thread #{id}: Compiling {filepath}')
-                cmd: list[str] = CONFIG.get_test_command(_code_type, filepath)
+                cmd: list[str] = CONFIG.get_run_usage_command(
+                    _code_type, filepath)
                 subprocess.run(cmd, encoding='utf8', check=True)
 
         thread_all: list[Thread] = [Thread(target=single_process, args=(
@@ -208,19 +209,19 @@ def _test(code_type: str, thlimit: int):
 
         kwargs.get('logger').info('Finished')
 
-    run_test_codes(code_type, thlimit)
+    run_usage_codes(code_type, thlimit)
 
 
 @cli.command('run')
 @click.option('--no-fmt', is_flag=True, help='Do not lint codes before compile')
-@click.option('--no-test', is_flag=True, help='Do not run test codes before compile')
+@click.option('--no-run-usage', is_flag=True, help='Do not run test usage codes before compile')
 @click.option('--no-gen', is_flag=True, help='Do not generate content before compile')
 @click.option('--no-clean', is_flag=True, help='Do not clean files after compile')
-def _compile(no_fmt: bool, no_test: bool, no_gen: bool, no_clean: bool):
+def _compile(no_fmt: bool, no_run_usage: bool, no_gen: bool, no_clean: bool):
     """Compile notebook"""
 
     @withlog
-    def compile_all(_no_fmt: bool, _no_test: bool, _no_gen: bool, _no_clean: bool, **kwargs):
+    def compile_all(_no_fmt: bool, _no_run_usage: bool, _no_gen: bool, _no_clean: bool, **kwargs):
         cnt: int = 0
         for procedure in LATEX_COMPILE_COMMAND_GROUP:
             now_proc: list[str] = procedure(CONFIG.get_notebook_file())
@@ -235,15 +236,20 @@ def _compile(no_fmt: bool, no_test: bool, no_gen: bool, no_clean: bool):
         for code_style in CONFIG.get_all_code_styles():
             _format.callback(code_style)
 
-    if not no_test:
+    if not no_run_usage:
         for code_style in CONFIG.get_all_code_styles():
-            _test.callback(code_style, 8)
+            _run_usage.callback(code_style, 8)
 
     if not no_gen:
         _gen_nbc.callback()
         _gen_csc.callback()
+    else:
+        with open(CONTENTS_NB, 'a', encoding='utf8'):
+            pass
+        with open(CONTENTS_CS, 'a', encoding='utf8'):
+            pass
 
-    compile_all(no_fmt, no_test, no_gen, no_clean)
+    compile_all(no_fmt, no_run_usage, no_gen, no_clean)
 
     if not no_clean:
         _clean.callback()
@@ -259,7 +265,7 @@ def _format(code_type: str):
         filepaths: list[str] = get_full_filenames([CONFIG.get_code_dir(),
                                                    CONFIG.get_doc_dir(),
                                                    CONFIG.get_cheatsheet_dir(),
-                                                   CONFIG.get_test_dir()],
+                                                   CONFIG.get_usage_dir()],
                                                   CONFIG.get_ext_names_by_code_style(_code_type))
         kwargs.get('logger').info(f"{len(filepaths)} file(s) found")
         for filepath in filepaths:
@@ -278,28 +284,28 @@ def _format(code_type: str):
 @click.option('-s', '--section-title', type=str, prompt='Section title', help='Section title in notebook')
 @click.option('-e', '--code-ext-name', type=str, prompt='Ext name of code file', help='Ext name of code file',
               default='hpp')
-@click.option('-t', '--test-ext-name', type=str, prompt='Ext name of test file', help='Ext name of test file',
+@click.option('-u', '--usage-ext-name', type=str, prompt='Ext name of usage file', help='Ext name of usage file',
               default='cpp')
 def _new_note(chapter_name: str, file_name: str, section_title: str, code_ext_name: str,
-              test_ext_name: str):
+              usage_ext_name: str):
     """Add new note"""
 
     @withlog
     def add_new_note(_chapter_name: str, _file_name: str, _section_title: str,
-                     _code_ext_name: str, _test_ext_name: str, **kwargs):
+                     _code_ext_name: str, _usage_ext_name: str, **kwargs):
         section: Section = Section(
-            _chapter_name, _file_name, _section_title, _code_ext_name, _test_ext_name)
+            _chapter_name, _file_name, _section_title, _code_ext_name, _usage_ext_name)
 
         _, _, f_cvdoc, _ = section.open(CONFIG.get_code_dir(), CONFIG.get_doc_dir(),
-                                        CONFIG.get_cvdoc_dir(), CONFIG.get_test_dir(), 'x')
+                                        CONFIG.get_cvdoc_dir(), CONFIG.get_usage_dir(), 'x')
         kwargs.get('logger').info('Created')
 
-        _code, _doc, _cvdoc, _test = section.get_filenames(CONFIG.get_code_dir(), CONFIG.get_doc_dir(),
-                                                           CONFIG.get_cvdoc_dir(), CONFIG.get_test_dir())
+        _code, _doc, _cvdoc, _usage = section.get_filenames(CONFIG.get_code_dir(), CONFIG.get_doc_dir(),
+                                                            CONFIG.get_cvdoc_dir(), CONFIG.get_usage_dir())
         kwargs.get('logger').info(f"Code: {os.path.join(os.curdir, _code)}")
         kwargs.get('logger').info(f"Doc: {os.path.join(os.curdir, _doc)}")
         kwargs.get('logger').info(f"CVDoc: {os.path.join(os.curdir, _cvdoc)}")
-        kwargs.get('logger').info(f"Test: {os.path.join(os.curdir, _test)}")
+        kwargs.get('logger').info(f"Usage: {os.path.join(os.curdir, _usage)}")
 
         CONFIG.append_section(section)
         kwargs.get('logger').info('Config updated')
@@ -315,12 +321,12 @@ documentation_of: {_fixed_codepath}
         f_cvdoc.write(_cvdoc_content)
 
     add_new_note(chapter_name, file_name, section_title,
-                 code_ext_name, test_ext_name)
+                 code_ext_name, usage_ext_name)
 
 
 @cli.command('gentc')
 @click.option('-s', '--source-dir', help='Source dir', default='meta_test')
-@click.option('-t', '--target-dir', help='Target dir', default='test_cpverifier')
+@click.option('-t', '--target-dir', help='Target dir', default='test')
 def _generate_testcode(source_dir: str, target_dir: str):
     """Generate test codes from test matrices"""
 

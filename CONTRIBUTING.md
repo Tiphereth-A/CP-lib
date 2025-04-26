@@ -17,7 +17,7 @@ You should use Simplified Chinese in:
 - `*.tex`
 - `cheatsheet/*`
 - `doc_tex/*`
-- `test_tinplate/*`
+- `usage/*`
 
 You should use English in:
 
@@ -25,7 +25,7 @@ You should use English in:
 - `include/*`
 - `doc_md/*`
 - `meta_test/*`
-- `test_cpverifier/*`
+- `test/*`
 
 If you have any trouble with this, please feel free to ask owner for help! ;)
 
@@ -42,19 +42,19 @@ Options:
   --help                          Show this message and exit.
 
 Commands:
-  clean   Clean up nonessential files during PDF building
-  fmt     Lint all codes
-  gen-cs  Generate cheatsheet contents
-  gen-nb  Generate notebook contents
-  gentc   Generate test codes from test matrices
-  new     Add new note
-  run     Compile notebook
-  test    Run test codes
+  clean      Clean up nonessential files during PDF building
+  fmt        Lint all codes
+  gen-cs     Generate cheatsheet contents
+  gen-nb     Generate notebook contents
+  gentc      Generate test codes from test matrices
+  new        Add new note
+  run        Compile notebook
+  run-usage  Run usage codes
 ```
 
 If you want to add a new implementation, it is recommended to run `python manager.py new` and fill the required information, which will generate needed files automatically.
 
-After you finished your changes, you can run `python manager.py run` to generate the printable document. This will lint all supported codes, compile codes in `test_tinplate/*`, link all TeX files for building PDF, and clean nonessential files after building. You can disable any procedure by options listed in help messages.
+After you finished your changes, you can run `python manager.py run` to generate the printable document. This will lint all supported codes, compile codes in `usage/*`, link all TeX files for building PDF, and clean nonessential files after building. You can disable any procedure by options listed in help messages.
 
 ## Directoies
 
