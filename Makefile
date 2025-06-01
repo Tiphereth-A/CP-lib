@@ -1,4 +1,4 @@
-SRCDIRS := usage test_cpverifier
+SRCDIRS := usage test
 SOURCES := $(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*/*.cpp))
 OBJECTS := $(SOURCES:.cpp=.o)
 
