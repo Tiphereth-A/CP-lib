@@ -4,6 +4,7 @@
 
 #include "../../include/io/ios_container.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
@@ -13,8 +14,8 @@ int main() {
   auto c2 = c1;
   for (auto &i : c2)
     for (auto &j : i) j = -j;
-  std::cout << tifa_libs::graph::hungarian(c1).back() << '\n';
-  std::cout << -tifa_libs::graph::hungarian(c2).back() << '\n';
+  std::cout << graph::hungarian(c1).back() << '\n';
+  std::cout << -graph::hungarian(c2).back() << '\n';
 }
 
 /*

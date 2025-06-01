@@ -6,10 +6,11 @@
 #include "../../include/math/mint_s30.hpp"
 #include "../../include/math/qpow.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 1'000'000'000 + 7>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s30, 1'000'000'000 + 7>;
 
 mint f(u64 p, u64 c) {
-  auto _ = tifa_libs::math::qpow(mint(p), c);
+  auto _ = math::qpow(mint(p), c);
   return _ * (_ - 1);
 }
 
@@ -17,7 +18,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;
-  tifa_libs::math::min25_sieve<mint, f> min25(n);
+  math::min25_sieve<mint, f> min25(n);
   auto h1 = min25.sum_pk(1), h2 = min25.sum_pk(2);
   flt_ (u32, i, 1, (u32)h2.size()) h2[i] -= h1[i];
   std::cout << min25.run(h2) << '\n';

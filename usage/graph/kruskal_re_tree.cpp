@@ -5,6 +5,7 @@
 #include "../../include/tree/dfs_info.hpp"
 #include "../../include/tree/tree_sumvw.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, q;
@@ -14,11 +15,11 @@ int main() {
   vec<edge_tu> e(m);
   for (auto& [w, u, v] : e) std::cin >> u >> v >> w, --u, --v;
   std::ranges::sort(e);
-  auto [tr, ew] = tifa_libs::graph::kruskal_re_tree(e, n);
+  auto [tr, ew] = graph::kruskal_re_tree(e, n);
   n = (u32)tr.g.size();
-  tifa_libs::graph::tree_dfs_info<tifa_libs::graph::tree, tifa_libs::graph::tdi_go> info(tr);
+  graph::tree_dfs_info<graph::tree, graph::tdi_go> info(tr);
   nw.resize(n);
-  auto sum_node_w = tifa_libs::graph::tree_sumvw(tr, nw);
+  auto sum_node_w = graph::tree_sumvw(tr, nw);
   while (q--) {
     u32 x, k;
     std::cin >> x >> k, --x;

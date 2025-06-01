@@ -2,6 +2,7 @@
 
 #include "../../include/str/kmp.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s, p, _;
@@ -11,6 +12,6 @@ int main() {
       if (isalpha(c)) c = (char)tolower(c);
     (s += _) += ' ';
   }
-  std::cout << tifa_libs::str::kmp(' ' + p + ' ', ' ' + s + ' ').size() << '\n';
+  std::cout << str::kmp(' ' + p + ' ', ' ' + s + ' ').size() << '\n';
   return 0;
 }

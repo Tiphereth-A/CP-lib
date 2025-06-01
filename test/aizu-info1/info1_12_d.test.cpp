@@ -2,11 +2,12 @@
 
 #include "../../include/ds/fenwick_2d.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, q;
   std::cin >> n >> m >> q;
-  tifa_libs::ds::fenwick2d<i32> tr(n + 3, m + 3);
+  ds::fenwick2d<i32> tr(n + 3, m + 3);
   for (u32 i = 0, a, b, c, d; i < q; ++i) {
     std::cin >> a >> b >> c >> d;
     tr.add(a + 1, b + 1, c + 2, d + 2, 1);

@@ -7,8 +7,9 @@
 #include "../../include/geo2d/intan_cc.hpp"
 #include "../../include/geo2d/point.hpp"
 
-using point = tifa_libs::geo::point<double>;
-using circ = tifa_libs::geo::circle<double>;
+using namespace tifa_libs;
+using point = geo::point<double>;
+using circ = geo::circle<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -25,7 +26,7 @@ int main() {
     ans.push_back(inl.value().first.l);
     ans.push_back(inl.value().second.l);
   }
-  ans = tifa_libs::uniq(ans);
+  ans = uniq(ans);
   for (auto &i : ans) std::cout << i << '\n';
   return 0;
 }

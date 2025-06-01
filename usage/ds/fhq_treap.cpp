@@ -2,11 +2,12 @@
 
 #include "../../include/ds/fhq_treap.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  tifa_libs::ds::fhq_treap<i32> treap;
+  ds::fhq_treap<i32> treap;
   for (u32 i = 0, opt; i < n; ++i) {
     i32 x;
     std::cin >> opt >> x;

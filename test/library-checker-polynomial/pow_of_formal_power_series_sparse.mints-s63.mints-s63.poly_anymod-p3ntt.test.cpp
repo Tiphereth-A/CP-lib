@@ -5,17 +5,20 @@
 #include "../../include/io/fastout.hpp"
 #include "../../include/poly/pow_fpssp.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_s63.hpp"
 #include "../../include/poly/poly3ntt.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s63, MOD>;
-using mint_p3ntt1 = tifa_libs::math::mint<tifa_libs::math::mint_s63, 167772161>;
-using mint_p3ntt2 = tifa_libs::math::mint<tifa_libs::math::mint_s63, 469762049>;
-using mint_p3ntt3 = tifa_libs::math::mint<tifa_libs::math::mint_s63, 754974721>;
-using poly = tifa_libs::math::poly3ntt<mint, mint_p3ntt1, mint_p3ntt2, mint_p3ntt3>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s63, MOD>;
+using namespace tifa_libs;
+using mint_p3ntt1 = math::mint<math::mint_s63, 167772161>;
+using mint_p3ntt2 = math::mint<math::mint_s63, 469762049>;
+using mint_p3ntt3 = math::mint<math::mint_s63, 754974721>;
+using poly = math::poly3ntt<mint, mint_p3ntt1, mint_p3ntt2, mint_p3ntt3>;
 
 int main() {
   u32 n, k;

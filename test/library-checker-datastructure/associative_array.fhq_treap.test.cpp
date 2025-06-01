@@ -2,11 +2,12 @@
 
 #include "../../include/ds/fhq_treap.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 q;
   std::cin >> q;
-  tifa_libs::ds::fhq_treap<pttuu> tr;
+  ds::fhq_treap<pttuu> tr;
   for (u64 i = 0, op, k, v; i < q; ++i) {
     std::cin >> op >> k;
     auto it = tr.prev({k, UINT64_MAX});

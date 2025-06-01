@@ -2,6 +2,7 @@
 
 #include "../../include/enum/enum_supset.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, k;
@@ -11,8 +12,8 @@ int main() {
     std::cin >> x;
     b |= 1 << x;
   }
-  tifa_libs::enum_supset<>::set(b, n);
-  for (auto i : tifa_libs::enum_supset<>{}) {
+  enum_supset<>::set(b, n);
+  for (auto i : enum_supset<>{}) {
     std::cout << i << ":";
     flt_ (u32, j, 0, n)
       if ((i >> j) & 1) std::cout << ' ' << j;

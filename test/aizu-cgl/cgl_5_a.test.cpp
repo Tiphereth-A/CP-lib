@@ -4,7 +4,8 @@
 #include "../../include/geo2d/min_dis_ps.hpp"
 #include "../../include/geo2d/point.hpp"
 
-using point = tifa_libs::geo::point<double>;
+using namespace tifa_libs;
+using point = geo::point<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -13,7 +14,7 @@ int main() {
   std::cin >> n;
   vec<point> vp(n);
   for (auto &i : vp) std::cin >> i;
-  auto [l, r] = tifa_libs::geo::min_dis_Ps(vp);
-  std::cout << tifa_libs::geo::dist_PP(vp[l], vp[r]) << '\n';
+  auto [l, r] = geo::min_dis_Ps(vp);
+  std::cout << geo::dist_PP(vp[l], vp[r]) << '\n';
   return 0;
 }

@@ -5,6 +5,7 @@
 #include "../../include/graph/kirchhoff.hpp"
 #include "../../include/lalg/ge_mat.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin

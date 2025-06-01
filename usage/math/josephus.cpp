@@ -2,13 +2,14 @@
 
 #include "../../include/math/josephus.hpp"
 
+using namespace tifa_libs;
 int main() {
   u32 t_;
   std::cin >> t_;
   flt_ (u32, kase, 1, t_ + 1) {
     u64 n, m, k;
     std::cin >> n >> m >> k;
-    std::cout << "Case #" << kase << ": " << tifa_libs::math::Josephus(n, k, m) + 1 << '\n';
+    std::cout << "Case #" << kase << ": " << math::Josephus(n, k, m) + 1 << '\n';
   }
 }
 

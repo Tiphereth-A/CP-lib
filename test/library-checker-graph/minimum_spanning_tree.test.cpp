@@ -4,6 +4,7 @@
 #include "../../include/graph/kruskal.hpp"
 #include "../../include/io/ios_container.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
@@ -16,7 +17,7 @@ int main() {
     id[{u, v, w}] = id[{v, u, w}] = ++cnt;
   }
   std::ranges::sort(e);
-  auto tr = tifa_libs::graph::kruskal(e, n);
+  auto tr = graph::kruskal(e, n);
   u64 ret = 0;
   vecu es;
   flt_ (u32, i, 0, n)
@@ -25,6 +26,6 @@ int main() {
       es.push_back(id[{i, to, w}] - 1);
     }
   std::cout << ret / 2 << '\n'
-            << tifa_libs::uniq(es) << '\n';
+            << uniq(es) << '\n';
   return 0;
 }

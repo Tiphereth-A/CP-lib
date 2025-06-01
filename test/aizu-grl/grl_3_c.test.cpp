@@ -2,16 +2,17 @@
 
 #include "../../include/graph/kosaraju.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  tifa_libs::graph::alist g(n);
+  graph::alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     g.add_arc(u, v);
   }
-  tifa_libs::graph::kosaraju scc(g);
+  graph::kosaraju scc(g);
   u32 q;
   std::cin >> q;
   for (u32 i = 0, u, v; i < q; ++i) {

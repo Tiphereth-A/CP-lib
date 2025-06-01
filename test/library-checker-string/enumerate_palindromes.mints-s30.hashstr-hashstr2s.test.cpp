@@ -3,16 +3,19 @@
 
 #include "../../include/util/alias_num.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_s30.hpp"
 #include "../../include/str/hash_substr2.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
-using mint0 = tifa_libs::math::mint<tifa_libs::math::mint_s30, 998244353>;
-using mint1 = tifa_libs::math::mint<tifa_libs::math::mint_s30, 1000000007>;
-using hashstr = tifa_libs::str::hash_substr2<mint0, mint1>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s30, MOD>;
+using namespace tifa_libs;
+using mint0 = math::mint<math::mint_s30, 998244353>;
+using mint1 = math::mint<math::mint_s30, 1000000007>;
+using hashstr = str::hash_substr2<mint0, mint1>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

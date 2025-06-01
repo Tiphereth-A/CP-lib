@@ -2,6 +2,7 @@
 
 #include "../../include/graph/kruskal.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
@@ -15,7 +16,7 @@ int main() {
       edges.emplace_back(x, i, j);
     }
   std::ranges::sort(edges);
-  auto res = tifa_libs::graph::kruskal(edges, n);
+  auto res = graph::kruskal(edges, n);
   u64 w = 0;
   flt_ (u32, i, 0, n)
     for (auto [to, v] : res.g[i]) w += v;

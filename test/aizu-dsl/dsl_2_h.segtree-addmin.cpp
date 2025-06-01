@@ -2,11 +2,12 @@
 
 #include "../../include/ds/segtree_ctor.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  auto tr = tifa_libs::ds::segtl_addmin_ctor<i32>(INT32_MAX, veci(n));
+  auto tr = ds::segtl_addmin_ctor<i32>(INT32_MAX, veci(n));
   flt_ (u32, i, 0, q) {
     u32 op, u, v;
     i32 w;

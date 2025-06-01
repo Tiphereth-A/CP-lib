@@ -2,11 +2,12 @@
 
 #include "../../include/ds/kdtree.hpp"
 
+using namespace tifa_libs;
 int op(int x, int y) { return x + y; }
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  tifa_libs::ds::KDtree<int, op> kdt(1897);
+  ds::KDtree<int, op> kdt(1897);
   using point_t = decltype(kdt)::point;
   u32 n;
   std::cin >> n;

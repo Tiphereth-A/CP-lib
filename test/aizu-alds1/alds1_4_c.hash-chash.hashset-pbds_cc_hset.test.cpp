@@ -4,8 +4,10 @@
 #include "../../include/util/alias_others.hpp"
 //
 
+using namespace tifa_libs;
 template <class T>
 using hashfunc_t = chash<T>;
+using namespace tifa_libs;
 template <class T>
 using hashset = __gnu_pbds::cc_hash_table<T, __gnu_pbds::null_type, std::conditional_t<std::is_void_v<hashfunc_t<T>>, typename __gnu_pbds::detail::default_hash_fn<T>::type, hashfunc_t<T>>>;
 

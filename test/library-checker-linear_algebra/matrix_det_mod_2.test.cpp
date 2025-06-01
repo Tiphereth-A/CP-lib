@@ -3,8 +3,9 @@
 #include "../../include/lalg/bitmat.hpp"
 #include "../../include/lalg/ge_bmat.hpp"
 
+using namespace tifa_libs;
 template <usz N>
-using mat = tifa_libs::math::bitmat<N>;
+using mat = math::bitmat<N>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -14,8 +15,8 @@ int main() {
 #define DO(num)                                       \
   if (n <= num) {                                     \
     mat<num> bm;                                      \
-    tifa_libs::math::read_bitmat(std::cin, bm, n, n); \
-    auto rk = tifa_libs::math::ge_bmat(bm, false);    \
+    math::read_bitmat(std::cin, bm, n, n); \
+    auto rk = math::ge_bmat(bm, false);    \
     std::cout << (rk == n) << '\n';                   \
     return 0;                                         \
   }

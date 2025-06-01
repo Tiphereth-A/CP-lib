@@ -2,8 +2,9 @@
 
 #include "../../include/geo2d/cvh.hpp"
 
-using point = tifa_libs::geo::point<f128>;
-using cvh = tifa_libs::geo::cvh<f128>;
+using namespace tifa_libs;
+using point = geo::point<f128>;
+using cvh = geo::cvh<f128>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

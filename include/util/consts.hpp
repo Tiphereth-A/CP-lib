@@ -3,6 +3,7 @@
 
 #include "alias_num.hpp"
 
+namespace tifa_libs {
 using std::numbers::pi_v;
 template <std::floating_point FP>
 inline FP eps_v = std::sqrt(std::numeric_limits<FP>::epsilon());
@@ -12,5 +13,6 @@ CEXP u32 TIME = ((__TIME__[0] & 15) << 20) | ((__TIME__[1] & 15) << 16) | ((__TI
 
 inline const auto fn_0 = [](auto&&...) NE {};
 inline const auto fn_is0 = [](auto x) NE { return x == 0; };
+}  // namespace tifa_libs
 
 #endif

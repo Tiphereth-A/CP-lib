@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/general_weighted_matching/"
 
 #include "../../include/graph/blossomw.hpp"
-// https://judge.yosupo.jp/submission/201948
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  tifa_libs::graph::blossomw<i64> bl(n);
+  graph::blossomw<i64> bl(n);
   for (u32 i = 0, u, v, w; i < m; ++i) {
     std::cin >> u >> v >> w;
     bl.add_edge(u + 1, v + 1, w);

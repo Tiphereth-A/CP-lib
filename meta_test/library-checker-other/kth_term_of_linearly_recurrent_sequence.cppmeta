@@ -3,6 +3,7 @@
 #include "../../include/io/ios_container.hpp"
 #include "../../include/math/nth_term_lrec.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin

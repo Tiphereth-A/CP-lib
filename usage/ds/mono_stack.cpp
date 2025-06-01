@@ -2,6 +2,7 @@
 
 #include "../../include/ds/mono_stack.hpp"
 
+using namespace tifa_libs;
 vecu a;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -11,7 +12,7 @@ int main() {
   a.resize(n);
   for (auto& i : a) std::cin >> i;
   auto f = [](u32 l, u32 r) { return a[l] >= a[r]; };
-  tifa_libs::ds::mono_stack<u32, decltype(f)> stk;
+  ds::mono_stack<u32, decltype(f)> stk;
   for (u32 i = n - 1; ~i; --i) {
     stk.pop_greater(i);
     ans[i] = stk.size() ? stk.top() + 1 : 0;

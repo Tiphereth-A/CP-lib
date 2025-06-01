@@ -4,8 +4,10 @@
 #include "../../include/util/alias_others.hpp"
 //
 
+using namespace tifa_libs;
 template <class>
 using hashfunc_t = void;
+using namespace tifa_libs;
 template <class K, class V>
 using hashmap = std::unordered_map<K, V, std::conditional_t<std::is_void_v<hashfunc_t<K>>, std::hash<K>, hashfunc_t<K>>>;
 

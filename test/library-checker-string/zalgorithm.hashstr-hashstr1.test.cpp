@@ -5,14 +5,16 @@
 #include "../../include/io/fastout.hpp"
 #include "../../include/str/lcpf_hash.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_2e61n1.hpp"
 #include "../../include/str/hash_substr.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_2e61n1>;
-using hashstr = tifa_libs::str::hash_substr<mint>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_2e61n1>;
+using hashstr = str::hash_substr<mint>;
 
 int main() {
   strn s;

@@ -3,6 +3,8 @@
 
 #include "util.hpp"
 
+namespace tifa_libs {
+
 #define mk_(w, t) \
   using w = t;    \
   CEXP w operator""_##w(unsigned long long x) NE { return (w)x; }
@@ -13,5 +15,7 @@ using u128 = __uint128_t;
 using f32 = float;
 using f64 = double;
 using f128 = long double;
+
+}  // namespace tifa_libs
 
 #endif

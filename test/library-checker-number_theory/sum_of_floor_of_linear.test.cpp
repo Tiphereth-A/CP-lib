@@ -2,6 +2,7 @@
 
 #include "../../include/math/exeuclid.hpp"
 
+using namespace tifa_libs;
 template <class T>
 struct exeuclid_node {
   T u, r;
@@ -18,7 +19,7 @@ int main() {
   while (t--) {
     u32 n, m, a, b;
     std::cin >> n >> m >> a >> b;
-    std::cout << tifa_libs::math::exeuclid<exeuclid_node<u64>>(a, m, b, n - 1, u, r).f + b / m << '\n';
+    std::cout << math::exeuclid<exeuclid_node<u64>>(a, m, b, n - 1, u, r).f + b / m << '\n';
   }
   return 0;
 }

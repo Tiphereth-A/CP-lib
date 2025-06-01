@@ -3,6 +3,7 @@
 #include "../../include/io/ios_container.hpp"
 #include "../../include/opt/lis.hpp"
 
+using namespace tifa_libs;
 CEXP u32 inf = 1145141919;
 
 int main() {
@@ -11,7 +12,7 @@ int main() {
   std::cin >> n;
   vecu a(n);
   std::cin >> a;
-  auto res = tifa_libs::opt::lis(a, inf);
+  auto res = opt::lis(a, inf);
   std::cout << res.size() << '\n'
             << res << '\n';
   return 0;

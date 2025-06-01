@@ -3,6 +3,8 @@
 
 #include <bits/extc++.h>
 
+namespace tifa_libs {
+
 #define CEXP constexpr
 #define CEXPE constexpr explicit
 #define CR const&
@@ -18,9 +20,10 @@
 
 using namespace std::ranges;
 using namespace std::literals;
-namespace tifa_libs {
+
 template <class T>
 CEXP T abs(T x) NE { return x < 0 ? -x : x; }
+
 }  // namespace tifa_libs
 
 #endif

@@ -4,13 +4,14 @@
 #include "../../include/geo2d/tcenter_i.hpp"
 #include "../../include/geo2d/triangle.hpp"
 
-using tri = tifa_libs::geo::triangle<double>;
+using namespace tifa_libs;
+using tri = geo::triangle<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(12);
   tri t;
   std::cin >> t;
-  std::cout << tifa_libs::geo::center_I(t) << ' ' << tifa_libs::geo::radius_I(t) << '\n';
+  std::cout << geo::center_I(t) << ' ' << geo::radius_I(t) << '\n';
   return 0;
 }

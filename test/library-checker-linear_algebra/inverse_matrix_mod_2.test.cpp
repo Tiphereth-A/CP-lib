@@ -2,8 +2,9 @@
 
 #include "../../include/lalg/inv_bmat.hpp"
 
+using namespace tifa_libs;
 template <usz N>
-using mat = tifa_libs::math::bitmat<N>;
+using mat = math::bitmat<N>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -13,9 +14,9 @@ int main() {
 #define DO(num)                                                                             \
   if (n <= num) {                                                                           \
     mat<num> bm;                                                                            \
-    tifa_libs::math::read_bitmat(std::cin, bm, n, n);                                       \
-    if (auto res = tifa_libs::math::inv_bmat(bm, n); !res.has_value()) std::cout << "-1\n"; \
-    else tifa_libs::math::print_bitmat(std::cout, res.value(), n, n);                       \
+    math::read_bitmat(std::cin, bm, n, n);                                       \
+    if (auto res = math::inv_bmat(bm, n); !res.has_value()) std::cout << "-1\n"; \
+    else math::print_bitmat(std::cout, res.value(), n, n);                       \
     return 0;                                                                               \
   }
 

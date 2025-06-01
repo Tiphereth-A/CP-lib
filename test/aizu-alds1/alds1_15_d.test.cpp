@@ -2,6 +2,7 @@
 
 #include "../../include/edh/huffman_tree.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s;
@@ -21,7 +22,7 @@ int main() {
       std::cout << w[0] + w[1] << "\n";
     return 0;
   }
-  tifa_libs::huffman<u32> hf(w);
+  huffman<u32> hf(w);
   auto x = hf.encode();
   u64 ans = 0;
   flt_ (u32, i, 0, (u32)w.size()) ans += w[i] * x[i].size();

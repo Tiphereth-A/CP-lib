@@ -3,12 +3,14 @@
 
 #include "../../include/math/qpow.hpp"
 
+using namespace tifa_libs;
 CEXP u64 MOD = 1'000'000'007;
 
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_d63.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_d63, __LINE__>;
 
 int main() {
   mint::set_mod(MOD);

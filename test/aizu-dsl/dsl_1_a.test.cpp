@@ -2,11 +2,12 @@
 
 #include "../../include/ds/dsu_basic.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  tifa_libs::ds::dsu_basic dsu(n);
+  ds::dsu_basic dsu(n);
   flt_ (u32, i, 0, q) {
     u32 op, u, v;
     std::cin >> op >> u >> v;

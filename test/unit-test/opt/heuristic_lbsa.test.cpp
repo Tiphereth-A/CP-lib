@@ -5,6 +5,7 @@
 
 #include "../base.hpp"
 
+using namespace tifa_libs;
 using point_t = ptti;
 
 vec<point_t> parse_tsp_data(strn CR name) {
@@ -60,7 +61,7 @@ void test(const char* const name, double optimal, u32 L, double p0, u32 K, u32 M
   vecu seq(points.size());
   std::iota(seq.begin(), seq.end(), 0);
   // std::shuffle(seq.begin(), seq.end(), std::mt19937(time(nullptr)));
-  tifa_libs::opt::heuristic_lbsa<vecu, decltype(f)> sa(f, seq, L, p0);
+  opt::heuristic_lbsa<vecu, decltype(f)> sa(f, seq, L, p0);
   auto [f_solution, solution] = sa(K, M);
 
   {
@@ -73,23 +74,23 @@ void test(const char* const name, double optimal, u32 L, double p0, u32 K, u32 M
 }
 
 int main() {
-  auto tcase = tifa_libs::unittest::pre_test();
+  auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test("bcl380", 1621, 120, .27, 1000, 380, .2); break;
-    case tifa_libs::unittest::ts_example_01: test("xql662", 2513, 120, .19, 1000, 662, .2); break;
-    case tifa_libs::unittest::ts_random_00: break;
-    case tifa_libs::unittest::ts_random_01: break;
-    case tifa_libs::unittest::ts_random_02: break;
-    case tifa_libs::unittest::ts_random_03: break;
-    case tifa_libs::unittest::ts_random_04: break;
-    case tifa_libs::unittest::ts_random_05: break;
-    case tifa_libs::unittest::ts_random_06: break;
-    case tifa_libs::unittest::ts_random_07: break;
-    case tifa_libs::unittest::ts_random_08: break;
-    case tifa_libs::unittest::ts_random_09: break;
+    case unittest::ts_example_00: test("bcl380", 1621, 120, .27, 1000, 380, .2); break;
+    case unittest::ts_example_01: test("xql662", 2513, 120, .19, 1000, 662, .2); break;
+    case unittest::ts_random_00: break;
+    case unittest::ts_random_01: break;
+    case unittest::ts_random_02: break;
+    case unittest::ts_random_03: break;
+    case unittest::ts_random_04: break;
+    case unittest::ts_random_05: break;
+    case unittest::ts_random_06: break;
+    case unittest::ts_random_07: break;
+    case unittest::ts_random_08: break;
+    case unittest::ts_random_09: break;
     default: break;
   }
 
-  tifa_libs::unittest::post_test();
+  unittest::post_test();
 }

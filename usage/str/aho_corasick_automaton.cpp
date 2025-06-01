@@ -2,13 +2,14 @@
 
 #include "../../include/str/aho_corasick_automaton.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   strn s;
   std::cin >> n;
   vecu ans(n);
-  tifa_libs::str::aho_corasick_automaton acam;
+  str::aho_corasick_automaton acam;
   flt_ (u32, i, 0, n) std::cin >> s, acam.insert(s, i);
   acam.getfail(), std::cin >> s;
   vecu sz(acam.sz), in(acam.sz);

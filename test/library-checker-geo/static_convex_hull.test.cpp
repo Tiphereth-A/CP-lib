@@ -2,7 +2,8 @@
 
 #include "../../include/geo2d/cvh.hpp"
 
-using cvh = tifa_libs::geo::cvh<i64>;
+using namespace tifa_libs;
+using cvh = geo::cvh<i64>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

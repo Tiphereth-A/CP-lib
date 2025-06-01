@@ -2,6 +2,7 @@
 
 #include "../../include/str/suffix_array.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn t, s;
@@ -9,7 +10,7 @@ int main() {
   t = " " + t;
   u32 n;
   std::cin >> n;
-  tifa_libs::str::suffixarray sa(t);
+  str::suffixarray sa(t);
   flt_ (u32, i, 0, n) {
     std::cin >> s;
     s = " " + s;

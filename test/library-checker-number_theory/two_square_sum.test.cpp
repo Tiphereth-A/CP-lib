@@ -2,6 +2,7 @@
 
 #include "../../include/nt/norm_fact.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   i64 t;
@@ -9,7 +10,7 @@ int main() {
   while (t--) {
     u64 n;
     std::cin >> n;
-    auto res = tifa_libs::math::norm_fact(n);
+    auto res = math::norm_fact(n);
     std::cout << res.size() << '\n';
     for (auto [x, y] : res) std::cout << x << ' ' << y << '\n';
   }

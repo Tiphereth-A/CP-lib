@@ -5,16 +5,17 @@
 #include "../../include/io/fastin.hpp"
 #include "../../include/io/fastout.hpp"
 
+using namespace tifa_libs;
 int main() {
   u32 n, q;
-  tifa_libs::fin >> n >> q;
+  fin >> n >> q;
   veci _(n);
-  for (auto &x : _) tifa_libs::fin >> x;
-  auto [b, a] = tifa_libs::gen_id(_);
-  tifa_libs::ds::persistent_segtree seg(a, (u32)b.size() + 1);
+  for (auto &x : _) fin >> x;
+  auto [b, a] = gen_id(_);
+  ds::persistent_segtree seg(a, (u32)b.size() + 1);
   for (u32 i = 0, l, r, k; i < q; ++i) {
-    tifa_libs::fin >> l >> r >> k;
-    tifa_libs::fout << b[seg.kth_min(l, r - 1, k + 1)] << '\n';
+    fin >> l >> r >> k;
+    fout << b[seg.kth_min(l, r - 1, k + 1)] << '\n';
   }
   return 0;
 }

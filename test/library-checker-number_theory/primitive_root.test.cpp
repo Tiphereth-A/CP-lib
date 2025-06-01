@@ -2,6 +2,7 @@
 
 #include "../../include/nt/proot.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   i64 q;
@@ -9,7 +10,7 @@ int main() {
   while (q--) {
     u64 p;
     std::cin >> p;
-    std::cout << tifa_libs::math::proot(p) << '\n';
+    std::cout << math::proot(p) << '\n';
   }
   return 0;
 }

@@ -3,6 +3,8 @@
 
 #include "util.hpp"
 
+namespace tifa_libs {
+
 #define OO_PTEQ_(op)                                                                                                                      \
   template <class T, class U>                                                                                                             \
   CEXP auto operator op(std::pair<T, U> l, std::pair<T, U> CR r) NE { return std::pair<T, U>{l.first op r.first, l.second op r.second}; } \
@@ -24,5 +26,7 @@ OO_PTEQ_(<<)
 OO_PTEQ_(>>)
 
 #undef OO_PTEQ_
+
+}  // namespace tifa_libs
 
 #endif

@@ -5,6 +5,7 @@
 #include "../../include/graph/alist.hpp"
 #include "../../include/graph/path.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
@@ -12,16 +13,16 @@ int main() {
   vec<edge_tu> edges(m);
   ++n;
   for (auto& [w, u, v] : edges) std::cin >> u >> v >> w;
-  auto gh_edges = tifa_libs::graph::gomory_hu(n, edges);
+  auto gh_edges = graph::gomory_hu(n, edges);
   u32 q;
   std::cin >> q;
-  tifa_libs::graph::alistw<u32> g(n);
+  graph::alistw<u32> g(n);
   for (auto&& [w, u, v] : gh_edges) g.add_arc(u, v, w), g.add_arc(v, u, w);
   map<pttu, u32> mp;
   for (auto&& [w, u, v] : gh_edges) mp[std::minmax(u, v)] = w;
   for (u32 i = 0, u, v; i < q; ++i) {
     std::cin >> u >> v;
-    auto vs = tifa_libs::graph::path(g, u, v).value();
+    auto vs = graph::path(g, u, v).value();
     u32 ans = std::numeric_limits<u32>::max();
     flt_ (u32, j, 1, (u32)vs.size()) {
       u32 from = vs[j - 1], to = vs[j];

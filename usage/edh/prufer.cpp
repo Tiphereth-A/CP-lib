@@ -4,6 +4,7 @@
 
 #include "../../include/edh/prufer_inv.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
@@ -12,12 +13,12 @@ int main() {
   if (m == 1) {
     vecu a(n);
     flt_ (u32, i, 1, n) std::cin >> a[i];
-    auto f = tifa_libs::prufer(a);
+    auto f = prufer(a);
     for (u64 i = 1; i < n - 1; ++i) ans ^= i * f[i];
   } else {
     vecu a(n - 1);
     for (u32 i = 1; i < n - 1; ++i) std::cin >> a[i];
-    auto f = tifa_libs::prufer_inv(a);
+    auto f = prufer_inv(a);
     flt_ (u64, i, 1, n) ans ^= i * f[i];
   }
   std::cout << ans << '\n';

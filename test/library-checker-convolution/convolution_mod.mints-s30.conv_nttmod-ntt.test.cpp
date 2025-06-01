@@ -5,6 +5,7 @@
 #include "../../include/io/fastout.hpp"
 #include "../../include/io/ios_container.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../include/conv/conv_dft.hpp"
@@ -12,12 +13,14 @@ CEXP u32 MOD = 998244353;
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_s30.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
-using ntt_ntt_t = tifa_libs::math::NTT<mint>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s30, MOD>;
+using namespace tifa_libs;
+using ntt_ntt_t = math::NTT<mint>;
 using vec_t = vec<mint>;
 auto conv_func(vec_t CR a, vec_t CR b) {
   ntt_ntt_t ntt;
-  return tifa_libs::math::conv_dft(ntt, a, b);
+  return math::conv_dft(ntt, a, b);
 }
 
 int main() {

@@ -2,6 +2,7 @@
 
 #include "../../include/ds/link_cut_tree.hpp"
 
+using namespace tifa_libs;
 auto op(u64 a, u64 b) { return a + b; }
 auto inv_op(u64 a, u64 b) { return a - b; }
 
@@ -11,7 +12,7 @@ int main() {
   std::cin >> n >> m;
   vecuu a(n);
   for (auto &x : a) x = 1;
-  tifa_libs::ds::link_cut_tree<u64, op, inv_op> lct(n, a);
+  ds::link_cut_tree<u64, op, inv_op> lct(n, a);
   flt_ (u32, i, 0, m) {
     char opt;
     u32 u, v;

@@ -3,6 +3,7 @@
 #include "../../include/graph/tarjan.hpp"
 #include "../../include/io/ios_container.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
@@ -13,7 +14,7 @@ int main() {
     std::cin >> u >> v;
     e[u].push_back(v);
   }
-  tifa_libs::graph::tarjan scc;
+  graph::tarjan scc;
   scc.build(e);
   vvecu g(scc.id);
   vecu in(scc.id);

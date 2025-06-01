@@ -2,12 +2,13 @@
 
 #include "../../include/str/ex_suffix_automaton.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   strn s;
   std::cin >> n;
-  tifa_libs::str::ex_suffix_automaton sam;
+  str::ex_suffix_automaton sam;
   flt_ (u32, i, 0, n) {
     std::cin >> s;
     for (u32 last = 0; auto c : s)

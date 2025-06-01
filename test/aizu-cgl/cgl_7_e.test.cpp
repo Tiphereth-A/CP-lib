@@ -4,14 +4,15 @@
 #include "../../include/geo2d/circle.hpp"
 #include "../../include/geo2d/ins_cc.hpp"
 
-using circ = tifa_libs::geo::circle<double>;
+using namespace tifa_libs;
+using circ = geo::circle<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(12);
   circ c1, c2;
   std::cin >> c1 >> c2;
-  auto [x, y] = tifa_libs::geo::ins_CC(c1, c2).value();
+  auto [x, y] = geo::ins_CC(c1, c2).value();
   if (x < y) std::cout << x << ' ' << y << '\n';
   else std::cout << y << ' ' << x << '\n';
   return 0;

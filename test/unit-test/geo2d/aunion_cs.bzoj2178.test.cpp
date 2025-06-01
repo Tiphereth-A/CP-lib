@@ -6,8 +6,9 @@
 #include "../../../include/edh/discretization.hpp"
 #include "../base.hpp"
 
+using namespace tifa_libs;
 using data_t = f64;
-using Circle2 = tifa_libs::geo::circle<data_t>;
+using Circle2 = geo::circle<data_t>;
 
 strn single_proceed(std::istream& fin) {
   std::stringstream ss;
@@ -17,14 +18,14 @@ strn single_proceed(std::istream& fin) {
   fin >> n;
   vec<Circle2> cs(n);
   fin >> cs;
-  auto res = tifa_libs::geo::aunion_Cs(tifa_libs::uniq(cs));
+  auto res = geo::aunion_Cs(uniq(cs));
   ss << res[0];
 
   return ss.str();
 }
 
 void test(strn CR data) {
-  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("bzoj", "2178", data);
+  auto [fn_in, fn_ans] = unittest::get_fname_in_ans("bzoj", "2178", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
   u32 t = 1;
@@ -42,23 +43,23 @@ void test(strn CR data) {
 }
 
 int main() {
-  auto tcase = tifa_libs::unittest::pre_test();
+  auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test("1"), test("13"); break;
-    case tifa_libs::unittest::ts_example_01: test("2"), test("14"); break;
-    case tifa_libs::unittest::ts_random_00: test("3"), test("15"); break;
-    case tifa_libs::unittest::ts_random_01: test("4"), test("16"); break;
-    case tifa_libs::unittest::ts_random_02: test("5"), test("17"); break;
-    case tifa_libs::unittest::ts_random_03: test("6"); break;
-    case tifa_libs::unittest::ts_random_04: test("7"); break;
-    case tifa_libs::unittest::ts_random_05: test("8"); break;
-    case tifa_libs::unittest::ts_random_06: test("9"); break;
-    case tifa_libs::unittest::ts_random_07: test("10"); break;
-    case tifa_libs::unittest::ts_random_08: test("11"); break;
-    case tifa_libs::unittest::ts_random_09: test("12"); break;
+    case unittest::ts_example_00: test("1"), test("13"); break;
+    case unittest::ts_example_01: test("2"), test("14"); break;
+    case unittest::ts_random_00: test("3"), test("15"); break;
+    case unittest::ts_random_01: test("4"), test("16"); break;
+    case unittest::ts_random_02: test("5"), test("17"); break;
+    case unittest::ts_random_03: test("6"); break;
+    case unittest::ts_random_04: test("7"); break;
+    case unittest::ts_random_05: test("8"); break;
+    case unittest::ts_random_06: test("9"); break;
+    case unittest::ts_random_07: test("10"); break;
+    case unittest::ts_random_08: test("11"); break;
+    case unittest::ts_random_09: test("12"); break;
     default: break;
   }
 
-  tifa_libs::unittest::post_test();
+  unittest::post_test();
 }

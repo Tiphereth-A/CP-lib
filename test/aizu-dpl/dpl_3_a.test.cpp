@@ -2,6 +2,7 @@
 
 #include "../../include/opt/hoverline.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 h, w;
@@ -14,7 +15,7 @@ int main() {
       if (x) v[j] = 0;
       else ++v[j];
     }
-    auto [l, r] = tifa_libs::opt::hoverline(v);
+    auto [l, r] = opt::hoverline(v);
     flt_ (u32, j, 0, w) {
       u32 _ = min(r[j] - l[j] + 1, v[j]);
       ans = max(ans, (u64)_ * _);

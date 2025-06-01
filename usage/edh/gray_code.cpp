@@ -2,11 +2,12 @@
 
 #include "../../include/edh/gray_code.hpp"
 
+using namespace tifa_libs;
 void solve() {
   u32 n;
   u64 k;
   std::cin >> n >> k;
-  std::cout << tifa_libs::gray_code(n, k).to_string().substr(64 - n);
+  std::cout << gray_code(n, k).to_string().substr(64 - n);
 }
 
 int main() {

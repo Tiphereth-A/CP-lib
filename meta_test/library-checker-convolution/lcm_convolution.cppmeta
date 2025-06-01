@@ -2,6 +2,7 @@
 
 #include "../../include/conv/conv_lcm.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin

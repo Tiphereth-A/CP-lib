@@ -2,9 +2,10 @@
 
 #include "../../include/math/mpi.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  tifa_libs::math::mpi a, b;
+  math::mpi a, b;
   std::cin >> a >> b;
   std::cout << a / b << '\n';
   return 0;

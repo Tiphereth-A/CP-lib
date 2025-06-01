@@ -2,13 +2,14 @@
 
 #include "../../include/ds/odt.hpp"
 
+using namespace tifa_libs;
 const strn YN_[2] = {"No", "Yes"};
 
 int main() {
   u32 n, m;
   strn s;
   std::cin >> n >> s >> m;
-  tifa_libs::ds::ODT<char> odt;
+  ds::ODT<char> odt;
   for (u32 l = 0, r = 0; l < n; l = r) {
     while (r < n && s[++r] == s[l]);
     odt.insert(l + 1, r, s[l]);

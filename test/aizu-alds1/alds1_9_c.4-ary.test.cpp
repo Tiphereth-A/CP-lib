@@ -3,6 +3,7 @@
 #include "../../include/ds/d_ary_heap.hpp"
 #include "../../include/util/alias_others.hpp"
 
+using namespace tifa_libs;
 CEXP int D = 4;
 
 int main() {
@@ -15,9 +16,9 @@ int main() {
       u32 x;
       std::cin >> x;
       v.push_back(x);
-      tifa_libs::ds::push_dary_heap<D>(v.begin(), v.end());
+      ds::push_dary_heap<D>(v.begin(), v.end());
     } else {
-      tifa_libs::ds::pop_dary_heap<D>(v.begin(), v.end());
+      ds::pop_dary_heap<D>(v.begin(), v.end());
       std::cout << v.back() << '\n';
       v.pop_back();
     }

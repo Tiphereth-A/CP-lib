@@ -2,6 +2,7 @@
 
 #include "../../include/nt/is_prime.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 t;
@@ -10,7 +11,7 @@ int main() {
   while (t--) {
     u32 p;
     std::cin >> p;
-    cnt += tifa_libs::math::is_prime(p);
+    cnt += math::is_prime(p);
   }
   std::cout << cnt << '\n';
   return 0;

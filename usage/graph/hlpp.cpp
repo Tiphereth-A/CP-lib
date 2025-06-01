@@ -2,11 +2,12 @@
 
 #include "../../include/graph/hlpp.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, s, t;
   std::cin >> n >> m >> s >> t, --s, --t;
-  tifa_libs::graph::hlpp<i64> maxflow(n, s, t);
+  graph::hlpp<i64> maxflow(n, s, t);
   for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w, --u, --v, maxflow.add(u, v, w);
   std::cout << maxflow.get();
 }

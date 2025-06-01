@@ -2,13 +2,14 @@
 
 #include "../../include/opt/dlx.hpp"
 
+using namespace tifa_libs;
 void solve() {
   u32 n, m;
   std::cin >> n >> m;
   vvecb maps(n, vecb(m));
   for (u32 i = 0, x; i < n; ++i)
     flt_ (u32, j, 0, m) std::cin >> x, maps[i][j] = x;
-  if (auto res = tifa_libs::opt::DLX(maps).dance(fn_0); res.has_value())
+  if (auto res = opt::DLX(maps).dance(fn_0); res.has_value())
     for (auto i : res.value()) std::cout << i << ' ';
   else std::cout << "No Solution!";
 }

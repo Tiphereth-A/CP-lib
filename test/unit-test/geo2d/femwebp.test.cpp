@@ -5,7 +5,8 @@
 
 #include "../base.hpp"
 
-using tifa_libs::geo::point;
+using namespace tifa_libs;
+using geo::point;
 
 template <class T>
 void single_test(vec<point<T>> CR v) {
@@ -16,12 +17,12 @@ void single_test(vec<point<T>> CR v) {
   point<T> sum;
   for (auto CR i : v)
     if (i != fw) sum += (i - fw).do_unit();
-  check_bool(tifa_libs::is_lt(sum.norm(), (T)1), check_param(v), check_param(fw), check_param(sum));
+  check_bool(is_lt(sum.norm(), (T)1), check_param(v), check_param(fw), check_param(sum));
 }
 
-template <tifa_libs::arithm_c T>
+template <arithm_c T>
 void test(T lim) {
-  tifa_libs::rand::Gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
+  rand::Gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
 
   vec<point<T>> v{point<T>(g(), g()), point<T>(g(), g()), point<T>(g(), g())};
   single_test(v);
@@ -34,23 +35,23 @@ void test(T lim) {
 }
 
 int main() {
-  auto tcase = tifa_libs::unittest::pre_test();
+  auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test<f64>(1e5); break;
-    case tifa_libs::unittest::ts_example_01: test<f128>(1e5); break;
-    case tifa_libs::unittest::ts_random_00: test<f64>(1e9); break;
-    case tifa_libs::unittest::ts_random_01: test<f128>(1e9); break;
-    case tifa_libs::unittest::ts_random_02: break;
-    case tifa_libs::unittest::ts_random_03: break;
-    case tifa_libs::unittest::ts_random_04: break;
-    case tifa_libs::unittest::ts_random_05: break;
-    case tifa_libs::unittest::ts_random_06: break;
-    case tifa_libs::unittest::ts_random_07: break;
-    case tifa_libs::unittest::ts_random_08: break;
-    case tifa_libs::unittest::ts_random_09: break;
+    case unittest::ts_example_00: test<f64>(1e5); break;
+    case unittest::ts_example_01: test<f128>(1e5); break;
+    case unittest::ts_random_00: test<f64>(1e9); break;
+    case unittest::ts_random_01: test<f128>(1e9); break;
+    case unittest::ts_random_02: break;
+    case unittest::ts_random_03: break;
+    case unittest::ts_random_04: break;
+    case unittest::ts_random_05: break;
+    case unittest::ts_random_06: break;
+    case unittest::ts_random_07: break;
+    case unittest::ts_random_08: break;
+    case unittest::ts_random_09: break;
     default: break;
   }
 
-  tifa_libs::unittest::post_test();
+  unittest::post_test();
 }

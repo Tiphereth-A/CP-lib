@@ -3,13 +3,14 @@
 #include "../../include/nt/gcd_mpi.hpp"
 #include "../../include/rand/gen.hpp"
 
-using tifa_libs::math::mpi;
+using namespace tifa_libs;
+using math::mpi;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   mpi x, y;
   std::cin >> x >> y;
-  tifa_libs::rand::Gen<u32> g('0', '9');
+  rand::Gen<u32> g('0', '9');
   strn s = "1145141919810";
   flt_ (u32, i, 0, 1000) s += (char)g();
   const mpi C = s;

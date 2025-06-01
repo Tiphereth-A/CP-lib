@@ -3,6 +3,8 @@
 
 #include "consts.hpp"
 
+namespace tifa_libs {
+
 template <class T>
 struct chash {
   CEXP static u64 C = u64(pi_v<f128> * 2e18) | 71;
@@ -53,5 +55,7 @@ template <class T> using pqg = pq<T, std::greater<T>>;
 mk(b, bool) mk(i, i32) mk(u, u32) mk(ii, i64) mk(uu, u64);
 #undef mk
 #undef mk_
+
+}  // namespace tifa_libs
 
 #endif

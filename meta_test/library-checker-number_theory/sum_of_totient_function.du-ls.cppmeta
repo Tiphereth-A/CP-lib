@@ -5,6 +5,7 @@
 #include "../../include/nt/lsieve.hpp"
 #include "../../include/nt/lsieve_func.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin

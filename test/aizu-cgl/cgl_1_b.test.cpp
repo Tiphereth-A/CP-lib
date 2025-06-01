@@ -5,8 +5,9 @@
 #include "../../include/geo2d/point.hpp"
 #include "../../include/geo2d/proj.hpp"
 
-using point = tifa_libs::geo::point<double>;
-using line = tifa_libs::geo::line<double>;
+using namespace tifa_libs;
+using point = geo::point<double>;
+using line = geo::line<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -18,7 +19,7 @@ int main() {
   flt_ (u32, i, 0, q) {
     point p;
     std::cin >> p;
-    std::cout << tifa_libs::geo::reflect(l, p) << '\n';
+    std::cout << geo::reflect(l, p) << '\n';
   }
   return 0;
 }

@@ -4,8 +4,9 @@
 
 #include "../../include/rand/gen.hpp"
 
+using namespace tifa_libs;
 vecu prandom(u32 m, u32 l) {
-  tifa_libs::rand::Gen<u32> gen(0, m - 1);
+  rand::Gen<u32> gen(0, m - 1);
   vecu ret(l);
   flt_ (u32, i, 0, l) ret[i] = gen();
   return ret;
@@ -17,7 +18,7 @@ int main() {
   vecu a(m);
   for (auto& i : a) std::cin >> i;
   u32 l = n + k - 1;
-  vecu ans = n <= 20 ? tifa_libs::math::deBruijn(n, m, l) : prandom(m, l);
+  vecu ans = n <= 20 ? math::deBruijn(n, m, l) : prandom(m, l);
   flt_ (u32, i, 0, l) std::cout << a[ans[i]];
   std::cout << '\n';
 }

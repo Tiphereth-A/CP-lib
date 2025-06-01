@@ -2,12 +2,13 @@
 
 #include "../../include/edh/cantor_inv.hpp"
 
+using namespace tifa_libs;
 void solve() {
   u32 n;
   std::cin >> n;
   vecu a(n);
   for (auto& i : a) std::cin >> i;
-  auto p = tifa_libs::cantor_inv_seq(a);
+  auto p = cantor_inv_seq(a);
   flt_ (u32, i, 0, n) std::cout << p[i] << " \n"[i == n - 1];
 }
 

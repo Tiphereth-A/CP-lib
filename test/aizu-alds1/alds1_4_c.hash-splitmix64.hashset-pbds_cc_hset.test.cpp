@@ -5,8 +5,10 @@
 //
 #include "../../include/edh/hash_splitmix64.hpp"
 
+using namespace tifa_libs;
 template <class>
-using hashfunc_t = tifa_libs::hash_splitmix64;
+using hashfunc_t = hash_splitmix64;
+using namespace tifa_libs;
 template <class T>
 using hashset = __gnu_pbds::cc_hash_table<T, __gnu_pbds::null_type, std::conditional_t<std::is_void_v<hashfunc_t<T>>, typename __gnu_pbds::detail::default_hash_fn<T>::type, hashfunc_t<T>>>;
 

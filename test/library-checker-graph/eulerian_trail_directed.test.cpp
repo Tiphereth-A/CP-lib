@@ -2,6 +2,7 @@
 
 #include "../../include/graph/euler_trail.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 t;
@@ -11,7 +12,7 @@ int main() {
     std::cin >> n >> m;
     vecptu e(m);
     for (auto& [u, v] : e) std::cin >> u >> v;
-    if (auto res = tifa_libs::graph::euler_trail<true>(n, e); !res.has_value()) {
+    if (auto res = graph::euler_trail<true>(n, e); !res.has_value()) {
       std::cout << "No\n";
     } else {
       std::cout << "Yes\n";

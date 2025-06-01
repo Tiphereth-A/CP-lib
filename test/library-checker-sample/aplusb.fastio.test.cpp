@@ -3,9 +3,10 @@
 #include "../../include/io/fastin.hpp"
 #include "../../include/io/fastout.hpp"
 
+using namespace tifa_libs;
 int main() {
   i64 s, t;
-  tifa_libs::fin >> s >> t;
-  tifa_libs::fout << s + t;
+  fin >> s >> t;
+  fout << s + t;
   return 0;
 }

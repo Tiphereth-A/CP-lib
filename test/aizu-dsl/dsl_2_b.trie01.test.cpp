@@ -2,11 +2,12 @@
 
 #include "../../include/ds/trie01.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  tifa_libs::ds::trie01 bt(21);
+  ds::trie01 bt(21);
   for (u32 i = 0, c, x, y; i < q; ++i) {
     std::cin >> c >> x >> y;
     if (c == 0) bt.add(x, (i32)y);

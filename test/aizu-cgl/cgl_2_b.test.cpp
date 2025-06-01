@@ -4,8 +4,9 @@
 #include "../../include/geo2d/line.hpp"
 #include "../../include/geo2d/point.hpp"
 
-using point = tifa_libs::geo::point<double>;
-using line = tifa_libs::geo::line<double>;
+using namespace tifa_libs;
+using point = geo::point<double>;
+using line = geo::line<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -14,7 +15,7 @@ int main() {
   flt_ (u32, i, 0, q) {
     line l1, l2;
     std::cin >> l1 >> l2;
-    std::cout << tifa_libs::geo::is_ins_SS(l1, l2) << '\n';
+    std::cout << geo::is_ins_SS(l1, l2) << '\n';
   }
   return 0;
 }

@@ -6,6 +6,7 @@
 #include "../../include/io/ios_container.hpp"
 // clang-format on
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
@@ -16,7 +17,7 @@ int main() {
   std::cin >> edges;
   u64 ans = 0;
   auto func = [&](u32 u, u32 v, u32 w) { ans = u32((ans + (u128)x[u] * x[v] * x[w]) % 998244353); };
-  tifa_libs::graph::ringenum3(n, edges, func);
+  graph::ringenum3(n, edges, func);
   std::cout << ans << '\n';
   return 0;
 }

@@ -5,6 +5,7 @@
 
 #include "../base.hpp"
 
+using namespace tifa_libs;
 namespace PieceOperation {
 constexpr u32 flip4(u32 x) { return (x & 1) << 3 | ((x >> 1) & 1) << 2 | ((x >> 2) & 1) << 1 | ((x >> 3) & 1); }
 constexpr u32 expand4(u32 x) { return (x & 8) << 9 | (x & 4) << 6 | (x & 2) << 3 | (x & 1); }
@@ -41,7 +42,7 @@ class Board {
  public:
   constexpr Board() = default;
 
-  friend auto &operator>>(tifa_libs::istream_c auto &is, Board &board) {
+  friend auto &operator>>(istream_c auto &is, Board &board) {
     strn s;
     for (u64 _ = 0xfffffffff, i = 0; i < 10; ++i, _ >>= 4) {
       is >> s;
@@ -58,7 +59,7 @@ class Board {
     return is;
   }
 
-  friend auto &operator<<(tifa_libs::ostream_c auto &os, Board const &board) {
+  friend auto &operator<<(ostream_c auto &os, Board const &board) {
     u32 _;
     for (usz i = 0; i < 10; ++i) {
       for (usz j = 0; j <= i; ++j) os << ((_ = board.get(i, j)) ? (char)(_ + '@') : '.');
@@ -124,7 +125,7 @@ strn single_proceed(std::istream &fin) {
           }
   }
 
-  auto res = tifa_libs::opt::DLX(maps).dance(fn_0);
+  auto res = opt::DLX(maps).dance(fn_0);
   if (!res.has_value()) {
     ss << "No solution";
     goto end__;
@@ -140,7 +141,7 @@ end__:
 }
 
 void test(strn CR data) {
-  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("bzoj", "1501", data);
+  auto [fn_in, fn_ans] = unittest::get_fname_in_ans("bzoj", "1501", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
   u32 t = 1;
@@ -158,23 +159,23 @@ void test(strn CR data) {
 }
 
 int main() {
-  auto tcase = tifa_libs::unittest::pre_test();
+  auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test("1"); break;
-    case tifa_libs::unittest::ts_example_01: test("2"); break;
-    case tifa_libs::unittest::ts_random_00: test("3"); break;
-    case tifa_libs::unittest::ts_random_01: test("4"); break;
-    case tifa_libs::unittest::ts_random_02: test("5"); break;
-    case tifa_libs::unittest::ts_random_03: test("6"); break;
-    case tifa_libs::unittest::ts_random_04: test("7"); break;
-    case tifa_libs::unittest::ts_random_05: test("8"); break;
-    case tifa_libs::unittest::ts_random_06: test("9"); break;
-    case tifa_libs::unittest::ts_random_07: test("10"); break;
-    case tifa_libs::unittest::ts_random_08: break;
-    case tifa_libs::unittest::ts_random_09: break;
+    case unittest::ts_example_00: test("1"); break;
+    case unittest::ts_example_01: test("2"); break;
+    case unittest::ts_random_00: test("3"); break;
+    case unittest::ts_random_01: test("4"); break;
+    case unittest::ts_random_02: test("5"); break;
+    case unittest::ts_random_03: test("6"); break;
+    case unittest::ts_random_04: test("7"); break;
+    case unittest::ts_random_05: test("8"); break;
+    case unittest::ts_random_06: test("9"); break;
+    case unittest::ts_random_07: test("10"); break;
+    case unittest::ts_random_08: break;
+    case unittest::ts_random_09: break;
     default: break;
   }
 
-  tifa_libs::unittest::post_test();
+  unittest::post_test();
 }

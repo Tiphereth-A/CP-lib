@@ -3,19 +3,20 @@
 #include "../../include/graph/alist.hpp"
 #include "../../include/graph/bm.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, r;
   std::cin >> n >> m >> r;
-  tifa_libs::graph::alistw<i32> g(n);
+  graph::alistw<i32> g(n);
   flt_ (u32, i, 0, m) {
     u32 u, v;
     i32 w;
     std::cin >> u >> v >> w;
     g.add_arc(u, v, w);
   }
-  CEXP i32 INF = tifa_libs::inf_v<i32>;
-  auto d = tifa_libs::graph::bellman_ford(g, r, fn_0, INF);
+  CEXP i32 INF = inf_v<i32>;
+  auto d = graph::bellman_ford(g, r, fn_0, INF);
   if (!d.has_value()) {
     std::cout << "NEGATIVE CYCLE\n";
     return 0;

@@ -2,6 +2,7 @@
 
 #include "../../include/ds/segtree.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin

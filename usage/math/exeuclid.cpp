@@ -5,6 +5,7 @@
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_s30.hpp"
 
+using namespace tifa_libs;
 template <class T>
 struct exeuclid_node {
   T u, r;
@@ -20,7 +21,7 @@ struct exeuclid_node {
   }
 };
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 998244353>;
+using mint = math::mint<math::mint_s30, 998244353>;
 using node = exeuclid_node<mint>;
 
 int main() {
@@ -31,7 +32,7 @@ int main() {
   while (t--) {
     u32 n, a, b, c;
     std::cin >> n >> a >> b >> c;
-    auto ans = tifa_libs::math::exeuclid(a, c, b, n, u, r);
+    auto ans = math::exeuclid(a, c, b, n, u, r);
     std::cout << (ans.f + b / c) << ' ' << (ans.sqr_f + (b / c) * (b / c)) << ' ' << ans.i_f << '\n';
   }
 }

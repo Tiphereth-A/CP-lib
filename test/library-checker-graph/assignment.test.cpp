@@ -2,12 +2,13 @@
 
 #include "../../include/graph/ssp.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   u32 s = n + n, t = n + n + 1;
-  tifa_libs::graph::ssp mcmf(n + n + 2, s, t);
+  graph::ssp mcmf(n + n + 2, s, t);
   flt_ (u32, i, 0, n) mcmf.add(s, i, 1, 0);
   flt_ (u32, i, 0, n) mcmf.add(i + n, t, 1, 0);
   i32 x;

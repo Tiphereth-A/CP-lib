@@ -2,13 +2,14 @@
 
 #include "../../include/ds/leftist_tree.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   veci a(n);
   for (auto& x : a) std::cin >> x;
-  tifa_libs::ds::leftist_tree<i32> tr(a);
+  ds::leftist_tree<i32> tr(a);
   u32 opt, x, y;
   flt_ (u32, i, 0, m) {
     std::cin >> opt >> x, --x;

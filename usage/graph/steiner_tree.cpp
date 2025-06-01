@@ -4,15 +4,16 @@
 
 #include "../../include/graph/alist.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, k;
   std::cin >> n >> m >> k;
-  tifa_libs::graph::alistw<u32> e(n);
+  graph::alistw<u32> e(n);
   for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w, --u, --v, e.add_arc(u, v, w), e.add_arc(v, u, w);
   vecu a(k);
   for (auto& x : a) std::cin >> x, --x;
-  tifa_libs::graph::steiner_tree<tifa_libs::graph::alistw<u32>> st(e, a);
+  graph::steiner_tree<graph::alistw<u32>> st(e, a);
   std::cout << st.val();
 }
 

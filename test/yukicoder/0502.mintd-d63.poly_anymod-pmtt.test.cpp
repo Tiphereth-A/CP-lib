@@ -3,14 +3,17 @@
 
 #include "../../include/math/fact_mint.hpp"
 
+using namespace tifa_libs;
 CEXP u64 MOD = 1000000007;
 
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_d63.hpp"
 #include "../../include/poly/polymtt.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
-using poly = tifa_libs::math::polymtt<mint>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_d63, __LINE__>;
+using namespace tifa_libs;
+using poly = math::polymtt<mint>;
 
 int main() {
   mint::set_mod(MOD);

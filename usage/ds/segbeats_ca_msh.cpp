@@ -2,13 +2,14 @@
 
 #include "../../include/ds/segbeats_ca_msh.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   veci a(n);
   for (auto& x : a) std::cin >> x;
-  tifa_libs::ds::segbeats_ca_msh<i32, i64> seg(a);
+  ds::segbeats_ca_msh<i32, i64> seg(a);
   for (u32 i = 0, opt, l, r; i < m; ++i) {
     std::cin >> opt >> l >> r, --l, --r;
     if (opt <= 2) {

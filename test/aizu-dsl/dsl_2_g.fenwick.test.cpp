@@ -2,11 +2,12 @@
 
 #include "../../include/ds/fenwick_rr.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  tifa_libs::ds::fenwick_rr<u64> tr(n + 2);
+  ds::fenwick_rr<u64> tr(n + 2);
   flt_ (u32, i, 0, q) {
     u32 op, u, v, w;
     std::cin >> op >> u >> v;

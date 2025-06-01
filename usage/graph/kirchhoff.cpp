@@ -9,7 +9,8 @@
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_s30.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 1'000'003>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s30, 1'000'003>;
 
 int main() {
   vec<mint> fact(200'005);
@@ -20,12 +21,12 @@ int main() {
   while (T--) {
     u32 n;
     std::cin >> n;
-    tifa_libs::graph::alist<true> g(n);
+    graph::alist<true> g(n);
     for (u32 i = 0, s; i < n; ++i) {
       std::cin >> s;
       for (u32 j = 0, x; j < s; ++j) (std::cin >> x), g.add_arc(i, x - 1);
     }
-    if (!tifa_libs::graph::is_eulerian(g)) {
+    if (!graph::is_eulerian(g)) {
       std::cout << "0\n";
       continue;
     }
@@ -39,7 +40,7 @@ int main() {
     u32 cnt_ids = 0;
     flt_ (u32, i, 0, n)
       if (vis[i]) ids[i] = cnt_ids++, inv_ids.push_back(i);
-    tifa_libs::graph::amat<mint> mat(cnt_ids);
+    graph::amat<mint> mat(cnt_ids);
     flt_ (u32, id, 0, cnt_ids) {
       auto &tos = g[inv_ids[id]];
       if (tos.empty()) continue;
@@ -51,8 +52,8 @@ int main() {
       mat.set_arc(id, ids[pre], cnt);
     }
     auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-    auto ge = [&](tifa_libs::math::matrix<mint> &A, bool clear_u) { return tifa_libs::math::ge_mat<mint, decltype(is_0), true>(A, is_0, clear_u); };
-    mint ans = tifa_libs::graph::kirchhoff<true>(mat, ids[0], ge) * fact[g.deg_out[inv_ids[0]]];
+    auto ge = [&](math::matrix<mint> &A, bool clear_u) { return math::ge_mat<mint, decltype(is_0), true>(A, is_0, clear_u); };
+    mint ans = graph::kirchhoff<true>(mat, ids[0], ge) * fact[g.deg_out[inv_ids[0]]];
     flt_ (u32, i, 1, cnt_ids) ans *= fact[g.deg_out[inv_ids[i]] - 1];
     std::cout << ans << '\n';
   }

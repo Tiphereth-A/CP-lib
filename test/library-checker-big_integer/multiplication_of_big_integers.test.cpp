@@ -4,13 +4,14 @@
 #include "../../include/io/fastout.hpp"
 #include "../../include/math/mpi.hpp"
 
+using namespace tifa_libs;
 int main() {
   u32 t;
-  tifa_libs::fin >> t;
+  fin >> t;
   while (t--) {
-    tifa_libs::math::mpi a, b;
-    tifa_libs::fin >> a >> b;
-    tifa_libs::fout << a * b << '\n';
+    math::mpi a, b;
+    fin >> a >> b;
+    fout << a * b << '\n';
   }
   return 0;
 }

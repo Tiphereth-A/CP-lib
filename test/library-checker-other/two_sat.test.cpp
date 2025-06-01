@@ -2,6 +2,7 @@
 
 #include "../../include/graph/sat2.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s;
@@ -9,7 +10,7 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   i32 u, v, w;
-  tifa_libs::graph::sat2 s2(n);
+  graph::sat2 s2(n);
   flt_ (u32, i, 0, m) {
     std::cin >> u >> v >> w;
     bool fu = u > 0, fv = v > 0;

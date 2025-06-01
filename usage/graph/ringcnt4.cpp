@@ -10,7 +10,8 @@
 #include "../../include/io/ios_container.hpp"
 // clang-format on
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 1'000'000'000 + 7>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s30, 1'000'000'000 + 7>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -23,9 +24,9 @@ int main() {
     vecptu edges(m);
     std::cin >> edges;
     for (auto &[u, v] : edges) --u, --v;
-    tifa_libs::graph::alist g(n);
+    graph::alist g(n);
     for (auto [u, v] : edges) g.add_edge(u, v);
-    tifa_libs::graph::alist dg(n), dgv(n);
+    graph::alist dg(n), dgv(n);
     flt_ (u32, u, 0, n)
       for (u32 v : g.g[u]) (std::make_pair(g.g[u].size(), u) < std::make_pair(g.g[v].size(), v) ? dg : dgv).add_arc(u, v);
     // 菊花图
@@ -33,11 +34,11 @@ int main() {
     flt_ (u32, u, 0, n)
       if (g.g[u].size() >= 4) ans0 += inv24 * g.g[u].size() * (g.g[u].size() - 1) * (g.g[u].size() - 2) * (g.g[u].size() - 3);
     // 四元环
-    mint ans1 = tifa_libs::graph::ringcnt4_impl_::run(dg, dgv);
+    mint ans1 = graph::ringcnt4_impl_::run(dg, dgv);
     // 三元环+一条边
     mint ans2 = 0;
     u64 cnt2 = 0;
-    tifa_libs::graph::ringenum3_impl_::run(dg, [&g, &ans2, &cnt2](u32 u, u32 v, u32 w) {
+    graph::ringenum3_impl_::run(dg, [&g, &ans2, &cnt2](u32 u, u32 v, u32 w) {
       ans2 += g.g[u].size() + g.g[v].size() + g.g[w].size() - 6;
       ++cnt2;
     });

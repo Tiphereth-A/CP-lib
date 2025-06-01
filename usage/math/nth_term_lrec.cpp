@@ -6,8 +6,9 @@
 #include "../../include/math/mint_s30.hpp"
 #include "../../include/poly/polyntt.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 998244353>;
-using poly = tifa_libs::math::polyntt<mint>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s30, 998244353>;
+using poly = math::polyntt<mint>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -20,7 +21,7 @@ int main() {
     std::cin >> x, f[i] = -x;
   }
   for (auto &i : a) std::cin >> i;
-  std::cout << tifa_libs::math::nth_term_lrec<poly>(n, a, f) << '\n';
+  std::cout << math::nth_term_lrec<poly>(n, a, f) << '\n';
 }
 
 /*

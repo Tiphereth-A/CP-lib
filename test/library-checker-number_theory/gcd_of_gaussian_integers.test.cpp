@@ -2,7 +2,8 @@
 
 #include "../../include/math/gint.hpp"
 
-using gint = tifa_libs::math::gint<i64, -1>;
+using namespace tifa_libs;
+using gint = math::gint<i64, -1>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

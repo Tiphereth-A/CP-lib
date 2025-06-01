@@ -2,11 +2,12 @@
 
 #include "../../include/str/kmp.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s, p;
   std::cin >> s >> p;
-  auto _ = tifa_libs::str::kmp(p, s);
+  auto _ = str::kmp(p, s);
   for (auto i : _) std::cout << i << '\n';
   return 0;
 }

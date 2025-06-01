@@ -3,6 +3,7 @@
 #include "../../include/io/ios_container.hpp"
 #include "../../include/nt/pfactors.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   i64 q;
@@ -10,7 +11,7 @@ int main() {
   while (q--) {
     u64 a;
     std::cin >> a;
-    auto ans = tifa_libs::math::pfactors<false>(a);
+    auto ans = math::pfactors<false>(a);
     std::cout << ans.size();
     if (!ans.empty()) std::cout << ' ' << ans;
     std::cout << '\n';

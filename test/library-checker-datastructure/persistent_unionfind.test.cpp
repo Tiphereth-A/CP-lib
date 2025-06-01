@@ -2,6 +2,7 @@
 
 #include "../../include/ds/dsu_pd.hpp"
 
+using namespace tifa_libs;
 CEXP usz Q = 200005;
 
 int main() {
@@ -21,7 +22,7 @@ int main() {
     else
       qry[(u32)k].emplace_back(cnt++, u, v);
   }
-  tifa_libs::ds::dsu_pd dsu(n + 1);
+  ds::dsu_pd dsu(n + 1);
   auto dfs = [&](auto&& dfs, u32 v) -> void {
     for (auto [i, x, y] : qry[v]) ans[i] = dsu.same(x, y);
     for (auto [_, x, y] : tr[v]) {

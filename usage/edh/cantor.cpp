@@ -4,12 +4,13 @@
 
 #include "../../include/edh/cantor_seq2val.hpp"
 
+using namespace tifa_libs;
 void solve() {
   u32 n;
   std::cin >> n;
   vecu a(n);
   for (auto& i : a) std::cin >> i;
-  std::cout << tifa_libs::cantor_seq2val(tifa_libs::cantor_seq(a), 998244353) << '\n';
+  std::cout << cantor_seq2val(cantor_seq(a), 998244353) << '\n';
 }
 
 int main() {

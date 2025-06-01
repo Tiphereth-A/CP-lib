@@ -2,11 +2,12 @@
 
 #include "../../include/ds/rbtree.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 q;
   std::cin >> q;
-  tifa_libs::ds::rbtree<pttuu> tr;
+  ds::rbtree<pttuu> tr;
   for (u64 i = 0, op, k, v; i < q; ++i) {
     std::cin >> op >> k;
     auto it = tr.lower_bound({k, 0});

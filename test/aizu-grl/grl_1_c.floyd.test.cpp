@@ -2,19 +2,20 @@
 
 #include "../../include/graph/floyd.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  CEXP i64 INF = tifa_libs::inf_v<i64>;
-  tifa_libs::graph::amat<i64> g(n, INF);
+  CEXP i64 INF = inf_v<i64>;
+  graph::amat<i64> g(n, INF);
   flt_ (u32, i, 0, m) {
     u32 u, v;
     i32 w;
     std::cin >> u >> v >> w;
     g.set_arc(u, v, w);
   }
-  if (!tifa_libs::graph::floyd(g, INF)) {
+  if (!graph::floyd(g, INF)) {
     std::cout << "NEGATIVE CYCLE\n";
     return 0;
   }

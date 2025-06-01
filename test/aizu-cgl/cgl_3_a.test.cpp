@@ -2,7 +2,8 @@
 
 #include "../../include/geo2d/polygon.hpp"
 
-using poly = tifa_libs::geo::polygon<double>;
+using namespace tifa_libs;
+using poly = geo::polygon<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

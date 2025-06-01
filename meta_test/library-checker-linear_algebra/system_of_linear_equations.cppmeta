@@ -4,6 +4,7 @@
 #include "../../include/lalg/leqs_solver.hpp"
 #include "../../include/lalg/trans_mat.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin

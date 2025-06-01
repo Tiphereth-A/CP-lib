@@ -4,7 +4,8 @@
 #include "../../include/math/mint_2e61n1.hpp"
 #include "../../include/str/hash_substr_2d.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_2e61n1>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_2e61n1>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -17,7 +18,7 @@ int main() {
   vec<strn> b(r);
   for (auto& i : b) std::cin >> i;
   if (h < r || w < c) return 0;
-  tifa_libs::str::hash_substr_2d<mint> ha, hb;
+  str::hash_substr_2d<mint> ha, hb;
   ha.set(a, c);
   hb.set(b, c);
   flt_ (u32, i, 0, h - r + 1)

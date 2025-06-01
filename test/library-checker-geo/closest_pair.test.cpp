@@ -3,14 +3,15 @@
 #include "../../include/geo2d/min_dis_ps.hpp"
 #include "../../include/io/ios_container.hpp"
 
-using point = tifa_libs::geo::point<i64>;
+using namespace tifa_libs;
+using point = geo::point<i64>;
 
 void solve() {
   u32 n;
   std::cin >> n;
   vec<point> vp(n);
   std::cin >> vp;
-  auto [l, r] = tifa_libs::geo::min_dis_Ps(vp);
+  auto [l, r] = geo::min_dis_Ps(vp);
   std::cout << l << ' ' << r << '\n';
 }
 

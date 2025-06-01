@@ -4,7 +4,8 @@
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_s30.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 998244353>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s30, 998244353>;
 using T = ptt<mint>;
 T e() { return T{1, 0}; }
 T op(T b, T a) { return T{a.first * b.first, a.first * b.second + a.second}; }
@@ -12,7 +13,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;
-  tifa_libs::ds::deque_with_w<T, e, op> deq;
+  ds::deque_with_w<T, e, op> deq;
   for (u32 i = 0, opt; i < n; ++i) {
     std::cin >> opt;
     mint a, b;

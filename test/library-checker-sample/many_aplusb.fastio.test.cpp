@@ -4,13 +4,14 @@
 #include "../../include/io/fastout.hpp"
 #include "../../include/io/ios128.hpp"
 
+using namespace tifa_libs;
 int main() {
   u32 t;
-  tifa_libs::fin >> t;
+  fin >> t;
   while (t--) {
     i128 a, b;
-    tifa_libs::fin >> a >> b;
-    tifa_libs::fout << a + b << '\n';
+    fin >> a >> b;
+    fout << a + b << '\n';
   }
   return 0;
 }

@@ -3,12 +3,14 @@
 
 #include "../../include/comb/ball_box_iim.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 1000000000 + 7;
 
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_s63.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s63, MOD>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s63, MOD>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

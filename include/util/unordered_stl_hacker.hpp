@@ -4,7 +4,7 @@
 #include "../rand/gen.hpp"
 #include "alias_others.hpp"
 
-namespace tifa_libs::util {
+namespace tifa_libs {
 
 // Just run it on the same compiler and same options as the solution you want to hack.
 // Works for integral types, and strn. Slow for strn.
@@ -68,6 +68,6 @@ inline vec<T> unordered_stl_hacker(usz n) NE {
   }
 }
 
-}  // namespace tifa_libs::util
+}  // namespace tifa_libs
 
 #endif

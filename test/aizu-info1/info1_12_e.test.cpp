@@ -2,11 +2,12 @@
 
 #include "../../include/util/ndvec.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 x, y, z, n;
   std::cin >> x >> y >> z >> n;
-  tifa_libs::ndvec<3, i32> nv(51, 51, 51);
+  ndvec<3, i32> nv(51, 51, 51);
   for (u32 i = 0, a, b, c; i < n; ++i) {
     std::cin >> a >> b >> c;
     nv(a, b, c) = 1;

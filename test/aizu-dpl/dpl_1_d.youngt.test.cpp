@@ -2,11 +2,12 @@
 
 #include "../../include/math/youngt.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  tifa_libs::math::Youngt yt;
+  math::Youngt yt;
   for (u32 i = 0, x; i < n; ++i) {
     std::cin >> x;
     yt.insert(x);

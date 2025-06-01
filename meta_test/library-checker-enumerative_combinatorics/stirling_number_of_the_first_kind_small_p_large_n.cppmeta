@@ -2,6 +2,7 @@
 
 #include "../../include/comb/stirling1_smallp.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin

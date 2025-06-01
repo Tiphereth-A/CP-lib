@@ -5,9 +5,10 @@
 
 #include "../base.hpp"
 
+using namespace tifa_libs;
 using data_t = f128;
-using Point2 = tifa_libs::geo::point<data_t>;
-using DynamicCVH2 = tifa_libs::geo::dcvh<data_t>;
+using Point2 = geo::point<data_t>;
+using DynamicCVH2 = geo::dcvh<data_t>;
 
 const strn RES_YN[2] = {"NO", "YES"};
 
@@ -28,7 +29,7 @@ strn single_proceed(std::istream &fin) {
 }
 
 void test(strn CR data) {
-  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("codeforces", "70D", data);
+  auto [fn_in, fn_ans] = unittest::get_fname_in_ans("codeforces", "70D", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
   u32 t = 1;
@@ -52,23 +53,23 @@ void test(strn CR data) {
 }
 
 int main() {
-  auto tcase = tifa_libs::unittest::pre_test();
+  auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test("1"), test("13"), test("25"), test("37"), test("49"); break;
-    case tifa_libs::unittest::ts_example_01: test("2"), test("14"), test("26"), test("38"), test("50"); break;
-    case tifa_libs::unittest::ts_random_00: test("3"), test("15"), test("27"), test("39"), test("51"); break;
-    case tifa_libs::unittest::ts_random_01: test("4"), test("16"), test("28"), test("40"), test("52"); break;
-    case tifa_libs::unittest::ts_random_02: test("5"), test("17"), test("29"), test("41"); break;
-    case tifa_libs::unittest::ts_random_03: test("6"), test("18"), test("30"), test("42"); break;
-    case tifa_libs::unittest::ts_random_04: test("7"), test("19"), test("31"), test("43"); break;
-    case tifa_libs::unittest::ts_random_05: test("8"), test("20"), test("32"), test("44"); break;
-    case tifa_libs::unittest::ts_random_06: test("9"), test("21"), test("33"), test("45"); break;
-    case tifa_libs::unittest::ts_random_07: test("10"), test("22"), test("34"), test("46"); break;
-    case tifa_libs::unittest::ts_random_08: test("11"), test("23"), test("35"), test("47"); break;
-    case tifa_libs::unittest::ts_random_09: test("12"), test("24"), test("36"), test("48"); break;
+    case unittest::ts_example_00: test("1"), test("13"), test("25"), test("37"), test("49"); break;
+    case unittest::ts_example_01: test("2"), test("14"), test("26"), test("38"), test("50"); break;
+    case unittest::ts_random_00: test("3"), test("15"), test("27"), test("39"), test("51"); break;
+    case unittest::ts_random_01: test("4"), test("16"), test("28"), test("40"), test("52"); break;
+    case unittest::ts_random_02: test("5"), test("17"), test("29"), test("41"); break;
+    case unittest::ts_random_03: test("6"), test("18"), test("30"), test("42"); break;
+    case unittest::ts_random_04: test("7"), test("19"), test("31"), test("43"); break;
+    case unittest::ts_random_05: test("8"), test("20"), test("32"), test("44"); break;
+    case unittest::ts_random_06: test("9"), test("21"), test("33"), test("45"); break;
+    case unittest::ts_random_07: test("10"), test("22"), test("34"), test("46"); break;
+    case unittest::ts_random_08: test("11"), test("23"), test("35"), test("47"); break;
+    case unittest::ts_random_09: test("12"), test("24"), test("36"), test("48"); break;
     default: break;
   }
 
-  tifa_libs::unittest::post_test();
+  unittest::post_test();
 }

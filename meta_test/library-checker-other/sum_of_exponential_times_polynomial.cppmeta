@@ -3,6 +3,7 @@
 #include "../../include/comb/gen_pows.hpp"
 #include "../../include/math/sum_ipaf.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin

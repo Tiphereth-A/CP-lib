@@ -2,7 +2,8 @@
 
 #include "../../include/geo2d/cvh.hpp"
 
-using cvh = tifa_libs::geo::cvh<double>;
+using namespace tifa_libs;
+using cvh = geo::cvh<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -15,7 +16,7 @@ int main() {
   std::cout << p.size() << '\n';
   u32 now = 0;
   flt_ (u32, i, 1, p.size())
-    if (tifa_libs::is_lt(p[i].y, p[now].y) || (tifa_libs::is_eq(p[i].y, p[now].y) && tifa_libs::is_lt(p[i].x, p[now].x))) now = i;
+    if (is_lt(p[i].y, p[now].y) || (is_eq(p[i].y, p[now].y) && is_lt(p[i].x, p[now].x))) now = i;
   flt_ (u32, i, now, p.size()) std::cout << p[i] << '\n';
   if (now)
     flt_ (u32, i, 0, now) std::cout << p[i] << '\n';

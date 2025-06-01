@@ -4,14 +4,15 @@
 #include "../../include/io/fastout.hpp"
 #include "../../include/nt/exbsgs.hpp"
 
+using namespace tifa_libs;
 int main() {
   i64 t;
-  tifa_libs::fin >> t;
+  fin >> t;
   while (t--) {
     u64 x, y, m;
-    tifa_libs::fin >> x >> y >> m;
-    auto res = tifa_libs::math::exbsgs(x, y, m);
-    tifa_libs::fout << (res ? (i64)res.value() : -1) << '\n';
+    fin >> x >> y >> m;
+    auto res = math::exbsgs(x, y, m);
+    fout << (res ? (i64)res.value() : -1) << '\n';
   }
   return 0;
 }

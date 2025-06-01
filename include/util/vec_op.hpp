@@ -3,6 +3,8 @@
 
 #include "alias_others.hpp"
 
+namespace tifa_libs {
+
 #define OO_PTEQ_(op)                                       \
   template <class T>                                       \
   CEXP vec<T> &operator op##=(vec<T> &a, vec<T> CR b) NE { \
@@ -25,5 +27,7 @@ OO_PTEQ_(<<)
 OO_PTEQ_(>>)
 
 #undef OO_PTEQ_
+
+}  // namespace tifa_libs
 
 #endif

@@ -2,11 +2,12 @@
 
 #include "../../include/graph/johnson.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  CEXP i64 INF = tifa_libs::inf_v<i64>;
+  CEXP i64 INF = inf_v<i64>;
   vec<edge_t<i64>> arcs;
   flt_ (u32, i, 0, m) {
     u32 u, v;
@@ -14,7 +15,7 @@ int main() {
     std::cin >> u >> v >> w;
     arcs.emplace_back(w, u, v);
   }
-  auto d = tifa_libs::graph::johnson(n, arcs, INF);
+  auto d = graph::johnson(n, arcs, INF);
   if (!d.has_value()) {
     std::cout << "NEGATIVE CYCLE\n";
     return 0;

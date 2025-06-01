@@ -5,13 +5,14 @@
 #include "../../include/io/ios_pair.hpp"
 #include "../../include/math/mpi.hpp"
 
+using namespace tifa_libs;
 int main() {
   u32 t;
-  tifa_libs::fin >> t;
+  fin >> t;
   while (t--) {
-    tifa_libs::math::mpi a, b;
-    tifa_libs::fin >> a >> b;
-    tifa_libs::fout << divmod(a, b) << '\n';
+    math::mpi a, b;
+    fin >> a >> b;
+    fout << divmod(a, b) << '\n';
   }
   return 0;
 }

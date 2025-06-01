@@ -2,11 +2,12 @@
 
 #include "../../include/ds/dbitset.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  vec<tifa_libs::ds::dbitset> masks(n, tifa_libs::ds::dbitset(64));
+  vec<ds::dbitset> masks(n, ds::dbitset(64));
   for (auto& m : masks) {
     u32 k;
     std::cin >> k;
@@ -17,7 +18,7 @@ int main() {
   }
   u32 q;
   std::cin >> q;
-  tifa_libs::ds::dbitset bs(64);
+  ds::dbitset bs(64);
   while (q--) {
     u32 op, i;
     std::cin >> op >> i;

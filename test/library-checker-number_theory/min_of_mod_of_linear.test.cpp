@@ -2,6 +2,7 @@
 
 #include "../../include/math/min_mod_linear.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 t;
@@ -9,7 +10,7 @@ int main() {
   while (t--) {
     u32 n, m, a, b;
     std::cin >> n >> m >> a >> b;
-    std::cout << tifa_libs::math::min_mod_linear(n, m, a, b) << '\n';
+    std::cout << math::min_mod_linear(n, m, a, b) << '\n';
   }
   return 0;
 }

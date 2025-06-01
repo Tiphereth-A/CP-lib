@@ -4,10 +4,9 @@
 #include "../../../include/geo2d/dist_pp.hpp"
 #include "../base.hpp"
 
-using tifa_libs::is_gt, tifa_libs::is_eq, tifa_libs::is_lt;
-using tifa_libs::is_pos, tifa_libs::is_zero;
-using tifa_libs::geo::dist_PP;
-using tifa_libs::geo::point;
+using namespace tifa_libs;
+using geo::dist_PP;
+using geo::point;
 
 template <class T, int p>
 void test_norm_subadditivity(point<T> CR x, point<T> CR y) {
@@ -85,9 +84,9 @@ void single_test(point<T> CR x, point<T> CR y, point<T> CR a, T s) {
   test_distance_absolute_homogeneity<T, p>(y, x, s);
 }
 
-template <tifa_libs::arithm_c T>
+template <arithm_c T>
 void test(T lim) {
-  tifa_libs::rand::Gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
+  rand::Gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
   test_norm_equivalence(point{g(), g()});
   single_test<T, 0>(point{g(), g()}, point{g(), g()}, point{g(), g()}, g());
   single_test<T, 1>(point{g(), g()}, point{g(), g()}, point{g(), g()}, g());
@@ -110,23 +109,23 @@ void test(T lim) {
 }
 
 int main() {
-  auto tcase = tifa_libs::unittest::pre_test();
+  auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test<i32>(1e4); break;
-    case tifa_libs::unittest::ts_example_01: test<i64>(1e4); break;
-    case tifa_libs::unittest::ts_random_00: test<f64>(1e4); break;
-    case tifa_libs::unittest::ts_random_01: test<f128>(1e4); break;
-    case tifa_libs::unittest::ts_random_02: test<i64>(1e5); break;
-    case tifa_libs::unittest::ts_random_03: test<f64>(1e5); break;
-    case tifa_libs::unittest::ts_random_04: test<f128>(1e5); break;
-    case tifa_libs::unittest::ts_random_05: test<i64>(1e9); break;
-    case tifa_libs::unittest::ts_random_06: test<f64>(1e9); break;
-    case tifa_libs::unittest::ts_random_07: test<f64>(1e9); break;
-    case tifa_libs::unittest::ts_random_08: test<f128>(1e9); break;
-    case tifa_libs::unittest::ts_random_09: break;
+    case unittest::ts_example_00: test<i32>(1e4); break;
+    case unittest::ts_example_01: test<i64>(1e4); break;
+    case unittest::ts_random_00: test<f64>(1e4); break;
+    case unittest::ts_random_01: test<f128>(1e4); break;
+    case unittest::ts_random_02: test<i64>(1e5); break;
+    case unittest::ts_random_03: test<f64>(1e5); break;
+    case unittest::ts_random_04: test<f128>(1e5); break;
+    case unittest::ts_random_05: test<i64>(1e9); break;
+    case unittest::ts_random_06: test<f64>(1e9); break;
+    case unittest::ts_random_07: test<f64>(1e9); break;
+    case unittest::ts_random_08: test<f128>(1e9); break;
+    case unittest::ts_random_09: break;
     default: break;
   }
 
-  tifa_libs::unittest::post_test();
+  unittest::post_test();
 }

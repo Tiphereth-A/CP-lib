@@ -3,6 +3,7 @@
 
 #include "tuple_push_pop.hpp"
 
+namespace tifa_libs {
 namespace tuple_op_impl_ {
 template <class Tpl, class Op2, usz... Is>
 CEXP auto apply2_impl_(Op2 f, Tpl &&l, Tpl &&r, std::index_sequence<Is...>) NE { return std::make_tuple(f(std::get<Is>(l), std::get<Is>(r))...); }
@@ -31,5 +32,7 @@ OO_PTEQ_(<<)
 OO_PTEQ_(>>)
 
 #undef OO_PTEQ_
+
+}  // namespace tifa_libs
 
 #endif

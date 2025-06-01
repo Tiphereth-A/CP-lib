@@ -5,8 +5,9 @@
 
 #include "../base.hpp"
 
+using namespace tifa_libs;
 void test(strn CR data) {
-  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("bzoj", "4804", data);
+  auto [fn_in, fn_ans] = unittest::get_fname_in_ans("bzoj", "4804", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
   u32 t;
@@ -15,7 +16,7 @@ void test(strn CR data) {
   flt_ (u32, i, 0, t) fin >> ns[i];
 
   u32 n = std::ranges::max(ns);
-  tifa_libs::math::lsieve2 ls(n);
+  math::lsieve2 ls(n);
   u64 lst = 1;
   vecuu g = ls.template run<u64>([&](u32 p, u32 e) {
     if (e == 1) return lst = p - 2;
@@ -36,23 +37,23 @@ void test(strn CR data) {
 }
 
 int main() {
-  auto tcase = tifa_libs::unittest::pre_test();
+  auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test("1"); break;
-    case tifa_libs::unittest::ts_example_01: test("2"); break;
-    case tifa_libs::unittest::ts_random_00: test("3"); break;
-    case tifa_libs::unittest::ts_random_01: test("4"); break;
-    case tifa_libs::unittest::ts_random_02: test("5"); break;
-    case tifa_libs::unittest::ts_random_03: break;
-    case tifa_libs::unittest::ts_random_04: break;
-    case tifa_libs::unittest::ts_random_05: break;
-    case tifa_libs::unittest::ts_random_06: break;
-    case tifa_libs::unittest::ts_random_07: break;
-    case tifa_libs::unittest::ts_random_08: break;
-    case tifa_libs::unittest::ts_random_09: break;
+    case unittest::ts_example_00: test("1"); break;
+    case unittest::ts_example_01: test("2"); break;
+    case unittest::ts_random_00: test("3"); break;
+    case unittest::ts_random_01: test("4"); break;
+    case unittest::ts_random_02: test("5"); break;
+    case unittest::ts_random_03: break;
+    case unittest::ts_random_04: break;
+    case unittest::ts_random_05: break;
+    case unittest::ts_random_06: break;
+    case unittest::ts_random_07: break;
+    case unittest::ts_random_08: break;
+    case unittest::ts_random_09: break;
     default: break;
   }
 
-  tifa_libs::unittest::post_test();
+  unittest::post_test();
 }

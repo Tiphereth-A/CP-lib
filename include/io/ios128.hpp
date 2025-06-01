@@ -4,6 +4,8 @@
 #include "../util/traits_math.hpp"
 #include "../util/traits_others.hpp"
 
+namespace tifa_libs {
+
 auto &operator>>(tifa_libs::istream_c auto &is, tifa_libs::s128_c auto &n) NE {
   bool neg = false;
   while (!neg && !isdigit(is.peek())) {
@@ -32,5 +34,7 @@ auto &operator<<(tifa_libs::ostream_c auto &os, tifa_libs::s128_c auto n) NE {
   if (n < 0) os << '-', n = -n;
   return os << (u128)n;
 }
+
+}  // namespace tifa_libs
 
 #endif

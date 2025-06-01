@@ -8,10 +8,11 @@
 #include "../../../include/math/qpow.hpp"
 #include "../base.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, 1'000'000'000 + 7>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s30, 1'000'000'000 + 7>;
 
 void test(strn CR data) {
-  auto [fn_in, fn_ans] = tifa_libs::unittest::get_fname_in_ans("bzoj", "4407", data);
+  auto [fn_in, fn_ans] = unittest::get_fname_in_ans("bzoj", "4407", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
   u32 t, k;
@@ -22,11 +23,11 @@ void test(strn CR data) {
     if (ns[i] > ms[i]) std::swap(ns[i], ms[i]);
   }
   u32 n = std::ranges::max(ns);
-  tifa_libs::math::lsieve2 ls(n);
+  math::lsieve2 ls(n);
   static mint pk, lst;
   vec<mint> g = ls.template run<mint>(
       [&](u32 p, u32 e) -> mint {
-        if (e == 1) return lst = (pk = tifa_libs::math::qpow<mint>(p, k)) - 1;
+        if (e == 1) return lst = (pk = math::qpow<mint>(p, k)) - 1;
         else return lst *= pk;
       });
   std::inclusive_scan(g.begin(), g.end(), g.begin());
@@ -44,23 +45,23 @@ void test(strn CR data) {
 }
 
 int main() {
-  auto tcase = tifa_libs::unittest::pre_test();
+  auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test("1"); break;
-    case tifa_libs::unittest::ts_example_01: test("2"); break;
-    case tifa_libs::unittest::ts_random_00: test("3"); break;
-    case tifa_libs::unittest::ts_random_01: test("4"); break;
-    case tifa_libs::unittest::ts_random_02: test("5"); break;
-    case tifa_libs::unittest::ts_random_03: test("6"); break;
-    case tifa_libs::unittest::ts_random_04: test("7"); break;
-    case tifa_libs::unittest::ts_random_05: test("8"); break;
-    case tifa_libs::unittest::ts_random_06: test("9"); break;
-    case tifa_libs::unittest::ts_random_07: test("10"); break;
-    case tifa_libs::unittest::ts_random_08: break;
-    case tifa_libs::unittest::ts_random_09: break;
+    case unittest::ts_example_00: test("1"); break;
+    case unittest::ts_example_01: test("2"); break;
+    case unittest::ts_random_00: test("3"); break;
+    case unittest::ts_random_01: test("4"); break;
+    case unittest::ts_random_02: test("5"); break;
+    case unittest::ts_random_03: test("6"); break;
+    case unittest::ts_random_04: test("7"); break;
+    case unittest::ts_random_05: test("8"); break;
+    case unittest::ts_random_06: test("9"); break;
+    case unittest::ts_random_07: test("10"); break;
+    case unittest::ts_random_08: break;
+    case unittest::ts_random_09: break;
     default: break;
   }
 
-  tifa_libs::unittest::post_test();
+  unittest::post_test();
 }

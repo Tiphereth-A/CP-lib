@@ -5,9 +5,10 @@
 #include "../../include/io/ios_container.hpp"
 #include "../../include/str/z_func.hpp"
 
+using namespace tifa_libs;
 int main() {
   strn s;
-  tifa_libs::fin >> s;
-  tifa_libs::fout << tifa_libs::str::z_func(s) << '\n';
+  fin >> s;
+  fout << str::z_func(s) << '\n';
   return 0;
 }

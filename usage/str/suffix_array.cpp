@@ -2,12 +2,13 @@
 
 #include "../../include/str/suffix_array.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s;
   std::cin >> s;
   s = " " + s;
-  tifa_libs::str::suffixarray sa(s);
+  str::suffixarray sa(s);
   flt_ (u32, i, 1, (u32)s.size()) std::cout << sa.sa[i] << " \n"[i + 1 == s.size()];
 }
 

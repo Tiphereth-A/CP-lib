@@ -4,15 +4,16 @@
 
 #include "../../include/tree/tree.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   vecu sign(n), min_(n);
-  tifa_libs::graph::tree tr(n);
+  graph::tree tr(n);
   {
     using Tw = u32;
-    tifa_libs::graph::treew<Tw> trw(n);
+    graph::treew<Tw> trw(n);
     for (u32 i = 1, u, v, w; i < n; ++i) std::cin >> u >> v >> w, --u, --v, tr.add_arc(u, v), tr.add_arc(v, u), trw.add_arc(u, v, w), trw.add_arc(v, u, w);
     auto dfs = [&](auto&& dfs, u32 u, u32 fa, u32 min__) -> void {
       min_[u] = min__;
@@ -21,8 +22,8 @@ int main() {
     };
     dfs(dfs, 0, 0, INT32_MAX);
   }
-  tifa_libs::graph::virtual_tree::tree_info_t info(tr);
-  tifa_libs::graph::virtual_tree vt(tr, info);
+  graph::virtual_tree::tree_info_t info(tr);
+  graph::virtual_tree vt(tr, info);
   u32 m, k;
   std::cin >> m;
   flt_ (u32, i, 0, m) {

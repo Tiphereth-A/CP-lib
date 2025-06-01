@@ -43,7 +43,7 @@ class orthodox_ex_suffix_automaton {
   }
   CEXP void insert(strnv s) NE {
     for (u32 u = 0; auto cc : s) {
-      const u32 c = cc - BASE;
+      const u32 c = (u32)cc - BASE;
       if (!st[u].nex[c]) st[u].nex[c] = sz++, st.push_back(TIFA());
       u = st[u].nex[c];
     }
@@ -54,7 +54,7 @@ class orthodox_ex_suffix_automaton {
       if (st[0].nex[i]) q.push({0, i});
     while (q.size()) {
       auto [last, c] = q.front();
-      q.pop(), last = extend(last, c);
+      q.pop(), last = extend(last, (u32)c);
       flt_ (u32, i, 0, SZ)
         if (st[last].nex[i]) q.push({last, i});
     }

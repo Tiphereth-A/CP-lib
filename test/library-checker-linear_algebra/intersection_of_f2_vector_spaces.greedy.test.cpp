@@ -3,12 +3,13 @@
 #include "../../include/io/ios_container.hpp"
 #include "../../include/lalg/basis_z2.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 t;
   std::cin >> t;
   while (t--) {
-    tifa_libs::math::basisZ2<32, true> a;
+    math::basisZ2<32, true> a;
     u32 n, m;
     std::cin >> n;
     for (u32 i = 0, x; i < n; ++i) {

@@ -17,7 +17,7 @@ class ex_suffix_automaton {
   u32 sz;
   vec<TIFA> st;
 
-  CEXPE ex_suffix_automaton() NE : sz(1), st(1) { st[0].len = 0, st[0].link = -1; }
+  CEXPE ex_suffix_automaton() NE : sz(1), st(1) { st[0].len = 0, st[0].link = -1_u32; }
 
   CEXP u32 extend(u32 last, u32 c) NE {
     if (st[last].nex[c]) {

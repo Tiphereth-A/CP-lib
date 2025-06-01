@@ -3,6 +3,7 @@
 
 #include "../../include/util/alias_num.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../include/math/factl_helper.hpp"
@@ -10,9 +11,12 @@ CEXP u32 MOD = 998244353;
 #include "../../include/math/mint_s63.hpp"
 #include "../../include/poly/polyntt.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s63, MOD>;
-using poly = tifa_libs::math::polyntt<mint>;
-using fact_t = tifa_libs::math::factl_helper<poly>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s63, MOD>;
+using namespace tifa_libs;
+using poly = math::polyntt<mint>;
+using namespace tifa_libs;
+using fact_t = math::factl_helper<poly>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

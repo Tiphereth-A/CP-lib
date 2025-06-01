@@ -2,11 +2,12 @@
 
 #include "../../include/graph/ssp.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, s, t;
   std::cin >> n >> m >> s >> t, --s, --t;
-  tifa_libs::graph::ssp mcmf(n, s, t);
+  graph::ssp mcmf(n, s, t);
   i32 c;
   for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w >> c, --u, --v, mcmf.add(u, v, w, c);
   auto [flow, cost] = mcmf.get();

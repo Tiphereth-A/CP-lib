@@ -4,8 +4,9 @@
 #include "../../include/lalg/mul_bmat.hpp"
 #include "../../include/lalg/trans_bmat.hpp"
 
+using namespace tifa_libs;
 template <usz N>
-using mat = tifa_libs::math::bitmat<N>;
+using mat = math::bitmat<N>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -15,10 +16,10 @@ int main() {
 #define DO(num)                                                            \
   if (std::max({n, m, k}) <= num) {                                  \
     mat<num> a, b;                                                         \
-    tifa_libs::math::read_bitmat(std::cin, a, n, m);                       \
-    tifa_libs::math::read_bitmat(std::cin, b, m, k);                       \
-    auto c = tifa_libs::math::mul_bmat(a, tifa_libs::math::trans_bmat(b)); \
-    tifa_libs::math::print_bitmat(std::cout, c, n, k);                     \
+    math::read_bitmat(std::cin, a, n, m);                       \
+    math::read_bitmat(std::cin, b, m, k);                       \
+    auto c = math::mul_bmat(a, math::trans_bmat(b)); \
+    math::print_bitmat(std::cout, c, n, k);                     \
     return 0;                                                              \
   }
 

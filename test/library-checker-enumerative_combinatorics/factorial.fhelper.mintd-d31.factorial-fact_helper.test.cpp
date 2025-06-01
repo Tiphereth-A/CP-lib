@@ -3,14 +3,17 @@
 
 #include "../../include/util/alias_num.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../include/math/fact_helper.hpp"
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_d31.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_d31, __LINE__>;
-using fact_t = tifa_libs::math::fact_helper<mint>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_d31, __LINE__>;
+using namespace tifa_libs;
+using fact_t = math::fact_helper<mint>;
 
 int main() {
   mint::set_mod(MOD);

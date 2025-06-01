@@ -3,6 +3,7 @@
 #include "../../include/enum/enum_subset.hpp"
 #include "../../include/util/alias_others.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, k;
@@ -12,9 +13,9 @@ int main() {
     std::cin >> x;
     b |= 1 << x;
   }
-  tifa_libs::enum_subset<>::set(b);
+  enum_subset<>::set(b);
   vecu _;
-  for (auto i : tifa_libs::enum_subset<>{}) _.push_back(i);
+  for (auto i : enum_subset<>{}) _.push_back(i);
   _.push_back(0);
   std::ranges::reverse(_);
   for (auto i : _) {

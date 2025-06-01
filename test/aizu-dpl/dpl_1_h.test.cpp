@@ -2,12 +2,13 @@
 
 #include "../../include/opt/knapsack_01.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n, w;
   std::cin >> n >> w;
   vecpt<u64> a(n);
   for (auto& [v, w] : a) std::cin >> v >> w;
-  std::cout << tifa_libs::opt::knapsack_01(a, w) << '\n';
+  std::cout << opt::knapsack_01(a, w) << '\n';
   return 0;
 }

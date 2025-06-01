@@ -3,7 +3,8 @@
 #include "../../include/io/ios_pair.hpp"
 #include "../../include/nt/sbt.hpp"
 
-using sbt = tifa_libs::math::SBT<i64>;
+using namespace tifa_libs;
+using sbt = math::SBT<i64>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

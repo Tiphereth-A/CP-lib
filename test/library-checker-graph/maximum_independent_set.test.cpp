@@ -2,6 +2,7 @@
 
 #include "../../include/graph/cliques.hpp"
 
+using namespace tifa_libs;
 CEXP u32 N = 128;
 using B = std::bitset<N>;
 
@@ -19,7 +20,7 @@ int main() {
       if (i != j) adj[i].flip(j);
   }
   B ans{};
-  tifa_libs::graph::cliques(n, adj, [&](B R) {
+  graph::cliques(n, adj, [&](B R) {
     if (ans.count() < R.count()) ans = R;
   });
   auto ans_cnt = ans.count();

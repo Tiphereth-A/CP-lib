@@ -2,9 +2,10 @@
 
 #include "../../include/ds/fenwick_2d.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  tifa_libs::ds::fenwick2d<u32> tr(1003, 1003);
+  ds::fenwick2d<u32> tr(1003, 1003);
   u32 n;
   std::cin >> n;
   for (u32 i = 0, xl, xr, yl, yr; i < n; ++i) {

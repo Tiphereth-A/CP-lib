@@ -4,8 +4,9 @@
 #include "../../include/geo2d/polygon.hpp"
 #include "../../include/geo2d/rel_pop.hpp"
 
-using point = tifa_libs::geo::point<double>;
-using poly = tifa_libs::geo::polygon<double>;
+using namespace tifa_libs;
+using point = geo::point<double>;
+using poly = geo::polygon<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -19,9 +20,9 @@ int main() {
   flt_ (u32, i, 0, q) {
     point p;
     std::cin >> p;
-    switch (tifa_libs::geo::relation_PoP(pl, p)) {
-      case tifa_libs::geo::inside_pop: std::cout << "2\n"; break;
-      case tifa_libs::geo::outside_pop: std::cout << "0\n"; break;
+    switch (geo::relation_PoP(pl, p)) {
+      case geo::inside_pop: std::cout << "2\n"; break;
+      case geo::outside_pop: std::cout << "0\n"; break;
       default: std::cout << "1\n";
     }
   }

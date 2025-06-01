@@ -5,18 +5,19 @@
 #include "../../include/nt/lcm.hpp"
 #include "../../include/nt/rgcd.hpp"
 
+using namespace tifa_libs;
 CEXP u32 LIMIT = 1e7;
 
 int main() {
   u64 n;
   u32 ans;
-  tifa_libs::fin >> n >> ans;
-  tifa_libs::math::rgcd rgcd_(LIMIT);
+  fin >> n >> ans;
+  math::rgcd rgcd_(LIMIT);
   for (u32 i = 1, x; i < n; ++i) {
-    tifa_libs::fin >> x;
+    fin >> x;
     if (ans < LIMIT) (ans /= rgcd_(ans, x)) *= x;
-    else ans = tifa_libs::math::lcm(ans, x);
+    else ans = math::lcm(ans, x);
   }
-  tifa_libs::fout << ans << '\n';
+  fout << ans << '\n';
   return 0;
 }

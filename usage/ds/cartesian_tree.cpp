@@ -2,13 +2,14 @@
 
 #include "../../include/ds/cartesian_tree.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
   veci a(n);
   for (auto &x : a) std::cin >> x;
-  tifa_libs::ds::cartesian_tree tr(a);
+  ds::cartesian_tree tr(a);
   i64 retl = 0, retr = 0;
   flt_ (u32, i, 0, n) retl ^= 1ll * (i + 1) * (~tr.t[i].son[0] ? tr.t[i].son[0] + 2 : 1), retr ^= 1ll * (i + 1) * (~tr.t[i].son[1] ? tr.t[i].son[1] + 2 : 1);
   std::cout << retl << ' ' << retr << '\n';

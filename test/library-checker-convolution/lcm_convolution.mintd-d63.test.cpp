@@ -3,12 +3,14 @@
 
 #include "../../include/conv/conv_lcm.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_d63.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_d63, __LINE__>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_d63, __LINE__>;
 
 int main() {
   mint::set_mod(MOD);

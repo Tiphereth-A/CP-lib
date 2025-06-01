@@ -5,25 +5,28 @@
 #include "../../include/io/fastout.hpp"
 #include "../../include/io/ios_container.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 1000000007;
 
 #include "../../include/conv/conv_3ntt.hpp"
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_s30.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
-using mint_3nttu640 = tifa_libs::math::mint<tifa_libs::math::mint_s30, 167772161>;
-using mint_3nttu641 = tifa_libs::math::mint<tifa_libs::math::mint_s30, 469762049>;
-using mint_3nttu642 = tifa_libs::math::mint<tifa_libs::math::mint_s30, 754974721>;
-using ntt_3nttu640_t = tifa_libs::math::NTT<mint_3nttu640>;
-using ntt_3nttu641_t = tifa_libs::math::NTT<mint_3nttu641>;
-using ntt_3nttu642_t = tifa_libs::math::NTT<mint_3nttu642>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s30, MOD>;
+using namespace tifa_libs;
+using mint_3nttu640 = math::mint<math::mint_s30, 167772161>;
+using mint_3nttu641 = math::mint<math::mint_s30, 469762049>;
+using mint_3nttu642 = math::mint<math::mint_s30, 754974721>;
+using ntt_3nttu640_t = math::NTT<mint_3nttu640>;
+using ntt_3nttu641_t = math::NTT<mint_3nttu641>;
+using ntt_3nttu642_t = math::NTT<mint_3nttu642>;
 using vec_t = vecuu;
 auto conv_func(vec_t CR a, vec_t CR b) {
   ntt_3nttu640_t ntt0;
   ntt_3nttu641_t ntt1;
   ntt_3nttu642_t ntt2;
-  return tifa_libs::math::conv_3ntt_u64(ntt0, ntt1, ntt2, a, b, MOD);
+  return math::conv_3ntt_u64(ntt0, ntt1, ntt2, a, b, MOD);
 }
 
 int main() {

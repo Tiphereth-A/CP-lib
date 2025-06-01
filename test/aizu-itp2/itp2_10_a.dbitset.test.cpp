@@ -2,11 +2,12 @@
 
 #include "../../include/ds/dbitset.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  tifa_libs::ds::dbitset bs(32);
+  ds::dbitset bs(32);
   bs.getword(0) = n;
   std::cout << bs << '\n';
   std::cout << ~bs << '\n';

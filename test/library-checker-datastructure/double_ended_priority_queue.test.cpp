@@ -3,6 +3,7 @@
 #include "../../include/ds/depq.hpp"
 #include "../../include/util/alias_others.hpp"
 
+using namespace tifa_libs;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 _tests = 1;
@@ -11,7 +12,7 @@ int main() {
     std::cin >> n >> q;
     vec<int> a(n);
     for (auto &x : a) std::cin >> x;
-    tifa_libs::ds::make_minmax_heap(a.begin(), a.end());
+    ds::make_minmax_heap(a.begin(), a.end());
     while (q--) {
       int t;
       std::cin >> t;
@@ -19,13 +20,13 @@ int main() {
         int x;
         std::cin >> x;
         a.push_back(x);
-        tifa_libs::ds::push_minmax_heap(a.begin(), a.end());
+        ds::push_minmax_heap(a.begin(), a.end());
       } else if (t == 1) {
-        tifa_libs::ds::pop_minmax_heap_min(a.begin(), a.end());
+        ds::pop_minmax_heap_min(a.begin(), a.end());
         std::cout << a.back() << '\n';
         a.pop_back();
       } else {
-        tifa_libs::ds::pop_minmax_heap_max(a.begin(), a.end());
+        ds::pop_minmax_heap_max(a.begin(), a.end());
         std::cout << a.back() << '\n';
         a.pop_back();
       }

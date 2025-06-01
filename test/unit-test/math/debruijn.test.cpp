@@ -6,9 +6,10 @@
 #include "../../../include/math/qpow.hpp"
 #include "../base.hpp"
 
+using namespace tifa_libs;
 void test(u32 n, u32 k) {
-  auto list = tifa_libs::math::deBruijn(n, k);
-  usz len = tifa_libs::math::qpow<u64>(k, n);
+  auto list = math::deBruijn(n, k);
+  usz len = math::qpow<u64>(k, n);
   check(list.size(), len, check_param(n), check_param(k));
 
   vecu text = list;
@@ -26,23 +27,23 @@ void test(u32 n, u32 k) {
 }
 
 int main() {
-  auto tcase = tifa_libs::unittest::pre_test();
+  auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test(13, 2); break;
-    case tifa_libs::unittest::ts_example_01: test(7, 3); break;
-    case tifa_libs::unittest::ts_random_00: test(5, 5); break;
-    case tifa_libs::unittest::ts_random_01: test(4, 10); break;
-    case tifa_libs::unittest::ts_random_02: test(2, 26); break;
-    case tifa_libs::unittest::ts_random_03: break;
-    case tifa_libs::unittest::ts_random_04: break;
-    case tifa_libs::unittest::ts_random_05: break;
-    case tifa_libs::unittest::ts_random_06: break;
-    case tifa_libs::unittest::ts_random_07: break;
-    case tifa_libs::unittest::ts_random_08: break;
-    case tifa_libs::unittest::ts_random_09: break;
+    case unittest::ts_example_00: test(13, 2); break;
+    case unittest::ts_example_01: test(7, 3); break;
+    case unittest::ts_random_00: test(5, 5); break;
+    case unittest::ts_random_01: test(4, 10); break;
+    case unittest::ts_random_02: test(2, 26); break;
+    case unittest::ts_random_03: break;
+    case unittest::ts_random_04: break;
+    case unittest::ts_random_05: break;
+    case unittest::ts_random_06: break;
+    case unittest::ts_random_07: break;
+    case unittest::ts_random_08: break;
+    case unittest::ts_random_09: break;
     default: break;
   }
 
-  tifa_libs::unittest::post_test();
+  unittest::post_test();
 }

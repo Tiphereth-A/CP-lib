@@ -5,14 +5,17 @@
 #include "../../include/io/fastout.hpp"
 #include "../../include/poly/interp_fps.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../include/math/mint.hpp"
 #include "../../include/math/mint_s30.hpp"
 #include "../../include/poly/polymtt.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_s30, MOD>;
-using poly = tifa_libs::math::polymtt<mint>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_s30, MOD>;
+using namespace tifa_libs;
+using poly = math::polymtt<mint>;
 
 int main() {
   u32 n;

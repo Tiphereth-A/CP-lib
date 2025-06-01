@@ -3,6 +3,7 @@
 #include "../../include/comb/ball_box_idl.hpp"
 #include "../../include/comb/binom.hpp"
 
+using namespace tifa_libs;
 CEXP u32 MOD = 1000000000 + 7;
 
 // ---<GENTC>--- begin

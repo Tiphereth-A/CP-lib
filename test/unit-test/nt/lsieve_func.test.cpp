@@ -9,6 +9,7 @@
 #include "../../../include/nt/lsieve2.hpp"
 #include "../base.hpp"
 
+using namespace tifa_libs;
 struct lsieve_bf {
   vecu prime, mpf, phi, tau;
   veci mu;
@@ -38,7 +39,7 @@ struct lsieve_bf {
     }
     phi = vecu(n), (n > 1) && (phi[1] = 1);
     flt_ (u32, i, 2, n)
-      flt_ (u32, j, 1, i + 1) phi[i] += (tifa_libs::math::gcd(i, j) == 1);
+      flt_ (u32, j, 1, i + 1) phi[i] += (math::gcd(i, j) == 1);
     tau = vecu(n), (n > 1) && (tau[1] = 1);
     flt_ (u32, i, 2, n)
       flt_ (u32, j, 1, i + 1) tau[i] += (i % j == 0);
@@ -70,12 +71,12 @@ struct lsieve_func2 {
   vecuu sigma;
 
   constexpr lsieve_func2& reset_lsieve_func2(u32 n) {
-    auto ls = tifa_libs::math::lsieve2(n);
-    phi = ls.run<u32>([](u32 p, u32 i) -> u32 { return i == 0 ? 1 : u32(tifa_libs::math::qpow((u64)p, i) - tifa_libs::math::qpow((u64)p, i - 1)); });
+    auto ls = math::lsieve2(n);
+    phi = ls.run<u32>([](u32 p, u32 i) -> u32 { return i == 0 ? 1 : u32(math::qpow((u64)p, i) - math::qpow((u64)p, i - 1)); });
     tau = ls.run<u32>([](u32, u32 i) -> u32 { return i + 1; });
     mu = ls.run<i32>([](u32, u32 i) -> i32 { return i == 0 ? 1 : i == 1 ? -1
                                                                         : 0; });
-    sigma = ls.run<u64>([](u32 p, u32 i) -> u64 { return i == 0 ? 1 : (tifa_libs::math::qpow((u64)p, i + 1) - 1) / (p - 1); });
+    sigma = ls.run<u64>([](u32 p, u32 i) -> u64 { return i == 0 ? 1 : (math::qpow((u64)p, i + 1) - 1) / (p - 1); });
     return *this;
   }
 };
@@ -84,7 +85,7 @@ void test(u32 n) {
   lsieve_bf lsb;
   lsb.reset_lsieve_bf(n);
 
-  tifa_libs::math::lsieve<tifa_libs::math::ls_mpf, tifa_libs::math::ls_mu, tifa_libs::math::ls_phi, tifa_libs::math::ls_sigma, tifa_libs::math::ls_tau> lsf(n);
+  math::lsieve<math::ls_mpf, math::ls_mu, math::ls_phi, math::ls_sigma, math::ls_tau> lsf(n);
 
   check(lsf.primes, lsb.prime);
   flt_ (u32, i, 0, n) check(lsf.mpf[i], lsb.mpf[i], check_param(i));
@@ -103,22 +104,22 @@ void test(u32 n) {
 }
 
 int main() {
-  auto tcase = tifa_libs::unittest::pre_test();
+  auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case tifa_libs::unittest::ts_example_00: test(0); break;
-    case tifa_libs::unittest::ts_random_00: test(1); break;
-    case tifa_libs::unittest::ts_random_01: test(10); break;
-    case tifa_libs::unittest::ts_random_02: test(100); break;
-    case tifa_libs::unittest::ts_random_03: test(1000); break;
-    case tifa_libs::unittest::ts_random_04: test(2000); break;
-    case tifa_libs::unittest::ts_random_05: test(3000); break;
-    case tifa_libs::unittest::ts_random_06: test(4000); break;
-    case tifa_libs::unittest::ts_random_07: test(5000); break;
-    case tifa_libs::unittest::ts_random_08: test(6000); break;
-    case tifa_libs::unittest::ts_random_09: test(7000); break;
+    case unittest::ts_example_00: test(0); break;
+    case unittest::ts_random_00: test(1); break;
+    case unittest::ts_random_01: test(10); break;
+    case unittest::ts_random_02: test(100); break;
+    case unittest::ts_random_03: test(1000); break;
+    case unittest::ts_random_04: test(2000); break;
+    case unittest::ts_random_05: test(3000); break;
+    case unittest::ts_random_06: test(4000); break;
+    case unittest::ts_random_07: test(5000); break;
+    case unittest::ts_random_08: test(6000); break;
+    case unittest::ts_random_09: test(7000); break;
     default: break;
   }
 
-  tifa_libs::unittest::post_test();
+  unittest::post_test();
 }

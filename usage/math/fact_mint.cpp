@@ -6,8 +6,9 @@
 #include "../../include/math/mint_d31.hpp"
 #include "../../include/poly/polymtt.hpp"
 
-using mint = tifa_libs::math::mint<tifa_libs::math::mint_d31, __LINE__>;
-using poly = tifa_libs::math::polymtt<mint>;
+using namespace tifa_libs;
+using mint = math::mint<math::mint_d31, __LINE__>;
+using poly = math::polymtt<mint>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -17,7 +18,7 @@ int main() {
     u32 n, p;
     std::cin >> n >> p;
     mint::set_mod(p);
-    std::cout << tifa_libs::math::fact_mint<poly>(n) << '\n';
+    std::cout << math::fact_mint<poly>(n) << '\n';
   }
 }
 
