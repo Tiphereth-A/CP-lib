@@ -24,7 +24,7 @@ class fastout {
   }
 
  public:
-  fastout(FILE *f = stdout) NE { rebind(f); }
+  fastout(FILE *f = stdin) NE { rebind(f); }
   ~fastout() NE { flush(); }
   void rebind(FILE *f) NE { f_ = f, p = buf; }
   void flush() NE { fwrite(buf, 1, usz(p - buf), f_), p = buf; }
@@ -39,13 +39,17 @@ class fastout {
   template <class T>
   requires(smost64_c<T> && !char_c<T>)
   fastout &operator<<(T n) NE {
-    if (n < 0) (*this << '-'), n = -n;
-    return *this << to_uint_t<T>(n);
+    if CEXP (sizeof(T) < sizeof(i32)) return *this << (i32)n;
+    else {
+      if (n < 0) return *this << '-' << -to_uint_t<T>(n);
+      return *this << to_uint_t<T>(n);
+    }
   }
   template <class T>
   requires(umost64_c<T> && !char_c<T>)
   fastout &operator<<(T n) NE {
     if CEXP (std::same_as<T, bool>) return *this << (char(n | '0'));
+    else if CEXP (sizeof(T) < sizeof(u32)) return *this << (u32)n;
     else {
       auto res = std::to_chars(int_buf, int_buf + INTBUF, n);
       return write_str(int_buf, usz(res.ptr - int_buf));

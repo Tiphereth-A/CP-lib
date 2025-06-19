@@ -100,9 +100,11 @@ class fastin {
       if CEXP (std::signed_integral<T>)
         while (!isdigit(peek())) is_neg |= get_unchk() == '-';
       else skip_ndigit();
-      while (isdigit(peek())) (n *= 10) += get_unchk() & 15;
+      std::conditional_t<sizeof(T) < sizeof(u32), u32, to_uint_t<T>> n_ = 0;
+      while (isdigit(peek())) (n_ *= 10) += get_unchk() & 15;
       if CEXP (sint_c<T>)
-        if (is_neg) n = -n;
+        if (is_neg) n_ = -n_;
+      n = (T)n_;
     }
     return *this;
   }

@@ -31,7 +31,7 @@ template <> struct to_uint<u128> { using type = u128; };
 template <> struct to_uint<i128> { using type = u128; };
 template <class T> using to_uint_t = TPN to_uint<T>::type;
 template <arithm_c T> struct to_bigger : std::make_unsigned<T> {};
-#define _(w,ww) template <> struct to_bigger< w> { using type =  ww; } 
+#define _(w,ww) template <> struct to_bigger<w> { using type = ww; } 
 #define _2(w,ww) _(i##w,i##ww); _(u##w,u##ww);
 _2(8, 16); _2(16, 32); _2(32, 64); _2(64, 128); _(f32, f64); _(f64, f128);
 #undef _2

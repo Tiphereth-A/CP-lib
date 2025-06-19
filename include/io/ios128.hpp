@@ -12,9 +12,10 @@ auto &operator>>(tifa_libs::istream_c auto &is, tifa_libs::s128_c auto &n) NE {
     if (is.peek() == '-') neg = true;
     is.get();
   }
-  n = 0;
-  while (isdigit(is.peek())) (n *= 10) += is.get() & 15;
-  if (neg) n = -n;
+  u128 n_ = 0;
+  while (isdigit(is.peek())) (n_ *= 10) += is.get() & 15;
+  if (neg) n_ = -n_;
+  n = (i128)n_;
   return is;
 }
 auto &operator>>(tifa_libs::istream_c auto &is, tifa_libs::u128_c auto &n) NE {
@@ -31,7 +32,7 @@ auto &operator<<(tifa_libs::ostream_c auto &os, tifa_libs::u128_c auto n) NE {
   return os << int_buf.substr(usz(it - int_buf.begin()));
 }
 auto &operator<<(tifa_libs::ostream_c auto &os, tifa_libs::s128_c auto n) NE {
-  if (n < 0) os << '-', n = -n;
+  if (n < 0) return os << '-' << -(u128)n;
   return os << (u128)n;
 }
 

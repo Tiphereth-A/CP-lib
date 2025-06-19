@@ -9,7 +9,7 @@ using namespace tifa_libs;
 using point_t = ptti;
 
 vec<point_t> parse_tsp_data(strn CR name) {
-  strn filename = "data/tsp-vlsi/" + name + ".tsp";
+  strn filename = "data/others/tsp-vlsi/" + name + ".tsp";
 #ifndef LOCAL_
   std::fstream fin(filename, std::ios_base::in);
 #else
