@@ -26,7 +26,11 @@ int main() {
       std::cin >> s;
       for (u32 j = 0, x; j < s; ++j) (std::cin >> x), g.add_arc(i, x - 1);
     }
-    if (!graph::is_eulerian(g)) {
+    if (!g.cnt_arc) {
+      std::cout << "1\n";
+      continue;
+    }
+    if (!graph::is_eulerian(g) || !g.deg_out[0]) {
       std::cout << "0\n";
       continue;
     }

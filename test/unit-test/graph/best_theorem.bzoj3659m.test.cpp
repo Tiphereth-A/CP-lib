@@ -24,7 +24,8 @@ strn single_proceed(std::istream &fin) {
     fin >> s;
     for (u32 j = 0, x; j < s; ++j) (fin >> x), g.add_arc(i, x - 1);
   }
-  if (!graph::is_eulerian(g)) return "0\n";
+  if (!g.cnt_arc) return "1\n";
+  if (!graph::is_eulerian(g) || !g.deg_out[0]) return "0\n";
   vecb vis(n);
   auto f = [&](auto &&f, u32 x) -> void {
     for (auto v : g.g[x])

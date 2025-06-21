@@ -54,18 +54,31 @@ CEXP std::optional<vecptu> euler_trail(u32 n, vecptu CR edges) NE {
     } else if (g[i].size() & 1) s = i;
   return euler_trail_impl_::run_<cycle>(n, (u32)edges.size(), g, s);
 }
-CEXP bool is_eulerian(alist_c auto CR g) NE {
+template <alist_c G>
+CEXP bool is_eulerian(G CR g) NE {
+  if (!g.cnt_arc) return 1;
   const u32 n = g.size();
   assert(n == g.deg_in.size());
-  vecb vis(n);
-  u32 cnt = 0;
-  auto f = [&](auto &&f, u32 x) NE -> void {
-    for (auto v : g[x])
-      if (++cnt; !vis[(u32)v]) vis[(u32)v] = 1, f(f, (u32)v);
-  };
-  if (vis[0] = 1, f(f, 0); g.cnt_arc != cnt) return 0;
   flt_ (u32, i, 0, n)
     if (g.deg_in[i] != g.deg_out[i]) return 0;
+  u32 loopv = 0, loope = 0, start = 0;
+  flt_ (u32, u, 0, n) {
+    if (g[u].empty()) continue;
+    bool f = 1;
+    for (start = u; auto v : g[u])
+      if (u == (u32)v) ++loope;
+      else f = 0;
+    loopv += f;
+  }
+  if (loopv > 1 || (loopv == 1 && loope != g.cnt_arc)) return 0;
+  vecb vis(n);
+  auto f = [&](auto &&f, u32 x) NE -> void {
+    for (auto v : g[x])
+      if (!vis[(u32)v]) vis[(u32)v] = 1, f(f, (u32)v);
+  };
+  vis[start] = 1, f(f, start);
+  flt_ (u32, i, 0, n)
+    if (!vis[i] && g.deg_in[i]) return 0;
   return 1;
 }
 
