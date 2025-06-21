@@ -13,8 +13,7 @@ int main() {
   for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w, --u, --v, e.add_arc(u, v, w), e.add_arc(v, u, w);
   vecu a(k);
   for (auto& x : a) std::cin >> x, --x;
-  graph::steiner_tree<graph::alistw<u32>> st(e, a);
-  std::cout << st.val();
+  std::cout << graph::steiner_tree<false>(e, a);
 }
 
 /*
