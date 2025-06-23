@@ -6,7 +6,7 @@ humanfriendly==10.0
 multipledispatch==1.0.0
 online-judge-verify-helper==5.6.0
 pycodestyle==2.13.0
-Pygments==2.19.1
+Pygments==2.19.2
 pyreadline3==3.5.4
 PyYAML==6.0.2
 toml==0.10.2
