@@ -52,7 +52,7 @@ jobs:
           python manager.py -l DEBUG gen-cs
           python manager.py -l DEBUG gen-nb
       - name: Build the LaTeX document
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
