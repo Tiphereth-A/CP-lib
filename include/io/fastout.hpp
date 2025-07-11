@@ -24,7 +24,7 @@ class fastout {
   }
 
  public:
-  fastout(FILE *f = stdin) NE { rebind(f); }
+  fastout(FILE *f = stdout) NE { rebind(f); }
   ~fastout() NE { flush(); }
   void rebind(FILE *f) NE { f_ = f, p = buf; }
   void flush() NE { fwrite(buf, 1, usz(p - buf), f_), p = buf; }
