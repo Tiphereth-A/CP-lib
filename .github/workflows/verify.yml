@@ -37,7 +37,7 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up competitive-verifier
         uses: competitive-verifier/actions/setup@v2
@@ -93,7 +93,7 @@ jobs:
           ["00", "01", "02", "03", "04", "05", "06", "07",
            "08", "09", "10", "11", "12", "13", "14", "15"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 2147483647
 
@@ -192,7 +192,7 @@ jobs:
     outputs:
       upload-pages: ${{ steps.upload-pages.outcome == 'success' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 2147483647
   
