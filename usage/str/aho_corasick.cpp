@@ -1,6 +1,6 @@
 #define PROBLEM "https://www.luogu.com.cn/problem/P5357"
 
-#include "../../include/str/aho_corasick_automaton.hpp"
+#include "../../include/str/aho_corasick.hpp"
 
 using namespace tifa_libs;
 int main() {
@@ -9,7 +9,7 @@ int main() {
   strn s;
   std::cin >> n;
   vecu ans(n);
-  str::aho_corasick_automaton acam;
+  str::aho_corasick acam;
   flt_ (u32, i, 0, n) std::cin >> s, acam.insert(s, i);
   acam.getfail(), std::cin >> s;
   vecu sz(acam.sz), in(acam.sz);
