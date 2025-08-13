@@ -6,7 +6,7 @@
 namespace tifa_libs::str {
 
 template <u32 SZ = 26, u32 BASE = u32('a')>
-class aho_corasick_automaton {
+class aho_corasick {
   // super root is 0
   struct TIFA {
     arr<u32, SZ> nex{};
@@ -18,7 +18,7 @@ class aho_corasick_automaton {
   vec<TIFA> t;
   u32 sz;
 
-  CEXPE aho_corasick_automaton() NE : t(1), sz(1) {}
+  CEXPE aho_corasick() NE : t(1), sz(1) {}
 
   CEXP void insert(strnv s, u32 id = -1u) NE {
     u32 u = 0;

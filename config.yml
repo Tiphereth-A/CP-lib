@@ -1357,7 +1357,7 @@ notebook:
     - ex_suffix_automaton: 广义后缀自动机
       code_ext: hpp
       usage_ext: cpp
-    - aho_corasick_automaton: AC 自动机
+    - aho_corasick: AC 自动机
       code_ext: hpp
       usage_ext: cpp
     - lyndon: Lyndon 分解
