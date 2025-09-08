@@ -14,7 +14,7 @@ CEXP int ffs(T x) NE {
   else if CEXP (nd <= sizeof(long) * 8) return __builtin_ffsl(x);
   else if CEXP (nd <= nd_ull) return __builtin_ffsll(x);
   else {
-    if (!x) return 0;
+    retif_((!x) [[unlikely]], 0);
     if (const long long lo = x & (long long)(-1); lo) return __builtin_ffsll(lo);
     return __builtin_ffsll(x >> nd_ull) + 64;
   }

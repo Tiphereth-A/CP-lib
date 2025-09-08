@@ -43,7 +43,7 @@ CEXP auto pfaffian(Mat mat, Is0 is0) NE {
   }
   T ans = 1;
   for (u32 i = 0; i < n; i += 2) ans *= mat(i, i + 1);
-  return neg ? -ans : ans;
+  retif_((neg), -ans, ans);
 }
 
 }  // namespace tifa_libs::math

@@ -2,25 +2,22 @@
 #define TIFALIBS_GEO2D_REL_CC
 
 #include "circle.hpp"
-#include "dist_pp.hpp"
+#include "distp_pp.hpp"
 
 namespace tifa_libs::geo {
 
 // relation between circle and circle
-enum RELCC { lyingin_cc,
-             touchin_cc,
-             intersect_cc,
-             touchex_cc,
-             lyingout_cc };
+// clang-format off
+enum class RELCC : u8 { lyingin, touchin, intersect, touchex, lyingout };
+// clang-format on
 
 template <class FP>
 CEXP RELCC relation_CC(circle<FP> CR c1, circle<FP> CR c2) NE {
-  const FP d = dist_PP(c1.o, c2.o);
-  if (is_gt(d, c1.r + c2.r)) return lyingout_cc;
-  if (is_eq(d, c1.r + c2.r)) return touchex_cc;
-  if (is_gt(d, abs(c1.r - c2.r))) return intersect_cc;
-  if (is_eq(d, abs(c1.r - c2.r))) return touchin_cc;
-  return lyingin_cc;
+  if (const auto d1 = comp_distp(c1.o, c2.o, c1.r + c2.r); d1 > 0) return RELCC::lyingout;
+  else if (d1 == 0) return RELCC::touchex;
+  if (const auto d2 = comp_distp(c1.o, c2.o, abs(c1.r - c2.r)); d2 > 0) return RELCC::intersect;
+  else if (d2 == 0) return RELCC::touchin;
+  return RELCC::lyingin;
 }
 
 }  // namespace tifa_libs::geo

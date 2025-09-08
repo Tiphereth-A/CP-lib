@@ -383,6 +383,9 @@ notebook:
     - dist_pp: 两点间距离
       code_ext: hpp
       usage_ext: cpp
+    - distp_pp: 两点间距离幂
+      code_ext: hpp
+      usage_ext: cpp
     - distsp_pp: 球面上两点间距离
       code_ext: hpp
       usage_ext: cpp
@@ -1420,6 +1423,9 @@ notebook:
       code_ext: hpp
       usage_ext: cpp
     - bwt_inv: Burrows--Wheeler 逆变换
+      code_ext: hpp
+      usage_ext: cpp
+    - code39: code39
       code_ext: hpp
       usage_ext: cpp
     game:

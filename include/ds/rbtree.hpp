@@ -7,7 +7,7 @@ namespace tifa_libs::ds {
 
 struct rbt_op_leaf : bst_op_leaf {
   template <tp2_ds_c pointer>
-  static CEXP bool is_red(pointer p) NE { return p ? p->red : false; }
+  static CEXP bool is_red(pointer p) NE { retif_((p), p->red, false); }
   template <tp2_ds_c pointer>
   static CEXP void insert_leaf(pointer &root, pointer p, pointer n, bool dir) NE {
     n->red = p, bst_op_leaf::insert_leaf(root, p, n, dir);

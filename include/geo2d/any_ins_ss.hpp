@@ -9,15 +9,15 @@ namespace tifa_libs::geo {
 // judge if any two segments are intersected
 template <class FP>
 CEXP bool any_ins_Ss(vec<line<FP>> CR ss) NE {
-  if (ss.empty()) return false;
+  retif_((ss.empty()) [[unlikely]], false);
   // clang-format off
   struct seq_t { FP f; int i; line<FP> l; };
   // clang-format on
   const auto seqcmp = [](seq_t CR u, seq_t CR v) NE {
     auto CR[u0, u1, u2] = u;
-    auto CR[v0, v1, v2] = v;
-    if (is_eq(u0, v0)) return u1 == v1 ? u2 < v2 : u1 < v1;
-    return is_lt(u0, v0);
+    if (auto CR[v0, v1, v2] = v; is_eq(u0, v0)) {
+      retif_((u1 == v1), u2 < v2, u1 < v1);
+    } else return is_lt(u0, v0);
   };
   vec<seq_t> seq;
   for (auto seg : ss) {
@@ -35,11 +35,11 @@ CEXP bool any_ins_Ss(vec<line<FP>> CR ss) NE {
   for (auto CR[x, o, seg] : seq) {
     x_now = x;
     if (auto it = s.lower_bound(seg); !o) {
-      if (it != s.end() && is_ins_SL(seg, *it)) return 1;
-      if (it != s.begin() && is_ins_SL(seg, *prev(it))) return 1;
+      if (it != end(s) && is_ins_SL(seg, *it)) return 1;
+      if (it != begin(s) && is_ins_SL(seg, *prev(it))) return 1;
       s.insert(seg);
     } else {
-      if (next(it) != s.end() && it != s.begin() && is_ins_LL(*prev(it), *next(it))) return 1;
+      if (next(it) != end(s) && it != begin(s) && is_ins_LL(*prev(it), *next(it))) return 1;
       s.erase(it);
     }
   }

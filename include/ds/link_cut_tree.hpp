@@ -48,7 +48,7 @@ class link_cut_tree {
     if (u == v) return u;
     ++u, ++v, ++root, makeroot_(root), access_(u);
     u32 ret = access_(v) - 1;
-    return tr[u].fa ? ret : -1u;
+    retif_((tr[u].fa), ret, -1u);
   }
   CEXP ptt<T> query_subtree(u32 x, u32 y) NE {
     split_(++x, ++y);

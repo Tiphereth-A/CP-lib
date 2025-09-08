@@ -9,7 +9,7 @@ int main() {
   u32 t;
   std::cin >> t;
   while (t--) {
-    math::basisZ2<32, false> a;
+    math::basis_z2<32, false> a;
     u32 n, m;
     std::cin >> n;
     for (u32 i = 0, x; i < n; ++i) {

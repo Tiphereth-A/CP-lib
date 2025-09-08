@@ -205,9 +205,9 @@ conv_anymod:
         using mint_$m0 = math::mint<math::mint_$mb0b, 167772161>;
         using mint_$m1 = math::mint<math::mint_$mb0b, 469762049>;
         using mint_$m2 = math::mint<math::mint_$mb0b, 754974721>;
-        using ntt_$m0_t = math::NTT<mint_$m0>;
-        using ntt_$m1_t = math::NTT<mint_$m1>;
-        using ntt_$m2_t = math::NTT<mint_$m2>;
+        using ntt_$m0_t = math::ntt<mint_$m0>;
+        using ntt_$m1_t = math::ntt<mint_$m1>;
+        using ntt_$m2_t = math::ntt<mint_$m2>;
         using vec_t = vecuu;
         auto conv_func(vec_t CR a, vec_t CR b) {
           ntt_$m0_t ntt0;
@@ -226,9 +226,9 @@ conv_anymod:
         using mint_$m0 = math::mint<math::mint_$mb1b, 167772161>;
         using mint_$m1 = math::mint<math::mint_$mb1b, 469762049>;
         using mint_$m2 = math::mint<math::mint_$mb1b, 754974721>;
-        using ntt_$m0_t = math::NTT<mint_$m0>;
-        using ntt_$m1_t = math::NTT<mint_$m1>;
-        using ntt_$m2_t = math::NTT<mint_$m2>;
+        using ntt_$m0_t = math::ntt<mint_$m0>;
+        using ntt_$m1_t = math::ntt<mint_$m1>;
+        using ntt_$m2_t = math::ntt<mint_$m2>;
         using vec_t = vec<mint>;
         auto conv_func(vec_t CR a, vec_t CR b) {
           ntt_$m0_t ntt0;
@@ -245,7 +245,7 @@ conv_anymod:
         using namespace tifa_libs;
         using vec_t = vec<mint>;
         auto conv_func(vec_t CR a, vec_t CR b) {
-          math::FFT_R2<long double> fft;
+          math::fft_r2<long double> fft;
           return math::conv_mtt(fft, a, b);
         }
 conv_nttmod:
@@ -275,7 +275,7 @@ conv_nttmod:
       - include/conv/ntt.hpp
       after_include: |
         using namespace tifa_libs;
-        using ntt_$m_t = math::NTT<mint>;
+        using ntt_$m_t = math::ntt<mint>;
         using vec_t = vec<mint>;
         auto conv_func(vec_t CR a, vec_t CR b) {
           ntt_$m_t ntt;
@@ -296,7 +296,7 @@ conv_large:
       - include/conv/ntt.hpp
       after_include: |
         using namespace tifa_libs;
-        using ntt_$m_t = math::NTT<mint>;
+        using ntt_$m_t = math::ntt<mint>;
         using vec_t = vec<mint>;
         auto conv_func(vec_t CR a, vec_t CR b) {
           ntt_$m_t ntt;

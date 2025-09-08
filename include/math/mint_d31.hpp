@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_MINT_D31
 #define TIFALIBS_MATH_MINT_D31
 
-#include "../util/traits_others.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::math {
 
@@ -26,8 +26,8 @@ class mint_d31 {
 
  protected:
   using raw_t = u32;
-  raw_t v_;
-  CEXP mint_d31() NE : v_{} {}
+  raw_t v_{};
+  CEXP mint_d31() NE = default;
   CEXP mint_d31(int_c auto v) NE : v_{mod(v)} {}
   template <int_c T>
   static CEXP raw_t mod(T v) NE { return tsf(norm(i32(v % (std::conditional_t<sint_c<T>, i32, u32>)mod()))); }

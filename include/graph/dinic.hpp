@@ -18,7 +18,7 @@ class dinic {
   vvec<TIFA> e;
   vecu dep, cur;
 
-  CEXPE dinic(u32 n) NE : n(n), e(n) {}
+  CEXPE dinic(u32 n) NE : n{n}, e(n) {}
 
   CEXP pttu add(u32 u, u32 v, T w, T rw = 0) NE {
     u32 lstu = (u32)e[u].size(), lstv = (u32)e[v].size();

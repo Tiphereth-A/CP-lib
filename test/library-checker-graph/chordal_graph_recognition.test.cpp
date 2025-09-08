@@ -17,9 +17,9 @@ int main() {
   }
   for (auto& i : g.g) std::ranges::sort(i);
   graph::chordal chd(g);
-  if (auto res = chd.template is_chordal_graph<true>(); res.has_value()) std::cout << "NO\n"
-                                                                                   << res.value().size() << '\n'
-                                                                                   << res.value() << '\n';
+  if (auto res = chd.template is_chordal_graph<true>(); res) std::cout << "NO\n"
+                                                                       << res->size() << '\n'
+                                                                       << res.value() << '\n';
   else std::cout << "YES\n"
                  << chd.peo << '\n';
   return 0;

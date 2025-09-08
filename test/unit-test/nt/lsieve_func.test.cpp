@@ -72,11 +72,13 @@ struct lsieve_func2 {
 
   constexpr lsieve_func2& reset_lsieve_func2(u32 n) {
     auto ls = math::lsieve2(n);
-    phi = ls.run<u32>([](u32 p, u32 i) -> u32 { return i == 0 ? 1 : u32(math::qpow((u64)p, i) - math::qpow((u64)p, i - 1)); });
+    phi = ls.run<u32>([](u32 p, u32 i) -> u32 { retif_((i == 0), 1, u32(math::qpow((u64)p, i) - math::qpow((u64)p, i - 1))); });
     tau = ls.run<u32>([](u32, u32 i) -> u32 { return i + 1; });
-    mu = ls.run<i32>([](u32, u32 i) -> i32 { return i == 0 ? 1 : i == 1 ? -1
-                                                                        : 0; });
-    sigma = ls.run<u64>([](u32 p, u32 i) -> u64 { return i == 0 ? 1 : (math::qpow((u64)p, i + 1) - 1) / (p - 1); });
+    mu = ls.run<i32>([](u32, u32 i) -> i32 {
+      if (i == 0) return 1;
+      else retif_((i == 1), -1, 0);
+    });
+    sigma = ls.run<u64>([](u32 p, u32 i) -> u64 { retif_((i == 0), 1, (math::qpow((u64)p, i + 1) - 1) / (p - 1)); });
     return *this;
   }
 };
@@ -107,17 +109,17 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test(0); break;
-    case unittest::ts_random_00: test(1); break;
-    case unittest::ts_random_01: test(10); break;
-    case unittest::ts_random_02: test(100); break;
-    case unittest::ts_random_03: test(1000); break;
-    case unittest::ts_random_04: test(2000); break;
-    case unittest::ts_random_05: test(3000); break;
-    case unittest::ts_random_06: test(4000); break;
-    case unittest::ts_random_07: test(5000); break;
-    case unittest::ts_random_08: test(6000); break;
-    case unittest::ts_random_09: test(7000); break;
+    case unittest::TC::example_00: test(0); break;
+    case unittest::TC::random_00: test(1); break;
+    case unittest::TC::random_01: test(10); break;
+    case unittest::TC::random_02: test(100); break;
+    case unittest::TC::random_03: test(1000); break;
+    case unittest::TC::random_04: test(2000); break;
+    case unittest::TC::random_05: test(3000); break;
+    case unittest::TC::random_06: test(4000); break;
+    case unittest::TC::random_07: test(5000); break;
+    case unittest::TC::random_08: test(6000); break;
+    case unittest::TC::random_09: test(7000); break;
     default: break;
   }
 

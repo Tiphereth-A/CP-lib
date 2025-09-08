@@ -9,7 +9,8 @@ template <class FP>
 struct point3d {
   using FP_t = FP;
   FP x, y, z;
-  CEXPE point3d(FP x = FP{}, FP y = FP{}, FP z = FP{}) NE : x(x), y(y), z(z) {}
+  CEXP point3d() = default;
+  CEXP point3d(FP x, FP y, FP z) NE : x{x}, y{y}, z{z} {}
 
   friend auto &operator>>(istream_c auto &is, point3d &p) NE { return is >> p.x >> p.y >> p.z; }
   friend auto &operator<<(ostream_c auto &os, point3d CR p) NE { return os << p.x << ' ' << p.y << ' ' << p.z; }

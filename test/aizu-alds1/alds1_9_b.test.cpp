@@ -10,7 +10,7 @@ int main() {
   std::cin >> n;
   veci v(n);
   std::cin >> v;
-  ds::make_dary_heap<2>(v.begin(), v.end());
+  ds::make_dary_heap<2>(begin(v), end(v));
   std::cout << ' ' << v << '\n';
   return 0;
 }

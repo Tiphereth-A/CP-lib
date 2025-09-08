@@ -20,7 +20,7 @@ class chordal {
   CEXPE chordal(G CR g) NE : g(g), deg(g.size()), peo(g.size()), rnk(g.size()) {
     const u32 n = g.size();
     vecu l(n * 2 + 1), r, idx(n);
-    std::iota(l.begin(), l.end(), 0), r = l;
+    std::iota(begin(l), end(l), 0), r = l;
     auto ins = [&](u32 i, u32 j) NE { r[l[i] = l[j]] = i, r[l[j] = i] = j; };
     auto del = [&](u32 i) NE { r[l[i]] = r[i], l[r[i]] = l[i]; };
     flt_ (u32, i, 0, n) ins(i, n);
@@ -39,6 +39,7 @@ class chordal {
 
   template <bool find_indcycle = false>
   std::conditional_t<find_indcycle, std::optional<vecu>, bool> is_chordal_graph() CNE {
+    std::optional<vecu> ret;
     for (u32 u : peo) {
       vecu s;
       for (s.reserve(g[u].size()); auto v : g[u])
@@ -55,10 +56,10 @@ class chordal {
               u32 t = q.front();
               if (q.pop(); binary_search(g[t], y)) {
                 pre[y] = t;
-                vecu path = {y};
-                while (path.back() != x) path.push_back(pre[path.back()]);
-                path.push_back(z);
-                return path;
+                ret.emplace({y});
+                while (ret->back() != x) ret->push_back(pre[ret->back()]);
+                ret->push_back(z);
+                return ret;
               }
               for (u32 u : g[t])
                 if (u != z && !binary_search(g[u], z) && !~pre[u]) pre[u] = t, q.push(u);
@@ -66,7 +67,7 @@ class chordal {
           }
         }
     }
-    if CEXP (find_indcycle) return {};
+    if CEXP (find_indcycle) return ret;
     else return true;
   }
   // @return {x}, which $\{x\}+N(x)$ be a maximal clique

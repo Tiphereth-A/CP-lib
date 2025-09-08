@@ -13,7 +13,7 @@ CEXP u32 MOD = 998244353;
 // ---<GENTC>--- append mints
 // ---<GENTC>--- end
 
-using ntt_t = tifa_libs::math::NTT<mint>;
+using ntt_t = tifa_libs::math::ntt<mint>;
 using vec_t = vec<mint>;
 
 int main() {

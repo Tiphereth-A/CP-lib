@@ -16,7 +16,7 @@ template <class T> concept tree_c = alist_c<T> && requires(T g) { g.root; };
 // weighted
 template <class T> concept sparse_graphw_c = sparse_graph_c<T> && !std::is_void_v<TPN T::w_t> && requires(T g, TPN T::w_t w) { g.add_arc(0, 0, w); g.add_edge(0, 0, w); };
 // weighted
-template <class T> concept alistw_c = alist_c<T> && sparse_graphw_c<T> && (requires(T g) { g[0].begin()->first; g[0].begin()->second; } || requires(T g) { g[0].begin()->to; g[0].begin()->cost; });
+template <class T> concept alistw_c = alist_c<T> && sparse_graphw_c<T> && (requires(T g) { begin(g[0])->first; begin(g[0])->second; } || requires(T g) { begin(g[0])->to; begin(g[0])->cost; });
 // weighted
 template <class T> concept eogw_c = eog_c<T> && sparse_graphw_c<T> && requires(T g) { g[0].to; g[0].w; g[0].nxt; };
 // weighted

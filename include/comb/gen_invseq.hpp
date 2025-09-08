@@ -9,7 +9,7 @@ namespace tifa_libs::math {
 // i^{-1} for i in v
 CEXP vecuu gen_invseq(spnuu v, u64 mod) NE {
   const u32 n = (u32)v.size();
-  if (n == 0) return {};
+  retif_((n == 0) [[unlikely]], {});
   if (n == 1) return {inverse(v[0], mod)};
   vecuu ans(n);
   ans[0] = v[0];

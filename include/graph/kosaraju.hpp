@@ -15,7 +15,7 @@ class kosaraju {
   vecu scc_id;
   vvecu belongs;
 
-  CEXPE kosaraju(alist<with_deg> CR g) NE : kosaraju(g, make_alistr(g)) {}
+  CEXP kosaraju(alist<with_deg> CR g) NE : kosaraju(g, make_alistr(g)) {}
   CEXP kosaraju(alist<with_deg> CR g, alist<with_deg> CR rev_g) NE : g(g), rev_g(rev_g) { build(); }
 
  private:

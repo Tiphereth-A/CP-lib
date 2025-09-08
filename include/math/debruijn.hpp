@@ -7,7 +7,7 @@ namespace tifa_libs::math {
 
 // Given alphabet $[0,k)$ constructs a cyclic string of length $k^n$ that contains every length $n$ string as substr
 CEXP vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) NE {
-  if (k == 1) return {0};
+  retif_((k == 1) [[unlikely]], {0});
   if (!maxsz) {
     maxsz = 1;
     flt_ (u32, i, 0, n) maxsz *= k;

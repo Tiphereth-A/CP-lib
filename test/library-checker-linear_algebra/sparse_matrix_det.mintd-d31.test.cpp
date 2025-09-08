@@ -26,7 +26,7 @@ int main() {
     a(x, y) = z;
   }
   auto is0 = [](cT_(mint) x) { return x.val() == 0; };
-  tifa_libs::rand::Gen<u32> gen(1, mint::mod() - 1);
+  tifa_libs::rand::gen<u32> gen(1, mint::mod() - 1);
   std::cout << tifa_libs::math::det_rd(a, gen, is0) << '\n';
   return 0;
 }

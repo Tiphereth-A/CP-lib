@@ -5,10 +5,10 @@
 
 namespace tifa_libs {
 
-class Base64 {
+class base64 {
   static CEXP char base[66] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/.";
   // clang-format off
-  static CEXP char ibase(char c) NE { return 'a' <= c ? c - 0x47 : 'A' <= c ? c - 0x41 : '0' <= c ? c + 0x04 : '+' == c ? 0x3E : '/' == c ? 0x3F : 0x40; }
+  static CEXP char ibase(char c) NE { if('a' <= c)return c - 0x47; else if('A' <= c)return c - 0x41; else if('0' <= c)return c + 0x04; else if('+' == c)return 0x3E; else if('/' == c)return 0x3F; return 0x40; }
   // clang-format on
 
  public:

@@ -13,7 +13,7 @@ auto czt_fps(poly<ccore, mint, args...> f, mint c, u32 m = -1_u32, mint a = mint
   using poly_t = poly<ccore, mint, args...>;
   static rpow rp, irp;
   if (!~m) m = (u32)f.size();
-  if (f.empty() || !m) return poly_t{};
+  retif_((f.empty() || !m) [[unlikely]], poly_t{});
   const u32 n = (u32)f.size();
   if (a != 1) {
     mint x = 1;
@@ -21,7 +21,7 @@ auto czt_fps(poly<ccore, mint, args...> f, mint c, u32 m = -1_u32, mint a = mint
   }
   if (c == 0) {
     poly_t ans(m, f[0]);
-    ans[0] = std::reduce(f.begin(), f.end(), mint{});
+    ans[0] = std::reduce(begin(f), end(f), mint{});
     return ans;
   }
   const u32 mod = (u32)mint::mod();
@@ -33,7 +33,7 @@ auto czt_fps(poly<ccore, mint, args...> f, mint c, u32 m = -1_u32, mint a = mint
   flt_ (u32, i, 1, max(m, n)) icc[i] = irp(u32((i * (i - 1_u64) / 2) % (mod - 1)));
   flt_ (u32, i, 1, n) f[i] *= icc[i];
   reverse(f), f.conv(cc, n + m);
-  poly_t ans(f.begin() + ((isz)n - 1), f.begin() + (isz(n + m) - 1));
+  poly_t ans(begin(f) + ((isz)n - 1), begin(f) + (isz(n + m) - 1));
   flt_ (u32, i, 1, m) ans[i] *= icc[i];
   return ans;
 }

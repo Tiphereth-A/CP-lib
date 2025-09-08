@@ -23,7 +23,7 @@ CEXP ptti shrink(mpi& a) NE {
     const u32 g = gcd(mpi::D, a[0]);
     if (g == 1) break;
     if (g != mpi::D) a *= mpi::D / g;
-    a.erase(a.begin());
+    a.erase(begin(a));
     const auto s = shrink(g);
     res.first += s.first, res.second += s.second;
   }
@@ -49,7 +49,7 @@ CEXP mpi gcd_mpi(mpi a, mpi b) NE {
         const u32 g = gcd(a[0], mpi::D);
         if (g == 1) break;
         if (g != mpi::D) a *= mpi::D / g;
-        a.erase(a.begin());
+        a.erase(begin(a));
       }
     if (a < b) swap(a, b);
   }

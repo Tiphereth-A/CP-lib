@@ -16,8 +16,7 @@ struct ndvec : vec<T> {
   CEXP void resize(Ts &&...args) NE {
     static_assert(sizeof...(args) == N);
     u32 n = 0;
-    ((idxs[n++] = (u32)args), ...);
-    idxs[N] = 1;
+    ((idxs[n++] = (u32)args), ...), idxs[N] = 1;
     inclusive_scan(idxs.rbegin(), idxs.rend(), idxs.rbegin(), std::multiplies<>{}), vec<T>::resize(idxs[0]);
   }
   template <class... Ts>

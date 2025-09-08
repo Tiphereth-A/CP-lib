@@ -7,7 +7,7 @@ namespace tifa_libs {
 
 template <class... Ts>
 auto &operator>>(tifa_libs::istream_c auto &is, std::tuple<Ts...> &p) NE {
-  std::apply([&](Ts &...ts) NE { ((is >> ts), ...); }, p);
+  std::apply([&](Ts &...ts) NE { (is >> ... >> ts); }, p);
   return is;
 }
 template <class... Ts>

@@ -13,7 +13,7 @@ template <dft_c DFT_t, std::same_as<TPN DFT_t::data_t> DFT_data_t>
 CEXP vec<DFT_data_t> conv_mval_dft(DFT_t &dft, vec<DFT_data_t> CR l, vec<DFT_data_t> CR r, vecu CR base) NE {
   assert(l.size() == r.size());
   u32 k = (u32)base.size();
-  if (!k) return {l[0] * r[0]};
+  retif_((!k) [[unlikely]], {l[0] * r[0]});
   dft.bzr((u32)l.size() * 2 - 1);
   u32 n = dft.size();
   vecu chi(n);

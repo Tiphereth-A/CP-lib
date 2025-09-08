@@ -11,7 +11,7 @@ template <class T>
 void test() {
   using res_t = std::conditional_t<sizeof(T) <= 4, u32, u64>;
   res_t seed = (res_t)std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
-  rand::Gen<T> g1;
+  rand::gen<T> g1;
   std::conditional_t<std::is_same_v<res_t, u32>, std::mt19937, std::mt19937_64> g2;
   g1.seed(seed);
   g2.seed(seed);
@@ -36,18 +36,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test<char>(); break;
-    case unittest::ts_example_01: test<i8>(); break;
-    case unittest::ts_random_00: test<u8>(); break;
-    case unittest::ts_random_01: test<i16>(); break;
-    case unittest::ts_random_02: test<u16>(); break;
-    case unittest::ts_random_03: test<i32>(); break;
-    case unittest::ts_random_04: test<u32>(); break;
-    case unittest::ts_random_05: test<i64>(); break;
-    case unittest::ts_random_06: test<u64>(); break;
-    case unittest::ts_random_07: test<f32>(); break;
-    case unittest::ts_random_08: test<f64>(); break;
-    case unittest::ts_random_09: test<f128>(); break;
+    case unittest::TC::example_00: test<char>(); break;
+    case unittest::TC::example_01: test<i8>(); break;
+    case unittest::TC::random_00: test<u8>(); break;
+    case unittest::TC::random_01: test<i16>(); break;
+    case unittest::TC::random_02: test<u16>(); break;
+    case unittest::TC::random_03: test<i32>(); break;
+    case unittest::TC::random_04: test<u32>(); break;
+    case unittest::TC::random_05: test<i64>(); break;
+    case unittest::TC::random_06: test<u64>(); break;
+    case unittest::TC::random_07: test<f32>(); break;
+    case unittest::TC::random_08: test<f64>(); break;
+    case unittest::TC::random_09: test<f128>(); break;
     default: break;
   }
 

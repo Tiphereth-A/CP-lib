@@ -8,7 +8,7 @@ math::nimber64 dp[2][2][128][128], nx[2][2][128][128], w[128][128];
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  rand::Gen<u64> g(1, std::numeric_limits<u64>::max());
+  rand::gen<u64> g(1, std::numeric_limits<u64>::max());
   u64 n, m, x, y, z;
   std::cin >> n >> m >> x >> y >> z;
   --x, --y, --z;

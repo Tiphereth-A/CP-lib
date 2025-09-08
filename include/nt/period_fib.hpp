@@ -11,7 +11,7 @@ CEXP u64 period_fib(u32 n) NE {
   auto g = [](u64 p) NE -> u64 {
     static CEXP u32 _[6] = {0, 1, 3, 8, 6, 20};
     if (p <= 5) return _[p];
-    return (p % 5 == 1 || p % 5 == 4) ? (p - 1) : ((p + 1) * 2);
+    retif_((p % 5 == 1 || p % 5 == 4), p - 1, (p + 1) * 2);
   };
 
   u64 res = 1;

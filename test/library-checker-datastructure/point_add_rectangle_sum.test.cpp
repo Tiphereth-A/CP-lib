@@ -9,7 +9,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  ds::KDtree<i64, op> kdt(3000);
+  ds::kdtree<i64, op> kdt(3000);
   using point_t = decltype(kdt)::point;
   point_t p1, p2;
   i64 w;

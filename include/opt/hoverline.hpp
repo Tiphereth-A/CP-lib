@@ -10,7 +10,7 @@ template <class T, class C = std::less<T>>
 CEXP ptt<vecu> hoverline(vec<T> CR a, C&& comp = C{}) NE {
   if (a.empty()) return {{}, {}};
   vecu l(a.size());
-  std::iota(l.begin(), l.end(), 0_u32);
+  std::iota(begin(l), end(l), 0_u32);
   auto r = l;
   flt_ (u32, i, 0, (u32)a.size())
     while (l[i] && !comp(a[l[i] - 1], a[i])) l[i] = l[l[i] - 1];

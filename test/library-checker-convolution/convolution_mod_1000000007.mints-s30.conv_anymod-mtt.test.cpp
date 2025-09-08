@@ -17,7 +17,7 @@ using mint = math::mint<math::mint_s30, MOD>;
 using namespace tifa_libs;
 using vec_t = vec<mint>;
 auto conv_func(vec_t CR a, vec_t CR b) {
-  math::FFT_R2<long double> fft;
+  math::fft_r2<long double> fft;
   return math::conv_mtt(fft, a, b);
 }
 

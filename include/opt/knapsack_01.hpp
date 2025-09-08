@@ -11,7 +11,7 @@ namespace tifa_libs::opt {
 //@return max total value while total weight <= W
 template <int_c T>
 CEXP T knapsack_01(vecpt<T> CR a, T W) NE {
-  const T vs = [k = std::views::keys(a)] { return std::reduce(k.begin(), k.end(), T{}); }();
+  const T vs = [k = std::views::keys(a)] { return std::reduce(begin(k), end(k), T{}); }();
   const T _1 = W, _2 = vs,
           _3 = T(a.size() >= 100 ? inf_v<T> : (T)min((u64)inf_v<T>, 1_u64 << ((a.size() + 1) / 2))),
           _min = min({_1, _2, _3});

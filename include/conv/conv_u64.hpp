@@ -10,10 +10,10 @@ template <class T>
 vecuu conv_u64(vec<T> CR a, vec<T> CR b, u32 ans_size = 0) NE {
   const u32 n = (u32)a.size(), m = (u32)b.size();
   if (!ans_size) ans_size = n + m - 1;
-  if (a.empty() && b.empty()) return {};
+  retif_((a.empty() && b.empty()) [[unlikely]], {});
   if (min(n, m) < CONV_NAIVE_THRESHOLD) return conv_naive<T, u64>(a, b, ans_size);
-  static FFT_R3<T> fft;
-  using EI = FFT_R3<T>::data_t;
+  static fft_r3<T> fft;
+  using EI = fft_r3<T>::data_t;
   CEXP static EI inv_3{-T(1) / 3 * 2 + 1, 0};
   fft.bzr(n + m - 1);
   u32 s = fft.size();

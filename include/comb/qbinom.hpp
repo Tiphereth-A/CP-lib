@@ -23,13 +23,13 @@ struct qbinom : binom<mint, fact> {
 
   // $\binom{m}{n}_q$
   CEXP mint qmCn(uint_c auto m, uint_c auto n) CNE {
-    if (m < n) return 0;
+    retif_((m < n) [[unlikely]], 0);
     if (m < qfact.size()) return qfact[(usz)m] * iqfact[(usz)n] * iqfact[(usz)(m - n)];
     return this->mCn(m / qfact.size(), n / qfact.size()) * qmCn(m % qfact.size(), n % qfact.size());
   }
   // $\binom{m}{n}_q$
   template <sint_c T>
-  CEXP mint qmCn(T m, T n) CNE { return m < n || n < 0 ? 0 : qmCn(to_uint_t<T>(m), to_uint_t<T>(n)); }
+  CEXP mint qmCn(T m, T n) CNE { retif_((m < n || n < 0) [[unlikely]], 0, qmCn(to_uint_t<T>(m), to_uint_t<T>(n))); }
 };
 
 }  // namespace tifa_libs::math

@@ -23,7 +23,7 @@ CEXP u32 min_mod_linear(u32 n, u32 m, u32 a, u32 b, u32 cnt = 1, u32 p = 1, u32 
     b = m - 1 - b;
   }
   u32 d = m / a, c = min_mod_linear(n, a, m % a, b, ++cnt, (d - 1) * p + q, d * p + q);
-  return cnt & 1 ? m - 1 - c : a - 1 - c;
+  retif_((cnt & 1), m - 1 - c, a - 1 - c);
 }
 
 }  // namespace tifa_libs::math

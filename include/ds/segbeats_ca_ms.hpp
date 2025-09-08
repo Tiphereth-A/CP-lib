@@ -22,9 +22,9 @@ struct segbeats_ca_ms {
   vec<TIFA> v;
   u32 n, lbn;
 
-  CEXPE segbeats_ca_ms() = default;
+  CEXP segbeats_ca_ms() = default;
   CEXPE segbeats_ca_ms(u32 _n) NE : segbeats_ca_ms(vec<T>(_n)) {}
-  CEXPE segbeats_ca_ms(vec<T> CR a) NE { reset(a); }
+  CEXPE segbeats_ca_ms(spn<T> a) NE { reset(a); }
 
   CEXP void reset(spn<T> a) NE {
     if (a.empty()) {

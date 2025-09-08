@@ -25,7 +25,7 @@ class exlucas {
       ifacp = gen_invseq(facp, m_);
     }
     CEXP u64 operator()(i64 m, i64 n) CNE {
-      if (m < n || n < 0) return 0;
+      retif_((m < n || n < 0) [[unlikely]], 0);
       i64 r = m - n;
       i32 e0 = 0, eq = 0;
       u32 i = 0;
@@ -35,7 +35,8 @@ class exlucas {
         if (i32 eps = (i32)(m - n - r); (e0 += eps) >= (i32)q) return 0;
         else if (++i >= q) eq += eps;
       }
-      return (!no_proot && (eq & 1) ? m_ - res : res) * qpow_mod(p, (u32)e0, m_) % m_;
+      const u64 _ = (!no_proot && (eq & 1) ? m_ - res : res) * qpow_mod(p, (u32)e0, m_) % m_;
+      return _;
     }
   };
   const u32 m_;
@@ -55,7 +56,7 @@ class exlucas {
   }
 
   CEXP u64 operator()(i64 m, i64 n) CNE {
-    if (m_ == 1 || m < n || n < 0) return 0;
+    retif_((m_ == 1 || m < n || n < 0) [[unlikely]], 0);
     vecii b;
     for (b.reserve(cs.size()); auto CR i : cs) b.push_back((i64)i(m, n));
     return crt(b, ms)->first;

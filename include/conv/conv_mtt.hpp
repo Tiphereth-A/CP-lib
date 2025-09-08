@@ -7,8 +7,8 @@
 namespace tifa_libs::math {
 
 template <class mint, class FP>
-CEXP vec<mint> conv_mtt(FFT_R2<FP> &fft, vec<mint> CR l, vec<mint> CR r, u32 ans_size = 0) NE {
-  using C = TPN FFT_R2<FP>::data_t;
+CEXP vec<mint> conv_mtt(fft_r2<FP> &fft, vec<mint> CR l, vec<mint> CR r, u32 ans_size = 0) NE {
+  using C = TPN fft_r2<FP>::data_t;
   if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
   if (min(l.size(), r.size()) < CONV_NAIVE_THRESHOLD) return conv_naive(l, r, ans_size);
   if (l.size() == 1) {

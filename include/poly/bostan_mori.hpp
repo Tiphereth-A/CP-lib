@@ -28,14 +28,14 @@ vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) NE {
   core2.dif(s);
   flt_ (u32, i, 0, len * 2) s[i] *= q[i ^ 1];
   core2.dit(s);
-  return vec<T>(s.begin() + d, s.begin() + d * 2);
+  return vec<T>(begin(s) + d, begin(s) + d * 2);
 }
 }  // namespace bostan_mori_impl_
 
 // @return [x^k]p/q
 template <template <class... Ts> class ccore, class mint, class... args>
 CEXP auto bostan_mori(u64 n, poly<ccore, mint, args...> CR p, poly<ccore, mint, args...> CR q) NE {
-  if CEXP (assert(p.size() == q.size() - 1 && !p.is_zero()); ccore<mint, args...>::ct_cat != ct_NTT) {
+  if CEXP (assert(p.size() == q.size() - 1 && !p.is_zero()); ccore<mint, args...>::ct_cat != CCORE::NTT) {
     auto p_ = p, q_ = q;
     while (n) {
       auto _ = q_;

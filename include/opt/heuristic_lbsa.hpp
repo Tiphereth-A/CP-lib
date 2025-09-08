@@ -12,8 +12,8 @@ requires requires(Ff f, cT_(Cont) t) {
 }
 class heuristic_lbsa {
   Ff f;
-  rand::Gen<u32> g_idx;
-  rand::Gen<Tt> g;
+  rand::gen<u32> g_idx;
+  rand::gen<Tt> g;
   Cont x;
   Ft fx;
   pq<Tt> tlist;
@@ -51,9 +51,9 @@ class heuristic_lbsa {
     while (l == r) r = g_idx();
     if (l > r) swap(l, r);
     Cont c0 = x, c1 = x, c2 = x;
-    inv_(c0.begin() + l, c0.begin() + r);
-    ins_(c1.begin() + l, c1.begin() + r);
-    swap_(c2.begin() + l, c2.begin() + r);
+    inv_(begin(c0) + l, begin(c0) + r);
+    ins_(begin(c1) + l, begin(c1) + r);
+    swap_(begin(c2) + l, begin(c2) + r);
     Ft f0 = f(c0), f1 = f(c1), f2 = f(c2);
     if (f0 > f1) swap(f0, f1), swap(c0, c1);
     if (f0 > f2) swap(f0, f2), swap(c0, c2);

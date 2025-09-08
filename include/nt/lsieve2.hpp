@@ -34,7 +34,7 @@ class lsieve2 {
   requires requires(F f, u32 p, u32 i) {
     { f(p, i) } -> std::same_as<T>;
   }
-  CEXP vec<T> run(F fpi, T init = T{1}) NE {
+  CEXP vec<T> run(F fpi, T init = T{1}) CNE {
     vec<T> v(fr.size());
     if (fr.size() < 2) return v;
     v[1] = init;

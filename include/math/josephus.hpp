@@ -27,7 +27,7 @@ CEXP u64 j2(u64 n, u64 k, u64 m) NE {
 //         with total_people = n, start_point = 0, skipped_number = k
 CEXP u64 Josephus(u64 n, u64 k, u64 m) NE {
   assert(m && k && m <= n);
-  return m < k * (u32)std::bit_width(n) ? josephus_impl_::j1(n, k, m) : josephus_impl_::j2(n, k, m);
+  retif_((m < k * (u32)std::bit_width(n)), josephus_impl_::j1(n, k, m), josephus_impl_::j2(n, k, m));
 }
 
 }  // namespace tifa_libs::math

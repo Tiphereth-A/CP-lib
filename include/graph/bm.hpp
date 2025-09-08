@@ -37,10 +37,10 @@ bool bellman_ford(G CR g, u32 s, F &&cb_relax, vec<TPN G::w_t> &dis) NE {
 }
 // cb_relax(now, to)
 template <alistw_c G, class F>
-std::optional<vec<TPN G::w_t>> bellman_ford(G CR g, u32 s, F &&cb_relax, TPN G::w_t INF = std::numeric_limits<TPN G::w_t>::max() / 2 - 1) NE {
-  vec dis(g.size(), INF);
-  if (bellman_ford(g, s, std::forward<F>(cb_relax), dis)) return dis;
-  return {};
+auto bellman_ford(G CR g, u32 s, F &&cb_relax, TPN G::w_t INF = std::numeric_limits<TPN G::w_t>::max() / 2 - 1) NE {
+  std::optional ret{vec<TPN G::w_t>(g.size(), INF)};
+  if (!bellman_ford(g, s, std::forward<F>(cb_relax), ret.value())) ret = std::nullopt;
+  return ret;
 }
 
 }  // namespace tifa_libs::graph

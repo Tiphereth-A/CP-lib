@@ -10,7 +10,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   mpi x, y;
   std::cin >> x >> y;
-  rand::Gen<u32> g('0', '9');
+  rand::gen<u32> g('0', '9');
   strn s = "1145141919810";
   flt_ (u32, i, 0, 1000) s += (char)g();
   const mpi C = s;

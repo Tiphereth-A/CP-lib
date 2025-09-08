@@ -115,13 +115,13 @@ struct tree_dfs_info : Ts... {
 
  private:
   void dfs(G CR g, u32 u, u32 fa = -1_u32) NE {
-    if CEXP ((..., Ts::init(u, fa)); alistw_c<G>) {
+    if CEXP ((Ts::init(u, fa), ...); alistw_c<G>) {
       for (auto [v, w] : g[u])
-        if (v != fa) (..., Ts::pre_dfs(v, u, w)), dfs(g, v, u), (..., Ts::post_dfs(v, u, w));
+        if (v != fa) (Ts::pre_dfs(v, u, w), ...), dfs(g, v, u), (Ts::post_dfs(v, u, w), ...);
     } else
       for (auto v : g[u])
-        if ((u32)v != fa) (..., Ts::pre_dfs((u32)v, u, 1)), dfs(g, (u32)v, u), (..., Ts::post_dfs((u32)v, u, 1));
-    (..., Ts::before_return(u, fa));
+        if ((u32)v != fa) (Ts::pre_dfs((u32)v, u, 1), ...), dfs(g, (u32)v, u), (Ts::post_dfs((u32)v, u, 1), ...);
+    (Ts::before_return(u, fa), ...);
   }
 };
 

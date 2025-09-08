@@ -31,10 +31,10 @@ struct line {
   friend CEXP bool operator==(line CR l, line CR r) NE { return l.l == r.l && l.r == r.r; }
   friend CEXP auto operator<=>(line CR l, line CR r) NE {
     if (l == r) return 0;
-    if (l.is_same_dir(r)) return r.is_include_strict(l.l) ? -1 : 1;
-    const auto vl = l.direction(), vr = r.direction();
-    if (vl.quad() != vr.quad()) return (i32)vl.quad() - (i32)vr.quad();
-    return -sgn(vl ^ vr);
+    if (l.is_same_dir(r)) {
+      retif_((r.is_include_strict(l.l)), -1, 1);
+    } else if (const auto vl = l.direction(), vr = r.direction(); vl.quad() != vr.quad()) return (i32)vl.quad() - (i32)vr.quad();
+    else return -sgn(vl ^ vr);
   }
   CEXP int toleft(point<FP> CR p) CNE { return sgn_cross(l, r, p); }
   // half plane

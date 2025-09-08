@@ -16,9 +16,9 @@ int main() {
       u32 x;
       std::cin >> x;
       v.push_back(x);
-      ds::push_dary_heap<D>(v.begin(), v.end());
+      ds::push_dary_heap<D>(begin(v), end(v));
     } else {
-      ds::pop_dary_heap<D>(v.begin(), v.end());
+      ds::pop_dary_heap<D>(begin(v), end(v));
       std::cout << v.back() << '\n';
       v.pop_back();
     }

@@ -13,21 +13,21 @@ struct fhq_treap {
     T val;
     u32 r, sz, son[2];
   };
-  rand::Gen<u32> rnd;
+  rand::gen<u32> rnd;
   vec<TIFA> data;
   vecu stk;
   u32 root;
 
  private:
-  u32 new_node(cT_(T) val) NE {
+  CEXP u32 new_node(cT_(T) val) NE {
     u32 ret;
     if CEXP (recovery && stk.size()) data[ret = stk.back()] = {val, rnd(), 1, {0, 0}}, stk.pop_back();
     else ret = (u32)data.size(), data.push_back(TIFA{val, rnd(), 1, {0, 0}});
     return ret;
   }
-  void pushup(u32 pos) NE { data[pos].sz = data[data[pos].son[0]].sz + 1 + data[data[pos].son[1]].sz; }
+  CEXP void pushup(u32 pos) NE { data[pos].sz = data[data[pos].son[0]].sz + 1 + data[data[pos].son[1]].sz; }
   template <bool strict = false>
-  pttu split_root(u32 pos, cT_(T) key) NE {
+  CEXP pttu split_root(u32 pos, cT_(T) key) NE {
     if (!pos) return {};
     bool f;
     if CEXP (strict) f = compare(data[pos].val, key);
@@ -41,7 +41,7 @@ struct fhq_treap {
     data[pos].son[0] = r, pushup(pos);
     return {l, pos};
   }
-  u32 merge_root(u32 l, u32 r) NE {
+  CEXP u32 merge_root(u32 l, u32 r) NE {
     if (!l | !r) return l | r;
     if (data[l].r < data[r].r) {
       data[l].son[1] = merge_root(data[l].son[1], r), pushup(l);
@@ -52,8 +52,8 @@ struct fhq_treap {
   }
 
  public:
-  CEXPE fhq_treap() : rnd{}, data{1}, stk{}, root{} { data[0].sz = {}; }
-  void insert(cT_(T) val) NE {
+  CEXP fhq_treap() : rnd{}, data{1}, stk{}, root{} { data[0].sz = {}; }
+  CEXP void insert(cT_(T) val) NE {
     u32 tar = new_node(val);
     auto dfs = [&](auto &&f, u32 &pos) NE -> void {
       if (!pos) return void(pos = tar);
@@ -66,7 +66,7 @@ struct fhq_treap {
     };
     dfs(dfs, root);
   }
-  bool erase(cT_(T) val) NE {
+  CEXP bool erase(cT_(T) val) NE {
     auto dfs = [&](auto &&f, u32 &pos) NE -> bool {
       if (!pos) return false;
       if (data[pos].val == val) {
@@ -80,48 +80,51 @@ struct fhq_treap {
     };
     return dfs(dfs, root);
   }
-  auto find(cT_(T) val) CNE {
+  CEXP auto find(cT_(T) val) CNE {
     u32 pos = root;
     while (pos)
       if (val == data[pos].val) return data.cbegin() + pos;
       else pos = data[pos].son[!compare(val, data[pos].val)];
     return data.cend();
   }
-  u32 rank(cT_(T) val) CNE {
+  CEXP u32 rank(cT_(T) val) CNE {
     u32 pos = root, res = 0;
     while (pos)
       if (compare(data[pos].val, val)) res += data[data[pos].son[0]].sz + 1, pos = data[pos].son[1];
       else pos = data[pos].son[0];
     return res + 1;
   }
-  u32 count(cT_(T) val) CNE {
+  CEXP u32 count(cT_(T) val) CNE {
     u32 rk = rank(val);
     if (auto res = next(val); !res) return data[root].sz - rk + 1;
     else return rank(res.value()) - rk;
   }
-  std::optional<T> kth(u32 k) CNE {
-    if (k < 1 || k > data[root].sz) return {};
+  CEXP auto kth(u32 k) CNE {
+    std::optional<T> ret;
+    if (k < 1 || k > data[root].sz) return ret;
     u32 pos = root;
     while (true)
-      if (auto _ = data[pos].sz - data[data[pos].son[1]].sz; _ == k) return data[pos].val;
-      else if (_ < k) k -= _, pos = data[pos].son[1];
+      if (auto _ = data[pos].sz - data[data[pos].son[1]].sz; _ == k) {
+        ret.emplace(data[pos].val);
+        return ret;
+      } else if (_ < k) k -= _, pos = data[pos].son[1];
       else pos = data[pos].son[0];
   }
-  auto prev(cT_(T) val) CNE {
+  CEXP auto prev(cT_(T) val) CNE {
     u32 pos = root;
-    std::pair<bool, T> res{false, {}};
+    std::optional<T> ret;
     while (pos)
       if (!compare(data[pos].val, val)) pos = data[pos].son[0];
-      else res = {true, data[pos].val}, pos = data[pos].son[1];
-    return res.first ? std::optional<T>{res.second} : std::nullopt;
+      else ret.emplace(data[pos].val), pos = data[pos].son[1];
+    return ret;
   }
-  auto next(cT_(T) val) CNE {
+  CEXP auto next(cT_(T) val) CNE {
     u32 pos = root;
-    std::pair<bool, T> res{false, {}};
+    std::optional<T> ret;
     while (pos)
       if (!compare(val, data[pos].val)) pos = data[pos].son[1];
-      else res = {true, data[pos].val}, pos = data[pos].son[0];
-    return res.first ? std::optional<T>{res.second} : std::nullopt;
+      else ret.emplace(data[pos].val), pos = data[pos].son[0];
+    return ret;
   }
 };
 

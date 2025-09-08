@@ -48,7 +48,7 @@ struct ls_ipowi {
 
 // i^i from i=0..n-1
 CEXP vecuu gen_ipowi(u32 n, u64 mod) NE {
-  if (n < 2) return vecuu(n, 1);
+  retif_((n < 2) [[unlikely]], vecuu(n, 1));
   gen_ipowi_impl_::ls_ipowi::mod = mod;
   return lsieve<gen_ipowi_impl_::ls_ipowi>(n).ipowi;
 }

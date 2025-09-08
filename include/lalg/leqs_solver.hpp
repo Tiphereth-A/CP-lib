@@ -12,12 +12,13 @@ requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
   { is0(t) } -> std::same_as<bool>;
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
-CEXP std::optional<matrix<T>> leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&is0, Ge &&ge) NE {
+CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&is0, Ge &&ge) NE {
   const u32 r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
   matrix<T> Ab = merge_lr_mat(A, b);
   const u32 rk = (u32)abs(ge(Ab, false));
-  if (rk > c_) return {};
+  std::optional<matrix<T>> ret;
+  if (rk > c_) return ret;
   if (!is0(Ab(rk - 1, c_))) {
     bool f = true;
     flt_ (u32, i, 0, c_)
@@ -25,10 +26,10 @@ CEXP std::optional<matrix<T>> leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&
         f = false;
         break;
       }
-    if (f) return {};
+    if (f) return ret;
   }
   flt_ (u32, i, rk, r_)
-    if (!is0(Ab(i, c_))) return {};
+    if (!is0(Ab(i, c_))) return ret;
   vecb used(c_, false);
   vecu idxs;
   for (u32 i = 0, _ = 0; i < r_; ++i) {
@@ -56,7 +57,8 @@ CEXP std::optional<matrix<T>> leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&
       v[f] /= Ab(y, f);
     }
   }
-  return transpose(sol);
+  ret.emplace(transpose(sol));
+  return ret;
 }
 
 }  // namespace tifa_libs::math

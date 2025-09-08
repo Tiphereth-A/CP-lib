@@ -8,9 +8,9 @@ namespace tifa_libs::ds {
 
 struct ostree_tag_base {
   template <tp2_ds_c pointer>
-  static CEXP u32 size(pointer p) NE { return p ? p->sz : 0; }
+  static CEXP u32 size(pointer p) NE { retif_((p), p->sz, 0); }
   template <tp2_ds_c pointer>
-  static CEXP u32 count(pointer p) NE { return p ? p->sz - size(p->ch[0]) - size(p->ch[1]) : 0; }
+  static CEXP u32 count(pointer p) NE { retif_((p), p->sz - size(p->ch[0]) - size(p->ch[1]), 0); }
   // [size(begin), size(begin->fa), ..., size(end)) += v
   template <tp2_ds_c pointer>
   static CEXP void modify_size(pointer begin, i32 v, pointer end = nullptr) NE {
@@ -22,7 +22,7 @@ struct ostree_tag_base {
     if (!p) return nullptr;
     if (p->ch[dir]) return most(p->ch[dir], !dir);
     while (p && p->fa && p->child_dir() == dir) p = p->fa;
-    return p ? p->fa : nullptr;
+    retif_((p), p->fa, nullptr);
   }
   template <tp2_ds_c pointer>
   static CEXP auto prev(pointer p) NE { return neighbour(p, 0); }
@@ -37,7 +37,8 @@ struct ostree_tag_base {
     auto c = s->ch[dir];
     if (c) c->fa = p;
     p->ch[!dir] = c, s->ch[dir] = p, p->fa = s, s->fa = g;
-    return (g ? g->ch[p == g->ch[1]] : root) = s;
+    (g ? g->ch[p == g->ch[1]] : root) = s;
+    return s;
   }
 };
 //! will NOT change sz
@@ -117,9 +118,11 @@ struct ostree : tag_t {
   using pointer_const = node_t *const;
 
   static CEXP Comp compare{};
-  pointer root;
+  pointer root{nullptr};
 
-  CEXP ostree() NE : tag_t(), root{nullptr} {}
+  CEXP ostree() NE = default;
+  ostree(ostree CR) = delete;
+  ostree &operator=(ostree CR) = delete;
   CEXP ~ostree() NE { dealloc_subtree(root, alloc); }
   CEXP u32 size() CNE { return tag_t::size(root); }
 
@@ -141,7 +144,7 @@ struct ostree : tag_t {
   }
   CEXP pointer find(const K &key) CNE {
     auto p = lower_bound(key);
-    return (!p || compare(p->data, key) || compare(key, p->data)) ? nullptr : p;
+    retif_(((!p || compare(p->data, key) || compare(key, p->data))), nullptr, p);
   }
   // Order start from 0
   CEXP u32 order_of_key(const K &key) CNE {

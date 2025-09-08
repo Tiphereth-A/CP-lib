@@ -11,7 +11,8 @@ struct point {
   using FP_t = FP;
 
   FP x, y;
-  CEXPE point(FP x = {}, FP y = {}) NE : x{x}, y{y} {}
+  CEXP point() = default;
+  CEXP point(FP x, FP y) NE : x{x}, y{y} {}
 
   friend auto &operator>>(istream_c auto &is, point &p) NE { return is >> p.x >> p.y; }
   friend auto &operator<<(ostream_c auto &os, point CR p) NE { return os << p.x << ' ' << p.y; }
@@ -67,7 +68,7 @@ struct point {
   }
   CEXP FP arg_2pi() CNE {
     FP res = arg();
-    return is_neg(res) ? res + 2 * pi_v<FP> : res;
+    retif_((is_neg(res)), res + 2 * pi_v<FP>, res);
   }
   CEXP FP norm2() CNE { return x * x + y * y; }
   CEXP FP norm() CNE {

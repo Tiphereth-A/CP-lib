@@ -5,7 +5,7 @@
 
 namespace tifa_libs::opt {
 
-class DLX {
+class dlx {
   struct node {
     u32 l, r, u, d, row, col;
     CEXP node(u32 l = 0, u32 r = 0, u32 u = 0, u32 d = 0, u32 row = 0, u32 col = 0) NE : l(l), r(r), u(u), d(d), row(row), col(col) {}
@@ -67,7 +67,7 @@ class DLX {
   }
 
  public:
-  CEXPE DLX(cT_(vvecb) grid, bool multi_ans = false) NE : data(), cnt_col(), mans(multi_ans) {
+  CEXPE dlx(cT_(vvecb) grid, bool multi_ans = false) NE : data{}, cnt_col{}, mans{multi_ans} {
     u32 col = (u32)grid[0].size();
     assert(col > 0), cnt_col.resize(col + 1), data.reserve(col + 1);
     flt_ (u32, i, 0, col + 1) data.emplace_back(i - 1, i + 1, i, i, 0, i);
@@ -82,9 +82,9 @@ class DLX {
   }
   template <class F>
   requires requires(F f, vecu sol) { f(sol); }
-  CEXP std::optional<vecu> dance(F &&cb) NE {
-    vecu ans;
-    if (!dance_(ans, std::forward<F>(cb))) return {};
+  CEXP auto dance(F &&cb) NE {
+    std::optional ans{vecu{}};
+    if (!dance_(ans.value(), std::forward<F>(cb))) ans = std::nullopt;
     return ans;
   }
 

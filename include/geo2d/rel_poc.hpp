@@ -9,17 +9,17 @@
 namespace tifa_libs::geo {
 
 // relation between polygon/convex hull and circle
-enum RELPoC { otherwise_poc,
-              touchin_poc,
-              covered_poc };
+// clang-format off
+enum class RELPoC : u8 { otherwise, touchin, covered };
+// clang-format on
 
 template <class FP>
 CEXP RELPoC relation_PoC(polygon<FP> CR po, circle<FP> CR c) NE {
-  auto x = covered_poc;
-  if (relation_PoP(po, c.o) != inside_pop) return otherwise_poc;
+  auto x = RELPoC::covered;
+  if (relation_PoP(po, c.o) != RELPoP::inside) return RELPoC::otherwise;
   flt_ (u32, i, 0, po.size())
-    if (auto _ = relation_CS(c, {po.vs[i], po.vs[po.next(i)]}); _ == intersect_cs) return otherwise_poc;
-    else if (_ == tagante_cs) x = touchin_poc;
+    if (auto _ = relation_CS(c, {po.vs[i], po.vs[po.next(i)]}); _ == RELCS::intersect) return RELPoC::otherwise;
+    else if (_ == RELCS::tagante) x = RELPoC::touchin;
   return x;
 }
 

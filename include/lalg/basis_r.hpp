@@ -7,11 +7,11 @@
 namespace tifa_libs::math {
 
 template <class T>
-struct basisR {
+struct basis_r {
   const u32 vec_len;
   vvec<T> basis;
 
-  CEXPE basisR(u32 vec_len) NE : vec_len{vec_len}, basis(vec_len, vec<T>(vec_len)) {}
+  CEXPE basis_r(u32 vec_len) NE : vec_len{vec_len}, basis(vec_len, vec<T>(vec_len)) {}
 
   // maybe need setting a larger eps (such as 1e-4) first
   CEXP bool insert(vec<T> x) NE {
@@ -60,13 +60,16 @@ struct basisR {
   }
   // @return std::nullopt if x is linear independent with current basis, else
   // return the solution
-  CEXP std::optional<vec<T>> coord(vec<T> x) {
-    vec<T> res(vec_len);
+  CEXP auto coord(vec<T> x) {
+    std::optional res{vec<T>(vec_len)};
     for (u32 i = basis.size() - 1; ~i; --i)
       if (!is_zero(x[i])) {
-        if (is_zero(basis[i][i])) return {};
+        if (is_zero(basis[i][i])) {
+          res = std::nullopt;
+          return res;
+        }
         const T _ = x[i] / basis[i][i];
-        res[i] = _, x[i] = 0;
+        res.value()[i] = _, x[i] = 0;
         flt_ (u32, j, 0, i + 1) x[j] -= basis[i][j] * _;
       }
     return res;

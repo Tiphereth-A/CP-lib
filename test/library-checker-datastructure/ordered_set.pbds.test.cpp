@@ -17,25 +17,25 @@ int main() {
     auto lb = tr.lower_bound(x);
     switch (t) {
       case 0:
-        if (lb == tr.end() || *lb != x) tr.insert(x);
+        if (lb == end(tr) || *lb != x) tr.insert(x);
         break;
       case 1:
-        if (lb != tr.end() && *lb == x) tr.erase(lb);
+        if (lb != end(tr) && *lb == x) tr.erase(lb);
         break;
       case 2:
         if (tr.size() < x) fout << "-1\n";
         else fout << *tr.find_by_order(x - 1) << '\n';
         break;
-      case 3: fout << tr.order_of_key(x) + (lb != tr.end() ? *lb == x : false) << '\n'; break;
+      case 3: fout << tr.order_of_key(x) + (lb != end(tr) ? *lb == x : false) << '\n'; break;
       case 4:
-        if (lb == tr.end()) lb = tr.rbegin();
-        if (lb == tr.end()) fout << "-1\n";
+        if (lb == end(tr)) lb = tr.rbegin();
+        if (lb == end(tr)) fout << "-1\n";
         else if (*lb <= x) fout << *lb << '\n';
-        else if (lb == tr.begin()) fout << "-1\n";
+        else if (lb == begin(tr)) fout << "-1\n";
         else fout << *std::prev(lb) << '\n';
         break;
       case 5:
-        if (lb == tr.end()) fout << "-1\n";
+        if (lb == end(tr)) fout << "-1\n";
         else fout << *lb << '\n';
         break;
     }

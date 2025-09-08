@@ -17,7 +17,7 @@ int main() {
   }
   CEXP i32 INF = inf_v<i32>;
   auto d = graph::bellman_ford(g, r, fn_0, INF);
-  if (!d.has_value()) {
+  if (!d) {
     std::cout << "NEGATIVE CYCLE\n";
     return 0;
   }

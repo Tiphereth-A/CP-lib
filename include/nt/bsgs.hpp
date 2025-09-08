@@ -9,8 +9,9 @@ namespace tifa_libs::math {
 
 // solve $a^x\equiv b \pmod m$
 //! $\gcd(a, m) = 1$ required
-inline std::optional<u64> bsgs(u64 a, u64 b, u64 m) NE {
+inline auto bsgs(u64 a, u64 b, u64 m) NE {
   a %= m;
+  std::optional<u64> ret;
   hmap<u64, u64> hmp;
   u64 sqrt_m = isqrt(m), s = mul_mod_u(a, b, m);
   if (sqrt_m * sqrt_m < m) ++sqrt_m;
@@ -18,8 +19,11 @@ inline std::optional<u64> bsgs(u64 a, u64 b, u64 m) NE {
   const u64 _ = qpow_mod(a, sqrt_m, m);
   s = _;
   for (u64 i = 1; i <= sqrt_m; ++i, s = mul_mod_u(s, _, m))
-    if (hmp[s] && i * sqrt_m >= hmp[s]) return i * sqrt_m - hmp[s];
-  return {};
+    if (hmp[s] && i * sqrt_m >= hmp[s]) {
+      ret.emplace(i * sqrt_m - hmp[s]);
+      return ret;
+    }
+  return ret;
 }
 
 }  // namespace tifa_libs::math

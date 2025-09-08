@@ -16,7 +16,7 @@ struct lca_hld {
 
   CEXP u32 operator()(u32 u, u32 v) CNE {
     while (top[u] != top[v]) info.dep[top[u]] < info.dep[top[v]] ? v = info.fa[top[v]] : u = info.fa[top[u]];
-    return info.dep[u] > info.dep[v] ? v : u;
+    retif_((info.dep[u] > info.dep[v]), v, u);
   }
   CEXP ptt<vecptu> getchain(u32 u, u32 v) NE {
     u32 lca = (*this)(u, v);

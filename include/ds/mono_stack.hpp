@@ -12,8 +12,6 @@ class mono_stack {
   vec<T> s;
 
  public:
-  CEXPE mono_stack() NE = default;
-
   CEXP void pop_greater(cT_(T) x) NE {
     while (!s.empty() && compare(x, s.back())) s.pop_back();
   }

@@ -15,7 +15,7 @@ int main() {
     std::cin >> opt >> x, --x;
     if (opt == 1) std::cin >> y, --y, tr.merge(x, y);
     else {
-      if (auto ret = tr.pop(x); !ret.has_value()) std::cout << "-1\n";
+      if (auto ret = tr.pop(x); !ret) std::cout << "-1\n";
       else std::cout << ret.value() << '\n';
     }
   }

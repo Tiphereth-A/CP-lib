@@ -14,14 +14,14 @@ class mint_2e61n1 {
 
  protected:
   using raw_t = u64;
-  raw_t v_;
-  CEXP mint_2e61n1() NE : v_{} {}
+  raw_t v_{};
+  CEXP mint_2e61n1() NE = default;
   CEXP mint_2e61n1(int_c auto v) NE : v_{mod(v)} {}
   // clang-format off
   template <uint_c T>
-  static CEXP raw_t mod(T x) NE { return x < MOD ? (raw_t)x : (x = T(((raw_t)x & MOD) + ((raw_t)x >> 61))) >= MOD ? x - MOD : (raw_t)x; }
+  static CEXP raw_t mod(T x) NE { if(x < MOD)return (raw_t)x; if((x = T(((raw_t)x & MOD) + ((raw_t)x >> 61))) >= MOD)return x - MOD; return (raw_t)x; }
   template <sint_c T>
-  static CEXP raw_t mod(T x) NE { return x >= 0 ? mod(to_uint_t<T>(x)) : MOD - mod(to_uint_t<T>(-x)); }
+  static CEXP raw_t mod(T x) NE { retif_((x >= 0), mod(to_uint_t<T>(x)), MOD - mod(to_uint_t<T>(-x))); }
   // clang-format on
   static CEXP raw_t mod() NE { return MOD; }
   CEXP raw_t val() CNE { return v_; }

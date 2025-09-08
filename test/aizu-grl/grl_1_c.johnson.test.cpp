@@ -16,7 +16,7 @@ int main() {
     arcs.emplace_back(w, u, v);
   }
   auto d = graph::johnson(n, arcs, INF);
-  if (!d.has_value()) {
+  if (!d) {
     std::cout << "NEGATIVE CYCLE\n";
     return 0;
   }

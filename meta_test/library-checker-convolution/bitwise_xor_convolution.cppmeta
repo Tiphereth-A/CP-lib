@@ -3,8 +3,8 @@
 #include "../../include/conv/conv_xor.hpp"
 #include "../../include/io/fastin.hpp"
 #include "../../include/io/fastout.hpp"
-#include "../../include/math/mint_d31.hpp"
 #include "../../include/io/ios_container.hpp"
+#include "../../include/math/mint_d31.hpp"
 
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;

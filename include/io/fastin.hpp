@@ -33,6 +33,8 @@ class fastin {
 
  public:
   fastin(FILE *f = stdin) NE { assert(f), rebind(f); }
+  fastin(fastin CR) = delete;
+  fastin &operator=(fastin CR) = delete;
   ~fastin() NE { rebind(); }
   void rebind(FILE *f = nullptr) NE {
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
@@ -63,6 +65,8 @@ class fastin {
 
  public:
   fastin(FILE *f = stdin) NE { rebind(f); }
+  fastin(fastin CR) = delete;
+  fastin &operator=(fastin CR) = delete;
   void rebind(FILE *f) NE { f_ = f, p = ed = buf; }
   bool iseof() NE {
     if (p == ed) [[unlikely]]
@@ -110,7 +114,7 @@ class fastin {
   }
   fastin &operator>>(std::floating_point auto &n) NE {
     static strn s;
-    (*this >> s), std::from_chars(s.begin().base(), s.end().base(), n);
+    (*this >> s), std::from_chars(begin(s).base(), end(s).base(), n);
     return *this;
   }
   //! ignore cntrl and space

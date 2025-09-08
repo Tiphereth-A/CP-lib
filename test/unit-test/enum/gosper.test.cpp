@@ -31,18 +31,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test<1>(1, 1); break;
-    case unittest::ts_example_01: test<1>(2, 2); break;
-    case unittest::ts_random_00: test<1>(3, 3); break;
-    case unittest::ts_random_01: test<1>(4, 4); break;
-    case unittest::ts_random_02: test<1>(5, 5); break;
-    case unittest::ts_random_03: test<1>(6, 6); break;
-    case unittest::ts_random_04: test<2>(10, 10); break;
-    case unittest::ts_random_05: test<2>(20, 20); break;
-    case unittest::ts_random_06: test<2>(30, 10); break;
-    case unittest::ts_random_07: test<2>(40, 8); break;
-    case unittest::ts_random_08: test<2>(50, 7); break;
-    case unittest::ts_random_09: test<2>(60, 6); break;
+    case unittest::TC::example_00: test<1>(1, 1); break;
+    case unittest::TC::example_01: test<1>(2, 2); break;
+    case unittest::TC::random_00: test<1>(3, 3); break;
+    case unittest::TC::random_01: test<1>(4, 4); break;
+    case unittest::TC::random_02: test<1>(5, 5); break;
+    case unittest::TC::random_03: test<1>(6, 6); break;
+    case unittest::TC::random_04: test<2>(10, 10); break;
+    case unittest::TC::random_05: test<2>(20, 20); break;
+    case unittest::TC::random_06: test<2>(30, 10); break;
+    case unittest::TC::random_07: test<2>(40, 8); break;
+    case unittest::TC::random_08: test<2>(50, 7); break;
+    case unittest::TC::random_09: test<2>(60, 6); break;
     default: break;
   }
 

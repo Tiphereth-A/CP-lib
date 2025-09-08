@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 // bernoulli[i] = B_i, i=0,1,...,n
 template <class poly, class T>
 CEXP poly gen_bernoulli(u32 n, vec<T> CR fact, vec<T> CR ifact) NE {
-  if (!n) return poly{1};
+  retif_((!n) [[unlikely]], poly{1});
   poly b(n + 1);
   flt_ (u32, i, 0, n + 1) b[i] = ifact[i + 1];
   b = inv_fps(b);

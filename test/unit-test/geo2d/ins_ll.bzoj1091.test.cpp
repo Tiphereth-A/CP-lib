@@ -28,7 +28,7 @@ strn single_proceed(std::istream &fin) {
   fin >> vp;
   vl.emplace_back(vp[0], vp[p - 1]);
   flt_ (u32, i, 0, p - 1) vl.emplace_back(vp[i + 1], vp[i]);
-  std::sort(vl.begin() + 4, vl.end());
+  std::sort(begin(vl) + 4, end(vl));
   data_t ans = std::numeric_limits<data_t>::max();
   Point2 INFP{1e5, 1e5};
   do {
@@ -45,13 +45,13 @@ strn single_proceed(std::istream &fin) {
       now_ans += geo::dist_PP(l, r);
     }
     ans = std::min(ans, now_ans);
-  } while (std::next_permutation(vl.begin() + 4, vl.end()));
+  } while (std::next_permutation(begin(vl) + 4, end(vl)));
   ss << ans;
 
   return ss.str();
 }
 
-void test(strn CR data) {
+void test(strnv data) {
   auto [fn_in, fn_ans] = unittest::get_fname_in_ans("bzoj", "1091", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
@@ -73,18 +73,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test("1"); break;
-    case unittest::ts_example_01: test("2"); break;
-    case unittest::ts_random_00: test("3"); break;
-    case unittest::ts_random_01: test("4"); break;
-    case unittest::ts_random_02: test("5"); break;
-    case unittest::ts_random_03: test("6"); break;
-    case unittest::ts_random_04: test("7"); break;
-    case unittest::ts_random_05: test("8"); break;
-    case unittest::ts_random_06: test("9"); break;
-    case unittest::ts_random_07: test("10"); break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test("1"); break;
+    case unittest::TC::example_01: test("2"); break;
+    case unittest::TC::random_00: test("3"); break;
+    case unittest::TC::random_01: test("4"); break;
+    case unittest::TC::random_02: test("5"); break;
+    case unittest::TC::random_03: test("6"); break;
+    case unittest::TC::random_04: test("7"); break;
+    case unittest::TC::random_05: test("8"); break;
+    case unittest::TC::random_06: test("9"); break;
+    case unittest::TC::random_07: test("10"); break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

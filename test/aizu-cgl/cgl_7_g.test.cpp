@@ -18,13 +18,13 @@ int main() {
   std::cin >> c1 >> c2;
   auto exl = extan_CC(c1, c2), inl = intan_CC(c1, c2);
   vec<point> ans;
-  if (exl.has_value()) {
-    ans.push_back(exl.value().first.l);
-    ans.push_back(exl.value().second.l);
+  if (exl) {
+    ans.push_back(exl->first.l);
+    ans.push_back(exl->second.l);
   }
-  if (inl.has_value()) {
-    ans.push_back(inl.value().first.l);
-    ans.push_back(inl.value().second.l);
+  if (inl) {
+    ans.push_back(inl->first.l);
+    ans.push_back(inl->second.l);
   }
   ans = uniq(ans);
   for (auto &i : ans) std::cout << i << '\n';

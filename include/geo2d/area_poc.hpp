@@ -12,7 +12,7 @@ template <class FP>
 CEXP FP area_PoC(polygon<FP> CR po, circle<FP> CR c) NE {
   math::kahan<FP> ans{};
   const u32 n = po.size();
-  if (n < 3) return ans;
+  retif_((n < 3) [[unlikely]], ans);
   flt_ (u32, i, 0, n) ans += sarea_CT(c, po[i], po[po.next(i)]);
   return abs<FP>(ans);
 }

@@ -9,7 +9,7 @@
 
 namespace tifa_libs::math {
 namespace pfactors_impl_ {
-static rand::Gen<u64> e;
+static rand::gen<u64> e;
 static auto __ = [] { e.seed(); return 0; }();
 CEXP u64 rho(u64 n) NE {
   e.range(1, n - 1);
@@ -28,7 +28,7 @@ CEXP u64 rho(u64 n) NE {
   if (g == n) do {
       g = gcd((x + (n - (yy = f(yy)))) % n, n);
     } while (g == 1);
-  return g == n ? rho(n) : g;
+  retif_((g == n), rho(n), g);
 }
 CEXP void run(u64 n, vecuu &p) NE {
   if (n < 2) return;

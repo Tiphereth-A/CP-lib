@@ -13,7 +13,7 @@ inline vec<T> unordered_stl_hacker(usz n) NE {
   auto get_bucket_counts = [n]() NE {
     vec<usz> ans;
     std::unordered_set<int> s;
-    rand::Gen<int> gen;
+    rand::gen<int> gen;
     while (s.size() < n) {
       if (ans.empty() || ans.back() != s.bucket_count()) ans.push_back(s.bucket_count());
       s.insert(gen());
@@ -27,7 +27,7 @@ inline vec<T> unordered_stl_hacker(usz n) NE {
     // Edit these if need
     const usz len = 15;
     const strn pref = "", alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
-    rand::Gen<usz> gen(0, alphabet.size() - 1);
+    rand::gen<usz> gen(0, alphabet.size() - 1);
     auto gen_str_with_divisible_hash = [&](usz mod) NE -> strn {
       strn s = pref;
       while (true) {
@@ -50,7 +50,7 @@ inline vec<T> unordered_stl_hacker(usz n) NE {
       const T nw = gen_str_with_divisible_hash(lst);
       ans2.push_back(nw), op2 += i < pr ? 1 : cnt, ++cnt;
     }
-    return op1 > op2 ? ans1 : ans2;
+    retif_((op1 > op2), ans1, ans2);
   } else if CEXP (std::is_integral_v<T>) {
     vec<T> ans1;
     i64 op1 = 0;
@@ -64,7 +64,7 @@ inline vec<T> unordered_stl_hacker(usz n) NE {
       op2 += i < pr ? 1 : cnt;
       ++cnt;
     }
-    return op1 > op2 ? ans1 : ans2;
+    retif_((op1 > op2), ans1, ans2);
   }
 }
 

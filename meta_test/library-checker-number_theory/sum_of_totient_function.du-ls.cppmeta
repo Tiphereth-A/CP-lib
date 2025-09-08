@@ -21,7 +21,7 @@ int main() {
     auto _ = tifa_libs::math::lsieve<tifa_libs::math::ls_phi>(tifa_libs::math::isqrt(n)).phi;
     sphi.reserve(_.size());
     for (auto i : _) sphi.push_back(i);
-    std::inclusive_scan(sphi.begin(), sphi.end(), sphi.begin());
+    std::inclusive_scan(begin(sphi), end(sphi), begin(sphi));
   }
   auto sf = [sphi](u64 x) -> mint { return sphi[x]; };
   auto sg = [](u64 x) -> mint { return x; };

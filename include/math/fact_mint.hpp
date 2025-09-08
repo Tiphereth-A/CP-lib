@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 template <class poly>
 CEXP auto fact_mint(u64 n) NE {
   using mint = TPN poly::val_t;
-  if (n <= 1) return mint(1);
+  retif_((n <= 1) [[unlikely]], mint(1));
   if (n >= mint::mod()) return mint(0);
   u64 v = 1;
   while (v * v < n) v *= 2;
@@ -19,7 +19,7 @@ CEXP auto fact_mint(u64 n) NE {
          g2 = ctsh_fps(g, mint(d * v + v) * iv),
          g3 = ctsh_fps(g, mint(d * v + d + v) * iv);
     flt_ (u32, i, 0, (u32)d + 1) g[i] *= g1[i], g2[i] *= g3[i];
-    copy(g2.begin(), g2.end() - 1, std::back_inserter(g));
+    copy(begin(g2), end(g2) - 1, std::back_inserter(g));
   }
   mint res = 1;
   u64 i = 0;

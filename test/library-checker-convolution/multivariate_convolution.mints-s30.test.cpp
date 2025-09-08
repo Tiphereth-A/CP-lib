@@ -16,7 +16,7 @@ CEXP u32 MOD = 998244353;
 using namespace tifa_libs;
 using mint = math::mint<math::mint_s30, MOD>;
 
-using ntt_t = tifa_libs::math::NTT<mint>;
+using ntt_t = tifa_libs::math::ntt<mint>;
 using vec_t = vec<mint>;
 
 int main() {

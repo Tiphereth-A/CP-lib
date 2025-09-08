@@ -3,8 +3,8 @@
 C++17 起 STL 里自带 Boyer--Moore 算法和 Boyer--Moore--Horspool 算法
 
 \begin{minted}{cpp}
-std::search(text.begin(), text.end(), std::boyer_moore_searcher(pattern.begin(), pattern.end()));
-std::search(text.begin(), text.end(), std::boyer_moore_horspool_searcher(pattern.begin(), pattern.end()));
+std::search(std::begin(text), std::end(text), std::boyer_moore_searcher(std::begin(pattern), std::end(pattern)));
+std::search(std::begin(text), std::end(text), std::boyer_moore_horspool_searcher(std::begin(pattern), std::end(pattern)));
 \end{minted}
 
 设 \verb|n = text.size()|, \verb|m = pattern.size()|, 则

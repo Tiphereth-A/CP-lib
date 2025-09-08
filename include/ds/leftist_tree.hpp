@@ -32,10 +32,10 @@ class leftist_tree {
  public:
   vec<TIFA> t;
 
-  CEXPE leftist_tree(vec<T> CR a) NE : t() {
+  CEXPE leftist_tree(vec<T> CR a) NE : t{} {
     for (auto x : a) newheap(x);
   }
-  CEXPE leftist_tree(u32 n = 0) NE : t() {
+  CEXPE leftist_tree(u32 n = 0) NE : t{} {
     t.reserve(n);
     flt_ (u32, i, 0, n) newheap();
   }
@@ -44,7 +44,7 @@ class leftist_tree {
     t.emplace_back(-1_u32, -1_u32, 0, t.size(), w, false);
     return (u32)t.size() - 1;
   }
-  CEXP u32 gf(u32 x) NE { return t[x].rt == x ? x : t[x].rt = gf(t[x].rt); }
+  CEXP u32 gf(u32 x) NE { retif_((t[x].rt == x), x, t[x].rt = gf(t[x].rt)); }
   CEXP bool same(u32 x, u32 y) NE {
     if (t[x].del || t[y].del) return false;
     if ((x = gf(x)) == (y = gf(y))) return false;
@@ -55,10 +55,10 @@ class leftist_tree {
     if ((x = gf(x)) == (y = gf(y))) return;
     t[x].rt = t[y].rt = merge_(x, y);
   }
-  CEXP std::optional<T> pop(u32 x) NE {
-    if (t[x].del) return {};
-    T ret = t[x = gf(x)].w;
-    del(x);
+  CEXP auto pop(u32 x) NE {
+    std::optional<T> ret;
+    if (t[x].del) return ret;
+    ret.emplace(t[x = gf(x)].w), del(x);
     return ret;
   }
 };

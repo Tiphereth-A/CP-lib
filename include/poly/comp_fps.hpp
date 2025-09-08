@@ -12,7 +12,7 @@ CEXP auto comp_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> g) N
   ccore<mint, args...> core2, core4;
   auto dfs = [&](auto&& dfs, vec<mint> b, u32 n, u32 h, u32 k) NE -> vec<mint> {
     if (!n) {
-      poly_t _{b.begin(), b.begin() + k};
+      poly_t _{begin(b), begin(b) + k};
       _.push_back(1), _.reverse(), (_ = inv_fps(_)).reverse();
       poly_t g_ = f * _;
       vec<mint> a(k * h);
@@ -20,7 +20,7 @@ CEXP auto comp_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> g) N
       return a;
     }
     vec<mint> bb(k * h * 4), cc(k * h * 2);
-    flt_ (u32, i, 0, k) copy(b.begin() + i * h, b.begin() + i * h + n + 1, bb.begin() + i * h * 2);
+    flt_ (u32, i, 0, k) copy(begin(b) + i * h, begin(b) + i * h + n + 1, begin(bb) + i * h * 2);
     bb[k * h * 2] += 1, core4.dif(bb);
     for (u32 i = 0; i < k * h * 4; i += 2) swap(bb[i], bb[i + 1]);
     flt_ (u32, i, 0, k * h * 2) cc[i] = bb[i * 2] * bb[i * 2 + 1];
@@ -31,10 +31,10 @@ CEXP auto comp_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> g) N
     flt_ (u32, i, 0, k * 2)
       flt_ (u32, j, 0, n / 2 + 1) aa[(i * h + j) * 2 + n % 2] = a[i * h / 2 + j];
     core4.dif(aa);
-    for (u32 i = 1; i < k * h * 4; i *= 2) reverse(bb.begin() + i, bb.begin() + i * 2);
+    for (u32 i = 1; i < k * h * 4; i *= 2) reverse(begin(bb) + i, begin(bb) + i * 2);
     flt_ (u32, i, 0, k * h * 4) aa[i] *= bb[i];
     core4.dit(aa), a.assign(k * h, 0);
-    flt_ (u32, i, 0, k) copy(aa.begin() + i * h * 2, aa.begin() + i * h * 2 + n + 1, a.begin() + i * h);
+    flt_ (u32, i, 0, k) copy(begin(aa) + i * h * 2, begin(aa) + i * h * 2 + n + 1, begin(a) + i * h);
     return a;
   };
   const u32 n = (u32)max(g.size(), f.size()), h = std::bit_ceil(n);

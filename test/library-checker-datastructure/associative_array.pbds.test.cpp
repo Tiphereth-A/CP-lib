@@ -14,10 +14,10 @@ int main() {
     std::cin >> op >> k;
     auto it = tr.lower_bound(k);
     if (op) {
-      std::cout << (it != tr.end() && it->first == k ? it->second : 0) << '\n';
+      std::cout << (it != end(tr) && it->first == k ? it->second : 0) << '\n';
     } else {
       std::cin >> v;
-      if (it != tr.end() && it->first == k) it->second = v;
+      if (it != end(tr) && it->first == k) it->second = v;
       else tr.insert({k, v});
     }
   }

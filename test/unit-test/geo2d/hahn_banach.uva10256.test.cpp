@@ -10,7 +10,7 @@ using namespace tifa_libs;
 using data_t = f64;
 using Polygon2 = geo::cvh<data_t>;
 
-CEXP strn RES_Yn[2]{"No", "Yes"};
+CEXP arr RES_Yn{"No"s, "Yes"s};
 
 strn single_proceed(u32 n, u32 m, std::istream& fin) {
   Polygon2 poly1(n), poly2(m);
@@ -22,10 +22,10 @@ strn single_proceed(u32 n, u32 m, std::istream& fin) {
   for (auto CR i : poly2.vs)
     if (poly1.contains(i)) return RES_Yn[0];
   if (poly1.size() > 1 && poly2.size() > 1) {
-    for (auto it = poly1.vs.begin(), itn = it + 1; it != poly1.vs.end(); ++it, ++itn) {
-      if (itn == poly1.vs.end()) itn = poly1.vs.begin();
-      for (auto it2 = poly2.vs.begin(), it2n = it2 + 1; it2 != poly2.vs.end(); ++it2, ++it2n) {
-        if (it2n == poly2.vs.end()) it2n = poly2.vs.begin();
+    for (auto it = begin(poly1.vs), itn = it + 1; it != end(poly1.vs); ++it, ++itn) {
+      if (itn == end(poly1.vs)) itn = begin(poly1.vs);
+      for (auto it2 = begin(poly2.vs), it2n = it2 + 1; it2 != end(poly2.vs); ++it2, ++it2n) {
+        if (it2n == end(poly2.vs)) it2n = begin(poly2.vs);
         if (geo::is_ins_SS<data_t>({*it, *itn}, {*it2, *it2n})) return RES_Yn[0];
       }
     }
@@ -38,7 +38,7 @@ strn single_proceed(u32 n, u32 m, std::istream& fin) {
   return RES_Yn[1];
 }
 
-void test(strn CR data) {
+void test(strnv data) {
   auto [fn_in, fn_ans] = unittest::get_fname_in_ans("uva", "10256", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
@@ -59,18 +59,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test("1"); break;
-    case unittest::ts_example_01: test("2"); break;
-    case unittest::ts_random_00: break;
-    case unittest::ts_random_01: break;
-    case unittest::ts_random_02: break;
-    case unittest::ts_random_03: break;
-    case unittest::ts_random_04: break;
-    case unittest::ts_random_05: break;
-    case unittest::ts_random_06: break;
-    case unittest::ts_random_07: break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test("1"); break;
+    case unittest::TC::example_01: test("2"); break;
+    case unittest::TC::random_00: break;
+    case unittest::TC::random_01: break;
+    case unittest::TC::random_02: break;
+    case unittest::TC::random_03: break;
+    case unittest::TC::random_04: break;
+    case unittest::TC::random_05: break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

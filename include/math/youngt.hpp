@@ -37,7 +37,7 @@ class Youngt {
     ++n;
     for (auto& i : d) {
       auto it = lower_bound(i, val);
-      if (it == i.end()) return i.push_back(val);
+      if (it == end(i)) return i.push_back(val);
       swap(val, *it);
     }
     d.push_back({val});

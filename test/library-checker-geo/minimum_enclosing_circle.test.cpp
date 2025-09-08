@@ -16,7 +16,7 @@ int main() {
   auto vp2 = vp;
   shuffle(vp2, std::mt19937{TIME});
   auto c = geo::min_cover_C(vp2);
-  for (auto &&p : vp) std::cout << (geo::relation_CP(c, p) == geo::onborder_cp);
+  for (auto &&p : vp) std::cout << (geo::relation_CP(c, p) == geo::RELCP::onborder);
 
   return 0;
 }

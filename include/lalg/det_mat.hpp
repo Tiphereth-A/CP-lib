@@ -19,7 +19,7 @@ CEXP auto det(Mat mat, Ge&& ge) NE {
     if ((u32)abs(rk_) != n) return T{};
     T ret = mat(0, 0);
     flt_ (u32, i, 1, n) ret *= mat(i, i);
-    return T(rk_ < 0 ? -ret : ret);
+    retif_((rk_ < 0), (T)-ret, (T)ret);
   }
 }
 

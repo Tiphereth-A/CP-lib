@@ -6,7 +6,7 @@
 namespace tifa_libs::ds {
 
 template <class T>
-class ODT {
+class odt {
   //! [l, r]
   struct TIFA {
     u32 l, r;
@@ -20,8 +20,8 @@ class ODT {
   std::set<TIFA> data;
 
  public:
-  CEXPE ODT() NE : data() {}
-  CEXPE ODT(vec<T> CR c) NE : ODT() {
+  CEXPE odt() NE = default;
+  CEXPE odt(vec<T> CR c) NE : odt() {
     u32 cnt = 0;
     for (auto &&i : c) data.emplace(cnt, cnt, i), ++cnt;
   }
@@ -46,12 +46,12 @@ class ODT {
   // merge adjacent nodes with same value
   CEXP void assign_merge(u32 l, u32 r, cT_(T) v) NE {
     auto itl = find(l), itr = find(r);
-    if (itr != data.end()) {
-      if (itr != std::prev(data.end()) && itr->r == r && (++itr)->v == v) r = (itr++)->r;
+    if (itr != end(data)) {
+      if (itr != std::prev(end(data)) && itr->r == r && (++itr)->v == v) r = (itr++)->r;
       else if (itr->v != v) itr = split(r + 1), itl = find(l);
       else r = (itr++)->r;
     }
-    if (itl != data.begin() && itr->l == l && std::prev(itl)->v == v) l = (--itl)->l;
+    if (itl != begin(data) && itr->l == l && std::prev(itl)->v == v) l = (--itl)->l;
     else if (itl->v != v) itl = split(l);
     else l = itl->l;
     data.erase(itl, itr), data.emplace(l, r, v);

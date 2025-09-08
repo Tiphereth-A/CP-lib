@@ -10,7 +10,7 @@ template <int_c T>
 struct rational {
   T num, den;
 
-  CEXP rational(T numerator = T(0), T denominator = T(1)) NE : num(numerator), den(denominator) {
+  CEXP rational(T numerator = T(0), T denominator = T(1)) NE : num{numerator}, den{denominator} {
     if (assert(den != 0); num == 0) den = 1;
     else {
       const T g = (T)gcd(num, den);
@@ -85,7 +85,7 @@ struct rational {
   }
   friend CEXP int operator<=>(rational CR x, rational CR y) NE {
     const auto _ = (x - y).num;
-    return _ < 0 ? -1 : _ > 0;
+    retif_((_ < 0), -1, _ > 0);
   }
   friend CEXP bool operator==(rational CR x, rational CR y) NE { return x.num == y.num && x.den == y.den; }
   friend auto &operator>>(istream_c auto &is, rational &x) NE { return is >> x.num >> x.den; }

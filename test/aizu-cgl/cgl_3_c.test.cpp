@@ -21,8 +21,8 @@ int main() {
     point p;
     std::cin >> p;
     switch (geo::relation_PoP(pl, p)) {
-      case geo::inside_pop: std::cout << "2\n"; break;
-      case geo::outside_pop: std::cout << "0\n"; break;
+      case geo::RELPoP::inside: std::cout << "2\n"; break;
+      case geo::RELPoP::outside: std::cout << "0\n"; break;
       default: std::cout << "1\n";
     }
   }

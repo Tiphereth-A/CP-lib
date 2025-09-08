@@ -19,7 +19,7 @@ class hlpp {
 
   CEXP u32 select() NE {
     while (~level && B[level].empty()) --level;
-    return ~level ? B[level].back() : 0;
+    retif_((~level), B[level].back(), 0);
   }
 
  public:

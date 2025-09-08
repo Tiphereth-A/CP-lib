@@ -20,8 +20,8 @@ struct cvh : public polygon<FP> {
     return is;
   }
   friend auto &operator<<(ostream_c auto &os, cvh<FP> CR ch) NE {
-    if (ch.vs.empty()) return os;
-    for (auto it = ch.vs.begin(); it != ch.vs.end() - 1; ++it) os << *it << ' ';
+    retif_((ch.vs.empty()) [[unlikely]], os);
+    for (auto it = begin(ch.vs); it != end(ch.vs) - 1; ++it) os << *it << ' ';
     return os << ch.vs.back();
   }
 
@@ -29,7 +29,7 @@ struct cvh : public polygon<FP> {
   CEXP cvh &init() NE {
     this->reunique();
     const u32 n = this->size();
-    if (n <= 2) return *this;
+    retif_((n <= 2) [[unlikely]], *this);
     vec<point<FP>> cvh(n * 2);
     u32 m = 0;
     for (u32 i = 0; i < n; cvh[m++] = (*this)[i++])
@@ -46,12 +46,12 @@ struct cvh : public polygon<FP> {
     u32 p = 0;
     flt_ (u32, i, 1, m - 1)
       if (cvh[i] < cvh[p]) p = i;
-    rotate(cvh, cvh.begin() + p), this->vs = cvh;
+    rotate(cvh, begin(cvh) + p), this->vs = cvh;
     return *this;
   }
   // @return true if @p in convex hull (include border)
   CEXP bool contains(point<FP> CR p) CNE {
-    auto it = lower_bound(this->vs.begin() + 1, this->vs.end(), p, [&](point<FP> CR l, point<FP> CR r) NE { return is_pos(cross((*this)[0], l, r)); }) - 1;
+    auto it = lower_bound(begin(this->vs) + 1, end(this->vs), p, [&](point<FP> CR l, point<FP> CR r) NE { return is_pos(cross((*this)[0], l, r)); }) - 1;
     auto next_it = this->next(it);
     if (auto res = sgn_cross(p, *it, *next_it); res) return ~res;
     else return !res && !is_pos(dot(p, *it, *next_it));
@@ -76,8 +76,8 @@ struct cvh : public polygon<FP> {
   }
   CEXP cvh &do_minkowski_sum(cvh<FP> CR r) NE {
     const u32 n = this->size(), m = r.size();
-    if (!m) return *this;
-    if (!n) return *this = r;
+    retif_((!m) [[unlikely]], *this);
+    retif_((!n) [[unlikely]], *this = r);
     vec<point<FP>> res{(*this)[0] + r[0]};
     res.reserve(n + m);
     u32 i = 0, j = 0;

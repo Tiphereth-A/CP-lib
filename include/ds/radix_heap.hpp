@@ -15,7 +15,7 @@ class radix_heap {
   K last;
 
  public:
-  CEXPE radix_heap() NE : s(0), last(0) { fill(ms, K(-1)); }
+  CEXP radix_heap() NE : s{0}, last{0} { fill(ms, K(-1)); }
 
   CEXP u32 size() CNE { return s; }
   CEXP bool empty() CNE { return !s; }
@@ -25,7 +25,7 @@ class radix_heap {
   }
   CEXP std::pair<K, V> top() NE {
     if (!~ms[0]) {
-      const u32 idx = u32(find_if(ms, [](auto x) NE { return !!~x; }) - ms.begin());
+      const u32 idx = u32(find_if(ms, [](auto x) NE { return !!~x; }) - begin(ms));
       for (last = ms[idx]; auto &p : vs[idx]) {
         const K b = (K)std::bit_width(p.first ^ last);
         vs[b].emplace_back(p), ms[b] = min(p.first, ms[b], comp);

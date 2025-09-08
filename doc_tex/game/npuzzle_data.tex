@@ -6,14 +6,14 @@
 
 \begin{minted}{cpp}
 int k = 4; // 15-puzzle
-NPuzzleData start(k);
+npuzzle_data start(k);
 
 // 初始化终止局面
 std::vector<u32> fin(k * k);
-std::iota(fin.begin(), fin.end(), 0);
-NPuzzleData::set_fin(k, fin);
+std::iota(std::begin(fin), std::end(fin), 0);
+npuzzle_data::set_fin(k, fin);
 // 初始化最大估价
-tifa_libs::game::NPuzzleData::limit = 100;
+tifa_libs::game::npuzzle_data::limit = 100;
 // 读入局面
 std::cin >> start;
 // 输出当前局面

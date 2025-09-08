@@ -10,9 +10,9 @@ template <tree_c G>
 CEXP auto tree_diam(G& tree) NE {
   auto _ = tree.root;
   auto d = tree_dfs_info<G, tdi_dis<G>>(tree).dis;
-  const u32 u = tree.root = u32(max_element(d) - d.begin());
+  const u32 u = tree.root = u32(max_element(d) - begin(d));
   d = tree_dfs_info<G, tdi_dis<G>>(tree).dis;
-  const u32 v = u32(max_element(d) - d.begin());
+  const u32 v = u32(max_element(d) - begin(d));
   tree.root = _;
   return std::make_tuple(u, v, d[v]);
 }

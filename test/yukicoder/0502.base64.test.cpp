@@ -9,7 +9,7 @@ CEXP u64 mod = 1000000007, Z = 100000;
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
 
-  auto a = Base64::decode(S);
+  auto a = base64::decode(S);
   u64 n;
   std::cin >> n;
   n = std::min(n, mod);

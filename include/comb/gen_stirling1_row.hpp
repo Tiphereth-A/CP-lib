@@ -12,9 +12,9 @@ namespace tifa_libs::math {
 template <class poly, class T, bool with_sgn = true>
 CEXP poly gen_stirling1_row(u32 n, vec<T> CR fact, vec<T> CR ifact) NE {
   using mint = TPN poly::val_t;
-  if (!n) return poly{1};
+  retif_((!n) [[unlikely]], poly{1});
   poly f{0, 1};
-  if (n == 1) return f;
+  retif_((n == 1) [[unlikely]], f);
   for (int i = 30 - std::countl_zero(n); ~i; --i) {
     const u32 _ = n >> i;
     (f *= tsh_fps(f, mint(_ / 2), fact, ifact)).resize(f.size() + 1);

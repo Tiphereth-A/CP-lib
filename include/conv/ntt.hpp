@@ -7,7 +7,7 @@
 namespace tifa_libs::math {
 
 template <class mint>
-struct NTT {
+struct ntt {
   using data_t = mint;
 
   static_assert(is_prime(mint::mod()) && (mint::mod() & 3) == 1, "MOD must be prime with 4k+1");
@@ -20,7 +20,7 @@ struct NTT {
   u32 sz;
 
  public:
-  CEXPE NTT() NE : sz() {
+  CEXPE ntt() NE : sz{} {
     if (inv2[0].val()) return;
     root[R] = qpow(G, mint::mod() >> R), iroot[R] = root[R].inv();
     for (u32 i = R - 1; ~i; --i) {

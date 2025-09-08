@@ -26,10 +26,10 @@ auto &operator>>(tifa_libs::istream_c auto &is, tifa_libs::u128_c auto &n) NE {
 }
 auto &operator<<(tifa_libs::ostream_c auto &os, tifa_libs::u128_c auto n) NE {
   static strn int_buf(40, '\0');
-  auto it = int_buf.end();
+  auto it = end(int_buf);
   do *(--(it)) = char(n % 10) | '0';
   while (n /= 10);
-  return os << int_buf.substr(usz(it - int_buf.begin()));
+  return os << int_buf.substr(usz(it - begin(int_buf)));
 }
 auto &operator<<(tifa_libs::ostream_c auto &os, tifa_libs::s128_c auto n) NE {
   if (n < 0) return os << '-' << -(u128)n;

@@ -30,7 +30,7 @@ int main() {
   u32 n, q;
   std::cin >> n >> q;
   vec<T> a(n);
-  for (auto &x : a) std::cin >> x.first, x.second = 1;
+  for (auto& x : a) std::cin >> x.first, x.second = 1;
   tifa_libs::ds::segtree<T, op, F, mapping, composition> segt({0, 0}, {1, 0}, a);
   flt_ (u32, i, 1, q + 1) {
     u32 opt, l, r;

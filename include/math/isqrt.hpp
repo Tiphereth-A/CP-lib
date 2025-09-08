@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 CEXP u32 isqrt(u64 x) NE {
-  if (!x) return 0;
+  retif_((!x) [[unlikely]], 0);
 #pragma GCC diagnostic ignored "-Wconversion"
   const int sh = 31 - (std::bit_width(x) - 1) / 2;
 #pragma GCC diagnostic warning "-Wconversion"

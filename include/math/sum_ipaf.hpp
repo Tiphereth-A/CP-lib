@@ -12,7 +12,7 @@ namespace tifa_libs::math {
 template <class mint, class fact>
 CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n, binom<mint, fact> CR C) NE {
   using fact_t = TPN binom<mint>::fact_t;
-  if (!n) return mint(0);
+  retif_((!n) [[unlikely]], mint(0));
   if (!a.val()) return f[0];
   if (a.val() == 1) {
     vec<mint> g(f.size() + 1, mint(0));
@@ -33,7 +33,7 @@ CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n, binom<mint, fact> CR C) N
 }
 template <class mint, class fact = fact_helper<mint>>
 CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n) NE {
-  if (!n) return mint(0);
+  retif_((!n) [[unlikely]], mint(0));
   if (!a.val()) return f[0];
   return sum_ipaf(f, a, n, binom<mint, fact>((u32)(f.size() + 1)));
 }

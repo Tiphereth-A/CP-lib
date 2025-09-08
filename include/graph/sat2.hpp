@@ -12,7 +12,7 @@ class sat2 {
   vvecu g;
 
  public:
-  CEXPE sat2(u32 n) NE : n(n), g(n * 2 + 1) {}
+  CEXPE sat2(u32 n) NE : n{n}, g(n * 2 + 1) {}
 
   // $(c_x = v_x) \lor (c_y = v_y)$
   CEXP void add(u32 x, bool vx, u32 y, bool vy) NE {
@@ -21,13 +21,14 @@ class sat2 {
     g[x ^ 1].push_back(y), g[y ^ 1].push_back(x);
   }
   // @return a, a_i == 1 if c_i is true else a_i == 0
-  CEXP std::optional<vecb> solve() NE {
+  CEXP auto solve() NE {
     tj.build(g);
-    vecb ans(n);
-    flt_ (u32, i, 0, n) {
-      if (tj.scc_id[i * 2] == tj.scc_id[i * 2 + 1]) return std::nullopt;
-      ans[i] = tj.scc_id[i * 2] > tj.scc_id[i * 2 + 1];
-    }
+    std::optional ans{vecb(n)};
+    flt_ (u32, i, 0, n)
+      if (tj.scc_id[i * 2] == tj.scc_id[i * 2 + 1]) {
+        ans = std::nullopt;
+        return ans;
+      } else ans.value()[i] = tj.scc_id[i * 2] > tj.scc_id[i * 2 + 1];
     return ans;
   }
 };

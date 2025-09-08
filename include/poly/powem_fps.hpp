@@ -16,8 +16,8 @@ CEXP auto powem_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> 
   flt_ (u32, i, 0, n + 1) p[i] = g[i], q[i] = -f[i];
   while (n) {
     pp.assign(k * h * 4, 0), qq.assign(k * h * 4, 0);
-    flt_ (u32, i, 0, k) copy(p.begin() + i * h, p.begin() + i * h + n + 1, pp.begin() + i * h * 2);
-    flt_ (u32, i, 0, k) copy(q.begin() + i * h, q.begin() + i * h + n + 1, qq.begin() + i * h * 2);
+    flt_ (u32, i, 0, k) copy(begin(p) + i * h, begin(p) + i * h + n + 1, begin(pp) + i * h * 2);
+    flt_ (u32, i, 0, k) copy(begin(q) + i * h, begin(q) + i * h + n + 1, begin(qq) + i * h * 2);
     qq[k * h * 2] += 1, core4.dif(pp), core4.dif(qq);
     for (u32 i = 0; i < k * h * 4; i += 2) swap(qq[i], qq[i + 1]);
     flt_ (u32, i, 0, k * h * 4) pp[i] *= qq[i];
@@ -27,7 +27,7 @@ CEXP auto powem_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> 
       flt_ (u32, j, 0, n / 2 + 1) p[i * h / 2 + j] = pp[i * h * 2 + j * 2 + n % 2], q[i * h / 2 + j] = rr[i * h + j];
     n /= 2, h /= 2, k *= 2;
   }
-  poly_t s{p.begin(), p.begin() + k}, t{q.begin(), q.begin() + k};
+  poly_t s{begin(p), begin(p) + k}, t{begin(q), begin(q) + k};
   t.push_back(1), s.reverse(), t.reverse();
   return (s * inv_fps(t, m + 1)).pre(m + 1);
 }

@@ -14,9 +14,9 @@ int main() {
       u32 x;
       std::cin >> x;
       v.push_back(x);
-      ds::push_minmax_heap(v.begin(), v.end());
+      ds::push_minmax_heap(begin(v), end(v));
     } else {
-      ds::pop_minmax_heap_max(v.begin(), v.end());
+      ds::pop_minmax_heap_max(begin(v), end(v));
       std::cout << v.back() << '\n';
       v.pop_back();
     }

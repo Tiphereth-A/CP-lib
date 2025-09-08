@@ -9,19 +9,19 @@ namespace tifa_libs {
 template <common_range R, class F>
 CEXP auto lstrip_view(R CR range, F&& pred) NE {
   auto v = range | views::drop_while(std::forward<F>(pred));
-  return subrange{v.begin(), v.end()};
+  return subrange{begin(v), end(v)};
 }
 // pred(x) == true  ==>  drop
 template <common_range R, class F>
 CEXP auto rstrip_view(R CR range, F&& pred) NE {
   auto v = range | views::reverse | views::drop_while(std::forward<F>(pred));
-  return subrange{v.end().base(), v.begin().base()};
+  return subrange{end(v).base(), begin(v).base()};
 }
 // pred(x) == true  ==>  drop
 template <common_range R, class F>
 CEXP auto strip_view(R CR range, F&& pred) NE {
   auto v = range | views::drop_while(std::forward<F>(pred)) | views::reverse | views::drop_while(std::forward<F>(pred));
-  return subrange{v.end().base(), v.begin().base()};
+  return subrange{end(v).base(), begin(v).base()};
 }
 
 }  // namespace tifa_libs

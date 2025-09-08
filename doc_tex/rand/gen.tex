@@ -5,9 +5,9 @@
 \begin{minted}{cpp}
 int main() {
   // 初始化
-  tifa_libs::rand::Gen<int> gen;
-  tifa_libs::rand::Gen<double> gen2(0, 114514); // (min, max)
-  tifa_libs::rand::Gen<long long> gen3(0, 114514, 19260817); // (min, max, seed)
+  tifa_libs::rand::gen<int> gen;
+  tifa_libs::rand::gen<double> gen2(0, 114514); // (min, max)
+  tifa_libs::rand::gen<long long> gen3(0, 114514, 19260817); // (min, max, seed)
   // 设置范围
   gen.range(0, 114514);
   // 设置种子

@@ -15,12 +15,12 @@ strn single_proceed(u32 n, std::istream& fin) {
 
   ConvexHull2 cvh(n);
   fin >> cvh;
-  ss << geo::coverage_rect<geo::CR_MIN_AREA, data_t>(cvh.init()).area() << '\n';
+  ss << geo::coverage_rect<geo::CVHRECT::min_area, data_t>(cvh.init()).area() << '\n';
 
   return ss.str();
 }
 
-void test(strn CR data) {
+void test(strnv data) {
   auto [fn_in, fn_ans] = unittest::get_fname_in_ans("uva", "10173", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
@@ -41,18 +41,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test("1"); break;
-    case unittest::ts_example_01: test("2"); break;
-    case unittest::ts_random_00: break;
-    case unittest::ts_random_01: break;
-    case unittest::ts_random_02: break;
-    case unittest::ts_random_03: break;
-    case unittest::ts_random_04: break;
-    case unittest::ts_random_05: break;
-    case unittest::ts_random_06: break;
-    case unittest::ts_random_07: break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test("1"); break;
+    case unittest::TC::example_01: test("2"); break;
+    case unittest::TC::random_00: break;
+    case unittest::TC::random_01: break;
+    case unittest::TC::random_02: break;
+    case unittest::TC::random_03: break;
+    case unittest::TC::random_04: break;
+    case unittest::TC::random_05: break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

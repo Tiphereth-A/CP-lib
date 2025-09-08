@@ -9,7 +9,7 @@ int main() {
   std::cin >> s;
   u32 n = (u32)s.size();
   s = " " + s;
-  str::suffixarray sa(s);
+  str::suffix_array sa(s);
   flt_ (u32, i, 1, n + 1) std::cout << sa.sa[i] - 1 << " \n"[i == n];
   return 0;
 }

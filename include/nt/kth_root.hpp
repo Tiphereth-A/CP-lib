@@ -8,11 +8,15 @@
 
 namespace tifa_libs::math {
 
-CEXP std::optional<u64> kth_root(u64 a, u64 k, u64 p) NE {
-  if (k > 0 && !(a % p)) return 0;
+CEXP auto kth_root(u64 a, u64 k, u64 p) NE {
+  std::optional<u64> ret;
+  if (k > 0 && !(a % p)) {
+    ret.emplace(0);
+    return ret;
+  }
   k %= p - 1;
   u64 g = gcd(k, p - 1);
-  if (qpow_mod(a, (p - 1) / g, p) != 1) return {};
+  if (qpow_mod(a, (p - 1) / g, p) != 1) return ret;
   a = qpow_mod(a, inverse(k / g, (p - 1) / g), p);
   auto pethr = [](u64 a, u64 p, u32 e, u64 m) NE {
     u64 q = m - 1;
@@ -30,7 +34,7 @@ CEXP std::optional<u64> kth_root(u64 a, u64 k, u64 p) NE {
     flt_ (u32, i, e, s) {
       u64 _ = mul_mod_u(a, inverse(qpow_mod(ans, pe, m), m), m), t = qpow_mod(_, qpow_mod(p, s - 1 - i, m - 1), m);
       flt_ (u32, j, 0, v + 1) {
-        if (mp.find(t) != mp.end()) {
+        if (mp.find(t) != end(mp)) {
           u32 x = mp[t];
           ans = mul_mod_u(ans, qpow_mod(c, mul_mod_u(j + v * x, qpow_mod(p, i - e, m - 1), m - 1), m), m);
           break;
@@ -46,7 +50,8 @@ CEXP std::optional<u64> kth_root(u64 a, u64 k, u64 p) NE {
     if (n) a = pethr(a, d, n, p);
   }
   if (g > 1) a = pethr(a, g, 1, p);
-  return a;
+  ret.emplace(a);
+  return ret;
 }
 
 }  // namespace tifa_libs::math

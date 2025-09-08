@@ -8,8 +8,8 @@
 namespace tifa_libs::math {
 
 CEXP u64 pi_min25(u64 n) NE {
-  if (n <= 1) return 0;
-  if (n == 2) return 1;
+  retif_((n <= 1) [[unlikely]], 0);
+  retif_((n == 2) [[unlikely]], 1);
   const u32 lim = isqrt(n);
   u32 vn = (lim + 1) / 2;
   vecu s(vn), r(vn);

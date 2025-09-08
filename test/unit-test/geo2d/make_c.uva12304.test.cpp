@@ -43,7 +43,7 @@ strn single_proceed(strnv s, std::istream& fin) {
     Point2 p;
     fin >> c >> p;
     auto tps = tan_CP(c, p);
-    if (!tps.has_value()) {
+    if (!tps) {
       ss << "[]\n";
       return ss.str();
     }
@@ -69,7 +69,7 @@ strn single_proceed(strnv s, std::istream& fin) {
     data_t r;
     fin >> p >> l >> r;
     auto cs = make_C_rPL(r, p, l);
-    if (!cs.has_value()) return "[]\n";
+    if (!cs) return "[]\n";
     auto [cs0, cs1] = cs.value();
     if (cs1.o < cs0.o) std::swap(cs0, cs1);
     if (cs0.o == cs1.o) {
@@ -84,7 +84,7 @@ strn single_proceed(strnv s, std::istream& fin) {
     data_t r;
     fin >> l1 >> l2 >> r;
     auto cs_ = make_C_rLL(r, l1, l2);
-    if (!cs_.has_value()) return "[]\n";
+    if (!cs_) return "[]\n";
     auto [cs0, cs1, cs2, cs3] = cs_.value();
     vec<Circle2> cs{cs0, cs1, cs2, cs3};
     std::ranges::sort(cs, [](Circle2 CR lhs, Circle2 CR rhs) { return lhs.o < rhs.o; });
@@ -96,7 +96,7 @@ strn single_proceed(strnv s, std::istream& fin) {
     data_t r;
     fin >> c1 >> c2 >> r;
     auto cs = make_C_rCC_ex(r, c1, c2);
-    if (!cs.has_value()) {
+    if (!cs) {
       ss << "[]\n";
       return ss.str();
     }
@@ -113,7 +113,7 @@ strn single_proceed(strnv s, std::istream& fin) {
   exit(1);
 }
 
-void test(strn CR data) {
+void test(strnv data) {
   auto [fn_in, fn_ans] = unittest::get_fname_in_ans("uva", "12304", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
@@ -134,18 +134,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test("1"); break;
-    case unittest::ts_example_01: test("2"); break;
-    case unittest::ts_random_00: break;
-    case unittest::ts_random_01: break;
-    case unittest::ts_random_02: break;
-    case unittest::ts_random_03: break;
-    case unittest::ts_random_04: break;
-    case unittest::ts_random_05: break;
-    case unittest::ts_random_06: break;
-    case unittest::ts_random_07: break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test("1"); break;
+    case unittest::TC::example_01: test("2"); break;
+    case unittest::TC::random_00: break;
+    case unittest::TC::random_01: break;
+    case unittest::TC::random_02: break;
+    case unittest::TC::random_03: break;
+    case unittest::TC::random_04: break;
+    case unittest::TC::random_05: break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

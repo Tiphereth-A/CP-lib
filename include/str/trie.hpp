@@ -6,7 +6,7 @@
 namespace tifa_libs::str {
 
 template <char BGNCH = 'a', char ENDCH = 'z' + 1>
-class Trie {
+class trie {
   struct TIFA {
     u32 nxt[ENDCH - BGNCH];
     bool end;
@@ -17,7 +17,7 @@ class Trie {
   u32 sz;
 
  public:
-  CEXPE Trie() NE : data(1), sz{0} {}
+  CEXP trie() NE : data(1), sz{0} {}
 
   CEXP void insert(strnv str) NE {
     u32 p = 0;

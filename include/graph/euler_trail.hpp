@@ -7,26 +7,25 @@
 namespace tifa_libs::graph {
 namespace euler_trail_impl_ {
 template <bool cyc>
-CEXP std::optional<vecptu> run_(u32 n, u32 m, cT_(vvecptu) g, u32 s) NE {
+CEXP auto run_(u32 n, u32 m, cT_(vvecptu) g, u32 s) NE {
+  std::optional ret(vecptu{});
   vec<vecptu::const_iterator> its(n);
-  flt_ (u32, i, 0, n) its[i] = g[i].begin();
+  flt_ (u32, i, 0, n) its[i] = begin(g[i]);
   veci f(n);
   if CEXP (!cyc) ++f[s];
   vecb vis(m);
-  vecptu ret, stk = {{s, -1_u32}};
+  vecptu stk = {{s, -1_u32}};
   while (!stk.empty()) {
     auto [i, p] = stk.back();
     auto &it = its[i];
-    if (it == g[i].end()) {
-      ret.emplace_back(i, p), stk.pop_back();
+    if (it == end(g[i])) {
+      ret->emplace_back(i, p), stk.pop_back();
       continue;
     }
     if (auto [j, e] = *(it++); !vis[e]) --f[i], ++f[j], stk.emplace_back(j, e), vis[e] = true;
   }
-  if (ret.size() != m + 1) return {};
-  for (i32 i : f)
-    if (i < 0) return {};
-  reverse(ret);
+  if (ret->size() != m + 1 || any_of(f, [](i32 i) { return i < 0; })) ret = std::nullopt;
+  else reverse(ret.value());
   return ret;
 }
 }  // namespace euler_trail_impl_
@@ -34,7 +33,7 @@ CEXP std::optional<vecptu> run_(u32 n, u32 m, cT_(vvecptu) g, u32 s) NE {
 // @return vector of {v, eid} of Eulerian trail if found
 // edges[eid[i]] = v[i-1] -> v[i], eid[0] = -1
 template <bool directed, bool cycle = false>
-CEXP std::optional<vecptu> euler_trail(u32 n, vecptu CR edges) NE {
+CEXP auto euler_trail(u32 n, vecptu CR edges) NE {
   vvecptu g(n);
   vecu deg_in(0);
   if CEXP (directed) deg_in.resize(n);
@@ -56,7 +55,7 @@ CEXP std::optional<vecptu> euler_trail(u32 n, vecptu CR edges) NE {
 }
 template <alist_c G>
 CEXP bool is_eulerian(G CR g) NE {
-  if (!g.cnt_arc) return 1;
+  retif_((!g.cnt_arc) [[unlikely]], 1);
   const u32 n = g.size();
   assert(n == g.deg_in.size());
   flt_ (u32, i, 0, n)

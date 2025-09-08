@@ -136,7 +136,7 @@ void test_x(triangle<T> CR t) {
 
 template <arithm_c T>
 void test(T lim) {
-  rand::Gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
+  rand::gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
 
   triangle<T> t(point<T>(g(), g()), point<T>(g(), g()), point<T>(g(), g()));
 
@@ -153,18 +153,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test<f64>(1e5); break;
-    case unittest::ts_example_01: test<f128>(1e5); break;
-    case unittest::ts_random_00: test<f64>(1e9); break;
-    case unittest::ts_random_01: test<f128>(1e9); break;
-    case unittest::ts_random_02: break;
-    case unittest::ts_random_03: break;
-    case unittest::ts_random_04: break;
-    case unittest::ts_random_05: break;
-    case unittest::ts_random_06: break;
-    case unittest::ts_random_07: break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test<f64>(1e5); break;
+    case unittest::TC::example_01: test<f128>(1e5); break;
+    case unittest::TC::random_00: test<f64>(1e9); break;
+    case unittest::TC::random_01: test<f128>(1e9); break;
+    case unittest::TC::random_02: break;
+    case unittest::TC::random_03: break;
+    case unittest::TC::random_04: break;
+    case unittest::TC::random_05: break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

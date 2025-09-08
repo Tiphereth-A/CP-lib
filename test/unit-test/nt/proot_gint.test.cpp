@@ -61,56 +61,56 @@ int main() {
 
   switch (tcase) {
       // small prime
-    case unittest::ts_example_00:
+    case unittest::TC::example_00:
       test_proot_gint<mint<3>>();
       test_proot_gint<mint<5>>();
       test_proot_gint<mint<7>>();
       break;
-    case unittest::ts_example_01:
+    case unittest::TC::example_01:
       test_proot_gint<mint<11>>();
       test_proot_gint<mint<13>>();
       test_proot_gint<mint<17>>();
       test_proot_gint<mint<19>>();
       break;
-    case unittest::ts_random_00:
+    case unittest::TC::random_00:
       test_proot_gint<mint<40961>>();
       test_proot_gint<mint<65537>>();
       test_proot_gint<mint<786433>>();
       test_proot_gint<mint<19260817>>();
       break;
-    case unittest::ts_random_01:
+    case unittest::TC::random_01:
       break;
       // larger prime in u32
-    case unittest::ts_random_02:
+    case unittest::TC::random_02:
       test_proot_gint<mint<167772161>>();
       test_proot_gint<mint<469762049>>();
       break;
-    case unittest::ts_random_03:
+    case unittest::TC::random_03:
       test_proot_gint<mint<754974721>>();
       test_proot_gint<mint<998244353>>();
       break;
-    case unittest::ts_random_04:
+    case unittest::TC::random_04:
       test_proot_gint<mint<999292927>>();
       test_proot_gint<mint<1000000007>>();
       break;
-    case unittest::ts_random_05:
+    case unittest::TC::random_05:
       test_proot_gint<mint<1004535809>>();
       test_proot_gint<mint64<2013265921>>();
       break;
       // larger prime in u64
-    case unittest::ts_random_06:
+    case unittest::TC::random_06:
       test_proot_gint<mint64<75161927681>>();
       test_proot_gint<mint64<77309411329>>();
       break;
-    case unittest::ts_random_07:
+    case unittest::TC::random_07:
       test_proot_gint<mint64<2061584302081>>();
       test_proot_gint<mint64<6597069766657>>();
       break;
-    case unittest::ts_random_08:
+    case unittest::TC::random_08:
       test_proot_gint<mint64<1231453023109121>>();
       test_proot_gint<mint64<3799912185593857>>();
       break;
-    case unittest::ts_random_09:
+    case unittest::TC::random_09:
       test_proot_gint<mint64<180143985094819841>>();
       test_proot_gint<mint64<4179340454199820289>>();
       break;

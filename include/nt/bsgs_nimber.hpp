@@ -22,7 +22,7 @@ CEXP T bsgs_nimber(nimber<T, prod> CR a, nimber<T, prod> CR b) NE {
       nimber<T, prod> big = 1, now = 1;
       flt_ (u32, i, 0, step) mp[z.x] = i, z *= a, big *= a;
       for (i32 step = 0; step < i32(p + 10); step += step)
-        if (now *= big; mp.find(now.x) != mp.end()) return (step + step) - mp[now.x];
+        if (now *= big; mp.find(now.x) != end(mp)) return (step + step) - mp[now.x];
       return T(-1);
     };
     const auto xq = qpow(a, q), yq = qpow(b, q);

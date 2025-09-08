@@ -16,7 +16,7 @@
 #include "../base.hpp"
 
 using namespace tifa_libs;
-rand::Gen<u64> g(1);
+rand::gen<u64> g(1);
 
 template <class mint>
 void test_all(u32 n) {
@@ -77,18 +77,18 @@ int main() {
   mintd63::set_mod(1000000000 + 7);
 
   switch (tcase) {
-    case unittest::ts_example_00: test_all<mints30>(1000); break;
-    case unittest::ts_example_01: test_all<mints63>(1000); break;
-    case unittest::ts_random_00: test_all<mintd31>(1000); break;
-    case unittest::ts_random_01: test_all<mintd63>(1000); break;
-    case unittest::ts_random_02: test_all<mints30>(1'000'000); break;
-    case unittest::ts_random_03: test_all<mints63>(1'000'000); break;
-    case unittest::ts_random_04: test_all<mintd31>(1'000'000); break;
-    case unittest::ts_random_05: test_all<mintd63>(1'000'000); break;
-    case unittest::ts_random_06: break;
-    case unittest::ts_random_07: break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test_all<mints30>(1000); break;
+    case unittest::TC::example_01: test_all<mints63>(1000); break;
+    case unittest::TC::random_00: test_all<mintd31>(1000); break;
+    case unittest::TC::random_01: test_all<mintd63>(1000); break;
+    case unittest::TC::random_02: test_all<mints30>(1'000'000); break;
+    case unittest::TC::random_03: test_all<mints63>(1'000'000); break;
+    case unittest::TC::random_04: test_all<mintd31>(1'000'000); break;
+    case unittest::TC::random_05: test_all<mintd63>(1'000'000); break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

@@ -23,8 +23,8 @@ class trygub_num {
   }
   i64 get(int k) NE {
     auto it = d.lower_bound(k);
-    i64 res = (it != d.end() && it->first == k ? it->second : 0);
-    return (res - (it != d.begin() && prev(it)->second < 0) + B) % B;
+    i64 res = (it != end(d) && it->first == k ? it->second : 0);
+    return (res - (it != begin(d) && prev(it)->second < 0) + B) % B;
   }
 };
 

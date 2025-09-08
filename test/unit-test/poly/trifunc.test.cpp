@@ -18,7 +18,7 @@ using mints63 = math::mint<math::mint_s63, MOD>;
 using pnm30 = math::polyntt<mints30>;
 using pnm63 = math::polyntt<mints63>;
 
-rand::Gen<u64> gen;
+rand::gen<u64> gen;
 
 template <class poly>
 void test(u32 n) {
@@ -53,17 +53,17 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test<pnm30>(100); break;
-    case unittest::ts_random_00: test<pnm63>(100); break;
-    case unittest::ts_random_01: test<pnm30>(1000); break;
-    case unittest::ts_random_02: test<pnm63>(1000); break;
-    case unittest::ts_random_03: test<pnm30>(100000); break;
-    case unittest::ts_random_04: test<pnm63>(100000); break;
-    case unittest::ts_random_05: break;
-    case unittest::ts_random_06: break;
-    case unittest::ts_random_07: break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test<pnm30>(100); break;
+    case unittest::TC::random_00: test<pnm63>(100); break;
+    case unittest::TC::random_01: test<pnm30>(1000); break;
+    case unittest::TC::random_02: test<pnm63>(1000); break;
+    case unittest::TC::random_03: test<pnm30>(100000); break;
+    case unittest::TC::random_04: test<pnm63>(100000); break;
+    case unittest::TC::random_05: break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

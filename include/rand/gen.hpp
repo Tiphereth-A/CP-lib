@@ -7,7 +7,7 @@ namespace tifa_libs::rand {
 
 template <class T>
 requires std::is_arithmetic_v<T>
-class Gen {
+class gen {
   using res_t = std::conditional_t<sizeof(T) <= 4, u32, u64>;
   using res_wt = std::conditional_t<sizeof(T) <= 4, u64, u128>;
   // clang-format off
@@ -19,7 +19,7 @@ class Gen {
 
   res_t x_[pm::n];
   u32 p_;
-  CEXP void gen() NE {
+  CEXP void gen_() NE {
     CEXP res_t um = (~res_t()) << pm::r, lm = ~um;
     res_t _;
     flt_ (res_t, i, p_ = 0, pm::n - pm::m) _ = ((x_[i] & um) | (x_[i + 1] & lm)), x_[i] = (x_[i + pm::m] ^ (_ >> 1) ^ ((_ & 1) ? pm::a : 0));
@@ -28,7 +28,7 @@ class Gen {
   }
 
  public:
-  CEXPE Gen(T a = std::numeric_limits<T>::min(), T b = std::numeric_limits<T>::max(), res_t sd = (res_t)TIME) NE : a_(a), b_(b) { assert(a < b || (std::is_integral_v<T> && a == b)), seed(sd); }
+  CEXPE gen(T a = std::numeric_limits<T>::min(), T b = std::numeric_limits<T>::max(), res_t sd = (res_t)TIME) NE : a_(a), b_(b) { assert(a < b || (std::is_integral_v<T> && a == b)), seed(sd); }
 
   CEXP void range(T min, T max) NE { assert(min < max || (std::is_integral_v<T> && min == max)), a_ = min, b_ = max; }
   void seed() NE { seed((res_t)std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()); }
@@ -37,9 +37,12 @@ class Gen {
     flt_ (res_t, i, 1, p_ = pm::n) x_[i] = ((x_[i - 1] ^ (x_[i - 1] >> (pm::w - 2))) * pm::f + i % pm::n) & gen_max();
   }
   CEXP res_t gen_min() CNE { return 0; }
-  CEXP res_t gen_max() CNE { return sizeof(res_t) * 8 == pm::w ? ~res_t() : ((res_t)1 << pm::w) - 1; }
+  CEXP res_t gen_max() CNE {
+    if CEXP (sizeof(res_t) * 8 == pm::w) return ~res_t();
+    else return ((res_t)1 << pm::w) - 1;
+  }
   CEXP res_t next() NE {
-    if (p_ >= pm::n) gen();
+    if (p_ >= pm::n) gen_();
     res_t _ = x_[p_++];
     _ ^= (_ >> pm::u) & pm::d, _ ^= (_ << pm::s) & pm::b, _ ^= (_ << pm::t) & pm::c, _ ^= (_ >> pm::l);
     return _;

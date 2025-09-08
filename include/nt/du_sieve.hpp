@@ -21,7 +21,7 @@ class du_sieve {
 
   CEXP T calc(u64 x) NE {
     if (x <= sf_max) return sf(x);
-    if (auto d = mem.find(x); d != mem.end()) return d->second;
+    if (auto d = mem.find(x); d != end(mem)) return d->second;
     T ans = 0;
     do_quot(x, [&](u64 l, u64 r, u64 q) NE { ans += (sg(r) - sg(l - 1)) * calc(q); }, 2);
     return mem[x] = (ans = sh(x) - ans) /= sg(1);
@@ -30,7 +30,7 @@ class du_sieve {
  public:
   CEXP du_sieve(u64 sf_max, SF sf, SG sg, SH sh) NE : sf_max(sf_max), sf(sf), sg(sg), sh(sh) {}
 
-  CEXP T operator()(u64 n) NE { return !n ? 0 : calc(n); }
+  CEXP T operator()(u64 n) NE { retif_((!n) [[unlikely]], 0, calc(n)); }
 };
 
 }  // namespace tifa_libs::math

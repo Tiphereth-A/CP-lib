@@ -23,7 +23,7 @@ CEXP T knapsack_mixed_huge(vec<pt3<T>> a, T W) NE {
       for (u32 j = lim - 1; (T)j >= v * k; --j) dp[j] = min(dp[j], dp[j - v * k] + w * k);
   }
   vecu id(n);
-  std::iota(id.begin(), id.end(), 0), sort(id, [&](auto x, auto y) { return a[x]._0 * a[y]._1 > a[y]._0 * a[x]._1; });
+  std::iota(begin(id), end(id), 0), sort(id, [&](auto x, auto y) { return a[x]._0 * a[y]._1 > a[y]._0 * a[x]._1; });
   T ans = 0;
   flt_ (u32, j, 0, lim + 1) {
     if (W < dp[j]) continue;

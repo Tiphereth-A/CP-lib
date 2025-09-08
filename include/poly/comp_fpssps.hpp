@@ -20,7 +20,7 @@ auto comp_fpssps(u32 n, poly f, vec<TPN poly::val_t> g, vec<T> CR fact, vec<T> C
   v3ec<mint> h(n + 1, vvec<mint>(n + 1, vec<mint>(1)));
   flt_ (u32, i, 0, n + 1) h[0][i][0] = f[i];
   flt_ (u32, k, 1, n + 1) {
-    auto A = ss.lift({g.begin() + (1 << (k - 1)), g.begin() + (1 << k)});
+    auto A = ss.lift({begin(g) + (1 << (k - 1)), begin(g) + (1 << k)});
     ss.zeta(A);
     flt_ (u32, j, 0, n - k + 1) {
       h[k][j] = h[k - 1][j];

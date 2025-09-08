@@ -8,7 +8,7 @@
 namespace tifa_libs::ds {
 
 template <class T, auto op, arithm_c Coord = i32, u32 K = 2, bool remove_empty_node = false>
-class KDtree {
+class kdtree {
   static_assert(K);
   struct TIFA;
 
@@ -57,7 +57,7 @@ class KDtree {
   CEXP void build(pointer& x, vec<pointer>& h, u32 l, u32 r) NE {
     if (l >= r) return;
     u32 mid = l + (r - l) / 2;
-    nth_element(h.begin() + l, h.begin() + mid, h.begin() + r, TIFA::template cmp<k>);
+    nth_element(begin(h) + l, begin(h) + mid, begin(h) + r, TIFA::template cmp<k>);
     x = h[mid], x->sum = x->val;
     flt_ (u32, i, 0, K) x->min[i] = x->max[i] = x->coord[i];
     build<(k + 1) % K>(x->ch[0], h, l, mid), build<(k + 1) % K>(x->ch[1], h, mid + 1, r);
@@ -130,8 +130,10 @@ class KDtree {
   pointer root;
 
   // threshold = $O\left(\sqrt{n\log n}\right)$
-  CEXPE KDtree(u32 rebuild_threshold, cT_(T) e = T{}) NE : E{e}, B{rebuild_threshold}, cnt{0}, root{nullptr} { assert(rebuild_threshold > 1); }
-  CEXP ~KDtree() NE { dealloc_subtree(root, alloc); }
+  CEXPE kdtree(u32 rebuild_threshold, cT_(T) e = T{}) NE : E{e}, B{rebuild_threshold}, cnt{0}, root{nullptr} { assert(rebuild_threshold > 1); }
+  kdtree(kdtree CR) = delete;
+  kdtree& operator=(kdtree CR) = delete;
+  CEXP ~kdtree() NE { dealloc_subtree(root, alloc); }
 
   CEXP void insert(cT_(point) coord, cT_(T) val) NE {
     if ((cnt += ins_set_<false, 0>(root, coord, val)) == B) cnt = 0, rebuild(root);

@@ -13,11 +13,11 @@ CEXP vec<mint> conv_ntt_large(NTT_t &ntt, vec<mint> l, vec<mint> r, u32 ans_size
   ntt.bzr(len);
   vvec<mint> as, bs;
   for (u32 i = 0; i < l.size(); i += len / 2) {
-    vec<mint> v{l.begin() + i, l.begin() + min(i + len / 2, (u32)l.size())};
+    vec<mint> v{begin(l) + i, begin(l) + min(i + len / 2, (u32)l.size())};
     ntt.dif(v), as.push_back(v);
   }
   for (u32 i = 0; i < r.size(); i += len / 2) {
-    vec<mint> v{r.begin() + i, r.begin() + min(i + len / 2, (u32)r.size())};
+    vec<mint> v{begin(r) + i, begin(r) + min(i + len / 2, (u32)r.size())};
     ntt.dif(v), bs.push_back(v);
   }
   vvec<mint> cs(as.size() + bs.size() - 1, vec<mint>(len));

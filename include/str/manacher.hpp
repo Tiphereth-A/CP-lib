@@ -16,7 +16,7 @@ CEXP vecu manacher(strnv t) NE {
     if (i + p[i] > j + p[j]) j = i;
   }
   for (auto &i : p) --i;
-  return vecu(p.begin() + 2, p.end() - 2);
+  return vecu(begin(p) + 2, end(p) - 2);
 }
 
 }  // namespace tifa_libs::str

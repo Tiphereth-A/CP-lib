@@ -31,7 +31,7 @@ strn single_proceed(std::istream &fin) {
     vp.emplace_back(x, y);
   }
   struct Comp {
-    bool operator()(const Circle2 &lhs, const Circle2 &rhs) const { return lhs.o == rhs.o ? lhs.r < rhs.r : lhs.o < rhs.o; }
+    bool operator()(const Circle2 &lhs, const Circle2 &rhs) const { retif_((lhs.o == rhs.o), lhs.r < rhs.r, lhs.o < rhs.o); }
   };
   set<Circle2, Comp> circles;
   flt_ (u32, i, 0, n)
@@ -41,9 +41,9 @@ strn single_proceed(std::istream &fin) {
         Triangle2 t{vp[i], vp[j], vp[k]};
         if (t.is_obtuse()) continue;
         if (t.is_right()) {
-          if (is_zero(dot(vp[i], vp[j], vp[k])) && exists.find(geo::reflect({vp[j], vp[k]}, vp[i])) == exists.end()) continue;
-          if (is_zero(dot(vp[j], vp[k], vp[i])) && exists.find(geo::reflect({vp[k], vp[i]}, vp[j])) == exists.end()) continue;
-          if (is_zero(dot(vp[k], vp[i], vp[j])) && exists.find(geo::reflect({vp[i], vp[j]}, vp[k])) == exists.end()) continue;
+          if (is_zero(dot(vp[i], vp[j], vp[k])) && exists.find(geo::reflect({vp[j], vp[k]}, vp[i])) == end(exists)) continue;
+          if (is_zero(dot(vp[j], vp[k], vp[i])) && exists.find(geo::reflect({vp[k], vp[i]}, vp[j])) == end(exists)) continue;
+          if (is_zero(dot(vp[k], vp[i], vp[j])) && exists.find(geo::reflect({vp[i], vp[j]}, vp[k])) == end(exists)) continue;
         }
         circles.insert(Circle2{geo::center_O(t), geo::radius_O(t)});
       }
@@ -61,7 +61,7 @@ strn single_proceed(std::istream &fin) {
   return ss.str();
 }
 
-void test(strn CR data) {
+void test(strnv data) {
   auto [fn_in, fn_ans] = unittest::get_fname_in_ans("codeforces", "274C", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
@@ -89,18 +89,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test("1"), test("13"); break;
-    case unittest::ts_example_01: test("2"), test("14"); break;
-    case unittest::ts_random_00: test("3"), test("15"); break;
-    case unittest::ts_random_01: test("4"), test("16"); break;
-    case unittest::ts_random_02: test("5"), test("17"); break;
-    case unittest::ts_random_03: test("6"), test("18"); break;
-    case unittest::ts_random_04: test("7"), test("19"); break;
-    case unittest::ts_random_05: test("8"), test("20"); break;
-    case unittest::ts_random_06: test("9"), test("21"); break;
-    case unittest::ts_random_07: test("10"); break;
-    case unittest::ts_random_08: test("11"); break;
-    case unittest::ts_random_09: test("12"); break;
+    case unittest::TC::example_00: test("1"), test("13"); break;
+    case unittest::TC::example_01: test("2"), test("14"); break;
+    case unittest::TC::random_00: test("3"), test("15"); break;
+    case unittest::TC::random_01: test("4"), test("16"); break;
+    case unittest::TC::random_02: test("5"), test("17"); break;
+    case unittest::TC::random_03: test("6"), test("18"); break;
+    case unittest::TC::random_04: test("7"), test("19"); break;
+    case unittest::TC::random_05: test("8"), test("20"); break;
+    case unittest::TC::random_06: test("9"), test("21"); break;
+    case unittest::TC::random_07: test("10"); break;
+    case unittest::TC::random_08: test("11"); break;
+    case unittest::TC::random_09: test("12"); break;
     default: break;
   }
 

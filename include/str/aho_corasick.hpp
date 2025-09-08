@@ -18,7 +18,7 @@ class aho_corasick {
   vec<TIFA> t;
   u32 sz;
 
-  CEXPE aho_corasick() NE : t(1), sz(1) {}
+  CEXP aho_corasick() NE : t(1), sz{1} {}
 
   CEXP void insert(strnv s, u32 id = -1u) NE {
     u32 u = 0;

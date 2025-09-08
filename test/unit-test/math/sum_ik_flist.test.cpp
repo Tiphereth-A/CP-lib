@@ -28,20 +28,20 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00:
+    case unittest::TC::example_00:
       flt_ (u64, i, 0, 10) test_sum_ik_flist(i);
       break;
-    case unittest::ts_example_01: test_sum_ik_flist(42); break;
-    case unittest::ts_random_00: test_sum_ik_flist(114514); break;
-    case unittest::ts_random_01: break;
-    case unittest::ts_random_02: break;
-    case unittest::ts_random_03: break;
-    case unittest::ts_random_04: break;
-    case unittest::ts_random_05: break;
-    case unittest::ts_random_06: break;
-    case unittest::ts_random_07: break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_01: test_sum_ik_flist(42); break;
+    case unittest::TC::random_00: test_sum_ik_flist(114514); break;
+    case unittest::TC::random_01: break;
+    case unittest::TC::random_02: break;
+    case unittest::TC::random_03: break;
+    case unittest::TC::random_04: break;
+    case unittest::TC::random_05: break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

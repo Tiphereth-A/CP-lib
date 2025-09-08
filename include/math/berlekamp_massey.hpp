@@ -20,7 +20,7 @@ CEXP vec<T> berlekamp_massey(vec<T> CR a) NE {
     if (x == 0) continue;
     if (const T d_ = x / y; l < m) {
       const auto _ = c;
-      c.insert(c.begin(), m - l, 0);
+      c.insert(begin(c), m - l, 0);
       flt_ (u32, i, 0, m) c[m - 1 - i] -= d_ * b[m - 1 - i];
       b = _, y = x;
     } else

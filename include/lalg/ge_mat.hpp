@@ -15,8 +15,8 @@ CEXP i32 ge_mat(matrix<T>& mat, Is0 is0, bool clear_u = true) NE {
   u32 rk = 0;
   bool neg = false;
   auto swapr = [&](u32 i, u32 c) NE {
-    auto ir = mat.data().begin() + i,
-         ir2 = max_element(ir, mat.data().end(), [&](auto CR l, auto CR r) NE {
+    auto ir = begin(mat.data()) + i,
+         ir2 = max_element(ir, end(mat.data()), [&](auto CR l, auto CR r) NE {
            flt_ (u32, i, c, C)
              if (l[i] != r[i]) return l[i] < r[i];
            return false;
@@ -53,7 +53,7 @@ CEXP i32 ge_mat(matrix<T>& mat, Is0 is0, bool clear_u = true) NE {
     }
     if (++rk >= rk_max) break;
   }
-  return neg ? -((i32)rk) : (i32)rk;
+  retif_((neg), -((i32)rk), (i32)rk);
 }
 
 }  // namespace tifa_libs::math

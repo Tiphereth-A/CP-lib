@@ -19,7 +19,7 @@ auto minpoly(Mat CR mat, Gn &gen, Is0 &&is0) NE {
     return v;
   };
   vec<T> u = gen2(n), v = gen2(n), _(n * 2);
-  flt_ (u32, i, 0, n * 2) _[i] = std::transform_reduce(u.begin(), u.end(), v.begin(), T{}), v = mat.lproj(v);
+  flt_ (u32, i, 0, n * 2) _[i] = std::transform_reduce(begin(u), end(u), begin(v), T{}), v = mat.lproj(v);
   vec<T> res = lfsr_bm(_, std::forward<Is0>(is0));
   reverse(res);
   return res;

@@ -6,14 +6,14 @@
 namespace tifa_libs::str {
 
 template <common_range T = strn>
-class suffixarray {
+class suffix_array {
   T s;
 
  public:
   vecu sa, rk, height;
 
   // s must start from 1
-  CEXPE suffixarray(cT_(T) s_) NE : s(s_), sa(s.size()), rk(s.size()) {
+  CEXPE suffix_array(cT_(T) s_) NE : s(s_), sa(s.size()), rk(s.size()) {
     const u32 n = u32(s.size() - 1);
     u32 m = 0, p;
     for (auto x : s_) m = max(m, u32(x));
@@ -30,7 +30,7 @@ class suffixarray {
       flt_ (u32, i, 1, n + 1) ++cnt[rk[id[i]]];
       flt_ (u32, i, 1, m + 1) cnt[i] += cnt[i - 1];
       for (u32 i = n; i >= 1; --i) sa[cnt[rk[id[i]]]--] = id[i];
-      copy(rk, oldrk.begin()), p = 0;
+      copy(rk, begin(oldrk)), p = 0;
       flt_ (u32, i, 1, n + 1) {
         u32 x = sa[i], y = sa[i - 1];
         rk[x] = oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w] ? p : ++p;
@@ -60,7 +60,8 @@ class suffixarray {
       if (t[begt] < s[begs]) return 2;
       ++begs, ++begt;
     }
-    return begs == s.size() && begt == t.size() ? 0 : (begt >= t.size() ? 1 : -1);
+    if (begs == s.size() && begt == t.size()) return 0;
+    retif_((begt >= t.size()), 1, -1);
   }
   // the smallest rank of suffix that is greater than or equal t
   CEXP u32 lower_bound(T t) CNE {

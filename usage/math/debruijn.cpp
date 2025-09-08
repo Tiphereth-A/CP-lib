@@ -6,7 +6,7 @@
 
 using namespace tifa_libs;
 vecu prandom(u32 m, u32 l) {
-  rand::Gen<u32> gen(0, m - 1);
+  rand::gen<u32> gen(0, m - 1);
   vecu ret(l);
   flt_ (u32, i, 0, l) ret[i] = gen();
   return ret;

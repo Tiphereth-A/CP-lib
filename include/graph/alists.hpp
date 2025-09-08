@@ -53,14 +53,14 @@ class alists {
   CEXP void add_edge(u32 u, u32 v) NE { add_arc(u, v), add_arc(v, u); }
   CEXP void build() NE {
     if (cnt_arc) return;
-    std::inclusive_scan(h.begin(), h.end(), h.begin());
+    std::inclusive_scan(begin(h), end(h), begin(h));
     for (e.resize(cnt_arc = (u32)b.size()); auto CR[u, e] : b) e[--h[u]] = e;
     if CEXP (with_deg)
       for (auto CR[u, e] : b) ++deg_out[u], ++deg_in[e.to];
   }
   CEXP u32 size() CNE { return h.size() - 1; }
-  CEXP Es<TPN vec<ET>::iterator> operator[](u32 u) NE { return {e.begin() + h[u], e.begin() + h[u + 1]}; }
-  CEXP const Es<TPN vec<ET>::const_iterator> operator[](u32 u) CNE { return {e.begin() + h[u], e.begin() + h[u + 1]}; }
+  CEXP Es<TPN vec<ET>::iterator> operator[](u32 u) NE { return {begin(e) + h[u], begin(e) + h[u + 1]}; }
+  CEXP const Es<TPN vec<ET>::const_iterator> operator[](u32 u) CNE { return {begin(e) + h[u], begin(e) + h[u + 1]}; }
   template <class F>
   CEXP void foreach(u32 u, F&& f) CNE {
     if CEXP (std::is_void_v<T>)

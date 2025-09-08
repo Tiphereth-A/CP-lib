@@ -36,7 +36,7 @@ class blossom {
   }
 
  private:
-  CEXP u32 gf(u32 x) NE { return !white[first[x]] ? first[x] : first[x] = gf(first[x]); }
+  CEXP u32 gf(u32 x) NE { retif_((!white[first[x]]), first[x], first[x] = gf(first[x])); }
   CEXP void match(u32 p, u32 b) NE {
     if (swap(b, mate[p]); mate[b] != p) return;
     if (auto [k, v] = label[p]; !v) mate[b] = k, match(k, b);

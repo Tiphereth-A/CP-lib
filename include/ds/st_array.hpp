@@ -11,12 +11,12 @@ class st_array {
   vvec<T> st;
 
  public:
-  CEXPE st_array() = default;
+  CEXP st_array() = default;
   CEXPE st_array(spn<T> a) NE { reset(a); }
 
   CEXP void reset(spn<T> a) NE {
     const u32 n = (u32)a.size(), lbn = (u32)std::bit_width(n);
-    st = vvec<T>(lbn, vec<T>(n)), copy(a, st[0].begin());
+    st = vvec<T>(lbn, vec<T>(n)), copy(a, begin(st[0]));
     flt_ (u32, j, 1, lbn)
       flt_ (u32, i, 0, n) st[j][i] = op(st[j - 1][i], st[j - 1][(u32)max(0, i32(i - (1 << (j - 1))))]);
   }
@@ -33,7 +33,7 @@ class st_array {
     flt_ (u32, j, 1, lbn) st[j].push_back(op(st[j - 1].back(), st[j - 1][n - 1 - (1 << (j - 1))]));
   }
   CEXP u32 height() CNE { return (u32)st.size(); }
-  CEXP u32 size() CNE { return height() ? (u32)st[0].size() : 0; }
+  CEXP u32 size() CNE { retif_((height()) [[likely]], (u32)st[0].size(), 0); }
   CEXP T query(u32 l = 0) CNE { return query(l, size()); }
   //! 0-indexed, [l, r)
   CEXP T query(u32 l, u32 r) CNE {

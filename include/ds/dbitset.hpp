@@ -39,7 +39,7 @@ struct dbitset {
       for (auto i = pre - 1; i; --i) data[i + w] = data[i] << ofs | data[i - 1] >> cofs;
       data[w] = data[0] << ofs;
     }
-    fill(data.begin(), data.begin() + w, 0), sz += n;
+    fill(begin(data), begin(data) + w, 0), sz += n;
   }
   CEXP void rsh_(umost64_c auto n) NE {
     if (n >= sz) {
@@ -186,8 +186,12 @@ struct dbitset {
   }
   template <int_c T>
   CEXP T to_integer() CNE {
-    if CEXP (sizeof(T) * 8 <= word_width) return T(data.empty() ? 0 : data[0]);
-    else return T(data.size() > 1 ? data[1] : 0) << word_width | T(data.empty() ? 0 : data[0]);
+    if CEXP (sizeof(T) * 8 <= word_width) {
+      retif_((data.empty()) [[unlikely]], (T)0, (T)data[0]);
+    } else {
+      retif_((data.empty()) [[unlikely]], (T)0);
+      retif_((data.size() > 1), (T)data[1] << word_width | (T)data[0], (T)data[0]);
+    }
   }
   CEXP u32 to_ulong() CNE { return to_integer<unsigned long>(); }
   CEXP u64 to_ullong() CNE { return to_integer<unsigned long long>(); }

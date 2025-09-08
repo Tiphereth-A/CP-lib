@@ -86,7 +86,7 @@ void single_test(point<T> CR x, point<T> CR y, point<T> CR a, T s) {
 
 template <arithm_c T>
 void test(T lim) {
-  rand::Gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
+  rand::gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
   test_norm_equivalence(point{g(), g()});
   single_test<T, 0>(point{g(), g()}, point{g(), g()}, point{g(), g()}, g());
   single_test<T, 1>(point{g(), g()}, point{g(), g()}, point{g(), g()}, g());
@@ -112,18 +112,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test<i32>(1e4); break;
-    case unittest::ts_example_01: test<i64>(1e4); break;
-    case unittest::ts_random_00: test<f64>(1e4); break;
-    case unittest::ts_random_01: test<f128>(1e4); break;
-    case unittest::ts_random_02: test<i64>(1e5); break;
-    case unittest::ts_random_03: test<f64>(1e5); break;
-    case unittest::ts_random_04: test<f128>(1e5); break;
-    case unittest::ts_random_05: test<i64>(1e9); break;
-    case unittest::ts_random_06: test<f64>(1e9); break;
-    case unittest::ts_random_07: test<f64>(1e9); break;
-    case unittest::ts_random_08: test<f128>(1e9); break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test<i32>(1e4); break;
+    case unittest::TC::example_01: test<i64>(1e4); break;
+    case unittest::TC::random_00: test<f64>(1e4); break;
+    case unittest::TC::random_01: test<f128>(1e4); break;
+    case unittest::TC::random_02: test<i64>(1e5); break;
+    case unittest::TC::random_03: test<f64>(1e5); break;
+    case unittest::TC::random_04: test<f128>(1e5); break;
+    case unittest::TC::random_05: test<i64>(1e9); break;
+    case unittest::TC::random_06: test<f64>(1e9); break;
+    case unittest::TC::random_07: test<f64>(1e9); break;
+    case unittest::TC::random_08: test<f128>(1e9); break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

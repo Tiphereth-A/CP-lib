@@ -6,15 +6,14 @@
 namespace tifa_libs::math {
 
 template <class T>
-class FFT_R3 {
+class fft_r3 {
   using EI = eint<T>;
-  u32 s;
+  u32 s = 1;
   vec<EI> tmp;
 
  public:
   using data_t = eint<T>;
 
-  CEXPE FFT_R3() NE : s{1} {}
   CEXP u32 size() CNE { return s; }
   CEXP void bzr(u32 len) NE {
     for (; 2 * s < len; s *= 3);

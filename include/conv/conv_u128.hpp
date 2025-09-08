@@ -23,12 +23,12 @@ vec<u128> conv_u128(vec<T> CR l, vec<T> CR r, u32 ans_size = 0) NE {
                   r12 = inverse(m1, mint2::mod()),
                   r02r12 = (u64)r02 * r12 % m2;
   static CEXP u64 w1 = m0, w2 = (u64)m0 * m1;
-  static NTT<mint0> ntt0;
-  static NTT<mint1> ntt1;
-  static NTT<mint2> ntt2;
-  const vec<mint0> d0 = conv_dft_um<NTT<mint0>, mint0>(ntt0, l, r, ans_size);
-  const vec<mint1> d1 = conv_dft_um<NTT<mint1>, mint1>(ntt1, l, r, ans_size);
-  const vec<mint2> d2 = conv_dft_um<NTT<mint2>, mint2>(ntt2, l, r, ans_size);
+  static ntt<mint0> ntt0;
+  static ntt<mint1> ntt1;
+  static ntt<mint2> ntt2;
+  const vec<mint0> d0 = conv_dft_um<ntt<mint0>, mint0>(ntt0, l, r, ans_size);
+  const vec<mint1> d1 = conv_dft_um<ntt<mint1>, mint1>(ntt1, l, r, ans_size);
+  const vec<mint2> d2 = conv_dft_um<ntt<mint2>, mint2>(ntt2, l, r, ans_size);
   vec<u128> ret(ans_size);
   flt_ (u32, i, 0, ans_size) {
     const u64 n1 = d1[i].val(), n2 = d2[i].val(),

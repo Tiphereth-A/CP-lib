@@ -10,7 +10,7 @@ struct Node {
   vec<double> v;
   int w;
 
-  friend bool operator<(const Node &lhs, const Node &rhs) { return lhs.w == rhs.w ? lhs.v < rhs.v : lhs.w < rhs.w; }
+  friend bool operator<(const Node &lhs, const Node &rhs) { retif_((lhs.w == rhs.w), lhs.v < rhs.v, lhs.w < rhs.w); }
 };
 
 strn single_proceed(std::istream &fin) {
@@ -20,14 +20,14 @@ strn single_proceed(std::istream &fin) {
   vec<Node> a;
   u32 n, m;
   fin >> n >> m;
-  math::basisR<double> rbs(m);
+  math::basis_r<double> rbs(m);
   a.resize(n);
   for (auto &[v, w] : a) {
     v.resize(m);
     for (auto &j : v) fin >> j;
   }
   for (auto &[v, w] : a) fin >> w;
-  std::sort(a.begin(), a.end());
+  std::sort(begin(a), end(a));
   int cnt = 0, ans = 0;
   for (auto &&[v, w] : a) {
     if (rbs.insert(v)) {
@@ -40,7 +40,7 @@ strn single_proceed(std::istream &fin) {
   return ss.str();
 }
 
-void test(strn CR data) {
+void test(strnv data) {
   auto [fn_in, fn_ans] = unittest::get_fname_in_ans("bzoj", "4004", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
@@ -62,18 +62,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test("1"); break;
-    case unittest::ts_example_01: test("2"); break;
-    case unittest::ts_random_00: test("3"); break;
-    case unittest::ts_random_01: test("4"); break;
-    case unittest::ts_random_02: test("5"); break;
-    case unittest::ts_random_03: test("6"); break;
-    case unittest::ts_random_04: test("7"); break;
-    case unittest::ts_random_05: test("8"); break;
-    case unittest::ts_random_06: test("9"); break;
-    case unittest::ts_random_07: test("10"); break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test("1"); break;
+    case unittest::TC::example_01: test("2"); break;
+    case unittest::TC::random_00: test("3"); break;
+    case unittest::TC::random_01: test("4"); break;
+    case unittest::TC::random_02: test("5"); break;
+    case unittest::TC::random_03: test("6"); break;
+    case unittest::TC::random_04: test("7"); break;
+    case unittest::TC::random_05: test("8"); break;
+    case unittest::TC::random_06: test("9"); break;
+    case unittest::TC::random_07: test("10"); break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

@@ -21,7 +21,7 @@ class segbeats_ca_msh {
   T INF;
 
  public:
-  CEXPE segbeats_ca_msh(vec<T> CR a) NE : n((u32)a.size()), t(a.size() * 4), tag(a.size() * 4), INF(std::numeric_limits<T>::max()) { build(a, 1, 0, n - 1); }
+  CEXPE segbeats_ca_msh(spn<T> a) NE : n((u32)a.size()), t(a.size() * 4), tag(a.size() * 4), INF(std::numeric_limits<T>::max()) { build(a, 1, 0, n - 1); }
   CEXPE segbeats_ca_msh(u32 N) NE : n(N), t(N * 4), tag(N * 4), INF(std::numeric_limits<T>::max()) { build(vec<T>(n, 0), 1, 0, n - 1); }
 
   CEXP void add(u32 x, u32 l, u32 r, u32 L, u32 R, T k) NE {

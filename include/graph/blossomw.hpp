@@ -19,7 +19,7 @@ struct blossomw {
   vvecu flo_from, flo;
   std::queue<u32> q;
 
-  blossomw(u32 n) NE { init(n); }
+  explicit blossomw(u32 n) NE { init(n); }
   void init(u32 n_) NE {
     n = n_, g = vvec<TIFA>(n * 2 + 1, vec<TIFA>(n * 2 + 1));
     lab = vec<T>(n * 2 + 1), match = vecu(n * 2 + 1), slack = vecu(n * 2 + 1), st = vecu(n * 2 + 1);
@@ -66,8 +66,8 @@ struct blossomw {
       for (auto t : flo[x]) set_st(t, b);
   }
   CEXP u32 get_pr(u32 b, u32 xr) NE {
-    if (u32 pr = u32(find(flo[b], xr) - flo[b].begin()); pr & 1) {
-      reverse(flo[b].begin() + 1, flo[b].end());
+    if (u32 pr = u32(find(flo[b], xr) - begin(flo[b])); pr & 1) {
+      reverse(begin(flo[b]) + 1, end(flo[b]));
       return u32(flo[b].size() - pr);
     } else return pr;
   }
@@ -76,7 +76,7 @@ struct blossomw {
     if (match[u] = ev; u <= n) return;
     u32 xr = flo_from[u][eu], pr = get_pr(u, xr);
     flt_ (u32, i, 0, pr) set_match(flo[u][i], flo[u][i ^ 1]);
-    set_match(xr, v), rotate(flo[u], flo[u].begin() + pr);
+    set_match(xr, v), rotate(flo[u], begin(flo[u]) + pr);
   }
   CEXP void augment(u32 u, u32 v) NE {
     while (1) {
@@ -102,7 +102,7 @@ struct blossomw {
     auto blossom = [&](u32 x) NE {
       for (u32 y; x != anc; x = st[par[y]]) flo[b].push_back(x), flo[b].push_back(y = st[match[x]]), q_push(y);
     };
-    blossom(u), reverse(flo[b].begin() + 1, flo[b].end()), blossom(v), set_st(b, b);
+    blossom(u), reverse(begin(flo[b]) + 1, end(flo[b])), blossom(v), set_st(b, b);
     flt_ (u32, x, 1, nx + 1) g[b][x].w = g[x][b].w = 0;
     flt_ (u32, x, 1, n + 1) flo_from[b][x] = 0;
     for (auto xs : flo[b]) {

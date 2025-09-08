@@ -7,12 +7,12 @@
 namespace tifa_libs::math {
 
 // clang-format off
-enum ccore_t { ct_FFT_R2, ct_3NTT, ct_NTT };
+enum class CCORE : u8 { FFT_R2, NTT3, NTT };
 // clang-format on
 
 template <template <class... Ts> class ccore, class mint, class... args>
 requires requires(ccore<mint, args...> cc, vec<mint> l, vec<mint> r, u32 sz) {
-  { ccore<mint, args...>::ct_cat } -> std::same_as<ccore_t CR>;
+  { ccore<mint, args...>::ct_cat } -> std::same_as<CCORE CR>;
   cc.conv(l, r), cc.conv(l, r, sz);
 }
 struct poly : vec<mint> {
@@ -26,15 +26,14 @@ struct poly : vec<mint> {
   CEXP poly(vec<val_t> CR v) NE : data_t(v) {}
   CEXP poly(vec<val_t> &&v) NE : data_t(std::move(v)) {}
   CEXP poly(itl<val_t> v) NE : data_t(v) {}
-  CEXP poly(spn<val_t> v) NE : data_t(v) {}
-  CEXP poly(common_range auto CR v) NE : data_t(v.begin(), v.end()) {}
+  CEXP poly(common_range auto CR v) NE : data_t(begin(v), end(v)) {}
 
   friend CEXP auto &operator>>(istream_c auto &is, poly &poly) NE {
     for (auto &val : poly) is >> val;
     return is;
   }
   friend CEXP auto &operator<<(ostream_c auto &os, poly CR poly) NE {
-    if (!poly.size()) return os;
+    retif_((!poly.size()) [[unlikely]], os);
     flt_ (u32, i, 1, (u32)poly.size()) os << poly[i - 1] << ' ';
     return os << poly.back();
   }
@@ -95,14 +94,14 @@ struct poly : vec<mint> {
   friend CEXP poly operator*(poly p, val_t c) NE { return p *= c; }
   friend CEXP poly operator*(val_t c, poly p) NE { return p *= c; }
   CEXP poly &operator+=(poly CR r) NE {
-    if (r.empty()) return *this;
+    retif_((r.empty()) [[unlikely]], *this);
     data_t::resize(max(data_t::size(), r.size())), apply_range(0, (u32)r.size(), [&r](u32 i, auto &v) NE { v += r[i]; });
     return *this;
   }
   friend CEXP poly operator+(poly l, poly CR r) NE { return l += r; }
 
   CEXP poly &operator-=(poly CR r) NE {
-    if (r.empty()) return *this;
+    retif_((r.empty()) [[unlikely]], *this);
     data_t::resize(max(data_t::size(), r.size()));
     apply_range(0, (u32)r.size(), [&r](u32 i, auto &v) NE { v -= r[i]; });
     return *this;

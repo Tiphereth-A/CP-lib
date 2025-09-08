@@ -22,8 +22,8 @@ struct ls_pows {
 
 // i^{b} from i=0..n-1
 CEXP vecuu gen_pows(u32 n, u64 b, u64 mod) NE {
-  if (!b) return vecuu(n, mod > 1);
-  if (!n) return {};
+  retif_((!b) [[unlikely]], vecuu(n, mod > 1));
+  retif_((!n) [[unlikely]], {});
   gen_pows_impl_::ls_pows::b = b;
   gen_pows_impl_::ls_pows::mod = mod;
   return lsieve<gen_pows_impl_::ls_pows>(n).pows;

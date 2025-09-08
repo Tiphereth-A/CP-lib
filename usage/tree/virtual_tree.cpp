@@ -35,7 +35,7 @@ int main() {
       if (sign[u]) return min_[u];
       u64 ret = 0;
       for (u32 to : vt.vt.g[u]) ret += dp(dp, to);
-      return u ? std::min(u64(min_[u]), ret) : ret;
+      retif_((u), std::min(u64(min_[u]), ret), ret);
     };
     std::cout << dp(dp, 0) << '\n';
     flt_ (u32, i, 0, k) sign[a[i]] = 0;

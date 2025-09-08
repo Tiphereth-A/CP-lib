@@ -22,22 +22,23 @@ class domtree {
     }
   }
   CEXP u32 find(u32 u, int x = 0) NE {
-    if (u == dsu[u]) return x ? -1_u32 : u;
+    if (u == dsu[u]) {
+      retif_((x), -1_u32, u);
+    }
     const u32 v = find(dsu[u], x + 1);
     if (!~v) return u;
     if (sdom[label[dsu[u]]] < sdom[label[u]]) label[u] = label[dsu[u]];
-    dsu[u] = v;
-    return x ? v : label[u];
+    retif_((dsu[u] = v; x), v, label[u]);
   }
 
  public:
   vecu sdom, dom;
 
-  CEXPE domtree(G CR g) NE : n((u32)g.size()), t{0}, g(g), rg(n), bucket(n), arr(n, -1_u32), par(n, -1_u32), rev(n, -1_u32), dsu(n), label(n), sdom(n, -1_u32), dom(n, -1_u32) {}
+  CEXPE domtree(G CR g) NE : n{(u32)g.size()}, t{0}, g(g), rg(n), bucket(n), arr(n, -1_u32), par(n, -1_u32), rev(n, -1_u32), dsu(n), label(n), sdom(n, -1_u32), dom(n, -1_u32) {}
 
   // @return p, parents of dominator tree, p_i = -1_u32 if not exist else parent of vertex i
   CEXP vecu get_domtree(u32 root) NE {
-    dfs(root), rg.build(), std::iota(dom.begin(), dom.end(), 0);
+    dfs(root), rg.build(), std::iota(begin(dom), end(dom), 0);
     for (u32 i = t - 1; ~i; --i) {
       for (auto w : rg[i]) sdom[i] = min(sdom[i], sdom[find((u32)w)]);
       if (i) bucket[sdom[i]].push_back(i);

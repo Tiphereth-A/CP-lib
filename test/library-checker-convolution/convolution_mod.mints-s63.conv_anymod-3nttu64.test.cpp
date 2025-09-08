@@ -18,9 +18,9 @@ using namespace tifa_libs;
 using mint_3nttu640 = math::mint<math::mint_s63, 167772161>;
 using mint_3nttu641 = math::mint<math::mint_s63, 469762049>;
 using mint_3nttu642 = math::mint<math::mint_s63, 754974721>;
-using ntt_3nttu640_t = math::NTT<mint_3nttu640>;
-using ntt_3nttu641_t = math::NTT<mint_3nttu641>;
-using ntt_3nttu642_t = math::NTT<mint_3nttu642>;
+using ntt_3nttu640_t = math::ntt<mint_3nttu640>;
+using ntt_3nttu641_t = math::ntt<mint_3nttu641>;
+using ntt_3nttu642_t = math::ntt<mint_3nttu642>;
 using vec_t = vecuu;
 auto conv_func(vec_t CR a, vec_t CR b) {
   ntt_3nttu640_t ntt0;

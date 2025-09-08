@@ -28,17 +28,17 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test<mint>(2); break;
-    case unittest::ts_random_00: test<mint>(10); break;
-    case unittest::ts_random_01: test<mint>(5000); break;
-    case unittest::ts_random_02: test<mint>(1919810); break;
-    case unittest::ts_random_03: test<mint>(1'000'000'000); break;
-    case unittest::ts_random_04: break;
-    case unittest::ts_random_05: break;
-    case unittest::ts_random_06: break;
-    case unittest::ts_random_07: break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test<mint>(2); break;
+    case unittest::TC::random_00: test<mint>(10); break;
+    case unittest::TC::random_01: test<mint>(5000); break;
+    case unittest::TC::random_02: test<mint>(1919810); break;
+    case unittest::TC::random_03: test<mint>(1'000'000'000); break;
+    case unittest::TC::random_04: break;
+    case unittest::TC::random_05: break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

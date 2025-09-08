@@ -1,8 +1,10 @@
 ---
 Language: Cpp
+Standard: c++20
 BasedOnStyle: Google
 AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 AllowShortCaseLabelsOnASingleLine: true
+AllowShortEnumsOnASingleLine: true
 ColumnLimit: 0
 ForEachMacros:
   - FOR1_
@@ -15,5 +17,4 @@ SpacesBeforeTrailingComments: 2
 SpacesInLineCommentPrefix:
   Minimum: 1
   Maximum: 1
-Standard: c++20
 ...

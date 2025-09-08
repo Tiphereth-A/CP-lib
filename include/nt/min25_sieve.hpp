@@ -14,11 +14,11 @@ class min25_sieve {
   u64 m, sqm, s;
   vecu p;
 
-  CEXP u64 idx(u64 n) CNE { return n <= sqm ? s - n : div_u64d(m, n); }
+  CEXP u64 idx(u64 n) CNE { retif_((n <= sqm), s - n, div_u64d(m, n)); }
 
  public:
   // m^{3/2} in u64
-  CEXPE min25_sieve(u64 m) NE : m(m), sqm(isqrt(m)) {
+  CEXPE min25_sieve(u64 m) NE : m{m}, sqm{isqrt(m)} {
     if (assert(m < (1ll << 42)); m) {
       u64 hls = div_u64d(m, sqm);
       if (hls != 1 && div_u64d(m, hls - 1) == sqm) --hls;
@@ -28,7 +28,7 @@ class min25_sieve {
 
   CEXP vec<T> sum_pk(u32 k) CNE {
     auto sik = sum_ik<T>[k];
-    if (!m) return {};
+    retif_((!m) [[unlikely]], {});
     u64 hls = div_u64d(m, sqm);
     if (hls != 1 && div_u64d(m, hls - 1) == sqm) --hls;
     vec<T> h(s);
@@ -45,7 +45,7 @@ class min25_sieve {
     return h;
   }
   CEXP T run(vec<T> fprime) CNE {
-    if (!m) return {};
+    retif_((!m) [[unlikely]], {});
     assert(fprime.size() == s);
     T ans = fprime[idx(m)] + 1;
     auto dfs = [&, this](auto&& dfs, u32 i, u32 c, u64 prod, T now) NE -> void {

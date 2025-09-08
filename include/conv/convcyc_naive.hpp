@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 template <class U, class T = U>
 requires(sizeof(U) <= sizeof(T))
 CEXP vec<T> convcyc_naive(vec<U> CR l, vec<U> CR r) NE {
-  if (l.empty() || r.empty()) return {};
+  retif_((l.empty() || r.empty()) [[unlikely]], {});
   assert(l.size() == r.size());
   const u32 n = (u32)l.size();
   vec<T> ans(n);

@@ -9,7 +9,7 @@ namespace gcd_impl_ {
 template <uint_c T, uint_c U>
 CEXP std::common_type_t<T, U> gcd__(T u, U v) NE {
   using W = std::common_type_t<T, U>;
-  if (!u || !v) return u ^ v;
+  retif_((!u || !v) [[unlikely]], u ^ v);
   const auto k = std::__countr_zero(u | v);
   u >>= k, v >>= k;
   do {

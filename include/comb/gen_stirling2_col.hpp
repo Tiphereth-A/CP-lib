@@ -11,7 +11,7 @@ namespace tifa_libs::math {
 template <class poly, class T>
 CEXP poly gen_stirling2_col(u32 n, u32 k, vec<T> CR fact, vec<T> CR ifact) NE {
   using mint = TPN poly::val_t;
-  if (k > n) return poly(n + 1);
+  retif_((k > n) [[unlikely]], poly(n + 1));
   auto g = [&](auto&& g, poly& f, u32 n) NE -> void {
     if (n == 1) return;
     if (n & 1) {

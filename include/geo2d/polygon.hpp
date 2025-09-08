@@ -15,15 +15,15 @@ struct polygon {
   CEXP polygon() = default;
   CEXPE polygon(u32 sz) NE : vs(sz) {}
   CEXP polygon(itl<point<FP>> vs_) NE : vs(vs_) {}
-  CEXP polygon(spn<point<FP>> vs_) NE : vs(vs_.begin(), vs_.end()) {}
+  CEXP polygon(spn<point<FP>> vs_) NE : vs(begin(vs_), end(vs_)) {}
 
   friend auto &operator>>(istream_c auto &is, polygon &p) NE {
     for (auto &i : p.vs) is >> i;
     return is;
   }
   friend auto &operator<<(ostream_c auto &os, polygon CR p) NE {
-    if (p.vs.empty()) return os;
-    for (auto it = p.vs.begin(); it != p.vs.end() - 1; ++it) os << *it << ' ';
+    retif_((p.vs.empty()) [[unlikely]], os);
+    for (auto it = begin(p.vs); it != end(p.vs) - 1; ++it) os << *it << ' ';
     return os << p.vs.back();
   }
   CEXP u32 size() CNE { return (u32)vs.size(); }
@@ -37,17 +37,20 @@ struct polygon {
     vs = uniq(vs);
     return *this;
   }
-  CEXP auto prev(TPN vec<point<FP>>::const_iterator it) CNE { return --(it == vs.begin() ? it = vs.end() : it); }
-  CEXP auto next(TPN vec<point<FP>>::const_iterator it) CNE { return ++it == vs.end() ? vs.begin() : it; }
-  CEXP u32 prev(u32 idx) CNE { return idx == 0 ? size() - 1 : idx - 1; }
-  CEXP u32 next(u32 idx) CNE { return idx + 1 == size() ? 0 : idx + 1; }
+  CEXP auto prev(TPN vec<point<FP>>::const_iterator it) CNE {
+    if (it == begin(vs)) it = end(vs);
+    return --it;
+  }
+  CEXP auto next(TPN vec<point<FP>>::const_iterator it) CNE { retif_((++it == end(vs)) [[unlikely]], begin(vs), it); }
+  CEXP u32 prev(u32 idx) CNE { retif_((idx == 0) [[unlikely]], size() - 1, idx - 1); }
+  CEXP u32 next(u32 idx) CNE { retif_((idx + 1 == size()) [[unlikely]], 0, idx + 1); }
   CEXP FP circum() CNE {
     math::kahan<FP> ret = dist_PP(vs.back(), vs.front());
     flt_ (u32, i, 0, size() - 1) ret += dist_PP(vs[i], vs[i + 1]);
     return ret;
   }
   CEXP FP area2() CNE {
-    if (size() < 3) return 0;
+    retif_((size() < 3) [[unlikely]], 0);
     math::kahan<FP> ret = vs.back() ^ vs.front();
     flt_ (u32, i, 0, size() - 1) ret += vs[i] ^ vs[i + 1];
     return ret;
@@ -59,7 +62,7 @@ struct polygon {
   CEXP bool is_convex() CNE {
     bool flag[2] = {false, false};
     const u32 n = size();
-    if (n < 3) return true;
+    retif_((n < 3) [[unlikely]], true);
     for (u32 i = 0, j = next(i), k = next(j); i < n; ++i, j = next(j), k = next(k)) {
       if (auto sgn = sgn_cross(vs[i], vs[j], vs[k]); sgn) flag[(sgn + 1) / 2] = true;
       if (flag[0] && flag[1]) return false;
@@ -67,18 +70,21 @@ struct polygon {
     return true;
   }
   // @return nullopt if @p on board of polygon, otherwise winding number
-  CEXP std::optional<u32> winding(point<FP> CR p) CNE {
-    u32 cnt = 0;
+  CEXP auto winding(point<FP> CR p) CNE {
+    std::optional<u32> ret{0};
     flt_ (u32, i, 0, size()) {
       auto &&u = vs[i], &&v = vs[next(i)];
-      if (!sgn_cross(p, u, v) && !sgn_dot(p, u, v)) return {};
+      if (!sgn_cross(p, u, v) && !sgn_dot(p, u, v)) {
+        ret = std::nullopt;
+        return ret;
+      }
       if (is_zero(u.y - v.y)) continue;
       if (is_lt(u.y, v.y) && !is_pos(u, v, p)) continue;
       if (is_gt(u.y, v.y) && !is_neg(u, v, p)) continue;
-      if (is_lt(u.y, p.y) && !is_lt(v.y, p.y)) ++cnt;
-      if (!is_lt(u.y, p.y) && is_lt(v.y, p.y)) --cnt;
+      if (is_lt(u.y, p.y) && !is_lt(v.y, p.y)) ++ret.value();
+      if (!is_lt(u.y, p.y) && is_lt(v.y, p.y)) --ret.value();
     }
-    return cnt;
+    return ret;
   }
 };
 

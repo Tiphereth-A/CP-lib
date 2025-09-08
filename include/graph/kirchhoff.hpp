@@ -13,7 +13,7 @@ requires requires(Ge ge, math::matrix<T> A, bool clear_u) {
 }
 CEXP T kirchhoff(amat<T, with_deg> CR g, u32 r, Ge &&ge) {
   const u32 n = (u32)g.g.size();
-  if (n <= 1) return n;
+  retif_((n <= 1) [[unlikely]], n);
   math::matrix<T> mat(n - 1, n - 1);
   flt_ (u32, i, 0, n)
     flt_ (u32, j, 0, n)

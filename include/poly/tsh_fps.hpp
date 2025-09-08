@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 template <template <class... Ts> class ccore, class mint, class T, class... args>
 CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c, vec<T> CR fact, vec<T> CR ifact) NE {
   const u32 n = (u32)f.size();
-  if (n == 1) return f;
+  retif_((n == 1) [[unlikely]], f);
   poly<ccore, mint, args...> s = f, p((u32)f.size());
   flt_ (u32, i, 0, n) p[n - i - 1] = f[i] * fact[i];
   mint _ = 1;
@@ -22,7 +22,7 @@ CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c, vec<T> CR fact, vec<T
 template <template <class... Ts> class ccore, class mint, class... args>
 CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c) NE {
   const u32 n = (u32)f.size();
-  if (n == 1) return f;
+  retif_((n == 1) [[unlikely]], f);
   return tsh_fps(f, c, gen_fact(n, mint::mod()), gen_ifact(n, mint::mod()));
 }
 

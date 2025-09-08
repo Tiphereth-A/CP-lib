@@ -6,8 +6,8 @@
 namespace tifa_libs::str {
 
 // @return {sl, sr, tl, tr} s.t. s[sl..sr-1] == t[tl..tr-1]
-CEXP auto lcs_sa(strn CR s, strn CR t) NE {
-  tifa_libs::str::suffixarray<> sa(" " + s + "#" + t);
+CEXP pt4u lcs_sa(strnv s, strnv t) NE {
+  tifa_libs::str::suffix_array sa(" "s + s.data() + "#" + t.data());
   sa.get_height();
   pt3u ans{};
   flt_ (u32, i, 2, (u32)sa.sa.size()) {
@@ -16,7 +16,8 @@ CEXP auto lcs_sa(strn CR s, strn CR t) NE {
   }
   auto [l, a, b] = ans;
   b -= s.size() + 1;
-  return l ? pt4u{a, a + l, b, b + l} : pt4u{0, 0, 0, 0};
+  if (l) return {a, a + l, b, b + l};
+  return {0, 0, 0, 0};
 }
 
 }  // namespace tifa_libs::str

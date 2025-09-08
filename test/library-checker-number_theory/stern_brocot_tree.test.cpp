@@ -4,7 +4,7 @@
 #include "../../include/nt/sbt.hpp"
 
 using namespace tifa_libs;
-using sbt = math::SBT<i64>;
+using sbt = math::sbt<i64>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

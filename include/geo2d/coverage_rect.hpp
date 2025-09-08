@@ -5,17 +5,15 @@
 
 namespace tifa_libs::geo {
 
-enum CVHRECT {
-  CR_MIN_AREA,
-  CR_MIN_CIRCUM
-};
+// clang-format off
+enum class CVHRECT : u8 { min_area, min_circum };
+// clang-format on
 
 // Coverage rectangle with min circum
 template <CVHRECT type, class FP>
 CEXP polygon<FP> coverage_rect(cT_(cvh<FP>) ch) NE {
-  static_assert(type == CR_MIN_AREA || type == CR_MIN_CIRCUM);
   const u32 n = ch.size();
-  if (n == 0) return ch;
+  retif_((n == 0) [[unlikely]], ch);
   if (n == 1) return {{ch[0], ch[0], ch[0], ch[0]}};
   if (n == 2) return {{ch[0], ch[0], ch[1], ch[1]}};
   FP ans = std::numeric_limits<FP>::max();
@@ -30,11 +28,11 @@ CEXP polygon<FP> coverage_rect(cT_(cvh<FP>) ch) NE {
     while (!is_pos(dot(ch.vs[i], ch.vs[ni], ch.vs[ch.next(q)]) -
                    dot(ch.vs[i], ch.vs[ni], ch.vs[q]))) q = ch.next(q);
     FP _;
-    if CEXP (type == CR_MIN_AREA)
+    if CEXP (type == CVHRECT::min_area)
       _ = cross(ch.vs[i], ch.vs[ni], ch.vs[r]) *
           (dot(ch.vs[i], ch.vs[ni], ch.vs[p]) - dot(ch.vs[i], ch.vs[ni], ch.vs[q])) /
           (ch.vs[i] - ch.vs[ni]).norm2();
-    else if CEXP (type == CR_MIN_CIRCUM)
+    else if CEXP (type == CVHRECT::min_circum)
       _ = (cross(ch.vs[i], ch.vs[ni], ch.vs[r]) +
            (dot(ch.vs[i], ch.vs[ni], ch.vs[p]) - dot(ch.vs[i], ch.vs[ni], ch.vs[q]))) /
           (ch.vs[i] - ch.vs[ni]).abs();

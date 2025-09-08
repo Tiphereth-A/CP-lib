@@ -8,8 +8,8 @@
 using namespace tifa_libs;
 using point_t = ptti;
 
-vec<point_t> parse_tsp_data(strn CR name) {
-  strn filename = "data/others/tsp-vlsi/" + name + ".tsp";
+vec<point_t> parse_tsp_data(strnv name) {
+  strn filename = std::format("data/others/tsp-vlsi/{}.tsp", name);
 #ifndef LOCAL_
   std::fstream fin(filename, std::ios_base::in);
 #else
@@ -23,7 +23,7 @@ vec<point_t> parse_tsp_data(strn CR name) {
 
   // NAME
   std::getline(fin, s);
-  check(s, "NAME : " + name, check_param(filename));
+  check(s, "NAME : "s + name.data(), check_param(filename));
   // COMMENT
   drop(), drop(), drop();
   // TYPE
@@ -59,8 +59,8 @@ void test(const char* const name, double optimal, u32 L, double p0, u32 K, u32 M
   auto points = parse_tsp_data(name);
   auto f = [&](spnu seq) { return fitness(points, seq); };
   vecu seq(points.size());
-  std::iota(seq.begin(), seq.end(), 0);
-  // std::shuffle(seq.begin(), seq.end(), std::mt19937(time(nullptr)));
+  std::iota(begin(seq), end(seq), 0);
+  // std::shuffle(begin(seq), end(seq), std::mt19937(time(nullptr)));
   opt::heuristic_lbsa<vecu, decltype(f)> sa(f, seq, L, p0);
   auto [f_solution, solution] = sa(K, M);
 
@@ -77,18 +77,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test("bcl380", 1621, 120, .27, 1000, 380, .2); break;
-    case unittest::ts_example_01: test("xql662", 2513, 120, .19, 1000, 662, .2); break;
-    case unittest::ts_random_00: break;
-    case unittest::ts_random_01: break;
-    case unittest::ts_random_02: break;
-    case unittest::ts_random_03: break;
-    case unittest::ts_random_04: break;
-    case unittest::ts_random_05: break;
-    case unittest::ts_random_06: break;
-    case unittest::ts_random_07: break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test("bcl380", 1621, 120, .27, 1000, 380, .2); break;
+    case unittest::TC::example_01: test("xql662", 2513, 120, .19, 1000, 662, .2); break;
+    case unittest::TC::random_00: break;
+    case unittest::TC::random_01: break;
+    case unittest::TC::random_02: break;
+    case unittest::TC::random_03: break;
+    case unittest::TC::random_04: break;
+    case unittest::TC::random_05: break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

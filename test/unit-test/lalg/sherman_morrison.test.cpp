@@ -18,7 +18,7 @@
 using namespace tifa_libs;
 template <class mint>
 void single_test(u32 n) {
-  rand::Gen<u32> gen(1, std::numeric_limits<u32>::max());
+  rand::gen<u32> gen(1, std::numeric_limits<u32>::max());
   using mat = math::matrix<mint>;
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
   auto ge = [&is_0](mat& m, bool f) { return math::ge_mat(m, is_0, f); };
@@ -72,18 +72,18 @@ int main() {
   mintd63::set_mod(MOD64);
 
   switch (tcase) {
-    case unittest::ts_example_00: test(4); break;
-    case unittest::ts_example_01: test(10); break;
-    case unittest::ts_random_00: test(20); break;
-    case unittest::ts_random_01: test(30); break;
-    case unittest::ts_random_02: test(40); break;
-    case unittest::ts_random_03: break;
-    case unittest::ts_random_04: break;
-    case unittest::ts_random_05: break;
-    case unittest::ts_random_06: break;
-    case unittest::ts_random_07: break;
-    case unittest::ts_random_08: break;
-    case unittest::ts_random_09: break;
+    case unittest::TC::example_00: test(4); break;
+    case unittest::TC::example_01: test(10); break;
+    case unittest::TC::random_00: test(20); break;
+    case unittest::TC::random_01: test(30); break;
+    case unittest::TC::random_02: test(40); break;
+    case unittest::TC::random_03: break;
+    case unittest::TC::random_04: break;
+    case unittest::TC::random_05: break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
     default: break;
   }
 

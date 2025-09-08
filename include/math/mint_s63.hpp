@@ -37,8 +37,8 @@ class mint_s63 {
 
  protected:
   using raw_t = u64;
-  raw_t v_;
-  CEXP mint_s63() NE : v_{} {}
+  raw_t v_{};
+  CEXP mint_s63() NE = default;
   CEXP mint_s63(int_c auto v) NE : v_{mod(v)} {}
   template <int_c T>
   static CEXP raw_t mod(T v) NE { return redc_mul(norm(i64(v % (std::conditional_t<sint_c<T>, i64, u64>)mod())), R2); }

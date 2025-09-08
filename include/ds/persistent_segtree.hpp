@@ -16,15 +16,15 @@ class persistent_segtree {
   vecu root;
 
  public:
-  CEXP persistent_segtree(spnu a, u32 N) NE : n(N), cnt(0), t(a.size() * 24, TIFA()), root(a.size()) {
+  CEXP persistent_segtree(spnu a, u32 N) NE : n{N}, cnt{0}, t(a.size() * 24, TIFA()), root(a.size()) {
     build(root[0], 0, n - 1, a[0]);
     flt_ (u32, i, 1, (u32)a.size()) add_(root[i - 1], root[i], 0, n - 1, a[i]);
   }
   CEXP void add(u32 old_x, u32 x, u32 pos) NE { add_(root[old_x], root[x], 0, n - 1, pos); }
-  CEXP u32 kth_min(u32 x, u32 y, u32 k) NE { return x ? kth_min_(root[x - 1], root[y], 0, n - 1, k) : kth_min_(root[y], 0, n - 1, k); }
-  CEXP u32 kth_max(u32 x, u32 y, u32 k) NE { return x ? kth_max_(root[x - 1], root[y], 0, n - 1, k) : kth_max_(root[y], 0, n - 1, k); }
-  CEXP u32 frequency(u32 x, u32 y, u32 pos) NE { return x ? frequency_(root[x - 1], root[y], 0, n - 1, pos, pos) : frequency_(root[y], 0, n - 1, pos, pos); }
-  CEXP u32 frequency(u32 x, u32 y, u32 L, u32 R) NE { return x ? frequency_(root[x - 1], root[y], 0, n - 1, L, R) : frequency_(root[y], 0, n - 1, L, R); }
+  CEXP u32 kth_min(u32 x, u32 y, u32 k) NE { retif_((x), kth_min_(root[x - 1], root[y], 0, n - 1, k), kth_min_(root[y], 0, n - 1, k)); }
+  CEXP u32 kth_max(u32 x, u32 y, u32 k) NE { retif_((x), kth_max_(root[x - 1], root[y], 0, n - 1, k), kth_max_(root[y], 0, n - 1, k)); }
+  CEXP u32 frequency(u32 x, u32 y, u32 pos) NE { retif_((x), frequency_(root[x - 1], root[y], 0, n - 1, pos, pos), frequency_(root[y], 0, n - 1, pos, pos)); }
+  CEXP u32 frequency(u32 x, u32 y, u32 L, u32 R) NE { retif_((x), frequency_(root[x - 1], root[y], 0, n - 1, L, R), frequency_(root[y], 0, n - 1, L, R)); }
 
  private:
   CEXP void pushup(u32 x) NE {

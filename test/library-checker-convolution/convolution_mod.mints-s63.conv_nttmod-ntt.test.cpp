@@ -16,7 +16,7 @@ CEXP u32 MOD = 998244353;
 using namespace tifa_libs;
 using mint = math::mint<math::mint_s63, MOD>;
 using namespace tifa_libs;
-using ntt_ntt_t = math::NTT<mint>;
+using ntt_ntt_t = math::ntt<mint>;
 using vec_t = vec<mint>;
 auto conv_func(vec_t CR a, vec_t CR b) {
   ntt_ntt_t ntt;

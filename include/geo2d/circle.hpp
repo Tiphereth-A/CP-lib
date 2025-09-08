@@ -9,8 +9,8 @@ template <class FP>
 struct circle {
   point<FP> o;
   FP r;
-  CEXP circle() = default;
 
+  CEXP circle() = default;
   CEXP circle(point<FP> CR c, FP r) NE : o(c), r(r) {}
   CEXP circle(FP c_x, FP c_y, FP r_) NE : o(c_x, c_y), r(r_) {}
 

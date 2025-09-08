@@ -48,7 +48,7 @@ class ssp {
  public:
   vvec<TIFA> e;
 
-  CEXP ssp(u32 n, u32 s, u32 t) NE : N(n), S(s), T(t), flow(n), pre(n), e(n) {}
+  CEXP ssp(u32 n, u32 s, u32 t) NE : N{n}, S{s}, T{t}, flow(n), pre(n), e(n) {}
 
   CEXP void add(u32 u, u32 v, cT_(W) w, cT_(C) c) NE {
     const u32 lu = u32(e[u].size()), lv = u32(e[v].size());

@@ -6,7 +6,7 @@
 namespace tifa_libs::game {
 
 // n = k*k-1
-class NPuzzleData {
+class npuzzle_data {
   static inline vecu fin_node, fin_pos;
   static inline vvecu costs;
 
@@ -25,18 +25,18 @@ class NPuzzleData {
   vecu node;
   strn moves;
 
-  CEXPE NPuzzleData(u32 k) noexcept : k(k), p0(0), cost_(0), node(k * k), moves() { assert(k < 65535); }
+  CEXPE npuzzle_data(u32 k) noexcept : k(k), p0(0), cost_(0), node(k * k), moves() { assert(k < 65535); }
 
   CEXP auto CR cost() CNE { return cost_; }
   CEXP bool solved() CNE { return node == fin_node; }
-  CEXP vec<NPuzzleData> next() CNE {
+  CEXP vec<npuzzle_data> next() CNE {
     const char lst = moves.empty() ? ' ' : moves.back();
     strn nxts;
     if (p0 / k && lst != 'D') nxts += 'U';
     if (p0 / k != k - 1 && lst != 'U') nxts += 'D';
     if (p0 % k && lst != 'R') nxts += 'L';
     if (p0 % k != k - 1 && lst != 'L') nxts += 'R';
-    vec<NPuzzleData> ans;
+    vec<npuzzle_data> ans;
     for (char d : nxts) {
       auto nxt = *this;
       if (nxt.move(d); nxt.cost_ <= limit) ans.push_back(nxt);
@@ -56,11 +56,11 @@ class NPuzzleData {
     cost_ += costs[pre][fin_pos[node[p0]]] + costs[p0][fin_pos[node[pre]]];
     swap(node[pre], node[p0]);
   }
-  CEXP auto operator<=>(NPuzzleData CR r) CNE { return node <=> r.node; }
-  CEXP bool operator==(NPuzzleData CR r) CNE { return std::is_eq(*this <=> r); }
-  friend auto &operator>>(istream_c auto &is, NPuzzleData &np) NE {
+  CEXP auto operator<=>(npuzzle_data CR r) CNE { return node <=> r.node; }
+  CEXP bool operator==(npuzzle_data CR r) CNE { return std::is_eq(*this <=> r); }
+  friend auto &operator>>(istream_c auto &is, npuzzle_data &np) NE {
     for (auto &i : np.node) is >> i;
-    np.p0 = u32(find(np.node, 0) - np.node.begin());
+    np.p0 = u32(find(np.node, 0) - begin(np.node));
     flt_ (u32, p, 0, (u32)np.node.size())
       if (np.node[p]) np.cost_ += costs[p][fin_pos[np.node[p]]];
     return is;

@@ -17,7 +17,7 @@ int main() {
   poly p(n);
   tifa_libs::fin >> p;
   auto res = tifa_libs::math::sqrt_fps(p);
-  if (!res.has_value()) tifa_libs::fout << "-1\n";
+  if (!res) tifa_libs::fout << "-1\n";
   else tifa_libs::fout << res.value() << '\n';
   return 0;
 }

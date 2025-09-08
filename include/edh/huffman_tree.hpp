@@ -53,7 +53,10 @@ class huffman {
 
   CEXP vec<strn> encode(strnv char_set = "01") CNE {
     assert(char_set.size() == ch_sz);
-    return run<strn>([&](strn CR pre_code, u32 idx) NE { return pre_code + char_set[idx]; });
+    return run<strn>([&](strn pre_code, u32 idx) NE {
+      pre_code += char_set[idx];
+      return pre_code;
+    });
   }
   CEXP vecu depths() CNE {
     return run<u32>([](u32 pre_depth, u32) NE { return pre_depth + 1; });

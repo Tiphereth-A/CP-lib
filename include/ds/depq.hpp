@@ -18,23 +18,21 @@ CEXP u32 ch1idx_(u32 i) NE { return (i * 2) + 1; }
 CEXP u32 gchls_idx_(u32 i) NE { return (i * 4) + 6; }
 template <class I, class C>
 CEXP u32 s_dec_(I b, u32 l, u32 ch1, u32 gch1, C &&c) NE {
-  u32 ch2 = ch1 + 1;
-  if (gch1 >= l) return ch1 + (ch2 != l && c(b[ch2], b[ch1]));
-  u32 gch2 = gch1 + 1;
-  if (gch2 == l) return c(b[gch1], b[ch2]) ? gch1 : ch2;
-  u32 gchm = gch1 + !!c(b[gch2], b[gch1]), gch3 = gch2 + 1;
-  if (gch3 == l) return c(b[gchm], b[ch2]) ? gchm : ch2;
-  return c(b[gchm], b[gch3]) ? gchm : gch3;
+  if (u32 ch2 = ch1 + 1; gch1 >= l) return ch1 + (ch2 != l && c(b[ch2], b[ch1]));
+  else if (u32 gch2 = gch1 + 1; gch2 == l) {
+    retif_((c(b[gch1], b[ch2])), gch1, ch2);
+  } else if (u32 gchm = gch1 + !!c(b[gch2], b[gch1]), gch3 = gch2 + 1; gch3 == l) {
+    retif_((c(b[gchm], b[ch2])), gchm, ch2);
+  } else retif_((c(b[gchm], b[gch3])), gchm, gch3);
 }
 template <class I, class C>
 CEXP u32 l_dec_(I b, u32 l, u32 ch1, u32 gch1, C &&c) NE {
-  u32 ch2 = ch1 + 1;
-  if (gch1 >= l) return ch1 + (ch2 != l && c(b[ch1], b[ch2]));
-  u32 gch2 = gch1 + 1;
-  if (gch2 == l) return c(b[ch2], b[gch1]) ? gch1 : ch2;
-  u32 gchm = gch1 + !!c(b[gch1], b[gch2]), gch3 = gch2 + 1;
-  if (gch3 == l) return c(b[ch2], b[gchm]) ? gchm : ch2;
-  return c(b[gchm], b[gch3]) ? gch3 : gchm;
+  if (u32 ch2 = ch1 + 1; gch1 >= l) return ch1 + (ch2 != l && c(b[ch1], b[ch2]));
+  else if (u32 gch2 = gch1 + 1; gch2 == l) {
+    retif_((c(b[ch2], b[gch1])), gch1, ch2);
+  } else if (u32 gchm = gch1 + !!c(b[gch1], b[gch2]), gch3 = gch2 + 1; gch3 == l) {
+    retif_((c(b[ch2], b[gchm])), gchm, ch2);
+  } else retif_((c(b[gchm], b[gch3])), gch3, gchm);
 }
 template <class I, class C>
 CEXP void pdmin_(I b, TPN std::iterator_traits<I>::value_type v, u32 i, u32 l, C &&c) NE {
@@ -117,7 +115,7 @@ CEXP bool is_minmax_heap(I begin, I end, C &&comp = C{}) NE {
   return true;
 }
 template <common_range R, class C = std::less<>>
-CEXP bool is_minmax_heap(R CR r, C &&comp = C{}) NE { return is_minmax_heap(r.begin(), r.end(), std::forward<C>(comp)); }
+CEXP bool is_minmax_heap(R CR r, C &&comp = C{}) NE { return is_minmax_heap(begin(r), end(r), std::forward<C>(comp)); }
 template <class I, class C = std::less<>>
 void push_minmax_heap(I begin, I end, C &&comp = C{}) NE {
   u32 len = u32(end - begin), idx = len - 1, parent = depq_impl_::pidx_(idx);
@@ -150,7 +148,7 @@ void push_minmax_heap(I begin, I end, C &&comp = C{}) NE {
   begin[idx] = std::move(value);
 }
 template <common_range R, class C = std::less<>>
-CEXP bool push_minmax_heap(R CR r, C &&comp = C{}) NE { return push_minmax_heap(r.begin(), r.end(), std::forward<C>(comp)); }
+CEXP bool push_minmax_heap(R CR r, C &&comp = C{}) NE { return push_minmax_heap(begin(r), end(r), std::forward<C>(comp)); }
 template <class I, class C = std::less<>>
 CEXP void pop_minmax_heap_min(I begin, I end, C &&comp = C{}) NE {
   u32 l = u32(end - begin) - 1;
@@ -158,7 +156,7 @@ CEXP void pop_minmax_heap_min(I begin, I end, C &&comp = C{}) NE {
   depq_impl_::pdmin_(begin, std::exchange(end[-1], std::move(begin[0])), 0, l, comp);
 }
 template <common_range R, class C = std::less<>>
-CEXP bool pop_minmax_heap_min(R CR r, C &&comp = C{}) NE { return pop_minmax_heap_min(r.begin(), r.end(), std::forward<C>(comp)); }
+CEXP bool pop_minmax_heap_min(R CR r, C &&comp = C{}) NE { return pop_minmax_heap_min(begin(r), end(r), std::forward<C>(comp)); }
 template <class I, class C = std::less<>>
 CEXP void pop_minmax_heap_max(I begin, I end, C &&comp = C{}) NE {
   u32 l = u32(end - begin) - 1;
@@ -167,7 +165,7 @@ CEXP void pop_minmax_heap_max(I begin, I end, C &&comp = C{}) NE {
   depq_impl_::pdmax_(begin, std::exchange(end[-1], std::move(begin[idx])), idx, l, std::forward<C>(comp));
 }
 template <common_range R, class C = std::less<>>
-CEXP bool pop_minmax_heap_max(R CR r, C &&comp = C{}) NE { return pop_minmax_heap_max(r.begin(), r.end(), std::forward<C>(comp)); }
+CEXP bool pop_minmax_heap_max(R CR r, C &&comp = C{}) NE { return pop_minmax_heap_max(begin(r), end(r), std::forward<C>(comp)); }
 template <class I, class C = std::less<>>
 CEXP void make_minmax_heap(I begin, I end, C &&comp = C{}) NE {
   u32 l = u32(end - begin), idx = l / 2;
@@ -216,7 +214,7 @@ CEXP void make_minmax_heap(I begin, I end, C &&comp = C{}) NE {
     }
 }
 template <common_range R, class C = std::less<>>
-CEXP bool make_minmax_heap(R CR r, C &&comp = C{}) NE { return make_minmax_heap(r.begin(), r.end(), std::forward<C>(comp)); }
+CEXP bool make_minmax_heap(R CR r, C &&comp = C{}) NE { return make_minmax_heap(begin(r), end(r), std::forward<C>(comp)); }
 
 }  // namespace tifa_libs::ds
 

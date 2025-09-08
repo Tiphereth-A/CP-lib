@@ -33,7 +33,7 @@ class fenwick2d {
   }
   //! [xl, xr) * [yl, yr), x > 0, y > 0
   CEXP T sum(u32 xl, u32 yl, u32 xr, u32 yr) NE {
-    if (xl >= xr || yl >= yr) return 0;
+    retif_((xl >= xr || yl >= yr) [[unlikely]], 0);
     return sum(xr, yr) - sum(xl, yr) + sum(xl, yl) - sum(xr, yl);
   }
 };

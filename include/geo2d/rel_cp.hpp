@@ -2,21 +2,21 @@
 #define TIFALIBS_GEO2D_REL_CP
 
 #include "circle.hpp"
-#include "dist_pp.hpp"
+#include "distp_pp.hpp"
 
 namespace tifa_libs::geo {
 
 // relation between circle and point
-enum RELCP { outside_cp,
-             onborder_cp,
-             inside_cp };
+// clang-format off
+enum class RELCP : u8 { outside, onborder, inside };
+// clang-format on
 
 template <class FP>
 CEXP RELCP relation_CP(circle<FP> CR c, point<FP> CR p) NE {
-  const FP d = dist_PP(c.o, p);
-  if (is_lt(d, c.r)) return inside_cp;
-  if (is_eq(d, c.r)) return onborder_cp;
-  return outside_cp;
+  const auto _ = comp_distp(c.o, p, c.r);
+  if (_ < 0) return RELCP::inside;
+  if (_ == 0) return RELCP::onborder;
+  return RELCP::outside;
 }
 
 }  // namespace tifa_libs::geo

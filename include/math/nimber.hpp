@@ -8,7 +8,7 @@ namespace tifa_libs::math {
 template <std::unsigned_integral T, T (*prod)(T, T)>
 struct nimber {
   T x;
-  CEXP nimber(T _x = 0) NE : x(_x) {}
+  CEXP nimber(T x = 0) NE : x{x} {}
 
   CEXP nimber& operator+=(nimber CR p) NE {
     x ^= p.x;

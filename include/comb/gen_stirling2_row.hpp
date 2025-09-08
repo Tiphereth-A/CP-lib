@@ -10,7 +10,7 @@ namespace tifa_libs::math {
 template <class poly>
 CEXP poly gen_stirling2_row(u32 n, spnuu pows, spnuu ifact) NE {
   using mint = TPN poly::val_t;
-  if (!n) return poly{1};
+  retif_((!n) [[unlikely]], poly{1});
   u64 mod = mint::mod();
   poly a(n + 1), b(n + 1);
   flt_ (u32, i, 1, n + 1) a[i] = mul_mod_u(pows[i], ifact[i], mod);

@@ -28,9 +28,9 @@ int main() {
   poly a(n), b(m);
   tifa_libs::fin >> a >> b;
   auto _ = tifa_libs::math::modinv_fps(a, b);
-  if (!_.has_value()) tifa_libs::fout << "-1\n";
-  else if (_.value().is_zero()) tifa_libs::fout << "0\n";
-  else tifa_libs::fout << _.value().size() << '\n'
+  if (!_) tifa_libs::fout << "-1\n";
+  else if (_->is_zero()) tifa_libs::fout << "0\n";
+  else tifa_libs::fout << _->size() << '\n'
                        << _.value() << '\n';
   return 0;
 }

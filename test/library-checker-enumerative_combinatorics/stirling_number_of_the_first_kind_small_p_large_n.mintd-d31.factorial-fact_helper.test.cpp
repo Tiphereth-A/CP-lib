@@ -21,7 +21,7 @@ int main() {
   u32 t, mod;
   std::cin >> t >> mod;
   mint::set_mod(mod);
-  tifa_libs::math::Stirling1<mint, fact_t> s;
+  tifa_libs::math::stirling1<mint, fact_t> s;
   while (t--) {
     u64 n, k;
     std::cin >> n >> k;

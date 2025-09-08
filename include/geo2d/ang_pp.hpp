@@ -12,7 +12,7 @@ CEXP FP ang_PP(point<FP> CR p1, point<FP> CR p2) NE { return std::atan2(p1 ^ p2,
 template <class FP>
 CEXP FP ang2pi_PP(point<FP> CR p1, point<FP> CR p2) NE {
   const FP res = ang_PP(p1, p2);
-  return is_neg(res) ? res + 2 * pi_v<FP> : res;
+  retif_((is_neg(res)), res + 2 * pi_v<FP>, res);
 }
 
 }  // namespace tifa_libs::geo

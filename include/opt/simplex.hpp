@@ -10,10 +10,10 @@ struct LPSolver {
 #define ltj(X) \
   if (!~s || std::make_pair(X[j], N[j]) < std::make_pair(X[s], N[s])) s = j
   static CEXP T inf = 1 / .0;
-  int m, n;       // # m = contraints, # n = variables
-  vec<int> N, B;  // N[j] = non-basic variable (j-th column), = 0
-  vvec<T> D;      // B[j] = basic variable (j-th row)
-  CEXP LPSolver(vvec<T> CR A, vec<T> CR b, vec<T> CR c) NE : m(sz(b)), n(sz(c)), N(n + 1), B(m), D(m + 2, vec<T>(n + 2)) {
+  int m, n;   // # m = contraints, # n = variables
+  veci N, B;  // N[j] = non-basic variable (j-th column), = 0
+  vvec<T> D;  // B[j] = basic variable (j-th row)
+  CEXP LPSolver(vvec<T> CR A, vec<T> CR b, vec<T> CR c) NE : m{sz(b)}, n{sz(c)}, N(n + 1), B(m), D(m + 2, vec<T>(n + 2)) {
     flt_ (int, i, 0, m)
       flt_ (int, j, 0, n) D[i][j] = A[i][j];
     flt_ (int, i, 0, m) B[i] = n + i, D[i][n] = -1, D[i][n + 1] = b[i];
@@ -79,7 +79,7 @@ struct LPSolver {
     x = vec<T>(n);
     flt_ (int, i, 0, m)
       if (B[i] < n) x[B[i]] = D[i][n + 1];
-    return ok ? D[m][n + 1] : inf;
+    retif_((ok), D[m][n + 1], inf);
   }
 };
 #undef ltj

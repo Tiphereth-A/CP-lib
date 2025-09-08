@@ -23,7 +23,7 @@ class fenwick2d_rr {
   CEXP T sum(u32 x, u32 y) NE { return a.sum(x, y) * x * y - ax.sum(x, y) * y - ay.sum(x, y) * x + axy.sum(x, y); }
   //! (xl, xr] * (yl, yr], x > 0, y > 0
   CEXP T sum(u32 xl, u32 yl, u32 xr, u32 yr) NE {
-    if (xl >= xr || yl >= yr) return 0;
+    retif_((xl >= xr || yl >= yr) [[unlikely]], 0);
     return sum(xr, yr) - sum(xl, yr) + sum(xl, yl) - sum(xr, yl);
   }
 };

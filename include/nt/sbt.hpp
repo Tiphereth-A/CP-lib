@@ -8,19 +8,19 @@ namespace tifa_libs::math {
 
 // x / y (x > 0, y > 0). default 1 / 1
 template <std::signed_integral T>
-class SBT {
+class sbt {
   T lx, ly, x, y, rx, ry;
   vec<T> seq;
 
  public:
-  CEXPE SBT() NE : lx{0}, ly{1}, x{1}, y{1}, rx{1}, ry{0} {}
-  CEXPE SBT(spn<T> seq_) NE : SBT() {
+  CEXP sbt() NE : lx{0}, ly{1}, x{1}, y{1}, rx{1}, ry{0} {}
+  CEXPE sbt(spn<T> seq_) NE : sbt() {
     for (auto d : seq_) {
       if (assert(d != 0); d > 0) movr(d);
       if (d < 0) movl(d);
     }
   }
-  CEXP SBT(T x_, T y_) NE : SBT() {
+  CEXP sbt(T x_, T y_) NE : sbt() {
     assert(x_ > 0 && y_ > 0);
     if (T g = gcd(x_, y_); g > 1) x_ /= g, y_ /= g;
     while (min(x_, y_))
@@ -33,8 +33,8 @@ class SBT {
       }
   }
 
-  friend CEXP auto operator<=>(SBT CR l, SBT CR r) NE { return l.x * r.y - r.x * l.y; }
-  friend CEXP bool operator==(SBT CR l, SBT CR r) NE { return l.x == r.x && l.y == r.y; }
+  friend CEXP auto operator<=>(sbt CR l, sbt CR r) NE { return l.x * r.y - r.x * l.y; }
+  friend CEXP bool operator==(sbt CR l, sbt CR r) NE { return l.x == r.x && l.y == r.y; }
   CEXP ptt<T> current() CNE { return {x, y}; }
   CEXP ptt<T> lbound() CNE { return {lx, ly}; }
   CEXP ptt<T> rbound() CNE { return {rx, ry}; }
@@ -60,7 +60,7 @@ class SBT {
   // move towards fa with @d steps
   // @return true if succeed, or false if falied
   CEXP bool movf(T d = 1) NE {
-    if (d <= 0) return true;
+    retif_((d <= 0) [[unlikely]], true);
     while (d) {
       if (seq.empty()) return false;
       T _ = min(d, abs(seq.back()));
@@ -71,8 +71,8 @@ class SBT {
     }
     return true;
   }
-  static CEXP SBT lca(SBT CR l, SBT CR r) NE {
-    SBT ret;
+  static CEXP sbt lca(sbt CR l, sbt CR r) NE {
+    sbt ret;
     for (u32 i = 0; i < min((u32)l.seq.size(), (u32)r.seq.size()); ++i) {
       T val1 = l.seq[i], val2 = r.seq[i];
       if ((val1 < 0) != (val2 < 0)) break;

@@ -7,10 +7,10 @@
 namespace tifa_libs::math {
 
 template <u32 N = 64, bool greedy_insert = false>
-struct basisZ2 {
+struct basis_z2 {
   vec<std::bitset<N>> basis;
 
-  CEXP basisZ2() NE : basis(N) {}
+  CEXP basis_z2() NE : basis(N) {}
 
   CEXP bool insert(std::bitset<N> x) NE {
     bool status = 0;
@@ -58,21 +58,24 @@ struct basisZ2 {
     return ret;
   }
   // @return std::nullopt if x is linear independent with current basis, else return the solution
-  CEXP std::optional<std::bitset<N>> coord(std::bitset<N> x) NE {
-    std::bitset<N> res;
+  CEXP auto coord(std::bitset<N> x) NE {
+    std::optional res{std::bitset<N>{}};
     for (u32 i = basis.size() - 1; ~i; --i)
       if (x[i]) {
-        if (!basis[i][i]) return {};
-        res.set(i), x ^= basis[i];
+        if (!basis[i][i]) {
+          res = std::nullopt;
+          return res;
+        }
+        res->set(i), x ^= basis[i];
       }
     return res;
   }
-  friend basisZ2 meet(basisZ2 CR l, vec<std::bitset<N>> CR r) NE {
+  friend basis_z2 meet(basis_z2 CR l, vec<std::bitset<N>> CR r) NE {
     if CEXP (greedy_insert) {  // Zassenhaus, 2x slower with GE insertion
       using bslo = bitset_getdata<N>;
       using bshi = bitset_getdata<N * 2>;
       using word_t = TPN bslo::word_t;
-      basisZ2<N * 2> tmp;
+      basis_z2<N * 2> tmp;
       CEXP auto Nw = bslo::Nw;
       for (auto CR i : l.basis) {
         std::bitset<N * 2> now;
@@ -88,7 +91,7 @@ struct basisZ2 {
         else bshi::getword(now, 0) = bslo::getword(i, 0) << N;
         tmp.insert(now);
       }
-      basisZ2 ans;
+      basis_z2 ans;
       flt_ (u32, i, 0, N) memcpy(bslo::getdata(ans.basis[i]), bshi::getdata(tmp.basis[i]), Nw * sizeof(word_t));
       return ans;
     } else {  //! will get wrong result with greedy insertion
@@ -102,7 +105,7 @@ struct basisZ2 {
           if (auto y = x ^ i; cvt(y) < cvt(x)) x = y;
         return x;
       };
-      basisZ2<N> ans;
+      basis_z2<N> ans;
       for (vecpt<std::bitset<N>> ab; auto x : r) {
         auto y = f(x), xy = y ^ x;
         for (auto [a, b] : ab)

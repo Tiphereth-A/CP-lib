@@ -6,14 +6,14 @@
 namespace tifa_libs::math {
 
 template <class mint, class fact = fact_helper<mint>, bool with_sgn = true>
-class Stirling1 {
+class stirling1 {
   const binom<mint, fact> mCn;
   vvec<mint> s;
 
  public:
   static CEXP u32 mod() NE { return mint::mod(); }
   //! @param p MUST be prime
-  CEXPE Stirling1() NE : mCn(mint::mod()), s(mint::mod()) {
+  CEXPE stirling1() NE : mCn(mint::mod()), s(mint::mod()) {
     u32 p = mint::mod();
     assert(p < 32768), s[0] = {1};
     flt_ (u32, i, 1, p) {
@@ -27,7 +27,7 @@ class Stirling1 {
 
   template <std::signed_integral T>
   CEXP mint operator()(T m_, T n_) CNE {
-    if (n_ < 0 || n_ > m_) return 0;
+    retif_((n_ < 0 || n_ > m_) [[unlikely]], 0);
     const u32 p = mod();
     const u64 m = (u64)m_, n = (u64)n_, i = m / p;
     if (i > n) return 0;

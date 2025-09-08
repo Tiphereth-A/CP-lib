@@ -47,7 +47,7 @@ struct trie01 {
   CEXP u32 find_(u32 t, u64 bit, int dep, u64 xv) CNE {
     if (!~dep) return t;
     const auto to = data[t].nxt[(xv ^ bit) >> dep & 1];
-    return to ? find_(to, bit, dep - 1, xv) : 0;
+    retif_((to), find_(to, bit, dep - 1, xv), 0);
   }
   CEXP std::pair<u64, u32> kth_(u32 t, T k, int idx, u64 xv) CNE {
     if (!~idx) return {0, t};

@@ -34,8 +34,9 @@ struct mpi : vecu {
     return std::lexicographical_compare_three_way(a.rbegin(), a.rend(), b.rbegin(), b.rend());
   }
   static CEXP auto cmp(mpi CR a, mpi CR b) NE {
-    if (a.neg) return b.neg ? ucmp(b, a) : std::strong_ordering::less;
-    return b.neg ? std::strong_ordering::greater : ucmp(a, b);
+    if (a.neg) {
+      retif_((b.neg), ucmp(b, a), std::strong_ordering::less);
+    } else retif_((b.neg), std::strong_ordering::greater, ucmp(a, b));
   }
   static CEXP bool is_0(vec_like CR a) NE { return a.empty(); }
   static CEXP bool is_pm1(vec_like CR a) NE { return a.size() == 1 && a[0] == 1; }
@@ -58,7 +59,7 @@ struct mpi : vecu {
   }
 
  public:
-  CEXPE mpi() NE : vecu(), neg{false} {}
+  CEXP mpi() NE = default;
   CEXP mpi(bool n, itlu x) NE : vecu(x), neg(n) {}
   CEXP mpi(bool n, spnu d) NE : vecu(d.begin(), d.end()), neg(n) {}
   template <int_c T>
@@ -214,8 +215,9 @@ struct mpi : vecu {
     if (is_0(a) || is_0(b)) return {};
     if (is_pm1(a)) return b;
     if (is_pm1(b)) return a;
-    if (min(a.size(), b.size()) <= CONV_NAIVE_THRESHOLD) return a.size() < b.size() ? umul_bf(b, a) : umul_bf(a, b);
-    return umul_3ntt(a, b);
+    if (min(a.size(), b.size()) <= CONV_NAIVE_THRESHOLD) {
+      retif_((a.size() < b.size()), umul_bf(b, a), umul_bf(a, b));
+    } else return umul_3ntt(a, b);
   }
   // 0 <= A < 1e16, 1 <= B < 1e8
   static CEXP ptt<vecu> udivmod_li(vec_like CR a, vec_like CR b) NE {

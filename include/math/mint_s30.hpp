@@ -28,8 +28,8 @@ class mint_s30 {
 
  protected:
   using raw_t = u32;
-  raw_t v_;
-  CEXP mint_s30() NE : v_{} {}
+  raw_t v_{};
+  CEXP mint_s30() NE = default;
   CEXP mint_s30(int_c auto v) NE : v_{mod(v)} {}
   static CEXP raw_t mod(sint_c auto v) NE { return reduce(u64(v % (i32)mod() + (i32)mod()) * R2); }
   static CEXP raw_t mod(uint_c auto v) NE { return reduce(u64(v % mod()) * R2); }

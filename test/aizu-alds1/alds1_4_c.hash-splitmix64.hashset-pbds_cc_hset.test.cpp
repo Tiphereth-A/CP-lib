@@ -30,7 +30,7 @@ int main() {
     if (s[0] == 'i')
       dict.insert(x);
     else
-      std::cout << (dict.find(x) != dict.end() ? "yes\n" : "no\n");
+      std::cout << (dict.find(x) != end(dict) ? "yes\n" : "no\n");
   }
   return 0;
 }

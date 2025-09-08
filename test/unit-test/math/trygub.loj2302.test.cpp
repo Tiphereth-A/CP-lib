@@ -30,7 +30,7 @@ vecii single_proceed(std::istream &fin) {
   return ans;
 }
 
-void test(strn CR data) {
+void test(strnv data) {
   auto [fn_in, fn_ans] = unittest::get_fname_in_ans("loj", "2302", data);
   std::ifstream fin(fn_in), fans(fn_ans);
 
@@ -52,18 +52,18 @@ int main() {
   auto tcase = unittest::pre_test();
 
   switch (tcase) {
-    case unittest::ts_example_00: test("integer1"), test("integer13"), test("integer25"); break;
-    case unittest::ts_example_01: test("integer2"), test("integer14"); break;
-    case unittest::ts_random_00: test("integer3"), test("integer15"); break;
-    case unittest::ts_random_01: test("integer4"), test("integer16"); break;
-    case unittest::ts_random_02: test("integer5"), test("integer17"); break;
-    case unittest::ts_random_03: test("integer6"), test("integer18"); break;
-    case unittest::ts_random_04: test("integer7"), test("integer19"); break;
-    case unittest::ts_random_05: test("integer8"), test("integer20"); break;
-    case unittest::ts_random_06: test("integer9"), test("integer21"); break;
-    case unittest::ts_random_07: test("integer10"), test("integer22"); break;
-    case unittest::ts_random_08: test("integer11"), test("integer23"); break;
-    case unittest::ts_random_09: test("integer12"), test("integer24"); break;
+    case unittest::TC::example_00: test("integer1"), test("integer13"), test("integer25"); break;
+    case unittest::TC::example_01: test("integer2"), test("integer14"); break;
+    case unittest::TC::random_00: test("integer3"), test("integer15"); break;
+    case unittest::TC::random_01: test("integer4"), test("integer16"); break;
+    case unittest::TC::random_02: test("integer5"), test("integer17"); break;
+    case unittest::TC::random_03: test("integer6"), test("integer18"); break;
+    case unittest::TC::random_04: test("integer7"), test("integer19"); break;
+    case unittest::TC::random_05: test("integer8"), test("integer20"); break;
+    case unittest::TC::random_06: test("integer9"), test("integer21"); break;
+    case unittest::TC::random_07: test("integer10"), test("integer22"); break;
+    case unittest::TC::random_08: test("integer11"), test("integer23"); break;
+    case unittest::TC::random_09: test("integer12"), test("integer24"); break;
     default: break;
   }
 

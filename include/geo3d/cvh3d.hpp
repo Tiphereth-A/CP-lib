@@ -30,7 +30,7 @@ class cvh3d {
   //! 1-indexed
   vec<facet> faces;
   //! 1-indexed, no co-linear or co-plane
-  explicit cvh3d(vec<point3d<FP>> CR vp) NE {
+  cvh3d(vec<point3d<FP>> CR vp) NE {
     faces.emplace_back(vp, 0, 0, 0), faces[0].isdel = 1;
     vvecu ptsid(5);
     {
@@ -60,7 +60,7 @@ class cvh3d {
       flt_ (u32, i, 1, (u32)vp.size()) {
         if (vp[i] == v(s, 0) || vp[i] == v(s, 1) || vp[i] == v(s, 2) || vp[i] == v(s, 3)) continue;
         flt_ (u32, j, 1, 5)
-          if (relation_PlP(faces[j].p, vp[i]) == above_plp) {
+          if (relation_PlP(faces[j].p, vp[i]) == RELPLP::above) {
             ptsid[j].push_back(i);
             break;
           }
@@ -74,7 +74,7 @@ class cvh3d {
     vec<edge> e1(vp.size()), e2(vp.size());
     vecu vistime(vp.size()), resfdel(vp.size()), resfnew(vp.size()), resptid(vp.size());
     auto horizon = [&](auto &&f, u32 id, point3d<FP> CR p) NE -> u32 {
-      if (relation_PlP(faces[id].p, p) != above_plp) return 0;
+      if (relation_PlP(faces[id].p, p) != RELPLP::above) return 0;
       if (faces[id].vistime == tm) return -1_u32;
       faces[id].vistime = tm, faces[id].isdel = 1, resfdel.push_back(faces[id].id);
       u32 ret = -2_u32;
@@ -133,7 +133,7 @@ class cvh3d {
       for (auto i : resptid) {
         if (vp[i] == p) continue;
         for (auto j : resfnew)
-          if (relation_PlP(faces[j].p, vp[i]) == above_plp) {
+          if (relation_PlP(faces[j].p, vp[i]) == RELPLP::above) {
             ptsid[j].push_back(i);
             break;
           }
