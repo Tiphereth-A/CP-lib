@@ -5,6 +5,8 @@ on:
     branches:
       - master
     paths:
+      - 'pyproject.toml'
+      - 'uv.lock'
       - '.github/**'
       - 'cheatsheet/**'
       - 'include/**'
@@ -19,6 +21,8 @@ on:
     branches:
       - master
     paths:
+      - 'pyproject.toml'
+      - 'uv.lock'
       - '.github/**'
       - 'cheatsheet/**'
       - 'include/**'
@@ -48,9 +52,10 @@ jobs:
           cache: 'pip'
       - name: Generate TeX files
         run: |
-          pip install -r requirements.txt
-          python manager.py -l DEBUG gen-cs
-          python manager.py -l DEBUG gen-nb
+          pip install uv
+          uv sync
+          uv run python manager.py -l DEBUG gen-cs
+          uv run python manager.py -l DEBUG gen-nb
       - name: Build the LaTeX document
         uses: xu-cheng/latex-action@v4
         with:

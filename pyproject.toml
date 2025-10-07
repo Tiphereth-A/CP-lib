@@ -1,0 +1,21 @@
+[project]
+name = "cp-lib"
+version = "1.1.0"
+description = "Code library for Competitive Programming"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "click>=8.3.0",
+    "coloredlogs>=15.0.1",
+    "multipledispatch>=1.0.0",
+    "pyyaml>=6.0.3",
+]
+
+[dependency-groups]
+dev = [
+    "pycodestyle>=2.14.0",
+]
+verify = [
+    "competitive-verifier>=3.3.1",
+    "online-judge-verify-helper>=5.6.0",
+]
