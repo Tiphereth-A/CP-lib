@@ -92,7 +92,7 @@ class testcase_matrix:
 
     @withlog
     def append(self, categories: Iterable[str], **kwargs):
-        self._cat_list.append(categories)
+        self._cat_list.append(list(categories))
         return self
 
     @withlog
@@ -114,19 +114,19 @@ class testcase_matrix:
                 for cats in required_cats:
                     ls = [CONFIG_TCGEN.get_memberlist(cat) for cat in cats]
                     prod = list(itertools.product(*ls))
-                    result.extend([list(now_case) + list(req)
-                                  for req in prod])
-                    result_new.extend([list(req) for req in prod])
+                    result.extend([[*now_case, *req]
+                                   for req in prod])
+                    result_new.extend([[*req] for req in prod])
             return result, result_new
 
         all_cases = [list(i)
                      for i in itertools.product(*self._get_member_list())]
         all_cases_new = deepcopy(all_cases)
         kwargs.get('logger').debug(f'Initial:')
-        kwargs.get('logger').debug(' '*2+f'all_cases:')
+        kwargs.get('logger').debug(' ' * 2 + f'all_cases:')
         kwargs.get('logger').debug('\n'.join(str(i)
                                              for i in all_cases))
-        kwargs.get('logger').debug(' '*2+f'all_cases_new:')
+        kwargs.get('logger').debug(' ' * 2 + f'all_cases_new:')
         kwargs.get('logger').debug('\n'.join(str(i)
                                              for i in all_cases_new))
         iter_limit = len(CONFIG_TCGEN.get_categories())
@@ -135,7 +135,7 @@ class testcase_matrix:
             all_cases, all_cases_new = _single_iteration(
                 all_cases, all_cases_new)
             kwargs.get('logger').debug(f'Iteration {cnt}:')
-            kwargs.get('logger').debug(' '*2+f'all_cases:')
+            kwargs.get('logger').debug(' ' * 2 + f'all_cases:')
             kwargs.get('logger').debug('\n'.join(str(i)
                                                  for i in all_cases))
             if not sum([len(i) for i in all_cases_new]):
@@ -193,7 +193,7 @@ class cppmeta_parser:
             if codeline == _GENTC_END:
                 if not inblock:
                     raise RuntimeError(f'Parse error: `GENTC end` mismatched')
-                block_end = index+1
+                block_end = index + 1
                 inblock = False
                 break
             if not inblock:
@@ -244,14 +244,14 @@ class cppmeta_parser:
                               for include in case.get_include_list()]
             # after include
             now_codelines += ['\n'] + \
-                case.get_content_after_include().splitlines(True)
+                             case.get_content_after_include().splitlines(True)
             # before main
-            now_codelines += self._code_lines[block_end:main_index+1]
+            now_codelines += self._code_lines[block_end:main_index + 1]
             # main begin
-            now_codelines += [i if i.startswith('  ') else '  '+i
+            now_codelines += [i if i.startswith('  ') else '  ' + i
                               for i in case.get_content_main_begin().splitlines(True)]
             # remains
-            now_codelines += self._code_lines[main_index+1:]
+            now_codelines += self._code_lines[main_index + 1:]
             result.append((target_filepath, now_codelines))
         return result
 

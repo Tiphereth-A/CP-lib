@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import Iterable
+from typing import Iterable, Any
 
 from libs.decorator import withlog
 
@@ -16,7 +16,7 @@ def get_full_filenames(_dirs: list[str], valid_extname: list[str]) -> list[str]:
 
 def unique(seq: list, hash_func=lambda x: x) -> list:
     visited: dict = {}
-    result: list[tuple[int, any]] = []
+    result: list[tuple[int, Any]] = []
     for item in seq:
         marker = hash_func(item)
         if marker in visited:
@@ -26,8 +26,8 @@ def unique(seq: list, hash_func=lambda x: x) -> list:
     return result
 
 
-def get_difference(total_elements: set, seq: list) -> dict[int, any]:
-    result: dict[int, any] = {}
+def get_difference(total_elements: set, seq: list) -> dict[int, Any]:
+    result: dict[int, Any] = {}
     now_index: int = -1
     for item in seq:
         now_index += 1

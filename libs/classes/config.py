@@ -1,6 +1,3 @@
-import os
-
-
 from libs.classes.config_base import ConfigBase
 from libs.classes.section import Section
 from libs.decorator import withlog

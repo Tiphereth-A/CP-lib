@@ -11,7 +11,7 @@ class TextLaTeXBase:
         return self._str
 
     def get_label_name(self) -> str:
-        return re.sub(r'[,.;@?!&$#/ \(\)\*]', '-', self._str.casefold().replace('\\', ''))
+        return re.sub(r'[,.;@?!&$#/ ()*]', '-', self._str.casefold().replace('\\', ''))
 
 
 class PathLaTeX(TextLaTeXBase):

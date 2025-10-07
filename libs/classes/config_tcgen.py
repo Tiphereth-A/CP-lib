@@ -1,4 +1,6 @@
 from copy import deepcopy
+from typing import Iterable
+
 from libs.classes.config_base import ConfigBase
 from libs.decorator import withlog
 from multipledispatch import dispatch
@@ -18,7 +20,7 @@ class ConfigTCGen(ConfigBase):
             _.add_note(f"priorities: '{priorities}'")
             raise _
 
-    def _get_categories_raw(self) -> list[str]:
+    def _get_categories_raw(self) -> Iterable[str]:
         return self._config.keys()
 
     def _get_priority_raw(self, category: str) -> int:
@@ -75,11 +77,11 @@ class ConfigTCGen(ConfigBase):
         return self._get_priority_raw(category)
 
     @withlog
-    def get_categories_by_priority(self, priority: int, **kwargs) -> int:
+    def get_categories_by_priority(self, priority: int, **kwargs) -> list[str]:
         return self._get_categories_by_priority_raw(priority)
 
     @withlog
-    def get_categories_with_same_priority(self, category: str, **kwargs) -> int:
+    def get_categories_with_same_priority(self, category: str, **kwargs) -> list[str]:
         return self._get_categories_by_priority_raw(self._get_priority_raw(category))
 
     @withlog

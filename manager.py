@@ -11,7 +11,7 @@ import click
 import coloredlogs
 
 from libs.classes.section import Section
-from libs.consts import CONFIG, CLEAN_EXT_NAME, CONFIG_TCGEN, CONTENTS_CS, CONTENTS_DIR, CONTENTS_NB
+from libs.consts import CONFIG, CLEAN_EXT_NAME, CONTENTS_CS, CONTENTS_DIR, CONTENTS_NB
 from libs.decorator import withlog
 from libs.latex_utils import latex_input, latex_chapter, latex_listing_code_range, latex_section, latex_listing_code, PathLaTeX, NameLaTeX, LATEX_COMPILE_COMMAND_GROUP
 from libs.testcase_matrix import cppmeta_parser
