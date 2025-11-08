@@ -1398,6 +1398,9 @@ notebook:
     - garsia_wachs: Garsia--Wachs 算法
       code_ext: hpp
       usage_ext: cpp
+    - hamming: Hamming 码
+      code_ext: hpp
+      usage_ext: cpp
     - gray_code: Gray 码
       code_ext: hpp
       usage_ext: cpp

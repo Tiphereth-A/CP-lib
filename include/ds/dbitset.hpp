@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_DS_DBITSET
 #define TIFALIBS_DS_DBITSET
 
+#include "../bit/parity.hpp"
 #include "../util/traits_math.hpp"
 #include "../util/traits_others.hpp"
 
@@ -61,13 +62,37 @@ struct dbitset {
 
  public:
   CEXPE dbitset(usz n, bool val = false) NE { bit_resize(n, val); }
+  CEXP dbitset(usz n, int_c auto val) NE { from_integer(val, n); }
+  template <class F>
+  requires requires(F f) { { f() } -> std::same_as<word_t>; }
+  CEXP dbitset(usz n, F&& gen) NE { set(std::forward<F>(gen), n); }
   CEXP dbitset(strnv s, usz pos = 0, usz n = -1_usz, char zero = '0', char one = '1') NE { set(s, pos, n, zero, one); }
 
+  CEXP dbitset& from_integer(int_c auto val, usz n = -1_usz) NE {
+    const auto nbits = min({sz, n, sizeof(val) * 8});
+    if (bit_resize(nbits); val && !data.empty()) {
+      if CEXP (sizeof(val) * 8 <= word_width) data[0] = (word_t)val & ~mask_outrange(sz);
+      else {
+        for (u32 i = 0; i < data.size() && val; val >>= word_width, ++i) data[i] = (word_t)val;
+        data.back() &= ~mask_outrange(sz);
+      }
+    }
+    return *this;
+  }
   CEXP dbitset& set(strnv s, usz pos = 0, usz n = -1_usz, char = '0', char one = '1') NE {
     const auto nbits = min({sz, n, s.size() - pos});
-    reset(), bit_resize(nbits);
+    bit_resize(nbits);
     for (usz i = nbits; i; --i)
       if (s[pos + nbits - i] == one) set(i - 1);
+    return *this;
+  }
+  template <class F>
+  requires requires(F f) { { f() } -> std::same_as<word_t>; }
+  CEXP dbitset& set(F&& gen, usz n = -1_usz) NE {
+    const auto nbits = min(sz, n);
+    bit_resize(nbits);
+    if (!data.empty())
+      for (auto& i : data) i = gen();
     return *this;
   }
 
@@ -87,6 +112,7 @@ struct dbitset {
     return sz;
   }
 
+  CEXP auto& raw() NE { return data; }
   CEXP word_t CR getword(usz n) CNE { return data[idx_word(n)]; }
   CEXP word_t& getword(usz n) NE { return data[idx_word(n)]; }
   CEXP bool operator[](usz n) CNE { return getword(n) & mask_bit(n); }
@@ -113,8 +139,13 @@ struct dbitset {
     for (const auto i : data) ans += (u32)std::popcount(i);
     return ans;
   }
+  CEXP bool parity() CNE {
+    bool ans = 0;
+    for (const auto i : data) ans ^= bit::parity(i);
+    return ans;
+  }
 
-  CEXP u64 CR bit_size() CNE { return sz; }
+  CEXP u64 CR size() CNE { return sz; }
   CEXP u32 word_size() CNE { return (u32)data.size(); }
   CEXP void bit_resize(usz n, bool val = false) NE {
     data.resize(word_count(sz = n), val ? -1_u64 : 0);
@@ -122,7 +153,7 @@ struct dbitset {
   }
 
 #define OP__(op)                                              \
-  CEXP dbitset& operator op##=(dbitset CR r) NE {             \
+  CEXP dbitset& operator op## = (dbitset CR r)NE {            \
     if (r.sz > sz) data.resize(r.word_size()), sz = r.sz;     \
     if (data.empty()) return *this;                           \
     flt_ (u32, i, 0, r.word_size()) data[i] op## = r.data[i]; \
