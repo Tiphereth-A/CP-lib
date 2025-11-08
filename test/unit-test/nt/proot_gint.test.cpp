@@ -21,7 +21,7 @@ void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> CR pf_v
   mint mint_M = mint{M};
   using gint = math::gint<mint, M>;
   if (mint_M.val() <= 1) return;
-  gint g = math::proot_gint<mint, M>();
+  timer_(gint g = math::proot_gint<mint, M>());
   check_bool(g.real() == 1, check_param(g));
   gint g_qpow = math::qpow(g, mod + 1);
 

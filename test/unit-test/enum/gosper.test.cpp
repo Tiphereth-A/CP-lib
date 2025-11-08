@@ -15,7 +15,7 @@ template <u32 ID>
 void test(u32 n, u32 kmax) {
   using gosper = gosper<ID>;
   math::binom<mint> binom(n);
-  flt_ (u32, k, 1, kmax + 1) {
+  timer_(flt_ (u32, k, 1, kmax + 1) {
     gosper::set(n, k);
     gosper gs;
     u32 cnt = 0, cnt_correct = binom.mCn(n, k).val();
@@ -24,7 +24,7 @@ void test(u32 n, u32 kmax) {
       check((u32)std::popcount(i), k, check_param(n), check_param(k), check_param(std::bitset<64>(i).to_string()));
     }
     check(cnt, cnt_correct, check_param(n), check_param(k));
-  }
+  });
 }
 
 int main() {

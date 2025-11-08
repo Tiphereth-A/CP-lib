@@ -30,7 +30,7 @@ class mint_s63 {
     u64 res = mulh(x, y) - mulh(x * y * R, MOD);
     return res + (MOD & -(res >> 63));
   }
-  static CEXP u64 norm(i64 x) NE { return (u64)x + (MOD & -(x < 0)); }
+  static CEXP u64 norm(i64 x) NE { return (u64)x + (MOD & u64(-(x < 0))); }
 
  public:
   static CEXP bool FIXED_MOD = true;
@@ -47,7 +47,7 @@ class mint_s63 {
     raw_t res = -mulh(this->v_ * R, mod());
     return res + (MOD & -(res >> 63));
   }
-  CEXP raw_t &data() NE { return v_; }
+  CEXP raw_t& data() NE { return v_; }
   template <class mint>
   CEXP auto neg() CNE {
     mint res;

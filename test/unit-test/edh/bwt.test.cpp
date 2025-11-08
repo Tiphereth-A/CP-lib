@@ -12,8 +12,8 @@ rand::gen<char> g('\x21', '\x7f');
 void test(u32 n) {
   strn s(n + 1, '\x20');
   flt_ (u32, i, 1, n + 1) s[i] = g();
-  strn bwt_s = bwt(s);
-  strn bwt_inv_s = bwt_inv(bwt_s);
+  timer_(strn bwt_s = bwt(s));
+  timer_(strn bwt_inv_s = bwt_inv(bwt_s));
   check(bwt_inv_s, s, check_param(bwt_s));
 }
 

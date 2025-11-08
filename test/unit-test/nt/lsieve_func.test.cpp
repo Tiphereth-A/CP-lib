@@ -85,9 +85,9 @@ struct lsieve_func2 {
 
 void test(u32 n) {
   lsieve_bf lsb;
-  lsb.reset_lsieve_bf(n);
+  timer_(lsb.reset_lsieve_bf(n));
 
-  math::lsieve<math::ls_mpf, math::ls_mu, math::ls_phi, math::ls_sigma, math::ls_tau> lsf(n);
+  timer_(math::lsieve<math::ls_mpf, math::ls_mu, math::ls_phi, math::ls_sigma, math::ls_tau> lsf(n));
 
   check(lsf.primes, lsb.prime);
   flt_ (u32, i, 0, n) check(lsf.mpf[i], lsb.mpf[i], check_param(i));
@@ -97,7 +97,7 @@ void test(u32 n) {
   flt_ (u32, i, 0, n) check(lsf.sigma[i], lsb.sigma[i], check_param(i));
 
   lsieve_func2 lsf2;
-  lsf2.reset_lsieve_func2(n);
+  timer_(lsf2.reset_lsieve_func2(n));
 
   flt_ (u32, i, 0, n) check(lsf2.phi[i], lsb.phi[i], check_param(i));
   flt_ (u32, i, 0, n) check(lsf2.tau[i], lsb.tau[i], check_param(i));

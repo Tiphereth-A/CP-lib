@@ -38,7 +38,7 @@ void single_test(u32 n) {
   mat B = inv_A;
   vec<mint> u(n), v = A.data().back();
   flt_ (u32, i, 0, n) u[i] = A(i, n - 1);
-  math::sherman_morrison(B, u, v);
+  timer_(math::sherman_morrison(B, u, v));
   mat A2 = A + A.submat(0, n, n - 1, n) * A.submat(n - 1, n, 0, n);
   flt_ (u32, i, 0, n)
     flt_ (u32, j, 0, n) {

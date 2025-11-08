@@ -37,6 +37,27 @@ void check_bool_(strnv pretty_func, strnv expression, bool res, Ts... param) {
   }
 }
 
+template <class clock_t = std::chrono::high_resolution_clock, class duration_t = std::chrono::microseconds>
+requires specialized_from_v<duration_t, std::chrono::duration>
+struct timer {
+  void tic(int line_num) NE {
+    s_line_num = line_num;
+    const std::lock_guard<std::mutex> lock(s_clock_mutex);
+    s_clock_start = clock_t::now();
+  }
+  void tac() NE {
+    const std::lock_guard<std::mutex> lock(s_clock_mutex);
+    s_clock_end = clock_t::now();
+  }
+  operator strn() { return std::format("{} passed in line {}", std::chrono::duration_cast<duration_t>(s_clock_end - s_clock_start), s_line_num); }
+
+ private:
+  std::mutex s_clock_mutex;
+  std::chrono::time_point<clock_t> s_clock_start, s_clock_end;
+  int s_line_num;
+};
+inline timer default_timer;
+
 }  // namespace detail__
 
 // clang-format off
@@ -85,6 +106,12 @@ inline TC pre_test() NE {
   post_test(p);
   return testcase_id.at(p);
 }
+
+#define timer_(...)                                             \
+  ::tifa_libs::unittest::detail__::default_timer.tic(__LINE__); \
+  __VA_ARGS__;                                                  \
+  ::tifa_libs::unittest::detail__::default_timer.tac();         \
+  std::cerr << (strn)::tifa_libs::unittest::detail__::default_timer << '\n'
 
 #define check(got, want, ...) ::tifa_libs::unittest::detail__::check_(__PRETTY_FUNCTION__, #got, got, #want, want __VA_OPT__(, ) __VA_ARGS__)
 #define check_bool(expression, ...) ::tifa_libs::unittest::detail__::check_bool_(__PRETTY_FUNCTION__, #expression, expression __VA_OPT__(, ) __VA_ARGS__)

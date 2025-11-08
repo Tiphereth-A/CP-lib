@@ -25,13 +25,13 @@ void test(T lim) {
   rand::gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
 
   vec<point<T>> v{point<T>(g(), g()), point<T>(g(), g()), point<T>(g(), g())};
-  single_test(v);
+  timer_(single_test(v));
   v.emplace_back(g(), g());
-  single_test(v);
+  timer_(single_test(v));
   while (v.size() < 10) v.emplace_back(g(), g());
-  single_test(v);
+  timer_(single_test(v));
   while (v.size() < 50) v.emplace_back(g(), g());
-  single_test(v);
+  timer_(single_test(v));
 }
 
 int main() {

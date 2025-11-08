@@ -140,13 +140,13 @@ void test(T lim) {
 
   triangle<T> t(point<T>(g(), g()), point<T>(g(), g()), point<T>(g(), g()));
 
-  test_e(t);
-  test_g(t);
-  test_h(t);
-  test_i(t);
-  test_o(t);
-  test_n(t);
-  test_x(t);
+  timer_(test_e(t));
+  timer_(test_g(t));
+  timer_(test_h(t));
+  timer_(test_i(t));
+  timer_(test_o(t));
+  timer_(test_n(t));
+  timer_(test_x(t));
 }
 
 int main() {

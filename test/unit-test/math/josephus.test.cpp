@@ -26,7 +26,7 @@ void test(u64 n, u64 k) {
   u64 m = std::min(10000_u64, n);
   auto wants = Josephus_bf(n, k, m);
   flt_ (u32, i, 1, m + 1) {
-    u64 got = math::Josephus(n, k, i);
+    timer_(u64 got = math::Josephus(n, k, i));
     check(got, wants[i - 1], check_param(n), check_param(k), check_param(i));
   }
 }

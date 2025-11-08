@@ -33,9 +33,9 @@ void test(u32 n) {
   auto inv_sqrt_1app = math::inv_fps(sqrt_1app);
   auto p_inv_sqrt_1app = (p * inv_sqrt_1app).pre(sz);
 
-  auto [p_cos, p_sin] = math::cossin_fps(p);
-  auto p_asin = math::asin_fps(p);
-  auto p_atan = math::atan_fps(p);
+  timer_(auto [p_cos, p_sin] = math::cossin_fps(p));
+  timer_(auto p_asin = math::asin_fps(p));
+  timer_(auto p_atan = math::atan_fps(p));
 
   check(math::asin_fps(-p), -p_asin, check_param(p));
   check(math::atan_fps(-p), -p_atan, check_param(p));

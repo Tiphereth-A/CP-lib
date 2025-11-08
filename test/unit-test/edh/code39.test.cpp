@@ -12,16 +12,16 @@ rand::gen<u32> g2(0, 43);
 void test(u32 n) {
   strn s(n, '\0');
   for (auto& c : s) c = g();
-  auto v = code39::encode<true>(s);
-  auto d10 = code39::check_digit<false>(v), d43 = code39::check_digit<true>(v);
-  strn t = code39::decode<true>(v);
+  timer_(auto v = code39::encode<true>(s));
+  timer_(auto d10 = code39::check_digit<false>(v), d43 = code39::check_digit<true>(v));
+  timer_(strn t = code39::decode<true>(v));
   check(t, s, check_param(d10), check_param(d43), check_param(v));
 
   strn s2(n, '\0');
   for (auto& c : s2) c = code39::alphabet[g2()];
-  auto v2 = code39::encode(s2);
-  auto d10_2 = code39::check_digit<false>(v2), d43_2 = code39::check_digit<true>(v2);
-  strn t2 = code39::decode(v2);
+  timer_(auto v2 = code39::encode(s2));
+  timer_(auto d10_2 = code39::check_digit<false>(v2), d43_2 = code39::check_digit<true>(v2));
+  timer_(strn t2 = code39::decode(v2));
   check(t2, s2, check_param(d10_2), check_param(d43_2), check_param(v2));
 }
 
