@@ -15,9 +15,20 @@ void test(u64 n) {
   auto m = v.size() - n - 1;
   check_bool(v.size() <= (1_u64 << m), check_param(n), check_param(m), check_param(s.to_string()), check_param(v.to_string()));
 
-  timer_(auto t = hamming::decode(v));
-  check_bool(t.has_value(), check_param(s.to_string()), check_param(v.to_string()));
-  check(t->to_string(), s.to_string(), check_param(v.to_string()));
+  timer_(auto t1 = hamming::decode<false>(v));
+  check(t1.to_string(), s.to_string(), check_param(v.to_string()));
+
+  if (v.size() > 1) {
+    auto v2 = v;
+    rand::gen<u64> g2(1, v.size() - 1);
+    auto pos = g2();
+    v2.flip(pos);
+
+    timer_(auto t2 = hamming::decode<true>(v2));
+    check(v2.to_string(), v.to_string(), check_param(pos));
+    check_bool(t2.has_value(), check_param(pos), check_param(s.to_string()), check_param(v.to_string()));
+    check(t2->to_string(), s.to_string(), check_param(pos), check_param(v.to_string()));
+  }
 }
 
 int main() {

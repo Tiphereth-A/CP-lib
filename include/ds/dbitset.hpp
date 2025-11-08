@@ -69,7 +69,7 @@ struct dbitset {
   CEXP dbitset(strnv s, usz pos = 0, usz n = -1_usz, char zero = '0', char one = '1') NE { set(s, pos, n, zero, one); }
 
   CEXP dbitset& from_integer(int_c auto val, usz n = -1_usz) NE {
-    const auto nbits = min({sz, n, sizeof(val) * 8});
+    const auto nbits = min({n, sizeof(val) * 8});
     if (bit_resize(nbits); val && !data.empty()) {
       if CEXP (sizeof(val) * 8 <= word_width) data[0] = (word_t)val & ~mask_outrange(sz);
       else {
@@ -88,9 +88,8 @@ struct dbitset {
   }
   template <class F>
   requires requires(F f) { { f() } -> std::same_as<word_t>; }
-  CEXP dbitset& set(F&& gen, usz n = -1_usz) NE {
-    const auto nbits = min(sz, n);
-    bit_resize(nbits);
+  CEXP dbitset& set(F&& gen, usz n) NE {
+    bit_resize(n);
     if (!data.empty())
       for (auto& i : data) i = gen();
     return *this;

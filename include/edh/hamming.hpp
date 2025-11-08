@@ -29,26 +29,31 @@ class hamming {
     code.set(0, code.parity());
     return code;
   }
-  // {@code code} will be auto corrected if possible
+  template <bool err_correction = false>  // == true -> auto correction if possible
   static CEXP auto decode(ds::dbitset& code) NE {
     auto const [n, m] = get_nm(code.size());
     std::optional<ds::dbitset> ret;
-    usz err = 0;
-    for (u64 i = code.find_next(0); i < code.size(); i = code.find_next(i)) err ^= i;
-    if (err) {
-      if (!code.parity()) return ret;
-      code.flip(err);
+    if CEXP (err_correction) {
+      usz err = 0;
+      for (u64 i = code.find_next(0); i < code.size(); i = code.find_next(i)) err ^= i;
+      if (err) {
+        retif_((!code.parity()), ret);
+        code.flip(err);
+      }
     }
-    ret.emplace(n);
+    ds::dbitset ans(n);
     ds::dbitset::word_t _ = 0;
     u32 wj = 0;
     flt_ (u64, i, 1, code.size(), j = 0) {
       if (std::has_single_bit(i)) continue;
       if (code[i]) _ |= ((ds::dbitset::word_t)1 << j);
-      if (++j == ds::dbitset::word_width) ret->raw()[wj++] = _, j = _ = 0;
+      if (++j == ds::dbitset::word_width) ans.raw()[wj++] = _, j = _ = 0;
     }
-    if (_) ret->raw()[wj] = _;
-    return ret;
+    if (_) ans.raw()[wj] = _;
+    if CEXP (err_correction) {
+      ret.emplace(ans);
+      return ret;
+    } else return ans;
   }
 };
 }  // namespace tifa_libs
