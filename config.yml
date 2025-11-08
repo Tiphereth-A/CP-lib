@@ -1438,6 +1438,18 @@ notebook:
     - npuzzle_data: N puzzle 数据类
       code_ext: hpp
       usage_ext: cpp
+    - poker_data: 扑克牌数据类
+      code_ext: hpp
+      usage_ext: cpp
+    - mahjong_data: 麻将牌数据类
+      code_ext: hpp
+      usage_ext: cpp
+    - thpoker: 德州扑克
+      code_ext: hpp
+      usage_ext: cpp
+    - mahjong_parser: 麻将手牌分解
+      code_ext: hpp
+      usage_ext: cpp
     fast:
     - rsort32: 32 位整数基数排序
       code_ext: hpp

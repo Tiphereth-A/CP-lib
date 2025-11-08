@@ -9,6 +9,10 @@ template <class C>
 requires(std::is_array_v<C> && std::integral<decltype(std::declval<C>()[0])> && sizeof(std::declval<C>()[0]) == 4) || (std::contiguous_iterator<TPN C::iterator> && std::integral<TPN C::value_type> && sizeof(TPN C::value_type) == 4)
 void rsort32(C& a) NE {
   if (a.size() <= 1) return;
+  if (a.size() <= 200'000) {
+    std::ranges::sort(a);
+    return;
+  }
   u32 _0[256]{}, _1[256]{}, _2[256]{}, _3[256]{};
   const u32 n = (u32)a.size();
   vecu b(n);

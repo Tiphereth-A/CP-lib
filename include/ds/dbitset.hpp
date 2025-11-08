@@ -223,8 +223,10 @@ struct dbitset {
       retif_((data.size() > 1), (T)data[1] << word_width | (T)data[0], (T)data[0]);
     }
   }
-  CEXP u32 to_ulong() CNE { return to_integer<unsigned long>(); }
-  CEXP u64 to_ullong() CNE { return to_integer<unsigned long long>(); }
+  CEXP auto to_u32() CNE { return to_integer<u32>(); }
+  CEXP auto to_u64() CNE { return to_integer<u64>(); }
+  CEXP auto to_ulong() CNE { return to_integer<unsigned long>(); }
+  CEXP auto to_ullong() CNE { return to_integer<unsigned long long>(); }
 
   friend auto& operator>>(istream_c auto& is, dbitset& b) NE {
     strn s;

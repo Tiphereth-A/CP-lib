@@ -31,7 +31,7 @@ int main() {
       case 5: std::cout << (bs & masks[i]).any() << '\n'; break;
       case 6: std::cout << (bs & masks[i]).none() << '\n'; break;
       case 7: std::cout << (bs & masks[i]).count() << '\n'; break;
-      case 8: std::cout << (bs & masks[i]).to_integer<u64>() << '\n'; break;
+      case 8: std::cout << (bs & masks[i]).to_u64() << '\n'; break;
     }
   }
   return 0;

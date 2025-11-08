@@ -1,0 +1,18 @@
+Case 1: 2T 3T 4T 5T
+Case 2: 1T 2T 3T 4T 6T
+Case 3: 1T 2T 3T 4T 5T 6T 7T
+Case 4: 1T 2T 3T 5T
+Case 5: 1T 2T 4T 5T
+Case 6: 1T 3T 4T 5T 6T 7T
+Case 7: 1T 2T 3T
+Case 8: 3T 4T 5T 6T 7T
+Case 9: 1T 3T 4T 5T 6T
+Case 10: 1T 3T 4T 6T 7T
+Case 11: 2T 3T 4T
+Case 12: 1T 4T
+Case 13: 2T 6T
+Case 14: 1S 4S FA
+Case 15: Not ready
+Case 16: 1W 3W 4W 6W 7W 9W
+Case 17: 5W 8W
+Case 18: 7W

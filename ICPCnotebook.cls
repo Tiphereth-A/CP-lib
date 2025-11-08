@@ -40,7 +40,7 @@
 
 % Font setting
 \RequirePackage{fontspec,unicode-math}
-\RequirePackage[CJK,Latin]{ucharclasses}
+\RequirePackage[CJK,Latin,DominoTiles,MahjongTiles]{ucharclasses}
 \setmainfont{Noto Sans}
 \setsansfont{Fira Sans}
 \setmonofont[Contextuals=Alternate]{Fira Code}
@@ -49,11 +49,16 @@
 \setmathsf{CMU Sans Serif}
 \newfontfamily\cnfont{Noto Sans CJK SC}
 \newfontfamily\jpfont{Noto Sans CJK JP}
+\newfontfamily\symbolfont{Noto Sans Symbols 2}
 \setTransitionsForChinese{\begingroup\cnfont}{\endgroup}
 \setTransitionTo{Hiragana}{\begingroup\jpfont}
 \setTransitionFrom{Hiragana}{\endgroup}
 \setTransitionTo{Katakana}{\begingroup\jpfont}
 \setTransitionFrom{Katakana}{\endgroup}
+\setTransitionTo{DominoTiles}{\begingroup\symbolfont}
+\setTransitionFrom{DominoTiles}{\endgroup}
+\setTransitionTo{MahjongTiles}{\begingroup\symbolfont}
+\setTransitionFrom{MahjongTiles}{\endgroup}
 
 % User defined command
 \newcommand{\lcm}{\operatorname{lcm}}

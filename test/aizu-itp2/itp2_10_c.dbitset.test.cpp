@@ -21,7 +21,7 @@ int main() {
       case 5: std::cout << bs.any() << '\n'; break;
       case 6: std::cout << bs.none() << '\n'; break;
       case 7: std::cout << bs.count() << '\n'; break;
-      case 8: std::cout << bs.to_integer<u64>() << '\n'; break;
+      case 8: std::cout << bs.to_u64() << '\n'; break;
     }
   }
   return 0;

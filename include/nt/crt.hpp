@@ -30,6 +30,11 @@ CEXP auto crt(spnii a, spnuu m) NE {
     if (ret = crt_impl_::crt2(safe_mod(a[i], m[i]), m[i], (i64)ret->first, ret->second); !ret) return ret;
   return ret;
 }
+CEXP auto crt(spnuu a, spnuu m) NE {
+  vecii a_(a.size());
+  flt_ (u32, i, 0, (u32)a.size()) a_[i] = (i64)a[i];
+  return crt(a_, m);
+}
 
 }  // namespace tifa_libs::math
 
