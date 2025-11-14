@@ -7,10 +7,7 @@ CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin
 // ---<GENTC>--- append factorial
-// ---<GENTC>--- exclude mints-s30.factorial-fact_helper
-// ---<GENTC>--- exclude mintd-d31.factorial-fact_helper
-// ---<GENTC>--- exclude mints-s63.factorial-fact_helper
-// ---<GENTC>--- exclude mintd-d63.factorial-fact_helper
+// ---<GENTC>--- exclude *.factorial-fact_helper
 // ---<GENTC>--- end
 
 int main() {

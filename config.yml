@@ -939,10 +939,19 @@ notebook:
     - mint_s63: 模整数类(静态,63)
       code_ext: hpp
       usage_ext: cpp
+    - mint_sbrt: 模整数类(静态,Barrett)
+      code_ext: hpp
+      usage_ext: cpp
     - mint_d31: 模整数类(动态,31)
       code_ext: hpp
       usage_ext: cpp
     - mint_d63: 模整数类(动态,63)
+      code_ext: hpp
+      usage_ext: cpp
+    - mint_dbrt: 模整数类(动态,Barrett)
+      code_ext: hpp
+      usage_ext: cpp
+    - barrett: 扩展 Barrett 约减/Shoup 模乘
       code_ext: hpp
       usage_ext: cpp
     - mul_mod: 模乘法
