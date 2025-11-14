@@ -1,4 +1,5 @@
 from copy import deepcopy
+from fnmatch import fnmatch
 import itertools
 import os
 from typing import Iterable
@@ -11,6 +12,8 @@ class case_parser:
     def __init__(self, case_list: Iterable[tuple[str, str]]):
         self._case_list: list[tuple[str, str]] = sorted(case_list,
                                                         key=lambda x: CONFIG_TCGEN.get_priority(x[0]))
+        self._case_tag: str = '.'.join(
+            f"{cat}-{mem}" for cat, mem in self._case_list)
         self._case_dict: list[dict] = [CONFIG_TCGEN.get_member_content(cat, mem)
                                        for cat, mem in self._case_list]
         self._requirement_members_list: list[list[str]] = []
@@ -161,6 +164,15 @@ class testcase_matrix:
             sorted(case, key=lambda x: CONFIG_TCGEN.get_priority(x[0]))))
         return self
 
+    @withlog
+    def exclude_wildcard(self, pattern: str, **kwargs):
+        if not self._all_cases:
+            self.make_all_cases()
+        for index, val in reversed(list(enumerate(self._all_cases))):
+            if fnmatch(val._case_tag, pattern):
+                self._all_cases.pop(index)
+        return self
+
 
 _GENTC_BEGIN = '// ---<GENTC>--- begin\n'
 _GENTC_END = '// ---<GENTC>--- end\n'
@@ -212,8 +224,12 @@ class cppmeta_parser:
                     raise RuntimeError(
                         'Parse error: `GENTC exclude` found before `GENTC append`')
                 excluded = True
-                self._testcase_mat.exclude([tuple(x.split('-')) for x in filter(
-                    lambda x: x, codeline.removeprefix(_GENTC_COMMAND_EXCLIDE).strip().split('.'))])
+                if codeline.find('*') != -1:
+                    self._testcase_mat.exclude_wildcard(codeline.removeprefix(
+                        _GENTC_COMMAND_EXCLIDE).strip())
+                else:
+                    self._testcase_mat.exclude([tuple(x.split('-')) for x in filter(
+                        lambda x: x, codeline.removeprefix(_GENTC_COMMAND_EXCLIDE).strip().split('.'))])
                 continue
 
             raise RuntimeError(
@@ -244,7 +260,7 @@ class cppmeta_parser:
                               for include in case.get_include_list()]
             # after include
             now_codelines += ['\n'] + \
-                             case.get_content_after_include().splitlines(True)
+                case.get_content_after_include().splitlines(True)
             # before main
             now_codelines += self._code_lines[block_end:main_index + 1]
             # main begin
