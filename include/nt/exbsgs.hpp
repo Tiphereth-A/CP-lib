@@ -10,9 +10,20 @@ namespace tifa_libs::math {
 // solve $a^x\equiv b \pmod m$
 inline auto exbsgs(u64 a, u64 b, u64 m) NE {
   std::optional<u64> ret;
-  retif_((m == 0) [[unlikely]], ret);
-  if (a %= m; (b %= m) == 1 || m == 1) {
+  if (m < 64) {
+    ret = dlog_naive(a, b, m);
+    return ret;
+  }
+  if (a %= m, b %= m; b == 1) {
     ret.emplace(0);
+    return ret;
+  }
+  if (!a) {
+    if (!b) ret.emplace(1);
+    return ret;
+  }
+  if (a == 1) {
+    if (b == 1) ret.emplace(0);
     return ret;
   }
   u64 cnt = 0, t = 1;

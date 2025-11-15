@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_MATH_QTETRA_MOD
 #define TIFALIBS_MATH_QTETRA_MOD
 
-#include "../nt/euler_phi_u64.hpp"
+#include "../nt/euler_phi.hpp"
 
 namespace tifa_libs::math {
 namespace qtetra_mod_impl_ {
@@ -23,7 +23,7 @@ CEXP u64 qtetra(u64 a, u64 b, u64 m, u64 &f) NE {
   if (m == 1) return f = 1;
   if (a == 1 || b == 0) return 1;
   if (b == 1) return a % m + (f |= (a >= m)) * m;
-  u64 z = qtetra(a, b - 1, euler_phi_u64(m), f), r = mpow(a, z, m, f);
+  u64 z = qtetra(a, b - 1, euler_phi(m), f), r = mpow(a, z, m, f);
   return r + f * m;
 }
 }  // namespace qtetra_mod_impl_

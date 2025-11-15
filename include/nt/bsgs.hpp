@@ -5,14 +5,29 @@
 #include "../math/isqrt.hpp"
 #include "../math/qpow_mod.hpp"
 #include "../util/alias_others.hpp"
+#include "dlog_naive.hpp"
 
 namespace tifa_libs::math {
 
 // solve $a^x\equiv b \pmod m$
-//! $\gcd(a, m) = 1$ required
 inline auto bsgs(u64 a, u64 b, u64 m) NE {
-  a %= m, b %= m;
   std::optional<u64> ret;
+  if (m < 64) {
+    ret = dlog_naive(a, b, m);
+    return ret;
+  }
+  if (a %= m, b %= m; m == 1 || b == 1) {
+    ret.emplace(0);
+    return ret;
+  }
+  if (!a) {
+    if (!b) ret.emplace(1);
+    return ret;
+  }
+  if (a == 1) {
+    if (b == 1) ret.emplace(0);
+    return ret;
+  }
   hmap<u64, u64> hmp;
   barrett<0> brt(m, a);
   u64 sqrt_m = isqrt(m), s = brt.reduce(b);

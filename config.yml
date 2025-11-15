@@ -797,10 +797,10 @@ notebook:
       code_ext: hpp
       usage_ext: cpp
     nt:
-    - euler_phi_u32: Euler 函数(32 位)
+    - euler_phi: Euler 函数
       code_ext: hpp
       usage_ext: cpp
-    - euler_phi_u64: Euler 函数(64 位)
+    - carmichael: Carmichael 函数
       code_ext: hpp
       usage_ext: cpp
     - gcd_mpi: 高精度整数 GCD
@@ -858,6 +858,9 @@ notebook:
       code_ext: hpp
       usage_ext: cpp
     - proot_gint: 原根(Gauss 整数)
+      code_ext: hpp
+      usage_ext: cpp
+    - dlog_naive: 离散对数(暴力)
       code_ext: hpp
       usage_ext: cpp
     - bsgs: 离散对数(BSGS)

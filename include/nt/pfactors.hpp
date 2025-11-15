@@ -30,7 +30,7 @@ CEXP u64 rho(u64 n) NE {
     } while (g == 1);
   retif_((g == n), rho(n), g);
 }
-CEXP void run(u64 n, vecuu &p) NE {
+CEXP void run(u64 n, vecuu& p) NE {
   if (n < 2) return;
   if (is_prime(n)) return p.push_back(n);
   const u64 g = rho(n);
@@ -46,6 +46,14 @@ CEXP vecuu pfactors(u64 n) NE {
     if CEXP (unique) p.push_back(2);
     else p.assign(_, 2);
   }
+  if (n < 1000'000)
+    for (u32 i = 3; i <= n; ++i) {
+      if (n % i) continue;
+      if CEXP (unique) p.push_back(i);
+      do {
+        if CEXP (n /= i; !unique) p.push_back(i);
+      } while (!(n % i));
+    }
   if (n < 2) return p;
   pfactors_impl_::run(n, p);
   if CEXP (unique) return uniq(p);
