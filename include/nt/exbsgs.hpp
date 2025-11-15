@@ -23,7 +23,7 @@ inline auto exbsgs(u64 a, u64 b, u64 m) NE {
       return ret;
     }
   }
-  if (ret = bsgs(a, b * inverse(t, m) % m, m); ret) ret.value() += cnt;
+  if (ret = bsgs(a, b * inverse(t, m), m); ret) ret.value() += cnt;
   return ret;
 }
 

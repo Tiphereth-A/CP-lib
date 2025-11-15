@@ -1,6 +1,7 @@
 #ifndef TIFALIBS_COMB_GEN_IPOWI
 #define TIFALIBS_COMB_GEN_IPOWI
 
+#include "../math/barrett.hpp"
 #include "../math/isqrt.hpp"
 #include "../math/qpow_mod.hpp"
 #include "../nt/lsieve.hpp"
@@ -25,17 +26,20 @@ struct ls_ipowi {
   void prime(u32 p) NE {
     if (ipowi[p] = qpow_mod(p, p, mod); p <= B) {
       fp[p][0] = 1;
+      barrett<0> brt(mod, ipowi[p]);
       flt_ (u32, j, 1, B + 1)
-        fp[p][j] = mul_mod_u(fp[p][j - 1], ipowi[p], mod);
+        fp[p][j] = brt.reduce(fp[p][j - 1]);
       fpb[p][0] = 1;
+      brt.reset(mod, fp[p].back());
       flt_ (u32, j, 1, B + 1)
-        fpb[p][j] = mul_mod_u(fpb[p][j - 1], fp[p].back(), mod);
+        fpb[p][j] = brt.reduce(fpb[p][j - 1]);
     }
   }
   void coprime(u32 i, u32 j) NE {
     if (j <= pre_j) now_r = 1, pre_j = gap = 0;
+    barrett<0> brt(mod, ipowi[i]);
     if (u32 new_gap = j - pre_j; new_gap > gap) {
-      flt_ (u32, x, gap + 1, new_gap + 1) p[x] = mul_mod_u(p[x - 1], ipowi[i], mod);
+      flt_ (u32, x, gap + 1, new_gap + 1) p[x] = brt.reduce(p[x - 1]);
       gap = new_gap;
     }
     now_r = mul_mod_u(now_r, p[j - pre_j], mod);

@@ -17,7 +17,7 @@ void single_test(u64 b, u32 mod, auto brt) {
     unittest::default_timer.tac();
     cnt_brt += unittest::default_timer.passed();
     unittest::default_timer.tic(__LINE__);
-    auto want = u32(a * b % mod);
+    auto want = a * b % mod;
     unittest::default_timer.tac();
     cnt_bf += unittest::default_timer.passed();
     check(got, want, check_param(a), check_param(b), check_param(mod));

@@ -2,6 +2,7 @@
 #define TIFALIBS_MATH_RPOW
 
 #include "../util/alias_others.hpp"
+#include "barrett.hpp"
 #include "mul_mod.hpp"
 
 namespace tifa_libs::math {
@@ -17,9 +18,11 @@ class rpow {
   CEXP void reset(u64 base, u32 mod) NE {
     if (b_ == base % mod && m_ == mod) return;
     b_ = base % mod, m_ = mod, b0[0] = b1[0] = 1;
-    flt_ (u32, i, 1, 65536) b0[i] = mul_mod_u(b0[i - 1], b_, m_);
-    u64 _(mul_mod_u(b0.back(), b_, m_));
-    flt_ (u32, i, 1, 65536) b1[i] = mul_mod_u(b1[i - 1], _, m_);
+    barrett<0> brt(m_, b_);
+    flt_ (u32, i, 1, 65536) b0[i] = brt.reduce(b0[i - 1]);
+    u64 _ = brt.reduce(b0.back());
+    brt.reset(m_, _);
+    flt_ (u32, i, 1, 65536) b1[i] = brt.reduce(b1[i - 1]);
   }
   CEXP void swap(rpow& r) NE {
     b0.swap(r.b0), b1.swap(r.b1);
