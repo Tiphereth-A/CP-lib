@@ -10,7 +10,7 @@
 
 namespace tifa_libs {
 
-//! UB if EOF occured during reading
+//! UB if EOF occurred during reading
 class fastin {
   CEXP static u32 BUF = 0x200005;
   FILE *f_ = nullptr;

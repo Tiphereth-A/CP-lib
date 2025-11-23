@@ -56,7 +56,7 @@ If you want to add a new implementation, it is recommended to run `python manage
 
 After you finished your changes, you can run `python manager.py run` to generate the printable document. This will lint all supported codes, compile codes in `usage/*`, link all TeX files for building PDF, and clean nonessential files after building. You can disable any procedure by options listed in help messages.
 
-## Directoies
+## Directories
 
 Some folders have been given specific functions to make manage script works happy:
 

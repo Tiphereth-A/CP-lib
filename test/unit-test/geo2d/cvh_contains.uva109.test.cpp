@@ -21,17 +21,17 @@ strn single_proceed(std::istream& fin) {
     vpolys.back().init();
   }
   auto sz = vpolys.size();
-  vecb destroied(sz);
-  math::kahan<data_t> destroied_area = 0;
+  vecb destroyed(sz);
+  math::kahan<data_t> destroyed_area = 0;
   Point2 missile;
   while (fin >> missile) {
     flt_ (usz, i, 0, sz)
-      if (!destroied[i] && vpolys[i].contains(missile)) {
-        destroied[i] = true;
-        destroied_area += vpolys[i].area();
+      if (!destroyed[i] && vpolys[i].contains(missile)) {
+        destroyed[i] = true;
+        destroyed_area += vpolys[i].area();
       }
   }
-  ss << destroied_area << '\n';
+  ss << destroyed_area << '\n';
 
   return ss.str();
 }

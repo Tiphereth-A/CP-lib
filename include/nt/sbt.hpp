@@ -15,14 +15,13 @@ class sbt {
  public:
   CEXP sbt() NE : lx{0}, ly{1}, x{1}, y{1}, rx{1}, ry{0} {}
   CEXPE sbt(spn<T> seq_) NE : sbt() {
-    for (auto d : seq_) {
-      if (assert(d != 0); d > 0) movr(d);
-      if (d < 0) movl(d);
-    }
+    for (auto d : seq_)
+      if (assert(d); d > 0) movr(d);
+      else movl(d);
   }
   CEXP sbt(T x_, T y_) NE : sbt() {
     assert(x_ > 0 && y_ > 0);
-    if (T g = gcd(x_, y_); g > 1) x_ /= g, y_ /= g;
+    if (auto g = gcd(x_, y_); g > 1) x_ /= (T)g, y_ /= (T)g;
     while (min(x_, y_))
       if (x_ > y_) {
         const T _ = x_ / y_;
@@ -42,28 +41,28 @@ class sbt {
   CEXP vec<T> path() CNE { return seq; }
   CEXP T dep() CNE {
     T res = 0;
-    for (auto &&s : seq) res += abs(s);
+    for (auto&& s : seq) res += abs(s);
     return res;
   }
   // move towards lchild with @d steps
   CEXP void movl(T d = 1) NE {
-    if (d <= 0) return;
+    retif_((d <= 0) [[unlikely]], );
     if (seq.empty() || seq.back() > 0) seq.push_back(0);
     seq.back() -= d, rx += lx * d, ry += ly * d, x = rx + lx, y = ry + ly;
   }
   // move towards rchild with @d steps
   CEXP void movr(T d = 1) NE {
-    if (d <= 0) return;
+    retif_((d <= 0) [[unlikely]], );
     if (seq.empty() || seq.back() < 0) seq.push_back(0);
     seq.back() += d, lx += rx * d, ly += ry * d, x = rx + lx, y = ry + ly;
   }
   // move towards fa with @d steps
-  // @return true if succeed, or false if falied
+  // @return true if succeed, or false if failed
   CEXP bool movf(T d = 1) NE {
     retif_((d <= 0) [[unlikely]], true);
     while (d) {
       if (seq.empty()) return false;
-      T _ = min(d, abs(seq.back()));
+      const T _ = min(d, abs(seq.back()));
       if (seq.back() > 0) x -= rx * _, y -= ry * _, lx = x - rx, ly = y - ry, seq.back() -= _;
       else x -= lx * _, y -= ly * _, rx = x - lx, ry = y - ly, seq.back() += _;
       if (d -= _; !seq.back()) seq.pop_back();
@@ -73,11 +72,11 @@ class sbt {
   }
   static CEXP sbt lca(sbt CR l, sbt CR r) NE {
     sbt ret;
-    for (u32 i = 0; i < min((u32)l.seq.size(), (u32)r.seq.size()); ++i) {
+    flt_ (u32, i, 0, (u32)min(l.seq.size(), r.seq.size())) {
       T val1 = l.seq[i], val2 = r.seq[i];
-      if ((val1 < 0) != (val2 < 0)) break;
+      if ((val1 < 0) ^ (val2 < 0)) break;
       if (val1 < 0) ret.movl(min(-val1, -val2));
-      if (val1 > 0) ret.movr(min(val1, val2));
+      else ret.movr(min(val1, val2));
       if (val1 != val2) break;
     }
     return ret;

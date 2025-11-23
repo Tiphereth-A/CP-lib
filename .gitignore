@@ -513,6 +513,7 @@ TSWLatexianTemp*
 _gen/
 _pdf_out/
 .competitive-verifier/
+.debug/
 local/
 fonts/
 

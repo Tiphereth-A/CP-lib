@@ -22,15 +22,15 @@ x = decimal.Decimal('50.5679'). \
 print('%f' % x)  # 这样做只有 float 的精度
 s = str(x)
 
-decimal.is_finate(x)  # x 是否有穷 (NaN 也算)
-decimal.is_infinate(x)
-decimal.is_nan(x)
-decimal.is_normal(x)  # x 是否正常
-decimal.is_signed(x)  # 是否为负数
+x.is_finite()  # x 是否有穷 (NaN 也算)
+x.is_infinite()
+x.is_nan()
+x.is_normal()  # x 是否正常
+x.is_signed()  # 是否为负数
 
 a, b, c = decimal.Decimal(1), decimal.Decimal(2), decimal.Decimal(3)
 
-decimal.fma(a, b, c)  # a * b + c, 精度更高
+a.fma(b, c)  # a * b + c, 精度更高
 
 x.exp(), x.ln(), x.sqrt(), x.log10()
 

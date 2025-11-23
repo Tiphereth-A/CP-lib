@@ -9,14 +9,14 @@ namespace tifa_libs::math {
 template <mint_c mint>
 struct fact_helper {
   using val_t = mint;
-  static CEXP u32 DEFUALT_MAX = 10'000'001;
+  static CEXP u32 DEFAULT_MAX = 10'000'001;
   static CEXP u64 mod() NE { return val_t::mod(); }
   static inline vec<val_t> fact, ifact;
 
   fact_helper() = delete;
 
   // ensure fact.size() >= sz
-  static CEXP void ensure(u32 sz = DEFUALT_MAX) NE {
+  static CEXP void ensure(u32 sz = DEFAULT_MAX) NE {
     if (sz = max(2_u32, min((u32)mod(), sz)); sz <= fact.size()) return;
     u32 pre = (u32)fact.size();
     fact.resize(sz), ifact.resize(sz);

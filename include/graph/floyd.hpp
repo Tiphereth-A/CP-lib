@@ -7,7 +7,7 @@
 namespace tifa_libs::graph {
 
 //! will change input graph
-// @return false if invalid (has nagative cycle), otherwise true
+// @return false if invalid (has negative cycle), otherwise true
 template <class T, bool with_deg>
 CEXP bool floyd(amat<T, with_deg>& g, T INF = inf_v<T>) NE {
   u32 n = (u32)g.g.size();

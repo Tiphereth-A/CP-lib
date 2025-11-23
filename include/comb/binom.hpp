@@ -10,7 +10,7 @@ requires std::same_as<mint, TPN fact::val_t>
 struct binom {
   using fact_t = fact;
 
-  CEXPE binom(u32 max_m = fact::DEFUALT_MAX) NE { fact::ensure(max_m + 1); }
+  CEXPE binom(u32 max_m = fact::DEFAULT_MAX) NE { fact::ensure(max_m + 1); }
 
   // $\binom{m}{n}$
   CEXP mint mCn(uint_c auto m, uint_c auto n) CNE { retif_((m < n) [[unlikely]], 0, mPn(m, n) * fact::get_ifact(n)); }

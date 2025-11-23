@@ -22,7 +22,7 @@ class Youngt {
 
   // height() == len(longest non-decresing seq.)
   CEXP u32 height() CNE { return (u32)d.size(); }
-  // width() == len(longest incresing seq.)
+  // width() == len(longest increasing seq.)
   CEXP u32 width() CNE { return (u32)d[0].size(); }
   CEXP u32 CR size() CNE { return n; }
   CEXP vvecu& data() NE { return d; }

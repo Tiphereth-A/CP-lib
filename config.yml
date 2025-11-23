@@ -1480,7 +1480,7 @@ notebook:
       usage_ext: cpp
 cheatsheets:
   nt-const: 初等数论常数表
-  seqences: 常见数列
+  sequences: 常见数列
   oeis-seq: 常用 OEIS 数列
   formula: 常用公式
   decimal: Python Decimal

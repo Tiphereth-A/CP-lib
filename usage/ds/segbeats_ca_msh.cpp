@@ -18,7 +18,7 @@ int main() {
       if (opt == 1) seg.add(1, 0, n - 1, l, r, k);
       else seg.chmin(1, 0, n - 1, l, r, k);
     } else {
-      if (opt == 3) std::cout << seg.querys(1, 0, n - 1, l, r) << '\n';
+      if (opt == 3) std::cout << seg.queries(1, 0, n - 1, l, r) << '\n';
       else if (opt == 4) std::cout << seg.querymax(1, 0, n - 1, l, r) << '\n';
       else std::cout << seg.queryhismax(1, 0, n - 1, l, r) << '\n';
     }

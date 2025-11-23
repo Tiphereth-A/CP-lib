@@ -11,7 +11,7 @@ struct qbinom : binom<mint, fact> {
   using fact_t = fact;
   vec<mint> qfact, iqfact;
 
-  CEXPE qbinom(u32 q, u32 max_m = fact::DEFUALT_MAX) NE : binom<mint, fact>(max_m), qfact(2) {
+  CEXPE qbinom(u32 q, u32 max_m = fact::DEFAULT_MAX) NE : binom<mint, fact>(max_m), qfact(2) {
     assert(q), qfact[0] = qfact[1] = 1;
     mint x = 1;
     flt_ (u32, i, 2, max_m + 1)

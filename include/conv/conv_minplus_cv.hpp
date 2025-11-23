@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 //! assume a is convex, aka. $a_{i-1} - a_{i-2} \leq a_i - a_{i-1}$
-//! assume b is arbitary, aka. $b_i = b_j \iff i = j$
+//! assume b is arbitrary, aka. $b_i = b_j \iff i = j$
 template <class T>
 CEXP vec<T> conv_minplus_cv(vec<T> CR a, vec<T> CR b) NE {
   const u32 n = (u32)a.size(), m = (u32)b.size();

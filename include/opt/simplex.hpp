@@ -10,7 +10,7 @@ struct LPSolver {
 #define ltj(X) \
   if (!~s || std::make_pair(X[j], N[j]) < std::make_pair(X[s], N[s])) s = j
   static CEXP T inf = 1 / .0;
-  int m, n;   // # m = contraints, # n = variables
+  int m, n;   // # m = constraints, # n = variables
   veci N, B;  // N[j] = non-basic variable (j-th column), = 0
   vvec<T> D;  // B[j] = basic variable (j-th row)
   CEXP LPSolver(vvec<T> CR A, vec<T> CR b, vec<T> CR c) NE : m{sz(b)}, n{sz(c)}, N(n + 1), B(m), D(m + 2, vec<T>(n + 2)) {

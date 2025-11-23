@@ -8,8 +8,8 @@ namespace tifa_libs::graph {
 
 // @param update(now): update data of node %now
 // @param query(now): answer queries of subtree %now
-// @param clear(now): reset data of node %now (if necesarry)
-// @param reset(): reset data related to all (if necesarry)
+// @param clear(now): reset data of node %now (if necessary)
+// @param reset(): reset data related to all (if necessary)
 template <class Fu, class Fq, class Fc, class Fr>
 requires requires(Fu update, Fq query, Fc clear, Fr reset, u32 now) {
   update(now);

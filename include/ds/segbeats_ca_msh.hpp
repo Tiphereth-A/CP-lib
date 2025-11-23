@@ -50,13 +50,13 @@ class segbeats_ca_msh {
     if (R > mid) chmin(x * 2 + 1, mid + 1, r, L, R, k);
     pushup(x);
   }
-  CEXP T1 querys(u32 x, u32 l, u32 r, u32 L, u32 R) NE {
+  CEXP T1 queries(u32 x, u32 l, u32 r, u32 L, u32 R) NE {
     if (assert(R >= l && L <= r); L <= l && r <= R) return t[x].sum;
     pushdown(x, l, r);
     u32 mid = l + (r - l) / 2;
     T1 ret = 0;
-    if (L <= mid) ret = querys(x * 2, l, mid, L, R);
-    if (R > mid) ret += querys(x * 2 + 1, mid + 1, r, L, R);
+    if (L <= mid) ret = queries(x * 2, l, mid, L, R);
+    if (R > mid) ret += queries(x * 2 + 1, mid + 1, r, L, R);
     return ret;
   }
   CEXP T querymax(u32 x, u32 l, u32 r, u32 L, u32 R) NE {
