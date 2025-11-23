@@ -514,6 +514,7 @@ _gen/
 _pdf_out/
 .competitive-verifier/
 local/
+fonts/
 
 /out*.cpp
 /*.out

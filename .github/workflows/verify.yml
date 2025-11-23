@@ -27,6 +27,9 @@ on:
       ignore_prev_result:
         type: boolean
         default: false
+      cleanup_before_verify:
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -137,12 +140,13 @@ jobs:
           echo "::endgroup::"
 
       - name: Clean up
+        if: ${{ inputs.cleanup_before_verify }}
         run: |
-          rm -rf fonts
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
           sudo docker image prune --all --force
 
       - name: Get storage information after cleaning up
+        if: ${{ inputs.cleanup_before_verify }}
         run: |
           echo "::group::free"
           free

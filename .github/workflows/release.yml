@@ -49,14 +49,27 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-          cache: 'pip'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+      - name: Install Python dependencies
+        run: uv sync
       - name: Generate TeX files
         run: |
-          pip install uv
-          uv sync
           uv run python manager.py -l DEBUG gen-cs
           uv run python manager.py -l DEBUG gen-nb
+      - name: Download fonts
+        run: |
+            chmod +x script/download_fonts.sh
+            echo "::group::Downloading fonts"
+            ./script/download_fonts.sh
+            echo "::endgroup::"
+            echo "::group::Downloaded fonts list"
+            ls -l fonts
+            echo "::endgroup::"
       - name: Build the LaTeX document
+        id: build-latex
         uses: xu-cheng/latex-action@v4
         with:
           latexmk_use_xelatex: true
@@ -75,7 +88,18 @@ jobs:
             fc-cache -f
             echo "::endgroup::"
           root_file: notebook.tex
-      - name: Upload Artifacts
+      - name: Upload LaTeX logs to artifacts
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: latex-logs
+          path: |
+            notebook.log
+            notebook.aux
+            notebook.fdb_latexmk
+            notebook.fls
+            notebook.out
+      - name: Upload PDF to artifacts
         uses: actions/upload-artifact@v5
         with:
           name: result
