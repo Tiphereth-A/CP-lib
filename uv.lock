@@ -140,7 +140,7 @@ wheels = [
 
 [[package]]
 name = "competitive-verifier"
-version = "3.3.1"
+version = "3.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "appdirs" },
@@ -153,9 +153,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/89/e9/4b95f87d510f0bef23e1ea5a20a4faecc06ba40253586ee339d45df95b67/competitive_verifier-3.3.1.tar.gz", hash = "sha256:d3e4930c1aebfed4b353e1625e76884487df12748f16f175a59d04cc4678cd38", size = 152063, upload-time = "2025-01-22T03:32:35.865Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1a/8e/d023d9617d45b4f46b5bd2c07422115e5321783ad17996fd9257a91c1d37/competitive_verifier-3.4.0.tar.gz", hash = "sha256:6f6065073bd08f232a4b022e8329db0e7316fc812ec7faba469a0b87cb24a490", size = 152470, upload-time = "2025-11-23T08:13:09.161Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/dc/50/480e891f024c43cdc012b754af77593c4016f0f585b1429a3d294226d380/competitive_verifier-3.3.1-py3-none-any.whl", hash = "sha256:9254e5e33c7dafbfd0f120740a8b5aa48d7572a7aec881de77b2bb28a97309ac", size = 168653, upload-time = "2025-01-22T03:32:34.59Z" },
+    { url = "https://files.pythonhosted.org/packages/36/4e/7c90821a18664e1cfa7553b0f8330e663153d55aea5e04a2eea77b090177/competitive_verifier-3.4.0-py3-none-any.whl", hash = "sha256:94053709527e251087a1be73df10ad319f8b217e9f0ce211b325bcaed2bceaf6", size = 168928, upload-time = "2025-11-23T08:13:07.684Z" },
 ]
 
 [[package]]
