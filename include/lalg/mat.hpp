@@ -23,25 +23,25 @@ class matrix {
   CEXP u32 row() CNE { return (u32)d.size(); }
   CEXP u32 col() CNE { return (u32)d[0].size(); }
   CEXP vvec<T> CR data() CNE { return d; }
-  CEXP vvec<T> &data() NE { return d; }
+  CEXP vvec<T>& data() NE { return d; }
   CEXP TPN vec<T>::reference operator()(u32 r, u32 c) NE { return d[r][c]; }
   CEXP TPN vec<T>::const_reference operator()(u32 r, u32 c) CNE { return d[r][c]; }
   template <class F>
-  CEXP void apply(F &&f) NE { apply_range(0, row(), 0, col(), std::forward<F>(f)); }
+  CEXP void apply(F&& f) NE { apply_range(0, row(), 0, col(), std::forward<F>(f)); }
   template <class F>
-  requires requires(F f, u32 i, u32 j, T &val) { f(i, j, val); }
-  CEXP void apply_range(u32 row_l, u32 row_r, u32 col_l, u32 col_r, F &&f) NE {
+  requires requires(F f, u32 i, u32 j, T& val) { f(i, j, val); }
+  CEXP void apply_range(u32 row_l, u32 row_r, u32 col_l, u32 col_r, F&& f) NE {
     assert(row_l < row_r && row_r <= row() && col_l < col_r && col_r <= col());
     T val;
     FOR2_ (i, row_l, row_r, j, col_l, col_r) f(i, j, val = (*this)(i, j)), (*this)(i, j) = val;
   }
 
-  friend auto &operator>>(istream_c auto &is, matrix &mat) NE {
+  friend auto& operator>>(istream_c auto& is, matrix& mat) NE {
     const u32 r_ = mat.row(), c_ = mat.col();
     FOR2_ (i, 0, r_, j, 0, c_) is >> mat(i, j);
     return is;
   }
-  friend auto &operator<<(ostream_c auto &os, matrix CR mat) NE {
+  friend auto& operator<<(ostream_c auto& os, matrix CR mat) NE {
     const u32 r_ = mat.row(), c_ = mat.col();
     FOR2_ (i, 0, r_ - 1, j, 0, c_) os << mat(i, j) << " \n"[j + 1 == c_];
     os << mat(r_ - 1, 0);
@@ -66,45 +66,45 @@ class matrix {
     if CEXP (std::is_same_v<T, bool>) return *this;
     else {
       matrix ret = *this;
-      ret.apply([](u32, u32, T &v) NE { v = -v; });
+      ret.apply([](u32, u32, T& v) NE { v = -v; });
       return ret;
     }
   }
   friend CEXP matrix operator+(matrix l, cT_(T) v) NE { return l += v; }
   friend CEXP matrix operator+(cT_(T) v, matrix l) NE { return l += v; }
-  CEXP matrix &operator+=(cT_(T) v) NE {
-    if CEXP (std::is_same_v<T, bool>) apply([&v](u32, u32, auto &val) NE { val = val ^ v; });
-    else apply([&v](u32, u32, T &val) NE { val += v; });
+  CEXP matrix& operator+=(cT_(T) v) NE {
+    if CEXP (std::is_same_v<T, bool>) apply([&v](u32, u32, auto& val) NE { val = val ^ v; });
+    else apply([&v](u32, u32, T& val) NE { val += v; });
     return *this;
   }
   friend CEXP matrix operator-(matrix l, cT_(T) v) NE { return l -= v; }
-  CEXP matrix &operator-=(cT_(T) v) NE {
-    if CEXP (std::is_same_v<T, bool>) apply([&v](u32, u32, auto &val) NE { val = val ^ v; });
-    else apply([&v](u32, u32, T &val) NE { val -= v; });
+  CEXP matrix& operator-=(cT_(T) v) NE {
+    if CEXP (std::is_same_v<T, bool>) apply([&v](u32, u32, auto& val) NE { val = val ^ v; });
+    else apply([&v](u32, u32, T& val) NE { val -= v; });
     return *this;
   }
   friend CEXP matrix operator*(matrix l, cT_(T) v) NE { return l *= v; }
   friend CEXP matrix operator*(cT_(T) v, matrix l) NE { return l *= v; }
-  CEXP matrix &operator*=(cT_(T) v) NE {
+  CEXP matrix& operator*=(cT_(T) v) NE {
     if CEXP (std::is_same_v<T, bool>) {
       if (!v)
-        for (auto &i : d) fill(i, false);
+        for (auto& i : d) fill(i, false);
       return *this;
-    } else apply([&v](u32, u32, T &val) NE { val *= v; });
+    } else apply([&v](u32, u32, T& val) NE { val *= v; });
     return *this;
   }
   friend CEXP matrix operator+(matrix l, matrix CR r) NE { return l += r; }
-  CEXP matrix &operator+=(matrix CR r) NE {
+  CEXP matrix& operator+=(matrix CR r) NE {
     assert(row() == r.row() && col() == r.col());
-    if CEXP (std::is_same_v<T, bool>) apply([&r](u32 i, u32 j, auto &val) NE { val = val ^ r(i, j); });
-    else apply([&r](u32 i, u32 j, T &val) NE { val += r(i, j); });
+    if CEXP (std::is_same_v<T, bool>) apply([&r](u32 i, u32 j, auto& val) NE { val = val ^ r(i, j); });
+    else apply([&r](u32 i, u32 j, T& val) NE { val += r(i, j); });
     return *this;
   }
   friend CEXP matrix operator-(matrix l, matrix CR r) NE { return l -= r; }
-  CEXP matrix &operator-=(matrix CR r) NE {
+  CEXP matrix& operator-=(matrix CR r) NE {
     assert(row() == r.row() && col() == r.col());
-    if CEXP (std::is_same_v<T, bool>) apply([&r](u32 i, u32 j, auto &val) NE { val = val ^ r(i, j); });
-    else apply([&r](u32 i, u32 j, T &val) NE { val -= r(i, j); });
+    if CEXP (std::is_same_v<T, bool>) apply([&r](u32 i, u32 j, auto& val) NE { val = val ^ r(i, j); });
+    else apply([&r](u32 i, u32 j, T& val) NE { val -= r(i, j); });
     return *this;
   }
   friend CEXP matrix operator*(matrix CR l, matrix CR r) NE {
@@ -118,7 +118,7 @@ class matrix {
           else ret(i, k) += l(i, j) * r(j, k);
     return ret;
   }
-  CEXP matrix &operator*=(matrix CR r) NE { return *this = *this * r; }
+  CEXP matrix& operator*=(matrix CR r) NE { return *this = *this * r; }
   CEXP vec<T> lproj(spn<T> x) CNE {
     const u32 r_ = row(), c_ = col();
     assert(r_ == x.size());

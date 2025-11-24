@@ -7,8 +7,8 @@ CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin
 // ---<GENTC>--- append factorial
-// ---<GENTC>--- exclude mintd-d63.*
-// ---<GENTC>--- exclude mints-s*
+// ---<GENTC>--- exclude mintd-md64.*
+// ---<GENTC>--- exclude mints-*
 // ---<GENTC>--- end
 
 int main() {

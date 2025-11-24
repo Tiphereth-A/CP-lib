@@ -25,7 +25,7 @@ class mint_2e61n1 {
   // clang-format on
   static CEXP raw_t mod() NE { return MOD; }
   CEXP raw_t val() CNE { return v_; }
-  CEXP raw_t &data() NE { return v_; }
+  CEXP raw_t& data() NE { return v_; }
   template <class mint>
   CEXP auto neg() CNE { return mint(MOD - val()); }
   CEXP void add(mint_2e61n1 CR r) NE { data() = mod(val() + r.val()); }

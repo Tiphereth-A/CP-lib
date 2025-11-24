@@ -14,25 +14,25 @@ struct point {
   CEXP point() = default;
   CEXP point(FP x, FP y) NE : x{x}, y{y} {}
 
-  friend auto &operator>>(istream_c auto &is, point &p) NE { return is >> p.x >> p.y; }
-  friend auto &operator<<(ostream_c auto &os, point CR p) NE { return os << p.x << ' ' << p.y; }
+  friend auto& operator>>(istream_c auto& is, point& p) NE { return is >> p.x >> p.y; }
+  friend auto& operator<<(ostream_c auto& os, point CR p) NE { return os << p.x << ' ' << p.y; }
   // s + (t - s) * r
   template <std::floating_point T>
   friend CEXP point lerp(point CR s, point CR t, T r) NE { return s + (t - s) * r; }
   friend CEXP point mid_point(point CR s, point CR t) NE { return lerp(s, t, .5); }
-  CEXP point &operator+=(arithm_c auto n) NE {
+  CEXP point& operator+=(arithm_c auto n) NE {
     this->x += n, this->y += n;
     return *this;
   }
-  CEXP point &operator-=(arithm_c auto n) NE {
+  CEXP point& operator-=(arithm_c auto n) NE {
     this->x -= n, this->y -= n;
     return *this;
   }
-  CEXP point &operator*=(arithm_c auto n) NE {
+  CEXP point& operator*=(arithm_c auto n) NE {
     this->x *= n, this->y *= n;
     return *this;
   }
-  CEXP point &operator/=(arithm_c auto n) NE {
+  CEXP point& operator/=(arithm_c auto n) NE {
     this->x /= n, this->y /= n;
     return *this;
   }
@@ -44,11 +44,11 @@ struct point {
   friend CEXP point operator*(arithm_c auto n, point x) NE { return x *= n; }
   friend CEXP point operator/(point x, arithm_c auto n) NE { return x /= n; }
   friend CEXP point operator/(arithm_c auto n, point x) NE { return x /= n; }
-  CEXP point &operator+=(point CR p) NE {
+  CEXP point& operator+=(point CR p) NE {
     this->x += p.x, this->y += p.y;
     return *this;
   }
-  CEXP point &operator-=(point CR p) NE {
+  CEXP point& operator-=(point CR p) NE {
     this->x -= p.x, this->y -= p.y;
     return *this;
   }
@@ -75,7 +75,7 @@ struct point {
     static_assert(std::is_floating_point_v<FP>);
     return std::hypot(x, y);
   }
-  CEXP point &do_unit() NE {
+  CEXP point& do_unit() NE {
     static_assert(std::is_floating_point_v<FP>);
     return *this /= norm();
   }
@@ -85,19 +85,19 @@ struct point {
   // 6 7 8
   CEXP u32 quad() CNE { return QUAD__[(sgn(y) + 1) * 3 + sgn(x) + 1]; }
   CEXP int toleft(point CR p) CNE { return sgn(*this ^ p); }
-  CEXP point &do_rot(FP theta) NE {
+  CEXP point& do_rot(FP theta) NE {
     const FP x0 = x, y0 = y, ct = std::cos(theta), st = std::sin(theta);
     x = x0 * ct - y0 * st, y = x0 * st + y0 * ct;
     return *this;
   }
   friend CEXP point rot(point p, FP theta) NE { return p.do_rot(theta); }
-  CEXP point &do_rot90() NE {
+  CEXP point& do_rot90() NE {
     const FP _ = x;
     x = -y, y = _;
     return *this;
   }
   friend CEXP point rot90(point p) NE { return p.do_rot90(); }
-  CEXP point &do_rot270() NE {
+  CEXP point& do_rot270() NE {
     const FP _ = y;
     y = -x, x = _;
     return *this;

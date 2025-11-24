@@ -4,17 +4,17 @@
 #include "../../../include/nt/proot_gint.hpp"
 
 #include "../../../include/math/mint.hpp"
-#include "../../../include/math/mint_s30.hpp"
-#include "../../../include/math/mint_s63.hpp"
+#include "../../../include/math/mint_ms.hpp"
+#include "../../../include/math/mint_ms64.hpp"
 #include "../../../include/math/qpow.hpp"
 #include "../../../include/nt/jacobi_sym.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
 template <u32 MOD>
-using mint = math::mint<math::mint_s30, MOD>;
+using mint = math::mint<math::mint_ms, MOD>;
 template <u64 MOD>
-using mint64 = math::mint<math::mint_s63, MOD>;
+using mint64 = math::mint<math::mint_ms64, MOD>;
 
 template <class mint, i64 M>
 void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> CR pf_v) {

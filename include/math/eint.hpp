@@ -19,31 +19,31 @@ class eint {
   CEXP T CR real() CNE { return r_; }
   CEXP T CR imag() CNE { return i_; }
   CEXP T norm() CNE { return r_ * (r_ - i_) + i_ * i_; }
-  CEXP T &real() NE { return r_; }
-  CEXP T &imag() NE { return i_; }
+  CEXP T& real() NE { return r_; }
+  CEXP T& imag() NE { return i_; }
   CEXP void real(cT_(T) x) NE { r_ = x; }
   CEXP void imag(cT_(T) x) NE { i_ = x; }
-  CEXP eint &operator+=(cT_(T) x) NE {
+  CEXP eint& operator+=(cT_(T) x) NE {
     r_ += x;
     return *this;
   }
-  CEXP eint &operator-=(cT_(T) x) NE {
+  CEXP eint& operator-=(cT_(T) x) NE {
     r_ -= x;
     return *this;
   }
-  CEXP eint &operator*=(cT_(T) x) NE {
+  CEXP eint& operator*=(cT_(T) x) NE {
     r_ *= x, i_ *= x;
     return *this;
   }
-  CEXP eint &operator+=(eint CR x) NE {
+  CEXP eint& operator+=(eint CR x) NE {
     r_ += x.real(), i_ += x.imag();
     return *this;
   }
-  CEXP eint &operator-=(eint CR x) NE {
+  CEXP eint& operator-=(eint CR x) NE {
     r_ -= x.real(), i_ -= x.imag();
     return *this;
   }
-  CEXP eint &operator*=(eint CR x) NE {
+  CEXP eint& operator*=(eint CR x) NE {
     T _ = r_;
     r_ = r_ * x.real() - i_ * x.imag(), i_ = i_ * x.real() + _ * x.imag() - i_ * x.imag();
     return *this;
@@ -59,8 +59,8 @@ class eint {
   friend CEXP T norm(eint CR x) NE { return x.norm(); }
   friend CEXP eint conj(eint CR x) NE { return eint{x.r_ - x.i_, -x.i_}; }
   friend CEXP bool operator==(eint CR x, eint CR y) NE { return x.real() == y.real() && x.imag() == y.imag(); }
-  friend auto &operator>>(istream_c auto &is, eint &x) NE { return is >> x.r_ >> x.i_; }
-  friend auto &operator<<(ostream_c auto &os, eint CR x) NE { return os << x.real() << ' ' << x.imag(); }
+  friend auto& operator>>(istream_c auto& is, eint& x) NE { return is >> x.r_ >> x.i_; }
+  friend auto& operator<<(ostream_c auto& os, eint CR x) NE { return os << x.real() << ' ' << x.imag(); }
 };
 
 }  // namespace tifa_libs::math

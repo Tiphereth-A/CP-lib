@@ -11,7 +11,7 @@ template <bool outer, class T, bool with_deg, class Ge>
 requires requires(Ge ge, math::matrix<T> A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
-CEXP T kirchhoff(amat<T, with_deg> CR g, u32 r, Ge &&ge) {
+CEXP T kirchhoff(amat<T, with_deg> CR g, u32 r, Ge&& ge) {
   const u32 n = (u32)g.g.size();
   retif_((n <= 1) [[unlikely]], n);
   math::matrix<T> mat(n - 1, n - 1);

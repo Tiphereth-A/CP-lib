@@ -14,10 +14,10 @@ int main() {
     g.add_edge(u, v);
   }
   graph::e_tcc tcc(g);
-  for (auto &b : tcc.belongs) std::ranges::sort(b);
+  for (auto& b : tcc.belongs) std::ranges::sort(b);
   std::ranges::sort(tcc.belongs);
   std::cout << tcc.belongs.size() << '\n';
-  for (auto &&b : tcc.belongs) {
+  for (auto&& b : tcc.belongs) {
     for (auto x : b)
       std::cout << x + 1 << ' ';
     std::cout << '\n';

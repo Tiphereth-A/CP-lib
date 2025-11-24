@@ -19,11 +19,11 @@ class base64 {
     flt_ (usz, i, 0, N)
       flt_ (usz, j, 0, B)
         if ((a[i] >> j) & 1) S[(i * B + j) / 6 + 1] |= 1 << ((i * B + j) % 6);
-    for (auto &c : S) c = base[(usz)c];
+    for (auto& c : S) c = base[(usz)c];
     return S;
   }
   static CEXP vec<usz> decode(strn S) NE {
-    for (auto &c : S) c = ibase(c);
+    for (auto& c : S) c = ibase(c);
     const usz B = (usz)S[0], M = (usz)S.size() - 1;
     vec<usz> a(6 * M / B, 0);
     flt_ (usz, i, 0, M)

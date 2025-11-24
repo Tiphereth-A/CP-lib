@@ -14,7 +14,7 @@ CEXP matsp<T> merge_lr_matsp(cT_(matsp<T>) l, cT_(matsp<T>) r) NE {
   flt_ (u32, i, 0, r_)
     if (!l.data()[i].empty()) ret.data()[i] = l.data()[i];
   flt_ (u32, i, 0, r_)
-    for (auto &&[j, v] : r.data()[i]) ret.data()[i].emplace_back(j + lc_, v);
+    for (auto&& [j, v] : r.data()[i]) ret.data()[i].emplace_back(j + lc_, v);
   return ret;
 }
 

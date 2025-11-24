@@ -3,11 +3,11 @@
 #include "../../include/math/nth_term_lrec.hpp"
 
 #include "../../include/math/mint.hpp"
-#include "../../include/math/mint_s30.hpp"
+#include "../../include/math/mint_ms.hpp"
 #include "../../include/poly/polyntt.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_s30, 998244353>;
+using mint = math::mint<math::mint_ms, 998244353>;
 using poly = math::polyntt<mint>;
 
 int main() {
@@ -20,7 +20,7 @@ int main() {
     mint x;
     std::cin >> x, f[i] = -x;
   }
-  for (auto &i : a) std::cin >> i;
+  for (auto& i : a) std::cin >> i;
   std::cout << math::nth_term_lrec<poly>(n, a, f) << '\n';
 }
 

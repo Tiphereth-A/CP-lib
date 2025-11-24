@@ -73,7 +73,7 @@ class cvh3d {
     };
     vec<edge> e1(vp.size()), e2(vp.size());
     vecu vistime(vp.size()), resfdel(vp.size()), resfnew(vp.size()), resptid(vp.size());
-    auto horizon = [&](auto &&f, u32 id, point3d<FP> CR p) NE -> u32 {
+    auto horizon = [&](auto&& f, u32 id, point3d<FP> CR p) NE -> u32 {
       if (relation_PlP(faces[id].p, p) != RELPLP::above) return 0;
       if (faces[id].vistime == tm) return -1_u32;
       faces[id].vistime = tm, faces[id].isdel = 1, resfdel.push_back(faces[id].id);
@@ -143,9 +143,9 @@ class cvh3d {
     idx = snew;
   }
   template <class F>
-  requires requires(F op, math::kahan<FP> &v, planev<FP> p) { op(v, p); }
-  CEXP void dfs(F &&op) NE {
-    auto f = [&](auto &&f, u32 nf) NE -> void {
+  requires requires(F op, math::kahan<FP>& v, planev<FP> p) { op(v, p); }
+  CEXP void dfs(F&& op) NE {
+    auto f = [&](auto&& f, u32 nf) NE -> void {
       if (faces[nf].vistime == tm) return;
       for (faces[nf].vistime = tm, op(suf_area, faces[nf].p); auto i : faces[nf].n) f(f, i);
     };
@@ -153,7 +153,7 @@ class cvh3d {
   }
   CEXP FP surface_area() NE {
     if (!is_zero((FP)suf_area)) return suf_area;
-    dfs([](math::kahan<FP> &v, planev<FP> p) NE { v += p.area(); });
+    dfs([](math::kahan<FP>& v, planev<FP> p) NE { v += p.area(); });
     return suf_area;
   }
 };

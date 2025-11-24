@@ -168,7 +168,7 @@ jobs:
           split-size: ${{ env.SPLIT_SIZE }}
           split-index: ${{ matrix.index }}
           timeout: 3600
-          tle: 120
+          tle: 90
           prev-result: ${{ steps.restore-cached-results.outputs.cache-hit && 'merged-result.json' || ''}}
         env:
           YUKICODER_TOKEN: ${{secrets.YUKICODER_TOKEN}}

@@ -12,7 +12,7 @@ requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
   { is0(t) } -> std::same_as<bool>;
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
-CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&is0, Ge &&ge) NE {
+CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0&& is0, Ge&& ge) NE {
   const u32 r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
   matrix<T> Ab = merge_lr_mat(A, b);
@@ -39,7 +39,7 @@ CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&is0, Ge &&ge) NE {
   }
   matrix<T> sol(c_ - rk + 1, c_);
   {
-    auto &v = sol.data()[0];
+    auto& v = sol.data()[0];
     for (u32 y = rk - 1; ~y; --y) {
       const u32 f = idxs[y];
       v[f] = Ab(y, c_);
@@ -49,7 +49,7 @@ CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0 &&is0, Ge &&ge) NE {
   }
   for (u32 s = 0, _ = 0; s < c_; ++s) {
     if (used[s]) continue;
-    auto &v = sol.data()[++_];
+    auto& v = sol.data()[++_];
     v[s] = 1;
     for (u32 y = rk - 1; ~y; --y) {
       u32 f = idxs[y];

@@ -8,10 +8,10 @@
 #include "../../../include/lalg/mat.hpp"
 #include "../../../include/math/mint.hpp"
 #include "../../../include/math/mint_2e61n1.hpp"
-#include "../../../include/math/mint_d31.hpp"
-#include "../../../include/math/mint_d63.hpp"
-#include "../../../include/math/mint_s30.hpp"
-#include "../../../include/math/mint_s63.hpp"
+#include "../../../include/math/mint_md.hpp"
+#include "../../../include/math/mint_md64.hpp"
+#include "../../../include/math/mint_ms.hpp"
+#include "../../../include/math/mint_ms64.hpp"
 #include "../../../include/rand/gen.hpp"
 #include "../base.hpp"
 
@@ -52,10 +52,10 @@ CEXP u32 MOD = 998244353;
 CEXP u64 MOD64 = 3'799'912'185'593'857;
 
 using mint2e61n1 = math::mint<math::mint_2e61n1>;
-using mintd31 = math::mint<math::mint_d31, __LINE__>;
-using mintd63 = math::mint<math::mint_d63, __LINE__>;
-using mints30 = math::mint<math::mint_s30, MOD>;
-using mints63 = math::mint<math::mint_s63, MOD64>;
+using mintd31 = math::mint<math::mint_md, __LINE__>;
+using mintd63 = math::mint<math::mint_md64, __LINE__>;
+using mints30 = math::mint<math::mint_ms, MOD>;
+using mints63 = math::mint<math::mint_ms64, MOD64>;
 
 void test(u32 n) {
   single_test<mint2e61n1>(n);

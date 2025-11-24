@@ -18,7 +18,7 @@ using hashstr = str::hash_substr<mint>;
 
 int main() {
   strn s;
-  tifa_libs::fin >> s;
+  tifa_libs::fin_uint >> s;
   hashstr hs;
   hs.set(s);
   flt_ (u32, i, 0, (u32)s.size()) tifa_libs::fout << tifa_libs::str::lcpf_hash(hs, hs, 0, i) << " \n"[i + 1 == s.size()];

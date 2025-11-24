@@ -19,6 +19,9 @@ int main() {
     if (p1 > p2) swap(p1, p2);
     pos.push_back({p1, point{p2.x, p1.y}, p2, point{p1.x, p2.y}});
   }
+  std::ranges::sort(pos, less{}, [](auto CR p) { return p.vs; });
+  auto [l, r] = unique(pos, equal_to{}, [](auto CR p) { return p.vs; });
+  pos.erase(l, r);
   auto res = geo::aunion_Pos(pos);
   std::cout << res[0] << '\n';
   return 0;

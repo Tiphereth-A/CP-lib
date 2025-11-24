@@ -7,10 +7,10 @@
 using namespace tifa_libs;
 int main() {
   i64 t;
-  fin >> t;
+  fin_uint >> t;
   while (t--) {
     u64 x, y, m;
-    fin >> x >> y >> m;
+    fin_uint >> x >> y >> m;
     auto res = math::exbsgs(x, y, m);
     fout << (res ? (i64)res.value() : -1) << '\n';
   }

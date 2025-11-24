@@ -32,7 +32,7 @@ class hash_splitmix64 {
   template <common_range T>
   u64 operator()(T CR tp) CNE {
     u64 ret = 0;
-    for (auto &&i : tp) ret = append(ret, (*this)(i));
+    for (auto&& i : tp) ret = append(ret, (*this)(i));
     return ret;
   }
 };

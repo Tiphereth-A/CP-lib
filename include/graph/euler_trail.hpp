@@ -17,7 +17,7 @@ CEXP auto run_(u32 n, u32 m, cT_(vvecptu) g, u32 s) NE {
   vecptu stk = {{s, -1_u32}};
   while (!stk.empty()) {
     auto [i, p] = stk.back();
-    auto &it = its[i];
+    auto& it = its[i];
     if (it == end(g[i])) {
       ret->emplace_back(i, p), stk.pop_back();
       continue;
@@ -71,7 +71,7 @@ CEXP bool is_eulerian(G CR g) NE {
   }
   if (loopv > 1 || (loopv == 1 && loope != g.cnt_arc)) return 0;
   vecb vis(n);
-  auto f = [&](auto &&f, u32 x) NE -> void {
+  auto f = [&](auto&& f, u32 x) NE -> void {
     for (auto v : g[x])
       if (!vis[(u32)v]) vis[(u32)v] = 1, f(f, (u32)v);
   };

@@ -12,21 +12,21 @@ CEXP i64 INF = std::numeric_limits<i64>::max() / 2;
 
 int main() {
   u32 n, q;
-  fin >> n >> q;
+  fin_uint >> n >> q;
   vecii a(n);
-  for (auto& x : a) fin >> x;
+  for (auto& x : a) fin_uint >> x;
   graph::tree tr(n);
-  for (u32 i = 1, p; i < n; ++i) fin >> p, tr.add_arc((u32)p, (u32)i), tr.add_arc((u32)i, (u32)p);
+  for (u32 i = 1, p; i < n; ++i) fin_uint >> p, tr.add_arc((u32)p, (u32)i), tr.add_arc((u32)i, (u32)p);
 
   vvecpti upd(n);
   vveci que(n);
   flt_ (u32, i, 0, n) upd[i].emplace_back(0, a[i]);
   flt_ (u32, i, 1, q + 1) {
     u32 c, u;
-    fin >> c >> u;
+    fin_uint >> c >> u;
     if (c == 0) {
       u32 x;
-      fin >> x;
+      fin_uint >> x;
       upd[u].emplace_back(i, x);
     } else que[u].push_back((i32)i);
   }

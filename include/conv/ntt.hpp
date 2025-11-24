@@ -43,7 +43,7 @@ struct ntt {
     const u32 n = std::bit_ceil(len);
     assert(n <= max_size), sz = n;
   }
-  CEXP void dif(vec<mint> &f, u32 n = 0) CNE {
+  CEXP void dif(vec<mint>& f, u32 n = 0) CNE {
     if (assert(size()); !n) n = size();
     if (f.size() < n) f.resize(n);
     assert(std::has_single_bit(n) && n <= size());
@@ -61,7 +61,7 @@ struct ntt {
       }
     }
   }
-  CEXP void dit(vec<mint> &f, u32 n = 0) CNE {
+  CEXP void dit(vec<mint>& f, u32 n = 0) CNE {
     assert(size());
     if (!n) n = size();
     if (f.size() < n) f.resize(n);

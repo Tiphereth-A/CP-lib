@@ -33,7 +33,7 @@ class dlx {
       dlxfor_ (j, i, r) u_(d_(j)) = d_(u_(j)) = j, ++cnt_col[col_(j)];
   }
   template <class F>
-  CEXP bool dance_(vecu &ans, F &&cb) NE {
+  CEXP bool dance_(vecu& ans, F&& cb) NE {
     u32 now = r_(0);
     if (now == 0) {
       cb(ans);
@@ -82,7 +82,7 @@ class dlx {
   }
   template <class F>
   requires requires(F f, vecu sol) { f(sol); }
-  CEXP auto dance(F &&cb) NE {
+  CEXP auto dance(F&& cb) NE {
     std::optional ans{vecu{}};
     if (!dance_(ans.value(), std::forward<F>(cb))) ans = std::nullopt;
     return ans;

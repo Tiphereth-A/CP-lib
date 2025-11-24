@@ -21,8 +21,10 @@ struct fhq_treap {
  private:
   CEXP u32 new_node(cT_(T) val) NE {
     u32 ret;
-    if CEXP (recovery && stk.size()) data[ret = stk.back()] = {val, rnd(), 1, {0, 0}}, stk.pop_back();
-    else ret = (u32)data.size(), data.push_back(TIFA{val, rnd(), 1, {0, 0}});
+    if CEXP (recovery) {
+      if (stk.size()) data[ret = stk.back()] = {val, rnd(), 1, {0, 0}}, stk.pop_back();
+      else ret = (u32)data.size(), data.push_back(TIFA{val, rnd(), 1, {0, 0}});
+    } else ret = (u32)data.size(), data.push_back(TIFA{val, rnd(), 1, {0, 0}});
     return ret;
   }
   CEXP void pushup(u32 pos) NE { data[pos].sz = data[data[pos].son[0]].sz + 1 + data[data[pos].son[1]].sz; }
@@ -55,7 +57,7 @@ struct fhq_treap {
   CEXP fhq_treap() : rnd{}, data{1}, stk{}, root{} { data[0].sz = {}; }
   CEXP void insert(cT_(T) val) NE {
     u32 tar = new_node(val);
-    auto dfs = [&](auto &&f, u32 &pos) NE -> void {
+    auto dfs = [&](auto&& f, u32& pos) NE -> void {
       if (!pos) return void(pos = tar);
       if (data[tar].r < data[pos].r) {
         auto [l, r] = split_root<true>(pos, val);
@@ -67,7 +69,7 @@ struct fhq_treap {
     dfs(dfs, root);
   }
   CEXP bool erase(cT_(T) val) NE {
-    auto dfs = [&](auto &&f, u32 &pos) NE -> bool {
+    auto dfs = [&](auto&& f, u32& pos) NE -> bool {
       if (!pos) return false;
       if (data[pos].val == val) {
         if CEXP (recovery) stk.push_back(pos);

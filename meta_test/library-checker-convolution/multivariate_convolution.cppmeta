@@ -18,11 +18,11 @@ using vec_t = vec<mint>;
 
 int main() {
   u32 k, n = 1;
-  tifa_libs::fin >> k;
+  tifa_libs::fin_uint >> k;
   vecu base(k);
-  for (auto &i : base) tifa_libs::fin >> i, n *= i;
+  for (auto &i : base) tifa_libs::fin_uint >> i, n *= i;
   vec_t a(n), b(n);
-  tifa_libs::fin >> a >> b;
+  tifa_libs::fin_uint >> a >> b;
   ntt_t ntt;
   tifa_libs::fout << tifa_libs::math::conv_mval_dft(ntt, a, b, base) << '\n';
   return 0;

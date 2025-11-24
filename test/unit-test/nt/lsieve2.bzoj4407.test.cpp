@@ -4,12 +4,12 @@
 #include "../../../include/nt/lsieve2.hpp"
 
 #include "../../../include/math/mint.hpp"
-#include "../../../include/math/mint_s30.hpp"
+#include "../../../include/math/mint_ms.hpp"
 #include "../../../include/math/qpow.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_s30, 1'000'000'000 + 7>;
+using mint = math::mint<math::mint_ms, 1'000'000'000 + 7>;
 
 void test(strnv data) {
   auto [fn_in, fn_ans] = unittest::get_fname_in_ans("bzoj", "4407", data);

@@ -21,7 +21,7 @@ struct binom {
   template <int_c T>
   CEXP mint lucas(T m, T n) CNE {
     assert(mint::mod() > 1);
-    auto f = [this](auto &&f, auto m, auto n) NE -> mint { retif_((n == 0), 1, this->mCn(m % fact::mod(), n % fact::mod()) * f(f, m / fact::mod(), n / fact::mod())); };
+    auto f = [this](auto&& f, auto m, auto n) NE -> mint { retif_((n == 0), 1, this->mCn(m % fact::mod(), n % fact::mod()) * f(f, m / fact::mod(), n / fact::mod())); };
     retif_((m < n || n < 0) [[unlikely]], 0, f(f, to_uint_t<T>(m), to_uint_t<T>(n)));
   }
   // $\binom{m}{n} \cdot n!$

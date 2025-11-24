@@ -3,7 +3,7 @@
 #include "../../include/math/exeuclid.hpp"
 
 #include "../../include/math/mint.hpp"
-#include "../../include/math/mint_s30.hpp"
+#include "../../include/math/mint_ms.hpp"
 
 using namespace tifa_libs;
 template <class T>
@@ -21,7 +21,7 @@ struct exeuclid_node {
   }
 };
 
-using mint = math::mint<math::mint_s30, 998244353>;
+using mint = math::mint<math::mint_ms, 998244353>;
 using node = exeuclid_node<mint>;
 
 int main() {

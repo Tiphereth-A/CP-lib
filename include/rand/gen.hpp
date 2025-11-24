@@ -52,7 +52,7 @@ class gen {
       res_wt r = (res_wt)b_ - (res_wt)a_ + 1, p = r * next();
       if (res_t l = (res_t)p, _ = res_t(res_wt(-(res_t)r) % r); l < r)
         while (l < _) l = res_t(p = r * next());
-      return (T)(p >> pm::w) + a_;
+      return T((res_t)(p >> pm::w) + (res_t)a_);
     } else return T(next() / (f128)((u128)gen_max() + 1) * (b_ - a_) + a_);
   }
 };

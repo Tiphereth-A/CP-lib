@@ -2,8 +2,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../../include/math/mint.hpp"
-#include "../../../include/math/mint_s30.hpp"
-#include "../../../include/math/mint_s63.hpp"
+#include "../../../include/math/mint_ms.hpp"
+#include "../../../include/math/mint_ms64.hpp"
 #include "../../../include/poly/asin_fps.hpp"
 #include "../../../include/poly/atan_fps.hpp"
 #include "../../../include/poly/cossin_fps.hpp"
@@ -12,8 +12,8 @@
 
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
-using mints30 = math::mint<math::mint_s30, MOD>;
-using mints63 = math::mint<math::mint_s63, MOD>;
+using mints30 = math::mint<math::mint_ms, MOD>;
+using mints63 = math::mint<math::mint_ms64, MOD>;
 
 using pnm30 = math::polyntt<mints30>;
 using pnm63 = math::polyntt<mints63>;

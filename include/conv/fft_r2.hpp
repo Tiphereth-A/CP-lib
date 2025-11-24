@@ -25,7 +25,7 @@ class fft_r2 {
     w.resize(n), w[0].real(1);
     flt_ (u32, i, 1, n) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};
   }
-  CEXP void dif(vec<data_t> &f, u32 n = 0) CNE {
+  CEXP void dif(vec<data_t>& f, u32 n = 0) CNE {
     if (!n) n = size();
     if (f.size() < n) f.resize(n);
     assert(n <= size());
@@ -43,7 +43,7 @@ class fft_r2 {
       }
 #pragma GCC diagnostic warning "-Wsign-conversion"
   }
-  CEXP void dit(vec<data_t> &f, u32 n = 0) CNE {
+  CEXP void dit(vec<data_t>& f, u32 n = 0) CNE {
     if (!n) n = size();
     dif(f, n);
     flt_ (u32, i, 0, n) f[i] /= (FP)n;

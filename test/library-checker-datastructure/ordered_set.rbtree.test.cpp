@@ -7,14 +7,14 @@
 using namespace tifa_libs;
 int main() {
   u32 n, q;
-  fin >> n >> q;
+  fin_uint >> n >> q;
   ds::rbtree<u32> tr;
   flt_ (u32, i, 0, n, x) {
-    fin >> x;
+    fin_uint >> x;
     tr.insert(x);
   }
   flt_ (u32, i, 0, q, t, x) {
-    fin >> t >> x;
+    fin_uint >> t >> x;
     auto lb = tr.lower_bound(x);
     switch (t) {
       case 0:

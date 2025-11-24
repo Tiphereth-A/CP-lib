@@ -22,7 +22,7 @@ class fft_r3 {
 
   // Calculate the product of polynomial {@code f} and $x^t$ in $T[x]/(x^m - \omega)$
   // result is in {@code to}
-  CEXP void twiddle(data_t *p, u32 m, u32 t, data_t *to) CNE {
+  CEXP void twiddle(data_t* p, u32 m, u32 t, data_t* to) CNE {
     assert(t <= 3 * m);
     if (!t || t == 3 * m) {
       copy_n(p, m, to);
@@ -38,7 +38,7 @@ class fft_r3 {
   }
   // @param p A polynomial from $(T[x]/(x^m - \omega))[y]/(y^r - 1)$
   // result: Fourier transform (w.r.t. y) in 3-reversed order, inplace.
-  CEXP void dif(data_t *p, u32 m, u32 r) NE {
+  CEXP void dif(data_t* p, u32 m, u32 r) NE {
     for (u32 rr = r / 3; rr >= 1; rr /= 3)
       for (u32 k = 0; k < r; k += rr * 3)
         flt_ (u32, i, k, k + rr) {
@@ -54,7 +54,7 @@ class fft_r3 {
   }
   // @param p A polynomial in $(T[x]/(x^m - \omega))[y]/(y^r - 1)$ with coefficients in 3-reversed order.
   // result: inverse Fourier transform in normal order, inplace.
-  CEXP void dit(data_t *p, u32 m, u32 r) NE {
+  CEXP void dit(data_t* p, u32 m, u32 r) NE {
     for (u32 rr = 1; rr < r; rr *= 3)
       for (u32 k = 0; k < r; k += rr * 3)
         flt_ (u32, i, k, k + rr) {

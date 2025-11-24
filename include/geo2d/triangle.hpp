@@ -16,8 +16,8 @@ struct triangle {
   CEXP triangle(point<FP> CR a, point<FP> CR b, point<FP> CR c) NE : A(a), B(b), C(c) {}
   CEXP triangle(FP a_x, FP a_y, FP b_x, FP b_y, FP c_x, FP c_y) NE : A(a_x, a_y), B(b_x, b_y), C(c_x, c_y) {}
 
-  friend auto &operator>>(istream_c auto &is, triangle &t) NE { return is >> t.A >> t.B >> t.C; }
-  friend auto &operator<<(ostream_c auto &os, triangle CR t) NE { return os << t.A << ' ' << t.B << ' ' << t.C; }
+  friend auto& operator>>(istream_c auto& is, triangle& t) NE { return is >> t.A >> t.B >> t.C; }
+  friend auto& operator<<(ostream_c auto& os, triangle CR t) NE { return os << t.A << ' ' << t.B << ' ' << t.C; }
   friend CEXP bool operator==(triangle CR l, triangle CR r) NE { return l.A == r.A && l.B == r.B && l.C == r.C; }
   // (a, b, c)
   CEXP pt3<FP> edges() CNE { return {dist_PP(B, C), dist_PP(C, A), dist_PP(A, B)}; }

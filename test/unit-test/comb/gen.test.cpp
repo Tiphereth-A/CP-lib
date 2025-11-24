@@ -8,10 +8,10 @@
 #include "../../../include/comb/gen_ipowi.hpp"
 #include "../../../include/comb/gen_pows.hpp"
 #include "../../../include/math/mint.hpp"
-#include "../../../include/math/mint_d31.hpp"
-#include "../../../include/math/mint_d63.hpp"
-#include "../../../include/math/mint_s30.hpp"
-#include "../../../include/math/mint_s63.hpp"
+#include "../../../include/math/mint_md.hpp"
+#include "../../../include/math/mint_md64.hpp"
+#include "../../../include/math/mint_ms.hpp"
+#include "../../../include/math/mint_ms64.hpp"
 #include "../../../include/math/qpow.hpp"
 #include "../base.hpp"
 
@@ -66,10 +66,10 @@ void test_all(u32 n) {
   test_pows(n, n);
 }
 
-using mints30 = math::mint<math::mint_s30, 998244353>;
-using mints63 = math::mint<math::mint_s63, 998244353>;
-using mintd31 = math::mint<math::mint_d31, __LINE__>;
-using mintd63 = math::mint<math::mint_d63, __LINE__>;
+using mints30 = math::mint<math::mint_ms, 998244353>;
+using mints63 = math::mint<math::mint_ms64, 998244353>;
+using mintd31 = math::mint<math::mint_md, __LINE__>;
+using mintd63 = math::mint<math::mint_md64, __LINE__>;
 
 int main() {
   auto tcase = unittest::pre_test();

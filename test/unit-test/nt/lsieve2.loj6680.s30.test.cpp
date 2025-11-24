@@ -8,11 +8,11 @@
 #include "../../../include/nt/lsieve2.hpp"
 
 #include "../../../include/math/mint.hpp"
-#include "../../../include/math/mint_s30.hpp"
+#include "../../../include/math/mint_ms.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_s30, 998244353>;
+using mint = math::mint<math::mint_ms, 998244353>;
 
 void test(strnv data) {
   auto [fn_in, fn_ans] = unittest::get_fname_in_ans("loj", "6680", data);

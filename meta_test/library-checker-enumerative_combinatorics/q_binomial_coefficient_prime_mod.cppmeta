@@ -9,18 +9,18 @@ CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin
 // ---<GENTC>--- append factorial
-// ---<GENTC>--- exclude mintd-d63.*
-// ---<GENTC>--- exclude mints-s*
+// ---<GENTC>--- exclude mintd-md64.*
+// ---<GENTC>--- exclude mints-*
 // ---<GENTC>--- end
 
 int main() {
   u32 t, mod, q;
-  tifa_libs::fin >> t >> mod >> q;
+  tifa_libs::fin_uint >> t >> mod >> q;
   mint::set_mod(mod);
   if (!q) {
     while (t--) {
       i64 n, k;
-      tifa_libs::fin >> n >> k;
+      tifa_libs::fin_uint >> n >> k;
       tifa_libs::fout << !(n < k || k < 0) << '\n';
     }
     return 0;
@@ -28,7 +28,7 @@ int main() {
   tifa_libs::math::qbinom<mint, fact_t> mCn(q);
   while (t--) {
     i64 n, k;
-    tifa_libs::fin >> n >> k;
+    tifa_libs::fin_uint >> n >> k;
     tifa_libs::fout << mCn.qmCn(n, k) << '\n';
   }
 

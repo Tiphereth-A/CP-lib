@@ -8,9 +8,9 @@ CEXP u32 MOD = 1000000000 + 7;
 
 // ---<GENTC>--- begin
 // ---<GENTC>--- append factorial
-// ---<GENTC>--- exclude mints-s30.poly_nttmod-pntt.factorial-factl_helper
-// ---<GENTC>--- exclude mints-s63.poly_nttmod-pntt.factorial-factl_helper
-// ---<GENTC>--- exclude mints-sbrt.poly_nttmod-pntt.factorial-factl_helper
+// ---<GENTC>--- exclude mints-ms.poly_nttmod-pntt.factorial-factl_helper
+// ---<GENTC>--- exclude mints-ms64.poly_nttmod-pntt.factorial-factl_helper
+// ---<GENTC>--- exclude mints-bs.poly_nttmod-pntt.factorial-factl_helper
 // ---<GENTC>--- end
 
 int main() {

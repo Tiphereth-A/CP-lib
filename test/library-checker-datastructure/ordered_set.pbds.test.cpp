@@ -6,14 +6,14 @@
 using namespace tifa_libs;
 int main() {
   u32 n, q;
-  fin >> n >> q;
+  fin_uint >> n >> q;
   __gnu_pbds::tree<u32, __gnu_pbds::null_type, std::less<u32>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update> tr;
   flt_ (u32, i, 0, n, x) {
-    fin >> x;
+    fin_uint >> x;
     tr.insert(x);
   }
   flt_ (u32, i, 0, q, t, x) {
-    fin >> t >> x;
+    fin_uint >> t >> x;
     auto lb = tr.lower_bound(x);
     switch (t) {
       case 0:

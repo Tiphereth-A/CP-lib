@@ -8,6 +8,7 @@
 namespace tifa_libs::geo {
 
 // @return ans, which ans[i] means area covered at least i+1 times
+//! unique {@code pos} first
 template <std::floating_point FP>
 CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) NE {
   u32 n = (u32)pos.size();

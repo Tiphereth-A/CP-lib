@@ -7,7 +7,7 @@
 using namespace tifa_libs;
 int main() {
   u64 n;
-  fin >> n;
+  fin_uint >> n;
   auto ans = math::pfactors<false>(n);
   fout << n << ":";
   for (auto k : ans) fout << ' ' << k;

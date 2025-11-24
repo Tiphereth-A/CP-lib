@@ -10,7 +10,7 @@ i64 op(i64 x, i64 y) { return std::min(x, y); }
 
 int main() {
   u32 n, q;
-  fin >> n >> q;
+  fin_uint >> n >> q;
   vecii lsh;
   struct seg {
     i64 a, b, l, r;
@@ -23,13 +23,13 @@ int main() {
   };
   vec<que> qu(q);
   flt_ (u32, i, 0, n)
-    fin >> se[i].l >> se[i].r >> se[i].a >> se[i].b, se[i].r -= 1, lsh.push_back(se[i].l), lsh.push_back(se[i].r);
+    fin_int >> se[i].l >> se[i].r >> se[i].a >> se[i].b, se[i].r -= 1, lsh.push_back(se[i].l), lsh.push_back(se[i].r);
   flt_ (u32, i, 0, q) {
-    fin >> qu[i].opt;
+    fin_uint >> qu[i].opt;
     if (qu[i].opt)
-      fin >> qu[i].pos, lsh.push_back(qu[i].pos);
+      fin_int >> qu[i].pos, lsh.push_back(qu[i].pos);
     else
-      fin >> qu[i].k.l >> qu[i].k.r >> qu[i].k.a >> qu[i].k.b, qu[i].k.r -= 1, lsh.push_back(qu[i].k.l), lsh.push_back(qu[i].k.r);
+      fin_int >> qu[i].k.l >> qu[i].k.r >> qu[i].k.a >> qu[i].k.b, qu[i].k.r -= 1, lsh.push_back(qu[i].k.l), lsh.push_back(qu[i].k.r);
   }
   lsh = uniq<vecii>(lsh);
   ds::lichao_segtree<i64, op> tr(lsh);

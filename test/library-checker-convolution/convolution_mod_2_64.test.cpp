@@ -8,9 +8,9 @@
 using namespace tifa_libs;
 int main() {
   u32 n, m;
-  fin >> n >> m;
+  fin_uint >> n >> m;
   vecuu a(n), b(m);
-  fin >> a >> b;
+  fin_uint >> a >> b;
   fout << math::conv_u64(a, b) << '\n';
   return 0;
 }

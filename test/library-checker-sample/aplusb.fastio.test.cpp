@@ -5,8 +5,8 @@
 
 using namespace tifa_libs;
 int main() {
-  i64 s, t;
-  fin >> s >> t;
+  u64 s, t;
+  fin_uint >> s >> t;
   fout << s + t;
   return 0;
 }

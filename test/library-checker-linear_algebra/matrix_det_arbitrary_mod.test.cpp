@@ -4,10 +4,10 @@
 #include "../../include/lalg/ge_mat.hpp"
 #include "../../include/lalg/mat.hpp"
 #include "../../include/math/mint.hpp"
-#include "../../include/math/mint_d31.hpp"
+#include "../../include/math/mint_md.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_d31, __LINE__>;
+using mint = math::mint<math::mint_md, __LINE__>;
 using mat = math::matrix<mint>;
 
 int main() {

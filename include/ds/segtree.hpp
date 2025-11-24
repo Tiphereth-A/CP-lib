@@ -24,11 +24,11 @@ struct segtree {
  public:
   CEXP segtree(cT_(T) e, cT_(F) id) NE : E(e), ID(id), sz(0), lbn(0), n(0), val{}, tag{}, vset{} {}
   template <class V>
-  CEXP segtree(cT_(T) e, cT_(F) id, V &&a) NE : segtree(e, id) { reset(std::forward<V>(a)); }
+  CEXP segtree(cT_(T) e, cT_(F) id, V&& a) NE : segtree(e, id) { reset(std::forward<V>(a)); }
   CEXP segtree(cT_(T) e, cT_(F) id, u32 n) NE : segtree(e, id) { reset(vec<T>(n, e)); }
 
   template <class V>
-  CEXP void reset(V &&a) NE {
+  CEXP void reset(V&& a) NE {
     if (a.empty()) {
       sz = lbn = n = 0, val.clear(), tag.clear(), vset.clear();
       return;
@@ -72,7 +72,7 @@ struct segtree {
   requires requires(G check, T val) {
     { check(val) } -> std::same_as<bool>;
   }
-  CEXP u32 max_right(u32 l, G &&chk) NE {
+  CEXP u32 max_right(u32 l, G&& chk) NE {
     if (assert(l <= sz && chk(ID)); l == n) return n;
     l += n;
     for (u32 i = lbn; i; --i) pushdown(l >> i);
@@ -109,7 +109,7 @@ struct segtree {
   }
 
  private:
-  CEXP void compose(F &a, cT_(F) b) CNE {
+  CEXP void compose(F& a, cT_(F) b) CNE {
     if (a == ID) a = b;
     else composition(a, b);
   }
@@ -176,7 +176,7 @@ class segtree_notag : public segtree_impl_::segtree<false, T, op, T, mapping, ma
  public:
   CEXPE segtree_notag(cT_(T) e) NE : base(e, e) {}
   template <class V>
-  CEXP segtree_notag(cT_(T) e, V &&a) NE : base(e, e, std::forward<V>(a)) {}
+  CEXP segtree_notag(cT_(T) e, V&& a) NE : base(e, e, std::forward<V>(a)) {}
   CEXP segtree_notag(cT_(T) e, u32 n) NE : base(e, e, n) {}
 };
 

@@ -9,17 +9,17 @@ CEXP u32 MOD = 998244353;
 
 // ---<GENTC>--- begin
 // ---<GENTC>--- append poly_anymod poly_nttmod
-// ---<GENTC>--- exclude mints-s63.mints-s30.poly_anymod-p3ntt
-// ---<GENTC>--- exclude mints-s63.mints-s63.poly_anymod-p3ntt
-// ---<GENTC>--- exclude mintd-d63.mints-s30.poly_anymod-p3ntt
-// ---<GENTC>--- exclude mintd-d63.mints-s63.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mints-ms64.mints-ms.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mints-ms64.mints-ms64.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mintd-md64.mints-ms.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mintd-md64.mints-ms64.poly_anymod-p3ntt
 // ---<GENTC>--- end
 
 int main() {
   u32 n, m;
-  tifa_libs::fin >> n >> m;
+  tifa_libs::fin_uint >> n >> m;
   poly a(n), b(m);
-  tifa_libs::fin >> a >> b;
+  tifa_libs::fin_uint >> a >> b;
   auto _ = tifa_libs::math::modinv_fps(a, b);
   if (!_) tifa_libs::fout << "-1\n";
   else if (_->is_zero()) tifa_libs::fout << "0\n";

@@ -1,86 +1,63 @@
 #ifndef TIFALIBS_MATH_SBT
 #define TIFALIBS_MATH_SBT
 
-#include "../nt/gcd.hpp"
-#include "../util/alias_others.hpp"
+#include "../util/consts.hpp"
+#include "../util/traits_math.hpp"
 
 namespace tifa_libs::math {
 
-// x / y (x > 0, y > 0). default 1 / 1
-template <std::signed_integral T>
-class sbt {
-  T lx, ly, x, y, rx, ry;
-  vec<T> seq;
+template <uint_c T>
+struct sbt {
+  T x{1}, y{1};    // now
+  T lx{0}, ly{1};  // lbound
+  T rx{1}, ry{0};  // rbound
 
- public:
-  CEXP sbt() NE : lx{0}, ly{1}, x{1}, y{1}, rx{1}, ry{0} {}
-  CEXPE sbt(spn<T> seq_) NE : sbt() {
-    for (auto d : seq_)
-      if (assert(d); d > 0) movr(d);
-      else movl(d);
+  CEXP sbt() NE = default;
+
+  CEXP void movl(int_c auto step = 1) NE {
+    using W = std::conditional_t<sint_c<decltype(step)>, to_sint_t<decltype(step * x)>, decltype(step * x)>;
+    rx += T((W)lx * step), ry += T((W)ly * step), x = rx + lx, y = ry + ly;
   }
-  CEXP sbt(T x_, T y_) NE : sbt() {
-    assert(x_ > 0 && y_ > 0);
-    if (auto g = gcd(x_, y_); g > 1) x_ /= (T)g, y_ /= (T)g;
-    while (min(x_, y_))
-      if (x_ > y_) {
-        const T _ = x_ / y_;
-        movr(_ - !(x_ -= _ * y_));
-      } else {
-        const T _ = y_ / x_;
-        movl(_ - !(y_ -= _ * x_));
+  CEXP void movr(int_c auto step = 1) NE {
+    using W = std::conditional_t<sint_c<decltype(step)>, to_sint_t<decltype(step * x)>, decltype(step * x)>;
+    lx += T((W)rx * step), ly += T((W)ry * step), x = rx + lx, y = ry + ly;
+  }
+
+  // dir: true -> move to rchild; false -> move to lchil
+  template <class F>
+  requires requires(F f, bool dir, T step) { f(dir, step); }
+  static CEXP sbt walk_to(T x, T y, F&& f) NE {
+    sbt sbt;
+    bool dir = false;
+    while (y) {
+      T step = x / y;
+      if (dir = !dir, std::swap(x %= y, y); !y) --step;
+      if (!step) continue;
+      if (f(dir, step); dir) sbt.movr(step);
+      else sbt.movl(step);
+    }
+    return sbt;
+  }
+  static CEXP sbt walk_to(T x, T y) NE { return walk_to(x, y, fn_0); }
+  // dir: true -> move to rchild; false -> move to lchil
+  template <class F>
+  requires requires(F f, bool dir, T step) { f(dir, step); }
+  static CEXP sbt walk_to_lca(T x1, T y1, T x2, T y2, F&& f) NE {
+    sbt sbt;
+    bool dir = false;
+    while (y1 && y2) {
+      T step1 = x1 / y1, step2 = x2 / y2;
+      if (dir = !dir, std::swap(x1 %= y1, y1); !y1) --step1;
+      if (std::swap(x2 %= y2, y2); !y2) --step2;
+      if (T step = min(step1, step2); step) {
+        if (f(dir, step); dir) sbt.movr(step);
+        else sbt.movl(step);
       }
-  }
-
-  friend CEXP auto operator<=>(sbt CR l, sbt CR r) NE { return l.x * r.y - r.x * l.y; }
-  friend CEXP bool operator==(sbt CR l, sbt CR r) NE { return l.x == r.x && l.y == r.y; }
-  CEXP ptt<T> current() CNE { return {x, y}; }
-  CEXP ptt<T> lbound() CNE { return {lx, ly}; }
-  CEXP ptt<T> rbound() CNE { return {rx, ry}; }
-  // path from (1, 1) to @current(). rchild be positive and vice versa
-  CEXP vec<T> path() CNE { return seq; }
-  CEXP T dep() CNE {
-    T res = 0;
-    for (auto&& s : seq) res += abs(s);
-    return res;
-  }
-  // move towards lchild with @d steps
-  CEXP void movl(T d = 1) NE {
-    retif_((d <= 0) [[unlikely]], );
-    if (seq.empty() || seq.back() > 0) seq.push_back(0);
-    seq.back() -= d, rx += lx * d, ry += ly * d, x = rx + lx, y = ry + ly;
-  }
-  // move towards rchild with @d steps
-  CEXP void movr(T d = 1) NE {
-    retif_((d <= 0) [[unlikely]], );
-    if (seq.empty() || seq.back() < 0) seq.push_back(0);
-    seq.back() += d, lx += rx * d, ly += ry * d, x = rx + lx, y = ry + ly;
-  }
-  // move towards fa with @d steps
-  // @return true if succeed, or false if failed
-  CEXP bool movf(T d = 1) NE {
-    retif_((d <= 0) [[unlikely]], true);
-    while (d) {
-      if (seq.empty()) return false;
-      const T _ = min(d, abs(seq.back()));
-      if (seq.back() > 0) x -= rx * _, y -= ry * _, lx = x - rx, ly = y - ry, seq.back() -= _;
-      else x -= lx * _, y -= ly * _, rx = x - lx, ry = y - ly, seq.back() += _;
-      if (d -= _; !seq.back()) seq.pop_back();
-      if (!_) break;
+      if (step1 != step2) break;
     }
-    return true;
+    return sbt;
   }
-  static CEXP sbt lca(sbt CR l, sbt CR r) NE {
-    sbt ret;
-    flt_ (u32, i, 0, (u32)min(l.seq.size(), r.seq.size())) {
-      T val1 = l.seq[i], val2 = r.seq[i];
-      if ((val1 < 0) ^ (val2 < 0)) break;
-      if (val1 < 0) ret.movl(min(-val1, -val2));
-      else ret.movr(min(val1, val2));
-      if (val1 != val2) break;
-    }
-    return ret;
-  }
+  static CEXP sbt walk_to_lca(T x1, T y1, T x2, T y2) NE { return walk_to_lca(x1, y1, x2, y2, fn_0); }
 };
 
 }  // namespace tifa_libs::math

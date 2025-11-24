@@ -11,10 +11,10 @@ CEXP u32 LIMIT = 1e7;
 int main() {
   u64 n;
   u32 ans;
-  fin >> n >> ans;
+  fin_uint >> n >> ans;
   math::rgcd rgcd_(LIMIT);
   for (u32 i = 1, x; i < n; ++i) {
-    fin >> x;
+    fin_uint >> x;
     if (ans < LIMIT) (ans /= rgcd_(ans, x)) *= x;
     else ans = math::lcm(ans, x);
   }

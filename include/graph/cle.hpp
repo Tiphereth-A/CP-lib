@@ -25,7 +25,7 @@ CEXP vec<edge_t<T>> cle(u32 n, u32 root, vec<edge_t<T>> CR arcs) NE {
     vecu chi_e;
     while (!~used[now] || used[now] == start) {
       used[now] = start;
-      auto &node = heap.d[come[now]];
+      auto& node = heap.d[come[now]];
       if (!~come[now]) return {};
       u32 src = (u32)uf.find(arcs[node.idx].u);
       T cost = heap.weight(come[now]);

@@ -13,7 +13,7 @@ enum class RELPoP : u8 { outside, onborder, onendpoint, inside };
 
 template <class FP>
 CEXP RELPoP relation_PoP(polygon<FP> CR po, point<FP> CR p) NE {
-  for (auto &&now : po.vs)
+  for (auto&& now : po.vs)
     if (now == p) return RELPoP::onendpoint;
   bool result = false;
   flt_ (u32, i, 0, po.size()) {

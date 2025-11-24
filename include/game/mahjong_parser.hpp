@@ -168,35 +168,37 @@ CEXP auto mahjong_parser(vec<mahjong_card> hand, u32 max_card_per_kind = 4) NE {
   for (auto CR card : hand) ++counter[card.encode()];
   u32 sum_counter = std::reduce(counter.begin(), counter.begin() + 34, 0_u32);
   auto CR counter_bk = counter;
-  if CEXP (enable_13terminal && hand.size() == cards) {
-    record_t waiting, prepared = base;
-    auto f = [&](u32 eye = -1_u32) {
-      std::list<guard> gs;
+  if CEXP (enable_13terminal)
+    if (hand.size() == cards) {
+      record_t waiting, prepared = base;
+      auto f = [&](u32 eye = -1_u32) {
+        std::list<guard> gs;
+        for (auto c : vecu{0, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33})
+          if (auto cnt = counter[c]; c != eye && cnt) gs.emplace_back(prepared, counter, sum_counter, c, MELDS_MJ::orphan);
+        if (sum_counter)
+          flt_ (u32, c, 0, 34)
+            if (counter[c])
+              flt_ (u32, i, 0, counter[c]) gs.emplace_back(waiting, counter, sum_counter, c, MELDS_MJ::orphan);
+        ans.emplace_back(max_card_per_kind, terminal13, waiting, prepared);
+      };
+      bool _ = false;
       for (auto c : vecu{0, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33})
-        if (auto cnt = counter[c]; c != eye && cnt) gs.emplace_back(prepared, counter, sum_counter, c, MELDS_MJ::orphan);
-      if (sum_counter)
-        flt_ (u32, c, 0, 34)
-          if (counter[c])
-            flt_ (u32, i, 0, counter[c]) gs.emplace_back(waiting, counter, sum_counter, c, MELDS_MJ::orphan);
-      ans.emplace_back(max_card_per_kind, terminal13, waiting, prepared);
-    };
-    bool _ = false;
-    for (auto c : vecu{0, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33})
-      if (auto cnt = counter[c]; cnt > 1) {
-        guard g(prepared, counter, sum_counter, c, MELDS_MJ::pair);
-        _ = true, f(c);
-      }
-    if (!_) f();
-  }
-  if CEXP (enable_7pairs && hand.size() == cards) {
-    record_t waiting, prepared = base;
-    flt_ (u32, i, 0, 34)
-      if (counter[i]) {
-        flt_ (u32, j, 0, counter[i] / 2) prepared.emplace_back(MELDS_MJ::pair, i);
-        if (counter[i] & 1) waiting.emplace_back(MELDS_MJ::orphan, i);
-      }
-    ans.emplace_back(max_card_per_kind, pairs7, waiting, prepared);
-  }
+        if (auto cnt = counter[c]; cnt > 1) {
+          guard g(prepared, counter, sum_counter, c, MELDS_MJ::pair);
+          _ = true, f(c);
+        }
+      if (!_) f();
+    }
+  if CEXP (enable_7pairs)
+    if (hand.size() == cards) {
+      record_t waiting, prepared = base;
+      flt_ (u32, i, 0, 34)
+        if (counter[i]) {
+          flt_ (u32, j, 0, counter[i] / 2) prepared.emplace_back(MELDS_MJ::pair, i);
+          if (counter[i] & 1) waiting.emplace_back(MELDS_MJ::orphan, i);
+        }
+      ans.emplace_back(max_card_per_kind, pairs7, waiting, prepared);
+    }
 
   auto proceed_no_kong = [&]() NE {
     record_t waiting, prepared = base;

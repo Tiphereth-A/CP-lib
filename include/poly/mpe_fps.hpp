@@ -28,7 +28,7 @@ CEXP auto mpe_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> a) NE
       g.resize(f.size());
       return g;
     }
-    CEXP void calc_(poly_t f, poly_t &res, u32 k, u32 l, u32 r) CNE {
+    CEXP void calc_(poly_t f, poly_t& res, u32 k, u32 l, u32 r) CNE {
       f.resize(r - l + 1);
       if (l == r) return void(res[l] = f[0]);
       const u32 m = l + (r - l) / 2;

@@ -9,7 +9,7 @@ struct rbt_op_leaf : bst_op_leaf {
   template <tp2_ds_c pointer>
   static CEXP bool is_red(pointer p) NE { retif_((p), p->red, false); }
   template <tp2_ds_c pointer>
-  static CEXP void insert_leaf(pointer &root, pointer p, pointer n, bool dir) NE {
+  static CEXP void insert_leaf(pointer& root, pointer p, pointer n, bool dir) NE {
     n->red = p, bst_op_leaf::insert_leaf(root, p, n, dir);
     while (is_red(p = n->fa)) {
       bool p_dir = p->child_dir();
@@ -24,7 +24,7 @@ struct rbt_op_leaf : bst_op_leaf {
     root->red = false;
   }
   template <tp2_ds_c pointer>
-  static CEXP void erase_branch_leaf(pointer &root, pointer n) NE {
+  static CEXP void erase_branch_leaf(pointer& root, pointer n) NE {
     bool n_dir = n == root ? false : n->child_dir();
     bst_op_leaf::erase_branch_leaf(root, n);
     auto p = n->fa;

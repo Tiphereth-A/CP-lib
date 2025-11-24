@@ -2,10 +2,10 @@
 
 #include "../../include/ds/deque_with_w.hpp"
 #include "../../include/math/mint.hpp"
-#include "../../include/math/mint_s30.hpp"
+#include "../../include/math/mint_ms.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_s30, 998244353>;
+using mint = math::mint<math::mint_ms, 998244353>;
 using T = ptt<mint>;
 T e() { return T{1, 0}; }
 T op(T b, T a) { return T{a.first * b.first, a.first * b.second + a.second}; }

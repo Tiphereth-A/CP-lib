@@ -797,6 +797,15 @@ notebook:
       code_ext: hpp
       usage_ext: cpp
     nt:
+    - barrett: 扩展 Barrett 约减/Shoup 模乘
+      code_ext: hpp
+      usage_ext: cpp
+    - montgomery: Montgomery 模乘
+      code_ext: hpp
+      usage_ext: cpp
+    - montgomery64: Montgomery 模乘(64 位)
+      code_ext: hpp
+      usage_ext: cpp
     - euler_phi: Euler 函数
       code_ext: hpp
       usage_ext: cpp
@@ -936,25 +945,22 @@ notebook:
     - mint_2e61n1: 模整数类(固定,61-1)
       code_ext: hpp
       usage_ext: cpp
-    - mint_s30: 模整数类(静态,30)
+    - mint_ms: 模整数类(静态,Montgomery)
       code_ext: hpp
       usage_ext: cpp
-    - mint_s63: 模整数类(静态,63)
+    - mint_md: 模整数类(动态,Montgomery)
       code_ext: hpp
       usage_ext: cpp
-    - mint_sbrt: 模整数类(静态,Barrett)
+    - mint_ms64: 模整数类(静态,Montgomery64)
       code_ext: hpp
       usage_ext: cpp
-    - mint_d31: 模整数类(动态,31)
+    - mint_md64: 模整数类(动态,Montgomery64)
       code_ext: hpp
       usage_ext: cpp
-    - mint_d63: 模整数类(动态,63)
+    - mint_bs: 模整数类(静态,Barrett)
       code_ext: hpp
       usage_ext: cpp
-    - mint_dbrt: 模整数类(动态,Barrett)
-      code_ext: hpp
-      usage_ext: cpp
-    - barrett: 扩展 Barrett 约减/Shoup 模乘
+    - mint_bd: 模整数类(动态,Barrett)
       code_ext: hpp
       usage_ext: cpp
     - mul_mod: 模乘法

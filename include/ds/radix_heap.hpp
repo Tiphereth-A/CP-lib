@@ -26,7 +26,7 @@ class radix_heap {
   CEXP std::pair<K, V> top() NE {
     if (!~ms[0]) {
       const u32 idx = u32(find_if(ms, [](auto x) NE { return !!~x; }) - begin(ms));
-      for (last = ms[idx]; auto &p : vs[idx]) {
+      for (last = ms[idx]; auto& p : vs[idx]) {
         const K b = (K)std::bit_width(p.first ^ last);
         vs[b].emplace_back(p), ms[b] = min(p.first, ms[b], comp);
       }

@@ -33,7 +33,7 @@ class dcvh {
       if (_) vs.erase(it);
       return _;
     }
-    CEXP dhcvh &insert(point<FP> CR p) NE {
+    CEXP dhcvh& insert(point<FP> CR p) NE {
       if (contains(p)) return *this;
       auto _ = vs.lower_bound(point<FP>{p.x, -std::numeric_limits<FP>::max()});
       if (_ != end(vs) && _->x == p.x) vs.erase(_);
@@ -51,7 +51,7 @@ class dcvh {
 
  public:
   CEXP bool contains(point<FP> CR p) CNE { return hcvh_up.contains(p) && hcvh_down.contains(p); }
-  CEXP dcvh &insert(point<FP> CR p) NE {
+  CEXP dcvh& insert(point<FP> CR p) NE {
     hcvh_up.insert(p), hcvh_down.insert(p);
     return *this;
   }

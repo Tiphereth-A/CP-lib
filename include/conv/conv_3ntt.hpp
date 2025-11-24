@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_CONV_CONV_3NTT
 #define TIFALIBS_CONV_CONV_3NTT
 
-#include "../math/barrett.hpp"
+#include "../nt/barrett.hpp"
 #include "conv_dft.hpp"
 #include "conv_naive_mod.hpp"
 #include "ntt.hpp"

@@ -15,7 +15,7 @@ struct tarjan {
     vecu s;
     vecb ins(n);
     id = 0, dfn = low = scc_id = vecu(n, n);
-    auto dfs = [&](auto &&dfs, u32 u) NE -> void {
+    auto dfs = [&](auto&& dfs, u32 u) NE -> void {
       for (dfn[u] = low[u] = cnt++, s.push_back(u), ins[u] = 1; auto v : g[u])
         if (dfn[v] == n) dfs(dfs, v), low[u] = min(low[u], low[v]);
         else if (ins[v]) low[u] = min(low[u], dfn[v]);

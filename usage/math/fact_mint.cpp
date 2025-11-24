@@ -3,11 +3,11 @@
 #include "../../include/math/fact_mint.hpp"
 
 #include "../../include/math/mint.hpp"
-#include "../../include/math/mint_d31.hpp"
+#include "../../include/math/mint_md.hpp"
 #include "../../include/poly/polymtt.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_d31, __LINE__>;
+using mint = math::mint<math::mint_md, __LINE__>;
 using poly = math::polymtt<mint>;
 
 int main() {

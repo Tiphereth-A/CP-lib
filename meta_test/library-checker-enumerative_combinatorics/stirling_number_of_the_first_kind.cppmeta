@@ -13,7 +13,7 @@ CEXP u32 MOD = 998244353;
 
 int main() {
   u32 n;
-  tifa_libs::fin >> n;
+  tifa_libs::fin_uint >> n;
   tifa_libs::fout << tifa_libs::math::gen_stirling1_row<poly>(n);
   return 0;
 }

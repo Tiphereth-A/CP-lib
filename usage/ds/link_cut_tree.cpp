@@ -11,7 +11,7 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   vecuu a(n);
-  for (auto &x : a) x = 1;
+  for (auto& x : a) x = 1;
   ds::link_cut_tree<u64, op, inv_op> lct(n, a);
   flt_ (u32, i, 0, m) {
     char opt;

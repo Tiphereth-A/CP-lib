@@ -7,11 +7,11 @@
 #include "../../../include/graph/kirchhoff.hpp"
 #include "../../../include/lalg/ge_mat.hpp"
 #include "../../../include/math/mint.hpp"
-#include "../../../include/math/mint_s30.hpp"
+#include "../../../include/math/mint_ms.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_s30, 1'000'003>;
+using mint = math::mint<math::mint_ms, 1'000'003>;
 vec<mint> fact(200'005);
 
 strn single_proceed(std::istream &fin) {

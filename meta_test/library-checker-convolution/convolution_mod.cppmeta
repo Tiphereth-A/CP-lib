@@ -13,9 +13,9 @@ CEXP u32 MOD = 998244353;
 
 int main() {
   u32 n, m;
-  tifa_libs::fin >> n >> m;
+  tifa_libs::fin_uint >> n >> m;
   vec_t a(n), b(m);
-  tifa_libs::fin >> a >> b;
+  tifa_libs::fin_uint >> a >> b;
   tifa_libs::fout << conv_func(a, b) << '\n';
   return 0;
 }

@@ -5,8 +5,8 @@
 using namespace tifa_libs;
 void solve() {
   vvecu sdk(9, vecu(9));
-  for (auto &i : sdk)
-    for (auto &j : i) std::cin >> j;
+  for (auto& i : sdk)
+    for (auto& j : i) std::cin >> j;
   auto res = game::sudoku_solver(sdk)[0];
   flt_ (u32, i, 0, 9)
     flt_ (u32, j, 0, 9) std::cout << res[i][j] << " \n"[j == 8];

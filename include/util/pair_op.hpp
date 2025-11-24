@@ -9,7 +9,7 @@ namespace tifa_libs {
   template <class T, class U>                                                                                                             \
   CEXP auto operator op(std::pair<T, U> l, std::pair<T, U> CR r) NE { return std::pair<T, U>{l.first op r.first, l.second op r.second}; } \
   template <class T, class U>                                                                                                             \
-  CEXP std::pair<T, U> &operator op##=(std::pair<T, U> &l, std::pair<T, U> CR r) NE {                                                     \
+  CEXP std::pair<T, U>& operator op## = (std::pair<T, U> & l, std::pair<T, U> CR r) NE {                                                  \
     l.first op## = r.first, l.second op## = r.second;                                                                                     \
     return l;                                                                                                                             \
   }

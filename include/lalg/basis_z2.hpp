@@ -54,7 +54,7 @@ struct basis_z2 {
   }
   CEXP std::bitset<N> max_spn() CNE {
     std::bitset<N> ret;
-    for (auto &&i : basis) ret ^= i;
+    for (auto&& i : basis) ret ^= i;
     return ret;
   }
   // @return std::nullopt if x is linear independent with current basis, else return the solution

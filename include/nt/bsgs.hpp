@@ -1,10 +1,10 @@
 #ifndef TIFALIBS_MATH_BSGS
 #define TIFALIBS_MATH_BSGS
 
-#include "../math/barrett.hpp"
 #include "../math/isqrt.hpp"
 #include "../math/qpow_mod.hpp"
 #include "../util/alias_others.hpp"
+#include "barrett.hpp"
 #include "dlog_naive.hpp"
 
 namespace tifa_libs::math {

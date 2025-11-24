@@ -77,7 +77,7 @@ class suffix_automaton {
   }
   // app 3
   //! need build(), search()
-  CEXP void output_all_occurrences(u32 u, u32 P_length, vecu &ans) NE {
+  CEXP void output_all_occurrences(u32 u, u32 P_length, vecu& ans) NE {
     if (!st[u].is_clone) ans.push_back(st[u].first_pos - P_length + 1);
     for (u32 v : e[u]) output_all_occurrences(v, P_length, ans);
   }

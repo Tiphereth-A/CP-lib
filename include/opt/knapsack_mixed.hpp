@@ -20,7 +20,7 @@ class knapsack_mixed {
         vec<T> q1, q2;
         u32 l = 0;
         flt_ (u32, i, 0, (M - w) / weight + 1) {
-          T &x = f[w + weight * i];
+          T& x = f[w + weight * i];
           while (l < q1.size() && (T)x - value * (T)i >= q2.back()) q1.pop_back(), q2.pop_back();
           q1.push_back((T)i), q2.push_back((T)x - value * (T)i);
           while (l < q1.size() && q1[l] < T(i - count)) ++l;

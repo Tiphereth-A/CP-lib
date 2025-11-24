@@ -15,18 +15,18 @@ struct cvh : public polygon<FP> {
     if (!inited) strict ? init<true>() : init<false>();
   }
 
-  friend auto &operator>>(istream_c auto &is, cvh &ch) NE {
-    for (auto &i : ch.vs) is >> i;
+  friend auto& operator>>(istream_c auto& is, cvh& ch) NE {
+    for (auto& i : ch.vs) is >> i;
     return is;
   }
-  friend auto &operator<<(ostream_c auto &os, cvh<FP> CR ch) NE {
+  friend auto& operator<<(ostream_c auto& os, cvh<FP> CR ch) NE {
     retif_((ch.vs.empty()) [[unlikely]], os);
     for (auto it = begin(ch.vs); it != end(ch.vs) - 1; ++it) os << *it << ' ';
     return os << ch.vs.back();
   }
 
   template <bool strict = true>
-  CEXP cvh &init() NE {
+  CEXP cvh& init() NE {
     this->reunique();
     const u32 n = this->size();
     retif_((n <= 2) [[unlikely]], *this);
@@ -74,7 +74,7 @@ struct cvh : public polygon<FP> {
     } while (i != is || j != js);
     return ret;
   }
-  CEXP cvh &do_minkowski_sum(cvh<FP> CR r) NE {
+  CEXP cvh& do_minkowski_sum(cvh<FP> CR r) NE {
     const u32 n = this->size(), m = r.size();
     retif_((!m) [[unlikely]], *this);
     retif_((!n) [[unlikely]], *this = r);
@@ -91,7 +91,7 @@ struct cvh : public polygon<FP> {
     this->vs = res;
     return *this;
   }
-  CEXP cvh &do_ins_CVHhP(line<FP> CR l) NE {
+  CEXP cvh& do_ins_CVHhP(line<FP> CR l) NE {
     const u32 n = this->size();
     vec<point<FP>> cvc;
     flt_ (u32, i, 0, n) {

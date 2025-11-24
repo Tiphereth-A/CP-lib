@@ -5,7 +5,7 @@
 
 namespace tifa_libs::math {
 namespace qtetra_mod_impl_ {
-CEXP u64 mpow(u64 a, u64 b, u64 m, u64 &f) NE {
+CEXP u64 mpow(u64 a, u64 b, u64 m, u64& f) NE {
   retif_((a == 1 || b == 0) [[unlikely]], 1);
   u64 v = 1, x = a, z = m;
   f |= x >= z, x %= m;
@@ -18,7 +18,7 @@ CEXP u64 mpow(u64 a, u64 b, u64 m, u64 &f) NE {
   return v;
 }
 
-CEXP u64 qtetra(u64 a, u64 b, u64 m, u64 &f) NE {
+CEXP u64 qtetra(u64 a, u64 b, u64 m, u64& f) NE {
   if (a == 0) return ~b & 1;
   if (m == 1) return f = 1;
   if (a == 1 || b == 0) return 1;

@@ -21,13 +21,13 @@ class rgcd {
 
     CEXP void prime(u32 p) NE { fs[p] = {1, 1, p}; }
     CEXP void coprime(u32 i, u32 j) NE {
-      F3 &now = fs[i * j];
+      F3& now = fs[i * j];
       now = fs[i];
       if ((now.a *= j) > now.b) swap(now.a, now.b);
       if (now.b > now.c) swap(now.b, now.c);
     }
     CEXP void not_coprime(u32 i, u32 j) NE {
-      F3 &now = fs[i * j];
+      F3& now = fs[i * j];
       now = fs[i];
       if ((now.a *= j) > now.b) swap(now.a, now.b);
       if (now.b > now.c) swap(now.b, now.c);

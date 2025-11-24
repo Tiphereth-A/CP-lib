@@ -7,14 +7,14 @@
 using namespace tifa_libs;
 int main() {
   u32 t, m;
-  fin >> t >> m;
+  fin_uint >> t >> m;
   if (m == 1) {
     while (t--) fout << "0\n";
   } else {
     math::exlucas mCn(m);
     while (t--) {
       i64 n, k;
-      fin >> n >> k;
+      fin_uint >> n >> k;
       fout << mCn(n, k) << '\n';
     }
   }

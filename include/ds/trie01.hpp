@@ -38,7 +38,7 @@ struct trie01 {
     if (!~dep) {
       if (data[t].val += x; idx >= 0) data[t].idxs.push_back((u32)idx);
     } else {
-      if (auto &_ = data[t].nxt[(xv ^ bit) >> dep & 1]; !_) _ = (u32)data.size(), data.emplace_back(), need = false;
+      if (auto& _ = data[t].nxt[(xv ^ bit) >> dep & 1]; !_) _ = (u32)data.size(), data.emplace_back(), need = false;
       data[t].nxt[(xv ^ bit) >> dep & 1] = add_(data[t].nxt[(xv ^ bit) >> dep & 1], bit, idx, dep - 1, x, xv, need);
       data[t].val += x;
     }

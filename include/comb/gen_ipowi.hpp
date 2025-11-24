@@ -1,9 +1,9 @@
 #ifndef TIFALIBS_COMB_GEN_IPOWI
 #define TIFALIBS_COMB_GEN_IPOWI
 
-#include "../math/barrett.hpp"
 #include "../math/isqrt.hpp"
 #include "../math/qpow_mod.hpp"
+#include "../nt/barrett.hpp"
 #include "../nt/lsieve.hpp"
 
 namespace tifa_libs::math {

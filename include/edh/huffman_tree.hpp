@@ -16,16 +16,16 @@ class huffman {
   vec<TIFA> data;
 
   template <class Res, class Op>
-  CEXP vec<Res> run(Op &&operate) CNE {
+  CEXP vec<Res> run(Op&& operate) CNE {
     vec<Res> ret(cnt_w);
     std::queue<std::pair<u32, Res>> q;
     q.emplace(data.size() - 1, Res{});
     while (!q.empty()) {
       auto [now_idx, now_code] = q.front();
-      auto &ch = data[now_idx].ch;
+      auto& ch = data[now_idx].ch;
       q.pop();
       flt_ (u32, i, 0, ch_sz)
-        if (auto &&next_child = ch[i]; next_child < cnt_l) {
+        if (auto&& next_child = ch[i]; next_child < cnt_l) {
           if (next_child < cnt_w) ret[next_child] = operate(now_code, i);
           continue;
         } else q.emplace(next_child, operate(now_code, i));

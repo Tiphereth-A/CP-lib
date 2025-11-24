@@ -23,7 +23,7 @@ class odt {
   CEXPE odt() NE = default;
   CEXPE odt(vec<T> CR c) NE : odt() {
     u32 cnt = 0;
-    for (auto &&i : c) data.emplace(cnt, cnt, i), ++cnt;
+    for (auto&& i : c) data.emplace(cnt, cnt, i), ++cnt;
   }
 
   CEXP void clear() NE { data.clear(); }

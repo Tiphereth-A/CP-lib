@@ -10,10 +10,10 @@ int main() {
   u32 n;
   std::cin >> n;
   vveci c1(n, veci(n));
-  for (auto &i : c1) std::cin >> i;
+  for (auto& i : c1) std::cin >> i;
   auto c2 = c1;
-  for (auto &i : c2)
-    for (auto &j : i) j = -j;
+  for (auto& i : c2)
+    for (auto& j : i) j = -j;
   std::cout << graph::hungarian(c1).back() << '\n';
   std::cout << -graph::hungarian(c2).back() << '\n';
 }

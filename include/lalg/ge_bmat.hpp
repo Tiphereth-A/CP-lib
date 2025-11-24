@@ -6,7 +6,7 @@
 namespace tifa_libs::math {
 
 template <usz R, usz C>
-CEXP u32 ge_bmat(bitmat<R, C> &bmat, bool clear_u = true) NE {
+CEXP u32 ge_bmat(bitmat<R, C>& bmat, bool clear_u = true) NE {
   CEXP usz rk_max = min(R, C);
   u32 rk = 0;
   for (u32 i = 0, c = 0; i < R; c = max(c, ++i)) {

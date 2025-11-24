@@ -1,7 +1,7 @@
 #ifndef TIFALIBS_FAST_STR2UINT_MOD
 #define TIFALIBS_FAST_STR2UINT_MOD
 
-#include "../math/barrett.hpp"
+#include "../nt/barrett.hpp"
 #include "../util/alias_others.hpp"
 #include "str2uint_si64.hpp"
 

@@ -8,7 +8,7 @@ namespace tifa_libs::opt {
 
 template <arithm_c T>
 CEXP T alpha_beta(graph::tree CR tr, vec<T> CR v_weight) NE {
-  auto dfs = [&](auto &&dfs, u32 u, T a, T b, bool is_max = 1) NE -> T {
+  auto dfs = [&](auto&& dfs, u32 u, T a, T b, bool is_max = 1) NE -> T {
     if (tr.g[u].empty()) return v_weight[u];
     if (is_max) {
       for (auto d : tr.g)

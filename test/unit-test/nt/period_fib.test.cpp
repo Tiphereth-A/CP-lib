@@ -5,7 +5,7 @@
 
 #include "../../../include/lalg/mat.hpp"
 #include "../../../include/math/mint.hpp"
-#include "../../../include/math/mint_d31.hpp"
+#include "../../../include/math/mint_md.hpp"
 #include "../../../include/math/qpow.hpp"
 #include "../base.hpp"
 
@@ -22,7 +22,7 @@ void test(u32 n) {
   check(a * b, b, check_param(n), check_param(period), check_param(a));
 }
 
-using mint = math::mint<math::mint_d31, __LINE__>;
+using mint = math::mint<math::mint_md, __LINE__>;
 
 int main() {
   auto tcase = unittest::pre_test();

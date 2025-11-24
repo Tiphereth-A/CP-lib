@@ -14,9 +14,9 @@ mints:
       using mint = math::mint<math::mint_$m, MOD>;
     main_begin: null
   member:
-    s30: null
-    s63: null
-    sbrt: null
+    ms: null
+    ms64: null
+    bs: null
 mintd:
   priority: 0
   default_content:
@@ -30,9 +30,9 @@ mintd:
     main_begin: |
       mint::set_mod(MOD);
   member:
-    d31: null
-    d63: null
-    dbrt: null
+    md: null
+    md64: null
+    bd: null
 hash:
   priority: 100
   default_content:

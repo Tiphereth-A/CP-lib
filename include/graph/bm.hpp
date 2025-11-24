@@ -12,7 +12,7 @@ namespace tifa_libs::graph {
 // @return false if negative cycle detected
 template <alistw_c G, class F>
 requires(!uint_c<TPN G::w_t>) && requires(F relex, u32 now, u32 to) { relex(now, to); }
-bool bellman_ford(G CR g, u32 s, F &&cb_relax, vec<TPN G::w_t> &dis) NE {
+bool bellman_ford(G CR g, u32 s, F&& cb_relax, vec<TPN G::w_t>& dis) NE {
   const u32 n = g.size(), sn = math::isqrt(n);
   assert(dis.size() == n);
   vecb vis(n);
@@ -37,7 +37,7 @@ bool bellman_ford(G CR g, u32 s, F &&cb_relax, vec<TPN G::w_t> &dis) NE {
 }
 // cb_relax(now, to)
 template <alistw_c G, class F>
-auto bellman_ford(G CR g, u32 s, F &&cb_relax, TPN G::w_t INF = std::numeric_limits<TPN G::w_t>::max() / 2 - 1) NE {
+auto bellman_ford(G CR g, u32 s, F&& cb_relax, TPN G::w_t INF = std::numeric_limits<TPN G::w_t>::max() / 2 - 1) NE {
   std::optional ret{vec<TPN G::w_t>(g.size(), INF)};
   if (!bellman_ford(g, s, std::forward<F>(cb_relax), ret.value())) ret = std::nullopt;
   return ret;

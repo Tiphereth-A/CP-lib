@@ -17,23 +17,23 @@ struct polygon {
   CEXP polygon(itl<point<FP>> vs_) NE : vs(vs_) {}
   CEXP polygon(spn<point<FP>> vs_) NE : vs(begin(vs_), end(vs_)) {}
 
-  friend auto &operator>>(istream_c auto &is, polygon &p) NE {
-    for (auto &i : p.vs) is >> i;
+  friend auto& operator>>(istream_c auto& is, polygon& p) NE {
+    for (auto& i : p.vs) is >> i;
     return is;
   }
-  friend auto &operator<<(ostream_c auto &os, polygon CR p) NE {
+  friend auto& operator<<(ostream_c auto& os, polygon CR p) NE {
     retif_((p.vs.empty()) [[unlikely]], os);
     for (auto it = begin(p.vs); it != end(p.vs) - 1; ++it) os << *it << ' ';
     return os << p.vs.back();
   }
   CEXP u32 size() CNE { return (u32)vs.size(); }
-  CEXP point<FP> &operator[](u32 x) NE { return vs[x]; }
+  CEXP point<FP>& operator[](u32 x) NE { return vs[x]; }
   CEXP point<FP> CR operator[](u32 x) CNE { return vs[x]; }
-  CEXP polygon &resort() NE {
+  CEXP polygon& resort() NE {
     sort(vs);
     return *this;
   }
-  CEXP polygon &reunique() NE {
+  CEXP polygon& reunique() NE {
     vs = uniq(vs);
     return *this;
   }

@@ -62,7 +62,7 @@ class hlpp {
     return h[s] != inf;
   }
   CEXP bool push(u32 u) NE {
-    for (bool init = u == s; auto &[to, w, lstv] : e[u]) {
+    for (bool init = u == s; auto& [to, w, lstv] : e[u]) {
       if (!w || (init == false && h[u] != h[to] + 1) || h[to] == inf) continue;
       T k = init ? w : min(w, exf[u]);
       if (to != s && to != t && !exf[to]) B[h[to]].push_back(to), level = max(level, h[to]);

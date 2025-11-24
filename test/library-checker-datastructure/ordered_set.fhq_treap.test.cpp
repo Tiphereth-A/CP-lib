@@ -7,14 +7,14 @@
 using namespace tifa_libs;
 int main() {
   u32 n, q;
-  fin >> n >> q;
+  fin_uint >> n >> q;
   ds::fhq_treap<u32> treap;
   flt_ (u32, i, 0, n, x) {
-    fin >> x;
+    fin_uint >> x;
     treap.insert(x);
   }
   flt_ (u32, i, 0, q, t, x) {
-    fin >> t >> x;
+    fin_uint >> t >> x;
     auto it = treap.find(x);
     switch (t) {
       case 0:

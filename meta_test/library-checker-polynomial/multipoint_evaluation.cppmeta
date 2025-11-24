@@ -13,9 +13,9 @@ CEXP u32 MOD = 998244353;
 
 int main() {
   u32 n, m;
-  tifa_libs::fin >> n >> m;
+  tifa_libs::fin_uint >> n >> m;
   poly a(n), p(m);
-  tifa_libs::fin >> a >> p;
+  tifa_libs::fin_uint >> a >> p;
   tifa_libs::fout << tifa_libs::math::mpe_fps(a, p) << '\n';
   return 0;
 }

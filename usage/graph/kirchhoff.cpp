@@ -7,10 +7,10 @@
 #include "../../include/graph/euler_trail.hpp"
 #include "../../include/lalg/ge_mat.hpp"
 #include "../../include/math/mint.hpp"
-#include "../../include/math/mint_s30.hpp"
+#include "../../include/math/mint_ms.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_s30, 1'000'003>;
+using mint = math::mint<math::mint_ms, 1'000'003>;
 
 int main() {
   vec<mint> fact(200'005);
@@ -35,7 +35,7 @@ int main() {
       continue;
     }
     vecb vis(n);
-    auto f = [&](auto &&f, u32 x) -> void {
+    auto f = [&](auto&& f, u32 x) -> void {
       for (auto v : g[x])
         if (!vis[v]) vis[v] = 1, f(f, v);
     };
@@ -46,7 +46,7 @@ int main() {
       if (vis[i]) ids[i] = cnt_ids++, inv_ids.push_back(i);
     graph::amat<mint> mat(cnt_ids);
     flt_ (u32, id, 0, cnt_ids) {
-      auto &tos = g[inv_ids[id]];
+      auto& tos = g[inv_ids[id]];
       if (tos.empty()) continue;
       tifa_libs::sort(tos);
       u32 cnt = 1, pre = tos[0];
@@ -56,7 +56,7 @@ int main() {
       mat.set_arc(id, ids[pre], cnt);
     }
     auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-    auto ge = [&](math::matrix<mint> &A, bool clear_u) { return math::ge_mat<mint, decltype(is_0), true>(A, is_0, clear_u); };
+    auto ge = [&](math::matrix<mint>& A, bool clear_u) { return math::ge_mat<mint, decltype(is_0), true>(A, is_0, clear_u); };
     mint ans = graph::kirchhoff<true>(mat, ids[0], ge) * fact[g.deg_out[inv_ids[0]]];
     flt_ (u32, i, 1, cnt_ids) ans *= fact[g.deg_out[inv_ids[i]] - 1];
     std::cout << ans << '\n';

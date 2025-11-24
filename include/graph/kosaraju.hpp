@@ -22,12 +22,12 @@ class kosaraju {
   CEXP void build() NE {
     vecb vis(g.size());
     vecu ord;
-    auto dfs = [&, this](auto &&dfs, u32 idx) NE {
+    auto dfs = [&, this](auto&& dfs, u32 idx) NE {
       if (vis[idx]) return;
       for (vis[idx] = 1; auto to : g[idx]) dfs(dfs, to);
       ord.push_back(idx);
     };
-    auto rdfs = [this](auto &&rdfs, u32 idx, u32 cnt) NE {
+    auto rdfs = [this](auto&& rdfs, u32 idx, u32 cnt) NE {
       if (~scc_id[idx]) return;
       for (scc_id[idx] = cnt; auto to : rev_g[idx]) rdfs(rdfs, to, cnt);
     };

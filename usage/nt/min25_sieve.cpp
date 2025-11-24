@@ -3,11 +3,11 @@
 #include "../../include/nt/min25_sieve.hpp"
 
 #include "../../include/math/mint.hpp"
-#include "../../include/math/mint_s30.hpp"
+#include "../../include/math/mint_ms.hpp"
 #include "../../include/math/qpow.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_s30, 1'000'000'000 + 7>;
+using mint = math::mint<math::mint_ms, 1'000'000'000 + 7>;
 
 mint f(u64 p, u64 c) {
   auto _ = math::qpow(mint(p), c);

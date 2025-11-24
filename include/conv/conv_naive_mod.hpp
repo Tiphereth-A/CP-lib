@@ -16,7 +16,7 @@ CEXP vecuu conv_naive_mod(spnuu l, spnuu r, u64 mod, u32 ans_size = 0) NE {
   if (n < m) swap(n, m);
   flt_ (u32, i, 0, n)
     flt_ (u32, j, 0, min(m, ans_size - i)) ans[i + j] += mul_mod_u(l_[i], r_[j], mod);
-  for (auto &i : ans) i %= mod;
+  for (auto& i : ans) i %= mod;
   return ans;
 }
 

@@ -15,7 +15,7 @@ CEXP vecu manacher(strnv t) NE {
     while (s[i - p[i]] == s[i + p[i]]) ++p[i];
     if (i + p[i] > j + p[j]) j = i;
   }
-  for (auto &i : p) --i;
+  for (auto& i : p) --i;
   return vecu(begin(p) + 2, end(p) - 2);
 }
 

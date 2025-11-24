@@ -4,14 +4,14 @@
 
 #include "../../include/graph/ringenum3.hpp"
 #include "../../include/math/mint.hpp"
-#include "../../include/math/mint_s30.hpp"
+#include "../../include/math/mint_ms.hpp"
 // clang-format off
 #include "../../include/io/ios_pair.hpp"
 #include "../../include/io/ios_container.hpp"
 // clang-format on
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_s30, 1'000'000'000 + 7>;
+using mint = math::mint<math::mint_ms, 1'000'000'000 + 7>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -23,7 +23,7 @@ int main() {
     std::cin >> n >> m;
     vecptu edges(m);
     std::cin >> edges;
-    for (auto &[u, v] : edges) --u, --v;
+    for (auto& [u, v] : edges) --u, --v;
     graph::alist g(n);
     for (auto [u, v] : edges) g.add_edge(u, v);
     graph::alist dg(n), dgv(n);

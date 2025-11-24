@@ -8,10 +8,10 @@
 using namespace tifa_libs;
 int main() {
   u32 n, m, s, t;
-  fin >> n >> m >> s >> t;
+  fin_uint >> n >> m >> s >> t;
   graph::alistw<u64> g(n);
   for (u32 i = 0, a, b, c; i < m; ++i) {
-    fin >> a >> b >> c;
+    fin_uint >> a >> b >> c;
     g.add_arc(a, b, c);
   }
   veci pre(n, -1);

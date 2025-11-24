@@ -1,66 +1,70 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stern_brocot_tree"
 
-#include "../../include/io/ios_pair.hpp"
 #include "../../include/io/fastin.hpp"
 #include "../../include/io/fastout.hpp"
 #include "../../include/nt/sbt.hpp"
 
 using namespace tifa_libs;
-using sbt = math::sbt<i64>;
+using sbt = math::sbt<u64>;
 
 int main() {
   int n;
-  fin >> n;
+  fin_uint >> n;
   while (n--) {
     strn s;
     fin >> s;
     u64 k;
-    i64 a, b, c, d;
+    u64 a, b, c, d;
     switch (s.front()) {
-      case 'E':
-        fin >> a >> b;
-        {
-          auto res = sbt(a, b).path();
-          fout << res.size();
-          for (i64 i : res) fout << ' ' << (i < 0 ? 'L' : 'R') << ' ' << (i < 0 ? -i : i);
-          fout << '\n';
+      case 'E': {
+        fin_uint >> a >> b;
+        vec<std::pair<char, u64>> path;
+        sbt::walk_to(a, b, [&path](bool dir, u64 step) { path.emplace_back(dir ? 'R' : 'L', step); });
+        fout << path.size();
+        for (auto [dir, step] : path) fout << ' ' << dir << ' ' << step;
+        fout << '\n';
+      } break;
+      case 'D': {
+        fin_uint >> k;
+        sbt s;
+        char ch;
+        flt_ (u64, i, 0, k, _) {
+          fin >> ch >> _;
+          ch == 'R' ? s.movr(_) : s.movl(_);
         }
-        break;
-      case 'D':
-        fin >> k;
-        {
-          sbt s;
-          char ch;
-          for (i64 i = 0, _; i < (i64)k; ++i) {
-            fin >> ch >> _;
-            ch == 'R' ? s.movr(_) : s.movl(_);
-          }
-          fout << s.current() << '\n';
-        }
-        break;
-      case 'L':
-        fin >> a >> b >> c >> d;
-        fout << sbt::lca(sbt(a, b), sbt(c, d)).current() << '\n';
-        break;
-      case 'A':
-        fin >> d >> a >> b;
-        {
-          auto _ = sbt(a, b);
-          if (_.dep() - d < 0) {
-            fout << "-1\n";
+        fout << s.x << ' ' << s.y << '\n';
+      } break;
+      case 'L': {
+        fin_uint >> a >> b >> c >> d;
+        auto s = sbt::walk_to_lca(a, b, c, d);
+        fout << s.x << ' ' << s.y << '\n';
+      } break;
+      case 'A': {
+        fin_uint >> d >> a >> b;
+        vec<std::pair<char, u64>> path;
+        sbt::walk_to(a, b, [&path](bool dir, u64 step) { path.emplace_back(dir ? 'R' : 'L', step); });
+        for (auto it = path.begin(); it != path.end(); ++it) {
+          if (it->second <= d) d -= it->second;
+          else {
+            it->second = d, d = 0;
+            path.erase(++it, path.end());
             break;
           }
-          _.movf(_.dep() - d);
-          fout << _.current() << '\n';
         }
-        break;
-      case 'R':
-        fin >> a >> b;
-        {
-          auto _ = sbt(a, b);
-          fout << _.lbound() << ' ' << _.rbound() << '\n';
+        if (d) fout << "-1\n";
+        else {
+          sbt s;
+          for (auto [dir, step] : path)
+            if (dir == 'R') s.movr(step);
+            else s.movl(step);
+          fout << s.x << ' ' << s.y << '\n';
         }
-        break;
+      } break;
+      case 'R': {
+        fin_uint >> a >> b;
+        auto _ = sbt::walk_to(a, b);
+        fout << _.lx << ' ' << _.ly << ' ' << _.rx << ' ' << _.ry << '\n';
+      } break;
     }
   }
   return 0;

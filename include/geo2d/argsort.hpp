@@ -7,7 +7,7 @@ namespace tifa_libs::geo {
 
 // sort in counterclockwise
 template <class FP>
-CEXP void argsort(vec<point<FP>> &vp, u32 quad_start = 6) NE {
+CEXP void argsort(vec<point<FP>>& vp, u32 quad_start = 6) NE {
   assert(quad_start < 9);
   sort(vp, [ofs = 9 - quad_start](point<FP> CR l, point<FP> CR r) NE { retif_((l.quad() == r.quad()), is_pos(l ^ r), (l.quad() + ofs) % 9 < (r.quad() + ofs) % 9); });
 }

@@ -4,12 +4,12 @@
 
 #include "../../include/lalg/mat.hpp"
 #include "../../include/math/mint.hpp"
-#include "../../include/math/mint_s30.hpp"
+#include "../../include/math/mint_ms.hpp"
 
 using namespace tifa_libs;
 CEXP u32 MOD = 1'000'000'007;
 
-using mint = math::mint<math::mint_s30, MOD>;
+using mint = math::mint<math::mint_ms, MOD>;
 using mat = math::matrix<mint>;
 
 int main() {

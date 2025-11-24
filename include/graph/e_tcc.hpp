@@ -17,7 +17,7 @@ struct e_tcc {
   CEXP e_tcc(alist<with_deg> CR g) NE : dfn(g.size(), -1_u32), low(g.size()), post(g.size()), path(g.size(), -1_u32), deg(g.size()), dsu(g.size()) {
     const u32 n = g.size();
     u32 tot = -1_u32;
-    const auto dfs = [&](auto &&f, u32 u, u32 t = -1_u32) -> void {
+    const auto dfs = [&](auto&& f, u32 u, u32 t = -1_u32) -> void {
       u32 pc{};
       for (dfn[u] = low[u] = ++tot; u32 v : g[u]) {
         if (v == u || (v == t && !pc++)) continue;
@@ -27,7 +27,7 @@ struct e_tcc {
             continue;
           }
           --deg[u];
-          for (auto &p = path[u]; ~p && dfn[p] <= dfn[v] && dfn[v] <= post[p]; p = path[p])
+          for (auto& p = path[u]; ~p && dfn[p] <= dfn[v] && dfn[v] <= post[p]; p = path[p])
             dsu.merge(u, p), deg[u] += deg[p];
           continue;
         }

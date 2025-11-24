@@ -10,14 +10,14 @@ template <alist_c G>
 CEXP auto path(G CR g, u32 from, u32 to) NE {
   std::optional ret{vecu{}};
   bool failed = true;
-  auto dfs = [&](auto &&dfs, u32 now, u32 fa) NE -> void {
+  auto dfs = [&](auto&& dfs, u32 now, u32 fa) NE -> void {
     ret->push_back(now);
     if (now == to) {
       failed = false;
       return;
     }
     if CEXP (alistw_c<G>)
-      for (auto &&[v, w] : g[now]) {
+      for (auto&& [v, w] : g[now]) {
         u32 to = 0;
         if ((to = v) == fa) continue;
         if (dfs(dfs, to, now); !failed) return;
