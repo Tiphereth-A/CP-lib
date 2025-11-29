@@ -24,7 +24,7 @@ class base64 {
   }
   static CEXP vec<usz> decode(strn S) NE {
     for (auto& c : S) c = ibase(c);
-    const usz B = (usz)S[0], M = (usz)S.size() - 1;
+    const usz B = (usz)S[0], M = S.size() - 1;
     vec<usz> a(6 * M / B, 0);
     flt_ (usz, i, 0, M)
       flt_ (usz, j, 0, 6)

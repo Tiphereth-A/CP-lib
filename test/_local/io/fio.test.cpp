@@ -29,9 +29,9 @@ void single_test() {
   fout.rebind(stdout);
   fclose(f);
   f = fopen(fn_in.c_str(), "r");
-  fin.rebind(f);
+  fid_stdin.rebind(f);
   fin >> x;
-  fin.rebind(stdin);
+  fid_stdin.rebind(stdin);
   fclose(f);
   check(x, MIN);
 
@@ -42,9 +42,9 @@ void single_test() {
   fout.rebind(stdout);
   fclose(f);
   f = fopen(fn_in.c_str(), "r");
-  fin.rebind(f);
+  fid_stdin.rebind(f);
   fin >> x;
-  fin.rebind(stdin);
+  fid_stdin.rebind(stdin);
   fclose(f);
   check(x, MAX);
 }

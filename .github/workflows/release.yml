@@ -34,6 +34,10 @@ on:
       - '*.py'
       - '*.tex'
   workflow_dispatch:
+    inputs:
+      ignore_font_cache:
+        type: boolean
+        default: false
 
 concurrency:
   group: ${{ github.head_ref || 'x' }}-${{ github.workflow }}-${{ github.ref }}-pdf
@@ -54,20 +58,33 @@ jobs:
         with:
           version: "latest"
       - name: Install Python dependencies
-        run: uv sync
+        run: uv sync --frozen
       - name: Generate TeX files
         run: |
           uv run python manager.py -l DEBUG gen-cs
           uv run python manager.py -l DEBUG gen-nb
+      - name: Restore fonts cache
+        if: ${{ !inputs.ignore_font_cache }}
+        id: cache-fonts
+        uses: actions/cache/restore@v4
+        with:
+          path: fonts
+          key: fonts-${{ hashFiles('Makefile') }}
       - name: Download fonts
+        if: ${{ steps.cache-fonts.outputs.cache-hit != 'true' }}
         run: |
-            chmod +x script/download_fonts.sh
             echo "::group::Downloading fonts"
-            ./script/download_fonts.sh
+            make download-fonts
             echo "::endgroup::"
             echo "::group::Downloaded fonts list"
             ls -l fonts
             echo "::endgroup::"
+      - name: Save fonts cache
+        if: ${{ steps.cache-fonts.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: fonts
+          key: fonts-${{ hashFiles('Makefile') }}
       - name: Build the LaTeX document
         id: build-latex
         uses: xu-cheng/latex-action@v4
