@@ -6,7 +6,7 @@
 #include "../base.hpp"
 
 using namespace tifa_libs;
-// vecu a;
+
 strn single_proceed(std::istream& fin) {
   std::stringstream ss;
 

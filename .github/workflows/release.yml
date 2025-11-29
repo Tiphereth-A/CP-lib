@@ -54,16 +54,15 @@ jobs:
         with:
           version: "latest"
       - name: Install Python dependencies
-        run: uv sync
+        run: uv sync --frozen
       - name: Generate TeX files
         run: |
           uv run python manager.py -l DEBUG gen-cs
           uv run python manager.py -l DEBUG gen-nb
       - name: Download fonts
         run: |
-            chmod +x script/download_fonts.sh
             echo "::group::Downloading fonts"
-            ./script/download_fonts.sh
+            make download-fonts
             echo "::endgroup::"
             echo "::group::Downloaded fonts list"
             ls -l fonts

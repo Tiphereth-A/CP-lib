@@ -25,8 +25,8 @@ class mint_bs {
     else return ret;
   }
   static CEXP raw_t mod(uint_c auto v) NE {
-    if CEXP (umost64_c<decltype(v)>) return core::reduce((u64)v);
-    else if (v < UINT64_MAX) return core::reduce((u64)v);
+    if CEXP (umost64_c<decltype(v)>) return (raw_t)core::reduce((u64)v);
+    else if (v < UINT64_MAX) return (raw_t)core::reduce((u64)v);
     else return raw_t(v % mod());
   }
   static CEXP raw_t mod() NE { return MOD_; }
@@ -44,7 +44,7 @@ class mint_bs {
   CEXP void sub(mint_bs CR r) NE {
     if (i32(v_ -= r.v_) < 0) v_ += mod();
   }
-  CEXP void mul(mint_bs CR r) NE { v_ = core::reduce(u64(v_) * r.v_); }
+  CEXP void mul(mint_bs CR r) NE { v_ = (raw_t)core::reduce(u64(v_) * r.v_); }
 };
 
 }  // namespace tifa_libs::math

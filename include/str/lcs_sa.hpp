@@ -15,7 +15,7 @@ CEXP pt4u lcs_sa(strnv s, strnv t) NE {
     if (sa.sa[i] - 1 < s.size() && sa.sa[i - 1] - 1 > s.size()) ans = max(ans, pt3u{sa.height[i], sa.sa[i] - 1, sa.sa[i - 1] - 1});
   }
   auto [l, a, b] = ans;
-  b -= s.size() + 1;
+  b -= (u32)s.size() + 1;
   if (l) return {a, a + l, b, b + l};
   return {0, 0, 0, 0};
 }
