@@ -60,13 +60,15 @@ class ConfigTCGen(ConfigBase):
 
     @dispatch(list, str)
     def _get_member_content_raw(self, categories: list[str], member: str) -> dict:
+        """Get member content by trying each category until one succeeds."""
         for category in categories:
             try:
                 return self._get_member_content_raw(category, member)
-            except:
-                pass
+            except (KeyError, RuntimeError):
+                continue
         raise RuntimeError(
-            f"member '{member}' is invalid in categories '{categories}'")
+            f"member '{member}' is invalid in categories '{categories}'"
+        )
 
     @withlog
     def get_categories(self, **kwargs) -> list[str]:

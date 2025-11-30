@@ -1,6 +1,7 @@
 from copy import deepcopy
 from fnmatch import fnmatch
 import itertools
+import logging
 import os
 from typing import Iterable
 
@@ -16,56 +17,71 @@ class case_parser:
             f"{cat}-{mem}" for cat, mem in self._case_list)
         self._case_dict: list[dict] = [CONFIG_TCGEN.get_member_content(cat, mem)
                                        for cat, mem in self._case_list]
+        # Process requirements: find matching members from other categories
+        # Build category to case mapping once for all cases (optimization)
+        category_to_case_map = {
+            c['category_name']: c for c in self._case_dict
+        }
+
         self._requirement_members_list: list[list[str]] = []
         for case in self._case_dict:
-            req, cat = deepcopy(case['requirements']), case['category_name']
+            requirements = deepcopy(case.get('requirements', []))
+            category_name = case['category_name']
             req_members: list[str] = []
-            if req:
-                for case2 in self._case_dict:
-                    cat2 = case2['category_name']
-                    if cat2 == cat:
-                        continue
-                    for idx, single_req in enumerate(req):
-                        if cat2 not in single_req:
-                            continue
-                        req_members.append(case2['member_name'])
-                        req[idx].pop(single_req.index(cat2))
-                        break
+
+            if requirements:
+                # Find matching requirement and extract member
+                for req_list in requirements:
+                    for cat2 in req_list:
+                        if cat2 != category_name and cat2 in category_to_case_map:
+                            req_members.append(
+                                category_to_case_map[cat2]['member_name'])
+                            req_list.remove(cat2)
+                            break
+
             self._requirement_members_list.append(req_members)
 
     def __str__(self):
         return str(self._case_dict)
 
     def _apply_format_specifiers(self, content: str, member: str, requirement_members: list[str]) -> str:
+        """Apply format specifiers to content string."""
         if not content:
             return ''
+        result = content
         for idx, mem in enumerate(requirement_members):
-            content = content.replace(f"$mb{idx}b", mem)
-        content = content.replace('$m', member)
-        return content
+            result = result.replace(f"$mb{idx}b", mem)
+        result = result.replace('$m', member)
+        return result
 
-    def _get_content_ignore(self, type: str) -> str:
-        cat_list: list[str] = []
+    def _get_content_ignore(self, content_type: str) -> str:
+        """Get content of specified type, ignoring duplicate categories."""
+        processed_categories: set[str] = set()
         result: str = ''
         for case, requirements in zip(self._case_dict, self._requirement_members_list):
             category_name = case['category_name']
-            if category_name in cat_list:
+            if category_name in processed_categories:
                 continue
-            cat_list.extend(
-                CONFIG_TCGEN.get_categories_with_same_priority(category_name))
+            # Mark all categories with same priority as processed
+            same_priority_cats = CONFIG_TCGEN.get_categories_with_same_priority(
+                category_name)
+            processed_categories.update(same_priority_cats)
             result += self._apply_format_specifiers(
-                case[type], case['member_name'], requirements)
+                case[content_type], case['member_name'], requirements
+            )
         return result
 
     @withlog
     def get_include_list(self, **kwargs) -> list[str]:
-        result: list[str] = []
+        """Get list of unique include statements."""
+        result: set[str] = set()
         for case, req in zip(self._case_dict, self._requirement_members_list):
-            if not case['include']:
-                continue
-            result.extend([self._apply_format_specifiers(
-                i, case['member_name'], req) for i in case['include']])
-        return sorted(list(set(result)))
+            if case.get('include'):
+                for include in case['include']:
+                    result.add(self._apply_format_specifiers(
+                        include, case['member_name'], req
+                    ))
+        return sorted(result)
 
     @withlog
     def get_content_after_include(self, **kwargs) -> str:
@@ -77,7 +93,8 @@ class case_parser:
 
     @withlog
     def get_label(self, **kwargs) -> str:
-        return '.'.join(f"{cat}-{mem}" for cat, mem in self._case_list)
+        """Get label for this case (same as case_tag)."""
+        return self._case_tag
 
 
 class testcase_matrix:
@@ -86,12 +103,12 @@ class testcase_matrix:
         self._all_cases: list[case_parser] = []
 
     def _get_member_list(self) -> list[list[tuple[str, str]]]:
-        categories = sorted(self._cat_list,
-                            key=lambda x: CONFIG_TCGEN.get_priority(x[0]))
-        result: list = []
-        for cat in categories:
-            result.append(CONFIG_TCGEN.get_memberlist(cat))
-        return result
+        """Get member lists for all categories, sorted by priority."""
+        categories = sorted(
+            self._cat_list,
+            key=lambda cat_list: CONFIG_TCGEN.get_priority(cat_list[0])
+        )
+        return [CONFIG_TCGEN.get_memberlist(cat) for cat in categories]
 
     @withlog
     def append(self, categories: Iterable[str], **kwargs):
@@ -100,54 +117,78 @@ class testcase_matrix:
 
     @withlog
     def make_all_cases(self, **kwargs):
+        """Generate all test cases from the test case matrix."""
+        logger = kwargs.get('logger')
+
         def _single_iteration(all_cases, all_cases_new):
+            """Process one iteration of case expansion."""
             result: list[list[tuple[str, str]]] = []
             result_new: list[list[tuple[str, str]]] = []
-            for now_case, now_case_new in zip(all_cases, all_cases_new):
+
+            for current_case, current_case_new in zip(all_cases, all_cases_new):
                 required_cats: list[tuple[str, ...]] = []
-                for cat, mem in now_case_new:
-                    req: list[list[str]] | None = CONFIG_TCGEN.get_member_content(cat, mem)[
-                        'requirements']
-                    if req:
-                        required_cats.extend(itertools.product(*req))
+
+                # Collect all requirements from new cases
+                for cat, mem in current_case_new:
+                    member_content = CONFIG_TCGEN.get_member_content(cat, mem)
+                    requirements = member_content.get('requirements')
+                    if requirements:
+                        required_cats.extend(itertools.product(*requirements))
+
+                # If no requirements, keep case as-is
                 if not required_cats:
-                    result.append(now_case)
+                    result.append(current_case)
                     result_new.append([])
                     continue
-                for cats in required_cats:
-                    ls = [CONFIG_TCGEN.get_memberlist(cat) for cat in cats]
-                    prod = list(itertools.product(*ls))
-                    result.extend([[*now_case, *req]
-                                   for req in prod])
-                    result_new.extend([[*req] for req in prod])
+
+                # Expand cases with requirements
+                for required_categories in required_cats:
+                    member_lists = [
+                        CONFIG_TCGEN.get_memberlist(cat)
+                        for cat in required_categories
+                    ]
+                    product_cases = list(itertools.product(*member_lists))
+                    result.extend([[*current_case, *req_case]
+                                  for req_case in product_cases])
+                    result_new.extend([[*req_case]
+                                      for req_case in product_cases])
+
             return result, result_new
 
+        # Initialize with base cases
         all_cases = [list(i)
                      for i in itertools.product(*self._get_member_list())]
         all_cases_new = deepcopy(all_cases)
-        kwargs.get('logger').debug(f'Initial:')
-        kwargs.get('logger').debug(' ' * 2 + f'all_cases:')
-        kwargs.get('logger').debug('\n'.join(str(i)
-                                             for i in all_cases))
-        kwargs.get('logger').debug(' ' * 2 + f'all_cases_new:')
-        kwargs.get('logger').debug('\n'.join(str(i)
-                                             for i in all_cases_new))
+
+        # Only do expensive debug logging if debug level is enabled
+        if logger.isEnabledFor(logging.DEBUG):
+            logger.debug('Initial:')
+            logger.debug(' ' * 2 + f'all_cases:')
+            logger.debug('\n'.join(str(i) for i in all_cases))
+            logger.debug(' ' * 2 + f'all_cases_new:')
+            logger.debug('\n'.join(str(i) for i in all_cases_new))
+
+        # Iterate until no new cases are generated
         iter_limit = len(CONFIG_TCGEN.get_categories())
         cnt = 0
         while True:
             all_cases, all_cases_new = _single_iteration(
                 all_cases, all_cases_new)
-            kwargs.get('logger').debug(f'Iteration {cnt}:')
-            kwargs.get('logger').debug(' ' * 2 + f'all_cases:')
-            kwargs.get('logger').debug('\n'.join(str(i)
-                                                 for i in all_cases))
-            if not sum([len(i) for i in all_cases_new]):
+
+            if logger.isEnabledFor(logging.DEBUG):
+                logger.debug(f'Iteration {cnt}:')
+                logger.debug(' ' * 2 + f'all_cases:')
+                logger.debug('\n'.join(str(i) for i in all_cases))
+
+            if not any(all_cases_new):
                 break
+
             cnt += 1
             if cnt > iter_limit:
-                raise RuntimeError('Max iteration limit exceed!')
-        self._all_cases = [deepcopy(case_parser(now_case))
-                           for now_case in all_cases]
+                raise RuntimeError('Max iteration limit exceeded!')
+
+        # Only deepcopy if case_parser modifies input, otherwise create new instances
+        self._all_cases = [case_parser(now_case) for now_case in all_cases]
 
     @withlog
     def get_all_cases(self, **kwargs):
@@ -157,20 +198,45 @@ class testcase_matrix:
 
     @withlog
     def exclude(self, case: list[tuple[str, str]], **kwargs):
+        """Exclude a specific case from the test matrix."""
         if not self._all_cases:
             self.make_all_cases()
-        case_list = [i._case_list for i in self._all_cases]
-        self._all_cases.pop(case_list.index(
-            sorted(case, key=lambda x: CONFIG_TCGEN.get_priority(x[0]))))
+
+        sorted_case = sorted(
+            case, key=lambda x: CONFIG_TCGEN.get_priority(x[0]))
+
+        # Use tuple for faster lookup (hashable)
+        sorted_case_tuple = tuple(sorted_case)
+        case_list_tuples = {
+            tuple(i._case_list): idx for idx, i in enumerate(self._all_cases)}
+
+        if sorted_case_tuple in case_list_tuples:
+            index = case_list_tuples[sorted_case_tuple]
+            self._all_cases.pop(index)
+        else:
+            kwargs.get('logger').warning(
+                f"Case {sorted_case} not found in test matrix")
+
         return self
 
     @withlog
     def exclude_wildcard(self, pattern: str, **kwargs):
+        """Exclude cases matching a wildcard pattern."""
         if not self._all_cases:
             self.make_all_cases()
-        for index, val in reversed(list(enumerate(self._all_cases))):
-            if fnmatch(val._case_tag, pattern):
-                self._all_cases.pop(index)
+
+        # Filter out matching cases
+        original_count = len(self._all_cases)
+        self._all_cases = [
+            case for case in self._all_cases
+            if not fnmatch(case._case_tag, pattern)
+        ]
+        removed = original_count - len(self._all_cases)
+
+        if removed > 0:
+            kwargs.get('logger').info(
+                f"Excluded {removed} case(s) matching pattern '{pattern}'")
+
         return self
 
 
@@ -189,25 +255,31 @@ class cppmeta_parser:
         self._testcase_mat = testcase_matrix()
 
     def _get_all_cases(self):
+        """Parse GENTC block and return case information."""
         block_begin, block_end = -1, -1
         inblock, appended, excluded = False, False, False
-        main_index = self._code_lines.index(_GENTC_MAIN)
+
+        try:
+            main_index = self._code_lines.index(_GENTC_MAIN)
+        except ValueError:
+            raise RuntimeError('Parse error: main function not found')
 
         for index, codeline in enumerate(self._code_lines):
             if codeline == _GENTC_BEGIN:
                 if inblock:
                     raise RuntimeError(
-                        f'Parse error: `GENTC begin` can not appear in a GENTC block')
+                        'Parse error: `GENTC begin` cannot appear in a GENTC block')
                 block_begin = index
                 inblock = True
                 continue
 
             if codeline == _GENTC_END:
                 if not inblock:
-                    raise RuntimeError(f'Parse error: `GENTC end` mismatched')
+                    raise RuntimeError('Parse error: `GENTC end` mismatched')
                 block_end = index + 1
                 inblock = False
                 break
+
             if not inblock:
                 continue
 
@@ -216,20 +288,30 @@ class cppmeta_parser:
                     raise RuntimeError(
                         'Parse error: `GENTC append` found after `GENTC exclude`')
                 appended = True
-                self._testcase_mat.append(list(filter(
-                    lambda x: x, codeline.removeprefix(_GENTC_COMMAND_APPEND).strip().split())))
+                categories = [
+                    cat for cat in codeline.removeprefix(_GENTC_COMMAND_APPEND).strip().split()
+                    if cat
+                ]
+                self._testcase_mat.append(categories)
                 continue
+
             if codeline.startswith(_GENTC_COMMAND_EXCLIDE):
                 if not appended:
                     raise RuntimeError(
                         'Parse error: `GENTC exclude` found before `GENTC append`')
                 excluded = True
-                if codeline.find('*') != -1:
-                    self._testcase_mat.exclude_wildcard(codeline.removeprefix(
-                        _GENTC_COMMAND_EXCLIDE).strip())
+                exclude_pattern = codeline.removeprefix(
+                    _GENTC_COMMAND_EXCLIDE).strip()
+
+                if '*' in exclude_pattern or '?' in exclude_pattern:
+                    self._testcase_mat.exclude_wildcard(exclude_pattern)
                 else:
-                    self._testcase_mat.exclude([tuple(x.split('-')) for x in filter(
-                        lambda x: x, codeline.removeprefix(_GENTC_COMMAND_EXCLIDE).strip().split('.'))])
+                    case_list = [
+                        tuple(x.split('-'))
+                        for x in exclude_pattern.split('.')
+                        if x
+                    ]
+                    self._testcase_mat.exclude(case_list)
                 continue
 
             raise RuntimeError(
@@ -241,34 +323,57 @@ class cppmeta_parser:
             raise RuntimeError('Parse error: `GENTC begin` mismatched')
         if not (block_begin < block_end <= main_index):
             raise RuntimeError('GENTC block must be before main function')
+
         return block_begin, block_end, main_index, self._testcase_mat.get_all_cases()
 
     def _get_include_relpath(self, include_filepath: str) -> str:
         return os.path.relpath(include_filepath, self._target_dir).replace("\\", '/')
 
     def _get_all_target_content(self) -> list[tuple[str, list[str]]]:
+        """Generate all target file contents from parsed cases."""
         block_begin, block_end, main_index, all_cases = self._get_all_cases()
         result = []
+
         for case in all_cases:
             target_filepath = os.path.join(
-                self._target_dir, f"{self._filename_noext}.{case.get_label()}.test.cpp")
-            now_codelines: list[str] = ['#define AUTO_GENERATED\n']
-            # before include
-            now_codelines += self._code_lines[0:block_begin]
-            # include
-            now_codelines += [f'#include "{self._get_include_relpath(include)}"\n'
-                              for include in case.get_include_list()]
-            # after include
-            now_codelines += ['\n'] + \
-                case.get_content_after_include().splitlines(True)
-            # before main
-            now_codelines += self._code_lines[block_end:main_index + 1]
-            # main begin
-            now_codelines += [i if i.startswith('  ') else '  ' + i
-                              for i in case.get_content_main_begin().splitlines(True)]
-            # remains
-            now_codelines += self._code_lines[main_index + 1:]
-            result.append((target_filepath, now_codelines))
+                self._target_dir,
+                f"{self._filename_noext}.{case.get_label()}.test.cpp"
+            )
+
+            code_lines: list[str] = ['#define AUTO_GENERATED\n']
+
+            # Code before GENTC block
+            code_lines.extend(self._code_lines[0:block_begin])
+
+            # Include statements
+            include_list = case.get_include_list()
+            if include_list:
+                code_lines.extend(
+                    f'#include "{self._get_include_relpath(include)}"\n'
+                    for include in include_list
+                )
+
+            # Code after includes
+            after_include = case.get_content_after_include()
+            if after_include:
+                code_lines.append('\n')
+                code_lines.extend(after_include.splitlines(True))
+
+            # Code between GENTC block and main
+            code_lines.extend(self._code_lines[block_end:main_index + 1])
+
+            # Main function beginning
+            main_begin = case.get_content_main_begin()
+            if main_begin:
+                for line in main_begin.splitlines(True):
+                    code_lines.append(
+                        line if line.startswith('  ') else '  ' + line)
+
+            # Remaining code after main
+            code_lines.extend(self._code_lines[main_index + 1:])
+
+            result.append((target_filepath, code_lines))
+
         return result
 
     @withlog

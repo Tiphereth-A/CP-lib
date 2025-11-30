@@ -14,6 +14,8 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pycodestyle>=2.14.0",
+    "pytest>=9.0.1",
+    "pytest-cov>=4.1.0",
 ]
 latex = [
     "pygments>=2.19.2",
@@ -21,4 +23,20 @@ latex = [
 verify = [
     "competitive-verifier>=3.3.1",
     "online-judge-verify-helper>=5.6.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--tb=short",
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "system: System tests",
 ]

@@ -193,6 +193,8 @@ g++ -std=gnu++20 -O2 -I./include your_code.cpp -o your_code
 
 ### Management Script Commands
 
+> For detailed documentation on the Python Manager System, including architecture, command internals, and extension guide, see [MANAGER_SYSTEM.md](https://github.com/Tiphereth-A/CP-lib/blob/master/doc/MANAGER_SYSTEM.md).
+
 The `manager.py` script provides several commands for managing the repository:
 
 ```bash
@@ -425,7 +427,7 @@ This generates test files from `meta_test/*.cppmeta` templates, allowing testing
 We welcome contributions! Please read the following guidelines before submitting.
 
 1. **Fork the repository** and clone your fork
-2. **Read the contributing guidelines** in [CONTRIBUTING.md](https://github.com/Tiphereth-A/CP-lib/blob/master/CONTRIBUTING.md)
+2. **Read the contributing guidelines** in [CONTRIBUTING.md](https://github.com/Tiphereth-A/CP-lib/blob/master/doc/CONTRIBUTING.md)
 3. **Set up your development environment** (see Installation section)
 
 ## License

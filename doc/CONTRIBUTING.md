@@ -11,7 +11,7 @@
 
     You should only use Simplified Chinese or English in this repository.
 
-    - **English** for: `*.md`, `include/*`, `doc_md/*`, `meta_test/*`, `test/*`
+    - **English** for: `*.md`, `include/*`, `doc_md/*`, `meta_test/*`, `test/*`, `tests/*`
     - **Simplified Chinese** for: `*.tex`, `cheatsheet/*`, `doc_tex/*`, `usage/*`
 
     If you have any trouble with this, please feel free to ask owner for help! ;)
@@ -61,6 +61,10 @@ This section describes the purpose of each directory and important files in the 
 - **`svg-inkscape/`** - Processed SVG files converted to PDF format for inclusion in LaTeX documents.
 
 ### Testing and Data
+
+- **`test/`** - Test files for verification against online judges (Aizu, Library Checker, Yukicoder) and local tests. Organized by online judge or test type. Should be written in English.
+
+- **`tests/`** - Python test suite for the manager system using pytest. Should be written in English.
 
 - **`meta_test/`** - Test matrix template files (`.cppmeta`). These templates are used to generate multiple test variants with different parameters (e.g., hash functions, modular arithmetic implementations). Should be written in English.
 
@@ -138,6 +142,9 @@ python manager.py run-usage
 
 # Generate and compile notebook
 python manager.py run
+
+# Run Python tests for manager system
+pytest                    # Run all tests
 ```
 
 ### Submitting Changes

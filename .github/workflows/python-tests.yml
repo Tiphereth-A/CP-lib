@@ -1,0 +1,57 @@
+name: Python Tests
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/python-tests.yml'
+      - 'libs/**'
+      - 'tests/**'
+      - 'manager.py'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/python-tests.yml'
+      - 'libs/**'
+      - 'tests/**'
+      - 'manager.py'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.head_ref || 'x' }}-${{ github.workflow }}-${{ github.ref }}-python-tests
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Python Tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        python-version: ['3.12']
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+
+      - name: Install Python dependencies
+        run: uv sync --frozen --group dev
+
+      - name: Run all tests
+        run: uv run pytest --cov=libs --cov-report=term-missing -v

@@ -88,15 +88,17 @@ class Config(ConfigBase):
 
     @withlog
     def get_sections_by_chapter(self, chapter: str, **kwargs) -> list[Section]:
-        _result: list[dict] = self._get_sections_raw().get(chapter, [])
-        result: list[Section] = []
-        if _result:
-            for item in _result:
-                result.append(Section(chapter).parse_from_dict(item))
-        else:
-            kwargs.get('logger').warning(
+        """Get all sections for a chapter."""
+        logger = kwargs.get('logger')
+        sections_raw: list[dict] = self._get_sections_raw().get(chapter, [])
+
+        if not sections_raw:
+            logger.warning(
                 f"No section config found with chapter key '{chapter}'")
-        return result
+            return []
+
+        # Use list comprehension for better performance
+        return [Section(chapter).parse_from_dict(item) for item in sections_raw]
 
     @withlog
     def set_sections_by_chapter(self, chapter: str, sections: list[Section], **kwargs):
@@ -112,26 +114,34 @@ class Config(ConfigBase):
 
     @withlog
     def append_chapter(self, chapter: str, **kwargs):
-        for item in self.get_chapter_key():
-            if item == chapter:
-                kwargs.get('logger').waining(
-                    f"chapter with key '{item}' already exists, skipped")
-                return
+        """Append a new chapter to the config."""
+        logger = kwargs.get('logger')
+        chapter_keys = self.get_chapter_key()
+
+        if chapter in chapter_keys:
+            logger.warning(
+                f"chapter with key '{chapter}' already exists, skipped")
+            return
+
         self._get_chapters_raw().update({chapter: chapter})
         self._get_sections_raw().update({chapter: []})
         self.output()
 
     @withlog
     def append_section(self, section: Section, **kwargs):
-        _sections: list[Section] = self.get_sections_by_chapter(
-            section.chapter)
-        for item in _sections:
-            if item.name == section.name:
-                kwargs.get('logger').waining(
-                    f"section with key '{section.name}' already exists, skipped")
-                return
-        _sections.append(section)
-        self.set_sections_by_chapter(section.chapter, _sections)
+        """Append a new section to a chapter."""
+        logger = kwargs.get('logger')
+        sections = self.get_sections_by_chapter(section.chapter)
+
+        # Check if section already exists
+        existing_names = {sec.name for sec in sections}
+        if section.name in existing_names:
+            logger.warning(
+                f"section with key '{section.name}' already exists, skipped")
+            return
+
+        sections.append(section)
+        self.set_sections_by_chapter(section.chapter, sections)
         self.output()
 
     @withlog
@@ -157,7 +167,9 @@ class Config(ConfigBase):
 
     @withlog
     def get_code_style(self, extname: str, **kwargs) -> str:
-        return self._get_code_styles_raw().get(extname, self.get_default_code_style())
+        """Get code style for extension name."""
+        code_styles = self._get_code_styles_raw()
+        return code_styles.get(extname, self.get_default_code_style())
 
     @withlog
     def get_all_code_styles(self, **kwargs) -> set[str]:
@@ -169,28 +181,38 @@ class Config(ConfigBase):
 
     @withlog
     def get_ext_names_by_code_style(self, code_style: str, **kwargs) -> list[str]:
-        return [k for k, v in self._get_code_styles_raw().items() if v == code_style]
+        """Get all extension names for a given code style."""
+        code_styles = self._get_code_styles_raw()
+        return [ext for ext, style in code_styles.items() if style == code_style]
 
     @withlog
     def get_run_usage_command(self, code_style: str, filepath: str, **kwargs) -> list[str]:
+        """Get run usage command for a code style, replacing ${filename} placeholder."""
+        logger = kwargs.get('logger')
         try:
-            result: list[str] = self._get_run_usage_commands_raw()[code_style]
-            result = [filepath if item ==
-                      '${filename}' else item for item in result]
-            return result
+            result = self._get_run_usage_commands_raw()[code_style].copy()
+            return [
+                filepath if item == '${filename}' else item
+                for item in result
+            ]
         except KeyError:
-            kwargs.get('logger').warning(
-                rf"run_usage command of code style '{code_style}' is not found, return empty command")
+            logger.warning(
+                f"run_usage command of code style '{code_style}' is not found, return empty command"
+            )
             return []
 
     @withlog
     def get_formatting_command(self, code_style: str, filepath: str, **kwargs) -> list[str]:
+        """Get formatting command for a code style, replacing ${filename} placeholder."""
+        logger = kwargs.get('logger')
         try:
-            result: list[str] = self._get_formatting_commands_raw()[code_style]
-            result = [filepath if item ==
-                      '${filename}' else item for item in result]
-            return result
+            result = self._get_formatting_commands_raw()[code_style].copy()
+            return [
+                filepath if item == '${filename}' else item
+                for item in result
+            ]
         except KeyError:
-            kwargs.get('logger').warning(
-                rf"formatting command of code style '{code_style}' is not found, return empty command")
+            logger.warning(
+                f"formatting command of code style '{code_style}' is not found, return empty command"
+            )
             return []
