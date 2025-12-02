@@ -5,11 +5,11 @@
     powered by <a href="https://github.com/competitive-verifier/competitive-verifier">competitive-verifier/competitive-verifier</a> & <a href="https://github.com/Tiphereth-A/TINplate">Tiphereth-A/TINplate</a>.
     <br/>
     <br/>
-    <a href="https://github.com/Tiphereth-A/CP-lib/issues">Report Bug</a>
+    <a href="https://cplib.tifa-233.com/#library-files">Documentation Site</a>
     ·
-    <a href="https://github.com/Tiphereth-A/CP-lib/issues">Request Feature</a>
+    <a href="https://github.com/Tiphereth-A/CP-lib/issues">Report Bug & Request Feature</a>
     ·
-    <a href="https://github.com/Tiphereth-A/CP-lib/releases/latest">Latest PDF & Code Release</a>
+    <a href="https://github.com/Tiphereth-A/CP-lib/releases/latest">Latest Release</a>
     ·
     <a href="https://github.com/Tiphereth-A/CP-lib/blob/master/CITATION.bib">Citation File</a>
   </p>
@@ -136,14 +136,14 @@ uv sync --frozen
 uv sync --frozen --group verify
 
 # Verify installation
-python manager.py --help
+python3 manager.py --help
 ```
 
 **Windows:**
 
 ```powershell
 # Clone the repository
-git clone https://github.com/Tiphereth-A/CP-lib.git
+git clone 'https://github.com/Tiphereth-A/CP-lib.git'
 cd CP-lib
 
 # Install Python dependencies
@@ -164,6 +164,7 @@ python manager.py --help
 The library is header-only, so you can simply include the headers you need:
 
 ```cpp
+// your_code.cpp
 #include "include/nt/gcd.hpp"
 #include "include/ds/fenwick.hpp"
 
@@ -176,7 +177,7 @@ int main() {
     u64 result = math::gcd(a, b);  // Returns 6
     
     // Example: Fenwick Tree
-    ds::fenwick_tree<u64> fw(10);
+    ds::fenwick<u64> fw(10);
     fw.add(1, 5);
     fw.add(2, 3);
     u64 sum = fw.sum(1, 2);  // Returns 8
@@ -322,58 +323,58 @@ The library includes implementations across multiple categories:
 
 In `include/ds/`.
 
-- **Trees**: Segment trees, Link-Cut trees, K-D trees, ...
-- **Heaps**: d-ary heaps, leftist trees, skew heaps, ...
-- **Advanced**: Persistent segment trees, FHQ Treap, RBTrees, ...
-- **Specialized**: Monotonic queues/stacks, 01-Trie, Dynamic bitset, ...
+- **Trees**: [Segment tree](https://cplib.tifa-233.com/include/ds/segtree.hpp), [Link-Cut tree](https://cplib.tifa-233.com/include/ds/link_cut_tree.hpp), [K-D tree](https://cplib.tifa-233.com/include/ds/kdtree.hpp), ...
+- **Heaps**: [d-ary heap](https://cplib.tifa-233.com/include/ds/d_ary_heap.hpp), [leftist tree](https://cplib.tifa-233.com/include/ds/leftist_tree.hpp), [skew heap](https://cplib.tifa-233.com/include/ds/skew_heap.hpp), ...
+- **Advanced**: [Persistent segment tree](https://cplib.tifa-233.com/include/ds/persistent_segtree.hpp), [FHQ Treap](https://cplib.tifa-233.com/include/ds/fhq_treap.hpp), [RBTree](https://cplib.tifa-233.com/include/ds/rbtree.hpp), ...
+- **Specialized**: [Monotonic queue](https://cplib.tifa-233.com/include/ds/mono_queue.hpp)/[stack](https://cplib.tifa-233.com/include/ds/mono_stack.hpp), [01-Trie](https://cplib.tifa-233.com/include/ds/trie01.hpp), [Dynamic bitset](https://cplib.tifa-233.com/include/ds/dbitset.hpp), ...
 
 #### Graph Algorithms
 
-In `include/graph/`.
+In `include/graph/` and `include/tree/`.
 
-- **Shortest Paths**: Dijkstra, Floyd-Warshall, Johnson, ...
-- **Flow Networks**: Dinic, HLPP (Highest Label Preflow-Push), Min-cost flow, ...
-- **Matching**: Hungarian algorithm, Hopcroft-Karp, (Weighted) blossom algorithm, ...
-- **Connectivity**: SCC, BCC, TCC, ...
-- **Trees**: LCA, Heavy-Light Decomposition, Dominator trees, ...
-- **Special**: Steiner tree, Gomory-Hu tree, 2-SAT solver, ...
+- **Shortest Paths**: [Dijkstra](https://cplib.tifa-233.com/include/graph/dijkstra.hpp), [Floyd-Warshall](https://cplib.tifa-233.com/include/graph/floyd.hpp), [Johnson](https://cplib.tifa-233.com/include/graph/johnson.hpp), ...
+- **Flow Networks**: [Dinic](https://cplib.tifa-233.com/include/graph/dinic.hpp), [HLPP (Highest Label Preflow-Push)](https://cplib.tifa-233.com/include/graph/hlpp.hpp), [Min-cost flow](https://cplib.tifa-233.com/include/graph/ssp.hpp), ...
+- **Matching**: [Hungarian algorithm](https://cplib.tifa-233.com/include/graph/hungarian.hpp), [Hopcroft-Karp](https://cplib.tifa-233.com/include/graph/hopkap.hpp), ([Weighted](https://cplib.tifa-233.com/include/graph/blossomw.hpp)) [blossom algorithm](https://cplib.tifa-233.com/include/graph/blossom.hpp), ...
+- **Connectivity**: [Tarjan SCC](https://cplib.tifa-233.com/include/graph/tarjan.hpp), [BCC](https://cplib.tifa-233.com/include/graph/v_bcc.hpp), [Edge BCC](https://cplib.tifa-233.com/include/graph/e_bcc.hpp), [Edge TCC](https://cplib.tifa-233.com/include/graph/e_tcc.hpp), ...
+- **Trees**: [LCA](https://cplib.tifa-233.com/include/tree/lca_hld.hpp), [Heavy-Light Decomposition](https://cplib.tifa-233.com/include/tree/hld.hpp), [Dominator tree](https://cplib.tifa-233.com/include/graph/domtree.hpp), ...
+- **Special**: [Steiner tree](https://cplib.tifa-233.com/include/graph/steiner_tree.hpp), [Gomory-Hu tree](https://cplib.tifa-233.com/include/graph/gomory_hu.hpp), [2-SAT solver](https://cplib.tifa-233.com/include/graph/sat2.hpp), ...
 
 #### Mathematics
 
-- **Number Theory** (`include/nt/`): Pollard-rho, Stern-Brocot tree, min-25 sieve, ...
-- **Combinatorics** (`include/comb/`): (q-)Binomial coefficients, Stirling numbers, Bell numbers, ...
-- **Convolutions** (`include/conv/`): NTT, Zeta-Mobius transform, Subset convolution, ...
-- **Polynomials** (`include/poly/`): polynomial/sparse polynomial/set power series operations, ...
-- **Linear Algebra** (`include/lalg/`): Gaussian elimination, Linear basis, (Sparse) matrix operations, ...
-- **Miscellaneous** (`include/math/`): deBruijn, Newton interpolation, Young table, ...
+- **Number Theory** (`include/nt/`): [Pollard-rho](https://cplib.tifa-233.com/include/nt/pfactors.hpp), [Stern-Brocot tree](https://cplib.tifa-233.com/include/nt/sbt.hpp), [min-25 sieve](https://cplib.tifa-233.com/include/nt/min25_sieve.hpp), ...
+- **Combinatorics** (`include/comb/`): ([q-](https://cplib.tifa-233.com/include/comb/qbinom.hpp))[Binomial coefficients](https://cplib.tifa-233.com/include/comb/binom.hpp), [Bernoulli number](https://cplib.tifa-233.com/include/comb/gen_bernoulli.hpp), [Bell number](https://cplib.tifa-233.com/include/comb/gen_bell.hpp), ...
+- **Convolutions** (`include/conv/`): [NTT](https://cplib.tifa-233.com/include/conv/ntt.hpp), [Walsh-Hadamard transform](https://cplib.tifa-233.com/include/conv/wht.hpp), [Subset convolution](https://cplib.tifa-233.com/include/conv/conv_subset.hpp), ...
+- **Polynomials** (`include/poly/`): [polynomial](https://cplib.tifa-233.com/include/poly/poly.hpp)/[sparse polynomial](https://cplib.tifa-233.com/include/poly/polysp.hpp)/[set power series operations](https://cplib.tifa-233.com/include/poly/comp_fpssps.hpp), ...
+- **Linear Algebra** (`include/lalg/`): [Gaussian elimination](https://cplib.tifa-233.com/include/lalg/ge_mat.hpp), [Linear basis](https://cplib.tifa-233.com/include/lalg/basis_z2.hpp), ([Sparse](https://cplib.tifa-233.com/include/lalg/matsp.hpp)) [matrix](https://cplib.tifa-233.com/include/lalg/mat.hpp) operations, ...
+- **Miscellaneous** (`include/math/`): [deBruijn](https://cplib.tifa-233.com/include/math/debruijn.hpp), [Newton interpolation](https://cplib.tifa-233.com/include/math/interp_newton_n2.hpp), [Young table](https://cplib.tifa-233.com/include/math/youngt.hpp), ...
 
 #### String Algorithms
 
 In `include/str/`.
 
-- **Pattern Matching**: KMP, Z-algorithm, Aho-Corasick, ...
-- **Suffix Structures**: Suffix array, suffix automaton, extended suffix automaton, ...
-- **Hashing**: String rolling hash, 2D string rolling hashing, ...
-- **Others**: Manacher, Lyndon factorization, Runs factorization, ...
+- **Pattern Matching**: [KMP](https://cplib.tifa-233.com/include/str/kmp.hpp), [Z-algorithm](https://cplib.tifa-233.com/include/str/z_func.hpp), [Aho-Corasick](https://cplib.tifa-233.com/include/str/aho_corasick.hpp), ...
+- **Suffix Structures**: [Suffix array](https://cplib.tifa-233.com/include/str/suffix_array.hpp), [suffix automaton](https://cplib.tifa-233.com/include/str/suffix_automaton.hpp), [extended suffix automaton](https://cplib.tifa-233.com/include/str/ex_suffix_automaton.hpp), ...
+- **Hashing**: [String rolling hash](https://cplib.tifa-233.com/include/str/hash_substr.hpp), [2D string rolling hashing](https://cplib.tifa-233.com/include/str/hash_substr_2d.hpp), ...
+- **Others**: [Manacher](https://cplib.tifa-233.com/include/str/manacher.hpp), [Lyndon factorization](https://cplib.tifa-233.com/include/str/lyndon.hpp), [Runs enumeration](https://cplib.tifa-233.com/include/str/run_hash.hpp), ...
 
 #### Computational Geometry
 
-- **2D Geometry** (`include/geo2d/`): Convex hull, Closest pair, Area unions, ...
-- **3D Geometry** (`include/geo3d/`): 3D points, planes, convex hull, ...
+- **2D Geometry** (`include/geo2d/`): ([Dynamic](https://cplib.tifa-233.com/include/geo2d/dcvh.hpp)) [convex hull](https://cplib.tifa-233.com/include/geo2d/cvh.hpp), [Closest pair](https://cplib.tifa-233.com/include/geo2d/min_dis_ps.hpp), ([Circle](https://cplib.tifa-233.com/include/geo2d/aunion_cs.hpp)/[Polygon](https://cplib.tifa-233.com/include/geo2d/aunion_pos.hpp)) area unions, ...
+- **3D Geometry** (`include/geo3d/`): [3D point](https://cplib.tifa-233.com/include/geo3d/point3d.hpp), [Plane](https://cplib.tifa-233.com/include/geo3d/planev.hpp), [Convex hull](https://cplib.tifa-233.com/include/geo3d/cvh3d.hpp), ...
 
 #### Optimization
 
 In `include/opt/`.
 
-- **Dynamic Programming**: Knapsack variants, LIS, LCS, ...
-- **Specialized**: DLX (Dancing Links), A* search, SMawk algorithm, ...
+- **Dynamic Programming**: Knapsack variants ([01](https://cplib.tifa-233.com/include/opt/knapsack_01.hpp)/[mixed](https://cplib.tifa-233.com/include/opt/knapsack_mixed.hpp)/[mixed huge](https://cplib.tifa-233.com/include/opt/knapsack_mixed_huge.hpp)), [LIS](https://cplib.tifa-233.com/include/opt/lis.hpp), [Cyclic LCS](https://cplib.tifa-233.com/include/opt/lcs_circ.hpp), ...
+- **Specialized**: [DLX (Dancing Links)](https://cplib.tifa-233.com/include/opt/dlx.hpp), [A* search](https://cplib.tifa-233.com/include/opt/astar.hpp), [SMawk algorithm](https://cplib.tifa-233.com/include/opt/smawk.hpp), ...
 
 #### Miscellaneous
 
-- **Encoding, Decoding, Hashing** (`include/edh/`): Base64, Huffman tree, Prufer code, Garsia-Wachs, ...
-- **Enumeration** (`include/enum/`): Subset enumeration, Supset enumeration, Gosper, ...
-- **I/O specialization** (`include/io/`): Fast integer/floating point I/O based on `mmap`, `__int128` I/O, tuple I/O, ...
-- **Utilities** (`include/util/`): Traits, bitset getword, libstdc++ `std::unordered_*` hacker, ...
+- **Encoding, Decoding, Hashing** (`include/edh/`): [Base64](https://cplib.tifa-233.com/include/edh/base64.hpp), [Huffman tree](https://cplib.tifa-233.com/include/edh/huffman_tree.hpp), [Prufer code](https://cplib.tifa-233.com/include/edh/prufer.hpp), [Garsia-Wachs](https://cplib.tifa-233.com/include/edh/garsia_wachs.hpp), ...
+- **Enumeration** (`include/enum/`): [Subset enumeration](https://cplib.tifa-233.com/include/enum/enum_subset.hpp), [Supset enumeration](https://cplib.tifa-233.com/include/enum/enum_supset.hpp), [Gosper](https://cplib.tifa-233.com/include/enum/gosper.hpp), ...
+- **I/O specialization** (`include/io/`): [Fast integer/floating point I/O based on `mmap`](https://cplib.tifa-233.com/include/io/fastin.hpp), [`__int128` I/O](https://cplib.tifa-233.com/include/io/ios128.hpp), [tuple I/O](https://cplib.tifa-233.com/include/io/ios_tuple.hpp), ...
+- **Utilities** (`include/util/`): [n-dim vector](https://cplib.tifa-233.com/include/util/ndvec.hpp), [bitset getword](https://cplib.tifa-233.com/include/util/bitset_getdata.hpp), [libstdc++ `std::unordered_*` hacker](https://cplib.tifa-233.com/include/util/unordered_stl_hacker.hpp), ...
 
 ### Automated Verification
 
@@ -413,7 +414,7 @@ This generates test files from `meta_test/*.cppmeta` templates, allowing testing
 
 - Hash functions
 - Modular arithmetic implementations (Montgomery vs. Barrett)
-- Convolution methods, e.g. 3 modular NTT or MTT (FFT optimized by [matthew99a](https://matthew99a.github.io/))
+- Convolution methods, e.g. 3-modular NTT or MTT (optimized FFT, by [matthew99a](https://matthew99a.github.io/))
 - Other parameterized variations
 
 ### Code Quality Tools
@@ -428,7 +429,7 @@ We welcome contributions! Please read the following guidelines before submitting
 
 1. **Fork the repository** and clone your fork
 2. **Read the contributing guidelines** in [CONTRIBUTING.md](https://github.com/Tiphereth-A/CP-lib/blob/master/doc/CONTRIBUTING.md)
-3. **Set up your development environment** (see Installation section)
+3. **Set up your development environment** (see [Installation](#installation) section)
 
 ## License
 
@@ -467,7 +468,7 @@ competitive-verifier verify
 
 Supported online judges:
 
-- **Aizu Online Judge**: Problems in `test/aizu-*/`
+- **Aizu Online Judge**: Problems in `test/aizu/` and `test/aizu-*/`
 - **Library Checker**: Problems in `test/library-checker-*/`
 - **Yukicoder**: Problems in `test/yukicoder/`
 
@@ -571,7 +572,7 @@ Acturally, local tests is a **hack** of Online Judge Problems test. It uses a fi
 
     using namespace tifa_libs;
 
-    strn single_proceed(std::ifstream &); // use `fin` as `std::cin`, return output as `std::string`
+    strn single_proceed(std::ifstream &fin); // use `fin` as `std::cin`, return output as `std::string`
 
     // ... implementation
 
@@ -684,7 +685,7 @@ A:
 - Check Time/memory limits (tests GitHub Action may takes ~3x more times than local)
 
 **Q: PDF generation is slow**  
-A: This is normal for large documents. Use `--no-run-usage` to skip usage compilation:
+A: This is normal for large LaTeX documents, the expected time used in PDF generation is about 6 minutes in GitHub Action. You can use `--no-run-usage` to skip usage compilation:
 
 ```bash
 python manager.py run --no-run-usage
@@ -708,7 +709,7 @@ This library is verified against problems from:
 
 ### Contributors
 
-Thank you to all contributors who have helped improve this library. See the [Contributors](https://github.com/Tiphereth-A/CP-lib/graphs/contributors) page.
+Thank you to all contributors who have helped improve this library! See the [Contributors](https://github.com/Tiphereth-A/CP-lib/graphs/contributors) page.
 
 ### Inspiration
 
