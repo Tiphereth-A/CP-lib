@@ -11,29 +11,36 @@ from libs.utils import file_preprocess, scandir_file_merge
 
 @with_logger
 @with_timer
-def generate_cheatsheet_contents(logger: logging.Logger):
-    """Generate cheatsheet contents from configured cheatsheet files."""
+def generate_empty_cheatsheet_contents(override_exists: bool = True, **kwargs):
     os.makedirs(CONTENTS_DIR, exist_ok=True)
-
+    if not override_exists and os.path.exists(CONTENTS_CS):
+        return
     with open(CONTENTS_CS, 'w', encoding='utf8') as f:
         f.write('%-*- coding: utf-8 -*-\n')
 
-        # Get cheatsheet files
-        cheatsheet_names = [
-            f'{name}.tex' for name in CONFIG.get_cheatsheets()]
-        existing_files = scandir_file_merge(
-            ['tex'], CONFIG.get_cheatsheet_dir())
-        files = file_preprocess(cheatsheet_names, existing_files, logger)
 
-        # Convert to full paths
-        cheatsheet_dir = CONFIG.get_cheatsheet_dir()
-        full_paths = [os.path.join(cheatsheet_dir, item) for item in files]
+@with_logger
+@with_timer
+def generate_cheatsheet_contents(logger: logging.Logger):
+    """Generate cheatsheet contents from configured cheatsheet files."""
+    # Get cheatsheet files
+    cheatsheet_names = [
+        f'{name}.tex' for name in CONFIG.get_cheatsheets()]
+    existing_files = scandir_file_merge(
+        ['tex'], CONFIG.get_cheatsheet_dir())
+    files = file_preprocess(cheatsheet_names, existing_files, logger)
 
-        logger.info(f"{len(full_paths)} file(s) found:")
-        if logger.isEnabledFor(logging.DEBUG):
-            logger.debug('Which are:\n\t' + '\n\t'.join(full_paths))
-            logger.debug('Will include in listed order')
+    # Convert to full paths
+    cheatsheet_dir = CONFIG.get_cheatsheet_dir()
+    full_paths = [os.path.join(cheatsheet_dir, item) for item in files]
 
+    logger.info(f"{len(full_paths)} file(s) found:")
+    if logger.isEnabledFor(logging.DEBUG):
+        logger.debug('Which are:\n\t' + '\n\t'.join(full_paths))
+        logger.debug('Will include in listed order')
+
+    generate_empty_cheatsheet_contents()
+    with open(CONTENTS_CS, 'a', encoding='utf8') as f:
         f.writelines(latex_chapter(NameLaTeX('Cheatsheet')))
 
         for file_path in full_paths:

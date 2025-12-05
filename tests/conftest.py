@@ -27,10 +27,12 @@ def sample_config_file(temp_dir: Path) -> Path:
         'notebook_code_dir': 'src',
         'notebook_doc_dir': 'doc',
         'notebook_file': 'notebook.tex',
-        'default_code_style': 'cpp',
-        'code_styles': {
+        'default_file_type': 'cpp',
+        'file_types': {
             'cpp': 'cpp'
         },
+        'code_type_list': ['cpp'],
+        'doc_type_list': [],
         'notebook': {
             'chapters': {
                 'ch1': 'Chapter 1'
@@ -50,10 +52,10 @@ def sample_config_file(temp_dir: Path) -> Path:
         'cheatsheet_dir': 'cheatsheet',
         'usage_dir': 'usage',
         'formatting_commands': {
-            'cpp': ['clang-format', '-i', '{filepath}']
+            'cpp': 'clang-format -i {src}'
         },
         'run_usage_commands': {
-            'cpp': ['g++', '{filepath}', '-o', '{output}']
+            'cpp': 'g++ {src}'
         }
     }
 

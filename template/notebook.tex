@@ -7,7 +7,7 @@
     \vspace*{3cm}
     \begin{figure}[H]
         \centering
-        \includegraphics[height=6cm]{img/cplib-logo-ba-style.png}
+        \includegraphics[height=6cm]{\fixpath{img/cplib-logo-ba-style.png}}
     \end{figure}
 
     \vspace*{6cm}
@@ -35,13 +35,13 @@
 
 本书代码默认数组下标从 \(0\) 开始 (\([0, n)\)), 故需注意题目下标是从 \(0\) 开始 (\([0, n)\)) 还是从 \(1\) 开始 (\([1, n]\))
 
-\inputminted{cpp}{src/main.cpp}
+\inputminted{cpp}{\fixpath{src/main.cpp}}
 
-\inputminted{cpp}{src/test.cpp}
+\inputminted{cpp}{\fixpath{src/test.cpp}}
 
-\inputminted{yaml}{src/.clang-format}
+\inputminted{yaml}{\fixpath{src/.clang-format}}
 
-\inputminted{bash}{src/run.sh}
+\inputminted{bash}{\fixpath{src/run.sh}}
 
 \newpage
 \begin{multicols}{2}
@@ -53,13 +53,13 @@
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\input{_gen/contents_notebook.tex}
-\input{_gen/contents_cheatsheet.tex}
+\input{\fixpath{_gen/contents_notebook.tex}}
+\input{\fixpath{_gen/contents_cheatsheet.tex}}
 
 \section{TCSCS}
 \label{sec:theoretical-computer-science-cheat-sheet}
 
-\includepdf[pages=-,pagecommand={}]{src/cheat.pdf}
+\includepdf[pages=-,pagecommand={}]{\fixpath{src/cheat.pdf}}
 
 \bibliographystyle{plain}
 \bibliography{notebook}

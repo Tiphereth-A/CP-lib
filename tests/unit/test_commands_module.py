@@ -3,7 +3,6 @@ import subprocess
 
 import libs.commands.gen_nb as gen_nb
 import libs.commands.gen_cs as gen_cs
-import libs.commands.compile_pdf as compile_mod
 import libs.commands.gentc as gentc
 import libs.commands.new as newmod
 import libs.commands.run_usage as run_usage_mod
@@ -102,44 +101,6 @@ def test_generate_notebook_and_cheatsheet(tmp_path, monkeypatch):
     assert os.path.exists(gen_cs.CONTENTS_CS)
 
 
-def test_compile_writes_content_files_when_no_gen(tmp_path, monkeypatch):
-    # ensure CONTENTS_NB and CONTENTS_CS point to tmp files that don't exist
-    monkeypatch.setattr(compile_mod, 'CONTENTS_DIR', str(tmp_path))
-    monkeypatch.setattr(compile_mod, 'CONTENTS_NB', str(
-        tmp_path / 'contents_notebook.tex'))
-    monkeypatch.setattr(compile_mod, 'CONTENTS_CS', str(
-        tmp_path / 'contents_cheatsheet.tex'))
-
-    # fake CONFIG to have get_all_code_styles and get_notebook_file
-    class FakeCfg:
-        def get_all_code_styles(self):
-            return []
-
-        def get_notebook_file(self):
-            return 'nb'
-
-    monkeypatch.setattr(compile_mod, 'CONFIG', FakeCfg())
-    # mock compile_all to avoid external calls
-    monkeypatch.setattr(compile_mod, 'compile_all', lambda *a, **k: None)
-    # register and call inner
-    cmds = {}
-
-    class FakeCLI:
-        def command(self, name):
-            def deco(fn):
-                cmds[name] = fn
-                return fn
-            return deco
-
-    compile_mod.register_compile_command(FakeCLI())
-    fn = cmds.get('run')
-    assert fn is not None
-    # call with no_gen True so it writes content files
-    fn(True, True, True, True)
-    assert os.path.exists(compile_mod.CONTENTS_NB)
-    assert os.path.exists(compile_mod.CONTENTS_CS)
-
-
 def test_gen_cs_with_subdir(tmp_path, monkeypatch):
     # setup fake CONFIG and a subdir containing cs file
     base = tmp_path / 'cheats'
@@ -166,27 +127,6 @@ def test_gen_cs_with_subdir(tmp_path, monkeypatch):
     # write
     gen_cs.generate_cheatsheet_contents()
     assert os.path.exists(gen_cs.CONTENTS_CS)
-
-
-def test_compile_all_invokes_subprocess(monkeypatch):
-    # monkeypatch LATEX_COMPILE_COMMAND_GROUP to simple callables
-    monkeypatch.setattr(compile_mod, 'LATEX_COMPILE_COMMAND_GROUP', [
-                        lambda f: ['echo', 'x'], lambda f: ['echo', 'y']])
-    calls = []
-
-    def fake_run(cmd, **kwargs):
-        calls.append(cmd)
-
-    monkeypatch.setattr(subprocess, 'run', fake_run)
-    # monkeypatch CONFIG.get_notebook_file used by compile_all
-
-    class FakeC:
-        def get_notebook_file(self):
-            return 'notebook'
-
-    monkeypatch.setattr(compile_mod, 'CONFIG', FakeC())
-    compile_mod.compile_all(False, False, False, False)
-    assert len(calls) == 2
 
 
 def test_gentc_generate_testcode_no_src(monkeypatch, tmp_path):
@@ -251,7 +191,7 @@ def test_write_section_hpp_and_usage(tmp_path, monkeypatch):
         def get_usage_dir(self):
             return self.base
 
-        def get_code_style(self, ext):
+        def get_file_type(self, ext):
             return 'cs'
 
         def export_usage_code_in_notebook(self):
@@ -313,90 +253,6 @@ def test_generate_sections_from_files_doc_and_code(monkeypatch):
     assert any(s.name == 'a' for s in res)
 
 
-def test_register_compile_command_inner(monkeypatch, tmp_path):
-    called = {'lint': 0, 'run_usage': 0, 'gen': 0, 'clean': 0}
-
-    monkeypatch.setattr(compile_mod, 'lint_all_codes',
-                        lambda cs: called.update({'lint': called['lint'] + 1}))
-    monkeypatch.setattr(compile_mod, 'run_usage_codes', lambda cs, t: called.update(
-        {'run_usage': called['run_usage'] + 1}))
-    monkeypatch.setattr(compile_mod, 'generate_notebook_contents',
-                        lambda: called.update({'gen': called['gen'] + 1}))
-    monkeypatch.setattr(compile_mod, 'generate_cheatsheet_contents',
-                        lambda: called.update({'gen': called['gen'] + 1}))
-    monkeypatch.setattr(compile_mod, 'clean', lambda: called.update(
-        {'clean': called['clean'] + 1}))
-
-    # fake CLI to capture inner function
-    cmds = {}
-
-    class FakeCLI:
-        def command(self, name):
-            def deco(fn):
-                cmds[name] = fn
-                return fn
-            return deco
-
-    class FakeCfg2:
-        def get_all_code_styles(self):
-            return ['cs']
-
-        def get_notebook_file(self):
-            return 'nb'
-
-    monkeypatch.setattr(compile_mod, 'CONFIG', FakeCfg2())
-    compile_mod.register_compile_command(FakeCLI())
-    # call inner _compile with no_gen True to hit branch that creates files
-    fn = cmds.get('run')
-    assert fn is not None
-    # ensure LATEX commands won't actually call external processes
-    monkeypatch.setattr(compile_mod, 'LATEX_COMPILE_COMMAND_GROUP', [
-                        lambda f: ['echo']])
-    monkeypatch.setattr(subprocess, 'run', lambda *a, **k: None)
-    # call with flags: no_fmt True (skip lint), no_run_usage True, no_gen True, no_clean True
-    fn(True, True, True, True)
-
-
-def test_register_compile_command_all_false(monkeypatch, tmp_path):
-    called = {'lint': 0, 'run_usage': 0, 'gen': 0, 'clean': 0}
-
-    monkeypatch.setattr(compile_mod, 'lint_all_codes',
-                        lambda cs: called.update({'lint': called['lint'] + 1}))
-    monkeypatch.setattr(compile_mod, 'run_usage_codes', lambda cs, t: called.update(
-        {'run_usage': called['run_usage'] + 1}))
-    monkeypatch.setattr(compile_mod, 'generate_notebook_contents',
-                        lambda: called.update({'gen': called['gen'] + 1}))
-    monkeypatch.setattr(compile_mod, 'generate_cheatsheet_contents',
-                        lambda: called.update({'gen': called['gen'] + 1}))
-    monkeypatch.setattr(compile_mod, 'clean', lambda: called.update(
-        {'clean': called['clean'] + 1}))
-
-    cmds = {}
-
-    class FakeCLI:
-        def command(self, name):
-            def deco(fn):
-                cmds[name] = fn
-                return fn
-            return deco
-
-    class FakeCfg2:
-        def get_all_code_styles(self):
-            return ['cs']
-
-        def get_notebook_file(self):
-            return 'nb'
-
-    monkeypatch.setattr(compile_mod, 'CONFIG', FakeCfg2())
-    monkeypatch.setattr(compile_mod, 'LATEX_COMPILE_COMMAND_GROUP', [
-                        lambda f: ['echo']])
-    monkeypatch.setattr(subprocess, 'run', lambda *a, **k: None)
-    compile_mod.register_compile_command(FakeCLI())
-    fn = cmds.get('run')
-    assert fn is not None
-    fn(False, False, False, False)
-
-
 def test_add_new_note_and_run_usage(tmp_path, monkeypatch):
     # fake CONFIG for new and run_usage
     class FakeC:
@@ -419,7 +275,7 @@ def test_add_new_note_and_run_usage(tmp_path, monkeypatch):
             # record called
             self._appended = True
 
-        def get_ext_names_by_code_style(self, code):
+        def get_ext_names_by_file_type(self, code):
             return ['in']
 
         def get_usage_dir(self):

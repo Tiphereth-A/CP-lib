@@ -15,7 +15,7 @@ class TestConfigIntegration:
         """Test Config integration with get_full_filenames."""
         # Avoid touching filesystem: mock get_full_filenames
         code_dir = test_config.get_code_dir()
-        ext_names = test_config.get_ext_names_by_code_style('cpp')
+        ext_names = test_config.get_ext_names_by_file_type('cpp')
 
         with patch('libs.utils.get_full_filenames') as mock_get_files:
             mock_get_files.return_value = [

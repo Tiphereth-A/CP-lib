@@ -37,14 +37,14 @@ class TestConfig:
         sections = test_config.get_sections_by_chapter('ch1')
         assert len(sections) > 0
 
-    def test_get_code_style(self, test_config):
-        """Test getting code style for extension."""
-        style = test_config.get_code_style('.cpp')
+    def test_get_file_type(self, test_config):
+        """Test getting file type for extension."""
+        style = test_config.get_file_type('.cpp')
         assert style is not None
 
-    def test_get_ext_names_by_code_style(self, test_config):
-        """Test getting extension names by code style."""
-        ext_names = test_config.get_ext_names_by_code_style('cpp')
+    def test_get_ext_names_by_file_type(self, test_config):
+        """Test getting extension names by file type."""
+        ext_names = test_config.get_ext_names_by_file_type('cpp')
         assert 'cpp' in ext_names
 
     def test_get_formatting_command(self, test_config, temp_dir):
@@ -55,7 +55,7 @@ class TestConfig:
         cmd = test_config.get_formatting_command('cpp', str(test_file))
         assert isinstance(cmd, list)
         assert 'clang-format' in cmd[0] or 'clang-format' in str(cmd)
-        assert str(test_file) in cmd or '{filepath}' in str(cmd)
+        assert str(test_file) in cmd or '{src}' in str(cmd)
 
     def test_get_run_usage_command(self, test_config, temp_dir):
         """Test getting run usage command."""
@@ -102,10 +102,12 @@ def test_config_methods(tmp_path):
         'notebook_doc_dir': 'doc',
         'cheatsheets': {'cs1': 'CS1'},
         'export_usage_code_in_notebook': True,
-        'default_code_style': 'cs',
-        'code_styles': {'.cpp': 'cs', '.py': 'pycs'},
-        'run_usage_commands': {'cs': ['run', '${filename}']},
-        'formatting_commands': {'cs': ['fmt', '${filename}']}
+        'default_file_type': 'cs',
+        'file_types': {'.cpp': 'cs', '.py': 'pycs'},
+        'code_type_list': ['cs', 'pycs'],
+        'doc_type_list': [],
+        'run_usage_commands': {'cs': 'run {src}'},
+        'formatting_commands': {'cs': 'fmt {src}'}
     }
     p = make_temp_yaml(tmp_path, data)
     cfg = Config(p)
@@ -132,12 +134,12 @@ def test_config_methods(tmp_path):
     assert cfg.get_cheatsheet_name('missing') == 'missing'
 
     assert cfg.export_usage_code_in_notebook() is True
-    assert cfg.get_default_code_style() == 'cs'
-    assert cfg.get_code_style('.cpp') == 'cs'
-    assert cfg.get_code_style('.unknown') == 'cs'
-    assert 'cs' in cfg.get_all_code_styles()
+    assert cfg.get_default_file_type() == 'cs'
+    assert cfg.get_file_type('.cpp') == 'cs'
+    assert cfg.get_file_type('.unknown') == 'cs'
+    assert 'cs' in cfg.get_all_file_types()
     assert '.cpp' in cfg.get_all_code_ext_names()
-    assert cfg.get_ext_names_by_code_style('cs')
+    assert cfg.get_ext_names_by_file_type('cs')
 
     assert cfg.get_run_usage_command('cs', 'f') == ['run', 'f']
     assert cfg.get_run_usage_command('missing', 'f') == []

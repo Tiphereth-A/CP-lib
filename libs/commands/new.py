@@ -11,13 +11,12 @@ from libs.decorator import with_logger, with_timer
 
 @with_logger
 @with_timer
-def add_new_note(_chapter_name: str, _file_name: str, _section_title: str,
-                 _code_ext_name: str, _usage_ext_name: str, **kwargs):
+def add_new_note(chapter_name: str, file_name: str, section_title: str, code_ext_name: str, usage_ext_name: str, **kwargs):
     """Create a new note section with all required files."""
     logger = kwargs.get('logger')
 
     section = Section(
-        _chapter_name, _file_name, _section_title, _code_ext_name, _usage_ext_name
+        chapter_name, file_name, section_title, code_ext_name, usage_ext_name
     )
 
     # Create all files
@@ -51,7 +50,7 @@ def add_new_note(_chapter_name: str, _file_name: str, _section_title: str,
         os.path.join(os.curdir, code_path).replace(
             '\\', '/').removeprefix('./')
     cvdoc_content = f"""---
-title: {_file_name}
+title: {file_name}
 documentation_of: {fixed_codepath}
 ---
 """

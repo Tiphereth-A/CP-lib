@@ -1,5 +1,4 @@
 from libs.latex_utils import TextLaTeXBase, PathLaTeX, NameLaTeX
-from libs.latex_utils import xelatex, bibtex, latexmk
 from libs.latex_utils import latex_input, latex_label, latex_chapter, latex_section, latex_listing_code, latex_listing_code_range
 
 
@@ -15,12 +14,6 @@ def test_path_and_name_latex():
     assert '/' in p.get()
     n = NameLaTeX('some_name')
     assert ' ' in n.get()  # underscores replaced with space
-
-
-def test_commands_return_list():
-    assert isinstance(xelatex('f'), list)
-    assert isinstance(bibtex('f'), list)
-    assert isinstance(latexmk('f'), list)
 
 
 def test_latex_wrappers():

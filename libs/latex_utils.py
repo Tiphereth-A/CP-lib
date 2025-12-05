@@ -25,25 +25,6 @@ class NameLaTeX(TextLaTeXBase):
         self._str = self._str.replace(r'_', r' ')
 
 
-@with_logger
-def xelatex(file: str, **kwargs) -> list:
-    return ['xelatex', "-synctex=1", "-interaction=nonstopmode", "-file-line-error", file + '.tex']
-
-
-@with_logger
-def bibtex(file: str, **kwargs) -> list:
-    return ['bibtex', file]
-
-
-@with_logger
-def latexmk(file: str, **kwargs) -> list:
-    return ['latexmk', '-cd', '-xelatex', '-file-line-error', '-halt-on-error', '-interaction=nonstopmode', '-shell-escape', '-synctex=1', '-outdir=_pdf_out', '-time', file + '.tex']
-
-
-LATEX_COMPILE_COMMAND_GROUP: list = [latexmk]
-# LATEX_COMPILE_COMMAND_GROUP: list = [xelatex, bibtex, xelatex, xelatex]
-
-
 def _latex_command(command: str, *args) -> str:
     """Generate a LaTeX command string."""
     return rf"\{command}{{" + '}{'.join(args) + '}\n'
@@ -57,7 +38,7 @@ def _latex_command_with_option(command: str, option: str, *args) -> str:
 @with_logger
 def latex_input(path: PathLaTeX, **kwargs) -> list[str]:
     """Generate LaTeX input command."""
-    return [_latex_command('input', path.get()), '\n']
+    return [_latex_command('input', _latex_command('fixpath', path.get()).rstrip()), '\n']
 
 
 @with_logger
@@ -79,18 +60,22 @@ def latex_section(name: NameLaTeX, **kwargs) -> list[str]:
 
 
 @with_logger
-def latex_listing_code(path: PathLaTeX, code_style: str, **kwargs) -> list[str]:
+def latex_listing_code(path: PathLaTeX, file_type: str, **kwargs) -> list[str]:
     """Generate LaTeX code listing command."""
     return [
         rf'Path: \verb|{path.get()}|',
         '\n\n',
-        _latex_command('inputminted', code_style, path.get()),
+        _latex_command(
+            'inputminted',
+            file_type,
+            _latex_command('fixpath', path.get()).rstrip()
+        ),
         '\n'
     ]
 
 
 @with_logger
-def latex_listing_code_range(path: PathLaTeX, code_style: str, begin: int, end: int, **kwargs) -> list[str]:
+def latex_listing_code_range(path: PathLaTeX, file_type: str, begin: int, end: int, **kwargs) -> list[str]:
     """Generate LaTeX code listing command with line range."""
     return [
         rf'Path: \verb|{path.get()}|',
@@ -98,8 +83,8 @@ def latex_listing_code_range(path: PathLaTeX, code_style: str, begin: int, end: 
         _latex_command_with_option(
             'inputminted',
             rf'firstline={begin},lastline={end}',
-            code_style,
-            path.get()
+            file_type,
+            _latex_command('fixpath', path.get()).rstrip()
         ),
         '\n'
     ]

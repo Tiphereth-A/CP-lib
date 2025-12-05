@@ -335,7 +335,7 @@ The `Config` class loads settings from `config.yml` and provides methods to:
 
 - Get directory paths (code, doc, usage, cheatsheet, etc.)
 - Get chapter and section definitions
-- Get code style settings
+- Get file type settings
 - Get compilation and formatting commands
 - Manage sections (append, get by chapter, etc.)
 
@@ -344,7 +344,7 @@ The `Config` class loads settings from `config.yml` and provides methods to:
 - `get_code_dir()`: Returns code directory path
 - `get_chapter_key()`: Returns list of chapter keys
 - `get_sections_by_chapter(chapter)`: Returns sections for a chapter
-- `get_code_style(ext)`: Returns LaTeX code style for extension
+- `get_file_type(ext)`: Returns LaTeX file type for extension
 - `get_formatting_command(code_type, filepath)`: Returns formatting command
 - `get_run_usage_command(code_type, filepath)`: Returns compilation command
 
@@ -392,11 +392,6 @@ Provides functions to generate LaTeX commands:
 
 - `PathLaTeX`: Normalizes paths for LaTeX (converts `\` to `/`)
 - `NameLaTeX`: Formats names for LaTeX (replaces `_` with spaces)
-
-**Compilation Commands**:
-
-- `LATEX_COMPILE_COMMAND_GROUP`: List of compilation procedures
-- Currently uses `latexmk` for single-pass compilation
 
 ## Utilities and Helpers
 

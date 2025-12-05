@@ -22,15 +22,15 @@ def get_codelines(file: str, **kwargs) -> list[str]:
 
 @with_logger
 @with_timer
-def generate_testcode(_source_dir: str, _target_dir: str, **kwargs):
+def generate_testcode(source_dir: str, target_dir: str, **kwargs):
     """Generate test code files from cppmeta source files."""
     logger = kwargs.get('logger')
 
-    all_src_files = get_full_filenames([_source_dir], ['cppmeta'])
+    all_src_files = get_full_filenames([source_dir], ['cppmeta'])
     logger.info(f"{len(all_src_files)} file(s) found")
 
     # Remove previously generated files
-    all_tar_files = get_full_filenames([_target_dir], ['cpp'])
+    all_tar_files = get_full_filenames([target_dir], ['cpp'])
     for file_path in all_tar_files:
         try:
             f = open(file_path, 'r', encoding='utf8')
@@ -45,12 +45,12 @@ def generate_testcode(_source_dir: str, _target_dir: str, **kwargs):
     # Generate new test files
     for src_file in all_src_files:
         src_dir, basename = os.path.split(src_file)
-        target_dir = os.path.join(
-            _target_dir, os.path.relpath(src_dir, _source_dir))
+        dst_dir = os.path.join(
+            target_dir, os.path.relpath(src_dir, source_dir))
         filename_noext = basename.removesuffix('.cppmeta')
 
         code_lines = get_codelines(src_file)
-        parser = cppmeta_parser(filename_noext, target_dir, code_lines)
+        parser = cppmeta_parser(filename_noext, dst_dir, code_lines)
 
         for target_file, content in parser.get_results():
             logger.debug(f"writing to {target_file}")

@@ -11,7 +11,7 @@ from libs.utils import get_full_filenames
 
 @with_logger
 @with_timer
-def lint_all_codes(_code_type: str, **kwargs):
+def lint_all_codes(code_type: str, **kwargs):
     """Format all code files of the specified type."""
     logger = kwargs.get('logger')
 
@@ -22,13 +22,13 @@ def lint_all_codes(_code_type: str, **kwargs):
             CONFIG.get_cheatsheet_dir(),
             CONFIG.get_usage_dir()
         ],
-        CONFIG.get_ext_names_by_code_style(_code_type)
+        CONFIG.get_ext_names_by_file_type(code_type)
     )
 
     logger.info(f"{len(filepaths)} file(s) found")
 
     for filepath in filepaths:
-        cmd = CONFIG.get_formatting_command(_code_type, filepath)
+        cmd = CONFIG.get_formatting_command(code_type, filepath)
         subprocess.run(cmd, encoding='utf8', check=True)
 
     logger.info('finished')
@@ -37,7 +37,7 @@ def lint_all_codes(_code_type: str, **kwargs):
 def register_fmt_command(cli):
     """Register the fmt command with the CLI."""
     @cli.command('fmt')
-    @click.option('-t', '--code-type', help='Code type, default: cpp', default='cpp')
+    @click.option('-t', '--code-type', type=str, default='cpp', help='Code type, default: cpp')
     def _format(code_type: str):
         """Lint all codes"""
         lint_all_codes(code_type)

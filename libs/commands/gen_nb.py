@@ -49,10 +49,18 @@ def load_from(dir_name: str, **kwargs) -> list[tuple[str, str]]:
 
 @with_logger
 @with_timer
+def generate_empty_notebook_contents(override_exists: bool = True, **kwargs):
+    os.makedirs(CONTENTS_DIR, exist_ok=True)
+    if not override_exists and os.path.exists(CONTENTS_NB):
+        return
+    with open(CONTENTS_NB, 'w', encoding='utf8') as f:
+        f.write('%-*- coding: utf-8 -*-\n')
+
+
+@with_logger
+@with_timer
 def generate_notebook_contents(logger: logging.Logger):
     """Generate notebook contents from chapters and sections."""
-    os.makedirs(CONTENTS_DIR, exist_ok=True)
-
     chapters = file_preprocess(
         CONFIG.get_chapter_key(),
         scandir_dir_merge(CONFIG.get_code_dir(), CONFIG.get_doc_dir()),
@@ -63,9 +71,8 @@ def generate_notebook_contents(logger: logging.Logger):
         logger.debug('Which are:\n\t' + '\n\t'.join(chapters))
         logger.debug('Will include in listed order')
 
-    with open(CONTENTS_NB, 'w', encoding='utf8') as f:
-        f.write('%-*- coding: utf-8 -*-\n')
-
+    generate_empty_notebook_contents()
+    with open(CONTENTS_NB, 'a', encoding='utf8') as f:
         for chapter in chapters:
             _write_chapter(f, chapter, logger)
 
@@ -157,21 +164,21 @@ def _write_section(f, section: Section, logger: logging.Logger):
     f.writelines(latex_input(PathLaTeX(doc_filepath)))
 
     # Write code listing
-    code_style = CONFIG.get_code_style(section.code_ext)
+    file_type = CONFIG.get_file_type(section.code_ext)
     if section.code_ext == 'hpp':
         # Skip header guards (first 4 lines and last 2 lines)
         with open(code_filepath, 'rb') as code_file:
             total_lines = sum(1 for _ in code_file)
         f.writelines(latex_listing_code_range(
-            PathLaTeX(code_filepath), code_style, 4, total_lines - 2
+            PathLaTeX(code_filepath), file_type, 4, total_lines - 2
         ))
     else:
         f.writelines(latex_listing_code(
-            PathLaTeX(code_filepath), code_style))
+            PathLaTeX(code_filepath), file_type))
 
     # Write usage code if enabled and file is not empty
     if CONFIG.export_usage_code_in_notebook() and os.path.getsize(usage_filepath):
-        usage_style = CONFIG.get_code_style(section.usage_ext)
+        usage_style = CONFIG.get_file_type(section.usage_ext)
         f.writelines(latex_listing_code(
             PathLaTeX(usage_filepath), usage_style))
 

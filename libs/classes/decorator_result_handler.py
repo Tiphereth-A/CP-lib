@@ -6,7 +6,7 @@ class DecoratorResultHandlerBase(ABC):
     """Abstract base for decorator results which can write themselves to a logger.
     """
 
-    def __init__(self, result, func_name: str) -> None:
+    def __init__(self, result, func_name: str):
         super().__init__()
 
         self.result = result

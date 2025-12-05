@@ -121,7 +121,7 @@ class TestCLIEndToEnd:
         mock_config.get_doc_dir.return_value = 'doc'
         mock_config.get_cheatsheet_dir.return_value = 'cheatsheet'
         mock_config.get_usage_dir.return_value = 'usage'
-        mock_config.get_ext_names_by_code_style.return_value = ['.cpp']
+        mock_config.get_ext_names_by_file_type.return_value = ['.cpp']
         mock_config.get_formatting_command.return_value = ['echo', 'test']
 
         result = runner.invoke(cli, ['fmt', '--code-type', 'cpp'])

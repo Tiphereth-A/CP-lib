@@ -59,7 +59,7 @@ class TestFmtCommand:
         mock_config.get_doc_dir.return_value = 'doc'
         mock_config.get_cheatsheet_dir.return_value = 'cheatsheet'
         mock_config.get_usage_dir.return_value = 'usage'
-        mock_config.get_ext_names_by_code_style.return_value = ['.cpp']
+        mock_config.get_ext_names_by_file_type.return_value = ['.cpp']
         mock_config.get_formatting_command.return_value = [
             'clang-format', '-i', str(sample_code_file)]
 
@@ -80,7 +80,7 @@ class TestFmtCommand:
         mock_config.get_doc_dir.return_value = 'doc'
         mock_config.get_cheatsheet_dir.return_value = 'cheatsheet'
         mock_config.get_usage_dir.return_value = 'usage'
-        mock_config.get_ext_names_by_code_style.return_value = ['.cpp']
+        mock_config.get_ext_names_by_file_type.return_value = ['.cpp']
         mock_config.get_formatting_command.return_value = [
             'clang-format', '-i', str(sample_code_file)]
 

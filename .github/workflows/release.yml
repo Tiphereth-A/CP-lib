@@ -9,8 +9,12 @@ on:
       - 'uv.lock'
       - '.github/**'
       - 'cheatsheet/**'
+      - 'img/**'
+      - 'libs/**'
       - 'include/**'
       - 'doc_tex/**'
+      - 'template/**'
+      - 'src/**'
       - 'usage/**'
       - 'config.yml'
       - '*.bib'
@@ -25,8 +29,12 @@ on:
       - 'uv.lock'
       - '.github/**'
       - 'cheatsheet/**'
+      - 'img/**'
+      - 'libs/**'
       - 'include/**'
       - 'doc_tex/**'
+      - 'template/**'
+      - 'src/**'
       - 'usage/**'
       - 'config.yml'
       - '*.bib'
@@ -44,7 +52,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-tex:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -91,6 +99,7 @@ jobs:
         with:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
+          working_directory: template
           args: "-pdf -file-line-error -halt-on-error -interaction=batchmode -8bit"
           extra_system_packages: |
             unzip
@@ -100,10 +109,8 @@ jobs:
             py3-pygments
             inkscape
           pre_compile: |
-            echo "::group::Apply fonts"
-            cp -r fonts/* /usr/share/fonts
+            cp -r ../fonts/* /usr/share/fonts
             fc-cache -f
-            echo "::endgroup::"
           root_file: notebook.tex
       - name: Upload LaTeX logs to artifacts
         if: always()
@@ -111,24 +118,39 @@ jobs:
         with:
           name: latex-logs
           path: |
-            notebook.log
-            notebook.aux
-            notebook.fdb_latexmk
-            notebook.fls
-            notebook.out
+            template/notebook.log
+            template/notebook.aux
+            template/notebook.fdb_latexmk
+            template/notebook.fls
+            template/notebook.out
       - name: Upload PDF to artifacts
         uses: actions/upload-artifact@v5
         with:
           name: result
-          path: notebook.pdf
-      - name: Release
+          path: template/notebook.pdf
+      - name: Release PDF
         if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: |
+          set -x
+          mv ./template/notebook.pdf ./notebook.pdf
+          gh release create "${{ github.ref_name }}" ./notebook.pdf
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_NAME: "${{ github.ref_name }}"
+
+  release-include:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@v6
+      - name: Release
         shell: bash
         run: |
           set -x
           tar -cf CP-lib.tar include/*
           gzip -9 CP-lib.tar
-          gh release create "${{ github.ref_name }}" ./notebook.pdf ./CP-lib.tar.gz
+          gh release create "${{ github.ref_name }}" ./CP-lib.tar.gz
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_NAME: "${{ github.ref_name }}"

@@ -19,7 +19,7 @@ def run_usage_codes(_code_type: str, _thlimit: int, **kwargs):
 
     # Get all non-empty usage files
     usage_dir = CONFIG.get_usage_dir()
-    ext_names = CONFIG.get_ext_names_by_code_style(_code_type)
+    ext_names = CONFIG.get_ext_names_by_file_type(_code_type)
     all_files = get_full_filenames([usage_dir], ext_names)
 
     # Filter empty files efficiently

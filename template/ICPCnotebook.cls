@@ -153,3 +153,6 @@
 	numbersep=0.8mm,
 	breaklines=true,
 }
+
+% Util
+\newcommand{\fixpath}[1]{../#1}

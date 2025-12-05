@@ -1,3 +1,5 @@
+import os
+import shlex
 from libs.classes.config_base import ConfigBase
 from libs.classes.section import Section
 from libs.decorator import with_logger
@@ -31,23 +33,32 @@ class Config(ConfigBase):
     def _get_usage_dir_raw(self) -> str:
         return self.items('usage_dir')
 
+    def _get_notebook_file_dir_raw(self) -> str:
+        return self.items('notebook_file_dir')
+
     def _get_notebook_file_raw(self) -> str:
         return self.items('notebook_file')
 
     def _get_export_usage_code_in_notebook_raw(self) -> bool:
         return self.items('export_usage_code_in_notebook')
 
-    def _get_default_code_style_raw(self) -> str:
-        return self.items('default_code_style')
+    def _get_default_file_type_raw(self) -> str:
+        return self.items('default_file_type')
 
-    def _get_code_styles_raw(self) -> dict[str, str]:
-        return self.items('code_styles')
+    def _get_file_types_raw(self) -> dict[str, str]:
+        return self.items('file_types')
 
-    def _get_run_usage_commands_raw(self) -> dict[str, list[str]]:
+    def _get_run_usage_commands_raw(self) -> dict[str, str]:
         return self.items('run_usage_commands')
 
-    def _get_formatting_commands_raw(self) -> dict[str, list[str]]:
+    def _get_formatting_commands_raw(self) -> dict[str, str]:
         return self.items('formatting_commands')
+
+    def _get_code_type_list_raw(self) -> list[str]:
+        return self.items('code_type_list')
+
+    def _get_doc_type_list_raw(self) -> list[str]:
+        return self.items('doc_type_list')
 
     @with_logger
     def get_code_dir(self, **kwargs) -> str:
@@ -68,6 +79,10 @@ class Config(ConfigBase):
     @with_logger
     def get_usage_dir(self, **kwargs) -> str:
         return self._get_usage_dir_raw()
+
+    @with_logger
+    def get_notebook_file_dir(self, **kwargs) -> str:
+        return self._get_notebook_file_dir_raw()
 
     @with_logger
     def get_notebook_file(self, **kwargs) -> str:
@@ -162,57 +177,90 @@ class Config(ConfigBase):
         return self._get_export_usage_code_in_notebook_raw()
 
     @with_logger
-    def get_default_code_style(self, **kwargs) -> str:
-        return self._get_default_code_style_raw()
+    def get_default_file_type(self, **kwargs) -> str:
+        return self._get_default_file_type_raw()
 
     @with_logger
-    def get_code_style(self, extname: str, **kwargs) -> str:
-        """Get code style for extension name."""
-        code_styles = self._get_code_styles_raw()
-        return code_styles.get(extname, self.get_default_code_style())
+    def get_file_type(self, extname: str, **kwargs) -> str:
+        """Get file type for extension name."""
+        file_types = self._get_file_types_raw()
+        return file_types.get(extname, self.get_default_file_type())
 
     @with_logger
-    def get_all_code_styles(self, **kwargs) -> set[str]:
-        return set(self._get_code_styles_raw().values())
+    def get_code_type_list(self, **kwargs) -> set[str]:
+        return set(self._get_code_type_list_raw())
+
+    @with_logger
+    def get_doc_type_list(self, **kwargs) -> set[str]:
+        return set(self._get_doc_type_list_raw())
+
+    @with_logger
+    def get_all_file_types(self, **kwargs) -> set[str]:
+        return set(self._get_file_types_raw().values())
 
     @with_logger
     def get_all_code_ext_names(self, **kwargs) -> set[str]:
-        return set(self._get_code_styles_raw().keys())
+        return set(self._get_file_types_raw().keys())
 
     @with_logger
-    def get_ext_names_by_code_style(self, code_style: str, **kwargs) -> list[str]:
-        """Get all extension names for a given code style."""
-        code_styles = self._get_code_styles_raw()
-        return [ext for ext, style in code_styles.items() if style == code_style]
+    def get_ext_names_by_file_type(self, file_type: str, **kwargs) -> list[str]:
+        """Get all extension names for a given file type."""
+        file_types = self._get_file_types_raw()
+        return [ext for ext, style in file_types.items() if style == file_type]
 
     @with_logger
-    def get_run_usage_command(self, code_style: str, filepath: str, **kwargs) -> list[str]:
-        """Get run usage command for a code style, replacing ${filename} placeholder."""
+    def get_run_usage_command(self, file_type: str, src: str, **kwargs) -> list[str]:
+        """Get run usage command for a file type, replacing {src} placeholder."""
         logger = kwargs.get('logger')
+        if file_type not in self.get_code_type_list():
+            logger.warning(
+                f"'{file_type}' is not code type, return empty command")
+            return []
         try:
-            result = self._get_run_usage_commands_raw()[code_style].copy()
-            return [
-                filepath if item == '${filename}' else item
-                for item in result
-            ]
+            return shlex.split(self._get_run_usage_commands_raw()[file_type].format(src=shlex.quote(src)))
         except KeyError:
             logger.warning(
-                f"run_usage command of code style '{code_style}' is not found, return empty command"
+                f"run_usage command of file type '{file_type}' is not found, return empty command"
             )
             return []
 
     @with_logger
-    def get_formatting_command(self, code_style: str, filepath: str, **kwargs) -> list[str]:
-        """Get formatting command for a code style, replacing ${filename} placeholder."""
+    def get_formatting_command(self, file_type: str, src: str, **kwargs) -> list[str]:
+        """Get formatting command for a file type, replacing {src} placeholder."""
         logger = kwargs.get('logger')
+        if file_type not in self.get_code_type_list() and \
+                file_type not in self.get_doc_type_list():
+            logger.warning(
+                f"'{file_type}' is neither code type nor doc type, return empty command")
+            return []
         try:
-            result = self._get_formatting_commands_raw()[code_style].copy()
-            return [
-                filepath if item == '${filename}' else item
-                for item in result
-            ]
+            return shlex.split(self._get_formatting_commands_raw()[file_type].format(src=shlex.quote(src)))
         except KeyError:
             logger.warning(
-                f"formatting command of code style '{code_style}' is not found, return empty command"
+                f"formatting command of file type '{file_type}' is not found, return empty command"
+            )
+            return []
+
+    @with_logger
+    def get_compile_pdf_command(self, file_type: str, **kwargs) -> list[str]:
+        """Get compile PDF command for a file type, replacing {src} {out} placeholder."""
+        logger = kwargs.get('logger')
+        if file_type not in self.get_doc_type_list():
+            logger.warning(
+                f"'{file_type}' is not doc type, return empty command")
+            return []
+        try:
+            source = os.path.join(self._get_notebook_file_dir_raw(),
+                                  f"{self._get_notebook_file_raw()}.{file_type}")
+            command_line = self._get_compile_pdf_commands_raw()[file_type].format(
+                src=shlex.quote(source))
+            if command_line.find(r'{out}') != -1:
+                pdf_path = os.path.join(
+                    "_pdf_out", f"{self._get_notebook_file_raw()}.pdf")
+                command_line = command_line.format(out=shlex.quote(pdf_path))
+            return shlex.split(command_line)
+        except KeyError:
+            logger.warning(
+                f"compiling PDF command of file type '{file_type}' is not found, return empty command"
             )
             return []
