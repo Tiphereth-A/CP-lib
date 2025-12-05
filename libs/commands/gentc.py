@@ -5,12 +5,13 @@ import os
 import click
 
 from libs.consts import CONFIG
-from libs.decorator import withlog
+from libs.decorator import with_logger, with_timer
 from libs.testcase_matrix import cppmeta_parser
 from libs.utils import get_full_filenames
 
 
-@withlog
+@with_logger
+@with_timer
 def get_codelines(file: str, **kwargs) -> list[str]:
     """Read code lines from a file."""
     logger = kwargs.get('logger')
@@ -19,7 +20,8 @@ def get_codelines(file: str, **kwargs) -> list[str]:
         return f.read().splitlines(True)
 
 
-@withlog
+@with_logger
+@with_timer
 def generate_testcode(_source_dir: str, _target_dir: str, **kwargs):
     """Generate test code files from cppmeta source files."""
     logger = kwargs.get('logger')

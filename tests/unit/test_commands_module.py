@@ -1,10 +1,9 @@
 import os
 import subprocess
-from pathlib import Path
 
 import libs.commands.gen_nb as gen_nb
 import libs.commands.gen_cs as gen_cs
-import libs.commands.compile as compile_mod
+import libs.commands.compile_pdf as compile_mod
 import libs.commands.gentc as gentc
 import libs.commands.new as newmod
 import libs.commands.run_usage as run_usage_mod

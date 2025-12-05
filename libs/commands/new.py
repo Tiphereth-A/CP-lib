@@ -6,10 +6,11 @@ import click
 
 from libs.classes.section import Section
 from libs.consts import CONFIG
-from libs.decorator import withlog
+from libs.decorator import with_logger, with_timer
 
 
-@withlog
+@with_logger
+@with_timer
 def add_new_note(_chapter_name: str, _file_name: str, _section_title: str,
                  _code_ext_name: str, _usage_ext_name: str, **kwargs):
     """Create a new note section with all required files."""

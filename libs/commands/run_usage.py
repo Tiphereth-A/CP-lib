@@ -7,11 +7,12 @@ from threading import Thread
 import click
 
 from libs.consts import CONFIG
-from libs.decorator import withlog
+from libs.decorator import with_logger, with_timer
 from libs.utils import get_full_filenames
 
 
-@withlog
+@with_logger
+@with_timer
 def run_usage_codes(_code_type: str, _thlimit: int, **kwargs):
     """Run usage code files in parallel threads."""
     logger = kwargs.get('logger')

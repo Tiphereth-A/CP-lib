@@ -3,10 +3,8 @@
 from libs.classes.section import Section
 from libs.classes.config_base import ConfigBase
 from libs.classes.config import Config
-import os
 import yaml
 import pytest
-from pathlib import Path
 
 pytestmark = pytest.mark.unit
 

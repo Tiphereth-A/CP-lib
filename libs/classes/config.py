@@ -1,6 +1,6 @@
 from libs.classes.config_base import ConfigBase
 from libs.classes.section import Section
-from libs.decorator import withlog
+from libs.decorator import with_logger
 
 
 class Config(ConfigBase):
@@ -49,35 +49,35 @@ class Config(ConfigBase):
     def _get_formatting_commands_raw(self) -> dict[str, list[str]]:
         return self.items('formatting_commands')
 
-    @withlog
+    @with_logger
     def get_code_dir(self, **kwargs) -> str:
         return self._get_code_dir_raw()
 
-    @withlog
+    @with_logger
     def get_doc_dir(self, **kwargs) -> str:
         return self._get_doc_dir_raw()
 
-    @withlog
+    @with_logger
     def get_cvdoc_dir(self, **kwargs) -> str:
         return self._get_cvdoc_dir_raw()
 
-    @withlog
+    @with_logger
     def get_cheatsheet_dir(self, **kwargs) -> str:
         return self._get_cheatsheet_dir_raw()
 
-    @withlog
+    @with_logger
     def get_usage_dir(self, **kwargs) -> str:
         return self._get_usage_dir_raw()
 
-    @withlog
+    @with_logger
     def get_notebook_file(self, **kwargs) -> str:
         return self._get_notebook_file_raw()
 
-    @withlog
+    @with_logger
     def get_chapter_key(self, **kwargs) -> list[str]:
         return list(self._get_chapters_raw().keys())
 
-    @withlog
+    @with_logger
     def get_chapter_title(self, chapter: str, **kwargs) -> str:
         try:
             return self._get_chapters_raw()[chapter]
@@ -86,7 +86,7 @@ class Config(ConfigBase):
                 rf"title name of chapter '{chapter}' is not found, use '{chapter}' instead")
             return chapter
 
-    @withlog
+    @with_logger
     def get_sections_by_chapter(self, chapter: str, **kwargs) -> list[Section]:
         """Get all sections for a chapter."""
         logger = kwargs.get('logger')
@@ -100,7 +100,7 @@ class Config(ConfigBase):
         # Use list comprehension for better performance
         return [Section(chapter).parse_from_dict(item) for item in sections_raw]
 
-    @withlog
+    @with_logger
     def set_sections_by_chapter(self, chapter: str, sections: list[Section], **kwargs):
         try:
             self._get_sections_raw()[chapter]
@@ -112,7 +112,7 @@ class Config(ConfigBase):
         self._get_sections_raw()[chapter] = [sec.get_dict()
                                              for sec in sections]
 
-    @withlog
+    @with_logger
     def append_chapter(self, chapter: str, **kwargs):
         """Append a new chapter to the config."""
         logger = kwargs.get('logger')
@@ -127,7 +127,7 @@ class Config(ConfigBase):
         self._get_sections_raw().update({chapter: []})
         self.output()
 
-    @withlog
+    @with_logger
     def append_section(self, section: Section, **kwargs):
         """Append a new section to a chapter."""
         logger = kwargs.get('logger')
@@ -144,11 +144,11 @@ class Config(ConfigBase):
         self.set_sections_by_chapter(section.chapter, sections)
         self.output()
 
-    @withlog
+    @with_logger
     def get_cheatsheets(self, **kwargs) -> list[str]:
         return list(self._get_cheatsheet_raw().keys())
 
-    @withlog
+    @with_logger
     def get_cheatsheet_name(self, cheatsheet: str, **kwargs) -> str:
         try:
             return self._get_cheatsheet_raw()[cheatsheet]
@@ -157,35 +157,35 @@ class Config(ConfigBase):
                 rf"title name of cheatsheet section '{cheatsheet}' is not found, use '{cheatsheet}' instead")
             return cheatsheet
 
-    @withlog
+    @with_logger
     def export_usage_code_in_notebook(self, **kwargs) -> bool:
         return self._get_export_usage_code_in_notebook_raw()
 
-    @withlog
+    @with_logger
     def get_default_code_style(self, **kwargs) -> str:
         return self._get_default_code_style_raw()
 
-    @withlog
+    @with_logger
     def get_code_style(self, extname: str, **kwargs) -> str:
         """Get code style for extension name."""
         code_styles = self._get_code_styles_raw()
         return code_styles.get(extname, self.get_default_code_style())
 
-    @withlog
+    @with_logger
     def get_all_code_styles(self, **kwargs) -> set[str]:
         return set(self._get_code_styles_raw().values())
 
-    @withlog
+    @with_logger
     def get_all_code_ext_names(self, **kwargs) -> set[str]:
         return set(self._get_code_styles_raw().keys())
 
-    @withlog
+    @with_logger
     def get_ext_names_by_code_style(self, code_style: str, **kwargs) -> list[str]:
         """Get all extension names for a given code style."""
         code_styles = self._get_code_styles_raw()
         return [ext for ext, style in code_styles.items() if style == code_style]
 
-    @withlog
+    @with_logger
     def get_run_usage_command(self, code_style: str, filepath: str, **kwargs) -> list[str]:
         """Get run usage command for a code style, replacing ${filename} placeholder."""
         logger = kwargs.get('logger')
@@ -201,7 +201,7 @@ class Config(ConfigBase):
             )
             return []
 
-    @withlog
+    @with_logger
     def get_formatting_command(self, code_style: str, filepath: str, **kwargs) -> list[str]:
         """Get formatting command for a code style, replacing ${filename} placeholder."""
         logger = kwargs.get('logger')

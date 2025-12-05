@@ -7,7 +7,7 @@ from libs.commands.clean import register_clean_command
 from libs.commands.gen_nb import register_gen_nb_command
 from libs.commands.gen_cs import register_gen_cs_command
 from libs.commands.run_usage import register_run_usage_command
-from libs.commands.compile import register_compile_command
+from libs.commands.compile_pdf import register_compile_command
 from libs.commands.fmt import register_fmt_command
 from libs.commands.new import register_new_command
 from libs.commands.gentc import register_gentc_command

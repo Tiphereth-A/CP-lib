@@ -4,12 +4,13 @@ import logging
 import os
 
 from libs.consts import CONFIG, CONTENTS_DIR, CONTENTS_CS
-from libs.decorator import withlog
+from libs.decorator import with_logger, with_timer
 from libs.latex_utils import latex_chapter, latex_section, latex_input, PathLaTeX, NameLaTeX
 from libs.utils import file_preprocess, scandir_file_merge
 
 
-@withlog
+@with_logger
+@with_timer
 def generate_cheatsheet_contents(logger: logging.Logger):
     """Generate cheatsheet contents from configured cheatsheet files."""
     os.makedirs(CONTENTS_DIR, exist_ok=True)

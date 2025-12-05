@@ -1,7 +1,7 @@
 import os
 from typing import IO
 
-from libs.decorator import withlog
+from libs.decorator import with_logger
 
 
 class Section:
@@ -13,7 +13,7 @@ class Section:
         self.code_ext = code_ext
         self.usage_ext = usage_ext
 
-    @withlog
+    @with_logger
     def parse_from_dict(self, dict_section: dict, **kwargs):
         """Parse section data from a dictionary."""
         logger = kwargs.get('logger')

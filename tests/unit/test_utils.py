@@ -11,10 +11,7 @@ from libs.utils import (
     scandir_dir_merge,
     parse_filename
 )
-import os
-import tempfile
 from unittest.mock import patch, MagicMock
-from pathlib import Path
 
 import pytest
 

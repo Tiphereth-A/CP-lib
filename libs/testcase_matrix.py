@@ -6,7 +6,7 @@ import os
 from typing import Iterable
 
 from libs.consts import CONFIG_TCGEN
-from libs.decorator import withlog
+from libs.decorator import with_logger
 
 
 class case_parser:
@@ -71,7 +71,7 @@ class case_parser:
             )
         return result
 
-    @withlog
+    @with_logger
     def get_include_list(self, **kwargs) -> list[str]:
         """Get list of unique include statements."""
         result: set[str] = set()
@@ -83,15 +83,15 @@ class case_parser:
                     ))
         return sorted(result)
 
-    @withlog
+    @with_logger
     def get_content_after_include(self, **kwargs) -> str:
         return self._get_content_ignore('after_include')
 
-    @withlog
+    @with_logger
     def get_content_main_begin(self, **kwargs) -> str:
         return self._get_content_ignore('main_begin')
 
-    @withlog
+    @with_logger
     def get_label(self, **kwargs) -> str:
         """Get label for this case (same as case_tag)."""
         return self._case_tag
@@ -110,12 +110,12 @@ class testcase_matrix:
         )
         return [CONFIG_TCGEN.get_memberlist(cat) for cat in categories]
 
-    @withlog
+    @with_logger
     def append(self, categories: Iterable[str], **kwargs):
         self._cat_list.append(list(categories))
         return self
 
-    @withlog
+    @with_logger
     def make_all_cases(self, **kwargs):
         """Generate all test cases from the test case matrix."""
         logger = kwargs.get('logger')
@@ -190,13 +190,13 @@ class testcase_matrix:
         # Only deepcopy if case_parser modifies input, otherwise create new instances
         self._all_cases = [case_parser(now_case) for now_case in all_cases]
 
-    @withlog
+    @with_logger
     def get_all_cases(self, **kwargs):
         if not self._all_cases:
             self.make_all_cases()
         return self._all_cases
 
-    @withlog
+    @with_logger
     def exclude(self, case: list[tuple[str, str]], **kwargs):
         """Exclude a specific case from the test matrix."""
         if not self._all_cases:
@@ -219,7 +219,7 @@ class testcase_matrix:
 
         return self
 
-    @withlog
+    @with_logger
     def exclude_wildcard(self, pattern: str, **kwargs):
         """Exclude cases matching a wildcard pattern."""
         if not self._all_cases:
@@ -376,6 +376,6 @@ class cppmeta_parser:
 
         return result
 
-    @withlog
+    @with_logger
     def get_results(self, **kwargs) -> list[tuple[str, list[str]]]:
         return self._get_all_target_content()

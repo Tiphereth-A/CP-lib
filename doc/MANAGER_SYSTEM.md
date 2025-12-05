@@ -8,13 +8,6 @@ The Python Manager System is a modular command-line interface (CLI) framework bu
 - Usage example compilation and execution
 - File cleanup and maintenance
 
-### Key Features
-
-- **Modular Architecture**: Each command is isolated in its own module
-- **Unified Logging**: Colored, structured logging using `coloredlogs`
-- **Configuration-Driven**: YAML-based configuration system
-- **Extensible**: Easy to add new commands and functionality
-
 ## Architecture
 
 ### Directory Structure
@@ -24,19 +17,20 @@ libs/
 ├── __init__.py
 ├── cli.py                    # Main CLI entry point and command registration
 ├── consts.py                 # Global constants and configuration instances
-├── decorator.py              # Decorators (e.g., @withlog)
+├── decorator.py              # Decorator wrappers
 ├── latex_utils.py            # LaTeX generation utilities
 ├── testcase_matrix.py        # Test matrix parsing and generation
 ├── utils.py                  # General utility functions
-├── classes/                  # Class definitions
+├── classes/                  # Class definitions and helpers
 │   ├── __init__.py
 │   ├── config.py             # Main configuration class
 │   ├── config_tcgen.py       # Test case generation config
+│   ├── decorator_result.py   # `DecoratorResultBase`, ...
 │   └── section.py            # Section representation
 └── commands/                 # Command modules
     ├── __init__.py
     ├── clean.py              # Clean temporary files
-    ├── compile.py            # Compile LaTeX notebook
+    ├── compile_pdf.py        # Compile LaTeX notebook
     ├── fmt.py                # Format/lint code files
     ├── gen_cs.py             # Generate cheatsheet contents
     ├── gen_nb.py             # Generate notebook contents
@@ -47,19 +41,7 @@ libs/
 
 ### Entry Point
 
-The system entry point is `manager.py`, which is a thin wrapper that imports and invokes the CLI from `libs.cli`:
-
-```python
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-
-"""Main entry point for the CLI manager."""
-
-from libs.cli import cli
-
-if __name__ == '__main__':
-    cli()
-```
+`manager.py` imports and runs the Click CLI defined in `libs.cli`.
 
 ### CLI Initialization
 
@@ -78,33 +60,29 @@ def cli(level: str):
 
 ## Command System
 
-### Command Module Structure
+### Command Module Pattern
 
-Each command module follows a consistent pattern:
+Each command module follows this structure:
 
-1. **Core Function**: The main logic function decorated with `@withlog`
-2. **Registration Function**: A function that registers the command with the CLI
-3. **Helper Functions**: Private functions for internal use
+1. Core function implementing the command logic (decorated with `@with_logger` and optionally `@with_timer`).
+2. A registration function that attaches the command to the CLI group.
 
-**Example**: Clean Command
+Example (clean command simplified):
 
 ```python
-"""Clean command for removing nonessential files."""
-
 import logging
 import os
 
 from libs.consts import CLEAN_EXT_NAME
-from libs.decorator import withlog
+from libs.decorator import with_logger, with_timer
 from libs.utils import get_full_filenames
 
-
-@withlog
+@with_logger
+@with_timer
 def clean(logger: logging.Logger):
-    """Clean up nonessential files during PDF building."""
-    for full_filename in get_full_filenames(['_pdf_out'], CLEAN_EXT_NAME):
-        os.remove(full_filename)
-        logger.info(f"{full_filename} removed successfully")
+    for f in get_full_filenames(['_pdf_out'], CLEAN_EXT_NAME):
+        os.remove(f)
+        logger.debug(f"{f} removed successfully")
 
 
 def register_clean_command(cli):
@@ -326,26 +304,28 @@ python manager.py gentc -s meta_test -t test
 
 ## Core Components
 
-### Logging System
+### Decorator System
 
-The system uses a custom `@withlog` decorator that:
+To standardize logging and optional timing across command modules we use two cooperative decorators defined in `libs.decorator`:
 
-1. Creates a logger named after the function
-2. Injects the logger as a `logger` keyword argument
-3. Logs function entry/exit with debug level
-4. Logs return values (if any)
+- `@with_logger` — injects a `logger` keyword argument (a `logging.Logger`) into the wrapped function, logs entry/exit at DEBUG and return values when present.
+- `@with_timer` — measures execution time of the wrapped function and returns a result object that implements `DecoratorResultBase`. The concrete timing result class `WithTimerResult` lives in `libs/classes/decorator_result.py`.
 
 **Usage**:
 
 ```python
-@withlog
-def my_function(arg1, arg2, **kwargs):
+@with_logger
+@with_timer
+def my_command(..., **kwargs):
     logger = kwargs.get('logger')
-    logger.info("Processing...")
+    logger.info('Doing work')
     return result
 ```
 
-**Colored Output**: Configured in `cli.py` with custom styles for different log levels.
+- `with_timer` returns an instance of `WithTimerResult` (subclass of `DecoratorResultBase`) containing `result` and `elapsed_ms` (milliseconds).
+- `with_logger` detects `DecoratorResultBase` instances returned by the inner decorator and calls the instance's `write_to_logger(logger, func_name)` to emit timing information (and then returns the underlying `result` to the caller).
+
+This separation keeps timing metadata and logging concerns decoupled and extensible: other decorators can implement `DecoratorResultBase` to expose custom metadata to `with_logger`.
 
 ### Configuration System
 
@@ -555,6 +535,46 @@ value = CONFIG.get_my_setting()
 1. **Add to `libs/utils.py`**: For general-purpose utilities
 2. **Create new module**: For domain-specific utilities (e.g., `latex_utils.py`)
 
+## Tests
+
+This project includes a comprehensive Python test suite managed by `pytest`. Tests are grouped by scope and purpose to make it easy to run small, fast checks during development and larger integration/system suites in CI.
+
+### Test layout
+
+```
+tests/
+├─ unit/          # Fast unit tests for individual modules (no external side-effects)
+├─ integration/   # Tests that exercise interactions between modules (may use fixtures)
+└─ system/        # End-to-end tests (may invoke CLI, IO, or compilation)
+```
+
+### Key files
+
+- `tests/conftest.py`: shared fixtures used across tests (e.g. `sample_dirs`, `test_config`).
+- `tests/unit/test_*.py`: unit tests for library functions and decorators.
+- `tests/integration/test_*.py`: higher-level integration tests (mocking external tools where appropriate).
+
+### Testing patterns and fixtures
+
+- Use `conftest.py` to share fixtures (temporary directories, sample files, configuration objects). Avoid creating fixtures with broad side effects.
+- Use `caplog` to capture logging output and assert log messages (useful for verifying `with_logger` and `with_timer` behavior).
+- Use `monkeypatch` or `unittest.mock.patch` to stub external commands (`subprocess.run`, file system operations) in integration tests.
+- Prefer deterministic, small sleeps or mocks for timing-related assertions.
+
+### Adding tests
+
+1. Place unit tests under `tests/unit/` named `test_<module>.py`.
+2. For integration tests that require more setup (temp dirs, config), add fixtures to `conftest.py` and put tests under `tests/integration/`.
+3. New tests should be fast and reliable; if a test is flaky, prefer mocking or increasing determinism rather than sleeping long durations.
+
+### Best practices
+
+- Keep unit tests isolated from file system or network when possible.
+- Use fixtures to centralize test setup/teardown logic.
+- Add tests for new features and bug fixes; include edge cases.
+
+If you add or change decorator semantics (`with_logger`, `with_timer`, `DecoratorResultBase`), update unit tests in `tests/unit/test_decorator.py` and the integration test in `tests/integration/test_decorator_integration.py`.
+
 ## Development Guidelines
 
 ### Code Style
@@ -609,8 +629,7 @@ Potential improvements to the manager system:
 4. **Progress Bars**: Add progress indicators for long operations
 5. **Parallel Generation**: Parallelize notebook generation
 6. **Caching**: Cache file scans and configuration parsing
-7. **Unit Tests**: Add comprehensive test suite
-8. **Type Checking**: Add `mypy` type checking
+7. **Type Checking**: Add `mypy` type checking
 
 ## References
 

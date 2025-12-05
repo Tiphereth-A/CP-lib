@@ -4,7 +4,7 @@ import os
 import subprocess
 
 from libs.consts import CONFIG, CONTENTS_DIR, CONTENTS_NB, CONTENTS_CS
-from libs.decorator import withlog
+from libs.decorator import with_logger, with_timer
 from libs.latex_utils import LATEX_COMPILE_COMMAND_GROUP
 from libs.commands.clean import clean
 from libs.commands.gen_nb import generate_notebook_contents
@@ -13,7 +13,8 @@ from libs.commands.run_usage import run_usage_codes
 from libs.commands.fmt import lint_all_codes
 
 
-@withlog
+@with_logger
+@with_timer
 def compile_all(_no_fmt: bool, _no_run_usage: bool, _no_gen: bool, _no_clean: bool, **kwargs):
     """Compile LaTeX notebook."""
     logger = kwargs.get('logger')

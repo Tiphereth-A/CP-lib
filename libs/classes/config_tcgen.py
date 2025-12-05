@@ -2,7 +2,7 @@ from copy import deepcopy
 from typing import Iterable
 
 from libs.classes.config_base import ConfigBase
-from libs.decorator import withlog
+from libs.decorator import with_logger
 from multipledispatch import dispatch
 
 
@@ -70,26 +70,26 @@ class ConfigTCGen(ConfigBase):
             f"member '{member}' is invalid in categories '{categories}'"
         )
 
-    @withlog
+    @with_logger
     def get_categories(self, **kwargs) -> list[str]:
         return self._get_categories_raw()
 
-    @withlog
+    @with_logger
     def get_priority(self, category: str, **kwargs) -> int:
         return self._get_priority_raw(category)
 
-    @withlog
+    @with_logger
     def get_categories_by_priority(self, priority: int, **kwargs) -> list[str]:
         return self._get_categories_by_priority_raw(priority)
 
-    @withlog
+    @with_logger
     def get_categories_with_same_priority(self, category: str, **kwargs) -> list[str]:
         return self._get_categories_by_priority_raw(self._get_priority_raw(category))
 
-    @withlog
+    @with_logger
     def get_memberlist(self, category: str | list[str], **kwargs) -> list[tuple[str, str]]:
         return self._get_memberlist_raw(category)
 
-    @withlog
+    @with_logger
     def get_member_content(self, category: str, member: str, **kwargs) -> dict:
         return self._get_member_content_raw(category, member)

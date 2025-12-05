@@ -2,7 +2,7 @@ import logging
 import os
 from typing import Iterable, Any
 
-from libs.decorator import withlog
+from libs.decorator import with_logger
 
 
 def get_full_filenames(_dirs: list[str], valid_extname: list[str]) -> list[str]:
@@ -65,7 +65,7 @@ def file_preprocess(files_in_config: list[str], files_exist: list[str], logger: 
     return unique(file_c + files_exist)
 
 
-@withlog
+@with_logger
 def execute_if_file_exist(filepath: str, func, **kwargs):
     if os.access(filepath, os.F_OK):
         return func(filepath)
@@ -73,7 +73,7 @@ def execute_if_file_exist(filepath: str, func, **kwargs):
         kwargs.get('logger').warning(f"{filepath} is inaccessible, skipped")
 
 
-@withlog
+@with_logger
 def scandir_merge_filter(filter_func, *paths: str, **kwargs) -> list[str]:
     """Scan directories and filter entries, returning unique names."""
     result: list[os.DirEntry] = []
@@ -84,7 +84,7 @@ def scandir_merge_filter(filter_func, *paths: str, **kwargs) -> list[str]:
     return unique([f.name for f in result])
 
 
-@withlog
+@with_logger
 def scandir_file_merge(valid_ext_name: Iterable[str], *paths: str, **kwargs) -> list[str]:
     """Scan directories and merge file names with valid extensions."""
     valid_ext_set = set(valid_ext_name)
@@ -98,12 +98,12 @@ def scandir_file_merge(valid_ext_name: Iterable[str], *paths: str, **kwargs) -> 
     return scandir_merge_filter(is_valid_file, *paths)
 
 
-@withlog
+@with_logger
 def scandir_dir_merge(*paths: str, **kwargs) -> list[str]:
     return scandir_merge_filter(lambda x: x.is_dir(), *paths)
 
 
-@withlog
+@with_logger
 def parse_filename(filename: str, **kwargs) -> tuple[str, str]:
     """return [filename without ext, ext name]"""
 

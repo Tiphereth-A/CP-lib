@@ -1,6 +1,4 @@
-import itertools
 import pytest
-from pathlib import Path
 from libs import testcase_matrix as tm
 
 

@@ -6,7 +6,7 @@ import random
 
 from libs.classes.section import Section
 from libs.consts import CONFIG, CONTENTS_DIR, CONTENTS_NB
-from libs.decorator import withlog
+from libs.decorator import with_logger, with_timer
 from libs.latex_utils import (
     latex_input, latex_chapter, latex_listing_code_range,
     latex_section, latex_listing_code, PathLaTeX, NameLaTeX
@@ -17,7 +17,8 @@ from libs.utils import (
 )
 
 
-@withlog
+@with_logger
+@with_timer
 def load_from(dir_name: str, **kwargs) -> list[tuple[str, str]]:
     """Load and parse filenames from a directory."""
     filename_in_dir: list[str] = scandir_file_merge(
@@ -46,7 +47,8 @@ def load_from(dir_name: str, **kwargs) -> list[tuple[str, str]]:
     return partitioned_filename
 
 
-@withlog
+@with_logger
+@with_timer
 def generate_notebook_contents(logger: logging.Logger):
     """Generate notebook contents from chapters and sections."""
     os.makedirs(CONTENTS_DIR, exist_ok=True)

@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 from libs.testcase_matrix import cppmeta_parser
