@@ -3,25 +3,30 @@
 import logging
 import os
 
-from libs.consts import CONFIG, CONTENTS_DIR, CONTENTS_CS
+from libs.consts import CONFIG, CONTENTS_DIR
 from libs.decorator import with_logger, with_timer
 from libs.latex_utils import latex_chapter, latex_section, latex_input, PathLaTeX, NameLaTeX
+from libs.typst_utils import typst_chapter, typst_section, typst_include, PathTypst, NameTypst
 from libs.utils import file_preprocess, scandir_file_merge
 
 
 @with_logger
 @with_timer
-def generate_empty_cheatsheet_contents(override_exists: bool = True, **kwargs):
+def generate_empty_cheatsheet_contents(doc_type: str = 'tex', override_exists: bool = True, **kwargs):
     os.makedirs(CONTENTS_DIR, exist_ok=True)
-    if not override_exists and os.path.exists(CONTENTS_CS):
+    contents_file = os.path.join(CONTENTS_DIR, f'contents_cheatsheet.{doc_type}')
+    if not override_exists and os.path.exists(contents_file):
         return
-    with open(CONTENTS_CS, 'w', encoding='utf8') as f:
-        f.write('%-*- coding: utf-8 -*-\n')
+    with open(contents_file, 'w', encoding='utf8') as f:
+        if doc_type == 'tex':
+            f.write('%-*- coding: utf-8 -*-\n')
+        else:
+            f.write('// Generated cheatsheet contents\n')
 
 
 @with_logger
 @with_timer
-def generate_cheatsheet_contents(logger: logging.Logger):
+def generate_cheatsheet_contents(doc_type: str = 'tex', logger: logging.Logger = None, **kwargs):
     """Generate cheatsheet contents from configured cheatsheet files."""
     # Get cheatsheet files
     cheatsheet_names = [
@@ -39,9 +44,13 @@ def generate_cheatsheet_contents(logger: logging.Logger):
         logger.debug('Which are:\n\t' + '\n\t'.join(full_paths))
         logger.debug('Will include in listed order')
 
-    generate_empty_cheatsheet_contents()
-    with open(CONTENTS_CS, 'a', encoding='utf8') as f:
-        f.writelines(latex_chapter(NameLaTeX('Cheatsheet')))
+    generate_empty_cheatsheet_contents(doc_type=doc_type)
+    contents_file = os.path.join(CONTENTS_DIR, f'contents_cheatsheet.{doc_type}')
+    with open(contents_file, 'a', encoding='utf8') as f:
+        if doc_type == 'tex':
+            f.writelines(latex_chapter(NameLaTeX('Cheatsheet')))
+        else:  # typst
+            f.writelines(typst_chapter(NameTypst('Cheatsheet')))
 
         for file_path in full_paths:
             # Extract cheatsheet name from path
@@ -51,13 +60,20 @@ def generate_cheatsheet_contents(logger: logging.Logger):
                 '\\', '/').replace('/', '').removesuffix('.tex')
             cheatsheet_name = CONFIG.get_cheatsheet_name(name)
 
-            f.writelines(latex_section(NameLaTeX(cheatsheet_name)))
-            f.writelines(latex_input(PathLaTeX(file_path)))
+            if doc_type == 'tex':
+                f.writelines(latex_section(NameLaTeX(cheatsheet_name)))
+                f.writelines(latex_input(PathLaTeX(file_path)))
+            else:  # typst
+                f.writelines(typst_section(NameTypst(cheatsheet_name)))
+                f.writelines(typst_include(PathTypst(file_path)))
 
 
 def register_gen_cs_command(cli):
     """Register the gen-cs command with the CLI."""
+    import click
+    
     @cli.command('gen-cs')
-    def _gen_csc():
+    @click.option('-t', '--doc-type', type=str, default='tex', help='Document type (tex or typst), default: tex')
+    def _gen_csc(doc_type: str):
         """Generate cheatsheet contents"""
-        generate_cheatsheet_contents()
+        generate_cheatsheet_contents(doc_type=doc_type)

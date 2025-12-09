@@ -48,12 +48,12 @@ def register_compile_command(cli):
                 run_usage_codes(file_type, 8)
 
         if not no_gen:
-            generate_notebook_contents()
-            generate_cheatsheet_contents()
+            generate_notebook_contents(doc_type=code_type)
+            generate_cheatsheet_contents(doc_type=code_type)
         else:
             # Ensure content files exist even if not generating
-            generate_empty_notebook_contents(override_exists=False)
-            generate_empty_cheatsheet_contents(override_exists=False)
+            generate_empty_notebook_contents(doc_type=code_type, override_exists=False)
+            generate_empty_cheatsheet_contents(doc_type=code_type, override_exists=False)
 
         compile_pdf(code_type)
 
