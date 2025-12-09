@@ -24,16 +24,31 @@
 
 #set heading(numbering: "1.")
 
-// Configure code blocks to show line numbers like LaTeX minted
+// Configure code blocks with line numbers like LaTeX minted
 #show raw.where(block: true): it => {
   set par(justify: false)
   set text(font: "Fira Code", size: 9pt)
+  
+  let lines = it.text.split("\n")
+  let line-count = lines.len()
+  
   block(
-    fill: luma(250),
-    inset: 8pt,
-    radius: 4pt,
+    stroke: 0.5pt + luma(200),
+    inset: (left: 8pt, right: 8pt, top: 8pt, bottom: 8pt),
+    radius: 0pt,
     width: 100%,
-    it
+    fill: luma(252),
+    {
+      grid(
+        columns: (auto, 1fr),
+        column-gutter: 1em,
+        row-gutter: 0.5em,
+        ..lines.enumerate().map(((i, line)) => (
+          align(right, text(fill: luma(120), str(i + 1))),
+          align(left, raw(line, lang: it.lang))
+        )).flatten()
+      )
+    }
   )
 }
 
@@ -76,14 +91,16 @@
 
 #pagebreak()
 
-// Table of contents
+// Table of contents (two columns like LaTeX)
 #set page(numbering: "1")
 #counter(page).update(0)
 
-#outline(
-  title: [目录],
-  indent: auto,
-)
+#columns(2)[
+  #outline(
+    title: [目录],
+    indent: auto,
+  )
+]
 
 #pagebreak()
 
