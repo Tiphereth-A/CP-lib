@@ -125,3 +125,109 @@ class TestCommandIntegration:
 
         # Should be called for each file
         assert mock_subprocess.call_count == 2
+
+
+class TestTypstContentGeneration:
+    """Integration tests for Typst content generation."""
+
+    @patch('libs.commands.gen_nb.CONFIG')
+    @patch('libs.commands.gen_nb.scandir_dir_merge')
+    @patch('libs.commands.gen_nb.scandir_file_merge')
+    def test_generate_notebook_contents_typst(self, mock_scandir_file, mock_scandir_dir, mock_config, sample_dirs):
+        """Test generating notebook contents for Typst."""
+        from libs.commands.gen_nb import generate_notebook_contents
+        
+        # Setup mocks
+        mock_config.get_chapter_key.return_value = ['test_ch']
+        mock_config.get_chapter_title.return_value = 'Test Chapter'
+        mock_config.get_sections_by_chapter.return_value = []
+        mock_config.get_code_dir.return_value = str(sample_dirs['src'])
+        mock_config.get_doc_dir.return_value = str(sample_dirs['doc'])
+        mock_config.get_usage_dir.return_value = str(sample_dirs['usage'])
+        mock_config.get_all_code_ext_names.return_value = {'cpp'}
+        mock_config.get_file_type.return_value = 'cpp'
+        mock_config.export_usage_code_in_notebook.return_value = True
+        mock_scandir_dir.return_value = ['test_ch']
+        mock_scandir_file.return_value = []
+        
+        gen_dir = sample_dirs['_gen']
+        
+        # Mock CONTENTS_DIR to use test directory
+        with patch('libs.commands.gen_nb.CONTENTS_DIR', str(gen_dir)):
+            generate_notebook_contents(doc_type='typ')
+        
+        # Check that .typ file was created
+        typ_file = gen_dir / 'contents_notebook.typ'
+        assert typ_file.exists()
+        
+        # Verify content has Typst syntax
+        content = typ_file.read_text()
+        assert '=' in content  # Typst heading marker
+        assert '<ch:' in content  # Typst label
+
+    @patch('libs.commands.gen_cs.CONFIG')
+    @patch('libs.commands.gen_cs.scandir_file_merge')
+    def test_generate_cheatsheet_contents_typst(self, mock_scandir_file, mock_config, sample_dirs):
+        """Test generating cheatsheet contents for Typst."""
+        from libs.commands.gen_cs import generate_cheatsheet_contents
+        
+        # Setup mocks
+        mock_config.get_cheatsheets.return_value = ['test_cs']
+        mock_config.get_cheatsheet_name.return_value = 'Test Cheatsheet'
+        mock_config.get_cheatsheet_dir.return_value = str(sample_dirs['cheatsheet'])
+        mock_scandir_file.return_value = ['test_cs.tex']
+        
+        gen_dir = sample_dirs['_gen']
+        
+        # Mock CONTENTS_DIR to use test directory
+        with patch('libs.commands.gen_cs.CONTENTS_DIR', str(gen_dir)):
+            generate_cheatsheet_contents(doc_type='typ')
+        
+        # Check that .typ file was created
+        typ_file = gen_dir / 'contents_cheatsheet.typ'
+        assert typ_file.exists()
+        
+        # Verify content has Typst syntax
+        content = typ_file.read_text()
+        assert '=' in content  # Typst heading marker
+        assert 'Cheatsheet' in content
+
+    @patch('libs.commands.gen_nb.CONFIG')
+    @patch('libs.commands.gen_nb.scandir_dir_merge')
+    @patch('libs.commands.gen_nb.scandir_file_merge')
+    def test_typst_vs_latex_content_different(self, mock_scandir_file, mock_scandir_dir, mock_config, sample_dirs):
+        """Test that Typst and LaTeX generate different syntax."""
+        from libs.commands.gen_nb import generate_notebook_contents
+        
+        # Setup mocks
+        mock_config.get_chapter_key.return_value = ['ch1']
+        mock_config.get_chapter_title.return_value = 'Test Chapter'
+        mock_config.get_sections_by_chapter.return_value = []
+        mock_config.get_code_dir.return_value = str(sample_dirs['src'])
+        mock_config.get_doc_dir.return_value = str(sample_dirs['doc'])
+        mock_config.get_usage_dir.return_value = str(sample_dirs['usage'])
+        mock_config.get_all_code_ext_names.return_value = {'cpp'}
+        mock_config.get_file_type.return_value = 'cpp'
+        mock_config.export_usage_code_in_notebook.return_value = True
+        mock_scandir_dir.return_value = ['ch1']
+        mock_scandir_file.return_value = []
+        
+        gen_dir = sample_dirs['_gen']
+        
+        # Generate both LaTeX and Typst
+        with patch('libs.commands.gen_nb.CONTENTS_DIR', str(gen_dir)):
+            generate_notebook_contents(doc_type='tex')
+            tex_content = (gen_dir / 'contents_notebook.tex').read_text()
+            
+            generate_notebook_contents(doc_type='typ')
+            typ_content = (gen_dir / 'contents_notebook.typ').read_text()
+        
+        # LaTeX should have \chapter
+        assert '\\chapter' in tex_content
+        assert '\\chapter' not in typ_content
+        
+        # Typst should have = heading markers
+        assert '= ' in typ_content
+        # LaTeX comment vs Typst comment
+        assert '%-*-' in tex_content
+        assert '//' in typ_content

@@ -145,3 +145,98 @@ def test_config_methods(tmp_path):
     assert cfg.get_run_usage_command('missing', 'f') == []
     assert cfg.get_formatting_command('cs', 'f') == ['fmt', 'f']
     assert cfg.get_formatting_command('missing', 'f') == []
+
+
+def test_compile_pdf_commands(tmp_path):
+    """Test compile PDF command methods for LaTeX and Typst."""
+    data = {
+        'notebook': {
+            'chapters': {},
+            'sections': {}
+        },
+        'notebook_code_dir': 'code',
+        'notebook_doc_dir': 'doc',
+        'notebook_file_dir': 'template',
+        'notebook_file': 'notebook',
+        'cheatsheets': {},
+        'export_usage_code_in_notebook': True,
+        'default_file_type': 'cpp',
+        'file_types': {'.tex': 'tex', '.typ': 'typ'},
+        'code_type_list': ['cpp'],
+        'doc_type_list': ['tex', 'typ'],
+        'run_usage_commands': {},
+        'formatting_commands': {},
+        'compile_pdf_commands': {
+            'tex': 'latexmk -xelatex {src}',
+            'typ': 'typst compile {src} {out}'
+        }
+    }
+    p = make_temp_yaml(tmp_path, data)
+    cfg = Config(p)
+    
+    # Test _get_compile_pdf_commands_raw
+    raw_commands = cfg._get_compile_pdf_commands_raw()
+    assert 'tex' in raw_commands
+    assert 'typ' in raw_commands
+    assert 'latexmk' in raw_commands['tex']
+    assert 'typst' in raw_commands['typ']
+    
+    # Test get_compile_pdf_command for LaTeX (no {out} placeholder)
+    tex_cmd = cfg.get_compile_pdf_command('tex')
+    assert isinstance(tex_cmd, list)
+    assert 'latexmk' in tex_cmd[0]
+    assert any('template/notebook.tex' in arg for arg in tex_cmd)
+    
+    # Test get_compile_pdf_command for Typst (with {out} placeholder)
+    typ_cmd = cfg.get_compile_pdf_command('typ')
+    assert isinstance(typ_cmd, list)
+    assert 'typst' in typ_cmd[0]
+    assert 'compile' in typ_cmd[1]
+    assert any('template/notebook.typ' in arg for arg in typ_cmd)
+    assert any('_pdf_out/notebook.pdf' in arg for arg in typ_cmd)
+    
+    # Test non-existent doc type
+    missing_cmd = cfg.get_compile_pdf_command('missing')
+    assert missing_cmd == []
+    
+    # Test non-doc type (e.g., 'cpp' which is code type)
+    non_doc_cmd = cfg.get_compile_pdf_command('cpp')
+    assert non_doc_cmd == []
+
+
+def test_compile_pdf_command_placeholder_handling(tmp_path):
+    """Test that {src} and {out} placeholders are handled correctly."""
+    data = {
+        'notebook': {'chapters': {}, 'sections': {}},
+        'notebook_code_dir': 'code',
+        'notebook_doc_dir': 'doc',
+        'notebook_file_dir': 'template',
+        'notebook_file': 'notebook',
+        'cheatsheets': {},
+        'export_usage_code_in_notebook': True,
+        'default_file_type': 'cpp',
+        'file_types': {},
+        'code_type_list': ['cpp'],
+        'doc_type_list': ['typ'],
+        'run_usage_commands': {},
+        'formatting_commands': {},
+        'compile_pdf_commands': {
+            'typ': 'typst compile --root . {src} {out}'
+        }
+    }
+    p = make_temp_yaml(tmp_path, data)
+    cfg = Config(p)
+    
+    # Test command with both {src} and {out}
+    cmd = cfg.get_compile_pdf_command('typ')
+    assert isinstance(cmd, list)
+    assert 'typst' in cmd
+    assert 'compile' in cmd
+    assert '--root' in cmd
+    assert '.' in cmd
+    # Both placeholders should be replaced
+    assert not any('{src}' in arg for arg in cmd)
+    assert not any('{out}' in arg for arg in cmd)
+    # Should contain actual paths
+    assert any('notebook.typ' in arg for arg in cmd)
+    assert any('.pdf' in arg for arg in cmd)

@@ -89,7 +89,9 @@ def test_generate_notebook_and_cheatsheet(tmp_path, monkeypatch):
     monkeypatch.setattr(gen_nb, 'scandir_file_merge', lambda exts, d: [])
     # write
     gen_nb.generate_notebook_contents()
-    assert os.path.exists(gen_nb.CONTENTS_NB)
+    # Check that .tex file was created (default doc_type)
+    contents_nb = os.path.join(gen_nb.CONTENTS_DIR, 'contents_notebook.tex')
+    assert os.path.exists(contents_nb)
 
     # cheatsheet
     monkeypatch.setattr(gen_cs, 'CONFIG', fake)
@@ -98,7 +100,9 @@ def test_generate_notebook_and_cheatsheet(tmp_path, monkeypatch):
     monkeypatch.setattr(gen_cs, 'file_preprocess',
                         lambda a, b, logger=None: ['cs1.tex'])
     gen_cs.generate_cheatsheet_contents()
-    assert os.path.exists(gen_cs.CONTENTS_CS)
+    # Check that .tex file was created (default doc_type)
+    contents_cs = os.path.join(gen_cs.CONTENTS_DIR, 'contents_cheatsheet.tex')
+    assert os.path.exists(contents_cs)
 
 
 def test_gen_cs_with_subdir(tmp_path, monkeypatch):
@@ -126,7 +130,9 @@ def test_gen_cs_with_subdir(tmp_path, monkeypatch):
                         lambda exts, d: ['subdir/mycs.tex'])
     # write
     gen_cs.generate_cheatsheet_contents()
-    assert os.path.exists(gen_cs.CONTENTS_CS)
+    # Check that .tex file was created (default doc_type)
+    contents_cs = os.path.join(gen_cs.CONTENTS_DIR, 'contents_cheatsheet.tex')
+    assert os.path.exists(contents_cs)
 
 
 def test_gentc_generate_testcode_no_src(monkeypatch, tmp_path):
