@@ -49,7 +49,7 @@ The repository solves several key problems for competitive programmers:
 
 - **Compiler**: GCC 13.0 or higher (GNU Compiler Collection)
 - **Python**: Python 3.12 or higher (for management scripts)
-- **LaTeX**: Required only if you want to generate PDF documentation
+- **PDF Generation**: LaTeX or Typst (required only if you want to generate PDF documentation)
 
 ### Dependencies
 
@@ -78,12 +78,20 @@ Optional dependency groups:
 
 The library is header-only and requires no external C++ dependencies beyond the standard library.
 
-#### LaTeX Dependencies
+#### PDF Generation Dependencies
 
+Choose **one** of the following:
+
+**Option 1: LaTeX (Traditional)**
 - **Fonts**: Run `make download-fonts` to download required fonts (see `Makefile`)
 - **Python Dependencies**: See `latex` group of [Python Dependencies](#python-dependencies)
 - **Others**:
     - [inkscape](https://github.com/inkscape/inkscape) for SVG files support
+
+**Option 2: Typst (Modern, Faster)**
+- **Typst**: Install from [typst.io](https://github.com/typst/typst/releases) or via package manager
+- No additional dependencies required
+- Significantly faster compilation compared to LaTeX
 
 ### Installation Steps
 
@@ -238,11 +246,16 @@ python manager.py [OPTIONS] COMMAND [ARGS]...
 4. **`run`** - Compile the complete notebook (PDF)
 
     ```bash
+    # Using LaTeX (default)
     python manager.py run
+    
+    # Using Typst (faster)
+    python manager.py run -t typ
     ```
 
     Options:
 
+    - `-t, --code-type`: Document type (`tex` for LaTeX, `typ` for Typst, default: `tex`)
     - `--no-fmt`: Skip linting before compilation
     - `--no-run-usage`: Skip running usage codes
     - `--no-gen`: Skip generating notebook & cheatsheet contents
@@ -258,13 +271,21 @@ python manager.py [OPTIONS] COMMAND [ARGS]...
 6. **`gen-nb`** - Generate notebook contents
 
     ```bash
+    # For LaTeX
     python manager.py gen-nb
+    
+    # For Typst
+    python manager.py gen-nb -t typ
     ```
 
 7. **`gen-cs`** - Generate cheatsheet contents
 
     ```bash
+    # For LaTeX
     python manager.py gen-cs
+    
+    # For Typst
+    python manager.py gen-cs -t typ
     ```
 
 8. **`clean`** - Clean up temporary files after PDF compiling
@@ -392,15 +413,21 @@ Verification runs on every push and pull request via GitHub Actions.
 Generate a PDF notebook containing all implementations:
 
 ```bash
+# Using LaTeX (traditional, slower)
 python manager.py run
+
+# Using Typst (modern, faster)
+python manager.py run -t typ
 ```
 
-The generated PDF (`notebook.pdf`) includes:
+The generated PDF (`notebook.pdf` in `_pdf_out/`) includes:
 
 - All algorithm implementations with syntax highlighting
 - Documentation (in Simplified Chinese)
 - Usage examples
 - Cheatsheets
+
+**Note**: Typst compilation is significantly faster than LaTeX (typically 10-20x speedup) and requires fewer dependencies.
 
 ### Test Matrix Support
 

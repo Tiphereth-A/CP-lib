@@ -1,5 +1,6 @@
 """Generate notebook contents command."""
 
+import click
 import logging
 import os
 import random
@@ -216,10 +217,8 @@ def _write_section(f, section: Section, logger: logging.Logger, doc_type: str = 
 
 def register_gen_nb_command(cli):
     """Register the gen-nb command with the CLI."""
-    import click
-    
     @cli.command('gen-nb')
-    @click.option('-t', '--doc-type', type=str, default='tex', help='Document type (tex or typst), default: tex')
+    @click.option('-t', '--doc-type', type=str, default='tex', help='Document type (tex or typ), default: tex')
     def _gen_nbc(doc_type: str):
         """Generate notebook contents"""
         generate_notebook_contents(doc_type=doc_type)

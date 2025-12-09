@@ -1,5 +1,6 @@
 """Generate cheatsheet contents command."""
 
+import click
 import logging
 import os
 
@@ -70,10 +71,8 @@ def generate_cheatsheet_contents(doc_type: str = 'tex', logger: logging.Logger =
 
 def register_gen_cs_command(cli):
     """Register the gen-cs command with the CLI."""
-    import click
-    
     @cli.command('gen-cs')
-    @click.option('-t', '--doc-type', type=str, default='tex', help='Document type (tex or typst), default: tex')
+    @click.option('-t', '--doc-type', type=str, default='tex', help='Document type (tex or typ), default: tex')
     def _gen_csc(doc_type: str):
         """Generate cheatsheet contents"""
         generate_cheatsheet_contents(doc_type=doc_type)

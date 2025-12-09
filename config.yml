@@ -1526,7 +1526,8 @@ run_usage_commands:
 formatting_commands:
   cpp: "clang-format --Wno-error=unknown -style=file -i {src}"
   tex: "latexindent --cruft=/ -l -s {src} -o {src}"
-  typ: "typst query --help"
+  # Note: Typst doesn't have a standard formatter yet, using no-op command
+  typ: "echo 'Typst formatting not available'"
 compile_pdf_commands:
   tex: "latexmk -cd -xelatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -synctex=1 -outdir=../_pdf_out -time {src}"
   typ: "typst compile --root . {src} {out}"

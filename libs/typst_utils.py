@@ -11,8 +11,9 @@ class TextTypstBase:
 
     def get_label_name(self) -> str:
         # Clean LaTeX commands and special characters for use in labels
+        # Note: <> added for Typst-specific label syntax considerations
         cleaned = self._str.replace('\\', '').replace('"', '').replace("'", '')
-        return re.sub(r'[,.;@?!&$#/ ()*<>]', '-', cleaned.casefold())
+        return re.sub(r'[,.;@?!&$#/ ()*]', '-', cleaned.casefold())
 
 
 class PathTypst(TextTypstBase):
@@ -38,12 +39,15 @@ class NameTypst(TextTypstBase):
         self._str = self._str.replace('`', r'\`')
 
 
+# File extensions that Typst cannot include (LaTeX-specific files)
+LATEX_ONLY_EXTENSIONS = ('.tex',)
+
 @with_logger
 def typst_include(path: PathTypst, **kwargs) -> list[str]:
     """Generate Typst include command."""
-    # Note: If the file is a .tex file, we skip it since Typst can't include LaTeX
-    # Users should provide .typst files for documentation
-    if path.get().endswith('.tex'):
+    # Note: If the file is a LaTeX file, we skip it since Typst can't include LaTeX
+    # Users should provide .typ files for documentation
+    if path.get().endswith(LATEX_ONLY_EXTENSIONS):
         return [f'// LaTeX doc file skipped: {path.get()}\n', '\n']
     return [f'#include "{path.get()}"\n', '\n']
 
