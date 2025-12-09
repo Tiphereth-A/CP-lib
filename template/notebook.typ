@@ -52,21 +52,13 @@
 
 本书代码默认数组下标从 $0$ 开始 ($[0, n)$), 故需注意题目下标是从 $0$ 开始 ($[0, n)$) 还是从 $1$ 开始 ($[1, n]$)
 
-```cpp
-#raw(read("../src/main.cpp"))
-```
+#raw(read("../src/main.cpp"), lang: "cpp")
 
-```cpp
-#raw(read("../src/test.cpp"))
-```
+#raw(read("../src/test.cpp"), lang: "cpp")
 
-```yaml
-#raw(read("../src/.clang-format"))
-```
+#raw(read("../src/.clang-format"), lang: "yaml")
 
-```bash
-#raw(read("../src/run.sh"))
-```
+#raw(read("../src/run.sh"), lang: "bash")
 
 #pagebreak()
 

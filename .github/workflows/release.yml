@@ -156,8 +156,35 @@ jobs:
           version: "latest"
       - name: Install Python dependencies
         run: uv sync --frozen
+      - name: Restore fonts cache
+        if: ${{ !inputs.ignore_font_cache }}
+        id: cache-fonts-typst
+        uses: actions/cache/restore@v4
+        with:
+          path: fonts
+          key: fonts-${{ hashFiles('Makefile') }}
+      - name: Download fonts
+        if: ${{ steps.cache-fonts-typst.outputs.cache-hit != 'true' }}
+        run: |
+            echo "::group::Downloading fonts"
+            make download-fonts
+            echo "::endgroup::"
+            echo "::group::Downloaded fonts list"
+            ls -l fonts
+            echo "::endgroup::"
+      - name: Save fonts cache
+        if: ${{ steps.cache-fonts-typst.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: fonts
+          key: fonts-${{ hashFiles('Makefile') }}
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
+      - name: Install fonts for Typst
+        run: |
+          sudo mkdir -p /usr/share/fonts/custom
+          sudo cp -r fonts/* /usr/share/fonts/custom/ || echo "No fonts to copy"
+          sudo fc-cache -f
       - name: Generate Typst files
         run: |
           uv run python manager.py -l DEBUG gen-cs -t typ
