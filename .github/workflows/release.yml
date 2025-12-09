@@ -156,14 +156,8 @@ jobs:
           version: "latest"
       - name: Install Python dependencies
         run: uv sync --frozen
-      - name: Install Typst
-        run: |
-          echo "::group::Installing Typst"
-          wget -q https://github.com/typst/typst/releases/download/v0.12.0/typst-x86_64-unknown-linux-musl.tar.xz
-          tar -xf typst-x86_64-unknown-linux-musl.tar.xz
-          sudo cp typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
-          typst --version
-          echo "::endgroup::"
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v4
       - name: Generate Typst files
         run: |
           uv run python manager.py -l DEBUG gen-cs -t typ
