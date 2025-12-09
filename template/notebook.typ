@@ -114,4 +114,6 @@
 // Typst doesn't have direct PDF embedding like LaTeX's \includepdf
 // This could be handled separately or converted to images
 
-// Bibliography section would also need separate handling in Typst
+// Bibliography section
+#pagebreak()
+#bibliography("notebook.bib", title: "参考文献", style: "ieee")
