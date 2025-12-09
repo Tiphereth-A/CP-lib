@@ -1,4 +1,4 @@
-name: Build & Relase LaTeX document
+name: Build & Release PDF document
 
 on:
   push:
@@ -21,6 +21,7 @@ on:
       - '*.cls'
       - '*.py'
       - '*.tex'
+      - '*.typ'
   pull_request:
     branches:
       - master
@@ -41,6 +42,7 @@ on:
       - '*.cls'
       - '*.py'
       - '*.tex'
+      - '*.typ'
   workflow_dispatch:
     inputs:
       ignore_font_cache:
@@ -128,13 +130,60 @@ jobs:
         with:
           name: result
           path: template/notebook.pdf
-      - name: Release PDF
+      - name: Release PDF (LaTeX)
         if: startsWith(github.ref, 'refs/tags/')
         shell: bash
         run: |
           set -x
-          mv ./template/notebook.pdf ./notebook.pdf
-          gh release create "${{ github.ref_name }}" ./notebook.pdf
+          mv ./template/notebook.pdf ./notebook-latex.pdf
+          gh release create "${{ github.ref_name }}" ./notebook-latex.pdf
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_NAME: "${{ github.ref_name }}"
+
+  build-typst:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+      - name: Install Python dependencies
+        run: uv sync --frozen
+      - name: Install Typst
+        run: |
+          echo "::group::Installing Typst"
+          wget -q https://github.com/typst/typst/releases/download/v0.12.0/typst-x86_64-unknown-linux-musl.tar.xz
+          tar -xf typst-x86_64-unknown-linux-musl.tar.xz
+          sudo cp typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
+          typst --version
+          echo "::endgroup::"
+      - name: Generate Typst files
+        run: |
+          uv run python manager.py -l DEBUG gen-cs -t typ
+          uv run python manager.py -l DEBUG gen-nb -t typ
+      - name: Build the Typst document
+        run: |
+          mkdir -p _pdf_out
+          typst compile --root . template/notebook.typ _pdf_out/notebook.pdf
+      - name: Upload PDF to artifacts
+        uses: actions/upload-artifact@v5
+        with:
+          name: result-typst
+          path: _pdf_out/notebook.pdf
+      - name: Release PDF (Typst)
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: |
+          set -x
+          mv ./_pdf_out/notebook.pdf ./notebook-typst.pdf
+          gh release upload "${{ github.ref_name }}" ./notebook-typst.pdf
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_NAME: "${{ github.ref_name }}"
