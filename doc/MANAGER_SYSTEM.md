@@ -115,15 +115,23 @@ python manager.py clean
 
 #### `gen-nb` - Generate Notebook Contents
 
-**Purpose**: Generate LaTeX content file for the main notebook from code, documentation, and usage files.
+**Purpose**: Generate LaTeX or Typst content file for the main notebook from code, documentation, and usage files.
 
 **Location**: `libs/commands/gen_nb.py`
 
 **Usage**:
 
 ```bash
+# Generate for LaTeX (default)
 python manager.py gen-nb
+
+# Generate for Typst
+python manager.py gen-nb -t typ
 ```
+
+**Options**:
+
+- `-t, --doc-type`: Document type (`tex` for LaTeX, `typ` for Typst, default: `tex`)
 
 **Functionality**:
 
@@ -132,11 +140,11 @@ python manager.py gen-nb
   - Loads sections from config
   - Discovers sections from filesystem (code, doc, usage files)
   - Merges and deduplicates sections
-  - Generates LaTeX sections with:
-    - Documentation input
+  - Generates LaTeX or Typst sections with:
+    - Documentation input (skipped for .tex files in Typst mode)
     - Code listings (with special handling for `.hpp` header guards)
     - Usage examples (if enabled and non-empty)
-- Writes to `_gen/contents_notebook.tex`
+- Writes to `_gen/contents_notebook.tex` or `_gen/contents_notebook.typ`
 
 **Key Functions**:
 
@@ -148,23 +156,31 @@ python manager.py gen-nb
 
 #### `gen-cs` - Generate Cheatsheet Contents
 
-**Purpose**: Generate LaTeX content file for the cheatsheet from configured cheatsheet files.
+**Purpose**: Generate LaTeX or Typst content file for the cheatsheet from configured cheatsheet files.
 
 **Location**: `libs/commands/gen_cs.py`
 
 **Usage**:
 
 ```bash
+# Generate for LaTeX (default)
 python manager.py gen-cs
+
+# Generate for Typst
+python manager.py gen-cs -t typ
 ```
+
+**Options**:
+
+- `-t, --doc-type`: Document type (`tex` for LaTeX, `typ` for Typst, default: `tex`)
 
 **Functionality**:
 
 - Reads cheatsheet names from `config.yml`
 - Scans `cheatsheet/` directory for `.tex` files
 - Merges configured and existing files
-- Generates LaTeX chapter and sections
-- Writes to `_gen/contents_cheatsheet.tex`
+- Generates LaTeX or Typst chapter and sections
+- Writes to `_gen/contents_cheatsheet.tex` or `_gen/contents_cheatsheet.typ`
 
 #### `run-usage` - Run Usage Examples
 
@@ -193,19 +209,26 @@ python manager.py run-usage -t cpp -l 8
 
 #### `run` - Compile Notebook
 
-**Purpose**: Complete workflow to compile the LaTeX notebook into PDF.
+**Purpose**: Complete workflow to compile the LaTeX or Typst notebook into PDF.
 
-**Location**: `libs/commands/compile.py`
+**Location**: `libs/commands/compile_pdf.py`
 
 **Usage**:
 
 ```bash
+# Using LaTeX (default)
 python manager.py run
+
+# Using Typst (faster)
+python manager.py run -t typ
+
+# Skip some steps
 python manager.py run --no-fmt --no-run-usage
 ```
 
 **Options**:
 
+- `-t, --doc-type`: Document type (`tex` for LaTeX, `typ` for Typst, default: `tex`)
 - `--no-fmt`: Skip code formatting
 - `--no-run-usage`: Skip running usage examples
 - `--no-gen`: Skip generating contents
@@ -216,10 +239,14 @@ python manager.py run --no-fmt --no-run-usage
 1. Format code (if not `--no-fmt`)
 2. Run usage examples (if not `--no-run-usage`)
 3. Generate notebook and cheatsheet contents (if not `--no-gen`)
-4. Compile LaTeX using commands from `LATEX_COMPILE_COMMAND_GROUP`
+4. Compile PDF using commands from config:
+   - LaTeX: Uses `latexmk` with XeLaTeX and minted for syntax highlighting
+   - Typst: Uses `typst compile` with font path configuration
 5. Clean temporary files (if not `--no-clean`)
 
 **Dependencies**: Calls other commands (`fmt`, `run-usage`, `gen-nb`, `gen-cs`, `clean`)
+
+**Performance**: Typst compilation is typically 10-20x faster than LaTeX (20 seconds vs 6 minutes)
 
 #### `fmt` - Format Code
 
@@ -392,6 +419,24 @@ Provides functions to generate LaTeX commands:
 
 - `PathLaTeX`: Normalizes paths for LaTeX (converts `\` to `/`)
 - `NameLaTeX`: Formats names for LaTeX (replaces `_` with spaces)
+
+### Typst Utilities (`libs/typst_utils.py`)
+
+Provides functions to generate Typst markup:
+
+- `typst_chapter(name)`: Generate level-1 heading with chapter label
+- `typst_section(name)`: Generate level-2 heading with section label
+- `typst_include(path)`: Generate `#include` statement (skips .tex files)
+- `typst_listing_code(path, style)`: Generate code block with syntax highlighting
+- `typst_listing_code_range(path, style, begin, end)`: Generate code block with line range
+
+**Classes**:
+
+- `PathTypst`: Normalizes paths for Typst (converts `\` to `/`)
+- `NameTypst`: Formats names for Typst (escapes `*`, `_`, `` ` `` and handles LaTeX escapes)
+- `TextTypstBase`: Base class for Typst text formatting
+
+**Note**: Typst utilities mirror the LaTeX utilities API for consistency, but generate Typst-specific markup.
 
 ## Utilities and Helpers
 

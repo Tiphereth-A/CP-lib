@@ -88,10 +88,14 @@ Choose **one** of the following:
 - **Others**:
     - [inkscape](https://github.com/inkscape/inkscape) for SVG files support
 
-**Option 2: Typst (Modern, Faster)**
+**Option 2: Typst (Modern, Faster)** ⚡ **Recommended**
 - **Typst**: Install from [typst.io](https://github.com/typst/typst/releases) or via package manager
-- No additional dependencies required
-- Significantly faster compilation compared to LaTeX
+- **Fonts**: Run `make download-fonts` to download required fonts (same as LaTeX)
+- **Advantages**:
+  - 10-20x faster compilation than LaTeX
+  - Simpler syntax and fewer dependencies
+  - Modern markup language with built-in syntax highlighting
+  - No additional Python dependencies required
 
 ### Installation Steps
 
@@ -249,17 +253,19 @@ python manager.py [OPTIONS] COMMAND [ARGS]...
     # Using LaTeX (default)
     python manager.py run
     
-    # Using Typst (faster)
+    # Using Typst (faster, recommended)
     python manager.py run -t typ
     ```
 
     Options:
 
-    - `-t, --code-type`: Document type (`tex` for LaTeX, `typ` for Typst, default: `tex`)
+    - `-t, --doc-type`: Document type (`tex` for LaTeX, `typ` for Typst, default: `tex`)
     - `--no-fmt`: Skip linting before compilation
     - `--no-run-usage`: Skip running usage codes
     - `--no-gen`: Skip generating notebook & cheatsheet contents
     - `--no-clean`: Skip cleaning temporary files
+    
+    **Note**: Typst compilation is typically 10-20x faster than LaTeX and produces similar output quality.
 
 5. **`run-usage`** - Compile and run usage examples
 
@@ -271,7 +277,7 @@ python manager.py [OPTIONS] COMMAND [ARGS]...
 6. **`gen-nb`** - Generate notebook contents
 
     ```bash
-    # For LaTeX
+    # For LaTeX (default)
     python manager.py gen-nb
     
     # For Typst
@@ -281,12 +287,14 @@ python manager.py [OPTIONS] COMMAND [ARGS]...
 7. **`gen-cs`** - Generate cheatsheet contents
 
     ```bash
-    # For LaTeX
+    # For LaTeX (default)
     python manager.py gen-cs
     
     # For Typst
     python manager.py gen-cs -t typ
     ```
+    
+    **Note**: Both commands generate content files in `_gen/` directory with appropriate format (.tex or .typ) based on the document type specified.
 
 8. **`clean`** - Clean up temporary files after PDF compiling
 
@@ -413,21 +421,34 @@ Verification runs on every push and pull request via GitHub Actions.
 Generate a PDF notebook containing all implementations:
 
 ```bash
-# Using LaTeX (traditional, slower)
+# Using LaTeX (traditional)
 python manager.py run
 
-# Using Typst (modern, faster)
+# Using Typst (modern, faster, recommended)
 python manager.py run -t typ
 ```
 
-The generated PDF (`notebook.pdf` in `_pdf_out/`) includes:
+The generated PDF (`notebook.pdf` in `_pdf_out/` or `template/`) includes:
 
-- All algorithm implementations with syntax highlighting
-- Documentation (in Simplified Chinese)
+- All algorithm implementations with syntax highlighting and line numbers
+- Documentation (in Simplified Chinese, for LaTeX)
 - Usage examples
 - Cheatsheets
+- Table of contents (two-column layout)
+- Bibliography with references
 
-**Note**: Typst compilation is significantly faster than LaTeX (typically 10-20x speedup) and requires fewer dependencies.
+**Typst vs LaTeX Comparison:**
+
+| Feature | LaTeX | Typst |
+|---------|-------|-------|
+| Compilation Speed | ~6 minutes | ~20 seconds |
+| Dependencies | Many (TeXLive, Pygments, Inkscape) | Minimal (just Typst binary) |
+| Syntax | Complex LaTeX markup | Modern, simpler markup |
+| Code Highlighting | Via minted package | Built-in |
+| Output Quality | Excellent | Excellent |
+| Font Support | Extensive | Good (uses system fonts) |
+
+**Note**: Typst is recommended for most users due to its speed and simplicity. LaTeX is maintained for users who need specific LaTeX features or have existing workflows.
 
 ### Test Matrix Support
 

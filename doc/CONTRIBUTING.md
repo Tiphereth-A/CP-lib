@@ -140,12 +140,17 @@ python manager.py fmt
 # Run usage examples
 python manager.py run-usage
 
-# Generate and compile notebook
+# Generate and compile notebook (LaTeX)
 python manager.py run
+
+# Or use Typst for faster compilation
+python manager.py run -t typ
 
 # Run Python tests for manager system
 pytest                    # Run all tests
 ```
+
+**Note**: Using Typst (`-t typ`) for notebook generation is significantly faster (10-20x) than LaTeX and is recommended for quick iteration during development.
 
 ### Submitting Changes
 
