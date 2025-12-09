@@ -54,25 +54,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-tex:
+  download-fonts:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.12'
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          version: "latest"
-      - name: Install Python dependencies
-        run: uv sync --frozen
-      - name: Generate TeX files
-        run: |
-          uv run python manager.py -l DEBUG gen-cs
-          uv run python manager.py -l DEBUG gen-nb
       - name: Restore fonts cache
         if: ${{ !inputs.ignore_font_cache }}
         id: cache-fonts
@@ -95,6 +80,37 @@ jobs:
         with:
           path: fonts
           key: fonts-${{ hashFiles('Makefile') }}
+      - name: Upload fonts as artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: fonts
+          path: fonts/
+
+  build-tex:
+    runs-on: ubuntu-latest
+    needs: download-fonts
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+      - name: Install Python dependencies
+        run: uv sync --frozen
+      - name: Generate TeX files
+        run: |
+          uv run python manager.py -l DEBUG gen-cs
+          uv run python manager.py -l DEBUG gen-nb
+      - name: Download fonts artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: fonts
+          path: fonts
       - name: Build the LaTeX document
         id: build-latex
         uses: xu-cheng/latex-action@v4
@@ -143,6 +159,7 @@ jobs:
 
   build-typst:
     runs-on: ubuntu-latest
+    needs: download-fonts
     permissions:
       contents: write
     steps:
@@ -156,35 +173,13 @@ jobs:
           version: "latest"
       - name: Install Python dependencies
         run: uv sync --frozen
-      - name: Restore fonts cache
-        if: ${{ !inputs.ignore_font_cache }}
-        id: cache-fonts-typst
-        uses: actions/cache/restore@v4
+      - name: Download fonts artifact
+        uses: actions/download-artifact@v5
         with:
+          name: fonts
           path: fonts
-          key: fonts-${{ hashFiles('Makefile') }}
-      - name: Download fonts
-        if: ${{ steps.cache-fonts-typst.outputs.cache-hit != 'true' }}
-        run: |
-            echo "::group::Downloading fonts"
-            make download-fonts
-            echo "::endgroup::"
-            echo "::group::Downloaded fonts list"
-            ls -l fonts
-            echo "::endgroup::"
-      - name: Save fonts cache
-        if: ${{ steps.cache-fonts-typst.outputs.cache-hit != 'true' }}
-        uses: actions/cache/save@v4
-        with:
-          path: fonts
-          key: fonts-${{ hashFiles('Makefile') }}
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
-      - name: Install fonts for Typst
-        run: |
-          sudo mkdir -p /usr/share/fonts/custom
-          sudo cp -r fonts/* /usr/share/fonts/custom/ || echo "No fonts to copy"
-          sudo fc-cache -f
       - name: Generate Typst files
         run: |
           uv run python manager.py -l DEBUG gen-cs -t typ
@@ -192,7 +187,7 @@ jobs:
       - name: Build the Typst document
         run: |
           mkdir -p _pdf_out
-          typst compile --root . template/notebook.typ _pdf_out/notebook.pdf
+          typst compile --root . --font-path fonts template/notebook.typ _pdf_out/notebook.pdf
       - name: Upload PDF to artifacts
         uses: actions/upload-artifact@v5
         with:

@@ -8,10 +8,11 @@
   paper: "a4",
   margin: (x: 1.5cm, y: 2cm),
   numbering: "1",
+  columns: 1,
 )
 
 #set text(
-  font: "New Computer Modern",
+  font: ("Noto Sans", "Noto Sans CJK SC"),
   size: 10pt,
   lang: "zh",
 )
@@ -22,6 +23,19 @@
 )
 
 #set heading(numbering: "1.")
+
+// Configure code blocks to show line numbers like LaTeX minted
+#show raw.where(block: true): it => {
+  set par(justify: false)
+  set text(font: "Fira Code", size: 9pt)
+  block(
+    fill: luma(250),
+    inset: 8pt,
+    radius: 4pt,
+    width: 100%,
+    it
+  )
+}
 
 // Title page
 #align(center)[
