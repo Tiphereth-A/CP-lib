@@ -10,7 +10,9 @@ class TextTypstBase:
         return self._str
 
     def get_label_name(self) -> str:
-        return re.sub(r'[,.;@?!&$#/ ()*]', '-', self._str.casefold().replace('\\', ''))
+        # Clean LaTeX commands and special characters for use in labels
+        cleaned = self._str.replace('\\', '').replace('"', '').replace("'", '')
+        return re.sub(r'[,.;@?!&$#/ ()*<>]', '-', cleaned.casefold())
 
 
 class PathTypst(TextTypstBase):
@@ -23,13 +25,26 @@ class PathTypst(TextTypstBase):
 class NameTypst(TextTypstBase):
     def __init__(self, path: str):
         super().__init__(path)
-        # Keep underscores in Typst (no need to escape like LaTeX)
-        pass
+        # Clean up LaTeX escape sequences for Typst
+        # Remove LaTeX escape sequences like \"
+        self._str = self._str.replace(r'\"', '')
+        # Handle other common LaTeX escapes
+        self._str = self._str.replace(r'\o', 'o')
+        self._str = self._str.replace(r"\'", '')
+        # Escape special Typst markdown characters in text
+        # Using raw strings to avoid interpretation
+        self._str = self._str.replace('*', r'\*')
+        self._str = self._str.replace('_', r'\_')
+        self._str = self._str.replace('`', r'\`')
 
 
 @with_logger
 def typst_include(path: PathTypst, **kwargs) -> list[str]:
     """Generate Typst include command."""
+    # Note: If the file is a .tex file, we skip it since Typst can't include LaTeX
+    # Users should provide .typst files for documentation
+    if path.get().endswith('.tex'):
+        return [f'// LaTeX doc file skipped: {path.get()}\n', '\n']
     return [f'#include "{path.get()}"\n', '\n']
 
 
@@ -61,9 +76,11 @@ def typst_section(name: NameTypst, **kwargs) -> list[str]:
 @with_logger
 def typst_listing_code(path: PathTypst, file_type: str, **kwargs) -> list[str]:
     """Generate Typst code listing command."""
+    # Adjust path to be relative from _gen/ directory
+    adjusted_path = '../' + path.get() if not path.get().startswith('../') else path.get()
     return [
         f'Path: `{path.get()}`\n\n',
-        f'#raw(read("{path.get()}"), lang: "{file_type}")\n',
+        f'#raw(read("{adjusted_path}"), lang: "{file_type}")\n',
         '\n'
     ]
 
@@ -72,8 +89,10 @@ def typst_listing_code(path: PathTypst, file_type: str, **kwargs) -> list[str]:
 def typst_listing_code_range(path: PathTypst, file_type: str, begin: int, end: int, **kwargs) -> list[str]:
     """Generate Typst code listing command with line range."""
     # Typst doesn't have built-in line range support, so we'll read and slice
+    # Adjust path to be relative from _gen/ directory
+    adjusted_path = '../' + path.get() if not path.get().startswith('../') else path.get()
     return [
         f'Path: `{path.get()}`\n\n',
-        f'#raw(read("{path.get()}").split("\\n").slice({begin - 1}, {end}).join("\\n"), lang: "{file_type}")\n',
+        f'#raw(read("{adjusted_path}").split("\\n").slice({begin - 1}, {end}).join("\\n"), lang: "{file_type}")\n',
         '\n'
     ]

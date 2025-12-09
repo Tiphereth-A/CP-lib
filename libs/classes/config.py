@@ -54,6 +54,9 @@ class Config(ConfigBase):
     def _get_formatting_commands_raw(self) -> dict[str, str]:
         return self.items('formatting_commands')
 
+    def _get_compile_pdf_commands_raw(self) -> dict[str, str]:
+        return self.items('compile_pdf_commands')
+
     def _get_code_type_list_raw(self) -> list[str]:
         return self.items('code_type_list')
 
@@ -252,12 +255,18 @@ class Config(ConfigBase):
         try:
             source = os.path.join(self._get_notebook_file_dir_raw(),
                                   f"{self._get_notebook_file_raw()}.{file_type}")
-            command_line = self._get_compile_pdf_commands_raw()[file_type].format(
-                src=shlex.quote(source))
-            if command_line.find(r'{out}') != -1:
-                pdf_path = os.path.join(
-                    "_pdf_out", f"{self._get_notebook_file_raw()}.pdf")
-                command_line = command_line.format(out=shlex.quote(pdf_path))
+            pdf_path = os.path.join(
+                "_pdf_out", f"{self._get_notebook_file_raw()}.pdf")
+            command_template = self._get_compile_pdf_commands_raw()[file_type]
+            
+            # Check if the template has {out} placeholder
+            if '{out}' in command_template:
+                command_line = command_template.format(
+                    src=shlex.quote(source),
+                    out=shlex.quote(pdf_path))
+            else:
+                command_line = command_template.format(src=shlex.quote(source))
+            
             return shlex.split(command_line)
         except KeyError:
             logger.warning(

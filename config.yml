@@ -25,13 +25,13 @@ file_types:
   out: data
   ans: data
   tex: tex
-  typ: typst
+  typ: typ
 default_file_type: plaintext
 code_type_list:
   - cpp
 doc_type_list:
   - tex
-  - typst
+  - typ
 export_usage_code_in_notebook: true
 notebook:
   chapters:
@@ -1526,7 +1526,7 @@ run_usage_commands:
 formatting_commands:
   cpp: "clang-format --Wno-error=unknown -style=file -i {src}"
   tex: "latexindent --cruft=/ -l -s {src} -o {src}"
-  typst: "typst query --help"
+  typ: "typst query --help"
 compile_pdf_commands:
   tex: "latexmk -cd -xelatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -synctex=1 -outdir=../_pdf_out -time {src}"
-  typst: "typst compile {src} {out}"
+  typ: "typst compile --root . {src} {out}"
