@@ -4,11 +4,34 @@
   author: ("Tifa", "tan60", "AgOH"),
 )
 
+// Page layout matching LaTeX geometry settings
+// inner=2cm, outer=0.9cm, top=1.7cm, bottom=0.0cm
 #set page(
   paper: "a4",
-  margin: (x: 1.5cm, y: 2cm),
+  margin: (left: 2cm, right: 0.9cm, top: 1.7cm, bottom: 0.7cm),
   numbering: "1",
   columns: 1,
+  header: locate(loc => {
+    let page-num = counter(page).at(loc).first()
+    if page-num > 0 {
+      set text(size: 9pt)
+      grid(
+        columns: (1fr, 1fr, 1fr),
+        align: (left, center, right),
+        [#context query(selector(heading).before(loc)).last().body],
+        [#counter(page).display()],
+        [#context query(selector(heading.where(level: 2)).before(loc)).last().body],
+      )
+      v(-0.5em)
+      line(length: 100%, stroke: 0.5pt)
+    }
+  }),
+  footer: locate(loc => {
+    let page-num = counter(page).at(loc).first()
+    if page-num > 0 {
+      line(length: 100%, stroke: 0.5pt)
+    }
+  }),
 )
 
 #set text(
@@ -20,37 +43,73 @@
 #set par(
   justify: true,
   leading: 0.65em,
+  first-line-indent: 0em,
 )
 
+// Heading spacing matching LaTeX titlesec settings
+// titlespacing*{...}{0pt}{0.6ex}{0.6ex}
 #set heading(numbering: "1.")
+#show heading: it => {
+  set block(above: 0.6em, below: 0.6em)
+  it
+}
 
-// Configure code blocks with line numbers like LaTeX minted
+// Configure code blocks matching LaTeX minted settings
+// style=default, linenos, frame=single, framesep=0.8mm, 
+// framerule=0.3pt, numbersep=0.8mm, baselinestretch=0.9, fontsize=\footnotesize
 #show raw.where(block: true): it => {
-  set par(justify: false)
-  set text(font: "Fira Code", size: 9pt)
+  set par(justify: false, leading: 0.55em)  // baselinestretch=0.9
+  set text(font: "Fira Code", size: 8pt)  // \footnotesize
   
   let lines = it.text.split("\n")
   let line-count = lines.len()
   
   block(
-    stroke: 0.5pt + luma(200),
-    inset: (left: 8pt, right: 8pt, top: 8pt, bottom: 8pt),
+    stroke: 0.3pt + luma(200),  // framerule=0.3pt, frame=single
+    inset: (left: 0.8mm, right: 0.8mm, top: 0.8mm, bottom: 0.8mm),  // framesep=0.8mm
     radius: 0pt,
     width: 100%,
     fill: luma(252),
     {
       grid(
         columns: (auto, 1fr),
-        column-gutter: 1em,
-        row-gutter: 0.5em,
+        column-gutter: 0.8mm,  // numbersep=0.8mm
+        row-gutter: 0em,
         ..lines.enumerate().map(((i, line)) => (
-          align(right, text(fill: luma(120), str(i + 1))),
+          align(right, text(fill: luma(120), size: 7pt, str(i + 1))),
           align(left, raw(line, lang: it.lang))
         )).flatten()
       )
     }
   )
 }
+
+// Math operators and commands matching LaTeX definitions
+#let lcm = math.op("lcm")
+#let argmin = math.op("arg min", limits: true)
+#let argmax = math.op("arg max", limits: true)
+#let sech = math.op("sech")
+#let csch = math.op("csch")
+#let arccot = math.op("arccot")
+#let arcsec = math.op("arcsec")
+#let arccsc = math.op("arccsc")
+#let arcsinh = math.op("arcsinh")
+#let arccosh = math.op("arccosh")
+#let arctanh = math.op("arctanh")
+#let arccoth = math.op("arccoth")
+#let arcsech = math.op("arcsech")
+#let arccsch = math.op("arccsch")
+
+// Differential operator
+#let dd = $upright(d)$
+
+// Eulerian numbers: ⟨n k⟩
+#let eulerian(n, k) = $angle.l #n #k angle.r$
+#let eulerianII(n, k) = $angle.l angle.l #n #k angle.r angle.r$
+
+// Stirling numbers: [n k] and {n k}
+#let stirlingI(n, k) = $lr([#n #k])$
+#let stirlingII(n, k) = $lr({#n #k})$
 
 // Title page
 #align(center)[
