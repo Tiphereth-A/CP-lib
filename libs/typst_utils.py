@@ -103,6 +103,6 @@ def typst_listing_code_range(path: PathTypst, file_type: str, begin: int, end: i
     # Use fixpath function to adjust path relative from _gen/ directory
     return [
         f'Path: `{path.get()}`\n\n',
-        f'#raw(read(fixpath("{path.get()}")).split("\\n").slice({begin - 1}, {end}).join("\\n"), lang: "{file_type}")\n',
+        f'#raw(read(fixpath("{path.get()}")).split("\n").slice({begin - 1}, {end}).join("\n"), lang: "{file_type}")\n',
         '\n'
     ]
