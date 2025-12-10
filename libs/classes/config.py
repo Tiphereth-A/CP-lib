@@ -21,11 +21,12 @@ class Config(ConfigBase):
     def _get_code_dir_raw(self) -> str:
         return self.items('notebook_code_dir')
 
-    def _get_doc_dir_raw(self) -> str:
-        return self.items('notebook_doc_dir')
-    
-    def _get_doc_dir_typst_raw(self) -> str:
-        return self.items('notebook_doc_dir_typst', self.items('notebook_doc_dir'))
+    def _get_doc_dir_raw(self, doc_type: str = 'tex') -> str:
+        doc_dirs = self.items('notebook_doc_dir')
+        if isinstance(doc_dirs, dict):
+            return doc_dirs[doc_type]
+        # Legacy support: if it's a string, treat it as tex
+        return doc_dirs
 
     def _get_cvdoc_dir_raw(self) -> str:
         return self.items('competitive_verifier_doc_dir')
@@ -73,9 +74,7 @@ class Config(ConfigBase):
     @with_logger
     def get_doc_dir(self, doc_type: str = 'tex', **kwargs) -> str:
         """Get documentation directory based on doc_type."""
-        if doc_type == 'typ':
-            return self._get_doc_dir_typst_raw()
-        return self._get_doc_dir_raw()
+        return self._get_doc_dir_raw(doc_type)
 
     @with_logger
     def get_cvdoc_dir(self, **kwargs) -> str:
