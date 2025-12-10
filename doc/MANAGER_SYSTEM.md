@@ -77,7 +77,7 @@ def my_command(**kwargs):
 | Module | Purpose |
 |--------|---------|
 | `latex_utils.py` | LaTeX: `\chapter`, `\section`, `\inputminted` |
-| `typst_utils.py` | Typst: headings, `#include`, code blocks, `fixpath`, special chars |
+| `typst_utils.py` | Typst: headings, `#include`, code blocks, special chars |
 | `utils.py` | File operations, scanning, deduplication |
 | `testcase_matrix.py` | Parse `.cppmeta` files |
 
