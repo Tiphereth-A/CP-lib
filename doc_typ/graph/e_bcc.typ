@@ -14,5 +14,5 @@
 === 样例图片
 
 #figure(
-  image("../../img/luogu-P8436-1.png", width: 40%)
+  image(fixpath("../img/luogu-P8436-1.png"), width: 40%)
 )

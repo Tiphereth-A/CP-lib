@@ -3,7 +3,7 @@
 === 样例图片
 
 #figure(
-  image("../../img/luogu-P3376-1.png", width: 40%)
+  image(fixpath("../img/luogu-P3376-1.png"), width: 40%)
 )
 
 === 复杂度
