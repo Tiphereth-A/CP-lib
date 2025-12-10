@@ -1,5 +1,6 @@
 notebook_code_dir: include
 notebook_doc_dir: doc_tex
+notebook_doc_dir_typst: doc_typ
 competitive_verifier_doc_dir: doc_md
 cheatsheet_dir: cheatsheet
 usage_dir: usage

@@ -43,8 +43,16 @@ class Section:
     def get_dict(self) -> dict:
         return {self.name: self.title, 'code_ext': self.code_ext, 'usage_ext': self.usage_ext}
 
-    def get_filenames(self, code_root_dir: str, doc_root_dir: str, cvdoc_root_dir: str, usage_root_dir: str) -> tuple[str, str, str, str]:
-        """Get filenames for all section files, creating directories if needed."""
+    def get_filenames(self, code_root_dir: str, doc_root_dir: str, cvdoc_root_dir: str, usage_root_dir: str, doc_ext: str = 'tex') -> tuple[str, str, str, str]:
+        """Get filenames for all section files, creating directories if needed.
+        
+        Args:
+            code_root_dir: Root directory for code files
+            doc_root_dir: Root directory for documentation files
+            cvdoc_root_dir: Root directory for CV documentation files
+            usage_root_dir: Root directory for usage files
+            doc_ext: Documentation file extension ('tex' or 'typ'), default: 'tex'
+        """
         dirs = [
             os.path.join(code_root_dir, self.chapter),
             os.path.join(doc_root_dir, self.chapter),
@@ -57,7 +65,7 @@ class Section:
 
         return (
             os.path.join(dirs[0], f"{self.name}.{self.code_ext}"),
-            os.path.join(dirs[1], f"{self.name}.tex"),
+            os.path.join(dirs[1], f"{self.name}.{doc_ext}"),
             os.path.join(dirs[2], f"{self.name}.md"),
             os.path.join(dirs[3], f"{self.name}.{self.usage_ext}")
         )

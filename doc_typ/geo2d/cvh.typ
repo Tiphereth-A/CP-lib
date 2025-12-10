@@ -1,0 +1,30 @@
+// Convex hull and Minkowski sum - 凸包与 Minkowski 和
+
+凸包与 Minkowski 和的一种极简实现
+
+```cpp
+template <class T>
+vector<Point<T>> convex_hull(vector<Point<T>> p) {
+  assert(!p.empty()), sort(begin(p), end(p), [](const Point<i64> &a, const Point<i64> &b) { return a.x < b.x; });
+  vector<Point<T>> u{p[0]}, d{p.back()};
+  for (usz i = 1; i < p.size(); ++i) {
+    while (u.size() >= 2 && ((u.back() - u[u.size() - 2]) ^ (p[i] - u.back())) > 0) u.pop_back();
+    u.push_back(p[i]);
+  }
+  for (usz i = p.size() - 2; (isz)i >= 0; --i) {
+    while (d.size() >= 2 && ((d.back() - d[d.size() - 2]) ^ (p[i] - d.back())) > 0) d.pop_back();
+    d.push_back(p[i]);
+  }
+  return u.insert(end(u), begin(d) + 1, end(d)), u;
+}
+template <class T>
+vector<Point<T>> minkowski_sum(vector<Point<T>> a, vector<Point<T>> b) {
+  vector<Point<T>> c{a[0] + b[0]};
+  for (usz i = 0; i + 1 < a.size(); ++i) a[i] = a[i + 1] - a[i];
+  for (usz i = 0; i + 1 < b.size(); ++i) b[i] = b[i + 1] - b[i];
+  a.pop_back(), b.pop_back(), c.resize(a.size() + b.size() + 1);
+  merge(begin(a), end(a), begin(b), end(b), begin(c) + 1, [](const Point<i64> &a, const Point<i64> &b) { return (a ^ b) < 0; });
+  for (usz i = 1; i < c.size(); ++i) c[i] = c[i] + c[i - 1];
+  return c;
+}
+```

@@ -170,12 +170,13 @@ def _write_section(f, section: Section, logger: logging.Logger, doc_type: str = 
 
     # Cache config dirs to avoid repeated calls
     code_dir = CONFIG.get_code_dir()
-    doc_dir = CONFIG.get_doc_dir()
+    doc_dir = CONFIG.get_doc_dir(doc_type=doc_type)
     cvdoc_dir = CONFIG.get_cvdoc_dir()
     usage_dir = CONFIG.get_usage_dir()
 
+    doc_ext = 'typ' if doc_type == 'typ' else 'tex'
     code_filepath, doc_filepath, _, usage_filepath = section.get_filenames(
-        code_dir, doc_dir, cvdoc_dir, usage_dir)
+        code_dir, doc_dir, cvdoc_dir, usage_dir, doc_ext=doc_ext)
 
     if doc_type == 'tex':
         f.writelines(latex_input(PathLaTeX(doc_filepath)))
