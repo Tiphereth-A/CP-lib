@@ -19,8 +19,8 @@ def add_new_note(chapter_name: str, file_name: str, section_title: str, code_ext
         chapter_name, file_name, section_title, code_ext_name, usage_ext_name
     )
 
-    # Create LaTeX doc file
-    _, _, f_cvdoc, _ = section.open(
+    # Create all files (code, tex doc, cvdoc, usage)
+    f_code, f_doc_tex, f_cvdoc, f_usage = section.open(
         CONFIG.get_code_dir(),
         CONFIG.get_doc_dir('tex'),
         CONFIG.get_cvdoc_dir(),
@@ -28,18 +28,21 @@ def add_new_note(chapter_name: str, file_name: str, section_title: str, code_ext
         'x',
         doc_ext='tex'
     )
+    f_code.close()
+    f_doc_tex.close()
+    f_usage.close()
     logger.info('Created LaTeX doc file')
 
-    # Create Typst doc file
-    _, f_doc_typ, _, _ = section.open(
+    # Create Typst doc file (only the doc file, others already exist)
+    _, doc_path_typ, _, _ = section.get_filenames(
         CONFIG.get_code_dir(),
         CONFIG.get_doc_dir('typ'),
         CONFIG.get_cvdoc_dir(),
         CONFIG.get_usage_dir(),
-        'x',
         doc_ext='typ'
     )
-    f_doc_typ.close()
+    with open(doc_path_typ, 'x') as f_doc_typ:
+        pass
     logger.info('Created Typst doc file')
 
     # Log created file paths

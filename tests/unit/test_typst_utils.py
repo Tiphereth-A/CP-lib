@@ -103,9 +103,12 @@ class TestNameTypst:
 class TestTypstFunctions:
     """Tests for Typst utility functions."""
 
-    def test_typst_include_typ_file(self):
+    def test_typst_include_typ_file(self, tmp_path):
         """Test include for .typ files."""
-        p = PathTypst('content.typ')
+        # Create a temporary .typ file so it exists
+        typ_file = tmp_path / 'content.typ'
+        typ_file.write_text('test content')
+        p = PathTypst(str(typ_file))
         result = typst_include(p)
         assert isinstance(result, list)
         assert any('#include' in s for s in result if isinstance(s, str))

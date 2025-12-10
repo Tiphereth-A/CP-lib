@@ -188,7 +188,7 @@ def test_write_section_hpp_and_usage(tmp_path, monkeypatch):
         def get_code_dir(self):
             return self.base
 
-        def get_doc_dir(self):
+        def get_doc_dir(self, doc_type='tex'):
             return self.base
 
         def get_cvdoc_dir(self):
@@ -245,7 +245,7 @@ def test_generate_sections_from_files_doc_and_code(monkeypatch):
         def get_code_dir(self):
             return 'code'
 
-        def get_doc_dir(self):
+        def get_doc_dir(self, doc_type='tex'):
             return 'doc'
 
         def get_usage_dir(self):
@@ -268,7 +268,7 @@ def test_add_new_note_and_run_usage(tmp_path, monkeypatch):
         def get_code_dir(self):
             return self.base
 
-        def get_doc_dir(self):
+        def get_doc_dir(self, doc_type='tex'):
             return self.base
 
         def get_cvdoc_dir(self):
@@ -283,9 +283,6 @@ def test_add_new_note_and_run_usage(tmp_path, monkeypatch):
 
         def get_ext_names_by_file_type(self, code):
             return ['in']
-
-        def get_usage_dir(self):
-            return self.base
 
         def get_run_usage_command(self, code, filepath):
             return ['echo', filepath]
