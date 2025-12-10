@@ -11,27 +11,29 @@
   margin: (left: 2cm, right: 0.9cm, top: 1.7cm, bottom: 0.7cm),
   numbering: "1",
   columns: 1,
-  header: locate(loc => {
-    let page-num = counter(page).at(loc).first()
+  header: context {
+    let page-num = counter(page).get().first()
     if page-num > 0 {
       set text(size: 9pt)
+      let headings = query(heading)
+      let sec-headings = query(heading.where(level: 2))
       grid(
         columns: (1fr, 1fr, 1fr),
         align: (left, center, right),
-        [#context query(selector(heading).before(loc)).last().body],
-        [#counter(page).display()],
-        [#context query(selector(heading.where(level: 2)).before(loc)).last().body],
+        if headings.len() > 0 { headings.last().body } else { [] },
+        counter(page).display(),
+        if sec-headings.len() > 0 { sec-headings.last().body } else { [] },
       )
       v(-0.5em)
       line(length: 100%, stroke: 0.5pt)
     }
-  }),
-  footer: locate(loc => {
-    let page-num = counter(page).at(loc).first()
+  },
+  footer: context {
+    let page-num = counter(page).get().first()
     if page-num > 0 {
       line(length: 100%, stroke: 0.5pt)
     }
-  }),
+  },
 )
 
 #set text(
