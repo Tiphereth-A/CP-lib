@@ -21,28 +21,14 @@ class Config(ConfigBase):
     def _get_code_dir_raw(self) -> str:
         return self.items('notebook_code_dir')
 
-    def _get_doc_dir_raw(self, doc_type: str = 'tex') -> str:
-        doc_dirs = self.items('notebook_doc_dir')
-        if isinstance(doc_dirs, dict):
-            return doc_dirs[doc_type]
-        elif isinstance(doc_dirs, str):
-            # Backward compatibility: return the string directly
-            return doc_dirs
-        else:
-            raise TypeError(f"Unexpected type for notebook_doc_dir: {type(doc_dirs).__name__}")
+    def _get_doc_dirs_raw(self) -> dict[str, str]:
+        return self.items('notebook_doc_dir')
 
     def _get_cvdoc_dir_raw(self) -> str:
         return self.items('competitive_verifier_doc_dir')
 
-    def _get_cheatsheet_dir_raw(self, doc_type: str = 'tex') -> str:
-        cheatsheet_dirs = self.items('cheatsheet_dir')
-        if isinstance(cheatsheet_dirs, dict):
-            return cheatsheet_dirs[doc_type]
-        elif isinstance(cheatsheet_dirs, str):
-            # Backward compatibility: return the string directly
-            return cheatsheet_dirs
-        else:
-            raise TypeError(f"Unexpected type for cheatsheet_dir: {type(cheatsheet_dirs).__name__}")
+    def _get_cheatsheet_dirs_raw(self) -> dict[str, str]:
+        return self.items('cheatsheet_dir')
 
     def _get_usage_dir_raw(self) -> str:
         return self.items('usage_dir')
@@ -82,17 +68,20 @@ class Config(ConfigBase):
         return self._get_code_dir_raw()
 
     @with_logger
-    def get_doc_dir(self, doc_type: str = 'tex', **kwargs) -> str:
-        """Get documentation directory based on doc_type."""
-        return self._get_doc_dir_raw(doc_type)
+    def get_doc_dir(self, doc_type: str, **kwargs) -> str:
+        if doc_type not in self.get_doc_type_list():
+            raise RuntimeError(f"'{doc_type}' is not doc type")
+        return self._get_doc_dirs_raw()[doc_type]
 
     @with_logger
     def get_cvdoc_dir(self, **kwargs) -> str:
         return self._get_cvdoc_dir_raw()
 
     @with_logger
-    def get_cheatsheet_dir(self, doc_type: str = 'tex', **kwargs) -> str:
-        return self._get_cheatsheet_dir_raw(doc_type)
+    def get_cheatsheet_dir(self, doc_type: str, **kwargs) -> str:
+        if doc_type not in self.get_doc_type_list():
+            raise RuntimeError(f"'{doc_type}' is not doc type")
+        return self._get_cheatsheet_dirs_raw()[doc_type]
 
     @with_logger
     def get_usage_dir(self, **kwargs) -> str:
@@ -273,7 +262,7 @@ class Config(ConfigBase):
             pdf_path = os.path.join(
                 "_pdf_out", f"{self._get_notebook_file_raw()}.pdf")
             command_template = self._get_compile_pdf_commands_raw()[file_type]
-            
+
             # Check if the template has {out} placeholder
             if '{out}' in command_template:
                 command_line = command_template.format(
@@ -281,7 +270,7 @@ class Config(ConfigBase):
                     out=shlex.quote(pdf_path))
             else:
                 command_line = command_template.format(src=shlex.quote(source))
-            
+
             return shlex.split(command_line)
         except KeyError:
             logger.warning(
