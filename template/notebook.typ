@@ -113,6 +113,20 @@
 #let stirlingI(n, k) = $lr([#n #k])$
 #let stirlingII(n, k) = $lr({#n #k})$
 
+// Full reference function matching LaTeX \fullref
+// Creates reference with number, name, and page number
+#let fullref(label) = context {
+  let target = query(label)
+  if target.len() > 0 {
+    let elem = target.first()
+    let num = numbering(elem.numbering, ..counter(heading).at(elem.location()))
+    let page-num = counter(page).at(elem.location()).first()
+    [#num.#elem.body (#page-num 页)]
+  } else {
+    [???]
+  }
+}
+
 // Title page
 #align(center)[
   #v(3cm)
