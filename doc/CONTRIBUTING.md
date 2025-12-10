@@ -10,18 +10,20 @@
 | Language | Directories |
 |----------|-------------|
 | **English** | `*.md`, `include/*`, `doc_md/*`, `meta_test/*`, `test/*`, `tests/*` |
-| **Simplified Chinese** | `*.tex`, `cheatsheet/*`, `doc_tex/*`, `usage/*` |
+| **Simplified Chinese** | `*.tex`, `*.typ`, `cheatsheet/*`, `notebook/tex/*`, `notebook/typ/*`, `usage/*` |
 
 ## Directory Structure
 
 | Directory | Purpose |
 |-----------|---------|
 | `include/` | C++ header files (algorithms & data structures) |
-| `doc_tex/` | LaTeX documentation (Chinese) |
+| `notebook/tex/` | LaTeX documentation (Chinese) |
+| `notebook/typ/` | Typst documentation (Chinese) |
 | `doc_md/` | Markdown documentation for competitive-verifier (English) |
 | `usage/` | Usage examples |
 | `test/` | Online judge verification tests |
 | `cheatsheet/` | LaTeX cheatsheet sections |
+| `template/` | PDF template files (LaTeX & Typst) |
 | `config.yml` | Main configuration |
 | `tcgen.yml` | Test matrix configuration |
 | `libs/` | Python manager modules |
@@ -38,7 +40,8 @@ python manager.py new
 
 This creates:
 - `include/<chapter>/<file>.hpp` - Code
-- `doc_tex/<chapter>/<file>.tex` - Documentation
+- `notebook/tex/<chapter>/<file>.tex` - LaTeX documentation
+- `notebook/typ/<chapter>/<file>.typ` - Typst documentation (empty, to be filled)
 - `doc_md/<chapter>/<file>.md` - Verifier doc
 - `usage/<chapter>/<file>.cpp` - Usage example
 

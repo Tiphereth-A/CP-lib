@@ -69,8 +69,13 @@ CP-lib/
 │   ├── integration/  # Integration tests
 │   └── system/       # System tests
 ├── doc_md/           # Markdown documentation
-├── doc_tex/          # LaTeX documentation source
-├── doc_typ/          # Typst documentation source
+├── notebook/         # Algorithm documentation
+│   ├── tex/          # LaTeX documentation source
+│   └── typ/          # Typst documentation source
+├── template/         # PDF generation templates
+│   ├── ICPCnotebook.cls  # LaTeX template class
+│   ├── notebook.typ      # Typst template
+│   └── common.typ        # Shared Typst definitions
 └── manager.py        # Python management script (CLI entry point)
 ```
 
@@ -158,15 +163,16 @@ uv run python manager.py gentc --help
 - Include code examples with proper syntax highlighting
 
 ### LaTeX Documentation
-- LaTeX sources in `doc_tex/` directory
+- LaTeX sources in `notebook/tex/` directory
 - Use `pygments` for code syntax highlighting
 - Requires LaTeX distribution with appropriate fonts
-- Generate with: `uv run python manager.py gen-nb -t tex && uv run python manager.py gen-nb -t typ`
+- Generate with: `uv run python manager.py gen-nb -t tex`
 - Compile PDF: `uv run python manager.py run -t tex`
 
 ### Typst Documentation
-- Typst sources in `doc_typ/` directory
-- Modern alternative to LaTeX with simpler syntax
+- Typst sources in `notebook/typ/` directory
+- Modern alternative to LaTeX with simpler syntax and faster compilation (10-20x)
+- Shares common definitions in `template/common.typ`
 - Generate with: `uv run python manager.py gen-nb -t typ && uv run python manager.py gen-cs -t typ`
 - Compile PDF: `uv run python manager.py run -t typ`
 

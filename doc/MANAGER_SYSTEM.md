@@ -68,6 +68,8 @@ def my_command(**kwargs):
 ### Configuration
 
 - `Config` (`config.yml`) - Directories, chapters, sections, commands
+  - `notebook_doc_dir.tex` - LaTeX documentation directory (`notebook/tex/`)
+  - `notebook_doc_dir.typ` - Typst documentation directory (`notebook/typ/`)
 - `ConfigTCGen` (`tcgen.yml`) - Test matrix generation
 
 ### Utilities
@@ -75,7 +77,7 @@ def my_command(**kwargs):
 | Module | Purpose |
 |--------|---------|
 | `latex_utils.py` | LaTeX: `\chapter`, `\section`, `\inputminted` |
-| `typst_utils.py` | Typst: headings, `#include`, code blocks |
+| `typst_utils.py` | Typst: headings, `#include`, code blocks, `fixpath`, special chars |
 | `utils.py` | File operations, scanning, deduplication |
 | `testcase_matrix.py` | Parse `.cppmeta` files |
 

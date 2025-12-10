@@ -53,7 +53,7 @@ g++ -std=gnu++20 -O2 -I./include your_code.cpp -o your_code
 |-------------|---------|
 | GCC | ≥13.0 |
 | Python | ≥3.12 (for scripts) |
-| PDF Gen | LaTeX or Typst (optional) |
+| PDF Gen | LaTeX or [Typst](https://typst.app/) (optional, Typst recommended for speed) |
 
 ```bash
 git clone https://github.com/Tiphereth-A/CP-lib.git && cd CP-lib
