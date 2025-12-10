@@ -1,4 +1,3 @@
-// CP-lib Notebook - Typst Version
 #set document(
   title: "CP-lib",
   author: ("Tifa", "tan60", "AgOH"),

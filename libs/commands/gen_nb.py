@@ -63,7 +63,7 @@ def generate_empty_notebook_contents(doc_type: str = 'tex', override_exists: boo
         if doc_type == 'tex':
             f.write('%-*- coding: utf-8 -*-\n')
         else:
-            f.write('// Generated notebook contents\n')
+            f.write('#import "../template/common.typ": *\n')
 
 
 @with_logger

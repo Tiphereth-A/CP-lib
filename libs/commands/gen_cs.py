@@ -22,7 +22,7 @@ def generate_empty_cheatsheet_contents(doc_type: str = 'tex', override_exists: b
         if doc_type == 'tex':
             f.write('%-*- coding: utf-8 -*-\n')
         else:
-            f.write('// Generated cheatsheet contents\n')
+            f.write('#import "../template/common.typ": *\n')
 
 
 @with_logger

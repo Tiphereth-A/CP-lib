@@ -1,9 +1,9 @@
+#import "../../template/common.typ": *
 
 === 样例图片
 
 #figure(
-  image("../../img/luogu-P3376-1.png", width: 40%),
-  caption: [网络流示例图]
+  image("../../img/luogu-P3376-1.png", width: 40%)
 )
 
 === 复杂度

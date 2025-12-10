@@ -1,3 +1,4 @@
+#import "../../template/common.typ": *
 
 === 概念
 
@@ -15,6 +16,5 @@
 === 样例图片
 
 #figure(
-  image("../../img/luogu-P8435-1.png", width: 40%),
-  caption: [点双连通分量示例]
+  image("../../img/luogu-P8435-1.png", width: 40%)
 )

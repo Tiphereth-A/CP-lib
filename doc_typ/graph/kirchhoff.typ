@@ -1,3 +1,4 @@
+#import "../../template/common.typ": *
 
 === 定义
 

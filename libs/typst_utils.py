@@ -53,11 +53,11 @@ def typst_include(path: PathTypst, **kwargs) -> list[str]:
     
     # Check if the .typ file exists in the _gen directory
     # The path is relative to the working directory where typst will be run
-    check_path = os.path.join('_gen', path.get())
+    check_path = path.get()
     if not os.path.exists(check_path):
         return [f'// Documentation file not found (skipped): {path.get()}\n', '\n']
     
-    return [f'#include "{path.get()}"\n', '\n']
+    return [f'#include "../{path.get()}"\n', '\n']
 
 
 @with_logger

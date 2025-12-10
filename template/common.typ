@@ -1,6 +1,3 @@
-// Common Typst definitions for CP-lib
-// This file contains reusable functions and operators for notebook and other documents
-
 // Math operators matching LaTeX definitions
 #let lcm = math.op("lcm")
 #let argmin = math.op("arg min", limits: true)
