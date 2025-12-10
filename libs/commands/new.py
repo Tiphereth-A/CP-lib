@@ -19,25 +19,47 @@ def add_new_note(chapter_name: str, file_name: str, section_title: str, code_ext
         chapter_name, file_name, section_title, code_ext_name, usage_ext_name
     )
 
-    # Create all files
+    # Create LaTeX doc file
     _, _, f_cvdoc, _ = section.open(
         CONFIG.get_code_dir(),
-        CONFIG.get_doc_dir(),
+        CONFIG.get_doc_dir('tex'),
         CONFIG.get_cvdoc_dir(),
         CONFIG.get_usage_dir(),
-        'x'
+        'x',
+        doc_ext='tex'
     )
-    logger.info('Created')
+    logger.info('Created LaTeX doc file')
+
+    # Create Typst doc file
+    _, f_doc_typ, _, _ = section.open(
+        CONFIG.get_code_dir(),
+        CONFIG.get_doc_dir('typ'),
+        CONFIG.get_cvdoc_dir(),
+        CONFIG.get_usage_dir(),
+        'x',
+        doc_ext='typ'
+    )
+    f_doc_typ.close()
+    logger.info('Created Typst doc file')
 
     # Log created file paths
-    code_path, doc_path, cvdoc_path, usage_path = section.get_filenames(
+    code_path, doc_path_tex, cvdoc_path, usage_path = section.get_filenames(
         CONFIG.get_code_dir(),
-        CONFIG.get_doc_dir(),
+        CONFIG.get_doc_dir('tex'),
         CONFIG.get_cvdoc_dir(),
-        CONFIG.get_usage_dir()
+        CONFIG.get_usage_dir(),
+        doc_ext='tex'
+    )
+    _, doc_path_typ, _, _ = section.get_filenames(
+        CONFIG.get_code_dir(),
+        CONFIG.get_doc_dir('typ'),
+        CONFIG.get_cvdoc_dir(),
+        CONFIG.get_usage_dir(),
+        doc_ext='typ'
     )
     logger.info(f"Code: {os.path.join(os.curdir, code_path)}")
-    logger.info(f"Doc: {os.path.join(os.curdir, doc_path)}")
+    logger.info(f"Doc (LaTeX): {os.path.join(os.curdir, doc_path_tex)}")
+    logger.info(f"Doc (Typst): {os.path.join(os.curdir, doc_path_typ)}")
     logger.info(f"CVDoc: {os.path.join(os.curdir, cvdoc_path)}")
     logger.info(f"Usage: {os.path.join(os.curdir, usage_path)}")
 

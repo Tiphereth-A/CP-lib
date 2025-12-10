@@ -70,13 +70,20 @@ class Section:
             os.path.join(dirs[3], f"{self.name}.{self.usage_ext}")
         )
 
-    def open(self, code_root_dir: str, doc_root_dir: str, cvdoc_root_dir: str, usage_root_dir: str, *args, **kwargs) -> tuple[IO, IO, IO, IO]:
+    def open(self, code_root_dir: str, doc_root_dir: str, cvdoc_root_dir: str, usage_root_dir: str, *args, doc_ext: str = 'tex', **kwargs) -> tuple[IO, IO, IO, IO]:
         """
         Open all section files and return file handles.
         Note: Caller is responsible for closing these files.
+        
+        Args:
+            code_root_dir: Root directory for code files
+            doc_root_dir: Root directory for documentation files
+            cvdoc_root_dir: Root directory for CV documentation files
+            usage_root_dir: Root directory for usage files
+            doc_ext: Documentation file extension ('tex' or 'typ'), default: 'tex'
         """
         code_path, doc_path, cvdoc_path, usage_path = self.get_filenames(
-            code_root_dir, doc_root_dir, cvdoc_root_dir, usage_root_dir)
+            code_root_dir, doc_root_dir, cvdoc_root_dir, usage_root_dir, doc_ext)
 
         f_code = open(code_path, *args, **kwargs)
         f_doc = open(doc_path, *args, **kwargs)
