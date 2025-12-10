@@ -37,9 +37,6 @@ CP-lib/
 │   ├── comb/         # Combinatorics
 │   ├── conv/         # Convolution operations
 │   ├── ds/           # Data structures
-│   ├── edh/          # Edit distance / hashing
-│   ├── fast/         # Fast I/O and optimizations
-│   ├── game/         # Game theory algorithms
 │   ├── geo2d/        # 2D geometry
 │   ├── geo3d/        # 3D geometry
 │   ├── graph/        # Graph algorithms
@@ -52,10 +49,11 @@ CP-lib/
 │   ├── rand/         # Random utilities
 │   ├── str/          # String algorithms
 │   ├── tree/         # Tree algorithms
-│   └── util/         # General utilities
+│   ├── util/         # General utilities
+│   └── ...
 ├── test/             # Test files for online judge verification
 │   ├── aizu/         # Aizu online judge tests
-│   ├── library-checker-*/ # Library Checker tests
+│   ├── yukicoder/    # Yukicoder tests
 │   └── ...
 ├── libs/             # Python utility libraries
 │   ├── classes/      # Core classes (Config, Section, etc.)
@@ -74,6 +72,7 @@ CP-lib/
 │   └── typ/          # Typst documentation source
 ├── template/         # PDF generation templates
 │   ├── ICPCnotebook.cls  # LaTeX template class
+│   ├── notebook.tex      # LaTeX template
 │   ├── notebook.typ      # Typst template
 │   └── common.typ        # Shared Typst definitions
 └── manager.py        # Python management script (CLI entry point)
@@ -166,7 +165,7 @@ uv run python manager.py gentc --help
 - LaTeX sources in `notebook/tex/` directory
 - Use `pygments` for code syntax highlighting
 - Requires LaTeX distribution with appropriate fonts
-- Generate with: `uv run python manager.py gen-nb -t tex`
+- Generate with: `uv run python manager.py gen-nb -t tex && uv run python manager.py gen-cs -t tex`
 - Compile PDF: `uv run python manager.py run -t tex`
 
 ### Typst Documentation
