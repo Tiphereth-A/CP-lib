@@ -29,15 +29,16 @@ def generate_empty_cheatsheet_contents(doc_type: str = 'tex', override_exists: b
 @with_timer
 def generate_cheatsheet_contents(doc_type: str = 'tex', logger: logging.Logger = None, **kwargs):
     """Generate cheatsheet contents from configured cheatsheet files."""
-    # Get cheatsheet files
+    # Get cheatsheet files based on doc_type
+    file_ext = doc_type
     cheatsheet_names = [
-        f'{name}.tex' for name in CONFIG.get_cheatsheets()]
+        f'{name}.{file_ext}' for name in CONFIG.get_cheatsheets()]
     existing_files = scandir_file_merge(
-        ['tex'], CONFIG.get_cheatsheet_dir())
+        [file_ext], CONFIG.get_cheatsheet_dir(doc_type=doc_type))
     files = file_preprocess(cheatsheet_names, existing_files, logger)
 
     # Convert to full paths
-    cheatsheet_dir = CONFIG.get_cheatsheet_dir()
+    cheatsheet_dir = CONFIG.get_cheatsheet_dir(doc_type=doc_type)
     full_paths = [os.path.join(cheatsheet_dir, item) for item in files]
 
     logger.info(f"{len(full_paths)} file(s) found:")
@@ -58,7 +59,7 @@ def generate_cheatsheet_contents(doc_type: str = 'tex', logger: logging.Logger =
             rel_path = os.path.relpath(file_path, cheatsheet_dir)
             # Normalize path separators and remove extension
             name = rel_path.replace(
-                '\\', '/').replace('/', '').removesuffix('.tex')
+                '\\', '/').replace('/', '').removesuffix(f'.{file_ext}')
             cheatsheet_name = CONFIG.get_cheatsheet_name(name)
 
             if doc_type == 'tex':

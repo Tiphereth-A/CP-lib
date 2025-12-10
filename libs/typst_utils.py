@@ -12,9 +12,10 @@ class TextTypstBase:
 
     def get_label_name(self) -> str:
         # Clean LaTeX commands and special characters for use in labels
-        # Note: <> added for Typst-specific label syntax considerations
+        # Remove backslashes, quotes that are not valid in labels
+        # Replace punctuation and special chars with hyphens for readability
         cleaned = self._str.replace('\\', '').replace('"', '').replace("'", '')
-        return re.sub(r'[,.;@?!&$#/ ()*]', '-', cleaned.casefold())
+        return re.sub(r'[,.;@?!&$#/ ()*<>]', '-', cleaned.casefold())
 
 
 class PathTypst(TextTypstBase):

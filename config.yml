@@ -3,7 +3,9 @@ notebook_doc_dir:
   tex: notebook/tex
   typ: notebook/typ
 competitive_verifier_doc_dir: doc_md
-cheatsheet_dir: cheatsheet
+cheatsheet_dir:
+  tex: cheatsheet/tex
+  typ: cheatsheet/typ
 usage_dir: usage
 notebook_file_dir: template
 notebook_file: notebook

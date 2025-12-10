@@ -25,12 +25,24 @@ class Config(ConfigBase):
         doc_dirs = self.items('notebook_doc_dir')
         if isinstance(doc_dirs, dict):
             return doc_dirs[doc_type]
+        elif isinstance(doc_dirs, str):
+            # Backward compatibility: return the string directly
+            return doc_dirs
+        else:
+            raise TypeError(f"Unexpected type for notebook_doc_dir: {type(doc_dirs).__name__}")
 
     def _get_cvdoc_dir_raw(self) -> str:
         return self.items('competitive_verifier_doc_dir')
 
-    def _get_cheatsheet_dir_raw(self) -> str:
-        return self.items('cheatsheet_dir')
+    def _get_cheatsheet_dir_raw(self, doc_type: str = 'tex') -> str:
+        cheatsheet_dirs = self.items('cheatsheet_dir')
+        if isinstance(cheatsheet_dirs, dict):
+            return cheatsheet_dirs[doc_type]
+        elif isinstance(cheatsheet_dirs, str):
+            # Backward compatibility: return the string directly
+            return cheatsheet_dirs
+        else:
+            raise TypeError(f"Unexpected type for cheatsheet_dir: {type(cheatsheet_dirs).__name__}")
 
     def _get_usage_dir_raw(self) -> str:
         return self.items('usage_dir')
@@ -79,8 +91,8 @@ class Config(ConfigBase):
         return self._get_cvdoc_dir_raw()
 
     @with_logger
-    def get_cheatsheet_dir(self, **kwargs) -> str:
-        return self._get_cheatsheet_dir_raw()
+    def get_cheatsheet_dir(self, doc_type: str = 'tex', **kwargs) -> str:
+        return self._get_cheatsheet_dir_raw(doc_type)
 
     @with_logger
     def get_usage_dir(self, **kwargs) -> str:
