@@ -228,6 +228,6 @@ class TestTypstContentGeneration:
         
         # Typst should have = heading markers
         assert '= ' in typ_content
-        # LaTeX comment vs Typst comment
+        # LaTeX header vs Typst header
         assert '%-*-' in tex_content
-        assert '//' in typ_content
+        assert '#import' in typ_content

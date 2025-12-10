@@ -191,15 +191,17 @@ def test_compile_pdf_commands(tmp_path):
     tex_cmd = cfg.get_compile_pdf_command('tex')
     assert isinstance(tex_cmd, list)
     assert 'latexmk' in tex_cmd[0]
-    assert any('template/notebook.tex' in arg for arg in tex_cmd)
+    # Check for path with either forward or back slashes (cross-platform)
+    assert any('notebook.tex' in arg and 'template' in arg for arg in tex_cmd)
     
     # Test get_compile_pdf_command for Typst (with {out} placeholder)
     typ_cmd = cfg.get_compile_pdf_command('typ')
     assert isinstance(typ_cmd, list)
     assert 'typst' in typ_cmd[0]
     assert 'compile' in typ_cmd[1]
-    assert any('template/notebook.typ' in arg for arg in typ_cmd)
-    assert any('_pdf_out/notebook.pdf' in arg for arg in typ_cmd)
+    # Check for path with either forward or back slashes (cross-platform)
+    assert any('notebook.typ' in arg and 'template' in arg for arg in typ_cmd)
+    assert any('notebook.pdf' in arg and '_pdf_out' in arg for arg in typ_cmd)
     
     # Test non-existent doc type
     missing_cmd = cfg.get_compile_pdf_command('missing')
