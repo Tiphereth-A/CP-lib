@@ -1,98 +1,45 @@
-# Test Suite for CP-lib Manager System
+# Test Suite
 
-This directory contains comprehensive tests for the manager system using pytest.
+Comprehensive pytest test suite for the CP-lib manager system.
 
-## Test Structure
+## Structure
 
-The tests are organized into three categories:
-
-### Unit Tests (UT) - `tests/unit/`
-Tests for individual components in isolation:
-- `test_utils.py` - Utility functions (file operations, filtering, etc.)
-- `test_decorator.py` - `@withlog` decorator functionality
-- `test_config.py` - Config class methods and properties
-
-### Integration Tests (IT) - `tests/integration/`
-Tests for component interactions:
-- `test_commands.py` - Command module interactions (clean, fmt, etc.)
-- `test_config_integration.py` - Config integration with utility functions
-
-### System Tests (ST) - `tests/system/`
-End-to-end tests for CLI execution:
-- `test_cli.py` - Full CLI command execution and workflow
+```
+tests/
+├── conftest.py      # Shared fixtures
+├── unit/            # Component tests
+├── integration/     # Component interaction tests
+└── system/          # End-to-end CLI tests
+```
 
 ## Running Tests
 
-### Run all tests
 ```bash
+# All tests
 pytest
-```
 
-### Run specific test categories
-```bash
-# Unit tests only
+# By category
 pytest -m unit
-
-# Integration tests only
 pytest -m integration
-
-# System tests only
 pytest -m system
+
+# With coverage
+pytest --cov=libs --cov-report=term-missing
 ```
 
-### Run specific test file
-```bash
-pytest tests/unit/test_utils.py
-```
+## Fixtures
 
-### Run with coverage
-```bash
-pytest --cov=libs --cov-report=html
+Available in `conftest.py`:
+- `temp_dir` - Temporary directory
+- `sample_config_file` / `test_config` - Config testing
+- `sample_tcgen_file` / `test_config_tcgen` - TCGen testing
+- `sample_code_file` - Sample C++ file
+- `sample_dirs` - Directory structure
+- `mock_logger` - Mock logger instance
 
-## Recommended quick coverage check
-pytest --maxfail=1 --disable-warnings -q --cov=libs --cov-report=term-missing
-```
+## Adding Tests
 
-### Run with verbose output
-```bash
-pytest -v
-```
-
-## Test Fixtures
-
-The `conftest.py` file provides shared fixtures:
-- `temp_dir` - Temporary directory for test files
-- `sample_config_file` - Sample config.yml for testing
-- `sample_tcgen_file` - Sample tcgen.yml for testing
-- `test_config` - Config instance for testing
-- `test_config_tcgen` - ConfigTCGen instance for testing
-- `sample_code_file` - Sample code file for testing
-- `sample_dirs` - Sample directory structure
-
-## Dependencies
-
-Tests require:
-- `pytest>=9.0.1`
-- `pytest-cov>=4.1.0` (optional, for coverage)
-- All project dependencies (click, pyyaml, etc.)
-
-Install test dependencies:
-```bash
-uv sync --group dev
-```
-
-## Writing New Tests
-
-When adding new tests:
-1. Place unit tests in `tests/unit/`
-2. Place integration tests in `tests/integration/`
-3. Place system tests in `tests/system/`
-4. Use appropriate pytest markers (`@pytest.mark.unit`, etc.)
-5. Leverage fixtures from `conftest.py` when possible
-6. Follow the naming convention: `test_*.py` for files, `test_*` for functions
-
-## Test Coverage Goals
-
-- Unit tests: Cover all utility functions, decorators, and class methods
-- Integration tests: Cover command interactions and component integration
-- System tests: Cover end-to-end CLI workflows
+1. Place in appropriate directory (`unit/`, `integration/`, `system/`)
+2. Add pytest marker: `pytestmark = pytest.mark.unit`
+3. Use fixtures from `conftest.py`
+4. Follow naming: `test_*.py` files, `test_*` functions

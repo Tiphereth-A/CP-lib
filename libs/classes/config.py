@@ -21,13 +21,13 @@ class Config(ConfigBase):
     def _get_code_dir_raw(self) -> str:
         return self.items('notebook_code_dir')
 
-    def _get_doc_dir_raw(self) -> str:
+    def _get_doc_dirs_raw(self) -> dict[str, str]:
         return self.items('notebook_doc_dir')
 
     def _get_cvdoc_dir_raw(self) -> str:
         return self.items('competitive_verifier_doc_dir')
 
-    def _get_cheatsheet_dir_raw(self) -> str:
+    def _get_cheatsheet_dirs_raw(self) -> dict[str, str]:
         return self.items('cheatsheet_dir')
 
     def _get_usage_dir_raw(self) -> str:
@@ -54,6 +54,9 @@ class Config(ConfigBase):
     def _get_formatting_commands_raw(self) -> dict[str, str]:
         return self.items('formatting_commands')
 
+    def _get_compile_pdf_commands_raw(self) -> dict[str, str]:
+        return self.items('compile_pdf_commands')
+
     def _get_code_type_list_raw(self) -> list[str]:
         return self.items('code_type_list')
 
@@ -65,16 +68,20 @@ class Config(ConfigBase):
         return self._get_code_dir_raw()
 
     @with_logger
-    def get_doc_dir(self, **kwargs) -> str:
-        return self._get_doc_dir_raw()
+    def get_doc_dir(self, doc_type: str, **kwargs) -> str:
+        if doc_type not in self.get_doc_type_list():
+            raise RuntimeError(f"'{doc_type}' is not doc type")
+        return self._get_doc_dirs_raw()[doc_type]
 
     @with_logger
     def get_cvdoc_dir(self, **kwargs) -> str:
         return self._get_cvdoc_dir_raw()
 
     @with_logger
-    def get_cheatsheet_dir(self, **kwargs) -> str:
-        return self._get_cheatsheet_dir_raw()
+    def get_cheatsheet_dir(self, doc_type: str, **kwargs) -> str:
+        if doc_type not in self.get_doc_type_list():
+            raise RuntimeError(f"'{doc_type}' is not doc type")
+        return self._get_cheatsheet_dirs_raw()[doc_type]
 
     @with_logger
     def get_usage_dir(self, **kwargs) -> str:
@@ -252,12 +259,18 @@ class Config(ConfigBase):
         try:
             source = os.path.join(self._get_notebook_file_dir_raw(),
                                   f"{self._get_notebook_file_raw()}.{file_type}")
-            command_line = self._get_compile_pdf_commands_raw()[file_type].format(
-                src=shlex.quote(source))
-            if command_line.find(r'{out}') != -1:
-                pdf_path = os.path.join(
-                    "_pdf_out", f"{self._get_notebook_file_raw()}.pdf")
-                command_line = command_line.format(out=shlex.quote(pdf_path))
+            pdf_path = os.path.join(
+                "_pdf_out", f"{self._get_notebook_file_raw()}.pdf")
+            command_template = self._get_compile_pdf_commands_raw()[file_type]
+
+            # Check if the template has {out} placeholder
+            if '{out}' in command_template:
+                command_line = command_template.format(
+                    src=shlex.quote(source),
+                    out=shlex.quote(pdf_path))
+            else:
+                command_line = command_template.format(src=shlex.quote(source))
+
             return shlex.split(command_line)
         except KeyError:
             logger.warning(

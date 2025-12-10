@@ -1,7 +1,11 @@
 notebook_code_dir: include
-notebook_doc_dir: doc_tex
+notebook_doc_dir:
+  tex: notebook/tex
+  typ: notebook/typ
 competitive_verifier_doc_dir: doc_md
-cheatsheet_dir: cheatsheet
+cheatsheet_dir:
+  tex: cheatsheet/tex
+  typ: cheatsheet/typ
 usage_dir: usage
 notebook_file_dir: template
 notebook_file: notebook
@@ -1526,5 +1530,8 @@ run_usage_commands:
 formatting_commands:
   cpp: "clang-format --Wno-error=unknown -style=file -i {src}"
   tex: "latexindent --cruft=/ -l -s {src} -o {src}"
+  # Note: Typst doesn't have a standard formatter yet, using no-op command
+  typ: "echo 'Typst formatting not available'"
 compile_pdf_commands:
   tex: "latexmk -cd -xelatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -synctex=1 -outdir=../_pdf_out -time {src}"
+  typ: "typst compile --root . {src} {out}"
