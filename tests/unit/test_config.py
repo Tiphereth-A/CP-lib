@@ -188,7 +188,7 @@ class TestConfigComprehensive:
             'notebook_code_dir': 'code',
             'notebook_doc_dir': {
                 'tex': 'doc',
-                'typ': 'doc_typ'
+                'typ': 'notebook/typ'
             },
             'cheatsheets': {'cs1': 'CS1'},
             'export_usage_code_in_notebook': True,
@@ -279,7 +279,7 @@ class TestConfigPdfCompilation:
             'notebook_code_dir': 'code',
             'notebook_doc_dir': {
                 'tex': 'doc',
-                'typ': 'doc_typ'
+                'typ': 'notebook/typ'
             },
             'notebook_file_dir': 'template',
             'notebook_file': 'notebook',
@@ -351,7 +351,7 @@ class TestConfigPdfPlaceholderHandling:
             'notebook_code_dir': 'code',
             'notebook_doc_dir': {
                 'tex': 'doc',
-                'typ': 'doc_typ'
+                'typ': 'notebook/typ'
             },
             'notebook_file_dir': 'template',
             'notebook_file': 'notebook',
@@ -440,7 +440,7 @@ class TestConfigAdditionalCoverage:
                 }
             },
             'notebook_code_dir': 'src',
-            'notebook_doc_dir': {'tex': 'doc', 'typ': 'doc_typ'},
+            'notebook_doc_dir': {'tex': 'doc', 'typ': 'notebook/typ'},
             'competitive_verifier_doc_dir': 'cvdoc',
             'cheatsheet_dir': 'cheatsheet',
             'usage_dir': 'usage',
@@ -525,7 +525,7 @@ class TestConfigAdditionalCoverage:
     def test_get_doc_dir_typst(self, extended_config: Config) -> None:
         """Test getting doc directory for typst."""
         doc_dir = extended_config.get_doc_dir(doc_type='typ')
-        assert doc_dir == 'doc_typ'
+        assert doc_dir == 'notebook/typ'
 
 
 class TestConfigKeyErrorPaths:
@@ -540,7 +540,7 @@ class TestConfigKeyErrorPaths:
                 'sections': {'ch1': []}
             },
             'notebook_code_dir': 'src',
-            'notebook_doc_dir': {'tex': 'doc', 'typ': 'doc_typ'},
+            'notebook_doc_dir': {'tex': 'doc', 'typ': 'notebook/typ'},
             'competitive_verifier_doc_dir': 'cvdoc',
             'cheatsheet_dir': 'cheatsheet',
             'usage_dir': 'usage',
@@ -591,7 +591,7 @@ class TestConfigNotebookMethods:
         return {
             'notebook': {'chapters': {}, 'sections': {}},
             'notebook_code_dir': 'src',
-            'notebook_doc_dir': {'tex': 'doc', 'typ': 'doc_typ'},
+            'notebook_doc_dir': {'tex': 'doc', 'typ': 'notebook/typ'},
             'notebook_file_dir': 'template',
             'notebook_file': 'notebook',
             'cheatsheets': {},
