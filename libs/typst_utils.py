@@ -1,4 +1,5 @@
 import re
+import os
 from libs.decorator import with_logger
 
 
@@ -49,6 +50,13 @@ def typst_include(path: PathTypst, **kwargs) -> list[str]:
     # Users should provide .typ files for documentation
     if path.get().endswith(LATEX_ONLY_EXTENSIONS):
         return [f'// LaTeX doc file skipped: {path.get()}\n', '\n']
+    
+    # Check if the .typ file exists in the _gen directory
+    # The path is relative to the working directory where typst will be run
+    check_path = os.path.join('_gen', path.get())
+    if not os.path.exists(check_path):
+        return [f'// Documentation file not found (skipped): {path.get()}\n', '\n']
+    
     return [f'#include "{path.get()}"\n', '\n']
 
 
