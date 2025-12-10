@@ -101,7 +101,7 @@ def test_config_methods(tmp_path):
         'notebook_code_dir': 'code',
         'notebook_doc_dir': {
             'tex': 'doc',
-            'typst': 'doc_typ'
+            'typ': 'doc_typ'
         },
         'cheatsheets': {'cs1': 'CS1'},
         'export_usage_code_in_notebook': True,
@@ -160,7 +160,7 @@ def test_compile_pdf_commands(tmp_path):
         'notebook_code_dir': 'code',
         'notebook_doc_dir': {
             'tex': 'doc',
-            'typst': 'doc_typ'
+            'typ': 'doc_typ'
         },
         'notebook_file_dir': 'template',
         'notebook_file': 'notebook',
@@ -217,7 +217,7 @@ def test_compile_pdf_command_placeholder_handling(tmp_path):
         'notebook_code_dir': 'code',
         'notebook_doc_dir': {
             'tex': 'doc',
-            'typst': 'doc_typ'
+            'typ': 'doc_typ'
         },
         'notebook_file_dir': 'template',
         'notebook_file': 'notebook',

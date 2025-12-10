@@ -27,7 +27,7 @@ def sample_config_file(temp_dir: Path) -> Path:
         'notebook_code_dir': 'src',
         'notebook_doc_dir': {
             'tex': 'doc',
-            'typst': 'doc_typ'
+            'typ': 'doc_typ'
         },
         'notebook_file': 'notebook.tex',
         'default_file_type': 'cpp',
