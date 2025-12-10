@@ -1,4 +1,3 @@
-// Extended suffix automaton - 广义后缀自动机
 
 建图
 

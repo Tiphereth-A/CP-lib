@@ -25,7 +25,10 @@ def sample_config_file(temp_dir: Path) -> Path:
     """Create a sample config.yml file for testing."""
     config_data = {
         'notebook_code_dir': 'src',
-        'notebook_doc_dir': 'doc',
+        'notebook_doc_dir': {
+            'tex': 'doc',
+            'typst': 'doc_typ'
+        },
         'notebook_file': 'notebook.tex',
         'default_file_type': 'cpp',
         'file_types': {

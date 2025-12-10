@@ -1,4 +1,3 @@
-// HLPP (Highest Label Preflow-Push) - 最高标号预流推进算法
 
 应用了 BFS 优化与 GAP 优化
 

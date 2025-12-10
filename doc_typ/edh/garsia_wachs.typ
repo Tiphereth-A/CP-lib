@@ -1,4 +1,3 @@
-// Garsia-Wachs algorithm - Garsia-Wachs 算法
 
 用于构建最优二叉查找树和 Huffman 码的算法
 

@@ -1,4 +1,3 @@
-// Edge triconnected components - 边三连通分量
 
 === 样例图片
 

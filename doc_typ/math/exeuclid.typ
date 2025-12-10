@@ -1,4 +1,3 @@
-// Extended Euclidean path - 扩展欧几里得路径
 
 考虑直线 $s = (p x + r) / q, space x in (0, l]$, 以及所有的竖线 $x = k, space k in ZZ$ 与横线 $y = h, space h in ZZ$
 

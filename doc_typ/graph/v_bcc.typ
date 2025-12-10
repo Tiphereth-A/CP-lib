@@ -1,4 +1,3 @@
-// Vertex biconnected components - 点双连通分量
 
 === 概念
 

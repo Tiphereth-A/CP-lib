@@ -1,4 +1,3 @@
-// Kirchhoff's matrix tree theorem - 基尔霍夫矩阵树定理
 
 === 定义
 

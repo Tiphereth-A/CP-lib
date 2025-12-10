@@ -99,7 +99,10 @@ def test_config_methods(tmp_path):
             'sections': {'c1': [{'s1': 'S1', 'code_ext': 'cpp', 'usage_ext': 'in'}]}
         },
         'notebook_code_dir': 'code',
-        'notebook_doc_dir': 'doc',
+        'notebook_doc_dir': {
+            'tex': 'doc',
+            'typst': 'doc_typ'
+        },
         'cheatsheets': {'cs1': 'CS1'},
         'export_usage_code_in_notebook': True,
         'default_file_type': 'cs',
@@ -155,7 +158,10 @@ def test_compile_pdf_commands(tmp_path):
             'sections': {}
         },
         'notebook_code_dir': 'code',
-        'notebook_doc_dir': 'doc',
+        'notebook_doc_dir': {
+            'tex': 'doc',
+            'typst': 'doc_typ'
+        },
         'notebook_file_dir': 'template',
         'notebook_file': 'notebook',
         'cheatsheets': {},
@@ -209,7 +215,10 @@ def test_compile_pdf_command_placeholder_handling(tmp_path):
     data = {
         'notebook': {'chapters': {}, 'sections': {}},
         'notebook_code_dir': 'code',
-        'notebook_doc_dir': 'doc',
+        'notebook_doc_dir': {
+            'tex': 'doc',
+            'typst': 'doc_typ'
+        },
         'notebook_file_dir': 'template',
         'notebook_file': 'notebook',
         'cheatsheets': {},

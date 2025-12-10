@@ -1,4 +1,3 @@
-// Edge biconnected components - 边双连通分量
 
 === 概念
 

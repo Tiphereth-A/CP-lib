@@ -1,4 +1,3 @@
-// RMQ using sparse table with $+-1$ optimization - 使用$+-1$优化的稀疏表RMQ
 
 设 $n$ 为数组长度, $b$ 为块长 (常取 $O(log n)$), 则
 

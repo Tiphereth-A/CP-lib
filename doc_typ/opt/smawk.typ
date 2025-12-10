@@ -1,4 +1,3 @@
-// SMAWK algorithm - SMAWK 算法
 
 用于计算满足如下条件 (Monotone) 的矩阵 $A$ 每行的 $op("argmin")$:
 

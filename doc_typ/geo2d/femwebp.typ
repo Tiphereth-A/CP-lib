@@ -1,4 +1,3 @@
-// Fermat point using improved Weiszfeld algorithm - 使用改进的 Weiszfeld 算法求费马点
 
 使用改进的 Weiszfeld 算法, 也可以使用模拟退火
 

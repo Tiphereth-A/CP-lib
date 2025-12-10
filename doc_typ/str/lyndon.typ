@@ -1,4 +1,3 @@
-// Lyndon factorization - Lyndon 分解
 
 === 最小表示法
 

@@ -1,4 +1,3 @@
-// Burrows-Wheeler transform - BWT 变换
 
 === 构建方式
 

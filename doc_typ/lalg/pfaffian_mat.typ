@@ -1,4 +1,3 @@
-// Pfaffian of skew-symmetric matrix - 反对称矩阵的 Pfaffian
 
 对长度为 $2n$ 的排列 $pi$, 若
 

@@ -25,8 +25,6 @@ class Config(ConfigBase):
         doc_dirs = self.items('notebook_doc_dir')
         if isinstance(doc_dirs, dict):
             return doc_dirs[doc_type]
-        # Legacy support: if it's a string, treat it as tex
-        return doc_dirs
 
     def _get_cvdoc_dir_raw(self) -> str:
         return self.items('competitive_verifier_doc_dir')

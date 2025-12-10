@@ -1,4 +1,3 @@
-// Stern-Brocot tree - Stern-Brocot 树
 
 #figure(
   image("../../img/stern-brocot1.png", width: 60%),

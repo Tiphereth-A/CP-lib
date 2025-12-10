@@ -1,4 +1,3 @@
-// Simplex algorithm - 单纯形法
 
 求解如下线性规划问题:
 

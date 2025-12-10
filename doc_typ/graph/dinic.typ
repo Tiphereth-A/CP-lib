@@ -1,4 +1,3 @@
-// Dinic's algorithm - Dinic 算法
 
 === 样例图片
 
