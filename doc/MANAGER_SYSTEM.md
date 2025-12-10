@@ -34,7 +34,7 @@ libs/
 | Command | Description |
 |---------|-------------|
 | `clean` | Remove temporary files from `_pdf_out/` |
-| `gen-nb [-t typ]` | Generate notebook contents (LaTeX/Typst) |
+| `gen-nb [-t typ]` (default: tex) | Generate notebook contents (LaTeX/Typst) |
 | `gen-cs [-t typ]` | Generate cheatsheet contents |
 | `run-usage [-t cpp] [-l 8]` | Run usage examples in parallel |
 | `run [-t typ] [--no-fmt] [--no-run-usage] [--no-gen] [--no-clean]` | Full compile workflow |
