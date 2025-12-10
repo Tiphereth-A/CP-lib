@@ -312,3 +312,11 @@ class TestConstantsAndEdgeCases:
         # Should not double-add ../
         assert '../already/relative' in str(result)
         assert not any('../../already' in s for s in result if isinstance(s, str))
+
+    def test_typst_include_file_not_found(self) -> None:
+        """Test typst_include when file does not exist."""
+        path = PathTypst('nonexistent/file.typ')
+        result = typst_include(path)
+
+        assert isinstance(result, list)
+        assert any('not found' in s for s in result if isinstance(s, str))

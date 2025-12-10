@@ -359,3 +359,45 @@ class TestParseFilename:
         name, ext = parse_filename(filename)
         assert name == expected_name
         assert ext == expected_ext
+
+
+# =============================================================================
+# Additional Coverage Tests
+# =============================================================================
+
+
+class TestScandirMergeFilterNone:
+    """Tests for scandir_merge_filter returning None."""
+
+    def test_returns_empty_when_exec_returns_none(self, temp_dir: Path) -> None:
+        """Test that scandir_merge_filter handles None return from execute_if_file_exist."""
+        with patch('libs.utils.execute_if_file_exist') as mock_exec:
+            mock_exec.return_value = None
+
+            def is_file(entry) -> bool:
+                return True
+
+            result = scandir_merge_filter(is_file, str(temp_dir))
+
+        assert result == []
+
+
+class TestGetFullFilenamesExtensions:
+    """Additional tests for get_full_filenames with various extensions."""
+
+    def test_multiple_extensions(self, temp_dir: Path) -> None:
+        """Test finding files with multiple valid extensions."""
+        test_dir = str(temp_dir)
+
+        with patch('os.path.exists') as mock_exists, \
+             patch('os.walk') as mock_walk:
+            mock_exists.return_value = True
+            mock_walk.return_value = [
+                (test_dir, [], ['file1.cpp', 'file2.hpp', 'file3.py', 'file4.txt'])
+            ]
+
+            result = get_full_filenames([test_dir], ['cpp', 'hpp'])
+
+        assert len(result) == 2
+        assert any('file1.cpp' in f for f in result)
+        assert any('file2.hpp' in f for f in result)

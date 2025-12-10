@@ -387,3 +387,234 @@ class TestConfigPdfPlaceholderHandling:
         # Should contain actual paths
         assert any('notebook.typ' in arg for arg in cmd)
         assert any('.pdf' in arg for arg in cmd)
+
+
+# =============================================================================
+# ConfigBase Advanced Tests
+# =============================================================================
+
+
+class TestConfigBaseAdvanced:
+    """Advanced tests for ConfigBase class."""
+
+    def test_reload_permission_error(self, tmp_path: Path) -> None:
+        """Test reload raises PermissionError for inaccessible file."""
+        path = tmp_path / 'nonexistent.yml'
+        with pytest.raises(PermissionError):
+            ConfigBase(str(path))
+
+    def test_output_write_permission_error(self, tmp_path: Path) -> None:
+        """Test output raises PermissionError for inaccessible file."""
+        import os
+        path = tmp_path / 'config.yml'
+        path.write_text(yaml.dump({'a': 1}), encoding='utf-8')
+        config = ConfigBase(str(path), readonly=False)
+
+        # Make file read-only
+        os.chmod(str(path), 0o444)
+        try:
+            with pytest.raises(PermissionError):
+                config.output()
+        finally:
+            # Restore permissions for cleanup
+            os.chmod(str(path), 0o644)
+
+
+# =============================================================================
+# Config Additional Coverage Tests
+# =============================================================================
+
+
+class TestConfigAdditionalCoverage:
+    """Additional tests to improve coverage."""
+
+    @pytest.fixture
+    def extended_config_data(self) -> dict[str, Any]:
+        """Extended configuration data for additional coverage."""
+        return {
+            'notebook': {
+                'chapters': {'ch1': 'Chapter 1', 'ch2': 'Chapter 2'},
+                'sections': {
+                    'ch1': [{'sec1': 'Section 1', 'code_ext': 'cpp', 'usage_ext': 'in'}],
+                    'ch2': []
+                }
+            },
+            'notebook_code_dir': 'src',
+            'notebook_doc_dir': {'tex': 'doc', 'typ': 'doc_typ'},
+            'competitive_verifier_doc_dir': 'cvdoc',
+            'cheatsheet_dir': 'cheatsheet',
+            'usage_dir': 'usage',
+            'notebook_file_dir': 'template',
+            'notebook_file': 'notebook',
+            'cheatsheets': {'cs1': 'Cheatsheet 1'},
+            'export_usage_code_in_notebook': False,
+            'default_file_type': 'cpp',
+            'file_types': {'cpp': 'cpp', 'hpp': 'cpp', 'py': 'python'},
+            'code_type_list': ['cpp', 'python'],
+            'doc_type_list': ['tex', 'typ'],
+            'run_usage_commands': {'cpp': 'g++ {src}'},
+            'formatting_commands': {'cpp': 'clang-format {src}', 'tex': 'latexindent {src}'},
+            'compile_pdf_commands': {'tex': 'latexmk {src}', 'typ': 'typst {src} {out}'}
+        }
+
+    @pytest.fixture
+    def extended_config(self, tmp_path: Path, extended_config_data: dict[str, Any]) -> Config:
+        """Create extended Config."""
+        path = make_temp_yaml(tmp_path, extended_config_data)
+        return Config(path)
+
+    def test_get_cvdoc_dir(self, extended_config: Config) -> None:
+        """Test getting competitive verifier doc directory."""
+        assert extended_config.get_cvdoc_dir() == 'cvdoc'
+
+    def test_get_sections_by_chapter_empty(self, extended_config: Config) -> None:
+        """Test getting sections for chapter with no sections."""
+        sections = extended_config.get_sections_by_chapter('ch2')
+        assert sections == []
+
+    def test_get_sections_by_chapter_nonexistent(self, extended_config: Config) -> None:
+        """Test getting sections for nonexistent chapter."""
+        sections = extended_config.get_sections_by_chapter('nonexistent')
+        assert sections == []
+
+    def test_set_sections_by_chapter_new(self, extended_config: Config) -> None:
+        """Test setting sections for a new chapter."""
+        section = Section('newchapter', 'n', 'N', 'cpp', 'in')
+        extended_config.set_sections_by_chapter('newchapter', [section])
+        # Should create the chapter if not exists (warns)
+
+    def test_append_chapter_duplicate(self, extended_config: Config) -> None:
+        """Test appending duplicate chapter does nothing."""
+        original_keys = extended_config.get_chapter_key()
+        extended_config.append_chapter('ch1')  # Already exists
+        assert extended_config.get_chapter_key() == original_keys
+
+    def test_append_section_duplicate(self, extended_config: Config) -> None:
+        """Test appending duplicate section does nothing."""
+        # Create a section with a name that matches an existing one
+        section = Section('ch1', 'sec1', 'Section 1', 'cpp', 'in')
+        extended_config.append_section(section)
+        # Should warn and skip - no error raised
+
+    def test_export_usage_code_false(self, extended_config: Config) -> None:
+        """Test export_usage_code_in_notebook returns False."""
+        assert extended_config.export_usage_code_in_notebook() is False
+
+    def test_get_code_type_list(self, extended_config: Config) -> None:
+        """Test getting code type list."""
+        types = extended_config.get_code_type_list()
+        assert 'cpp' in types
+        assert 'python' in types
+
+    def test_get_doc_type_list(self, extended_config: Config) -> None:
+        """Test getting doc type list."""
+        types = extended_config.get_doc_type_list()
+        assert 'tex' in types
+        assert 'typ' in types
+
+    def test_get_formatting_command_doc_type(self, extended_config: Config) -> None:
+        """Test getting formatting command for doc type."""
+        cmd = extended_config.get_formatting_command('tex', 'file.tex')
+        assert 'latexindent' in cmd[0]
+
+    def test_get_run_usage_command_non_code_type(self, extended_config: Config) -> None:
+        """Test getting run usage command for non-code type."""
+        cmd = extended_config.get_run_usage_command('tex', 'file.tex')
+        assert cmd == []
+
+    def test_get_doc_dir_typst(self, extended_config: Config) -> None:
+        """Test getting doc directory for typst."""
+        doc_dir = extended_config.get_doc_dir(doc_type='typ')
+        assert doc_dir == 'doc_typ'
+
+
+class TestConfigKeyErrorPaths:
+    """Tests for Config KeyError handling paths."""
+
+    @pytest.fixture
+    def keyerror_config_data(self) -> dict[str, Any]:
+        """Config data with missing command entries for KeyError testing."""
+        return {
+            'notebook': {
+                'chapters': {'ch1': 'Chapter 1'},
+                'sections': {'ch1': []}
+            },
+            'notebook_code_dir': 'src',
+            'notebook_doc_dir': {'tex': 'doc', 'typ': 'doc_typ'},
+            'competitive_verifier_doc_dir': 'cvdoc',
+            'cheatsheet_dir': 'cheatsheet',
+            'usage_dir': 'usage',
+            'notebook_file_dir': 'template',
+            'notebook_file': 'notebook',
+            'cheatsheets': {},
+            'export_usage_code_in_notebook': False,
+            'default_file_type': 'cpp',
+            'file_types': {'cpp': 'cpp'},
+            'code_type_list': ['cpp', 'python'],
+            'doc_type_list': ['tex', 'typ'],
+            'run_usage_commands': {},  # Empty - will cause KeyError
+            'formatting_commands': {},  # Empty - will cause KeyError
+            'compile_pdf_commands': {}  # Empty - will cause KeyError
+        }
+
+    @pytest.fixture
+    def keyerror_config(self, tmp_path: Path, keyerror_config_data: dict[str, Any]) -> Config:
+        """Create Config that will trigger KeyError paths."""
+        path = make_temp_yaml(tmp_path, keyerror_config_data)
+        return Config(path)
+
+    def test_get_run_usage_command_keyerror(self, keyerror_config: Config) -> None:
+        """Test get_run_usage_command when command not found (KeyError)."""
+        # 'cpp' is a valid code type but has no run_usage_command defined
+        cmd = keyerror_config.get_run_usage_command('cpp', 'test.cpp')
+        assert cmd == []
+
+    def test_get_formatting_command_keyerror(self, keyerror_config: Config) -> None:
+        """Test get_formatting_command when command not found (KeyError)."""
+        # 'cpp' is a valid code type but has no formatting_command defined
+        cmd = keyerror_config.get_formatting_command('cpp', 'test.cpp')
+        assert cmd == []
+
+    def test_get_compile_pdf_command_keyerror(self, keyerror_config: Config) -> None:
+        """Test get_compile_pdf_command when command not found (KeyError)."""
+        # 'tex' is a valid doc type but has no compile_pdf_command defined
+        cmd = keyerror_config.get_compile_pdf_command('tex')
+        assert cmd == []
+
+
+class TestConfigNotebookMethods:
+    """Tests for Config notebook file/dir methods."""
+
+    @pytest.fixture
+    def notebook_config_data(self) -> dict[str, Any]:
+        """Config data with notebook file settings."""
+        return {
+            'notebook': {'chapters': {}, 'sections': {}},
+            'notebook_code_dir': 'src',
+            'notebook_doc_dir': {'tex': 'doc', 'typ': 'doc_typ'},
+            'notebook_file_dir': 'template',
+            'notebook_file': 'notebook',
+            'cheatsheets': {},
+            'export_usage_code_in_notebook': False,
+            'default_file_type': 'cpp',
+            'file_types': {},
+            'code_type_list': [],
+            'doc_type_list': [],
+            'run_usage_commands': {},
+            'formatting_commands': {},
+            'compile_pdf_commands': {}
+        }
+
+    @pytest.fixture
+    def notebook_config(self, tmp_path: Path, notebook_config_data: dict[str, Any]) -> Config:
+        """Create Config with notebook settings."""
+        path = make_temp_yaml(tmp_path, notebook_config_data)
+        return Config(path)
+
+    def test_get_notebook_file_dir(self, notebook_config: Config) -> None:
+        """Test getting notebook file directory."""
+        assert notebook_config.get_notebook_file_dir() == 'template'
+
+    def test_get_notebook_file(self, notebook_config: Config) -> None:
+        """Test getting notebook file name."""
+        assert notebook_config.get_notebook_file() == 'notebook'

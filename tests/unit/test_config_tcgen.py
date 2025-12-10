@@ -137,3 +137,84 @@ class TestConfigTCGenPriority:
         """Test that differing priorities raise RuntimeError."""
         with pytest.raises(RuntimeError):
             tcgen_config.get_memberlist(['cat1', 'cat3'])
+
+
+# =============================================================================
+# ConfigTCGen Additional Coverage Tests
+# =============================================================================
+
+
+class TestConfigTCGenAdditional:
+    """Additional tests for ConfigTCGen to improve coverage."""
+
+    def test_check_categories_priorities_empty(self, tmp_path: Path) -> None:
+        """Test _check_categories_priorities with empty list."""
+        path = make_tcgen_yaml(tmp_path)
+        config = ConfigTCGen(path)
+        # Should not raise - empty list is valid
+        config._ConfigTCGen__check_categories_priorities([])
+
+    def test_get_priority(self, tmp_path: Path) -> None:
+        """Test get_priority method."""
+        path = make_tcgen_yaml(tmp_path)
+        config = ConfigTCGen(path)
+        priority = config.get_priority('cat1')
+        assert priority == 1
+
+    def test_get_categories_by_priority(self, tmp_path: Path) -> None:
+        """Test get_categories_by_priority method."""
+        path = make_tcgen_yaml(tmp_path)
+        config = ConfigTCGen(path)
+        cats = config.get_categories_by_priority(1)
+        assert 'cat1' in cats
+        assert 'cat2' in cats
+
+    def test_get_member_content_list_not_found(self, tmp_path: Path) -> None:
+        """Test getting member content from list when member not found."""
+        path = make_tcgen_yaml(tmp_path)
+        config = ConfigTCGen(path)
+
+        with pytest.raises(RuntimeError, match='invalid in categories'):
+            config.get_member_content(['cat1', 'cat2'], 'nonexistent')
+
+    def test_get_member_content_invalid_member(self, tmp_path: Path) -> None:
+        """Test getting content for invalid member."""
+        data = {
+            'cat1': {
+                'priority': 1,
+                'member': {
+                    'm1': None  # Invalid member content
+                },
+                'default_content': None
+            }
+        }
+        path = make_tcgen_yaml(tmp_path, data)
+        config = ConfigTCGen(path)
+
+        with pytest.raises(RuntimeError, match='invalid'):
+            config.get_member_content('cat1', 'm1')
+
+    def test_get_member_content_with_override(self, tmp_path: Path) -> None:
+        """Test member content merges default and member-specific values."""
+        data = {
+            'cat1': {
+                'priority': 1,
+                'member': {
+                    'm1': {
+                        'custom_key': 'custom_value'
+                    }
+                },
+                'default_content': {
+                    'default_key': 'default_value',
+                    'custom_key': 'will_be_overridden'
+                }
+            }
+        }
+        path = make_tcgen_yaml(tmp_path, data)
+        config = ConfigTCGen(path)
+
+        content = config.get_member_content('cat1', 'm1')
+        assert content['default_key'] == 'default_value'
+        assert content['custom_key'] == 'custom_value'
+        assert content['category_name'] == 'cat1'
+        assert content['member_name'] == 'm1'

@@ -37,19 +37,41 @@ CP-lib/
 │   ├── comb/         # Combinatorics
 │   ├── conv/         # Convolution operations
 │   ├── ds/           # Data structures
+│   ├── edh/          # Edit distance / hashing
+│   ├── fast/         # Fast I/O and optimizations
+│   ├── game/         # Game theory algorithms
+│   ├── geo2d/        # 2D geometry
+│   ├── geo3d/        # 3D geometry
 │   ├── graph/        # Graph algorithms
+│   ├── io/           # Input/output utilities
+│   ├── lalg/         # Linear algebra
 │   ├── math/         # Mathematical algorithms
 │   ├── nt/           # Number theory
-│   └── ...           # Other algorithm categories
+│   ├── opt/          # Optimization algorithms
+│   ├── poly/         # Polynomial operations
+│   ├── rand/         # Random utilities
+│   ├── str/          # String algorithms
+│   ├── tree/         # Tree algorithms
+│   └── util/         # General utilities
 ├── test/             # Test files for online judge verification
 │   ├── aizu/         # Aizu online judge tests
-│   ├── library-checker/ # Library Checker tests
+│   ├── library-checker-*/ # Library Checker tests
 │   └── ...
 ├── libs/             # Python utility libraries
-├── tests/            # Python unit tests
+│   ├── classes/      # Core classes (Config, Section, etc.)
+│   ├── commands/     # CLI command implementations
+│   ├── latex_utils.py    # LaTeX utilities
+│   ├── typst_utils.py    # Typst utilities
+│   ├── testcase_matrix.py # Test case generation
+│   └── utils.py      # General utilities
+├── tests/            # Python tests (97%+ coverage)
+│   ├── unit/         # Unit tests
+│   ├── integration/  # Integration tests
+│   └── system/       # System tests
 ├── doc_md/           # Markdown documentation
 ├── doc_tex/          # LaTeX documentation source
-└── manager.py        # Python management script
+├── doc_typ/          # Typst documentation source
+└── manager.py        # Python management script (CLI entry point)
 ```
 
 ## Building and Testing
@@ -74,11 +96,25 @@ uv sync --frozen
 # Install with development dependencies
 uv sync --frozen --group dev
 
+# Install with LaTeX support
+uv sync --frozen --group latex
+
 # Run Python tests
 uv run pytest --cov=libs --cov-report=term-missing -v
 
+# Run specific test categories
+uv run pytest -m unit           # Unit tests only
+uv run pytest -m integration    # Integration tests only
+uv run pytest -m system         # System tests only
+
 # Python code style check
 uv run pycodestyle libs/ tests/
+
+# CLI usage
+uv run python manager.py --help
+uv run python manager.py gen-nb --help
+uv run python manager.py gen-cs --help
+uv run python manager.py gentc --help
 ```
 
 ### Verification System
@@ -90,15 +126,22 @@ uv run pycodestyle libs/ tests/
 
 ## Python Code Standards
 
-- **Version**: Python 3.11+ required (3.12+ preferred)
+- **Version**: Python 3.11+ required
 - **Package Manager**: Use `uv` for dependency management
 - **Style**: Follow PEP 8 (enforced by pycodestyle)
 - **Testing**: Use pytest with coverage reporting
+- **Test Markers**: `@pytest.mark.unit`, `@pytest.mark.integration`, `@pytest.mark.system`
 - **Key Dependencies**:
   - `click` - CLI framework
   - `coloredlogs` - Colored logging
+  - `multipledispatch` - Multiple dispatch support
   - `pyyaml` - YAML configuration
-  - `competitive-verifier` - Verification system
+- **Dev Dependencies**:
+  - `pytest` + `pytest-cov` - Testing and coverage
+  - `pycodestyle` - Style checking
+- **Optional Dependencies**:
+  - `pygments` - LaTeX syntax highlighting (latex group)
+  - `competitive-verifier` - Verification system (verify group)
 
 ## Documentation
 
@@ -118,6 +161,14 @@ uv run pycodestyle libs/ tests/
 - LaTeX sources in `doc_tex/` directory
 - Use `pygments` for code syntax highlighting
 - Requires LaTeX distribution with appropriate fonts
+- Generate with: `uv run python manager.py gen-nb -t tex && uv run python manager.py gen-nb -t typ`
+- Compile PDF: `uv run python manager.py run -t tex`
+
+### Typst Documentation
+- Typst sources in `doc_typ/` directory
+- Modern alternative to LaTeX with simpler syntax
+- Generate with: `uv run python manager.py gen-nb -t typ && uv run python manager.py gen-cs -t typ`
+- Compile PDF: `uv run python manager.py run -t typ`
 
 ## Security and Code Quality
 

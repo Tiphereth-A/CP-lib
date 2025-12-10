@@ -50,8 +50,6 @@ libs/
 4. Compile PDF (LaTeX or Typst)
 5. Clean temp files (`clean`)
 
-> **Performance**: Typst is ~10-20x faster than LaTeX.
-
 ## Core Components
 
 ### Decorators
