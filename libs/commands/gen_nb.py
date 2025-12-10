@@ -68,8 +68,9 @@ def generate_empty_notebook_contents(doc_type: str = 'tex', override_exists: boo
 
 @with_logger
 @with_timer
-def generate_notebook_contents(doc_type: str = 'tex', logger: logging.Logger = None, **kwargs):
+def generate_notebook_contents(doc_type: str = 'tex', **kwargs):
     """Generate notebook contents from chapters and sections."""
+    logger = kwargs.get('logger')
     chapters = file_preprocess(
         CONFIG.get_chapter_key(),
         scandir_dir_merge(CONFIG.get_code_dir(), CONFIG.get_doc_dir()),
