@@ -174,8 +174,9 @@ class TestTypstFunctions:
         """Test code listing with relative path adjustment."""
         p = PathTypst('include/util/util.hpp')
         result = typst_listing_code(p, 'cpp')
-        # Check that path is adjusted with ../
-        assert any('../include' in s for s in result if isinstance(s, str))
+        # Check that path uses fixpath function
+        assert any('fixpath(' in s for s in result if isinstance(s, str))
+        assert any('include/util/util.hpp' in s for s in result if isinstance(s, str))
 
     def test_typst_listing_code_range(self):
         """Test code listing with line range."""
@@ -192,8 +193,9 @@ class TestTypstFunctions:
         """Test code listing range with path adjustment."""
         p = PathTypst('include/math/gcd.hpp')
         result = typst_listing_code_range(p, 'cpp', 1, 10)
-        # Should adjust path with ../
-        assert any('../include' in s for s in result if isinstance(s, str))
+        # Should use fixpath function
+        assert any('fixpath(' in s for s in result if isinstance(s, str))
+        assert any('include/math/gcd.hpp' in s for s in result if isinstance(s, str))
 
 
 class TestConstantsAndEdgeCases:

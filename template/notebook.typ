@@ -127,10 +127,16 @@
   }
 }
 
+// Path fix function matching LaTeX \fixpath
+// Prepends ../ to paths for files in _gen/ directory
+#let fixpath(path) = {
+  "../" + path
+}
+
 // Title page
 #align(center)[
   #v(3cm)
-  #image("../img/cplib-logo-ba-style.png", height: 6cm)
+  #image(fixpath("img/cplib-logo-ba-style.png"), height: 6cm)
   
   #v(6cm)
   
@@ -156,13 +162,13 @@
 
 本书代码默认数组下标从 $0$ 开始 ($[0, n)$), 故需注意题目下标是从 $0$ 开始 ($[0, n)$) 还是从 $1$ 开始 ($[1, n]$)
 
-#raw(read("../src/main.cpp"), lang: "cpp")
+#raw(read(fixpath("src/main.cpp")), lang: "cpp")
 
-#raw(read("../src/test.cpp"), lang: "cpp")
+#raw(read(fixpath("src/test.cpp")), lang: "cpp")
 
-#raw(read("../src/.clang-format"), lang: "yaml")
+#raw(read(fixpath("src/.clang-format")), lang: "yaml")
 
-#raw(read("../src/run.sh"), lang: "bash")
+#raw(read(fixpath("src/run.sh")), lang: "bash")
 
 #pagebreak()
 
@@ -182,8 +188,8 @@
 #counter(page).update(1)
 
 // Include generated contents
-#include "../_gen/contents_notebook.typ"
-#include "../_gen/contents_cheatsheet.typ"
+#include fixpath("_gen/contents_notebook.typ")
+#include fixpath("_gen/contents_cheatsheet.typ")
 
 // Note: PDF embedding for cheat.pdf would need additional handling in Typst
 // Typst doesn't have direct PDF embedding like LaTeX's \includepdf

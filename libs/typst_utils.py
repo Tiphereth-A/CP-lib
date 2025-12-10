@@ -88,11 +88,10 @@ def typst_section(name: NameTypst, **kwargs) -> list[str]:
 @with_logger
 def typst_listing_code(path: PathTypst, file_type: str, **kwargs) -> list[str]:
     """Generate Typst code listing command."""
-    # Adjust path to be relative from _gen/ directory
-    adjusted_path = '../' + path.get() if not path.get().startswith('../') else path.get()
+    # Use fixpath function to adjust path relative from _gen/ directory
     return [
         f'Path: `{path.get()}`\n\n',
-        f'#raw(read("{adjusted_path}"), lang: "{file_type}")\n',
+        f'#raw(read(fixpath("{path.get()}")), lang: "{file_type}")\n',
         '\n'
     ]
 
@@ -101,10 +100,9 @@ def typst_listing_code(path: PathTypst, file_type: str, **kwargs) -> list[str]:
 def typst_listing_code_range(path: PathTypst, file_type: str, begin: int, end: int, **kwargs) -> list[str]:
     """Generate Typst code listing command with line range."""
     # Typst doesn't have built-in line range support, so we'll read and slice
-    # Adjust path to be relative from _gen/ directory
-    adjusted_path = '../' + path.get() if not path.get().startswith('../') else path.get()
+    # Use fixpath function to adjust path relative from _gen/ directory
     return [
         f'Path: `{path.get()}`\n\n',
-        f'#raw(read("{adjusted_path}").split("\\n").slice({begin - 1}, {end}).join("\\n"), lang: "{file_type}")\n',
+        f'#raw(read(fixpath("{path.get()}")).split("\\n").slice({begin - 1}, {end}).join("\\n"), lang: "{file_type}")\n',
         '\n'
     ]
