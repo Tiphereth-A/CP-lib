@@ -15,13 +15,14 @@ def lint_all_codes(code_type: str, **kwargs):
     """Format all code files of the specified type."""
     logger = kwargs.get('logger')
 
+    # Collect directories - include both tex and typ directories for notebook and cheatsheet
+    dirs = [CONFIG.get_code_dir(), CONFIG.get_usage_dir()]
+    for doc_type in ['tex', 'typ']:
+        dirs.append(CONFIG.get_doc_dir(doc_type=doc_type))
+        dirs.append(CONFIG.get_cheatsheet_dir(doc_type=doc_type))
+    
     filepaths = get_full_filenames(
-        [
-            CONFIG.get_code_dir(),
-            CONFIG.get_doc_dir(doc_type=doc_type),
-            CONFIG.get_cheatsheet_dir(doc_type=doc_type),
-            CONFIG.get_usage_dir()
-        ],
+        dirs,
         CONFIG.get_ext_names_by_file_type(code_type)
     )
 

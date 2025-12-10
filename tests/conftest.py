@@ -81,7 +81,7 @@ def sample_config_data() -> dict[str, Any]:
             'cpp': 'cpp'
         },
         'code_type_list': ['cpp'],
-        'doc_type_list': [],
+        'doc_type_list': ['tex', 'typ'],
         'notebook': {
             'chapters': {
                 'ch1': 'Chapter 1'
@@ -97,7 +97,10 @@ def sample_config_data() -> dict[str, Any]:
         'cheatsheets': {
             'cs1': 'Cheatsheet 1'
         },
-        'cheatsheet_dir': 'cheatsheet',
+        'cheatsheet_dir': {
+            'tex': 'cheatsheet',
+            'typ': 'cheatsheet_typ'
+        },
         'usage_dir': 'usage',
         'formatting_commands': {
             'cpp': 'clang-format -i {src}'

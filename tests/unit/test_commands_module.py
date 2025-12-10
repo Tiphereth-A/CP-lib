@@ -63,7 +63,7 @@ class FakeConfig:
     def get_cheatsheets(self) -> list[str]:
         return ['cs1']
 
-    def get_cheatsheet_dir(self) -> str:
+    def get_cheatsheet_dir(self, doc_type: str = 'tex') -> str:
         return self.base
 
     def get_cheatsheet_name(self, name: str) -> str:
@@ -201,7 +201,7 @@ class TestGenerateCheatsheetContents:
             def get_cheatsheets(self) -> list[str]:
                 return ['subdir/mycs']
 
-            def get_cheatsheet_dir(self) -> str:
+            def get_cheatsheet_dir(self, doc_type: str = 'tex') -> str:
                 return str(base)
 
             def get_cheatsheet_name(self, name: str) -> str:
@@ -359,7 +359,7 @@ class TestGenerateSectionsFromFiles:
             def debug(self, *args: Any, **kwargs: Any) -> None:
                 pass
 
-        result = gen_nb._generate_sections_from_files('ch', logger=MockLogger())
+        result = gen_nb._generate_sections_from_files('ch', 'tex', logger=MockLogger())
         assert any(s.name == 'a' for s in result)
 
 
@@ -710,7 +710,7 @@ class TestGenerateSectionsUsageError:
                 pass
 
         with pytest.raises(KeyError, match='Missing code file'):
-            gen_nb._generate_sections_from_files('ch', logger=MockLogger())
+            gen_nb._generate_sections_from_files('ch', 'tex', logger=MockLogger())
 
 
 # =============================================================================

@@ -99,8 +99,10 @@ class TestConfigDirectoryMethods:
 
     def test_get_doc_dir(self, test_config: Config) -> None:
         """Test getting doc directory."""
-        doc_dir = test_config.get_doc_dir(doc_type=doc_type)
-        assert doc_dir == 'doc'
+        doc_dir_tex = test_config.get_doc_dir(doc_type='tex')
+        doc_dir_typ = test_config.get_doc_dir(doc_type='typ')
+        assert doc_dir_tex == 'doc'
+        assert doc_dir_typ == 'doc_typ'
 
 
 # =============================================================================
@@ -195,7 +197,7 @@ class TestConfigComprehensive:
             'default_file_type': 'cs',
             'file_types': {'.cpp': 'cs', '.py': 'pycs'},
             'code_type_list': ['cs', 'pycs'],
-            'doc_type_list': [],
+            'doc_type_list': ['tex', 'typ'],
             'run_usage_commands': {'cs': 'run {src}'},
             'formatting_commands': {'cs': 'fmt {src}'}
         }
@@ -209,7 +211,7 @@ class TestConfigComprehensive:
     def test_basic_directory_methods(self, full_config: Config) -> None:
         """Test basic directory retrieval methods."""
         assert full_config.get_code_dir() == 'code'
-        assert full_config.get_doc_dir(doc_type=doc_type) == 'doc'
+        assert full_config.get_doc_dir(doc_type='tex') == 'doc'
 
     def test_chapter_methods(self, full_config: Config) -> None:
         """Test chapter retrieval methods."""
