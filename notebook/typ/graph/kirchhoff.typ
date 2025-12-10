@@ -1,4 +1,4 @@
-#import "../../template/common.typ": *
+#import "../../../template/common.typ": *
 
 === 定义
 

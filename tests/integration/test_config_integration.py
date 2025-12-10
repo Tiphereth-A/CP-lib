@@ -73,7 +73,7 @@ class TestConfigIntegration:
     ) -> None:
         """Test that directory methods return consistent results."""
         code_dir = test_config.get_code_dir()
-        doc_dir = test_config.get_doc_dir()
+        doc_dir = test_config.get_doc_dir(doc_type=doc_type)
 
         # Directories should be strings
         assert isinstance(code_dir, str)

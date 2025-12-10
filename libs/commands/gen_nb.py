@@ -73,7 +73,8 @@ def generate_notebook_contents(doc_type: str = 'tex', **kwargs):
     logger = kwargs.get('logger')
     chapters = file_preprocess(
         CONFIG.get_chapter_key(),
-        scandir_dir_merge(CONFIG.get_code_dir(), CONFIG.get_doc_dir()),
+        scandir_dir_merge(CONFIG.get_code_dir(),
+                          CONFIG.get_doc_dir(doc_type=doc_type)),
         logger
     )
     logger.info(f"{len(chapters)} chapter(s) found")
@@ -102,7 +103,8 @@ def _write_chapter(f, chapter: str, logger: logging.Logger, doc_type: str = 'tex
 
     # Generate sections from existing files
     logger.debug("Getting section from existing files")
-    sections_generated = _generate_sections_from_files(chapter, logger)
+    sections_generated = _generate_sections_from_files(
+        chapter, doc_type, logger)
     logger.info(
         f"{len(sections_generated)} section(s) generated from existing files")
 
@@ -115,11 +117,11 @@ def _write_chapter(f, chapter: str, logger: logging.Logger, doc_type: str = 'tex
         _write_section(f, section, logger, doc_type=doc_type)
 
 
-def _generate_sections_from_files(chapter: str, logger: logging.Logger) -> list[Section]:
+def _generate_sections_from_files(chapter: str, doc_type: str, logger: logging.Logger) -> list[Section]:
     """Generate sections from files found in filesystem."""
     # Cache config dirs to avoid repeated calls
     code_base_dir = CONFIG.get_code_dir()
-    doc_base_dir = CONFIG.get_doc_dir()
+    doc_base_dir = CONFIG.get_doc_dir(doc_type=doc_type)
     usage_base_dir = CONFIG.get_usage_dir()
 
     code_dir = os.path.join(code_base_dir, chapter)

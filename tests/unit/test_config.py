@@ -99,7 +99,7 @@ class TestConfigDirectoryMethods:
 
     def test_get_doc_dir(self, test_config: Config) -> None:
         """Test getting doc directory."""
-        doc_dir = test_config.get_doc_dir()
+        doc_dir = test_config.get_doc_dir(doc_type=doc_type)
         assert doc_dir == 'doc'
 
 
@@ -209,7 +209,7 @@ class TestConfigComprehensive:
     def test_basic_directory_methods(self, full_config: Config) -> None:
         """Test basic directory retrieval methods."""
         assert full_config.get_code_dir() == 'code'
-        assert full_config.get_doc_dir() == 'doc'
+        assert full_config.get_doc_dir(doc_type=doc_type) == 'doc'
 
     def test_chapter_methods(self, full_config: Config) -> None:
         """Test chapter retrieval methods."""

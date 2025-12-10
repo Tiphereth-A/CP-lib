@@ -1,4 +1,4 @@
-#import "../../template/common.typ": *
+#import "../../../template/common.typ": *
 
 区间修改,区间查询
 

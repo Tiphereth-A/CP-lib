@@ -1,4 +1,4 @@
-#import "../../template/common.typ": *
+#import "../../../template/common.typ": *
 
 凸包与 Minkowski 和的一种极简实现
 

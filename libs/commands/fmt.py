@@ -18,8 +18,8 @@ def lint_all_codes(code_type: str, **kwargs):
     filepaths = get_full_filenames(
         [
             CONFIG.get_code_dir(),
-            CONFIG.get_doc_dir(),
-            CONFIG.get_cheatsheet_dir(),
+            CONFIG.get_doc_dir(doc_type=doc_type),
+            CONFIG.get_cheatsheet_dir(doc_type=doc_type),
             CONFIG.get_usage_dir()
         ],
         CONFIG.get_ext_names_by_file_type(code_type)
