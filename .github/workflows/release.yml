@@ -74,7 +74,7 @@ jobs:
       - name: Restore fonts cache
         if: ${{ !inputs.ignore_font_cache }}
         id: cache-fonts
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: fonts
           key: fonts-${{ hashFiles('Makefile') }}
@@ -89,7 +89,7 @@ jobs:
             echo "::endgroup::"
       - name: Save fonts cache
         if: ${{ steps.cache-fonts.outputs.cache-hit != 'true' }}
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: fonts
           key: fonts-${{ hashFiles('Makefile') }}
