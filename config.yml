@@ -36,7 +36,16 @@ code_type_list:
 doc_type_list:
 - tex
 - typ
-export_usage_code_in_notebook: true
+run_usage_commands:
+  cpp: g++ -std=gnu++20 {src}
+formatting_commands:
+  cpp: clang-format --Wno-error=unknown -style=file -i {src}
+  tex: latexindent --cruft=/ -l -s {src} -o {src}
+  typ: echo 'Typst formatting not available'
+compile_pdf_commands:
+  tex: latexmk -cd -xelatex -file-line-error -halt-on-error -interaction=nonstopmode
+    -shell-escape -synctex=1 -outdir=../_pdf_out -time {src}
+  typ: typst compile --root . {src} {out}
 notebook:
   chapters:
     util: 杂项
@@ -1525,13 +1534,3 @@ cheatsheets:
   bash: Bash 简单用法
   vim: Vim 简单用法
   integral: 积分表
-run_usage_commands:
-  cpp: g++ -std=gnu++20 {src}
-formatting_commands:
-  cpp: clang-format --Wno-error=unknown -style=file -i {src}
-  tex: latexindent --cruft=/ -l -s {src} -o {src}
-  typ: echo 'Typst formatting not available'
-compile_pdf_commands:
-  tex: latexmk -cd -xelatex -file-line-error -halt-on-error -interaction=nonstopmode
-    -shell-escape -synctex=1 -outdir=../_pdf_out -time {src}
-  typ: typst compile --root . {src} {out}

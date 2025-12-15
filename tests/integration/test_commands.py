@@ -182,7 +182,6 @@ class TestTypstContentGeneration:
         mock_config.get_usage_dir.return_value = str(sample_dirs['usage'])
         mock_config.get_all_code_ext_names.return_value = {'cpp'}
         mock_config.get_file_type.return_value = 'cpp'
-        mock_config.export_usage_code_in_notebook.return_value = True
         mock_scandir_dir.return_value = ['test_ch']
         mock_scandir_file.return_value = []
 
@@ -247,7 +246,6 @@ class TestTypstContentGeneration:
         mock_config.get_usage_dir.return_value = str(sample_dirs['usage'])
         mock_config.get_all_code_ext_names.return_value = {'cpp'}
         mock_config.get_file_type.return_value = 'cpp'
-        mock_config.export_usage_code_in_notebook.return_value = True
         mock_scandir_dir.return_value = ['ch1']
         mock_scandir_file.return_value = []
 

@@ -193,7 +193,6 @@ class TestConfigComprehensive:
                 'typ': 'notebook/typ'
             },
             'cheatsheets': {'cs1': 'CS1'},
-            'export_usage_code_in_notebook': True,
             'default_file_type': 'cs',
             'file_types': {'.cpp': 'cs', '.py': 'pycs'},
             'code_type_list': ['cs', 'pycs'],
@@ -247,7 +246,6 @@ class TestConfigComprehensive:
 
     def test_file_type_methods(self, full_config: Config) -> None:
         """Test file type methods."""
-        assert full_config.export_usage_code_in_notebook() is True
         assert full_config.get_default_file_type() == 'cs'
         assert full_config.get_file_type('.cpp') == 'cs'
         assert full_config.get_file_type('.unknown') == 'cs'
@@ -286,7 +284,6 @@ class TestConfigPdfCompilation:
             'notebook_file_dir': 'template',
             'notebook_file': 'notebook',
             'cheatsheets': {},
-            'export_usage_code_in_notebook': True,
             'default_file_type': 'cpp',
             'file_types': {'.tex': 'tex', '.typ': 'typ'},
             'code_type_list': ['cpp'],
@@ -358,7 +355,6 @@ class TestConfigPdfPlaceholderHandling:
             'notebook_file_dir': 'template',
             'notebook_file': 'notebook',
             'cheatsheets': {},
-            'export_usage_code_in_notebook': True,
             'default_file_type': 'cpp',
             'file_types': {},
             'code_type_list': ['cpp'],
@@ -449,7 +445,6 @@ class TestConfigAdditionalCoverage:
             'notebook_file_dir': 'template',
             'notebook_file': 'notebook',
             'cheatsheets': {'cs1': 'Cheatsheet 1'},
-            'export_usage_code_in_notebook': False,
             'default_file_type': 'cpp',
             'file_types': {'cpp': 'cpp', 'hpp': 'cpp', 'py': 'python'},
             'code_type_list': ['cpp', 'python'],
@@ -498,10 +493,6 @@ class TestConfigAdditionalCoverage:
         extended_config.append_section(section)
         # Should warn and skip - no error raised
 
-    def test_export_usage_code_false(self, extended_config: Config) -> None:
-        """Test export_usage_code_in_notebook returns False."""
-        assert extended_config.export_usage_code_in_notebook() is False
-
     def test_get_code_type_list(self, extended_config: Config) -> None:
         """Test getting code type list."""
         types = extended_config.get_code_type_list()
@@ -549,7 +540,6 @@ class TestConfigKeyErrorPaths:
             'notebook_file_dir': 'template',
             'notebook_file': 'notebook',
             'cheatsheets': {},
-            'export_usage_code_in_notebook': False,
             'default_file_type': 'cpp',
             'file_types': {'cpp': 'cpp'},
             'code_type_list': ['cpp', 'python'],
@@ -597,7 +587,6 @@ class TestConfigNotebookMethods:
             'notebook_file_dir': 'template',
             'notebook_file': 'notebook',
             'cheatsheets': {},
-            'export_usage_code_in_notebook': False,
             'default_file_type': 'cpp',
             'file_types': {},
             'code_type_list': [],

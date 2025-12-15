@@ -72,9 +72,6 @@ class FakeConfig:
     def get_file_type(self, ext: str) -> str:
         return 'cs'
 
-    def export_usage_code_in_notebook(self) -> bool:
-        return True
-
     def append_section(self, sec: Section) -> None:
         self._appended = True
 
@@ -579,9 +576,6 @@ class TestWriteSectionTypst:
             def get_file_type(self, ext: str) -> str:
                 return 'cpp'
 
-            def export_usage_code_in_notebook(self) -> bool:
-                return False
-
         monkeypatch.setattr(gen_nb, 'CONFIG', FakeConfigTypst())
 
         # Create files
@@ -635,9 +629,6 @@ class TestWriteSectionHppTypst:
 
             def get_file_type(self, ext: str) -> str:
                 return 'cpp'
-
-            def export_usage_code_in_notebook(self) -> bool:
-                return True
 
         monkeypatch.setattr(gen_nb, 'CONFIG', FakeConfigHpp())
 

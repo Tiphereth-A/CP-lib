@@ -39,9 +39,6 @@ class Config(ConfigBase):
     def _get_notebook_file_raw(self) -> str:
         return self.items('notebook_file')
 
-    def _get_export_usage_code_in_notebook_raw(self) -> bool:
-        return self.items('export_usage_code_in_notebook')
-
     def _get_default_file_type_raw(self) -> str:
         return self.items('default_file_type')
 
@@ -178,10 +175,6 @@ class Config(ConfigBase):
             kwargs.get('logger').warning(
                 rf"title name of cheatsheet section '{cheatsheet}' is not found, use '{cheatsheet}' instead")
             return cheatsheet
-
-    @with_logger
-    def export_usage_code_in_notebook(self, **kwargs) -> bool:
-        return self._get_export_usage_code_in_notebook_raw()
 
     @with_logger
     def get_default_file_type(self, **kwargs) -> str:

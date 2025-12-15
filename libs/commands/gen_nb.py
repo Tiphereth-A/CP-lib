@@ -208,8 +208,8 @@ def _write_section(f, section: Section, logger: logging.Logger, doc_type: str = 
             f.writelines(typst_listing_code(
                 PathTypst(code_filepath), file_type))
 
-    # Write usage code if enabled and file is not empty
-    if CONFIG.export_usage_code_in_notebook() and os.path.getsize(usage_filepath):
+    # Write usage code if file is not empty
+    if os.path.getsize(usage_filepath):
         usage_style = CONFIG.get_file_type(section.usage_ext)
         if doc_type == 'tex':
             f.writelines(latex_listing_code(
