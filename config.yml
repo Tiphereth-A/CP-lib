@@ -32,10 +32,10 @@ file_types:
   typ: typ
 default_file_type: plaintext
 code_type_list:
-  - cpp
+- cpp
 doc_type_list:
-  - tex
-  - typ
+- tex
+- typ
 export_usage_code_in_notebook: true
 notebook:
   chapters:
@@ -1526,12 +1526,12 @@ cheatsheets:
   vim: Vim 简单用法
   integral: 积分表
 run_usage_commands:
-  cpp: "g++ -std=gnu++20 {src}"
+  cpp: g++ -std=gnu++20 {src}
 formatting_commands:
-  cpp: "clang-format --Wno-error=unknown -style=file -i {src}"
-  tex: "latexindent --cruft=/ -l -s {src} -o {src}"
-  # Note: Typst doesn't have a standard formatter yet, using no-op command
-  typ: "echo 'Typst formatting not available'"
+  cpp: clang-format --Wno-error=unknown -style=file -i {src}
+  tex: latexindent --cruft=/ -l -s {src} -o {src}
+  typ: echo 'Typst formatting not available'
 compile_pdf_commands:
-  tex: "latexmk -cd -xelatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -synctex=1 -outdir=../_pdf_out -time {src}"
-  typ: "typst compile --root . {src} {out}"
+  tex: latexmk -cd -xelatex -file-line-error -halt-on-error -interaction=nonstopmode
+    -shell-escape -synctex=1 -outdir=../_pdf_out -time {src}
+  typ: typst compile --root . {src} {out}
