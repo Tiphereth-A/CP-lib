@@ -42,7 +42,7 @@ def add_new_note(chapter_name: str, file_name: str, section_title: str, code_ext
         doc_ext='typ'
     )
     with open(doc_path_typ, 'x') as f_doc_typ:
-        pass
+        f_doc_typ.write('#import "../../../template/common.typ": *\n')
     logger.info('Created Typst doc file')
 
     # Log created file paths
