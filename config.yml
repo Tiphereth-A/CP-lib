@@ -1,7 +1,11 @@
 notebook_code_dir: include
-notebook_doc_dir: doc_tex
+notebook_doc_dir:
+  tex: notebook/tex
+  typ: notebook/typ
 competitive_verifier_doc_dir: doc_md
-cheatsheet_dir: cheatsheet
+cheatsheet_dir:
+  tex: cheatsheet/tex
+  typ: cheatsheet/typ
 usage_dir: usage
 notebook_file_dir: template
 notebook_file: notebook
@@ -28,11 +32,20 @@ file_types:
   typ: typ
 default_file_type: plaintext
 code_type_list:
-  - cpp
+- cpp
 doc_type_list:
-  - tex
-  - typ
-export_usage_code_in_notebook: true
+- tex
+- typ
+run_usage_commands:
+  cpp: g++ -std=gnu++20 {src}
+formatting_commands:
+  cpp: clang-format --Wno-error=unknown -style=file -i {src}
+  tex: latexindent --cruft=/ -l -s {src} -o {src}
+  typ: echo 'Typst formatting not available'
+compile_pdf_commands:
+  tex: latexmk -cd -xelatex -file-line-error -halt-on-error -interaction=nonstopmode
+    -shell-escape -synctex=1 -outdir=../_pdf_out -time {src}
+  typ: typst compile --root . {src} {out}
 notebook:
   chapters:
     util: 杂项
@@ -1521,10 +1534,3 @@ cheatsheets:
   bash: Bash 简单用法
   vim: Vim 简单用法
   integral: 积分表
-run_usage_commands:
-  cpp: "g++ -std=gnu++20 {src}"
-formatting_commands:
-  cpp: "clang-format --Wno-error=unknown -style=file -i {src}"
-  tex: "latexindent --cruft=/ -l -s {src} -o {src}"
-compile_pdf_commands:
-  tex: "latexmk -cd -xelatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -synctex=1 -outdir=../_pdf_out -time {src}"

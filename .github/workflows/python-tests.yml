@@ -29,12 +29,13 @@ concurrency:
 
 jobs:
   test:
-    name: Python Tests
-    runs-on: ubuntu-latest
     strategy:
       matrix:
+        os-version: [ubuntu-latest, windows-latest, macos-latest]
         python-version: ["3.11", "3.12", "3.13", "3.14"]
 
+    name: Python Tests ${{ matrix.os-version }} - ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os-version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6

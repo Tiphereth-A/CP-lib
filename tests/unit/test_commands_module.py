@@ -1,305 +1,735 @@
+"""Unit tests for command modules.
+
+This module tests the various command modules including notebook generation,
+cheatsheet generation, test code generation, and usage running.
+"""
+
 import os
 import subprocess
+from pathlib import Path
+from typing import Any
 
-import libs.commands.gen_nb as gen_nb
+import pytest
+
 import libs.commands.gen_cs as gen_cs
+import libs.commands.gen_nb as gen_nb
 import libs.commands.gentc as gentc
 import libs.commands.new as newmod
 import libs.commands.run_usage as run_usage_mod
+import libs.commands.compile_pdf as compile_pdf_mod
 import libs.testcase_matrix as tm
+from libs.classes.section import Section
 
 
-def test_load_from_no_duplicates(monkeypatch):
-    # monkeypatch scandir_file_merge to return filenames
-    monkeypatch.setattr(gen_nb, 'scandir_file_merge',
-                        lambda exts, d: ['a.cpp', 'b.py'])
-    monkeypatch.setattr(gen_nb, 'parse_filename', lambda fn: (
-        fn.rsplit('.', 1)[0], fn.rsplit('.', 1)[1]))
-    # should not raise
-    res = gen_nb.load_from('some_dir')
-    assert isinstance(res, list)
+pytestmark = pytest.mark.unit
 
 
-def test_load_from_debug_branch(monkeypatch):
-    # ensure scandir_file_merge returns non-empty to trigger debug logging
-    monkeypatch.setattr(gen_nb, 'scandir_file_merge',
-                        lambda exts, d: ['x.cpp'])
-    monkeypatch.setattr(gen_nb, 'parse_filename', lambda fn: (
-        fn.rsplit('.', 1)[0], fn.rsplit('.', 1)[1]))
-    res = gen_nb.load_from('some_dir')
-    assert res
+# =============================================================================
+# Helper Classes
+# =============================================================================
 
 
-def test_load_from_duplicates_raises(monkeypatch):
-    monkeypatch.setattr(gen_nb, 'scandir_file_merge',
-                        lambda exts, d: ['a.cpp', 'a.py'])
-    monkeypatch.setattr(gen_nb, 'parse_filename', lambda fn: (
-        fn.rsplit('.', 1)[0], fn.rsplit('.', 1)[1]))
-    try:
-        gen_nb.load_from('d')
-        assert False, 'should have raised FileExistsError'
-    except FileExistsError:
-        pass
+class FakeConfig:
+    """Fake config for testing command modules."""
+
+    def __init__(self, base: Path) -> None:
+        self.base = str(base)
+        self._appended = False
+
+    def get_chapter_key(self) -> list[str]:
+        return ['c1']
+
+    def get_sections_by_chapter(self, ch: str) -> list[Any]:
+        return []
+
+    def get_code_dir(self) -> str:
+        return self.base
+
+    def get_doc_dir(self, doc_type: str = 'tex') -> str:
+        return self.base
+
+    def get_cvdoc_dir(self) -> str:
+        return self.base
+
+    def get_usage_dir(self) -> str:
+        return self.base
+
+    def get_chapter_title(self, ch: str) -> str:
+        return 'Title'
+
+    def get_all_code_ext_names(self) -> list[str]:
+        return ['.cpp']
+
+    def get_cheatsheets(self) -> list[str]:
+        return ['cs1']
+
+    def get_cheatsheet_dir(self, doc_type: str = 'tex') -> str:
+        return self.base
+
+    def get_cheatsheet_name(self, name: str) -> str:
+        return name.upper()
+
+    def get_file_type(self, ext: str) -> str:
+        return 'cs'
+
+    def append_section(self, sec: Section) -> None:
+        self._appended = True
+
+    def get_ext_names_by_file_type(self, code: str) -> list[str]:
+        return ['in']
+
+    def get_run_usage_command(self, code: str, filepath: str) -> list[str]:
+        return ['echo', filepath]
 
 
-def test_generate_notebook_and_cheatsheet(tmp_path, monkeypatch):
-    # fake CONFIG for both modules
-    class FakeCfg:
-        def __init__(self, base):
-            self.base = str(base)
+# =============================================================================
+# gen_nb Module Tests
+# =============================================================================
 
-        def get_chapter_key(self):
-            return ['c1']
 
-        def get_sections_by_chapter(self, ch):
+class TestGenNbLoadFrom:
+    """Tests for gen_nb.load_from function."""
+
+    def test_no_duplicates(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Test load_from with no duplicate files."""
+        monkeypatch.setattr(
+            gen_nb, 'scandir_file_merge',
+            lambda exts, d: ['a.cpp', 'b.py']
+        )
+        monkeypatch.setattr(
+            gen_nb, 'parse_filename',
+            lambda fn: (fn.rsplit('.', 1)[0], fn.rsplit('.', 1)[1])
+        )
+
+        result = gen_nb.load_from('some_dir')
+        assert isinstance(result, list)
+
+    def test_debug_branch(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Test load_from triggers debug logging with non-empty results."""
+        monkeypatch.setattr(
+            gen_nb, 'scandir_file_merge',
+            lambda exts, d: ['x.cpp']
+        )
+        monkeypatch.setattr(
+            gen_nb, 'parse_filename',
+            lambda fn: (fn.rsplit('.', 1)[0], fn.rsplit('.', 1)[1])
+        )
+
+        result = gen_nb.load_from('some_dir')
+        assert result
+
+    def test_duplicates_raises(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Test load_from raises FileExistsError for duplicates."""
+        monkeypatch.setattr(
+            gen_nb, 'scandir_file_merge',
+            lambda exts, d: ['a.cpp', 'a.py']
+        )
+        monkeypatch.setattr(
+            gen_nb, 'parse_filename',
+            lambda fn: (fn.rsplit('.', 1)[0], fn.rsplit('.', 1)[1])
+        )
+
+        with pytest.raises(FileExistsError):
+            gen_nb.load_from('d')
+
+
+class TestGenerateNotebookContents:
+    """Tests for notebook content generation."""
+
+    def test_generate_notebook(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test generating notebook contents."""
+        fake = FakeConfig(tmp_path)
+        monkeypatch.setattr(gen_nb, 'CONFIG', fake)
+        monkeypatch.setattr(
+            gen_nb, 'file_preprocess',
+            lambda a, b, logger=None: ['c1']
+        )
+        monkeypatch.setattr(gen_nb, 'scandir_dir_merge', lambda a, b: [])
+        monkeypatch.setattr(gen_nb, 'scandir_file_merge', lambda exts, d: [])
+
+        gen_nb.generate_notebook_contents()
+
+        contents_nb = os.path.join(gen_nb.CONTENTS_DIR, 'contents_notebook.tex')
+        assert os.path.exists(contents_nb)
+
+
+# =============================================================================
+# gen_cs Module Tests
+# =============================================================================
+
+
+class TestGenerateCheatsheetContents:
+    """Tests for cheatsheet content generation."""
+
+    def test_generate_cheatsheet(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test generating cheatsheet contents."""
+        fake = FakeConfig(tmp_path)
+        monkeypatch.setattr(gen_cs, 'CONFIG', fake)
+        monkeypatch.setattr(
+            gen_cs, 'scandir_file_merge',
+            lambda exts, d: ['cs1.tex']
+        )
+        monkeypatch.setattr(
+            gen_cs, 'file_preprocess',
+            lambda a, b, logger=None: ['cs1.tex']
+        )
+
+        gen_cs.generate_cheatsheet_contents()
+
+        contents_cs = os.path.join(gen_cs.CONTENTS_DIR, 'contents_cheatsheet.tex')
+        assert os.path.exists(contents_cs)
+
+    def test_generate_cheatsheet_with_subdir(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test generating cheatsheet with subdirectory."""
+        base = tmp_path / 'cheats'
+        base.mkdir()
+        sub = base / 'subdir'
+        sub.mkdir()
+        f = sub / 'mycs.tex'
+        f.write_text('content', encoding='utf-8')
+
+        class FakeCfgWithSubdir:
+            def get_cheatsheets(self) -> list[str]:
+                return ['subdir/mycs']
+
+            def get_cheatsheet_dir(self, doc_type: str = 'tex') -> str:
+                return str(base)
+
+            def get_cheatsheet_name(self, name: str) -> str:
+                return name.upper()
+
+        monkeypatch.setattr(gen_cs, 'CONFIG', FakeCfgWithSubdir())
+        monkeypatch.setattr(
+            gen_cs, 'scandir_file_merge',
+            lambda exts, d: ['subdir/mycs.tex']
+        )
+
+        gen_cs.generate_cheatsheet_contents()
+
+        contents_cs = os.path.join(gen_cs.CONTENTS_DIR, 'contents_cheatsheet.tex')
+        assert os.path.exists(contents_cs)
+
+
+# =============================================================================
+# gentc Module Tests
+# =============================================================================
+
+
+class TestGentcGenerateTestcode:
+    """Tests for gentc.generate_testcode function."""
+
+    def test_no_source_files(
+        self, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+    ) -> None:
+        """Test generate_testcode with no source files."""
+        monkeypatch.setattr(gentc, 'get_full_filenames', lambda paths, exts: [])
+        # Should run without exception
+        gentc.generate_testcode(str(tmp_path), str(tmp_path))
+
+    def test_full_generate_and_remove_old(
+        self, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+    ) -> None:
+        """Test full generation and removal of old files."""
+        src = tmp_path / 'src'
+        tgt = tmp_path / 'tgt'
+        src.mkdir()
+        tgt.mkdir()
+
+        src_file = src / 'f.cppmeta'
+        src_file.write_text(
+            'header\n' + tm._GENTC_BEGIN + tm._GENTC_END + tm._GENTC_MAIN + '\n'
+        )
+
+        old_target = tgt / 'old.cpp'
+        old_target.write_text('#define AUTO_GENERATED\nold', encoding='utf-8')
+
+        def fake_get_full_filenames(paths: list[str], exts: list[str]) -> list[str]:
+            if exts == ['cppmeta']:
+                return [str(src_file)]
+            if exts == ['cpp']:
+                return [str(old_target)]
             return []
 
-        def get_code_dir(self):
-            return self.base
+        monkeypatch.setattr(gentc, 'get_full_filenames', fake_get_full_filenames)
 
-        def get_doc_dir(self):
-            return self.base
+        class FakeParser:
+            def __init__(self, noext: str, target_dir: str, lines: list[str]) -> None:
+                self.target_dir = target_dir
 
-        def get_cvdoc_dir(self):
-            return self.base
+            def get_results(self) -> list[tuple[str, list[str]]]:
+                return [(
+                    str(tgt / 'new.test.cpp'),
+                    ['#define AUTO_GENERATED\n', 'int main(){}\n']
+                )]
 
-        def get_usage_dir(self):
-            return self.base
+        monkeypatch.setattr(gentc, 'cppmeta_parser', FakeParser)
 
-        def get_chapter_title(self, ch):
-            return 'Title'
+        gentc.generate_testcode(str(src), str(tgt))
 
-        def get_all_code_ext_names(self):
-            return ['.cpp']
-
-        def get_cheatsheets(self):
-            return ['cs1']
-
-        def get_cheatsheet_dir(self):
-            return self.base
-
-        def get_cheatsheet_name(self, name):
-            return name.upper()
-
-    fake = FakeCfg(tmp_path)
-    monkeypatch.setattr(gen_nb, 'CONFIG', fake)
-    monkeypatch.setattr(gen_nb, 'file_preprocess',
-                        lambda a, b, logger=None: ['c1'])
-    monkeypatch.setattr(gen_nb, 'scandir_dir_merge', lambda a, b: [])
-    monkeypatch.setattr(gen_nb, 'scandir_file_merge', lambda exts, d: [])
-    # write
-    gen_nb.generate_notebook_contents()
-    assert os.path.exists(gen_nb.CONTENTS_NB)
-
-    # cheatsheet
-    monkeypatch.setattr(gen_cs, 'CONFIG', fake)
-    monkeypatch.setattr(gen_cs, 'scandir_file_merge',
-                        lambda exts, d: ['cs1.tex'])
-    monkeypatch.setattr(gen_cs, 'file_preprocess',
-                        lambda a, b, logger=None: ['cs1.tex'])
-    gen_cs.generate_cheatsheet_contents()
-    assert os.path.exists(gen_cs.CONTENTS_CS)
+        assert not old_target.exists()
+        assert (tgt / 'new.test.cpp').exists()
 
 
-def test_gen_cs_with_subdir(tmp_path, monkeypatch):
-    # setup fake CONFIG and a subdir containing cs file
-    base = tmp_path / 'cheats'
-    base.mkdir()
-    sub = base / 'subdir'
-    sub.mkdir()
-    f = sub / 'mycs.tex'
-    f.write_text('content', encoding='utf8')
-
-    class FakeCfg:
-        def get_cheatsheets(self):
-            return ['subdir/mycs']
-
-        def get_cheatsheet_dir(self):
-            return str(base)
-
-        def get_cheatsheet_name(self, name):
-            return name.upper()
-
-    monkeypatch.setattr(gen_cs, 'CONFIG', FakeCfg())
-    # ensure scandir_file_merge returns the file
-    monkeypatch.setattr(gen_cs, 'scandir_file_merge',
-                        lambda exts, d: ['subdir/mycs.tex'])
-    # write
-    gen_cs.generate_cheatsheet_contents()
-    assert os.path.exists(gen_cs.CONTENTS_CS)
+# =============================================================================
+# Section Writing Tests
+# =============================================================================
 
 
-def test_gentc_generate_testcode_no_src(monkeypatch, tmp_path):
-    monkeypatch.setattr(gentc, 'get_full_filenames', lambda paths, exts: [])
-    # should run without exception
-    gentc.generate_testcode(str(tmp_path), str(tmp_path))
+class TestWriteSection:
+    """Tests for section writing in gen_nb."""
+
+    def test_write_section_hpp_and_usage(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test writing section with hpp and usage files."""
+        fake = FakeConfig(tmp_path)
+        monkeypatch.setattr(gen_nb, 'CONFIG', fake)
+
+        # Create files expected by section
+        chdir = tmp_path / 'ch'
+        chdir.mkdir()
+        code_file = chdir / 'n.hpp'
+        code_file.write_text('\n'.join('line' + str(i) for i in range(20)), encoding='utf-8')
+        doc_file = chdir / 'n.tex'
+        doc_file.write_text('doc', encoding='utf-8')
+        usage_file = chdir / 'n.in'
+        usage_file.write_text('u', encoding='utf-8')
+
+        sec = Section('ch', 'n', 'MyTitle', 'hpp', 'in')
+        out = tmp_path / 'out.tex'
+
+        class MockLogger:
+            def info(self, *args: Any, **kwargs: Any) -> None:
+                pass
+
+            def isEnabledFor(self, *args: Any, **kwargs: Any) -> bool:
+                return False
+
+            def debug(self, *args: Any, **kwargs: Any) -> None:
+                pass
+
+        with open(out, 'w', encoding='utf-8') as f:
+            gen_nb._write_section(f, sec, logger=MockLogger())
+
+        txt = out.read_text(encoding='utf-8')
+        assert 'inputminted' in txt or 'Path:' in txt
 
 
-def test_gentc_full_generate_and_remove_old(monkeypatch, tmp_path):
-    # prepare source and target
-    src = tmp_path / 'src'
-    tgt = tmp_path / 'tgt'
-    src.mkdir()
-    tgt.mkdir()
-    src_file = src / 'f.cppmeta'
-    src_file.write_text('header\n' + tm._GENTC_BEGIN +
-                        tm._GENTC_END + tm._GENTC_MAIN + '\n')
+class TestGenerateSectionsFromFiles:
+    """Tests for _generate_sections_from_files function."""
 
-    old_target = tgt / 'old.cpp'
-    old_target.write_text('#define AUTO_GENERATED\nold', encoding='utf8')
+    def test_doc_and_code_sections(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Test generating sections from doc and code files."""
+        def fake_load(dir_name: str) -> list[tuple[str, str]]:
+            if 'code' in dir_name:
+                return [('a', 'cpp'), ('b', 'cpp')]
+            if 'doc' in dir_name:
+                return [('a', 'tex')]
+            if 'usage' in dir_name:
+                return [('b', 'in')]
+            return []
 
-    def fake_get_full_filenames(paths, exts):
-        if exts == ['cppmeta']:
-            return [str(src_file)]
-        if exts == ['cpp']:
-            return [str(old_target)]
-        return []
+        monkeypatch.setattr(gen_nb, 'load_from', fake_load)
 
-    monkeypatch.setattr(gentc, 'get_full_filenames', fake_get_full_filenames)
+        class FakeCfg:
+            def get_code_dir(self) -> str:
+                return 'code'
 
-    # fake parser that returns a new file to be written
-    class FakeParser:
-        def __init__(self, noext, target_dir, lines):
-            pass
+            def get_doc_dir(self, doc_type: str = 'tex') -> str:
+                return 'doc'
 
-        def get_results(self):
-            return [(str(tgt / 'new.test.cpp'), ['#define AUTO_GENERATED\n', 'int main(){}\n'])]
+            def get_usage_dir(self) -> str:
+                return 'usage'
 
-    monkeypatch.setattr(gentc, 'cppmeta_parser', FakeParser)
+        monkeypatch.setattr(gen_nb, 'CONFIG', FakeCfg())
 
-    # run
-    gentc.generate_testcode(str(src), str(tgt))
-    assert not old_target.exists()
-    assert (tgt / 'new.test.cpp').exists()
+        class MockLogger:
+            def info(self, *args: Any, **kwargs: Any) -> None:
+                pass
 
+            def debug(self, *args: Any, **kwargs: Any) -> None:
+                pass
 
-def test_write_section_hpp_and_usage(tmp_path, monkeypatch):
-    # prepare fake CONFIG
-    class FakeCfg:
-        def __init__(self, base):
-            self.base = str(base)
-
-        def get_code_dir(self):
-            return self.base
-
-        def get_doc_dir(self):
-            return self.base
-
-        def get_cvdoc_dir(self):
-            return self.base
-
-        def get_usage_dir(self):
-            return self.base
-
-        def get_file_type(self, ext):
-            return 'cs'
-
-        def export_usage_code_in_notebook(self):
-            return True
-
-    fake = FakeCfg(tmp_path)
-    monkeypatch.setattr(gen_nb, 'CONFIG', fake)
-
-    # create files expected by section
-    chdir = tmp_path / 'ch'
-    chdir.mkdir()
-    code_file = chdir / 'n.hpp'
-    code_file.write_text('\n'.join('line' + str(i)
-                         for i in range(20)), encoding='utf8')
-    doc_file = chdir / 'n.tex'
-    doc_file.write_text('doc', encoding='utf8')
-    usage_file = chdir / 'n.in'
-    usage_file.write_text('u', encoding='utf8')
-
-    from libs.classes.section import Section
-    sec = Section('ch', 'n', 'MyTitle', 'hpp', 'in')
-    out = tmp_path / 'out.tex'
-    f = open(out, 'w', encoding='utf8')
-    gen_nb._write_section(f, sec, logger=type('L', (), {
-                          'info': lambda *a, **k: None, 'isEnabledFor': lambda *a, **k: False, 'debug': lambda *a, **k: None}))
-    f.close()
-    txt = out.read_text(encoding='utf8')
-    assert 'inputminted' in txt or 'Path:' in txt
+        result = gen_nb._generate_sections_from_files('ch', 'tex', logger=MockLogger())
+        assert any(s.name == 'a' for s in result)
 
 
-def test_generate_sections_from_files_doc_and_code(monkeypatch):
-    # monkeypatch load_from to return different lists based on dir
-    def fake_load(dir_name):
-        if 'code' in dir_name:
-            return [('a', 'cpp'), ('b', 'cpp')]
-        if 'doc' in dir_name:
-            return [('a', 'tex')]
-        if 'usage' in dir_name:
-            return [('b', 'in')]
-        return []
-
-    monkeypatch.setattr(gen_nb, 'load_from', fake_load)
-
-    class FakeC:
-        def get_code_dir(self):
-            return 'code'
-
-        def get_doc_dir(self):
-            return 'doc'
-
-        def get_usage_dir(self):
-            return 'usage'
-
-    monkeypatch.setattr(gen_nb, 'CONFIG', FakeC())
-
-    # call generator
-    res = gen_nb._generate_sections_from_files('ch', logger=type(
-        'L', (), {'info': lambda *a, **k: None, 'debug': lambda *a, **k: None}))
-    assert any(s.name == 'a' for s in res)
+# =============================================================================
+# new and run_usage Module Tests
+# =============================================================================
 
 
-def test_add_new_note_and_run_usage(tmp_path, monkeypatch):
-    # fake CONFIG for new and run_usage
-    class FakeC:
-        def __init__(self, base):
-            self.base = str(base)
+class TestNewAndRunUsage:
+    """Tests for new and run_usage modules."""
 
-        def get_code_dir(self):
-            return self.base
+    def test_add_new_note(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test adding a new note."""
+        fake = FakeConfig(tmp_path)
+        monkeypatch.setattr(newmod, 'CONFIG', fake)
 
-        def get_doc_dir(self):
-            return self.base
+        newmod.add_new_note('ch', 'f', 'T', 'cpp', 'in')
+        # CVDoc should be created (tested by the function not raising)
 
-        def get_cvdoc_dir(self):
-            return self.base
+    def test_run_usage_codes(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test running usage codes."""
+        fake = FakeConfig(tmp_path)
+        monkeypatch.setattr(run_usage_mod, 'CONFIG', fake)
 
-        def get_usage_dir(self):
-            return self.base
+        p1 = tmp_path / 'u1.in'
+        p1.write_text('x')
 
-        def append_section(self, sec):
-            # record called
-            self._appended = True
+        monkeypatch.setattr(
+            run_usage_mod, 'get_full_filenames',
+            lambda paths, exts: [str(p1)]
+        )
 
-        def get_ext_names_by_file_type(self, code):
-            return ['in']
+        calls: list[list[str]] = []
 
-        def get_usage_dir(self):
-            return self.base
+        def fake_run(cmd: list[str], **kwargs: Any) -> None:
+            calls.append(cmd)
 
-        def get_run_usage_command(self, code, filepath):
-            return ['echo', filepath]
+        monkeypatch.setattr(subprocess, 'run', fake_run)
 
-    fake = FakeC(tmp_path)
-    monkeypatch.setattr(newmod, 'CONFIG', fake)
-    # call add_new_note
-    newmod.add_new_note('ch', 'f', 'T', 'cpp', 'in')
-    # CVDoc should be created
-    # run_usage: create files
-    monkeypatch.setattr(run_usage_mod, 'CONFIG', fake)
-    p1 = tmp_path / 'u1.in'
-    p1.write_text('x')
-    monkeypatch.setattr(run_usage_mod, 'get_full_filenames',
-                        lambda paths, exts: [str(p1)])
-    calls = []
+        run_usage_mod.run_usage_codes('code', 2)
+        assert calls
 
-    def fake_run(cmd, **kwargs):
-        calls.append(cmd)
 
-    monkeypatch.setattr(subprocess, 'run', fake_run)
-    run_usage_mod.run_usage_codes('code', 2)
-    assert calls
+# =============================================================================
+# gen_nb Empty Content and Typst Tests
+# =============================================================================
+
+
+class TestGenNbTypst:
+    """Tests for gen_nb with Typst document type."""
+
+    def test_generate_empty_notebook_typst(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Test generating empty notebook contents for Typst."""
+        monkeypatch.setattr(gen_nb, 'CONTENTS_DIR', str(tmp_path / '_gen'))
+
+        gen_nb.generate_empty_notebook_contents(doc_type='typ')
+
+        contents_file = tmp_path / '_gen' / 'contents_notebook.typ'
+        assert contents_file.exists()
+        content = contents_file.read_text()
+        assert 'common.typ' in content
+
+    def test_generate_empty_notebook_no_override(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Test generate_empty_notebook_contents with override_exists=False."""
+        gen_dir = tmp_path / '_gen'
+        gen_dir.mkdir()
+        contents_file = gen_dir / 'contents_notebook.tex'
+        contents_file.write_text('existing content')
+
+        monkeypatch.setattr(gen_nb, 'CONTENTS_DIR', str(gen_dir))
+
+        gen_nb.generate_empty_notebook_contents(doc_type='tex', override_exists=False)
+
+        # Content should not be changed
+        assert contents_file.read_text() == 'existing content'
+
+    def test_generate_notebook_typst(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test generating notebook contents for Typst."""
+        fake = FakeConfig(tmp_path)
+        monkeypatch.setattr(gen_nb, 'CONFIG', fake)
+        monkeypatch.setattr(gen_nb, 'CONTENTS_DIR', str(tmp_path / '_gen'))
+        monkeypatch.setattr(
+            gen_nb, 'file_preprocess',
+            lambda a, b, logger=None: ['c1']
+        )
+        monkeypatch.setattr(gen_nb, 'scandir_dir_merge', lambda a, b: [])
+        monkeypatch.setattr(gen_nb, 'scandir_file_merge', lambda exts, d: [])
+
+        gen_nb.generate_notebook_contents(doc_type='typ')
+
+        contents_nb = tmp_path / '_gen' / 'contents_notebook.typ'
+        assert contents_nb.exists()
+
+
+class TestGenCsTypst:
+    """Tests for gen_cs with Typst document type."""
+
+    def test_generate_empty_cheatsheet_typst(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Test generating empty cheatsheet contents for Typst."""
+        monkeypatch.setattr(gen_cs, 'CONTENTS_DIR', str(tmp_path / '_gen'))
+
+        gen_cs.generate_empty_cheatsheet_contents(doc_type='typ')
+
+        contents_file = tmp_path / '_gen' / 'contents_cheatsheet.typ'
+        assert contents_file.exists()
+
+    def test_generate_empty_cheatsheet_no_override(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Test generate_empty_cheatsheet_contents with override_exists=False."""
+        gen_dir = tmp_path / '_gen'
+        gen_dir.mkdir()
+        contents_file = gen_dir / 'contents_cheatsheet.tex'
+        contents_file.write_text('existing')
+
+        monkeypatch.setattr(gen_cs, 'CONTENTS_DIR', str(gen_dir))
+
+        gen_cs.generate_empty_cheatsheet_contents(doc_type='tex', override_exists=False)
+
+        assert contents_file.read_text() == 'existing'
+
+    def test_generate_cheatsheet_typst(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test generating cheatsheet contents for Typst."""
+        fake = FakeConfig(tmp_path)
+        monkeypatch.setattr(gen_cs, 'CONFIG', fake)
+        monkeypatch.setattr(gen_cs, 'CONTENTS_DIR', str(tmp_path / '_gen'))
+        monkeypatch.setattr(
+            gen_cs, 'scandir_file_merge',
+            lambda exts, d: ['cs1.tex']
+        )
+        monkeypatch.setattr(
+            gen_cs, 'file_preprocess',
+            lambda a, b, logger=None: ['cs1.tex']
+        )
+
+        gen_cs.generate_cheatsheet_contents(doc_type='typ')
+
+        contents_cs = tmp_path / '_gen' / 'contents_cheatsheet.typ'
+        assert contents_cs.exists()
+
+
+# =============================================================================
+# gentc Additional Tests
+# =============================================================================
+
+
+class TestGentcAdditional:
+    """Additional tests for gentc module."""
+
+    def test_get_codelines(self, tmp_path: Path) -> None:
+        """Test get_codelines function."""
+        test_file = tmp_path / 'test.cpp'
+        test_file.write_text('line1\nline2\nline3\n')
+
+        lines = gentc.get_codelines(str(test_file))
+        assert len(lines) == 3
+        assert 'line1' in lines[0]
+
+    def test_generate_testcode_read_error(
+        self, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+    ) -> None:
+        """Test generate_testcode handles read errors."""
+        src = tmp_path / 'src'
+        tgt = tmp_path / 'tgt'
+        src.mkdir()
+        tgt.mkdir()
+
+        # Create a target file that will fail to read
+        old_target = tgt / 'bad.cpp'
+        old_target.write_text('#define AUTO_GENERATED\n')
+
+        def fake_get_full(paths: list[str], exts: list[str]) -> list[str]:
+            if exts == ['cppmeta']:
+                return []
+            if exts == ['cpp']:
+                return [str(old_target)]
+            return []
+
+        monkeypatch.setattr(gentc, 'get_full_filenames', fake_get_full)
+
+        # Should not raise - file will be checked and removed
+        gentc.generate_testcode(str(src), str(tgt))
+
+
+# =============================================================================
+# Write Section Typst Tests
+# =============================================================================
+
+
+class TestWriteSectionTypst:
+    """Tests for _write_section with Typst."""
+
+    def test_write_section_typst(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test writing section for Typst format."""
+
+        class FakeConfigTypst:
+            def get_code_dir(self) -> str:
+                return str(tmp_path)
+
+            def get_doc_dir(self, doc_type: str = 'tex') -> str:
+                return str(tmp_path)
+
+            def get_cvdoc_dir(self) -> str:
+                return str(tmp_path)
+
+            def get_usage_dir(self) -> str:
+                return str(tmp_path)
+
+            def get_file_type(self, ext: str) -> str:
+                return 'cpp'
+
+        monkeypatch.setattr(gen_nb, 'CONFIG', FakeConfigTypst())
+
+        # Create files
+        chdir = tmp_path / 'ch'
+        chdir.mkdir()
+        code_file = chdir / 'n.cpp'
+        code_file.write_text('// code')
+        doc_file = chdir / 'n.typ'
+        doc_file.write_text('doc')
+        usage_file = chdir / 'n.in'
+        usage_file.write_text('')
+
+        sec = Section('ch', 'n', 'Title', 'cpp', 'in')
+        out = tmp_path / 'out.typ'
+
+        class MockLogger:
+            def info(self, *args: Any, **kwargs: Any) -> None:
+                pass
+            def isEnabledFor(self, *args: Any, **kwargs: Any) -> bool:
+                return False
+            def debug(self, *args: Any, **kwargs: Any) -> None:
+                pass
+
+        with open(out, 'w', encoding='utf-8') as f:
+            gen_nb._write_section(f, sec, logger=MockLogger(), doc_type='typ')
+
+        content = out.read_text()
+        assert '==' in content or 'raw' in content
+
+
+class TestWriteSectionHppTypst:
+    """Tests for _write_section with hpp files and Typst."""
+
+    def test_write_section_hpp_typst(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test writing section for hpp files with Typst format."""
+
+        class FakeConfigHpp:
+            def get_code_dir(self) -> str:
+                return str(tmp_path)
+
+            def get_doc_dir(self, doc_type: str = 'tex') -> str:
+                return str(tmp_path)
+
+            def get_cvdoc_dir(self) -> str:
+                return str(tmp_path)
+
+            def get_usage_dir(self) -> str:
+                return str(tmp_path)
+
+            def get_file_type(self, ext: str) -> str:
+                return 'cpp'
+
+        monkeypatch.setattr(gen_nb, 'CONFIG', FakeConfigHpp())
+
+        # Create files
+        chdir = tmp_path / 'ch'
+        chdir.mkdir()
+        code_file = chdir / 'n.hpp'
+        # Create hpp file with enough lines for the 4-line skip
+        code_file.write_text('\n'.join(['#pragma once', '#ifndef X', '#define X', 
+                                        '// code line 4', '// code line 5', 
+                                        '// code line 6', '// code line 7',
+                                        '// code line 8', '#endif', '']))
+        doc_file = chdir / 'n.typ'
+        doc_file.write_text('doc')
+        usage_file = chdir / 'n.in'
+        usage_file.write_text('usage code')
+
+        sec = Section('ch', 'n', 'Title', 'hpp', 'in')
+        out = tmp_path / 'out.typ'
+
+        class MockLogger:
+            def info(self, *args: Any, **kwargs: Any) -> None:
+                pass
+            def isEnabledFor(self, *args: Any, **kwargs: Any) -> bool:
+                return False
+            def debug(self, *args: Any, **kwargs: Any) -> None:
+                pass
+
+        with open(out, 'w', encoding='utf-8') as f:
+            gen_nb._write_section(f, sec, logger=MockLogger(), doc_type='typ')
+
+        content = out.read_text()
+        assert 'raw' in content or 'slice' in content
+
+
+class TestGenerateSectionsUsageError:
+    """Tests for _generate_sections_from_files error handling."""
+
+    def test_usage_without_code_raises(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Test that usage file without code file raises KeyError."""
+        def fake_load(dir_name: str) -> list[tuple[str, str]]:
+            if 'code' in dir_name:
+                return []  # No code files
+            if 'doc' in dir_name:
+                return []
+            if 'usage' in dir_name:
+                return [('orphan', 'in')]  # Usage file without code
+            return []
+
+        monkeypatch.setattr(gen_nb, 'load_from', fake_load)
+
+        class FakeCfg:
+            def get_code_dir(self) -> str:
+                return 'code'
+
+            def get_doc_dir(self, doc_type: str = 'tex') -> str:
+                return 'doc'
+
+            def get_usage_dir(self) -> str:
+                return 'usage'
+
+        monkeypatch.setattr(gen_nb, 'CONFIG', FakeCfg())
+
+        class MockLogger:
+            def info(self, *args: Any, **kwargs: Any) -> None:
+                pass
+            def debug(self, *args: Any, **kwargs: Any) -> None:
+                pass
+            def error(self, *args: Any, **kwargs: Any) -> None:
+                pass
+
+        with pytest.raises(KeyError, match='Missing code file'):
+            gen_nb._generate_sections_from_files('ch', 'tex', logger=MockLogger())
+
+
+# =============================================================================
+# compile_pdf Module Tests
+# =============================================================================
+
+
+class TestCompilePdf:
+    """Tests for compile_pdf module."""
+
+    def test_compile_pdf_function(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test compile_pdf function."""
+
+        class FakeConfigCompile:
+            def get_compile_pdf_command(self, code_type: str) -> list[str]:
+                return ['echo', 'test']
+
+        monkeypatch.setattr(compile_pdf_mod, 'CONFIG', FakeConfigCompile())
+
+        calls: list[list[str]] = []
+
+        def fake_run(cmd: list[str], **kwargs: Any) -> None:
+            calls.append(cmd)
+
+        monkeypatch.setattr(subprocess, 'run', fake_run)
+
+        compile_pdf_mod.compile_pdf('tex')
+        assert calls
+        assert calls[0] == ['echo', 'test']
