@@ -132,7 +132,7 @@ jobs:
           root_file: notebook.tex
       - name: Upload LaTeX logs to artifacts
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: latex-logs
           path: |
@@ -142,7 +142,7 @@ jobs:
             template/notebook.fls
             template/notebook.out
       - name: Upload PDF to artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: result
           path: template/notebook.pdf
