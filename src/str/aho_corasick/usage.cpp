@@ -1,3 +1,4 @@
+// competitive-verifier: DISPLAY never
 #define PROBLEM "https://www.luogu.com.cn/problem/P5357"
 
 #include "lib.hpp"

@@ -1,5 +1,4 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 // clang-format off
 #include "../../../src/util/op/pair/lib.hpp"
@@ -8,6 +7,7 @@
 #include "../../../src/math/ds/mint/lib.hpp"
 #include "../../../src/math/mint/ms/lib.hpp"
 #include "../../../src/nt/lsieve/impl2/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -39,23 +39,7 @@ void test(strnv data) {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test("1"), test("13"); break;
-    case unittest::TC::example_01: test("2"), test("14"); break;
-    case unittest::TC::random_00: test("3"), test("15"); break;
-    case unittest::TC::random_01: test("4"), test("16"); break;
-    case unittest::TC::random_02: test("5"), test("17"); break;
-    case unittest::TC::random_03: test("6"), test("18"); break;
-    case unittest::TC::random_04: test("7"), test("19"); break;
-    case unittest::TC::random_05: test("8"), test("20"); break;
-    case unittest::TC::random_06: test("9"); break;
-    case unittest::TC::random_07: test("10"); break;
-    case unittest::TC::random_08: test("11"); break;
-    case unittest::TC::random_09: test("12"); break;
-    default: break;
+  for (int i = 1; i <= 20; ++i) {
+    timer_(test(std::to_string(i)));
   }
-
-  unittest::post_test();
 }

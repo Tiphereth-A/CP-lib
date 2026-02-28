@@ -1,6 +1,6 @@
 ---
 title: interp_newton_n2
-documentation_of: //src/math/interp/newton/lib.hpp
+documentation_of: ./src/math/interp/newton/lib.hpp
 ---
 
 Newton's interpolation formula of given points $(x_0,y_0),(x_1,y_1),\dots,(x_{n-1},y_{n-1})$ is

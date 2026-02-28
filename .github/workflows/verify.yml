@@ -8,6 +8,7 @@ on:
       - 'uv.lock'
       - '.github/**'
       - '.verify-helper/**'
+      - 'libs/**'
       - 'src/**'
       - 'test/**'
   pull_request:
@@ -18,6 +19,7 @@ on:
       - 'uv.lock'
       - '.github/**'
       - '.verify-helper/**'
+      - 'libs/**'
       - 'src/**'
       - 'test/**'
   workflow_dispatch:
@@ -39,6 +41,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  fast-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+      - name: Install Python dependencies
+        run: uv sync --frozen
+      - name: Run fast test
+        run: |
+          uv run python manager.py -l DEBUG test
+
   setup:
     runs-on: ubuntu-latest
     steps:

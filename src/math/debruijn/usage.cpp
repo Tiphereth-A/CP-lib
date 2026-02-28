@@ -1,3 +1,4 @@
+// competitive-verifier: DISPLAY never
 #define PROBLEM "https://codeforces.com/gym/102001/problem/C"
 
 #include "../../rand/gen/lib.hpp"

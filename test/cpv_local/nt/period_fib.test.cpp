@@ -1,11 +1,11 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/lalg/ds/mat/lib.hpp"
 #include "../../../src/math/ds/mint/lib.hpp"
 #include "../../../src/math/mint/md/lib.hpp"
 #include "../../../src/math/qpow/basic/lib.hpp"
 #include "../../../src/nt/period_fib/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -24,22 +24,9 @@ void test(u32 n) {
 using mint = math::mint<math::mint_md, __LINE__>;
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test<mint>(2); break;
-    case unittest::TC::random_00: test<mint>(10); break;
-    case unittest::TC::random_01: test<mint>(5000); break;
-    case unittest::TC::random_02: test<mint>(1919810); break;
-    case unittest::TC::random_03: test<mint>(1'000'000'000); break;
-    case unittest::TC::random_04: break;
-    case unittest::TC::random_05: break;
-    case unittest::TC::random_06: break;
-    case unittest::TC::random_07: break;
-    case unittest::TC::random_08: break;
-    case unittest::TC::random_09: break;
-    default: break;
-  }
-
-  unittest::post_test();
+  timer_(test<mint>(2));
+  timer_(test<mint>(10));
+  timer_(test<mint>(5000));
+  timer_(test<mint>(1919810));
+  timer_(test<mint>(1'000'000'000));
 }

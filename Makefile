@@ -17,16 +17,16 @@ all: $(OBJECTS)
 
 clean:
 	rm -rf $(OUTDIR) $(OBJECTS)
-	rm -rf downloads fonts
+	rm -rf .cp-lib
 
 download-fonts:
-	mkdir -p downloads fonts
+	mkdir -p .cp-lib .cp-lib/downloads .cp-lib/fonts
 	$(foreach entry,$(FONT_ARCHIVES),\
 		$(eval url := $(word 1,$(subst ::, ,$(entry))))\
 		$(eval pats := $(subst |, ,$(word 2,$(subst ::, ,$(entry)))) )\
-		$(eval file := downloads/$(notdir $(url)))\
+		$(eval file := .cp-lib/downloads/$(notdir $(url)))\
 		wget -O "$(file)" "$(url)"; \
 		$(foreach pat,$(pats),\
-			unzip -jo "$(file)" "$(pat)" -d fonts;\
+			unzip -jo "$(file)" "$(pat)" -d .cp-lib/fonts;\
 		)\
 	)

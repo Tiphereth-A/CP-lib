@@ -1,8 +1,8 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/nt/carmichael/lib.hpp"
 #include "../../../src/nt/euler_phi/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -32,24 +32,7 @@ void test() {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
-  switch (tcase) {
-    case unittest::TC::example_00: test(); break;
-    case unittest::TC::example_01: test(); break;
-    case unittest::TC::random_00: test(); break;
-    case unittest::TC::random_01: test(); break;
-    case unittest::TC::random_02: test(); break;
-    case unittest::TC::random_03: test(); break;
-    case unittest::TC::random_04: test(); break;
-    case unittest::TC::random_05: test(); break;
-    case unittest::TC::random_06: test(); break;
-    case unittest::TC::random_07: test(); break;
-    case unittest::TC::random_08: test(); break;
-    case unittest::TC::random_09: test(); break;
-    default: break;
+  for (int i = 1; i <= 10; ++i) {
+    timer_(test());
   }
-#pragma GCC diagnostic warning "-Wimplicit-fallthrough"
-
-  unittest::post_test();
 }

@@ -1,3 +1,4 @@
+// competitive-verifier: DISPLAY never
 #define PROBLEM "https://codeforces.com/gym/103446/problem/H"
 
 #include "../../../tree/dfs/info/lib.hpp"

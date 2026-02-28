@@ -1,7 +1,7 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/game/mahjong/parser/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -67,23 +67,7 @@ void test(u32 n) {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test(0), test(12); break;
-    case unittest::TC::example_01: test(1), test(13); break;
-    case unittest::TC::random_00: test(2), test(14); break;
-    case unittest::TC::random_01: test(3), test(15); break;
-    case unittest::TC::random_02: test(4), test(16); break;
-    case unittest::TC::random_03: test(5), test(17); break;
-    case unittest::TC::random_04: test(6), test(18); break;
-    case unittest::TC::random_05: test(7); break;
-    case unittest::TC::random_06: test(8); break;
-    case unittest::TC::random_07: test(9); break;
-    case unittest::TC::random_08: test(10); break;
-    case unittest::TC::random_09: test(11); break;
-    default: break;
+  for (u32 i = 0; i <= 18; ++i) {
+    timer_(test(i));
   }
-
-  unittest::post_test();
 }

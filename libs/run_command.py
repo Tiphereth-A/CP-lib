@@ -18,6 +18,8 @@ def run_command(command: Callable[[Any], list[str]], thread_limit: int, params: 
 
     def single_process(thread_id: int):
         while True:
+            if params_queue.empty():
+                return
             param=params_queue.get()
             if param is None:
                 return

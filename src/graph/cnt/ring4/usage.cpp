@@ -1,3 +1,4 @@
+// competitive-verifier: DISPLAY never
 #define PROBLEM "https://codeforces.com/gym/102028/problem/L"
 
 #include "../../../math/ds/mint/lib.hpp"

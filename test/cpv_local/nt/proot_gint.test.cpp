@@ -1,5 +1,4 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/math/ds/mint/lib.hpp"
 #include "../../../src/math/mint/ms/lib.hpp"
@@ -7,6 +6,7 @@
 #include "../../../src/math/qpow/basic/lib.hpp"
 #include "../../../src/nt/proot/gint/lib.hpp"
 #include "../../../src/nt/residue/jacobi/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -56,65 +56,34 @@ void test_proot_gint() {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-      // small prime
-    case unittest::TC::example_00:
-      test_proot_gint<mint<3>>();
-      test_proot_gint<mint<5>>();
-      test_proot_gint<mint<7>>();
-      break;
-    case unittest::TC::example_01:
-      test_proot_gint<mint<11>>();
-      test_proot_gint<mint<13>>();
-      test_proot_gint<mint<17>>();
-      test_proot_gint<mint<19>>();
-      break;
-    case unittest::TC::random_00:
-      test_proot_gint<mint<40961>>();
-      test_proot_gint<mint<65537>>();
-      test_proot_gint<mint<786433>>();
-      test_proot_gint<mint<19260817>>();
-      break;
-    case unittest::TC::random_01:
-      break;
-      // larger prime in u32
-    case unittest::TC::random_02:
-      test_proot_gint<mint<167772161>>();
-      test_proot_gint<mint<469762049>>();
-      break;
-    case unittest::TC::random_03:
-      test_proot_gint<mint<754974721>>();
-      test_proot_gint<mint<998244353>>();
-      break;
-    case unittest::TC::random_04:
-      test_proot_gint<mint<999292927>>();
-      test_proot_gint<mint<1000000007>>();
-      break;
-    case unittest::TC::random_05:
-      test_proot_gint<mint<1004535809>>();
-      test_proot_gint<mint64<2013265921>>();
-      break;
-      // larger prime in u64
-    case unittest::TC::random_06:
-      test_proot_gint<mint64<75161927681>>();
-      test_proot_gint<mint64<77309411329>>();
-      break;
-    case unittest::TC::random_07:
-      test_proot_gint<mint64<2061584302081>>();
-      test_proot_gint<mint64<6597069766657>>();
-      break;
-    case unittest::TC::random_08:
-      test_proot_gint<mint64<1231453023109121>>();
-      test_proot_gint<mint64<3799912185593857>>();
-      break;
-    case unittest::TC::random_09:
-      test_proot_gint<mint64<180143985094819841>>();
-      test_proot_gint<mint64<4179340454199820289>>();
-      break;
-    default: break;
-  }
-
-  unittest::post_test();
+  // small prime
+  timer_(test_proot_gint<mint<3>>());
+  timer_(test_proot_gint<mint<5>>());
+  timer_(test_proot_gint<mint<7>>());
+  timer_(test_proot_gint<mint<11>>());
+  timer_(test_proot_gint<mint<13>>());
+  timer_(test_proot_gint<mint<17>>());
+  timer_(test_proot_gint<mint<19>>());
+  timer_(test_proot_gint<mint<40961>>());
+  timer_(test_proot_gint<mint<65537>>());
+  timer_(test_proot_gint<mint<786433>>());
+  timer_(test_proot_gint<mint<19260817>>());
+  // larger prime in u32
+  timer_(test_proot_gint<mint<167772161>>());
+  timer_(test_proot_gint<mint<469762049>>());
+  timer_(test_proot_gint<mint<754974721>>());
+  timer_(test_proot_gint<mint<998244353>>());
+  timer_(test_proot_gint<mint<999292927>>());
+  timer_(test_proot_gint<mint<1000000007>>());
+  timer_(test_proot_gint<mint<1004535809>>());
+  timer_(test_proot_gint<mint64<2013265921>>());
+  timer_(test_proot_gint<mint64<75161927681>>());
+  timer_(test_proot_gint<mint64<77309411329>>());
+  // larger prime in u64
+  timer_(test_proot_gint<mint64<2061584302081>>());
+  timer_(test_proot_gint<mint64<6597069766657>>());
+  timer_(test_proot_gint<mint64<1231453023109121>>());
+  timer_(test_proot_gint<mint64<3799912185593857>>());
+  timer_(test_proot_gint<mint64<180143985094819841>>());
+  timer_(test_proot_gint<mint64<4179340454199820289>>());
 }

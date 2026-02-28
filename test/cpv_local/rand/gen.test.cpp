@@ -1,5 +1,4 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/rand/gen/lib.hpp"
 #include "../../../src/util/func_fp/lib.hpp"
@@ -32,23 +31,16 @@ void test() {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test<char>(); break;
-    case unittest::TC::example_01: test<i8>(); break;
-    case unittest::TC::random_00: test<u8>(); break;
-    case unittest::TC::random_01: test<i16>(); break;
-    case unittest::TC::random_02: test<u16>(); break;
-    case unittest::TC::random_03: test<i32>(); break;
-    case unittest::TC::random_04: test<u32>(); break;
-    case unittest::TC::random_05: test<i64>(); break;
-    case unittest::TC::random_06: test<u64>(); break;
-    case unittest::TC::random_07: test<f32>(); break;
-    case unittest::TC::random_08: test<f64>(); break;
-    case unittest::TC::random_09: test<f128>(); break;
-    default: break;
-  }
-
-  unittest::post_test();
+  timer_(test<char>());
+  timer_(test<i8>());
+  timer_(test<u8>());
+  timer_(test<i16>());
+  timer_(test<u16>());
+  timer_(test<i32>());
+  timer_(test<u32>());
+  timer_(test<i64>());
+  timer_(test<u64>());
+  timer_(test<f32>());
+  timer_(test<f64>());
+  timer_(test<f128>());
 }

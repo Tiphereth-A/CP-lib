@@ -1,7 +1,7 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/nt/mod/barrett/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -51,23 +51,60 @@ void test_s() {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test(2), test(3), test(998244353); break;
-    case unittest::TC::example_01: test(114514), test(1919810), test(1000000000 + 7); break;
-    case unittest::TC::random_00: test_s<2, 0>(), test_s<3, 0>(), test_s<114514, 0>(), test_s<998244353, 0>(), test_s<1000000000 + 7, 0>(); break;
-    case unittest::TC::random_01: test_s<2, 1>(), test_s<3, 1>(), test_s<114514, 1>(), test_s<998244353, 1>(), test_s<1000000000 + 7, 1>(); break;
-    case unittest::TC::random_02: test_s<2, 2>(), test_s<3, 2>(), test_s<114514, 2>(), test_s<998244353, 2>(), test_s<1000000000 + 7, 2>(); break;
-    case unittest::TC::random_03: test_s<2, 3>(), test_s<3, 3>(), test_s<114514, 3>(), test_s<998244353, 3>(), test_s<1000000000 + 7, 3>(); break;
-    case unittest::TC::random_04: test_s<2, 4>(), test_s<3, 4>(), test_s<114514, 4>(), test_s<998244353, 4>(), test_s<1000000000 + 7, 4>(); break;
-    case unittest::TC::random_05: test_s<2, 5>(), test_s<3, 5>(), test_s<114514, 5>(), test_s<998244353, 5>(), test_s<1000000000 + 7, 5>(); break;
-    case unittest::TC::random_06: test_s<2, 6>(), test_s<3, 6>(), test_s<114514, 6>(), test_s<998244353, 6>(), test_s<1000000000 + 7, 6>(); break;
-    case unittest::TC::random_07: test_s<2, 7>(), test_s<3, 7>(), test_s<114514, 7>(), test_s<998244353, 7>(), test_s<1000000000 + 7, 7>(); break;
-    case unittest::TC::random_08: test_s<2, 8>(), test_s<3, 8>(), test_s<114514, 8>(), test_s<998244353, 8>(), test_s<1000000000 + 7, 8>(); break;
-    case unittest::TC::random_09: test_s<2, 9>(), test_s<3, 9>(), test_s<114514, 9>(), test_s<998244353, 9>(), test_s<1000000000 + 7, 9>(); break;
-    default: break;
-  }
-
-  unittest::post_test();
+  timer_(test(2));
+  timer_(test(3));
+  timer_(test(998244353));
+  timer_(test(114514));
+  timer_(test(1919810));
+  timer_(test(1000000000 + 7));
+  timer_(test_s<2, 0>());
+  timer_(test_s<3, 0>());
+  timer_(test_s<114514, 0>());
+  timer_(test_s<998244353, 0>());
+  timer_(test_s<1000000000 + 7, 0>());
+  timer_(test_s<2, 1>());
+  timer_(test_s<3, 1>());
+  timer_(test_s<114514, 1>());
+  timer_(test_s<998244353, 1>());
+  timer_(test_s<1000000000 + 7, 1>());
+  timer_(test_s<2, 2>());
+  timer_(test_s<3, 2>());
+  timer_(test_s<114514, 2>());
+  timer_(test_s<998244353, 2>());
+  timer_(test_s<1000000000 + 7, 2>());
+  timer_(test_s<2, 3>());
+  timer_(test_s<3, 3>());
+  timer_(test_s<114514, 3>());
+  timer_(test_s<998244353, 3>());
+  timer_(test_s<1000000000 + 7, 3>());
+  timer_(test_s<2, 4>());
+  timer_(test_s<3, 4>());
+  timer_(test_s<114514, 4>());
+  timer_(test_s<998244353, 4>());
+  timer_(test_s<1000000000 + 7, 4>());
+  timer_(test_s<2, 5>());
+  timer_(test_s<3, 5>());
+  timer_(test_s<114514, 5>());
+  timer_(test_s<998244353, 5>());
+  timer_(test_s<1000000000 + 7, 5>());
+  timer_(test_s<2, 6>());
+  timer_(test_s<3, 6>());
+  timer_(test_s<114514, 6>());
+  timer_(test_s<998244353, 6>());
+  timer_(test_s<1000000000 + 7, 6>());
+  timer_(test_s<2, 7>());
+  timer_(test_s<3, 7>());
+  timer_(test_s<114514, 7>());
+  timer_(test_s<998244353, 7>());
+  timer_(test_s<1000000000 + 7, 7>());
+  timer_(test_s<2, 8>());
+  timer_(test_s<3, 8>());
+  timer_(test_s<114514, 8>());
+  timer_(test_s<998244353, 8>());
+  timer_(test_s<1000000000 + 7, 8>());
+  timer_(test_s<2, 9>());
+  timer_(test_s<3, 9>());
+  timer_(test_s<114514, 9>());
+  timer_(test_s<998244353, 9>());
+  timer_(test_s<1000000000 + 7, 9>());
 }

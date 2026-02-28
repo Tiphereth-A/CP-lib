@@ -1,5 +1,4 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/geo2d/ang_pp/lib.hpp"
 #include "../../../src/geo2d/area_triedges/lib.hpp"
@@ -12,6 +11,7 @@
 #include "../../../src/geo2d/tcenter/n/lib.hpp"
 #include "../../../src/geo2d/tcenter/o/lib.hpp"
 #include "../../../src/geo2d/tcenter/x/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -150,23 +150,8 @@ void test(T lim) {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test<f64>(1e5); break;
-    case unittest::TC::example_01: test<f128>(1e5); break;
-    case unittest::TC::random_00: test<f64>(1e9); break;
-    case unittest::TC::random_01: test<f128>(1e9); break;
-    case unittest::TC::random_02: break;
-    case unittest::TC::random_03: break;
-    case unittest::TC::random_04: break;
-    case unittest::TC::random_05: break;
-    case unittest::TC::random_06: break;
-    case unittest::TC::random_07: break;
-    case unittest::TC::random_08: break;
-    case unittest::TC::random_09: break;
-    default: break;
-  }
-
-  unittest::post_test();
+  timer_(test<f64>(1e5));
+  timer_(test<f128>(1e5));
+  timer_(test<f64>(1e9));
+  timer_(test<f128>(1e9));
 }

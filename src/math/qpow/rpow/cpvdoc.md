@@ -1,6 +1,6 @@
 ---
 title: rpow
-documentation_of: //src/math/qpow/rpow/lib.hpp
+documentation_of: ./src/math/qpow/rpow/lib.hpp
 ---
 
 Let $y=a\lfloor\sqrt p\rfloor+b$, then

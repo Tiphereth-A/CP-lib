@@ -1,7 +1,7 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/geo2d/femwebp/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -28,23 +28,16 @@ void test(T lim, u32 n) {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test<f64>(1e5, 3); break;
-    case unittest::TC::example_01: test<f128>(1e5, 3); break;
-    case unittest::TC::random_00: test<f64>(1e9, 3); break;
-    case unittest::TC::random_01: test<f128>(1e9, 3); break;
-    case unittest::TC::random_02: test<f64>(1e5, 10); break;
-    case unittest::TC::random_03: test<f128>(1e5, 10); break;
-    case unittest::TC::random_04: test<f64>(1e9, 10); break;
-    case unittest::TC::random_05: test<f128>(1e9, 10); break;
-    case unittest::TC::random_06: test<f64>(1e5, 50); break;
-    case unittest::TC::random_07: test<f128>(1e5, 50); break;
-    case unittest::TC::random_08: test<f64>(1e9, 50); break;
-    case unittest::TC::random_09: test<f128>(1e9, 50); break;
-    default: break;
-  }
-
-  unittest::post_test();
+  timer_(test<f64>(1e5, 3));
+  timer_(test<f128>(1e5, 3));
+  timer_(test<f64>(1e9, 3));
+  timer_(test<f128>(1e9, 3));
+  timer_(test<f64>(1e5, 10));
+  timer_(test<f128>(1e5, 10));
+  timer_(test<f64>(1e9, 10));
+  timer_(test<f128>(1e9, 10));
+  timer_(test<f64>(1e5, 50));
+  timer_(test<f128>(1e5, 50));
+  timer_(test<f64>(1e9, 50));
+  timer_(test<f128>(1e9, 50));
 }

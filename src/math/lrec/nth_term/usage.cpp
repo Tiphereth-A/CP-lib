@@ -1,3 +1,4 @@
+// competitive-verifier: DISPLAY never
 #define PROBLEM "https://www.luogu.com.cn/problem/P4723"
 
 #include "../../../fps/ds/ntt/lib.hpp"

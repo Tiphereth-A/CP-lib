@@ -1,7 +1,7 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/geo2d/dis/pp/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -70,24 +70,24 @@ void test_distance_absolute_homogeneity(point<T> CR x, point<T> CR y, T s) {
 template <class T, int p>
 void single_test(point<T> CR x, point<T> CR y, point<T> CR a, T s) {
   // norm properties
-  test_norm_subadditivity<T, p>(x, y);
-  test_norm_subadditivity<T, p>(y, x);
-  test_norm_absolute_homogeneity<T, p>(x, s);
-  test_norm_absolute_homogeneity<T, p>(y, s);
-  test_norm_non_negativity<T, p>(x);
-  test_norm_non_negativity<T, p>(y);
+  timer_(test_norm_subadditivity<T, p>(x, y));
+  timer_(test_norm_subadditivity<T, p>(y, x));
+  timer_(test_norm_absolute_homogeneity<T, p>(x, s));
+  timer_(test_norm_absolute_homogeneity<T, p>(y, s));
+  timer_(test_norm_non_negativity<T, p>(x));
+  timer_(test_norm_non_negativity<T, p>(y));
 
   // distance properties
-  test_distance_translation_invariant<T, p>(x, y, a);
-  test_distance_translation_invariant<T, p>(y, x, a);
-  test_distance_absolute_homogeneity<T, p>(x, y, s);
-  test_distance_absolute_homogeneity<T, p>(y, x, s);
+  timer_(test_distance_translation_invariant<T, p>(x, y, a));
+  timer_(test_distance_translation_invariant<T, p>(y, x, a));
+  timer_(test_distance_absolute_homogeneity<T, p>(x, y, s));
+  timer_(test_distance_absolute_homogeneity<T, p>(y, x, s));
 }
 
 template <arithm_c T>
 void test(T lim) {
   rand::gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
-  test_norm_equivalence(point{g(), g()});
+  timer_(test_norm_equivalence(point{g(), g()}));
   single_test<T, 0>(point{g(), g()}, point{g(), g()}, point{g(), g()}, g());
   single_test<T, 1>(point{g(), g()}, point{g(), g()}, point{g(), g()}, g());
   if CEXP (std::floating_point<T>) {
@@ -109,23 +109,15 @@ void test(T lim) {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test<i32>(1e4); break;
-    case unittest::TC::example_01: test<i64>(1e4); break;
-    case unittest::TC::random_00: test<f64>(1e4); break;
-    case unittest::TC::random_01: test<f128>(1e4); break;
-    case unittest::TC::random_02: test<i64>(1e5); break;
-    case unittest::TC::random_03: test<f64>(1e5); break;
-    case unittest::TC::random_04: test<f128>(1e5); break;
-    case unittest::TC::random_05: test<i64>(1e9); break;
-    case unittest::TC::random_06: test<f64>(1e9); break;
-    case unittest::TC::random_07: test<f64>(1e9); break;
-    case unittest::TC::random_08: test<f128>(1e9); break;
-    case unittest::TC::random_09: break;
-    default: break;
-  }
-
-  unittest::post_test();
+  timer_(test<i32>(1e4));
+  timer_(test<i64>(1e4));
+  timer_(test<f64>(1e4));
+  timer_(test<f128>(1e4));
+  timer_(test<i64>(1e5));
+  timer_(test<f64>(1e5));
+  timer_(test<f128>(1e5));
+  timer_(test<i64>(1e9));
+  timer_(test<f64>(1e9));
+  timer_(test<f64>(1e9));
+  timer_(test<f128>(1e9));
 }

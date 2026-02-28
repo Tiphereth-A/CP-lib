@@ -61,7 +61,7 @@ jobs:
         id: cache-fonts
         uses: actions/cache/restore@v5
         with:
-          path: fonts
+          path: .cp-lib/fonts
           key: fonts-${{ hashFiles('Makefile') }}
       - name: Download fonts
         if: ${{ steps.cache-fonts.outputs.cache-hit != 'true' }}
@@ -70,13 +70,13 @@ jobs:
             make download-fonts
             echo "::endgroup::"
             echo "::group::Downloaded fonts list"
-            ls -l fonts
+            ls -l .cp-lib/fonts
             echo "::endgroup::"
       - name: Save fonts cache
         if: ${{ steps.cache-fonts.outputs.cache-hit != 'true' }}
         uses: actions/cache/save@v5
         with:
-          path: fonts
+          path: .cp-lib/fonts
           key: fonts-${{ hashFiles('Makefile') }}
       - name: Build the LaTeX document
         id: build-latex
@@ -84,7 +84,6 @@ jobs:
         with:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
-          working_directory: template
           args: "-pdf -file-line-error -halt-on-error -interaction=batchmode -8bit"
           extra_system_packages: |
             unzip
@@ -96,7 +95,7 @@ jobs:
             font-noto
             font-noto-cjk
           pre_compile: |
-            cp -r ../fonts/* /usr/share/fonts
+            cp -r .cp-lib/fonts/* /usr/share/fonts
             fc-cache -f
           root_file: notebook.tex
       - name: Upload LaTeX logs to artifacts
@@ -130,11 +129,24 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+      - name: Install Python dependencies
+        run: uv sync --frozen
+      - name: Copying C++ header files
+        run: |
+          uv run python manager.py -l DEBUG pack
+          mv .cp-lib/include include
       - name: Release
         shell: bash
         run: |
           set -x
-          tar -cf CP-lib.tar src/*
+          tar -cf CP-lib.tar include/*
           gzip -9 CP-lib.tar
           gh release create "${{ github.ref_name }}" ./CP-lib.tar.gz
         env:

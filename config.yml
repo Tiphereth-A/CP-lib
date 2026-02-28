@@ -1,2 +1,0 @@
-run_usage_commands:
-  cpp: "g++ -std=gnu++20 {src}"

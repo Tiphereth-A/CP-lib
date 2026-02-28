@@ -1,11 +1,11 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/math/qpow/basic/lib.hpp"
 #include "../../../src/nt/gl/gcd/lib.hpp"
 #include "../../../src/nt/lsieve/func/lib.hpp"
 #include "../../../src/nt/lsieve/impl1/lib.hpp"
 #include "../../../src/nt/lsieve/impl2/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -105,22 +105,15 @@ void test(u32 n) {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test(0); break;
-    case unittest::TC::random_00: test(1); break;
-    case unittest::TC::random_01: test(10); break;
-    case unittest::TC::random_02: test(100); break;
-    case unittest::TC::random_03: test(1000); break;
-    case unittest::TC::random_04: test(2000); break;
-    case unittest::TC::random_05: test(3000); break;
-    case unittest::TC::random_06: test(4000); break;
-    case unittest::TC::random_07: test(5000); break;
-    case unittest::TC::random_08: test(6000); break;
-    case unittest::TC::random_09: test(7000); break;
-    default: break;
-  }
-
-  unittest::post_test();
+  timer_(test(0));
+  timer_(test(1));
+  timer_(test(10));
+  timer_(test(100));
+  timer_(test(1000));
+  timer_(test(2000));
+  timer_(test(3000));
+  timer_(test(4000));
+  timer_(test(5000));
+  timer_(test(6000));
+  timer_(test(7000));
 }

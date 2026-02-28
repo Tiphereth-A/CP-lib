@@ -1,5 +1,4 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/fps/asin/lib.hpp"
 #include "../../../src/fps/atan/lib.hpp"
@@ -8,6 +7,7 @@
 #include "../../../src/math/ds/mint/lib.hpp"
 #include "../../../src/math/mint/ms/lib.hpp"
 #include "../../../src/math/mint/ms64/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -50,22 +50,10 @@ void test(u32 n) {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test<pnm30>(100); break;
-    case unittest::TC::random_00: test<pnm63>(100); break;
-    case unittest::TC::random_01: test<pnm30>(1000); break;
-    case unittest::TC::random_02: test<pnm63>(1000); break;
-    case unittest::TC::random_03: test<pnm30>(100000); break;
-    case unittest::TC::random_04: test<pnm63>(100000); break;
-    case unittest::TC::random_05: break;
-    case unittest::TC::random_06: break;
-    case unittest::TC::random_07: break;
-    case unittest::TC::random_08: break;
-    case unittest::TC::random_09: break;
-    default: break;
-  }
-
-  unittest::post_test();
+  timer_(test<pnm30>(100));
+  timer_(test<pnm63>(100));
+  timer_(test<pnm30>(1000));
+  timer_(test<pnm63>(1000));
+  timer_(test<pnm30>(100000));
+  timer_(test<pnm63>(100000));
 }

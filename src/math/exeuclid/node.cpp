@@ -1,3 +1,4 @@
+// competitive-verifier: DISPLAY never
 // let f(x) = floor((p * x + r) / q)
 // @param u (REQUIRED) count of horizontal lines have been crossed
 // @param r (REQUIRED) count of vertical lines have been crossed

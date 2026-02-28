@@ -1,5 +1,4 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/lalg/ds/mat/lib.hpp"
 #include "../../../src/lalg/mat/ge/lib.hpp"
@@ -65,26 +64,12 @@ void test(u32 n) {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
   mintd31::set_mod(MOD);
   mintd63::set_mod(MOD64);
 
-  switch (tcase) {
-    case unittest::TC::example_00: test(4); break;
-    case unittest::TC::example_01: test(10); break;
-    case unittest::TC::random_00: test(20); break;
-    case unittest::TC::random_01: test(30); break;
-    case unittest::TC::random_02: test(40); break;
-    case unittest::TC::random_03: break;
-    case unittest::TC::random_04: break;
-    case unittest::TC::random_05: break;
-    case unittest::TC::random_06: break;
-    case unittest::TC::random_07: break;
-    case unittest::TC::random_08: break;
-    case unittest::TC::random_09: break;
-    default: break;
-  }
-
-  unittest::post_test();
+  timer_(test(4));
+  timer_(test(10));
+  timer_(test(20));
+  timer_(test(30));
+  timer_(test(40));
 }

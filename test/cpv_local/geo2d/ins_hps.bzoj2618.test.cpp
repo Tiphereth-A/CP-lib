@@ -1,7 +1,7 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: STANDALONE
 
 #include "../../../src/geo2d/ins_hps/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -52,23 +52,7 @@ void test(strnv data) {
 }
 
 int main() {
-  auto tcase = unittest::pre_test();
-
-  switch (tcase) {
-    case unittest::TC::example_00: test("1"); break;
-    case unittest::TC::example_01: test("2"); break;
-    case unittest::TC::random_00: test("3"); break;
-    case unittest::TC::random_01: test("4"); break;
-    case unittest::TC::random_02: test("5"); break;
-    case unittest::TC::random_03: test("6"); break;
-    case unittest::TC::random_04: test("7"); break;
-    case unittest::TC::random_05: test("8"); break;
-    case unittest::TC::random_06: test("9"); break;
-    case unittest::TC::random_07: break;
-    case unittest::TC::random_08: break;
-    case unittest::TC::random_09: break;
-    default: break;
+  for (int i = 1; i <= 9; ++i) {
+    timer_(test(std::to_string(i)));
   }
-
-  unittest::post_test();
 }

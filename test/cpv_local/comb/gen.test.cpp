@@ -1,6 +1,4 @@
-#define UNITTEST
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
-
+// competitive-verifier: STANDALONE
 #include "../../../src/comb/seq/fact/lib.hpp"
 #include "../../../src/comb/seq/ifact/lib.hpp"
 #include "../../../src/comb/seq/inv/lib.hpp"
@@ -13,6 +11,7 @@
 #include "../../../src/math/mint/ms/lib.hpp"
 #include "../../../src/math/mint/ms64/lib.hpp"
 #include "../../../src/math/qpow/basic/lib.hpp"
+#include "../../../src/rand/gen/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -60,10 +59,10 @@ void test_all(u32 n) {
       check(pows[i], bf, check_param(i), check_param(b));
     }
   };
-  test_pows(n, 0);
-  test_pows(n, 1);
-  test_pows(n, 114514);
-  test_pows(n, n);
+  timer_(test_pows(n, 0));
+  timer_(test_pows(n, 1));
+  timer_(test_pows(n, 114514));
+  timer_(test_pows(n, n));
 }
 
 using mints30 = math::mint<math::mint_ms, 998244353>;
@@ -72,25 +71,15 @@ using mintd31 = math::mint<math::mint_md, __LINE__>;
 using mintd63 = math::mint<math::mint_md64, __LINE__>;
 
 int main() {
-  auto tcase = unittest::pre_test();
   mintd31::set_mod(1000000000 + 7);
   mintd63::set_mod(1000000000 + 7);
 
-  switch (tcase) {
-    case unittest::TC::example_00: test_all<mints30>(1000); break;
-    case unittest::TC::example_01: test_all<mints63>(1000); break;
-    case unittest::TC::random_00: test_all<mintd31>(1000); break;
-    case unittest::TC::random_01: test_all<mintd63>(1000); break;
-    case unittest::TC::random_02: test_all<mints30>(1'000'000); break;
-    case unittest::TC::random_03: test_all<mints63>(1'000'000); break;
-    case unittest::TC::random_04: test_all<mintd31>(1'000'000); break;
-    case unittest::TC::random_05: test_all<mintd63>(1'000'000); break;
-    case unittest::TC::random_06: break;
-    case unittest::TC::random_07: break;
-    case unittest::TC::random_08: break;
-    case unittest::TC::random_09: break;
-    default: break;
-  }
-
-  unittest::post_test();
+  timer_(test_all<mints30>(1000));
+  timer_(test_all<mints63>(1000));
+  timer_(test_all<mintd31>(1000));
+  timer_(test_all<mintd63>(1000));
+  timer_(test_all<mints30>(1'000'000));
+  timer_(test_all<mints63>(1'000'000));
+  timer_(test_all<mintd31>(1'000'000));
+  timer_(test_all<mintd63>(1'000'000));
 }

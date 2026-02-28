@@ -1,20 +1,11 @@
 ## Code Style Guidelines
 
-1. **Use existing utilities**: Before writing new code, check `include/util/*.hpp` for existing macros, traits and types
+1. **Use existing utilities**: Before writing new code, check `src/util/**/lib.hpp` for existing macros, traits and types
 2. **Follow examples**: Look at existing implementations like:
 
-    - [include/math/qpow.hpp](https://github.com/Tiphereth-A/CP-lib/blob/master/include/math/qpow.hpp)
-    - [include/graph/chrom_num.hpp](https://github.com/Tiphereth-A/CP-lib/blob/master/include/graph/chrom_num.hpp)
-    - [include/str/kmp.hpp](https://github.com/Tiphereth-A/CP-lib/blob/master/include/str/kmp.hpp)
-
-3. **Language requirements**:
-
-    You should only use Simplified Chinese or English in this repository.
-
-    - **English** for: `*.md`, `include/*`, `doc_md/*`, `meta_test/*`, `test/*`, `tests/*`
-    - **Simplified Chinese** for: `*.tex`, `cheatsheet/*`, `doc_tex/*`, `usage/*`
-
-    If you have any trouble with this, please feel free to ask owner for help! ;)
+    - [src/math/qpow/basic/lib.hpp](https://github.com/Tiphereth-A/CP-lib/blob/master/src/math/qpow/basic/lib.hpp)
+    - [src/graph/cnt/chrom_num/lib.hpp](https://github.com/Tiphereth-A/CP-lib/blob/master/src/graph/cnt/chrom_num/lib.hpp)
+    - [src/str/kmp/lib.hpp](https://github.com/Tiphereth-A/CP-lib/blob/master/src/str/kmp/lib.hpp)
 
 ## Directories and files
 
@@ -22,61 +13,48 @@ This section describes the purpose of each directory and important files in the 
 
 ### Core Directories
 
-- **`include/`** - Main C++ header files containing all algorithm and data structure implementations. Organized by category (e.g., `graph/`, `math/`, `ds/`, `str/`). All code should be in English.
+- **`src/`** - Main C++ header files and documentation organized by category (e.g., `graph/`, `math/`, `ds/`, `str/`). Each implementation is in its own subdirectory containing:
+  - `lib.hpp` - C++ implementation (in English)
+  - `doc.tex` - LaTeX documentation for PDF notebook (in Simplified Chinese)
+  - `cpvdoc.md` - Markdown documentation for competitive-verifier (in English)
+  - `usage.cpp` - Usage examples (comments in Simplified Chinese)
+  - Image files (`.svg`, `.png`) - Documentation resources used directly in this directory
+  - `index.yml` - In category directories, defines chapter structure and section names
 
-- **`doc_tex/`** - LaTeX documentation files for the PDF notebook. Organized by chapter matching `include/` structure. Documentation should be written in Simplified Chinese. These files are included in the generated PDF notebook.
+- **`src/sheet/`** - Cheatsheet content for the PDF notebook. Contains quick reference materials (in Simplified Chinese).
 
-- **`doc_md/`** - Markdown documentation files for competitive-verifier. Organized by chapter matching `include/` structure. Used by the verification system to generate documentation on the website. Should be written in English.
+- **`src/_titlepage/`** and **`src/_colophon/`** - Special sections for notebook title page and colophon.
 
-- **`usage/`** - Usage example files demonstrating how to use each implementation. Organized by chapter matching `include/` structure. Comments should be in Simplified Chinese. These examples are compiled and run during testing.
-
-- **`test/`** - Test files for verification against online judges (Aizu, Library Checker, Yukicoder) and local tests. Organized by online judge or test type. Should be written in English.
-
-- **`cheatsheet/`** - LaTeX files for cheatsheet sections in the PDF notebook. Contains quick reference materials. Should be written in Simplified Chinese.
+- **`test/`** - Test files for verification. Contains subdirectories:
+  - `cpv/` - Competitive-verifier tests organized by online judge (Aizu, Library Checker, Yukicoder)
+  - `cpv_local/` - Local tests with custom implementations and test data
+  - `cpv_local/_data/` - Test data files organized by OJ (`.in`, `.out`, `.ans`)
+  - `cpv_meta/` - Test matrix template files (`.cppmeta`) for generating parameterized test variants
+  - `cplib/` - Additional test utilities
 
 ### Configuration and Management
 
-- **`config.yml`** - Main configuration file defining directory paths, chapter/section structure, code styles, and compilation commands.
-
 - **`tcgen.yml`** - Test matrix configuration file for generating parameterized test variants from templates.
 
-- **`libs/`** - Python library modules used by `manager.py` for managing the repository, generating content, and processing files.
+- **`libs/`** - Python library modules used by `manager.py` for managing the repository, generating content, and processing files. Contains:
+  - `cli.py` - Command-line interface
+  - `commands/` - Command implementations
+  - `classes/` - Data classes and models
+  - `configs.py`, `utils.py`, `templates.py`, etc.
 
 - **`manager.py`** - Main management script providing commands for creating new implementations, formatting code, generating notebooks, and running tests.
 
+- **`pyproject.toml`** - Python project configuration and dependency management.
+
+- **`uv.lock`** - Lock file for uv package manager.
+
 ### Generated and Build Directories
 
-- **`_gen/`** - Generated files from `python manager.py gen-cs` and `python manager.py gen-nb`. Contains generated LaTeX content files (`contents_cheatsheet.tex`, `contents_notebook.tex`).
-
-- **`_pdf_out/`** - Output directory for PDF files built by `python manager.py run`. Contains the compiled notebook PDF.
+- **`.cp-lib/`** - Generated/processed files directory.
 
 - **`_minted-notebook/`** - Temporary directory for LaTeX minted package output (syntax highlighting) during PDF compilation.
 
-- **`build/`** - CMake build artifacts and compiled object files.
-
-- **`downloads/`** - Temporary directory for downloaded font files (created by `make download-fonts`).
-
-- **`fonts/`** - Directory containing extracted font files for LaTeX compilation (created by `make download-fonts`).
-
-- **`svg-inkscape/`** - Processed SVG files converted to PDF format for inclusion in LaTeX documents.
-
-### Testing and Data
-
-- **`test/`** - Test files for verification against online judges (Aizu, Library Checker, Yukicoder) and local tests. Organized by online judge or test type. Should be written in English.
-
-- **`tests/`** - Python test suite for the manager system using pytest. Should be written in English.
-
-- **`meta_test/`** - Test matrix template files (`.cppmeta`). These templates are used to generate multiple test variants with different parameters (e.g., hash functions, modular arithmetic implementations). Should be written in English.
-
-- **`data/`** - Test data files organized by online judge or problem source. Contains input/output files (`.in`, `.out`, `.ans`) for local testing.
-
-- **`benchmark/`** - Benchmark files for performance testing.
-
-### Documentation Resources
-
-- **`img/`** - Image files (SVG, PNG) used in documentation. Referenced from `doc_tex/` and `cheatsheet/` files.
-
-- **`src/`** - Miscellaneous source files referenced in documentation (e.g., example code snippets, reference materials).  Referenced from `notebook.tex`, `doc_tex/` and `cheatsheet/` files.
+- **`svg-inkscape/`** - SVG files converted to PDF format for inclusion in LaTeX documents.
 
 ### LaTeX Configuration
 
@@ -86,11 +64,27 @@ This section describes the purpose of each directory and important files in the 
 
 - **`notebook.bib`** - Bibliography file for citations in the notebook.
 
-### Other Directories
+### Development Configuration
 
 - **`.github/`** - GitHub Actions workflows and configuration files for CI/CD.
 
 - **`.verify-helper/`** - Configuration files for competitive-verifier.
+  - `config.toml` - Verifier configuration
+  - `docs/` - Additional documentation
+
+- **`.vscode/`** - VS Code workspace settings.
+
+- **`.latexindent.yaml`** - Configuration for LaTeX indentation and formatting.
+
+- **`.clang-format`** - Clang format configuration for C++ code style.
+
+- **`.clangd`** - Clangd configuration for C++ language server.
+
+- **`.prettierrc`** - Prettier configuration for code formatting.
+
+- **`.gitignore`**, **`.gitattributes`** - Git configuration files.
+
+### Other Directories and Files
 
 - **`local/`** - Local files for personal use (typically not tracked in git).
 
@@ -106,30 +100,25 @@ This section describes the purpose of each directory and important files in the 
 
 2. **Fill in the required information**:
 
-    - Chapter name (e.g., `graph`, `math`, `ds`)
-    - File name (without extension)
+    - Section name (such as `graph.sp.dijkstra`)
     - Section title (for notebook)
-    - File extensions
 
-3. **The script will create**:
+3. **The script will create a subdirectory** `src/<section>/` containing:
 
-    - Code file: `include/<chapter>/<file>.hpp`
-    - Documentation: `doc_tex/<chapter>/<file>.tex`
-    - Competitive verifier doc: `doc_md/<chapter>/<file>.md`
-    - Usage example: `usage/<chapter>/<file>.cpp`
+    - `lib.hpp` - C++ implementation (write in English)
+    - `doc.tex` - LaTeX documentation for PDF notebook (write in Simplified Chinese)
+    - `cpvdoc.md` - Competitive-verifier markdown documentation (write in English)
+    - `usage.cpp` - Usage examples (comments in Simplified Chinese)
 
-4. **Implement your algorithm** in the generated files
+    You can delete any of them except `doc.tex` safely if not needed.
 
-5. **Write documentations** if necessary. Images put in `img/` folder, other files put in `src/` folder.
+4. **Implement your algorithm** in the generated `lib.hpp` file
 
-6. **Add tests** in `test/` directory (if applicable)
+5. **Write documentation** in `doc.tex` and `cpvdoc.md`. If you need images or other resources, place them directly in the same directory.
 
-7. **Adjust ordering in `config.yml`**
+6. **Add tests** in `test/cpv/`, `test/cpv_local/`, or `test/cpv_meta/` as appropriate
 
-### New Cheatsheet
-
-1. **Write documentations** in `cheatsheet/` folder. Images put in `img/` folder, other files put in `src/` folder.
-2. **Add info in `config.yml`** (in `cheatsheets:`)
+7. **Adjust ordering** by editing `src/<chapter>/index.yml` or `src/index.yml`
 
 ### Testing Your Changes
 
@@ -138,13 +127,13 @@ This section describes the purpose of each directory and important files in the 
 python manager.py fmt
 
 # Run usage examples
-python manager.py run-usage
+python manager.py test
 
-# Generate and compile notebook
-python manager.py run
+# Generate notebook
+python manager.py doc
 
-# Run Python tests for manager system
-pytest                    # Run all tests
+# Run verification tests (requires competitive-verifier)
+# See .github/workflows for CI test commands
 ```
 
 ### Submitting Changes

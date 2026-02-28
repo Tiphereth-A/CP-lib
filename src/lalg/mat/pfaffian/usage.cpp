@@ -1,3 +1,4 @@
+// competitive-verifier: DISPLAY never
 #define PROBLEM "https://www.luogu.com.cn/problem/P10216"
 
 #include "../../../math/ds/mint/lib.hpp"

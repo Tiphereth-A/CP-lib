@@ -5,7 +5,7 @@ SRC_PATH = 'src'
 TEST_PATH = 'test'
 TEMP_PATH = '.cp-lib'
 
-THREAD_LIMIT = 32
+THREAD_LIMIT = 8
 EXT_TYPE_MP: dict[str, str] = {
     '.md': 'markdown',
     '.tex': 'tex',

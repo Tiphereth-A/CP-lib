@@ -1,3 +1,4 @@
+// competitive-verifier: DISPLAY never
 // #pragma GCC optimize("Ofast", "unroll-loops")
 #include <bits/stdc++.h>
 #include <cpuid.h>

@@ -1,5 +1,5 @@
+// competitive-verifier: ERROR 0.000001
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_B"
-#define ERROR 0.000001
 
 #include "../../../src/geo2d/ds/t/lib.hpp"
 #include "../../../src/geo2d/tcenter/i/lib.hpp"

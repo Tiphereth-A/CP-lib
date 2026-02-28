@@ -1,3 +1,4 @@
+// competitive-verifier: DISPLAY never
 #include <utility>
 // 返回 F(n) 和 F(n + 1)
 std::pair<int, int> fib(int n) {

@@ -42,7 +42,7 @@ The repository solves several key problems for competitive programmers:
 - **Documentation**: Supports PDF documentation generating for offline usage
 - **Test matrix**: Generate multiple test variants from template.
 
-## Installation
+## Usage
 
 Requirements:
 
@@ -65,7 +65,7 @@ For LaTeX compiling:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Tiphereth-A/CP-lib.git
+git clone -c core.symlinks=true git@github.com:Tiphereth-A/CP-lib.git
 cd CP-lib
 
 # Install Python dependencies
@@ -78,165 +78,7 @@ uv sync --frozen --group verify
 python3 manager.py --help
 ```
 
-## Usage
-
-If you only want to use the library or the PDF, just check out [Releases](https://github.com/Tiphereth-A/CP-lib/releases/latest).
-
-The library is header-only, so you can simply include the headers you need:
-
-```cpp
-// your_code.cpp
-#include "nt/gl/gcd/lib.hpp"
-#include "ds/fenwick/d1/lib.hpp"
-
-using namespace tifa_libs;
-
-int main() {
-    // Use algorithms and data structures
-    // Example: GCD
-    u64 a = 48, b = 18;
-    u64 result = math::gcd(a, b);  // Returns 6
-    
-    // Example: Fenwick Tree
-    ds::fenwick<u64> fw(10);
-    fw.add(1, 5);
-    fw.add(2, 3);
-    u64 sum = fw.sum(1, 2);  // Returns 8
-    
-    return 0;
-}
-```
-
 The `manager.py` script provides several commands for managing the repository, see `python manager.py --help` for details.
-
-### Writing Tests
-
-#### For Online Judge Problems
-
-1. Create test file: `test/cpv/<oj>/<problem>.test.cpp`
-2. Include the implementation
-3. Solve the problem using the library, the test will be automatically verified
-
-**Example:**
-
-```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/..."
-#include "../../../src/math/gl/gcd/lib.hpp"
-// ... implementation
-```
-
-#### For Local Tests
-
-Acturally, local tests is a **hack** of Online Judge Problems test. It uses a fixed OJ problem [A + B](https://judge.yosupo.jp/problem/aplusb), so the steps are basically like steps for OJ problems. But there are some more rules:
-
-1. Create tests in `test/cpv_local/`
-
-2. Follow the format of this example code
-
-    <details>
-    <summary>Example</summary>
-
-    ```cpp
-    #define UNITTEST
-    #define PROBLEM "https://judge.yosupo.jp/problem/aplusb" // NOT change
-
-    // ... your headers
-
-    #include "../base.hpp" // MUST include this header
-
-    void single_test();
-
-    // ... implementation
-
-    int main() {
-        auto tcase = unittest::pre_test();
-
-        // change code in each cases if you want
-        switch (tcase) {
-            case unittest::TC::example_00: single_test(); break;
-            case unittest::TC::example_01: break;
-            case unittest::TC::random_00: break;
-            case unittest::TC::random_01: break;
-            case unittest::TC::random_02: break;
-            case unittest::TC::random_03: break;
-            case unittest::TC::random_04: break;
-            case unittest::TC::random_05: break;
-            case unittest::TC::random_06: break;
-            case unittest::TC::random_07: break;
-            case unittest::TC::random_08: break;
-            case unittest::TC::random_09: break;
-            default: break;
-        }
-
-        unittest::post_test();
-    }
-    ```
-
-    </details>
-
-3. If you have some testdata files, then put data in `test/cpv_data/_data/` folder and follow the format of this example code
-
-    <details>
-    <summary>Example</summary>
-
-    ```cpp
-    #define UNITTEST
-    #define PROBLEM "https://judge.yosupo.jp/problem/aplusb" // NOT change
-
-    // ... your headers
-
-    #include "../base.hpp" // MUST include this header
-
-    using namespace tifa_libs;
-
-    strn single_proceed(std::ifstream &fin); // use `fin` as `std::cin`, return output as `std::string`
-
-    // ... implementation
-
-    void test(strnv data) {
-        auto [fn_in, fn_ans] = unittest::get_fname_in_ans("foo", "bar", data); // change param
-        std::ifstream fin(fn_in), fans(fn_ans);
-
-        u32 t = 1;
-        u32 testcase = 0;
-        // fin >> t; // if have multiple testcases in single file
-        flt_ (u32, i, 0, t) {
-            ++testcase;
-            strn got = single_proceed(fin);
-            strn want, _;
-            // change following codes based on answer format
-            while (std::getline(fans, _)) want += _ + '\n';
-            while (isspace(got.back())) got.pop_back();
-            while (isspace(want.back())) want.pop_back();
-            check(got, want, check_param(testcase));
-        }
-    }
-
-    int main() {
-        auto tcase = unittest::pre_test();
-
-        // change code in each cases if you want
-        switch (tcase) {
-            case unittest::TC::example_00: test("1"); break;
-            case unittest::TC::example_01: test("2"); break;
-            case unittest::TC::random_00: test("3"); break;
-            case unittest::TC::random_01: break;
-            case unittest::TC::random_02: break;
-            case unittest::TC::random_03: break;
-            case unittest::TC::random_04: break;
-            case unittest::TC::random_05: break;
-            case unittest::TC::random_06: break;
-            case unittest::TC::random_07: break;
-            case unittest::TC::random_08: break;
-            case unittest::TC::random_09: break;
-            default: break;
-        }
-
-        unittest::post_test();
-    }
-    ```
-
-    </details>
 
 ## FAQs
 
@@ -244,14 +86,6 @@ Acturally, local tests is a **hack** of Online Judge Problems test. It uses a fi
 A: Use [oj-bundle](https://github.com/online-judge-tools/verification-helper?tab=readme-ov-file#autoexpansion-of-includes) to auto-expansion your code, it has been included in `verify` group of [Python dependencies](#python-dependencies) already.
 
 You can also find a `bundled` button at any code pages of [documentation site](https://cplib.tifa-233.com/#library-files), click the button then you will get the expanded code.
-
-**Q: Test verification fails**  
-A:
-
-- Check online judge credentials (if required)
-- Check if the problem still exists on the OJ
-- Review test file syntax
-- Check Time/memory limits (tests GitHub Action may takes ~3x more times than local)
 
 **Q: PDF generation is slow**  
 A: This is normal for large LaTeX documents, the expected time used in PDF generation is about 6 minutes in GitHub Action.
