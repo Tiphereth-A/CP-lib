@@ -1,0 +1,7 @@
+- hp: 堆式
+- ctor: 常用构造
+- lichao: 李超(线段添加--定点最值)
+- segbeats_ca_ms: 吉如一(最值,加--最值,和)
+- segbeats_ca_msh: 吉如一(最值,加--最值,历史最值,和)
+- w: 权值
+- persistent: 可持久化

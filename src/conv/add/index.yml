@@ -1,0 +1,10 @@
+- naive: 暴力
+- naive_mod: 暴力,mod
+- dft: FFT 或 NTT
+- mval_dft: 多维,FFT 或 NTT
+- u64: u64
+- mtt: MTT
+- ntt_large: NTT,二倍极限长度
+- ntt3: 三模 NTT
+- u128: 三模 NTT,元素不取模
+- czt: Chirp-Z 变换

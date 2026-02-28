@@ -1,0 +1,10 @@
+- trans: 变换
+- add: 加,乘
+- and: 并,乘
+- or: 交,乘
+- xor: 异或,乘
+- subset: 子集,乘
+- gcd: GCD,乘
+- lcm: LCM,乘
+- min_plus: min,加
+- cyc_add: 循环卷积,加,乘

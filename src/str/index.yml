@@ -1,0 +1,13 @@
+- kmp: KMP
+- z_func: Z 函数(扩展 KMP)
+- manacher: Manacher
+- hash: 子串 Hash
+- suffix_array: 后缀数组
+- suffix_automaton: 后缀自动机
+- orthodox_ex_suffix_automaton: 广义后缀自动机(离线)
+- ex_suffix_automaton: 广义后缀自动机
+- aho_corasick: AC 自动机
+- lyndon: Lyndon 分解
+- trie: Trie
+- lcs_sa: 最长公共子串(后缀数组)
+- run: Run

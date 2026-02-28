@@ -1,0 +1,6 @@
+- dinic: 最大流(Dinic)
+- hlpp: 最大流(HLPP)
+- ssp: 最小费用最大流(SSP)
+- hungarian: 匈牙利算法
+- hopkap: Hopcroft--Karp 算法
+- gomory_hu: 最小割树(Gomory--Hu)

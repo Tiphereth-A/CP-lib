@@ -1,0 +1,17 @@
+- gl: GCD,LCM
+- inverse: 逆元
+- mod: 快速模乘
+- euler_phi: Euler 函数
+- carmichael: Carmichael 函数
+- crt: CRT
+- is_prime: 素数判定
+- prime_seq: 素数序列
+- lsieve: 线性筛
+- pfactors: 质因子
+- proot: 原根
+- dlog: 离散对数
+- residue: 剩余
+- mfsum: 积性函数求和
+- sbt: Stern--Brocot 树
+- period_fib: 模 Fibonacci 循环节
+- norm_fact: 二平方和分解

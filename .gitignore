@@ -517,6 +517,7 @@ _pdf_out/
 local/
 fonts/
 .vscode/
+.cp-lib/
 
 /out*.cpp
 /*.out

@@ -1,0 +1,14 @@
+- bsearch: 二分
+- tsearch: 三分
+- knapsack: 背包
+- lis: 最长上升子序列
+- lev_dis: Levenshtein 距离
+- hoverline: 悬线法
+- lcs_circ: 环序列的最长公共子序列长度
+- sa: 模拟退火
+- alpha_beta: min-max 搜索
+- dlx: DLX
+- smawk: SMAWK 算法
+- larsch: LARSCH 算法
+- astar: A* 算法
+- simplex: 单纯形法

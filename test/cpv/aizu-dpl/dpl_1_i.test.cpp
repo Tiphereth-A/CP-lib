@@ -1,0 +1,14 @@
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_1_I"
+
+#include "../../../src/opt/knapsack/mixed_huge/lib.hpp"
+
+using namespace tifa_libs;
+int main() {
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
+  u64 n, w;
+  std::cin >> n >> w;
+  vec<pt3uu> a(n);
+  for (auto& [v, w, num] : a) std::cin >> v >> w >> num;
+  std::cout << opt::knapsack_mixed_huge(a, w) << '\n';
+  return 0;
+}

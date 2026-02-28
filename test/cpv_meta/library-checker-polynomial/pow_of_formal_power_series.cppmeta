@@ -1,0 +1,22 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/pow_of_formal_power_series"
+
+#include "../../../src/io/fastin/lib.hpp"
+#include "../../../src/io/fastout/lib.hpp"
+#include "../../../src/fps/pow/lib.hpp"
+
+using namespace tifa_libs;
+CEXP u32 MOD = 998244353;
+
+// ---<GENTC>--- begin
+// ---<GENTC>--- append poly_nttmod
+// ---<GENTC>--- end
+
+int main() {
+  u32 n;
+  u64 m;
+  tifa_libs::fin_uint >> n >> m;
+  poly a(n);
+  tifa_libs::fin_uint >> a;
+  tifa_libs::fout << tifa_libs::math::pow_fps(a, m) << '\n';
+  return 0;
+}

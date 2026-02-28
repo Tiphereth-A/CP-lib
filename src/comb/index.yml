@@ -1,0 +1,7 @@
+- seq: 序列
+- binom: 二项式系数
+- qbinom: Gauss 二项式系数
+- exlucas: Lucas 定理(任意模数)
+- stirling1_smallp: 第一类 Stirling 数(小模数)
+- stirling2_smallp: 第二类 Stirling 数(小模数)
+- ball_box: 球与盒

@@ -1,0 +1,7 @@
+- info: 常用树 DFS
+- top: 树的 top 数组
+- sumvw: 子树点权和
+- centroid: 重心
+- diam: 直径
+- height: 高度
+- hash_rooted: 有根树 Hash

@@ -1,0 +1,20 @@
+#ifndef TIFALIBS_GEO2D_ANG_PP_LIB
+#define TIFALIBS_GEO2D_ANG_PP_LIB
+
+#include "../ds/p/lib.hpp"
+
+namespace tifa_libs::geo {
+
+// clamp angle of two points, result in $(-\pi,\pi]$
+template <class FP>
+CEXP FP ang_PP(point<FP> CR p1, point<FP> CR p2) NE { return std::atan2(p1 ^ p2, p1 * p2); }
+// clamp angle of two points, result in $[0,2\pi)$
+template <class FP>
+CEXP FP ang2pi_PP(point<FP> CR p1, point<FP> CR p2) NE {
+  const FP res = ang_PP(p1, p2);
+  retif_((is_neg(res)), res + 2 * pi_v<FP>, res);
+}
+
+}  // namespace tifa_libs::geo
+
+#endif

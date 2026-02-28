@@ -3,14 +3,12 @@
 import click
 import coloredlogs
 
-from libs.commands.clean import register_clean_command
-from libs.commands.gen_nb import register_gen_nb_command
-from libs.commands.gen_cs import register_gen_cs_command
-from libs.commands.run_usage import register_run_usage_command
-from libs.commands.compile_pdf import register_compile_command
-from libs.commands.fmt import register_fmt_command
+from libs.commands.doc import register_doc_command
 from libs.commands.new import register_new_command
-from libs.commands.gentc import register_gentc_command
+from libs.commands.test_usage import register_test_command
+from libs.commands.fmt import register_fmt_command
+from libs.commands.matrix import register_meta_command
+from libs.commands.pack import register_pack_command
 
 
 @click.group()
@@ -38,15 +36,12 @@ def cli(level: str):
 
 
 # Register all commands
-register_clean_command(cli)
-register_gen_nb_command(cli)
-register_gen_cs_command(cli)
-register_run_usage_command(cli)
-register_compile_command(cli)
-register_fmt_command(cli)
 register_new_command(cli)
-register_gentc_command(cli)
-
+register_doc_command(cli)
+register_test_command(cli)
+register_fmt_command(cli)
+register_meta_command(cli)
+register_pack_command(cli)
 
 if __name__ == '__main__':
     cli()

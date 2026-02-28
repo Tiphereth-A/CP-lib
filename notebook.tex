@@ -1,0 +1,28 @@
+%-*- coding: utf-8 -*-
+\documentclass[10pt]{ICPCnotebook}
+
+
+\begin{document}
+\input{src/_titlepage/titlepage.tex}
+
+\pagestyle{plain}
+
+\pagenumbering{gobble}
+
+\input{src/_colophon/colophon.tex}
+
+\newpage
+\begin{multicols}{2}
+    \tableofcontents
+\end{multicols}
+
+\newpage
+\pagestyle{fancy}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{.cp-lib/src/doc.tex}
+
+\bibliographystyle{plain}
+\bibliography{notebook}
+\end{document}

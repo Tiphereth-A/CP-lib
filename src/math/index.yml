@@ -1,0 +1,25 @@
+- ds: 定义
+- div64: 64 位整数除法
+- do_quot: 整除分块
+- inversion: 逆序对计数
+- rational_approx: 有理数近似
+- frac_itv: 区间内分母最小的分数
+- mint: 模整数类实现
+- mul_mod: 模乘法
+- qpow: 快速幂相关
+- safe_mod: 数学意义下有符号整数取模
+- simpson: 自适应 Simpson 积分
+- kahan: Kahan 求和
+- debruijn: de Bruijn 序列
+- mex: mex
+- iroot: 整数开根下取整
+- fact: 阶乘与阶乘逆
+- sum_ik_flist: 简单的自然数幂和函数列表
+- interp: 插值
+- nim_prod: Nim 积
+- exeuclid: 类 Euclid 算法
+- min_mod_linear: 模线性变换最小值
+- ipaf: ipaf
+- lrec: 线性递推
+- ssts_pim_cnt: 子集和原像大小
+- josephus: Josephus 问题

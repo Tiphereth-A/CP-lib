@@ -1,0 +1,6 @@
+- i128: 128 位整数的 IO
+- pair: pair IO
+- tuple: tuple IO
+- container: 容器 IO
+- fastin: 快速读入
+- fastout: 快速输出

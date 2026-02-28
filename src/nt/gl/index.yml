@@ -1,0 +1,7 @@
+- gcd_mpi: 高精度整数 GCD
+- gcd_fp: 浮点数 GCD
+- gcd: 整数 GCD
+- lcm: 整数 LCM
+- exgcd: exGCD
+- inv_gcd: 逆元与 GCD
+- rgcd: 固定值域的 GCD

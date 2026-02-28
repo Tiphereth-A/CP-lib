@@ -1,75 +1,27 @@
-"""Add new note command."""
-
-import os
+"""New section command."""
 
 import click
 
-from libs.classes.section import Section
-from libs.consts import CONFIG
+from libs.configs import CONTENT_TREE
 from libs.decorator import with_logger, with_timer
 
 
 @with_logger
 @with_timer
-def add_new_note(chapter_name: str, file_name: str, section_title: str, code_ext_name: str, usage_ext_name: str, **kwargs):
-    """Create a new note section with all required files."""
+def new_section(fullname: str, title: str, **kwargs):
+    """Create a new section at the given fullname."""
     logger = kwargs.get('logger')
 
-    section = Section(
-        chapter_name, file_name, section_title, code_ext_name, usage_ext_name
-    )
+    section = CONTENT_TREE.touch(fullname, title).get_section()
+    section.init_files()
 
-    # Create all files
-    _, _, f_cvdoc, _ = section.open(
-        CONFIG.get_code_dir(),
-        CONFIG.get_doc_dir(),
-        CONFIG.get_cvdoc_dir(),
-        CONFIG.get_usage_dir(),
-        'x'
-    )
-    logger.info('Created')
-
-    # Log created file paths
-    code_path, doc_path, cvdoc_path, usage_path = section.get_filenames(
-        CONFIG.get_code_dir(),
-        CONFIG.get_doc_dir(),
-        CONFIG.get_cvdoc_dir(),
-        CONFIG.get_usage_dir()
-    )
-    logger.info(f"Code: {os.path.join(os.curdir, code_path)}")
-    logger.info(f"Doc: {os.path.join(os.curdir, doc_path)}")
-    logger.info(f"CVDoc: {os.path.join(os.curdir, cvdoc_path)}")
-    logger.info(f"Usage: {os.path.join(os.curdir, usage_path)}")
-
-    # Update config
-    CONFIG.append_section(section)
-    logger.info('Config updated')
-
-    # Write CVDoc content
-    fixed_codepath = '//' + \
-        os.path.join(os.curdir, code_path).replace(
-            '\\', '/').removeprefix('./')
-    cvdoc_content = f"""---
-title: {file_name}
-documentation_of: {fixed_codepath}
----
-"""
-    f_cvdoc.write(cvdoc_content)
-    f_cvdoc.close()
+    logger.info('finished')
 
 
 def register_new_command(cli):
     """Register the new command with the CLI."""
     @cli.command('new')
-    @click.option('-c', '--chapter-name', type=str, prompt='Chapter name', help='Chapter name (key)')
-    @click.option('-f', '--file-name', type=str, prompt='File name (without ext name)', help='File name to be added')
-    @click.option('-s', '--section-title', type=str, prompt='Section title', help='Section title in notebook')
-    @click.option('-e', '--code-ext-name', type=str, prompt='Ext name of code file', help='Ext name of code file',
-                  default='hpp')
-    @click.option('-u', '--usage-ext-name', type=str, prompt='Ext name of usage file', help='Ext name of usage file',
-                  default='cpp')
-    def _new_note(chapter_name: str, file_name: str, section_title: str, code_ext_name: str,
-                  usage_ext_name: str):
-        """Add new note"""
-        add_new_note(chapter_name, file_name, section_title,
-                     code_ext_name, usage_ext_name)
+    @click.option('-n', '--fullname', type=str, prompt='Section fullname', help='fullname of the new section, e.g., comb.binom')
+    @click.option('-t', '--title', type=str, prompt='Section title', help='title of the new section, default to the last part of fullname', default='')
+    def _new(fullname: str, title: str):
+        new_section(fullname,  title)

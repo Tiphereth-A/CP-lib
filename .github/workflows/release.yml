@@ -8,15 +8,8 @@ on:
       - 'pyproject.toml'
       - 'uv.lock'
       - '.github/**'
-      - 'cheatsheet/**'
-      - 'img/**'
       - 'libs/**'
-      - 'include/**'
-      - 'doc_tex/**'
-      - 'template/**'
       - 'src/**'
-      - 'usage/**'
-      - 'config.yml'
       - '*.bib'
       - '*.cls'
       - '*.py'
@@ -28,15 +21,8 @@ on:
       - 'pyproject.toml'
       - 'uv.lock'
       - '.github/**'
-      - 'cheatsheet/**'
-      - 'img/**'
       - 'libs/**'
-      - 'include/**'
-      - 'doc_tex/**'
-      - 'template/**'
       - 'src/**'
-      - 'usage/**'
-      - 'config.yml'
       - '*.bib'
       - '*.cls'
       - '*.py'
@@ -69,8 +55,7 @@ jobs:
         run: uv sync --frozen
       - name: Generate TeX files
         run: |
-          uv run python manager.py -l DEBUG gen-cs
-          uv run python manager.py -l DEBUG gen-nb
+          uv run python manager.py -l DEBUG doc -t tex
       - name: Restore fonts cache
         if: ${{ !inputs.ignore_font_cache }}
         id: cache-fonts
@@ -108,6 +93,8 @@ jobs:
             py3-pip
             py3-pygments
             inkscape
+            font-noto
+            font-noto-cjk
           pre_compile: |
             cp -r ../fonts/* /usr/share/fonts
             fc-cache -f
@@ -118,22 +105,21 @@ jobs:
         with:
           name: latex-logs
           path: |
-            template/notebook.log
-            template/notebook.aux
-            template/notebook.fdb_latexmk
-            template/notebook.fls
-            template/notebook.out
+            notebook.log
+            notebook.aux
+            notebook.fdb_latexmk
+            notebook.fls
+            notebook.out
       - name: Upload PDF to artifacts
         uses: actions/upload-artifact@v7
         with:
           name: result
-          path: template/notebook.pdf
+          path: notebook.pdf
       - name: Release PDF
         if: startsWith(github.ref, 'refs/tags/')
         shell: bash
         run: |
           set -x
-          mv ./template/notebook.pdf ./notebook.pdf
           gh release create "${{ github.ref_name }}" ./notebook.pdf
         env:
           GH_TOKEN: ${{ github.token }}
@@ -148,7 +134,7 @@ jobs:
         shell: bash
         run: |
           set -x
-          tar -cf CP-lib.tar include/*
+          tar -cf CP-lib.tar src/*
           gzip -9 CP-lib.tar
           gh release create "${{ github.ref_name }}" ./CP-lib.tar.gz
         env:

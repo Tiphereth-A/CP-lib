@@ -1,0 +1,9 @@
+- nt_const: 初等数论常数表
+- sequences: 常见数列
+- oeis_seq: 常用 OEIS 数列
+- formula: 常用公式
+- decimal: Python Decimal
+- bash: Bash 简单用法
+- vim: Vim 简单用法
+- integral: 积分表
+- tcscs: TCSCS

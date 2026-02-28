@@ -1,0 +1,4 @@
+- max_area_t: 凸包内面积最大的三角形
+- coverage_rect: 覆盖矩形(最小面积,最小周长)
+- max_dis_cvh: 两凸包中的点的最远距离
+- min_dis_cvh: 两凸包中的点的最近距离

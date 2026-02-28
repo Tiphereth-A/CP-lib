@@ -1,0 +1,26 @@
+#define AUTO_GENERATED
+#define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_fixed_k"
+
+#include "../../../src/comb/seq/stirling1_col/lib.hpp"
+#include "../../../src/io/fastin/lib.hpp"
+#include "../../../src/io/fastout/lib.hpp"
+
+using namespace tifa_libs;
+CEXP u32 MOD = 998244353;
+
+#include "../../../src/fps/ds/ntt/lib.hpp"
+#include "../../../src/math/ds/mint/lib.hpp"
+#include "../../../src/math/mint/bs/lib.hpp"
+
+using namespace tifa_libs;
+using mint = math::mint<math::mint_bs, MOD>;
+using namespace tifa_libs;
+using poly = math::polyntt<mint>;
+
+int main() {
+  u32 n, k;
+  tifa_libs::fin_uint >> n >> k;
+  auto ans = tifa_libs::math::gen_stirling1_col<poly>(n, k);
+  flt_ (u32, i, k, n + 1) tifa_libs::fout << ans[i] << " \n"[i == n];
+  return 0;
+}

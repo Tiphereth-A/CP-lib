@@ -2,6 +2,7 @@ import logging
 import time
 from functools import wraps
 from libs.classes.decorator_result_handler import DecoratorResultHandlerBase
+from libs.utils import trailing_str
 
 
 def with_logger(func):
@@ -23,12 +24,12 @@ def with_logger(func):
 
         def write_to_logger(self, logger: logging.Logger) -> None:
             if self.result is not None:
-                logger.debug(f"Returned: '{self.result}'")
+                logger.debug(f"Returned: '{trailing_str(str(self.result))}'")
 
     @wraps(func)
     def inner(*args, **kwargs):
         logger.debug(
-            f"Start running {func.__name__} with args: {args}, kwargs: {kwargs}")
+            f"Start running {func.__name__} with args: {trailing_str(str(args))}, kwargs: {trailing_str(str(kwargs))}")
         result = func(*args, **kwargs, logger=logger)
         logger.debug(f"Finished running {func.__name__}")
 
@@ -58,7 +59,7 @@ def with_timer(func):
             self.elapsed_ms = elapsed_ms
 
         def write_to_logger(self, logger: logging.Logger) -> None:
-            logger.info(f"{self.func_name} took {self.elapsed_ms:.3f}ms")
+            logger.debug(f"{self.func_name} took {self.elapsed_ms:.3f}ms")
 
     @wraps(func)
     def inner(*args, **kwargs):

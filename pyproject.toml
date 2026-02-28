@@ -5,6 +5,7 @@ description = "Code library for Competitive Programming"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "autopep8>=2.3.2",
     "click>=8.3.0",
     "coloredlogs>=15.0.1",
     "multipledispatch>=1.0.0",
@@ -26,7 +27,7 @@ verify = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests/cplib"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]

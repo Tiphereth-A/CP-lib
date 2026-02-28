@@ -1,0 +1,5 @@
+- polysp: 多项式转稀疏多项式
+- inv: 逆函数
+- ln: ln
+- exp: exp
+- pow: pow

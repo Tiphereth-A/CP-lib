@@ -1,0 +1,6 @@
+- is_ins_sl: 线段与直线是否相交
+- is_ins_ss: 两线段是否相交
+- any_ins_ss: 多条线段是否相交
+- is_on_s: 点是否在直线上
+- is_on_same_l: 三点是否共线
+- is_in_middle_p: 点是否在两点连成的线段上

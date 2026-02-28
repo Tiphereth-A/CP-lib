@@ -1,0 +1,4 @@
+- seq: Cantor 展开
+- inv: 逆 Cantor 展开
+- seq2val: Cantor 展开序列转整数
+- val2seq: Cantor 展开整数转序列

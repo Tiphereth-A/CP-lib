@@ -1,0 +1,20 @@
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/all/ITP2_11_D"
+
+#include "../../../src/gen/gosper/lib.hpp"
+#include "../../../src/util/alias/others/lib.hpp"
+
+using namespace tifa_libs;
+int main() {
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
+  u32 n, k;
+  std::cin >> n >> k;
+  gosper<>::set(n, k);
+  vecu _;
+  for (auto i : gosper<>{}) {
+    std::cout << i << ":";
+    flt_ (u32, j, 0, n)
+      if ((i >> j) & 1) std::cout << ' ' << j;
+    std::cout << '\n';
+  }
+  return 0;
+}

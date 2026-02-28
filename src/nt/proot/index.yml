@@ -1,0 +1,4 @@
+- is: 判定
+- nimber_is: 判定,Nimber
+- uint: 原根
+- gint: 原根,Gauss 整数

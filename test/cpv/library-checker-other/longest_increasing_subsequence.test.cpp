@@ -1,0 +1,19 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/longest_increasing_subsequence"
+
+#include "../../../src/io/container/lib.hpp"
+#include "../../../src/opt/lis/lib.hpp"
+
+using namespace tifa_libs;
+CEXP u32 inf = 1145141919;
+
+int main() {
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
+  u32 n;
+  std::cin >> n;
+  vecu a(n);
+  std::cin >> a;
+  auto res = opt::lis(a, inf);
+  std::cout << res.size() << '\n'
+            << res << '\n';
+  return 0;
+}

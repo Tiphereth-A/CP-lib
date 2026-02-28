@@ -1,0 +1,4 @@
+- basic: 基础版
+- mod: 带模数
+- rpow: 固定底数和模数
+- tetra_mod: 模超幂

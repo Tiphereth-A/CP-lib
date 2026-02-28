@@ -1,0 +1,4 @@
+- naive: 暴力
+- bsgs: BSGS
+- exbsgs: 任意模数 BSGS
+- bsgs_nimber: Nimber BSGS

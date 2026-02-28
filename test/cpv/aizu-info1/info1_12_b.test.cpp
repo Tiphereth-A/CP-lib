@@ -1,0 +1,18 @@
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/9/INFO1/all/INFO1_12_B"
+
+#include "../../../src/ds/ndvec/lib.hpp"
+#include "../../../src/io/container/lib.hpp"
+
+using namespace tifa_libs;
+int main() {
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
+  u32 n, m;
+  std::cin >> n >> m;
+  ndvec<2, i32> nv(n, m);
+  std::cin >> nv;
+  u32 l1, l2, r1, r2;
+  std::cin >> l1 >> l2 >> r1 >> r2;
+  flt_ (u32, i, l1, r1 + 1)
+    flt_ (u32, j, l2, r2 + 1) std::cout << nv(i, j) << " \n"[j == r2];
+  return 0;
+}

@@ -1,0 +1,5 @@
+- bswap: std::byteswap
+- cntlsb: 与符号位相同的高位长度
+- parity: popcount 奇偶性
+- ffs: 末尾 1 的位置
+- lowbit: lowbit

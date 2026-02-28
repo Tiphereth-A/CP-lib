@@ -1,0 +1,25 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series"
+
+#include "../../../src/io/fastin/lib.hpp"
+#include "../../../src/io/fastout/lib.hpp"
+#include "../../../src/fps/ln/lib.hpp"
+
+using namespace tifa_libs;
+CEXP u32 MOD = 998244353;
+
+// ---<GENTC>--- begin
+// ---<GENTC>--- append poly_anymod poly_nttmod
+// ---<GENTC>--- exclude mints-ms64.mints-ms.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mints-ms64.mints-ms64.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mintd-md64.mints-ms.poly_anymod-p3ntt
+// ---<GENTC>--- exclude mintd-md64.mints-ms64.poly_anymod-p3ntt
+// ---<GENTC>--- end
+
+int main() {
+  u32 n;
+  tifa_libs::fin_uint >> n;
+  poly p(n);
+  tifa_libs::fin_uint >> p;
+  tifa_libs::fout << tifa_libs::math::ln_fps(p);
+  return 0;
+}

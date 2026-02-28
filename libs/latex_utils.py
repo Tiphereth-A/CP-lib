@@ -1,3 +1,4 @@
+import os
 import re
 from libs.decorator import with_logger
 
@@ -6,17 +7,20 @@ class TextLaTeXBase:
     def __init__(self, s: str):
         self._str: str = s.removesuffix('\n')
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self._str})"
+
     def get(self) -> str:
         return self._str
 
     def get_label_name(self) -> str:
-        return re.sub(r'[,.;@?!&$#/ ()*]', '-', self._str.casefold().replace('\\', ''))
+        return re.sub(r'[,.;@?!&$#/ ()*<|>]', '-', self._str.casefold().replace(os.sep, ''))
 
 
 class PathLaTeX(TextLaTeXBase):
     def __init__(self, path: str):
         super().__init__(path)
-        self._str = self._str.replace('\\', '/')
+        self._str = self._str.replace(os.sep, '/')
 
 
 class NameLaTeX(TextLaTeXBase):
@@ -38,7 +42,7 @@ def _latex_command_with_option(command: str, option: str, *args) -> str:
 @with_logger
 def latex_input(path: PathLaTeX, **kwargs) -> list[str]:
     """Generate LaTeX input command."""
-    return [_latex_command('input', _latex_command('fixpath', path.get()).rstrip()), '\n']
+    return [_latex_command('input', path.get()), '\n']
 
 
 @with_logger
@@ -48,15 +52,13 @@ def latex_label(prefix: str, name: TextLaTeXBase, **kwargs) -> list[str]:
 
 
 @with_logger
-def latex_chapter(name: NameLaTeX, **kwargs) -> list[str]:
-    """Generate LaTeX chapter command."""
-    return [_latex_command('chapter', name.get())] + latex_label('ch', name) + ['\n']
-
-
-@with_logger
-def latex_section(name: NameLaTeX, **kwargs) -> list[str]:
+def latex_section(name: NameLaTeX, path: PathLaTeX, level: int, **kwargs) -> list[str]:
     """Generate LaTeX section command."""
-    return ['\n', _latex_command('section', name.get())] + latex_label('sec', name)
+    if level < 0 or level > 3:
+        raise ValueError(f"Invalid section level: {level}")
+    CMD: list[str] = ['chapter', 'section', 'subsection', 'subsubsection']
+    LAB: list[str] = ['ch', 'sec', 'ssec', 'sssec']
+    return [_latex_command(CMD[level], name.get())] + latex_label(LAB[level], path) + ['\n']
 
 
 @with_logger
@@ -68,23 +70,23 @@ def latex_listing_code(path: PathLaTeX, file_type: str, **kwargs) -> list[str]:
         _latex_command(
             'inputminted',
             file_type,
-            _latex_command('fixpath', path.get()).rstrip()
+            path.get()
         ),
         '\n'
     ]
 
 
 @with_logger
-def latex_listing_code_range(path: PathLaTeX, file_type: str, begin: int, end: int, **kwargs) -> list[str]:
+def latex_listing_code_range(path: PathLaTeX, file_type: str, start: int, stop: int, **kwargs) -> list[str]:
     """Generate LaTeX code listing command with line range."""
     return [
         rf'Path: \verb|{path.get()}|',
         '\n\n',
         _latex_command_with_option(
             'inputminted',
-            rf'firstline={begin},lastline={end}',
+            rf'firstline={start},lastline={stop}',
             file_type,
-            _latex_command('fixpath', path.get()).rstrip()
+            path.get()
         ),
         '\n'
     ]

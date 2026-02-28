@@ -8,8 +8,7 @@ on:
       - 'uv.lock'
       - '.github/**'
       - '.verify-helper/**'
-      - 'include/**'
-      - 'doc_md/**'
+      - 'src/**'
       - 'test/**'
   pull_request:
     branches:
@@ -19,8 +18,7 @@ on:
       - 'uv.lock'
       - '.github/**'
       - '.verify-helper/**'
-      - 'include/**'
-      - 'doc_md/**'
+      - 'src/**'
       - 'test/**'
   workflow_dispatch:
     inputs:
@@ -56,13 +54,14 @@ jobs:
         with:
           output-path: verify_files.json
           include: |
-                include/
-                doc_md/
-                test/
+                src/
+                test/cpv/
+                test/cpv_local/
           exclude: |
                 libs/
                 .github/
-                tinplate/
+                test/cpv_meta/
+                test/cplib/
           config: .verify-helper/config.toml
       - name: parse-doxygen
         uses: competitive-verifier/actions/parse-doxygen@v2

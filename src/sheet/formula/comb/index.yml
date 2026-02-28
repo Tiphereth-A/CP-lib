@@ -1,0 +1,4 @@
+- binom: 组合数相关
+- stirling: Stirling 数相关
+- burnside: Burnside 引理
+- sumik_egf: 自然数幂次和关于次数的 EGF

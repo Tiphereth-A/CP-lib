@@ -1,0 +1,28 @@
+- ds: 定义
+- shl: 左移
+- shr: 右移
+- deriv: 导数
+- int: 积分
+- inv: 逆函数
+- div: 整除
+- divmod: 除法与取模
+- exp: exp
+- ln: ln
+- pow: pow
+- sqrt: sqrt
+- cossin: cos 与 sin
+- asin: asin
+- atan: atan
+- czt: Chirp-Z 变换
+- gcd: GCD
+- modinv: 逆元
+- interp: 快速插值
+- mpe: 多点求值
+- tsh: 单点平移
+- ctsh: 连续点值平移
+- ode: ODE
+- powem: 幂枚举
+- comp: 复合
+- compinv: 复合逆
+- cbm2n: 单项式基转 Newton 基
+- bostan_mori: Bostan--Mori 算法

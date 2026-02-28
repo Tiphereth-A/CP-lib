@@ -1,0 +1,11 @@
+- base64: Base64
+- splitmix64: Hash splitmix64
+- discretization: 离散化
+- huffman: Huffman 树
+- garsia_wachs: Garsia--Wachs 算法
+- hamming: Hamming 码
+- gray_code: Gray 码
+- cantor: Cantor 展开
+- prufer: Pr\"ufer 序列
+- bwt: Burrows--Wheeler 变换
+- code39: code39

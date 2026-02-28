@@ -1,0 +1,28 @@
+用于求解 \(N\)-puzzle \(N=k^2-1,~k\in\mathbb{N}_{>2}\) 的数据类.
+
+\(N\)-puzzle 是一个滑块游戏. 滑块方盘的长宽均为 \(k\times k\), 其中 \(N\) 个位置放序号打乱的方块, 剩下一个空位. \\ 与空位同行或同列的方块可以通过水平或垂直滑动来移动. 目标是按编号顺序排列方块
+
+需配合 \fullref{sec:opt-astar} 使用
+
+\begin{minted}{cpp}
+int k = 4; // 15-puzzle
+npuzzle_data start(k);
+
+// 初始化终止局面
+std::vector<u32> fin(k * k);
+std::iota(std::begin(fin), std::end(fin), 0);
+npuzzle_data::set_fin(k, fin);
+// 初始化最大估价
+tifa_libs::game::npuzzle_data::limit = 100;
+// 读入局面
+std::cin >> start;
+// 输出当前局面
+std::cout << start.node;
+// 输出操作步骤
+std::cout << astar(start)->moves;
+\end{minted}
+
+\paragraph{参考文献} \cite{johnson1879notes} \cite{archer1999modern}
+
+% {lib.hpp,start=4,stop=-2}
+% {usage.cpp}

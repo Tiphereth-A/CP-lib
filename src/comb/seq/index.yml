@@ -1,0 +1,14 @@
+- fact: 阶乘模序列
+- ifact: 阶乘逆模序列
+- derange: 错排数序列
+- stirling1_row: 第一类 Stirling 数序列(行)
+- stirling1_col: 第一类 Stirling 数序列(列)
+- stirling2_row: 第二类 Stirling 数序列(行)
+- stirling2_col: 第二类 Stirling 数序列(列)
+- bell: Bell 数序列
+- partition: 划分数序列
+- inv: 逆元序列
+- invseq: 序列逆元
+- pows: 幂次模序列
+- ipowi: 二次超幂序列
+- bernoulli: Bernoulli 数序列

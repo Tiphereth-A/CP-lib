@@ -1,0 +1,153 @@
+#define UNITTEST
+#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+
+#include "../../../src/geo2d/make_c/rcc_ex/lib.hpp"
+#include "../../../src/geo2d/make_c/rll/lib.hpp"
+#include "../../../src/geo2d/make_c/rpl/lib.hpp"
+#include "../../../src/geo2d/tan/cp/lib.hpp"
+#include "../../../src/geo2d/tcenter/i/lib.hpp"
+#include "../../../src/geo2d/tcenter/o/lib.hpp"
+#include "../base.hpp"
+
+using namespace tifa_libs;
+using data_t = f64;
+using Point2 = geo::point<data_t>;
+using Line2 = geo::line<data_t>;
+using Triangle = geo::triangle<data_t>;
+using Circle2 = geo::circle<data_t>;
+
+CEXP data_t PI = pi_v<data_t>;
+
+strn single_proceed(strnv s, std::istream& fin) {
+  std::stringstream ss;
+  ss << std::fixed << std::setprecision(6);
+
+  if (s == "CircumscribedCircle") {
+    Triangle t;
+    fin >> t;
+    Point2 o = center_O(t);
+    data_t r = radius_O(t);
+    ss << '(' << o.x << ',' << o.y << ',' << r << ")\n";
+    return ss.str();
+  }
+  if (s == "InscribedCircle") {
+    Triangle t;
+    fin >> t;
+    Point2 i = center_I(t);
+    data_t r = radius_I(t);
+    ss << '(' << i.x << ',' << i.y << ',' << r << ")\n";
+    return ss.str();
+  }
+  if (s == "TangentLineThroughPoint") {
+    Circle2 c;
+    Point2 p;
+    fin >> c >> p;
+    auto tps = tan_CP(c, p);
+    if (!tps) {
+      ss << "[]\n";
+      return ss.str();
+    }
+    auto [tps0, tps1] = tps.value();
+    Point2 d1 = Line2{p, tps0}.direction(), d2 = Line2{p, tps1}.direction();
+    data_t angle1 = atan2(d1.y, d1.x) / PI * 180;
+    data_t angle2 = atan2(d2.y, d2.x) / PI * 180;
+    if (angle1 < 0) angle1 += 180;
+    if (angle1 >= 180) angle1 -= 180;
+    if (angle2 < 0) angle2 += 180;
+    if (angle2 >= 180) angle2 -= 180;
+    if (is_eq(angle1, angle2)) {
+      ss << '[' << angle1 << "]\n";
+      return ss.str();
+    }
+    if (angle1 > angle2) std::swap(angle1, angle2);
+    ss << '[' << angle1 << ',' << angle2 << "]\n";
+    return ss.str();
+  }
+  if (s == "CircleThroughAPointAndTangentToALineWithRadius") {
+    Point2 p;
+    Line2 l;
+    data_t r;
+    fin >> p >> l >> r;
+    auto cs = make_C_rPL(r, p, l);
+    if (!cs) return "[]\n";
+    auto [cs0, cs1] = cs.value();
+    if (cs1.o < cs0.o) std::swap(cs0, cs1);
+    if (cs0.o == cs1.o) {
+      ss << "[(" << cs0.o.x << ',' << cs0.o.y << ")]\n";
+      return ss.str();
+    }
+    ss << "[(" << cs0.o.x << ',' << cs0.o.y << "),(" << cs1.o.x << ',' << cs1.o.y << ")]\n";
+    return ss.str();
+  }
+  if (s == "CircleTangentToTwoLinesWithRadius") {
+    Line2 l1, l2;
+    data_t r;
+    fin >> l1 >> l2 >> r;
+    auto cs_ = make_C_rLL(r, l1, l2);
+    if (!cs_) return "[]\n";
+    auto [cs0, cs1, cs2, cs3] = cs_.value();
+    vec<Circle2> cs{cs0, cs1, cs2, cs3};
+    std::ranges::sort(cs, [](Circle2 CR lhs, Circle2 CR rhs) { return lhs.o < rhs.o; });
+    ss << "[(" << cs[0].o.x << ',' << cs[0].o.y << "),(" << cs[1].o.x << ',' << cs[1].o.y << "),(" << cs[2].o.x << ',' << cs[2].o.y << "),(" << cs[3].o.x << ',' << cs[3].o.y << ")]\n";
+    return ss.str();
+  }
+  if (s == "CircleTangentToTwoDisjointCirclesWithRadius") {
+    Circle2 c1, c2;
+    data_t r;
+    fin >> c1 >> c2 >> r;
+    auto cs = make_C_rCC_ex(r, c1, c2);
+    if (!cs) {
+      ss << "[]\n";
+      return ss.str();
+    }
+    auto [cs0, cs1] = cs.value();
+    if (cs1.o < cs0.o) std::swap(cs0, cs1);
+    if (cs0.o == cs1.o) {
+      ss << "[(" << cs0.o.x << ',' << cs0.o.y << ")]\n";
+      return ss.str();
+    }
+    ss << "[(" << cs0.o.x << ',' << cs0.o.y << "),(" << cs1.o.x << ',' << cs1.o.y << ")]\n";
+    return ss.str();
+  }
+  std::cout << "Unexpected s: \"" << s << "\"\n";
+  exit(1);
+}
+
+void test(strnv data) {
+  auto [fn_in, fn_ans] = unittest::get_fname_in_ans("uva", "12304", data);
+  std::ifstream fin(fn_in), fans(fn_ans);
+
+  strn s;
+  u32 testcase = 0;
+  while (fin >> s) {
+    ++testcase;
+    strn got = single_proceed(s, fin);
+    strn want;
+    std::getline(fans, want);
+    while (isspace(got.back())) got.pop_back();
+    while (isspace(want.back())) want.pop_back();
+    check(got, want, check_param(testcase));
+  }
+}
+
+int main() {
+  auto tcase = unittest::pre_test();
+
+  switch (tcase) {
+    case unittest::TC::example_00: test("1"); break;
+    case unittest::TC::example_01: test("2"); break;
+    case unittest::TC::random_00: break;
+    case unittest::TC::random_01: break;
+    case unittest::TC::random_02: break;
+    case unittest::TC::random_03: break;
+    case unittest::TC::random_04: break;
+    case unittest::TC::random_05: break;
+    case unittest::TC::random_06: break;
+    case unittest::TC::random_07: break;
+    case unittest::TC::random_08: break;
+    case unittest::TC::random_09: break;
+    default: break;
+  }
+
+  unittest::post_test();
+}

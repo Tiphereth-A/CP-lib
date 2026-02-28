@@ -1,0 +1,24 @@
+- util: 杂项
+- bit: 位操作
+- gen: 枚举
+- io: IO
+- ds: 数据结构
+- opt: 最优化 DP
+- graph: 图论
+- tree: 树
+- geo2d: 二维计算几何
+- geo3d: 三维计算几何
+- comb: 组合数学
+- lalg: 线性代数
+- conv: 卷积
+- fps: 多项式/形式幂级数
+- fpssp: 稀疏多项式/稀疏形式幂级数
+- sps: 集合幂级数
+- nt: 数论
+- math: 其他数学
+- str: 字符串
+- rand: 随机数 随机化算法
+- edh: 编解码 Hash 序列化 反序列化
+- game: 游戏 博弈论
+- fast: 卡常
+- sheet: Cheatsheet

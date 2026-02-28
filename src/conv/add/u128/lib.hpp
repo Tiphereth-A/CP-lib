@@ -1,0 +1,44 @@
+#ifndef TIFALIBS_CONV_ADD_U128_LIB
+#define TIFALIBS_CONV_ADD_U128_LIB
+
+#include "../../../math/ds/mint/lib.hpp"
+#include "../../../math/mint/ms/lib.hpp"
+#include "../../trans/ntt/lib.hpp"
+#include "../dft/lib.hpp"
+#include "../naive/lib.hpp"
+
+namespace tifa_libs::math {
+
+// max = 167772161 * 469762049 * 754974721 \approx 5.95e25
+template <class T>
+vec<u128> conv_u128(vec<T> CR l, vec<T> CR r, u32 ans_size = 0) NE {
+  if (!ans_size) ans_size = u32(l.size() + r.size() - 1);
+  if (min(l.size(), r.size()) < CONV_NAIVE_THRESHOLD) return conv_naive<T, u128>(l, r, ans_size);
+  static CEXP u32 m0 = 167772161, m1 = 469762049, m2 = 754974721;
+  using mint0 = mint<mint_ms, m0>;
+  using mint1 = mint<mint_ms, m1>;
+  using mint2 = mint<mint_ms, m2>;
+  static CEXP u32 r01 = inverse(m0, mint1::mod()),
+                  r02 = inverse(m0, mint2::mod()),
+                  r12 = inverse(m1, mint2::mod()),
+                  r02r12 = (u64)r02 * r12 % m2;
+  static CEXP u64 w1 = m0, w2 = (u64)m0 * m1;
+  static ntt<mint0> ntt0;
+  static ntt<mint1> ntt1;
+  static ntt<mint2> ntt2;
+  const vec<mint0> d0 = conv_dft_um<ntt<mint0>, mint0>(ntt0, l, r, ans_size);
+  const vec<mint1> d1 = conv_dft_um<ntt<mint1>, mint1>(ntt1, l, r, ans_size);
+  const vec<mint2> d2 = conv_dft_um<ntt<mint2>, mint2>(ntt2, l, r, ans_size);
+  vec<u128> ret(ans_size);
+  flt_ (u32, i, 0, ans_size) {
+    const u64 n1 = d1[i].val(), n2 = d2[i].val(),
+              a = d0[i].val(), b = (n1 + m1 - a) * r01 % m1;
+    const u128 c = ((n2 + m2 - a) * r02r12 + (m2 - b) * r12) % m2;
+    ret[i] = a + b * w1 + c * w2;
+  }
+  return ret;
+}
+
+}  // namespace tifa_libs::math
+
+#endif

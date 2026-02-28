@@ -1,0 +1,17 @@
+- ndvec: 高维 vector
+- mono_stack: 单调栈
+- mono_queue: 单调队列
+- bt_trv: 树结点常见遍历操作
+- fenwick: 树状数组
+- dsu: 并查集
+- odt: 珂朵莉树
+- st: ST 表
+- segtree: 线段树
+- bst: 二叉搜索树
+- link_cut_tree: 动态树(LCT)
+- heap: 堆
+- dq: 双端队列
+- cartesian_tree: 笛卡尔树
+- trie01: 0-1 Trie
+- kdtree: k-D Tree
+- dbitset: 动态长度 bitset
