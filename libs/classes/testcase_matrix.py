@@ -337,7 +337,7 @@ class cppmeta_parser:
         for case in all_cases:
             target_filepath = os.path.join(
                 self._target_dir,
-                f"{self._filename_noext}.{case.get_label()}.test.cpp"
+                f"{self._filename_noext}.{case.get_label()}.cpp"
             )
 
             code_lines: list[str] = ['#define AUTO_GENERATED\n']

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_rank"
 
-#include "../../../src/lalg/mat/ge/lib.hpp"
 #include "../../../src/lalg/ds/mat/lib.hpp"
+#include "../../../src/lalg/mat/ge/lib.hpp"
 
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;

@@ -71,31 +71,6 @@ inline timer default_timer;
 #define check_param(x) \
   std::pair<std::string, decltype(x)> { #x, x }
 
-inline ptt<strn> get_fname_in_ans(strnv source_oj, strnv source_id, strnv data) NE {
-  std::cerr << std::format("===== {} start =====\n", __PRETTY_FUNCTION__);
-  strn path = std::format("test/cpv_local/_data/{}/{}/{}", source_oj, source_id, data);
-  strn fi = path + ".in", fo = path + ".out", fa = path + ".ans";
-  std::filebuf fb;
-  if (!fb.open(fi, std::ios::in)) {
-    std::cerr << "error: failed opening " << fi << '\n';
-    exit(1);
-  }
-  fb.close();
-  if (fb.open(fo, std::ios::in)) fa = fo;
-  else {
-    std::cerr << std::format("warning: failed opening {}, trying {}\n", fo, fa);
-    if (!fb.open(fa, std::ios::in)) {
-      std::cerr << "error: failed opening " << fa << '\n';
-      exit(1);
-    }
-  }
-  fb.close();
-  std::cerr << "fname_in: " << fi << '\n';
-  std::cerr << "fname_ans: " << fa << '\n';
-  std::cerr << std::format("===== {} end =====\n", __PRETTY_FUNCTION__);
-  return {fi, fa};
-}
-
 }  // namespace tifa_libs::unittest
 
 #endif

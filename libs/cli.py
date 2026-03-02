@@ -5,9 +5,9 @@ import coloredlogs
 
 from libs.commands.doc import register_doc_command
 from libs.commands.new import register_new_command
-from libs.commands.test_usage import register_test_command
+from libs.commands.test import register_test_command
 from libs.commands.fmt import register_fmt_command
-from libs.commands.matrix import register_meta_command
+from libs.commands.meta import register_meta_command
 from libs.commands.pack import register_pack_command
 
 

@@ -21,15 +21,15 @@ CEXP auto op_ba(T a, T b) {  // b(a(x))
 }
 CEXP auto e() { return T{1, 0}; }
 CEXP auto id() { return F{1, 0}; }
-CEXP void mapping(T &x, F a) { x = a; }
-CEXP void composition(F &x, F) { x = F{1, 0}; }
+CEXP void mapping(T& x, F a) { x = a; }
+CEXP void composition(F& x, F) { x = F{1, 0}; }
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
   vec<T> a(n);
-  for (auto &x : a) std::cin >> x.first >> x.second;
+  for (auto& x : a) std::cin >> x.first >> x.second;
   tifa_libs::graph::tree tr(n);
   for (u32 i = 1, u, v; i < n; ++i) std::cin >> u >> v, tr.add_arc(u, v), tr.add_arc(v, u);
   tifa_libs::graph::lca_hld::tree_info_t info(tr);

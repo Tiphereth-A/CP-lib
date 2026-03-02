@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
 
 #include "../../../src/math/iroot/sqrt/lib.hpp"
-#include "../../../src/nt/mfsum/du/lib.hpp"
 #include "../../../src/nt/lsieve/impl2/lib.hpp"
+#include "../../../src/nt/mfsum/du/lib.hpp"
 
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;

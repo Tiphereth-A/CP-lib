@@ -30,6 +30,6 @@ int main() {
     return 0;
   }
   std::cout << res.size() << '\n';
-  for (auto &&i : res) std::cout << edges[i] << '\n';
+  for (auto&& i : res) std::cout << edges[i] << '\n';
   return 0;
 }

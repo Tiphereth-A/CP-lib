@@ -109,7 +109,7 @@ All commands via `python manager.py [command]`:
 - **`doc`** - Generate LaTeX documentation to `.cp-lib/` for PDF compilation
 - **`test`** - Run quick C++ compilation tests on all implementations
 - **`fmt`** - Format code (calls `autopep8` for Python, clang-format for C++)
-- **`matrix`** - Generate `.test.cpp` files from `.cppmeta` templates using `tcgen.yml`
+- **`meta`** - Generate `.test.cpp` files from `.cppmeta` templates using `tcgen.yml`
 - **`pack`** - Extract `.hpp` files for release
 
 ### Installation & Setup

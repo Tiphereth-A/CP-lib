@@ -1,0 +1,31 @@
+// competitive-verifier: STANDALONE
+// competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/4804
+
+#include "../../../src/nt/lsieve/impl2/lib.hpp"
+
+using namespace tifa_libs;
+using std::cin, std::cout;
+
+int main() {
+  u32 t;
+  cin >> t;
+  vecu ns(t);
+  flt_ (u32, i, 0, t) cin >> ns[i];
+
+  u32 n = std::ranges::max(ns);
+  math::lsieve2 ls(n);
+  u64 lst = 1;
+  vecuu g = ls.template run<u64>([&](u32 p, u32 e) {
+    if (e == 1) return lst = p - 2;
+    else if (e == 2) return lst = u64(p - 1) * (p - 1);
+    else return lst *= p;
+  });
+  vecuu f(n + 1);
+  flt_ (u32, i, 1, n + 1) f[i] = f[i - 1] + g[i];
+
+  for (u32 n : ns) {
+    u64 ans = 0;
+    for (u32 l = 1, r, d; l <= n; l = r + 1) r = n / (d = n / l), ans += (f[r] - f[l - 1]) * d * d;
+    cout << ans << '\n';
+  }
+}

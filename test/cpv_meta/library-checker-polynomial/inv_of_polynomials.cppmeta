@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/inv_of_polynomials"
 
+#include "../../../src/fps/modinv/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
-#include "../../../src/fps/modinv/lib.hpp"
 
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;

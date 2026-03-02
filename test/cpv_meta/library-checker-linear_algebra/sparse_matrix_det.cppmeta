@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sparse_matrix_det"
 
-#include "../../../src/lalg/mat/det_rd/lib.hpp"
 #include "../../../src/lalg/ds/matsp/lib.hpp"
+#include "../../../src/lalg/mat/det_rd/lib.hpp"
 #include "../../../src/rand/gen/lib.hpp"
 
 using namespace tifa_libs;
