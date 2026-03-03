@@ -1,5 +1,5 @@
 // competitive-verifier: DISPLAY never
-#define PROBLEM "https://www.luogu.com.cn/problem/P5180"
+// cplib.manager: PROBLEM https://www.luogu.com.cn/problem/P5180
 
 #include "../../io/container/lib.hpp"
 #include "../../tree/dfs/info/lib.hpp"

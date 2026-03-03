@@ -1,5 +1,5 @@
-// competitive-verifier: DISPLAY hidden
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum/"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum/
+// cplib.manager: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum/
 
 #include "lib.hpp"
 

@@ -74,11 +74,8 @@ jobs:
           output-path: verify_files.json
           include: |
                 src/
-                test/cpv/
-                test/cpv_local/
+                test/
           exclude: |
-                libs/
-                .github/
                 test/cpv_meta/
                 test/cplib/
           config: .verify-helper/config.toml

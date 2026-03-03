@@ -1,5 +1,5 @@
 // competitive-verifier: DISPLAY never
-#define PROBLEM "https://vjudge.net/problem/UVA-11525"
+// cplib.manager: PROBLEM https://vjudge.net/problem/UVA-11525
 
 #include "lib.hpp"
 

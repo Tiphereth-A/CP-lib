@@ -1,11 +1,15 @@
 """Run test codes command."""
 
 import os
+import re
 import shlex
 
 from libs.run_command import run_command
 from libs.decorator import with_logger, with_timer
 from libs.utils import SRC_PATH, TEMP_PATH, TEST_PATH, THREAD_LIMIT, get_full_filenames
+
+RE_USAGE_MARKER = re.compile(
+    r'(# *define|// *(?:competitive-verifier|cplib\.manager):) PROBLEM ')
 
 
 @with_logger
@@ -15,8 +19,8 @@ def test_codes(**kwargs):
     logger = kwargs.get('logger')
 
     files = list(filter(
-        lambda x: os.path.getsize(x) > 0 and open(
-            x, 'r').read().find('\n#define PROBLEM ') != -1,
+        lambda x: os.path.getsize(x) > 0 and RE_USAGE_MARKER.search(open(
+            x, 'r').read()),
         get_full_filenames([SRC_PATH, TEST_PATH], ['.cpp'])))
 
     logger.info(f'{len(files)} file(s) found')

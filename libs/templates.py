@@ -18,7 +18,7 @@ namespace tifa_libs::{category} {{
 #endif
 """
 TEMPLATE_USAGE_CPP = """// competitive-verifier: DISPLAY never
-#define PROBLEM "https://example.com"
+// cplib.manager: PROBLEM "https://example.com"
 
 #include "lib.hpp"
 
