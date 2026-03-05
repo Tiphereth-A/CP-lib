@@ -1,4 +1,4 @@
-name: Build & Relase LaTeX document
+name: Build & Relase
 
 on:
   push:
@@ -33,15 +33,9 @@ on:
         type: boolean
         default: false
 
-concurrency:
-  group: ${{ github.head_ref || 'x' }}-${{ github.workflow }}-${{ github.ref }}-pdf
-  cancel-in-progress: true
-
 jobs:
   build-tex:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -84,7 +78,7 @@ jobs:
         with:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
-          args: "-pdf -file-line-error -halt-on-error -interaction=batchmode -8bit"
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -8bit"
           extra_system_packages: |
             unzip
             wget
@@ -98,35 +92,14 @@ jobs:
             cp -r .cp-lib/fonts/* /usr/share/fonts
             fc-cache -f
           root_file: notebook.tex
-      - name: Upload LaTeX logs to artifacts
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: latex-logs
-          path: |
-            notebook.log
-            notebook.aux
-            notebook.fdb_latexmk
-            notebook.fls
-            notebook.out
       - name: Upload PDF to artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: result
+          name: notebook
           path: notebook.pdf
-      - name: Release PDF
-        if: startsWith(github.ref, 'refs/tags/')
-        shell: bash
-        run: |
-          set -x
-          gh release create "${{ github.ref_name }}" ./notebook.pdf
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RELEASE_NAME: "${{ github.ref_name }}"
 
-  release-include:
+  pack-include:
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -139,16 +112,27 @@ jobs:
       - name: Install Python dependencies
         run: uv sync --frozen
       - name: Copying C++ header files
-        run: |
-          uv run python manager.py -l DEBUG pack
-          mv .cp-lib/include include
-      - name: Release
-        shell: bash
-        run: |
-          set -x
-          tar -cf CP-lib.tar include/*
-          gzip -9 CP-lib.tar
-          gh release create "${{ github.ref_name }}" ./CP-lib.tar.gz
+        run: uv run python manager.py -l DEBUG pack
+      - name: Upload LaTeX logs to artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: cpp-header
+          path: .cp-lib/include
+
+  release-all:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [build-tex, pack-include]
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Create Release
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_NAME: "${{ github.ref_name }}"
+        run: |
+          gh release create "${{ github.ref_name }}" artifacts/*
