@@ -14,13 +14,13 @@ class TextLaTeXBase:
         return self._str
 
     def get_label_name(self) -> str:
-        return re.sub(r'[,.;@?!&$#/ ()*<|>]', '-', self._str.casefold().replace(os.sep, ''))
+        return re.sub(r'[,.;@?!&$#\\/ ()*<|>]', '-', self._str.casefold())
 
 
 class PathLaTeX(TextLaTeXBase):
     def __init__(self, path: str):
         super().__init__(path)
-        self._str = self._str.replace(os.sep, '/')
+        self._str = self._str.replace('\\', '/')
 
 
 class NameLaTeX(TextLaTeXBase):

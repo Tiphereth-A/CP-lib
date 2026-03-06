@@ -71,5 +71,3 @@ inline timer default_timer;
   std::pair<std::string, decltype(x)> { #x, x }
 
 }  // namespace tifa_libs::unittest
-
-#endif
