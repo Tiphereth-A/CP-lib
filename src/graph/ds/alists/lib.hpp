@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_DS_ALISTS_LIB
-#define TIFALIBS_GRAPH_DS_ALISTS_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -71,5 +70,3 @@ class alists {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_SUM_IK_FLIST_LIB
-#define TIFALIBS_MATH_SUM_IK_FLIST_LIB
+#pragma once
 
 #include "../../util/util/lib.hpp"
 
@@ -35,5 +34,3 @@ template <class T>
 CEXP T (*sum_ik[])(T) NE = {sum_i0<T>, sum_i1<T>, sum_i2<T>, sum_i3<T>, sum_i4<T>, sum_i5<T>, sum_i6<T>, sum_i7<T>};
 
 }  // namespace tifa_libs::math
-
-#endif

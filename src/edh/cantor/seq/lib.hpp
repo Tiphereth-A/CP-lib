@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_CANTOR_SEQ_LIB
-#define TIFALIBS_EDH_CANTOR_SEQ_LIB
+#pragma once
 
 #include "../../../ds/fenwick/d1/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP vecu cantor_seq(spnu p) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

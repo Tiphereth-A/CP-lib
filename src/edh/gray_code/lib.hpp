@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_GRAY_CODE_LIB
-#define TIFALIBS_EDH_GRAY_CODE_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -20,5 +19,3 @@ CEXP vecu gray_code(u32 n) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

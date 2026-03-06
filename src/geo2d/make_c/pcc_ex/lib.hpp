@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_MAKE_C_PCC_EX_LIB
-#define TIFALIBS_GEO2D_MAKE_C_PCC_EX_LIB
+#pragma once
 
 #include "../../../edh/discretization/lib.hpp"
 #include "../../inv/c2c/lib.hpp"
@@ -36,5 +35,3 @@ CEXP vec<circle<FP>> make_C_PCC_ex(point<FP> CR p, circle<FP> c1, circle<FP> c2)
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

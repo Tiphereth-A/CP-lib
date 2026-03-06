@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEN_GOSPER_LIB
-#define TIFALIBS_GEN_GOSPER_LIB
+#pragma once
 
 #include "../../bit/lowbit/lib.hpp"
 #include "../../util/alias/num/lib.hpp"
@@ -33,5 +32,3 @@ class gosper {
 };
 
 }  // namespace tifa_libs
-
-#endif

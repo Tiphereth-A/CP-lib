@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_MINT_BD_LIB
-#define TIFALIBS_MATH_MINT_BD_LIB
+#pragma once
 
 #include "../../../nt/mod/barrett/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
@@ -48,5 +47,3 @@ class mint_bd {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

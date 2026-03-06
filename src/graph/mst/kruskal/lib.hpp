@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_MST_KRUSKAL_LIB
-#define TIFALIBS_GRAPH_MST_KRUSKAL_LIB
+#pragma once
 
 #include "../../../ds/dsu/basic/lib.hpp"
 #include "../../../tree/ds/lib.hpp"
@@ -19,5 +18,3 @@ CEXP treew<T> kruskal(vec<edge_t<T>> sorted_a, u32 n) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

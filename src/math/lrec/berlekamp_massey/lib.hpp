@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_LREC_BERLEKAMP_MASSEY_LIB
-#define TIFALIBS_MATH_LREC_BERLEKAMP_MASSEY_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -31,5 +30,3 @@ CEXP vec<T> berlekamp_massey(vec<T> CR a) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

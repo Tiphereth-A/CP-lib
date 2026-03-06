@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_MASSP_LIB
-#define TIFALIBS_GEO2D_MASSP_LIB
+#pragma once
 
 #include "../../math/kahan/lib.hpp"
 #include "../cross/lib.hpp"
@@ -23,5 +22,3 @@ CEXP point<FP> massp(vec<point<FP>> CR vp) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

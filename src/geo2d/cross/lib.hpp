@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_CROSS_LIB
-#define TIFALIBS_GEO2D_CROSS_LIB
+#pragma once
 
 #include "../../util/func_fp/lib.hpp"
 
@@ -17,5 +16,3 @@ template <class P>
 CEXP int sgn_cross(P CR o, P CR a, P CR b) NE { return sgn(cross(o, a, b)); }
 
 }  // namespace tifa_libs::geo
-
-#endif

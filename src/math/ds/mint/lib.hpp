@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DS_MINT_LIB
-#define TIFALIBS_MATH_DS_MINT_LIB
+#pragma once
 
 #include "../../../nt/inverse/lib.hpp"
 #include "../../../util/traits/others/lib.hpp"
@@ -54,5 +53,3 @@ struct mint : D<Arg> {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

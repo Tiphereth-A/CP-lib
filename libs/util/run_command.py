@@ -8,7 +8,7 @@ from libs.decorator import with_logger, with_timer
 
 @with_logger
 @with_timer
-def run_command(command: Callable[[Any], list[str]], thread_limit: int, params: Iterable, **kwargs) -> list:
+def run_command(command: Callable[[Any], list[str]], params: Iterable, thread_limit: int, **kwargs) -> list:
     logger = kwargs.get('logger')
 
     params_queue = Queue()
@@ -50,7 +50,7 @@ def run_command(command: Callable[[Any], list[str]], thread_limit: int, params: 
             logger.debug(f"Heartbeat: {sz} params left")
             if not sz:
                 return
-            time.sleep(30)
+            time.sleep(1)
 
     threads = [
         Thread(

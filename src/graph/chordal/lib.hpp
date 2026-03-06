@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_CHORDAL_LIB
-#define TIFALIBS_GRAPH_CHORDAL_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/graph/lib.hpp"
@@ -95,5 +94,3 @@ class chordal {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

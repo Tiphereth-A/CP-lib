@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_FEMWEBP_LIB
-#define TIFALIBS_GEO2D_FEMWEBP_LIB
+#pragma once
 
 #include "../massp/lib.hpp"
 
@@ -34,5 +33,3 @@ point<FP> femwebp(vec<point<FP>> CR vp) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

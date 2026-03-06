@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_BTREE_MAKE_POST_PI_LIB
-#define TIFALIBS_TREE_BTREE_MAKE_POST_PI_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -24,5 +23,3 @@ CEXP vecu btree_make_post_pi(spnu pre_order, spnu in_order) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_CTSH_LIB
-#define TIFALIBS_FPS_CTSH_LIB
+#pragma once
 
 #include "../../comb/seq/ifact/lib.hpp"
 #include "../ds/poly/lib.hpp"
@@ -46,5 +45,3 @@ template <template <class... Ts> class ccore, class mint, class... args>
 CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c, u32 m = 0) NE { return ctsh_fps(f, c, gen_ifact((u32)f.size(), mint::mod()), m); }
 
 }  // namespace tifa_libs::math
-
-#endif

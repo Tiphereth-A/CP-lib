@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_TAN_CP_LIB
-#define TIFALIBS_GEO2D_TAN_CP_LIB
+#pragma once
 
 #include "../../ds/c/lib.hpp"
 
@@ -20,5 +19,3 @@ CEXP auto tan_CP(circle<FP> CR c, point<FP> CR p) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_SCC_TARJAN_LIB
-#define TIFALIBS_GRAPH_SCC_TARJAN_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -35,5 +34,3 @@ struct tarjan {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

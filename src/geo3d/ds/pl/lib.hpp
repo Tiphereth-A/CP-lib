@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO3D_DS_PL_LIB
-#define TIFALIBS_GEO3D_DS_PL_LIB
+#pragma once
 
 #include "../../../geo2d/cross/lib.hpp"
 #include "../p/lib.hpp"
@@ -22,5 +21,3 @@ struct planev {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

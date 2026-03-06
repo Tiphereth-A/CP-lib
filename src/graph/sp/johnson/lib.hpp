@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_SP_JOHNSON_LIB
-#define TIFALIBS_GRAPH_SP_JOHNSON_LIB
+#pragma once
 
 #include "../../ds/alist/lib.hpp"
 #include "../bm/lib.hpp"
@@ -36,5 +35,3 @@ CEXP auto johnson(u32 n, vec<edge_t<T>> CR arcs, T const INF = inf_v<T>) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

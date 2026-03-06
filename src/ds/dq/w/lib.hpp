@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_DQ_W_LIB
-#define TIFALIBS_DS_DQ_W_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -57,5 +56,3 @@ class deque_with_w {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

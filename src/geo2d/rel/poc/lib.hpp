@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_REL_POC_LIB
-#define TIFALIBS_GEO2D_REL_POC_LIB
+#pragma once
 
 #include "../../ds/c/lib.hpp"
 #include "../../ds/po/lib.hpp"
@@ -24,5 +23,3 @@ CEXP RELPoC relation_PoC(polygon<FP> CR po, circle<FP> CR c) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

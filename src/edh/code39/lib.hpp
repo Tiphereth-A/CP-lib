@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_CODE39_LIB
-#define TIFALIBS_EDH_CODE39_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -67,5 +66,3 @@ class code39 {
 };
 
 }  // namespace tifa_libs
-
-#endif

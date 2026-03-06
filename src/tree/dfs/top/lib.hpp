@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_DFS_TOP_LIB
-#define TIFALIBS_TREE_DFS_TOP_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/graph/lib.hpp"
@@ -23,5 +22,3 @@ CEXP vecu tree_top(tree_c auto CR tr, std::conditional_t<need_dfn, vecu&, spnu> 
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

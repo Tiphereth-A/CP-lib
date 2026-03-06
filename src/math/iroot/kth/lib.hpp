@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_IROOT_KTH_LIB
-#define TIFALIBS_MATH_IROOT_KTH_LIB
+#pragma once
 
 #include "../../../math/qpow/basic/lib.hpp"
 
@@ -15,5 +14,3 @@ CEXP u64 ikth_root(u64 a, u64 k) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_SEGTREE_LICHAO_LIB
-#define TIFALIBS_DS_SEGTREE_LICHAO_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -52,5 +51,3 @@ class lichao_segtree {
   }
 };
 }  // namespace tifa_libs::ds
-
-#endif

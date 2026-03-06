@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_GCD_LIB
-#define TIFALIBS_CONV_GCD_LIB
+#pragma once
 
 #include "../trans/zmt_multiple/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP vec<T> conv_gcd(vec<T> l, vec<T> r) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

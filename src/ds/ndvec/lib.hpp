@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_NDVEC_LIB
-#define TIFALIBS_DS_NDVEC_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -36,5 +35,3 @@ struct ndvec : vec<T> {
 };
 
 }  // namespace tifa_libs
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_RESIDUE_KTH_LIB
-#define TIFALIBS_NT_RESIDUE_KTH_LIB
+#pragma once
 
 #include "../../../math/iroot/sqrt/lib.hpp"
 #include "../../../math/qpow/mod/lib.hpp"
@@ -55,5 +54,3 @@ CEXP auto kth_root(u64 a, u64 k, u64 p) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

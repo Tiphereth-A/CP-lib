@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_QPOW_MOD_LIB
-#define TIFALIBS_MATH_QPOW_MOD_LIB
+#pragma once
 
 #include "../../mul_mod/lib.hpp"
 
@@ -15,5 +14,3 @@ CEXP u64 qpow_mod(u64 a, u64 b, u64 mod) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

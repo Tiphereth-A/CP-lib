@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_DSU_PD_LIB
-#define TIFALIBS_DS_DSU_PD_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -34,5 +33,3 @@ class dsu_pd {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

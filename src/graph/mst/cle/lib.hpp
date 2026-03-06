@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_MST_CLE_LIB
-#define TIFALIBS_GRAPH_MST_CLE_LIB
+#pragma once
 
 #include "../../../ds/dsu/basic/lib.hpp"
 #include "../../../ds/heap/skew/lib.hpp"
@@ -62,5 +61,3 @@ CEXP vec<edge_t<T>> cle(u32 n, u32 root, vec<edge_t<T>> CR arcs) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

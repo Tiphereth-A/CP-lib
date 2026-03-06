@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_SEQ_PARTITION_LIB
-#define TIFALIBS_COMB_SEQ_PARTITION_LIB
+#pragma once
 
 #include "../../../fps/inv/lib.hpp"
 
@@ -20,5 +19,3 @@ CEXP poly gen_partition(u32 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_IO_CONTAINER_LIB
-#define TIFALIBS_IO_CONTAINER_LIB
+#pragma once
 
 #include "../../util/traits/others/lib.hpp"
 
@@ -18,5 +17,3 @@ auto& operator<<(tifa_libs::ostream_c auto& os, tifa_libs::container_c auto CR x
 }
 
 }  // namespace tifa_libs
-
-#endif

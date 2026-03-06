@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_IPAF_SUM_LIB
-#define TIFALIBS_MATH_IPAF_SUM_LIB
+#pragma once
 
 #include "../../../comb/binom/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
@@ -39,5 +38,3 @@ CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

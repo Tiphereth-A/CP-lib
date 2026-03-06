@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_SEGTREE_CTOR_LIB
-#define TIFALIBS_DS_SEGTREE_CTOR_LIB
+#pragma once
 
 #include "../hp/lib.hpp"
 
@@ -53,5 +52,3 @@ using segtree_ctor_impl_::segtl_addmax_ctor, segtree_ctor_impl_::segtl_addmin_ct
     segtree_ctor_impl_::segtl_setmin_ctor, segtree_ctor_impl_::segtl_setsum_ctor;
 
 }  // namespace tifa_libs::ds
-
-#endif

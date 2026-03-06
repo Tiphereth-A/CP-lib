@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_DS_MAT_LIB
-#define TIFALIBS_LALG_DS_MAT_LIB
+#pragma once
 
 #include "../../../util/traits/others/lib.hpp"
 
@@ -140,5 +139,3 @@ class matrix {
 #undef FOR2_
 
 }  // namespace tifa_libs::math
-
-#endif

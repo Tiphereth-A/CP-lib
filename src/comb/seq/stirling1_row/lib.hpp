@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_SEQ_STIRLING1_ROW_LIB
-#define TIFALIBS_COMB_SEQ_STIRLING1_ROW_LIB
+#pragma once
 
 #include "../../../fps/shl/lib.hpp"
 #include "../../../fps/tsh/lib.hpp"
@@ -32,5 +31,3 @@ CEXP poly gen_stirling1_row(u32 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

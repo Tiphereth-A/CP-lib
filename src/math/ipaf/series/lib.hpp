@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_IPAF_SERIES_LIB
-#define TIFALIBS_MATH_IPAF_SERIES_LIB
+#pragma once
 
 #include "../../../comb/binom/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
@@ -27,5 +26,3 @@ CEXP mint series_ipaf(vec<mint> CR f, cT_(mint) a) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

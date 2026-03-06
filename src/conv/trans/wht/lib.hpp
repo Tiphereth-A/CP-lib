@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_TRANS_WHT_LIB
-#define TIFALIBS_CONV_TRANS_WHT_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -25,5 +24,3 @@ CEXP void iwht(vec<T>& f, u32 n = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_LEQS_SOLVER_LIB
-#define TIFALIBS_LALG_MAT_LEQS_SOLVER_LIB
+#pragma once
 
 #include "../../ds/mat/lib.hpp"
 #include "../merge_lr/lib.hpp"
@@ -62,5 +61,3 @@ CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0&& is0, Ge&& ge) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

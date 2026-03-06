@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_HOVERLINE_LIB
-#define TIFALIBS_OPT_HOVERLINE_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -20,5 +19,3 @@ CEXP ptt<vecu> hoverline(vec<T> CR a, C&& comp = C{}) NE {
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

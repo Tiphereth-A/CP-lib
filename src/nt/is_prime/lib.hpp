@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_IS_PRIME_LIB
-#define TIFALIBS_NT_IS_PRIME_LIB
+#pragma once
 
 #include "../../math/mul_mod/lib.hpp"
 #include "../../math/qpow/mod/lib.hpp"
@@ -38,5 +37,3 @@ CEXP bool is_prime(u64 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

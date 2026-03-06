@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_DET_RD_LIB
-#define TIFALIBS_LALG_MAT_DET_RD_LIB
+#pragma once
 
 #include "../../lfsr_bm/lib.hpp"
 
@@ -30,5 +29,3 @@ auto det_rd(Mat mat, Gn& gen, Is0&& is0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FAST_S2U_MOD_LIB
-#define TIFALIBS_FAST_S2U_MOD_LIB
+#pragma once
 
 #include "../../../nt/mod/barrett/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
@@ -18,5 +17,3 @@ CEXP u64 str2uint_mod(strnv s, u64 mod) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

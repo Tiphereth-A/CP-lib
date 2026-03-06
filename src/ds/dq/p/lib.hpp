@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_DQ_P_LIB
-#define TIFALIBS_DS_DQ_P_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -217,5 +216,3 @@ template <common_range R, class C = std::less<>>
 CEXP bool make_minmax_heap(R CR r, C&& comp = C{}) NE { return make_minmax_heap(begin(r), end(r), std::forward<C>(comp)); }
 
 }  // namespace tifa_libs::ds
-
-#endif

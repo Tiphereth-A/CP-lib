@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_FRAC_ITV_LIB
-#define TIFALIBS_MATH_FRAC_ITV_LIB
+#pragma once
 
 #include "../ds/rational/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP rational<T> frac_itv(rational<T> a, rational<T> b) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

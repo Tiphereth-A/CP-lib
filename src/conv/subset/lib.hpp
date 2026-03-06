@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_SUBSET_LIB
-#define TIFALIBS_CONV_SUBSET_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -60,5 +59,3 @@ struct conv_subset {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

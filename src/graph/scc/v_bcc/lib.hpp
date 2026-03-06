@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_SCC_V_BCC_LIB
-#define TIFALIBS_GRAPH_SCC_V_BCC_LIB
+#pragma once
 
 #include "../../ds/alist/lib.hpp"
 
@@ -60,5 +59,3 @@ struct v_bcc {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

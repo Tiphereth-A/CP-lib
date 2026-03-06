@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_SEGTREE_SEGBEATS_CA_MS_LIB
-#define TIFALIBS_DS_SEGTREE_SEGBEATS_CA_MS_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
@@ -169,5 +168,3 @@ struct segbeats_ca_ms {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

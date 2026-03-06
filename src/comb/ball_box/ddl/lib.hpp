@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_BALL_BOX_DDL_LIB
-#define TIFALIBS_COMB_BALL_BOX_DDL_LIB
+#pragma once
 
 #include "../../binom/lib.hpp"
 #include "../../seq/pows/lib.hpp"
@@ -21,5 +20,3 @@ template <class mint, class fact>
 CEXP mint ball_box_ddl(u32 ball, u32 box, binom<mint, fact> CR b) NE { return ball_box_ddl<mint>(ball, box, gen_pows(box + 1, ball, mint::mod()), b); }
 
 }  // namespace tifa_libs::math
-
-#endif

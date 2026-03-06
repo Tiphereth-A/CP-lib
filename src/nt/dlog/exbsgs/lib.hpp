@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_DLOG_EXBSGS_LIB
-#define TIFALIBS_NT_DLOG_EXBSGS_LIB
+#pragma once
 
 #include "../../gl/gcd/lib.hpp"
 #include "../../inverse/lib.hpp"
@@ -39,5 +38,3 @@ inline auto exbsgs(u64 a, u64 b, u64 m) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

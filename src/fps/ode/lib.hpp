@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_ODE_LIB
-#define TIFALIBS_FPS_ODE_LIB
+#pragma once
 
 #include "../exp/lib.hpp"
 #include "../int/lib.hpp"
@@ -22,5 +21,3 @@ CEXP auto ode_fps(G&& g, DG&& dg, TPN poly::val_t a, u32 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

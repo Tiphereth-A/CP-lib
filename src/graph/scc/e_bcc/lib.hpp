@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_SCC_E_BCC_LIB
-#define TIFALIBS_GRAPH_SCC_E_BCC_LIB
+#pragma once
 
 #include "../../ds/eog/lib.hpp"
 
@@ -35,5 +34,3 @@ struct e_bcc {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

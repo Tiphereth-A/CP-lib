@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_ALPHA_BETA_LIB
-#define TIFALIBS_OPT_ALPHA_BETA_LIB
+#pragma once
 
 #include "../../tree/ds/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
@@ -24,5 +23,3 @@ CEXP T alpha_beta(graph::tree CR tr, vec<T> CR v_weight) NE {
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

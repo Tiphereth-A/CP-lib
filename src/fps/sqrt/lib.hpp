@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_SQRT_LIB
-#define TIFALIBS_FPS_SQRT_LIB
+#pragma once
 
 #include "../../nt/residue/q/lib.hpp"
 #include "../inv/lib.hpp"
@@ -30,5 +29,3 @@ CEXP auto sqrt_fps(poly<ccore, mint, args...> p, u32 n = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

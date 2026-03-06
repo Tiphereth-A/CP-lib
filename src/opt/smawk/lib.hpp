@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_SMAWK_LIB
-#define TIFALIBS_OPT_SMAWK_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -26,5 +25,3 @@ CEXP vecu smawk(u32 n, u32 m, Ft&& f) NE {
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

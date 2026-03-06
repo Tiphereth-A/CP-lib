@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_PRED_IS_ON_S_LIB
-#define TIFALIBS_GEO2D_PRED_IS_ON_S_LIB
+#pragma once
 
 #include "../../ds/l/lib.hpp"
 #include "../is_in_middle_p/lib.hpp"
@@ -14,5 +13,3 @@ CEXP bool is_on_S(line<FP> CR s, point<FP> CR p) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

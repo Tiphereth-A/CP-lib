@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_MINT_BE61N1_LIB
-#define TIFALIBS_MATH_MINT_BE61N1_LIB
+#pragma once
 
 #include "../../../util/traits/math/lib.hpp"
 
@@ -37,5 +36,3 @@ class mint_2e61n1 {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

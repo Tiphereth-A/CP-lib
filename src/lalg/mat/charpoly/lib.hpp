@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_CHARPOLY_LIB
-#define TIFALIBS_LALG_MAT_CHARPOLY_LIB
+#pragma once
 
 #include "../../ds/mat/lib.hpp"
 #include "../uhb/lib.hpp"
@@ -33,5 +32,3 @@ CEXP vec<T> charpoly(matrix<T> mat, Is0&& is0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

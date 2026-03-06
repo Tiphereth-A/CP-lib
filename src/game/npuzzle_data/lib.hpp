@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GAME_NPUZZLE_DATA_LIB
-#define TIFALIBS_GAME_NPUZZLE_DATA_LIB
+#pragma once
 
 #include "../../util/traits/others/lib.hpp"
 
@@ -68,5 +67,3 @@ class npuzzle_data {
 };
 
 }  // namespace tifa_libs::game
-
-#endif

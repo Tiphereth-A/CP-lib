@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_SPLITMIX64_LIB
-#define TIFALIBS_EDH_SPLITMIX64_LIB
+#pragma once
 
 #include "../../util/consts/lib.hpp"
 
@@ -38,5 +37,3 @@ class hash_splitmix64 {
 };
 
 }  // namespace tifa_libs
-
-#endif

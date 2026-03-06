@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_DIVMOD_LIB
-#define TIFALIBS_FPS_DIVMOD_LIB
+#pragma once
 
 #include "../div/lib.hpp"
 
@@ -17,5 +16,3 @@ CEXP auto divmod_fps(poly<ccore, mint, args...> CR p, poly<ccore, mint, args...>
 }
 
 }  // namespace tifa_libs::math
-
-#endif

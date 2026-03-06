@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_SAT2_LIB
-#define TIFALIBS_GRAPH_SAT2_LIB
+#pragma once
 
 #include "../scc/tarjan/lib.hpp"
 
@@ -34,5 +33,3 @@ class sat2 {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

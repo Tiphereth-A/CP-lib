@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_ST_BASIC_LIB
-#define TIFALIBS_DS_ST_BASIC_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -44,5 +43,3 @@ class st_array {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

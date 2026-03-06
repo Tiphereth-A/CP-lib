@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_GL_EXGCD_LIB
-#define TIFALIBS_NT_GL_EXGCD_LIB
+#pragma once
 
 #include "../../../util/traits/math/lib.hpp"
 
@@ -66,5 +65,3 @@ CEXP auto exgcd(T a, T b) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

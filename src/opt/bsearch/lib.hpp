@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_BSEARCH_LIB
-#define TIFALIBS_OPT_BSEARCH_LIB
+#pragma once
 
 #include "../../util/alias/num/lib.hpp"
 
@@ -20,5 +19,3 @@ CEXP u32 bsearch(F&& pred) NE {
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

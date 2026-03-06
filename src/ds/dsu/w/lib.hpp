@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_DSU_W_LIB
-#define TIFALIBS_DS_DSU_W_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -44,5 +43,3 @@ class dsu_weighted {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

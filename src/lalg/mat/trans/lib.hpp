@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_TRANS_LIB
-#define TIFALIBS_LALG_MAT_TRANS_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -14,5 +13,3 @@ CEXP Mat transpose(Mat CR mat) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_KAHAN_LIB
-#define TIFALIBS_MATH_KAHAN_LIB
+#pragma once
 
 #include "../../util/util/lib.hpp"
 
@@ -24,5 +23,3 @@ template <class FP>
 using kahan = std::conditional_t<std::floating_point<FP>, kahan_fp<FP>, FP>;
 
 }  // namespace tifa_libs::math
-
-#endif

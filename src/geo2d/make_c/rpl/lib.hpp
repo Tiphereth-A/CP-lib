@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_MAKE_C_RPL_LIB
-#define TIFALIBS_GEO2D_MAKE_C_RPL_LIB
+#pragma once
 
 #include "../../dis/pl/lib.hpp"
 #include "../../ins/cl/lib.hpp"
@@ -28,5 +27,3 @@ CEXP auto make_C_rPL(FP r, point<FP> CR p, line<FP> CR l) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

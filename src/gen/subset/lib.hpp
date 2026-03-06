@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEN_SUBSET_LIB
-#define TIFALIBS_GEN_SUBSET_LIB
+#pragma once
 
 #include "../../util/alias/num/lib.hpp"
 
@@ -27,5 +26,3 @@ class enum_subset {
 };
 
 }  // namespace tifa_libs
-
-#endif

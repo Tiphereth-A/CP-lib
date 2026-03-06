@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MATSP_MERGE_UD_LIB
-#define TIFALIBS_LALG_MATSP_MERGE_UD_LIB
+#pragma once
 
 #include "../../ds/matsp/lib.hpp"
 
@@ -19,5 +18,3 @@ CEXP matsp<T> merge_ud_matsp(cT_(matsp<T>) u, cT_(matsp<T>) d) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

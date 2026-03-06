@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_KNAPSACK_MIXED_LIB
-#define TIFALIBS_OPT_KNAPSACK_MIXED_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -32,5 +31,3 @@ class knapsack_mixed {
 };
 
 }  // namespace tifa_libs::opt
-
-#endif

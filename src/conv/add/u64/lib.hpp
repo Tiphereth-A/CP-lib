@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_ADD_U64_LIB
-#define TIFALIBS_CONV_ADD_U64_LIB
+#pragma once
 
 #include "../../trans/fft_r3/lib.hpp"
 #include "../naive/lib.hpp"
@@ -72,5 +71,3 @@ vecuu conv_u64(vec<T> CR a, vec<T> CR b, u32 ans_size = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

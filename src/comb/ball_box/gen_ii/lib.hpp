@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_BALL_BOX_GEN_II_LIB
-#define TIFALIBS_COMB_BALL_BOX_GEN_II_LIB
+#pragma once
 
 #include "../../../fps/exp/lib.hpp"
 #include "../../seq/inv/lib.hpp"
@@ -19,5 +18,3 @@ template <class poly>
 CEXP poly gen_ball_box_ii(u32 m, u32 n) NE { return gen_ball_box_ii<poly>(m, n, gen_inv(n + 1, poly::val_t::mod())); }
 
 }  // namespace tifa_libs::math
-
-#endif

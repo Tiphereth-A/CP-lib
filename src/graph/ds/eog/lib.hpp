@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_DS_EOG_LIB
-#define TIFALIBS_GRAPH_DS_EOG_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -68,5 +67,3 @@ struct eogw {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

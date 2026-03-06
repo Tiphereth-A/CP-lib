@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_MIN_COVER_C_LIB
-#define TIFALIBS_GEO2D_MIN_COVER_C_LIB
+#pragma once
 
 #include "../make_c/ppp/lib.hpp"
 #include "../rel/cp/lib.hpp"
@@ -26,5 +25,3 @@ CEXP circle<FP> min_cover_C(vec<point<FP>> CR vp) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

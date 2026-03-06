@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_MAKE_ALISTR_LIB
-#define TIFALIBS_GRAPH_MAKE_ALISTR_LIB
+#pragma once
 
 #include "../../util/traits/graph/lib.hpp"
 
@@ -19,5 +18,3 @@ CEXP auto make_alistr(G CR g) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

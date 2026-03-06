@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_TSH_LIB
-#define TIFALIBS_FPS_TSH_LIB
+#pragma once
 
 #include "../../comb/seq/fact/lib.hpp"
 #include "../../comb/seq/ifact/lib.hpp"
@@ -27,5 +26,3 @@ CEXP auto tsh_fps(poly<ccore, mint, args...> CR f, mint c) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

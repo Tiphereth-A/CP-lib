@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_POW_LIB
-#define TIFALIBS_FPS_POW_LIB
+#pragma once
 
 #include "../../math/qpow/basic/lib.hpp"
 #include "../exp/lib.hpp"
@@ -33,5 +32,3 @@ CEXP auto pow_fps(poly<ccore, mint, args...> CR p, u64 y, u32 n = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

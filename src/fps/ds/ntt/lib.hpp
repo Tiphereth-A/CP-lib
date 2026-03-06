@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_DS_NTT_LIB
-#define TIFALIBS_FPS_DS_NTT_LIB
+#pragma once
 
 #include "../../../conv/add/dft/lib.hpp"
 #include "../../../conv/trans/ntt/lib.hpp"
@@ -18,5 +17,3 @@ template <class mint>
 using polyntt = poly<polyntt_impl_::cconv_ntt, mint>;
 
 }  // namespace tifa_libs::math
-
-#endif

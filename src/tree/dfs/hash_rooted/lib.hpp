@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_DFS_HASH_ROOTED_LIB
-#define TIFALIBS_TREE_DFS_HASH_ROOTED_LIB
+#pragma once
 
 #include "../../ds/lib.hpp"
 
@@ -17,5 +16,3 @@ CEXP vecuu tree_hash_rooted(tree CR tr, Hash&& hasher) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

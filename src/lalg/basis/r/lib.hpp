@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_BASIS_R_LIB
-#define TIFALIBS_LALG_BASIS_R_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/func_fp/lib.hpp"
@@ -77,5 +76,3 @@ struct basis_r {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

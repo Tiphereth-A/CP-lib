@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_AHO_CORASICK_LIB
-#define TIFALIBS_STR_AHO_CORASICK_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -47,5 +46,3 @@ class aho_corasick {
   }
 };
 }  // namespace tifa_libs::str
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_BITSET_GETDATA_LIB
-#define TIFALIBS_UTIL_BITSET_GETDATA_LIB
+#pragma once
 
 #include "../util/lib.hpp"
 
@@ -25,5 +24,3 @@ struct bitset_getdata {
 };
 
 }  // namespace tifa_libs
-
-#endif

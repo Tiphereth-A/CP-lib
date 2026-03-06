@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_LREC_NTH_TERM_LIB
-#define TIFALIBS_MATH_LREC_NTH_TERM_LIB
+#pragma once
 
 #include "../../../fps/bostan_mori/lib.hpp"
 #include "../berlekamp_massey/lib.hpp"
@@ -22,5 +21,3 @@ CEXP mint nth_term_lrec(u64 n, vec<mint> CR a) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

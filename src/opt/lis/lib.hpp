@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_LIS_LIB
-#define TIFALIBS_OPT_LIS_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -25,5 +24,3 @@ CEXP vecu lis(vec<T> CR a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

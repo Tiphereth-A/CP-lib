@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_ATAN_LIB
-#define TIFALIBS_FPS_ATAN_LIB
+#pragma once
 
 #include "../deriv/lib.hpp"
 #include "../int/lib.hpp"
@@ -17,5 +16,3 @@ CEXP auto atan_fps(poly<ccore, mint, args...> CR p) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

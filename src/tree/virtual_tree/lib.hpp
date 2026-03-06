@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_VIRTUAL_TREE_LIB
-#define TIFALIBS_TREE_VIRTUAL_TREE_LIB
+#pragma once
 
 #include "../ds/lib.hpp"
 #include "../lca_hld/lib.hpp"
@@ -41,5 +40,3 @@ class virtual_tree {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

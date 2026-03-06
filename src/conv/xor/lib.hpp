@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_XOR_LIB
-#define TIFALIBS_CONV_XOR_LIB
+#pragma once
 
 #include "../trans/wht/lib.hpp"
 
@@ -14,5 +13,3 @@ CEXP vec<T> conv_xor(vec<T> l, vec<T> r) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_NF_DINIC_LIB
-#define TIFALIBS_GRAPH_NF_DINIC_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -60,5 +59,3 @@ class dinic {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_TRANS_NTT_LIB
-#define TIFALIBS_CONV_TRANS_NTT_LIB
+#pragma once
 
 #include "../../../math/qpow/basic/lib.hpp"
 #include "../../../nt/proot/uint/lib.hpp"
@@ -84,5 +83,3 @@ struct ntt {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

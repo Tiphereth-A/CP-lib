@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_GL_GCD_FP_LIB
-#define TIFALIBS_NT_GL_GCD_FP_LIB
+#pragma once
 
 #include "../../../util/util/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP T gcd_fp(T a, T b, T eps = 1e-2) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

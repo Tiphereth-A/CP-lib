@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DS_YOUNGT_LIB
-#define TIFALIBS_MATH_DS_YOUNGT_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -52,5 +51,3 @@ class Youngt {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

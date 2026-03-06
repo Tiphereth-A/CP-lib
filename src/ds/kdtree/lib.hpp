@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_KDTREE_LIB
-#define TIFALIBS_DS_KDTREE_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
@@ -153,5 +152,3 @@ class kdtree {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

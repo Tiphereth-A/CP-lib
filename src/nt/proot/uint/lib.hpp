@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_PROOT_UINT_LIB
-#define TIFALIBS_NT_PROOT_UINT_LIB
+#pragma once
 
 #include "../../pfactors/lib.hpp"
 #include "../is/lib.hpp"
@@ -18,5 +17,3 @@ CEXP u64 proot(u64 m) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

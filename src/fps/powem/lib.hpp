@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_POWEM_LIB
-#define TIFALIBS_FPS_POWEM_LIB
+#pragma once
 
 #include "../inv/lib.hpp"
 
@@ -33,5 +32,3 @@ CEXP auto powem_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> 
 }
 
 }  // namespace tifa_libs::math
-
-#endif

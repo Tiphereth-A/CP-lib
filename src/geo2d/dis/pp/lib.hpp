@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DIS_PP_LIB
-#define TIFALIBS_GEO2D_DIS_PP_LIB
+#pragma once
 
 #include "../../ds/p/lib.hpp"
 
@@ -17,5 +16,3 @@ CEXP FP dist_PP(point<FP> CR p1, point<FP> CR p2) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

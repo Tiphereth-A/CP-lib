@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DS_T_LIB
-#define TIFALIBS_GEO2D_DS_T_LIB
+#pragma once
 
 #include "../../ang_pp/lib.hpp"
 #include "../../cross/lib.hpp"
@@ -36,5 +35,3 @@ struct triangle {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

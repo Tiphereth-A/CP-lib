@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DS_NIMBER_LIB
-#define TIFALIBS_MATH_DS_NIMBER_LIB
+#pragma once
 
 #include "../../nim_prod/lib.hpp"
 
@@ -34,5 +33,3 @@ using nimber32 = nimber<u32, nimprod32>;
 using nimber64 = nimber<u64, nimprod64>;
 
 }  // namespace tifa_libs::math
-
-#endif

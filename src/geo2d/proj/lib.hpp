@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_PROJ_LIB
-#define TIFALIBS_GEO2D_PROJ_LIB
+#pragma once
 
 #include "../ds/l/lib.hpp"
 
@@ -16,5 +15,3 @@ template <class FP>
 CEXP point<FP> reflect(line<FP> CR l, point<FP> CR p) NE { return proj(l, p) * 2 - p; }
 
 }  // namespace tifa_libs::geo
-
-#endif

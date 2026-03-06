@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_MUL_MOD_LIB
-#define TIFALIBS_MATH_MUL_MOD_LIB
+#pragma once
 
 #include "../safe_mod/lib.hpp"
 
@@ -15,5 +14,3 @@ CEXP u64 mul_mod_u(u64 a, u64 b, u64 mod) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

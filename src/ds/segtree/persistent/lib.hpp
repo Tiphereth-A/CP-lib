@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_SEGTREE_PERSISTENT_LIB
-#define TIFALIBS_DS_SEGTREE_PERSISTENT_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -82,5 +81,3 @@ class persistent_segtree {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

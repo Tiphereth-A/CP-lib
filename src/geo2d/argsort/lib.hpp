@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_ARGSORT_LIB
-#define TIFALIBS_GEO2D_ARGSORT_LIB
+#pragma once
 
 #include "../ds/p/lib.hpp"
 
@@ -13,5 +12,3 @@ CEXP void argsort(vec<point<FP>>& vp, u32 quad_start = 6) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

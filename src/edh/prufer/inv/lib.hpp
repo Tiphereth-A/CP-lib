@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_PRUFER_INV_LIB
-#define TIFALIBS_EDH_PRUFER_INV_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -22,5 +21,3 @@ CEXP vecu prufer_inv(spnu code) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

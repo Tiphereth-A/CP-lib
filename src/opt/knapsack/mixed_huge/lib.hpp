@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_KNAPSACK_MIXED_HUGE_LIB
-#define TIFALIBS_OPT_KNAPSACK_MIXED_HUGE_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
@@ -39,5 +38,3 @@ CEXP T knapsack_mixed_huge(vec<pt3<T>> a, T W) NE {
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

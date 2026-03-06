@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_INTERP_LAGRANGE0_LIB
-#define TIFALIBS_MATH_INTERP_LAGRANGE0_LIB
+#pragma once
 
 #include "../../../comb/seq/ifact/lib.hpp"
 #include "../../mul_mod/lib.hpp"
@@ -39,5 +38,3 @@ template <class mint>
 CEXP mint lagrange_interp0(vec<mint> CR v, u64 x) NE { return lagrange_interp0(v, x, mint::mod(), gen_ifact<mint>(v.size())); }
 
 }  // namespace tifa_libs::math
-
-#endif

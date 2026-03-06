@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_ALIAS_NUM_LIB
-#define TIFALIBS_UTIL_ALIAS_NUM_LIB
+#pragma once
 
 #include "../../util/lib.hpp"
 
@@ -17,5 +16,3 @@ using f64 = double;
 using f128 = long double;
 
 }  // namespace tifa_libs
-
-#endif

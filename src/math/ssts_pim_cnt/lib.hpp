@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_SSTS_PIM_CNT_LIB
-#define TIFALIBS_MATH_SSTS_PIM_CNT_LIB
+#pragma once
 
 #include "../../comb/seq/inv/lib.hpp"
 #include "../../fps/exp/lib.hpp"
@@ -24,5 +23,3 @@ poly ssts_pim_cnt(vec<T> CR s, u32 t) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

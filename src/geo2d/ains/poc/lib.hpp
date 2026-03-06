@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_AINS_POC_LIB
-#define TIFALIBS_GEO2D_AINS_POC_LIB
+#pragma once
 
 #include "../../../math/kahan/lib.hpp"
 #include "../../ds/c/lib.hpp"
@@ -18,5 +17,3 @@ CEXP FP area_PoC(polygon<FP> CR po, circle<FP> CR c) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

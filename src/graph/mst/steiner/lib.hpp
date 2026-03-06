@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_MST_STEINER_LIB
-#define TIFALIBS_GRAPH_MST_STEINER_LIB
+#pragma once
 
 #include "../../../ds/heap/radix/lib.hpp"
 #include "../../../util/traits/graph/lib.hpp"
@@ -84,5 +83,3 @@ auto steiner_tree(G CR g, spnu x, vec<T> CR vw = {}, T INF = inf_v<T>) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

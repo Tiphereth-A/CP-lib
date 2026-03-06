@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_GL_RGCD_LIB
-#define TIFALIBS_NT_GL_RGCD_LIB
+#pragma once
 
 #include "../../../math/iroot/sqrt/lib.hpp"
 #include "../../lsieve/impl1/lib.hpp"
@@ -54,5 +53,3 @@ class rgcd {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

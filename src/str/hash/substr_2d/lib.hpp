@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_HASH_SUBSTR_2D_LIB
-#define TIFALIBS_STR_HASH_SUBSTR_2D_LIB
+#pragma once
 
 #include "../substr/lib.hpp"
 
@@ -31,5 +30,3 @@ class hash_substr_2d {
 };
 
 }  // namespace tifa_libs::str
-
-#endif

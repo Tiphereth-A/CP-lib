@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_PFACTORS_LIB
-#define TIFALIBS_NT_PFACTORS_LIB
+#pragma once
 
 #include "../../edh/discretization/lib.hpp"
 #include "../../math/mul_mod/lib.hpp"
@@ -70,5 +69,3 @@ CEXP vecp<u64, u32> pf_exp(u64 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

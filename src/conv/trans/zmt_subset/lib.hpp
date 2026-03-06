@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_TRANS_ZMT_SUBSET_LIB
-#define TIFALIBS_CONV_TRANS_ZMT_SUBSET_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -23,5 +22,3 @@ CEXP void mt_subset(vec<T>& f) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

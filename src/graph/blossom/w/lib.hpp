@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_BLOSSOM_W_LIB
-#define TIFALIBS_GRAPH_BLOSSOM_W_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -185,5 +184,3 @@ struct blossomw {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

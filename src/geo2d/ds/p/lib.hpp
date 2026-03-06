@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DS_P_LIB
-#define TIFALIBS_GEO2D_DS_P_LIB
+#pragma once
 
 #include "../../../util/func_fp/lib.hpp"
 #include "../../../util/traits/others/lib.hpp"
@@ -106,5 +105,3 @@ struct point {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

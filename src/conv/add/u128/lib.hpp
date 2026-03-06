@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_ADD_U128_LIB
-#define TIFALIBS_CONV_ADD_U128_LIB
+#pragma once
 
 #include "../../../math/ds/mint/lib.hpp"
 #include "../../../math/mint/ms/lib.hpp"
@@ -40,5 +39,3 @@ vec<u128> conv_u128(vec<T> CR l, vec<T> CR r, u32 ans_size = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

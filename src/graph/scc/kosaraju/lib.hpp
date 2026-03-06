@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_SCC_KOSARAJU_LIB
-#define TIFALIBS_GRAPH_SCC_KOSARAJU_LIB
+#pragma once
 
 #include "../../ds/alist/lib.hpp"
 #include "../../make_alistr/lib.hpp"
@@ -44,5 +43,3 @@ class kosaraju {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

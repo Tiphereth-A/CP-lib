@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_TSEARCH_LIB
-#define TIFALIBS_OPT_TSEARCH_LIB
+#pragma once
 
 #include "../../util/consts/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
@@ -36,5 +35,3 @@ CEXP auto tsearch(I l, I r, F&& f) NE {
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

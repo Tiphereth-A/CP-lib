@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_HUFFMAN_LIB
-#define TIFALIBS_EDH_HUFFMAN_LIB
+#pragma once
 
 #include "../../ds/heap/radix/lib.hpp"
 
@@ -64,5 +63,3 @@ class huffman {
 };
 
 }  // namespace tifa_libs
-
-#endif

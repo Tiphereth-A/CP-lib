@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_ADJ_LIB
-#define TIFALIBS_LALG_MAT_ADJ_LIB
+#pragma once
 
 #include "../../../rand/gen/lib.hpp"
 #include "../inv/lib.hpp"
@@ -27,5 +26,3 @@ CEXP matrix<T> adj_mat(matrix<T> mat, Is0&& is0, Ge&& ge) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

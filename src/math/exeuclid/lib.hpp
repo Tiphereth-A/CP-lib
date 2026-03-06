@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_EXEUCLID_LIB
-#define TIFALIBS_MATH_EXEUCLID_LIB
+#pragma once
 
 #include "../../math/qpow/basic/lib.hpp"
 
@@ -25,5 +24,3 @@ CEXP TIFA exeuclid(i64 p, i64 q, i64 r, i64 l, TIFA CR a, TIFA CR b) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

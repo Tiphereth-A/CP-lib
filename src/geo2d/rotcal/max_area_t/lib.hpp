@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_ROTCAL_MAX_AREA_T_LIB
-#define TIFALIBS_GEO2D_ROTCAL_MAX_AREA_T_LIB
+#pragma once
 
 #include "../../ds/cvh/lib.hpp"
 #include "../../ds/t/lib.hpp"
@@ -34,5 +33,3 @@ CEXP triangle<FP> max_area_T(cT_(cvh<FP>) ch) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

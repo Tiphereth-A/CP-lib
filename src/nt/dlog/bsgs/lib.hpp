@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_DLOG_BSGS_LIB
-#define TIFALIBS_NT_DLOG_BSGS_LIB
+#pragma once
 
 #include "../../../math/iroot/sqrt/lib.hpp"
 #include "../../../math/qpow/mod/lib.hpp"
@@ -44,5 +43,3 @@ inline auto bsgs(u64 a, u64 b, u64 m) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

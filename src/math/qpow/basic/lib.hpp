@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_QPOW_BASIC_LIB
-#define TIFALIBS_MATH_QPOW_BASIC_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP T qpow(T a, u64 b, cT_(T) init_v = T{1}) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

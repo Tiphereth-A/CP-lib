@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_PROOT_GINT_LIB
-#define TIFALIBS_NT_PROOT_GINT_LIB
+#pragma once
 
 #include "../../../math/ds/gint/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
@@ -31,5 +30,3 @@ gint<mint, M> proot_gint() NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

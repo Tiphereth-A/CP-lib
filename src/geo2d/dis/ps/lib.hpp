@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DIS_PS_LIB
-#define TIFALIBS_GEO2D_DIS_PS_LIB
+#pragma once
 
 #include "../../dis/pp_p/lib.hpp"
 #include "../../pred/is_in_middle_p/lib.hpp"
@@ -19,5 +18,3 @@ template <class FP>
 CEXP FP dist_PS(point<FP> CR p, line<FP> CR s) NE { return dist_PP(dist_PS_P(p, s), p); }
 
 }  // namespace tifa_libs::geo
-
-#endif

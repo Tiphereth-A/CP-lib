@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_BASE64_LIB
-#define TIFALIBS_EDH_BASE64_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -34,5 +33,3 @@ class base64 {
 };
 
 }  // namespace tifa_libs
-
-#endif

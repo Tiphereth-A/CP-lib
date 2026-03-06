@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MATSP_MERGE_LR_LIB
-#define TIFALIBS_LALG_MATSP_MERGE_LR_LIB
+#pragma once
 
 #include "../../ds/matsp/lib.hpp"
 
@@ -19,5 +18,3 @@ CEXP matsp<T> merge_lr_matsp(cT_(matsp<T>) l, cT_(matsp<T>) r) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

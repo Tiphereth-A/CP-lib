@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FAST_S2U_U32_LIB
-#define TIFALIBS_FAST_S2U_U32_LIB
+#pragma once
 
 #include "../../../bit/bswap/lib.hpp"
 #include "../../../util/alias/num/lib.hpp"
@@ -16,5 +15,3 @@ CEXP u32 str2uint_si64(const char* const s) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

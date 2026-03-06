@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_INS_LL_LIB
-#define TIFALIBS_GEO2D_INS_LL_LIB
+#pragma once
 
 #include "../../ds/l/lib.hpp"
 
@@ -21,5 +20,3 @@ CEXP point<FP> ins_LL(line<FP> CR l, FP a, FP b, FP c) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

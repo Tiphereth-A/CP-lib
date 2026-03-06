@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_UHB_LIB
-#define TIFALIBS_LALG_MAT_UHB_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -27,5 +26,3 @@ CEXP void uhb(Mat& mat, Is0&& is0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

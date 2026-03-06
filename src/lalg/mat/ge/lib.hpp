@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_GE_LIB
-#define TIFALIBS_LALG_MAT_GE_LIB
+#pragma once
 
 #include "../../../util/traits/math/lib.hpp"
 #include "../../ds/mat/lib.hpp"
@@ -57,5 +56,3 @@ CEXP i32 ge_mat(matrix<T>& mat, Is0 is0, bool clear_u = true) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

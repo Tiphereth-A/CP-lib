@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DIV64_LIB
-#define TIFALIBS_MATH_DIV64_LIB
+#pragma once
 
 #include "../../util/alias/num/lib.hpp"
 
@@ -11,5 +10,3 @@ CEXP i64 div_i64(i64 a, i64 b) NE { retif_((a <= 1'000'000'000'000), div_i64d(a,
 CEXP u64 div_u64(u64 a, u64 b) NE { retif_((a <= 1'000'000'000'000), div_u64d(a, b), a / b); }
 
 }  // namespace tifa_libs::math
-
-#endif

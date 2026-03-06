@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_STIRLING1_SMALLP_LIB
-#define TIFALIBS_COMB_STIRLING1_SMALLP_LIB
+#pragma once
 
 #include "../binom/lib.hpp"
 
@@ -49,5 +48,3 @@ class stirling1 {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

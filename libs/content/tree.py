@@ -1,7 +1,7 @@
 import os
 
-from libs.classes.conf import ConfigIndex
-from libs.classes.section import Section
+from libs.conf import ConfigIndex
+from libs.content import Section
 from libs.decorator import with_logger
 
 

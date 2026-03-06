@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DS_L_LIB
-#define TIFALIBS_GEO2D_DS_L_LIB
+#pragma once
 
 #include "../../cross/lib.hpp"
 #include "../p/lib.hpp"
@@ -50,5 +49,3 @@ struct line {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

@@ -30,30 +30,25 @@ class NameLaTeX(TextLaTeXBase):
 
 
 def _latex_command(command: str, *args) -> str:
-    """Generate a LaTeX command string."""
     return rf"\{command}{{" + '}{'.join(args) + '}\n'
 
 
 def _latex_command_with_option(command: str, option: str, *args) -> str:
-    """Generate a LaTeX command string with options."""
     return rf"\{command}[{option}]{{" + '}{'.join(args) + '}\n'
 
 
 @with_logger
 def latex_input(path: PathLaTeX, **kwargs) -> list[str]:
-    """Generate LaTeX input command."""
     return [_latex_command('input', path.get()), '\n']
 
 
 @with_logger
 def latex_label(prefix: str, name: TextLaTeXBase, **kwargs) -> list[str]:
-    """Generate LaTeX label command."""
     return [_latex_command('label', f"{prefix}:{name.get_label_name()}")]
 
 
 @with_logger
 def latex_section(name: NameLaTeX, path: PathLaTeX, level: int, **kwargs) -> list[str]:
-    """Generate LaTeX section command."""
     if level < 0 or level > 3:
         raise ValueError(f"Invalid section level: {level}")
     CMD: list[str] = ['chapter', 'section', 'subsection', 'subsubsection']
@@ -63,7 +58,6 @@ def latex_section(name: NameLaTeX, path: PathLaTeX, level: int, **kwargs) -> lis
 
 @with_logger
 def latex_listing_code(path: PathLaTeX, file_type: str, **kwargs) -> list[str]:
-    """Generate LaTeX code listing command."""
     return [
         rf'Path: \verb|{path.get()}|',
         '\n\n',
@@ -78,7 +72,6 @@ def latex_listing_code(path: PathLaTeX, file_type: str, **kwargs) -> list[str]:
 
 @with_logger
 def latex_listing_code_range(path: PathLaTeX, file_type: str, start: int, stop: int, **kwargs) -> list[str]:
-    """Generate LaTeX code listing command with line range."""
     return [
         rf'Path: \verb|{path.get()}|',
         '\n\n',

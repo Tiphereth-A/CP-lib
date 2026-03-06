@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_ADD_NAIVE_LIB
-#define TIFALIBS_CONV_ADD_NAIVE_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -21,5 +20,3 @@ CEXP vec<T> conv_naive(vec<U> CR l, vec<U> CR r, u32 ans_size = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

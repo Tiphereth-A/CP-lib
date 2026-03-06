@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_DS_BMAT_LIB
-#define TIFALIBS_LALG_DS_BMAT_LIB
+#pragma once
 
 #include "../mat/lib.hpp"
 
@@ -57,5 +56,3 @@ auto& operator<<(ostream_c auto& os, bitmat<R, C> CR bmat) NE { return print_bit
 #undef FOR2_
 
 }  // namespace tifa_libs::math
-
-#endif

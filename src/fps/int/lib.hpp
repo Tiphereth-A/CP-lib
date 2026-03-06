@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_INT_LIB
-#define TIFALIBS_FPS_INT_LIB
+#pragma once
 
 #include "../ds/poly/lib.hpp"
 
@@ -14,5 +13,3 @@ CEXP auto int_fps(poly<ccore, mint, args...> CR p) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

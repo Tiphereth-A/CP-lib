@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_MAXV_CVH_CNT_LIB
-#define TIFALIBS_GEO2D_MAXV_CVH_CNT_LIB
+#pragma once
 
 #include "../ds/l/lib.hpp"
 
@@ -33,5 +32,3 @@ CEXP u32 maxv_cvh_cnt(vec<point<FP>> CR vp) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

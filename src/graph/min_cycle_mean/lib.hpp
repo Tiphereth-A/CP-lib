@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_MIN_CYCLE_MEAN_LIB
-#define TIFALIBS_GRAPH_MIN_CYCLE_MEAN_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
@@ -25,5 +24,3 @@ CEXP T min_cycle_mean(vec<edge_t<T>> CR edges, u32 n, T INF = inf_v<T>) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

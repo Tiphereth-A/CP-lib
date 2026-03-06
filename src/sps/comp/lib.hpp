@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_SPS_COMP_LIB
-#define TIFALIBS_SPS_COMP_LIB
+#pragma once
 
 #include "../../comb/seq/fact/lib.hpp"
 #include "../../comb/seq/ifact/lib.hpp"
@@ -40,5 +39,3 @@ CEXP auto comp_fpssps(u32 n, poly CR f, vec<TPN poly::val_t> CR g) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

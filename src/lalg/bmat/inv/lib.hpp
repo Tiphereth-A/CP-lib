@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_BMAT_INV_LIB
-#define TIFALIBS_LALG_BMAT_INV_LIB
+#pragma once
 
 #include "../ge/lib.hpp"
 
@@ -23,5 +22,3 @@ CEXP auto inv_bmat(bitmat<N> CR mat, u32 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

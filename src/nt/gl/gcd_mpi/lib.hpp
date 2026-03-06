@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_GL_GCD_MPI_LIB
-#define TIFALIBS_NT_GL_GCD_MPI_LIB
+#pragma once
 
 #include "../../../math/ds/mpi/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
@@ -64,5 +63,3 @@ CEXP mpi gcd_mpi(mpi a, mpi b) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

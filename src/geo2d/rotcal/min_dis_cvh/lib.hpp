@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_ROTCAL_MIN_DIS_CVH_LIB
-#define TIFALIBS_GEO2D_ROTCAL_MIN_DIS_CVH_LIB
+#pragma once
 
 #include "../../ds/cvh/lib.hpp"
 
@@ -24,5 +23,3 @@ CEXP FP min_dis_CVH(cvh<FP> CR ch1, cvh<FP> CR ch2) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

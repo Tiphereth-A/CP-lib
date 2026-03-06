@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_ADD_DFT_LIB
-#define TIFALIBS_CONV_ADD_DFT_LIB
+#pragma once
 
 #include "../../../util/traits/math/lib.hpp"
 #include "../naive/lib.hpp"
@@ -26,5 +25,3 @@ CEXP vec<mint> conv_dft_um(DFT_t& dft, vec<T> CR l, vec<T> CR r, u32 ans_size = 
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_CARMICHAEL_LIB
-#define TIFALIBS_NT_CARMICHAEL_LIB
+#pragma once
 
 #include "../../math/qpow/basic/lib.hpp"
 #include "../gl/lcm/lib.hpp"
@@ -15,5 +14,3 @@ inline u64 carmichael(spn<std::pair<u64, u32>> pf_exp) NE {
 inline u64 carmichael(u64 n) NE { return carmichael(pf_exp(n)); }
 
 }  // namespace tifa_libs::math
-
-#endif

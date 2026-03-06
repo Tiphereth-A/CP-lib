@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_LINK_CUT_TREE_LIB
-#define TIFALIBS_DS_LINK_CUT_TREE_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -131,5 +130,3 @@ class link_cut_tree {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

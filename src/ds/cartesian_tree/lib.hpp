@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_CARTESIAN_TREE_LIB
-#define TIFALIBS_DS_CARTESIAN_TREE_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -31,5 +30,3 @@ class cartesian_tree {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

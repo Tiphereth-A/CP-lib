@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_RATIONAL_APPROX_LIB
-#define TIFALIBS_MATH_RATIONAL_APPROX_LIB
+#pragma once
 
 #include "../../opt/bsearch/lib.hpp"
 #include "../../util/alias/others/lib.hpp"
@@ -39,5 +38,3 @@ CEXP ptt<ptt<T>> rational_approx(T n, ptt<T> CR f) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

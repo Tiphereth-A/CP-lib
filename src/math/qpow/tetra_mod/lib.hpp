@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_QPOW_TETRA_MOD_LIB
-#define TIFALIBS_MATH_QPOW_TETRA_MOD_LIB
+#pragma once
 
 #include "../../../nt/euler_phi/lib.hpp"
 
@@ -34,5 +33,3 @@ CEXP u64 qtetra_mod(u64 a, u64 b, u64 m) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

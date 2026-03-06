@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO3D_DS_L_LIB
-#define TIFALIBS_GEO3D_DS_L_LIB
+#pragma once
 
 #include "../p/lib.hpp"
 
@@ -15,5 +14,3 @@ struct line3d {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

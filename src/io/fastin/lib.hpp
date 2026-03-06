@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_IO_FASTIN_LIB
-#define TIFALIBS_IO_FASTIN_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
@@ -183,5 +182,3 @@ template <u32 w>
 inline fastin<w>& ws(fastin<w>& f) NE { return f.skip_cntrls(); }
 
 }  // namespace tifa_libs
-
-#endif

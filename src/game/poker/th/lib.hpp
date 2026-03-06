@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GAME_POKER_TH_LIB
-#define TIFALIBS_GAME_POKER_TH_LIB
+#pragma once
 
 #include "../data/lib.hpp"
 
@@ -57,5 +56,3 @@ CEXP thpoker_values_t thpoker_values(vec<poker_card> CR hand) NE {
 }
 
 }  // namespace tifa_libs::game
-
-#endif

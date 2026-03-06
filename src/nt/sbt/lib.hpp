@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_SBT_LIB
-#define TIFALIBS_NT_SBT_LIB
+#pragma once
 
 #include "../../util/consts/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
@@ -61,5 +60,3 @@ struct sbt {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

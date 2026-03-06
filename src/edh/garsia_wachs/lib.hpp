@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_GARSIA_WACHS_LIB
-#define TIFALIBS_EDH_GARSIA_WACHS_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -26,5 +25,3 @@ void garsia_wachs(vec<T>& v, F&& f) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

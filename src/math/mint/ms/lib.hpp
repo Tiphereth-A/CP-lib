@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_MINT_MS_LIB
-#define TIFALIBS_MATH_MINT_MS_LIB
+#pragma once
 
 #include "../../../nt/mod/montgomery/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
@@ -36,5 +35,3 @@ class mint_ms {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

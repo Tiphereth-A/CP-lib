@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DO_QUOT_LIB
-#define TIFALIBS_MATH_DO_QUOT_LIB
+#pragma once
 
 #include "../div64/lib.hpp"
 
@@ -12,5 +11,3 @@ CEXP void do_quot(u64 n, F f, u64 l_begin = 1) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

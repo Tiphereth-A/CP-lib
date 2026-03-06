@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_NIM_PROD_LIB
-#define TIFALIBS_MATH_NIM_PROD_LIB
+#pragma once
 
 #include "../../util/alias/num/lib.hpp"
 
@@ -99,5 +98,3 @@ CEXP u64 nimprod64(u64 i, u64 j) NE {
 using nim_prod_impl_::nimprod16, nim_prod_impl_::nimprod32, nim_prod_impl_::nimprod64;
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GAME_SUDOKU_LIB
-#define TIFALIBS_GAME_SUDOKU_LIB
+#pragma once
 
 #include "../../math/iroot/sqrt/lib.hpp"
 #include "../../opt/dlx/lib.hpp"
@@ -30,5 +29,3 @@ CEXP v3ecu sudoku_solver(cT_(vvecu) data, bool get_all_solution = false) NE {
 }
 
 }  // namespace tifa_libs::game
-
-#endif

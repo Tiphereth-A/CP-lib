@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO3D_DS_P_LIB
-#define TIFALIBS_GEO3D_DS_P_LIB
+#pragma once
 
 #include "../../../util/traits/others/lib.hpp"
 
@@ -89,5 +88,3 @@ struct point3d {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_BT_TRV_LIB
-#define TIFALIBS_DS_BT_TRV_LIB
+#pragma once
 
 #include "../../util/traits/ds/lib.hpp"
 
@@ -54,5 +53,3 @@ template <tp2_ds_c pointer>
 CEXP auto rightmost(pointer p) NE { return most(p, 1); }
 
 }  // namespace tifa_libs::ds
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_CONSTS_LIB
-#define TIFALIBS_UTIL_CONSTS_LIB
+#pragma once
 
 #include "../alias/num/lib.hpp"
 // clang-format off
@@ -16,4 +15,3 @@ inline const auto fn_0 = [](auto&&...) NE {};
 inline const auto fn_is0 = [](auto x) NE { return x == 0; };
 }  // namespace tifa_libs
 // clang-format on
-#endif

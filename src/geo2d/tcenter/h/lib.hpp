@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_TCENTER_H_LIB
-#define TIFALIBS_GEO2D_TCENTER_H_LIB
+#pragma once
 
 #include "../../ds/t/lib.hpp"
 
@@ -13,5 +12,3 @@ CEXP point<FP> center_H(triangle<FP> CR t) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

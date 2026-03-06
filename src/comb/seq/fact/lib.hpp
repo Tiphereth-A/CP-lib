@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_SEQ_FACT_LIB
-#define TIFALIBS_COMB_SEQ_FACT_LIB
+#pragma once
 
 #include "../../../math/mul_mod/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
@@ -24,5 +23,3 @@ CEXP vec<mint> gen_fact(u32 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_DSU_DELINEATION_LIB
-#define TIFALIBS_DS_DSU_DELINEATION_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/ds/lib.hpp"
@@ -16,5 +15,3 @@ CEXP vvecu dsu_delineation(dsu_c auto& dsu) NE {
 }
 
 }  // namespace tifa_libs::ds
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_CNT_RING4_LIB
-#define TIFALIBS_GRAPH_CNT_RING4_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/graph/lib.hpp"
@@ -44,5 +43,3 @@ CEXP u64 ringcnt4(G CR g) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

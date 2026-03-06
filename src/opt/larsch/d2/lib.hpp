@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_LARSCH_D2_LIB
-#define TIFALIBS_OPT_LARSCH_D2_LIB
+#pragma once
 
 #include "../../../util/traits/math/lib.hpp"
 #include "../../smawk/lib.hpp"
@@ -23,5 +22,3 @@ CEXP vec<T> larsch_2d(u32 n, Func&& w, T inf = inf_v<T>) NE {
 };
 
 }  // namespace tifa_libs::opt
-
-#endif

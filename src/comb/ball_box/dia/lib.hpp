@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_BALL_BOX_DIA_LIB
-#define TIFALIBS_COMB_BALL_BOX_DIA_LIB
+#pragma once
 
 #include "../../seq/stirling2_row/lib.hpp"
 
@@ -11,5 +10,3 @@ template <class poly>
 CEXP auto ball_box_dia(u32 ball, u32 box) NE { return ball_box_dia<poly>(ball, box, gen_stirling2_row<poly>(ball)); }
 
 }  // namespace tifa_libs::math
-
-#endif

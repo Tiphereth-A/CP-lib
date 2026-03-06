@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DS_C_LIB
-#define TIFALIBS_GEO2D_DS_C_LIB
+#pragma once
 
 #include "../p/lib.hpp"
 
@@ -28,5 +27,3 @@ struct circle {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

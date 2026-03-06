@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_IROOT_SQRT_LIB
-#define TIFALIBS_MATH_IROOT_SQRT_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -21,5 +20,3 @@ CEXP u32 isqrt(u64 x) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_GCD_LIB
-#define TIFALIBS_FPS_GCD_LIB
+#pragma once
 
 #include "../divmod/lib.hpp"
 #include "../shr/lib.hpp"
@@ -85,5 +84,3 @@ CEXP auto gcd_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> CR
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_ODT_LIB
-#define TIFALIBS_DS_ODT_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -69,5 +68,3 @@ class odt {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

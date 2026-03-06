@@ -1,35 +1,22 @@
-"""Generate test codes command."""
-
 import os
 
 import click
 
 from libs.decorator import with_logger, with_timer
-from libs.classes.testcase_matrix import cppmeta_parser
-from libs.utils import get_full_filenames
+from libs.meta import cppmeta_parser
+from libs.util.get_files_with_exts import get_files_with_exts
 
 
 @with_logger
 @with_timer
-def get_codelines(file: str, **kwargs) -> list[str]:
-    """Read code lines from a file."""
-    logger = kwargs.get('logger')
-    logger.debug(f"opening {file}")
-    with open(file, 'r', encoding='utf8') as f:
-        return f.read().splitlines(True)
-
-
-@with_logger
-@with_timer
-def generate_testcode(source_dir: str, target_dir: str, **kwargs):
-    """Generate test code files from cppmeta source files."""
+def generate_testcode(src: str, target: str, **kwargs):
     logger = kwargs.get('logger')
 
-    all_src_files = get_full_filenames([source_dir], ['cppmeta'])
+    all_src_files = get_files_with_exts([src], ['.cppmeta'])
     logger.info(f"{len(all_src_files)} file(s) found")
 
     # Remove previously generated files
-    all_tar_files = get_full_filenames([target_dir], ['cpp'])
+    all_tar_files = get_files_with_exts([target], ['.cpp'])
     for file_path in all_tar_files:
         try:
             f = open(file_path, 'r', encoding='utf8')
@@ -45,10 +32,11 @@ def generate_testcode(source_dir: str, target_dir: str, **kwargs):
     for src_file in all_src_files:
         src_dir, basename = os.path.split(src_file)
         dst_dir = os.path.join(
-            target_dir, os.path.relpath(src_dir, source_dir))
+            target, os.path.relpath(src_dir, src))
         filename_noext = basename.removesuffix('.cppmeta')
 
-        code_lines = get_codelines(src_file)
+        with open(src_file, 'r', encoding='utf8') as f:
+            code_lines = f.read().splitlines(True)
         parser = cppmeta_parser(filename_noext, dst_dir, code_lines)
 
         for target_file, content in parser.get_results():
@@ -60,11 +48,9 @@ def generate_testcode(source_dir: str, target_dir: str, **kwargs):
     logger.info('finished')
 
 
-def register_meta_command(cli):
-    """Register the meta command with the CLI."""
+def _register_meta(cli):
     @cli.command('meta')
-    @click.option('-s', '--source-dir', help='Source dir', default='test/cpv_meta')
-    @click.option('-t', '--target-dir', help='Target dir', default='test/cpv')
-    def _generate_testcode(source_dir: str, target_dir: str):
-        """Generate test codes from test matrices"""
-        generate_testcode(source_dir, target_dir)
+    @click.option('-s', '--src', type=click.Path(exists=True, file_okay=False), help='Source dir', default='test/cpv_meta')
+    @click.option('-t', '--target', type=click.Path(exists=True, file_okay=False), help='Target dir', default='test/cpv')
+    def _generate_testcode(src: str, target: str):
+        generate_testcode(src, target)

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_COMPINV_LIB
-#define TIFALIBS_FPS_COMPINV_LIB
+#pragma once
 
 #include "../../comb/seq/inv/lib.hpp"
 #include "../exp/lib.hpp"
@@ -27,5 +26,3 @@ template <template <class... Ts> class ccore, class mint, class... args>
 CEXP auto compinv_fps(poly<ccore, mint, args...> CR f, u32 n = 0) NE { return compinv_fps(f, gen_inv((u32)f.size(), mint::mod()), n); }
 
 }  // namespace tifa_libs::math
-
-#endif

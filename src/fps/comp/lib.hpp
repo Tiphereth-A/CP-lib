@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_COMP_LIB
-#define TIFALIBS_FPS_COMP_LIB
+#pragma once
 
 #include "../inv/lib.hpp"
 
@@ -49,5 +48,3 @@ CEXP auto comp_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> g) N
 }
 
 }  // namespace tifa_libs::math
-
-#endif

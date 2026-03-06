@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_LN_LIB
-#define TIFALIBS_FPS_LN_LIB
+#pragma once
 
 #include "../deriv/lib.hpp"
 #include "../int/lib.hpp"
@@ -16,5 +15,3 @@ CEXP auto ln_fps(poly<ccore, mint, args...> CR p, u32 n = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

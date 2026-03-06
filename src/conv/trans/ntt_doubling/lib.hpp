@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_TRANS_NTT_DOUBLING_LIB
-#define TIFALIBS_CONV_TRANS_NTT_DOUBLING_LIB
+#pragma once
 
 #include "../../../math/qpow/basic/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
@@ -20,5 +19,3 @@ CEXP void ntt_doubling(NTT_t CR ntt, vec<mint>& f, u32 n = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

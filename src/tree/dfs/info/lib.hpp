@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_DFS_INFO_LIB
-#define TIFALIBS_TREE_DFS_INFO_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/graph/lib.hpp"
@@ -126,5 +125,3 @@ struct tree_dfs_info : Ts... {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

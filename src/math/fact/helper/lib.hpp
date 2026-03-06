@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_FACT_HELPER_LIB
-#define TIFALIBS_MATH_FACT_HELPER_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
@@ -49,5 +48,3 @@ struct fact_helper {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

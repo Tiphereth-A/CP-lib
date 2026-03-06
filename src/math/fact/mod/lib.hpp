@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_FACT_MOD_LIB
-#define TIFALIBS_MATH_FACT_MOD_LIB
+#pragma once
 
 #include "../../../fps/ctsh/lib.hpp"
 
@@ -29,5 +28,3 @@ CEXP auto fact_mint(u64 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

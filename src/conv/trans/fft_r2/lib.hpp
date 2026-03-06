@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_TRANS_FFT_R2_LIB
-#define TIFALIBS_CONV_TRANS_FFT_R2_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -51,5 +50,3 @@ class fft_r2 {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

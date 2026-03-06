@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_AINS_CT_S_LIB
-#define TIFALIBS_GEO2D_AINS_CT_S_LIB
+#pragma once
 
 #include "../../ang_pp/lib.hpp"
 #include "../../dis/pp_p/lib.hpp"
@@ -28,5 +27,3 @@ CEXP FP sarea_CT(circle<FP> CR c, point<FP> CR p1, point<FP> CR p2) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_SA_LIB
-#define TIFALIBS_OPT_SA_LIB
+#pragma once
 
 #include "../../rand/gen/lib.hpp"
 
@@ -38,5 +37,3 @@ class heuristic_sa {
 };
 
 }  // namespace tifa_libs::opt
-
-#endif

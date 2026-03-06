@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_BINOM_LIB
-#define TIFALIBS_COMB_BINOM_LIB
+#pragma once
 
 #include "../../math/fact/helper/lib.hpp"
 
@@ -37,5 +36,3 @@ struct binom {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_CNT_INTP_PO_LIB
-#define TIFALIBS_GEO2D_CNT_INTP_PO_LIB
+#pragma once
 
 #include "../../nt/gl/gcd/lib.hpp"
 #include "../ds/po/lib.hpp"
@@ -18,5 +17,3 @@ template <int_c FP>
 CEXP u64 cnt_intP_inner_po(polygon<FP> CR po) NE { return (po.area2() - cnt_intP_border(po) + 2) / 2; }
 
 }  // namespace tifa_libs::geo
-
-#endif

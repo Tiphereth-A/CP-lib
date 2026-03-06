@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_IO_I128_LIB
-#define TIFALIBS_IO_I128_LIB
+#pragma once
 
 #include "../../util/traits/math/lib.hpp"
 #include "../../util/traits/others/lib.hpp"
@@ -47,5 +46,3 @@ auto& operator<<(tifa_libs::ostream_c auto& os, tifa_libs::s128_c auto n) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

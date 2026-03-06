@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_DLX_LIB
-#define TIFALIBS_OPT_DLX_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -98,5 +97,3 @@ class dlx {
 };
 
 }  // namespace tifa_libs::opt
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_HLD_LIB
-#define TIFALIBS_TREE_HLD_LIB
+#pragma once
 
 #include "../../ds/segtree/hp/lib.hpp"
 #include "../dfs/info/lib.hpp"
@@ -78,5 +77,3 @@ class hld_notag : public hld_impl_::hld<false, T, op, T, mapping, mapping> {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

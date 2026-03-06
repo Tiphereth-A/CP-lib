@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_PERIOD_FIB_LIB
-#define TIFALIBS_NT_PERIOD_FIB_LIB
+#pragma once
 
 #include "../../math/iroot/sqrt/lib.hpp"
 #include "../gl/lcm/lib.hpp"
@@ -27,5 +26,3 @@ CEXP u64 period_fib(u32 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

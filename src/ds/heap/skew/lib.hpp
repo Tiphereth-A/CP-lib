@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_HEAP_SKEW_LIB
-#define TIFALIBS_DS_HEAP_SKEW_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -46,5 +45,3 @@ class skew_heap {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

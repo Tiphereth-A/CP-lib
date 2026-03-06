@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_ADD_MTT_LIB
-#define TIFALIBS_CONV_ADD_MTT_LIB
+#pragma once
 
 #include "../../trans/fft_r2/lib.hpp"
 #include "../naive/lib.hpp"
@@ -53,5 +52,3 @@ CEXP vec<mint> conv_mtt(fft_r2<FP>& fft, vec<mint> CR l, vec<mint> CR r, u32 ans
 }
 
 }  // namespace tifa_libs::math
-
-#endif

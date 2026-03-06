@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_SEGTREE_W_LIB
-#define TIFALIBS_DS_SEGTREE_W_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -52,5 +51,3 @@ class weighted_segtree {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

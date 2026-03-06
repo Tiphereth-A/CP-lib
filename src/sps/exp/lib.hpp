@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_SPS_EXP_LIB
-#define TIFALIBS_SPS_EXP_LIB
+#pragma once
 
 #include "../../conv/subset/lib.hpp"
 
@@ -18,5 +17,3 @@ auto exp_fpssps(u32 n, vec<T> g) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_BIT_PARITY_LIB
-#define TIFALIBS_BIT_PARITY_LIB
+#pragma once
 
 #include "../../util/util/lib.hpp"
 
@@ -17,5 +16,3 @@ CEXP int parity(T x) NE {
 }
 
 }  // namespace tifa_libs::bit
-
-#endif

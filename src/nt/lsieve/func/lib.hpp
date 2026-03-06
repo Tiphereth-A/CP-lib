@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_LSIEVE_FUNC_LIB
-#define TIFALIBS_NT_LSIEVE_FUNC_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -64,5 +63,3 @@ struct ls_sigma {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

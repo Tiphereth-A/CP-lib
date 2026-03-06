@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_SEGTREE_HP_LIB
-#define TIFALIBS_DS_SEGTREE_HP_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -181,5 +180,3 @@ class segtree_notag : public segtree_impl_::segtree<false, T, op, T, mapping, ma
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

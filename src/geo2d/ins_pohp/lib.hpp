@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_INS_POHP_LIB
-#define TIFALIBS_GEO2D_INS_POHP_LIB
+#pragma once
 
 #include "../ds/cvh/lib.hpp"
 
@@ -19,5 +18,3 @@ CEXP cvh<FP> ins_PohP(cT_(cvh<FP>) poly, line<FP> CR l) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_MODINV_LIB
-#define TIFALIBS_FPS_MODINV_LIB
+#pragma once
 
 #include "../gcd/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP auto modinv_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...>
 }
 
 }  // namespace tifa_libs::math
-
-#endif

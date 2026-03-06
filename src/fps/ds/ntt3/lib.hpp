@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_DS_NTT3_LIB
-#define TIFALIBS_FPS_DS_NTT3_LIB
+#pragma once
 
 #include "../../../conv/add/ntt3/lib.hpp"
 #include "../poly/lib.hpp"
@@ -20,5 +19,3 @@ template <class mint, class mint0, class mint1, class mint2>
 using poly3ntt = poly<poly3ntt_impl_::cconv_3ntt, mint, mint0, mint1, mint2>;
 
 }  // namespace tifa_libs::math
-
-#endif

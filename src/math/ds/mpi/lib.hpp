@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DS_MPI_LIB
-#define TIFALIBS_MATH_DS_MPI_LIB
+#pragma once
 
 #include "../../../conv/add/u128/lib.hpp"
 #include "../../../fast/s2u/u32/lib.hpp"
@@ -314,5 +313,3 @@ struct mpi : vecu {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

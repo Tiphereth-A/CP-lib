@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_TRANS_ZMT_MULTIPLE_LIB
-#define TIFALIBS_CONV_TRANS_ZMT_MULTIPLE_LIB
+#pragma once
 
 #include "../../../nt/prime_seq/lib.hpp"
 
@@ -21,5 +20,3 @@ template <class T>
 CEXP void mt_multiple(vec<T>& a) NE { mt_multiple(a, prime_seq(a.size() - 1)); }
 
 }  // namespace tifa_libs::math
-
-#endif

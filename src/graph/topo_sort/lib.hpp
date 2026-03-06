@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_TOPO_SORT_LIB
-#define TIFALIBS_GRAPH_TOPO_SORT_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/graph/lib.hpp"
@@ -29,5 +28,3 @@ CEXP vecu topo_sort(G CR g) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

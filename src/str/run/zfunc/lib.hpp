@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_RUN_ZFUNC_LIB
-#define TIFALIBS_STR_RUN_ZFUNC_LIB
+#pragma once
 
 #include "../../z_func/lib.hpp"
 
@@ -45,5 +44,3 @@ CEXP vec<pt3u> run_zfunc(strnv s) NE {
 }
 
 }  // namespace tifa_libs::str
-
-#endif

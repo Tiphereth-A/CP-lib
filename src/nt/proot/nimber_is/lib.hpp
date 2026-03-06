@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_PROOT_NIMBER_IS_LIB
-#define TIFALIBS_NT_PROOT_NIMBER_IS_LIB
+#pragma once
 
 #include "../../../math/ds/nimber/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
@@ -17,5 +16,3 @@ CEXP bool is_proot_nimber(nimber<T, prod> CR n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

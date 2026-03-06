@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO3D_DS_CVH_LIB
-#define TIFALIBS_GEO3D_DS_CVH_LIB
+#pragma once
 
 #include "../../../math/kahan/lib.hpp"
 #include "../../dis/pl/lib.hpp"
@@ -159,5 +158,3 @@ class cvh3d {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

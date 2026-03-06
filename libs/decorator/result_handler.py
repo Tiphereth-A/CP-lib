@@ -3,9 +3,6 @@ import logging
 
 
 class DecoratorResultHandlerBase(ABC):
-    """Abstract base for decorator results which can write themselves to a logger.
-    """
-
     def __init__(self, result, func_name: str):
         super().__init__()
 

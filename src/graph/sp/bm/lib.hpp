@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_SP_BM_LIB
-#define TIFALIBS_GRAPH_SP_BM_LIB
+#pragma once
 
 #include "../../../math/iroot/sqrt/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
@@ -44,5 +43,3 @@ auto bellman_ford(G CR g, u32 s, F&& cb_relax, TPN G::w_t INF = std::numeric_lim
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

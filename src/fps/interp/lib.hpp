@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_INTERP_LIB
-#define TIFALIBS_FPS_INTERP_LIB
+#pragma once
 
 #include "../deriv/lib.hpp"
 #include "../mpe/lib.hpp"
@@ -38,5 +37,3 @@ CEXP auto interp_fps(poly<ccore, mint, args...> CR x, poly<ccore, mint, args...>
 }
 
 }  // namespace tifa_libs::math
-
-#endif

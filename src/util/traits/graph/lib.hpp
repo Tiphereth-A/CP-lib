@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_TRAITS_GRAPH_LIB
-#define TIFALIBS_UTIL_TRAITS_GRAPH_LIB
+#pragma once
 // clang-format off
 #include "../../consts/lib.hpp"
 
@@ -24,4 +23,3 @@ template <class T> concept treew_c = tree_c<T> && alistw_c<T>;
 
 }  // namespace tifa_libs
 // clang-format on
-#endif

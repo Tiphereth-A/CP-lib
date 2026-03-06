@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UNITTEST_BASE
-#define TIFALIBS_UNITTEST_BASE
+#pragma once
 
 #include "../../src/io/container/lib.hpp"
 #include "../../src/io/i128/lib.hpp"

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_EXP_LIB
-#define TIFALIBS_FPS_EXP_LIB
+#pragma once
 
 #include "../ln/lib.hpp"
 
@@ -15,5 +14,3 @@ CEXP auto exp_fps(poly<ccore, mint, args...> p, u32 n = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

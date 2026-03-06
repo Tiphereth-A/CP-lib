@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_HEAP_RADIX_LIB
-#define TIFALIBS_DS_HEAP_RADIX_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -46,5 +45,3 @@ template <class K, class V>
 using rheapg = std::conditional_t<std::unsigned_integral<K>, ds::radix_heap<K, V, std::greater<K>>, pq<std::pair<K, V>>>;
 
 }  // namespace tifa_libs::ds
-
-#endif

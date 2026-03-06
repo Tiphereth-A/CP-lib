@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_DS_MTT_LIB
-#define TIFALIBS_FPS_DS_MTT_LIB
+#pragma once
 
 #include "../../../conv/add/mtt/lib.hpp"
 #include "../poly/lib.hpp"
@@ -17,5 +16,3 @@ template <class mint, class FP = f64>
 using polymtt = poly<polymtt_impl_::cconv_mtt, mint, FP>;
 
 }  // namespace tifa_libs::math
-
-#endif

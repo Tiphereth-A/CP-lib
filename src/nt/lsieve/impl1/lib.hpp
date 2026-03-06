@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_LSIEVE_IMPL1_LIB
-#define TIFALIBS_NT_LSIEVE_IMPL1_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -32,5 +31,3 @@ struct lsieve : Ts... {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

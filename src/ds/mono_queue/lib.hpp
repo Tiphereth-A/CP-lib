@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_MONO_QUEUE_LIB
-#define TIFALIBS_DS_MONO_QUEUE_LIB
+#pragma once
 
 #include "../../util/alias/num/lib.hpp"
 
@@ -25,5 +24,3 @@ class mono_queue {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

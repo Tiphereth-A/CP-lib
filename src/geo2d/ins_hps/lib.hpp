@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_INS_HPS_LIB
-#define TIFALIBS_GEO2D_INS_HPS_LIB
+#pragma once
 
 #include "../../edh/discretization/lib.hpp"
 #include "../ds/cvh/lib.hpp"
@@ -25,5 +24,3 @@ CEXP cvh<FP> ins_hPs(vec<line<FP>> vl) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_GL_INV_GCD_LIB
-#define TIFALIBS_NT_GL_INV_GCD_LIB
+#pragma once
 
 #include "../../../math/safe_mod/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
@@ -15,5 +14,3 @@ CEXP ptt<T> inv_gcd(T n, T mod) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

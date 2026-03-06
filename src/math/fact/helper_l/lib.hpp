@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_FACT_HELPER_L_LIB
-#define TIFALIBS_MATH_FACT_HELPER_L_LIB
+#pragma once
 
 #include "../../../fps/ctsh/lib.hpp"
 #include "../helper/lib.hpp"
@@ -84,5 +83,3 @@ struct factl_helper : fact_helper<TPN poly_t::val_t> {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

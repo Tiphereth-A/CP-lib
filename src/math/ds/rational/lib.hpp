@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DS_RATIONAL_LIB
-#define TIFALIBS_MATH_DS_RATIONAL_LIB
+#pragma once
 
 #include "../../../nt/gl/gcd/lib.hpp"
 #include "../../../util/traits/others/lib.hpp"
@@ -95,5 +94,3 @@ struct rational {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

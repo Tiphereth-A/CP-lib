@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_LSIEVE_IMPL2_LIB
-#define TIFALIBS_NT_LSIEVE_IMPL2_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -46,5 +45,3 @@ class lsieve2 {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

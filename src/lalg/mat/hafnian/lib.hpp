@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_HAFNIAN_LIB
-#define TIFALIBS_LALG_MAT_HAFNIAN_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -40,5 +39,3 @@ CEXP auto hafnian(Mat CR mat) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

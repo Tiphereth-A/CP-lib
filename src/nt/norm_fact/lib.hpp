@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_NORM_FACT_LIB
-#define TIFALIBS_NT_NORM_FACT_LIB
+#pragma once
 
 #include "../../math/ds/gint/lib.hpp"
 #include "../../math/qpow/basic/lib.hpp"
@@ -70,5 +69,3 @@ CEXP vecptuu norm_fact(u64 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

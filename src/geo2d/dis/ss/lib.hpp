@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DIS_SS_LIB
-#define TIFALIBS_GEO2D_DIS_SS_LIB
+#pragma once
 
 #include "../../dis/ps/lib.hpp"
 #include "../../pred/is_ins_ss/lib.hpp"
@@ -11,5 +10,3 @@ template <class FP>
 CEXP FP dist_SS(line<FP> CR s1, line<FP> CR s2) NE { retif_((is_ins_SS(s1, s2)), 0, min({dist_PS(s1.l, s2), dist_PS(s1.r, s2), dist_PS(s2.l, s1), dist_PS(s2.r, s1)})); }
 
 }  // namespace tifa_libs::geo
-
-#endif

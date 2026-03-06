@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_MFSUM_SQRFREE_CNT_LIB
-#define TIFALIBS_NT_MFSUM_SQRFREE_CNT_LIB
+#pragma once
 
 #include "../../../math/iroot/kth/lib.hpp"
 #include "../../../math/iroot/sqrt/lib.hpp"
@@ -35,5 +34,3 @@ CEXP u64 sqrfree_cnt(u64 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

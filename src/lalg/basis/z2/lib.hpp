@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_BASIS_Z2_LIB
-#define TIFALIBS_LALG_BASIS_Z2_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/bitset_getdata/lib.hpp"
@@ -119,5 +118,3 @@ struct basis_z2 {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

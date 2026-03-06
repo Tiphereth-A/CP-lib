@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_BMAT_GE_LIB
-#define TIFALIBS_LALG_BMAT_GE_LIB
+#pragma once
 
 #include "../../ds/bmat/lib.hpp"
 
@@ -29,5 +28,3 @@ CEXP u32 ge_bmat(bitmat<R, C>& bmat, bool clear_u = true) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

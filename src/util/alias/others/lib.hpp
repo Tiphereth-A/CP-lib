@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_ALIAS_OTHERS_LIB
-#define TIFALIBS_UTIL_ALIAS_OTHERS_LIB
+#pragma once
 
 #include "../../consts/lib.hpp"
 
@@ -57,5 +56,3 @@ mk(b, bool) mk(i, i32) mk(u, u32) mk(ii, i64) mk(uu, u64);
 #undef mk_
 
 }  // namespace tifa_libs
-
-#endif

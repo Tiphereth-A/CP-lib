@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_BST_RBT_LIB
-#define TIFALIBS_DS_BST_RBT_LIB
+#pragma once
 
 #include "../ost/lib.hpp"
 
@@ -70,5 +69,3 @@ template <class K, class Comp = std::less<K>>
 using rbtree = ostree<K, rbt_tag, Comp>;
 
 }  // namespace tifa_libs::ds
-
-#endif

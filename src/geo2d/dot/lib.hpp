@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DOT_LIB
-#define TIFALIBS_GEO2D_DOT_LIB
+#pragma once
 
 #include "../../util/util/lib.hpp"
 
@@ -11,5 +10,3 @@ template <class P>
 CEXP int sgn_dot(P CR o, P CR a, P CR b) NE { return sgn(dot(o, a, b)); }
 
 }  // namespace tifa_libs::geo
-
-#endif

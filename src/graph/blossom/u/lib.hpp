@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_BLOSSOM_U_LIB
-#define TIFALIBS_GRAPH_BLOSSOM_U_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -79,5 +78,3 @@ class blossom {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

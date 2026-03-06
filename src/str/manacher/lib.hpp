@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_MANACHER_LIB
-#define TIFALIBS_STR_MANACHER_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -20,5 +19,3 @@ CEXP vecu manacher(strnv t) NE {
 }
 
 }  // namespace tifa_libs::str
-
-#endif

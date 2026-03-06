@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_KIRCHHOFF_LIB
-#define TIFALIBS_GRAPH_KIRCHHOFF_LIB
+#pragma once
 
 #include "../../lalg/ds/mat/lib.hpp"
 #include "../../lalg/mat/det/lib.hpp"
@@ -28,5 +27,3 @@ CEXP T kirchhoff(amat<T, with_deg> CR g, u32 r, Ge&& ge) {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

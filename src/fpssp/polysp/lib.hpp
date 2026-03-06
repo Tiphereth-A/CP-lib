@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPSSP_POLYSP_LIB
-#define TIFALIBS_FPSSP_POLYSP_LIB
+#pragma once
 
 #include "../../fps/ds/poly/lib.hpp"
 
@@ -18,5 +17,3 @@ CEXP polysp<mint> poly2sp(poly<ccore, mint, args...> CR p, u32 n = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

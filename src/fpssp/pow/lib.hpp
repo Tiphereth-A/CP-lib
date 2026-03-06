@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPSSP_POW_LIB
-#define TIFALIBS_FPSSP_POW_LIB
+#pragma once
 
 #include "../../comb/seq/inv/lib.hpp"
 #include "../../fps/shl/lib.hpp"
@@ -41,5 +40,3 @@ CEXP auto pow_fpssp(poly<ccore, mint, args...> CR p, u64 y, u32 n = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

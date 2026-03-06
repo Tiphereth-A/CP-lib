@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_AREA_TRIEDGES_LIB
-#define TIFALIBS_GEO2D_AREA_TRIEDGES_LIB
+#pragma once
 
 #include "../../util/util/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP FP area_T_abc(FP a, FP b, FP c) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

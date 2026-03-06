@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_PFAFFIAN_LIB
-#define TIFALIBS_LALG_MAT_PFAFFIAN_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -47,5 +46,3 @@ CEXP auto pfaffian(Mat mat, Is0 is0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

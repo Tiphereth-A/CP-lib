@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_DS_MATSP_LIB
-#define TIFALIBS_LALG_DS_MATSP_LIB
+#pragma once
 
 #include "../../../fast/rsort32/lib.hpp"
 
@@ -126,5 +125,3 @@ class matsp {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

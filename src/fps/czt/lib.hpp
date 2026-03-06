@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_CZT_LIB
-#define TIFALIBS_FPS_CZT_LIB
+#pragma once
 
 #include "../../math/qpow/rpow/lib.hpp"
 #include "../ds/poly/lib.hpp"
@@ -39,5 +38,3 @@ auto czt_fps(poly<ccore, mint, args...> f, mint c, u32 m = -1_u32, mint a = mint
 }
 
 }  // namespace tifa_libs::math
-
-#endif

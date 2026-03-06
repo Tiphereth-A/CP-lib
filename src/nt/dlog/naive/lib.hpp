@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_DLOG_NAIVE_LIB
-#define TIFALIBS_NT_DLOG_NAIVE_LIB
+#pragma once
 
 #include "../../../math/mul_mod/lib.hpp"
 
@@ -31,5 +30,3 @@ inline auto dlog_naive(u64 a, u64 b, u64 m) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_PROOT_IS_LIB
-#define TIFALIBS_NT_PROOT_IS_LIB
+#pragma once
 
 #include "../../../math/qpow/mod/lib.hpp"
 
@@ -14,5 +13,3 @@ CEXP bool is_proot(T g, T m, It pf_begin, It pf_end) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

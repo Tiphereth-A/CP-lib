@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_LEV_DIS_LIB
-#define TIFALIBS_OPT_LEV_DIS_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -18,5 +17,3 @@ CEXP vvecu lev_dis(T CR a, T CR b) NE {
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_MFSUM_MIN25_LIB
-#define TIFALIBS_NT_MFSUM_MIN25_LIB
+#pragma once
 
 #include "../../../math/div64/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
@@ -67,5 +66,3 @@ class min25_sieve {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

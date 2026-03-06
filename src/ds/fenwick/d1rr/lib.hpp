@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_FENWICK_D1RR_LIB
-#define TIFALIBS_DS_FENWICK_D1RR_LIB
+#pragma once
 
 #include "../d1/lib.hpp"
 
@@ -24,5 +23,3 @@ class fenwick_rr {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

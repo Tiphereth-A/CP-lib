@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_OP_TUPLE_PUSH_POP_LIB
-#define TIFALIBS_UTIL_OP_TUPLE_PUSH_POP_LIB
+#pragma once
 
 #include "../../alias/num/lib.hpp"
 
@@ -38,5 +37,3 @@ template <class Tpl>
 CEXP auto tuple_pop_back(Tpl&& t) NE { return tuple_pop<tuple_size<Tpl> - 1>(t); }
 
 }  // namespace tifa_libs
-
-#endif

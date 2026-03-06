@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_DOMTREE_LIB
-#define TIFALIBS_GRAPH_DOMTREE_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/graph/lib.hpp"
@@ -57,5 +56,3 @@ class domtree {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

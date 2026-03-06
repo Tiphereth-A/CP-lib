@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_DFS_CENTROID_LIB
-#define TIFALIBS_TREE_DFS_CENTROID_LIB
+#pragma once
 
 #include "../../ds/lib.hpp"
 
@@ -19,5 +18,3 @@ CEXP vecu tree_centroid(tree CR tr) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

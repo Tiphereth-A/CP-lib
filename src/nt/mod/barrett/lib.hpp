@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_MOD_BARRETT_LIB
-#define TIFALIBS_NT_MOD_BARRETT_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -27,5 +26,3 @@ struct barrett<0> {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

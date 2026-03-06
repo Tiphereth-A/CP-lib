@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_ADD_CZT_LIB
-#define TIFALIBS_CONV_ADD_CZT_LIB
+#pragma once
 
 #include "../../../fps/czt/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
@@ -23,5 +22,3 @@ CEXP auto conv_czt(poly l, poly r, u32 ans_size = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

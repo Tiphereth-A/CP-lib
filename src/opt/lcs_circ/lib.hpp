@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_LCS_CIRC_LIB
-#define TIFALIBS_OPT_LCS_CIRC_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -34,5 +33,3 @@ CEXP u32 lcs_circ(cT_(T) a, cT_(T) b) NE {
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

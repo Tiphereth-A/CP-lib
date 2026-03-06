@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_MERGE_LR_LIB
-#define TIFALIBS_LALG_MAT_MERGE_LR_LIB
+#pragma once
 
 #include "../../ds/mat/lib.hpp"
 
@@ -18,5 +17,3 @@ CEXP matrix<T> merge_lr_mat(matrix<T> CR l, matrix<T> CR r) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

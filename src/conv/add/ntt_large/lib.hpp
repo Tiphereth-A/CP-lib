@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_ADD_NTT_LARGE_LIB
-#define TIFALIBS_CONV_ADD_NTT_LARGE_LIB
+#pragma once
 
 #include "../dft/lib.hpp"
 
@@ -43,5 +42,3 @@ CEXP vec<mint> conv_ntt_large_u64(NTT_t& ntt, vec<T> CR l, vec<T> CR r, u32 ans_
 }
 
 }  // namespace tifa_libs::math
-
-#endif

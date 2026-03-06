@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_TRANS_FFT_R3_LIB
-#define TIFALIBS_CONV_TRANS_FFT_R3_LIB
+#pragma once
 
 #include "../../../math/ds/eint/lib.hpp"
 
@@ -71,5 +70,3 @@ class fft_r3 {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

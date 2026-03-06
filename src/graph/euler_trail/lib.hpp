@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_EULER_TRAIL_LIB
-#define TIFALIBS_GRAPH_EULER_TRAIL_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/graph/lib.hpp"
@@ -82,5 +81,3 @@ CEXP bool is_eulerian(G CR g) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

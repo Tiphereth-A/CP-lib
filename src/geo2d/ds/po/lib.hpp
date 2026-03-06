@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DS_PO_LIB
-#define TIFALIBS_GEO2D_DS_PO_LIB
+#pragma once
 
 #include "../../../edh/discretization/lib.hpp"
 #include "../../../math/kahan/lib.hpp"
@@ -89,5 +88,3 @@ struct polygon {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

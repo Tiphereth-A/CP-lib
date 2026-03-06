@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_FENWICK_D2_LIB
-#define TIFALIBS_DS_FENWICK_D2_LIB
+#pragma once
 
 #include "../../../bit/lowbit/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
@@ -39,5 +38,3 @@ class fenwick2d {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

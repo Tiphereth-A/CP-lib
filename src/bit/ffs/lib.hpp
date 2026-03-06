@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_BIT_FFS_LIB
-#define TIFALIBS_BIT_FFS_LIB
+#pragma once
 
 #include "../../util/util/lib.hpp"
 
@@ -21,5 +20,3 @@ CEXP int ffs(T x) NE {
 }
 
 }  // namespace tifa_libs::bit
-
-#endif

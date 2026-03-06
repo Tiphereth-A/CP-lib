@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_MAKE_C_PPP_LIB
-#define TIFALIBS_GEO2D_MAKE_C_PPP_LIB
+#pragma once
 
 #include "../../ds/c/lib.hpp"
 #include "../../tcenter/o/lib.hpp"
@@ -14,5 +13,3 @@ CEXP circle<FP> make_C_PPP(point<FP> CR p1, point<FP> CR p2, point<FP> CR p3) NE
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

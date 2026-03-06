@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_ADD_NTT3_LIB
-#define TIFALIBS_CONV_ADD_NTT3_LIB
+#pragma once
 
 #include "../../../nt/mod/barrett/lib.hpp"
 #include "../../trans/ntt/lib.hpp"
@@ -44,5 +43,3 @@ CEXP vec<mint> conv_3ntt(ntt<mint0>& ntt0, ntt<mint1>& ntt1, ntt<mint2>& ntt2, v
 }
 
 }  // namespace tifa_libs::math
-
-#endif

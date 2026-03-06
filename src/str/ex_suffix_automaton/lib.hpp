@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_EX_SUFFIX_AUTOMATON_LIB
-#define TIFALIBS_STR_EX_SUFFIX_AUTOMATON_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -49,5 +48,3 @@ class ex_suffix_automaton {
 };
 
 }  // namespace tifa_libs::str
-
-#endif

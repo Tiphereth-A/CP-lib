@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_SEQ_STIRLING2_COL_LIB
-#define TIFALIBS_COMB_SEQ_STIRLING2_COL_LIB
+#pragma once
 
 #include "../../../fps/inv/lib.hpp"
 #include "../../../fps/shl/lib.hpp"
@@ -38,5 +37,3 @@ CEXP poly gen_stirling2_col(u32 n, u32 k) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

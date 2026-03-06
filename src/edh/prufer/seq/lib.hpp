@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_PRUFER_SEQ_LIB
-#define TIFALIBS_EDH_PRUFER_SEQ_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -23,5 +22,3 @@ CEXP vecu prufer(spnu fa) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

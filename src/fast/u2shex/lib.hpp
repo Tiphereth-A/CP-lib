@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FAST_U2SHEX_LIB
-#define TIFALIBS_FAST_U2SHEX_LIB
+#pragma once
 
 #include "../../util/alias/num/lib.hpp"
 
@@ -52,5 +51,3 @@ CEXP u32 u32tostrhex(u32 x, char* s) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

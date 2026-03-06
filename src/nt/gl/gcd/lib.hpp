@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_GL_GCD_LIB
-#define TIFALIBS_NT_GL_GCD_LIB
+#pragma once
 
 #include "../../../util/traits/math/lib.hpp"
 
@@ -24,5 +23,3 @@ template <int_c T, int_c U>
 CEXP auto gcd(T a, U b) NE { return gcd_impl_::gcd__((to_uint_t<T>)abs(a), (to_uint_t<U>)abs(b)); }
 
 }  // namespace tifa_libs::math
-
-#endif

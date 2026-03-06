@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DS_DCVH_LIB
-#define TIFALIBS_GEO2D_DS_DCVH_LIB
+#pragma once
 
 #include "../../argsort/lib.hpp"
 #include "../../ds/cvh/lib.hpp"
@@ -65,5 +64,3 @@ class dcvh {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

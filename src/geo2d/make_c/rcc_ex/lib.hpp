@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_MAKE_C_RCC_EX_LIB
-#define TIFALIBS_GEO2D_MAKE_C_RCC_EX_LIB
+#pragma once
 
 #include "../../ins/cc/lib.hpp"
 #include "../../rel/cc/lib.hpp"
@@ -19,5 +18,3 @@ CEXP auto make_C_rCC_ex(FP r, circle<FP> CR c1, circle<FP> CR c2) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

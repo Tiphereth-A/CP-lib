@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_ADD_NAIVE_MOD_LIB
-#define TIFALIBS_CONV_ADD_NAIVE_MOD_LIB
+#pragma once
 
 #include "../../../math/mul_mod/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
@@ -21,5 +20,3 @@ CEXP vecuu conv_naive_mod(spnuu l, spnuu r, u64 mod, u32 ans_size = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

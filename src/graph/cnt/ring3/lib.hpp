@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_CNT_RING3_LIB
-#define TIFALIBS_GRAPH_CNT_RING3_LIB
+#pragma once
 
 #include "../../../util/traits/graph/lib.hpp"
 #include "../../ds/alist/lib.hpp"
@@ -48,5 +47,3 @@ CEXP u64 ringcnt3(u32 n, vecptu CR edges) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_JOSEPHUS_LIB
-#define TIFALIBS_MATH_JOSEPHUS_LIB
+#pragma once
 
 #include "../../util/alias/num/lib.hpp"
 
@@ -31,5 +30,3 @@ CEXP u64 Josephus(u64 n, u64 k, u64 m) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

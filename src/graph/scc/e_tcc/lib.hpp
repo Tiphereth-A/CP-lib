@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_SCC_E_TCC_LIB
-#define TIFALIBS_GRAPH_SCC_E_TCC_LIB
+#pragma once
 
 #include "../../../ds/dsu/basic/lib.hpp"
 #include "../../../ds/dsu/delineation/lib.hpp"
@@ -48,5 +47,3 @@ struct e_tcc {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

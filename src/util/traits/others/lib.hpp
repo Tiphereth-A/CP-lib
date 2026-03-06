@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_TRAITS_OTHERS_LIB
-#define TIFALIBS_UTIL_TRAITS_OTHERS_LIB
+#pragma once
 // clang-format off
 #include "../../alias/others/lib.hpp"
 
@@ -15,4 +14,3 @@ template <class T> concept ostream_c = std::derived_from<T, std::ostream> || std
 
 }  // namespace tifa_libs
 // clang-format on
-#endif

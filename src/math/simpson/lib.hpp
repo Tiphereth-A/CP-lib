@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_SIMPSON_LIB
-#define TIFALIBS_MATH_SIMPSON_LIB
+#pragma once
 
 #include "../../util/consts/lib.hpp"
 
@@ -21,5 +20,3 @@ class simpson_impl {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_OP_VEC_LIB
-#define TIFALIBS_UTIL_OP_VEC_LIB
+#pragma once
 
 #include "../../alias/others/lib.hpp"
 
@@ -29,5 +28,3 @@ OO_PTEQ_(>>)
 #undef OO_PTEQ_
 
 }  // namespace tifa_libs
-
-#endif

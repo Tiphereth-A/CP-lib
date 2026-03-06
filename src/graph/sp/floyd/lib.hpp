@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_SP_FLOYD_LIB
-#define TIFALIBS_GRAPH_SP_FLOYD_LIB
+#pragma once
 
 #include "../../../util/traits/math/lib.hpp"
 #include "../../ds/amat/lib.hpp"
@@ -22,5 +21,3 @@ CEXP bool floyd(amat<T, with_deg>& g, T INF = inf_v<T>) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

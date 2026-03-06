@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_TRANS_ZMT_DIVISOR_LIB
-#define TIFALIBS_CONV_TRANS_ZMT_DIVISOR_LIB
+#pragma once
 
 #include "../../../nt/prime_seq/lib.hpp"
 
@@ -21,5 +20,3 @@ template <class T>
 CEXP void mt_divisor(vec<T>& a) NE { mt_divisor(a, prime_seq(a.size() - 1)); }
 
 }  // namespace tifa_libs::math
-
-#endif

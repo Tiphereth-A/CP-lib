@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_REL_POP_LIB
-#define TIFALIBS_GEO2D_REL_POP_LIB
+#pragma once
 
 #include "../../ds/po/lib.hpp"
 #include "../../pred/is_on_s/lib.hpp"
@@ -27,5 +26,3 @@ CEXP RELPoP relation_PoP(polygon<FP> CR po, point<FP> CR p) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

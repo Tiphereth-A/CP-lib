@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_STRIP_LIB
-#define TIFALIBS_UTIL_STRIP_LIB
+#pragma once
 
 #include "../util/lib.hpp"
 
@@ -25,5 +24,3 @@ CEXP auto strip_view(R CR range, F&& pred) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_REL_CP_LIB
-#define TIFALIBS_GEO2D_REL_CP_LIB
+#pragma once
 
 #include "../../dis/pp_p/lib.hpp"
 #include "../../ds/c/lib.hpp"
@@ -20,5 +19,3 @@ CEXP RELCP relation_CP(circle<FP> CR c, point<FP> CR p) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

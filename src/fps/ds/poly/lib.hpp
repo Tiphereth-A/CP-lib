@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_DS_POLY_LIB
-#define TIFALIBS_FPS_DS_POLY_LIB
+#pragma once
 
 #include "../../../util/strip/lib.hpp"
 #include "../../../util/traits/others/lib.hpp"
@@ -126,5 +125,3 @@ struct poly : vec<mint> {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

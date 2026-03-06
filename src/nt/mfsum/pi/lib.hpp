@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_MFSUM_PI_LIB
-#define TIFALIBS_NT_MFSUM_PI_LIB
+#pragma once
 
 #include "../../../math/div64/lib.hpp"
 #include "../../../math/iroot/sqrt/lib.hpp"
@@ -52,5 +51,3 @@ CEXP u64 pi_min25(u64 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

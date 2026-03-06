@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_RESIDUE_Q_LIB
-#define TIFALIBS_NT_RESIDUE_Q_LIB
+#pragma once
 
 #include "../../../math/qpow/mod/lib.hpp"
 #include "../../inverse/lib.hpp"
@@ -25,5 +24,3 @@ CEXP auto qresidue(u64 a, u64 p) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

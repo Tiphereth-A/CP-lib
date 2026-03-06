@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_ROTCAL_COVERAGE_RECT_LIB
-#define TIFALIBS_GEO2D_ROTCAL_COVERAGE_RECT_LIB
+#pragma once
 
 #include "../../ds/cvh/lib.hpp"
 
@@ -47,5 +46,3 @@ CEXP polygon<FP> coverage_rect(cT_(cvh<FP>) ch) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GAME_MAHJONG_DATA_LIB
-#define TIFALIBS_GAME_MAHJONG_DATA_LIB
+#pragma once
 
 #include "../../../util/traits/others/lib.hpp"
 
@@ -65,5 +64,3 @@ CEXP mahjong_card operator""_mjb(unsigned long long x) NE { return {(u32)x, 'B'}
 }  // namespace literals
 
 }  // namespace tifa_libs::game
-
-#endif

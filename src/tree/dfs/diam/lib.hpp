@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_DFS_DIAM_LIB
-#define TIFALIBS_TREE_DFS_DIAM_LIB
+#pragma once
 
 #include "../info/lib.hpp"
 
@@ -36,5 +35,3 @@ CEXP auto tree_diam_d(G CR tree) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

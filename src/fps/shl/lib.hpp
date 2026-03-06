@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_SHL_LIB
-#define TIFALIBS_FPS_SHL_LIB
+#pragma once
 
 #include "../ds/poly/lib.hpp"
 
@@ -14,5 +13,3 @@ CEXP auto shl_fps(poly<ccore, mint, args...> CR p, usz x) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

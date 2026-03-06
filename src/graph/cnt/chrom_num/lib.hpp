@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_CNT_CHROM_NUM_LIB
-#define TIFALIBS_GRAPH_CNT_CHROM_NUM_LIB
+#pragma once
 
 #include "../../../bit/parity/lib.hpp"
 #include "../../../math/mul_mod/lib.hpp"
@@ -38,5 +37,3 @@ CEXP u32 chrom_num(alist_c auto CR g) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_CANTOR_INV_LIB
-#define TIFALIBS_EDH_CANTOR_INV_LIB
+#pragma once
 
 #include "../../../ds/segtree/w/lib.hpp"
 
@@ -17,5 +16,3 @@ CEXP vecu cantor_inv_seq(spnu s) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

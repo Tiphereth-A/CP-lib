@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_LCA_HLD_LIB
-#define TIFALIBS_TREE_LCA_HLD_LIB
+#pragma once
 
 #include "../dfs/info/lib.hpp"
 #include "../dfs/top/lib.hpp"
@@ -31,5 +30,3 @@ struct lca_hld {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

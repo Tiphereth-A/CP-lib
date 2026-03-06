@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DS_TRYGUB_LIB
-#define TIFALIBS_MATH_DS_TRYGUB_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -29,5 +28,3 @@ class trygub_num {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

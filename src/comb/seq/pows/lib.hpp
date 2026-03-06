@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_SEQ_POWS_LIB
-#define TIFALIBS_COMB_SEQ_POWS_LIB
+#pragma once
 
 #include "../../../math/qpow/mod/lib.hpp"
 #include "../../../nt/lsieve/impl1/lib.hpp"
@@ -38,5 +37,3 @@ CEXP vec<mint> gen_pows(u32 n, u64 b) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

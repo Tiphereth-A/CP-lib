@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_FUNC_FP_LIB
-#define TIFALIBS_UTIL_FUNC_FP_LIB
+#pragma once
 
 #include "../consts/lib.hpp"
 #include "../traits/math/lib.hpp"
@@ -43,5 +42,3 @@ CEXP bool is_intersect(FP l1, FP r1, FP l2, FP r2) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

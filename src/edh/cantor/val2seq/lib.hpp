@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_CANTOR_VAL2SEQ_LIB
-#define TIFALIBS_EDH_CANTOR_VAL2SEQ_LIB
+#pragma once
 
 #include "../../../comb/seq/fact/lib.hpp"
 
@@ -15,5 +14,3 @@ CEXP vecu cantor_val2seq(u64 cv, spnuu fact) NE {
 CEXP vecu cantor_val2seq(u64 cv, u32 n) NE { return cantor_val2seq(cv, math::gen_fact(n, -1_u64)); }
 
 }  // namespace tifa_libs
-
-#endif

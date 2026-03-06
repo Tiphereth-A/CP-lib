@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_SP_DIJKSTRA_LIB
-#define TIFALIBS_GRAPH_SP_DIJKSTRA_LIB
+#pragma once
 
 #include "../../../ds/heap/radix/lib.hpp"
 #include "../../../util/traits/graph/lib.hpp"
@@ -27,5 +26,3 @@ CEXP vec<T> dijkstra(G CR g, u32 s, F&& relax, T INF = inf_v<T>) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_DSU_ON_TREE_LIB
-#define TIFALIBS_TREE_DSU_ON_TREE_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/graph/lib.hpp"
@@ -36,5 +35,3 @@ CEXP void dsu_on_tree(tree_c auto CR tr, spnu dfn, spnu sz, spnu maxson, spnu ma
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

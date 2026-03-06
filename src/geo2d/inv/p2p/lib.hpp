@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_INV_P2P_LIB
-#define TIFALIBS_GEO2D_INV_P2P_LIB
+#pragma once
 
 #include "../../ds/c/lib.hpp"
 
@@ -21,5 +20,3 @@ CEXP point<FP> inv_P2P(point<FP> CR ro, point<FP> CR p) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

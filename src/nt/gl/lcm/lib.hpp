@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_GL_LCM_LIB
-#define TIFALIBS_NT_GL_LCM_LIB
+#pragma once
 
 #include "../gcd/lib.hpp"
 
@@ -15,5 +14,3 @@ CEXP std::common_type_t<T, U> lcm(T a, U b) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

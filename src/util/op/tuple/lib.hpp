@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_OP_TUPLE_LIB
-#define TIFALIBS_UTIL_OP_TUPLE_LIB
+#pragma once
 
 #include "../tuple_push_pop/lib.hpp"
 
@@ -34,5 +33,3 @@ OO_PTEQ_(>>)
 #undef OO_PTEQ_
 
 }  // namespace tifa_libs
-
-#endif

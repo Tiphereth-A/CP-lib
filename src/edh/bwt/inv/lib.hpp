@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_BWT_INV_LIB
-#define TIFALIBS_EDH_BWT_INV_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -15,5 +14,3 @@ inline strn bwt_inv(strnv t) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

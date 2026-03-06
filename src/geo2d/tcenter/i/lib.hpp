@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_TCENTER_I_LIB
-#define TIFALIBS_GEO2D_TCENTER_I_LIB
+#pragma once
 
 #include "../../ds/t/lib.hpp"
 
@@ -16,5 +15,3 @@ template <class FP>
 CEXP point<FP> center_I(triangle<FP> CR t) NE { return t.trilinears(1, 1, 1); }
 
 }  // namespace tifa_libs::geo
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_SIMPLEX_LIB
-#define TIFALIBS_OPT_SIMPLEX_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -85,5 +84,3 @@ struct LPSolver {
 #undef ltj
 
 }  // namespace tifa_libs::opt
-
-#endif

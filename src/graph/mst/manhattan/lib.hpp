@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_MST_MANHATTAN_LIB
-#define TIFALIBS_GRAPH_MST_MANHATTAN_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -31,5 +30,3 @@ vec<edge_t<T>> manhattan_mst(vecpt<T> vp) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

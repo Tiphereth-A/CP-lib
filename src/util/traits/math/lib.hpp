@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_TRAITS_MATH_LIB
-#define TIFALIBS_UTIL_TRAITS_MATH_LIB
+#pragma once
 // clang-format off
 #include "../../alias/num/lib.hpp"
 
@@ -46,4 +45,3 @@ template <arithm_c T> CEXP T inf_v = [] {
 
 }  // namespace tifa_libs
 // clang-format on
-#endif

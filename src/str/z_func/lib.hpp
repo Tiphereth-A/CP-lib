@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_Z_FUNC_LIB
-#define TIFALIBS_STR_Z_FUNC_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -21,5 +20,3 @@ CEXP vecu z_func(strnv s) NE {
 }
 
 }  // namespace tifa_libs::str
-
-#endif

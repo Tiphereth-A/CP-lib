@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_HASH_LCSF_LIB
-#define TIFALIBS_STR_HASH_LCSF_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -18,5 +17,3 @@ CEXP u32 lcsf_hash(hashstr_t CR a, hashstr_t CR b, u32 i, u32 j, u32 lmax = 0) N
 }
 
 }  // namespace tifa_libs::str
-
-#endif

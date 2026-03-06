@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_DLOG_BSGS_NIMBER_LIB
-#define TIFALIBS_NT_DLOG_BSGS_NIMBER_LIB
+#pragma once
 
 #include "../../../math/ds/nimber/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
@@ -35,5 +34,3 @@ CEXP T bsgs_nimber(nimber<T, prod> CR a, nimber<T, prod> CR b) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

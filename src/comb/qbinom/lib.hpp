@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_QBINOM_LIB
-#define TIFALIBS_COMB_QBINOM_LIB
+#pragma once
 
 #include "../binom/lib.hpp"
 #include "../seq/invseq/lib.hpp"
@@ -33,5 +32,3 @@ struct qbinom : binom<mint, fact> {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

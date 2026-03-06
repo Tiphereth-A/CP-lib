@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_RESIDUE_JACOBI_LIB
-#define TIFALIBS_NT_RESIDUE_JACOBI_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -19,5 +18,3 @@ CEXP int jacobi_sym(u64 a, u64 p) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

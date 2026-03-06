@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_PATH_LIB
-#define TIFALIBS_GRAPH_PATH_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/graph/lib.hpp"
@@ -36,5 +35,3 @@ CEXP auto path(G CR g, u32 from, u32 to) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

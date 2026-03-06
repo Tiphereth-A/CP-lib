@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_KNAPSACK_BIN_LIB
-#define TIFALIBS_OPT_KNAPSACK_BIN_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
@@ -56,5 +55,3 @@ CEXP T knapsack_01(vecpt<T> CR a, T W) NE {
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

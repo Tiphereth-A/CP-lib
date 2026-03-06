@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_HEAP_LEFTIST_LIB
-#define TIFALIBS_DS_HEAP_LEFTIST_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -64,5 +63,3 @@ class leftist_tree {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

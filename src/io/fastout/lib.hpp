@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_IO_FASTOUT_LIB
-#define TIFALIBS_IO_FASTOUT_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
@@ -95,5 +94,3 @@ inline fastout& endl(fastout& f) NE {
 using std::setprecision;
 
 }  // namespace tifa_libs
-
-#endif

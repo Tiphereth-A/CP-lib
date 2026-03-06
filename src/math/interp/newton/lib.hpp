@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_INTERP_NEWTON_LIB
-#define TIFALIBS_MATH_INTERP_NEWTON_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -44,5 +43,3 @@ class interp_newton {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

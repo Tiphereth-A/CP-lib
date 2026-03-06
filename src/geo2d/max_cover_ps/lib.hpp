@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_MAX_COVER_PS_LIB
-#define TIFALIBS_GEO2D_MAX_COVER_PS_LIB
+#pragma once
 
 #include "../ang_pp/lib.hpp"
 #include "../dis/pp/lib.hpp"
@@ -30,5 +29,3 @@ CEXP u64 max_cover_Ps(vec<point<FP>> CR vp, FP r) NE {  //! BUG exists...
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

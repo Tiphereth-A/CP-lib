@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_DFS_SUMVW_LIB
-#define TIFALIBS_TREE_DFS_SUMVW_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/graph/lib.hpp"
@@ -23,5 +22,3 @@ CEXP vec<T> tree_sumvw(G CR tr, vec<T> CR v_weight) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

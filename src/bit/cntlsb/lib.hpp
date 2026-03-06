@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_BIT_CNTLSB_LIB
-#define TIFALIBS_BIT_CNTLSB_LIB
+#pragma once
 
 #include "../../util/util/lib.hpp"
 
@@ -15,5 +14,3 @@ CEXP int cntlsb(T x) NE {
 }
 
 }  // namespace tifa_libs::bit
-
-#endif

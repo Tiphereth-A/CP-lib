@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DS_EINT_LIB
-#define TIFALIBS_MATH_DS_EINT_LIB
+#pragma once
 
 #include "../../../util/traits/others/lib.hpp"
 
@@ -64,5 +63,3 @@ class eint {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

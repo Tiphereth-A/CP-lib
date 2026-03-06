@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_CLIQUE_ALL_LIB
-#define TIFALIBS_GRAPH_CLIQUE_ALL_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -29,5 +28,3 @@ CEXP T clique_calc(u32 n, arr<std::bitset<N>, N> CR adj, S&& sum, OP&& op, T e_s
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

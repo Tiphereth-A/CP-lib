@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_SEGTREE_SEGBEATS_CA_MSH_LIB
-#define TIFALIBS_DS_SEGTREE_SEGBEATS_CA_MSH_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -159,5 +158,3 @@ class segbeats_ca_msh {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

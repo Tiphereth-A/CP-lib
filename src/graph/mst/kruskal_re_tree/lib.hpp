@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_MST_KRUSKAL_RE_TREE_LIB
-#define TIFALIBS_GRAPH_MST_KRUSKAL_RE_TREE_LIB
+#pragma once
 
 #include "../../../ds/dsu/basic/lib.hpp"
 #include "../../../tree/ds/lib.hpp"
@@ -26,5 +25,3 @@ CEXP std::pair<tree, vec<EW>> kruskal_re_tree(vec<edge_t<EW>> CR sorted_a, u32 n
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

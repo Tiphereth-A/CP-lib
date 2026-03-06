@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_MFSUM_DU_LIB
-#define TIFALIBS_NT_MFSUM_DU_LIB
+#pragma once
 
 #include "../../../math/do_quot/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
@@ -34,5 +33,3 @@ class du_sieve {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

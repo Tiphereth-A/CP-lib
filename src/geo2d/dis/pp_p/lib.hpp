@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DIS_PP_P_LIB
-#define TIFALIBS_GEO2D_DIS_PP_P_LIB
+#pragma once
 
 #include "../../../math/qpow/basic/lib.hpp"
 #include "../pp/lib.hpp"
@@ -28,5 +27,3 @@ CEXP auto comp_distp(point<FP> CR p1, point<FP> CR p2, point<FP> CR q1, point<FP
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

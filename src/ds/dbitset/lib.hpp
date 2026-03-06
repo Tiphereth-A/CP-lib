@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_DBITSET_LIB
-#define TIFALIBS_DS_DBITSET_LIB
+#pragma once
 
 #include "../../bit/parity/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
@@ -237,5 +236,3 @@ struct dbitset {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

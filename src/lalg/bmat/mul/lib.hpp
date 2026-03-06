@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_BMAT_MUL_LIB
-#define TIFALIBS_LALG_BMAT_MUL_LIB
+#pragma once
 
 #include "../../ds/bmat/lib.hpp"
 
@@ -14,5 +13,3 @@ CEXP bitmat<I, K> mul_bmat(bitmat<I, J> CR l, bitmat<K, J> CR trans_r) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

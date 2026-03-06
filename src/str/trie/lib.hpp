@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_TRIE_LIB
-#define TIFALIBS_STR_TRIE_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -40,5 +39,3 @@ class trie {
 };
 
 }  // namespace tifa_libs::str
-
-#endif

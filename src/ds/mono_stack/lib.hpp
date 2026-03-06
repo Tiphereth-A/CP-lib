@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_MONO_STACK_LIB
-#define TIFALIBS_DS_MONO_STACK_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -22,5 +21,3 @@ class mono_stack {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

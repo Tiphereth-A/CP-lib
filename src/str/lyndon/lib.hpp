@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_LYNDON_LIB
-#define TIFALIBS_STR_LYNDON_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -20,5 +19,3 @@ CEXP vecu duval(strnv s) NE {
 }
 
 }  // namespace tifa_libs::str
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_CBM2N_LIB
-#define TIFALIBS_FPS_CBM2N_LIB
+#pragma once
 
 #include "../divmod/lib.hpp"
 
@@ -27,5 +26,3 @@ CEXP auto cbm2n_fps(poly<ccore, mint, args...> CR f, vec<mint> CR p) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

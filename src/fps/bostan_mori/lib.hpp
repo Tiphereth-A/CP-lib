@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_BOSTAN_MORI_LIB
-#define TIFALIBS_FPS_BOSTAN_MORI_LIB
+#pragma once
 
 #include "../../conv/trans/ntt_doubling/lib.hpp"
 #include "../ds/poly/lib.hpp"
@@ -63,5 +62,3 @@ CEXP auto bostan_mori(u64 n, poly<ccore, mint, args...> CR p, poly<ccore, mint, 
 }
 
 }  // namespace tifa_libs::math
-
-#endif

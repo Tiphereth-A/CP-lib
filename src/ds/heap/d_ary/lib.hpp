@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_HEAP_D_ARY_LIB
-#define TIFALIBS_DS_HEAP_D_ARY_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -143,5 +142,3 @@ template <int D, common_range R, class C = std::less<>>
 CEXP void pop_dary_heap(R CR r, C&& comp = C{}) NE { return pop_dary_heap<D>(begin(r), end(r), std::forward<C>(comp)); }
 
 }  // namespace tifa_libs::ds
-
-#endif

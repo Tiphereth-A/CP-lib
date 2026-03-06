@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_NF_HOPKAP_LIB
-#define TIFALIBS_GRAPH_NF_HOPKAP_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -46,5 +45,3 @@ inline vecptu hopkap(u32 l, u32 r, vecptu CR e) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

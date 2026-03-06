@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FAST_RSORT32_LIB
-#define TIFALIBS_FAST_RSORT32_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -37,5 +36,3 @@ void sort(C& a) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

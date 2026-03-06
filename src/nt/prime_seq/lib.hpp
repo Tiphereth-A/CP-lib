@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_PRIME_SEQ_LIB
-#define TIFALIBS_NT_PRIME_SEQ_LIB
+#pragma once
 
 #include "../../math/iroot/sqrt/lib.hpp"
 #include "../../util/alias/others/lib.hpp"
@@ -20,5 +19,3 @@ CEXP vecu prime_seq(u32 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,71 +1,9 @@
-import os
-import yaml
-
 from copy import deepcopy
 from multipledispatch import dispatch
 from typing import Iterable
+
+from libs.conf.base import ConfigBase
 from libs.decorator import with_logger
-
-
-class ConfigBase:
-    def __init__(self, conf_path: str, readonly: bool = False):
-        self._conf_path = conf_path
-        self._config: dict = {}
-        self._readonly = readonly
-        self.reload()
-
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(path={self._conf_path}, config={self._config})"
-
-    def reload(self):
-        if not os.access(self._conf_path, os.R_OK):
-            raise PermissionError(f"{self._conf_path} is inaccessible")
-        with open(self._conf_path, 'r', encoding='utf8') as f:
-            self._config = yaml.safe_load(f)
-
-    def output(self):
-        if self._readonly:
-            raise AssertionError(f"{self._conf_path} is readonly")
-        if not os.access(self._conf_path, os.W_OK):
-            raise PermissionError(f"{self._conf_path} is inaccessible")
-        with open(self._conf_path, 'w', encoding='utf8') as f:
-            yaml.dump(self._config, f, sort_keys=False, allow_unicode=True)
-
-    def items(self, *args: str):
-        result = self._config
-        for arg in args:
-            result = result[arg]
-        return result
-
-
-class ConfigIndex(ConfigBase):
-    def __init__(self, conf_path: str):
-        super().__init__(conf_path)
-        if self._config is None:
-            self._config = []
-
-    def _get_section_list_raw(self) -> list[dict[str, str]]:
-        return self._config
-
-    @with_logger
-    def get_section_list(self, **kwargs) -> list[tuple[str, str]]:
-        return [(list(dic.keys())[0], list(dic.values())[0]) for dic in self._get_section_list_raw()]
-
-    @with_logger
-    def get_section_name(self, **kwargs) -> set[str]:
-        return set(i[0] for i in self.get_section_list())
-
-    @with_logger
-    def new_section(self, name: str, title: str, **kwargs) -> bool:
-        logger = kwargs.get('logger')
-        if name in self.get_section_name():
-            logger.warning(f"section '{name}' already exists, skip")
-            return False
-        self._config.append({name: title})
-        os.makedirs(os.path.join(os.path.dirname(
-            self._conf_path), name), exist_ok=True)
-        self.output()
-        return True
 
 
 class ConfigTcgen(ConfigBase):
@@ -122,7 +60,6 @@ class ConfigTcgen(ConfigBase):
 
     @dispatch(list, str)
     def _get_member_content_raw(self, categories: list[str], member: str) -> dict:
-        """Get member content by trying each category until one succeeds."""
         for category in categories:
             try:
                 return self._get_member_content_raw(category, member)

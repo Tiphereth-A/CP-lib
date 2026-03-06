@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_ST_RUS4_LIB
-#define TIFALIBS_DS_ST_RUS4_LIB
+#pragma once
 
 #include "../basic/lib.hpp"
 
@@ -41,5 +40,3 @@ class rus4_st {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

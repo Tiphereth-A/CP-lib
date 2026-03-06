@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_DS_ALIST_LIB
-#define TIFALIBS_GRAPH_DS_ALIST_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -57,5 +56,3 @@ struct alistw {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

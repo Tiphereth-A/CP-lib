@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_UTIL_LIB
-#define TIFALIBS_UTIL_UTIL_LIB
+#pragma once
 // https://github.com/Tiphereth-A/CP-lib
 #include <bits/extc++.h>
 // clang-format off
@@ -27,4 +26,3 @@ CEXP T abs(T x) NE { retif_((x < 0), -x, x); }
 
 }  // namespace tifa_libs
 // clang-format on
-#endif

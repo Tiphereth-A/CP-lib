@@ -119,10 +119,27 @@ jobs:
           name: cpp-header
           path: .cp-lib/include
 
+  fast-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+      - name: Install Python dependencies
+        run: uv sync --frozen
+      - name: Run fast test
+        run: |
+          uv run python manager.py -l DEBUG test
+
   release-all:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
-    needs: [build-tex, pack-include]
+    needs: [build-tex, pack-include, fast-test]
     permissions:
       contents: write
     steps:

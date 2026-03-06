@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DS_CVH_LIB
-#define TIFALIBS_GEO2D_DS_CVH_LIB
+#pragma once
 
 #include "../../dot/lib.hpp"
 #include "../../ds/po/lib.hpp"
@@ -106,5 +105,3 @@ struct cvh : public polygon<FP> {
 };
 
 }  // namespace tifa_libs::geo
-
-#endif

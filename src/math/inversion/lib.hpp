@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_INVERSION_LIB
-#define TIFALIBS_MATH_INVERSION_LIB
+#pragma once
 
 #include "../../ds/fenwick/d1/lib.hpp"
 #include "../../edh/discretization/lib.hpp"
@@ -16,5 +15,3 @@ CEXP u64 inversion(vec<T> CR v) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

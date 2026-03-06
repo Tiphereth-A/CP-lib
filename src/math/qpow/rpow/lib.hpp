@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_QPOW_RPOW_LIB
-#define TIFALIBS_MATH_QPOW_RPOW_LIB
+#pragma once
 
 #include "../../../nt/mod/barrett/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
@@ -34,5 +33,3 @@ class rpow {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

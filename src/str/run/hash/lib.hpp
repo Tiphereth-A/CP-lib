@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_RUN_HASH_LIB
-#define TIFALIBS_STR_RUN_HASH_LIB
+#pragma once
 
 #include "../../../edh/discretization/lib.hpp"
 #include "../../hash/lcpf/lib.hpp"
@@ -36,5 +35,3 @@ CEXP vec<pt3u> run_hash(strnv s) NE {
 }
 
 }  // namespace tifa_libs::str
-
-#endif

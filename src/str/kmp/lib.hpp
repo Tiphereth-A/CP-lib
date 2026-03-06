@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_KMP_LIB
-#define TIFALIBS_STR_KMP_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -36,5 +35,3 @@ inline vecu kmp(strnv pattern, strnv text) NE {
 }
 
 }  // namespace tifa_libs::str
-
-#endif

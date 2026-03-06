@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_AUNION_POS_LIB
-#define TIFALIBS_GEO2D_AUNION_POS_LIB
+#pragma once
 
 #include "../../ds/po/lib.hpp"
 #include "../../ins/ll/lib.hpp"
@@ -57,5 +56,3 @@ CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

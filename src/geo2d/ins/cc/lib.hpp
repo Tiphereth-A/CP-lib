@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_INS_CC_LIB
-#define TIFALIBS_GEO2D_INS_CC_LIB
+#pragma once
 
 #include "../../rel/cc/lib.hpp"
 
@@ -22,5 +21,3 @@ CEXP auto ins_CC(circle<FP> CR c1, circle<FP> CR c2) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

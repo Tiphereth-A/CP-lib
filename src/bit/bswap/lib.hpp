@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_BIT_BSWAP_LIB
-#define TIFALIBS_BIT_BSWAP_LIB
+#pragma once
 
 #include "../../util/util/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP T bswap(T x) NE {
 }
 
 }  // namespace tifa_libs::bit
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_MINPOLY_RD_LIB
-#define TIFALIBS_LALG_MAT_MINPOLY_RD_LIB
+#pragma once
 
 #include "../../lfsr_bm/lib.hpp"
 
@@ -26,5 +25,3 @@ auto minpoly(Mat CR mat, Gn& gen, Is0&& is0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

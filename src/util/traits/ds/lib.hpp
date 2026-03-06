@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_TRAITS_DS_LIB
-#define TIFALIBS_UTIL_TRAITS_DS_LIB
+#pragma once
 // clang-format off
 #include "../../alias/num/lib.hpp"
 
@@ -13,4 +12,3 @@ template <class T> concept dsu_c = requires(T dsu, u32 x, u32 y) { {dsu.find(x)}
 
 }  // namespace tifa_libs
 // clang-format on
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_PRED_ANY_INS_SS_LIB
-#define TIFALIBS_GEO2D_PRED_ANY_INS_SS_LIB
+#pragma once
 
 #include "../../ins/ll/lib.hpp"
 #include "../is_ins_sl/lib.hpp"
@@ -47,5 +46,3 @@ CEXP bool any_ins_Ss(vec<line<FP>> CR ss) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

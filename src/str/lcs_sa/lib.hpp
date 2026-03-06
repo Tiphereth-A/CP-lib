@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_STR_LCS_SA_LIB
-#define TIFALIBS_STR_LCS_SA_LIB
+#pragma once
 
 #include "../suffix_array/lib.hpp"
 
@@ -21,5 +20,3 @@ CEXP pt4u lcs_sa(strnv s, strnv t) NE {
 }
 
 }  // namespace tifa_libs::str
-
-#endif

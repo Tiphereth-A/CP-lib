@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_SEQ_INVSEQ_LIB
-#define TIFALIBS_COMB_SEQ_INVSEQ_LIB
+#pragma once
 
 #include "../../../math/mul_mod/lib.hpp"
 #include "../../../nt/inverse/lib.hpp"
@@ -32,5 +31,3 @@ CEXP vec<mint> gen_invseq(vec<mint> CR v) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

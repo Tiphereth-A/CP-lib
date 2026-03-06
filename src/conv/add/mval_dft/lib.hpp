@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_ADD_MVAL_DFT_LIB
-#define TIFALIBS_CONV_ADD_MVAL_DFT_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
@@ -48,5 +47,3 @@ CEXP vec<mint> conv_mval_dft_um(DFT_t& dft, vec<T> CR l, vec<T> CR r, vecu CR ba
 }
 
 }  // namespace tifa_libs::math
-
-#endif

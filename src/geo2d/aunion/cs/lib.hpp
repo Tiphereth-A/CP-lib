@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_AUNION_CS_LIB
-#define TIFALIBS_GEO2D_AUNION_CS_LIB
+#pragma once
 
 #include "../../ins/cc/lib.hpp"
 #include "../../rel/cc/lib.hpp"
@@ -78,5 +77,3 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

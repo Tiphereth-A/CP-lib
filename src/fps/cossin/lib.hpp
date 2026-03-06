@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_COSSIN_LIB
-#define TIFALIBS_FPS_COSSIN_LIB
+#pragma once
 
 #include "../../math/qpow/basic/lib.hpp"
 #include "../exp/lib.hpp"
@@ -19,5 +18,3 @@ CEXP auto cossin_fps(poly<ccore, mint, args...> p, u32 n = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_INV_LIB
-#define TIFALIBS_LALG_MAT_INV_LIB
+#pragma once
 
 #include "../merge_lr/lib.hpp"
 
@@ -33,5 +32,3 @@ CEXP auto inv_mat(matrix<T> CR mat, Is0&& is0, Ge&& ge) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

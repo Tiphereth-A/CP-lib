@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO3D_REL_PLP_LIB
-#define TIFALIBS_GEO3D_REL_PLP_LIB
+#pragma once
 
 #include "../../ds/pl/lib.hpp"
 
@@ -19,5 +18,3 @@ CEXP RELPLP relation_PlP(planev<FP> CR pl, point3d<FP> CR p) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

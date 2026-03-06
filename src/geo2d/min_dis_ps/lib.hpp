@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_MIN_DIS_PS_LIB
-#define TIFALIBS_GEO2D_MIN_DIS_PS_LIB
+#pragma once
 
 #include "../dis/pp_p/lib.hpp"
 
@@ -44,5 +43,3 @@ CEXP pttu min_dis_Ps(vec<point<FP>> CR vp) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

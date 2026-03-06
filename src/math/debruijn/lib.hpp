@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DEBRUIJN_LIB
-#define TIFALIBS_MATH_DEBRUIJN_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -33,5 +32,3 @@ CEXP vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

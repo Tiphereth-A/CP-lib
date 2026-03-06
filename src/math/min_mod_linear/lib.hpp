@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_MIN_MOD_LINEAR_LIB
-#define TIFALIBS_MATH_MIN_MOD_LINEAR_LIB
+#pragma once
 
 #include "../../util/alias/num/lib.hpp"
 
@@ -27,5 +26,3 @@ CEXP u32 min_mod_linear(u32 n, u32 m, u32 a, u32 b, u32 cnt = 1, u32 p = 1, u32 
 }
 
 }  // namespace tifa_libs::math
-
-#endif

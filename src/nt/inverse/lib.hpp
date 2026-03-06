@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_INVERSE_LIB
-#define TIFALIBS_NT_INVERSE_LIB
+#pragma once
 
 #include "../gl/inv_gcd/lib.hpp"
 
@@ -14,5 +13,3 @@ CEXP U inverse(T n, U mod) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

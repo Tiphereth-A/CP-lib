@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_CRT_MOD_LIB
-#define TIFALIBS_NT_CRT_MOD_LIB
+#pragma once
 
 #include "../../../math/safe_mod/lib.hpp"
 #include "../../gl/inv_gcd/lib.hpp"
@@ -30,5 +29,3 @@ CEXP auto crt_mod(vec<T> CR r, vec<T> m, u64 const mod) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

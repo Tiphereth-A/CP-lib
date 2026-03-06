@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_TAN_CC_IN_LIB
-#define TIFALIBS_GEO2D_TAN_CC_IN_LIB
+#pragma once
 
 #include "../../ds/c/lib.hpp"
 #include "../../ds/l/lib.hpp"
@@ -22,5 +21,3 @@ CEXP auto intan_CC(circle<FP> CR c1, circle<FP> CR c2) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif

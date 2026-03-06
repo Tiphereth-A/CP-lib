@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_NF_GOMORY_HU_LIB
-#define TIFALIBS_GRAPH_NF_GOMORY_HU_LIB
+#pragma once
 
 #include "../dinic/lib.hpp"
 
@@ -26,5 +25,3 @@ CEXP vec<edge_t<EW>> gomory_hu(u32 n, vec<edge_t<EW>> CR ed) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

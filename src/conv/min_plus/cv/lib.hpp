@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_MIN_PLUS_CV_LIB
-#define TIFALIBS_CONV_MIN_PLUS_CV_LIB
+#pragma once
 
 #include "../../../opt/smawk/lib.hpp"
 
@@ -25,5 +24,3 @@ CEXP vec<T> conv_minplus_cv(vec<T> CR a, vec<T> CR b) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

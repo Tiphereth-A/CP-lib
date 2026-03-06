@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GAME_POKER_DATA_LIB
-#define TIFALIBS_GAME_POKER_DATA_LIB
+#pragma once
 
 #include "../../../util/traits/others/lib.hpp"
 
@@ -35,5 +34,3 @@ struct poker_card {
 };
 
 }  // namespace tifa_libs::game
-
-#endif

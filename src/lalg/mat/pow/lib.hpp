@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_POW_LIB
-#define TIFALIBS_LALG_MAT_POW_LIB
+#pragma once
 
 #include "../../../math/qpow/basic/lib.hpp"
 
@@ -15,5 +14,3 @@ CEXP Mat pow(Mat CR mat, u64 b) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

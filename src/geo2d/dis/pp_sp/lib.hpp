@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_DIS_PP_SP_LIB
-#define TIFALIBS_GEO2D_DIS_PP_SP_LIB
+#pragma once
 
 #include "../../ds/p/lib.hpp"
 
@@ -10,5 +9,3 @@ template <class FP>
 CEXP FP distsp_PP(FP r, point<FP> CR p1, point<FP> CR p2) NE { return r * std::acos(std::sin(p1.y) * std::sin(p2.y) + std::cos(p1.y) * std::cos(p2.y) * std::cos(p1.x - p2.x)); }
 
 }  // namespace tifa_libs::geo
-
-#endif

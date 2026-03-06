@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_EULER_PHI_LIB
-#define TIFALIBS_NT_EULER_PHI_LIB
+#pragma once
 
 #include "../pfactors/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP u64 euler_phi(u64 n, spnuu pfactor) NE {
 inline u64 euler_phi(u64 n) NE { return euler_phi(n, pfactors(n)); }
 
 }  // namespace tifa_libs::math
-
-#endif

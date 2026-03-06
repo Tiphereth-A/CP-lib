@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_SEQ_BELL_LIB
-#define TIFALIBS_COMB_SEQ_BELL_LIB
+#pragma once
 
 #include "../../../fps/exp/lib.hpp"
 #include "../fact/lib.hpp"
@@ -24,5 +23,3 @@ CEXP poly gen_bell(u32 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

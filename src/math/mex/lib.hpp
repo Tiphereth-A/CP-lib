@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_MEX_LIB
-#define TIFALIBS_MATH_MEX_LIB
+#pragma once
 
 #include "../../edh/discretization/lib.hpp"
 
@@ -13,5 +12,3 @@ CEXP u32 mex_uniqued(spnu x) NE {
 CEXP u32 mex(vecu x) NE { return mex_uniqued(uniq(x)); }
 
 }  // namespace tifa_libs::math
-
-#endif

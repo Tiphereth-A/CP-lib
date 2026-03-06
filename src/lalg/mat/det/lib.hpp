@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_DET_LIB
-#define TIFALIBS_LALG_MAT_DET_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -24,5 +23,3 @@ CEXP auto det(Mat mat, Ge&& ge) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

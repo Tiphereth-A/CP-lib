@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_RAND_GEN_LIB
-#define TIFALIBS_RAND_GEN_LIB
+#pragma once
 
 #include "../../util/consts/lib.hpp"
 
@@ -58,5 +57,3 @@ class gen {
 };
 
 }  // namespace tifa_libs::rand
-
-#endif

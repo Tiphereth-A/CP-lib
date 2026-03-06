@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_DISCRETIZATION_LIB
-#define TIFALIBS_EDH_DISCRETIZATION_LIB
+#pragma once
 
 #include "../../fast/rsort32/lib.hpp"
 
@@ -21,5 +20,3 @@ CEXP std::pair<T, vecu> gen_id(T CR v) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

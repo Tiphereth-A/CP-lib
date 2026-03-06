@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_DIV_LIB
-#define TIFALIBS_FPS_DIV_LIB
+#pragma once
 
 #include "../inv/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP auto div_fps(poly<ccore, mint, args...> p, poly<ccore, mint, args...> q) NE
 }
 
 }  // namespace tifa_libs::math
-
-#endif

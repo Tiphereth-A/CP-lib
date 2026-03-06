@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_MPE_LIB
-#define TIFALIBS_FPS_MPE_LIB
+#pragma once
 
 #include "../inv/lib.hpp"
 #include "../shr/lib.hpp"
@@ -51,5 +50,3 @@ CEXP auto mpe_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> a) NE
 }
 
 }  // namespace tifa_libs::math
-
-#endif

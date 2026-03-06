@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPS_ASIN_LIB
-#define TIFALIBS_FPS_ASIN_LIB
+#pragma once
 
 #include "../ln/lib.hpp"
 #include "../sqrt/lib.hpp"
@@ -13,5 +12,3 @@ CEXP auto asin_fps(poly<ccore, mint, args...> CR p) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_SAFE_MOD_LIB
-#define TIFALIBS_MATH_SAFE_MOD_LIB
+#pragma once
 
 #include "../../util/traits/math/lib.hpp"
 
@@ -16,5 +15,3 @@ CEXP T safe_mod(T x, to_uint_t<T> mod) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

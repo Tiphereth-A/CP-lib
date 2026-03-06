@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_CONV_OR_LIB
-#define TIFALIBS_CONV_OR_LIB
+#pragma once
 
 #include "../trans/zmt_subset/lib.hpp"
 
@@ -14,5 +13,3 @@ CEXP vec<T> conv_or(vec<T> l, vec<T> r) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

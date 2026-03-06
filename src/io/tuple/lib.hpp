@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_IO_TUPLE_LIB
-#define TIFALIBS_IO_TUPLE_LIB
+#pragma once
 
 #include "../../util/traits/others/lib.hpp"
 
@@ -17,5 +16,3 @@ auto& operator<<(tifa_libs::ostream_c auto& os, std::tuple<Ts...> CR p) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

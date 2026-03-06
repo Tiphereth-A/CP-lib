@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_MATH_DS_GINT_LIB
-#define TIFALIBS_MATH_DS_GINT_LIB
+#pragma once
 
 #include "../../../util/traits/others/lib.hpp"
 
@@ -80,5 +79,3 @@ class gint {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

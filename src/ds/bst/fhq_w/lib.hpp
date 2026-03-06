@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_BST_FHQ_W_LIB
-#define TIFALIBS_DS_BST_FHQ_W_LIB
+#pragma once
 
 #include "../../../rand/gen/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
@@ -121,5 +120,3 @@ class fhq_treap_w {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

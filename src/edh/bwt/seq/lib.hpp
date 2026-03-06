@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_BWT_SEQ_LIB
-#define TIFALIBS_EDH_BWT_SEQ_LIB
+#pragma once
 
 #include "../../../str/suffix_array/lib.hpp"
 
@@ -15,5 +14,3 @@ CEXP strn bwt(strn s) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

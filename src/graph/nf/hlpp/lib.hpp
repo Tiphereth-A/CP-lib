@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_NF_HLPP_LIB
-#define TIFALIBS_GRAPH_NF_HLPP_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -78,5 +77,3 @@ class hlpp {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

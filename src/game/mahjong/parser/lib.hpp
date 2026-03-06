@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GAME_MAHJONG_PARSER_LIB
-#define TIFALIBS_GAME_MAHJONG_PARSER_LIB
+#pragma once
 
 #include "../../../edh/discretization/lib.hpp"
 #include "../data/lib.hpp"
@@ -290,5 +289,3 @@ CEXP auto mahjong_parser(vec<mahjong_card> hand, u32 max_card_per_kind = 4) NE {
 }
 
 }  // namespace tifa_libs::game
-
-#endif

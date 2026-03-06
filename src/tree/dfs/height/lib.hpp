@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_DFS_HEIGHT_LIB
-#define TIFALIBS_TREE_DFS_HEIGHT_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/graph/lib.hpp"
@@ -27,5 +26,3 @@ CEXP auto tree_height(G CR tr) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_SEQ_IPOWI_LIB
-#define TIFALIBS_COMB_SEQ_IPOWI_LIB
+#pragma once
 
 #include "../../../math/iroot/sqrt/lib.hpp"
 #include "../../../math/qpow/mod/lib.hpp"
@@ -66,5 +65,3 @@ CEXP vec<mint> gen_ipowi(u32 n) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_FPSSP_LN_LIB
-#define TIFALIBS_FPSSP_LN_LIB
+#pragma once
 
 #include "../../comb/seq/inv/lib.hpp"
 #include "../polysp/lib.hpp"
@@ -28,5 +27,3 @@ CEXP auto ln_fpssp(poly<ccore, mint, args...> CR p, u32 n = 0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_BST_OST_LIB
-#define TIFALIBS_DS_BST_OST_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../bt_trv/lib.hpp"
@@ -189,5 +188,3 @@ template <class K, class Comp = std::less<K>>
 using bstree = ostree<K, bst_tag, Comp>;
 
 }  // namespace tifa_libs::ds
-
-#endif

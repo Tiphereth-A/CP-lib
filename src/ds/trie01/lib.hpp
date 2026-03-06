@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_DS_TRIE01_LIB
-#define TIFALIBS_DS_TRIE01_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -68,5 +67,3 @@ struct trie01 {
 };
 
 }  // namespace tifa_libs::ds
-
-#endif

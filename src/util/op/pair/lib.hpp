@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_OP_PAIR_LIB
-#define TIFALIBS_UTIL_OP_PAIR_LIB
+#pragma once
 
 #include "../../util/lib.hpp"
 
@@ -28,5 +27,3 @@ OO_PTEQ_(>>)
 #undef OO_PTEQ_
 
 }  // namespace tifa_libs
-
-#endif

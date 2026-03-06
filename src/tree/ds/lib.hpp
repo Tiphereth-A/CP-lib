@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_TREE_DS_LIB
-#define TIFALIBS_TREE_DS_LIB
+#pragma once
 
 #include "../../graph/ds/alist/lib.hpp"
 
@@ -16,5 +15,3 @@ struct treew : alistw<T> {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

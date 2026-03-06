@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_LFSR_BM_LIB
-#define TIFALIBS_LALG_LFSR_BM_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -33,5 +32,3 @@ CEXP vec<T> lfsr_bm(vec<T> CR s, Is0&& is0) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

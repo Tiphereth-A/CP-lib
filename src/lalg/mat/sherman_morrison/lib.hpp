@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_MAT_SHERMAN_MORRISON_LIB
-#define TIFALIBS_LALG_MAT_SHERMAN_MORRISON_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -22,5 +21,3 @@ CEXP void sherman_morrison(Mat& inv_A, vec<T> CR u, vec<T> CR v) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

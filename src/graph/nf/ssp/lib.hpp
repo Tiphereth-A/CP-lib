@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_NF_SSP_LIB
-#define TIFALIBS_GRAPH_NF_SSP_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
@@ -65,5 +64,3 @@ class ssp {
 };
 
 }  // namespace tifa_libs::graph
-
-#endif

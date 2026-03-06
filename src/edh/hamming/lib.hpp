@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_EDH_HAMMING_LIB
-#define TIFALIBS_EDH_HAMMING_LIB
+#pragma once
 
 #include "../../ds/dbitset/lib.hpp"
 
@@ -57,5 +56,3 @@ class hamming {
   }
 };
 }  // namespace tifa_libs
-
-#endif

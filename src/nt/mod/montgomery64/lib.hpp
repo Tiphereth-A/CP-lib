@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_NT_MOD_MONTGOMERY64_LIB
-#define TIFALIBS_NT_MOD_MONTGOMERY64_LIB
+#pragma once
 
 #include "../../../util/alias/num/lib.hpp"
 
@@ -56,5 +55,3 @@ struct montgomery64<0> {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

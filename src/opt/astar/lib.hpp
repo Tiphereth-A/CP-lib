@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_OPT_ASTAR_LIB
-#define TIFALIBS_OPT_ASTAR_LIB
+#pragma once
 
 #include "../../util/alias/others/lib.hpp"
 
@@ -33,5 +32,3 @@ auto astar(T CR s) NE {
 }
 
 }  // namespace tifa_libs::opt
-
-#endif

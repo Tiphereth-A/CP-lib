@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_LALG_BMAT_TRANS_LIB
-#define TIFALIBS_LALG_BMAT_TRANS_LIB
+#pragma once
 
 #include "../../ds/bmat/lib.hpp"
 
@@ -14,5 +13,3 @@ CEXP bitmat<C, R> trans_bmat(bitmat<R, C> CR bmat) NE {
 }
 
 }  // namespace tifa_libs::math
-
-#endif

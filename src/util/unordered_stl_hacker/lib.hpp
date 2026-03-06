@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_UTIL_UNORDERED_STL_HACKER_LIB
-#define TIFALIBS_UTIL_UNORDERED_STL_HACKER_LIB
+#pragma once
 
 #include "../../rand/gen/lib.hpp"
 #include "../alias/others/lib.hpp"
@@ -69,5 +68,3 @@ inline vec<T> unordered_stl_hacker(usz n) NE {
 }
 
 }  // namespace tifa_libs
-
-#endif

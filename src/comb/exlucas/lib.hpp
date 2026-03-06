@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_COMB_EXLUCAS_LIB
-#define TIFALIBS_COMB_EXLUCAS_LIB
+#pragma once
 
 #include "../../math/iroot/sqrt/lib.hpp"
 #include "../../math/qpow/mod/lib.hpp"
@@ -64,5 +63,3 @@ class exlucas {
 };
 
 }  // namespace tifa_libs::math
-
-#endif

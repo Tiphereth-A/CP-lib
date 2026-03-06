@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GRAPH_NF_HUNGARIAN_LIB
-#define TIFALIBS_GRAPH_NF_HUNGARIAN_LIB
+#pragma once
 
 #include "../../../util/alias/others/lib.hpp"
 
@@ -44,5 +43,3 @@ CEXP vec<T> hungarian(vvec<T> CR g, T INF = std::numeric_limits<T>::max()) NE {
 }
 
 }  // namespace tifa_libs::graph
-
-#endif

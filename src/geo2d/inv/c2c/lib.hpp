@@ -1,5 +1,4 @@
-#ifndef TIFALIBS_GEO2D_INV_C2C_LIB
-#define TIFALIBS_GEO2D_INV_C2C_LIB
+#pragma once
 
 #include "../p2p/lib.hpp"
 
@@ -25,5 +24,3 @@ CEXP circle<FP> inv_C2C(point<FP> CR ro, circle<FP> CR c) NE {
 }
 
 }  // namespace tifa_libs::geo
-
-#endif
