@@ -39,7 +39,7 @@ $1\leq n\leq 100,\ \ 1\leq m\leq 500,\ \ 1\leq k\leq 10,\ \ 1\leq u,v\leq n,\ \ 
 样例图片参见 PDF
 */
 
-/*
+/*sample
 7 7 4
 1 2 3
 2 3 2

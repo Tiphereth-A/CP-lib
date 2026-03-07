@@ -1,66 +1,81 @@
-# CP-lib Project Guidelines
+# Project Guidelines
 
-CP-lib is a header-only C++ library for competitive programming with 450+ implementations of algorithms and data structures. All code is automatically verified against multiple online judges (OJ) to ensure correctness.
+## Overview
+
+CP-lib is a header-only C++20 competitive programming library with 450+ algorithm/data structure implementations. It includes Python tooling for verification, documentation generation, and test management.
 
 ## Code Style
 
-- **Language Standard**: C++20 with GCC 13.0 or higher
-- **Compilation**: Single-pass compilation to executable (header-only design)
-- **Key Headers**:
-  - Located in `src/` organized by category: `util/`, `bit/`, `gen/`, `io/`, `ds/`, `opt/`, `graph/`, `tree/`, `poly/`, `math/`, etc.
-  - Each file is a self-contained header with no external includes beyond STL
-- **Code Organization**: Use descriptive namespaces and clear variable names
-- **Documentation**: Code comments should reference algorithms/concepts; detailed docs are in `doc/`
+### C++
 
-Exemplar files: `src/util/`, `src/ds/` (standard data structures)
+- **Standard**: C++20 (`gnu++20`), compiled with `g++ -O2 -Wall -Wextra`
+- **Compiler**: GCC >= 13
+- **Formatting**: `.clang-format` (Google-based, column limit 0). Run: `python manager.py fmt -d src`
+- **Namespace**: All code lives in `tifa_libs` (or sub-namespaces like `tifa_libs::math`)
+- **Include guard**: `#pragma once`
+- **Naming**: `snake_case` for classes, functions, files. Private helpers suffixed with `_` (e.g., `ins_()`)
+- **Concepts**: Suffixed with `_c` (e.g., `int_c`, `mint_c`, `alist_c`)
+- **Custom macros** (from `src/util/util/lib.hpp`): `CEXP` = `constexpr`, `CEXPE` = `constexpr explicit`, `CR` = `const&`, `TPN` = `typename`, `NE` = `noexcept`, `CNE` = `const noexcept`
+- **Type aliases**: `i32`, `u32`, `i64`, `u64`, `f64`, `vec<T>`, `vvec<T>`, `ptt<T>`, etc.
+- Use `constexpr` and `noexcept` pervasively. Use C++20 concepts (`requires` clauses) over SFINAE.
+
+### Python
+
+- **Version**: >= 3.11
+- **Package manager**: `uv`
+- **CLI framework**: Click
+- **Style**: autopep8
 
 ## Architecture
 
-The library uses **dual verification**:
-1. **Python Unit Tests** (`test/cplib/`): pytest-based tests for manager script logic
-2. **OJ Verification** (`test/cpv/`): Automated submission to Aizu, Library Checker, Yukicoder, etc. via `competitive-verifier`
+```
+src/           # C++ header-only library (each algorithm in its own dir with lib.hpp + doc.tex)
+libs/          # Python tooling (CLI commands, config, content generation, utilities)
+  cmd/         #   Click commands: doc, new, verify, fmt, meta, pack
+  conf/        #   Config parsers (YAML)
+  content/     #   LaTeX/documentation generation
+  meta/        #   Test code generation from .cppmeta templates
+  util/        #   Shared utilities
+test/
+  cplib/       # Python tests (pytest, markers: unit/integration/system)
+  cpv/         # C++ verification tests (organized by online judge)
+  cpv_local/   # Local C++ tests
+  cpv_meta/    # .cppmeta template files for parameterized test generation
+```
 
-**Test Matrix**: Configuration in `tcgen.yml` generates multiple test variants from templates for comprehensive coverage.
+Source categories under `src/`: `util`, `io`, `fast`, `ds` (data structures), `math`, `nt` (number theory), `comb`, `lalg`, `conv`, `fps`, `graph`, `tree`, `geo2d`, `geo3d`, `str`, `bit`, `gen`, `rand`, `edh`, `game`, `opt`.
 
-**Documentation Pipeline**: LaTeX source in `notebook.tex` generates printable PDF notebooks for offline competition reference.
+Each algorithm directory contains `lib.hpp` (implementation) and `doc.tex` (LaTeX documentation).
 
 ## Build and Test
 
 ```bash
 # Install dependencies
 uv sync --frozen
-uv sync --frozen --group verify    # For OJ verification
-uv sync --frozen --group latex     # For PDF generation
 
-# Code management via manager.py
-python manager.py fmt -d src -d test     # Format all code
-python manager.py test                   # Run Python unit tests
-python manager.py verify                 # Verify against online judges
-python manager.py doc                    # Generate PDF notebook
-python manager.py pack <file>            # Bundle code for OJ submission
+# Format code
+python manager.py fmt -d src test/cpv
 
-# View all commands
-python manager.py --help
+# Generate test code from .cppmeta templates
+python manager.py meta
+
+# Verify C++ implementations (compile + run embedded samples)
+python manager.py verify
+
+# Run Python tests
+pytest test/cplib/ -v
+
+# Compile all C++ files (sanity check)
+make all
+
+# Generate documentation
+python manager.py doc -s src -t tex
 ```
 
 ## Conventions
 
-### Testing Strategy
-- **Unit Tests**: Python tests in `test/cplib/` use pytest with markers (`@pytest.mark.unit`, `@pytest.mark.integration`)
-- **OJ Verification**: Critical paths verified against real contest problems; see `test/cpv/` for verification configs
-- **Test Running**: Always run `python manager.py test` before committing changes
-
-### Formatting
-- Use `python manager.py fmt` regularly; it applies `autopep8` conventions
-- All Python code must pass `pycodestyle` checks
-- Pre-commit: Run `python manager.py fmt -d src -d test` to validate
-
-### Header-Only Design
-- All implementations live in headers (`.hpp`), no `.cpp` files in library
-- Avoid global state; prefer template parameters and function parameters
-- Each header should compile independently without external includes beyond STL
-
-### Common Development Tasks
-- **Adding New Algorithm**: Create file in appropriate `src/<category>/` folder
-- **Fixing Bug**: Update `.hpp`, run unit tests, verify against OJs if applicable
-- **Updating Documentation**: Modify LaTeX in `notebook.tex` or category docs in `doc/`
+- **C++ test files** must contain a `PROBLEM` marker comment (e.g., `// cplib.manager: PROBLEM https://...`) and embedded test samples in `/*sample ... ======== ... */` blocks.
+- **New library sections**: Use `python manager.py new` to scaffold.
+- **Parameterized tests**: Define variants in `tcgen.yml`, write `.cppmeta` templates in `test/cpv_meta/`, generate with `python manager.py meta`.
+- When adding a new algorithm, create both `lib.hpp` and `doc.tex` in its directory.
+- The manager.py `verify` command compiles test files with `g++ -std=gnu++20 -fmax-errors=1 -ftrapv` and runs embedded sample cases.

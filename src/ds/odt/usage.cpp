@@ -59,7 +59,7 @@ $N\le500000,K\le500000,1<x\le y<N$
 对于每个 `B x y` 的询问, 输出 `Yes` 或 `No`
 */
 
-/*
+/*sample
 15
 AACBBABBBCCCBBB
 3
@@ -72,7 +72,7 @@ Yes
 No
 */
 
-/*
+/*sample
 5
 ABBBB
 2

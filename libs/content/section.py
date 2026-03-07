@@ -35,7 +35,7 @@ namespace tifa_libs::{category} {{
 }}  // namespace tifa_libs::{category}
 """,
     "usage.cpp": """// competitive-verifier: DISPLAY never
-// cplib.manager: PROBLEM "https://example.com"
+// cplib.manager: PROBLEM https://example.com
 
 #include "lib.hpp"
 
@@ -46,7 +46,7 @@ int main() {
 description
 */
 
-/*
+/*sample
 input
 ========
 output

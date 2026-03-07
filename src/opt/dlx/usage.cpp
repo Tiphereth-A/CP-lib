@@ -13,6 +13,7 @@ void solve() {
   if (auto res = opt::dlx(maps).dance(fn_0); res)
     for (auto i : res.value()) std::cout << i << ' ';
   else std::cout << "No Solution!";
+  std::cout << '\n';
 }
 
 int main() {
@@ -34,16 +35,16 @@ $N,M\leq 500$, 保证矩阵中 $1$ 的数量不超过 $5000$ 个
 若无解, 输出 `No Solution!`
 */
 
-/*
+/*sample
 3 3
 0 0 1
 1 0 0
 0 1 0
 ==========
-2 1 3
+2 3 1
 */
 
-/*
+/*sample
 3 3
 1 0 1
 1 1 0

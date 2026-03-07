@@ -7,6 +7,7 @@
 using namespace tifa_libs;
 vecu prandom(u32 m, u32 l) {
   rand::gen<u32> gen(0, m - 1);
+  gen.seed(0);  // for local testing
   vecu ret(l);
   flt_ (u32, i, 0, l) ret[i] = gen();
   return ret;
@@ -50,23 +51,23 @@ int main() {
 #3: 353593, 935359
 */
 
-/*
+/*sample
 3 2 5
 4 7
 =========
-7477447
+4447477
 */
 
-/*
+/*sample
 2 5 9
 1 2 3 4 5
 ===========
-1234554321
+1121314152
 */
 
-/*
+/*sample
 6 3 2
 9 3 5
 =========
-9353593
+9999993
 */

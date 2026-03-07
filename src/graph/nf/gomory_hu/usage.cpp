@@ -44,7 +44,7 @@ $1\le n\leq 500,\quad 0\le m\leq 1500,\quad 0\le Q\leq 10^5,\quad 0\leq w\leq 10
 输出共 $Q$ 行, 每行一个整数对应询问的答案
 */
 
-/*
+/*sample
 4 5
 1 2 2
 2 3 2

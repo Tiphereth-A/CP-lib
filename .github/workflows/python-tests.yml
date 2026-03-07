@@ -54,4 +54,4 @@ jobs:
         run: uv sync --frozen --group dev
 
       - name: Run all tests
-        run: uv run python -m pytest test/cplib/ --cov=libs --cov-report=term-missing -v
+        run: uv run python -m pytest test/cplib/ --cov=libs --cov-report=term-missing -vv

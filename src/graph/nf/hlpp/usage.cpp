@@ -26,7 +26,7 @@ $1\leqslant n \leqslant 1200, 1\leqslant m \leqslant 120000, 1\leqslant c \leqsl
 一个整数, 表示 $s$ 到 $t$ 的最大流
 */
 
-/*
+/*sample
 7 14 1 7
 1 2 5
 1 3 6
@@ -46,7 +46,7 @@ $1\leqslant n \leqslant 1200, 1\leqslant m \leqslant 120000, 1\leqslant c \leqsl
 14
 */
 
-/*
+/*sample
 10 16 1 2
 1 3 2
 1 4 2
