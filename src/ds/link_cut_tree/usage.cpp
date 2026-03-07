@@ -48,7 +48,7 @@ $\textrm{Query}_1$
 $\textrm{Query}_{Q - 1}$
 */
 
-/*
+/*sample
 5 7
 1 10 100 1000 10000
 0 1

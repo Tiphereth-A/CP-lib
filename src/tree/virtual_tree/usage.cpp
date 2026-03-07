@@ -57,7 +57,7 @@ $2\leq n \leq 2.5\times 10^5, 1\leq m\leq 5\times 10^5, \sum k_i \leq 5\times 10
 输出共 $m$ 行, 表示每次任务的最小代价
 */
 
-/*
+/*sample
 10
 1 5 13
 1 9 6

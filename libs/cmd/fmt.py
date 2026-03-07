@@ -28,8 +28,8 @@ def lint_all_codes(dirs: Iterable[str], code_type: str, thread_limit: int, **kwa
     logger.info(f"{len(files)} file(s) found")
 
     failed = run_command(
-        lambda x: shlex.split(
-            TYPE_LINT_COMMAND_MP[code_type].format(src=shlex.quote(x))),  files, thread_limit)
+        lambda x: (shlex.split(
+            TYPE_LINT_COMMAND_MP[code_type].format(src=shlex.quote(x))), {}),  files, thread_limit)
 
     if failed:
         logger.error(f'{len(failed)} file(s) failed:')

@@ -42,7 +42,7 @@ $1 \le n \le 5 \times10 ^5$, $1 \le m \le 2 \times 10^6$
 相同颜色的点为同一个连通分量
 */
 
-/*
+/*sample
 5 8
 1 3
 2 4
@@ -57,7 +57,7 @@ $1 \le n \le 5 \times10 ^5$, $1 \le m \le 2 \times 10^6$
 5 1 5 4 2 3
 */
 
-/*
+/*sample
 5 3
 1 2
 2 3
@@ -69,7 +69,7 @@ $1 \le n \le 5 \times10 ^5$, $1 \le m \le 2 \times 10^6$
 1 5
 */
 
-/*
+/*sample
 6 5
 1 3
 2 4
@@ -84,7 +84,7 @@ $1 \le n \le 5 \times10 ^5$, $1 \le m \le 2 \times 10^6$
 1 6
 */
 
-/*
+/*sample
 7 8
 1 3
 2 4

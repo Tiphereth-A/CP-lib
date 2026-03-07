@@ -27,6 +27,7 @@ verify = [
 ]
 
 [tool.pytest.ini_options]
+pythonpath = ["."]
 testpaths = ["test/cplib"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]

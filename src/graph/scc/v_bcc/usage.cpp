@@ -42,7 +42,7 @@ $1 \le n \le 5 \times10 ^5$, $1 \le m \le 2 \times 10^6$
 温馨提示: 请认真考虑孤立点与自环 (样例五) 的情况.
 */
 
-/*
+/*sample
 5 8
 1 3
 2 4
@@ -57,7 +57,7 @@ $1 \le n \le 5 \times10 ^5$, $1 \le m \le 2 \times 10^6$
 5 1 2 3 4 5
 */
 
-/*
+/*sample
 5 3
 1 2
 2 3
@@ -69,7 +69,7 @@ $1 \le n \le 5 \times10 ^5$, $1 \le m \le 2 \times 10^6$
 3 1 2 3
 */
 
-/*
+/*sample
 6 5
 1 3
 2 4
@@ -84,7 +84,7 @@ $1 \le n \le 5 \times10 ^5$, $1 \le m \le 2 \times 10^6$
 1 5
 */
 
-/*
+/*sample
 7 8
 1 3
 2 4
@@ -101,7 +101,7 @@ $1 \le n \le 5 \times10 ^5$, $1 \le m \le 2 \times 10^6$
 2 3 1
 */
 
-/*
+/*sample
 1 1
 1 1
 =======

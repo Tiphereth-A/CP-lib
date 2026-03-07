@@ -134,7 +134,7 @@ jobs:
         run: uv sync --frozen
       - name: Run fast test
         run: |
-          uv run python manager.py -l DEBUG test
+          uv run python manager.py -l DEBUG verify
 
   release-all:
     runs-on: ubuntu-latest
