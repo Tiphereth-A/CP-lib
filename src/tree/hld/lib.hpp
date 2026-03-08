@@ -18,7 +18,7 @@ class hld {
   tree_info_t info;
   vecu top;
 
-  CEXP hld(cT_(T) e, cT_(F) id, graph::tree CR tr, tree_info_t CR info_) NE : t(e, id), tr(tr), info{info_}, top(graph::tree_top<true>(tr, info.dfn, info.maxson)) {}
+  CEXP hld(cT_(T) e, cT_(F) id, graph::tree CR tr, tree_info_t CR info_) NE : t(e, id), tr(tr), info{info_}, top(graph::tree_top<graph::tree, true>(tr, info.dfn, info.maxson)) {}
   CEXP hld(cT_(T) e, cT_(F) id, graph::tree CR tr) NE : hld(e, id, tr, tree_info_t(tr)) {}
   CEXP hld(cT_(T) e, cT_(F) id, graph::tree CR tr, tree_info_t CR info_, spn<T> a) NE : hld(e, id, tr, info_) {
     vec<T> b(a.size());

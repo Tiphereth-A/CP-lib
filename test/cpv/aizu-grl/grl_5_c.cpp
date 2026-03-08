@@ -1,5 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_C"
 
+#include "../../../src/tree/ds/lib.hpp"
 #include "../../../src/tree/lca_hld/lib.hpp"
 
 using namespace tifa_libs;
@@ -15,8 +16,7 @@ int main() {
       tr.add_arc(i, x), tr.add_arc(x, i);
     }
   }
-  graph::lca_hld::tree_info_t info(tr);
-  graph::lca_hld lca(tr, info);
+  graph::lca_hld lca(tr);
   u32 q;
   std::cin >> q;
   for (u32 i = 0, u, v; i < q; ++i) {

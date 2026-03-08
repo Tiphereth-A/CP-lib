@@ -2,16 +2,16 @@
 
 #include "../dfs/info/lib.hpp"
 #include "../dfs/top/lib.hpp"
-#include "../ds/lib.hpp"
 
 namespace tifa_libs::graph {
 
+template <tree_c G>
 struct lca_hld {
-  using tree_info_t = graph::tree_dfs_info<graph::tree, graph::tdi_dfn, graph::tdi_maxson, graph::tdi_dep, graph::tdi_fa>;
-  tree_info_t CR info;
+  using tree_info_t = graph::tree_dfs_info<G, graph::tdi_dfn, graph::tdi_maxson, graph::tdi_dep, graph::tdi_fa>;
+  tree_info_t info;
   vecu top;
 
-  CEXP lca_hld(tree CR tr, tree_info_t CR info) : info{info} { top = tree_top(tr, info.dfn, info.maxson); }
+  CEXP lca_hld(G CR tr) : info{tr} { top = tree_top(tr, info.dfn, info.maxson); }
 
   CEXP u32 operator()(u32 u, u32 v) CNE {
     while (top[u] != top[v]) info.dep[top[u]] < info.dep[top[v]] ? v = info.fa[top[v]] : u = info.fa[top[u]];

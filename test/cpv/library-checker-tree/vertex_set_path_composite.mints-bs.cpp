@@ -35,10 +35,9 @@ int main() {
   for (auto& x : a) std::cin >> x.first >> x.second;
   tifa_libs::graph::tree tr(n);
   for (u32 i = 1, u, v; i < n; ++i) std::cin >> u >> v, tr.add_arc(u, v), tr.add_arc(v, u);
-  tifa_libs::graph::lca_hld::tree_info_t info(tr);
-  tifa_libs::graph::lca_hld lca(tr, info);
-  tifa_libs::graph::hld<T, op_ba, F, mapping, composition> hld(e(), id(), tr, info, a);
-  tifa_libs::graph::hld<T, op_ab, F, mapping, composition> hld1(e(), id(), tr, info, a);
+  tifa_libs::graph::lca_hld lca(tr);
+  tifa_libs::graph::hld<T, op_ba, F, mapping, composition> hld(e(), id(), tr, lca.info, a);
+  tifa_libs::graph::hld<T, op_ab, F, mapping, composition> hld1(e(), id(), tr, lca.info, a);
   for (u32 i = 0, opt; i < q; ++i) {
     std::cin >> opt;
     if (opt == 0) {

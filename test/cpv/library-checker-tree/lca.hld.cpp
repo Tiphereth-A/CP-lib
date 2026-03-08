@@ -11,8 +11,7 @@ int main() {
   fin_uint >> n >> q;
   graph::tree t(n);
   for (u32 i = 1, x; i < n; ++i) fin_uint >> x, t.add_arc(i, x), t.add_arc(x, i);
-  graph::lca_hld::tree_info_t info(t);
-  graph::lca_hld lca(t, info);
+  graph::lca_hld lca(t);
   for (u32 i = 0, u, v; i < q; ++i) {
     fin_uint >> u >> v;
     fout << lca(u, v) << '\n';
