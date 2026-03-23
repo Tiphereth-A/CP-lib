@@ -183,11 +183,10 @@ wheels = [
 
 [[package]]
 name = "competitive-verifier"
-version = "3.4.1"
+version = "4.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "appdirs" },
-    { name = "beautifulsoup4" },
     { name = "charset-normalizer" },
     { name = "colorama" },
     { name = "colorlog" },
@@ -196,9 +195,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/38/94/394e31f9d8b7beb5651870dd1c85815f43cb36381e3641a7bf4641913fb9/competitive_verifier-3.4.1.tar.gz", hash = "sha256:f6d5bd218781f5c325f2f74a5edc6b9d0ddef18bc3381c268f8f1448b0fdc55a", size = 152882, upload-time = "2025-11-30T09:17:06.77Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f4/f3/218d776121cf6ca1c6e8d8323aa18afdc29e03ee91be3174829d449c8b9e/competitive_verifier-4.0.0.tar.gz", hash = "sha256:b114753e274215193192c3043a452763f3a532bf0ffac08813bd5327dd81c1fe", size = 135367, upload-time = "2026-03-22T12:47:33.122Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/59/4c/75c021d57ae83eab656bd1b01577f997850907037e61d0179b4811d4460e/competitive_verifier-3.4.1-py3-none-any.whl", hash = "sha256:d752e72fe7aeb01b5b738f66c0d7da489906fa540e54f91c31be82e970b76b1a", size = 168953, upload-time = "2025-11-30T09:17:05.417Z" },
+    { url = "https://files.pythonhosted.org/packages/d2/5c/eaadd928890e7fd00530e74203add832665d096c757fa20b8c697bc8aaab/competitive_verifier-4.0.0-py3-none-any.whl", hash = "sha256:68ffca1873419e3c4f4d979877b37e391c9b6cd09ed4da45dd031a2b2029806e", size = 100958, upload-time = "2026-03-22T12:47:34.086Z" },
 ]
 
 [[package]]
