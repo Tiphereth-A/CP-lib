@@ -56,7 +56,8 @@ Optional dependency groups:
 
 - **dev**: Development tools (e.g., `pycodestyle`)
 - **latex**: LaTeX compiling dependencies (e.g., `pygments` for syntax highlighting)
-- **verify**: Verification tools (e.g., `competitive-verifier`)
+- **verify**: Verification tools (`competitive-verifier`)
+- **bundle**: Bundle codes by `oj-bundle` for submitting to OJs (`online-judge-verify-helper`)
 
 For LaTeX compiling:
 
@@ -71,8 +72,12 @@ cd CP-lib
 # Install Python dependencies
 uv sync --frozen
 
-# Install verify group for using `oj-verify` and `oj-bundle` if needed
+# Install verify group for using `oj-verify` if needed
 uv sync --frozen --group verify
+
+# Install bundle group for using `oj-bundle` if needed
+# Warning: NEVER use `oj-verify` from `online-judge-verify-helper`
+uv sync --frozen --group bundle
 
 # Verify installation
 python3 manager.py --help
