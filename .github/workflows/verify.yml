@@ -54,6 +54,8 @@ jobs:
           version: "latest"
       - name: Install competitive-verifier
         run: uv sync --frozen --group verify
+      - name: Add uv virtualenv binaries to PATH
+        run: echo "${{ github.workspace }}/.venv/bin" >> $GITHUB_PATH
 
       - name: oj-resolve
         uses: competitive-verifier/actions/oj-resolve@v2
@@ -113,6 +115,8 @@ jobs:
           version: "latest"
       - name: Install competitive-verifier
         run: uv sync --frozen --group verify
+      - name: Add uv virtualenv binaries to PATH
+        run: echo "${{ github.workspace }}/.venv/bin" >> $GITHUB_PATH
 
       - name: Restore cached results
         if: ${{ !inputs.ignore_prev_result }}
@@ -216,6 +220,8 @@ jobs:
           version: "latest"
       - name: Install competitive-verifier
         run: uv sync --frozen --group verify
+      - name: Add uv virtualenv binaries to PATH
+        run: echo "${{ github.workspace }}/.venv/bin" >> $GITHUB_PATH
 
       - name: Download verify_files.json and all artifacts
         id: all-artifacts
