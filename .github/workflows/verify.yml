@@ -45,11 +45,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-
-      - name: Set up competitive-verifier
-        uses: competitive-verifier/actions/setup@v2
+      - uses: actions/setup-python@v6
         with:
-          cache-pip: true
+          python-version: '3.12'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+      - name: Install competitive-verifier
+        run: uv sync --frozen --group verify
 
       - name: oj-resolve
         uses: competitive-verifier/actions/oj-resolve@v2
@@ -100,6 +104,15 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 2147483647
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+      - name: Install competitive-verifier
+        run: uv sync --frozen --group verify
 
       - name: Restore cached results
         if: ${{ !inputs.ignore_prev_result }}
@@ -113,11 +126,6 @@ jobs:
 
       - name: Download verify_files.json
         uses: competitive-verifier/actions/download-verify-artifact@v2
-
-      - name: Set up competitive-verifier
-        uses: competitive-verifier/actions/setup@v2
-        with:
-          cache-pip: true
 
       - name: Get storage information
         run: |
@@ -199,7 +207,16 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 2147483647
-  
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+      - name: Install competitive-verifier
+        run: uv sync --frozen --group verify
+
       - name: Download verify_files.json and all artifacts
         id: all-artifacts
         uses: competitive-verifier/actions/download-verify-artifact@v2
@@ -219,11 +236,6 @@ jobs:
           fi
         env:
           SRCDIR: .artifacts/Bundled-${{ runner.os }}
-  
-      - name: Set up competitive-verifier
-        uses: competitive-verifier/actions/setup@v2
-        with:
-          cache-pip: true
 
       - name: Merge results
         uses: competitive-verifier/actions/merge-result@v2
