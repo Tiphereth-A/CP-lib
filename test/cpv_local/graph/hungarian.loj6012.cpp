@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/loj/6012
 
 #include "../../../src/graph/nf/hungarian/lib.hpp"

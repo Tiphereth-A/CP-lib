@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/uva/11210
 
 #include "../../../src/game/mahjong/parser/lib.hpp"

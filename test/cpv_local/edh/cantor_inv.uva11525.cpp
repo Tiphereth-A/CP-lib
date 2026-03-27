@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/uva/11525
 
 #include "../../../src/edh/cantor/inv/lib.hpp"

@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/codeforces/70D
 
 #include "../../../src/geo2d/ds/dcvh/lib.hpp"

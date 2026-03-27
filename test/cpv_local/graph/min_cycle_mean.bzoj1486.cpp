@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/1486
 
 #include "../../../src/graph/min_cycle_mean/lib.hpp"

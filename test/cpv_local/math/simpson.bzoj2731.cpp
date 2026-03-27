@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/2731
 
 #include "../../../src/edh/discretization/lib.hpp"

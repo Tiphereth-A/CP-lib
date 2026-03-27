@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/uva/190
 
 #include "../../../src/geo2d/tcenter/o/lib.hpp"

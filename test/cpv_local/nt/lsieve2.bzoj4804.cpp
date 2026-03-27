@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/4804
 
 #include "../../../src/nt/lsieve/impl2/lib.hpp"

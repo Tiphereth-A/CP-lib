@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/1660
 
 #include "../../../src/ds/mono_stack/lib.hpp"

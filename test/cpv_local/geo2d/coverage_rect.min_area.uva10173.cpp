@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/uva/10173
 
 #include "../../../src/geo2d/rotcal/coverage_rect/lib.hpp"

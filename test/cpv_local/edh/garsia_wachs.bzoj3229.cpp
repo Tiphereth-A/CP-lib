@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/3229
 
 #include "../../../src/edh/garsia_wachs/lib.hpp"

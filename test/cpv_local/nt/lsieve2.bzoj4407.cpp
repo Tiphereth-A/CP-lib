@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/4407
 
 #include "../../../src/math/ds/mint/lib.hpp"

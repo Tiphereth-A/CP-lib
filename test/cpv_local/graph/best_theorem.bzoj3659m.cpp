@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/3659m
 
 #include "../../../src/fast/rsort32/lib.hpp"

@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/csp/2019s
 
 #include "../../../src/edh/gray_code/lib.hpp"

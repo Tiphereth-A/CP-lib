@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/1038
 
 #include "../../../src/geo2d/ins/ll/lib.hpp"

@@ -1,4 +1,3 @@
-// competitive-verifier: STANDALONE
 // competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/4695
 
 #include "../../../src/ds/segtree/segbeats_ca_ms/lib.hpp"
