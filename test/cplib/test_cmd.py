@@ -62,7 +62,8 @@ class TestLibsInit:
             pass
         register_all_commands(group)
         cmd_names = list(group.commands.keys())
-        assert set(cmd_names) == {'doc', 'new', 'verify', 'fmt', 'meta', 'pack'}
+        assert set(cmd_names) == {'doc', 'new', 'verify',
+                                  'fmt', 'meta', 'pack', 'patch-cpvdoc'}
 
 
 # ------------------------------------------------------------------ doc.py --
@@ -349,7 +350,7 @@ class TestVerifyCommands:
         os.makedirs('temp', exist_ok=True)
         with patch('libs.cmd.verify.run_command', return_value=[]):
             verify_codes(src, thread_limit=2,
-                                time_limit=0.5, temp_path='temp')
+                         time_limit=0.5, temp_path='temp')
 
     def test_verify_codes_cmd_function_exercises(self, tmp_path, monkeypatch):
         # Covers cmd/verify.py lines 28-30: _cmd function body is exercised
@@ -364,7 +365,7 @@ class TestVerifyCommands:
         mock_result.stderr = ''
         with patch('subprocess.run', return_value=mock_result):
             verify_codes(src, thread_limit=1,
-                                time_limit=0.5, temp_path='temp')
+                         time_limit=0.5, temp_path='temp')
 
     def test_verify_codes_logs_failures(self, tmp_path, caplog, monkeypatch):
         import logging
@@ -375,7 +376,7 @@ class TestVerifyCommands:
             with caplog.at_level(logging.ERROR):
                 with pytest.raises(RuntimeError):
                     verify_codes(src, thread_limit=1,
-                                        time_limit=0.5, temp_path='temp')
+                                 time_limit=0.5, temp_path='temp')
         assert caplog.messages == [
             '1 file(s) failed in compilation:\n    usage.cpp']
 
@@ -408,7 +409,8 @@ class TestVerifyCommands:
             return results
 
         with patch('libs.cmd.verify.run_command', side_effect=fake_run_command):
-            verify_codes('src', thread_limit=1, time_limit=0.5, temp_path='temp')
+            verify_codes('src', thread_limit=1,
+                         time_limit=0.5, temp_path='temp')
         assert call_count[0] == 2  # compile + run
 
     def test_verify_codes_run_failed_logged(self, tmp_path, caplog, monkeypatch):
@@ -443,7 +445,8 @@ class TestVerifyCommands:
         with patch('libs.cmd.verify.run_command', side_effect=fake_run_command):
             with caplog.at_level(logging.ERROR):
                 with pytest.raises(RuntimeError):
-                    verify_codes('src', thread_limit=1, time_limit=0.5, temp_path='temp')
+                    verify_codes('src', thread_limit=1,
+                                 time_limit=0.5, temp_path='temp')
         error_msgs = [m for m in caplog.messages if 'failed in execution' in m]
         assert len(error_msgs) == 1
 
@@ -479,7 +482,8 @@ class TestVerifyCommands:
 
         with patch('libs.cmd.verify.run_command', side_effect=fake_run_command):
             with pytest.raises(RuntimeError):
-                verify_codes('src', thread_limit=1, time_limit=0.5, temp_path='temp')
+                verify_codes('src', thread_limit=1,
+                             time_limit=0.5, temp_path='temp')
 
     def test_verify_codes_post_wrong_answer(self, tmp_path, monkeypatch):
         """Covers verify.py lines 66-67: _post raises CalledProcessError on wrong answer."""
@@ -526,7 +530,8 @@ class TestVerifyCommands:
 
         with patch('libs.cmd.verify.run_command', side_effect=fake_run_command):
             with pytest.raises(RuntimeError):
-                verify_codes('src', thread_limit=1, time_limit=0.5, temp_path='temp')
+                verify_codes('src', thread_limit=1,
+                             time_limit=0.5, temp_path='temp')
 
     def test_verify_cli_registered(self, cli):
         assert 'verify' in cli.commands

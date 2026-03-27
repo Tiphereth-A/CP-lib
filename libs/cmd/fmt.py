@@ -1,8 +1,7 @@
-from collections.abc import Iterable
 import shlex
-
 import click
 
+from collections.abc import Iterable
 from libs.content.section import _TYPE_EXT
 from libs.util.run_command import run_command
 from libs.decorator import with_logger, with_timer

@@ -260,6 +260,9 @@ jobs:
           path: ${{github.workspace}}/merged-result.json
           key: ${{ runner.os }}-verify-result-${{ github.sha }}
 
+      - name: Patch pages doc
+        run: |
+          uv run python manager.py -l DEBUG patch-cpvdoc -s src -j _jekyll
       - name: Upload doc artifact
         uses: actions/upload-artifact@v7
         with:

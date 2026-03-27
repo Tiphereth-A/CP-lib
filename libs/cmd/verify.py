@@ -1,12 +1,11 @@
-from queue import Queue
 import os
 import re
 import shlex
 import subprocess
 import sys
-
 import click
 
+from queue import Queue
 from libs.util.get_src_files import get_src_files
 from libs.util.run_command import run_command
 from libs.decorator import with_logger, with_timer
@@ -39,10 +38,8 @@ def verify_codes(src: str, thread_limit: int, time_limit: float, temp_path: str,
             _samples = [(m.group(1), m.group(2))
                         for m in RE_SAMPLE.finditer(f.read())]
 
-        _out_file = os.path.join(_dir, os.path.basename(
-            x).replace('.', '_').replace(' ', '-'))
-        if sys.platform == 'win32':
-            _out_file += '.exe'
+        _out_file = os.path.join(_dir, os.path.basename(x).replace(
+            '.', '_').replace(' ', '-'))+{'win32': '.exe'}.get(sys.platform, '')
         out_src_samples.put((_out_file, x, _samples))
 
         return (shlex.split(
