@@ -14,6 +14,6 @@ int main() {
   for (u32 i = 1; i <= m; ++i) {
     cin >> op >> u;
     if (op == 'A') st.push_back((u % d + t + d) % d);
-    else cout << st.query(u32(st.size() - u)) << '\n';
+    else cout << (t = st.query(u32(st.size() - u))) << '\n';
   }
 }

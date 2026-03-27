@@ -1,19 +1,18 @@
 <h3 align="center">CP-lib</h3>
-  <p align="center">
-    My code library for competitive programming.
-    <br/>
-    powered by <a href="https://github.com/competitive-verifier/competitive-verifier">competitive-verifier/competitive-verifier</a> & <a href="https://github.com/Tiphereth-A/TINplate">Tiphereth-A/TINplate</a>.
-    <br/>
-    <br/>
-    <a href="https://cplib.tifa-233.com/#library-files">Documentation Site</a>
-    ·
-    <a href="https://github.com/Tiphereth-A/CP-lib/issues">Report Bug & Request Feature</a>
-    ·
-    <a href="https://github.com/Tiphereth-A/CP-lib/releases/latest">Latest Release</a>
-    ·
-    <a href="https://github.com/Tiphereth-A/CP-lib/blob/master/CITATION.bib">Citation File</a>
-  </p>
-</div>
+<p align="center">
+  My code library for competitive programming.
+  <br/>
+  powered by <a href="https://github.com/competitive-verifier/competitive-verifier">competitive-verifier/competitive-verifier</a> & <a href="https://github.com/Tiphereth-A/TINplate">Tiphereth-A/TINplate</a>.
+  <br/>
+  <br/>
+  <a href="https://cplib.tifa-233.com/#library-files">Documentation Site</a>
+  ·
+  <a href="https://github.com/Tiphereth-A/CP-lib/issues">Report Bug & Request Feature</a>
+  ·
+  <a href="https://github.com/Tiphereth-A/CP-lib/releases/latest">Latest Release</a>
+  ·
+  <a href="https://github.com/Tiphereth-A/CP-lib/blob/master/CITATION.bib">Citation File</a>
+</p>
 
 ![GitHub license](https://img.shields.io/github/license/Tiphereth-A/CP-lib)
 ![Standard](https://img.shields.io/static/v1?label=standard&message=C%2B%2B20+with+O2&color=green&logo=cplusplus)

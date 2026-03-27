@@ -6,8 +6,8 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 int main() {
-  u32 n, m;
-  cin >> n >> m;
+  u32 m;
+  cin >> m;
   ds::rbtree<int> bt;
 
   for (u32 i = 0, opt; i < m; ++i) {

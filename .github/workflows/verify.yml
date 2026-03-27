@@ -63,11 +63,10 @@ jobs:
           output-path: verify_files.json
           include: |
                 src/
-                test/
+                test/cpv
+                test/cpv_local
           exclude: |
-                src/_cpv_doc/
-                test/cpv_meta/
-                test/cplib/
+                src/_*
           config: .verify-helper/config.toml
       - name: parse-doxygen
         uses: competitive-verifier/actions/parse-doxygen@v2
@@ -261,10 +260,6 @@ jobs:
           path: ${{github.workspace}}/merged-result.json
           key: ${{ runner.os }}-verify-result-${{ github.sha }}
 
-      - name: Overwrite Docs
-        shell: bash
-        run: |
-          cp -r src/_cpv_doc/_jekyll/ .
       - name: Upload doc artifact
         uses: actions/upload-artifact@v7
         with:
