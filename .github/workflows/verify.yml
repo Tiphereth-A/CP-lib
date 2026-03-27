@@ -265,6 +265,12 @@ jobs:
         shell: bash
         run: |
           cp -r src/_cpv_doc/_jekyll/ .
+      - name: Upload doc artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: Page-source
+          path: _jekyll
+          retention-days: 1
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
