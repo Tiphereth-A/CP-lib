@@ -5,7 +5,7 @@
 #include "../../lsieve/func/lib.hpp"
 #include "../../lsieve/impl1/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP u64 sqrfree_cnt(u64 n, veci mu) NE {
   retif_((n <= 3) [[unlikely]], n);
@@ -33,4 +33,4 @@ CEXP u64 sqrfree_cnt(u64 n) NE {
   return sqrfree_cnt(n, lsieve<ls_mu>(D + 1).mu);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -1,8 +1,7 @@
 // competitive-verifier: STANDALONE
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
-#include "../../../src/math/mint/ms64/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms64/lib.hpp"
 #include "../../../src/math/qpow/basic/lib.hpp"
 #include "../../../src/nt/proot/gint/lib.hpp"
 #include "../../../src/nt/residue/jacobi/lib.hpp"
@@ -10,24 +9,24 @@
 
 using namespace tifa_libs;
 template <u32 MOD>
-using mint = math::mint<math::mint_ms, MOD>;
+using mint = mint_ms<MOD>;
 template <u64 MOD>
-using mint64 = math::mint<math::mint_ms64, MOD>;
+using mint64 = mint_ms64<MOD>;
 
 template <class mint, i64 M>
 void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> CR pf_v) {
   mint mint_M = mint{M};
-  using gint = math::gint<mint, M>;
+  using gint_t = gint<mint, M>;
   if (mint_M.val() <= 1) return;
-  timer_(gint g = math::proot_gint<mint, M>());
+  timer_(gint_t g = proot_gint<mint, M>());
   check_bool(g.real() == 1, check_param(g));
-  gint g_qpow = math::qpow(g, mod + 1);
+  gint_t g_qpow = qpow(g, mod + 1);
 
-  if (~math::jacobi_sym(mint_M.val(), mod)) {
-    gint g_mp1{1 + g.imag() * g.imag() * mint_M, g.imag() * 2};
+  if (~jacobi_sym(mint_M.val(), mod)) {
+    gint_t g_mp1{1 + g.imag() * g.imag() * mint_M, g.imag() * 2};
     check_bool(g_qpow == g_mp1, check_param(g), check_param(g_qpow), check_param(g_mp1), check_param(mod), check_param(pf_v));
   } else {
-    gint g_mp1{1 - g.imag() * g.imag() * mint_M, 0};
+    gint_t g_mp1{1 - g.imag() * g.imag() * mint_M, 0};
     check_bool(g_qpow == g_mp1, check_param(g), check_param(g_qpow), check_param(g_mp1), check_param(mod), check_param(pf_v));
   }
 }
@@ -35,7 +34,7 @@ void __single_test(decltype(mint::mod()) mod, vec<decltype(mint::mod())> CR pf_v
 template <class mint>
 void test_proot_gint() {
   auto mod = mint::mod();
-  auto pf = math::pfactors(mod - 1);
+  auto pf = pfactors(mod - 1);
   vec<decltype(mod)> pf_v;
   pf_v.reserve(pf.size());
   for (auto k : pf) pf_v.push_back((decltype(mod))k);

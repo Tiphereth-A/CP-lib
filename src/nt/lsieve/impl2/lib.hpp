@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 class lsieve2 {
   vecptu pr;
@@ -44,4 +44,4 @@ class lsieve2 {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

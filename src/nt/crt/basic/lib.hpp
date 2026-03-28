@@ -3,7 +3,7 @@
 #include "../../../math/safe_mod/lib.hpp"
 #include "../../gl/inv_gcd/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace crt_impl_ {
 CEXP auto crt2(i64 a0, u64 m0, i64 a1, u64 m1) NE {
   std::optional<pttii> ret;
@@ -35,4 +35,4 @@ CEXP auto crt(spnuu a, spnuu m) NE {
   return crt(a_, m);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

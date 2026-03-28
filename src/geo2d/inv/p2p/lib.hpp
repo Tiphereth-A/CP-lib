@@ -2,7 +2,7 @@
 
 #include "../../ds/c/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // geometry inverse of a point
 // @param rc reference circle
@@ -19,4 +19,4 @@ CEXP point<FP> inv_P2P(point<FP> CR ro, point<FP> CR p) NE {
   return ro + v / v.norm2();
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

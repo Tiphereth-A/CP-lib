@@ -2,7 +2,7 @@
 
 #include "../../ds/bmat/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <usz I, usz J, usz K>
 CEXP bitmat<I, K> mul_bmat(bitmat<I, J> CR l, bitmat<K, J> CR trans_r) NE {
@@ -12,4 +12,4 @@ CEXP bitmat<I, K> mul_bmat(bitmat<I, J> CR l, bitmat<K, J> CR trans_r) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

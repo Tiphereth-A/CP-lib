@@ -4,7 +4,7 @@
 #include "../is_in_middle_p/lib.hpp"
 #include "../is_on_same_l/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP, bool contain_endpoints = true>
 CEXP bool is_on_S(line<FP> CR s, point<FP> CR p) NE {
@@ -12,4 +12,4 @@ CEXP bool is_on_S(line<FP> CR s, point<FP> CR p) NE {
   else return s.toleft(p) == 0 && sgn((p - s.l) * (s.l - s.r)) * sgn((p - s.r) * (s.l - s.r)) < 0;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

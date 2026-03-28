@@ -3,7 +3,7 @@
 #include "../../../comb/binom/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // @param f $f(0),\dots,f(k-1)$, $k\leq n$
 // @return $\sum_{i=0}^{\infty}a^if(i)$
@@ -25,4 +25,4 @@ CEXP mint series_ipaf(vec<mint> CR f, cT_(mint) a) NE {
   return series_ipaf(f, a, binom<mint, fact>((u32)f.size() + 1));
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

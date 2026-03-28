@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 template <u32 SZ = 26, u32 BASE = u32('a')>
 class aho_corasick {
@@ -45,4 +45,4 @@ class aho_corasick {
     getfail();
   }
 };
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

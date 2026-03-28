@@ -2,7 +2,7 @@
 
 #include "../../math/qpow/basic/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // consider line s: y = (p * x + r) / q, 0 < x <= l
 // result will add a when s cross with horizontal line
@@ -23,4 +23,4 @@ CEXP TIFA exeuclid(i64 p, i64 q, i64 r, i64 l, TIFA CR a, TIFA CR b) NE {
   return qpow(a, u64(r / q), TIFA{}) * f(f, p, q, r % q, l, a, b);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../ds/cvh/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 CEXP cvh<FP> ins_PohP(cT_(cvh<FP>) poly, line<FP> CR l) NE {
@@ -17,4 +17,4 @@ CEXP cvh<FP> ins_PohP(cT_(cvh<FP>) poly, line<FP> CR l) NE {
   return cvh<FP>(vs, true);
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

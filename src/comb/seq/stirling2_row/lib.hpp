@@ -3,7 +3,7 @@
 #include "../ifact/lib.hpp"
 #include "../pows/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // stirling2[i] = {n \\brace i}, i=0,1,...,n
 template <class poly>
@@ -24,4 +24,4 @@ CEXP poly gen_stirling2_row(u32 n) NE {
   return gen_stirling2_row<poly>(n, gen_pows(n + 1, n, mint::mod()), gen_ifact(n + 1, mint::mod()));
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -9,21 +9,20 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/fps/ds/ntt3/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, MOD>;
+using mint = mint_ms<MOD>;
 using namespace tifa_libs;
-using mint_p3ntt1 = math::mint<math::mint_ms, 167772161>;
-using mint_p3ntt2 = math::mint<math::mint_ms, 469762049>;
-using mint_p3ntt3 = math::mint<math::mint_ms, 754974721>;
-using poly = math::poly3ntt<mint, mint_p3ntt1, mint_p3ntt2, mint_p3ntt3>;
+using mint_p3ntt1 = mint_ms<167772161>;
+using mint_p3ntt2 = mint_ms<469762049>;
+using mint_p3ntt3 = mint_ms<754974721>;
+using poly = poly3ntt<mint, mint_p3ntt1, mint_p3ntt2, mint_p3ntt3>;
 
 int main() {
   u32 n, k;
   tifa_libs::fin_uint >> n >> k;
-  auto ans = tifa_libs::math::gen_stirling2_col<poly>(n, k);
+  auto ans = tifa_libs::gen_stirling2_col<poly>(n, k);
   flt_ (u32, i, k, n + 1) tifa_libs::fout << ans[i] << " \n"[i == n];
   return 0;
 }

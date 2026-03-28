@@ -9,25 +9,24 @@ using namespace tifa_libs;
 CEXP u32 MOD = 1000000007;
 
 #include "../../../src/conv/add/ntt3/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/bs/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/bs/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bs, MOD>;
+using mint = mint_bs<MOD>;
 using namespace tifa_libs;
-using mint_3ntt0 = math::mint<math::mint_ms, 167772161>;
-using mint_3ntt1 = math::mint<math::mint_ms, 469762049>;
-using mint_3ntt2 = math::mint<math::mint_ms, 754974721>;
-using ntt_3ntt0_t = math::ntt<mint_3ntt0>;
-using ntt_3ntt1_t = math::ntt<mint_3ntt1>;
-using ntt_3ntt2_t = math::ntt<mint_3ntt2>;
+using mint_3ntt0 = mint_ms<167772161>;
+using mint_3ntt1 = mint_ms<469762049>;
+using mint_3ntt2 = mint_ms<754974721>;
+using ntt_3ntt0_t = ntt<mint_3ntt0>;
+using ntt_3ntt1_t = ntt<mint_3ntt1>;
+using ntt_3ntt2_t = ntt<mint_3ntt2>;
 using vec_t = vec<mint>;
 auto conv_func(vec_t CR a, vec_t CR b) {
   ntt_3ntt0_t ntt0;
   ntt_3ntt1_t ntt1;
   ntt_3ntt2_t ntt2;
-  return math::conv_3ntt(ntt0, ntt1, ntt2, a, b);
+  return conv_3ntt(ntt0, ntt1, ntt2, a, b);
 }
 
 int main() {

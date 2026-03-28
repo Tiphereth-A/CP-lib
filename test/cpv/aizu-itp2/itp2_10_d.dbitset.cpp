@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  vec<ds::dbitset> masks(n, ds::dbitset(64));
+  vec<dbitset> masks(n, dbitset(64));
   for (auto& m : masks) {
     u32 k;
     std::cin >> k;
@@ -18,7 +18,7 @@ int main() {
   }
   u32 q;
   std::cin >> q;
-  ds::dbitset bs(64);
+  dbitset bs(64);
   while (q--) {
     u32 op, i;
     std::cin >> op >> i;

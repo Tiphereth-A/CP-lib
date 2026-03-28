@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T>
 class odt {
@@ -67,4 +67,4 @@ class odt {
   CEXP auto run_no_split(u32 l, u32 r, F f) CNE { return f(find(l), find(r)); }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

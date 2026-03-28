@@ -2,7 +2,7 @@
 
 #include "../../lfsr_bm/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class Mat, class Gn, class Is0>
 requires requires(Is0 is0, TPN Mat::val_t t) {
@@ -24,4 +24,4 @@ auto minpoly(Mat CR mat, Gn& gen, Is0&& is0) NE {
   return res;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

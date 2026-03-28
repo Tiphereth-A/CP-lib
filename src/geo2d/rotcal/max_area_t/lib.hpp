@@ -3,7 +3,7 @@
 #include "../../ds/cvh/lib.hpp"
 #include "../../ds/t/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // Triangle inside with max area
 template <class FP>
@@ -32,4 +32,4 @@ CEXP triangle<FP> max_area_T(cT_(cvh<FP>) ch) NE {
   return triangle{ch.vs[is], ch.vs[js], ch.vs[ks]};
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

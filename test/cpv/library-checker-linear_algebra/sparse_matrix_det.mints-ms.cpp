@@ -3,17 +3,16 @@
 
 #include "../../../src/lalg/ds/matsp/lib.hpp"
 #include "../../../src/lalg/mat/det_rd/lib.hpp"
-#include "../../../src/rand/gen/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, MOD>;
-using mat = tifa_libs::math::matsp<mint>;
+using mint = mint_ms<MOD>;
+using mat = tifa_libs::matsp<mint>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -25,7 +24,7 @@ int main() {
     a(x, y) = z;
   }
   auto is0 = [](cT_(mint) x) { return x.val() == 0; };
-  tifa_libs::rand::gen<u32> gen(1, mint::mod() - 1);
-  std::cout << tifa_libs::math::det_rd(a, gen, is0) << '\n';
+  tifa_libs::rand_gen<u32> gen(1, mint::mod() - 1);
+  std::cout << tifa_libs::det_rd(a, gen, is0) << '\n';
   return 0;
 }

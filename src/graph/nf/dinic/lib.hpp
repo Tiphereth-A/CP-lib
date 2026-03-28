@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 template <class T = u32>
 class dinic {
@@ -58,4 +58,4 @@ class dinic {
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

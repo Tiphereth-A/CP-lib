@@ -1,5 +1,5 @@
 - ds: 定义
-- make_alistr: 建邻接表反图
+- make_graphr: 建反图
 - mst: 最小生成树及变种
 - sp: 最短路
 - path: 求两点间的一条简单路径

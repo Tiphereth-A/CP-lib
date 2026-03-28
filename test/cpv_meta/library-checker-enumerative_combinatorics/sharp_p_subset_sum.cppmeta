@@ -17,7 +17,7 @@ int main() {
   tifa_libs::fin_uint >> n >> t;
   vecu s(n);
   tifa_libs::fin_uint >> s;
-  auto v = tifa_libs::math::ssts_pim_cnt<poly>(s, t);
+  auto v = tifa_libs::ssts_pim_cnt<poly>(s, t);
   flt_ (u32, i, 1, t + 1) tifa_libs::fout << v[i] << " \n"[i == t];
   return 0;
 }

@@ -11,7 +11,7 @@ int main() {
   while (t--) {
     u64 x, y, m;
     fin_uint >> x >> y >> m;
-    auto res = math::exbsgs(x, y, m);
+    auto res = exbsgs(x, y, m);
     fout << (res ? (i64)res.value() : -1) << '\n';
   }
   return 0;

@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  graph::blossomw<i64> bl(n);
+  blossomw<i64> bl(n);
   for (u32 i = 0, u, v, w; i < m; ++i) {
     std::cin >> u >> v >> w;
     bl.add_edge(u + 1, v + 1, w);

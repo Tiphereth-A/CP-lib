@@ -10,7 +10,7 @@ int main() {
   std::cin >> n >> m;
   veci a(n);
   for (auto& x : a) std::cin >> x;
-  ds::segbeats_ca_msh<i32, i64> seg(a);
+  segbeats_ca_msh<i32, i64> seg(a);
   for (u32 i = 0, opt, l, r; i < m; ++i) {
     std::cin >> opt >> l >> r, --l, --r;
     if (opt <= 2) {

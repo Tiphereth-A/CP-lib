@@ -4,14 +4,14 @@
 #include "../../../src/io/container/lib.hpp"
 
 using namespace tifa_libs;
-using point = geo::point<i64>;
+using point_t = point<i64>;
 
 void solve() {
   u32 n;
   std::cin >> n;
-  vec<point> vp(n);
+  vec<point_t> vp(n);
   std::cin >> vp;
-  auto [l, r] = geo::min_dis_Ps(vp);
+  auto [l, r] = min_dis_Ps(vp);
   std::cout << l << ' ' << r << '\n';
 }
 

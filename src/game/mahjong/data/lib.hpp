@@ -2,7 +2,7 @@
 
 #include "../../../util/traits/others/lib.hpp"
 
-namespace tifa_libs::game {
+namespace tifa_libs {
 
 struct mahjong_card {
   static CEXP strn valid_rank = "123456789";
@@ -63,4 +63,4 @@ CEXP mahjong_card operator""_mjz(unsigned long long x) NE { return {(u32)x, 'Z'}
 CEXP mahjong_card operator""_mjb(unsigned long long x) NE { return {(u32)x, 'B'}; }
 }  // namespace literals
 
-}  // namespace tifa_libs::game
+}  // namespace tifa_libs

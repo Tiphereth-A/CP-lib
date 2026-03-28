@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 template <common_range T = strn>
 class suffix_array {
@@ -83,4 +83,4 @@ class suffix_array {
   CEXP u32 frequency(T t) CNE { return upper_bound(t) - lower_bound(t); }
 };
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

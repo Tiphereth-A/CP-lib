@@ -2,7 +2,7 @@
 
 #include "../../util/util/lib.hpp"
 
-namespace tifa_libs::bit {
+namespace tifa_libs {
 
 template <class T>
 CEXP int cntlsb(T x) NE {
@@ -13,4 +13,4 @@ CEXP int cntlsb(T x) NE {
   return __builtin_clrsbll(x);
 }
 
-}  // namespace tifa_libs::bit
+}  // namespace tifa_libs

@@ -4,7 +4,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <ntt_c NTT_t, std::same_as<TPN NTT_t::data_t> mint>
 CEXP void ntt_doubling(NTT_t CR ntt, vec<mint>& f, u32 n = 0) NE {
@@ -18,4 +18,4 @@ CEXP void ntt_doubling(NTT_t CR ntt, vec<mint>& f, u32 n = 0) NE {
   ntt.dif(g), copy(g, begin(f) + n);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

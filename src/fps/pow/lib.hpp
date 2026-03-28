@@ -6,19 +6,20 @@
 #include "../shl/lib.hpp"
 #include "../shr/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto pow_fps(poly<ccore, mint, args...> CR p, u64 y, u32 n = 0) NE {
+template <poly_c poly_t>
+CEXP auto pow_fps(poly_t CR p, u64 y, u32 n = 0) NE {
+  using mint = TPN poly_t::val_t;
   if (!n) n = (u32)p.size();
   if (y == 0) {
-    poly<ccore, mint, args...> _(n);
+    poly_t _(n);
     if (n) _[0] = 1;
     return _;
   }
   if (y == 1) return p;
   u32 l0 = u32(find_if(p, [](cT_(mint) x) NE { return x != 0; }) - begin(p));
-  if ((u128)l0 * y >= n) return poly<ccore, mint, args...>(n);
+  if ((u128)l0 * y >= n) return poly_t(n);
   if (l0) {
     auto _ = shr_fps(p, l0), g = pow_fps(_, y, u32(n - l0 * y));
     g.resize(n);
@@ -31,4 +32,4 @@ CEXP auto pow_fps(poly<ccore, mint, args...> CR p, u64 y, u32 n = 0) NE {
   return _.pre(n);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

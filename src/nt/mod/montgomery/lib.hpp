@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <u32 MOD>
 struct montgomery {
@@ -37,4 +37,4 @@ struct montgomery<0> {
   CEXP u32 tsf(u32 x) CNE { return reduce(u64(x % MOD_ODD) * R2) << OFFSET | (x & MASK); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

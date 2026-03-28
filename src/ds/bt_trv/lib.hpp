@@ -2,7 +2,7 @@
 
 #include "../../util/traits/ds/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <tp2_ds_c pointer, class F>
 requires requires(pointer p, F&& f) { f(p); }
@@ -52,4 +52,4 @@ CEXP auto leftmost(pointer p) NE { return most(p, 0); }
 template <tp2_ds_c pointer>
 CEXP auto rightmost(pointer p) NE { return most(p, 1); }
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

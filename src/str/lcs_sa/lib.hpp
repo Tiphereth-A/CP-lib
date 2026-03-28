@@ -2,11 +2,11 @@
 
 #include "../suffix_array/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 // @return {sl, sr, tl, tr} s.t. s[sl..sr-1] == t[tl..tr-1]
 CEXP pt4u lcs_sa(strnv s, strnv t) NE {
-  tifa_libs::str::suffix_array sa(" "s + s.data() + "#" + t.data());
+  tifa_libs::suffix_array sa(" "s + s.data() + "#" + t.data());
   sa.get_height();
   pt3u ans{};
   flt_ (u32, i, 2, (u32)sa.sa.size()) {
@@ -19,4 +19,4 @@ CEXP pt4u lcs_sa(strnv s, strnv t) NE {
   return {0, 0, 0, 0};
 }
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

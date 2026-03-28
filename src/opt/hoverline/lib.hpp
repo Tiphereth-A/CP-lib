@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 // @return {l, r} s.t. $\forall x\in[l_i,r_i],~a_x\geq a_i$, $l_i$ leftmost, $r_i$ rightmost
 template <class T, class C = std::less<T>>
@@ -18,4 +18,4 @@ CEXP ptt<vecu> hoverline(vec<T> CR a, C&& comp = C{}) NE {
   return {l, r};
 }
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

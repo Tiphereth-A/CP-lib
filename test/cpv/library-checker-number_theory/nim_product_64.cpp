@@ -9,7 +9,7 @@ int main() {
   std::cin >> t;
   for (u64 i = 0, a, b; i < t; ++i) {
     std::cin >> a >> b;
-    std::cout << math::nimprod64(a, b) << '\n';
+    std::cout << nimprod64(a, b) << '\n';
   }
   return 0;
 }

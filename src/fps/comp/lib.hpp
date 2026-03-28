@@ -2,13 +2,13 @@
 
 #include "../inv/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // @return f(g(x))
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto comp_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> g) NE {
-  using poly_t = poly<ccore, mint, args...>;
-  ccore<mint, args...> core2, core4;
+template <poly_c poly_t>
+CEXP auto comp_fps(poly_t f, poly_t g) NE {
+  using mint = TPN poly_t::val_t;
+  TPN poly_t::ccore_t core2, core4;
   auto dfs = [&](auto&& dfs, vec<mint> b, u32 n, u32 h, u32 k) NE -> vec<mint> {
     if (!n) {
       poly_t _{begin(b), begin(b) + k};
@@ -47,4 +47,4 @@ CEXP auto comp_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> g) N
   return a;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

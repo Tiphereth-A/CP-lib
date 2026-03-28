@@ -4,7 +4,7 @@
 #include "../../ds/po/lib.hpp"
 #include "../../ins/ll/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 struct cvh : public polygon<FP> {
@@ -104,4 +104,4 @@ struct cvh : public polygon<FP> {
   }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

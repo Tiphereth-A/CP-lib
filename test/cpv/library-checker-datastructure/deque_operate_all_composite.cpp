@@ -1,11 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/deque_operate_all_composite"
 
 #include "../../../src/ds/dq/w/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, 998244353>;
+using mint = mint_ms<998244353>;
 using T = ptt<mint>;
 T e() { return T{1, 0}; }
 T op(T b, T a) { return T{a.first * b.first, a.first * b.second + a.second}; }
@@ -13,7 +12,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;
-  ds::deque_with_w<T, e, op> deq;
+  deque_with_w<T, e, op> deq;
   for (u32 i = 0, opt; i < n; ++i) {
     std::cin >> opt;
     mint a, b;

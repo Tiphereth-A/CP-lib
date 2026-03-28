@@ -3,7 +3,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/func_fp/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 struct basis_r {
@@ -75,4 +75,4 @@ struct basis_r {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

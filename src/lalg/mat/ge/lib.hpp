@@ -3,7 +3,7 @@
 #include "../../../util/traits/math/lib.hpp"
 #include "../../ds/mat/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T, class Is0, bool euclid = int_c<T>>
 requires(!euclid || !std::is_floating_point_v<T>) && requires(Is0 is0, T t) {
@@ -55,4 +55,4 @@ CEXP i32 ge_mat(matrix<T>& mat, Is0 is0, bool clear_u = true) NE {
   retif_((neg), -((i32)rk), (i32)rk);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

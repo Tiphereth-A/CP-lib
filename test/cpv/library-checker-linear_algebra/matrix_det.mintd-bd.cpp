@@ -8,12 +8,11 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/bd/lib.hpp"
+#include "../../../src/math/ds/mint/bd/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bd, __LINE__>;
-using mat = tifa_libs::math::matrix<mint>;
+using mint = mint_bd<__LINE__>;
+using mat = tifa_libs::matrix<mint>;
 
 int main() {
   mint::set_mod(MOD);
@@ -23,7 +22,7 @@ int main() {
   mat a(n, n);
   std::cin >> a;
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-  auto ge = [&is_0](mat& m, bool f) { return tifa_libs::math::ge_mat(m, is_0, f); };
+  auto ge = [&is_0](mat& m, bool f) { return tifa_libs::ge_mat(m, is_0, f); };
   std::cout << det(a, ge);
   return 0;
 }

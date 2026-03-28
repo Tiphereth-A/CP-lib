@@ -3,7 +3,7 @@
 #include "../../../math/iroot/sqrt/lib.hpp"
 #include "../../lsieve/impl1/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 class rgcd {
   struct ls_rgcd {
@@ -52,4 +52,4 @@ class rgcd {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

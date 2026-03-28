@@ -8,12 +8,11 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/md/lib.hpp"
+#include "../../../src/math/ds/mint/md/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md, __LINE__>;
-using mat = tifa_libs::math::matrix<mint>;
+using mint = mint_md<__LINE__>;
+using mat = tifa_libs::matrix<mint>;
 
 auto inv(mat CR m) {  // ensure det(m)==1
   return mat({{m(1, 1), -m(0, 1)}, {-m(1, 0), m(0, 0)}});
@@ -25,7 +24,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  tifa_libs::ds::dsu_weighted<mat, op, inv> dsu(n, mat({{1, 0}, {0, 1}}));
+  tifa_libs::dsu_weighted<mat, op, inv> dsu(n, mat({{1, 0}, {0, 1}}));
   flt_ (u32, i, 0, q) {
     u32 op, u, v;
     std::cin >> op >> u >> v;

@@ -9,11 +9,10 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, MOD>;
+using mint = mint_ms<MOD>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -21,7 +20,7 @@ int main() {
   std::cin >> n;
   vec<mint> sphi;
   {
-    auto _ = tifa_libs::math::lsieve<tifa_libs::math::ls_phi>(tifa_libs::math::isqrt(n)).phi;
+    auto _ = tifa_libs::lsieve<tifa_libs::ls_phi>(tifa_libs::isqrt(n)).phi;
     sphi.reserve(_.size());
     for (auto i : _) sphi.push_back(i);
     std::inclusive_scan(begin(sphi), end(sphi), begin(sphi));
@@ -29,6 +28,6 @@ int main() {
   auto sf = [sphi](u64 x) -> mint { return sphi[x]; };
   auto sg = [](u64 x) -> mint { return x; };
   auto sh = [](u64 x) -> mint { return mint{x} * (x + 1) * ((mint::mod() + 1) / 2); };
-  std::cout << tifa_libs::math::du_sieve<mint, decltype(sf), decltype(sg), decltype(sh)>(sphi.size() - 1, sf, sg, sh)(n) << '\n';
+  std::cout << tifa_libs::du_sieve<mint, decltype(sf), decltype(sg), decltype(sh)>(sphi.size() - 1, sf, sg, sh)(n) << '\n';
   return 0;
 }

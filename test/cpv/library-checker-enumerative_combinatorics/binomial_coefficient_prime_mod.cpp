@@ -3,17 +3,16 @@
 #include "../../../src/comb/binom/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/md/lib.hpp"
+#include "../../../src/math/ds/mint/md/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md, __LINE__>;
+using mint = mint_md<__LINE__>;
 
 int main() {
   u32 t, MOD;
   fin_uint >> t >> MOD;
   mint::set_mod(MOD);
-  math::binom<mint> mCn(10'000'001);
+  binom<mint> mCn(10'000'001);
   while (t--) {
     i64 n, k;
     fin_uint >> n >> k;

@@ -15,7 +15,7 @@ int main() {
     std::cin >> u >> v >> w;
     arcs.emplace_back(w, u, v);
   }
-  auto d = graph::johnson(n, arcs, INF);
+  auto d = johnson(n, arcs, INF);
   if (!d) {
     std::cout << "NEGATIVE CYCLE\n";
     return 0;

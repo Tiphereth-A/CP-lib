@@ -7,7 +7,7 @@ using std::cin, std::cout;
 int main() {
   u32 n;
   cin >> n;
-  ds::mono_stack<u32, std::greater_equal<u32>> stk;
+  mono_stack<u32, std::greater_equal<u32>> stk;
   u64 ans = 0;
   flt_ (u32, i, 0, n, x) {
     cin >> x;

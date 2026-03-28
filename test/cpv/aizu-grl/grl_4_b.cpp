@@ -8,12 +8,12 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  graph::alist g(n);
+  alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     g.add_arc(u, v);
   }
-  auto res = graph::topo_sort(g);
+  auto res = topo_sort(g);
   for (u32 i : res) std::cout << i << '\n';
   return 0;
 }

@@ -2,7 +2,7 @@
 
 #include "../../ds/pl/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // relation between plane and point3d
 // clang-format off
@@ -17,4 +17,4 @@ CEXP RELPLP relation_PlP(planev<FP> CR pl, point3d<FP> CR p) NE {
   return RELPLP::in;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

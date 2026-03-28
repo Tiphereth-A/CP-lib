@@ -2,7 +2,7 @@
 
 #include "../p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 struct line3d {
@@ -13,4 +13,4 @@ struct line3d {
   friend auto& operator<<(ostream_c auto& os, line3d CR l) NE { return os << l.l << ' ' << l.r; }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

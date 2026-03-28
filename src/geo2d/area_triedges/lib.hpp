@@ -2,7 +2,7 @@
 
 #include "../../util/util/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // calculate area of triangle by the length of 3 edges
 // numerical stability improved
@@ -14,4 +14,4 @@ CEXP FP area_T_abc(FP a, FP b, FP c) NE {
   return std::sqrt(a + (b + c)) * std::sqrt(c - (a - b)) * std::sqrt(c + (a - b)) * std::sqrt(a + (b - c)) / 4;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

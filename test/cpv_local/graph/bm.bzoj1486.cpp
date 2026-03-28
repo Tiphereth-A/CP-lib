@@ -9,7 +9,7 @@ using std::cin, std::cout;
 int main() {
   u32 n, m;
   cin >> n >> m;
-  graph::alistw<f64> g(n + 1);
+  alist<f64> g(n + 1);
   flt_ (u32, i, 0, m, u, v) {
     f64 w;
     cin >> u >> v >> w;
@@ -17,16 +17,16 @@ int main() {
   }
   f64 l = -1e7, r = 1e7, mid;
   auto chk = [&g](f64 x) {
-    vec<f64> dis(g.size());
-    flt_ (u32, i, 1, g.size())
+    vec<f64> dis(g.vsize());
+    flt_ (u32, i, 1, g.vsize())
       for (auto& [v, w] : g[i]) w -= x;
     bool flag = false;
-    flt_ (u32, i, 1, g.size())
-      if (!graph::bellman_ford(g, i, fn_0, dis)) {
+    flt_ (u32, i, 1, g.vsize())
+      if (!bellman_ford(g, i, fn_0, dis)) {
         flag = true;
         break;
       }
-    flt_ (u32, i, 1, g.size())
+    flt_ (u32, i, 1, g.vsize())
       for (auto& [v, w] : g[i]) w += x;
     return flag;
   };

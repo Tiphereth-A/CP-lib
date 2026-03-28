@@ -2,7 +2,7 @@
 
 #include "../../util/consts/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <std::floating_point FP, FP (*f)(FP)>
 class simpson_impl {
@@ -19,4 +19,4 @@ class simpson_impl {
   CEXP FP operator()(FP l, FP r, FP eps = eps_v<FP>, i64 min_dep = -1) CNE { return asr(l, r, sps(l, r, f(l), f(r - (r - l) * .5), f(r)), eps, min_dep); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

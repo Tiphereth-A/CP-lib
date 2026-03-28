@@ -9,7 +9,7 @@ int main() {
   cin >> n;
   vecii a(n);
   for (auto& i : a) cin >> i;
-  ds::segbeats_ca_ms<i64> seg(a);
+  segbeats_ca_ms<i64> seg(a);
   u32 q;
   cin >> q;
   for (u32 i = 0, tp, l, r; i < q; ++i) {

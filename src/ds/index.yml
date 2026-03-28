@@ -5,7 +5,7 @@
 - fenwick: 树状数组
 - dsu: 并查集
 - odt: 珂朵莉树
-- st: ST 表
+- rmq: 静态 RMQ
 - segtree: 线段树
 - bst: 二叉搜索树
 - link_cut_tree: 动态树(LCT)

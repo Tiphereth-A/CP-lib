@@ -13,7 +13,7 @@ std::vector<u32> fin(k * k);
 std::iota(std::begin(fin), std::end(fin), 0);
 npuzzle_data::set_fin(k, fin);
 // 初始化最大估价
-tifa_libs::game::npuzzle_data::limit = 100;
+tifa_libs::npuzzle_data::limit = 100;
 // 读入局面
 std::cin >> start;
 // 输出当前局面

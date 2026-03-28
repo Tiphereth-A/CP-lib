@@ -2,7 +2,7 @@
 
 #include "../p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 struct circle {
@@ -26,4 +26,4 @@ struct circle {
   CEXP FP arc(FP angle = pi_v<FP> * 2) CNE { return angle * r; }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

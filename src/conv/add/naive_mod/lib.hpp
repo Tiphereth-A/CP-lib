@@ -3,7 +3,7 @@
 #include "../../../math/mul_mod/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP inline u32 CONV_NAIVE_MOD_THRESHOLD = 16;
 CEXP vecuu conv_naive_mod(spnuu l, spnuu r, u64 mod, u32 ans_size = 0) NE {
@@ -19,4 +19,4 @@ CEXP vecuu conv_naive_mod(spnuu l, spnuu r, u64 mod, u32 ans_size = 0) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

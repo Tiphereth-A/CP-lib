@@ -5,7 +5,7 @@
 #include "../../src/io/pair/lib.hpp"
 #include "../../src/io/tuple/lib.hpp"
 
-namespace tifa_libs::unittest {
+namespace tifa_libs {
 
 namespace detail__ {
 
@@ -22,7 +22,7 @@ void check_(strnv pretty_func, strnv got_str, T CR got, strnv want_str, T CR wan
   if CEXP (sizeof...(param) == 0) {
     if (got != want) throw std::runtime_error(std::format("{}: got \"{}\" = {}, want \"{}\" = {}", pretty_func, got_str, to_str(got), want_str, to_str(want)));
   } else {
-    if (got != want) throw std::runtime_error(std::format("{}: got \"{}\" = {}, want \"{}\" = {} with", pretty_func, got_str, to_str(got), want_str, to_str(want)) + (std::format(" {} = {};", param.first, ::tifa_libs::unittest::detail__::to_str(param.second)) + ...));
+    if (got != want) throw std::runtime_error(std::format("{}: got \"{}\" = {}, want \"{}\" = {} with", pretty_func, got_str, to_str(got), want_str, to_str(want)) + (std::format(" {} = {};", param.first, ::tifa_libs::detail__::to_str(param.second)) + ...));
   }
 }
 
@@ -31,7 +31,7 @@ void check_bool_(strnv pretty_func, strnv expression, bool res, Ts... param) {
   if CEXP (sizeof...(param) == 0) {
     if (!res) throw std::runtime_error(std::format("{} :\"{}\" failed", pretty_func, expression));
   } else {
-    if (!res) throw std::runtime_error(std::format("{} :\"{}\" failed with", pretty_func, expression) + (std::format(" {} = {};", param.first, ::tifa_libs::unittest::detail__::to_str(param.second)) + ...));
+    if (!res) throw std::runtime_error(std::format("{} :\"{}\" failed with", pretty_func, expression) + (std::format(" {} = {};", param.first, ::tifa_libs::detail__::to_str(param.second)) + ...));
   }
 }
 
@@ -59,15 +59,15 @@ struct timer {
 };
 inline timer default_timer;
 
-#define timer_(...)                                   \
-  ::tifa_libs::unittest::default_timer.tic(__LINE__); \
-  __VA_ARGS__;                                        \
-  ::tifa_libs::unittest::default_timer.tac();         \
-  std::cerr << (strn)::tifa_libs::unittest::default_timer << '\n'
+#define timer_(...)                         \
+  ::tifa_libs::default_timer.tic(__LINE__); \
+  __VA_ARGS__;                              \
+  ::tifa_libs::default_timer.tac();         \
+  std::cerr << (strn)::tifa_libs::default_timer << '\n'
 
-#define check(got, want, ...) ::tifa_libs::unittest::detail__::check_(__PRETTY_FUNCTION__, #got, got, #want, want __VA_OPT__(, ) __VA_ARGS__)
-#define check_bool(expression, ...) ::tifa_libs::unittest::detail__::check_bool_(__PRETTY_FUNCTION__, #expression, expression __VA_OPT__(, ) __VA_ARGS__)
+#define check(got, want, ...) ::tifa_libs::detail__::check_(__PRETTY_FUNCTION__, #got, got, #want, want __VA_OPT__(, ) __VA_ARGS__)
+#define check_bool(expression, ...) ::tifa_libs::detail__::check_bool_(__PRETTY_FUNCTION__, #expression, expression __VA_OPT__(, ) __VA_ARGS__)
 #define check_param(x) \
   std::pair<std::string, decltype(x)> { #x, x }
 
-}  // namespace tifa_libs::unittest
+}  // namespace tifa_libs

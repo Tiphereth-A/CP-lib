@@ -4,7 +4,7 @@
 #include "../../../math/qpow/basic/lib.hpp"
 #include "../gcd/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace gcd_mpi_impl_ {
 // @return {x, y} s.t. a = 2^x 5^y
 CEXP ptti shrink(u32 a) NE {
@@ -62,4 +62,4 @@ CEXP mpi gcd_mpi(mpi a, mpi b) NE {
   return g;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

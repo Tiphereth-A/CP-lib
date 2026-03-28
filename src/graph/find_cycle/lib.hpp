@@ -1,17 +1,16 @@
 #pragma once
 
 #include "../../util/alias/others/lib.hpp"
-#include "../../util/traits/graph/lib.hpp"
+#include "../ds/graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
-template <bool directed, class G>
-requires(alist_c<G> && !alistw_c<G>)
+template <bool directed, graph_c G>
 CEXP vecptu find_cycle(G CR g) NE {
-  flt_ (u32, i, 0, g.size())
+  flt_ (u32, i, 0, g.vsize())
     for (auto j : g[i])
       if (i == (u32)j) return vecptu{{i, i}};
-  vecu pidx(g.size(), -1_u32), vis(g.size(), 0);
+  vecu pidx(g.vsize(), -1_u32), vis(g.vsize(), 0);
   vecptu cycle;
   bool fin = false;
   auto f = [&](auto&& f, u32 now, u32 pval, u32 fa) NE -> u32 {
@@ -34,7 +33,7 @@ CEXP vecptu find_cycle(G CR g) NE {
     }
     return pidx[now] = -1_u32;
   };
-  flt_ (u32, i, 0, g.size()) {
+  flt_ (u32, i, 0, g.vsize()) {
     if (vis[i]) continue;
     if (f(f, i, i, -1_u32); fin) {
       reverse(cycle);
@@ -44,4 +43,4 @@ CEXP vecptu find_cycle(G CR g) NE {
   return vecptu{};
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

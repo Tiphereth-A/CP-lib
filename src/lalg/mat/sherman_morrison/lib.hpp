@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class Mat, class T = TPN Mat::val_t>
 requires std::same_as<T, TPN Mat::val_t>
@@ -20,4 +20,4 @@ CEXP void sherman_morrison(Mat& inv_A, vec<T> CR u, vec<T> CR v) NE {
     flt_ (u32, j, 0, n) inv_A(i, j) -= x[i] * y[j] / sum;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

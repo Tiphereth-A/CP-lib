@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 template <class T>
 class knapsack_mixed {
@@ -30,4 +30,4 @@ class knapsack_mixed {
   vec<T> CR result() CNE { return f; }
 };
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

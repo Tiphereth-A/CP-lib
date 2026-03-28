@@ -32,7 +32,7 @@ int main() {
       fin_int >> qu[i].k.l >> qu[i].k.r >> qu[i].k.a >> qu[i].k.b, qu[i].k.r -= 1, lsh.push_back(qu[i].k.l), lsh.push_back(qu[i].k.r);
   }
   lsh = uniq<vecii>(lsh);
-  ds::lichao_segtree<i64, op> tr(lsh);
+  lichao_segtree<i64, op> tr(lsh);
   flt_ (u32, i, 0, n)
     tr.add(se[i].a, se[i].b, se[i].l, se[i].r);
   flt_ (u32, i, 0, q)

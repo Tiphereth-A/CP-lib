@@ -1,15 +1,13 @@
 #pragma once
 
-#include "../../util/alias/others/lib.hpp"
-#include "../../util/traits/graph/lib.hpp"
+#include "../ds/graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 //! return empty vector if @g is not DAG
-template <class G>
-requires(alist_c<G> && !alistw_c<G>)
+template <graph_c G>
 CEXP vecu topo_sort(G CR g) NE {
-  const u32 n = g.size();
+  const u32 n = g.vsize();
   vecb vis(n), _(n);
   vecu ans;
   auto dfs = [&](auto&& dfs, u32 i) NE -> bool {
@@ -27,4 +25,4 @@ CEXP vecu topo_sort(G CR g) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

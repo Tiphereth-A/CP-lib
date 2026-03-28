@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 // enumerate all maximal cliques
 // @param P possibly in clique
@@ -24,4 +24,4 @@ CEXP void cliques(u32 n, arr<std::bitset<N>, N> CR adj, F&& f) NE {
   g(g, ~B(), B(), B());
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

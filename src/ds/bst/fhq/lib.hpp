@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../../rand/gen/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
+#include "../../../util/rand/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, bool recovery = false, class Comp = std::less<T>>
 struct fhq_treap {
@@ -12,7 +12,7 @@ struct fhq_treap {
     T val;
     u32 r, sz, son[2];
   };
-  rand::gen<u32> rnd;
+  rand_gen<u32> rnd;
   vec<TIFA> data;
   vecu stk;
   u32 root;
@@ -129,4 +129,4 @@ struct fhq_treap {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

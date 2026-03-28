@@ -7,12 +7,12 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  graph::alist g(n);
+  alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     g.add_arc(u, v);
   }
-  graph::kosaraju scc(g);
+  kosaraju scc(g);
   u32 q;
   std::cin >> q;
   for (u32 i = 0, u, v; i < q; ++i) {

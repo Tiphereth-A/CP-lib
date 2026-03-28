@@ -5,7 +5,7 @@
 #include "../../../math/sum_ik_flist/lib.hpp"
 #include "../../prime_seq/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // f(p, c) = value of f(p^c)
 template <class T, T (*f)(u64, u64)>
@@ -65,4 +65,4 @@ class min25_sieve {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

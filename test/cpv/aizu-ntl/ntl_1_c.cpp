@@ -12,11 +12,11 @@ int main() {
   u64 n;
   u32 ans;
   fin_uint >> n >> ans;
-  math::rgcd rgcd_(LIMIT);
+  rgcd rgcd_(LIMIT);
   for (u32 i = 1, x; i < n; ++i) {
     fin_uint >> x;
     if (ans < LIMIT) (ans /= rgcd_(ans, x)) *= x;
-    else ans = math::lcm(ans, x);
+    else ans = lcm(ans, x);
   }
   fout << ans << '\n';
   return 0;

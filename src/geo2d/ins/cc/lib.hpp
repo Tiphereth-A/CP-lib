@@ -2,7 +2,7 @@
 
 #include "../../rel/cc/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // intersection point of two circles
 //! need to check whether two circles are the same
@@ -20,4 +20,4 @@ CEXP auto ins_CC(circle<FP> CR c1, circle<FP> CR c2) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

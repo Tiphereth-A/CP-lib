@@ -6,17 +6,16 @@
 using namespace tifa_libs;
 CEXP u64 MOD = 1'000'000'007;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/bs/lib.hpp"
+#include "../../../src/math/ds/mint/bs/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bs, MOD>;
+using mint = mint_bs<MOD>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   mint m;
   u64 n;
   std::cin >> m >> n;
-  std::cout << tifa_libs::math::qpow(m, n).val() << '\n';
+  std::cout << tifa_libs::qpow(m, n).val() << '\n';
   return 0;
 }

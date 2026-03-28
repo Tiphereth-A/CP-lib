@@ -2,13 +2,12 @@
 // cplib.manager: PROBLEM https://www.luogu.com.cn/problem/P4723
 
 #include "../../../fps/ds/ntt/lib.hpp"
-#include "../../ds/mint/lib.hpp"
-#include "../../mint/ms/lib.hpp"
+#include "../../ds/mint/ms/lib.hpp"
 #include "lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, 998244353>;
-using poly = math::polyntt<mint>;
+using mint = mint_ms<998244353>;
+using poly = polyntt<mint>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -21,7 +20,7 @@ int main() {
     std::cin >> x, f[i] = -x;
   }
   for (auto& i : a) std::cin >> i;
-  std::cout << math::nth_term_lrec<poly>(n, a, f) << '\n';
+  std::cout << nth_term_lrec<poly>(n, a, f) << '\n';
 }
 
 /*

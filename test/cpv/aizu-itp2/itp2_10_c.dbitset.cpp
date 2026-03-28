@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 q;
   std::cin >> q;
-  ds::dbitset bs(64);
+  dbitset bs(64);
   while (q--) {
     u32 op, i;
     std::cin >> op;

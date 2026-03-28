@@ -4,7 +4,7 @@
 #include "../../../math/fact/helper/lib.hpp"
 #include "../../seq/inv/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // stirling1[i] = {i \\brack k}, i=0,1,...,n
 template <class poly, class T, bool with_sgn = true>
@@ -26,4 +26,4 @@ CEXP poly gen_stirling1_col(u32 n, u32 k) NE {
   return gen_stirling1_col<poly, mint, with_sgn>(n, k, fact_helper<mint>::fact, gen_inv<mint>(n + 1), fact_helper<mint>::ifact);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

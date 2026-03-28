@@ -12,7 +12,7 @@ int main() {
     u64 n;
     pttuu r;
     std::cin >> n >> r;
-    std::cout << math::rational_approx(n, r) << '\n';
+    std::cout << rational_approx(n, r) << '\n';
   }
   return 0;
 }

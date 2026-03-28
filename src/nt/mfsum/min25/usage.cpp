@@ -1,16 +1,15 @@
 // competitive-verifier: DISPLAY never
 // cplib.manager: PROBLEM https://www.luogu.com.cn/problem/P5325
 
-#include "../../../math/ds/mint/lib.hpp"
-#include "../../../math/mint/ms/lib.hpp"
+#include "../../../math/ds/mint/ms/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
 #include "lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, 1'000'000'000 + 7>;
+using mint = mint_ms<1'000'000'000 + 7>;
 
 mint f(u64 p, u64 c) {
-  auto _ = math::qpow(mint(p), c);
+  auto _ = qpow(mint(p), c);
   return _ * (_ - 1);
 }
 
@@ -18,7 +17,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;
-  math::min25_sieve<mint, f> min25(n);
+  min25_sieve<mint, f> min25(n);
   auto h1 = min25.sum_pk(1), h2 = min25.sum_pk(2);
   flt_ (u32, i, 1, (u32)h2.size()) h2[i] -= h1[i];
   std::cout << min25.run(h2) << '\n';

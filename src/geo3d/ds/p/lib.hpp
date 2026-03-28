@@ -2,7 +2,7 @@
 
 #include "../../../util/traits/others/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 struct point3d {
@@ -87,4 +87,4 @@ struct point3d {
   }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

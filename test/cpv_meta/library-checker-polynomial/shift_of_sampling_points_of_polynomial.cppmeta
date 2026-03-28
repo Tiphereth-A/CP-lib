@@ -16,6 +16,6 @@ int main() {
   tifa_libs::fin_uint >> n >> m >> c;
   poly a(n);
   tifa_libs::fin_uint >> a;
-  tifa_libs::fout << tifa_libs::math::ctsh_fps(a, mint(c), m) << '\n';
+  tifa_libs::fout << tifa_libs::ctsh_fps(a, mint(c), m) << '\n';
   return 0;
 }

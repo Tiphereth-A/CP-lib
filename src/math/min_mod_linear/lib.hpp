@@ -2,7 +2,7 @@
 
 #include "../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP u32 min_mod_linear(u32 n, u32 m, u32 a, u32 b, u32 cnt = 1, u32 p = 1, u32 q = 1) NE {
   if (!a) return b;
@@ -25,4 +25,4 @@ CEXP u32 min_mod_linear(u32 n, u32 m, u32 a, u32 b, u32 cnt = 1, u32 p = 1, u32 
   retif_((cnt & 1), m - 1 - c, a - 1 - c);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

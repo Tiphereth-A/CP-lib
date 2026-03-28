@@ -3,7 +3,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 //! 0-based
 template <class T, class TT = T>
@@ -167,4 +167,4 @@ struct segbeats_ca_ms {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

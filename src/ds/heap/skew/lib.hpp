@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, class C = std::less<T>>
 class skew_heap {
@@ -44,4 +44,4 @@ class skew_heap {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

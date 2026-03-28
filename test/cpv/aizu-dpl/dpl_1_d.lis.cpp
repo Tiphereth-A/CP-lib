@@ -10,6 +10,6 @@ int main() {
   std::cin >> n;
   vecu v(n);
   std::cin >> v;
-  std::cout << opt::lis(v).size() << '\n';
+  std::cout << lis(v).size() << '\n';
   return 0;
 }

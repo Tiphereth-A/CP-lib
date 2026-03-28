@@ -8,13 +8,13 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  graph::alist g(n);
+  alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     --u, --v;
     g.add_edge(u, v);
   }
-  graph::e_tcc tcc(g);
+  e_tcc tcc(g);
   for (auto& b : tcc.belongs) std::ranges::sort(b);
   std::ranges::sort(tcc.belongs);
   std::cout << tcc.belongs.size() << '\n';

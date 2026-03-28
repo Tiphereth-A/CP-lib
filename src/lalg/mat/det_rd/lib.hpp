@@ -2,7 +2,7 @@
 
 #include "../../lfsr_bm/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // OK for matsp
 template <class Mat, class Gn, class Is0>
@@ -28,4 +28,4 @@ auto det_rd(Mat mat, Gn& gen, Is0&& is0) NE {
   retif_(((n & 1) == 1), -res, res);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

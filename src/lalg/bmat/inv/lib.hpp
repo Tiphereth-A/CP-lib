@@ -2,7 +2,7 @@
 
 #include "../ge/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <usz N>
 CEXP auto inv_bmat(bitmat<N> CR mat, u32 n) NE {
@@ -21,4 +21,4 @@ CEXP auto inv_bmat(bitmat<N> CR mat, u32 n) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -5,8 +5,8 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f64;
-using Point2 = geo::point<data_t>;
-using ConvexHull2 = geo::cvh<data_t>;
+using Point2 = point<data_t>;
+using ConvexHull2 = cvh<data_t>;
 
 int main() {
   u32 t;
@@ -22,10 +22,12 @@ int main() {
       v.emplace_back(x, y);
     }
     ConvexHull2 got{v, false, false};
-    u32 m;
-    cin >> m;
-    ConvexHull2 want(m);
-    cin >> want;
-    cout << (got.vs == want.vs ? "YES" : "NO") << '\n';
+    cout << std::fixed << std::setprecision(0) << got.vs.size() << '\n';
+    for (auto CR p : got.vs) cout << p << '\n';
+    // u32 m;
+    // cin >> m;
+    // ConvexHull2 want(m);
+    // cin >> want;
+    // cout << (got.vs == want.vs ? "YES" : "NO") << '\n';
   }
 }

@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 // Given J jobs and W workers ($J\leq W$), computes the minimum cost to assign each prefix of jobs to distinct workers.
 // @tparam T a type large enough to represent integers on the order of $J\max(|g|)$
@@ -42,4 +42,4 @@ CEXP vec<T> hungarian(vvec<T> CR g, T INF = std::numeric_limits<T>::max()) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

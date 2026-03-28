@@ -3,10 +3,10 @@
 #include "../../math/iroot/sqrt/lib.hpp"
 #include "../../opt/dlx/lib.hpp"
 
-namespace tifa_libs::game {
+namespace tifa_libs {
 
 CEXP v3ecu sudoku_solver(cT_(vvecu) data, bool get_all_solution = false) NE {
-  const u32 n = math::isqrt(data.size()), n2 = (u32)data.size(), n4 = n2 * n2;
+  const u32 n = isqrt(data.size()), n2 = (u32)data.size(), n4 = n2 * n2;
   assert(n <= 40 && n * n == n2);
   vvecb g(n2 * n4, vecb(4 * n4));
   bool not_filled = true;
@@ -20,7 +20,7 @@ CEXP v3ecu sudoku_solver(cT_(vvecu) data, bool get_all_solution = false) NE {
       }
   if (!not_filled) return {data};
   v3ecu ans;
-  opt::dlx(g, get_all_solution).dance([&](spnu res) NE -> void {
+  dlx(g, get_all_solution).dance([&](spnu res) NE -> void {
     vvecu dt = data;
     for (u32 _ : res) dt[(_ - 1) % n4 / n2][(_ - 1) % n2] = (_ - 1) / n4 + 1;
     ans.push_back(dt);
@@ -28,4 +28,4 @@ CEXP v3ecu sudoku_solver(cT_(vvecu) data, bool get_all_solution = false) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::game
+}  // namespace tifa_libs

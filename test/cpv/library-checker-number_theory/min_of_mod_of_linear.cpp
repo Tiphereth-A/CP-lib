@@ -10,7 +10,7 @@ int main() {
   while (t--) {
     u32 n, m, a, b;
     std::cin >> n >> m >> a >> b;
-    std::cout << math::min_mod_linear(n, m, a, b) << '\n';
+    std::cout << min_mod_linear(n, m, a, b) << '\n';
   }
   return 0;
 }

@@ -8,7 +8,7 @@ using std::cin, std::cout;
 int main() {
   u32 n, t1, t2, t3;
   cin >> n >> t1 >> t2 >> t3;
-  math::trygub_num<2> num;
+  trygub_num<2> num;
   flt_ (u32, i, 0, n) {
     int op;
     cin >> op;

@@ -26,7 +26,7 @@ class gosper {
   CEXP u64 operator*() CNE { return now_; }
   CEXP bool operator!=(gosper CR x) CNE { return **this != *x; }
   CEXP void operator++() NE {
-    u64 c = bit::lowbit(now_), r = now_ + c;
+    u64 c = lowbit(now_), r = now_ + c;
     now_ = min(((r ^ now_) / 4 / c) | r, num_end());
   }
 };

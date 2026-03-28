@@ -1,13 +1,12 @@
 // competitive-verifier: LOCALCASE test/cpv_local/_data/bzoj/4407
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 #include "../../../src/math/qpow/basic/lib.hpp"
 #include "../../../src/nt/lsieve/impl2/lib.hpp"
 
 using namespace tifa_libs;
 using std::cin, std::cout;
-using mint = math::mint<math::mint_ms, 1'000'000'000 + 7>;
+using mint = mint_ms<1'000'000'000 + 7>;
 
 int main() {
   u32 t, k;
@@ -18,11 +17,11 @@ int main() {
     if (ns[i] > ms[i]) std::swap(ns[i], ms[i]);
   }
   u32 n = std::ranges::max(ns);
-  math::lsieve2 ls(n);
+  lsieve2 ls(n);
   static mint pk, lst;
   vec<mint> g = ls.template run<mint>(
       [&](u32 p, u32 e) -> mint {
-        if (e == 1) return lst = (pk = math::qpow<mint>(p, k)) - 1;
+        if (e == 1) return lst = (pk = qpow<mint>(p, k)) - 1;
         else return lst *= pk;
       });
   std::inclusive_scan(begin(g), end(g), begin(g));

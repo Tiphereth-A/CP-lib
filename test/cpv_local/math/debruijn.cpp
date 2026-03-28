@@ -6,8 +6,8 @@
 
 using namespace tifa_libs;
 void test(u32 n, u32 k) {
-  timer_(auto list = math::deBruijn(n, k));
-  usz len = math::qpow<u64>(k, n);
+  timer_(auto list = deBruijn(n, k));
+  usz len = qpow<u64>(k, n);
   check(list.size(), len, check_param(n), check_param(k));
 
   vecu text = list;

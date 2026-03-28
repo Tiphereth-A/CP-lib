@@ -6,12 +6,12 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f64;
-using Point2 = geo::point<data_t>;
+using Point2 = point<data_t>;
 
 int main() {
   u32 n;
   cin >> n;
   vec<Point2> vp(n);
   cin >> vp;
-  cout << geo::maxv_cvh_cnt(vp) << '\n';
+  cout << maxv_cvh_cnt(vp) << '\n';
 }

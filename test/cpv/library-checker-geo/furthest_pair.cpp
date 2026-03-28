@@ -3,8 +3,8 @@
 #include "../../../src/geo2d/ds/cvh/lib.hpp"
 
 using namespace tifa_libs;
-using point = geo::point<f128>;
-using cvh = geo::cvh<f128>;
+using point_t = point<f128>;
+using cvh_t = cvh<f128>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -13,9 +13,9 @@ int main() {
   while (t--) {
     u32 n;
     std::cin >> n;
-    cvh poly(n);
+    cvh_t poly(n);
     std::cin >> poly;
-    map<point, vecu> mp;
+    map<point_t, vecu> mp;
     flt_ (u32, i, 0, n) mp[poly.vs[i]].push_back(i);
     poly.init();
     auto [dis, i, j] = poly.template diameter<true>();

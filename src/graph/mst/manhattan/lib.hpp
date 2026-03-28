@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 //! USE Kruskal too get MST
 // @return edges MAYBE in MST, {d(u, v), u, v}
@@ -29,4 +29,4 @@ vec<edge_t<T>> manhattan_mst(vecpt<T> vp) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

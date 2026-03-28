@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 class weighted_segtree {
   const u32 n;
@@ -50,4 +50,4 @@ class weighted_segtree {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

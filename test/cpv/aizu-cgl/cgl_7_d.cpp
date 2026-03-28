@@ -6,20 +6,20 @@
 #include "../../../src/geo2d/ins/cl/lib.hpp"
 
 using namespace tifa_libs;
-using circ = geo::circle<double>;
-using line = geo::line<double>;
+using circle_t = circle<double>;
+using line_t = line<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(12);
-  circ c;
+  circle_t c;
   std::cin >> c;
   u32 q;
   std::cin >> q;
   flt_ (u32, i, 0, q) {
-    line l;
+    line_t l;
     std::cin >> l;
-    auto [x, y] = geo::ins_CL(c, l).value();
+    auto [x, y] = ins_CL(c, l).value();
     if (x < y) std::cout << x << ' ' << y << '\n';
     else std::cout << y << ' ' << x << '\n';
   }

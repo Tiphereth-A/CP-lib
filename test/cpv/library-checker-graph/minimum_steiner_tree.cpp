@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  graph::alistw<u64> e(n);
+  alist<u64> e(n);
   std::map<pttu, pttu> id;
   for (u32 i = 0, u, v, w; i < m; ++i) {
     std::cin >> u >> v >> w, e.add_arc(u, v, w), e.add_arc(v, u, w);
@@ -18,7 +18,7 @@ int main() {
   std::cin >> k;
   vecu a(k);
   for (auto& x : a) std::cin >> x;
-  auto [sum, edges] = graph::steiner_tree<true>(e, a);
+  auto [sum, edges] = steiner_tree<true>(e, a);
   std::cout << sum << ' ' << edges.size() << '\n';
   flt_ (u32, i, 0, (u32)edges.size()) std::cout << id[edges[i]].second << " \n"[i == edges.size() - 1];
   return 0;

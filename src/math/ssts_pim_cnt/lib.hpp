@@ -3,7 +3,7 @@
 #include "../../comb/seq/inv/lib.hpp"
 #include "../../fps/exp/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class poly, class T, std::same_as<TPN poly::val_t> mint>
 poly ssts_pim_cnt(vec<T> CR s, u32 t, vec<mint> CR inv) NE {
@@ -22,4 +22,4 @@ poly ssts_pim_cnt(vec<T> CR s, u32 t) NE {
   return ssts_pim_cnt<poly, T, mint>(s, t, gen_inv<mint>(t + 1));
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

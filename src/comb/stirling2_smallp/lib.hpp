@@ -2,7 +2,7 @@
 
 #include "../binom/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class mint, class fact = fact_helper<mint>>
 class stirling2 {
@@ -47,4 +47,4 @@ class stirling2 {
   CEXP mint operator()(T m_, T n_) CNE { return operator()(std::make_signed_t<T>(m_), std::make_signed_t<T>(n_)); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

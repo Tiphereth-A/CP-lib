@@ -2,7 +2,7 @@
 
 #include "../../ds/p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // distance of two points
 // @return $(|x_1-x_2|^p + |y_1-y_2|^p)^{1/p}$, p = 0 means $\infty$
@@ -15,4 +15,4 @@ CEXP FP dist_PP(point<FP> CR p1, point<FP> CR p2) NE {
   else return std::pow(std::pow(abs(p1.x - p2.x), p) + std::pow(abs(p1.y - p2.y), p), FP{1} / p);
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

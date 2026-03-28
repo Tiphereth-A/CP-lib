@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 class dsu_pd {
   veci p;
@@ -32,4 +32,4 @@ class dsu_pd {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

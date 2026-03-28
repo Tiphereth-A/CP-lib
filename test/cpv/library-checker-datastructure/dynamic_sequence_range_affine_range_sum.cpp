@@ -3,11 +3,10 @@
 #include "../../../src/ds/bst/fhq_w/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, 998244353>;
+using mint = mint_ms<998244353>;
 using T = std::pair<mint, usz>;   // sum len
 using F = std::pair<mint, mint>;  // mul add
 
@@ -27,7 +26,7 @@ int main() {
   u32 n, q;
   mint x, y;
   fin_uint >> n >> q;
-  ds::fhq_treap_w<T, op, e, F, mapping, composition, id, true> tr(n + q);
+  fhq_treap_w<T, op, e, F, mapping, composition, id, true> tr(n + q);
   flt_ (u32, i, 0, n)
     fin_uint >> x, tr.insert(T{x, 1});
   for (u32 i = 0, opt, l, r; i < q; ++i) {

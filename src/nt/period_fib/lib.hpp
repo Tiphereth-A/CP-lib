@@ -3,7 +3,7 @@
 #include "../../math/iroot/sqrt/lib.hpp"
 #include "../gl/lcm/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 //! Not the minimal
 CEXP u64 period_fib(u32 n) NE {
@@ -25,4 +25,4 @@ CEXP u64 period_fib(u32 n) NE {
   return res;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

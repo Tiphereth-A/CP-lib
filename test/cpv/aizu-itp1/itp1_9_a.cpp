@@ -12,6 +12,6 @@ int main() {
       if (isalpha(c)) c = (char)tolower(c);
     (s += _) += ' ';
   }
-  std::cout << str::kmp(' ' + p + ' ', ' ' + s + ' ').size() << '\n';
+  std::cout << kmp(' ' + p + ' ', ' ' + s + ' ').size() << '\n';
   return 0;
 }

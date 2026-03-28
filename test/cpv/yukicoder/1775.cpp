@@ -1,14 +1,14 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1775"
 
 #include "../../../src/math/ds/nimber/lib.hpp"
-#include "../../../src/rand/gen/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 
 using namespace tifa_libs;
-math::nimber64 dp[2][2][128][128], nx[2][2][128][128], w[128][128];
+nimber64 dp[2][2][128][128], nx[2][2][128][128], w[128][128];
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  rand::gen<u64> g(1, std::numeric_limits<u64>::max());
+  rand_gen<u64> g(1, std::numeric_limits<u64>::max());
   u64 n, m, x, y, z;
   std::cin >> n >> m >> x >> y >> z;
   --x, --y, --z;

@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T = i32, bool persistent = false>
 struct trie01 {
@@ -66,4 +66,4 @@ struct trie01 {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

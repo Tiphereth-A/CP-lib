@@ -14,7 +14,7 @@ int main() {
   vecu p(n);
   std::cin >> p;
   auto s = cantor_seq(p);
-  auto fact = math::gen_fact((u32)s.size(), -1_u64);
+  auto fact = gen_fact((u32)s.size(), -1_u64);
   u64 v = cantor_seq2val(s, fact);
   if (v > 1) std::cout << cantor_inv_seq(cantor_val2seq(v - 1, fact)) << '\n';
   std::cout << p << '\n';

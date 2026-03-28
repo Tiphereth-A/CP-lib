@@ -5,7 +5,7 @@
 #include "../../conv/subset/lib.hpp"
 #include "../../fps/tsh/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // @return $f(g(x_0, \dots, x_{n-1}))$
 template <class poly, class T, u32 N = 21>
@@ -38,4 +38,4 @@ CEXP auto comp_fpssps(u32 n, poly CR f, vec<TPN poly::val_t> CR g) NE {
   return comp_fpssps<poly, u64, N>(n, f, g, gen_fact(max((u32)f.size(), n) + 1, mint::mod()), gen_ifact(max((u32)f.size(), n) + 1, mint::mod()));
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 CEXP vecu duval(strnv s) NE {
   const u32 n = (u32)s.size();
@@ -18,4 +18,4 @@ CEXP vecu duval(strnv s) NE {
   return res;
 }
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

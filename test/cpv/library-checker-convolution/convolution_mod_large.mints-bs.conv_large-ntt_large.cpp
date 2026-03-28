@@ -10,17 +10,16 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/conv/trans/ntt/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/bs/lib.hpp"
+#include "../../../src/math/ds/mint/bs/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bs, MOD>;
+using mint = mint_bs<MOD>;
 using namespace tifa_libs;
-using ntt_ntt_large_t = math::ntt<mint>;
+using ntt_ntt_large_t = ntt<mint>;
 using vec_t = vec<mint>;
 auto conv_func(vec_t CR a, vec_t CR b) {
   ntt_ntt_large_t ntt;
-  return math::conv_ntt_large(ntt, a, b);
+  return conv_ntt_large(ntt, a, b);
 }
 
 int main() {

@@ -3,7 +3,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <mint_c mint>
 struct fact_helper {
@@ -47,4 +47,4 @@ struct fact_helper {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

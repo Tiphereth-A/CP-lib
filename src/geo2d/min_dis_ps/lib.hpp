@@ -2,7 +2,7 @@
 
 #include "../dis/pp_p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 //! the distance is |.|^2 if FP is not floating point
 // @return indexes of the closest points
@@ -42,4 +42,4 @@ CEXP pttu min_dis_Ps(vec<point<FP>> CR vp) NE {
   return {a, b};
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

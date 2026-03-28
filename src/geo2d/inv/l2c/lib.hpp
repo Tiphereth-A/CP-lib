@@ -3,7 +3,7 @@
 #include "../../make_c/ppp/lib.hpp"
 #include "../p2p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // geometry inverse of a line
 // @param rc reference circle
@@ -20,4 +20,4 @@ CEXP circle<FP> inv_L2C(point<FP> CR o, line<FP> CR l) NE {
   return make_C_PPP(p1, p2, o);
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

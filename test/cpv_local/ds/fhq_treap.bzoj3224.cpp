@@ -7,7 +7,7 @@ using std::cin, std::cout;
 int main() {
   u32 n;
   cin >> n;
-  ds::fhq_treap<i32> treap;
+  fhq_treap<i32> treap;
   for (u32 i = 0, opt; i < n; ++i) {
     i32 x;
     cin >> opt >> x;

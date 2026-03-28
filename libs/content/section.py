@@ -31,8 +31,8 @@ documentation_of: ./{path}/lib.hpp
 """,
     "lib.hpp": """#pragma once
 
-namespace tifa_libs::{category} {{
-}}  // namespace tifa_libs::{category}
+namespace tifa_libs {
+}  // namespace tifa_libs
 """,
     "usage.cpp": """// competitive-verifier: DISPLAY never
 // cplib.manager: PROBLEM https://example.com
@@ -74,11 +74,7 @@ class Section:
                 name=self._name,
                 path=self._dir.replace(os.sep, '/')
             ))
-        with open(os.path.join(self._dir, "lib.hpp"), 'w', encoding='utf8') as f:
-            f.write(_TEMPLACES["lib.hpp"].format(
-                category=self._dir.split(os.sep)[1]
-            ))
-        for _type in ["doc.tex", "doc.typ", "usage.cpp"]:
+        for _type in ["lib.hpp", "doc.tex", "doc.typ", "usage.cpp"]:
             with open(os.path.join(self._dir, _type), 'w', encoding='utf8') as f:
                 f.write(_TEMPLACES[_type])
 

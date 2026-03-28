@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../../rand/gen/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
+#include "../../../util/rand/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, auto op, auto e, class F, auto mapping, auto composition, auto id,
           bool reverse_ = false, bool recovery = false>
@@ -25,7 +25,7 @@ class fhq_treap_w {
     bool rev;
     CEXP TIFA(T W = e(), T VAL = e(), u32 SZ = 0, i32 RAD = 0, F SIGN = id()) NE : w(W), val(VAL), sign(SIGN), sz(SZ), rad(RAD), rev(0) {}
   };
-  rand::gen<i32> gen;
+  rand_gen<i32> gen;
   vec<TIFA> t;
   vecu sta;
   u32 cnt;
@@ -119,4 +119,4 @@ class fhq_treap_w {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

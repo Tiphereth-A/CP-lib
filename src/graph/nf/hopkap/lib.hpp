@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 // @param l number of vertex in left side
 // @param r number of vertex in right side
@@ -44,4 +44,4 @@ inline vecptu hopkap(u32 l, u32 r, vecptu CR e) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

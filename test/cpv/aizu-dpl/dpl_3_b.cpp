@@ -15,7 +15,7 @@ int main() {
       if (x) v[j] = 0;
       else ++v[j];
     }
-    auto [l, r] = opt::hoverline(v);
+    auto [l, r] = hoverline(v);
     flt_ (u32, j, 0, w) ans = max(ans, (r[j] - l[j] + 1_u64) * v[j]);
   }
   std::cout << ans << '\n';

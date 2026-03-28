@@ -6,9 +6,9 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f128;
-using Point2 = geo::point<data_t>;
-using Line2 = geo::line<data_t>;
-using ConvexHull2 = geo::cvh<data_t>;
+using Point2 = point<data_t>;
+using Line2 = line<data_t>;
+using ConvexHull2 = cvh<data_t>;
 
 int main() {
   cout << std::fixed << std::setprecision(3);
@@ -25,7 +25,7 @@ int main() {
   vl.emplace_back(x.back(), 1e12, x.front(), 1e12);
   vl.emplace_back(x.front(), 1e12, x.front(), -1e12);
   flt_ (u32, i, 0, n - 1) vl.emplace_back(x[i], y[i], x[i + 1], y[i + 1]);
-  ConvexHull2 cvh = geo::ins_hPs(vl);
+  ConvexHull2 cvh = ins_hPs(vl);
   data_t ans = std::numeric_limits<data_t>::max();
   std::ranges::sort(cvh.vs, [](auto CR lhs, auto CR rhs) { return lhs.x < rhs.x; });
   u32 i = 0, j = 0;
@@ -35,14 +35,14 @@ int main() {
       continue;
     }
     if (is_gt(cvh[i].x, x[j])) {
-      Point2 temp = geo::ins_LL(Line2{cvh[i], cvh[i - 1]}, Line2{Point2{x[j], y[j]}, Point2{x[j], y[j] + 1}});
+      Point2 temp = ins_LL(Line2{cvh[i], cvh[i - 1]}, Line2{Point2{x[j], y[j]}, Point2{x[j], y[j] + 1}});
       ans = std::min(ans, abs(temp.y - y[j++]));
     } else {
       if (!j) {
         ++i;
         continue;
       }
-      Point2 temp = geo::ins_LL(Line2{Point2{x[j - 1], y[j - 1]}, Point2{x[j], y[j]}}, Line2{cvh[i], Point2{cvh[i].x, cvh[i].y + 1}});
+      Point2 temp = ins_LL(Line2{Point2{x[j - 1], y[j - 1]}, Point2{x[j], y[j]}}, Line2{cvh[i], Point2{cvh[i].x, cvh[i].y + 1}});
       ans = std::min(ans, abs(cvh[i++].y - temp.y));
     }
   }

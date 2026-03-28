@@ -2,7 +2,7 @@
 
 #include "../../../util/traits/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 #define FOR1_(i, l, r) for (u32 i = (l), i##ed__ = (r); i < i##ed__; ++i)
 #define FOR2_(i, row_l, row_r, j, col_l, col_r) \
@@ -138,4 +138,4 @@ class matrix {
 #undef FOR1_
 #undef FOR2_
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

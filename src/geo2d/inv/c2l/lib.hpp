@@ -3,7 +3,7 @@
 #include "../../ds/l/lib.hpp"
 #include "../p2p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // geometry inverse of a circle which pass through the inversion center
 // @param rc reference circle
@@ -22,4 +22,4 @@ CEXP line<FP> inv_C2L(point<FP> CR ro, point<FP> CR o) NE {
   return {inv_P2P(ro, o + v), inv_P2P(ro, o - v)};
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

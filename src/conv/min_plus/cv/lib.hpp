@@ -2,14 +2,14 @@
 
 #include "../../../opt/smawk/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 //! assume a is convex, aka. $a_{i-1} - a_{i-2} \leq a_i - a_{i-1}$
 //! assume b is arbitrary, aka. $b_i = b_j \iff i = j$
 template <class T>
 CEXP vec<T> conv_minplus_cv(vec<T> CR a, vec<T> CR b) NE {
   const u32 n = (u32)a.size(), m = (u32)b.size();
-  const vecu argmin = opt::smawk(
+  const vecu argmin = smawk(
       n + m - 1,
       m,
       [&](u32 k, u32 j1, u32 j2) NE -> bool {
@@ -23,4 +23,4 @@ CEXP vec<T> conv_minplus_cv(vec<T> CR a, vec<T> CR b) NE {
   return c;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

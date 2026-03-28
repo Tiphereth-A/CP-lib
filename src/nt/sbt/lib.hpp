@@ -3,7 +3,7 @@
 #include "../../util/consts/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <uint_c T>
 struct sbt {
@@ -59,4 +59,4 @@ struct sbt {
   static CEXP sbt walk_to_lca(T x1, T y1, T x2, T y2) NE { return walk_to_lca(x1, y1, x2, y2, fn_0); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

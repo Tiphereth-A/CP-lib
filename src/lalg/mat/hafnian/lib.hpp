@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class Mat>
 CEXP auto hafnian(Mat CR mat) NE {
@@ -38,4 +38,4 @@ CEXP auto hafnian(Mat CR mat) NE {
   return f(f, v).back();
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

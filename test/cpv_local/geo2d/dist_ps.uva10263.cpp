@@ -5,8 +5,8 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f64;
-using Point2 = geo::point<data_t>;
-using Line2 = geo::line<data_t>;
+using Point2 = point<data_t>;
+using Line2 = line<data_t>;
 
 int main() {
   cout << std::fixed << std::setprecision(4);
@@ -33,8 +33,8 @@ int main() {
     data_t ans = std::numeric_limits<data_t>::max();
     Point2 ansP;
     for (auto CR i : l) {
-      auto pp = geo::dist_PS_P(m, i);
-      data_t d = geo::dist_PP(pp, m);
+      auto pp = dist_PS_P(m, i);
+      data_t d = dist_PP(pp, m);
       if (is_lt(d, ans)) {
         ans = d;
         ansP = pp;

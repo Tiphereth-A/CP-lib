@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 template <class T>
 requires requires(T x, T y) {
@@ -31,4 +31,4 @@ auto astar(T CR s) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

@@ -4,20 +4,20 @@
 
 using namespace tifa_libs;
 template <usz N>
-using mat = math::bitmat<N>;
+using mat = bitmat<N>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
 
-#define DO(num)                                                      \
-  if (n <= num) {                                                    \
-    mat<num> bm;                                                     \
-    math::read_bitmat(std::cin, bm, n, n);                           \
-    if (auto res = math::inv_bmat(bm, n); !res) std::cout << "-1\n"; \
-    else math::print_bitmat(std::cout, res.value(), n, n);           \
-    return 0;                                                        \
+#define DO(num)                                                \
+  if (n <= num) {                                              \
+    mat<num> bm;                                               \
+    read_bitmat(std::cin, bm, n, n);                           \
+    if (auto res = inv_bmat(bm, n); !res) std::cout << "-1\n"; \
+    else print_bitmat(std::cout, res.value(), n, n);           \
+    return 0;                                                  \
   }
 
   DO(1 << 6)

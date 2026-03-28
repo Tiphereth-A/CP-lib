@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T, class Is0>
 requires requires(Is0 is0, T t) {
@@ -31,4 +31,4 @@ CEXP vec<T> lfsr_bm(vec<T> CR s, Is0&& is0) NE {
   return C;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

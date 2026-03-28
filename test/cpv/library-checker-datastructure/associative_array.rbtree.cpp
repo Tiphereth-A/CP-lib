@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 q;
   std::cin >> q;
-  ds::rbtree<pttuu> tr;
+  rbtree<pttuu> tr;
   for (u64 i = 0, op, k, v; i < q; ++i) {
     std::cin >> op >> k;
     auto it = tr.lower_bound({k, 0});

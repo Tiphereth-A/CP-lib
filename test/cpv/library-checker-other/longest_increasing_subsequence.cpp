@@ -12,7 +12,7 @@ int main() {
   std::cin >> n;
   vecu a(n);
   std::cin >> a;
-  auto res = opt::lis(a, inf);
+  auto res = lis(a, inf);
   std::cout << res.size() << '\n'
             << res << '\n';
   return 0;

@@ -1,58 +1,29 @@
 #pragma once
 
-#include "../../../util/alias/others/lib.hpp"
+#include "../graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
+namespace alist_impl_ {
+template <class T, class... Info>
+class alist_tag : public graph_info_impl_::graph_tag_base<Info...> {
+  using base_t = graph_info_impl_::graph_tag_base<Info...>;
+  vvec<graph_info_impl_::E<T>> g;
 
-template <bool with_deg = false>
-struct alist {
-  using w_t = void;
-  vvecu g;
-  u32 cnt_arc;
-  vecu deg_in, deg_out;
-  //! vertex ID: [0, n)
-  CEXPE alist(u32 n = 0) NE : g(n), cnt_arc{0}, deg_in(0), deg_out(0) {
-    if CEXP (with_deg) deg_in.resize(n), deg_out.resize(n);
-  }
-  CEXP void add_arc(u32 u, u32 v) NE {
-    g[u].push_back(v);
-    if CEXP (++cnt_arc; with_deg) ++deg_in[v], ++deg_out[u];
-  }
-  CEXP void add_edge(u32 u, u32 v) NE { add_arc(u, v), add_arc(v, u); }
+ protected:
+  using val_t = T;
+  CEXPE alist_tag(u32 n) NE : base_t(n), g(n) {}
+
+ public:
   CEXP void build() CNE {}
-  CEXP u32 size() CNE { return (u32)g.size(); }
-  CEXP auto& operator[](u32 u) NE { return g[u]; }
-  CEXP auto CR operator[](u32 u) CNE { return g[u]; }
-  template <class F>
-  requires requires(F f, u32 v) { f(v); }
-  CEXP void foreach(u32 u, F&& f) CNE {
-    for (auto v : g[u]) f(v);
-  }
-};
-template <class T, bool with_deg = false>
-struct alistw {
-  using w_t = T;
-  vvecp<u32, T> g;
-  u32 cnt_arc;
-  vecu deg_in, deg_out;
-  //! vertex ID: [0, n)
-  CEXPE alistw(u32 n = 0) NE : g(n), cnt_arc{0}, deg_in(0), deg_out(0) {
-    if CEXP (with_deg) deg_in.resize(n), deg_out.resize(n);
-  }
-  CEXP void add_arc(u32 u, u32 v, cT_(T) w) NE {
-    g[u].emplace_back(v, w);
-    if CEXP (++cnt_arc; with_deg) ++deg_in[v], ++deg_out[u];
-  }
-  CEXP void add_edge(u32 u, u32 v, cT_(T) w) NE { add_arc(u, v, w), add_arc(v, u, w); }
-  CEXP void build() CNE {}
-  CEXP u32 size() CNE { return (u32)g.size(); }
-  CEXP auto& operator[](u32 u) NE { return g[u]; }
-  CEXP auto CR operator[](u32 u) CNE { return g[u]; }
-  template <class F>
-  requires requires(F f, u32 v, T w) { f(v, w); }
-  CEXP void foreach(u32 u, F&& f) CNE {
-    for (auto [v, w] : g[u]) f(v, w);
-  }
-};
+  CEXP void add_arc(u32 u, auto&&... args) NE { base_t::add_arc(u, std::forward<decltype(args)>(args)...), g[u].emplace_back(std::forward<decltype(args)>(args)...); }
+  CEXP u32 vsize() CNE { return (u32)g.size(); }
+  CEXP u32 deg_out(u32 u) CNE { return (u32)g[u].size(); }
 
-}  // namespace tifa_libs::graph
+  CEXP auto CR operator[](u32 u) CNE { return g[u]; }
+  CEXP auto& operator[](u32 u) NE { return g[u]; }
+};
+}  // namespace alist_impl_
+template <class Et = void, class... Info>
+using alist = graph_impl_::graph<alist_impl_::alist_tag<Et, Info...>>;
+
+}  // namespace tifa_libs

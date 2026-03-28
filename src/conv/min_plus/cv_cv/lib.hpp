@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 //! assume a and b are convex, aka. $a_{i-1} - a_{i-2} \leq a_i - a_{i-1}$ and it also holds for b
 template <class T>
@@ -16,4 +16,4 @@ CEXP vec<T> conv_minplus_cv_cv(vec<T> CR a, vec<T> CR b) NE {
   return c;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

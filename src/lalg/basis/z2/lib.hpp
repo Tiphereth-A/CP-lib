@@ -3,7 +3,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/bitset_getdata/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <u32 N = 64, bool greedy_insert = false>
 struct basis_z2 {
@@ -117,4 +117,4 @@ struct basis_z2 {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

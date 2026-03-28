@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  math::Youngt yt;
+  Youngt yt;
   for (u32 i = 0, x; i < n; ++i) {
     std::cin >> x;
     yt.insert(x);

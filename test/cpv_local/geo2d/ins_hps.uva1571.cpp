@@ -6,9 +6,9 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f64;
-using Point2 = geo::point<data_t>;
-using Line2 = geo::line<data_t>;
-using ConvexHull2 = geo::cvh<data_t>;
+using Point2 = point<data_t>;
+using Line2 = line<data_t>;
+using ConvexHull2 = cvh<data_t>;
 
 int main() {
   u32 n;
@@ -18,7 +18,7 @@ int main() {
     vec<Line2> vl;
     vl.emplace_back(vp.back(), vp.front());
     flt_ (u32, i, 0, n - 1) vl.emplace_back(vp[i], vp[i + 1]);
-    ConvexHull2 cvh = geo::ins_hPs(vl);
+    ConvexHull2 cvh = ins_hPs(vl);
     cout << (cvh.reunique().size() > 1) << '\n';
   }
 }

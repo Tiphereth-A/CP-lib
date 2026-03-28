@@ -5,7 +5,7 @@
 #include "../../dot/lib.hpp"
 #include "../../ins/cl/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // area of intersection of circle and triangle
 //! WITH DIRECTION, sgn is cross(c.o, p1, p2)
@@ -26,4 +26,4 @@ CEXP FP sarea_CT(circle<FP> CR c, point<FP> CR p1, point<FP> CR p2) NE {
   return cross(c.o, p1, p2) / 2;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

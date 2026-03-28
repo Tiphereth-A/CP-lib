@@ -10,7 +10,7 @@ int main() {
   u32 n, m;
   strn s;
   std::cin >> n >> s >> m;
-  ds::odt<char> odt;
+  odt<char> odt;
   for (u32 l = 0, r = 0; l < n; l = r) {
     while (r < n && s[++r] == s[l]);
     odt.insert(l + 1, r, s[l]);

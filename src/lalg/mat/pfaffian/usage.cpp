@@ -1,16 +1,15 @@
 // competitive-verifier: DISPLAY never
 // cplib.manager: PROBLEM https://www.luogu.com.cn/problem/P10216
 
-#include "../../../math/ds/mint/lib.hpp"
-#include "../../../math/mint/ms/lib.hpp"
+#include "../../../math/ds/mint/ms/lib.hpp"
 #include "../../ds/mat/lib.hpp"
 #include "lib.hpp"
 
 using namespace tifa_libs;
 CEXP u32 MOD = 1'000'000'007;
 
-using mint = math::mint<math::mint_ms, MOD>;
-using mat = math::matrix<mint>;
+using mint = mint_ms<MOD>;
+using mat = matrix<mint>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -20,7 +19,7 @@ int main() {
   flt_ (u32, i, 0, n - 1)
     flt_ (u32, j, i + 1, n) std::cin >> a(i, j);
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-  std::cout << math::pfaffian(a, is_0) << '\n';
+  std::cout << pfaffian(a, is_0) << '\n';
 }
 
 /*

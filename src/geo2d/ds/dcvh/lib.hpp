@@ -3,7 +3,7 @@
 #include "../../argsort/lib.hpp"
 #include "../../ds/cvh/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // Dynamic Convex Hull
 template <class FP>
@@ -63,4 +63,4 @@ class dcvh {
   }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

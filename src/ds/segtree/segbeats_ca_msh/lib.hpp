@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, class T1 = T>
 class segbeats_ca_msh {
@@ -157,4 +157,4 @@ class segbeats_ca_msh {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

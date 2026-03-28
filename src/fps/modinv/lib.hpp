@@ -2,11 +2,10 @@
 
 #include "../gcd/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto modinv_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> CR g) NE {
-  using poly_t = poly<ccore, mint, args...>;
+template <poly_c poly_t>
+CEXP auto modinv_fps(poly_t CR f, poly_t CR g) NE {
   std::optional<poly_t> ret;
   auto m = gcd_fps_impl_::pgcd_(f, g);
   poly_t _ = (m * ptt<poly_t>{f, g}).first;
@@ -14,4 +13,4 @@ CEXP auto modinv_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...>
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

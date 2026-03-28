@@ -3,7 +3,7 @@
 #include "../../math/iroot/sqrt/lib.hpp"
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP vecu prime_seq(u32 n) NE {
   vecb sieve(n / 3 + 1, 1);
@@ -18,4 +18,4 @@ CEXP vecu prime_seq(u32 n) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

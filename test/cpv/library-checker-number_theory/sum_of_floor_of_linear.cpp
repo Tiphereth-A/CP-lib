@@ -19,7 +19,7 @@ int main() {
   while (t--) {
     u32 n, m, a, b;
     std::cin >> n >> m >> a >> b;
-    std::cout << math::exeuclid<exeuclid_node<u64>>(a, m, b, n - 1, u, r).f + b / m << '\n';
+    std::cout << exeuclid<exeuclid_node<u64>>(a, m, b, n - 1, u, r).f + b / m << '\n';
   }
   return 0;
 }

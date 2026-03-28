@@ -2,7 +2,7 @@
 
 #include "../../../fps/inv/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // partition[i] = p(i), i=0,1,...,n
 template <class poly>
@@ -18,4 +18,4 @@ CEXP poly gen_partition(u32 n) NE {
   return inv_fps(p);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

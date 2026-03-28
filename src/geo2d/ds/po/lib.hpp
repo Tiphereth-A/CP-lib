@@ -5,7 +5,7 @@
 #include "../../cross/lib.hpp"
 #include "../../dis/pp/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 struct polygon {
@@ -44,13 +44,13 @@ struct polygon {
   CEXP u32 prev(u32 idx) CNE { retif_((idx == 0) [[unlikely]], size() - 1, idx - 1); }
   CEXP u32 next(u32 idx) CNE { retif_((idx + 1 == size()) [[unlikely]], 0, idx + 1); }
   CEXP FP circum() CNE {
-    math::kahan<FP> ret = dist_PP(vs.back(), vs.front());
+    kahan<FP> ret = dist_PP(vs.back(), vs.front());
     flt_ (u32, i, 0, size() - 1) ret += dist_PP(vs[i], vs[i + 1]);
     return ret;
   }
   CEXP FP area2() CNE {
     retif_((size() < 3) [[unlikely]], 0);
-    math::kahan<FP> ret = vs.back() ^ vs.front();
+    kahan<FP> ret = vs.back() ^ vs.front();
     flt_ (u32, i, 0, size() - 1) ret += vs[i] ^ vs[i + 1];
     return ret;
   }
@@ -87,4 +87,4 @@ struct polygon {
   }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

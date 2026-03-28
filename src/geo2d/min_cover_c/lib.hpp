@@ -3,7 +3,7 @@
 #include "../make_c/ppp/lib.hpp"
 #include "../rel/cp/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // min coverage circle of a set of points
 //! shuffle `vp` first to avoid hack & improve accuracy
@@ -24,4 +24,4 @@ CEXP circle<FP> min_cover_C(vec<point<FP>> CR vp) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

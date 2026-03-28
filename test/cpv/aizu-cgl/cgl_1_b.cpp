@@ -6,20 +6,20 @@
 #include "../../../src/geo2d/proj/lib.hpp"
 
 using namespace tifa_libs;
-using point = geo::point<double>;
-using line = geo::line<double>;
+using point_t = point<double>;
+using line_t = line<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(10);
-  line l;
+  line_t l;
   std::cin >> l;
   u32 q;
   std::cin >> q;
   flt_ (u32, i, 0, q) {
-    point p;
+    point_t p;
     std::cin >> p;
-    std::cout << geo::reflect(l, p) << '\n';
+    std::cout << reflect(l, p) << '\n';
   }
   return 0;
 }

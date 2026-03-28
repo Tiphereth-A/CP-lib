@@ -4,7 +4,7 @@
 #include "../../../math/iroot/sqrt/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP u64 pi_min25(u64 n) NE {
   retif_((n <= 1) [[unlikely]], 0);
@@ -50,4 +50,4 @@ CEXP u64 pi_min25(u64 n) NE {
   return l[0] + 1;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

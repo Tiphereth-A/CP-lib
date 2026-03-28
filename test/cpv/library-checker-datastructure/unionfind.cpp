@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  ds::dsu_basic dsu(n + 1);
+  dsu_basic dsu(n + 1);
   flt_ (u32, i, 1, q + 1) {
     u32 t, u, v;
     std::cin >> t >> u >> v;

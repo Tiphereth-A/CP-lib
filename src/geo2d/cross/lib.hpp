@@ -2,7 +2,7 @@
 
 #include "../../util/func_fp/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class P>
 CEXP auto cross(P CR o, P CR a, P CR b) NE { return (a - o) ^ (b - o); }
@@ -15,4 +15,4 @@ CEXP int sgn_cross(P CR o, P CR a, P CR b) NE { return sgn(cross_unit(o, a, b));
 template <class P>
 CEXP int sgn_cross(P CR o, P CR a, P CR b) NE { return sgn(cross(o, a, b)); }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

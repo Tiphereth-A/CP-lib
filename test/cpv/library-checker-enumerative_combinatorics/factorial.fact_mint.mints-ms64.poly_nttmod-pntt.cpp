@@ -7,13 +7,12 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/fps/ds/ntt/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms64/lib.hpp"
+#include "../../../src/math/ds/mint/ms64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms64, MOD>;
+using mint = mint_ms64<MOD>;
 using namespace tifa_libs;
-using poly = math::polyntt<mint>;
+using poly = polyntt<mint>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -22,7 +21,7 @@ int main() {
   while (t--) {
     u64 n;
     std::cin >> n;
-    std::cout << tifa_libs::math::fact_mint<poly>(n) << '\n';
+    std::cout << tifa_libs::fact_mint<poly>(n) << '\n';
   }
   return 0;
 }

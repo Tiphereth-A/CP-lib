@@ -12,7 +12,7 @@ int main() {
   flt_ (u32, i, 0, t) cin >> ns[i];
 
   u32 n = std::ranges::max(ns);
-  math::lsieve2 ls(n);
+  lsieve2 ls(n);
   u64 lst = 1;
   vecuu g = ls.template run<u64>([&](u32 p, u32 e) {
     if (e == 1) return lst = p - 2;

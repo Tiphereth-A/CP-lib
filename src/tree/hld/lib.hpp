@@ -5,27 +5,27 @@
 #include "../dfs/top/lib.hpp"
 #include "../ds/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 namespace hld_impl_ {
-template <bool enable_tag, class T, auto op, class F, auto mapping, auto composition>
+template <bool enable_tag, tree_c tree_t, class T, auto op, class F, auto mapping, auto composition>
 class hld {
-  ds::segtree_impl_::segtree<enable_tag, T, op, F, mapping, composition> t;
+  segtree_impl_::segtree<enable_tag, T, op, F, mapping, composition> t;
 
  public:
-  using tree_info_t = graph::tree_dfs_info<graph::tree, graph::tdi_dfn, graph::tdi_maxson, graph::tdi_dep, graph::tdi_fa>;
+  using tree_info_t = tree_dfs_info<tree_t, tdi_dfn, tdi_maxson, tdi_dep, tdi_fa>;
 
-  graph::tree CR tr;
+  tree_t CR tr;
   tree_info_t info;
   vecu top;
 
-  CEXP hld(cT_(T) e, cT_(F) id, graph::tree CR tr, tree_info_t CR info_) NE : t(e, id), tr(tr), info{info_}, top(graph::tree_top<graph::tree, true>(tr, info.dfn, info.maxson)) {}
-  CEXP hld(cT_(T) e, cT_(F) id, graph::tree CR tr) NE : hld(e, id, tr, tree_info_t(tr)) {}
-  CEXP hld(cT_(T) e, cT_(F) id, graph::tree CR tr, tree_info_t CR info_, spn<T> a) NE : hld(e, id, tr, info_) {
+  CEXP hld(cT_(T) e, cT_(F) id, tree_t CR tr, tree_info_t CR info_) NE : t(e, id), tr(tr), info{info_}, top(tree_top<tree_t, true>(tr, info.dfn, info.maxson)) {}
+  CEXP hld(cT_(T) e, cT_(F) id, tree_t CR tr) NE : hld(e, id, tr, tree_info_t(tr)) {}
+  CEXP hld(cT_(T) e, cT_(F) id, tree_t CR tr, tree_info_t CR info_, spn<T> a) NE : hld(e, id, tr, info_) {
     vec<T> b(a.size());
     flt_ (u32, i, 0, (u32)a.size()) b[info.dfn[i]] = a[i];
     build(b);
   }
-  CEXP hld(graph::tree CR tr, spn<T> a) NE : hld(tr, tree_info_t(tr), a) {}
+  CEXP hld(tree_t CR tr, spn<T> a) NE : hld(tr, tree_info_t(tr), a) {}
 
   CEXP void build(spn<T> a) NE { t.reset(a); }
   CEXP void chain_update(u32 u, u32 v, cT_(F) f) NE {
@@ -63,17 +63,17 @@ class hld {
 };
 }  // namespace hld_impl_
 
-template <class T, auto op, class F, auto mapping, auto composition>
-using hld = hld_impl_::hld<true, T, op, F, mapping, composition>;
-template <class T, auto op, auto mapping>
-class hld_notag : public hld_impl_::hld<false, T, op, T, mapping, mapping> {
-  using base = hld_impl_::hld<false, T, op, T, mapping, mapping>;
+template <tree_c tree_t, class T, auto op, class F, auto mapping, auto composition>
+using hld = hld_impl_::hld<true, tree_t, T, op, F, mapping, composition>;
+template <tree_c tree_t, class T, auto op, auto mapping>
+class hld_notag : public hld_impl_::hld<false, tree_t, T, op, T, mapping, mapping> {
+  using base = hld_impl_::hld<false, tree_t, T, op, T, mapping, mapping>;
 
  public:
-  CEXP hld_notag(cT_(T) e, graph::tree CR tr, base::tree_info_t CR info) NE : base(e, e, tr, info) {}
+  CEXP hld_notag(cT_(T) e, tree_t CR tr, base::tree_info_t CR info) NE : base(e, e, tr, info) {}
   template <class V>
-  CEXP hld_notag(cT_(T) e, graph::tree CR tr) NE : base(e, e, tr) {}
-  CEXP hld_notag(cT_(T) e, graph::tree CR tr, base::tree_info_t CR info, spn<T> a) NE : base(e, e, tr, info, a) {}
+  CEXP hld_notag(cT_(T) e, tree_t CR tr) NE : base(e, e, tr) {}
+  CEXP hld_notag(cT_(T) e, tree_t CR tr, base::tree_info_t CR info, spn<T> a) NE : base(e, e, tr, info, a) {}
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

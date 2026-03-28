@@ -11,7 +11,7 @@ int main() {
   while (q--) {
     u64 a;
     std::cin >> a;
-    auto ans = math::pfactors<false>(a);
+    auto ans = pfactors<false>(a);
     std::cout << ans.size();
     if (!ans.empty()) std::cout << ' ' << ans;
     std::cout << '\n';

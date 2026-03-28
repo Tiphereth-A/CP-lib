@@ -9,7 +9,7 @@ int main() {
   std::cin >> n >> m >> r;
   vec<edge_t<u64>> arcs(m);
   for (auto& [w, u, v] : arcs) std::cin >> u >> v >> w;
-  auto res = graph::cle(n, r, arcs);
+  auto res = cle(n, r, arcs);
   u64 ans = 0;
   for (auto [w, u, v] : res) ans += w;
   std::cout << ans << '\n';

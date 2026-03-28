@@ -2,7 +2,7 @@
 
 #include "../gcd/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <int_c T, int_c U>
 CEXP std::common_type_t<T, U> lcm(T a, U b) NE {
@@ -13,4 +13,4 @@ CEXP std::common_type_t<T, U> lcm(T a, U b) NE {
   return u / (V)gcd_impl_::gcd__<W, W>(u, v) * v;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

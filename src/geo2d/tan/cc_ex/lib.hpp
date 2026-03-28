@@ -4,7 +4,7 @@
 #include "../../ds/l/lib.hpp"
 #include "../cp/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // external tagante lines of 2 circles
 // maybe duplicate
@@ -25,4 +25,4 @@ CEXP auto extan_CC(circle<FP> CR c1, circle<FP> CR c2) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

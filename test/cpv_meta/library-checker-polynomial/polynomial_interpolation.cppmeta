@@ -20,6 +20,6 @@ int main() {
   tifa_libs::fin_uint >> n;
   poly a(n), b(n);
   tifa_libs::fin_uint >> a >> b;
-  tifa_libs::fout << tifa_libs::math::interp_fps(a, b) << '\n';
+  tifa_libs::fout << tifa_libs::interp_fps(a, b) << '\n';
   return 0;
 }

@@ -5,7 +5,7 @@
 #include "../../gl/gcd/lib.hpp"
 #include "../../inverse/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP auto kth_root(u64 a, u64 k, u64 p) NE {
   std::optional<u64> ret;
@@ -53,4 +53,4 @@ CEXP auto kth_root(u64 a, u64 k, u64 p) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

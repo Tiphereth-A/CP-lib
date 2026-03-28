@@ -6,11 +6,10 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/bd/lib.hpp"
+#include "../../../src/math/ds/mint/bd/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bd, __LINE__>;
+using mint = mint_bd<__LINE__>;
 using T = std::pair<mint, usz>;   // sum len
 using F = std::pair<mint, mint>;  // mul add
 
@@ -29,7 +28,7 @@ int main() {
   std::cin >> n >> q;
   vec<T> a(n);
   for (auto& x : a) std::cin >> x.first, x.second = 1;
-  tifa_libs::ds::segtree<T, op, F, mapping, composition> segt({0, 0}, {1, 0}, a);
+  tifa_libs::segtree<T, op, F, mapping, composition> segt({0, 0}, {1, 0}, a);
   flt_ (u32, i, 1, q + 1) {
     u32 opt, l, r;
     std::cin >> opt >> l >> r;

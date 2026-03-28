@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../rand/gen/lib.hpp"
+#include "../../util/rand/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 template <class T, class Fg, class Ff, class Ft = f64, class Tt = f64>
 requires requires(Ff fit, Fg gen, T sample, Tt t) {
@@ -13,7 +13,7 @@ class heuristic_sa {
   Fg gen;
   Ff f;
   const Tt Tmax, Tmin, dT;
-  rand::gen<Tt> g;
+  rand_gen<Tt> g;
 
  public:
   // Find minimum argument of f(x)
@@ -36,4 +36,4 @@ class heuristic_sa {
   }
 };
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

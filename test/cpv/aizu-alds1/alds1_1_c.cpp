@@ -11,7 +11,7 @@ int main() {
   while (t--) {
     u32 p;
     std::cin >> p;
-    cnt += math::is_prime(p);
+    cnt += is_prime(p);
   }
   std::cout << cnt << '\n';
   return 0;

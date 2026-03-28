@@ -7,7 +7,7 @@
 #include "../../rel/plp/lib.hpp"
 #include "../pl/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 class cvh3d {
@@ -23,7 +23,7 @@ class cvh3d {
     CEXP void in(u32 n1, u32 n2, u32 n3) noexcept { n[0] = n1, n[1] = n2, n[2] = n3; }
   };
   u32 tm = 0, idx = 0;
-  math::kahan<FP> suf_area = 0;
+  kahan<FP> suf_area = 0;
 
  public:
   //! 1-indexed
@@ -142,7 +142,7 @@ class cvh3d {
     idx = snew;
   }
   template <class F>
-  requires requires(F op, math::kahan<FP>& v, planev<FP> p) { op(v, p); }
+  requires requires(F op, kahan<FP>& v, planev<FP> p) { op(v, p); }
   CEXP void dfs(F&& op) NE {
     auto f = [&](auto&& f, u32 nf) NE -> void {
       if (faces[nf].vistime == tm) return;
@@ -152,9 +152,9 @@ class cvh3d {
   }
   CEXP FP surface_area() NE {
     if (!is_zero((FP)suf_area)) return suf_area;
-    dfs([](math::kahan<FP>& v, planev<FP> p) NE { v += p.area(); });
+    dfs([](kahan<FP>& v, planev<FP> p) NE { v += p.area(); });
     return suf_area;
   }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

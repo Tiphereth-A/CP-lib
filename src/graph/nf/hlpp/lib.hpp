@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 template <class T = u32>
 class hlpp {
@@ -76,4 +76,4 @@ class hlpp {
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

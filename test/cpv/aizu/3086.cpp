@@ -14,8 +14,8 @@ int main() {
   vecii a(n);
   for (auto& i : a) std::cin >> i, i = -i;
   const auto inf = inf_v<i64>;
-  ds::segtree_notag<i64, op, mapping> tr(inf, a);
-  auto ans = opt::larsch<i64>(n, [&](u32 l, u32 r) { retif_((r < l + L), inf, tr.query(l, r)); });
+  segtree_notag<i64, op, mapping> tr(inf, a);
+  auto ans = larsch<i64>(n, [&](u32 l, u32 r) { retif_((r < l + L), inf, tr.query(l, r)); });
   std::cout << -ans.back() << '\n';
   return 0;
 }

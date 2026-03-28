@@ -1,5 +1,6 @@
 - ds: 定义
 - dfs: DFS 相关信息
+- lca_linear: O(n)-O(1) LCA
 - hld: 重链剖分
 - lca_hld: 树链剖分求 LCA
 - virtual_tree: 虚树

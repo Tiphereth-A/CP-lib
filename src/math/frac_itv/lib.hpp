@@ -2,7 +2,7 @@
 
 #include "../ds/rational/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 //! a < b
 template <uint_c T>
@@ -14,4 +14,4 @@ CEXP rational<T> frac_itv(rational<T> a, rational<T> b) NE {
   return {x.den + _ * x.num, x.num};
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

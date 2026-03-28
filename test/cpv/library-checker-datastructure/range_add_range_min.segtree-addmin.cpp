@@ -12,7 +12,7 @@ int main() {
   std::cin >> n >> q;
   vecii a(n);
   std::cin >> a;
-  auto tr = ds::segtl_addmin_ctor<i64>(inf_v<i64>, a);
+  auto tr = segtl_addmin_ctor<i64>(inf_v<i64>, a);
   flt_ (u32, i, 0, q) {
     u32 op, u, v;
     i64 w;

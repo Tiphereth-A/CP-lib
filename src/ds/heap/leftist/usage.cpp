@@ -10,7 +10,7 @@ int main() {
   std::cin >> n >> m;
   veci a(n);
   for (auto& x : a) std::cin >> x;
-  ds::leftist_tree<i32> tr(a);
+  leftist_tree<i32> tr(a);
   u32 opt, x, y;
   flt_ (u32, i, 0, m) {
     std::cin >> opt >> x, --x;

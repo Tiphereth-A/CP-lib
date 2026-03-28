@@ -8,7 +8,7 @@ using namespace tifa_libs;
 int main() {
   u32 n, q;
   fin_uint >> n >> q;
-  ds::fhq_treap<u32> treap;
+  fhq_treap<u32> treap;
   flt_ (u32, i, 0, n, x) {
     fin_uint >> x;
     treap.insert(x);

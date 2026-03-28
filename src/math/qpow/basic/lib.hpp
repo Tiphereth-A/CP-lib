@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 CEXP T qpow(T a, u64 b, cT_(T) init_v = T{1}) NE {
@@ -14,4 +14,4 @@ CEXP T qpow(T a, u64 b, cT_(T) init_v = T{1}) NE {
   return res;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

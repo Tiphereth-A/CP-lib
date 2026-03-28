@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 // @return INDEX of LIS in @a
 template <class T, class C = std::less<T>>
@@ -23,4 +23,4 @@ CEXP vecu lis(vec<T> CR a, T inf = std::numeric_limits<T>::max(), C&& comp = C{}
   return ret;
 }
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

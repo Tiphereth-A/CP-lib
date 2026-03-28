@@ -8,6 +8,6 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s;
   std::cin >> s;
-  std::cout << str::duval(s) << '\n';
+  std::cout << duval(s) << '\n';
   return 0;
 }

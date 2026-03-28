@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  math::matrix<u64> a(n, m), b(m, 1);
+  matrix<u64> a(n, m), b(m, 1);
   std::cin >> a >> b;
   std::cout << a * b << '\n';
   return 0;

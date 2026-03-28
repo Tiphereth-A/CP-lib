@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 CEXP void zt_subset(vec<T>& f) NE {
@@ -21,4 +21,4 @@ CEXP void mt_subset(vec<T>& f) NE {
       if (!(j & i)) f[j | i] -= f[j];
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

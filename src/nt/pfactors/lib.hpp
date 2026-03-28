@@ -2,13 +2,13 @@
 
 #include "../../edh/discretization/lib.hpp"
 #include "../../math/mul_mod/lib.hpp"
-#include "../../rand/gen/lib.hpp"
+#include "../../util/rand/lib.hpp"
 #include "../gl/gcd/lib.hpp"
 #include "../is_prime/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace pfactors_impl_ {
-static rand::gen<u64> e;
+static rand_gen<u64> e;
 static auto __ = [] { e.seed(); return 0; }();
 CEXP u64 rho(u64 n) NE {
   e.range(1, n - 1);
@@ -68,4 +68,4 @@ CEXP vecp<u64, u32> pf_exp(u64 n) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

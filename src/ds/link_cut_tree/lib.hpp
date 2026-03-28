@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, auto op, auto inv_op>
 requires requires(T x, T y) {
@@ -129,4 +129,4 @@ class link_cut_tree {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

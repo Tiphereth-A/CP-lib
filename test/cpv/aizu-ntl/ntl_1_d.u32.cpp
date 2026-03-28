@@ -7,6 +7,6 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  std::cout << math::euler_phi(n) << '\n';
+  std::cout << euler_phi(n) << '\n';
   return 0;
 }

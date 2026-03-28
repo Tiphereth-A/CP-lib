@@ -1,15 +1,15 @@
 #pragma once
 
-#include "../ds/poly/lib.hpp"
+#include "../ds/poly_c/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto int_fps(poly<ccore, mint, args...> CR p) NE {
+template <poly_c poly_t>
+CEXP auto int_fps(poly_t CR p) NE {
   auto _ = p;
-  for (u32 i = (u32)_.size() - 1; i; --i) _[i] = _[i - 1] * mint(i).inv();
+  for (u32 i = (u32)_.size() - 1; i; --i) _[i] = _[i - 1] * TPN poly_t::val_t(i).inv();
   _[0] = 0;
   return _;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

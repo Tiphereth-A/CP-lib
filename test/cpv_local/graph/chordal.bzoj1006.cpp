@@ -10,7 +10,7 @@ using std::cin, std::cout;
 int main() {
   u32 n, m;
   cin >> n >> m;
-  graph::alist g(n);
+  alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     cin >> u >> v;
     --u;
@@ -18,7 +18,7 @@ int main() {
     g.add_arc(u, v);
     g.add_arc(v, u);
   }
-  for (auto& i : g.g) ::sort(i);
-  graph::chordal chd(g);
+  flt_ (u32, i, 0, n) ::sort(g[i]);
+  chordal chd(g);
   cout << chd.chromatic_number() << '\n';
 }

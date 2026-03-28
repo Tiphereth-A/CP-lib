@@ -123,7 +123,7 @@ int main() {
           }
   }
 
-  auto res = opt::dlx(maps).dance(fn_0);
+  auto res = dlx(maps).dance(fn_0);
   if (!res) {
     cout << "No solution\n";
     return 0;

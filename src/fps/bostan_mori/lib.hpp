@@ -1,9 +1,9 @@
 #pragma once
 
 #include "../../conv/trans/ntt_doubling/lib.hpp"
-#include "../ds/poly/lib.hpp"
+#include "../ds/poly_c/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace bostan_mori_impl_ {
 template <class ccore_t, class T>
 vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) NE {
@@ -32,9 +32,9 @@ vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) NE {
 }  // namespace bostan_mori_impl_
 
 // @return [x^k]p/q
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto bostan_mori(u64 n, poly<ccore, mint, args...> CR p, poly<ccore, mint, args...> CR q) NE {
-  if CEXP (assert(p.size() == q.size() - 1 && !p.is_zero()); ccore<mint, args...>::ct_cat != CCORE::NTT) {
+template <poly_c poly_t>
+CEXP auto bostan_mori(u64 n, poly_t CR p, poly_t CR q) NE {
+  if CEXP (assert(p.size() == q.size() - 1 && !p.is_zero()); poly_t::ccore_t::ct_cat != CCORE::NTT) {
     auto p_ = p, q_ = q;
     while (n) {
       auto _ = q_;
@@ -46,7 +46,7 @@ CEXP auto bostan_mori(u64 n, poly<ccore, mint, args...> CR p, poly<ccore, mint, 
     }
     return p_[0];
   } else {
-    auto& core = poly<ccore, mint, args...>::conv_core;
+    auto& core = poly_t::conv_core;
     auto core2 = core;
     u32 m = (u32)q.size();
     core.bzr(m);
@@ -55,10 +55,10 @@ CEXP auto bostan_mori(u64 n, poly<ccore, mint, args...> CR p, poly<ccore, mint, 
     core.dif(q_);
     q_.resize(core2.size());
     auto iq = bostan_mori_impl_::coeff_(core, core2, q_, n, m - 1);
-    mint res = 0;
+    TPN poly_t::val_t res = 0;
     for (u32 i = 0, e = u32(iq.size() - 1); i <= e; ++i) res += p[i] * iq[e - i];
     return res;
   }
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

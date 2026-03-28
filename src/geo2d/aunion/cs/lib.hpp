@@ -3,7 +3,7 @@
 #include "../../ins/cc/lib.hpp"
 #include "../../rel/cc/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // @return ans, which ans[i] means area covered at least i+1 times
 template <std::floating_point FP>
@@ -76,4 +76,4 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

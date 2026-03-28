@@ -7,12 +7,11 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/md64/lib.hpp"
+#include "../../../src/math/ds/mint/md64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md64, __LINE__>;
-using mat = tifa_libs::math::matrix<mint>;
+using mint = mint_md64<__LINE__>;
+using mat = tifa_libs::matrix<mint>;
 
 int main() {
   mint::set_mod(MOD);
@@ -21,6 +20,6 @@ int main() {
   std::cin >> n;
   mat a(n, n);
   std::cin >> a;
-  std::cout << tifa_libs::math::hafnian(a);
+  std::cout << tifa_libs::hafnian(a);
   return 0;
 }

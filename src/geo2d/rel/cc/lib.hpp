@@ -3,7 +3,7 @@
 #include "../../dis/pp_p/lib.hpp"
 #include "../../ds/c/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // relation between circle and circle
 // clang-format off
@@ -19,4 +19,4 @@ CEXP RELCC relation_CC(circle<FP> CR c1, circle<FP> CR c2) NE {
   return RELCC::lyingin;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

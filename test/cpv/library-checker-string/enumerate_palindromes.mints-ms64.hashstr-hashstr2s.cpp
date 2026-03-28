@@ -6,16 +6,15 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms64/lib.hpp"
+#include "../../../src/math/ds/mint/ms64/lib.hpp"
 #include "../../../src/str/hash/substr2/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms64, MOD>;
+using mint = mint_ms64<MOD>;
 using namespace tifa_libs;
-using mint0 = math::mint<math::mint_ms64, 998244353>;
-using mint1 = math::mint<math::mint_ms64, 1000000007>;
-using hashstr = str::hash_substr2<mint0, mint1>;
+using mint0 = mint_ms64<998244353>;
+using mint1 = mint_ms64<1000000007>;
+using hashstr = hash_substr2<mint0, mint1>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

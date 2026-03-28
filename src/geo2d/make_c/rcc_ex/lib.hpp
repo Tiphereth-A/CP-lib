@@ -3,7 +3,7 @@
 #include "../../ins/cc/lib.hpp"
 #include "../../rel/cc/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // make circle by radius and 2 external tagante circle
 // maybe duplicate
@@ -17,4 +17,4 @@ CEXP auto make_C_rCC_ex(FP r, circle<FP> CR c1, circle<FP> CR c2) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

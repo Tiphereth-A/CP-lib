@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 struct ls_mpf {
   vecu mpf;
@@ -62,4 +62,4 @@ struct ls_sigma {
   CEXP void not_coprime(u32 i, u32 j) NE { sigma[i * j] = sigma[i] * ((pw[i * j] = pw[i] * j) - 1) / (pw[i] - 1); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

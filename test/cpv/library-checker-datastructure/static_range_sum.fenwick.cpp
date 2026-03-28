@@ -9,7 +9,7 @@ int main() {
   std::cin >> n >> q;
   vecuu a(n + 1);
   flt_ (u32, i, 1, n + 1) std::cin >> a[i];
-  ds::fenwick<u64> f(a);
+  fenwick<u64> f(a);
   flt_ (u32, i, 1, q + 1) {
     u32 l, r;
     std::cin >> l >> r;

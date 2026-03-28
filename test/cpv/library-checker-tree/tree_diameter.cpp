@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
 
+#include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/graph/path/lib.hpp"
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/tree/dfs/diam/lib.hpp"
@@ -10,13 +11,14 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  graph::treew<u64> tr(n);
+  alist<u64> g(n);
   for (u32 i = 1, u, v, w; i < n; ++i) {
     std::cin >> u >> v >> w;
-    tr.add_arc(u, v, (u64)w), tr.add_arc(v, u, (u64)w);
+    g.add_arc(u, v, (u64)w), g.add_arc(v, u, (u64)w);
   }
-  auto [u, v, w] = graph::tree_diam(tr);
-  auto p = graph::path(tr, u, v).value();
+  tree tr(g);
+  auto [u, v, w] = tree_diam(tr);
+  auto p = path(g, u, v).value();
   std::cout << w << ' ' << p.size() << '\n';
   std::cout << p << '\n';
   return 0;

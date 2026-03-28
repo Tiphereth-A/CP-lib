@@ -9,7 +9,7 @@
 #include "../../tan/cc_ex/lib.hpp"
 #include "../../tan/cc_in/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // make circle by point passed through and 2 external tagante circle
 // result size: 0 to 4
@@ -34,4 +34,4 @@ CEXP vec<circle<FP>> make_C_PCC_ex(point<FP> CR p, circle<FP> c1, circle<FP> c2)
   return vc;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

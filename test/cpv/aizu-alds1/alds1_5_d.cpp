@@ -10,6 +10,6 @@ int main() {
   std::cin >> n;
   vecu a(n);
   std::cin >> a;
-  std::cout << math::inversion(a) << '\n';
+  std::cout << inversion(a) << '\n';
   return 0;
 }

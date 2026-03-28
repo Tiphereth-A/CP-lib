@@ -1,0 +1,3 @@
+- st: ST 表
+- rus4: 分块 ST 表
+- linear: O(n)-O(1) RMQ

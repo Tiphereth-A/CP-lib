@@ -2,7 +2,7 @@
 
 #include "../p2p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // geometry inverse of a circle which DOES NOT pass through the inversion center
 // @param cc reference circle
@@ -23,4 +23,4 @@ CEXP circle<FP> inv_C2C(point<FP> CR ro, circle<FP> CR c) NE {
   return {mid_point(p1, p2), dist_PP(p1, p2) / 2};
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

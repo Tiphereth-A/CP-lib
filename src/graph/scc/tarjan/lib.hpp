@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 struct tarjan {
   u32 id;
@@ -33,4 +33,4 @@ struct tarjan {
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

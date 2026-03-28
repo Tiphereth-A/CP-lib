@@ -2,7 +2,7 @@
 
 #include "../ds/p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // clamp angle of two points, result in $(-\pi,\pi]$
 template <class FP>
@@ -14,4 +14,4 @@ CEXP FP ang2pi_PP(point<FP> CR p1, point<FP> CR p2) NE {
   retif_((is_neg(res)), res + 2 * pi_v<FP>, res);
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

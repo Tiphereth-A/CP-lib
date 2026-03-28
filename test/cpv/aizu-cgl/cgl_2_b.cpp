@@ -5,17 +5,17 @@
 #include "../../../src/geo2d/pred/is_ins_ss/lib.hpp"
 
 using namespace tifa_libs;
-using point = geo::point<double>;
-using line = geo::line<double>;
+using point_t = point<double>;
+using line_t = line<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 q;
   std::cin >> q;
   flt_ (u32, i, 0, q) {
-    line l1, l2;
+    line_t l1, l2;
     std::cin >> l1 >> l2;
-    std::cout << geo::is_ins_SS(l1, l2) << '\n';
+    std::cout << is_ins_SS(l1, l2) << '\n';
   }
   return 0;
 }

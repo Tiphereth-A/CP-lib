@@ -3,14 +3,14 @@
 #include "../../../src/geo2d/ds/cvh/lib.hpp"
 
 using namespace tifa_libs;
-using cvh = geo::cvh<double>;
+using cvh_t = cvh<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(0);
   u32 n;
   std::cin >> n;
-  cvh p(n);
+  cvh_t p(n);
   std::cin >> p;
   p.template init<false>();
   std::cout << p.size() << '\n';

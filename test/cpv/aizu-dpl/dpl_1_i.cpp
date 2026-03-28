@@ -9,6 +9,6 @@ int main() {
   std::cin >> n >> w;
   vec<pt3uu> a(n);
   for (auto& [v, w, num] : a) std::cin >> v >> w >> num;
-  std::cout << opt::knapsack_mixed_huge(a, w) << '\n';
+  std::cout << knapsack_mixed_huge(a, w) << '\n';
   return 0;
 }

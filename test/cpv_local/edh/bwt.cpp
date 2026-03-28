@@ -2,11 +2,11 @@
 
 #include "../../../src/edh/bwt/inv/lib.hpp"
 #include "../../../src/edh/bwt/seq/lib.hpp"
-#include "../../../src/rand/gen/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
-rand::gen<char> g('\x21', '\x7f');
+rand_gen<char> g('\x21', '\x7f');
 
 void test(u32 n) {
   strn s(n + 1, '\x20');

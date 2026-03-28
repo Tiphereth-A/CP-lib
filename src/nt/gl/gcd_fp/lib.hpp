@@ -2,7 +2,7 @@
 
 #include "../../../util/util/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <std::floating_point T>
 CEXP T gcd_fp(T a, T b, T eps = 1e-2) NE {
@@ -14,4 +14,4 @@ CEXP T gcd_fp(T a, T b, T eps = 1e-2) NE {
   return a;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

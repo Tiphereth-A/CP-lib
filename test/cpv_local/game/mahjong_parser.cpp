@@ -4,9 +4,9 @@
 #include "../base.hpp"
 
 using namespace tifa_libs;
-using namespace tifa_libs::game::literals;
+using namespace tifa_libs::literals;
 
-vecp<u32, vec<game::mahjong_card>> mahjong_hand_data{
+vecp<u32, vec<mahjong_card>> mahjong_hand_data{
     {5, {1_mjs, 2_mjs, 5_mjs, 6_mjs, 8_mjs, 9_mjs, 1_mjm, 2_mjm, 5_mjm, 6_mjm, 8_mjm, 9_mjm, 1_mjp, 2_mjp}},
     {4, {1_mjs, 1_mjs, 4_mjs, 4_mjs, 7_mjs, 7_mjs, 1_mjm, 1_mjm, 4_mjm, 4_mjm, 7_mjm, 7_mjm, 1_mjp, 1_mjp}},
     {3, {1_mjs, 1_mjs, 1_mjs, 1_mjs, 4_mjs, 4_mjs, 7_mjs, 7_mjs, 1_mjm, 1_mjm, 4_mjm, 4_mjm, 7_mjm, 7_mjm}},
@@ -31,26 +31,26 @@ vecp<u32, vec<game::mahjong_card>> mahjong_hand_data{
 void test(u32 n) {
   auto [step, hand] = mahjong_hand_data[n];
 
-  auto parsed = game::mahjong_parser<14>(hand);
+  auto parsed = mahjong_parser<14>(hand);
   bool win = any_of(parsed, [](auto CR hand) { return hand.win(); });
 
   auto f = [](auto& v) {
     vec<strn> ans;
     for (auto [melds, c] : v) {
-      auto card = game::mahjong_card::decode(c);
+      auto card = mahjong_card::decode(c);
       strn meld_str;
       switch (melds) {
-        case game::MELDS_MJ::mian: meld_str = "mian"; break;
-        case game::MELDS_MJ::bianl: meld_str = "bianl"; break;
-        case game::MELDS_MJ::bianr: meld_str = "bianr"; break;
-        case game::MELDS_MJ::kan: meld_str = "kan"; break;
-        case game::MELDS_MJ::orphan: meld_str = "orphan"; break;
-        case game::MELDS_MJ::pair: meld_str = "pair"; break;
-        case game::MELDS_MJ::pair0: meld_str = "pair0"; break;
-        case game::MELDS_MJ::bonus: meld_str = "bonus"; break;
-        case game::MELDS_MJ::chow: meld_str = "chow"; break;
-        case game::MELDS_MJ::pung: meld_str = "pung"; break;
-        case game::MELDS_MJ::kong: meld_str = "kong"; break;
+        case MELDS_MJ::mian: meld_str = "mian"; break;
+        case MELDS_MJ::bianl: meld_str = "bianl"; break;
+        case MELDS_MJ::bianr: meld_str = "bianr"; break;
+        case MELDS_MJ::kan: meld_str = "kan"; break;
+        case MELDS_MJ::orphan: meld_str = "orphan"; break;
+        case MELDS_MJ::pair: meld_str = "pair"; break;
+        case MELDS_MJ::pair0: meld_str = "pair0"; break;
+        case MELDS_MJ::bonus: meld_str = "bonus"; break;
+        case MELDS_MJ::chow: meld_str = "chow"; break;
+        case MELDS_MJ::pung: meld_str = "pung"; break;
+        case MELDS_MJ::kong: meld_str = "kong"; break;
       }
       ans.push_back(std::format("({}:{}{})", meld_str, card.rank, card.suit));
     }

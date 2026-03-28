@@ -3,7 +3,7 @@
 #include "../../trans/fft_r2/lib.hpp"
 #include "../naive/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class mint, class FP>
 CEXP vec<mint> conv_mtt(fft_r2<FP>& fft, vec<mint> CR l, vec<mint> CR r, u32 ans_size = 0) NE {
@@ -51,4 +51,4 @@ CEXP vec<mint> conv_mtt(fft_r2<FP>& fft, vec<mint> CR l, vec<mint> CR r, u32 ans
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

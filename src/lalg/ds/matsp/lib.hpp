@@ -2,7 +2,7 @@
 
 #include "../../../fast/rsort32/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 class matsp {
@@ -124,4 +124,4 @@ class matsp {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../ds/l/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // judge if segment and line are intersected
 template <class FP, bool contain_endpoints = true>
@@ -12,4 +12,4 @@ CEXP bool is_ins_SL(line<FP> CR s, line<FP> CR l) NE {
   else return a && b && !(a + b);
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

@@ -4,18 +4,18 @@
 #include "../../../src/geo2d/rel/cc/lib.hpp"
 
 using namespace tifa_libs;
-using circ = geo::circle<double>;
+using circ = circle<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   circ c1, c2;
   std::cin >> c1 >> c2;
-  switch (geo::relation_CC(c1, c2)) {
-    case geo::RELCC::lyingin: std::cout << "0\n"; break;
-    case geo::RELCC::touchin: std::cout << "1\n"; break;
-    case geo::RELCC::intersect: std::cout << "2\n"; break;
-    case geo::RELCC::touchex: std::cout << "3\n"; break;
-    case geo::RELCC::lyingout: std::cout << "4\n"; break;
+  switch (relation_CC(c1, c2)) {
+    case RELCC::lyingin: std::cout << "0\n"; break;
+    case RELCC::touchin: std::cout << "1\n"; break;
+    case RELCC::intersect: std::cout << "2\n"; break;
+    case RELCC::touchex: std::cout << "3\n"; break;
+    case RELCC::lyingout: std::cout << "4\n"; break;
   }
   return 0;
 }

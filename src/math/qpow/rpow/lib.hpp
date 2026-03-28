@@ -4,7 +4,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../mul_mod/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 class rpow {
   vecuu b0, b1;
@@ -32,4 +32,4 @@ class rpow {
   CEXP u64 operator()(u32 x) CNE { return mul_mod_u(b0[x & 65535], b1[x >> 16], m_); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

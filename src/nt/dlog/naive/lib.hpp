@@ -2,7 +2,7 @@
 
 #include "../../../math/mul_mod/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 inline auto dlog_naive(u64 a, u64 b, u64 m) NE {
   std::optional<u64> ret;
@@ -29,4 +29,4 @@ inline auto dlog_naive(u64 a, u64 b, u64 m) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

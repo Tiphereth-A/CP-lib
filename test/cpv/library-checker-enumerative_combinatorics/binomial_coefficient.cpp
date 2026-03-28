@@ -11,7 +11,7 @@ int main() {
   if (m == 1) {
     while (t--) fout << "0\n";
   } else {
-    math::exlucas mCn(m);
+    exlucas mCn(m);
     while (t--) {
       i64 n, k;
       fin_uint >> n >> k;

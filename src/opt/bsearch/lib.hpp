@@ -2,7 +2,7 @@
 
 #include "../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 template <class F>
 requires requires(F pred, u32 x) {
@@ -18,4 +18,4 @@ CEXP u32 bsearch(F&& pred) NE {
   return ok;
 }
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

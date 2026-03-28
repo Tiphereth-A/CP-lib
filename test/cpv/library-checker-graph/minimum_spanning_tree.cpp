@@ -17,11 +17,11 @@ int main() {
     id[{u, v, w}] = id[{v, u, w}] = ++cnt;
   }
   std::ranges::sort(e);
-  auto tr = graph::kruskal(e, n);
+  auto tr = kruskal(e, n);
   u64 ret = 0;
   vecu es;
   flt_ (u32, i, 0, n)
-    for (auto [to, w] : tr.g[i]) {
+    for (auto [to, w] : tr[i]) {
       ret += w;
       es.push_back(id[{i, to, w}] - 1);
     }

@@ -3,7 +3,7 @@
 #include "../../ds/t/lib.hpp"
 #include "../../ins/ll/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // radius of circumscribed circle
 template <class FP>
@@ -17,4 +17,4 @@ CEXP point<FP> center_O(triangle<FP> CR t) NE {
   return ins_LL<FP>({p1, p1 + (t.B - t.C).do_rot90()}, {p2, p2 + (t.C - t.A).do_rot90()});
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../util/util/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <std::floating_point FP>
 class kahan_fp {
@@ -22,4 +22,4 @@ class kahan_fp {
 template <class FP>
 using kahan = std::conditional_t<std::floating_point<FP>, kahan_fp<FP>, FP>;
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

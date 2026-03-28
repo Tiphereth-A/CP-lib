@@ -11,7 +11,7 @@ int main() {
   while (t--) {
     u64 p, x;
     std::cin >> p >> x;
-    auto res = math::frac_itv(math::rational{x - 1, p}, math::rational{x, p});
+    auto res = frac_itv(rational{x - 1, p}, rational{x, p});
     std::cout << (res.den * x) % p << '/' << res.den << '\n';
   }
 }

@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, w;
   std::cin >> n >> w;
-  opt::knapsack_mixed<i32> kn(w);
+  knapsack_mixed<i32> kn(w);
   for (u32 i = 0; i < n; ++i) {
     i32 v;
     u32 w, m;

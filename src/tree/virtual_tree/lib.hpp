@@ -1,49 +1,47 @@
 #pragma once
 
+#include "../../graph/ds/alist/lib.hpp"
 #include "../ds/lib.hpp"
 #include "../lca_hld/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 template <tree_c G>
 class virtual_tree {
-  G CR tr;
+  u32 root, tim;
   lca_hld<G> lca_;
-  vecu st;
+  vecu st, used, vis;
+
+  CEXP void touch(u32 x) NE {
+    if (vis[x] == tim) return;
+    vis[x] = tim, used.push_back(x);
+  }
+  CEXP void add_arc_(u32 u, u32 v) NE { vt.add_arc(u, v), touch(u), touch(v); }
 
   CEXP void insert(u32 x) NE {
+    touch(x);
     u32 lca = lca_(x, st.back());
     if (lca == st.back()) return st.push_back(x);
-    while (st.size() > 1 && lca_.info.dep[st[st.size() - 2]] >= lca_.info.dep[lca]) {
-      if CEXP (alistw_c<G>) vt.add_arc(st[st.size() - 2], st.back(), {});
-      else vt.add_arc(st[st.size() - 2], st.back());
-      st.pop_back();
-    }
-    if (lca_.info.dep[st.back()] > lca_.info.dep[lca]) {
-      if CEXP (alistw_c<G>) vt.add_arc(lca, st.back(), {});
-      else vt.add_arc(lca, st.back());
-      st.pop_back();
-    }
-    if (st.back() != lca) st.push_back(lca);
+    while (st.size() > 1 && lca_.info.dep[st[st.size() - 2]] >= lca_.info.dep[lca]) add_arc_(st[st.size() - 2], st.back()), st.pop_back();
+    if (lca_.info.dep[st.back()] > lca_.info.dep[lca]) add_arc_(lca, st.back()), st.pop_back();
+    if (st.back() != lca) touch(lca), st.push_back(lca);
     st.push_back(x);
   }
 
  public:
   using tree_info_t = lca_hld<G>::tree_info_t;
-  G vt;
+  tree<alist<>> vt;
 
-  CEXPE virtual_tree(G CR tr) NE : tr(tr), lca_(tr), vt(0) {}
+  CEXPE virtual_tree(G CR tr) NE : root{tr.root}, tim{0}, lca_(tr), st{}, used{}, vis(tr.vsize()), vt(tr.vsize()) {}
 
   CEXP void build(vecu& a) NE {
+    for (++tim; u32 x : used) vt[x].clear();
+    used.clear(), st.clear();
     sort(a, [&](u32 a, u32 b) NE { return lca_.info.dfn[a] < lca_.info.dfn[b]; });
-    for (vt = G((u32)tr.g.size()), st.push_back(tr.root); u32 x : a) insert(x);
-    while (st.size() > 1) {
-      if CEXP (alistw_c<G>) vt.add_arc(st[st.size() - 2], st.back(), {});
-      else vt.add_arc(st[st.size() - 2], st.back());
-      st.pop_back();
-    }
+    for (st.push_back(root), touch(root); u32 x : a) insert(x);
+    while (st.size() > 1) add_arc_(st[st.size() - 2], st.back()), st.pop_back();
     st.pop_back();
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

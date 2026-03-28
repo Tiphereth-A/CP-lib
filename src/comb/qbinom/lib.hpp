@@ -3,7 +3,7 @@
 #include "../binom/lib.hpp"
 #include "../seq/invseq/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class mint, class fact = fact_helper<mint>>
 struct qbinom : binom<mint, fact> {
@@ -31,4 +31,4 @@ struct qbinom : binom<mint, fact> {
   CEXP mint qmCn(T m, T n) CNE { retif_((m < n || n < 0) [[unlikely]], 0, qmCn(to_uint_t<T>(m), to_uint_t<T>(n))); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

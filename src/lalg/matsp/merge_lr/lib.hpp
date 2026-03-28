@@ -2,7 +2,7 @@
 
 #include "../../ds/matsp/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // [l] [r] -> [l r]
 template <class T>
@@ -17,4 +17,4 @@ CEXP matsp<T> merge_lr_matsp(cT_(matsp<T>) l, cT_(matsp<T>) r) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

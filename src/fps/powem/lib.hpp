@@ -2,16 +2,15 @@
 
 #include "../inv/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto powem_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> g = {1}, u32 m = 0) NE {
-  using poly_t = poly<ccore, mint, args...>;
+template <poly_c poly_t>
+CEXP auto powem_fps(poly_t CR f, poly_t g = {1}, u32 m = 0) NE {
   u32 n = (u32)f.size() - 1, k = 1, h = std::bit_ceil(n + 1);
-  ccore<mint, args...> core2, core4;
+  TPN poly_t::ccore_t core2, core4;
   core2.bzr(k * h * 2), core4.bzr(k * h * 4), g.resize(n + 1);
   if (!m || m > n) m = n;
-  vec<mint> p(k * h), q(k * h), pp(k * h * 4), qq(k * h * 4), rr(k * h * 2);
+  vec<TPN poly_t::val_t> p(k * h), q(k * h), pp(k * h * 4), qq(k * h * 4), rr(k * h * 2);
   flt_ (u32, i, 0, n + 1) p[i] = g[i], q[i] = -f[i];
   while (n) {
     pp.assign(k * h * 4, 0), qq.assign(k * h * 4, 0);
@@ -31,4 +30,4 @@ CEXP auto powem_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> 
   return (s * inv_fps(t, m + 1)).pre(m + 1);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

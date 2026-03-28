@@ -2,7 +2,7 @@
 
 #include "../merge_lr/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T, class Is0, class Ge, bool calc_det = false>
 requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
@@ -31,4 +31,4 @@ CEXP auto inv_mat(matrix<T> CR mat, Is0&& is0, Ge&& ge) NE {
   }
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

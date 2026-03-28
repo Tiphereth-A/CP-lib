@@ -5,13 +5,13 @@
 #include "../../../src/geo2d/ds/c/lib.hpp"
 
 using namespace tifa_libs;
-using circ = geo::circle<double>;
+using circ = circle<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(12);
   circ c1, c2;
   std::cin >> c1 >> c2;
-  std::cout << geo::area_CC(c1, c2) << '\n';
+  std::cout << area_CC(c1, c2) << '\n';
   return 0;
 }

@@ -4,7 +4,7 @@
 #include "../../../math/qpow/basic/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // solve a^x=b
 template <std::unsigned_integral T, T (*prod)(T, T)>
@@ -33,4 +33,4 @@ CEXP T bsgs_nimber(nimber<T, prod> CR a, nimber<T, prod> CR b) NE {
   return crt_mod(rem, mod).first;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

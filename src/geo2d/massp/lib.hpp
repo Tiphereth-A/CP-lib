@@ -4,12 +4,12 @@
 #include "../cross/lib.hpp"
 #include "../ds/p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 CEXP point<FP> massp(vec<point<FP>> CR vp) NE {
   point<FP> ret{};
-  math::kahan<FP> area{};
+  kahan<FP> area{};
   u32 n = (u32)vp.size();
   if (n == 0) return ret;
   if (n == 1) return vp[0];
@@ -21,4 +21,4 @@ CEXP point<FP> massp(vec<point<FP>> CR vp) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

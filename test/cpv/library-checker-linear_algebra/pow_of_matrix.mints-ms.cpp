@@ -7,12 +7,11 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, MOD>;
-using mat = tifa_libs::math::matrix<mint>;
+using mint = mint_ms<MOD>;
+using mat = tifa_libs::matrix<mint>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -21,6 +20,6 @@ int main() {
   std::cin >> n >> k;
   mat a(n, n);
   std::cin >> a;
-  std::cout << tifa_libs::math::pow(a, k);
+  std::cout << tifa_libs::pow(a, k);
   return 0;
 }

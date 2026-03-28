@@ -3,7 +3,7 @@
 #include "../../../util/func_fp/lib.hpp"
 #include "../../../util/traits/others/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 struct point {
@@ -104,4 +104,4 @@ struct point {
   friend CEXP point rot270(point p) NE { return p.do_rot270(); }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

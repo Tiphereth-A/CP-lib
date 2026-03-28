@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP inline u32 CONV_NAIVE_THRESHOLD = 16;
 template <class U, class T = U>
@@ -19,4 +19,4 @@ CEXP vec<T> conv_naive(vec<U> CR l, vec<U> CR r, u32 ans_size = 0) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

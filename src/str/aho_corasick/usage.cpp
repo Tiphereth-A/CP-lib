@@ -10,7 +10,7 @@ int main() {
   strn s;
   std::cin >> n;
   vecu ans(n);
-  str::aho_corasick acam;
+  aho_corasick acam;
   flt_ (u32, i, 0, n) std::cin >> s, acam.insert(s, i);
   acam.getfail(), std::cin >> s;
   vecu sz(acam.sz), in(acam.sz);

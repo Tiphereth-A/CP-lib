@@ -1,9 +1,9 @@
 #pragma once
 
 #include "../../util/alias/others/lib.hpp"
-#include "../../util/traits/graph/lib.hpp"
+#include "../ds/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 // @param update(now): update data of node %now
 // @param query(now): answer queries of subtree %now
@@ -34,4 +34,4 @@ CEXP void dsu_on_tree(tree_c auto CR tr, spnu dfn, spnu sz, spnu maxson, spnu ma
   f(f, tr.root);
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

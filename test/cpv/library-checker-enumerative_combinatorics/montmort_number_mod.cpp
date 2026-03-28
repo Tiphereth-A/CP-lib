@@ -8,6 +8,6 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  std::cout << math::gen_derange(n, m) << '\n';
+  std::cout << gen_derange(n, m) << '\n';
   return 0;
 }

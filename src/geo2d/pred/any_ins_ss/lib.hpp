@@ -3,7 +3,7 @@
 #include "../../ins/ll/lib.hpp"
 #include "../is_ins_sl/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // judge if any two segments are intersected
 template <class FP>
@@ -45,4 +45,4 @@ CEXP bool any_ins_Ss(vec<line<FP>> CR ss) NE {
   return 0;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class Mat, class Ge>
 requires requires(Ge ge, Mat A, bool clear_u) {
@@ -22,4 +22,4 @@ CEXP auto det(Mat mat, Ge&& ge) NE {
   }
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -1,8 +1,7 @@
 // competitive-verifier: DISPLAY never
 // cplib.manager: PROBLEM https://www.luogu.com.cn/problem/P5170
 
-#include "../ds/mint/lib.hpp"
-#include "../mint/ms/lib.hpp"
+#include "../ds/mint/ms/lib.hpp"
 #include "lib.hpp"
 
 using namespace tifa_libs;
@@ -21,7 +20,7 @@ struct exeuclid_node {
   }
 };
 
-using mint = math::mint<math::mint_ms, 998244353>;
+using mint = mint_ms<998244353>;
 using node = exeuclid_node<mint>;
 
 int main() {
@@ -32,7 +31,7 @@ int main() {
   while (t--) {
     u32 n, a, b, c;
     std::cin >> n >> a >> b >> c;
-    auto ans = math::exeuclid(a, c, b, n, u, r);
+    auto ans = exeuclid(a, c, b, n, u, r);
     std::cout << (ans.f + b / c) << ' ' << (ans.sqr_f + (b / c) * (b / c)) << ' ' << ans.i_f << '\n';
   }
 }

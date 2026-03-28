@@ -1,15 +1,15 @@
 #pragma once
 
 #include "../../math/qpow/rpow/lib.hpp"
-#include "../ds/poly/lib.hpp"
+#include "../ds/poly_c/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // @brief Chirp Z-Transform
 // @return {f(a*c^0), f(a*c^1), ..., f(a*c^{m-1})}
-template <template <class... Ts> class ccore, class mint, class... args>
-auto czt_fps(poly<ccore, mint, args...> f, mint c, u32 m = -1_u32, mint a = mint{1}) NE {
-  using poly_t = poly<ccore, mint, args...>;
+template <poly_c poly_t>
+auto czt_fps(poly_t f, TPN poly_t::val_t c, u32 m = -1_u32, TPN poly_t::val_t a = 1) NE {
+  using mint = TPN poly_t::val_t;
   static rpow rp, irp;
   if (!~m) m = (u32)f.size();
   retif_((f.empty() || !m) [[unlikely]], poly_t{});
@@ -37,4 +37,4 @@ auto czt_fps(poly<ccore, mint, args...> f, mint c, u32 m = -1_u32, mint a = mint
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

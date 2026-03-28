@@ -12,7 +12,7 @@ int main() {
   for (auto& x : a) std::cin >> x;
   vvecu e(n);
   for (u32 i = 0, u, v; i < m; ++i) std::cin >> u >> v, e[u - 1].push_back(v - 1);
-  graph::tarjan scc;
+  tarjan scc;
   scc.build(e);
   vvecu g(scc.id);
   vecu in(scc.id), b(scc.id), dp(scc.id, 1'000'000'000);

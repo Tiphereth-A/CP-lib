@@ -10,7 +10,7 @@ int main() {
   while (q--) {
     u64 p;
     std::cin >> p;
-    std::cout << math::proot(p) << '\n';
+    std::cout << proot(p) << '\n';
   }
   return 0;
 }

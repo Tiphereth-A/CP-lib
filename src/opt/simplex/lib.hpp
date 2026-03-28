@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 template <class T = f64>
 struct LPSolver {
@@ -83,4 +83,4 @@ struct LPSolver {
 };
 #undef ltj
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

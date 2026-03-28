@@ -3,7 +3,7 @@
 #include "../../../util/traits/math/lib.hpp"
 #include "../naive/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <dft_c DFT_t, std::same_as<TPN DFT_t::data_t> DFT_data_t>
 CEXP vec<DFT_data_t> conv_dft(DFT_t& dft, vec<DFT_data_t> l, vec<DFT_data_t> r, u32 ans_size = 0) NE {
@@ -24,4 +24,4 @@ CEXP vec<mint> conv_dft_um(DFT_t& dft, vec<T> CR l, vec<T> CR r, u32 ans_size = 
   return conv_dft(dft, l_, r_, ans_size);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../ds/cvh/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // Max distance between two convex hulls
 template <class FP>
@@ -22,4 +22,4 @@ CEXP FP max_dis_CVH(cvh<FP> CR ch1, cvh<FP> CR ch2) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

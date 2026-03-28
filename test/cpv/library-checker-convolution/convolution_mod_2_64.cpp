@@ -11,6 +11,6 @@ int main() {
   fin_uint >> n >> m;
   vecuu a(n), b(m);
   fin_uint >> a >> b;
-  fout << math::conv_u64(a, b) << '\n';
+  fout << conv_u64(a, b) << '\n';
   return 0;
 }

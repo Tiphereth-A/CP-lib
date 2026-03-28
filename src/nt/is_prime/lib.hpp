@@ -3,7 +3,7 @@
 #include "../../math/mul_mod/lib.hpp"
 #include "../../math/qpow/mod/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP bool is_prime(u64 n) NE {
   retif_((n <= 2) [[unlikely]], n == 2);
@@ -36,4 +36,4 @@ CEXP bool is_prime(u64 n) NE {
   return f(BASE7);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

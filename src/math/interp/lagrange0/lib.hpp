@@ -3,7 +3,7 @@
 #include "../../../comb/seq/ifact/lib.hpp"
 #include "../../mul_mod/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP i64 lagrange_interp0(spnii v, u64 x, u64 mod, spnuu ifact) NE {
   const u32 n = (u32)v.size();
@@ -37,4 +37,4 @@ CEXP mint lagrange_interp0(vec<mint> CR v, u64 x, vec<mint> CR ifact) NE {
 template <class mint>
 CEXP mint lagrange_interp0(vec<mint> CR v, u64 x) NE { return lagrange_interp0(v, x, mint::mod(), gen_ifact<mint>(v.size())); }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

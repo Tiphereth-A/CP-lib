@@ -2,7 +2,7 @@
 
 #include "../../ds/t/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // 9-point center (X5)
 template <class FP>
@@ -11,4 +11,4 @@ CEXP point<FP> center_N(triangle<FP> CR t) NE {
   return t.trilinears(std::cos(B - C), std::cos(C - A), std::cos(A - B));
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

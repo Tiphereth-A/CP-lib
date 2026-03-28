@@ -4,21 +4,20 @@
 #include "../../../src/fps/atan/lib.hpp"
 #include "../../../src/fps/cossin/lib.hpp"
 #include "../../../src/fps/ds/ntt/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
-#include "../../../src/math/mint/ms64/lib.hpp"
-#include "../../../src/rand/gen/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms64/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
-using mints30 = math::mint<math::mint_ms, MOD>;
-using mints63 = math::mint<math::mint_ms64, MOD>;
+using mints30 = mint_ms<MOD>;
+using mints63 = mint_ms64<MOD>;
 
-using pnm30 = math::polyntt<mints30>;
-using pnm63 = math::polyntt<mints63>;
+using pnm30 = polyntt<mints30>;
+using pnm63 = polyntt<mints63>;
 
-rand::gen<u64> gen;
+rand_gen<u64> gen;
 
 template <class poly>
 void test(u32 n) {
@@ -28,23 +27,23 @@ void test(u32 n) {
   flt_ (u32, i, 1, n + 1) p[i] = mint(gen());
   const u32 sz = n + 1;
 
-  auto sqrt_1mpp = math::sqrt_fps(-p * p + 1, sz).value();
-  auto sqrt_1app = math::sqrt_fps(p * p + 1, sz).value();
-  auto inv_sqrt_1app = math::inv_fps(sqrt_1app);
+  auto sqrt_1mpp = sqrt_fps(-p * p + 1, sz).value();
+  auto sqrt_1app = sqrt_fps(p * p + 1, sz).value();
+  auto inv_sqrt_1app = inv_fps(sqrt_1app);
   auto p_inv_sqrt_1app = (p * inv_sqrt_1app).pre(sz);
 
-  timer_(auto [p_cos, p_sin] = math::cossin_fps(p));
-  timer_(auto p_asin = math::asin_fps(p));
-  timer_(auto p_atan = math::atan_fps(p));
+  timer_(auto [p_cos, p_sin] = cossin_fps(p));
+  timer_(auto p_asin = asin_fps(p));
+  timer_(auto p_atan = atan_fps(p));
 
-  check(math::asin_fps(-p), -p_asin, check_param(p));
-  check(math::atan_fps(-p), -p_atan, check_param(p));
+  check(asin_fps(-p), -p_asin, check_param(p));
+  check(atan_fps(-p), -p_atan, check_param(p));
 
-  auto [p_cos_asin, p_sin_asin] = math::cossin_fps(p_asin);
+  auto [p_cos_asin, p_sin_asin] = cossin_fps(p_asin);
   check(p_cos_asin, sqrt_1mpp, check_param(p), check_param(p_asin));
   check(p_sin_asin, p, check_param(p_asin));
 
-  auto [p_cos_atan, p_sin_atan] = math::cossin_fps(p_atan);
+  auto [p_cos_atan, p_sin_atan] = cossin_fps(p_atan);
   check(p_cos_atan, inv_sqrt_1app, check_param(p), check_param(p_atan));
   check(p_sin_atan, p_inv_sqrt_1app, check_param(p), check_param(p_atan), check_param(inv_sqrt_1app));
 }

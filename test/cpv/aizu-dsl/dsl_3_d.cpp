@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, k;
   std::cin >> n >> k;
-  ds::mono_queue<i32> qmin(k);
+  mono_queue<i32> qmin(k);
   veci ans;
   ans.reserve(n);
   flt_ (u32, i, 0, n) {

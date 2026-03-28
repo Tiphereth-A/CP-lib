@@ -7,22 +7,21 @@ using namespace tifa_libs;
 CEXP u64 MOD = 1000000007;
 
 #include "../../../src/fps/ds/ntt3/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
-#include "../../../src/math/mint/ms64/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms64, MOD>;
+using mint = mint_ms64<MOD>;
 using namespace tifa_libs;
-using mint_p3ntt1 = math::mint<math::mint_ms, 167772161>;
-using mint_p3ntt2 = math::mint<math::mint_ms, 469762049>;
-using mint_p3ntt3 = math::mint<math::mint_ms, 754974721>;
-using poly = math::poly3ntt<mint, mint_p3ntt1, mint_p3ntt2, mint_p3ntt3>;
+using mint_p3ntt1 = mint_ms<167772161>;
+using mint_p3ntt2 = mint_ms<469762049>;
+using mint_p3ntt3 = mint_ms<754974721>;
+using poly = poly3ntt<mint, mint_p3ntt1, mint_p3ntt2, mint_p3ntt3>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;
   std::cin >> n;
-  std::cout << tifa_libs::math::fact_mint<poly>(n) << '\n';
+  std::cout << tifa_libs::fact_mint<poly>(n) << '\n';
   return 0;
 }

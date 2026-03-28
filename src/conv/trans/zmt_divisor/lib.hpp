@@ -2,7 +2,7 @@
 
 #include "../../../nt/prime_seq/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 CEXP void zt_divisor(vec<T>& a, spnu pf) NE {
@@ -19,4 +19,4 @@ CEXP void mt_divisor(vec<T>& a, spnu pf) NE {
 template <class T>
 CEXP void mt_divisor(vec<T>& a) NE { mt_divisor(a, prime_seq(a.size() - 1)); }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

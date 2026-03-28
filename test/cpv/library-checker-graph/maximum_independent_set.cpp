@@ -20,7 +20,7 @@ int main() {
       if (i != j) adj[i].flip(j);
   }
   B ans{};
-  graph::cliques(n, adj, [&](B R) {
+  cliques(n, adj, [&](B R) {
     if (ans.count() < R.count()) ans = R;
   });
   auto ans_cnt = ans.count();

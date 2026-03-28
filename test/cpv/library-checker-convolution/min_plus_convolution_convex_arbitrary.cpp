@@ -10,6 +10,6 @@ int main() {
   std::cin >> n >> m;
   vecu a(n), b(m);
   std::cin >> a >> b;
-  std::cout << math::conv_minplus_cv(a, b) << '\n';
+  std::cout << conv_minplus_cv(a, b) << '\n';
   return 0;
 }

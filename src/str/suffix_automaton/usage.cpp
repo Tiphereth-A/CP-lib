@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s;
   std::cin >> s;
-  str::suffix_automaton sam;
+  suffix_automaton sam;
   for (auto c : s) sam.extend(u32(c - 'a'));
   u64 ans = 0;
   sam.build(), sam.gettimes();
@@ -23,7 +23,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s, t;
   std::cin >> s >> t;
-  str::suffix_automaton sam;
+  suffix_automaton sam;
   for (auto c : s) sam.extend(u32(c - 'a'));
   std::cout << sam.lcs(t).second;
   return 0;

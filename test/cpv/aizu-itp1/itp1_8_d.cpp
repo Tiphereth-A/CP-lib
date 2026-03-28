@@ -8,6 +8,6 @@ int main() {
   strn s, p;
   std::cin >> s >> p;
   s += s;
-  std::cout << (str::kmp(p, s).empty() ? "No" : "Yes") << '\n';
+  std::cout << (kmp(p, s).empty() ? "No" : "Yes") << '\n';
   return 0;
 }

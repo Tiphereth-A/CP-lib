@@ -2,7 +2,7 @@
 
 #include "../trans/zmt_divisor/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 CEXP vec<T> conv_lcm(vec<T> l, vec<T> r) NE {
@@ -14,4 +14,4 @@ CEXP vec<T> conv_lcm(vec<T> l, vec<T> r) NE {
   return l;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

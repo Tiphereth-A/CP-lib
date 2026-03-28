@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  ds::dbitset bs(32);
+  dbitset bs(32);
   bs.getword(0) = n;
   std::cout << bs << '\n';
   std::cout << ~bs << '\n';

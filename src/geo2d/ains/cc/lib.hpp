@@ -3,7 +3,7 @@
 #include "../../ds/c/lib.hpp"
 #include "../../rel/cc/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 CEXP FP area_CC(circle<FP> CR c1, circle<FP> CR c2) NE {
@@ -15,4 +15,4 @@ CEXP FP area_CC(circle<FP> CR c1, circle<FP> CR c2) NE {
          c2.crown_area(std::acos((c2.r * c2.r - c1.r * c1.r + d * d) / (2 * c2.r * d)) * 2);
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

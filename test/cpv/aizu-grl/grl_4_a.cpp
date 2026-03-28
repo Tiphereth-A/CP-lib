@@ -8,11 +8,11 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  graph::alist g(n);
+  alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     g.add_arc(u, v);
   }
-  std::cout << graph::topo_sort(g).empty() << '\n';
+  std::cout << topo_sort(g).empty() << '\n';
   return 0;
 }

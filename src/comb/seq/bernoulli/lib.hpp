@@ -4,7 +4,7 @@
 #include "../fact/lib.hpp"
 #include "../ifact/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // bernoulli[i] = B_i, i=0,1,...,n
 template <class poly, class T>
@@ -23,4 +23,4 @@ CEXP poly gen_bernoulli(u32 n) NE {
   return gen_bernoulli<poly>(n, gen_fact<mint>(n + 1), gen_ifact<mint>(n + 2));
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../ins/cc/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // make circle by radius and 2 point passed through
 // maybe duplicate
@@ -15,4 +15,4 @@ CEXP auto make_C_rPP(FP r, point<FP> CR p1, point<FP> CR p2) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

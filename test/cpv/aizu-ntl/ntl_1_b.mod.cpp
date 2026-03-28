@@ -9,6 +9,6 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 m, n;
   std::cin >> m >> n;
-  std::cout << math::qpow_mod(m, n, MOD) << '\n';
+  std::cout << qpow_mod(m, n, MOD) << '\n';
   return 0;
 }

@@ -2,20 +2,18 @@
 
 #include "../../../src/comb/binom/lib.hpp"
 #include "../../../src/gen/gosper/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, 998244353>;
+using mint = mint_ms<998244353>;
 
 template <u32 ID>
 void test(u32 n, u32 kmax) {
-  using gosper = gosper<ID>;
-  math::binom<mint> binom(n);
+  binom<mint> binom(n);
   timer_(flt_ (u32, k, 1, kmax + 1) {
-    gosper::set(n, k);
-    gosper gs;
+    gosper<ID>::set(n, k);
+    gosper<ID> gs;
     u32 cnt = 0, cnt_correct = binom.mCn(n, k).val();
     for (auto i : gs) {
       ++cnt;

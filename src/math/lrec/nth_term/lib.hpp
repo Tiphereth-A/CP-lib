@@ -3,7 +3,7 @@
 #include "../../../fps/bostan_mori/lib.hpp"
 #include "../berlekamp_massey/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class poly, std::same_as<TPN poly::val_t> mint>
 CEXP mint nth_term_lrec(u64 n, vec<mint> CR a, vec<mint> CR bm) NE {
@@ -20,4 +20,4 @@ CEXP mint nth_term_lrec(u64 n, vec<mint> CR a) NE {
   return nth_term_lrec<poly, mint>(n, a, bm);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

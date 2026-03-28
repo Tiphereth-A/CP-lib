@@ -8,7 +8,7 @@ int op(int x, int y) { return x + y; }
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  ds::kdtree<int, op> kdt(1897);
+  kdtree<int, op> kdt(1897);
   using point_t = decltype(kdt)::point;
   u32 n;
   std::cin >> n;

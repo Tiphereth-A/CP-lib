@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 CEXP vecu manacher(strnv t) NE {
   strn s{'\001', '\002'};
@@ -18,4 +18,4 @@ CEXP vecu manacher(strnv t) NE {
   return vecu(begin(p) + 2, end(p) - 2);
 }
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

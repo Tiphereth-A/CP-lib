@@ -2,7 +2,7 @@
 
 #include "../../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 namespace gcd_impl_ {
 template <uint_c T, uint_c U>
@@ -22,4 +22,4 @@ CEXP std::common_type_t<T, U> gcd__(T u, U v) NE {
 template <int_c T, int_c U>
 CEXP auto gcd(T a, U b) NE { return gcd_impl_::gcd__((to_uint_t<T>)abs(a), (to_uint_t<U>)abs(b)); }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

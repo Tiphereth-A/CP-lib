@@ -10,13 +10,12 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms64/lib.hpp"
+#include "../../../src/math/ds/mint/ms64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms64, MOD>;
+using mint = mint_ms64<MOD>;
 
-using ntt_t = tifa_libs::math::ntt<mint>;
+using ntt_t = tifa_libs::ntt<mint>;
 using vec_t = vec<mint>;
 
 int main() {
@@ -27,6 +26,6 @@ int main() {
   vec_t a(n), b(n);
   tifa_libs::fin_uint >> a >> b;
   ntt_t ntt;
-  tifa_libs::fout << tifa_libs::math::conv_mval_dft(ntt, a, b, base) << '\n';
+  tifa_libs::fout << tifa_libs::conv_mval_dft(ntt, a, b, base) << '\n';
   return 0;
 }

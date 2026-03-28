@@ -6,18 +6,17 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/md64/lib.hpp"
+#include "../../../src/math/ds/mint/md64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md64, __LINE__>;
+using mint = mint_md64<__LINE__>;
 
 int main() {
   mint::set_mod(MOD);
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  tifa_libs::ds::dsu_weighted<mint> dsu(n);
+  tifa_libs::dsu_weighted<mint> dsu(n);
   flt_ (u32, i, 0, q) {
     u32 op, u, v;
     std::cin >> op >> u >> v;

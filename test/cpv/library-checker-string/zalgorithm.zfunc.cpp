@@ -9,6 +9,6 @@ using namespace tifa_libs;
 int main() {
   strn s;
   fin >> s;
-  fout << str::z_func(s) << '\n';
+  fout << z_func(s) << '\n';
   return 0;
 }

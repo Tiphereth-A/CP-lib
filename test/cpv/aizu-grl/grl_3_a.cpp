@@ -7,12 +7,12 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  graph::alist g(n);
+  alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     g.add_edge(u, v);
   }
-  graph::v_bcc<true, false, false> bcc(g);
+  v_bcc<true, false, false> bcc(g);
   flt_ (u32, i, 0, n)
     if (bcc.vcut[i]) std::cout << i << '\n';
   return 0;

@@ -3,7 +3,7 @@
 #include "../../../math/safe_mod/lib.hpp"
 #include "../../gl/inv_gcd/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <uint_c T = u64>
 CEXP auto crt_mod(vec<T> CR r, vec<T> m, u64 const mod) NE {
@@ -28,4 +28,4 @@ CEXP auto crt_mod(vec<T> CR r, vec<T> m, u64 const mod) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

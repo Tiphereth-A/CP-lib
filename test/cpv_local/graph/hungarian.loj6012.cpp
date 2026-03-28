@@ -14,6 +14,6 @@ int main() {
   auto c2 = c1;
   for (auto& i : c2)
     for (auto& j : i) j = -j;
-  cout << graph::hungarian(c1).back() << '\n';
-  cout << -graph::hungarian(c2).back() << '\n';
+  cout << hungarian(c1).back() << '\n';
+  cout << -hungarian(c2).back() << '\n';
 }

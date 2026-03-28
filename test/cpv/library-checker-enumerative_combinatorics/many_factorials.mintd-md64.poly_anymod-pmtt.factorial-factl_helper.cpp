@@ -7,16 +7,15 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/fps/ds/mtt/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
+#include "../../../src/math/ds/mint/md64/lib.hpp"
 #include "../../../src/math/fact/helper_l/lib.hpp"
-#include "../../../src/math/mint/md64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md64, __LINE__>;
+using mint = mint_md64<__LINE__>;
 using namespace tifa_libs;
-using poly = math::polymtt<mint>;
+using poly = polymtt<mint>;
 using namespace tifa_libs;
-using fact_t = math::factl_helper<poly>;
+using fact_t = factl_helper<poly>;
 
 int main() {
   mint::set_mod(MOD);

@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T>
 class cartesian_tree {
@@ -29,4 +29,4 @@ class cartesian_tree {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

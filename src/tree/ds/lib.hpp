@@ -1,17 +1,16 @@
 #pragma once
 
-#include "../../graph/ds/alist/lib.hpp"
+#include "../../graph/ds/graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
-struct tree : alist<> {
+template <graph_c graph_t>
+struct tree : graph_t {
   u32 root;
-  CEXPE tree(u32 n, u32 root = 0) NE : alist(n), root(root) {}
+  CEXP tree(graph_t CR g, u32 root = 0) NE : graph_t(g), root(root) {}
+  CEXP tree(graph_t&& g, u32 root = 0) NE : graph_t(std::move(g)), root(root) {}
+  CEXPE tree(u32 n, u32 root = 0) NE : graph_t(n), root(root) {}
 };
-template <class T>
-struct treew : alistw<T> {
-  u32 root;
-  CEXPE treew(u32 n, u32 root = 0) NE : alistw<T>(n), root(root) {}
-};
+CONCEPT_GRAPH(tree, tree);
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

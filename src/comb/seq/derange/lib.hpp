@@ -3,7 +3,7 @@
 #include "../../../math/mul_mod/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // (derangement) !i for i=0..n-1
 CEXP vecuu gen_derange(u32 n, u64 mod) NE {
@@ -24,4 +24,4 @@ CEXP vec<mint> gen_derange(u32 n) NE {
   return d;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

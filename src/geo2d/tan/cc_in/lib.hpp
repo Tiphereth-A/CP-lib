@@ -4,7 +4,7 @@
 #include "../../ds/l/lib.hpp"
 #include "../cp/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // internal tagante lines of 2 disjoint circles
 // maybe 0, 2 (maybe duplicate)
@@ -20,4 +20,4 @@ CEXP auto intan_CC(circle<FP> CR c1, circle<FP> CR c2) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

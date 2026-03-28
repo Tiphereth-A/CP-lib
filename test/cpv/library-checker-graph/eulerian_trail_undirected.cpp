@@ -12,7 +12,7 @@ int main() {
     std::cin >> n >> m;
     vecptu e(m);
     for (auto& [u, v] : e) std::cin >> u >> v;
-    if (auto res = graph::euler_trail<false>(n, e); !res) {
+    if (auto res = euler_trail<false>(n, e); !res) {
       std::cout << "No\n";
     } else {
       std::cout << "Yes\n";

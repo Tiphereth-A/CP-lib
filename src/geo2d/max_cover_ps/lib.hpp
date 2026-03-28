@@ -3,7 +3,7 @@
 #include "../ang_pp/lib.hpp"
 #include "../dis/pp/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // max number of points covered by a circle with radius @r
 template <class FP>
@@ -28,4 +28,4 @@ CEXP u64 max_cover_Ps(vec<point<FP>> CR vp, FP r) NE {  //! BUG exists...
   return ans;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

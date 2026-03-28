@@ -1,11 +1,10 @@
 #pragma once
 
-#include "../../util/alias/others/lib.hpp"
-#include "../../util/traits/graph/lib.hpp"
+#include "../ds/graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
-template <alist_c G>
+template <graph_c G>
 CEXP auto path(G CR g, u32 from, u32 to) NE {
   std::optional ret{vecu{}};
   bool failed = true;
@@ -15,18 +14,11 @@ CEXP auto path(G CR g, u32 from, u32 to) NE {
       failed = false;
       return;
     }
-    if CEXP (alistw_c<G>)
-      for (auto&& [v, w] : g[now]) {
-        u32 to = 0;
-        if ((to = v) == fa) continue;
-        if (dfs(dfs, to, now); !failed) return;
-      }
-    else
-      for (auto v : g[now]) {
-        u32 to = 0;
-        if ((to = (u32)v) == fa) continue;
-        if (dfs(dfs, to, now); !failed) return;
-      }
+    for (auto v : g[now]) {
+      u32 to = 0;
+      if ((to = (u32)v) == fa) continue;
+      if (dfs(dfs, to, now); !failed) return;
+    }
     if (!failed) return;
     ret->pop_back();
   };
@@ -34,4 +26,4 @@ CEXP auto path(G CR g, u32 from, u32 to) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

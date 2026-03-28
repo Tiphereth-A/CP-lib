@@ -2,7 +2,7 @@
 
 #include "../../../util/traits/others/lib.hpp"
 
-namespace tifa_libs::game {
+namespace tifa_libs {
 
 struct poker_card {
   static CEXP strn valid_rank = "23456789TJQKA";
@@ -33,4 +33,4 @@ struct poker_card {
   char suit;
 };
 
-}  // namespace tifa_libs::game
+}  // namespace tifa_libs

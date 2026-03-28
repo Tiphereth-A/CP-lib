@@ -18,6 +18,6 @@ CEXP u32 MOD = 998244353;
 int main() {
   u32 n;
   tifa_libs::fin_uint >> n;
-  tifa_libs::fout << tifa_libs::math::gen_partition<poly>(n);
+  tifa_libs::fout << tifa_libs::gen_partition<poly>(n);
   return 0;
 }

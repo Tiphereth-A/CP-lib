@@ -2,12 +2,11 @@
 
 #include "../divmod/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // @return b s.t. $f(x) = \sum_{i=0}^{n-1} b_i \prod_{j=0}^{i-1}(x - p_j)$
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto cbm2n_fps(poly<ccore, mint, args...> CR f, vec<mint> CR p) NE {
-  using poly_t = poly<ccore, mint, args...>;
+template <poly_c poly_t>
+CEXP auto cbm2n_fps(poly_t CR f, vec<typename poly_t::val_t> CR p) NE {
   const u32 n = (u32)p.size();
   assert(f.size() == n);
   const u32 m = std::bit_ceil(n);
@@ -25,4 +24,4 @@ CEXP auto cbm2n_fps(poly<ccore, mint, args...> CR f, vec<mint> CR p) NE {
   return b;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

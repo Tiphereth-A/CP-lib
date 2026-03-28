@@ -5,15 +5,15 @@
 #include "../../../src/io/container/lib.hpp"
 
 using namespace tifa_libs;
-using point = geo::point<i64>;
+using point_t = point<i64>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  vec<point> vp(n);
+  vec<point_t> vp(n);
   std::cin >> vp;
-  geo::argsort(vp);
+  argsort(vp);
   std::cout << vp << '\n';
   return 0;
 }

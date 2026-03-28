@@ -2,7 +2,7 @@
 
 #include "../../math/fact/helper/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class mint, class fact = fact_helper<mint>>
 requires std::same_as<mint, TPN fact::val_t>
@@ -35,4 +35,4 @@ struct binom {
   CEXP mint mHn(T m, T n) CNE { retif_((m < 0 || n <= 0), n == 0, mHn(to_uint_t<T>(m), to_uint_t<T>(n))); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

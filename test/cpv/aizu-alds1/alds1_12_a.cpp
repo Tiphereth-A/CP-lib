@@ -16,10 +16,10 @@ int main() {
       edges.emplace_back(x, i, j);
     }
   std::ranges::sort(edges);
-  auto res = graph::kruskal(edges, n);
+  auto res = kruskal(edges, n);
   u64 w = 0;
   flt_ (u32, i, 0, n)
-    for (auto [to, v] : res.g[i]) w += v;
+    for (auto [to, v] : res[i]) w += v;
   std::cout << w / 2 << '\n';
   return 0;
 }

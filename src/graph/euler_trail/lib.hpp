@@ -1,9 +1,8 @@
 #pragma once
 
-#include "../../util/alias/others/lib.hpp"
-#include "../../util/traits/graph/lib.hpp"
+#include "../ds/graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 namespace euler_trail_impl_ {
 template <bool cyc>
 CEXP auto run_(u32 n, u32 m, cT_(vvecptu) g, u32 s) NE {
@@ -52,13 +51,13 @@ CEXP auto euler_trail(u32 n, vecptu CR edges) NE {
     } else if (g[i].size() & 1) s = i;
   return euler_trail_impl_::run_<cycle>(n, (u32)edges.size(), g, s);
 }
-template <alist_c G>
+template <graph_c G>
 CEXP bool is_eulerian(G CR g) NE {
-  retif_((!g.cnt_arc) [[unlikely]], 1);
-  const u32 n = g.size();
-  assert(n == g.deg_in.size());
+  retif_((!g.esize()) [[unlikely]], 1);
+  const u32 n = g.vsize();
+  assert(n == g.din.size());
   flt_ (u32, i, 0, n)
-    if (g.deg_in[i] != g.deg_out[i]) return 0;
+    if (g.din[i] != g.dout[i]) return 0;
   u32 loopv = 0, loope = 0, start = 0;
   flt_ (u32, u, 0, n) {
     if (g[u].empty()) continue;
@@ -68,7 +67,7 @@ CEXP bool is_eulerian(G CR g) NE {
       else f = 0;
     loopv += f;
   }
-  if (loopv > 1 || (loopv == 1 && loope != g.cnt_arc)) return 0;
+  if (loopv > 1 || (loopv == 1 && loope != g.esize())) return 0;
   vecb vis(n);
   auto f = [&](auto&& f, u32 x) NE -> void {
     for (auto v : g[x])
@@ -76,8 +75,8 @@ CEXP bool is_eulerian(G CR g) NE {
   };
   vis[start] = 1, f(f, start);
   flt_ (u32, i, 0, n)
-    if (!vis[i] && g.deg_in[i]) return 0;
+    if (!vis[i] && g.din[i]) return 0;
   return 1;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

@@ -17,14 +17,14 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  tifa_libs::graph::alist g(n);
+  tifa_libs::alist g(n);
   hashmap<pttu, u32> edges;
   for (u32 i = 0, u, v; i < m; ++i) {
     std::cin >> u >> v;
     edges[{u, v}] = i;
     g.add_arc(u, v);
   }
-  auto res = tifa_libs::graph::find_cycle<true>(g);
+  auto res = tifa_libs::find_cycle<true>(g);
   if (res.empty()) {
     std::cout << "-1\n";
     return 0;

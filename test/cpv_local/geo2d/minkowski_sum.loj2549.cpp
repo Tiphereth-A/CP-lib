@@ -5,8 +5,8 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f128;
-using Point2 = geo::point<data_t>;
-using ConvexHull2 = geo::cvh<data_t>;
+using Point2 = point<data_t>;
+using ConvexHull2 = cvh<data_t>;
 
 int main() {
   u32 n, m, q;

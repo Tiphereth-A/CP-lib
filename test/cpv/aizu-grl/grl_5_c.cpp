@@ -1,5 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_C"
 
+#include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/tree/ds/lib.hpp"
 #include "../../../src/tree/lca_hld/lib.hpp"
 
@@ -8,7 +9,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  graph::tree tr(n);
+  tree<alist<>> tr(n);
   for (u32 i = 0, k; i < n; ++i) {
     std::cin >> k;
     for (u32 j = 0, x; j < k; ++j) {
@@ -16,7 +17,7 @@ int main() {
       tr.add_arc(i, x), tr.add_arc(x, i);
     }
   }
-  graph::lca_hld lca(tr);
+  lca_hld lca(tr);
   u32 q;
   std::cin >> q;
   for (u32 i = 0, u, v; i < q; ++i) {

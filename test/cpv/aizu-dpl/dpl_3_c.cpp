@@ -10,7 +10,7 @@ int main() {
   std::cin >> n;
   vecu v(n);
   std::cin >> v;
-  auto [l, r] = opt::hoverline(v);
+  auto [l, r] = hoverline(v);
   u64 ans = 0;
   flt_ (u32, i, 0, n) ans = max(ans, (r[i] - l[i] + 1_u64) * v[i]);
   std::cout << ans << '\n';

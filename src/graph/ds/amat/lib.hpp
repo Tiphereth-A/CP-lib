@@ -1,29 +1,52 @@
 #pragma once
 
-#include "../../../util/alias/others/lib.hpp"
+#include "../graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
+namespace amat_impl_ {
+template <class T, class... Info>
+class amat_tag : public graph_info_impl_::graph_tag_base<Info...> {
+  using base_t = graph_info_impl_::graph_tag_base<Info...>;
+  using ET = std::conditional_t<std::is_void_v<T>, u32, T>;
+  struct iter_ {
+    using iter_t = vec<ET>::const_iterator;
+    iter_t it, bgn, ed;
+    CEXP iter_(iter_t begin, iter_t end) NE : it(begin), bgn(begin), ed(end) { nomalize(), bgn = it; }
 
-template <class T, bool with_deg = false>
-struct amat {
-  using w_t = T;
-  using val_t = vvec<T>;
-  val_t g;
-  u32 cnt_arc;
-  vecu deg_in, deg_out;
+    CEXP auto begin() CNE { return iter_{bgn, ed}; }
+    CEXP auto end() CNE { return iter_{ed, ed}; }
 
-  //! vertex ID: [0, n)
-  CEXPE amat(u32 n, T const v = T{}) NE : g(n, vec<T>(n, v)), cnt_arc{0} {
-    flt_ (u32, i, 0, n) g[i][i] = 0;
-    if CEXP (with_deg) deg_in.resize(n), deg_out.resize(n);
+    CEXP auto operator*() CNE { return *it; }
+    CEXP iter_& operator++() NE {
+      ++it, nomalize();
+      return *this;
+    }
+    CEXP bool operator!=(iter_ const& r) CNE { return it != r.it; }
+
+   private:
+    CEXP void nomalize() NE {
+      while (it != ed && *it == ET{}) ++it;
+    }
+  };
+  vvec<ET> g;
+
+ protected:
+  using val_t = T;
+  CEXPE amat_tag(u32 n, ET const null = {}) NE : base_t(n), g(n, vec<ET>(n, null)) {
+    flt_ (u32, i, 0, n) g[i][i] = ET{};
   }
 
-  CEXP void set_arc(u32 u, u32 v, cT_(T) w) NE {
-    if (g[u][v] == w) return;
-    u32 diff = u32(g[u][v] ? -!w : !!w);
-    if CEXP (with_deg) deg_in[v] += diff, deg_out[u] += diff;
-    cnt_arc += diff, g[u][v] = w;
-  }
+ public:
+  CEXP void build() CNE {}
+  CEXP void add_arc(u32 u, u32 v, cT_(ET) w = 1) NE { g[u][v] = w, base_t::add_arc(u, v); }
+  CEXP u32 vsize() CNE { return (u32)g.size(); }
+
+  CEXP auto CR operator[](u32 u) CNE { return iter_{g[u].begin(), g[u].end()}; }
+  CEXP auto val(u32 u, u32 v) CNE { return g[u][v]; }
+  CEXP void set_val(u32 u, u32 v, cT_(ET) w) NE { g[u][v] = w; }
 };
+}  // namespace amat_impl_
+template <class Et = void, class... Info>
+using amat = graph_impl_::graph<amat_impl_::amat_tag<Et, Info...>>;
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

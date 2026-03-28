@@ -5,7 +5,7 @@
 #include "../../../nt/lsieve/impl1/lib.hpp"
 #include "../../../nt/mod/barrett/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace gen_ipowi_impl_ {
 struct ls_ipowi {
   static inline u64 mod;
@@ -64,4 +64,4 @@ CEXP vec<mint> gen_ipowi(u32 n) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

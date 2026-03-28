@@ -3,14 +3,13 @@
 #include "../divmod/lib.hpp"
 #include "../shr/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace gcd_fps_impl_ {
-template <template <class... Ts> class ccore, class mint, class... args>
-using pttp = ptt<poly<ccore, mint, args...>>;
+template <poly_c poly_t>
+using pttp = ptt<poly_t>;
 
-template <template <class... Ts> class ccore, class mint, class... args>
+template <poly_c poly_t>
 struct matp {
-  using poly_t = poly<ccore, mint, args...>;
   poly_t a00, a01, a10, a11;
 
   CEXPE matp() = default;
@@ -27,35 +26,35 @@ struct matp {
     return *this;
   }
   CEXP matp operator*(matp CR r) CNE { return matp(*this) *= r; }
-  friend CEXP pttp<ccore, mint, args...> operator*(matp CR m, pttp<ccore, mint, args...> CR a) NE {
+  friend CEXP pttp<poly_t> operator*(matp CR m, pttp<poly_t> CR a) NE {
     poly_t b0 = m.a00 * a.first + m.a01 * a.second, b1 = m.a10 * a.first + m.a11 * a.second;
     b0.strip(), b1.strip();
     return {b0, b1};
   }
 };
 
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP void ngcd_(matp<ccore, mint, args...>& m, pttp<ccore, mint, args...>& p) NE {
+template <poly_c poly_t>
+CEXP void ngcd_(matp<poly_t>& m, pttp<poly_t>& p) NE {
   auto [q, r] = divmod_fps(p.first, p.second);
   auto b0 = m.a00 - m.a10 * q, b1 = m.a01 - m.a11 * q;
   b0.strip(), b1.strip(), swap(b0, m.a10), swap(b1, m.a11), swap(b0, m.a00), swap(b1, m.a01);
   p = {p.second, r};
 }
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto hgcd_(pttp<ccore, mint, args...> p) NE {
+template <poly_c poly_t>
+CEXP auto hgcd_(pttp<poly_t> p) NE {
   const u32 n = (u32)p.first.size(), m = (u32)p.second.size(), k = (n + 1) / 2;
-  if (m <= k) return matp<ccore, mint, args...>(1, 0, 0, 1);
-  auto _ = hgcd_(pttp<ccore, mint, args...>{shr_strip_fps(p.first, k), shr_strip_fps(p.second, k)});
+  if (m <= k) return matp<poly_t>(1, 0, 0, 1);
+  auto _ = hgcd_(pttp<poly_t>{shr_strip_fps(p.first, k), shr_strip_fps(p.second, k)});
   p = _ * p;
   if (p.second.size() <= k) return _;
   ngcd_(_, p);
   if (p.second.size() <= k) return _;
   const u32 l = (u32)p.first.size() - 1, j = 2 * k - l;
-  return hgcd_(pttp<ccore, mint, args...>{shr_strip_fps(p.first, j), shr_strip_fps(p.second, j)}) * _;
+  return hgcd_(pttp<poly_t>{shr_strip_fps(p.first, j), shr_strip_fps(p.second, j)}) * _;
 }
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP matp<ccore, mint, args...> pgcd_(poly<ccore, mint, args...> CR a, poly<ccore, mint, args...> CR b) NE {
-  pttp<ccore, mint, args...> p{a, b};
+template <poly_c poly_t>
+CEXP matp<poly_t> pgcd_(poly_t CR a, poly_t CR b) NE {
+  pttp<poly_t> p{a, b};
   p.first.strip(), p.second.strip();
   const u32 n = (u32)p.first.size(), m = (u32)p.second.size();
   if (n < m) {
@@ -63,7 +62,7 @@ CEXP matp<ccore, mint, args...> pgcd_(poly<ccore, mint, args...> CR a, poly<ccor
     swap(mat.a00, mat.a01), swap(mat.a10, mat.a11);
     return mat;
   }
-  auto res = matp<ccore, mint, args...>(1, 0, 0, 1);
+  auto res = matp<poly_t>(1, 0, 0, 1);
   while (1) {
     auto _ = hgcd_(p);
     if (p = _ * p; p.second.is_zero()) return _ * res;
@@ -73,9 +72,9 @@ CEXP matp<ccore, mint, args...> pgcd_(poly<ccore, mint, args...> CR a, poly<ccor
 }
 }  // namespace gcd_fps_impl_
 
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto gcd_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> CR g) NE {
-  ptt<poly<ccore, mint, args...>> p(f, g);
+template <poly_c poly_t>
+CEXP auto gcd_fps(poly_t CR f, poly_t CR g) NE {
+  ptt<poly_t> p(f, g);
   if (p = gcd_fps_impl_::pgcd_(f, g) * p; !p.first.is_zero()) {
     auto _ = p.first.back().inv();
     p.first *= _;
@@ -83,4 +82,4 @@ CEXP auto gcd_fps(poly<ccore, mint, args...> CR f, poly<ccore, mint, args...> CR
   return p.first;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

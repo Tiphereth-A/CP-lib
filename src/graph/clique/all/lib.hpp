@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 // calculate $\operatorname{sum}_{c\subseteq C} \operatorname{op}_{v\in c}$, which $C$ is set of all cliques (include $\varnothing$)
 // @param e_sum identity element of @sum
@@ -27,4 +27,4 @@ CEXP T clique_calc(u32 n, arr<std::bitset<N>, N> CR adj, S&& sum, OP&& op, T e_s
   return ans;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

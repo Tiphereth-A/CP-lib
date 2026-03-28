@@ -11,7 +11,7 @@ int main() {
   fin_uint >> n >> q;
   vecii a(n);
   for (auto& i : a) fin_int >> i;
-  ds::segbeats_ca_ms<i64, i128> seg(a);
+  segbeats_ca_ms<i64, i128> seg(a);
   for (u32 i = 0, opt, l, r; i < q; ++i) {
     fin_uint >> opt >> l >> r;
     if (opt == 3) fout << seg.query_sum(l, r) << '\n';

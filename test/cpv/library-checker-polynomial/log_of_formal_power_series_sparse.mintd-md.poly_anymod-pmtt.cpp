@@ -9,13 +9,12 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/fps/ds/mtt/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/md/lib.hpp"
+#include "../../../src/math/ds/mint/md/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md, __LINE__>;
+using mint = mint_md<__LINE__>;
 using namespace tifa_libs;
-using poly = math::polymtt<mint>;
+using poly = polymtt<mint>;
 
 int main() {
   mint::set_mod(MOD);
@@ -23,6 +22,6 @@ int main() {
   tifa_libs::fin_uint >> n >> k;
   poly p(n);
   for (u32 i = 0, x; i < k; ++i) tifa_libs::fin_uint >> x >> p[x];
-  tifa_libs::fout << tifa_libs::math::ln_fpssp(p);
+  tifa_libs::fout << tifa_libs::ln_fpssp(p);
   return 0;
 }

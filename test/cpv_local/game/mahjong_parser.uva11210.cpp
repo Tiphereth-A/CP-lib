@@ -4,12 +4,12 @@
 
 using namespace tifa_libs;
 using std::cin, std::cout;
-using namespace tifa_libs::game::literals;
+using namespace tifa_libs::literals;
 
 static auto [mp, mp2] = [] {
 #define _(n, i, j) {#n #i, n##_mj##j}
 #define __(i, j) _(1, i, j), _(2, i, j), _(3, i, j), _(4, i, j), _(5, i, j), _(6, i, j), _(7, i, j), _(8, i, j), _(9, i, j)
-  std::map<strn, game::mahjong_card> mp{
+  std::map<strn, mahjong_card> mp{
       __(T, p),
       __(S, s),
       __(W, m),
@@ -35,7 +35,7 @@ int main() {
   u32 kase = 0;
   strn s;
   while (std::getline(cin, s) && s[0] != '0') {
-    vec<game::mahjong_card> hand;
+    vec<mahjong_card> hand;
     hand.reserve(13);
     {
       std::stringstream ss;
@@ -43,7 +43,7 @@ int main() {
       while (ss >> s) hand.push_back(mp[s]);
     }
     vecu ans;
-    auto res = game::mahjong_parser<13>(hand);
+    auto res = mahjong_parser<13>(hand);
     for (auto CR p : res) {
       if (!p.win()) continue;
       auto _ = p.improve_cards();

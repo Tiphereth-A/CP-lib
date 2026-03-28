@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, q;
   std::cin >> n >> q;
-  auto tr = ds::segtl_addsum_ctor(vecuu(n));
+  auto tr = segtl_addsum_ctor(vecuu(n));
   flt_ (u32, i, 0, q) {
     u32 op, u, v, w;
     std::cin >> op >> u >> v;

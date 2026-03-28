@@ -13,7 +13,7 @@ int main() {
   vecii a(n);
   std::cin >> a;
   for (auto& i : a) i = -i;
-  auto tr = ds::segtl_addmax_ctor<i64>(-inf_v<i64>, a);
+  auto tr = segtl_addmax_ctor<i64>(-inf_v<i64>, a);
   flt_ (u32, i, 0, q) {
     u32 op, u, v;
     i64 w;

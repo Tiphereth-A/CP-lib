@@ -2,13 +2,13 @@
 
 #include "../massp/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 point<FP> femwebp(vec<point<FP>> CR vp) NE {
   auto Tl = [&](point<FP> CR y) NE {
     point<FP> y2;
-    math::kahan<FP> sd = 0;
+    kahan<FP> sd = 0;
     for (auto&& p : vp)
       if (p != y) {
         FP d = (y - p).norm();
@@ -32,4 +32,4 @@ point<FP> femwebp(vec<point<FP>> CR vp) NE {
   return y;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

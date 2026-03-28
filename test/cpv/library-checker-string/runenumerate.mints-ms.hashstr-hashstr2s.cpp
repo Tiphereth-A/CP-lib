@@ -8,21 +8,20 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 #include "../../../src/str/hash/substr2/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, MOD>;
+using mint = mint_ms<MOD>;
 using namespace tifa_libs;
-using mint0 = math::mint<math::mint_ms, 998244353>;
-using mint1 = math::mint<math::mint_ms, 1000000007>;
-using hashstr = str::hash_substr2<mint0, mint1>;
+using mint0 = mint_ms<998244353>;
+using mint1 = mint_ms<1000000007>;
+using hashstr = hash_substr2<mint0, mint1>;
 
 int main() {
   strn s;
   tifa_libs::fin_uint >> s;
-  auto res = tifa_libs::str::run_hash<hashstr>(s);
+  auto res = tifa_libs::run_hash<hashstr>(s);
   tifa_libs::fout << res.size() << '\n';
   for (auto& [a, b, c] : res) tifa_libs::fout << a << ' ' << b << ' ' << c << '\n';
   return 0;

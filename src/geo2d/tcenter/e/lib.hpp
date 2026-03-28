@@ -2,7 +2,7 @@
 
 #include "../../ds/t/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // excenter of A
 template <class FP>
@@ -14,4 +14,4 @@ CEXP point<FP> center_EB(triangle<FP> CR t) NE { return t.trilinears(1, -1, 1); 
 template <class FP>
 CEXP point<FP> center_EC(triangle<FP> CR t) NE { return t.trilinears(1, 1, -1); }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

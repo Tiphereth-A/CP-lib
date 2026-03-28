@@ -5,7 +5,7 @@
 #include "../../math/qpow/mod/lib.hpp"
 #include "../pfactors/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace norm_fact_impl_ {
 CEXP gint<i128, -1> nfp(u64 p) NE {
   if (p % 4 == 3) return {-1, -1};
@@ -68,4 +68,4 @@ CEXP vecptuu norm_fact(u64 n) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

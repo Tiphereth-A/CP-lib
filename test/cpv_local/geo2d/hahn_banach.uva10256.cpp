@@ -7,7 +7,7 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f64;
-using Polygon2 = geo::cvh<data_t>;
+using Polygon2 = cvh<data_t>;
 
 const arr RES_Yn{"No"s, "Yes"s};
 
@@ -25,14 +25,14 @@ strn single_proceed(u32 n, u32 m) {
       if (itn == end(poly1.vs)) itn = begin(poly1.vs);
       for (auto it2 = begin(poly2.vs), it2n = it2 + 1; it2 != end(poly2.vs); ++it2, ++it2n) {
         if (it2n == end(poly2.vs)) it2n = begin(poly2.vs);
-        if (geo::is_ins_SS<data_t>({*it, *itn}, {*it2, *it2n})) return RES_Yn[0];
+        if (is_ins_SS<data_t>({*it, *itn}, {*it2, *it2n})) return RES_Yn[0];
       }
     }
   } else {
     if (poly1.size() == 1 && poly2.size() == 1) return RES_Yn[!is_eq(poly1[0].x, poly2[0].x) || !is_eq(poly1[0].y, poly2[0].y)];
-    if (poly1.size() == 1 && poly2.size() == 2) return RES_Yn[!geo::is_on_S<data_t>({poly2[0], poly2[1]}, poly1[0])];
-    if (poly1.size() == 2 && poly2.size() == 1) return RES_Yn[!geo::is_on_S<data_t>({poly1[0], poly1[1]}, poly2[0])];
-    if (poly1.size() == 2 && poly2.size() == 2) return RES_Yn[!geo::is_ins_SS<data_t>({poly1[0], poly1[1]}, {poly2[0], poly2[1]})];
+    if (poly1.size() == 1 && poly2.size() == 2) return RES_Yn[!is_on_S<data_t>({poly2[0], poly2[1]}, poly1[0])];
+    if (poly1.size() == 2 && poly2.size() == 1) return RES_Yn[!is_on_S<data_t>({poly1[0], poly1[1]}, poly2[0])];
+    if (poly1.size() == 2 && poly2.size() == 2) return RES_Yn[!is_ins_SS<data_t>({poly1[0], poly1[1]}, {poly2[0], poly2[1]})];
   }
   return RES_Yn[1];
 }

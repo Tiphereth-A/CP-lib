@@ -2,7 +2,7 @@
 
 #include "../../../math/ds/eint/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 class fft_r3 {
@@ -69,4 +69,4 @@ class fft_r3 {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

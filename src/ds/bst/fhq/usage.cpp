@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
-  ds::fhq_treap<i32> treap;
+  fhq_treap<i32> treap;
   for (u32 i = 0, opt; i < n; ++i) {
     i32 x;
     std::cin >> opt >> x;

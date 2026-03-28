@@ -2,10 +2,10 @@
 
 #include "../../ds/t/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // centroid (X2)
 template <class FP>
 CEXP point<FP> center_G(triangle<FP> CR t) NE { return t.barycentrics(1, 1, 1); }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <int B = 1 << 30>
 class trygub_num {
@@ -27,4 +27,4 @@ class trygub_num {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../util/traits/others/lib.hpp"
 
-namespace tifa_libs::game {
+namespace tifa_libs {
 
 // n = k*k-1
 class npuzzle_data {
@@ -66,4 +66,4 @@ class npuzzle_data {
   }
 };
 
-}  // namespace tifa_libs::game
+}  // namespace tifa_libs

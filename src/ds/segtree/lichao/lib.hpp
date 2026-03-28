@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, T (*op)(T, T)>
 class lichao_segtree {
@@ -50,4 +50,4 @@ class lichao_segtree {
     else return op(ret, query(x << 1 | 1, mid + 1, r, pos));
   }
 };
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

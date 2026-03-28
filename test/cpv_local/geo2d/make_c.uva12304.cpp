@@ -10,10 +10,10 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f64;
-using Point2 = geo::point<data_t>;
-using Line2 = geo::line<data_t>;
-using Triangle = geo::triangle<data_t>;
-using Circle2 = geo::circle<data_t>;
+using Point2 = point<data_t>;
+using Line2 = line<data_t>;
+using Triangle = triangle<data_t>;
+using Circle2 = circle<data_t>;
 
 CEXP data_t PI = pi_v<data_t>;
 

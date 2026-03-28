@@ -3,7 +3,7 @@
 #include "../../ds/po/lib.hpp"
 #include "../../pred/is_on_s/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // relation between polygon and point
 // clang-format off
@@ -25,4 +25,4 @@ CEXP RELPoP relation_PoP(polygon<FP> CR po, point<FP> CR p) NE {
   retif_((result), RELPoP::inside, RELPoP::outside);
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

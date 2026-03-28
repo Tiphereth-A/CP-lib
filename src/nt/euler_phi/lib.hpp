@@ -2,7 +2,7 @@
 
 #include "../pfactors/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP u64 euler_phi(u64 n, spn<std::pair<u64, u32>> pf_exp) NE {
   for (auto CR[p, _] : pf_exp) n = n / p * (p - 1);
@@ -14,4 +14,4 @@ CEXP u64 euler_phi(u64 n, spnuu pfactor) NE {
 }
 inline u64 euler_phi(u64 n) NE { return euler_phi(n, pfactors(n)); }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

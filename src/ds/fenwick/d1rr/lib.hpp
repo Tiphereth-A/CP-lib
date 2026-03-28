@@ -2,7 +2,7 @@
 
 #include "../d1/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T>
 class fenwick_rr {
@@ -22,4 +22,4 @@ class fenwick_rr {
   CEXP T sum(u32 l, u32 r) NE { return sum(r) - sum(l - 1); }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

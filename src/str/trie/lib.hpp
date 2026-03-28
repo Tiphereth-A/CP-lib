@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 template <char BGNCH = 'a', char ENDCH = 'z' + 1>
 class trie {
@@ -38,4 +38,4 @@ class trie {
   }
 };
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

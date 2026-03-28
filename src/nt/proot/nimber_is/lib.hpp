@@ -3,7 +3,7 @@
 #include "../../../math/ds/nimber/lib.hpp"
 #include "../../../math/qpow/basic/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <std::unsigned_integral T, T (*prod)(T, T)>
 CEXP bool is_proot_nimber(nimber<T, prod> CR n) NE {
@@ -15,4 +15,4 @@ CEXP bool is_proot_nimber(nimber<T, prod> CR n) NE {
   return true;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

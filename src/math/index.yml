@@ -4,7 +4,6 @@
 - inversion: 逆序对计数
 - rational_approx: 有理数近似
 - frac_itv: 区间内分母最小的分数
-- mint: 模整数类实现
 - mul_mod: 模乘法
 - qpow: 快速幂相关
 - safe_mod: 数学意义下有符号整数取模

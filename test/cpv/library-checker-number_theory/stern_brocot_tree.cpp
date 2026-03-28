@@ -5,7 +5,7 @@
 #include "../../../src/nt/sbt/lib.hpp"
 
 using namespace tifa_libs;
-using sbt = math::sbt<u64>;
+using sbt_t = sbt<u64>;
 
 int main() {
   int n;
@@ -19,14 +19,14 @@ int main() {
       case 'E': {
         fin_uint >> a >> b;
         vec<std::pair<char, u64>> path;
-        sbt::walk_to(a, b, [&path](bool dir, u64 step) { path.emplace_back(dir ? 'R' : 'L', step); });
+        sbt_t::walk_to(a, b, [&path](bool dir, u64 step) { path.emplace_back(dir ? 'R' : 'L', step); });
         fout << path.size();
         for (auto [dir, step] : path) fout << ' ' << dir << ' ' << step;
         fout << '\n';
       } break;
       case 'D': {
         fin_uint >> k;
-        sbt s;
+        sbt_t s;
         char ch;
         flt_ (u64, i, 0, k, _) {
           fin >> ch >> _;
@@ -36,13 +36,13 @@ int main() {
       } break;
       case 'L': {
         fin_uint >> a >> b >> c >> d;
-        auto s = sbt::walk_to_lca(a, b, c, d);
+        auto s = sbt_t::walk_to_lca(a, b, c, d);
         fout << s.x << ' ' << s.y << '\n';
       } break;
       case 'A': {
         fin_uint >> d >> a >> b;
         vec<std::pair<char, u64>> path;
-        sbt::walk_to(a, b, [&path](bool dir, u64 step) { path.emplace_back(dir ? 'R' : 'L', step); });
+        sbt_t::walk_to(a, b, [&path](bool dir, u64 step) { path.emplace_back(dir ? 'R' : 'L', step); });
         for (auto it = path.begin(); it != path.end(); ++it) {
           if (it->second <= d) d -= it->second;
           else {
@@ -53,7 +53,7 @@ int main() {
         }
         if (d) fout << "-1\n";
         else {
-          sbt s;
+          sbt_t s;
           for (auto [dir, step] : path)
             if (dir == 'R') s.movr(step);
             else s.movl(step);
@@ -62,7 +62,7 @@ int main() {
       } break;
       case 'R': {
         fin_uint >> a >> b;
-        auto _ = sbt::walk_to(a, b);
+        auto _ = sbt_t::walk_to(a, b);
         fout << _.lx << ' ' << _.ly << ' ' << _.rx << ' ' << _.ry << '\n';
       } break;
     }

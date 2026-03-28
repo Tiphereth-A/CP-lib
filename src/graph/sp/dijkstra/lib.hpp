@@ -1,18 +1,18 @@
 #pragma once
 
 #include "../../../ds/heap/radix/lib.hpp"
-#include "../../../util/traits/graph/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
+#include "../../ds/graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 // relax(now, to)
-template <alistw_c G, class F, class T = TPN G::w_t>
+template <wgraph_c G, class F, class T = TPN G::Et>
 requires(!sint_c<T>) && requires(F relex, u32 now, u32 to) { relex(now, to); }
 CEXP vec<T> dijkstra(G CR g, u32 s, F&& relax, T INF = inf_v<T>) NE {
-  vec<T> dis(g.size(), INF);
-  vecb vis(g.size());
-  ds::rheap<T, u32> q;
+  vec<T> dis(g.vsize(), INF);
+  vecb vis(g.vsize());
+  rheap<T, u32> q;
   q.emplace(dis[s] = 0, s);
   while (!q.empty()) {
     auto [dis_now, u] = q.top();
@@ -25,4 +25,4 @@ CEXP vec<T> dijkstra(G CR g, u32 s, F&& relax, T INF = inf_v<T>) NE {
   return dis;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

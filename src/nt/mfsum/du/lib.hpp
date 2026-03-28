@@ -3,7 +3,7 @@
 #include "../../../math/do_quot/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T, class SF, class SG, class SH>
 requires requires(u64 x, SF f, SG g, SH h) {
@@ -32,4 +32,4 @@ class du_sieve {
   CEXP T operator()(u64 n) NE { retif_((!n) [[unlikely]], 0, calc(n)); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

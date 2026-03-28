@@ -1,20 +1,21 @@
 #define AUTO_GENERATED
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite/"
 
+#include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/tree/hld/lib.hpp"
 #include "../../../src/tree/lca_hld/lib.hpp"
 
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/md64/lib.hpp"
+#include "../../../src/math/ds/mint/md64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md64, __LINE__>;
+using mint = mint_md64<__LINE__>;
 using Ty = mint;
 using T = std::pair<Ty, Ty>;
 using F = T;
+using tree_t = tree<alist<>>;
 
 CEXP auto op_ab(T a, T b) {  // a(b(x))
   return T{a.first * b.first, a.first * b.second + a.second};
@@ -34,11 +35,11 @@ int main() {
   std::cin >> n >> q;
   vec<T> a(n);
   for (auto& x : a) std::cin >> x.first >> x.second;
-  tifa_libs::graph::tree tr(n);
+  tree_t tr(n);
   for (u32 i = 1, u, v; i < n; ++i) std::cin >> u >> v, tr.add_arc(u, v), tr.add_arc(v, u);
-  tifa_libs::graph::lca_hld lca(tr);
-  tifa_libs::graph::hld<T, op_ba, F, mapping, composition> hld(e(), id(), tr, lca.info, a);
-  tifa_libs::graph::hld<T, op_ab, F, mapping, composition> hld1(e(), id(), tr, lca.info, a);
+  tifa_libs::lca_hld lca(tr);
+  tifa_libs::hld<tree_t, T, op_ba, F, mapping, composition> hld(e(), id(), tr, lca.info, a);
+  tifa_libs::hld<tree_t, T, op_ab, F, mapping, composition> hld1(e(), id(), tr, lca.info, a);
   for (u32 i = 0, opt; i < q; ++i) {
     std::cin >> opt;
     if (opt == 0) {

@@ -1,14 +1,13 @@
 #pragma once
 
 #include "../../../util/alias/others/lib.hpp"
-#include "../../../util/traits/graph/lib.hpp"
+#include "../../ds/graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 namespace ringcnt4_impl_ {
-template <class G>
-requires(alist_c<G> && !alistw_c<G>)
+template <graph_c G>
 CEXP u64 run(G CR dg, G CR dgv) NE {
-  const u32 n = dg.size();
+  const u32 n = dg.vsize();
   u64 ans = 0;
   vecuu cnt1(n), cnt2(n);
   flt_ (u32, u, 0, n) {
@@ -31,10 +30,9 @@ CEXP u64 run(G CR dg, G CR dgv) NE {
 }  // namespace ringcnt4_impl_
 
 //! should be simple undirected graph
-template <class G>
-requires(alist_c<G> && !alistw_c<G>)
+template <graph_c G>
 CEXP u64 ringcnt4(G CR g) NE {
-  const u32 n = g.size();
+  const u32 n = g.vsize();
   G dg(n), dgv(n);
   flt_ (u32, u, 0, n)
     for (auto v : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[(u32)v].size(), (u32)v) ? dg : dgv).add_arc(u, (u32)v);
@@ -42,4 +40,4 @@ CEXP u64 ringcnt4(G CR g) NE {
   return ringcnt4_impl_::run(dg, dgv);
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

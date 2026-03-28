@@ -8,7 +8,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  ds::fenwick_rr<i64> tr(n + 1);
+  fenwick_rr<i64> tr(n + 1);
   for (i64 i = 1, a, b = 0; i <= n; ++i) std::cin >> a, tr.add((u32)i, a - b), b = a;
   for (i64 i = 0, op, l, r, k; i < m; ++i) {
     std::cin >> op >> l >> r;

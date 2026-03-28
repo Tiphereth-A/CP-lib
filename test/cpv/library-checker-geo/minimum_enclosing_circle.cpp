@@ -4,19 +4,19 @@
 #include "../../../src/io/container/lib.hpp"
 
 using namespace tifa_libs;
-using point = geo::point<f64>;
+using point_t = point<f64>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
 
   u32 n;
   std::cin >> n;
-  vec<point> vp(n);
+  vec<point_t> vp(n);
   std::cin >> vp;
   auto vp2 = vp;
   shuffle(vp2, std::mt19937{TIME});
-  auto c = geo::min_cover_C(vp2);
-  for (auto&& p : vp) std::cout << (geo::relation_CP(c, p) == geo::RELCP::onborder);
+  auto c = min_cover_C(vp2);
+  for (auto&& p : vp) std::cout << (relation_CP(c, p) == RELCP::onborder);
 
   return 0;
 }

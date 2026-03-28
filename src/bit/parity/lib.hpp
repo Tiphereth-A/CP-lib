@@ -2,7 +2,7 @@
 
 #include "../../util/util/lib.hpp"
 
-namespace tifa_libs::bit {
+namespace tifa_libs {
 
 template <class T>
 CEXP int parity(T x) NE {
@@ -15,4 +15,4 @@ CEXP int parity(T x) NE {
   else return __builtin_parityll(x >> nd_ull) ^ __builtin_parityll(x & (unsigned long long)(-1));
 }
 
-}  // namespace tifa_libs::bit
+}  // namespace tifa_libs

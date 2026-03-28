@@ -2,13 +2,13 @@
 
 #include "../../../src/edh/prufer/inv/lib.hpp"
 #include "../../../src/edh/prufer/seq/lib.hpp"
-#include "../../../src/rand/gen/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
 
 void test(u32 n) {
-  rand::gen<u32> g(1, n);
+  rand_gen<u32> g(1, n);
   vecu seq(n - 1);
   flt_ (u32, i, 1, n - 1) seq[i] = g();
   timer_(auto tree_seq = prufer_inv(seq));

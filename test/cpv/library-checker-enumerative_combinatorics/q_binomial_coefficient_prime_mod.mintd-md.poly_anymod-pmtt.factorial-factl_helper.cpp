@@ -9,16 +9,15 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/fps/ds/mtt/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
+#include "../../../src/math/ds/mint/md/lib.hpp"
 #include "../../../src/math/fact/helper_l/lib.hpp"
-#include "../../../src/math/mint/md/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md, __LINE__>;
+using mint = mint_md<__LINE__>;
 using namespace tifa_libs;
-using poly = math::polymtt<mint>;
+using poly = polymtt<mint>;
 using namespace tifa_libs;
-using fact_t = math::factl_helper<poly>;
+using fact_t = factl_helper<poly>;
 
 int main() {
   mint::set_mod(MOD);
@@ -33,7 +32,7 @@ int main() {
     }
     return 0;
   }
-  tifa_libs::math::qbinom<mint, fact_t> mCn(q);
+  tifa_libs::qbinom<mint, fact_t> mCn(q);
   while (t--) {
     i64 n, k;
     tifa_libs::fin_uint >> n >> k;

@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 template <u32 SZ = 26>
 class suffix_automaton {
   // super root is 0
@@ -93,4 +93,4 @@ class suffix_automaton {
   }
 };
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

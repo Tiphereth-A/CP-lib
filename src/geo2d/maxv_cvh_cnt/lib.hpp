@@ -2,7 +2,7 @@
 
 #include "../ds/l/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // max number of vertices in vp which forms a convex hull
 template <class FP>
@@ -31,4 +31,4 @@ CEXP u32 maxv_cvh_cnt(vec<point<FP>> CR vp) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

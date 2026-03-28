@@ -3,7 +3,7 @@
 #include "../../../math/qpow/mod/lib.hpp"
 #include "../../inverse/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP auto qresidue(u64 a, u64 p) NE {
   std::optional<u64> ret;
@@ -23,4 +23,4 @@ CEXP auto qresidue(u64 a, u64 p) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

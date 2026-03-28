@@ -6,7 +6,7 @@
 #include "../../mod/barrett/lib.hpp"
 #include "../naive/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // solve $a^x\equiv b \pmod m$
 inline auto bsgs(u64 a, u64 b, u64 m) NE {
@@ -42,4 +42,4 @@ inline auto bsgs(u64 a, u64 b, u64 m) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

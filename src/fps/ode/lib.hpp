@@ -4,7 +4,7 @@
 #include "../int/lib.hpp"
 #include "../inv/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class poly, class G, class DG>
 requires requires(poly f, size_t n, G g, DG dg) {
@@ -20,4 +20,4 @@ CEXP auto ode_fps(G&& g, DG&& dg, TPN poly::val_t a, u32 n) NE {
   return f.pre(n);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

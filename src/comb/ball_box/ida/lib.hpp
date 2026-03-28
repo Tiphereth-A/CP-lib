@@ -2,9 +2,9 @@
 
 #include "../../binom/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class mint, class fact>
 CEXP mint ball_box_ida(u32 ball, u32 box, binom<mint, fact> CR b) NE { return b.mCn(box + ball - 1, box - 1); }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../ds/alist/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 template <bool get_vcut = false, bool get_ecut = false, bool get_belongs = true>
 struct v_bcc {
@@ -13,10 +13,9 @@ struct v_bcc {
   vecptu ecut;
 
   //! g should be undirect
-  template <bool with_deg>
-  CEXP v_bcc(alist<with_deg> CR g) NE : dfn(g.size()), low(g.size()) {
-    if CEXP (get_vcut) vcut = vecb(g.size());
-    if CEXP (get_ecut) ecut.reserve(g.size());
+  CEXP v_bcc(graph_c auto CR g) NE : dfn(g.vsize()), low(g.vsize()) {
+    if CEXP (get_vcut) vcut = vecb(g.vsize());
+    if CEXP (get_ecut) ecut.reserve(g.vsize());
     vecu stk;
     u32 cnt = 0, start;
     auto tarjan = [&](auto&& f, u32 u, u32 fa) -> void {
@@ -53,9 +52,9 @@ struct v_bcc {
       if CEXP (get_belongs)
         if (!~fa && !son) belongs.push_back({u});
     };
-    flt_ (u32, i, 0, g.size())
+    flt_ (u32, i, 0, g.vsize())
       if (!dfn[i]) tarjan(tarjan, start = i, -1_u32);
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

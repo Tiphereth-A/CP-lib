@@ -9,7 +9,7 @@ int main() {
   std::cin >> l >> r >> m;
   vecptu edges(m);
   for (auto& [u, v] : edges) std::cin >> u >> v;
-  auto ans = graph::hopkap(l, r, edges);
+  auto ans = hopkap(l, r, edges);
   std::cout << ans.size() << '\n';
   for (auto [u, v] : ans) std::cout << u << ' ' << v << '\n';
   return 0;

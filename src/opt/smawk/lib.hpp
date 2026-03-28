@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 //! $h(r) = argmin_i a_{r,i}$ MUST be non-decreasing
 // a: $[0, n) \times [0, m)$
@@ -24,4 +24,4 @@ CEXP vecu smawk(u32 n, u32 m, Ft&& f) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

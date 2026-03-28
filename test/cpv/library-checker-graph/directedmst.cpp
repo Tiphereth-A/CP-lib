@@ -10,7 +10,7 @@ int main() {
   std::cin >> n >> m >> s;
   vec<edge_t<u64>> arcs(m);
   for (auto& [w, u, v] : arcs) std::cin >> u >> v >> w;
-  auto res = graph::cle(n, s, arcs);
+  auto res = cle(n, s, arcs);
 
   u64 cost = 0;
   vecu ans(n, -1_u32);

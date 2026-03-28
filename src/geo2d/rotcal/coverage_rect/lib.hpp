@@ -2,7 +2,7 @@
 
 #include "../../ds/cvh/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // clang-format off
 enum class CVHRECT : u8 { min_area, min_circum };
@@ -45,4 +45,4 @@ CEXP polygon<FP> coverage_rect(cT_(cvh<FP>) ch) NE {
   return {{ins_LL(li, lp), ins_LL(lp, lr), ins_LL(lr, lq), ins_LL(lq, li)}};
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

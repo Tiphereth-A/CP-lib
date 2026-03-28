@@ -2,23 +2,24 @@
 
 #include "../../ds/eog/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 struct e_bcc {
   vecu dfn, low;
   vvecu belongs;
 
   //! g should be undirect
-  template <bool with_deg>
-  CEXP e_bcc(eog<with_deg> CR g) NE : dfn(g.size()), low(g.size()) {
+  template <class T, class... Info>
+  CEXP e_bcc(eog<T, Info...> CR g) NE : dfn(g.vsize()), low(g.vsize()) {
     vecu stk;
     u32 tot = 0;
-    auto tarjan = [&](auto&& f, u32 u, u32 fa_eid) -> void {
+    auto tarjan = [&](auto&& f, u32 u, u32 fa) -> void {
       dfn[u] = low[u] = ++tot;
       stk.push_back(u);
-      g.foreach(u, [&](u32 eid, u32 v, u32) {
-        if (!dfn[v]) f(f, v, eid), low[u] = min(low[u], low[v]);
-        else if (eid != fa_eid && eid != (fa_eid ^ 1)) low[u] = min(low[u], dfn[v]);
+      bool skipped_parent = false;
+      g.foreach(u, [&](u32 v) {
+        if (!dfn[v]) f(f, v, u), low[u] = min(low[u], low[v]);
+        else if (v != fa || std::exchange(skipped_parent, true)) low[u] = min(low[u], dfn[v]);
       });
       if (low[u] == dfn[u]) {
         vecu res;
@@ -28,9 +29,9 @@ struct e_bcc {
         belongs.emplace_back(std::move(res));
       }
     };
-    flt_ (u32, i, 0, g.size())
+    flt_ (u32, i, 0, g.vsize())
       if (!dfn[i]) tarjan(tarjan, i, -1_u32);
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

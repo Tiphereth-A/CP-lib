@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class U, class T = U>
 requires(sizeof(U) <= sizeof(T))
@@ -18,4 +18,4 @@ CEXP vec<T> convcyc_naive(vec<U> CR l, vec<U> CR r) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -7,20 +7,19 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/fps/ds/ntt3/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
+#include "../../../src/math/ds/mint/bd/lib.hpp"
+#include "../../../src/math/ds/mint/ms64/lib.hpp"
 #include "../../../src/math/fact/helper_l/lib.hpp"
-#include "../../../src/math/mint/bd/lib.hpp"
-#include "../../../src/math/mint/ms64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bd, __LINE__>;
+using mint = mint_bd<__LINE__>;
 using namespace tifa_libs;
-using mint_p3ntt1 = math::mint<math::mint_ms64, 167772161>;
-using mint_p3ntt2 = math::mint<math::mint_ms64, 469762049>;
-using mint_p3ntt3 = math::mint<math::mint_ms64, 754974721>;
-using poly = math::poly3ntt<mint, mint_p3ntt1, mint_p3ntt2, mint_p3ntt3>;
+using mint_p3ntt1 = mint_ms64<167772161>;
+using mint_p3ntt2 = mint_ms64<469762049>;
+using mint_p3ntt3 = mint_ms64<754974721>;
+using poly = poly3ntt<mint, mint_p3ntt1, mint_p3ntt2, mint_p3ntt3>;
 using namespace tifa_libs;
-using fact_t = math::factl_helper<poly>;
+using fact_t = factl_helper<poly>;
 
 int main() {
   mint::set_mod(MOD);
@@ -28,7 +27,7 @@ int main() {
   u32 t, mod;
   std::cin >> t >> mod;
   mint::set_mod(mod);
-  tifa_libs::math::stirling1<mint, fact_t> s;
+  tifa_libs::stirling1<mint, fact_t> s;
   while (t--) {
     u64 n, k;
     std::cin >> n >> k;

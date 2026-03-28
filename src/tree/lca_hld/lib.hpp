@@ -3,11 +3,11 @@
 #include "../dfs/info/lib.hpp"
 #include "../dfs/top/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 template <tree_c G>
 struct lca_hld {
-  using tree_info_t = graph::tree_dfs_info<G, graph::tdi_dfn, graph::tdi_maxson, graph::tdi_dep, graph::tdi_fa>;
+  using tree_info_t = tree_dfs_info<G, tdi_dfn, tdi_maxson, tdi_dep, tdi_fa>;
   tree_info_t info;
   vecu top;
 
@@ -29,4 +29,4 @@ struct lca_hld {
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

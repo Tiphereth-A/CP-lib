@@ -3,7 +3,7 @@
 #include "../../../fps/exp/lib.hpp"
 #include "../../seq/inv/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // f = \\prod_{i=1}^m 1/(1-x^i), deg(f) = n
 template <class poly, class T>
@@ -17,4 +17,4 @@ CEXP poly gen_ball_box_ii(u32 m, u32 n, vec<T> CR inv) NE {
 template <class poly>
 CEXP poly gen_ball_box_ii(u32 m, u32 n) NE { return gen_ball_box_ii<poly>(m, n, gen_inv(n + 1, poly::val_t::mod())); }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

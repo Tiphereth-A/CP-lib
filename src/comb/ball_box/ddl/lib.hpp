@@ -3,7 +3,7 @@
 #include "../../binom/lib.hpp"
 #include "../../seq/pows/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class mint, class fact>
 CEXP mint ball_box_ddl(u32, u32 box, spnuu pows, binom<mint, fact> CR b) NE {
@@ -19,4 +19,4 @@ CEXP mint ball_box_ddl(u32, u32 box, spnuu pows, binom<mint, fact> CR b) NE {
 template <class mint, class fact>
 CEXP mint ball_box_ddl(u32 ball, u32 box, binom<mint, fact> CR b) NE { return ball_box_ddl<mint>(ball, box, gen_pows(box + 1, ball, mint::mod()), b); }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 CEXP vec<T> berlekamp_massey(vec<T> CR a) NE {
@@ -29,4 +29,4 @@ CEXP vec<T> berlekamp_massey(vec<T> CR a) NE {
   return c;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

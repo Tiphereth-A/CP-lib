@@ -2,7 +2,7 @@
 
 #include "../../conv/subset/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T, u32 N = 21>
 auto exp_fpssps(u32 n, vec<T> g) NE {
@@ -16,4 +16,4 @@ auto exp_fpssps(u32 n, vec<T> g) NE {
   return h;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

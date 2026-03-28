@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <std::floating_point FP>
 class fft_r2 {
@@ -49,4 +49,4 @@ class fft_r2 {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

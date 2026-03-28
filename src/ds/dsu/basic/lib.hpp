@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <bool union_by_size = true>
 class dsu_basic {
@@ -24,4 +24,4 @@ class dsu_basic {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../../edh/discretization/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP u32 mex_uniqued(spnu x) NE {
   flt_ (u32, i, 0, (u32)x.size())
@@ -11,4 +11,4 @@ CEXP u32 mex_uniqued(spnu x) NE {
 }
 CEXP u32 mex(vecu x) NE { return mex_uniqued(uniq(x)); }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

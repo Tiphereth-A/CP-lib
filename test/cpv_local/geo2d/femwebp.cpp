@@ -1,11 +1,10 @@
 // competitive-verifier: STANDALONE
 
 #include "../../../src/geo2d/femwebp/lib.hpp"
-#include "../../../src/rand/gen/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
-using geo::point;
 
 template <class T>
 void single_test(vec<point<T>> CR v) {
@@ -21,7 +20,7 @@ void single_test(vec<point<T>> CR v) {
 
 template <arithm_c T>
 void test(T lim, u32 n) {
-  rand::gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
+  rand_gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
 
   vec<point<T>> v;
   while (v.size() < n) v.emplace_back(g(), g());

@@ -37,7 +37,7 @@ struct lsieve_bf {
     }
     phi = vecu(n), (n > 1) && (phi[1] = 1);
     flt_ (u32, i, 2, n)
-      flt_ (u32, j, 1, i + 1) phi[i] += (math::gcd(i, j) == 1);
+      flt_ (u32, j, 1, i + 1) phi[i] += (gcd(i, j) == 1);
     tau = vecu(n), (n > 1) && (tau[1] = 1);
     flt_ (u32, i, 2, n)
       flt_ (u32, j, 1, i + 1) tau[i] += (i % j == 0);
@@ -69,14 +69,14 @@ struct lsieve_func2 {
   vecuu sigma;
 
   constexpr lsieve_func2& reset_lsieve_func2(u32 n) {
-    auto ls = math::lsieve2(n);
-    phi = ls.run<u32>([](u32 p, u32 i) -> u32 { retif_((i == 0), 1, u32(math::qpow((u64)p, i) - math::qpow((u64)p, i - 1))); });
+    auto ls = lsieve2(n);
+    phi = ls.run<u32>([](u32 p, u32 i) -> u32 { retif_((i == 0), 1, u32(qpow((u64)p, i) - qpow((u64)p, i - 1))); });
     tau = ls.run<u32>([](u32, u32 i) -> u32 { return i + 1; });
     mu = ls.run<i32>([](u32, u32 i) -> i32 {
       if (i == 0) return 1;
       else retif_((i == 1), -1, 0);
     });
-    sigma = ls.run<u64>([](u32 p, u32 i) -> u64 { retif_((i == 0), 1, (math::qpow((u64)p, i + 1) - 1) / (p - 1)); });
+    sigma = ls.run<u64>([](u32 p, u32 i) -> u64 { retif_((i == 0), 1, (qpow((u64)p, i + 1) - 1) / (p - 1)); });
     return *this;
   }
 };
@@ -85,7 +85,7 @@ void test(u32 n) {
   lsieve_bf lsb;
   timer_(lsb.reset_lsieve_bf(n));
 
-  timer_(math::lsieve<math::ls_mpf, math::ls_mu, math::ls_phi, math::ls_sigma, math::ls_tau> lsf(n));
+  timer_(lsieve<ls_mpf, ls_mu, ls_phi, ls_sigma, ls_tau> lsf(n));
 
   check(lsf.primes, lsb.prime);
   flt_ (u32, i, 0, n) check(lsf.mpf[i], lsb.mpf[i], check_param(i));

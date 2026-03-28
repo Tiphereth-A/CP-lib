@@ -9,18 +9,17 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/fps/ds/ntt/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms64/lib.hpp"
+#include "../../../src/math/ds/mint/ms64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms64, MOD>;
+using mint = mint_ms64<MOD>;
 using namespace tifa_libs;
-using poly = math::polyntt<mint>;
+using poly = polyntt<mint>;
 
 int main() {
   u32 n, k;
   tifa_libs::fin_uint >> n >> k;
-  auto ans = tifa_libs::math::gen_stirling2_col<poly>(n, k);
+  auto ans = tifa_libs::gen_stirling2_col<poly>(n, k);
   flt_ (u32, i, k, n + 1) tifa_libs::fout << ans[i] << " \n"[i == n];
   return 0;
 }

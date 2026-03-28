@@ -6,10 +6,10 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f128;
-using Point2 = geo::point<data_t>;
-using Line2 = geo::line<data_t>;
-using Polygon2 = geo::polygon<data_t>;
-using ConvexHull2 = geo::cvh<data_t>;
+using Point2 = point<data_t>;
+using Line2 = line<data_t>;
+using Polygon2 = polygon<data_t>;
+using ConvexHull2 = cvh<data_t>;
 
 int main() {
   cout << std::fixed << std::setprecision(4);
@@ -31,5 +31,5 @@ int main() {
     if (!is_zero(a)) vl.emplace_back(-c / a, 0, b - c / a, -a);
     else if (!is_zero(b)) vl.emplace_back(0, -c / b, b, -a - c / b);
   }
-  cout << geo::ins_hPs(vl).area() / Polygon2{vp}.area() << '\n';
+  cout << ins_hPs(vl).area() / Polygon2{vp}.area() << '\n';
 }

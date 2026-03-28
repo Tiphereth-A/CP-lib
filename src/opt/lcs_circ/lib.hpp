@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 template <common_range T>
 CEXP u32 lcs_circ(cT_(T) a, cT_(T) b) NE {
@@ -32,4 +32,4 @@ CEXP u32 lcs_circ(cT_(T) a, cT_(T) b) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

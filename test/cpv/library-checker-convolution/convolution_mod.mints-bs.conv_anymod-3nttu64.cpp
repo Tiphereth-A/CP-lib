@@ -9,24 +9,23 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/conv/add/ntt3/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/bs/lib.hpp"
+#include "../../../src/math/ds/mint/bs/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bs, MOD>;
+using mint = mint_bs<MOD>;
 using namespace tifa_libs;
-using mint_3nttu640 = math::mint<math::mint_bs, 167772161>;
-using mint_3nttu641 = math::mint<math::mint_bs, 469762049>;
-using mint_3nttu642 = math::mint<math::mint_bs, 754974721>;
-using ntt_3nttu640_t = math::ntt<mint_3nttu640>;
-using ntt_3nttu641_t = math::ntt<mint_3nttu641>;
-using ntt_3nttu642_t = math::ntt<mint_3nttu642>;
+using mint_3nttu640 = mint_bs<167772161>;
+using mint_3nttu641 = mint_bs<469762049>;
+using mint_3nttu642 = mint_bs<754974721>;
+using ntt_3nttu640_t = ntt<mint_3nttu640>;
+using ntt_3nttu641_t = ntt<mint_3nttu641>;
+using ntt_3nttu642_t = ntt<mint_3nttu642>;
 using vec_t = vecuu;
 auto conv_func(vec_t CR a, vec_t CR b) {
   ntt_3nttu640_t ntt0;
   ntt_3nttu641_t ntt1;
   ntt_3nttu642_t ntt2;
-  return math::conv_3ntt_u64(ntt0, ntt1, ntt2, a, b, MOD);
+  return conv_3ntt_u64(ntt0, ntt1, ntt2, a, b, MOD);
 }
 
 int main() {

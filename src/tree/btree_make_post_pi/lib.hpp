@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 namespace btree_make_post_pi_impl_ {
 CEXP void dfs(spnu pre, spnu in, vecu& post, u32& p, u32 l, u32 r) NE {
@@ -22,4 +22,4 @@ CEXP vecu btree_make_post_pi(spnu pre_order, spnu in_order) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

@@ -2,7 +2,7 @@
 
 #include "../scc/tarjan/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 class sat2 {
   const u32 n;
@@ -32,4 +32,4 @@ class sat2 {
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

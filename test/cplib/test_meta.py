@@ -258,7 +258,7 @@ class TestTestcaseMatrix:
                 'default_content': {
                     'requirements': [['base']],
                     'include': ['src/derived/$m/lib.hpp'],
-                    'after_include': 'using derived_t = math::derived<$mb0b>;\n',
+                    'after_include': 'using derived_t = derived<$mb0b>;\n',
                     'main_begin': None,
                 },
                 'member': {'d1': None},
@@ -273,7 +273,7 @@ class TestTestcaseMatrix:
         cases = mat.get_all_cases()
         assert len(cases) == 1
         after_include = cases[0].get_content_after_include()
-        assert after_include == 'using base_t = v1;\nusing derived_t = math::derived<v1>;\n'
+        assert after_include == 'using base_t = v1;\nusing derived_t = derived<v1>;\n'
 
     def test_same_priority_dedup_in_content(self, tmp_path):
         """Cover _get_content_ignore 'continue' branch (line 63)."""

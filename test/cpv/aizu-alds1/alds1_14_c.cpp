@@ -1,11 +1,10 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_14_C"
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/be61n1/lib.hpp"
+#include "../../../src/math/ds/mint/be61n1/lib.hpp"
 #include "../../../src/str/hash/substr_2d/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_2e61n1>;
+using mint = mint_2e61n1;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -18,7 +17,7 @@ int main() {
   vec<strn> b(r);
   for (auto& i : b) std::cin >> i;
   if (h < r || w < c) return 0;
-  str::hash_substr_2d<mint> ha, hb;
+  hash_substr_2d<mint> ha, hb;
   ha.set(a, c);
   hb.set(b, c);
   flt_ (u32, i, 0, h - r + 1)

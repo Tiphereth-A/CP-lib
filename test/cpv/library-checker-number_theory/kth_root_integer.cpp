@@ -10,7 +10,7 @@ int main() {
   while (t--) {
     u64 x, k;
     std::cin >> x >> k;
-    std::cout << math::ikth_root(x, k) << '\n';
+    std::cout << ikth_root(x, k) << '\n';
   }
   return 0;
 }

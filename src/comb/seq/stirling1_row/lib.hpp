@@ -5,7 +5,7 @@
 #include "../fact/lib.hpp"
 #include "../ifact/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // stirling1[i] = {n \\brace i}, i=0,1,...,n
 template <class poly, class T, bool with_sgn = true>
@@ -30,4 +30,4 @@ CEXP poly gen_stirling1_row(u32 n) NE {
   return gen_stirling1_row<poly, u64, with_sgn>(n, gen_fact(n + 1, mint::mod()), gen_ifact(n + 1, mint::mod()));
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

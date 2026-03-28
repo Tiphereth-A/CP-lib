@@ -2,7 +2,7 @@
 
 #include "../dinic/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 // @return {w, u, v} edges in Gomory--Hu tree
 template <class EW>
@@ -24,4 +24,4 @@ CEXP vec<edge_t<EW>> gomory_hu(u32 n, vec<edge_t<EW>> CR ed) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

@@ -16,6 +16,6 @@ int main() {
   tifa_libs::fin_uint >> n >> k;
   poly p(n);
   for (u32 i = 0, x; i < k; ++i) tifa_libs::fin_uint >> x >> p[x];
-  tifa_libs::fout << tifa_libs::math::inv_fpssp(p);
+  tifa_libs::fout << tifa_libs::inv_fpssp(p);
   return 0;
 }

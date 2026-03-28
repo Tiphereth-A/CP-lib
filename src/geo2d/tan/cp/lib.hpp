@@ -2,7 +2,7 @@
 
 #include "../../ds/c/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // tagante points of point to circle
 // maybe duplicate
@@ -18,4 +18,4 @@ CEXP auto tan_CP(circle<FP> CR c, point<FP> CR p) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

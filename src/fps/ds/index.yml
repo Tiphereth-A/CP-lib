@@ -1,4 +1,4 @@
-- poly: 抽象类
+- poly_c: 多项式基类
 - mtt: 多项式(基于 MTT)
 - ntt3: 多项式(基于三模 NTT)
 - ntt: 多项式(基于 NTT)

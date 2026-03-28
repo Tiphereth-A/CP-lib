@@ -3,7 +3,7 @@
 #include "../../pfactors/lib.hpp"
 #include "../is/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP u64 proot(u64 m) NE {
   retif_((m == 2) [[unlikely]], 1);
@@ -16,4 +16,4 @@ CEXP u64 proot(u64 m) NE {
     if (is_proot(g, m, begin(pf), end(pf))) return g;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

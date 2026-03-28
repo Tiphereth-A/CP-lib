@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 class persistent_segtree {
   //! initial cnt = 1;
@@ -80,4 +80,4 @@ class persistent_segtree {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

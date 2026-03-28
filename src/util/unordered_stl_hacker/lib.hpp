@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../rand/gen/lib.hpp"
 #include "../alias/others/lib.hpp"
+#include "../rand/lib.hpp"
 
 namespace tifa_libs {
 
@@ -12,7 +12,7 @@ inline vec<T> unordered_stl_hacker(usz n) NE {
   auto get_bucket_counts = [n]() NE {
     vec<usz> ans;
     std::unordered_set<int> s;
-    rand::gen<int> gen;
+    rand_gen<int> gen;
     while (s.size() < n) {
       if (ans.empty() || ans.back() != s.bucket_count()) ans.push_back(s.bucket_count());
       s.insert(gen());
@@ -26,7 +26,7 @@ inline vec<T> unordered_stl_hacker(usz n) NE {
     // Edit these if need
     const usz len = 15;
     const strn pref = "", alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
-    rand::gen<usz> gen(0, alphabet.size() - 1);
+    gen<usz> gen(0, alphabet.size() - 1);
     auto gen_str_with_divisible_hash = [&](usz mod) NE -> strn {
       strn s = pref;
       while (true) {

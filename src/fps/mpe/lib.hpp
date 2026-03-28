@@ -3,13 +3,12 @@
 #include "../inv/lib.hpp"
 #include "../shr/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // Multi-point evaluation based on Tellegen's Principle
 // @return {f(a[0]), f(a[1]), ..., f(a.back())}
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto mpe_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> a) NE {
-  using poly_t = poly<ccore, mint, args...>;
+template <poly_c poly_t>
+CEXP auto mpe_fps(poly_t f, poly_t a) NE {
   class SegTree {
     vec<poly_t> t;
     CEXP void init_(cT_(poly_t) a, u32 k, u32 l, u32 r) NE {
@@ -49,4 +48,4 @@ CEXP auto mpe_fps(poly<ccore, mint, args...> f, poly<ccore, mint, args...> a) NE
   return _.pre(m);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -8,12 +8,11 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/md64/lib.hpp"
+#include "../../../src/math/ds/mint/md64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md64, __LINE__>;
-using mat = tifa_libs::math::matrix<mint>;
+using mint = mint_md64<__LINE__>;
+using mat = tifa_libs::matrix<mint>;
 
 int main() {
   mint::set_mod(MOD);
@@ -24,15 +23,15 @@ int main() {
   std::cin >> a >> b;
 
   auto is_0 = [](cT_(mint) x) { return x.val() == 0; };
-  auto ge = [&is_0](mat& m, bool f) { return tifa_libs::math::ge_mat(m, is_0, f); };
+  auto ge = [&is_0](mat& m, bool f) { return tifa_libs::ge_mat(m, is_0, f); };
 
-  auto res_ = tifa_libs::math::leqs_solver(a, b, is_0, ge);
+  auto res_ = tifa_libs::leqs_solver(a, b, is_0, ge);
   if (!res_)
     std::cout << "-1\n";
   else {
     mat& res = res_.value();
     std::cout << res.col() - 1 << '\n';
-    std::cout << tifa_libs::math::transpose(res) << '\n';
+    std::cout << tifa_libs::transpose(res) << '\n';
   }
   return 0;
 }

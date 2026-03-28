@@ -1,21 +1,21 @@
 #pragma once
 
 #include "../../../conv/add/ntt3/lib.hpp"
-#include "../poly/lib.hpp"
+#include "../poly_c/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace poly3ntt_impl_ {
 template <class mint, class mint0, class mint1, class mint2>
 struct cconv_3ntt {
+  using val_t = mint;
   // clang-format off
   struct ntt3 { ntt<mint0> _0; ntt<mint1> _1; ntt<mint2> _2; } ccore;
   // clang-format on
   static CEXP auto ct_cat = CCORE::NTT3;
-  CEXP void conv(vec<mint>& l, vec<mint> CR r, u32 sz = 0) NE { l = conv_3ntt<mint, mint0, mint1, mint2>(ccore._0, ccore._1, ccore._2, l, r, sz); }
+  CEXP void conv(vec<val_t>& l, vec<val_t> CR r, u32 sz = 0) NE { l = conv_3ntt<val_t, mint0, mint1, mint2>(ccore._0, ccore._1, ccore._2, l, r, sz); }
 };
 }  // namespace poly3ntt_impl_
-
 template <class mint, class mint0, class mint1, class mint2>
-using poly3ntt = poly<poly3ntt_impl_::cconv_3ntt, mint, mint0, mint1, mint2>;
+using poly3ntt = poly_impl_::poly<poly3ntt_impl_::cconv_3ntt<mint, mint0, mint1, mint2>>;
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

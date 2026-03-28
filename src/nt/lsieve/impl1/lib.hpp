@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class... Ts>
 struct lsieve : Ts... {
@@ -30,4 +30,4 @@ struct lsieve : Ts... {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

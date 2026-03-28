@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 // @return length of longest common suffix of prefixes a[0, i) and b[0, j)
 template <class hashstr_t>
@@ -16,4 +16,4 @@ CEXP u32 lcsf_hash(hashstr_t CR a, hashstr_t CR b, u32 i, u32 j, u32 lmax = 0) N
   return l;
 }
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

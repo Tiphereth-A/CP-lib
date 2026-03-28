@@ -3,7 +3,7 @@
 #include "../../../edh/discretization/lib.hpp"
 #include "../data/lib.hpp"
 
-namespace tifa_libs::game {
+namespace tifa_libs {
 
 // clang-format off
 // bianl: 89 waiting 7. bianr: 12 waiting 3. pair0: pair which cannot be improved
@@ -288,4 +288,4 @@ CEXP auto mahjong_parser(vec<mahjong_card> hand, u32 max_card_per_kind = 4) NE {
   return uniq(ans);
 }
 
-}  // namespace tifa_libs::game
+}  // namespace tifa_libs

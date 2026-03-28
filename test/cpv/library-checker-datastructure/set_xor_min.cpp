@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 q;
   std::cin >> q;
-  ds::trie01 trie(30);
+  trie01 trie(30);
   for (u32 i = 0, t, x; i < q; ++i) {
     std::cin >> t >> x;
     switch (t) {

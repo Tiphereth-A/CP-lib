@@ -3,7 +3,7 @@
 #include "../../edh/discretization/lib.hpp"
 #include "../ds/cvh/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 CEXP cvh<FP> ins_hPs(vec<line<FP>> vl) NE {
@@ -23,4 +23,4 @@ CEXP cvh<FP> ins_hPs(vec<line<FP>> vl) NE {
   return cvh<FP>{ret, true};
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

@@ -11,10 +11,10 @@ CP-lib is a header-only C++20 competitive programming library with 450+ algorith
 - **Standard**: C++20 (`gnu++20`), compiled with `g++ -O2 -Wall -Wextra`
 - **Compiler**: GCC >= 13
 - **Formatting**: `.clang-format` (Google-based, column limit 0). Run: `python manager.py fmt -d src`
-- **Namespace**: All code lives in `tifa_libs` (or sub-namespaces like `tifa_libs::math`)
+- **Namespace**: All code lives in `tifa_libs`
 - **Include guard**: `#pragma once`
 - **Naming**: `snake_case` for classes, functions, files. Private helpers suffixed with `_` (e.g., `ins_()`)
-- **Concepts**: Suffixed with `_c` (e.g., `int_c`, `mint_c`, `alist_c`)
+- **Concepts**: Suffixed with `_c` (e.g., `int_c`, `mint_c`, `graph_c`)
 - **Custom macros** (from `src/util/util/lib.hpp`): `CEXP` = `constexpr`, `CEXPE` = `constexpr explicit`, `CR` = `const&`, `TPN` = `typename`, `NE` = `noexcept`, `CNE` = `const noexcept`
 - **Type aliases**: `i32`, `u32`, `i64`, `u64`, `f64`, `vec<T>`, `vvec<T>`, `ptt<T>`, etc.
 - Use `constexpr` and `noexcept` pervasively. Use C++20 concepts (`requires` clauses) over SFINAE.

@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class Mat, class Is0>
 requires requires(Is0 is0, TPN Mat::val_t t) {
@@ -45,4 +45,4 @@ CEXP auto pfaffian(Mat mat, Is0 is0) NE {
   retif_((neg), -ans, ans);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

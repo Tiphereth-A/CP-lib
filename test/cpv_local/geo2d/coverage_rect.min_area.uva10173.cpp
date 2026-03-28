@@ -5,7 +5,7 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f128;
-using ConvexHull2 = geo::cvh<data_t>;
+using ConvexHull2 = cvh<data_t>;
 
 int main() {
   cout << std::fixed << std::setprecision(4);
@@ -14,6 +14,6 @@ int main() {
   while ((cin >> n), n) {
     ConvexHull2 cvh(n);
     cin >> cvh;
-    cout << geo::coverage_rect<geo::CVHRECT::min_area, data_t>(cvh.init()).area() << '\n';
+    cout << coverage_rect<CVHRECT::min_area, data_t>(cvh.init()).area() << '\n';
   }
 }

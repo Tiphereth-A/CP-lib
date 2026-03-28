@@ -4,7 +4,7 @@
 #include "../merge_lr/lib.hpp"
 #include "../trans/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T, class Is0, class Ge>
 requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
@@ -60,4 +60,4 @@ CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0&& is0, Ge&& ge) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

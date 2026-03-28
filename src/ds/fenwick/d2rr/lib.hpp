@@ -2,7 +2,7 @@
 
 #include "../d2/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T>
 class fenwick2d_rr {
@@ -27,4 +27,4 @@ class fenwick2d_rr {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

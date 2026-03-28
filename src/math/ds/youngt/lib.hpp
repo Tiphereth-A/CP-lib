@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 class Youngt {
   vvecu d;
@@ -50,4 +50,4 @@ class Youngt {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

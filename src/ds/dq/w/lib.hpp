@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, auto e, auto op>
 requires requires(T a, T b) {
@@ -55,4 +55,4 @@ class deque_with_w {
   CEXP T w() NE { return op(s[0].back(), s[1].back()); }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

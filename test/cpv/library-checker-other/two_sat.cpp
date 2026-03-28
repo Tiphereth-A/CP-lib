@@ -10,7 +10,7 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   i32 u, v, w;
-  graph::sat2 s2(n);
+  sat2 s2(n);
   flt_ (u32, i, 0, m) {
     std::cin >> u >> v >> w;
     bool fu = u > 0, fv = v > 0;

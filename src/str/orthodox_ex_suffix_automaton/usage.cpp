@@ -9,7 +9,7 @@ int main() {
   u32 n;
   strn s;
   std::cin >> n;
-  str::orthodox_ex_suffix_automaton sam;
+  orthodox_ex_suffix_automaton sam;
   flt_ (u32, i, 0, n) std::cin >> s, sam.insert(s);
   sam.build();
   u64 ans = 0;

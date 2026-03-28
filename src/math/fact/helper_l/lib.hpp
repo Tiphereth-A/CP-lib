@@ -3,9 +3,9 @@
 #include "../../../fps/ctsh/lib.hpp"
 #include "../helper/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
-template <class poly_t>
+template <poly_c poly_t>
 struct factl_helper : fact_helper<TPN poly_t::val_t> {
   using val_t = TPN poly_t::val_t;
   using base_t = fact_helper<TPN poly_t::val_t>;
@@ -82,4 +82,4 @@ struct factl_helper : fact_helper<TPN poly_t::val_t> {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

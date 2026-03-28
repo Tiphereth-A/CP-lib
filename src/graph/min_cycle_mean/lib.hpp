@@ -3,7 +3,7 @@
 #include "../../util/alias/others/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 template <class T>
 CEXP T min_cycle_mean(vec<edge_t<T>> CR edges, u32 n, T INF = inf_v<T>) NE {
@@ -23,4 +23,4 @@ CEXP T min_cycle_mean(vec<edge_t<T>> CR edges, u32 n, T INF = inf_v<T>) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

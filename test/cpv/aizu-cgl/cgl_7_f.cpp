@@ -6,16 +6,16 @@
 #include "../../../src/geo2d/tan/cp/lib.hpp"
 
 using namespace tifa_libs;
-using point = geo::point<double>;
-using circ = geo::circle<double>;
+using point_t = point<double>;
+using circle_t = circle<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(12);
-  circ c;
-  point p;
+  circle_t c;
+  point_t p;
   std::cin >> p >> c;
-  auto [x, y] = geo::tan_CP(c, p).value();
+  auto [x, y] = tan_CP(c, p).value();
   if (x < y) std::cout << x << '\n'
                        << y << '\n';
   else std::cout << y << '\n'

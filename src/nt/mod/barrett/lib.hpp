@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <u64 MOD, u64 B_ = 1>
 struct barrett {
@@ -25,4 +25,4 @@ struct barrett<0> {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

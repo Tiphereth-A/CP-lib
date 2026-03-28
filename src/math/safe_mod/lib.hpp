@@ -2,7 +2,7 @@
 
 #include "../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <int_c T>
 CEXP T safe_mod(T x, to_uint_t<T> mod) NE {
@@ -14,4 +14,4 @@ CEXP T safe_mod(T x, to_uint_t<T> mod) NE {
   }
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

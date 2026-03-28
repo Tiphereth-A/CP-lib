@@ -3,7 +3,7 @@
 #include "../../dis/pl/lib.hpp"
 #include "../../ins/cl/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // make circle by radius, a point passed through and a tagante lines
 // maybe duplicate
@@ -26,4 +26,4 @@ CEXP auto make_C_rPL(FP r, point<FP> CR p, line<FP> CR l) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

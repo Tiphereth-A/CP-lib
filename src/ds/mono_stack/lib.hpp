@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, class Comp = std::less<T>>
 class mono_stack {
@@ -20,4 +20,4 @@ class mono_stack {
   CEXP u32 size() CNE { return (u32)s.size(); }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

@@ -7,7 +7,7 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f64;
-using Circle2 = geo::circle<data_t>;
+using Circle2 = circle<data_t>;
 
 int main() {
   cout << std::fixed << std::setprecision(3);
@@ -16,6 +16,6 @@ int main() {
   cin >> n;
   vec<Circle2> cs(n);
   cin >> cs;
-  auto res = geo::aunion_Cs(uniq(cs));
+  auto res = aunion_Cs(uniq(cs));
   cout << res[0] << '\n';
 }

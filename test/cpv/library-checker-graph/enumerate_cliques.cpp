@@ -18,6 +18,6 @@ int main() {
     std::cin >> u >> v;
     adj[u][v] = adj[v][u] = 1;
   }
-  std::cout << (graph::clique_calc(n, adj, [](u64 x, u64 y) { return x + y; }, [&](u64 x, u32 i) { return x * v[i] % MOD; }, 0_u64, 1_u64) + (MOD - 1)) % MOD << '\n';
+  std::cout << (clique_calc(n, adj, [](u64 x, u64 y) { return x + y; }, [&](u64 x, u32 i) { return x * v[i] % MOD; }, 0_u64, 1_u64) + (MOD - 1)) % MOD << '\n';
   return 0;
 }

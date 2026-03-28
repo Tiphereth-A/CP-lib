@@ -3,7 +3,7 @@
 #include "../../../math/qpow/mod/lib.hpp"
 #include "../../../nt/lsieve/impl1/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace gen_pows_impl_ {
 struct ls_pows {
   static inline u64 b, mod;
@@ -36,4 +36,4 @@ CEXP vec<mint> gen_pows(u32 n, u64 b) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

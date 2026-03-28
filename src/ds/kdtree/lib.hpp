@@ -4,7 +4,7 @@
 #include "../../util/traits/math/lib.hpp"
 #include "../bt_trv/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, auto op, arithm_c Coord = i32, u32 K = 2, bool remove_empty_node = false>
 class kdtree {
@@ -151,4 +151,4 @@ class kdtree {
   alc<TIFA> alloc;
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

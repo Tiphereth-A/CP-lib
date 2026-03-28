@@ -1,12 +1,10 @@
 // competitive-verifier: STANDALONE
 
 #include "../../../src/geo2d/dis/pp/lib.hpp"
-#include "../../../src/rand/gen/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
-using geo::dist_PP;
-using geo::point;
 
 template <class T, int p>
 void test_norm_subadditivity(point<T> CR x, point<T> CR y) {
@@ -86,7 +84,7 @@ void single_test(point<T> CR x, point<T> CR y, point<T> CR a, T s) {
 
 template <arithm_c T>
 void test(T lim) {
-  rand::gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
+  rand_gen<T> g(std::is_signed_v<T> ? -lim : 0, lim);
   timer_(test_norm_equivalence(point{g(), g()}));
   single_test<T, 0>(point{g(), g()}, point{g(), g()}, point{g(), g()}, g());
   single_test<T, 1>(point{g(), g()}, point{g(), g()}, point{g(), g()}, g());

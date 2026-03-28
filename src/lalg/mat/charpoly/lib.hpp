@@ -3,7 +3,7 @@
 #include "../../ds/mat/lib.hpp"
 #include "../uhb/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T, class Is0>
 requires requires(Is0 is0, T t) {
@@ -31,4 +31,4 @@ CEXP vec<T> charpoly(matrix<T> mat, Is0&& is0) NE {
   return p[n];
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

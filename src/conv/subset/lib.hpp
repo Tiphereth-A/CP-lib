@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T, u32 N>
 struct conv_subset {
@@ -58,4 +58,4 @@ struct conv_subset {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -3,12 +3,12 @@
 #include "../../../ds/dsu/basic/lib.hpp"
 #include "../../../ds/heap/skew/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 template <class T>
 CEXP vec<edge_t<T>> cle(u32 n, u32 root, vec<edge_t<T>> CR arcs) NE {
-  ds::skew_heap<T> heap;
-  ds::dsu_basic uf(n);
+  skew_heap<T> heap;
+  dsu_basic uf(n);
   vecu used(n, -1_u32), from(n), come(n, -1_u32);
   vec<T> from_cost(n);
   used[root] = root;
@@ -60,4 +60,4 @@ CEXP vec<edge_t<T>> cle(u32 n, u32 root, vec<edge_t<T>> CR arcs) NE {
   return res;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

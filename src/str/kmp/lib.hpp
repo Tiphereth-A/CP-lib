@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 // @return nxt of pattern
 inline veci kmp_nxt(strnv pattern) NE {
@@ -34,4 +34,4 @@ inline vecu kmp(strnv pattern, strnv text) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

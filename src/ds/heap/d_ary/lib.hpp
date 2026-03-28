@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 // Copyright Malte Skarupke 2020.
 // Distributed under the Boost Software License, Version 1.0.
@@ -141,4 +141,4 @@ CEXP void pop_dary_heap(I begin, I end, C&& comp = C{}) NE {
 template <int D, common_range R, class C = std::less<>>
 CEXP void pop_dary_heap(R CR r, C&& comp = C{}) NE { return pop_dary_heap<D>(begin(r), end(r), std::forward<C>(comp)); }
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

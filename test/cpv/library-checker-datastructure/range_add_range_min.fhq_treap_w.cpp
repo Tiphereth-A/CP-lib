@@ -18,7 +18,7 @@ int main() {
   u32 n, q;
   i64 x;
   fin_uint >> n >> q;
-  ds::fhq_treap_w<T, op, e, F, mapping, composition, id, true> tr(n + q);
+  fhq_treap_w<T, op, e, F, mapping, composition, id, true> tr(n + q);
   flt_ (u32, i, 0, n) fin_int >> x, tr.insert(x);
   for (u32 i = 0, opt, l, r; i < q; ++i) {
     fin_uint >> opt >> l >> r;

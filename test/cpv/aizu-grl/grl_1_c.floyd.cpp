@@ -8,22 +8,22 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   CEXP i64 INF = inf_v<i64>;
-  graph::amat<i64> g(n, INF);
+  amat<i64> g(n, INF);
   flt_ (u32, i, 0, m) {
     u32 u, v;
     i32 w;
     std::cin >> u >> v >> w;
-    g.set_arc(u, v, w);
+    g.add_arc(u, v, w);
   }
-  if (!graph::floyd(g, INF)) {
+  if (!floyd(g, INF)) {
     std::cout << "NEGATIVE CYCLE\n";
     return 0;
   }
-  for (auto CR i : g.g)
+  flt_ (u32, i, 0, n)
     flt_ (u32, j, 0, n) {
-      if (i[j] == INF) std::cout << "INF"
-                                 << " \n"[j + 1 == n];
-      else std::cout << i[j] << " \n"[j + 1 == n];
+      if (g.val(i, j) == INF) std::cout << "INF"
+                                        << " \n"[j + 1 == n];
+      else std::cout << g.val(i, j) << " \n"[j + 1 == n];
     }
   return 0;
 }

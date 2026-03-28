@@ -5,7 +5,7 @@
 #include "../../nt/crt/basic/lib.hpp"
 #include "../seq/invseq/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // Calculate $\binom{m}{n} \bmod p$, p can be ANY INTEGER
 class exlucas {
@@ -62,4 +62,4 @@ class exlucas {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -5,7 +5,7 @@
 #include "../dft/lib.hpp"
 #include "../naive_mod/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // 167772161, 469762049, 754974721
 template <class mint0, class mint1, class mint2>
@@ -42,4 +42,4 @@ CEXP vec<mint> conv_3ntt(ntt<mint0>& ntt0, ntt<mint1>& ntt1, ntt<mint2>& ntt2, v
   return res;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

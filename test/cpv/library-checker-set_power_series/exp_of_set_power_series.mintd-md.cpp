@@ -9,11 +9,10 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/md/lib.hpp"
+#include "../../../src/math/ds/mint/md/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md, __LINE__>;
+using mint = mint_md<__LINE__>;
 
 int main() {
   mint::set_mod(MOD);
@@ -21,6 +20,6 @@ int main() {
   tifa_libs::fin_uint >> n;
   vec<mint> b(1 << n);
   tifa_libs::fin_uint >> b;
-  tifa_libs::fout << tifa_libs::math::exp_fpssps(n, b) << '\n';
+  tifa_libs::fout << tifa_libs::exp_fpssps(n, b) << '\n';
   return 0;
 }

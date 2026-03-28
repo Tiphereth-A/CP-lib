@@ -1,14 +1,12 @@
 #pragma once
 
-#include "../../../util/traits/graph/lib.hpp"
 #include "../../ds/alist/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 namespace ringenum3_impl_ {
-template <class F, class G>
-requires(alist_c<G> && !alistw_c<G>)
+template <class F, graph_c G>
 CEXP void run(G CR dg, F&& func) NE {
-  const u32 n = dg.size();
+  const u32 n = dg.vsize();
   vecb vis(n);
   flt_ (u32, u, 0, n) {
     for (u32 v : dg[u]) vis[v].flip();
@@ -46,4 +44,4 @@ CEXP u64 ringcnt3(u32 n, vecptu CR edges) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

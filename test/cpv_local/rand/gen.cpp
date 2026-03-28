@@ -1,7 +1,7 @@
 // competitive-verifier: STANDALONE
 
-#include "../../../src/rand/gen/lib.hpp"
 #include "../../../src/util/func_fp/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
@@ -9,7 +9,7 @@ template <class T>
 void test() {
   using res_t = std::conditional_t<sizeof(T) <= 4, u32, u64>;
   res_t seed = (res_t)std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
-  rand::gen<T> g1;
+  rand_gen<T> g1;
   std::conditional_t<std::is_same_v<res_t, u32>, std::mt19937, std::mt19937_64> g2;
   g1.seed(seed);
   g2.seed(seed);

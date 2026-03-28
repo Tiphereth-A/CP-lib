@@ -10,7 +10,7 @@ int main() {
   t = " " + t;
   u32 n;
   std::cin >> n;
-  str::suffix_array sa(t);
+  suffix_array sa(t);
   flt_ (u32, i, 0, n) {
     std::cin >> s;
     s = " " + s;

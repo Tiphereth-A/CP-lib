@@ -4,7 +4,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../exgcd/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <uint_c T>
 CEXP ptt<T> inv_gcd(T n, T mod) NE {
@@ -13,4 +13,4 @@ CEXP ptt<T> inv_gcd(T n, T mod) NE {
   return {g, safe_mod(x, mod)};
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

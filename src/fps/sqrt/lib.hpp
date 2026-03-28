@@ -5,11 +5,11 @@
 #include "../shl/lib.hpp"
 #include "../shr/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto sqrt_fps(poly<ccore, mint, args...> p, u32 n = 0) NE {
-  using poly_t = poly<ccore, mint, args...>;
+template <poly_c poly_t>
+CEXP auto sqrt_fps(poly_t p, u32 n = 0) NE {
+  using mint = TPN poly_t::val_t;
   std::optional<poly_t> ret;
   if (!n) n = (u32)p.size();
   const u32 cnt = u32(find_if(begin(p), begin(p) + n, [](cT_(mint) x) NE { return x.val() != 0; }) - begin(p));
@@ -28,4 +28,4 @@ CEXP auto sqrt_fps(poly<ccore, mint, args...> p, u32 n = 0) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

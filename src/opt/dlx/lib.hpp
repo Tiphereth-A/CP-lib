@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 class dlx {
   struct node {
@@ -96,4 +96,4 @@ class dlx {
 #undef dlxfor_
 };
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

@@ -9,7 +9,7 @@ template <class>
 using hashfunc_t = void;
 using namespace tifa_libs;
 template <class T>
-using hashset = __gnu_pbds::gp_hash_table<T, __gnu_pbds::null_type, std::conditional_t<std::is_void_v<hashfunc_t<T>>, typename __gnu_pbds::detail::default_hash_fn<T>::type, hashfunc_t<T>>>;
+using hashset = __gnu_pbds::gp_hash_table<T, __gnu_pbds::null_type, std::conditional_t<std::is_void_v<hashfunc_t<T>>, TPN __gnu_pbds::detail::default_hash_fn<T>::type, hashfunc_t<T>>>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

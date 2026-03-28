@@ -9,16 +9,15 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/conv/add/mtt/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, MOD>;
+using mint = mint_ms<MOD>;
 using namespace tifa_libs;
 using vec_t = vec<mint>;
 auto conv_func(vec_t CR a, vec_t CR b) {
-  math::fft_r2<long double> fft;
-  return math::conv_mtt(fft, a, b);
+  fft_r2<long double> fft;
+  return conv_mtt(fft, a, b);
 }
 
 int main() {

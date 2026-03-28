@@ -2,7 +2,7 @@
 
 #include "../hp/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 namespace segtree_ctor_impl_ {
 template <class T>
 struct P {
@@ -51,4 +51,4 @@ using segtree_ctor_impl_::segtl_addmax_ctor, segtree_ctor_impl_::segtl_addmin_ct
     segtree_ctor_impl_::segtl_addsum_ctor, segtree_ctor_impl_::segtl_setmax_ctor,
     segtree_ctor_impl_::segtl_setmin_ctor, segtree_ctor_impl_::segtl_setsum_ctor;
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

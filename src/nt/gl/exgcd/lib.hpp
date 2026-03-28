@@ -2,7 +2,7 @@
 
 #include "../../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // Binary exgcd
 template <uint_c U, bool only_x = false>
@@ -64,4 +64,4 @@ CEXP auto exgcd(T a, T b) NE {
   }
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

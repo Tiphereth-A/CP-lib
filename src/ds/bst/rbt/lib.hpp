@@ -2,8 +2,9 @@
 
 #include "../ost/lib.hpp"
 
-namespace tifa_libs::ds {
-
+namespace tifa_libs {
+namespace rbt_impl_ {
+using namespace ost_impl_;
 struct rbt_op_leaf : bst_op_leaf {
   template <tp2_ds_c pointer>
   static CEXP bool is_red(pointer p) NE { retif_((p), p->red, false); }
@@ -55,8 +56,11 @@ struct rbt_op_leaf : bst_op_leaf {
   }
 };
 using rbt_tag = bst_op<rbt_op_leaf>;
+
+}  // namespace rbt_impl_
+namespace ostnode_impl_ {
 template <class K>
-struct ostree_node_t<rbt_tag, K> {
+struct ostree_node_t<rbt_impl_::rbt_tag, K> {
   ostree_node_t *fa, *ch[2];
   K data;
   u32 sz;
@@ -64,8 +68,9 @@ struct ostree_node_t<rbt_tag, K> {
   // @return child direction of this non-root point
   CEXP bool child_dir() CNE { return this == fa->ch[1]; }
 };
+}  // namespace ostnode_impl_
 
 template <class K, class Comp = std::less<K>>
-using rbtree = ostree<K, rbt_tag, Comp>;
+using rbtree = ost_impl_::ostree<K, rbt_impl_::rbt_tag, Comp>;
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

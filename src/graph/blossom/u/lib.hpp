@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 //! 1-indexed, [1, n]
 class blossom {
@@ -77,4 +77,4 @@ class blossom {
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

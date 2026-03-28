@@ -3,7 +3,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 template <class W = u32, class C = i32>
 class ssp {
@@ -63,4 +63,4 @@ class ssp {
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

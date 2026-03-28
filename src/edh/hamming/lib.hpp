@@ -16,9 +16,9 @@ class hamming {
   }
 
  public:
-  static CEXP auto encode(ds::dbitset CR msg) NE {
+  static CEXP auto encode(dbitset CR msg) NE {
     const u64 n = msg.size(), m = get_m(n), len = n + m + 1;
-    ds::dbitset code(len);
+    dbitset code(len);
     flt_ (u64, i, 1, len, j = 0)
       if (!std::has_single_bit(i)) code.set(i, msg[j++]);
     u64 _ = 0;
@@ -29,9 +29,9 @@ class hamming {
     return code;
   }
   template <bool err_correction = false>  // == true -> auto correction if possible
-  static CEXP auto decode(ds::dbitset& code) NE {
+  static CEXP auto decode(dbitset& code) NE {
     auto const [n, m] = get_nm(code.size());
-    std::optional<ds::dbitset> ret;
+    std::optional<dbitset> ret;
     if CEXP (err_correction) {
       usz err = 0;
       for (u64 i = code.find_next(0); i < code.size(); i = code.find_next(i)) err ^= i;
@@ -40,13 +40,13 @@ class hamming {
         code.flip(err);
       }
     }
-    ds::dbitset ans(n);
-    ds::dbitset::word_t _ = 0;
+    dbitset ans(n);
+    dbitset::word_t _ = 0;
     u32 wj = 0;
     flt_ (u64, i, 1, code.size(), j = 0) {
       if (std::has_single_bit(i)) continue;
-      if (code[i]) _ |= ((ds::dbitset::word_t)1 << j);
-      if (++j == ds::dbitset::word_width) ans.raw()[wj++] = _, j = _ = 0;
+      if (code[i]) _ |= ((dbitset::word_t)1 << j);
+      if (++j == dbitset::word_width) ans.raw()[wj++] = _, j = _ = 0;
     }
     if (_) ans.raw()[wj] = _;
     if CEXP (err_correction) {

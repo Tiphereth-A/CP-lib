@@ -3,7 +3,7 @@
 #include "../../../geo2d/cross/lib.hpp"
 #include "../p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 struct planev {
@@ -20,4 +20,4 @@ struct planev {
   }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

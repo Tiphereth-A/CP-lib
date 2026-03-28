@@ -10,10 +10,10 @@ int main() {
   vec<edge_tu> e(m);
   for (auto& [w, u, v] : e) std::cin >> u >> v >> w;
   std::ranges::sort(e);
-  auto tr = graph::kruskal(e, n);
+  auto tr = kruskal(e, n);
   u32 ret = 0;
   flt_ (u32, i, 0, n)
-    for (auto [to, w] : tr.g[i]) ret += w;
+    for (auto [to, w] : tr[i]) ret += w;
   std::cout << ret / 2 << '\n';
   return 0;
 }

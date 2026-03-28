@@ -3,7 +3,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 template <arithm_c T, class Func>
 requires requires(Func f, u32 x, u32 y) { {f(x,y)}->std::same_as<T>; }
@@ -26,4 +26,4 @@ CEXP vec<T> larsch(u32 n, Func&& w, T inf = inf_v<T>) NE {
   return dp;
 };
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

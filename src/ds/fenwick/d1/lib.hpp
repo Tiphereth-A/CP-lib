@@ -3,7 +3,7 @@
 #include "../../../bit/lowbit/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T>
 class fenwick {
@@ -17,21 +17,21 @@ class fenwick {
     const u32 sz = (u32)data.size();
     flt_ (u32, i, 1, sz) {
       a[i] += data[i];
-      if (u32 j = i + bit::lowbit(i); j < sz) a[j] += a[i];
+      if (u32 j = i + lowbit(i); j < sz) a[j] += a[i];
     }
   }
 
   //! [pos, sz), pos > 0
   CEXP void add(u32 pos, cT_(T) x) NE {
     if (!pos) return;
-    for (; pos < a.size(); pos += bit::lowbit(pos)) a[pos] += x;
+    for (; pos < a.size(); pos += lowbit(pos)) a[pos] += x;
   }
   //! [l, r], l > 0
   CEXP void add(u32 l, u32 r, cT_(T) x) NE { add(l, x), add(r + 1, -x); }
   //! [1, pos]
   CEXP T sum(u32 pos) NE {
     T ret = 0;
-    for (pos = min(pos, (u32)a.size() - 1); pos; pos -= bit::lowbit(pos)) ret += a[pos];
+    for (pos = min(pos, (u32)a.size() - 1); pos; pos -= lowbit(pos)) ret += a[pos];
     return ret;
   }
   //! [l, r]
@@ -48,4 +48,4 @@ class fenwick {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

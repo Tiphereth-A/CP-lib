@@ -2,7 +2,7 @@
 
 #include "../../z_func/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 // @return {p, l, r}, uniqued
 CEXP vec<pt3u> run_zfunc(strnv s) NE {
@@ -43,4 +43,4 @@ CEXP vec<pt3u> run_zfunc(strnv s) NE {
   return runs;
 }
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

@@ -1,12 +1,12 @@
 // competitive-verifier: DISPLAY never
 // cplib.manager: PROBLEM https://codeforces.com/gym/102001/problem/C
 
-#include "../../rand/gen/lib.hpp"
+#include "../../util/rand/lib.hpp"
 #include "lib.hpp"
 
 using namespace tifa_libs;
 vecu prandom(u32 m, u32 l) {
-  rand::gen<u32> gen(0, m - 1);
+  rand_gen<u32> gen(0, m - 1);
   gen.seed(0);  // for local testing
   vecu ret(l);
   flt_ (u32, i, 0, l) ret[i] = gen();
@@ -19,7 +19,7 @@ int main() {
   vecu a(m);
   for (auto& i : a) std::cin >> i;
   u32 l = n + k - 1;
-  vecu ans = n <= 20 ? math::deBruijn(n, m, l) : prandom(m, l);
+  vecu ans = n <= 20 ? deBruijn(n, m, l) : prandom(m, l);
   flt_ (u32, i, 0, l) std::cout << a[ans[i]];
   std::cout << '\n';
 }

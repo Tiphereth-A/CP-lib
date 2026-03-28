@@ -8,7 +8,7 @@ using namespace tifa_libs;
 int main() {
   u32 n, q;
   fin_uint >> n >> q;
-  ds::rbtree<u32> tr;
+  rbtree<u32> tr;
   flt_ (u32, i, 0, n, x) {
     fin_uint >> x;
     tr.insert(x);
@@ -29,7 +29,7 @@ int main() {
         break;
       case 3: fout << tr.order_of_key(x) + (lb ? lb->data == x : false) << '\n'; break;
       case 4:
-        if (!lb) lb = ds::rightmost(tr.root);
+        if (!lb) lb = rightmost(tr.root);
         if (!lb) fout << "-1\n";
         else if (lb->data <= x) fout << lb->data << '\n';
         else if (auto pre = tr.prev(lb); !pre) fout << "-1\n";

@@ -2,7 +2,7 @@
 
 #include "../../ds/bmat/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <usz R, usz C>
 CEXP u32 ge_bmat(bitmat<R, C>& bmat, bool clear_u = true) NE {
@@ -27,4 +27,4 @@ CEXP u32 ge_bmat(bitmat<R, C>& bmat, bool clear_u = true) NE {
   return rk;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

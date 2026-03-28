@@ -1,12 +1,11 @@
 #pragma once
 
 #include "../../util/alias/others/lib.hpp"
-#include "../../util/traits/graph/lib.hpp"
+#include "../ds/graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
-template <class G>
-requires(alist_c<G> && !alistw_c<G>)
+template <graph_c G>
 class domtree {
   u32 n, t;
   G CR g;
@@ -33,7 +32,7 @@ class domtree {
  public:
   vecu sdom, dom;
 
-  CEXPE domtree(G CR g) NE : n{(u32)g.size()}, t{0}, g(g), rg(n), bucket(n), arr(n, -1_u32), par(n, -1_u32), rev(n, -1_u32), dsu(n), label(n), sdom(n, -1_u32), dom(n, -1_u32) {}
+  CEXPE domtree(G CR g) NE : n{g.vsize()}, t{0}, g(g), rg(n), bucket(n), arr(n, -1_u32), par(n, -1_u32), rev(n, -1_u32), dsu(n), label(n), sdom(n, -1_u32), dom(n, -1_u32) {}
 
   // @return p, parents of dominator tree, p_i = -1_u32 if not exist else parent of vertex i
   CEXP vecu get_domtree(u32 root) NE {
@@ -55,4 +54,4 @@ class domtree {
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

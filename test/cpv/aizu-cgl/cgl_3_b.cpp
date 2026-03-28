@@ -3,7 +3,7 @@
 #include "../../../src/geo2d/ds/po/lib.hpp"
 
 using namespace tifa_libs;
-using poly = geo::polygon<double>;
+using poly = polygon<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

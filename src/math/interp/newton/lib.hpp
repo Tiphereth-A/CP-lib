@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 class interp_newton {
@@ -42,4 +42,4 @@ class interp_newton {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

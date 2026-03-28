@@ -4,7 +4,7 @@
 #include "../../../math/qpow/basic/lib.hpp"
 #include "../../interp/lagrange0/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // @param f $f(0),\dots,f(k-1)$, $k\leq n$
 // @return $\sum_{i=0}^{n-1}a^if(i)$
@@ -37,4 +37,4 @@ CEXP mint sum_ipaf(vec<mint> CR f, cT_(mint) a, u64 n) NE {
   return sum_ipaf(f, a, n, binom<mint, fact>((u32)(f.size() + 1)));
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

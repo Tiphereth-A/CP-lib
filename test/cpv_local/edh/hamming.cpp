@@ -1,14 +1,14 @@
 // competitive-verifier: STANDALONE
 
 #include "../../../src/edh/hamming/lib.hpp"
-#include "../../../src/rand/gen/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
-rand::gen<ds::dbitset::word_t> g;
+rand_gen<dbitset::word_t> g;
 
 void test(u64 n) {
-  ds::dbitset s(n, g);
+  dbitset s(n, g);
 
   timer_(auto v = hamming::encode(s));
   auto m = v.size() - n - 1;
@@ -19,7 +19,7 @@ void test(u64 n) {
 
   if (v.size() > 1) {
     auto v2 = v;
-    rand::gen<u64> g2(1, v.size() - 1);
+    rand_gen<u64> g2(1, v.size() - 1);
     auto pos = g2();
     v2.flip(pos);
 

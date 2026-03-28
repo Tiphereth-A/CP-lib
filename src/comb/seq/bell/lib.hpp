@@ -4,7 +4,7 @@
 #include "../fact/lib.hpp"
 #include "../ifact/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // bell[i] = B_i, i=0,1,...,n
 template <class poly>
@@ -22,4 +22,4 @@ CEXP poly gen_bell(u32 n) NE {
   return gen_bell<poly>(n, gen_fact<mint>(n + 1), gen_ifact<mint>(n + 1));
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

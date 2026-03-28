@@ -4,7 +4,7 @@
 #include "../../hash/lcpf/lib.hpp"
 #include "../../hash/lcsf/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 // @return {p, l, r}, uniqued
 template <class hashstr_t>
@@ -34,4 +34,4 @@ CEXP vec<pt3u> run_hash(strnv s) NE {
   return uniq(runs);
 }
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

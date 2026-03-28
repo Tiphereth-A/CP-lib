@@ -4,7 +4,7 @@
 #include "../../../fps/shl/lib.hpp"
 #include "../../../fps/tsh/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // stirling2[i] = {i \\brack k}, i=0,1,...,n
 template <class poly, class T>
@@ -36,4 +36,4 @@ CEXP poly gen_stirling2_col(u32 n, u32 k) NE {
   return gen_stirling2_col<poly>(n, k, gen_fact(n + 1, mint::mod()), gen_ifact(n + 1, mint::mod()));
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

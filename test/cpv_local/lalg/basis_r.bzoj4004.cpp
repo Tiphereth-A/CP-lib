@@ -16,7 +16,7 @@ int main() {
   vec<Node> a;
   u32 n, m;
   cin >> n >> m;
-  math::basis_r<double> rbs(m);
+  basis_r<double> rbs(m);
   a.resize(n);
   for (auto& [v, w] : a) {
     v.resize(m);

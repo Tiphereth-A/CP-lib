@@ -2,7 +2,7 @@
 
 #include "../../ds/l/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // judge if two lines are intersected or not
 template <class FP>
@@ -19,4 +19,4 @@ CEXP point<FP> ins_LL(line<FP> CR l, FP a, FP b, FP c) NE {
   return (l.l * a2 + l.r * a1) / (a1 + a2);
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

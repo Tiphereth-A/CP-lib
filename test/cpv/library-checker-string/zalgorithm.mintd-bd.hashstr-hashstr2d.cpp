@@ -8,16 +8,15 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/bd/lib.hpp"
+#include "../../../src/math/ds/mint/bd/lib.hpp"
 #include "../../../src/str/hash/substr2/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bd, __LINE__>;
+using mint = mint_bd<__LINE__>;
 using namespace tifa_libs;
-using mint0 = math::mint<math::mint_bd, __LINE__>;
-using mint1 = math::mint<math::mint_bd, __LINE__>;
-using hashstr = str::hash_substr2<mint0, mint1>;
+using mint0 = mint_bd<__LINE__>;
+using mint1 = mint_bd<__LINE__>;
+using hashstr = hash_substr2<mint0, mint1>;
 
 int main() {
   mint::set_mod(MOD);
@@ -27,6 +26,6 @@ int main() {
   tifa_libs::fin_uint >> s;
   hashstr hs;
   hs.set(s);
-  flt_ (u32, i, 0, (u32)s.size()) tifa_libs::fout << tifa_libs::str::lcpf_hash(hs, hs, 0, i) << " \n"[i + 1 == s.size()];
+  flt_ (u32, i, 0, (u32)s.size()) tifa_libs::fout << tifa_libs::lcpf_hash(hs, hs, 0, i) << " \n"[i + 1 == s.size()];
   return 0;
 }

@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   i64 a, b;
   std::cin >> a >> b;
-  auto [g, x, y] = math::exgcd(a, b);
+  auto [g, x, y] = exgcd(a, b);
   std::cout << x << ' ' << y << '\n';
   return 0;
 }

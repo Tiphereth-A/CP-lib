@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 // Copyright Malte Skarupke 2020.
 // Distributed under the Boost Software License, Version 1.0.
@@ -215,4 +215,4 @@ CEXP void make_minmax_heap(I begin, I end, C&& comp = C{}) NE {
 template <common_range R, class C = std::less<>>
 CEXP bool make_minmax_heap(R CR r, C&& comp = C{}) NE { return make_minmax_heap(begin(r), end(r), std::forward<C>(comp)); }
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

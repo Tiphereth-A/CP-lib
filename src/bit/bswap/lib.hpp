@@ -2,7 +2,7 @@
 
 #include "../../util/util/lib.hpp"
 
-namespace tifa_libs::bit {
+namespace tifa_libs {
 
 // From GCC lib
 template <class T>
@@ -14,4 +14,4 @@ CEXP T bswap(T x) NE {
   // if CEXP (sizeof(T) == 16) return (__builtin_bswap64(x >> 64) | (static_cast<T>(__builtin_bswap64(x)) << 64));
 }
 
-}  // namespace tifa_libs::bit
+}  // namespace tifa_libs

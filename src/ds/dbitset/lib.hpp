@@ -4,7 +4,7 @@
 #include "../../util/traits/math/lib.hpp"
 #include "../../util/traits/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 struct dbitset {
   using word_t = u64;
@@ -139,7 +139,7 @@ struct dbitset {
   }
   CEXP bool parity() CNE {
     bool ans = 0;
-    for (const auto i : data) ans ^= bit::parity(i);
+    for (const auto i : data) ans ^= ::tifa_libs::parity(i);
     return ans;
   }
 
@@ -235,4 +235,4 @@ struct dbitset {
   friend auto& operator<<(ostream_c auto& os, dbitset CR b) NE { return os << b.to_string(); }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

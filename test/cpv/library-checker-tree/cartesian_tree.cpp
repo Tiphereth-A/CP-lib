@@ -9,7 +9,7 @@ int main() {
   std::cin >> n;
   veci a(n);
   for (auto& x : a) std::cin >> x;
-  ds::cartesian_tree tr(a);
+  cartesian_tree tr(a);
   flt_ (u32, i, 0, n) std::cout << tr.t[i].fa << ' ';
   return 0;
 }

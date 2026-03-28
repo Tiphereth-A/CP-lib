@@ -2,7 +2,7 @@
 
 #include "../../mul_mod/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP u64 qpow_mod(u64 a, u64 b, u64 mod) NE {
   u64 res(1);
@@ -13,4 +13,4 @@ CEXP u64 qpow_mod(u64 a, u64 b, u64 mod) NE {
   return res;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

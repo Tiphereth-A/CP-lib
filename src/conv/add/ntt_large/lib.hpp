@@ -2,7 +2,7 @@
 
 #include "../dft/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <ntt_c NTT_t, std::same_as<TPN NTT_t::data_t> mint>
 CEXP vec<mint> conv_ntt_large(NTT_t& ntt, vec<mint> l, vec<mint> r, u32 ans_size = 0) NE {
@@ -41,4 +41,4 @@ CEXP vec<mint> conv_ntt_large_u64(NTT_t& ntt, vec<T> CR l, vec<T> CR r, u32 ans_
   return conv_ntt_large(ntt, l_, r_, ans_size);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

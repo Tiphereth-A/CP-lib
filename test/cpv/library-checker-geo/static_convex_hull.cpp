@@ -3,7 +3,7 @@
 #include "../../../src/geo2d/ds/cvh/lib.hpp"
 
 using namespace tifa_libs;
-using cvh = geo::cvh<i64>;
+using cvh_t = cvh<i64>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -12,7 +12,7 @@ int main() {
   while (t--) {
     u32 n;
     std::cin >> n;
-    cvh poly(n);
+    cvh_t poly(n);
     std::cin >> poly;
     poly.init();
     std::cout << poly.size() << '\n';

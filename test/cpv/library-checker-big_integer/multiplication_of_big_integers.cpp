@@ -9,7 +9,7 @@ int main() {
   u32 t;
   fin_uint >> t;
   while (t--) {
-    math::mpi a, b;
+    mpi a, b;
     fin_uint >> a >> b;
     fout << a * b << '\n';
   }

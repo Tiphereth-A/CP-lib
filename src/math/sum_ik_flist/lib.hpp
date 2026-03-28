@@ -2,7 +2,7 @@
 
 #include "../../util/util/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 CEXP T sum_i0(T n) NE { return n; }
@@ -33,4 +33,4 @@ CEXP T sum_i7(T n) NE {
 template <class T>
 CEXP T (*sum_ik[])(T) NE = {sum_i0<T>, sum_i1<T>, sum_i2<T>, sum_i3<T>, sum_i4<T>, sum_i5<T>, sum_i6<T>, sum_i7<T>};
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

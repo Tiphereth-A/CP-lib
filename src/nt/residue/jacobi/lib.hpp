@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP int jacobi_sym(u64 a, u64 p) NE {
   retif_((assert(p & 1); !a) [[unlikely]], 0);
@@ -17,4 +17,4 @@ CEXP int jacobi_sym(u64 a, u64 p) NE {
   return s;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -11,7 +11,7 @@ int main() {
   vecptu edges(m);
   ++l, ++r;
   for (auto& [u, v] : edges) std::cin >> u >> v;
-  auto ans = graph::hopkap(l, r, edges);
+  auto ans = hopkap(l, r, edges);
   std::cout << ans.size() << '\n';
 }
 

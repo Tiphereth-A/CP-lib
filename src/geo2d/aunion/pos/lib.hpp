@@ -4,7 +4,7 @@
 #include "../../ins/ll/lib.hpp"
 #include "../../pred/is_ins_sl/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // @return ans, which ans[i] means area covered at least i+1 times
 //! unique {@code pos} first
@@ -55,4 +55,4 @@ CEXP vec<FP> aunion_Pos(vec<polygon<FP>> CR pos) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

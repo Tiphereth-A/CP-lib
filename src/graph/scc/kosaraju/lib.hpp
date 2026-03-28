@@ -1,25 +1,26 @@
 #pragma once
 
 #include "../../ds/alist/lib.hpp"
-#include "../../make_alistr/lib.hpp"
+#include "../../make_graphr/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
-template <bool with_deg = false>
+template <graph_c G>
 class kosaraju {
-  alist<with_deg> CR g, &rev_g;
+  G CR g;
+  G CR rev_g;
 
  public:
-  alist<with_deg> dag;
+  G dag;
   vecu scc_id;
   vvecu belongs;
 
-  CEXP kosaraju(alist<with_deg> CR g) NE : kosaraju(g, make_alistr(g)) {}
-  CEXP kosaraju(alist<with_deg> CR g, alist<with_deg> CR rev_g) NE : g(g), rev_g(rev_g) { build(); }
+  CEXP kosaraju(G CR g, G CR rev_g) NE : g(g), rev_g(rev_g), dag(0) { build(); }
+  CEXP kosaraju(G CR g) NE : kosaraju(g, make_graphr(g)) {}
 
  private:
   CEXP void build() NE {
-    vecb vis(g.size());
+    vecb vis(g.vsize());
     vecu ord;
     auto dfs = [&, this](auto&& dfs, u32 idx) NE {
       if (vis[idx]) return;
@@ -30,16 +31,16 @@ class kosaraju {
       if (~scc_id[idx]) return;
       for (scc_id[idx] = cnt; auto to : rev_g[idx]) rdfs(rdfs, to, cnt);
     };
-    flt_ (u32, i, 0, (u32)g.size()) dfs(dfs, i);
-    reverse(ord), scc_id.resize(g.size(), -1_u32);
+    flt_ (u32, i, 0, g.vsize()) dfs(dfs, i);
+    reverse(ord), scc_id.resize(g.vsize(), -1_u32);
     u32 cnt = 0;
     for (u32 i : ord)
       if (!~scc_id[i]) rdfs(rdfs, i, cnt++);
-    dag.g.resize(cnt), belongs.resize(cnt);
-    flt_ (u32, i, 0, (u32)g.size())
+    dag = G(cnt), belongs.resize(cnt);
+    flt_ (u32, i, 0, g.vsize())
       for (belongs[scc_id[i]].push_back(i); auto to : g[i])
         if (u32 x = scc_id[i], y = scc_id[to]; x != y) dag.add_arc(x, y);
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

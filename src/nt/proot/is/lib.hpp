@@ -2,7 +2,7 @@
 
 #include "../../../math/qpow/mod/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <std::unsigned_integral T, class It>
 CEXP bool is_proot(T g, T m, It pf_begin, It pf_end) NE {
@@ -12,4 +12,4 @@ CEXP bool is_proot(T g, T m, It pf_begin, It pf_end) NE {
   return true;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

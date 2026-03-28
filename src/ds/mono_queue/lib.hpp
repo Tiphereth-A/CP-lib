@@ -2,7 +2,7 @@
 
 #include "../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, class Comp = std::less<T>>
 class mono_queue {
@@ -23,4 +23,4 @@ class mono_queue {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

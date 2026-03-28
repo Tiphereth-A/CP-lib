@@ -1,9 +1,9 @@
 #pragma once
 
 #include "../../../util/alias/others/lib.hpp"
-#include "../../../util/traits/graph/lib.hpp"
+#include "../../ds/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 struct tdi_dfn {
   vecu dfn;
@@ -96,7 +96,7 @@ struct tdi_go {
 };
 template <tree_c G>
 struct tdi_dis {
-  using w_t = std::conditional_t<std::is_void_v<TPN G::w_t>, u32, TPN G::w_t>;
+  using w_t = std::conditional_t<std::is_void_v<TPN G::Et>, u32, TPN G::Et>;
   vec<w_t> dis;
 
  protected:
@@ -109,12 +109,12 @@ struct tdi_dis {
 
 template <tree_c G, class... Ts>
 struct tree_dfs_info : Ts... {
-  using w_t = std::conditional_t<std::is_void_v<TPN G::w_t>, u32, TPN G::w_t>;
-  CEXPE tree_dfs_info(G CR tree) : Ts(tree.size())... { dfs(tree, tree.root); }
+  using w_t = std::conditional_t<std::is_void_v<TPN G::Et>, u32, TPN G::Et>;
+  CEXPE tree_dfs_info(G CR tree) : Ts(tree.vsize())... { dfs(tree, tree.root); }
 
  private:
   void dfs(G CR g, u32 u, u32 fa = -1_u32) NE {
-    if CEXP ((Ts::init(u, fa), ...); alistw_c<G>) {
+    if CEXP ((Ts::init(u, fa), ...); wtree_c<G>) {
       for (auto [v, w] : g[u])
         if (v != fa) (Ts::pre_dfs(v, u, w), ...), dfs(g, v, u), (Ts::post_dfs(v, u, w), ...);
     } else
@@ -124,4 +124,4 @@ struct tree_dfs_info : Ts... {
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

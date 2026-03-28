@@ -1,14 +1,14 @@
 #pragma once
 
 #include "../../comb/seq/ifact/lib.hpp"
-#include "../ds/poly/lib.hpp"
+#include "../ds/poly_c/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
-template <template <class... Ts> class ccore, class mint, class T, class... args>
-CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c, vec<T> CR ifact, u32 m = 0) NE {
-  using poly_t = poly<ccore, mint, args...>;
+template <poly_c poly_t, class T>
+CEXP poly_t ctsh_fps(poly_t CR f, TPN poly_t::val_t c, vec<T> CR ifact, u32 m = 0) NE {
   const u32 n = (u32)f.size(), k = n - 1;
+  using mint = TPN poly_t::val_t;
   if (!m) m = n;
   u64 t = c.val();
   if (t <= k) {
@@ -41,7 +41,7 @@ CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c
   flt_ (u32, i, 0, m) ret[i] = cur * dh[k + i], (cur *= t + i + 1) *= h[i];
   return ret;
 }
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP poly<ccore, mint, args...> ctsh_fps(poly<ccore, mint, args...> CR f, mint c, u32 m = 0) NE { return ctsh_fps(f, c, gen_ifact((u32)f.size(), mint::mod()), m); }
+template <poly_c poly_t>
+CEXP auto ctsh_fps(poly_t CR f, TPN poly_t::val_t c, u32 m = 0) NE { return ctsh_fps(f, c, gen_ifact((u32)f.size(), poly_t::val_t::mod()), m); }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -14,7 +14,7 @@ int main() {
     std::cin >> u >> v;
     e[u].push_back(v);
   }
-  graph::tarjan scc;
+  tarjan scc;
   scc.build(e);
   vvecu g(scc.id);
   vecu in(scc.id);

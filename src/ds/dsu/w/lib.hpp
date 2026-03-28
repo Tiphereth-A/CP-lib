@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 //! T should be a group with op and inv
 template <class T = i64, auto op = std::plus<>{}, auto inv = std::negate<>{}>
@@ -42,4 +42,4 @@ class dsu_weighted {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

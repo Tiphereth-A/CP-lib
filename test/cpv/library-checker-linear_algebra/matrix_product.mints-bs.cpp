@@ -6,12 +6,11 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/bs/lib.hpp"
+#include "../../../src/math/ds/mint/bs/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bs, MOD>;
-using mat = tifa_libs::math::matrix<mint>;
+using mint = mint_bs<MOD>;
+using mat = tifa_libs::matrix<mint>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);

@@ -9,7 +9,7 @@ int main() {
   u64 n;
   std::cin >> n;
   vecuu ans;
-  math::do_quot(n, [&ans](u64, u64, u64 q) { ans.push_back(q); });
+  do_quot(n, [&ans](u64, u64, u64 q) { ans.push_back(q); });
   std::ranges::sort(ans);
   std::cout << ans.size() << '\n';
   std::cout << ans << '\n';

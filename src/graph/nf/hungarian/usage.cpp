@@ -14,8 +14,8 @@ int main() {
   auto c2 = c1;
   for (auto& i : c2)
     for (auto& j : i) j = -j;
-  std::cout << graph::hungarian(c1).back() << '\n';
-  std::cout << -graph::hungarian(c2).back() << '\n';
+  std::cout << hungarian(c1).back() << '\n';
+  std::cout << -hungarian(c2).back() << '\n';
 }
 
 /*

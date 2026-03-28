@@ -3,7 +3,7 @@
 #include "../../../math/mul_mod/lib.hpp"
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // i^{-1} from i=0..n-1
 CEXP vecuu gen_inv(u32 n, u64 mod) NE {
@@ -22,4 +22,4 @@ CEXP vec<mint> gen_inv(u32 n) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

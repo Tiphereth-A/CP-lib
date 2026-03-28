@@ -3,7 +3,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 //@param a a[i]={value, weight, count}
 //@param W max weight
@@ -37,4 +37,4 @@ CEXP T knapsack_mixed_huge(vec<pt3<T>> a, T W) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

@@ -18,15 +18,15 @@ int main() {
       --u;
       --v;
     }
-    graph::alistw<u64> mct(n);
+    alist<u64> mct(n);
     vvecuu mat(n, vecuu(n, std::numeric_limits<u64>::max()));
-    for (auto mct_edges = graph::gomory_hu(n, edges); auto&& [w, u, v] : mct_edges) {
+    for (auto mct_edges = gomory_hu(n, edges); auto&& [w, u, v] : mct_edges) {
       mct.add_arc(u, v, w);
       mct.add_arc(v, u, w);
       mat[u][v] = mat[v][u] = w;
     }
     auto dfs = [&](auto&& dfs, u32 r, u32 u, u32 fa) -> void {
-      for (auto [v, w] : mct.g[u])
+      for (auto [v, w] : mct[u])
         if (v != fa) mat[r][v] = std::min({mat[r][v], mat[r][u], w}), dfs(dfs, r, v, u);
       ;
     };
@@ -48,6 +48,6 @@ int main() {
       }
       cout << ans << '\n';
     }
-    cout << '\n';
+    if (t) cout << '\n';
   }
 }

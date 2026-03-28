@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 CEXP vecu z_func(strnv s) NE {
   const u32 n = (u32)s.size();
@@ -19,4 +19,4 @@ CEXP vecu z_func(strnv s) NE {
   return z;
 }
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

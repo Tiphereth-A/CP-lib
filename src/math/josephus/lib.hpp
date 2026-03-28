@@ -2,7 +2,7 @@
 
 #include "../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace josephus_impl_ {
 // $O(m)$
 CEXP u64 j1(u64 n, u64 k, u64 m) NE {
@@ -29,4 +29,4 @@ CEXP u64 Josephus(u64 n, u64 k, u64 m) NE {
   retif_((m < k * (u32)std::bit_width(n)), josephus_impl_::j1(n, k, m), josephus_impl_::j2(n, k, m));
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

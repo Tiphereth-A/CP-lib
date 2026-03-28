@@ -1,31 +1,31 @@
 // competitive-verifier: STANDALONE
 
 #include "../../../src/nt/mod/barrett/lib.hpp"
-#include "../../../src/rand/gen/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
 
-decltype(unittest::default_timer.passed()) cnt_brt, cnt_bf;
-rand::gen<u32> gen_a;
+decltype(default_timer.passed()) cnt_brt, cnt_bf;
+rand_gen<u32> gen_a;
 void single_test(u64 b, u32 mod, auto brt) {
   flt_ (u32, i, 0, 10000) {
     u32 a = gen_a() % mod;
-    unittest::default_timer.tic(__LINE__);
+    default_timer.tic(__LINE__);
     auto got = brt.reduce(a);
-    unittest::default_timer.tac();
-    cnt_brt += unittest::default_timer.passed();
-    unittest::default_timer.tic(__LINE__);
+    default_timer.tac();
+    cnt_brt += default_timer.passed();
+    default_timer.tic(__LINE__);
     auto want = a * b % mod;
-    unittest::default_timer.tac();
-    cnt_bf += unittest::default_timer.passed();
+    default_timer.tac();
+    cnt_bf += default_timer.passed();
     check(got, want, check_param(a), check_param(b), check_param(mod));
   }
 }
 
 void test(u32 mod) {
   flt_ (u64, b, 0, 100) {
-    math::barrett<0> brt(mod, b);
+    barrett<0> brt(mod, b);
     single_test(b, mod, brt);
   }
   std::cerr << std::format("Barrett: {}, BF: {}\n", cnt_brt, cnt_bf);
@@ -33,10 +33,10 @@ void test(u32 mod) {
 
 template <u32 MOD, u64 B>
 void test_s() {
-#define _(I)                       \
-  {                                \
-    math::barrett<MOD, B + I> brt; \
-    single_test(B + I, MOD, brt);  \
+#define _(I)                      \
+  {                               \
+    barrett<MOD, B + I> brt;      \
+    single_test(B + I, MOD, brt); \
   }
   _(0)
   _(10)

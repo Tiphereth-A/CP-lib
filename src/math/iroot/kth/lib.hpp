@@ -2,7 +2,7 @@
 
 #include "../../../math/qpow/basic/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP u64 ikth_root(u64 a, u64 k) NE {
   if (assert(k); a <= 1 || k == 1) return a;
@@ -13,4 +13,4 @@ CEXP u64 ikth_root(u64 a, u64 k) NE {
   return n;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

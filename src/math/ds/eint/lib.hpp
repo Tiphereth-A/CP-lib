@@ -2,7 +2,7 @@
 
 #include "../../../util/traits/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 class eint {
@@ -62,4 +62,4 @@ class eint {
   friend auto& operator<<(ostream_c auto& os, eint CR x) NE { return os << x.real() << ' ' << x.imag(); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

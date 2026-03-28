@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 //@return ans[i][j] = lev(a[0..i), b[0..j))
 template <common_range T>
@@ -16,4 +16,4 @@ CEXP vvecu lev_dis(T CR a, T CR b) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

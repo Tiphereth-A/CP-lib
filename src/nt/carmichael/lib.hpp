@@ -4,7 +4,7 @@
 #include "../gl/lcm/lib.hpp"
 #include "../pfactors/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 inline u64 carmichael(spn<std::pair<u64, u32>> pf_exp) NE {
   u64 ans = 1;
@@ -13,4 +13,4 @@ inline u64 carmichael(spn<std::pair<u64, u32>> pf_exp) NE {
 }
 inline u64 carmichael(u64 n) NE { return carmichael(pf_exp(n)); }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

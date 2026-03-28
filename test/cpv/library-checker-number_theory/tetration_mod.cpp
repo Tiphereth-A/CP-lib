@@ -10,7 +10,7 @@ int main() {
   while (t--) {
     u64 a, b, m;
     std::cin >> a >> b >> m;
-    std::cout << math::qtetra_mod(a, b, m) << '\n';
+    std::cout << qtetra_mod(a, b, m) << '\n';
   }
   return 0;
 }

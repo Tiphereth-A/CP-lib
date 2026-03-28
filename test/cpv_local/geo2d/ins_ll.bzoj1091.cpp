@@ -7,8 +7,8 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f64;
-using Point2 = geo::point<data_t>;
-using Line2 = geo::line<data_t>;
+using Point2 = point<data_t>;
+using Line2 = line<data_t>;
 
 int main() {
   cout << std::fixed << std::setprecision(3);
@@ -37,10 +37,10 @@ int main() {
         if (!is_ins_LL(vl[i], vl[j])) continue;
         Point2 p = ins_LL(vl[i], vl[j]);
         if (p.x < 0 || p.y < 0 || p.x > n || p.y > m) continue;
-        if (!is_lt(geo::dist_PP(vl[i].l, p), geo::dist_PP(vl[i].r, p)) && is_lt(geo::dist_PP(vl[i].l, p), geo::dist_PP(vl[i].l, l))) l = p;
-        if (!is_lt(geo::dist_PP(vl[i].r, p), geo::dist_PP(vl[i].l, p)) && is_lt(geo::dist_PP(vl[i].r, p), geo::dist_PP(vl[i].r, r))) r = p;
+        if (!is_lt(dist_PP(vl[i].l, p), dist_PP(vl[i].r, p)) && is_lt(dist_PP(vl[i].l, p), dist_PP(vl[i].l, l))) l = p;
+        if (!is_lt(dist_PP(vl[i].r, p), dist_PP(vl[i].l, p)) && is_lt(dist_PP(vl[i].r, p), dist_PP(vl[i].r, r))) r = p;
       }
-      now_ans += geo::dist_PP(l, r);
+      now_ans += dist_PP(l, r);
     }
     ans = std::min(ans, now_ans);
   } while (std::next_permutation(begin(vl) + 4, end(vl)));

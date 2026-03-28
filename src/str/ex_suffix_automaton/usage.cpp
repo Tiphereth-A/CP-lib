@@ -9,7 +9,7 @@ int main() {
   u32 n;
   strn s;
   std::cin >> n;
-  str::ex_suffix_automaton sam;
+  ex_suffix_automaton sam;
   flt_ (u32, i, 0, n) {
     std::cin >> s;
     for (u32 last = 0; auto c : s)

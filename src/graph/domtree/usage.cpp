@@ -4,6 +4,7 @@
 #include "../../io/container/lib.hpp"
 #include "../../tree/dfs/info/lib.hpp"
 #include "../../tree/ds/lib.hpp"
+#include "../ds/alist/lib.hpp"
 #include "lib.hpp"
 
 using namespace tifa_libs;
@@ -11,13 +12,13 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
-  graph::alist<> g(n);
+  alist g(n);
   for (u32 i = 0, u, v; i < m; ++i) std::cin >> u >> v, g.add_arc(u - 1, v - 1);
-  auto fa = graph::domtree(g).get_domtree(0);
-  graph::tree tr(n);
+  auto fa = domtree(g).get_domtree(0);
+  tree<alist<>> tr(n);
   flt_ (u32, i, 1, n)
     if (~fa[i]) tr.add_arc(fa[i], i);
-  graph::tree_dfs_info<graph::tree, graph::tdi_sz> dfs(tr);
+  tree_dfs_info<tree<alist<>>, tdi_sz> dfs(tr);
   std::cout << dfs.sz << '\n';
 }
 

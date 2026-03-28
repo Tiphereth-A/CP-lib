@@ -9,7 +9,7 @@ CEXP u32 MOD = 998244353;
 // ---<GENTC>--- begin
 // ---<GENTC>--- append mints mintd
 // ---<GENTC>--- end
-using mat = tifa_libs::math::matrix<mint>;
+using mat = tifa_libs::matrix<mint>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -17,6 +17,6 @@ int main() {
   std::cin >> n;
   mat a(n, n);
   std::cin >> a;
-  std::cout << tifa_libs::math::hafnian(a);
+  std::cout << tifa_libs::hafnian(a);
   return 0;
 }

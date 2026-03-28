@@ -1,69 +1,51 @@
 #pragma once
 
-#include "../../../util/alias/others/lib.hpp"
+#include "../graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
+namespace eog_impl_ {
+template <class T, class... Info>
+class eog_tag : public graph_info_impl_::graph_tag_base<Info...> {
+  using base_t = graph_info_impl_::graph_tag_base<Info...>;
+  using ET = graph_info_impl_::E<T>;
+  struct iter_ {
+    vecp<ET, u32> CR e;
+    u32 i;
 
-template <bool with_deg = false>
-struct eog {
-  using w_t = void;
+    iter_(vecp<ET, u32> CR e, u32 i) NE : e(e), i(i) {}
+
+    CEXP auto begin() CNE { return iter_{e, i}; }
+    CEXP auto end() CNE { return iter_{e, -1_u32}; }
+
+    CEXP auto operator*() CNE { return e[i].first; }
+    CEXP iter_& operator++() NE {
+      i = e[i].second;
+      return *this;
+    }
+    CEXP bool operator!=(iter_ const& r) CNE { return i != r.i; }
+  };
+
   vecu head;
-  vecptu e;
-  u32 cnt_arc;
-  vecu deg_in, deg_out;
-  //! vertex ID: [0, n)
-  CEXPE eog(u32 n = 0) NE : head(n, -1_u32), e(), cnt_arc{0}, deg_in(0), deg_out(0) {
-    if CEXP (with_deg) deg_in.resize(n), deg_out.resize(n);
-  }
-  CEXP u32 size() CNE { return (u32)head.size(); }
-  CEXP void add_arc(u32 u, u32 v) NE {
-    e.emplace_back(v, head[u]), head[u] = u32(e.size() - 1);
-    if CEXP (++cnt_arc; with_deg) ++deg_in[v], ++deg_out[u];
-  }
-  CEXP void add_edge(u32 u, u32 v) NE { add_arc(u, v), add_arc(v, u); }
-  CEXP void pop_startwith(u32 now) NE {
-    if CEXP (--cnt_arc; with_deg) --deg_in[e[head[now]].first], --deg_out[now];
-    head[now] = e[head[now]].second;
-  }
-  CEXP auto& operator[](u32 u) NE { return e[u]; }
-  CEXP auto CR operator[](u32 u) CNE { return e[u]; }
-  template <class F>
-  requires requires(F f, u32 eid, u32 to, u32 next) { f(eid, to, next); }
-  CEXP void foreach(u32 u, F&& f) CNE {
-    for (u32 i = head[u]; ~i; i = e[i].second) f(i, e[i].first, e[i].second);
-  }
-};
-template <class T, bool with_deg = false>
-struct eogw {
-  using w_t = T;
-  // clang-format off
-  struct TIFA { u32 to; T w; u32 nxt; };
-  // clang-format on
-  vecu head;
-  vec<TIFA> e;
-  u32 cnt_arc;
-  vecu deg_in, deg_out;
-  //! vertex ID: [0, n)
-  CEXPE eogw(u32 n = 0) NE : head(n, -1_u32), e(), cnt_arc{0}, deg_in(0), deg_out(0) {
-    if CEXP (with_deg) deg_in.resize(n), deg_out.resize(n);
-  }
-  CEXP u32 size() CNE { return (u32)head.size(); }
-  CEXP void add_arc(u32 u, u32 v, cT_(T) w) NE {
-    e.emplace_back(v, w, head[u]), head[u] = u32(e.size() - 1);
-    if CEXP (++cnt_arc; with_deg) ++deg_in[v], ++deg_out[u];
-  }
-  CEXP void add_edge(u32 u, u32 v, cT_(T) w) NE { add_arc(u, v, w), add_arc(v, u, w); }
-  CEXP void pop_startwith(u32 now) NE {
-    if CEXP (--cnt_arc; with_deg) --deg_in[e[head[now]].first], --deg_out[now];
-    head[now] = e[head[now]].second;
-  }
-  CEXP auto& operator[](u32 u) NE { return e[u]; }
-  CEXP auto CR operator[](u32 u) CNE { return e[u]; }
-  template <class F>
-  requires requires(F f, u32 eid, u32 to, T w, u32 next) { f(eid, to, next, w); }
-  CEXP void foreach(u32 u, F&& f) CNE {
-    for (u32 i = head[u]; ~i; i = e[i].second) f(i, e[i].to, e[i].w, e[i].nxt);
-  }
-};
+  vecp<ET, u32> e;
 
-}  // namespace tifa_libs::graph
+ protected:
+  using val_t = T;
+  CEXPE eog_tag(u32 n) NE : base_t(n), head(n, -1_u32), e{} {}
+
+ public:
+  CEXP void add_arc(u32 u, auto&&... args) NE {
+    base_t::add_arc(u, std::forward<decltype(args)>(args)...);
+    e.emplace_back(ET(std::forward<decltype(args)>(args)...), head[u]);
+    head[u] = u32(e.size() - 1);
+  }
+  CEXP u32 vsize() CNE { return (u32)head.size(); }
+  CEXP void build() CNE {}
+  CEXP void pop_startwith(u32 u) NE { base_t::del_arc(u, e[head[u]].first.to), head[u] = e[head[u]].second; }
+
+  CEXP auto operator[](u32 u) CNE { return iter_{e, head[u]}; }
+};
+}  // namespace eog_impl_
+template <class Et = void, class... Info>
+using eog = graph_impl_::graph<eog_impl_::eog_tag<Et, Info...>>;
+
+}  // namespace tifa_libs

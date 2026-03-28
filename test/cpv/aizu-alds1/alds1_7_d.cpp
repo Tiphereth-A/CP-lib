@@ -10,6 +10,6 @@ int main() {
   std::cin >> n;
   vecu a(n), b(n);
   std::cin >> a >> b;
-  std::cout << graph::btree_make_post_pi(a, b) << '\n';
+  std::cout << btree_make_post_pi(a, b) << '\n';
   return 0;
 }

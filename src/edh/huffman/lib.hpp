@@ -38,7 +38,7 @@ class huffman {
     for (T now : weights) data.emplace_back(now);
     flt_ (u32, i, 0, ((ch_sz - 1) - ((cnt_w - 1) % (ch_sz - 1))) % (ch_sz - 1)) data.emplace_back();
     cnt_l = (u32)data.size();
-    ds::rheap<T, u32> q;
+    rheap<T, u32> q;
     flt_ (u32, i, 0, (u32)data.size()) q.emplace(data[i].weight, i);
     while (q.size() > 1) {
       data.emplace_back(T{}, ch_sz);

@@ -2,7 +2,7 @@
 
 #include "../../util/util/lib.hpp"
 
-namespace tifa_libs::bit {
+namespace tifa_libs {
 
 template <class T>
 CEXP int ffs(T x) NE {
@@ -19,4 +19,4 @@ CEXP int ffs(T x) NE {
   }
 }
 
-}  // namespace tifa_libs::bit
+}  // namespace tifa_libs

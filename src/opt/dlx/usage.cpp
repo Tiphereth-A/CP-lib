@@ -10,7 +10,7 @@ void solve() {
   vvecb maps(n, vecb(m));
   for (u32 i = 0, x; i < n; ++i)
     flt_ (u32, j, 0, m) std::cin >> x, maps[i][j] = x;
-  if (auto res = opt::dlx(maps).dance(fn_0); res)
+  if (auto res = dlx(maps).dance(fn_0); res)
     for (auto i : res.value()) std::cout << i << ' ';
   else std::cout << "No Solution!";
   std::cout << '\n';

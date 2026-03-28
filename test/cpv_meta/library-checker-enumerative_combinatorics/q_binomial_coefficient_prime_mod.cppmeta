@@ -25,7 +25,7 @@ int main() {
     }
     return 0;
   }
-  tifa_libs::math::qbinom<mint, fact_t> mCn(q);
+  tifa_libs::qbinom<mint, fact_t> mCn(q);
   while (t--) {
     i64 n, k;
     tifa_libs::fin_uint >> n >> k;

@@ -1,4 +1,4 @@
-- mint: 模整数类基类
+- mint: 模整数类
 - rational: 有理数
 - gint: Gauss 整数
 - eint: Eisenstein 整数

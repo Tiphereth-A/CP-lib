@@ -3,7 +3,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/ds/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 CEXP vvecu dsu_delineation(dsu_c auto& dsu) NE {
   const u32 n = dsu.size();
@@ -14,4 +14,4 @@ CEXP vvecu dsu_delineation(dsu_c auto& dsu) NE {
   return mp;
 }
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

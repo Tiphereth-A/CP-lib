@@ -10,7 +10,7 @@ int main() {
   while (t--) {
     u64 n;
     std::cin >> n;
-    auto res = math::norm_fact(n);
+    auto res = norm_fact(n);
     std::cout << res.size() << '\n';
     for (auto [x, y] : res) std::cout << x << ' ' << y << '\n';
   }

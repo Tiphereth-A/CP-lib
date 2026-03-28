@@ -20,7 +20,7 @@ int main() {
   tifa_libs::fin_uint >> n >> m;
   poly a(n), b(m);
   tifa_libs::fin_uint >> a >> b;
-  auto _ = tifa_libs::math::modinv_fps(a, b);
+  auto _ = tifa_libs::modinv_fps(a, b);
   if (!_) tifa_libs::fout << "-1\n";
   else if (_->is_zero()) tifa_libs::fout << "0\n";
   else tifa_libs::fout << _->size() << '\n'

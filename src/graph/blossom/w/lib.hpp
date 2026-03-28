@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
 //! 1-indexed, [1, n]
 template <class T>
@@ -183,4 +183,4 @@ struct blossomw {
   }
 };
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

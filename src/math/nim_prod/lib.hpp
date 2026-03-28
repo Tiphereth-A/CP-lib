@@ -2,7 +2,7 @@
 
 #include "../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace nim_prod_impl_ {
 struct calc8 {
   u16 dp[1 << 8][1 << 8];
@@ -97,4 +97,4 @@ CEXP u64 nimprod64(u64 i, u64 j) NE {
 
 using nim_prod_impl_::nimprod16, nim_prod_impl_::nimprod32, nim_prod_impl_::nimprod64;
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

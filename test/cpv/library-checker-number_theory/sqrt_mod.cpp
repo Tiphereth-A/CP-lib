@@ -10,7 +10,7 @@ int main() {
   while (t--) {
     u64 y, p;
     std::cin >> y >> p;
-    auto res = math::qresidue(y, p);
+    auto res = qresidue(y, p);
     std::cout << (res ? (i64)res.value() : -1) << '\n';
   }
   return 0;

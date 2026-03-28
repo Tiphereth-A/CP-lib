@@ -10,17 +10,16 @@ CEXP u32 MOD = 998244353;
 
 #include "../../../src/conv/add/czt/lib.hpp"
 #include "../../../src/fps/ds/ntt/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms64/lib.hpp"
+#include "../../../src/math/ds/mint/ms64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms64, MOD>;
+using mint = mint_ms64<MOD>;
 using namespace tifa_libs;
-using poly = math::polyntt<mint>;
+using poly = polyntt<mint>;
 using namespace tifa_libs;
 using vec_t = poly;
 auto conv_func(vec_t CR a, vec_t CR b) {
-  return math::conv_czt(a, b);
+  return conv_czt(a, b);
 }
 
 int main() {

@@ -6,14 +6,13 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
-#include "../../../src/math/ds/mint/lib.hpp"
+#include "../../../src/math/ds/mint/bd/lib.hpp"
 #include "../../../src/math/fact/helper/lib.hpp"
-#include "../../../src/math/mint/bd/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bd, __LINE__>;
+using mint = mint_bd<__LINE__>;
 using namespace tifa_libs;
-using fact_t = math::fact_helper<mint>;
+using fact_t = fact_helper<mint>;
 
 int main() {
   mint::set_mod(MOD);
@@ -21,7 +20,7 @@ int main() {
   u32 t, mod;
   std::cin >> t >> mod;
   mint::set_mod(mod);
-  tifa_libs::math::stirling2<mint, fact_t> S;
+  tifa_libs::stirling2<mint, fact_t> S;
   while (t--) {
     u64 n, k;
     std::cin >> n >> k;

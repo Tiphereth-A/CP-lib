@@ -7,19 +7,18 @@ using namespace tifa_libs;
 CEXP u32 MOD = 1000000000 + 7;
 
 #include "../../../src/fps/ds/mtt/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/md64/lib.hpp"
+#include "../../../src/math/ds/mint/md64/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md64, __LINE__>;
+using mint = mint_md64<__LINE__>;
 using namespace tifa_libs;
-using poly = math::polymtt<mint>;
+using poly = polymtt<mint>;
 
 int main() {
   mint::set_mod(MOD);
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, k;
   std::cin >> n >> k;
-  std::cout << tifa_libs::math::ball_box_iil<poly>(n, k) << '\n';
+  std::cout << tifa_libs::ball_box_iil<poly>(n, k) << '\n';
   return 0;
 }

@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 template <u32 SZ = 26>
 class ex_suffix_automaton {
@@ -47,4 +47,4 @@ class ex_suffix_automaton {
   }
 };
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

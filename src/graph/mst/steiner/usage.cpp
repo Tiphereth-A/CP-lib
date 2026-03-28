@@ -9,11 +9,11 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, k;
   std::cin >> n >> m >> k;
-  graph::alistw<u32> e(n);
+  alist<u32> e(n);
   for (u32 i = 0, u, v, w; i < m; ++i) std::cin >> u >> v >> w, --u, --v, e.add_arc(u, v, w), e.add_arc(v, u, w);
   vecu a(k);
   for (auto& x : a) std::cin >> x, --x;
-  std::cout << graph::steiner_tree<false>(e, a);
+  std::cout << steiner_tree<false>(e, a);
 }
 
 /*

@@ -5,16 +5,16 @@
 #include "../../../src/geo2d/min_dis_ps/lib.hpp"
 
 using namespace tifa_libs;
-using point = geo::point<double>;
+using point_t = point<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(10);
   u32 n;
   std::cin >> n;
-  vec<point> vp(n);
+  vec<point_t> vp(n);
   for (auto& i : vp) std::cin >> i;
-  auto [l, r] = geo::min_dis_Ps(vp);
-  std::cout << geo::dist_PP(vp[l], vp[r]) << '\n';
+  auto [l, r] = min_dis_Ps(vp);
+  std::cout << dist_PP(vp[l], vp[r]) << '\n';
   return 0;
 }

@@ -3,7 +3,7 @@
 #include "../../cross/lib.hpp"
 #include "../p/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 struct line {
@@ -48,4 +48,4 @@ struct line {
   }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

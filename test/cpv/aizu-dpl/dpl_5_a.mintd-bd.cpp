@@ -6,17 +6,16 @@
 using namespace tifa_libs;
 CEXP u32 MOD = 1000000000 + 7;
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/bd/lib.hpp"
+#include "../../../src/math/ds/mint/bd/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_bd, __LINE__>;
+using mint = mint_bd<__LINE__>;
 
 int main() {
   mint::set_mod(MOD);
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, k;
   std::cin >> n >> k;
-  std::cout << tifa_libs::math::ball_box_dda<mint>(n, k) << '\n';
+  std::cout << tifa_libs::ball_box_dda<mint>(n, k) << '\n';
   return 0;
 }

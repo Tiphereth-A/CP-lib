@@ -20,6 +20,6 @@ int main() {
   tifa_libs::fin_uint >> n;
   poly p(n);
   tifa_libs::fin_uint >> p;
-  tifa_libs::fout << tifa_libs::math::ln_fps(p);
+  tifa_libs::fout << tifa_libs::ln_fps(p);
   return 0;
 }

@@ -4,7 +4,7 @@
 #include "../../pred/is_in_middle_p/lib.hpp"
 #include "../../proj/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // the point which is min dist_PP from a point to another point which belongs to a segment
 template <class FP>
@@ -17,4 +17,4 @@ CEXP point<FP> dist_PS_P(point<FP> CR p, line<FP> CR s) NE {
 template <class FP>
 CEXP FP dist_PS(point<FP> CR p, line<FP> CR s) NE { return dist_PP(dist_PS_P(p, s), p); }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

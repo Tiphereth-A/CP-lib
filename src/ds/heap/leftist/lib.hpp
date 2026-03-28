@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <class T, bool persistent = false>
 class leftist_tree {
@@ -62,4 +62,4 @@ class leftist_tree {
   }
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

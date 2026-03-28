@@ -9,6 +9,6 @@ int main() {
   std::cin >> n >> w;
   vecpt<u64> a(n);
   for (auto& [v, w] : a) std::cin >> v >> w;
-  std::cout << opt::knapsack_01(a, w) << '\n';
+  std::cout << knapsack_01(a, w) << '\n';
   return 0;
 }

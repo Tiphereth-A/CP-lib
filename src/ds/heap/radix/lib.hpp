@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 
 template <std::unsigned_integral K, class V, class C = std::less<K>>
 class radix_heap {
@@ -40,8 +40,8 @@ class radix_heap {
 };
 
 template <class K, class V>
-using rheap = std::conditional_t<std::unsigned_integral<K>, ds::radix_heap<K, V>, pqg<std::pair<K, V>>>;
+using rheap = std::conditional_t<std::unsigned_integral<K>, radix_heap<K, V>, pqg<std::pair<K, V>>>;
 template <class K, class V>
-using rheapg = std::conditional_t<std::unsigned_integral<K>, ds::radix_heap<K, V, std::greater<K>>, pq<std::pair<K, V>>>;
+using rheapg = std::conditional_t<std::unsigned_integral<K>, radix_heap<K, V, std::greater<K>>, pq<std::pair<K, V>>>;
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

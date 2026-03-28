@@ -5,13 +5,13 @@
 #include "../../../src/geo2d/tcenter/i/lib.hpp"
 
 using namespace tifa_libs;
-using tri = geo::triangle<double>;
+using tri = triangle<double>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   std::cout << std::fixed << std::setprecision(12);
   tri t;
   std::cin >> t;
-  std::cout << geo::center_I(t) << ' ' << geo::radius_I(t) << '\n';
+  std::cout << center_I(t) << ' ' << radius_I(t) << '\n';
   return 0;
 }

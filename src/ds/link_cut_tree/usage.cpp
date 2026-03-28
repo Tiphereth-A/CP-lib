@@ -13,7 +13,7 @@ int main() {
   std::cin >> n >> m;
   vecuu a(n);
   for (auto& x : a) std::cin >> x;
-  ds::link_cut_tree<u64, op, inv_op> lct(n, a);
+  link_cut_tree<u64, op, inv_op> lct(n, a);
   for (u32 i = 1, u, v; i < n; ++i) std::cin >> u >> v, lct.link(u, v);
   flt_ (u32, i, 0, m) {
     u32 opt, u, v;

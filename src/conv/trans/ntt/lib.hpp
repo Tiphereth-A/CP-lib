@@ -3,7 +3,7 @@
 #include "../../../math/qpow/basic/lib.hpp"
 #include "../../../nt/proot/uint/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class mint>
 struct ntt {
@@ -82,4 +82,4 @@ struct ntt {
   }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

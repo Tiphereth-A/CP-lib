@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::ds {
+namespace tifa_libs {
 namespace segtree_impl_ {
 template <bool enable_tag, class T, auto op, class F, auto mapping, auto composition>
 requires requires(T val, T new_val, F tag, F new_tag) {
@@ -179,4 +179,4 @@ class segtree_notag : public segtree_impl_::segtree<false, T, op, T, mapping, ma
   CEXP segtree_notag(cT_(T) e, u32 n) NE : base(e, e, n) {}
 };
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

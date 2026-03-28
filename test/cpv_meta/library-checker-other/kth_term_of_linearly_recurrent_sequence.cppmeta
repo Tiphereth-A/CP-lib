@@ -22,6 +22,6 @@ int main() {
     std::cin >> c[i];
     c[i] = -c[i];
   }
-  std::cout << tifa_libs::math::nth_term_lrec<poly>(k, a, c) << '\n';
+  std::cout << tifa_libs::nth_term_lrec<poly>(k, a, c) << '\n';
   return 0;
 }

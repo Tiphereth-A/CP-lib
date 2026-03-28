@@ -17,7 +17,6 @@
 - nt: 数论
 - math: 其他数学
 - str: 字符串
-- rand: 随机数 随机化算法
 - edh: 编解码 Hash 序列化 反序列化
 - game: 游戏 博弈论
 - fast: 卡常

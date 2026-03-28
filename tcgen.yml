@@ -7,11 +7,10 @@ mints:
   default_content:
     requirements: null
     include:
-    - src/math/ds/mint/lib.hpp
-    - src/math/mint/$m/lib.hpp
+    - src/math/ds/mint/$m/lib.hpp
     after_include: |
       using namespace tifa_libs;
-      using mint = math::mint<math::mint_$m, MOD>;
+      using mint = mint_$m<MOD>;
     main_begin: null
   member:
     ms: null
@@ -22,11 +21,10 @@ mintd:
   default_content:
     requirements: null
     include:
-    - src/math/ds/mint/lib.hpp
-    - src/math/mint/$m/lib.hpp
+    - src/math/ds/mint/$m/lib.hpp
     after_include: |
       using namespace tifa_libs;
-      using mint = math::mint<math::mint_$m, __LINE__>;
+      using mint = mint_$m<__LINE__>;
     main_begin: |
       mint::set_mod(MOD);
   member:
@@ -75,12 +73,12 @@ hashset:
       after_include: |
         using namespace tifa_libs;
         template <class T>
-        using hashset = __gnu_pbds::cc_hash_table<T, __gnu_pbds::null_type, std::conditional_t<std::is_void_v<hashfunc_t<T>>, typename __gnu_pbds::detail::default_hash_fn<T>::type, hashfunc_t<T>>>;
+        using hashset = __gnu_pbds::cc_hash_table<T, __gnu_pbds::null_type, std::conditional_t<std::is_void_v<hashfunc_t<T>>, TPN __gnu_pbds::detail::default_hash_fn<T>::type, hashfunc_t<T>>>;
     pbds_gp_hset:
       after_include: |
         using namespace tifa_libs;
         template <class T>
-        using hashset = __gnu_pbds::gp_hash_table<T, __gnu_pbds::null_type, std::conditional_t<std::is_void_v<hashfunc_t<T>>, typename __gnu_pbds::detail::default_hash_fn<T>::type, hashfunc_t<T>>>;
+        using hashset = __gnu_pbds::gp_hash_table<T, __gnu_pbds::null_type, std::conditional_t<std::is_void_v<hashfunc_t<T>>, TPN __gnu_pbds::detail::default_hash_fn<T>::type, hashfunc_t<T>>>;
 hashmap:
   priority: 300
   default_content:
@@ -99,12 +97,12 @@ hashmap:
       after_include: |
         using namespace tifa_libs;
         template <class K, class V>
-        using hashmap = __gnu_pbds::cc_hash_table<K, V, std::conditional_t<std::is_void_v<hashfunc_t<K>>, typename __gnu_pbds::detail::default_hash_fn<K>::type, hashfunc_t<K>>>;
+        using hashmap = __gnu_pbds::cc_hash_table<K, V, std::conditional_t<std::is_void_v<hashfunc_t<K>>, TPN __gnu_pbds::detail::default_hash_fn<K>::type, hashfunc_t<K>>>;
     pbds_gp_hmap:
       after_include: |
         using namespace tifa_libs;
         template <class K, class V>
-        using hashmap = __gnu_pbds::gp_hash_table<K, V, std::conditional_t<std::is_void_v<hashfunc_t<K>>, typename __gnu_pbds::detail::default_hash_fn<K>::type, hashfunc_t<K>>>;
+        using hashmap = __gnu_pbds::gp_hash_table<K, V, std::conditional_t<std::is_void_v<hashfunc_t<K>>, TPN __gnu_pbds::detail::default_hash_fn<K>::type, hashfunc_t<K>>>;
 hashstr:
   priority: 400
   default_content:
@@ -115,13 +113,12 @@ hashstr:
   member:
     hashstr1:
       include:
-      - src/math/ds/mint/lib.hpp
-      - src/math/mint/be61n1/lib.hpp
+      - src/math/ds/mint/be61n1/lib.hpp
       - src/str/hash/substr/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using mint = math::mint<math::mint_2e61n1>;
-        using hashstr = str::hash_substr<mint>;
+        using mint = mint_2e61n1;
+        using hashstr = hash_substr<mint>;
     hashstr2s:
       requirements:
       - [mints]
@@ -129,9 +126,9 @@ hashstr:
       - src/str/hash/substr2/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using mint0 = math::mint<math::mint_$mb0b, 998244353>;
-        using mint1 = math::mint<math::mint_$mb0b, 1000000007>;
-        using hashstr = str::hash_substr2<mint0, mint1>;
+        using mint0 = mint_$mb0b<998244353>;
+        using mint1 = mint_$mb0b<1000000007>;
+        using hashstr = hash_substr2<mint0, mint1>;
     hashstr2d:
       requirements:
       - [mintd]
@@ -139,9 +136,9 @@ hashstr:
       - src/str/hash/substr2/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using mint0 = math::mint<math::mint_$mb0b, __LINE__>;
-        using mint1 = math::mint<math::mint_$mb0b, __LINE__>;
-        using hashstr = str::hash_substr2<mint0, mint1>;
+        using mint0 = mint_$mb0b<__LINE__>;
+        using mint1 = mint_$mb0b<__LINE__>;
+        using hashstr = hash_substr2<mint0, mint1>;
       main_begin: |
         mint0::set_mod(998244353);
         mint1::set_mod(1000000007);
@@ -161,10 +158,10 @@ poly_anymod:
       - src/fps/ds/ntt3/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using mint_$m1 = math::mint<math::mint_$mb1b, 167772161>;
-        using mint_$m2 = math::mint<math::mint_$mb1b, 469762049>;
-        using mint_$m3 = math::mint<math::mint_$mb1b, 754974721>;
-        using poly = math::poly3ntt<mint, mint_$m1, mint_$m2, mint_$m3>;
+        using mint_$m1 = mint_$mb1b<167772161>;
+        using mint_$m2 = mint_$mb1b<469762049>;
+        using mint_$m3 = mint_$mb1b<754974721>;
+        using poly = poly3ntt<mint, mint_$m1, mint_$m2, mint_$m3>;
     pmtt:
       requirements:
       - [mints, mintd]
@@ -172,7 +169,7 @@ poly_anymod:
       - src/fps/ds/mtt/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using poly = math::polymtt<mint>;
+        using poly = polymtt<mint>;
 poly_nttmod:
   priority: 500
   default_content:
@@ -188,7 +185,7 @@ poly_nttmod:
       - src/fps/ds/ntt/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using poly = math::polyntt<mint>;
+        using poly = polyntt<mint>;
 conv_anymod:
   priority: 600
   default_content:
@@ -204,18 +201,18 @@ conv_anymod:
       - src/conv/add/ntt3/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using mint_$m0 = math::mint<math::mint_$mb0b, 167772161>;
-        using mint_$m1 = math::mint<math::mint_$mb0b, 469762049>;
-        using mint_$m2 = math::mint<math::mint_$mb0b, 754974721>;
-        using ntt_$m0_t = math::ntt<mint_$m0>;
-        using ntt_$m1_t = math::ntt<mint_$m1>;
-        using ntt_$m2_t = math::ntt<mint_$m2>;
+        using mint_$m0 = mint_$mb0b<167772161>;
+        using mint_$m1 = mint_$mb0b<469762049>;
+        using mint_$m2 = mint_$mb0b<754974721>;
+        using ntt_$m0_t = ntt<mint_$m0>;
+        using ntt_$m1_t = ntt<mint_$m1>;
+        using ntt_$m2_t = ntt<mint_$m2>;
         using vec_t = vecuu;
         auto conv_func(vec_t CR a, vec_t CR b) {
           ntt_$m0_t ntt0;
           ntt_$m1_t ntt1;
           ntt_$m2_t ntt2;
-          return math::conv_3ntt_u64(ntt0, ntt1, ntt2, a, b, MOD);
+          return conv_3ntt_u64(ntt0, ntt1, ntt2, a, b, MOD);
         }
     3ntt:
       requirements:
@@ -225,18 +222,18 @@ conv_anymod:
       - src/conv/add/ntt3/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using mint_$m0 = math::mint<math::mint_$mb1b, 167772161>;
-        using mint_$m1 = math::mint<math::mint_$mb1b, 469762049>;
-        using mint_$m2 = math::mint<math::mint_$mb1b, 754974721>;
-        using ntt_$m0_t = math::ntt<mint_$m0>;
-        using ntt_$m1_t = math::ntt<mint_$m1>;
-        using ntt_$m2_t = math::ntt<mint_$m2>;
+        using mint_$m0 = mint_$mb1b<167772161>;
+        using mint_$m1 = mint_$mb1b<469762049>;
+        using mint_$m2 = mint_$mb1b<754974721>;
+        using ntt_$m0_t = ntt<mint_$m0>;
+        using ntt_$m1_t = ntt<mint_$m1>;
+        using ntt_$m2_t = ntt<mint_$m2>;
         using vec_t = vec<mint>;
         auto conv_func(vec_t CR a, vec_t CR b) {
           ntt_$m0_t ntt0;
           ntt_$m1_t ntt1;
           ntt_$m2_t ntt2;
-          return math::conv_3ntt(ntt0, ntt1, ntt2, a, b);
+          return conv_3ntt(ntt0, ntt1, ntt2, a, b);
         }
     mtt:
       requirements:
@@ -247,8 +244,8 @@ conv_anymod:
         using namespace tifa_libs;
         using vec_t = vec<mint>;
         auto conv_func(vec_t CR a, vec_t CR b) {
-          math::fft_r2<long double> fft;
-          return math::conv_mtt(fft, a, b);
+          fft_r2<long double> fft;
+          return conv_mtt(fft, a, b);
         }
 conv_nttmod:
   priority: 600
@@ -267,7 +264,7 @@ conv_nttmod:
         using namespace tifa_libs;
         using vec_t = poly;
         auto conv_func(vec_t CR a, vec_t CR b) {
-          return math::conv_czt(a, b);
+          return conv_czt(a, b);
         }
     ntt:
       requirements:
@@ -277,11 +274,11 @@ conv_nttmod:
       - src/conv/trans/ntt/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using ntt_$m_t = math::ntt<mint>;
+        using ntt_$m_t = ntt<mint>;
         using vec_t = vec<mint>;
         auto conv_func(vec_t CR a, vec_t CR b) {
           ntt_$m_t ntt;
-          return math::conv_dft(ntt, a, b);
+          return conv_dft(ntt, a, b);
         }
 conv_large:
   priority: 600
@@ -298,11 +295,11 @@ conv_large:
       - src/conv/trans/ntt/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using ntt_$m_t = math::ntt<mint>;
+        using ntt_$m_t = ntt<mint>;
         using vec_t = vec<mint>;
         auto conv_func(vec_t CR a, vec_t CR b) {
           ntt_$m_t ntt;
-          return math::conv_ntt_large(ntt, a, b);
+          return conv_ntt_large(ntt, a, b);
         }
 factorial:
   priority: 700
@@ -319,7 +316,7 @@ factorial:
       - src/math/fact/helper/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using fact_t = math::fact_helper<mint>;
+        using fact_t = fact_helper<mint>;
     factl_helper:
       requirements:
       - [poly_anymod, poly_nttmod]
@@ -327,4 +324,4 @@ factorial:
       - src/math/fact/helper_l/lib.hpp
       after_include: |
         using namespace tifa_libs;
-        using fact_t = math::factl_helper<poly>;
+        using fact_t = factl_helper<poly>;

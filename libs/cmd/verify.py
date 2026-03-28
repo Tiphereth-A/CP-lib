@@ -47,11 +47,13 @@ def verify_codes(src: str, thread_limit: int, time_limit: float, temp_path: str,
                 src=shlex.quote(x),
                 out=shlex.quote(_out_file))), {})
 
-    compile_failed = set(run_command(_compile, files, thread_limit))
+    compile_failed = run_command(_compile, files, thread_limit)
+    compile_failed_files = set(
+        i[1] for i in compile_failed) if compile_failed else set()
 
     run_cases: list[tuple[str, str, str]] = []
     for out_f, src_f, samples in out_src_samples.queue:
-        if src_f in compile_failed:
+        if src_f in compile_failed_files:
             continue
         for inp, expected in samples:
             run_cases.append((out_f, inp, expected))
@@ -77,8 +79,8 @@ def verify_codes(src: str, thread_limit: int, time_limit: float, temp_path: str,
 
         return ([out_f], {'subprocess_args': {'input': inp}, 'post_run': _post, 'hide_stdout': True})
 
-    run_failed = run_command(
-        _run, run_cases, thread_limit, time_limit) if run_cases else []
+    run_failed = [i[1] for i in run_command(
+        _run, run_cases, thread_limit, time_limit)] if run_cases else []
 
     if compile_failed:
         logger.error(

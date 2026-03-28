@@ -1,4 +1,6 @@
+- graph_c: 图基类
+- info: 额外信息
 - alist: 邻接表
-- alists: 静态邻接表
+- slist: 静态邻接表
 - amat: 邻接矩阵
 - eog: 链式前向星

@@ -2,7 +2,7 @@
 
 #include "../../nim_prod/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <std::unsigned_integral T, T (*prod)(T, T)>
 struct nimber {
@@ -32,4 +32,4 @@ using nimber16 = nimber<u16, nimprod16>;
 using nimber32 = nimber<u32, nimprod32>;
 using nimber64 = nimber<u64, nimprod64>;
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

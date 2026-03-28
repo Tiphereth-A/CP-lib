@@ -5,7 +5,7 @@
 #include "../cs/lib.hpp"
 #include "../pop/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // relation between polygon/convex hull and circle
 // clang-format off
@@ -22,4 +22,4 @@ CEXP RELPoC relation_PoC(polygon<FP> CR po, circle<FP> CR c) NE {
   return x;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

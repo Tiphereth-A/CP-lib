@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class Mat>
 CEXP Mat transpose(Mat CR mat) NE {
@@ -12,4 +12,4 @@ CEXP Mat transpose(Mat CR mat) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

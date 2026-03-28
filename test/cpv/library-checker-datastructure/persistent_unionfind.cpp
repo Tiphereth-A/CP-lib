@@ -22,7 +22,7 @@ int main() {
     else
       qry[(u32)k].emplace_back(cnt++, u, v);
   }
-  ds::dsu_pd dsu(n + 1);
+  dsu_pd dsu(n + 1);
   auto dfs = [&](auto&& dfs, u32 v) -> void {
     for (auto [i, x, y] : qry[v]) ans[i] = dsu.same(x, y);
     for (auto [_, x, y] : tr[v]) {

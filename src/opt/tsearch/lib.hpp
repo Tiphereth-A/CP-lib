@@ -3,7 +3,7 @@
 #include "../../util/consts/lib.hpp"
 #include "../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::opt {
+namespace tifa_libs {
 
 // @return $\argmin_{l\leq x\leq r}\{f\}$
 template <arithm_c I, class F>
@@ -34,4 +34,4 @@ CEXP auto tsearch(I l, I r, F&& f) NE {
   } while (1);
 }
 
-}  // namespace tifa_libs::opt
+}  // namespace tifa_libs

@@ -3,7 +3,7 @@
 #include "../../ds/c/lib.hpp"
 #include "../../ds/l/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // relation between circle and segment/line
 // clang-format off
@@ -18,4 +18,4 @@ CEXP RELCS relation_CS(circle<FP> CR c, line<FP> CR s) NE {
   return RELCS::otherwise;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

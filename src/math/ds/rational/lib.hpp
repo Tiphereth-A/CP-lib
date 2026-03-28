@@ -3,7 +3,7 @@
 #include "../../../nt/gl/gcd/lib.hpp"
 #include "../../../util/traits/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <int_c T>
 struct rational {
@@ -93,4 +93,4 @@ struct rational {
   CEXP U convert_to() CNE { return U(num) / U(den); }
 };
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

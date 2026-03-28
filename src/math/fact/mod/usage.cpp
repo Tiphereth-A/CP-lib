@@ -2,13 +2,12 @@
 // cplib.manager: PROBLEM https://www.luogu.com.cn/problem/P5282
 
 #include "../../../fps/ds/mtt/lib.hpp"
-#include "../../ds/mint/lib.hpp"
-#include "../../mint/md/lib.hpp"
+#include "../../ds/mint/md/lib.hpp"
 #include "lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_md, __LINE__>;
-using poly = math::polymtt<mint>;
+using mint = mint_md<__LINE__>;
+using poly = polymtt<mint>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
@@ -18,7 +17,7 @@ int main() {
     u32 n, p;
     std::cin >> n >> p;
     mint::set_mod(p);
-    std::cout << math::fact_mint<poly>(n) << '\n';
+    std::cout << fact_mint<poly>(n) << '\n';
   }
 }
 

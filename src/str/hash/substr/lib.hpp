@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 template <class mint, u32 base = 131>
 class hash_substr {
@@ -25,4 +25,4 @@ class hash_substr {
   }
 };
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

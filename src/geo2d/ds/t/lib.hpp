@@ -5,7 +5,7 @@
 #include "../../dis/pp/lib.hpp"
 #include "../../dot/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 template <class FP>
 struct triangle {
@@ -34,4 +34,4 @@ struct triangle {
   CEXP bool is_obtuse() CNE { return is_neg(dot(A, B, C)) || is_neg(dot(B, C, A)) || is_neg(dot(C, A, B)); }
 };
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

@@ -4,18 +4,17 @@
 #include "../../../src/util/op/pair/lib.hpp"
 // clang-format on
 
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 #include "../../../src/nt/lsieve/impl2/lib.hpp"
 
 using namespace tifa_libs;
 using std::cin, std::cout;
-using mint = math::mint<math::mint_ms, 998244353>;
+using mint = mint_ms<998244353>;
 
 int main() {
   u32 n;
   cin >> n;
-  math::lsieve2 ls(n);
+  lsieve2 ls(n);
   ptt<mint> lst;
   vecpt<mint> g = ls.run([&](u32 p, u32 e) {
     if (e == 1) return lst = ptt<mint>(p + (p ^ 1), 1 + (p ^ 1));

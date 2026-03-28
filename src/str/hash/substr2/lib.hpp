@@ -2,7 +2,7 @@
 
 #include "../substr/lib.hpp"
 
-namespace tifa_libs::str {
+namespace tifa_libs {
 
 template <class mint0, class mint1, u32 base = 131>
 class hash_substr2 {
@@ -15,4 +15,4 @@ class hash_substr2 {
   CEXP std::pair<mint0, mint1> get(u32 pos, u32 len = -1_u32) CNE { return {h0.get(pos, len), h1.get(pos, len)}; }
 };
 
-}  // namespace tifa_libs::str
+}  // namespace tifa_libs

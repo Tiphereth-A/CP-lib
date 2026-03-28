@@ -2,7 +2,7 @@
 
 #include "../ds/l/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // projection to a line
 template <class FP>
@@ -14,4 +14,4 @@ CEXP point<FP> proj(line<FP> CR l, point<FP> CR p) NE {
 template <class FP>
 CEXP point<FP> reflect(line<FP> CR l, point<FP> CR p) NE { return proj(l, p) * 2 - p; }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

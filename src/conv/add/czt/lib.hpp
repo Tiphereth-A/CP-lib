@@ -4,7 +4,7 @@
 #include "../../../math/qpow/basic/lib.hpp"
 #include "../../../nt/proot/uint/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class poly>
 CEXP auto conv_czt(poly l, poly r, u32 ans_size = 0) NE {
@@ -21,4 +21,4 @@ CEXP auto conv_czt(poly l, poly r, u32 ans_size = 0) NE {
   return l *= mint(s).inv();
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

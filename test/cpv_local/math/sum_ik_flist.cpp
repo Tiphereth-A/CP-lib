@@ -6,7 +6,6 @@
 #include "../base.hpp"
 
 using namespace tifa_libs;
-using math::mpi;
 
 void test(u64 n) {
   auto sumik_mpi = [](u64 k, u64 n) {
@@ -16,7 +15,7 @@ void test(u64 n) {
   };
 
   u64 k = 0;
-  for (auto f : math::sum_ik<mpi>) {
+  for (auto f : sum_ik<mpi>) {
     timer_(check(f(n), sumik_mpi(k, n), check_param(k), check_param(n)));
     ++k;
   }

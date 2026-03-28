@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
+#include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 #include "../../../src/tree/hld/lib.hpp"
@@ -7,6 +8,7 @@
 using namespace tifa_libs;
 using T = std::pair<i64, i32>;
 using F = i64;
+using tree_t = tree<alist<>>;
 
 T op(T a, T b) { return T{a.first + b.first, a.second + b.second}; }
 void mapping(T& a, F f) { a.first += f; }
@@ -18,9 +20,9 @@ int main() {
   vecii b(n);
   vec<T> a(n);
   for (auto& x : b) fin_uint >> x;
-  graph::tree tr_(n);
+  tree_t tr_(n);
   for (u32 i = 1, p; i < n; ++i) fin_uint >> p, tr_.add_arc((u32)p, (u32)i);
-  graph::hld<T, op, F, mapping, composition> tr({0, 0}, 0, tr_);
+  hld<tree_t, T, op, F, mapping, composition> tr({0, 0}, 0, tr_);
   flt_ (u32, i, 0, n) a[tr.info.dfn[i]].first = b[i], a[tr.info.dfn[i]].second = 1;
   tr.build(a);
   for (u32 i = 0, opt, u; i < q; ++i) {

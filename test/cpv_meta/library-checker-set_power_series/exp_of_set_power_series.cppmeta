@@ -17,6 +17,6 @@ int main() {
   tifa_libs::fin_uint >> n;
   vec<mint> b(1 << n);
   tifa_libs::fin_uint >> b;
-  tifa_libs::fout << tifa_libs::math::exp_fpssps(n, b) << '\n';
+  tifa_libs::fout << tifa_libs::exp_fpssps(n, b) << '\n';
   return 0;
 }

@@ -8,7 +8,7 @@ using std::cin, std::cout;
 int main() {
   u32 m;
   cin >> m;
-  ds::rbtree<int> bt;
+  rbtree<int> bt;
 
   for (u32 i = 0, opt; i < m; ++i) {
     int x;

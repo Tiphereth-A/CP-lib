@@ -3,13 +3,12 @@
 #include "../deriv/lib.hpp"
 #include "../mpe/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // Lagrange interpolation in O(n \log^2 n)
 // @return f s.t. f(x[i]) = y[i]
-template <template <class... Ts> class ccore, class mint, class... args>
-CEXP auto interp_fps(poly<ccore, mint, args...> CR x, poly<ccore, mint, args...> CR y) NE {
-  using poly_t = poly<ccore, mint, args...>;
+template <poly_c poly_t>
+CEXP auto interp_fps(poly_t CR x, poly_t CR y) NE {
   class SegTree {
     CEXP void init_(poly_t CR a, u32 k, u32 l, u32 r) NE {
       if (l == r) return void(t[k] = poly_t{-a[l], 1});
@@ -36,4 +35,4 @@ CEXP auto interp_fps(poly<ccore, mint, args...> CR x, poly<ccore, mint, args...>
   return sgt(t);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

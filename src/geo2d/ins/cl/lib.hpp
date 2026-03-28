@@ -4,7 +4,7 @@
 #include "../../ds/c/lib.hpp"
 #include "../../ds/l/lib.hpp"
 
-namespace tifa_libs::geo {
+namespace tifa_libs {
 
 // intersection point of circle and line
 // maybe duplicate
@@ -20,4 +20,4 @@ CEXP auto ins_CL(circle<FP> CR c, line<FP> CR l) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::geo
+}  // namespace tifa_libs

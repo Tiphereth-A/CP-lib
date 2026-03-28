@@ -1,19 +1,19 @@
 #pragma once
 
 #include "../../../ds/heap/radix/lib.hpp"
-#include "../../../util/traits/graph/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
+#include "../../ds/graph_c/lib.hpp"
 
-namespace tifa_libs::graph {
+namespace tifa_libs {
 
-template <bool get_edges, alistw_c G, class T = TPN G::w_t>
+template <bool get_edges, wgraph_c G, class T = TPN G::Et>
 auto steiner_tree(G CR g, spnu x, vec<T> CR vw = {}, T INF = inf_v<T>) NE {
-  const u32 n = (u32)g.size(), k = (u32)x.size();
+  const u32 n = g.vsize(), k = (u32)x.size();
   const bool has_vweight = !vw.empty();
   if (has_vweight) assert(!uint_c<T>);
   vvec<T> dp(n, vec<T>(1 << k, INF));
   flt_ (u32, i, 0, k) dp[x[i]][1 << i] = 0;
-  ds::rheap<T, u32> q;
+  rheap<T, u32> q;
   auto dij = [&](u32 s) {
     while (!q.empty()) {
       auto [dis, u] = q.top();
@@ -82,4 +82,4 @@ auto steiner_tree(G CR g, spnu x, vec<T> CR vw = {}, T INF = inf_v<T>) NE {
   } else return dp[x[0]].back();
 }
 
-}  // namespace tifa_libs::graph
+}  // namespace tifa_libs

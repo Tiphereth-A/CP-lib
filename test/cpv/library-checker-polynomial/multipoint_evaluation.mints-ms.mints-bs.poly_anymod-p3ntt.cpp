@@ -9,23 +9,22 @@ using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
 
 #include "../../../src/fps/ds/ntt3/lib.hpp"
-#include "../../../src/math/ds/mint/lib.hpp"
-#include "../../../src/math/mint/bs/lib.hpp"
-#include "../../../src/math/mint/ms/lib.hpp"
+#include "../../../src/math/ds/mint/bs/lib.hpp"
+#include "../../../src/math/ds/mint/ms/lib.hpp"
 
 using namespace tifa_libs;
-using mint = math::mint<math::mint_ms, MOD>;
+using mint = mint_ms<MOD>;
 using namespace tifa_libs;
-using mint_p3ntt1 = math::mint<math::mint_bs, 167772161>;
-using mint_p3ntt2 = math::mint<math::mint_bs, 469762049>;
-using mint_p3ntt3 = math::mint<math::mint_bs, 754974721>;
-using poly = math::poly3ntt<mint, mint_p3ntt1, mint_p3ntt2, mint_p3ntt3>;
+using mint_p3ntt1 = mint_bs<167772161>;
+using mint_p3ntt2 = mint_bs<469762049>;
+using mint_p3ntt3 = mint_bs<754974721>;
+using poly = poly3ntt<mint, mint_p3ntt1, mint_p3ntt2, mint_p3ntt3>;
 
 int main() {
   u32 n, m;
   tifa_libs::fin_uint >> n >> m;
   poly a(n), p(m);
   tifa_libs::fin_uint >> a >> p;
-  tifa_libs::fout << tifa_libs::math::mpe_fps(a, p) << '\n';
+  tifa_libs::fout << tifa_libs::mpe_fps(a, p) << '\n';
   return 0;
 }

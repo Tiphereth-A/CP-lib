@@ -2,7 +2,7 @@
 
 #include "../../ds/mat/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // [u] [d] -> [u; d]
 template <class T>
@@ -16,4 +16,4 @@ CEXP matrix<T> merge_ud_mat(matrix<T> CR u, matrix<T> CR d) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

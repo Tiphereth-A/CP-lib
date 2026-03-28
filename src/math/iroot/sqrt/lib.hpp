@@ -2,7 +2,7 @@
 
 #include "../../../util/alias/num/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP u32 isqrt(u64 x) NE {
   retif_((!x) [[unlikely]], 0);
@@ -19,4 +19,4 @@ CEXP u32 isqrt(u64 x) NE {
   return u;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

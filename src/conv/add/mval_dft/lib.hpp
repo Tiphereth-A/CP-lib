@@ -3,7 +3,7 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../../util/traits/math/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // @param l l[j]=$\sum l_j \prod_i x_i^{j_i}$, where $j=\sum_i j_i n_i$
 // @param r similar as {@code l} with same length
@@ -46,4 +46,4 @@ CEXP vec<mint> conv_mval_dft_um(DFT_t& dft, vec<T> CR l, vec<T> CR r, vecu CR ba
   return conv_mval_dft(dft, l_, r_, base);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -7,7 +7,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   strn s, p;
   std::cin >> s >> p;
-  auto _ = str::kmp(p, s);
+  auto _ = kmp(p, s);
   for (auto i : _) std::cout << i << '\n';
   return 0;
 }

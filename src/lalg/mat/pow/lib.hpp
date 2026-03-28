@@ -2,7 +2,7 @@
 
 #include "../../../math/qpow/basic/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class Mat>
 CEXP Mat pow(Mat CR mat, u64 b) NE {
@@ -13,4 +13,4 @@ CEXP Mat pow(Mat CR mat, u64 b) NE {
   return qpow(mat, b, id);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

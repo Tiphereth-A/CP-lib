@@ -1,12 +1,12 @@
 // competitive-verifier: STANDALONE
 
 #include "../../../src/edh/code39/lib.hpp"
-#include "../../../src/rand/gen/lib.hpp"
+#include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 
 using namespace tifa_libs;
-rand::gen<char> g(0, 127);
-rand::gen<u32> g2(0, 43);
+rand_gen<char> g(0, 127);
+rand_gen<u32> g2(0, 43);
 
 void test(u32 n) {
   strn s(n, '\0');

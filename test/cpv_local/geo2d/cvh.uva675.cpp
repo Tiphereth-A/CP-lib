@@ -5,8 +5,8 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f64;
-using Point2 = geo::point<data_t>;
-using ConvexHull2 = geo::cvh<data_t>;
+using Point2 = point<data_t>;
+using ConvexHull2 = cvh<data_t>;
 
 int main() {
   cout << std::fixed << std::setprecision(0);
@@ -33,6 +33,7 @@ int main() {
         }
       flt_ (usz, i, start, now.size()) cout << now[i].x << ", " << now[i].y << '\n';
       flt_ (usz, i, 0, start + 1) cout << now[i].x << ", " << now[i].y << '\n';
+      cout << '\n';
 
       vp.clear();
     } else {

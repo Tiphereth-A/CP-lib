@@ -2,7 +2,7 @@
 
 #include "../../util/alias/others/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 // Given alphabet $[0,k)$ constructs a cyclic string of length $k^n$ that contains every length $n$ string as substr
 CEXP vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) NE {
@@ -31,4 +31,4 @@ CEXP vecu deBruijn(u32 n, u32 k, u32 maxsz = 0) NE {
   return ret;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

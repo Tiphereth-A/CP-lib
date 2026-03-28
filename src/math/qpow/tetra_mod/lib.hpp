@@ -2,7 +2,7 @@
 
 #include "../../../nt/euler_phi/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 namespace qtetra_mod_impl_ {
 CEXP u64 mpow(u64 a, u64 b, u64 m, u64& f) NE {
   retif_((a == 1 || b == 0) [[unlikely]], 1);
@@ -32,4 +32,4 @@ CEXP u64 qtetra_mod(u64 a, u64 b, u64 m) NE {
   return qtetra_mod_impl_::qtetra(a, b, m, f) % m;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

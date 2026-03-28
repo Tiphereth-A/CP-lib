@@ -2,7 +2,7 @@
 
 #include "../safe_mod/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 CEXP i64 mul_mod_s(i64 a, i64 b, u64 mod) NE {
   if (std::bit_width((u64)abs(a)) + std::bit_width((u64)abs(b)) < 64) return safe_mod(a * b % (i64)mod, mod);
@@ -13,4 +13,4 @@ CEXP u64 mul_mod_u(u64 a, u64 b, u64 mod) NE {
   return (u64)((u128)a * b % mod);
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

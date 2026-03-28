@@ -3,8 +3,12 @@
 #include "../../../util/alias/others/lib.hpp"
 #include "../../bt_trv/lib.hpp"
 
-namespace tifa_libs::ds {
-
+namespace tifa_libs {
+namespace ostnode_impl_ {
+template <class T, class K>
+struct ostree_node_t {};
+}  // namespace ostnode_impl_
+namespace ost_impl_ {
 struct ostree_tag_base {
   template <tp2_ds_c pointer>
   static CEXP u32 size(pointer p) NE { retif_((p), p->sz, 0); }
@@ -88,18 +92,19 @@ struct bst_op : leaf {
   }
 };
 using bst_tag = bst_op<bst_op_leaf>;
-
-template <class T, class K>
-struct ostree_node_t {};
+}  // namespace ost_impl_
+namespace ostnode_impl_ {
 template <class K>
-struct ostree_node_t<bst_tag, K> {
+struct ostree_node_t<ost_impl_::bst_tag, K> {
   ostree_node_t *fa, *ch[2];
   K data;
   u32 sz;
   // @return child direction of this non-root point
   CEXP bool child_dir() CNE { return this == fa->ch[1]; }
 };
-
+}  // namespace ostnode_impl_
+namespace ost_impl_ {
+using namespace ostnode_impl_;
 template <class K, std::derived_from<ostree_tag_base> tag_t, class Comp = std::less<K>>
 requires requires(ostree_node_t<tag_t, K>*& root, ostree_node_t<tag_t, K> n, tag_t tag, bool dir, K key, alc<ostree_node_t<tag_t, K>> alloc, Comp comp) {
   n.fa->ch[0]->ch[1]->data;
@@ -183,8 +188,9 @@ struct ostree : tag_t {
  private:
   alc<node_t> alloc;
 };
+}  // namespace ost_impl_
 
 template <class K, class Comp = std::less<K>>
-using bstree = ostree<K, bst_tag, Comp>;
+using bstree = ost_impl_::ostree<K, ost_impl_::bst_tag, Comp>;
 
-}  // namespace tifa_libs::ds
+}  // namespace tifa_libs

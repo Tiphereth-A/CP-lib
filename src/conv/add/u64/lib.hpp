@@ -3,7 +3,7 @@
 #include "../../trans/fft_r3/lib.hpp"
 #include "../naive/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 vecuu conv_u64(vec<T> CR a, vec<T> CR b, u32 ans_size = 0) NE {
@@ -70,4 +70,4 @@ vecuu conv_u64(vec<T> CR a, vec<T> CR b, u32 ans_size = 0) NE {
   return ans;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

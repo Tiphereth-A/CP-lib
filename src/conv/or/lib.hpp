@@ -2,7 +2,7 @@
 
 #include "../trans/zmt_subset/lib.hpp"
 
-namespace tifa_libs::math {
+namespace tifa_libs {
 
 template <class T>
 CEXP vec<T> conv_or(vec<T> l, vec<T> r) NE {
@@ -12,4 +12,4 @@ CEXP vec<T> conv_or(vec<T> l, vec<T> r) NE {
   return l;
 }
 
-}  // namespace tifa_libs::math
+}  // namespace tifa_libs

@@ -9,7 +9,7 @@ int main() {
   strn s;
   std::cin >> s;
   s = " " + s;
-  str::suffix_array sa(s);
+  suffix_array sa(s);
   flt_ (u32, i, 1, (u32)s.size()) std::cout << sa.sa[i] << " \n"[i + 1 == s.size()];
 }
 

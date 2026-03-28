@@ -10,7 +10,7 @@ int main() {
   while (q--) {
     u64 n;
     std::cin >> n;
-    std::cout << (math::is_prime(n) ? "Yes" : "No") << '\n';
+    std::cout << (is_prime(n) ? "Yes" : "No") << '\n';
   }
   return 0;
 }

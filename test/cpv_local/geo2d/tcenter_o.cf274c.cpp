@@ -1,4 +1,5 @@
 // competitive-verifier: LOCALCASE test/cpv_local/_data/codeforces/274C
+// competitive-verifier: ERROR 0.0001
 
 #include "../../../src/geo2d/ds/c/lib.hpp"
 #include "../../../src/geo2d/pred/is_on_same_l/lib.hpp"
@@ -8,9 +9,9 @@
 using namespace tifa_libs;
 using std::cin, std::cout;
 using data_t = f64;
-using Point2 = geo::point<data_t>;
-using Circle2 = geo::circle<data_t>;
-using Triangle2 = geo::triangle<data_t>;
+using Point2 = point<data_t>;
+using Circle2 = circle<data_t>;
+using Triangle2 = triangle<data_t>;
 
 int main() {
   cout << std::fixed << std::setprecision(20);
@@ -34,21 +35,21 @@ int main() {
   flt_ (u32, i, 0, n)
     flt_ (u32, j, i + 1, n)
       flt_ (u32, k, j + 1, n) {
-        if (geo::is_on_same_L(vp[i], vp[j], vp[k])) continue;
+        if (is_on_same_L(vp[i], vp[j], vp[k])) continue;
         Triangle2 t{vp[i], vp[j], vp[k]};
         if (t.is_obtuse()) continue;
         if (t.is_right()) {
-          if (is_zero(dot(vp[i], vp[j], vp[k])) && exists.find(geo::reflect({vp[j], vp[k]}, vp[i])) == end(exists)) continue;
-          if (is_zero(dot(vp[j], vp[k], vp[i])) && exists.find(geo::reflect({vp[k], vp[i]}, vp[j])) == end(exists)) continue;
-          if (is_zero(dot(vp[k], vp[i], vp[j])) && exists.find(geo::reflect({vp[i], vp[j]}, vp[k])) == end(exists)) continue;
+          if (is_zero(dot(vp[i], vp[j], vp[k])) && exists.find(reflect({vp[j], vp[k]}, vp[i])) == end(exists)) continue;
+          if (is_zero(dot(vp[j], vp[k], vp[i])) && exists.find(reflect({vp[k], vp[i]}, vp[j])) == end(exists)) continue;
+          if (is_zero(dot(vp[k], vp[i], vp[j])) && exists.find(reflect({vp[i], vp[j]}, vp[k])) == end(exists)) continue;
         }
-        circles.insert(Circle2{geo::center_O(t), geo::radius_O(t)});
+        circles.insert(Circle2{center_O(t), radius_O(t)});
       }
   data_t ans = -1;
   for (auto [o, r] : circles) {
     bool f = 0;
     for (auto CR p : vp)
-      if ((f |= is_lt(geo::dist_PP(p, o), r))) break;
+      if ((f |= is_lt(dist_PP(p, o), r))) break;
     if (f) continue;
     ans = std::max(ans, r);
   }

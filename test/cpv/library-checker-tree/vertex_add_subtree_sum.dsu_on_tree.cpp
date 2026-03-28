@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
 #include "../../../src/ds/fenwick/d1/lib.hpp"
+#include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 #include "../../../src/tree/dfs/info/lib.hpp"
@@ -15,7 +16,7 @@ int main() {
   fin_uint >> n >> q;
   vecii a(n);
   for (auto& x : a) fin_uint >> x;
-  graph::tree tr(n);
+  tree<alist<>> tr(n);
   for (u32 i = 1, p; i < n; ++i) fin_uint >> p, tr.add_arc((u32)p, (u32)i), tr.add_arc((u32)i, (u32)p);
 
   vvecpti upd(n);
@@ -31,11 +32,11 @@ int main() {
     } else que[u].push_back((i32)i);
   }
 
-  ds::fenwick<i64> bit(q + 2);
+  fenwick<i64> bit(q + 2);
   vecii ans(q + 1, INF);
 
-  graph::tree_dfs_info<graph::tree, graph::tdi_dfn, graph::tdi_maxson, graph::tdi_maxdfn, graph::tdi_euler> info(tr);
-  graph::dsu_on_tree(
+  tree_dfs_info<tree<alist<>>, tdi_dfn, tdi_maxson, tdi_maxdfn, tdi_euler> info(tr);
+  dsu_on_tree(
       tr, info.dfn, info.sz, info.maxson, info.maxdfn, info.euler,
       [&](u32 i) {
         for (auto&& [j, x] : upd[i]) bit.add(u32(j + 1), x);
