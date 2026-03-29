@@ -14,14 +14,18 @@ CEXP i32 ge_mat(matrix<T>& mat, Is0 is0, bool clear_u = true) NE {
   u32 rk = 0;
   bool neg = false;
   auto swapr = [&](u32 i, u32 c) NE {
-    auto ir = begin(mat.data()) + i,
-         ir2 = max_element(ir, end(mat.data()), [&](auto CR l, auto CR r) NE {
-           flt_ (u32, i, c, C)
-             if (l[i] != r[i]) return l[i] < r[i];
-           return false;
-         });
-    if (ir != ir2) {
-      std::iter_swap(ir, ir2);
+    u32 i2 = i;
+    flt_ (u32, r, i + 1, R) {
+      bool better = false;
+      flt_ (u32, k, c, C) {
+        if (mat(r, k) == mat(i2, k)) continue;
+        better = mat(i2, k) < mat(r, k);
+        break;
+      }
+      if (better) i2 = r;
+    }
+    if (i != i2) {
+      mat.swap_row(i, i2);
       return true;
     }
     return false;

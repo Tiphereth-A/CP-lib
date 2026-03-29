@@ -4,26 +4,17 @@
 #include "../../../src/lalg/ds/bmat/lib.hpp"
 
 using namespace tifa_libs;
-template <usz N>
-using mat = bitmat<N>;
+using mat = bitmat<1 << 24>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;
 
-#define DO(num)                      \
-  if (n <= num) {                    \
-    mat<num> bm;                     \
-    read_bitmat(std::cin, bm, n, n); \
-    auto rk = ge_bmat(bm, false);    \
-    std::cout << (rk == n) << '\n';  \
-    return 0;                        \
-  }
-
-  DO(1 << 6)
-  DO(1 << 8)
-  DO(1 << 12)
+  mat bm(n, n);
+  std::cin >> bm;
+  auto rk = ge_bmat(bm, false);
+  std::cout << (rk == n) << '\n';
 
   return 0;
 }

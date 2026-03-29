@@ -14,10 +14,14 @@ CEXP matrix<T> adj_mat(matrix<T> mat, Is0&& is0, Ge&& ge) NE {
   const u32 n = mat.row();
   assert(n == mat.col());
   rand_gen<u64> gen;
-  flt_ (u32, i, 0, n) mat.data()[i].push_back((T)gen.next());
-  mat.data().emplace_back(n + 1);
-  flt_ (u32, i, 0, n) mat(n, i) = (T)gen.next();
-  auto _ = inv_mat<T, Is0, Ge, true>(mat, is0, ge);
+  matrix<T> m2(n + 1, n + 1);
+  flt_ (u32, i, 0, n)
+    flt_ (u32, j, 0, n) m2(i, j) = mat(i, j);
+  flt_ (u32, i, 0, n) {
+    m2(i, n) = (T)gen.next();
+    m2(n, i) = (T)gen.next();
+  }
+  auto _ = inv_mat<T, Is0, Ge, true>(m2, is0, ge);
   if (!_) return matrix<T>(n, n);
   auto&& [det, inv] = _.value();
   matrix<T> ans(n, n);

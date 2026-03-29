@@ -38,22 +38,21 @@ CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0&& is0, Ge&& ge) NE {
   }
   matrix<T> sol(c_ - rk + 1, c_);
   {
-    auto& v = sol.data()[0];
     for (u32 y = rk - 1; ~y; --y) {
       const u32 f = idxs[y];
-      v[f] = Ab(y, c_);
-      flt_ (u32, x, f + 1, c_) v[f] -= Ab(y, x) * v[x];
-      v[f] /= Ab(y, f);
+      sol(0, f) = Ab(y, c_);
+      flt_ (u32, x, f + 1, c_) sol(0, f) -= Ab(y, x) * sol(0, x);
+      sol(0, f) /= Ab(y, f);
     }
   }
   for (u32 s = 0, _ = 0; s < c_; ++s) {
     if (used[s]) continue;
-    auto& v = sol.data()[++_];
-    v[s] = 1;
+    const u32 rid = ++_;
+    sol(rid, s) = 1;
     for (u32 y = rk - 1; ~y; --y) {
       u32 f = idxs[y];
-      flt_ (u32, x, f + 1, c_) v[f] -= Ab(y, x) * v[x];
-      v[f] /= Ab(y, f);
+      flt_ (u32, x, f + 1, c_) sol(rid, f) -= Ab(y, x) * sol(rid, x);
+      sol(rid, f) /= Ab(y, f);
     }
   }
   ret.emplace(transpose(sol));

@@ -11,20 +11,26 @@ namespace tifa_libs {
 
 template <class T>
 class matrix {
-  vvec<T> d;
+  vec<T> d;
+  u32 r_, c_;
 
  public:
   using val_t = T;
 
-  CEXP matrix(u32 row, u32 col, cT_(T) v = T{}) NE : d(row, vec<T>(col, v)) { assert(row > 0 && col > 0); }
-  CEXPE matrix(cT_(vvec<T>) data) NE : d(data) { assert(data.size() > 0 && data[0].size() > 0); }
+  CEXP matrix(u32 row, u32 col, cT_(T) v = T{}) NE : d(row* col, v), r_(row), c_(col) { assert(row > 0 && col > 0); }
+  CEXP matrix(u32 row, u32 col, spn<T> data) NE : d(data), r_(row), c_(col) { assert(row > 0 && col > 0 && d.size() == row * col); }
+  CEXP matrix(vvec<T> CR data) NE : d(data.size() * data[0].size()), r_((u32)data.size()), c_((u32)data[0].size()) {
+    assert(data.size() > 0 && data[0].size() > 0);
+    FOR1_ (i, 1, r_) assert((u32)data[i].size() == c_);
+    FOR2_ (i, 0, r_, j, 0, c_) (*this)(i, j) = data[i][j];
+  }
 
-  CEXP u32 row() CNE { return (u32)d.size(); }
-  CEXP u32 col() CNE { return (u32)d[0].size(); }
-  CEXP vvec<T> CR data() CNE { return d; }
-  CEXP vvec<T>& data() NE { return d; }
-  CEXP TPN vec<T>::reference operator()(u32 r, u32 c) NE { return d[r][c]; }
-  CEXP TPN vec<T>::const_reference operator()(u32 r, u32 c) CNE { return d[r][c]; }
+  CEXP u32 row() CNE { return r_; }
+  CEXP u32 col() CNE { return c_; }
+  CEXP vec<T> CR data() CNE { return d; }
+  CEXP vec<T>& data() NE { return d; }
+  CEXP TPN vec<T>::reference operator()(u32 r, u32 c) NE { return d[r * c_ + c]; }
+  CEXP TPN vec<T>::const_reference operator()(u32 r, u32 c) CNE { return d[r * c_ + c]; }
   template <class F>
   CEXP void apply(F&& f) NE { apply_range(0, row(), 0, col(), std::forward<F>(f)); }
   template <class F>
@@ -50,12 +56,12 @@ class matrix {
   CEXP matrix submat(u32 row_l, u32 row_r, u32 col_l, u32 col_r) CNE {
     assert(row_l < row_r && row_r <= row() && col_l < col_r && col_r <= col());
     matrix ret(row_r - row_l, col_r - col_l);
-    FOR1_ (i, row_l, row_r) copy(begin(d[i]) + col_l, begin(d[i]) + col_r, begin(ret.d[i - row_l]));
+    FOR2_ (i, row_l, row_r, j, col_l, col_r) ret(i - row_l, j - col_l) = (*this)(i, j);
     return ret;
   }
   CEXP void swap_row(u32 r1, u32 r2) NE {
     if (assert(r1 < row() && r2 < row()); r1 == r2) return;
-    swap(d[r1], d[r2]);
+    FOR1_ (j, 0, col()) swap((*this)(r1, j), (*this)(r2, j));
   }
   CEXP void swap_col(u32 c1, u32 c2) NE {
     if (assert(c1 < col() && c2 < col()); c1 == c2) return;
@@ -86,8 +92,7 @@ class matrix {
   friend CEXP matrix operator*(cT_(T) v, matrix l) NE { return l *= v; }
   CEXP matrix& operator*=(cT_(T) v) NE {
     if CEXP (std::is_same_v<T, bool>) {
-      if (!v)
-        for (auto& i : d) fill(i, false);
+      if (!v) fill(begin(d), end(d), false);
       return *this;
     } else apply([&v](u32, u32, T& val) NE { val *= v; });
     return *this;
@@ -122,16 +127,21 @@ class matrix {
     const u32 r_ = row(), c_ = col();
     assert(r_ == x.size());
     vec<T> ret(c_);
-    flt_ (u32, i, 0, c_)
-      if CEXP (std::is_same_v<T, bool>) ret[i] = std::transform_reduce(begin(d[i]), end(d[i]), begin(x), false, std::bit_xor<bool>{}, std::bit_and<bool>{});
-      else ret[i] = std::transform_reduce(begin(d[i]), end(d[i]), begin(x), T{});
+    FOR1_ (j, 0, c_)
+      if CEXP (std::is_same_v<T, bool>) {
+        bool v = false;
+        FOR1_ (i, 0, r_) v = v ^ ((*this)(i, j) && x[i]);
+        ret[j] = v;
+      } else {
+        T v{};
+        FOR1_ (i, 0, r_) v += (*this)(i, j) * x[i];
+        ret[j] = v;
+      }
     return ret;
   }
   CEXP bool operator==(matrix CR r) CNE {
     if (row() != r.row() || col() != r.col()) return 0;
-    FOR1_ (i, 0, row())
-      if (d[i] != r.d[i]) return 0;
-    return 1;
+    return d == r.d;
   }
 };
 

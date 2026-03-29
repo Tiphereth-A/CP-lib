@@ -5,27 +5,17 @@
 #include "../../../src/lalg/ds/bmat/lib.hpp"
 
 using namespace tifa_libs;
-template <usz N>
-using mat = bitmat<N>;
+using mat = bitmat<1 << 24>;
 
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m, k;
   std::cin >> n >> m >> k;
 
-#define DO(num)                          \
-  if (std::max({n, m, k}) <= num) {      \
-    mat<num> a, b;                       \
-    read_bitmat(std::cin, a, n, m);      \
-    read_bitmat(std::cin, b, m, k);      \
-    auto c = mul_bmat(a, trans_bmat(b)); \
-    print_bitmat(std::cout, c, n, k);    \
-    return 0;                            \
-  }
-
-  DO(1 << 6)
-  DO(1 << 8)
-  DO(1 << 12)
+  mat a(n, m), b(m, k);
+  std::cin >> a >> b;
+  auto c = mul_bmat(a, trans_bmat(b));
+  std::cout << c << '\n';
 
   return 0;
 }

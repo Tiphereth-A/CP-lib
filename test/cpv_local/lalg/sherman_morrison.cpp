@@ -33,8 +33,11 @@ void single_test(u32 n) {
   mat inv_A = inv_mat(A, is_0, ge).value();
   check(A * inv_A, I, check_param(L), check_param(U), check_param(A), check_param(inv_A));
   mat B = inv_A;
-  vec<mint> u(n), v = A.data().back();
-  flt_ (u32, i, 0, n) u[i] = A(i, n - 1);
+  vec<mint> u(n), v(n);
+  flt_ (u32, i, 0, n) {
+    u[i] = A(i, n - 1);
+    v[i] = A(n - 1, i);
+  }
   timer_(sherman_morrison(B, u, v));
   mat A2 = A + A.submat(0, n, n - 1, n) * A.submat(n - 1, n, 0, n);
   flt_ (u32, i, 0, n)
