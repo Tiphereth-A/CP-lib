@@ -1,8 +1,5 @@
 - ds: 定义
 - mat: 矩阵算法
-- bmat: 静态 Bool 矩阵算法
 - matsp: 稀疏矩阵算法
 - lfsr_bm: 寻找最短 LFSR
 - basis: 线性基
-- mat2b: 矩阵转静态 Bool 矩阵
-- b2mat: 静态 Bool 矩阵转矩阵
