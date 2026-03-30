@@ -13,24 +13,29 @@ template <class T>
 class matrix {
   vec<T> d;
   u32 r_, c_;
+  bool tr_;
 
  public:
   using val_t = T;
 
-  CEXP matrix(u32 row, u32 col, cT_(T) v = T{}) NE : d(row* col, v), r_(row), c_(col) { assert(row > 0 && col > 0); }
-  CEXP matrix(u32 row, u32 col, spn<T> data) NE : d(data), r_(row), c_(col) { assert(row > 0 && col > 0 && d.size() == row * col); }
-  CEXP matrix(vvec<T> CR data) NE : d(data.size() * data[0].size()), r_((u32)data.size()), c_((u32)data[0].size()) {
+  CEXP matrix(u32 row, u32 col, cT_(T) v = T{}) NE : d(row* col, v), r_{row}, c_{col}, tr_{false} { assert(row > 0 && col > 0); }
+  CEXP matrix(u32 row, u32 col, spn<T> data) NE : d(data), r_{row}, c_{col}, tr_{false} { assert(row > 0 && col > 0 && d.size() == row * col); }
+  CEXP matrix(vvec<T> CR data) NE : d(data.size() * data[0].size()), r_((u32)data.size()), c_((u32)data[0].size()), tr_{false} {
     assert(data.size() > 0 && data[0].size() > 0);
     FOR1_ (i, 1, r_) assert((u32)data[i].size() == c_);
     FOR2_ (i, 0, r_, j, 0, c_) (*this)(i, j) = data[i][j];
   }
 
-  CEXP u32 row() CNE { return r_; }
-  CEXP u32 col() CNE { return c_; }
+  CEXP u32 row() CNE { retif_((tr_), c_, r_); }
+  CEXP u32 col() CNE { retif_((tr_), r_, c_); }
   CEXP vec<T> CR data() CNE { return d; }
   CEXP vec<T>& data() NE { return d; }
-  CEXP TPN vec<T>::reference operator()(u32 r, u32 c) NE { return d[r * c_ + c]; }
-  CEXP TPN vec<T>::const_reference operator()(u32 r, u32 c) CNE { return d[r * c_ + c]; }
+  CEXP TPN vec<T>::reference operator()(u32 r, u32 c) NE { retif_((tr_), d[c * c_ + r], d[r * c_ + c]); }
+  CEXP TPN vec<T>::const_reference operator()(u32 r, u32 c) CNE { retif_((tr_), d[c * c_ + r], d[r * c_ + c]); }
+  CEXP matrix& trans() NE {
+    tr_ = !tr_;
+    return *this;
+  }
   template <class F>
   CEXP void apply(F&& f) NE { apply_range(0, row(), 0, col(), std::forward<F>(f)); }
   template <class F>
@@ -140,8 +145,10 @@ class matrix {
     return ret;
   }
   CEXP bool operator==(matrix CR r) CNE {
-    if (row() != r.row() || col() != r.col()) return 0;
-    return d == r.d;
+    if (row() != r.row() || col() != r.col()) return false;
+    FOR2_ (i, 0, row(), j, 0, col())
+      if ((*this)(i, j) != r(i, j)) return false;
+    return true;
   }
 };
 

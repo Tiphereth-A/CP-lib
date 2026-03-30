@@ -2,7 +2,6 @@
 
 #include "../../ds/mat/lib.hpp"
 #include "../merge_lr/lib.hpp"
-#include "../trans/lib.hpp"
 
 namespace tifa_libs {
 
@@ -55,7 +54,7 @@ CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0&& is0, Ge&& ge) NE {
       sol(rid, f) /= Ab(y, f);
     }
   }
-  ret.emplace(transpose(sol));
+  ret.emplace(sol.trans());
   return ret;
 }
 

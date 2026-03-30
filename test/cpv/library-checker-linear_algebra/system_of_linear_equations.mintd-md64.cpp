@@ -3,7 +3,6 @@
 
 #include "../../../src/lalg/mat/ge/lib.hpp"
 #include "../../../src/lalg/mat/leqs_solver/lib.hpp"
-#include "../../../src/lalg/mat/trans/lib.hpp"
 
 using namespace tifa_libs;
 CEXP u32 MOD = 998244353;
@@ -31,7 +30,7 @@ int main() {
   else {
     mat& res = res_.value();
     std::cout << res.col() - 1 << '\n';
-    std::cout << tifa_libs::transpose(res) << '\n';
+    std::cout << res.trans() << '\n';
   }
   return 0;
 }

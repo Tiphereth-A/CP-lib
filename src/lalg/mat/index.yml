@@ -5,7 +5,6 @@
 - merge_lr: 横向合并
 - merge_ud: 纵向合并
 - pow: 矩阵快速幂
-- trans: 转置
 - charpoly: 特征多项式
 - uhb: 转为上 Hessenberg 矩阵
 - hafnian: 矩阵的 Hafnian
