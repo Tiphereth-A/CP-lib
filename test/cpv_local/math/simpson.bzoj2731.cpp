@@ -56,8 +56,8 @@ int main() {
   }
   pos = uniq(pos);
   data_t ans = 0;
-  simpson_impl<f64, f<f64>> integral;
+  simpson_impl<data_t, f<data_t>> integral;
 
-  flt_ (u32, i, 1, (u32)pos.size()) ans += integral(pos[i - 1] + EPS, pos[i] - 2 * EPS, EPS);
+  flt_ (u32, i, 1, (u32)pos.size()) ans += integral((data_t)pos[i - 1] + EPS, (data_t)pos[i] - 2 * EPS, EPS);
   cout << ans << '\n';
 }

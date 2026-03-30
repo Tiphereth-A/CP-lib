@@ -12,8 +12,8 @@ vecuu Josephus_bf(u64 n, u64 k, u64 m) {
   std::list<u64> l;
   flt_ (u64, i, 0, n) l.push_back(i);
   auto it = begin(l);
-  flt_ (u32, i, 0, m) {
-    flt_ (u32, j, 1, k)
+  flt_ (u32, i, 0, (u32)m) {
+    flt_ (u32, j, 1, (u32)k)
       if (++it == end(l)) it = begin(l);
     ans[i] = *it;
     if ((it = l.erase(it)) == end(l)) it = begin(l);
@@ -27,7 +27,7 @@ void test(u64 n, u64 k) {
   auto wants = Josephus_bf(n, k, m);
   default_timer.tac();
   cnt_bf += default_timer.passed();
-  flt_ (u32, i, 1, m + 1) {
+  flt_ (u32, i, 1, (u32)m + 1) {
     default_timer.tic(__LINE__);
     u64 got = Josephus(n, k, i);
     default_timer.tac();
