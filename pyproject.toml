@@ -19,7 +19,7 @@ dev = [
     "pytest-cov==7.1.0",
 ]
 latex = [
-    "pygments==2.19.2",
+    "pygments==2.20.0",
 ]
 verify = [
     "competitive-verifier==4.0.0",
