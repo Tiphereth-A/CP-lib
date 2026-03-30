@@ -31,7 +31,7 @@ int main() {
       continue;
     }
     data_t ans = std::numeric_limits<data_t>::max();
-    Point2 ansP;
+    Point2 ansP{0, 0};
     for (auto CR i : l) {
       auto pp = dist_PS_P(m, i);
       data_t d = dist_PP(pp, m);

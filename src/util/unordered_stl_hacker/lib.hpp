@@ -26,7 +26,7 @@ inline vec<T> unordered_stl_hacker(usz n) NE {
     // Edit these if need
     const usz len = 15;
     const strn pref = "", alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
-    gen<usz> gen(0, alphabet.size() - 1);
+    rand_gen<usz> gen(0, alphabet.size() - 1);
     auto gen_str_with_divisible_hash = [&](usz mod) NE -> strn {
       strn s = pref;
       while (true) {
