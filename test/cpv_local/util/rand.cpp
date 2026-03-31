@@ -18,7 +18,9 @@ void test() {
   g1.range(a, b);
   std::conditional_t<std::is_integral_v<T>, std::uniform_int_distribution<T>, std::uniform_real_distribution<T>> u(a, b);
   flt_ (u32, i, 0, N) {
+#pragma GCC diagnostic ignored "-Wconversion"
     res_t x = g1.next(), y = g2();
+#pragma GCC diagnostic warning "-Wconversion"
     check(x, y, check_param(seed), check_param(i));
   }
   int cnt_eq = 0;
