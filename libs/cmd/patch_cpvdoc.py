@@ -60,7 +60,7 @@ def patch_cpvdoc(src: str, jekyll_src: str, **kwargs):
 
 
 def _register_patch_cpvdoc(cli):
-    @cli.command('patch-cpvdoc')
+    @cli.command('doc')
     @click.option('-s', '--src', type=click.Path(exists=True, file_okay=False), help='Source directory', default='src')
     @click.option('-j', '--jekyll-src', type=click.Path(exists=True, file_okay=False), help='Source path to patch', default='_jekyll')
     def _patch_cpvdoc(src: str, jekyll_src: str):

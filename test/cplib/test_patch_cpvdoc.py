@@ -207,13 +207,13 @@ class TestPatchCpvdoc:
             pass
 
         _register_patch_cpvdoc(cli)
-        assert 'patch-cpvdoc' in cli.commands
+        assert 'doc' in cli.commands
 
         runner = CliRunner()
         with patch('libs.cmd.patch_cpvdoc.patch_cpvdoc') as mock_patch_cpvdoc:
             result = runner.invoke(
                 cli,
-                ['patch-cpvdoc', '-s', 'src', '-j', '_jekyll'],
+                ['doc', '-s', 'src', '-j', '_jekyll'],
             )
 
         assert result.exit_code == 0

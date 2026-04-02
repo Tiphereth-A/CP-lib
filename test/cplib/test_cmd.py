@@ -7,7 +7,7 @@ from click.testing import CliRunner
 from unittest.mock import patch, MagicMock
 
 import libs
-from libs.cmd import register_all_commands
+from libs.cmd import register_main_commands, register_cpv_patch_commands
 from libs.cmd.doc import gen_tex, gen_typst
 from libs.cmd.fmt import lint_all_codes
 from libs.cmd.meta import generate_testcode
@@ -44,7 +44,7 @@ def cli():
     @click.group()
     def _cli():
         pass
-    register_all_commands(_cli)
+    register_main_commands(_cli)
     return _cli
 
 
@@ -52,18 +52,21 @@ def cli():
 
 @pytest.mark.unit
 class TestLibsInit:
-    def test_register_all_commands_importable(self):
-        from libs import register_all_commands as rac
-        assert callable(rac)
+    def test_register_main_commands_importable(self):
+        from libs import register_main_commands
+        assert callable(register_main_commands)
 
-    def test_register_all_commands_registers_cmds(self):
+    def test_register_cpv_patch_commands_importable(self):
+        from libs import register_cpv_patch_commands
+        assert callable(register_cpv_patch_commands)
+
+    def test_register_main_commands_registers_cmds(self):
         @click.group()
         def group():
             pass
-        register_all_commands(group)
-        cmd_names = list(group.commands.keys())
-        assert set(cmd_names) == {'doc', 'new', 'verify',
-                                  'fmt', 'meta', 'pack', 'patch-cpvdoc'}
+        register_main_commands(group)
+        cmd_names = set(group.commands.keys())
+        assert cmd_names == {'doc', 'new', 'verify', 'fmt', 'meta', 'pack'}
 
 
 # ------------------------------------------------------------------ doc.py --

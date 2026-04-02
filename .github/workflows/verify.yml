@@ -262,7 +262,7 @@ jobs:
 
       - name: Patch pages doc
         run: |
-          uv run python manager.py -l DEBUG patch-cpvdoc -s src -j _jekyll
+          uv run python cpv_patch.py -l DEBUG doc -s src -j _jekyll
       - name: Upload doc artifact
         uses: actions/upload-artifact@v7
         with:
