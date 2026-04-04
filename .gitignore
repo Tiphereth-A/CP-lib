@@ -523,3 +523,6 @@ fonts/
 tempCodeRunnerFile.cpp
 in.in
 todo.md
+
+_gcov/
+.competitive-verifier/docs/static/coverage-cpp/

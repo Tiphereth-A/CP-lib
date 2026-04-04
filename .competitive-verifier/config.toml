@@ -1,3 +1,7 @@
 [[languages.cpp.environments]]
+CXX = "g++-14"
+CXXFLAGS = ["-std=gnu++20", "-O2", "-ftrapv", "-fsanitize=address,undefined,leak"]
+
+[[languages.cpp.environments]]
 CXX = "g++"
-CXXFLAGS = ["-std=gnu++20", "-O2", "-Wall", "-Wextra", "-Wpedantic", "-Wparentheses", "-fsanitize=address,undefined,leak"]
+CXXFLAGS = ["-std=gnu++20", "--coverage", "-fprofile-abs-path"]

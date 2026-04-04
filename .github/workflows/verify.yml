@@ -88,7 +88,29 @@ jobs:
         with:
           name: Bundled-${{ runner.os }}
           path: .competitive-verifier/bundled
-          retention-days: 1
+
+  setup-prof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+      - name: Install competitive-verifier
+        run: uv sync --frozen --group verify
+
+      - name: oj-resolve
+        run: uv run python -m cProfile -o oj_resolve.prof -m competitive_verifier.app oj-resolve --include src test/cpv test/cpv_local --exclude src/_* --config .competitive-verifier/config.toml
+
+      - name: Upload oj_resolve.prof
+        uses: actions/upload-artifact@v7
+        with:
+          name: oj-resolve-prof
+          path: oj_resolve.prof
 
   verify:
     runs-on: ubuntu-latest
@@ -119,7 +141,7 @@ jobs:
       - name: Add uv virtualenv binaries to PATH
         run: echo "${{ github.workspace }}/.venv/bin" >> $GITHUB_PATH
 
-      - name: Restore cached results
+      - name: Restore cached verify results
         if: ${{ !inputs.ignore_prev_result }}
         uses: actions/cache/restore@v5
         id: restore-cached-results
@@ -175,8 +197,8 @@ jobs:
           destination: ${{runner.temp}}/result.json
           split-size: ${{ env.SPLIT_SIZE }}
           split-index: ${{ matrix.index }}
-          timeout: 3600
-          tle: 90
+          timeout: 14400
+          tle: 180
           prev-result: ${{ steps.restore-cached-results.outputs.cache-hit && 'merged-result.json' || ''}}
         env:
           YUKICODER_TOKEN: ${{secrets.YUKICODER_TOKEN}}
@@ -196,12 +218,29 @@ jobs:
           du -ha | sort -hr
           echo "::endgroup::"
 
+      - name: Collect gcov files into _gcov
+        shell: bash
+        run: |
+          mkdir -p _gcov
+          find . -type f \( -name '*.gcno' -o -name '*.gcda' \) -not -path './_gcov/*' -print0 | while IFS= read -r -d '' f; do
+            base="$(basename "$f")"
+            dst="_gcov/$base"
+            mv -f "$f" "$dst"
+          done
+          echo "::group::files"
+          ls -l _gcov
+          echo "::endgroup::"
+
       - name: Upload result artifact
         uses: actions/upload-artifact@v7
         with:
           name: Result-${{ runner.os }}-${{ matrix.index }}
           path: ${{runner.temp}}/result.json
-          retention-days: 1
+      - name: Upload gcov result artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: Gcov-result-${{ runner.os }}-${{ matrix.index }}
+          path: _gcov
 
   docs-and-check:
     runs-on: ubuntu-latest
@@ -230,7 +269,41 @@ jobs:
         with:
           download-all: true
           artifact-root: .artifacts/
-  
+
+      - name: Restore cached gcov results
+        if: ${{ !inputs.ignore_prev_result }}
+        uses: actions/cache/restore@v5
+        id: restore-cached-results
+        with:
+          path: _gcov
+          key: ${{ runner.os }}-verify-result-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-verify-result-
+      - name: Collect gcov files into _gcov
+        shell: bash
+        run: |
+          mkdir -p _gcov
+          find . -type f \( -name '*.gcno' -o -name '*.gcda' \) -not -path './_gcov/*' -print0 | while IFS= read -r -d '' f; do
+            base="$(basename "$f")"
+            dst="_gcov/$base"
+            if [[ $IGNORE_PREV_RESULT && -e "$dst" ]]; then
+              echo "::error::Refusing to overwrite existing '$dst' while `ignore_prev_result` enabled"
+              exit 1
+            fi
+            mv -f "$f" "$dst"
+          done
+          echo "::group::files"
+          ls -l _gcov
+          echo "::endgroup::"
+        env:
+          IGNORE_PREV_RESULT: ${{ inputs.ignore_prev_result }}
+      - name: Build C++ code coverage report pages
+        shell: bash
+        run: |
+          out=".competitive-verifier/docs/static/coverage-cpp"
+          mkdir -p "$out"
+          uv run gcovr --gcov-suspicious-hits-threshold 0 --html-details "$out/summary.html"
+
       - name: Extract bundled
         shell: bash
         run: |
@@ -259,26 +332,27 @@ jobs:
         if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
         uses: actions/cache/save@v5
         with:
-          path: ${{github.workspace}}/merged-result.json
+          path: |
+            ${{github.workspace}}/merged-result.json
+            _gcov
           key: ${{ runner.os }}-verify-result-${{ github.sha }}
 
       - name: Patch pages doc
         run: |
           uv run python cpv_patch.py -l DEBUG doc -s src -j _jekyll
-      - name: Upload doc artifact
+      - name: Upload page src
         uses: actions/upload-artifact@v7
         with:
-          name: Page-source
+          name: page-source
           path: _jekyll
-          retention-days: 1
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: _jekyll
           destination: _site
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
       - name: Upload artifact
         id: upload-pages
         uses: actions/upload-pages-artifact@v4
