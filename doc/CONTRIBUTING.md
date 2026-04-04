@@ -68,7 +68,7 @@ This section describes the purpose of each directory and important files in the 
 
 - **`.github/`** - GitHub Actions workflows and configuration files for CI/CD.
 
-- **`.verify-helper/`** - Configuration files for competitive-verifier.
+- **`.competitive-verifier/`** - Configuration files for competitive-verifier.
   - `config.toml` - Verifier configuration
   - `docs/` - Additional documentation
 

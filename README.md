@@ -1,1 +1,1 @@
-.verify-helper/docs/index.md
+.competitive-verifier/docs/index.md

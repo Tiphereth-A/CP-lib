@@ -7,7 +7,7 @@ on:
       - 'pyproject.toml'
       - 'uv.lock'
       - '.github/**'
-      - '.verify-helper/**'
+      - '.competitive-verifier/**'
       - 'libs/**'
       - 'src/**'
       - 'test/**'
@@ -18,7 +18,7 @@ on:
       - 'pyproject.toml'
       - 'uv.lock'
       - '.github/**'
-      - '.verify-helper/**'
+      - '.competitive-verifier/**'
       - 'libs/**'
       - 'src/**'
       - 'test/**'
@@ -67,7 +67,7 @@ jobs:
                 test/cpv_local
           exclude: |
                 src/_*
-          config: .verify-helper/config.toml
+          config: .competitive-verifier/config.toml
       - name: parse-doxygen
         uses: competitive-verifier/actions/parse-doxygen@v2
         with:
