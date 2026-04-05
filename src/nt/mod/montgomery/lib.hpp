@@ -34,7 +34,7 @@ struct montgomery<0> {
     u32 t = u32((x + u64((u32)x * R) * MOD_ODD) >> 32);
     return t - (MOD_ODD & -((MOD_ODD - 1 - t) >> 31));
   }
-  CEXP u32 tsf(u32 x) CNE { return reduce(u64(x % MOD_ODD) * R2) << OFFSET | (x & MASK); }
+  CEXP u32 tsf(u32 x) CNE { retif_((!OFFSET) [[likely]], reduce(u64(x) * R2), reduce(u64(x % MOD_ODD) * R2) << OFFSET | (x & MASK)); }
 };
 
 }  // namespace tifa_libs

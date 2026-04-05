@@ -21,10 +21,7 @@ struct montgomery64 {
   static_assert(R * MOD == 1);
   static_assert((MOD >> 63) == 0);
   static_assert(MOD != 1);
-  static CEXP u64 mulh(u64 x, u64 y) NE {
-    u64 a = x >> 32, b = (u32)(x), c = y >> 32, d = (u32)(y), ad = a * d, bc = b * c;
-    return a * c + (ad >> 32) + (bc >> 32) + (((ad & 0xFFFFFFFF) + (bc & 0xFFFFFFFF) + (b * d >> 32)) >> 32);
-  }
+  static CEXP u64 mulh(u64 x, u64 y) NE { return u64((u128)x * y >> 64); }
   static CEXP u64 redc_mul(u64 x, u64 y) NE {
     u64 res = mulh(x, y) - mulh(x * y * R, MOD);
     return res + (MOD & -(res >> 63));
@@ -43,10 +40,7 @@ struct montgomery64<0> {
     flt_ (u32, i, 0, 64)
       if ((R2 *= 2) >= MOD) R2 -= MOD;
   }
-  CEXP u64 mul_h(u64 x, u64 y) CNE {
-    u64 a = x >> 32, b = (u32)x, c = y >> 32, d = (u32)y, ad = a * d, bc = b * c;
-    return a * c + (ad >> 32) + (bc >> 32) + (((ad & 0xFFFFFFFF) + (bc & 0xFFFFFFFF) + (b * d >> 32)) >> 32);
-  }
+  CEXP u64 mul_h(u64 x, u64 y) CNE { return u64((u128)x * y >> 64); }
   CEXP u64 redc_mul(u64 x, u64 y) CNE {
     u64 res = mul_h(x, y) - mul_h(x * y * R, MOD);
     return res + (MOD & -(res >> 63));

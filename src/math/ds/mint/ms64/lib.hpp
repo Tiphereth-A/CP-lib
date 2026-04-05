@@ -19,8 +19,17 @@ class mint_ms64_tag : public mint_impl_::mint_tag_base {
   CEXP mint_ms64_tag(int_c auto v) NE : v_{mod(v)} {}
 
  public:
-  template <int_c T>
-  static CEXP raw_t mod(T v) NE { return core::redc_mul(core::norm(i64(v % (std::conditional_t<sint_c<T>, i64, u64>)mod())), core::R2); }
+  static CEXP raw_t mod(sint_c auto v) NE {
+    if CEXP (smost64_c<decltype(v)>) {
+      retif_((v >= 0 && (u64)v < mod()) [[likely]], core::redc_mul((u64)v, core::R2));
+    }
+    return core::redc_mul(core::norm(i64(v % (i64)mod())), core::R2);
+  }
+  static CEXP raw_t mod(uint_c auto v) NE {
+    if CEXP (umost64_c<decltype(v)>) {
+      retif_((u64 x = (u64)v; x < mod()) [[likely]], core::redc_mul(x, core::R2), core::redc_mul(x % mod(), core::R2));
+    } else retif_((v < mod()) [[likely]], core::redc_mul((u64)v, core::R2), core::redc_mul((u64)(v % mod()), core::R2));
+  }
   static CEXP raw_t mod() NE { return MOD; }
   CEXP raw_t val() CNE {
     raw_t res = -core::mulh(this->v_ * core::R, mod());

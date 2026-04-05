@@ -20,8 +20,17 @@ class mint_ms_tag : public mint_impl_::mint_tag_base {
   CEXP mint_ms_tag(int_c auto v) NE : v_{mod(v)} {}
 
  public:
-  static CEXP raw_t mod(sint_c auto v) NE { return core::reduce(u64(i32(v % (i32)mod()) + (i32)mod()) * core::R2); }
-  static CEXP raw_t mod(uint_c auto v) NE { return core::reduce(u64(v % mod()) * core::R2); }
+  static CEXP raw_t mod(sint_c auto v) NE {
+    if CEXP (smost64_c<decltype(v)>) {
+      retif_((v >= 0 && (u64)v < mod()) [[likely]], core::reduce(u64((raw_t)v) * core::R2));
+    }
+    return core::reduce(u64(i32(v % (i32)mod()) + (i32)mod()) * core::R2);
+  }
+  static CEXP raw_t mod(uint_c auto v) NE {
+    if CEXP (umost64_c<decltype(v)>) {
+      retif_((u64 x = (u64)v; x < mod()) [[likely]], core::reduce(x * core::R2), core::reduce(u64(x % mod()) * core::R2));
+    } else retif_((v < mod()) [[likely]], core::reduce(u64((raw_t)v) * core::R2), core::reduce(u64((raw_t)(v % mod())) * core::R2));
+  }
   static CEXP raw_t mod() NE { return MOD_; }
   CEXP raw_t val() CNE { return core::norm(core::reduce(v_)); }
   CEXP raw_t& data() NE { return v_; }
