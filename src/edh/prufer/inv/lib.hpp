@@ -12,11 +12,16 @@ CEXP vecu prufer_inv(spnu code) NE {
   vecu deg(n + 1);
   flt_ (u32, i, 1, n - 1) ++deg[code[i]];
   vecu fa(n);
-  for (u32 i = 1, j = 1; i < n; ++i, ++j) {
+  for (u32 i = 1, j = 1; i < n - 1; ++i, ++j) {
     while (deg[j]) ++j;
     fa[j] = code[i];
     while (i < n - 1 && !--deg[code[i]] && code[i] < j) fa[code[i]] = (i + 1 == n - 1 ? n : code[i + 1]), ++i;
   }
+  for (auto& i : fa)
+    if (!i) {
+      i = n;
+      break;
+    }
   return fa;
 }
 
