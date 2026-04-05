@@ -110,7 +110,7 @@ This section describes the purpose of each directory and important files in the 
     - `cpvdoc.md` - Competitive-verifier markdown documentation (write in English)
     - `usage.cpp` - Usage examples (comments in Simplified Chinese)
 
-    You can delete any of them except `doc.tex` safely if not needed.
+    You can delete any of them safely if not needed.
 
 4. **Implement your algorithm** in the generated `lib.hpp` file
 

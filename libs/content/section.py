@@ -81,17 +81,15 @@ class Section:
     @with_logger
     def expand_tex(self, temp_path: str, **kwargs):
         src_list = self._get_src_list()
-        doc_template_path = os.path.join(self._dir, "doc.tex")
-        if "doc.tex" not in src_list:
-            raise FileNotFoundError(f"{doc_template_path} not found")
-        src_list.remove("doc.tex")
+        custom_doc = "doc.tex" in src_list
+        if custom_doc:
+            src_list.remove("doc.tex")
 
         result_path = os.path.join(temp_path, self._dir, "doc.tex")
         os.makedirs(os.path.dirname(result_path), exist_ok=True)
         with open(result_path, 'w', encoding='utf8') as f_result:
-            content: str = ''
-            with open(doc_template_path, 'r', encoding='utf8') as f:
-                content = f.read()
+            content: str = _TEMPLACES["doc.tex"] if not custom_doc else open(
+                os.path.join(self._dir, "doc.tex"), 'r', encoding='utf8').read()
             for file in src_list:
                 pattern = re.compile(
                     r'% \{' + re.escape(file) + r'(?:,start=(-?\d+))?(?:,stop=(-?\d+))?\}')

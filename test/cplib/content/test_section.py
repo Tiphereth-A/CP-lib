@@ -49,14 +49,6 @@ class TestSection:
         content = (tmp_path / 'gcd' / 'lib.hpp').read_text(encoding='utf8')
         assert content.split('\n', 1)[0] == '#pragma once'
 
-    def test_expand_tex_no_doc_raises(self, tmp_path, monkeypatch):
-        monkeypatch.chdir(tmp_path)
-        os.makedirs('mylib')
-        s = Section('mylib', 'MyLib')
-        # No doc.tex in directory
-        with pytest.raises(FileNotFoundError):
-            s.expand_tex('temp')
-
     def test_expand_tex_basic(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
         os.makedirs('lib')
@@ -110,6 +102,48 @@ class TestSection:
         out = open('temp/lib4/doc.tex').read()
         # stop=-2 => 10 + (-2) = 8
         assert out == 'Path: \\verb|lib4/lib.hpp|\n\n\\inputminted[firstline=1,lastline=8]{cpp}{lib4/lib.hpp}\n\n\n'
+
+    def test_expand_tex_without_doc_tex_uses_default_template(self, tmp_path, monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        os.makedirs('lib5')
+        with open('lib5/lib.hpp', 'w') as f:
+            f.writelines([f'hpp{i}\n' for i in range(4)])
+        with open('lib5/usage.cpp', 'w') as f:
+            f.writelines([f'cpp{i}\n' for i in range(5)])
+        os.makedirs('temp')
+
+        s = Section('lib5', 'Lib5')
+        s.expand_tex('temp')
+
+        out_path = 'temp/lib5/doc.tex'
+        assert os.path.exists(out_path)
+        out = open(out_path).read()
+
+        expected = (
+            'Path: \\verb|lib5/lib.hpp|\n\n'
+            '\\inputminted[firstline=3,lastline=4]{cpp}{lib5/lib.hpp}\n\n\n'
+            'Path: \\verb|lib5/usage.cpp|\n\n'
+            '\\inputminted[firstline=2,lastline=5]{cpp}{lib5/usage.cpp}\n\n\n'
+        )
+        assert out == expected
+
+    def test_expand_tex_without_doc_tex_keeps_placeholder_for_missing_file(self, tmp_path, monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        os.makedirs('lib6')
+        with open('lib6/lib.hpp', 'w') as f:
+            f.writelines([f'hpp{i}\n' for i in range(4)])
+        os.makedirs('temp')
+
+        s = Section('lib6', 'Lib6')
+        s.expand_tex('temp')
+
+        out = open('temp/lib6/doc.tex').read()
+        expected = (
+            'Path: \\verb|lib6/lib.hpp|\n\n'
+            '\\inputminted[firstline=3,lastline=4]{cpp}{lib6/lib.hpp}\n\n\n'
+            '% {usage.cpp,start=2}\n'
+        )
+        assert out == expected
 
     def test_expand_typ_not_implemented(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
