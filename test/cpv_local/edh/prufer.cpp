@@ -1,7 +1,7 @@
 // competitive-verifier: STANDALONE
 
-#include "../../../src/edh/prufer/inv/lib.hpp"
-#include "../../../src/edh/prufer/seq/lib.hpp"
+#include "../../../src/edh/prufer/inv.hpp"
+#include "../../../src/edh/prufer/seq.hpp"
 #include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 

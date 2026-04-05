@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../util/alias/others/lib.hpp"
+#include "../../util/alias/others/lib.hpp"
 
 namespace tifa_libs {
 

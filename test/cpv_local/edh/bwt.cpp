@@ -1,7 +1,7 @@
 // competitive-verifier: STANDALONE
 
-#include "../../../src/edh/bwt/inv/lib.hpp"
-#include "../../../src/edh/bwt/seq/lib.hpp"
+#include "../../../src/edh/bwt/inv.hpp"
+#include "../../../src/edh/bwt/seq.hpp"
 #include "../../../src/util/rand/lib.hpp"
 #include "../base.hpp"
 

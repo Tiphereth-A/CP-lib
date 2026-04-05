@@ -1,8 +1,8 @@
 // competitive-verifier: DISPLAY never
 // cplib.manager: PROBLEM https://www.luogu.com.cn/problem/P6086
 
-#include "../inv/lib.hpp"
-#include "lib.hpp"
+#include "inv.hpp"
+#include "seq.hpp"
 
 using namespace tifa_libs;
 int main() {

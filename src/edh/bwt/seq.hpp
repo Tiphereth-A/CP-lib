@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../str/suffix_array/lib.hpp"
+#include "../../str/suffix_array/lib.hpp"
 
 namespace tifa_libs {
 
