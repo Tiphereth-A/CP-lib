@@ -68,6 +68,18 @@ class TestLibsInit:
         cmd_names = set(group.commands.keys())
         assert cmd_names == {'doc', 'new', 'verify', 'fmt', 'meta', 'pack'}
 
+    def test_register_cpv_patch_commands_registers_cmds(self):
+        @click.group()
+        def group():
+            pass
+        register_cpv_patch_commands(group)
+        assert set(group.commands.keys()) == {'doc'}
+
+    def test_cli_callback_installs_coloredlogs(self):
+        with patch('libs.coloredlogs.install') as install:
+            libs.cli.callback(level='INFO')
+        install.assert_called_once()
+
 
 # ------------------------------------------------------------------ doc.py --
 
@@ -479,8 +491,8 @@ class TestVerifyCommands:
             for p in params:
                 command(p)
             if call_count[0] == 1:
-                # Return the src_f path so it appears in compile_failed set
-                return [usage_rel]
+                # Match run_command failure tuple shape so i[1] is the file path.
+                return [('compile_failed', usage_rel)]
             return []
 
         with patch('libs.cmd.verify.run_command', side_effect=fake_run_command):

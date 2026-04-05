@@ -7,6 +7,8 @@ from libs.meta.testcase_matrix import testcase_matrix
 from libs.meta.cppmeta_parser import cppmeta_parser
 from libs.conf.tcgen import ConfigTcgen
 
+testcase_matrix.__test__ = False
+
 
 # Use the real tcgen.yml for testcase_matrix tests
 _REAL_CONFIG = ConfigTcgen('tcgen.yml')
