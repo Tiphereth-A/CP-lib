@@ -33,14 +33,44 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: ${{ github.head_ref || 'x' }}-${{ github.workflow }}-${{ github.ref }}-verify
   cancel-in-progress: true
 
 jobs:
+  hashes:
+    runs-on: ubuntu-latest
+    outputs:
+      hash-base: ${{ steps.hash-base.outputs.value }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Restore cached commit hash list
+        uses: actions/cache/restore@v5
+        id: restore-hash-list
+        with:
+          path: ${{github.workspace}}/commit-hashes.txt
+          key: ${{ runner.os }}-verify-result-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-verify-result-
+
+      - name: hash base
+        id: hash-base
+        shell: bash
+        run: |
+          git log --all --reverse --format="%H" > current-hashes.txt
+          prev_hash="<not-found>"
+          if [[ -f commit-hashes.txt ]]; then
+            matched_hash="$(awk 'NR==FNR { seen[$0] = 1; next } !seen[$0] { exit } { last = $0 } END { print last }' commit-hashes.txt current-hashes.txt)"
+            if [[ -n "$matched_hash" ]]; then
+              prev_hash="$matched_hash"
+            fi
+          fi
+          echo "value=$prev_hash" >> "$GITHUB_OUTPUT"
+
   setup:
     runs-on: ubuntu-latest
     steps:
@@ -328,12 +358,22 @@ jobs:
           verify-result: ${{github.workspace}}/merged-result.json
           destination: _jekyll
           write-summary: true
+
+      - name: Upload merged result artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: Merged-result
+          path: ${{github.workspace}}/merged-result.json
+      - name: Get current hash list
+        shell: bash
+        run: git log --all --reverse --format="%H" > ${{github.workspace}}/commit-hashes.txt
       - name: Save result
         if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
         uses: actions/cache/save@v5
         with:
           path: |
             ${{github.workspace}}/merged-result.json
+            ${{github.workspace}}/commit-hashes.txt
             _gcov
           key: ${{ runner.os }}-verify-result-${{ github.sha }}
 
@@ -371,6 +411,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
