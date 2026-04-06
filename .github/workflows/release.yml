@@ -114,11 +114,15 @@ jobs:
       - name: Generate Typst files
         run: |
           uv run python manager.py -l DEBUG doc -t typ
-      - name: Upload Typst sources to artifacts
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+      - name: Build the Typst document
+        run: typst compile .cp-lib/src/doc.typ notebook-typst.pdf
+      - name: Upload PDF to artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: notebook-typ
-          path: .cp-lib/src
+          name: notebook-typst
+          path: notebook-typst.pdf
 
   pack-include:
     runs-on: ubuntu-latest
