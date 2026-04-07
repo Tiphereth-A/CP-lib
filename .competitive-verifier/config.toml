@@ -1,7 +1,10 @@
+[languages.cpp]
+read_macros = false
+
 [[languages.cpp.environments]]
-CXX = "g++-14"
+CXX = "verify-g++"
 CXXFLAGS = ["-std=gnu++20", "-O2", "-ftrapv", "-fsanitize=address,undefined,leak"]
 
 [[languages.cpp.environments]]
-CXX = "g++"
+CXX = "coverage-g++"
 CXXFLAGS = ["-std=gnu++20", "--coverage", "-fprofile-abs-path"]

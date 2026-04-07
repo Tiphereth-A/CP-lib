@@ -53,23 +53,14 @@ jobs:
         id: restore-hash-list
         with:
           path: ${{ github.workspace }}/commit-hashes.txt
-          key: ${{ runner.os }}-verify-hashes-${{ github.sha }}
+          key: verify-hashes-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-verify-hashes-
+            verify-hashes-
 
       - name: hash base
         id: hash-base
         shell: bash
-        run: |
-          git log --all --reverse --format="%H" > current-hashes.txt
-          prev_hash="<not-found>"
-          if [[ -f commit-hashes.txt ]]; then
-            matched_hash="$(awk 'NR==FNR { seen[$0] = 1; next } !seen[$0] { exit } { last = $0 } END { print last }' commit-hashes.txt current-hashes.txt)"
-            if [[ -n "$matched_hash" ]]; then
-              prev_hash="$matched_hash"
-            fi
-          fi
-          echo "value=$prev_hash" >> "$GITHUB_OUTPUT"
+        run: bash .github/ci-scripts/hash-base.sh
 
   setup:
     runs-on: ubuntu-latest
@@ -86,6 +77,9 @@ jobs:
         run: uv sync --frozen --group verify
       - name: Add uv virtualenv binaries to PATH
         run: echo "${{ github.workspace }}/.venv/bin" >> $GITHUB_PATH
+      - name: Create g++ wrapper commands
+        shell: bash
+        run: bash .github/ci-scripts/create-gpp-wrappers.sh
 
       - name: oj-resolve
         uses: competitive-verifier/actions/oj-resolve@v2
@@ -119,29 +113,6 @@ jobs:
           name: Bundled-${{ runner.os }}
           path: .competitive-verifier/bundled
 
-  setup-prof:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.12'
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          version: "latest"
-      - name: Install competitive-verifier
-        run: uv sync --frozen --group verify
-
-      - name: oj-resolve
-        run: uv run python -m cProfile -o oj_resolve.prof -m competitive_verifier.app oj-resolve --include src test/cpv test/cpv_local --exclude src/_* --config .competitive-verifier/config.toml
-
-      - name: Upload oj_resolve.prof
-        uses: actions/upload-artifact@v7
-        with:
-          name: oj-resolve-prof
-          path: oj_resolve.prof
-
   verify:
     runs-on: ubuntu-latest
     needs: [setup]
@@ -170,6 +141,9 @@ jobs:
         run: uv sync --frozen --group verify
       - name: Add uv virtualenv binaries to PATH
         run: echo "${{ github.workspace }}/.venv/bin" >> $GITHUB_PATH
+      - name: Create g++ wrapper commands
+        shell: bash
+        run: bash .github/ci-scripts/create-gpp-wrappers.sh
 
       - name: Restore cached verify results
         if: ${{ !inputs.ignore_prev_result }}
@@ -177,49 +151,23 @@ jobs:
         id: restore-cached-results
         with:
           path: ${{ github.workspace }}/merged-result.json
-          key: ${{ runner.os }}-verify-merged-${{ github.sha }}
+          key: verify-merged-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-verify-merged-
+            verify-merged-
 
       - name: Download verify_files.json
         uses: competitive-verifier/actions/download-verify-artifact@v2
 
       - name: Get storage information
-        run: |
-          echo "::group::free"
-          free
-          echo "::endgroup::"
-          echo "::group::swapon"
-          swapon
-          echo "::endgroup::"
-          echo "::group::df"
-          df -ha --o --total
-          echo "::endgroup::"
-          echo "::group::du"
-          du -ha | sort -hr
-          echo "::endgroup::"
+        run: bash .github/ci-scripts/print-storage-info.sh
 
       - name: Clean up
         if: ${{ inputs.cleanup_before_verify }}
-        run: |
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
-          sudo docker image prune --all --force
+        run: bash .github/ci-scripts/cleanup-runner.sh
 
       - name: Get storage information after cleaning up
         if: ${{ inputs.cleanup_before_verify }}
-        run: |
-          echo "::group::free"
-          free
-          echo "::endgroup::"
-          echo "::group::swapon"
-          swapon
-          echo "::endgroup::"
-          echo "::group::df"
-          df -ha --o --total
-          echo "::endgroup::"
-          echo "::group::du"
-          du -ha | sort -hr
-          echo "::endgroup::"
+        run: bash .github/ci-scripts/print-storage-info.sh
 
       - name: Verify
         uses: competitive-verifier/actions/verify@v2
@@ -234,32 +182,11 @@ jobs:
           YUKICODER_TOKEN: ${{secrets.YUKICODER_TOKEN}}
 
       - name: Get storage information after verify
-        run: |
-          echo "::group::free"
-          free
-          echo "::endgroup::"
-          echo "::group::swapon"
-          swapon
-          echo "::endgroup::"
-          echo "::group::df"
-          df -ha --o --total
-          echo "::endgroup::"
-          echo "::group::du"
-          du -ha | sort -hr
-          echo "::endgroup::"
+        run: bash .github/ci-scripts/print-storage-info.sh
 
       - name: Collect gcov files into _gcov
         shell: bash
-        run: |
-          mkdir -p _gcov
-          find . -type f \( -name '*.gcno' -o -name '*.gcda' \) -not -path './_gcov/*' -print0 | while IFS= read -r -d '' f; do
-            base="$(basename "$f")"
-            dst="_gcov/$base"
-            mv -f "$f" "$dst"
-          done
-          echo "::group::files"
-          ls -l _gcov
-          echo "::endgroup::"
+        run: bash .github/ci-scripts/collect-gcov.sh
 
       - name: Upload result artifact
         uses: actions/upload-artifact@v7
@@ -306,34 +233,18 @@ jobs:
         id: restore-cached-gcov
         with:
           path: _gcov
-          key: ${{ runner.os }}-verify-gcov-${{ github.sha }}
+          key: verify-gcov-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-verify-gcov-
+            verify-gcov-
 
       - name: Collect gcov files into _gcov
         shell: bash
-        run: |
-          mkdir -p _gcov
-          find . -type f \( -name '*.gcno' -o -name '*.gcda' \) -not -path './_gcov/*' -print0 | while IFS= read -r -d '' f; do
-            base="$(basename "$f")"
-            dst="_gcov/$base"
-            if [[ $IGNORE_PREV_RESULT && -e "$dst" ]]; then
-              echo "::error::Refusing to overwrite existing '$dst' while `ignore_prev_result` enabled"
-              exit 1
-            fi
-            mv -f "$f" "$dst"
-          done
-          echo "::group::files"
-          ls -l _gcov
-          echo "::endgroup::"
+        run: bash .github/ci-scripts/collect-gcov.sh
         env:
           IGNORE_PREV_RESULT: ${{ inputs.ignore_prev_result }}
       - name: Build C++ code coverage report pages
         shell: bash
-        run: |
-          out=".competitive-verifier/docs/static/coverage-cpp"
-          mkdir -p "$out"
-          uv run gcovr --gcov-suspicious-hits-threshold 0 --html-details "$out/summary.html"
+        run: bash .github/ci-scripts/build-cpp-coverage-pages.sh
 
       - name: Extract bundled
         shell: bash
@@ -368,40 +279,30 @@ jobs:
       - name: Get current hash list
         shell: bash
         run: git log --all --reverse --format="%H" > ${{github.workspace}}/commit-hashes.txt
-      - name: Save result
-        if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
-        uses: actions/cache/save@v5
-        with:
-          path: |
-            ${{github.workspace}}/merged-result.json
-            ${{github.workspace}}/commit-hashes.txt
-            _gcov
-          key: ${{ runner.os }}-verify-result-${{ github.sha }}
 
       - name: Save merged result cache
         if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
         uses: actions/cache/save@v5
         with:
           path: ${{ github.workspace }}/merged-result.json
-          key: ${{ runner.os }}-verify-merged-${{ github.sha }}
+          key: verify-merged-${{ github.sha }}
 
       - name: Save commit hash list cache
         if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
         uses: actions/cache/save@v5
         with:
           path: ${{ github.workspace }}/commit-hashes.txt
-          key: ${{ runner.os }}-verify-hashes-${{ github.sha }}
+          key: verify-hashes-${{ github.sha }}
 
       - name: Save gcov cache
         if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
         uses: actions/cache/save@v5
         with:
           path: _gcov
-          key: ${{ runner.os }}-verify-gcov-${{ github.sha }}
+          key: verify-gcov-${{ github.sha }}
 
       - name: Patch pages doc
-        run: |
-          uv run python cpv_patch.py -l DEBUG doc -s src -j _jekyll
+        run: uv run python cpv_patch.py -l DEBUG doc -s src -j _jekyll
       - name: Upload page src
         uses: actions/upload-artifact@v7
         with:

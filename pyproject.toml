@@ -22,7 +22,7 @@ latex = [
     "pygments==2.20.0",
 ]
 verify = [
-    "competitive-verifier==4.0.0",
+    "competitive-verifier==4.1.0",
     "gcovr==8.6",
 ]
 bundle = [
