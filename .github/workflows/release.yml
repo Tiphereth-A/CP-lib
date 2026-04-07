@@ -114,10 +114,12 @@ jobs:
       - name: Generate Typst files
         run: |
           uv run python manager.py -l DEBUG doc -t typ
+      - name: Install fonts
+        run: sudo apt-get install -y fonts-noto fonts-noto-cjk
       - name: Install Typst
         uses: typst-community/setup-typst@v4
       - name: Build the Typst document
-        run: typst compile .cp-lib/src/doc.typ notebook-typst.pdf
+        run: typst compile notebook.typ notebook-typst.pdf
       - name: Upload PDF to artifacts
         uses: actions/upload-artifact@v7
         with:
