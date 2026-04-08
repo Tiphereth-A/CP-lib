@@ -1,0 +1,8 @@
+计算 \(f(x_1,\dots,x_k)g(x_1,\dots,x_k)\bmod{\left(x_1^{n_1},\dots,x_k^{n_k}\right)}\)
+
+\paragraph{复杂度} \(O(kN\log N)\), 其中 \(N=\prod_i n_i\)
+
+\paragraph{参考链接} \qrcode{https://rushcheyo.blog.uoj.ac/blog/6547}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

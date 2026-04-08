@@ -1,0 +1,24 @@
+对无向图 \(G=\langle V_G,E_G,c\rangle\) (\(c(u,v)\) 为边 \((u,v)\) 的容量), 其最小割树 \(T=\langle V_G,E_T\rangle\) 满足:
+
+对 \(T\) 上的任意两点 \(u,v\), 其最小割树路径上的最小边权为图 \(G\) 中 \(u,v\) 两点的最小割
+
+\paragraph{示例} \cite{enwiki:1187705852}
+
+\begin{figure}[h]
+    \label{img:gomory-hu-input}
+    \centering
+    \includesvg[width=0.7\textwidth]{src/graph/nf/gomory_hu/GomoryHu_G}
+    \caption{原图}
+\end{figure}
+
+\begin{figure}[h]
+    \label{img:gomory-hu-output}
+    \centering
+    \includesvg[width=0.7\textwidth]{src/graph/nf/gomory_hu/GomoryHu_T}
+    \caption{最小割树}
+\end{figure}
+
+\paragraph{复杂度} \(n-1\) 次 \fullref{ssec:graph-nf-dinic}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

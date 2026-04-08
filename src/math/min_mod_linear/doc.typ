@@ -1,0 +1,4 @@
+求 \(\min\{(ax+b)\bmod m:0\leq x < n\}\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

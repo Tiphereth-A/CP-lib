@@ -1,0 +1,4 @@
+缓存友好的静态邻接表
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

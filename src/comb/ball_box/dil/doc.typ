@@ -1,0 +1,4 @@
+设有 \(n\) 个球, \(m\) 个盒子. 考虑第二类 Stirling 数, 不难发现答案为 \(\displaystyle\stirlingII{n}{m}\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

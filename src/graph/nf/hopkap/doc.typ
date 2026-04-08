@@ -1,0 +1,6 @@
+\fullref{ssec:graph-nf-dinic} 的特例, 用于二分图最大匹配
+
+\paragraph{复杂度} \(O\left(|E|\sqrt{|V|}\right)\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

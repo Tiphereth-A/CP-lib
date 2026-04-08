@@ -1,0 +1,29 @@
+Nim 和: \(a\oplus b:=\operatorname{mex}\left(\{a'\oplus b:a'<a\}\cup\{a\oplus b':b'<b\}\right)\)
+
+Nim 积: \(a\otimes b:=\operatorname{mex}\{(a'\otimes b)\oplus(a\oplus b')\oplus(a'\otimes b'):a'<a,b'<b\}\)
+
+\begin{figure}[h]
+    \label{img:nim-prod-pow2}
+    \centering
+    \includesvg[width=0.6\textwidth]{src/math/nim_prod/Nimber-multiplication-of-powers-of-two}
+    \caption{Nim 积(2 的幂次, From Wikipedia)}
+\end{figure}
+
+\begin{figure}[h]
+    \label{img:nim-add}
+    \centering
+    \includesvg[width=0.6\textwidth]{src/math/nim_prod/Nimber-addition}
+    \caption{Nim 和(From Wikipedia)}
+\end{figure}
+
+\begin{figure}[h]
+    \label{img:nim-prod}
+    \centering
+    \includesvg[width=0.6\textwidth]{src/math/nim_prod/Nimber-multiplication}
+    \caption{Nim 积(From Wikipedia)}
+\end{figure}
+
+\paragraph{参考链接} \qrcode{https://en.wikipedia.org/wiki/Nimber}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

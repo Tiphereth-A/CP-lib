@@ -1,0 +1,6 @@
+根据方阵 \(A^{-1}\) 和列向量 \(u,v\) 计算 \((A+uv^T)^{-1}=A^{-1}-\dfrac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}\)
+
+\paragraph{复杂度} \(O(n^2)\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

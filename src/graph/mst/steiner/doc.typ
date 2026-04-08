@@ -1,0 +1,10 @@
+\paragraph{复杂度} \(O\left(n3^k+2^km\log n\right)\), 其中 \(n\) 为点数, \(m\) 为边数, \(k\) 为关键点数
+
+\paragraph{样例图片}
+
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{src/graph/mst/steiner/luogu-P6192-1.png}
+\end{center}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

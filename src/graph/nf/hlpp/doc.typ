@@ -1,0 +1,17 @@
+应用了 BFS 优化与 GAP 优化
+
+\begin{figure}[h]
+    \label{img:hlpp}
+    \centering
+    \includegraphics[width=\textwidth]{src/graph/nf/hlpp/hlpp.png}
+    \caption{运行示例 (From OI-Wiki)}
+\end{figure}
+
+其中 pic13 到 pic14 执行了 Relabel(4), 并进行了 GAP 优化
+
+\paragraph{复杂度} \(O\left(|V|^2\sqrt{|E|}\right)\)
+
+\paragraph{参考资料} \cite{oiwiki} \cite{ahuja1997computational}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

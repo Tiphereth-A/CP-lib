@@ -1,0 +1,6 @@
+已知 \(f(0),\dots,f(k-1)\), \(a\), \(m\), \(f(i)=0,\quad \forall i\geq k\), \(m\in\mathbb{P}\), 求 \(\displaystyle \sum_{i=0}^{\infty} a^i f(i)\bmod{m}\)
+
+\paragraph{复杂度} \(O(k+\log m)\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

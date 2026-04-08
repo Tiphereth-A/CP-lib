@@ -1,0 +1,6 @@
+适用于稀疏图, 跑 1 次 \fullref{ssec:graph-sp-bm} + \(n\) 次 \fullref{ssec:graph-sp-dijkstra}
+
+\paragraph{复杂度} \(O(nm+n(n+m)\log n)=O(nm\log n)\), 其中 \(n\) 为点数, \(m\) 为边数
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

@@ -1,0 +1,12 @@
+\paragraph{输入}
+
+\verb|s|: 整数字符串, 假定长度至少为 8 且只含 0-9
+
+\paragraph{输出}
+
+\verb|s| 的前 8 位字符转整数的结果
+
+\paragraph{参见} \qrcode{https://johnnylee-sde.github.io/Fast-numeric-string-to-int/}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

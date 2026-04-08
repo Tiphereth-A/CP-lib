@@ -1,0 +1,6 @@
+见 \fullref{ssec:str-run-hash}
+
+\paragraph{复杂度} \(O(n\log n)\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

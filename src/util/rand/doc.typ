@@ -1,0 +1,24 @@
+\verb|constexpr| 版本的伪随机数生成器 (Mersenne 缠绕器), 大致按均匀分布输出结果 (为保证均匀分布要写太多代码了, 懒了)
+
+\paragraph{用法}
+
+\begin{minted}{cpp}
+int main() {
+  // 初始化
+  tifa_libs::gen<int> gen;
+  tifa_libs::gen<double> gen2(0, 114514); // (min, max)
+  tifa_libs::gen<long long> gen3(0, 114514, 19260817); // (min, max, seed)
+  // 设置范围
+  gen.range(0, 114514);
+  // 设置种子
+  gen.seed(); // 以当前时间戳为种子, 非 constexpr
+  gen2.seed(1919810);
+  // 输出下一个随机数
+  std::cout << gen();
+}
+\end{minted}
+
+\paragraph{参考文献} \cite{matsumoto1998mersenne} \cite{szHugyi2013random} \cite{lemire2019fast}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

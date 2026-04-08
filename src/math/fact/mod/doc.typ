@@ -1,0 +1,6 @@
+类似 \fullref{ssec:math-fact-helper_l}, 适合单次查询
+
+\paragraph{复杂度} \(O(\sqrt{p}\log^2 p)\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

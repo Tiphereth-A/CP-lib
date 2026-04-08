@@ -1,0 +1,4 @@
+设有 \(n\) 个球, \(m\) 个盒子. 考虑隔板法, 不难发现答案为 \(\displaystyle\binom{n+m-1}{m-1}\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

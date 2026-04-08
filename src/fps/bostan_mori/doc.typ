@@ -1,0 +1,17 @@
+设 \(0<\deg(p)<\deg(q)=k\), 求 \(\displaystyle\left[x^n\right]\dfrac{p(x)}{q(x)}=\left[x^k\right]\dfrac{p(x)q(-x)}{q(x)q(-x)}=\left[x^k\right]\dfrac{F\left(x^2\right)+xG\left(x^2\right)}{H\left(x^2\right)}=\begin{cases}
+    \left[x^{\lfloor k/2\rfloor}\right]\dfrac{F(x)}{H(x)}, & 2\mid k,  \\
+    \left[x^{\lfloor k/2\rfloor}\right]\dfrac{G(x)}{H(x)}, & 2\nmid k.
+\end{cases}\)
+
+\paragraph{注意}
+
+传参时应使 \verb|p.size() == q.size() - 1|
+
+\paragraph{复杂度}
+
+\(O(k\log k\log n)\)
+
+\paragraph{参考文献} \cite{bostan2021simple}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

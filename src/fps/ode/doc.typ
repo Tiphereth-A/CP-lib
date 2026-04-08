@@ -1,0 +1,25 @@
+求 \(\displaystyle\begin{cases}
+    \dfrac{\md}{\md x}f\equiv g(f)\pmod{x^n} \\
+    f(0)=a
+\end{cases}\)
+
+\paragraph{输入}~\\
+
+\verb|g|: \(g\), 调用方式为 \verb|poly g(poly f, size_t n)|, 其返回值为 \(g(f)\bmod{x^n}\)
+
+\verb|dg|: \(g'\), 调用方式为 \verb|poly dg(poly f, size_t n)|, 其返回值为 \(g'(f)\bmod{x^n}\)
+
+\verb|a|: \(a\)
+
+\verb|n|: \(n\)
+
+\paragraph{输出}
+
+\(f\)
+
+\paragraph{时间复杂度}
+
+\(O(n\log n)\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

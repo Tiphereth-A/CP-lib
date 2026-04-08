@@ -1,0 +1,4 @@
+\paragraph{复杂度} \(O\left(N\min\left\{W , \sum_i v_i , 2^{\frac{N}{2}}\right\}\right)\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

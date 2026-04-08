@@ -1,0 +1,4 @@
+由 Fermat 二平方和定理, \(4k+3\) 型素数一定无解, \(4k+1\) 型素数一定有解, 可利用 \fullref{ssec:math-ds-gint} 求解
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}
