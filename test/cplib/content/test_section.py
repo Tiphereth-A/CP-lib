@@ -160,10 +160,8 @@ class TestSection:
         os.makedirs('temp')
         s.expand_typ('temp')
         assert os.path.exists('temp/mylib2/doc.typ')
-        # Default template has unresolved directives (no source files present)
         out = open('temp/mylib2/doc.typ').read()
-        assert '// {lib.hpp,start=3}' in out
-        assert '// {usage.cpp,start=2}' in out
+        assert out == '// {lib.hpp,start=3}\n// {usage.cpp,start=2}\n'
 
     def test_expand_typ_basic(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
@@ -179,9 +177,14 @@ class TestSection:
         s.expand_typ('temp')
         assert os.path.exists('temp/mylib3/doc.typ')
         out = open('temp/mylib3/doc.typ').read()
-        assert 'Path: `mylib3/lib.hpp`' in out
-        assert 'read("mylib3/lib.hpp")' in out
-        assert 'lang: "cpp"' in out
+        assert out == (
+            'Path: `mylib3/lib.hpp`\n\n'
+            '#raw(\n'
+            '  read("mylib3/lib.hpp").split("\\n").slice(0, 3).join("\\n"),\n'
+            '  lang: "cpp",\n'
+            '  block: true,\n'
+            ')\n\n\n'
+        )
 
     def test_expand_typ_with_start(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
@@ -196,7 +199,14 @@ class TestSection:
         s = Section('mylib4', 'MyLib4')
         s.expand_typ('temp')
         out = open('temp/mylib4/doc.typ').read()
-        assert '.slice(1, 5)' in out
+        assert out == (
+            'Path: `mylib4/lib.hpp`\n\n'
+            '#raw(\n'
+            '  read("mylib4/lib.hpp").split("\\n").slice(1, 5).join("\\n"),\n'
+            '  lang: "cpp",\n'
+            '  block: true,\n'
+            ')\n\n\n'
+        )
 
     def test_expand_typ_negative_stop(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
@@ -212,7 +222,14 @@ class TestSection:
         s.expand_typ('temp')
         out = open('temp/mylib5/doc.typ').read()
         # stop=-2 => 10 + (-2) = 8 → slice(0, 8)
-        assert '.slice(0, 8)' in out
+        assert out == (
+            'Path: `mylib5/lib.hpp`\n\n'
+            '#raw(\n'
+            '  read("mylib5/lib.hpp").split("\\n").slice(0, 8).join("\\n"),\n'
+            '  lang: "cpp",\n'
+            '  block: true,\n'
+            ')\n\n\n'
+        )
 
     def test_expand_tex_consistency_check_tex_only(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
