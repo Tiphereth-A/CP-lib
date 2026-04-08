@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/all/ITP2_11_C"
+// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/all/ITP2_11_C"
 
 #include "../../../src/gen/subset/lib.hpp"
 #include "../../../src/util/alias/others/lib.hpp"

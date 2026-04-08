@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/many_factorials"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/many_factorials"
 
 #include "../../../src/util/alias/num/lib.hpp"
 

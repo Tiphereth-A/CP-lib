@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/manhattanmst/"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/manhattanmst/"
 
 #include "../../../src/graph/mst/kruskal/lib.hpp"
 #include "../../../src/graph/mst/manhattan/lib.hpp"

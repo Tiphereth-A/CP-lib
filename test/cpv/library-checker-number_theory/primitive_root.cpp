@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/primitive_root"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/primitive_root"
 
 #include "../../../src/nt/proot/uint/lib.hpp"
 

@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_1_D"
+// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_1_D"
 
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/opt/lis/lib.hpp"

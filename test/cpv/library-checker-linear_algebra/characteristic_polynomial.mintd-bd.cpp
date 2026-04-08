@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/characteristic_polynomial"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/characteristic_polynomial"
 
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/lalg/mat/charpoly/lib.hpp"

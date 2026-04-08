@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/furthest_pair"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/furthest_pair"
 
 #include "../../../src/geo2d/ds/cvh/lib.hpp"
 

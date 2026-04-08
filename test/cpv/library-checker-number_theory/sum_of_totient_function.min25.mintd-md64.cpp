@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
 
 #include "../../../src/nt/mfsum/min25/lib.hpp"
 

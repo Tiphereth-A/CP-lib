@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/counting_eulerian_circuits/"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/counting_eulerian_circuits/"
 
 #include "../../../src/comb/seq/fact/lib.hpp"
 #include "../../../src/graph/ds/alist/lib.hpp"

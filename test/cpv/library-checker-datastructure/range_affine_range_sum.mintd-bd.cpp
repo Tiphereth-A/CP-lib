@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
 #include "../../../src/ds/segtree/hp/lib.hpp"
 

@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence"
 
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/math/lrec/nth_term/lib.hpp"

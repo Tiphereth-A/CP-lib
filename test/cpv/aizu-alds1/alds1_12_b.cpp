@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_12_B"
+// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_12_B"
 
 #include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/graph/sp/dijkstra/lib.hpp"

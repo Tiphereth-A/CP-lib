@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution"
 
 #include "../../../src/conv/xor/lib.hpp"
 #include "../../../src/io/container/lib.hpp"

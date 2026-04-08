@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/gcd_of_gaussian_integers"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/gcd_of_gaussian_integers"
 
 #include "../../../src/math/ds/gint/lib.hpp"
 

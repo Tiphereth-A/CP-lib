@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/longest_common_substring"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/longest_common_substring"
 
 #include "../../../src/str/lcs_sa/lib.hpp"
 

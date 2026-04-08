@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis"
 
 #include "../../../src/fps/cbm2n/lib.hpp"
 #include "../../../src/io/container/lib.hpp"

@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
 #include "../../../src/ds/segtree/hp/lib.hpp"
 

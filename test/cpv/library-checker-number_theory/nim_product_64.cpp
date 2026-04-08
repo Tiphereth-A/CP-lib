@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/nim_product_64"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/nim_product_64"
 
 #include "../../../src/math/nim_prod/lib.hpp"
 

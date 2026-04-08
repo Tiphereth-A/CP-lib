@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_B"
+// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_B"
 
 #include "../../../src/comb/ball_box/ddm/lib.hpp"
 #include "../../../src/comb/binom/lib.hpp"

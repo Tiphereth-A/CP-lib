@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/hafnian_of_matrix"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/hafnian_of_matrix"
 
 #include "../../../src/lalg/ds/mat/lib.hpp"
 #include "../../../src/lalg/mat/hafnian/lib.hpp"

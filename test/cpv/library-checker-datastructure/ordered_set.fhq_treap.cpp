@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/ordered_set"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/ordered_set"
 
 #include "../../../src/ds/bst/fhq/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

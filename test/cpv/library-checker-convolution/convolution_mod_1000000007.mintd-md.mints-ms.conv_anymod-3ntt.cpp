@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

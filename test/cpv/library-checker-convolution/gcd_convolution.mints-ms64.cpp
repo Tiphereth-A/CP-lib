@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/gcd_convolution"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/gcd_convolution"
 
 #include "../../../src/conv/gcd/lib.hpp"
 

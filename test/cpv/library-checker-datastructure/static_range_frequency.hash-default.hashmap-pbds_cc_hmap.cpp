@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/static_range_frequency"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/static_range_frequency"
 
 #include "../../../src/util/alias/others/lib.hpp"
 //

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/factorial"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/factorial"
 
 #include "../../../src/util/alias/num/lib.hpp"
 

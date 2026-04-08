@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/chordal_graph_recognition/"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/chordal_graph_recognition/"
 
 #include "../../../src/graph/chordal/lib.hpp"
 #include "../../../src/graph/ds/alist/lib.hpp"

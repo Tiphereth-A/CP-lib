@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod"
 
 #include "../../../src/lalg/ds/mat/lib.hpp"
 #include "../../../src/lalg/mat/det/lib.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/deque_operate_all_composite"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/deque_operate_all_composite"
 
 #include "../../../src/ds/dq/w/lib.hpp"
 #include "../../../src/math/ds/mint/ms/lib.hpp"

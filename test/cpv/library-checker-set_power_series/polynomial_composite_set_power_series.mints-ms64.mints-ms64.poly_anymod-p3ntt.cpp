@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/polynomial_composite_set_power_series"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/polynomial_composite_set_power_series"
 
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

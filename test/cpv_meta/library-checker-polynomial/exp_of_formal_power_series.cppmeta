@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series"
 
 #include "../../../src/fps/exp/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

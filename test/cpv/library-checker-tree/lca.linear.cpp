@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/lca"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/lca"
 
 #include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=3086"
+// competitive-verifier: PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=3086"
 
 #include "../../../src/ds/segtree/hp/lib.hpp"
 #include "../../../src/opt/larsch/d1/lib.hpp"

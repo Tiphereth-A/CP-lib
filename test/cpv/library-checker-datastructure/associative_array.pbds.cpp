@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/associative_array"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/associative_array"
 
 #include "../../../src/util/alias/num/lib.hpp"
 

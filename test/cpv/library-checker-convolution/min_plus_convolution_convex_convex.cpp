@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/min_plus_convolution_convex_convex"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/min_plus_convolution_convex_convex"
 
 #include "../../../src/conv/min_plus/cv_cv/lib.hpp"
 #include "../../../src/io/container/lib.hpp"

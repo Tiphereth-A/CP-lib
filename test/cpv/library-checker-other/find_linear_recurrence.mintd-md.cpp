@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/find_linear_recurrence"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/find_linear_recurrence"
 
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/math/lrec/berlekamp_massey/lib.hpp"

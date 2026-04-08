@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series"
 
 #include "../../../src/fps/inv/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

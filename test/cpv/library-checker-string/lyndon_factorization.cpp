@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/lyndon_factorization"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/lyndon_factorization"
 
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/str/lyndon/lib.hpp"

@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/partition_function"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/partition_function"
 
 #include "../../../src/comb/seq/partition/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

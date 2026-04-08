@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 
 #include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/graph/sp/dijkstra/lib.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
 
 #include "../../../src/graph/nf/dinic/lib.hpp"
 

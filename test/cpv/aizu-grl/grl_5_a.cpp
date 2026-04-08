@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
+// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
 
 #include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/tree/dfs/diam/lib.hpp"

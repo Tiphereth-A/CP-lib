@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 
 #include "../../../src/util/alias/num/lib.hpp"
 

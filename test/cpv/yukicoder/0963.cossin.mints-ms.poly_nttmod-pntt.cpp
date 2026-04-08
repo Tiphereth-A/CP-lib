@@ -1,6 +1,6 @@
 #define AUTO_GENERATED
 #define AUTO_GENERATED
-#define PROBLEM "https://yukicoder.me/problems/no/963"
+// competitive-verifier: PROBLEM "https://yukicoder.me/problems/no/963"
 
 #include "../../../src/fps/cossin/lib.hpp"
 

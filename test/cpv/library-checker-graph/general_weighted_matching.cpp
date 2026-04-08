@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/general_weighted_matching/"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/general_weighted_matching/"
 
 #include "../../../src/graph/blossom/w/lib.hpp"
 

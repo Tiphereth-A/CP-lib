@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/bell_number"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/bell_number"
 
 #include "../../../src/comb/seq/bell/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

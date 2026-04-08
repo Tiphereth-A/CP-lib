@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/polynomial_taylor_shift"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/polynomial_taylor_shift"
 
 #include "../../../src/fps/tsh/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

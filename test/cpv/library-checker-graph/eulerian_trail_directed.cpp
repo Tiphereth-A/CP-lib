@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/eulerian_trail_directed"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/eulerian_trail_directed"
 
 #include "../../../src/graph/euler_trail/lib.hpp"
 

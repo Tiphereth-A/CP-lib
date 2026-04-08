@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind"
 
 #include "../../../src/comb/seq/stirling2_row/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

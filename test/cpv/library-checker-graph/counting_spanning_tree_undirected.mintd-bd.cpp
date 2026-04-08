@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/counting_spanning_tree_undirected"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/counting_spanning_tree_undirected"
 
 #include "../../../src/fast/rsort32/lib.hpp"
 #include "../../../src/graph/ds/alist/lib.hpp"

@@ -1,5 +1,5 @@
 #define AUTO_GENERATED
-#define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group"
 
 #include "../../../src/ds/dsu/w/lib.hpp"
 #include "../../../src/io/container/lib.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
+// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
 #include "../../../src/ds/fenwick/d1/lib.hpp"
 #include "../../../src/graph/ds/alist/lib.hpp"

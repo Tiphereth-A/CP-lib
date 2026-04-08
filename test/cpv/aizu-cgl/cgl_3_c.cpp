@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_C"
+// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_C"
 
 #include "../../../src/geo2d/ds/p/lib.hpp"
 #include "../../../src/geo2d/ds/po/lib.hpp"
