@@ -75,8 +75,8 @@ jobs:
       - name: Upload PDF to artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: notebook
-          path: notebook.pdf
+          name: notebook-tex
+          path: notebook-tex.pdf
 
   build-typ:
     runs-on: ubuntu-latest
