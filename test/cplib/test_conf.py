@@ -87,7 +87,6 @@ class TestConfigBase:
             obj.output()
 
     def test_output_not_writable_raises(self, tmp_path):
-        # Covers line 26: raise PermissionError when file is not writable
         import stat
         cfg_path = tmp_path / 'readonly_cfg.yml'
         write_yaml(str(cfg_path), {'a': 1})
@@ -250,7 +249,6 @@ class TestConfigTcgen:
             self.cfg.get_member_content('mints', '__totally_invalid__')
 
     def test_get_member_content_list_dispatch_success(self, tmp_path):
-        # Covers _get_member_content_raw(list, str) success path (lines 57-58)
         data = {
             'catA': {
                 'priority': 0,
@@ -282,7 +280,6 @@ class TestConfigTcgen:
         assert content['member_name'] == 'alpha'
 
     def test_get_member_content_list_dispatch_fallback(self, tmp_path):
-        # Covers _get_member_content_raw(list, str) iterate-all path (lines 63-68)
         data = {
             'catA': {
                 'priority': 0,
@@ -302,7 +299,6 @@ class TestConfigTcgen:
             cfg.get_member_content(['catA'], 'zzz')
 
     def test_get_memberlist_empty_list(self, tmp_path):
-        # Covers __check_categories_priorities return on empty (line 15)
         data = {'catA': {'priority': 0,
                          'default_content': None, 'member': {'a': None}}}
         cfg_path = tmp_path / 'tcgen_empty.yml'
@@ -313,7 +309,6 @@ class TestConfigTcgen:
         assert result == []
 
     def test_get_member_content_null_default(self, tmp_path):
-        # Covers lines 49, 51: member content when default_content is None
         data = {
             'catA': {
                 'priority': 0,

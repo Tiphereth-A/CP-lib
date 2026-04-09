@@ -73,8 +73,6 @@ class TestRunCommand:
                             'import sys; sys.exit(1)'], 1)]
 
     def test_heartbeat_sleep_called(self):
-        # Covers line 25: heartbeat calls time.sleep(30) when queue non-empty
-        # Use a slow command and mock time.sleep to avoid actual 30s wait
         import sys
 
         sleep_calls = []
@@ -94,14 +92,12 @@ class TestRunCommand:
         assert result == []
 
     def test_none_param_is_skipped(self):
-        # Covers run_command.py line 25: `if param is None: return` sentinel branch
         result = run_command(lambda x: (['echo', str(x)], {}), [
                              None], thread_limit=1)
         assert result == []
 
     def test_time_limit_sets_timeout(self):
         import sys
-        # Covers line 32: time_limit is not None → extra_args.setdefault('timeout', ...)
         result = run_command(
             lambda x: ([sys.executable, '-c', 'pass'], {}),
             ['p'],
@@ -112,7 +108,6 @@ class TestRunCommand:
 
     def test_post_run_callback_called(self):
         import sys
-        # Covers line 55: post_run(result) branch
         called = []
 
         def make_cmd(x):
@@ -125,7 +120,6 @@ class TestRunCommand:
     def test_post_run_raising_calledprocesserror(self):
         import sys
         import subprocess as sp
-        # Covers line 55 + CalledProcessError from post_run (line 63)
 
         def make_cmd(x):
             def _post(r):
@@ -137,9 +131,9 @@ class TestRunCommand:
 
     def test_timeout_expired(self):
         import sys
-        # Covers lines 57-59: TimeoutExpired handler
         result = run_command(
-            lambda x: ([sys.executable, '-c', 'import time; time.sleep(10)'], {}),
+            lambda x: (
+                [sys.executable, '-c', 'import time; time.sleep(10)'], {}),
             ['p'],
             thread_limit=1,
             time_limit=0.01
@@ -148,8 +142,7 @@ class TestRunCommand:
 
     def test_generic_exception_handler(self):
         import sys
-        # Covers lines 62-65: generic Exception handler
-        # post_run raises a non-CalledProcessError so it falls into except Exception
+
         def make_cmd(x):
             def _post(r):
                 raise ValueError("unexpected post_run error")
@@ -160,9 +153,9 @@ class TestRunCommand:
 
     def test_hide_stdout_suppresses_stdout_in_log(self):
         import sys
-        # Covers the hide_stdout=True branch (line ~48-49 in run_command)
         result = run_command(
-            lambda x: ([sys.executable, '-c', 'print("secret")'], {'hide_stdout': True}),
+            lambda x: ([sys.executable, '-c', 'print("secret")'],
+                       {'hide_stdout': True}),
             ['p'],
             thread_limit=1
         )

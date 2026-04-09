@@ -7,7 +7,7 @@ from libs.decorator import with_logger, with_timer
 
 @with_logger
 @with_timer
-def patch_cpvdoc(src: str, jekyll_src: str, **kwargs):
+def cpv_doc(src: str, jekyll_src: str, **kwargs):
     logger = kwargs.get('logger')
 
     def _group_key(src: str, category_name: str) -> str:
@@ -59,9 +59,9 @@ def patch_cpvdoc(src: str, jekyll_src: str, **kwargs):
     logger.info('finished')
 
 
-def _register_patch_cpvdoc(cli):
+def _register_cpv_doc(cli):
     @cli.command('doc')
     @click.option('-s', '--src', type=click.Path(exists=True, file_okay=False), help='Source directory', default='src')
     @click.option('-j', '--jekyll-src', type=click.Path(exists=True, file_okay=False), help='Source path to patch', default='_jekyll')
-    def _patch_cpvdoc(src: str, jekyll_src: str):
-        patch_cpvdoc(src, jekyll_src)
+    def _cpv_doc(src: str, jekyll_src: str):
+        cpv_doc(src, jekyll_src)

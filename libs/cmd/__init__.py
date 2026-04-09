@@ -5,7 +5,9 @@ from libs.cmd.fmt import _register_fmt
 from libs.cmd.meta import _register_meta
 from libs.cmd.pack import _register_pack
 
-from libs.cmd.patch_cpvdoc import _register_patch_cpvdoc
+from libs.cmd.cpv_doc import _register_cpv_doc
+from libs.cmd.cpv_delegate import _register_cpv_delegate
+from libs.cmd.cpv_merged_result import _register_cpv_merged_result
 
 
 def register_main_commands(cli):
@@ -18,7 +20,9 @@ def register_main_commands(cli):
 
 
 def register_cpv_patch_commands(cli):
-    _register_patch_cpvdoc(cli)
+    _register_cpv_doc(cli)
+    _register_cpv_merged_result(cli)
+    _register_cpv_delegate(cli)
 
 
 __all__ = ['register_main_commands', 'register_cpv_patch_commands']
