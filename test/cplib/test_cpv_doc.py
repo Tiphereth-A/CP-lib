@@ -4,7 +4,7 @@ import yaml
 from click.testing import CliRunner
 from unittest.mock import patch
 
-from libs.cmd.patch_cpvdoc import patch_cpvdoc, _register_patch_cpvdoc
+from libs.cmd.cpv_doc import cpv_doc, _register_cpv_doc
 
 
 def _write_index_md(path, yml_dict, tail='\n# tail\n'):
@@ -14,7 +14,7 @@ def _write_index_md(path, yml_dict, tail='\n# tail\n'):
 
 @pytest.mark.unit
 class TestPatchCpvdoc:
-    def test_patch_cpvdoc_merges_categories_and_sets_filename(self, tmp_path, monkeypatch):
+    def test_cpv_doc_merges_categories_and_sets_filename(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
         src_dir = tmp_path / 'src'
         jekyll_dir = tmp_path / '_jekyll'
@@ -64,7 +64,7 @@ class TestPatchCpvdoc:
         }
         _write_index_md(index_md, yml_dict)
 
-        patch_cpvdoc('src', '_jekyll')
+        cpv_doc('src', '_jekyll')
 
         content = index_md.read_text(encoding='utf-8')
         sections = content.split('---', 2)
@@ -107,7 +107,7 @@ class TestPatchCpvdoc:
         }
         assert patched == expected
 
-    def test_patch_cpvdoc_broken_yaml_filename_mismatch_logs_and_returns(self, tmp_path, monkeypatch, caplog):
+    def test_cpv_doc_broken_yaml_filename_mismatch_logs_and_returns(self, tmp_path, monkeypatch, caplog):
         monkeypatch.chdir(tmp_path)
         src_dir = tmp_path / 'src'
         jekyll_dir = tmp_path / '_jekyll'
@@ -138,12 +138,12 @@ class TestPatchCpvdoc:
         _write_index_md(index_md, yml_dict)
         original = index_md.read_text(encoding='utf-8')
 
-        patch_cpvdoc('src', '_jekyll')
+        cpv_doc('src', '_jekyll')
 
         assert 'broken YAML: name: src/math/gcd/, filename: wrong.hpp, but path: src/math/gcd/lib.hpp' in caplog.text
         assert index_md.read_text(encoding='utf-8') == original
 
-    def test_patch_cpvdoc_invalid_category_name_logs_and_returns(self, tmp_path, monkeypatch, caplog):
+    def test_cpv_doc_invalid_category_name_logs_and_returns(self, tmp_path, monkeypatch, caplog):
         monkeypatch.chdir(tmp_path)
         src_dir = tmp_path / 'src'
         jekyll_dir = tmp_path / '_jekyll'
@@ -174,12 +174,12 @@ class TestPatchCpvdoc:
         _write_index_md(index_md, yml_dict)
         original = index_md.read_text(encoding='utf-8')
 
-        patch_cpvdoc('src', '_jekyll')
+        cpv_doc('src', '_jekyll')
 
         assert 'invalid category name: src/math/gcd (must end with /)' in caplog.text
         assert index_md.read_text(encoding='utf-8') == original
 
-    def test_patch_cpvdoc_invalid_front_matter_logs_and_returns(self, tmp_path, monkeypatch, caplog):
+    def test_cpv_doc_invalid_front_matter_logs_and_returns(self, tmp_path, monkeypatch, caplog):
         monkeypatch.chdir(tmp_path)
         src_dir = tmp_path / 'src'
         jekyll_dir = tmp_path / '_jekyll'
@@ -190,12 +190,12 @@ class TestPatchCpvdoc:
         original = 'no front matter here\n'
         index_md.write_text(original, encoding='utf-8')
 
-        patch_cpvdoc('src', '_jekyll')
+        cpv_doc('src', '_jekyll')
 
         assert 'invalid index.md format: YAML front matter is required' in caplog.text
         assert index_md.read_text(encoding='utf-8') == original
 
-    def test_register_patch_cpvdoc_registers_and_invokes_command(self, tmp_path, monkeypatch):
+    def test_register_cpv_doc_registers_and_invokes_command(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
         src_dir = tmp_path / 'src'
         jekyll_dir = tmp_path / '_jekyll'
@@ -206,15 +206,15 @@ class TestPatchCpvdoc:
         def cli():
             pass
 
-        _register_patch_cpvdoc(cli)
+        _register_cpv_doc(cli)
         assert 'doc' in cli.commands
 
         runner = CliRunner()
-        with patch('libs.cmd.patch_cpvdoc.patch_cpvdoc') as mock_patch_cpvdoc:
+        with patch('libs.cmd.cpv_doc.cpv_doc') as mock_cpv_doc:
             result = runner.invoke(
                 cli,
                 ['doc', '-s', 'src', '-j', '_jekyll'],
             )
 
         assert result.exit_code == 0
-        mock_patch_cpvdoc.assert_called_once_with('src', '_jekyll')
+        mock_cpv_doc.assert_called_once_with('src', '_jekyll')

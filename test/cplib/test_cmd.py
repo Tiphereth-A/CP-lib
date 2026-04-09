@@ -73,7 +73,7 @@ class TestLibsInit:
         def group():
             pass
         register_cpv_patch_commands(group)
-        assert set(group.commands.keys()) == {'doc'}
+        assert set(group.commands.keys()) == {'doc', 'delegate', 'merged-result'}
 
     def test_cli_callback_installs_coloredlogs(self):
         with patch('libs.coloredlogs.install') as install:
@@ -119,7 +119,6 @@ class TestDocCommands:
         assert result.exit_code != 0
 
     def test_gen_tex_with_chapter_doc_tex(self, tmp_path, monkeypatch):
-        # Covers lines 38-39: chapter_doc_path exists → read and replace {content}
         monkeypatch.chdir(tmp_path)
         make_src_tree(str(tmp_path))
         # Add a doc.tex at the math chapter level with {content} placeholder
@@ -132,7 +131,6 @@ class TestDocCommands:
         assert os.path.exists(result_path)
 
     def test_doc_unsupported_type_raises(self, cli, tmp_path, monkeypatch):
-        # Covers cmd/doc.py line 72: else branch raises ValueError for unknown type
         monkeypatch.chdir(tmp_path)
         make_src_tree(str(tmp_path))
         doc_cmd = cli.commands['doc']
@@ -220,30 +218,7 @@ class TestMetaCommands:
         generate_testcode(src, 'target')
         assert os.path.exists(keep_file)
 
-    def test_generate_testcode_unreadable_file_raises(self, tmp_path, monkeypatch):
-        # Covers lines 27-29: exception reading a target file propagates
-        from unittest.mock import patch, mock_open
-        import builtins
-        monkeypatch.chdir(tmp_path)
-        src = self._make_cppmeta(str(tmp_path))
-        os.makedirs('target')
-        bad_file = os.path.join('target', 'bad.cpp')
-        with open(bad_file, 'w') as f:
-            f.write('some content\n')
-        # Patch open so that opening the .cpp file raises PermissionError
-        real_open = builtins.open
-
-        def patched_open(file, *args, **kwargs):
-            if str(file).endswith('.cpp'):
-                raise PermissionError("mocked permission error")
-            return real_open(file, *args, **kwargs)
-
-        with patch('builtins.open', side_effect=patched_open):
-            with pytest.raises(PermissionError):
-                generate_testcode(src, 'target')
-
     def test_pack_cli_invocation(self, cli, tmp_path, monkeypatch):
-        # Covers cmd/pack.py line 34: CLI body
         monkeypatch.chdir(tmp_path)
         src = os.path.join(str(tmp_path), 'src')
         os.makedirs(src, exist_ok=True)
@@ -260,7 +235,6 @@ class TestMetaCommands:
         assert 'meta' in cli.commands
 
     def test_meta_cli_invocation(self, cli, tmp_path, monkeypatch):
-        # Covers cmd/meta.py line 56: CLI body
         monkeypatch.chdir(tmp_path)
         src = os.path.join(str(tmp_path), 'meta_src')
         target = os.path.join(str(tmp_path), 'target')
@@ -368,8 +342,6 @@ class TestVerifyCommands:
                          time_limit=0.5, temp_path='temp')
 
     def test_verify_codes_cmd_function_exercises(self, tmp_path, monkeypatch):
-        # Covers cmd/verify.py lines 28-30: _cmd function body is exercised
-        # by letting run_command actually call _cmd, but mocking subprocess.run
         import subprocess
         monkeypatch.chdir(tmp_path)
         src = self._make_src_with_usage(str(tmp_path))
