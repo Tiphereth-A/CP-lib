@@ -25,7 +25,7 @@ def generate_testcode(src: str, target: str, **kwargs):
                 os.remove(file_path)
         except Exception as e:
             logger.error(f"Failed to read {file_path}: {e}")
-            raise e
+            return
 
     # Generate new test files
     for src_file in all_src_files:

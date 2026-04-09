@@ -140,7 +140,8 @@ class TestWithLogger:
 
         assert result == 99
         assert "Returned: '99'" in caplog.messages
-        assert not any('ResultHandler object at' in msg for msg in caplog.messages)
+        assert not any(
+            'ResultHandler object at' in msg for msg in caplog.messages)
 
     def test_logger_with_non_none_result(self, caplog):
         @with_logger

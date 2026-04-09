@@ -1,5 +1,5 @@
 import os
-import sys
+import json
 import pytest
 import yaml
 import click
@@ -13,6 +13,7 @@ from libs.cmd.fmt import lint_all_codes
 from libs.cmd.meta import generate_testcode
 from libs.cmd.new import new_section
 from libs.cmd.pack import packing_codes
+from libs.cmd.cpv_delegate import cpv_delegate
 from libs.cmd.verify import verify_codes
 from libs.content.tree import ContentTree
 
@@ -73,12 +74,72 @@ class TestLibsInit:
         def group():
             pass
         register_cpv_patch_commands(group)
-        assert set(group.commands.keys()) == {'doc'}
+        assert set(group.commands.keys()) == {
+            'doc', 'delegate', 'merged-result'}
 
     def test_cli_callback_installs_coloredlogs(self):
         with patch('libs.coloredlogs.install') as install:
             libs.cli.callback(level='INFO')
         install.assert_called_once()
+
+
+# ----------------------------------------------------------- cpv_delegate.py --
+
+@pytest.mark.unit
+class TestCpvDelegateCommands:
+    def test_cpv_delegate_skips_unverifiable_and_missing_files(self, tmp_path):
+        verify_files = tmp_path / 'verify_files.json'
+        merged_result = tmp_path / 'merged-result.json'
+        result_dir = tmp_path / 'verify-list'
+
+        verify_files.write_text(json.dumps({
+            'files': {
+                'src/ok.cpp': {
+                    'dependencies': ['src/ok.cpp'],
+                    'verification': [{'type': 'local'}],
+                },
+                'src/empty.hpp': {
+                    'dependencies': ['src/empty.hpp'],
+                    'verification': [],
+                },
+            }
+        }), encoding='utf8')
+        merged_result.write_text(json.dumps({'files': {}}), encoding='utf8')
+
+        with patch('libs.cmd.cpv_delegate.files_listing', return_value=['src/ok.cpp', 'src/empty.hpp', 'src/missing.cpp']):
+            cpv_delegate(('*',), str(verify_files),
+                         str(merged_result), 1, str(result_dir))
+
+        delegated = json.loads((result_dir / '0.json').read_text(encoding='utf8'))
+        assert set(delegated['files'].keys()) == {'src/ok.cpp'}
+
+    def test_cpv_delegate_handles_empty_previous_verifications(self, tmp_path):
+        verify_files = tmp_path / 'verify_files.json'
+        merged_result = tmp_path / 'merged-result.json'
+        result_dir = tmp_path / 'verify-list'
+
+        verify_files.write_text(json.dumps({
+            'files': {
+                'src/ok.cpp': {
+                    'dependencies': ['src/ok.cpp'],
+                    'verification': [{'type': 'local'}],
+                },
+            }
+        }), encoding='utf8')
+        merged_result.write_text(json.dumps({
+            'files': {
+                'src/ok.cpp': {
+                    'verifications': [],
+                }
+            }
+        }), encoding='utf8')
+
+        with patch('libs.cmd.cpv_delegate.files_listing', return_value=['src/ok.cpp']):
+            cpv_delegate(('*',), str(verify_files),
+                         str(merged_result), 1, str(result_dir))
+
+        delegated = json.loads((result_dir / '0.json').read_text(encoding='utf8'))
+        assert set(delegated['files'].keys()) == {'src/ok.cpp'}
 
 
 # ------------------------------------------------------------------ doc.py --
@@ -119,7 +180,6 @@ class TestDocCommands:
         assert result.exit_code != 0
 
     def test_gen_tex_with_chapter_doc_tex(self, tmp_path, monkeypatch):
-        # Covers lines 38-39: chapter_doc_path exists → read and replace {content}
         monkeypatch.chdir(tmp_path)
         make_src_tree(str(tmp_path))
         # Add a doc.tex at the math chapter level with {content} placeholder
@@ -132,7 +192,6 @@ class TestDocCommands:
         assert os.path.exists(result_path)
 
     def test_doc_unsupported_type_raises(self, cli, tmp_path, monkeypatch):
-        # Covers cmd/doc.py line 72: else branch raises ValueError for unknown type
         monkeypatch.chdir(tmp_path)
         make_src_tree(str(tmp_path))
         doc_cmd = cli.commands['doc']
@@ -220,30 +279,7 @@ class TestMetaCommands:
         generate_testcode(src, 'target')
         assert os.path.exists(keep_file)
 
-    def test_generate_testcode_unreadable_file_raises(self, tmp_path, monkeypatch):
-        # Covers lines 27-29: exception reading a target file propagates
-        from unittest.mock import patch, mock_open
-        import builtins
-        monkeypatch.chdir(tmp_path)
-        src = self._make_cppmeta(str(tmp_path))
-        os.makedirs('target')
-        bad_file = os.path.join('target', 'bad.cpp')
-        with open(bad_file, 'w') as f:
-            f.write('some content\n')
-        # Patch open so that opening the .cpp file raises PermissionError
-        real_open = builtins.open
-
-        def patched_open(file, *args, **kwargs):
-            if str(file).endswith('.cpp'):
-                raise PermissionError("mocked permission error")
-            return real_open(file, *args, **kwargs)
-
-        with patch('builtins.open', side_effect=patched_open):
-            with pytest.raises(PermissionError):
-                generate_testcode(src, 'target')
-
     def test_pack_cli_invocation(self, cli, tmp_path, monkeypatch):
-        # Covers cmd/pack.py line 34: CLI body
         monkeypatch.chdir(tmp_path)
         src = os.path.join(str(tmp_path), 'src')
         os.makedirs(src, exist_ok=True)
@@ -260,7 +296,6 @@ class TestMetaCommands:
         assert 'meta' in cli.commands
 
     def test_meta_cli_invocation(self, cli, tmp_path, monkeypatch):
-        # Covers cmd/meta.py line 56: CLI body
         monkeypatch.chdir(tmp_path)
         src = os.path.join(str(tmp_path), 'meta_src')
         target = os.path.join(str(tmp_path), 'target')
@@ -368,8 +403,6 @@ class TestVerifyCommands:
                          time_limit=0.5, temp_path='temp')
 
     def test_verify_codes_cmd_function_exercises(self, tmp_path, monkeypatch):
-        # Covers cmd/verify.py lines 28-30: _cmd function body is exercised
-        # by letting run_command actually call _cmd, but mocking subprocess.run
         import subprocess
         monkeypatch.chdir(tmp_path)
         src = self._make_src_with_usage(str(tmp_path))

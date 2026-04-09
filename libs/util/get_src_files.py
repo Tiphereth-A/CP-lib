@@ -3,7 +3,7 @@ import os
 
 def get_src_files(src_path: str) -> list[str]:
     from libs.conf import ConfigIndex
-    
+
     files: list[str] = []
     for root, _, dir_files in os.walk(src_path):
         if 'index.yml' not in dir_files:

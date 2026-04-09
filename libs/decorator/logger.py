@@ -19,7 +19,8 @@ def with_logger(func):
                 unwrapped_result = unwrapped_result.result
 
             if unwrapped_result is not None:
-                logger.debug(f"Returned: '{trailing_str(str(unwrapped_result))}'")
+                logger.debug(
+                    f"Returned: '{trailing_str(str(unwrapped_result))}'")
 
     @wraps(func)
     def inner(*args, **kwargs):
