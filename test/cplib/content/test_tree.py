@@ -143,7 +143,6 @@ class TestContentTree:
         assert tree.root._children == {}
 
     def test_load_config_creates_index_when_missing(self, tmp_path, monkeypatch):
-        # Covers lines 39-40: _load_config when index.yml doesn't exist
         monkeypatch.chdir(tmp_path)
         src = os.path.join(str(tmp_path), 'src')
         math_dir = os.path.join(src, 'math')
@@ -161,7 +160,6 @@ class TestContentTree:
         assert os.path.exists(os.path.join('src', 'math', 'index.yml'))
 
     def test_get_section_via_get_section_method(self, tmp_path, monkeypatch):
-        # Covers line 71: get_section() when _section is None (reset)
         monkeypatch.chdir(tmp_path)
         make_src_tree(str(tmp_path))
         tree = ContentTree('src')
@@ -173,7 +171,6 @@ class TestContentTree:
         assert isinstance(section, Section)
 
     def test_load_config_outputs_existing_config(self, tmp_path, monkeypatch):
-        # Covers line 35: _load_config when _config is not None (re-load)
         monkeypatch.chdir(tmp_path)
         make_src_tree(str(tmp_path))
         tree = ContentTree('src')
