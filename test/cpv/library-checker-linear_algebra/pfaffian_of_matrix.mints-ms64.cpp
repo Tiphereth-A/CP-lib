@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/pfaffian_of_matrix"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/pfaffian_of_matrix
 #include "../../../src/lalg/ds/mat/lib.hpp"
 #include "../../../src/lalg/mat/pfaffian/lib.hpp"
 

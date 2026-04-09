@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_1_C"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_1_C
 #include "../../../src/opt/knapsack/mixed/lib.hpp"
 
 using namespace tifa_libs;

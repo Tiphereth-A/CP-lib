@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://yukicoder.me/problems/no/502"
-
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/502
 #include "../../../src/math/fact/mod/lib.hpp"
 
 using namespace tifa_libs;

@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B/"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B/
 #include "../../../src/graph/nf/ssp/lib.hpp"
 
 using namespace tifa_libs;

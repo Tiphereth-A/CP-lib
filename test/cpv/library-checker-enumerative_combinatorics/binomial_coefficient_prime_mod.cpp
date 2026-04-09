@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
 #include "../../../src/comb/binom/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"

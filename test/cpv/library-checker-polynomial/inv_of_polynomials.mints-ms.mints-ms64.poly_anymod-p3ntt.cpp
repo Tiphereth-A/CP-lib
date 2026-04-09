@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/inv_of_polynomials"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/inv_of_polynomials
 #include "../../../src/fps/modinv/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"

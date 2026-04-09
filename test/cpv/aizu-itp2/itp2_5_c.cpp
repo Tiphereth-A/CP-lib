@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/all/ITP2_5_C"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/all/ITP2_5_C
 #include "../../../src/edh/cantor/inv/lib.hpp"
 #include "../../../src/edh/cantor/seq/lib.hpp"
 #include "../../../src/edh/cantor/seq2val/lib.hpp"

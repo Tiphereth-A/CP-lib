@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/ordered_set"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/ordered_set
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 

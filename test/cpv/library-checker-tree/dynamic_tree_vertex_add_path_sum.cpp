@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
 #include "../../../src/ds/link_cut_tree/lib.hpp"
 
 using namespace tifa_libs;

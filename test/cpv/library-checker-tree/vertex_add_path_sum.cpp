@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_path_sum
 #include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"

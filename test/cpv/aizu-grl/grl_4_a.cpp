@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_A"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_A
 #include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/graph/topo_sort/lib.hpp"
 

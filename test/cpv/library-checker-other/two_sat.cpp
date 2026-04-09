@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/two_sat/"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/two_sat/
 #include "../../../src/graph/sat2/lib.hpp"
 
 using namespace tifa_libs;

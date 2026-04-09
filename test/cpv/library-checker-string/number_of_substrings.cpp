@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/number_of_substrings"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/number_of_substrings
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 #include "../../../src/str/suffix_automaton/lib.hpp"

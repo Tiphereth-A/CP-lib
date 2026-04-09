@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
 #include "../../../src/comb/seq/pows/lib.hpp"
 #include "../../../src/math/ipaf/sum/lib.hpp"
 

@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/sort_points_by_argument"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sort_points_by_argument
 #include "../../../src/geo2d/argsort/lib.hpp"
 #include "../../../src/geo2d/ds/p/lib.hpp"
 #include "../../../src/io/container/lib.hpp"

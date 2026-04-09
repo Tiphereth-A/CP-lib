@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_2_B"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_2_B
 #include "../../../src/geo2d/ds/l/lib.hpp"
 #include "../../../src/geo2d/ds/p/lib.hpp"
 #include "../../../src/geo2d/pred/is_ins_ss/lib.hpp"

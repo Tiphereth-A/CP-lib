@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod
 #include "../../../src/comb/qbinom/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"

@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/system_of_linear_equations"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/system_of_linear_equations
 #include "../../../src/lalg/mat/ge/lib.hpp"
 #include "../../../src/lalg/mat/leqs_solver/lib.hpp"
 

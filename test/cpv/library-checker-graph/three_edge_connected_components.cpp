@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/three_edge_connected_components"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/three_edge_connected_components
 #include "../../../src/graph/scc/e_tcc/lib.hpp"
 
 using namespace tifa_libs;

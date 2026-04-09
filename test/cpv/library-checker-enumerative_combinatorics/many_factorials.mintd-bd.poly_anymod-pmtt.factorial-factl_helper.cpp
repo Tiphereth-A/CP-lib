@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/many_factorials"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/many_factorials
 #include "../../../src/util/alias/num/lib.hpp"
 
 using namespace tifa_libs;

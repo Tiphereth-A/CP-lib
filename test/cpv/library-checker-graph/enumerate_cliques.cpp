@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/enumerate_cliques/"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_cliques/
 #include "../../../src/graph/clique/all/lib.hpp"
 
 using namespace tifa_libs;

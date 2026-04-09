@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/runenumerate/"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/runenumerate/
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 #include "../../../src/str/run/hash/lib.hpp"

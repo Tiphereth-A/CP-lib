@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/9/INFO1/all/INFO1_12_A"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/lesson/9/INFO1/all/INFO1_12_A
 #include "../../../src/ds/ndvec/lib.hpp"
 #include "../../../src/io/container/lib.hpp"
 

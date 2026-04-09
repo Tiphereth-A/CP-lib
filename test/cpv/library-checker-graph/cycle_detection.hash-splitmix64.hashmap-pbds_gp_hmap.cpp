@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/cycle_detection"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/cycle_detection
 #include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/graph/find_cycle/lib.hpp"
 //

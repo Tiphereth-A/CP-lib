@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/stern_brocot_tree"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/stern_brocot_tree
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 #include "../../../src/nt/sbt/lib.hpp"

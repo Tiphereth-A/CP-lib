@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/longest_increasing_subsequence"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/longest_increasing_subsequence
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/opt/lis/lib.hpp"
 

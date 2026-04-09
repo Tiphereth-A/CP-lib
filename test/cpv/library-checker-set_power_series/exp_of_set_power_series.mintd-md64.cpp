@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/exp_of_set_power_series"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/exp_of_set_power_series
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"

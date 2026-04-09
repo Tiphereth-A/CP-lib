@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_affine_point_get
 #include "../../../src/ds/segtree/hp/lib.hpp"
 
 using namespace tifa_libs;

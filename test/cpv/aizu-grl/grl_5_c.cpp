@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_C"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_C
 #include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/tree/ds/lib.hpp"
 #include "../../../src/tree/lca_hld/lib.hpp"

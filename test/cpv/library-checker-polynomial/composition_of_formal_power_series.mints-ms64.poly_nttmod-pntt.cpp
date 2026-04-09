@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/composition_of_formal_power_series"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/composition_of_formal_power_series
 #include "../../../src/fps/comp/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"

@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/closest_pair"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/closest_pair
 #include "../../../src/geo2d/min_dis_ps/lib.hpp"
 #include "../../../src/io/container/lib.hpp"
 

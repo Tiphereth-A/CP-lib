@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/cartesian_tree/"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/cartesian_tree/
 #include "../../../src/ds/cartesian_tree/lib.hpp"
 
 using namespace tifa_libs;

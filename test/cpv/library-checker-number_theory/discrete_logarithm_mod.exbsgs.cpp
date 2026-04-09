@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/discrete_logarithm_mod"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/discrete_logarithm_mod
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 #include "../../../src/nt/dlog/exbsgs/lib.hpp"

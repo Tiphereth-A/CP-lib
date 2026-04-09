@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/eulerian_trail_undirected"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/eulerian_trail_undirected
 #include "../../../src/graph/euler_trail/lib.hpp"
 
 using namespace tifa_libs;

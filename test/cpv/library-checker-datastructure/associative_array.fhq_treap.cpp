@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/associative_array"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/associative_array
 #include "../../../src/ds/bst/fhq/lib.hpp"
 
 using namespace tifa_libs;

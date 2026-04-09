@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/9/INFO1/all/INFO1_12_E"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/lesson/9/INFO1/all/INFO1_12_E
 #include "../../../src/ds/ndvec/lib.hpp"
 
 using namespace tifa_libs;

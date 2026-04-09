@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/range_add_range_min"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_add_range_min
 #include "../../../src/ds/bst/fhq_w/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"

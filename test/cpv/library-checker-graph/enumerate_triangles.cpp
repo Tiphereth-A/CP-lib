@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/enumerate_triangles"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_triangles
 #include "../../../src/graph/cnt/ring3/lib.hpp"
 // clang-format off
 #include "../../../src/io/pair/lib.hpp"

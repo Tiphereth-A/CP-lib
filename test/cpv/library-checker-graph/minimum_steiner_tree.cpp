@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/minimum_steiner_tree/"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/minimum_steiner_tree/
 #include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/graph/mst/steiner/lib.hpp"
 

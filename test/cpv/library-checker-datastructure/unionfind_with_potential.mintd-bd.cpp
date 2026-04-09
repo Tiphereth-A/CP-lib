@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/unionfind_with_potential
 #include "../../../src/ds/dsu/w/lib.hpp"
 
 using namespace tifa_libs;

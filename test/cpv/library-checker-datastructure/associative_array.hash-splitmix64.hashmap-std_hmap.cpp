@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/associative_array"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/associative_array
 #include "../../../src/util/alias/others/lib.hpp"
 //
 #include "../../../src/edh/splitmix64/lib.hpp"

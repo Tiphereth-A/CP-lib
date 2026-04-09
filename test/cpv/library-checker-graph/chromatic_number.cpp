@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/chromatic_number"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/chromatic_number
 #include "../../../src/graph/cnt/chrom_num/lib.hpp"
 #include "../../../src/graph/ds/alist/lib.hpp"
 

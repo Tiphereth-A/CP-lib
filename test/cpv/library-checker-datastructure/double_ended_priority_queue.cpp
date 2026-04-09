@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/double_ended_priority_queue"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/double_ended_priority_queue
 #include "../../../src/ds/dq/p/lib.hpp"
 #include "../../../src/util/alias/others/lib.hpp"
 

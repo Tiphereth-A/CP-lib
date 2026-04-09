@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/dominatortree/"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dominatortree/
 #include "../../../src/graph/domtree/lib.hpp"
 #include "../../../src/graph/ds/alist/lib.hpp"
 

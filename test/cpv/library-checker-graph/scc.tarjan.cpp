@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/scc"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/scc
 #include "../../../src/graph/scc/tarjan/lib.hpp"
 #include "../../../src/io/container/lib.hpp"
 

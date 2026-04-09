@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/kth_root_integer"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/kth_root_integer
 #include "../../../src/math/iroot/kth/lib.hpp"
 
 using namespace tifa_libs;

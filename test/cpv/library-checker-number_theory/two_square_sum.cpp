@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/two_square_sum"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/two_square_sum
 #include "../../../src/nt/norm_fact/lib.hpp"
 
 using namespace tifa_libs;

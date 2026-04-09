@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_2_64"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/convolution_mod_2_64
 #include "../../../src/conv/add/u64/lib.hpp"
 #include "../../../src/io/container/lib.hpp"
 #include "../../../src/io/fastin/lib.hpp"

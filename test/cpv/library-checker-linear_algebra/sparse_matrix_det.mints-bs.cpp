@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/sparse_matrix_det"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sparse_matrix_det
 #include "../../../src/lalg/ds/matsp/lib.hpp"
 #include "../../../src/lalg/mat/det_rd/lib.hpp"
 #include "../../../src/util/rand/lib.hpp"

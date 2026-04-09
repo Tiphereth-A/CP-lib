@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/inverse_matrix"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/inverse_matrix
 #include "../../../src/lalg/ds/mat/lib.hpp"
 #include "../../../src/lalg/mat/ge/lib.hpp"
 #include "../../../src/lalg/mat/inv/lib.hpp"

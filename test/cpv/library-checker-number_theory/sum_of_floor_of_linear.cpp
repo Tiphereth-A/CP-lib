@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/sum_of_floor_of_linear"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_floor_of_linear
 #include "../../../src/math/exeuclid/lib.hpp"
 
 using namespace tifa_libs;

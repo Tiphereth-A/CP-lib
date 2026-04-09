@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://yukicoder.me/problems/no/952"
-
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/952
 #include "../../../src/opt/larsch/d2/lib.hpp"
 
 using namespace tifa_libs;

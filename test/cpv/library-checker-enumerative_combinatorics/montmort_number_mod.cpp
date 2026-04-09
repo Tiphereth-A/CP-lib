@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/montmort_number_mod"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/montmort_number_mod
 #include "../../../src/comb/seq/derange/lib.hpp"
 #include "../../../src/io/container/lib.hpp"
 

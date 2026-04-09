@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/tree_diameter
 #include "../../../src/graph/ds/alist/lib.hpp"
 #include "../../../src/graph/path/lib.hpp"
 #include "../../../src/io/container/lib.hpp"

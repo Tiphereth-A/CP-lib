@@ -1,6 +1,5 @@
 // competitive-verifier: ERROR 0.00001
-// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_4_C"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_4_C
 #include "../../../src/geo2d/ds/cvh/lib.hpp"
 #include "../../../src/geo2d/ds/l/lib.hpp"
 

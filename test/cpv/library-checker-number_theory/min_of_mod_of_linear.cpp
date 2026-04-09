@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/min_of_mod_of_linear"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/min_of_mod_of_linear
 #include "../../../src/math/min_mod_linear/lib.hpp"
 
 using namespace tifa_libs;

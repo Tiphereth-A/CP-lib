@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/lcm_convolution"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/lcm_convolution
 #include "../../../src/conv/lcm/lib.hpp"
 
 using namespace tifa_libs;

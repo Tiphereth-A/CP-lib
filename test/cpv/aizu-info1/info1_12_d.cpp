@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/9/INFO1/all/INFO1_12_D"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/lesson/9/INFO1/all/INFO1_12_D
 #include "../../../src/ds/fenwick/d2/lib.hpp"
 
 using namespace tifa_libs;

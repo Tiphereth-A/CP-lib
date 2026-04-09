@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/multivariate_convolution"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/multivariate_convolution
 #include "../../../src/conv/add/mval_dft/lib.hpp"
 #include "../../../src/conv/trans/ntt/lib.hpp"
 #include "../../../src/io/container/lib.hpp"

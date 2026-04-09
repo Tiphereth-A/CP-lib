@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/many_aplusb_128bit"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/many_aplusb_128bit
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 #include "../../../src/io/i128/lib.hpp"

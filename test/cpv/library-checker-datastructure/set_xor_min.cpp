@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/set_xor_min/"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/set_xor_min/
 #include "../../../src/ds/trie01/lib.hpp"
 
 using namespace tifa_libs;

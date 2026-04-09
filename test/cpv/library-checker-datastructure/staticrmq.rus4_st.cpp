@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/staticrmq
 #include "../../../src/ds/rmq/rus4/lib.hpp"
 
 using namespace tifa_libs;

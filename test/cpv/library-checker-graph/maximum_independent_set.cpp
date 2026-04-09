@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/maximum_independent_set/"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/maximum_independent_set/
 #include "../../../src/graph/clique/enum/lib.hpp"
 
 using namespace tifa_libs;

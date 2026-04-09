@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/point_add_rectangle_sum"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/point_add_rectangle_sum
 #include "../../../src/ds/kdtree/lib.hpp"
 
 using namespace tifa_libs;

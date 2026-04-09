@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/division_of_hex_big_integers"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/division_of_hex_big_integers
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 #include "../../../src/math/ds/mpi/lib.hpp"

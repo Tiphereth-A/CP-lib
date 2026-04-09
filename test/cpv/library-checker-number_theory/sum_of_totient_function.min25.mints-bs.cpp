@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_totient_function
 #include "../../../src/nt/mfsum/min25/lib.hpp"
 
 using namespace tifa_libs;

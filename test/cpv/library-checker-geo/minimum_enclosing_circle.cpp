@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/minimum_enclosing_circle"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/minimum_enclosing_circle
 #include "../../../src/geo2d/min_cover_c/lib.hpp"
 #include "../../../src/io/container/lib.hpp"
 

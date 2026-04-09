@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/persistent_unionfind"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/persistent_unionfind
 #include "../../../src/ds/dsu/pd/lib.hpp"
 
 using namespace tifa_libs;

@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/enumerate_primes"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_primes
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 #include "../../../src/nt/lsieve/impl1/lib.hpp"

@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/counting_squarefrees"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/counting_squarefrees
 #include "../../../src/nt/mfsum/sqrfree_cnt/lib.hpp"
 
 using namespace tifa_libs;

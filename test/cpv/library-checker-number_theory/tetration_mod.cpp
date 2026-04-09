@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/tetration_mod"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/tetration_mod
 #include "../../../src/math/qpow/tetra_mod/lib.hpp"
 
 using namespace tifa_libs;

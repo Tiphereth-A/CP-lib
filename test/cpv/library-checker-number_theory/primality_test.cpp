@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/primality_test"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/primality_test
 #include "../../../src/nt/is_prime/lib.hpp"
 
 using namespace tifa_libs;

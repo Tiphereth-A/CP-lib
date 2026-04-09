@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/bipartitematching
 #include "../../../src/graph/nf/hopkap/lib.hpp"
 
 using namespace tifa_libs;

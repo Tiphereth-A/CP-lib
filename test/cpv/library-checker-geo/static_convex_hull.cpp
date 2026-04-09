@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/static_convex_hull"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_convex_hull
 #include "../../../src/geo2d/ds/cvh/lib.hpp"
 
 using namespace tifa_libs;

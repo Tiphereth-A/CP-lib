@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://yukicoder.me/problems/no/1236"
-
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1236
 #include "../../../src/math/ds/rational/lib.hpp"
 
 using namespace tifa_libs;

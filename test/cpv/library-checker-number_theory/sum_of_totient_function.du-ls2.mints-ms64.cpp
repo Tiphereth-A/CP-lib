@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_totient_function
 #include "../../../src/math/iroot/sqrt/lib.hpp"
 #include "../../../src/nt/lsieve/impl2/lib.hpp"
 #include "../../../src/nt/mfsum/du/lib.hpp"

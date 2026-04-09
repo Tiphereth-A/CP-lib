@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/counting_primes"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/counting_primes
 #include "../../../src/nt/mfsum/pi/lib.hpp"
 
 using namespace tifa_libs;

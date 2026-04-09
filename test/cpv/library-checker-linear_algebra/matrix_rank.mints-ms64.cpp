@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/matrix_rank"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/matrix_rank
 #include "../../../src/lalg/ds/mat/lib.hpp"
 #include "../../../src/lalg/mat/ge/lib.hpp"
 

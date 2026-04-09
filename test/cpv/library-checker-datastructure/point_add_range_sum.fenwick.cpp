@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum
 #include "../../../src/ds/fenwick/d1/lib.hpp"
 
 using namespace tifa_libs;

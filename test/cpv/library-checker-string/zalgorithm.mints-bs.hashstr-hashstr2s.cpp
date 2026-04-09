@@ -1,6 +1,5 @@
 #define AUTO_GENERATED
-// competitive-verifier: PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
-
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/zalgorithm
 #include "../../../src/io/fastin/lib.hpp"
 #include "../../../src/io/fastout/lib.hpp"
 #include "../../../src/str/hash/lcpf/lib.hpp"

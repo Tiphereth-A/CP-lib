@@ -1,4 +1,4 @@
-// competitive-verifier: LOCALCASE test/cpv_local/_data/loj/war2549
+// competitive-verifier: LOCALCASE test/cpv_local/_data/loj/2549
 
 #include "../../../src/geo2d/ds/cvh/lib.hpp"
 
@@ -23,6 +23,6 @@ int main() {
   flt_ (u32, i, 1, q + 1) {
     data_t x, y;
     cin >> x >> y;
-    cout << polya.contains(Point2{x, y}) << ' ';
+    cout << polya.contains(Point2{x, y}) << '\n';
   }
 }

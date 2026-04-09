@@ -1,5 +1,4 @@
-// competitive-verifier: PROBLEM "https://yukicoder.me/problems/no/502"
-
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/502
 #include "../../../src/edh/base64/lib.hpp"
 
 using namespace tifa_libs;
