@@ -129,6 +129,19 @@ class TestWithLogger:
 
         assert multiply(3, 4) == 12
 
+    def test_stacked_decorators_logs_unwrapped_return_value(self, caplog):
+        @with_logger
+        @with_timer
+        def compute(**kwargs):
+            return 99
+
+        with caplog.at_level(logging.DEBUG):
+            result = compute()
+
+        assert result == 99
+        assert "Returned: '99'" in caplog.messages
+        assert not any('ResultHandler object at' in msg for msg in caplog.messages)
+
     def test_logger_with_non_none_result(self, caplog):
         @with_logger
         def ret_val(**kwargs):

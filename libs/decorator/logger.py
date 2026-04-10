@@ -14,8 +14,12 @@ def with_logger(func):
             super().__init__(result=result, func_name=func_name)
 
         def write_to_logger(self, logger: logging.Logger) -> None:
-            if self.result is not None:
-                logger.debug(f"Returned: '{trailing_str(str(self.result))}'")
+            unwrapped_result = self.result
+            while isinstance(unwrapped_result, DecoratorResultHandlerBase):
+                unwrapped_result = unwrapped_result.result
+
+            if unwrapped_result is not None:
+                logger.debug(f"Returned: '{trailing_str(str(unwrapped_result))}'")
 
     @wraps(func)
     def inner(*args, **kwargs):
