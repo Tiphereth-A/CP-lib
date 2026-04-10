@@ -161,7 +161,7 @@ jobs:
         with:
           set-env: false
       - name: Download schedule
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: Verify-schedule
           path: .cp-lib/verify-list
@@ -173,7 +173,7 @@ jobs:
       - name: Download previous verify results
         if: ${{ !inputs.ignore_prev_result }}
         continue-on-error: true
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: Previous-merged-result
           path: ${{ github.workspace }}
