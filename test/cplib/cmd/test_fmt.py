@@ -29,5 +29,6 @@ class TestFmtCommands:
     def test_fmt_cli_invocation(self, cli, tmp_path):
         runner = CliRunner()
         with patch('libs.cmd.fmt.run_command', return_value=[]):
-            result = runner.invoke(cli, ['fmt', '-d', str(tmp_path), '-t', 'py', '-l', '2'])
+            result = runner.invoke(
+                cli, ['fmt', '-d', str(tmp_path), '-t', 'py', '-l', '2'])
         assert result.exit_code == 0

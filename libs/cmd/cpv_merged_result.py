@@ -34,7 +34,7 @@ def cpv_merged_result(merged_result: str, type: str, **kwargs):
 
     with open(merged_result, 'rb') as f:
         data = orjson.loads(f.read())
-    data['files'] = locals()[type](data)
+    data = locals()[type](data)
     with open(merged_result, 'wb') as f:
         f.write(orjson.dumps(data))
 

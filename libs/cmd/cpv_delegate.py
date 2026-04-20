@@ -19,7 +19,7 @@ def files_listing(previous_info: dict[str, dict[str]], **kwargs) -> list[str]:
         ['git', 'rev-list', '--all', '--no-merges', '--first-parent']).decode().splitlines())
 
     result = set()
-    visited, ancesstor_files = set(), set()
+    visited, ancestor_files = set(), set()
 
     for file, info in previous_info.items():
         current_hash = info.get('commit_hash', '<unknown-commit-hash>')
@@ -27,13 +27,13 @@ def files_listing(previous_info: dict[str, dict[str]], **kwargs) -> list[str]:
             result.add(file)
         else:
             visited.add(current_hash)
-            ancesstor_files.add(file)
+            ancestor_files.add(file)
 
     for h in visited:
         changed_files = subprocess.check_output(
             ['git', 'diff-tree', '--no-commit-id', '--name-only', '-r', h]).decode().splitlines()
         result |= set(
-            file for file in changed_files if file not in ancesstor_files)
+            file for file in changed_files if file not in ancestor_files)
 
     return list(result)
 
@@ -53,6 +53,9 @@ def files_dependencies(files: set[str], dependencies: dict[str, list[str]], **kw
 # see https://en.wikipedia.org/wiki/Longest-processing-time-first_scheduling
 def partition(files_info: dict[str, dict[str]], task_count: int, **kwargs) -> list[list[str]]:
     logger = kwargs.get('logger')
+    if task_count <= 0:
+        raise ValueError("task_count must be a positive integer")
+
     for k, v in files_info.items():
         if isinstance(v, str):
             logger.info(f"No previous info found")
@@ -110,8 +113,13 @@ def cpv_delegate(file_patterns: tuple[str], verify_files: str, merged_result: st
     dependencies = {k: v['dependencies']
                     for k, v in verify_files_info.items()}
 
-    previous_info: dict = orjson.loads(
-        open(merged_result, 'rb').read())['files'] if merged_result else {}
+    try:
+        previous_info: dict = orjson.loads(
+            open(merged_result, 'rb').read())['files'] if merged_result else {}
+    except FileNotFoundError:
+        logger.warning(
+            f"'{merged_result}' not found. Proceeding without previous info.")
+        previous_info = {}
 
     file_lists: list[str] = list(files_filter(
         files_dependencies(
@@ -134,8 +142,10 @@ def cpv_delegate(file_patterns: tuple[str], verify_files: str, merged_result: st
                                  "yuki" if '://yukicoder.me/' in v['problem'] else
                                  "",
                                  v["problem"]))
-            case 'local' | 'command':
-                return v['type']
+            case 'local':
+                return f"{v['type']} {v['input']}"
+            case 'command':
+                return f"{v['type']} {v['compile'][-1]}"
             case _:
                 raise ValueError(
                     f"Unknown verification type: {v['type']} for file with info: {v}")
@@ -186,9 +196,9 @@ def cpv_delegate(file_patterns: tuple[str], verify_files: str, merged_result: st
 
 def _register_cpv_delegate(cli):
     @cli.command('delegate')
-    @click.option('-f', '--file-pattern', type=str, help='File pattern to include/exclude, wildcards allowed', default='*')
+    @click.option('-f', '--file-pattern', type=str, help='File pattern to include/exclude, wildcards allowed, exclude patterns start with !. Files which mismatch all include patterns or match any exclude pattern are excluded', default='*')
     @click.option('-v', '--verify-files', type=click.Path(exists=True, dir_okay=False), help='Current verify_files.json', default='verify_files.json')
-    @click.option('-m', '--merged-result', type=click.Path(exists=True, dir_okay=False), help='Previous merged-result.json')
+    @click.option('-m', '--merged-result', type=click.Path(dir_okay=False), help='Previous merged-result.json')
     @click.option('-t', '--task-count', type=int, help='verify tasks count', default=2)
     @click.option('-d', '--result-dir', type=click.Path(exists=False, file_okay=False), help='Directory for storing result files', default='.cp-lib/verify-list')
     def _cpv_delegate(file_pattern: str, verify_files: str, merged_result: str, task_count: int, result_dir: str):

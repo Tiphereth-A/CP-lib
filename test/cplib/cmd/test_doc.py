@@ -31,7 +31,8 @@ class TestDocCommands:
         make_src_tree(str(tmp_path))
         os.makedirs('temp', exist_ok=True)
         runner = CliRunner()
-        result = runner.invoke(cli, ['doc', '-s', 'src', '-t', 'tex', '-T', 'temp'])
+        result = runner.invoke(
+            cli, ['doc', '-s', 'src', '-t', 'tex', '-T', 'temp'])
         assert result.exit_code == 0
 
     def test_doc_cli_typ_raises(self, cli, tmp_path, monkeypatch):
@@ -39,7 +40,8 @@ class TestDocCommands:
         make_src_tree(str(tmp_path))
         os.makedirs('temp', exist_ok=True)
         runner = CliRunner()
-        result = runner.invoke(cli, ['doc', '-s', 'src', '-t', 'typ', '-T', 'temp'])
+        result = runner.invoke(
+            cli, ['doc', '-s', 'src', '-t', 'typ', '-T', 'temp'])
         assert result.exit_code != 0
 
     def test_gen_tex_with_chapter_doc_tex(self, tmp_path, monkeypatch):

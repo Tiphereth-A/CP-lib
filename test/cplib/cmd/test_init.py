@@ -34,7 +34,8 @@ class TestLibsInit:
             pass
 
         register_cpv_patch_commands(group)
-        assert set(group.commands.keys()) == {'doc', 'delegate', 'merged-result'}
+        assert set(group.commands.keys()) == {
+            'doc', 'delegate', 'merged-result'}
 
     def test_cli_callback_installs_coloredlogs(self):
         with patch('libs.coloredlogs.install') as install:
