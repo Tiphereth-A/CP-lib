@@ -92,13 +92,10 @@ jobs:
 
       - name: Restore cached verify results
         if: ${{ !inputs.ignore_prev_result }}
-        uses: actions/cache/restore@v5
         id: restore-cached-results
-        with:
-          path: ${{ github.workspace }}/merged-result.json
-          key: verify-merged-${{ github.sha }}
-          restore-keys: |
-            verify-merged-
+        run: bash .github/ci-scripts/restore-verify-cache.sh
+        env:
+          CACHE_PATH: merged-result.tar.gz
       - name: Upload previous verify results
         if: ${{ !inputs.ignore_prev_result && steps.restore-cached-results.outputs.cache-hit }}
         uses: actions/upload-artifact@v7
@@ -238,22 +235,23 @@ jobs:
 
       - name: Restore cached gcov results
         if: ${{ !inputs.ignore_prev_result }}
-        uses: actions/cache/restore@v5
         id: restore-cached-gcov
-        with:
-          path: _gcov
-          key: verify-gcov-${{ github.sha }}
-          restore-keys: |
-            verify-gcov-
+        run: bash .github/ci-scripts/restore-verify-cache.sh
+        env:
+          CACHE_PATH: _gcov.tar.gz
 
       - name: Collect gcov files into _gcov
-        shell: bash
         run: bash .github/ci-scripts/collect-gcov.sh
         env:
           IGNORE_PREV_RESULT: ${{ inputs.ignore_prev_result }}
       - name: Build C++ code coverage report pages
-        shell: bash
         run: bash .github/ci-scripts/build-cpp-coverage-pages.sh
+
+      - name: Upload merged gcov files
+        uses: actions/upload-artifact@v7
+        with:
+          name: Merged-gcov
+          path: _gcov/*
 
       - name: Extract bundled
         shell: bash
@@ -285,19 +283,6 @@ jobs:
         with:
           name: Merged-result
           path: ${{github.workspace}}/merged-result.json
-      - name: Save merged result cache
-        if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
-        uses: actions/cache/save@v5
-        with:
-          path: ${{ github.workspace }}/merged-result.json
-          key: verify-merged-${{ github.sha }}
-
-      - name: Save gcov cache
-        if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
-        uses: actions/cache/save@v5
-        with:
-          path: _gcov
-          key: verify-gcov-${{ github.sha }}
 
       - name: Patch pages doc
         run: uv run python cpv_patch.py -l DEBUG doc -s src -j _jekyll
@@ -324,6 +309,34 @@ jobs:
         uses: competitive-verifier/actions/check@v2
         with:
           verify-result: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
+
+  save-verify-cache:
+    if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }} && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: [docs-and-check]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Download merged result artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: Merged-result
+          path: .artifacts/merged
+      - name: Download merged gcov files
+        uses: actions/download-artifact@v8
+        with:
+          name: Merged-gcov
+          path: _gcov
+
+      - name: Save verify cache branch
+        run: bash .github/ci-scripts/save-verify-cache-branch.sh
+        env:
+          CACHE_BRANCH: verify-cache
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && (success() || failure()) && github.ref == 'refs/heads/master' && needs.docs-and-check.outputs.upload-pages == 'true' }}
