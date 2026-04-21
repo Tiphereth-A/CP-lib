@@ -1,0 +1,4 @@
+\verb|lproj| 即对 \(n\times m\) 矩阵 \(A\) 和 \(n\) 维列向量 \(v\), 求 \(Av\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

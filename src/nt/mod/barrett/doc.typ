@@ -1,0 +1,6 @@
+计算 \(ab\bmod m\), 其中 \(b,m\) 固定
+
+\paragraph{参考文献} \cite{harvey2014faster} \cite{shoup2025ntl}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

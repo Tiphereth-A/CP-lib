@@ -1,0 +1,8 @@
+\paragraph{时间复杂度} \(O\left(\dfrac{n^{0.75}-n^{0.5}}{\log n} \right)\)
+
+\paragraph{空间复杂度} \(O\left(\sqrt n\right)\)
+
+\paragraph{参考资料} \qrcode{https://rsk0315.hatenablog.com/entry/2021/05/18/015511} \qrcode{https://loj.ac/s/796720}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

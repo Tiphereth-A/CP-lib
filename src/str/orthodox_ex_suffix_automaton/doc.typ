@@ -1,0 +1,15 @@
+建图
+
+\begin{minted}{cpp}
+u32 n;
+std::string s;
+std::cin >> n;
+tifa_libs::orthodox_ex_suffix_automaton sam;
+flt_(u32, i, 0, n) std::cin >> s, sam.insert(s);
+sam.build();
+\end{minted}
+
+代码对此无体现
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

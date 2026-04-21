@@ -1,0 +1,6 @@
+\paragraph{复杂度} \(O\left(|V|^3\right)\)
+
+\paragraph{参考资料} \cite{bqi343cp}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

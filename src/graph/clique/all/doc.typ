@@ -1,0 +1,8 @@
+大概是一种优化的 DFS
+
+\paragraph{复杂度} \(O\left(2^{\sqrt{2|E|}}|V|\right)\)
+
+\paragraph{参考资料} \cite{yoichi2012exponential}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

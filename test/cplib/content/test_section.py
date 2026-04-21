@@ -56,6 +56,8 @@ class TestSection:
             f.write('// code\n// line2\n// line3\n')
         with open('lib/doc.tex', 'w') as f:
             f.write('% {lib.hpp}\n')
+        with open('lib/doc.typ', 'w') as f:
+            f.write('// {lib.hpp}\n')
         os.makedirs('temp')
         s = Section('lib', 'Lib')
         s.expand_tex('temp')
@@ -70,6 +72,8 @@ class TestSection:
             f.writelines([f'line{i}\n' for i in range(5)])
         with open('lib2/doc.tex', 'w') as f:
             f.write('% {lib.hpp,start=2}\n')
+        with open('lib2/doc.typ', 'w') as f:
+            f.write('// {lib.hpp,start=2}\n')
         os.makedirs('temp')
         s = Section('lib2', 'Lib2')
         s.expand_tex('temp')
@@ -83,6 +87,8 @@ class TestSection:
             f.writelines([f'line{i}\n' for i in range(10)])
         with open('lib3/doc.tex', 'w') as f:
             f.write('% {lib.hpp,start=2,stop=5}\n')
+        with open('lib3/doc.typ', 'w') as f:
+            f.write('// {lib.hpp,start=2,stop=5}\n')
         os.makedirs('temp')
         s = Section('lib3', 'Lib3')
         s.expand_tex('temp')
@@ -96,6 +102,8 @@ class TestSection:
             f.writelines([f'line{i}\n' for i in range(10)])
         with open('lib4/doc.tex', 'w') as f:
             f.write('% {lib.hpp,start=1,stop=-2}\n')
+        with open('lib4/doc.typ', 'w') as f:
+            f.write('// {lib.hpp,start=1,stop=-2}\n')
         os.makedirs('temp')
         s = Section('lib4', 'Lib4')
         s.expand_tex('temp')
@@ -145,9 +153,100 @@ class TestSection:
         )
         assert out == expected
 
-    def test_expand_typ_not_implemented(self, tmp_path, monkeypatch):
+    def test_expand_typ_without_doc_typ_uses_default_template(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
         os.makedirs('mylib2')
         s = Section('mylib2', 'MyLib')
-        with pytest.raises(AssertionError):
+        os.makedirs('temp')
+        s.expand_typ('temp')
+        assert os.path.exists('temp/mylib2/doc.typ')
+        out = open('temp/mylib2/doc.typ').read()
+        assert out == '// {lib.hpp,start=3}\n// {usage.cpp,start=2}\n'
+
+    def test_expand_typ_basic(self, tmp_path, monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        os.makedirs('mylib3')
+        with open('mylib3/lib.hpp', 'w') as f:
+            f.write('// code\n// line2\n// line3\n')
+        with open('mylib3/doc.tex', 'w') as f:
+            f.write('% {lib.hpp}\n')
+        with open('mylib3/doc.typ', 'w') as f:
+            f.write('// {lib.hpp}\n')
+        os.makedirs('temp')
+        s = Section('mylib3', 'MyLib3')
+        s.expand_typ('temp')
+        assert os.path.exists('temp/mylib3/doc.typ')
+        out = open('temp/mylib3/doc.typ').read()
+        assert out == (
+            'Path: `mylib3/lib.hpp`\n\n'
+            '#raw(\n'
+            '  read("mylib3/lib.hpp").split("\\n").slice(0, 3).join("\\n"),\n'
+            '  lang: "cpp",\n'
+            '  block: true,\n'
+            ')\n\n\n'
+        )
+
+    def test_expand_typ_with_start(self, tmp_path, monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        os.makedirs('mylib4')
+        with open('mylib4/lib.hpp', 'w') as f:
+            f.writelines([f'line{i}\n' for i in range(5)])
+        with open('mylib4/doc.tex', 'w') as f:
+            f.write('% {lib.hpp,start=2}\n')
+        with open('mylib4/doc.typ', 'w') as f:
+            f.write('// {lib.hpp,start=2}\n')
+        os.makedirs('temp')
+        s = Section('mylib4', 'MyLib4')
+        s.expand_typ('temp')
+        out = open('temp/mylib4/doc.typ').read()
+        assert out == (
+            'Path: `mylib4/lib.hpp`\n\n'
+            '#raw(\n'
+            '  read("mylib4/lib.hpp").split("\\n").slice(1, 5).join("\\n"),\n'
+            '  lang: "cpp",\n'
+            '  block: true,\n'
+            ')\n\n\n'
+        )
+
+    def test_expand_typ_negative_stop(self, tmp_path, monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        os.makedirs('mylib5')
+        with open('mylib5/lib.hpp', 'w') as f:
+            f.writelines([f'line{i}\n' for i in range(10)])
+        with open('mylib5/doc.tex', 'w') as f:
+            f.write('% {lib.hpp,start=1,stop=-2}\n')
+        with open('mylib5/doc.typ', 'w') as f:
+            f.write('// {lib.hpp,start=1,stop=-2}\n')
+        os.makedirs('temp')
+        s = Section('mylib5', 'MyLib5')
+        s.expand_typ('temp')
+        out = open('temp/mylib5/doc.typ').read()
+        # stop=-2 => 10 + (-2) = 8 → slice(0, 8)
+        assert out == (
+            'Path: `mylib5/lib.hpp`\n\n'
+            '#raw(\n'
+            '  read("mylib5/lib.hpp").split("\\n").slice(0, 8).join("\\n"),\n'
+            '  lang: "cpp",\n'
+            '  block: true,\n'
+            ')\n\n\n'
+        )
+
+    def test_expand_tex_consistency_check_tex_only(self, tmp_path, monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        os.makedirs('bad_sec')
+        with open('bad_sec/doc.tex', 'w') as f:
+            f.write('% {lib.hpp}\n')
+        # no doc.typ → consistency check should raise
+        s = Section('bad_sec', 'Bad')
+        with pytest.raises(ValueError, match="must both exist or neither"):
+            s.expand_tex('temp')
+
+    def test_expand_typ_consistency_check_typ_only(self, tmp_path, monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        os.makedirs('bad_sec2')
+        with open('bad_sec2/doc.typ', 'w') as f:
+            f.write('// {lib.hpp}\n')
+        # no doc.tex → consistency check should raise
+        s = Section('bad_sec2', 'Bad2')
+        with pytest.raises(ValueError, match="must both exist or neither"):
             s.expand_typ('temp')

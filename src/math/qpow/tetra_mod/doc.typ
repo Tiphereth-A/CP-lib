@@ -1,0 +1,7 @@
+求 \(a\uparrow\uparrow b\bmod m\). 其中 \(\displaystyle a\uparrow\uparrow n:=\begin{cases}
+    1,                           & n=0, \\
+    a^{a\uparrow\uparrow (n-1)}, & n>0.
+\end{cases}\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

@@ -1,0 +1,6 @@
+\paragraph{参考链接}
+
+\qrcode{https://github.com/wery0/CP-library/blob/8d47f3fdac56b0cf18865209d7fdcb692ff9e971/Language/Unordered%20stl%20containers%20hacker.cpp}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

@@ -1,0 +1,4 @@
+\paragraph{注意} 返回的是\textbf{下标}不是\textbf{序列}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

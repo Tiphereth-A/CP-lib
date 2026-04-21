@@ -1,0 +1,4 @@
+模数固定为 \(2^{61}-1\), 其为素数且可用位运算优化乘法和取模, 从而具有较好的性能, 用于 \fullref{ssec:str-hash-substr}
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

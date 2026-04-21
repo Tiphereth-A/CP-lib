@@ -1,0 +1,14 @@
+对给定数组 \(a\) (下标从 \(0\) 开始), 寻找最短的线性递推式, 即找到最短的数组 \(c\) (下标从 \(1\) 开始) 使得
+
+\[
+    a_k=\sum_{i=1}^{|c|} c_i a_{k-i},\quad \forall |c|\leq k < |a|
+\]
+
+\paragraph{注意}
+
+返回的是 \(1-c_1 x -c_2 x^2-\dots\), 这是为了便于计算 \(a\) 的某一项, 具体参见 \fullref{ssec:math-lrec-nth_term}
+
+\paragraph{复杂度} \(O(|a|\cdot |c|)=O\left(|a|^2\right)\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

@@ -1,0 +1,6 @@
+解方程 \(x^k\equiv a\pmod{p}\), 使用 Tonelli--Shanks 算法
+
+\paragraph{复杂度} \(O(\min\{p,k\}^{1/4})\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

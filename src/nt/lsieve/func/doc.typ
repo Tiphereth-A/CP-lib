@@ -1,0 +1,12 @@
+\verb|mpf|: 最小质因子
+
+\verb|phi|: \(\varphi\)
+
+\verb|tau|: 因子数
+
+\verb|mu|: \(\mu\)
+
+\verb|sigma|: 因子和
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

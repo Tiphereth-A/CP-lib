@@ -1,0 +1,4 @@
+求 \(\left\lfloor\sqrt[k]{a}\right\rfloor\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

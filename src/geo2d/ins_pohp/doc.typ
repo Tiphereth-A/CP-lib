@@ -1,0 +1,4 @@
+需保证结果为\textbf{一个}简单多边形
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

@@ -1,0 +1,4 @@
+\paragraph{复杂度} \(O(n)\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

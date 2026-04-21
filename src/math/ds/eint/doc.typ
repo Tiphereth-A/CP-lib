@@ -1,0 +1,4 @@
+\(\mathbb{Z}[\omega]\), 其中 \(\omega=\left(-1+\mathrm{i}\sqrt{3}\right)/2\)
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

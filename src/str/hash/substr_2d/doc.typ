@@ -1,0 +1,4 @@
+固定子矩阵宽度的二维 hash
+
+// {lib.hpp,start=3}
+// {usage.cpp,start=2}

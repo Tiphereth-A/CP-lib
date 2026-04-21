@@ -1,0 +1,3 @@
+令 \(\displaystyle f(x)=\sum_{i=0}^{\infty}\frac{i^n}{i!}x^i\), \(\displaystyle g(x)=\sum_{i=0}^{\infty}\frac{(-1)^i}{i!}x^i\)
+
+则 \(\displaystyle f(x)g(x)=\sum_{i=0}^{\infty}x^i\sum_{j=0}^i\frac{(-1)^{i-j}j^n}{j!(i-j)!}=\sum_{i=0}^{\infty}\stirlingII{n}{i}x^i\)
