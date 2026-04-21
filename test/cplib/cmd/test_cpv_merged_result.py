@@ -56,7 +56,8 @@ class TestCpvMergedResultCommands:
 
         runner = CliRunner()
         with patch('libs.cmd.cpv_merged_result.cpv_merged_result') as mock_cpv_merged_result:
-            result = runner.invoke(cli, ['merged-result', '-m', str(merged_result)])
+            result = runner.invoke(
+                cli, ['merged-result', '-m', str(merged_result)])
 
         assert result.exit_code == 0
         mock_cpv_merged_result.assert_called_once_with(str(merged_result))

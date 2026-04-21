@@ -10,8 +10,13 @@ from libs.conf.tcgen import ConfigTcgen
 testcase_matrix.__test__ = False
 
 
-# Use the real tcgen.yml for testcase_matrix tests
-_REAL_CONFIG = ConfigTcgen('tcgen.yml')
+# Shared test config used by cppmeta_parser tests
+_REAL_CONFIG_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    'cpv_meta',
+    'config.yml',
+)
+_REAL_CONFIG = ConfigTcgen(_REAL_CONFIG_PATH)
 
 # ------------------------------------------------------------------ helpers --
 
@@ -361,7 +366,7 @@ class TestCppmetaParser:
     def _make_parser(self, tmp_path, code, filename='test'):
         lines = [
             l + '\n' if not l.endswith('\n') else l for l in code.splitlines()]
-        return cppmeta_parser(filename, 'target', lines)
+        return cppmeta_parser(filename, 'target', lines, _REAL_CONFIG)
 
     def _simple_code(self, categories):
         """Generate minimal .cppmeta code."""
@@ -406,7 +411,7 @@ class TestCppmetaParser:
             // ---<GENTC>--- end
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         with pytest.raises(RuntimeError, match='main function not found'):
             parser.get_results()
 
@@ -417,7 +422,7 @@ class TestCppmetaParser:
             }
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         with pytest.raises(RuntimeError, match='GENTC block not found'):
             parser.get_results()
 
@@ -429,7 +434,7 @@ class TestCppmetaParser:
             }
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         with pytest.raises(RuntimeError, match="unknown GENTC command"):
             parser.get_results()
 
@@ -440,7 +445,7 @@ class TestCppmetaParser:
             }
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         with pytest.raises(RuntimeError, match='`GENTC end` mismatched'):
             parser.get_results()
 
@@ -453,7 +458,7 @@ class TestCppmetaParser:
             }
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         with pytest.raises(RuntimeError, match='cannot appear in a GENTC block'):
             parser.get_results()
 
@@ -466,7 +471,7 @@ class TestCppmetaParser:
             }
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         with pytest.raises(RuntimeError, match='`GENTC exclude` found before `GENTC append`'):
             parser.get_results()
 
@@ -479,7 +484,7 @@ class TestCppmetaParser:
             }
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         with pytest.raises(RuntimeError, match="unknown GENTC command"):
             parser.get_results()
 
@@ -492,7 +497,7 @@ class TestCppmetaParser:
             // ---<GENTC>--- end
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         with pytest.raises(RuntimeError, match='GENTC block must be before main'):
             parser.get_results()
 
@@ -506,7 +511,7 @@ class TestCppmetaParser:
             }
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         results = parser.get_results()
         assert results == []
 
@@ -520,7 +525,7 @@ class TestCppmetaParser:
             }
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', 'target', lines)
+        parser = cppmeta_parser('t', 'target', lines, _REAL_CONFIG)
         # mints-nonexistent is not a valid case, so exclusion has no effect
         results = parser.get_results()
         assert isinstance(results, list)
@@ -536,7 +541,7 @@ class TestCppmetaParser:
             }
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         with pytest.raises(RuntimeError, match='`GENTC append` found after `GENTC exclude`'):
             parser.get_results()
 
@@ -545,7 +550,7 @@ class TestCppmetaParser:
         os.makedirs('sub', exist_ok=True)
         code = self._simple_code(['mints'])
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', 'sub', lines)
+        parser = cppmeta_parser('t', 'sub', lines, _REAL_CONFIG)
         for _fp, content in parser.get_results():
             includes = [l for l in content if l.startswith('#include')]
             # includes should use relative paths with /
@@ -562,7 +567,7 @@ class TestCppmetaParser:
             // ---<GENTC>--- append mints
         """)
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', str(tmp_path), lines)
+        parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
         with pytest.raises(RuntimeError, match='`GENTC begin` mismatched'):
             parser.get_results()
 
@@ -571,7 +576,7 @@ class TestCppmetaParser:
         monkeypatch.chdir(tmp_path)
         code = self._simple_code(['mintd'])
         lines = code.splitlines(True)
-        parser = cppmeta_parser('t', 'target', lines)
+        parser = cppmeta_parser('t', 'target', lines, _REAL_CONFIG)
         for _fp, content in parser.get_results():
             # main_begin code should appear indented
             main_begin_lines = [

@@ -11,15 +11,13 @@ _GENTC_MAIN = 'int main() {\n'
 _GENTC_COMMAND_APPEND = '// ---<GENTC>--- append '
 _GENTC_COMMAND_EXCLIDE = '// ---<GENTC>--- exclude '
 
-_CONFIG_TCGEN = ConfigTcgen('tcgen.yml')
-
 
 class cppmeta_parser:
-    def __init__(self, cppmeta_filename_noext: str, target_dir: str, cppmeta_code_lines: list[str]):
+    def __init__(self, cppmeta_filename_noext: str, target_dir: str, cppmeta_code_lines: list[str], config: ConfigTcgen):
         self._filename_noext = cppmeta_filename_noext
         self._target_dir = target_dir
         self._code_lines = cppmeta_code_lines
-        self._testcase_mat = testcase_matrix(_CONFIG_TCGEN)
+        self._testcase_mat = testcase_matrix(config)
 
     def _get_all_cases(self):
         block_begin, block_end = -1, -1

@@ -1,6 +1,7 @@
 import os
 import click
 
+from libs.conf.tcgen import ConfigTcgen
 from libs.decorator import with_logger, with_timer
 from libs.meta import cppmeta_parser
 from libs.util.get_files_with_exts import get_files_with_exts
@@ -27,6 +28,8 @@ def generate_testcode(src: str, target: str, **kwargs):
             logger.error(f"Failed to read {file_path}: {e}")
             return
 
+    conf = ConfigTcgen(os.path.join(src, 'config.yml'))
+
     # Generate new test files
     for src_file in all_src_files:
         src_dir, basename = os.path.split(src_file)
@@ -36,7 +39,7 @@ def generate_testcode(src: str, target: str, **kwargs):
 
         with open(src_file, 'r', encoding='utf8') as f:
             code_lines = f.read().splitlines(True)
-        parser = cppmeta_parser(filename_noext, dst_dir, code_lines)
+        parser = cppmeta_parser(filename_noext, dst_dir, code_lines, conf)
 
         for target_file, content in parser.get_results():
             logger.debug(f"writing to {target_file}")

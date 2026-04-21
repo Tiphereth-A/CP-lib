@@ -168,14 +168,21 @@ class TestConfigIndex:
 
 
 # ---------------------------------------------------------------------------
-# ConfigTcgen  (reads real tcgen.yml from workspace)
+# ConfigTcgen  (reads real test fixture config)
 # ---------------------------------------------------------------------------
+
+_REAL_TCGEN_CONFIG = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    'cpv_meta',
+    'config.yml',
+)
+
 
 @pytest.mark.unit
 class TestConfigTcgen:
     @pytest.fixture(autouse=True)
     def load_config(self):
-        self.cfg = ConfigTcgen('tcgen.yml')
+        self.cfg = ConfigTcgen(_REAL_TCGEN_CONFIG)
 
     def test_get_categories_not_empty(self):
         cats = list(self.cfg.get_categories())

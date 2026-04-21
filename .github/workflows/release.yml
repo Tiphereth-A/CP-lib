@@ -7,26 +7,32 @@ on:
     paths:
       - 'pyproject.toml'
       - 'uv.lock'
+      - '.clang-format'
+      - '.latexindent.yaml'
+      - 'Makefile'
+      - 'notebook.bib'
+      - 'ICPCnotebook.cls'
+      - 'notebook.tex'
       - '.github/**'
       - 'libs/**'
       - 'src/**'
-      - '*.bib'
-      - '*.cls'
       - '*.py'
-      - '*.tex'
   pull_request:
     branches:
       - master
     paths:
       - 'pyproject.toml'
       - 'uv.lock'
+      - '.clang-format'
+      - '.latexindent.yaml'
+      - 'Makefile'
+      - 'notebook.bib'
+      - 'ICPCnotebook.cls'
+      - 'notebook.tex'
       - '.github/**'
       - 'libs/**'
       - 'src/**'
-      - '*.bib'
-      - '*.cls'
       - '*.py'
-      - '*.tex'
   workflow_dispatch:
     inputs:
       ignore_font_cache:

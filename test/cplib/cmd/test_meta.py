@@ -10,11 +10,31 @@ from libs.cmd.meta import generate_testcode
 @pytest.mark.unit
 class TestMetaCommands:
     def _make_cppmeta(self, base_dir):
-        """Create a minimal .cppmeta file."""
+        """Create a minimal source dir with config.yml and .cppmeta."""
         import textwrap
 
         meta_src = os.path.join(base_dir, 'meta_src')
         os.makedirs(meta_src)
+
+        conf = textwrap.dedent(
+            """\
+            mints:
+              priority: 0
+              default_content:
+                requirements: null
+                include:
+                - src/math/ds/mint/$m/lib.hpp
+                after_include: |
+                  using namespace tifa_libs;
+                  using mint = mint_$m<MOD>;
+                main_begin: null
+              member:
+                ms: null
+            """
+        )
+        with open(os.path.join(meta_src, 'config.yml'), 'w', encoding='utf8') as f:
+            f.write(conf)
+
         code = textwrap.dedent(
             """\
             #include <bits/stdc++.h>
@@ -25,7 +45,7 @@ class TestMetaCommands:
             }
         """
         )
-        with open(os.path.join(meta_src, 'mytest.cppmeta'), 'w') as f:
+        with open(os.path.join(meta_src, 'mytest.cppmeta'), 'w', encoding='utf8') as f:
             f.write(code)
         return 'meta_src'
 
@@ -91,9 +111,9 @@ class TestMetaCommands:
 
     def test_meta_cli_invocation(self, cli, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
+        self._make_cppmeta(str(tmp_path))
         src = os.path.join(str(tmp_path), 'meta_src')
         target = os.path.join(str(tmp_path), 'target')
-        os.makedirs(src, exist_ok=True)
         os.makedirs(target, exist_ok=True)
         runner = CliRunner()
         result = runner.invoke(cli, ['meta', '-s', src, '-t', target])

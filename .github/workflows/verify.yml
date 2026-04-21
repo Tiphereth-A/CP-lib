@@ -6,22 +6,26 @@ on:
     paths:
       - 'pyproject.toml'
       - 'uv.lock'
+      - '.clang-format'
       - '.github/**'
       - '.competitive-verifier/**'
       - 'libs/**'
       - 'src/**'
       - 'test/**'
+      - '*.py'
   pull_request:
     branches:
       - master
     paths:
       - 'pyproject.toml'
       - 'uv.lock'
+      - '.clang-format'
       - '.github/**'
       - '.competitive-verifier/**'
       - 'libs/**'
       - 'src/**'
       - 'test/**'
+      - '*.py'
   workflow_dispatch:
     inputs:
       ignore_prev_result:
