@@ -23,7 +23,7 @@ def files_listing(previous_info: dict[str, dict[str]], **kwargs) -> list[str]:
 
     for file, info in previous_info.items():
         current_hash = info.get('commit_hash', '<unknown-commit-hash>')
-        if current_hash not in hashes:
+        if current_hash not in hashes or any(x.get('status', None) != 'success' for x in info.get('verifications', [{'status': 'broken'}])):
             result.add(file)
         else:
             visited.add(current_hash)
@@ -51,10 +51,8 @@ def files_dependencies(files: set[str], dependencies: dict[str, list[str]], **kw
 @with_logger
 @with_timer
 # see https://en.wikipedia.org/wiki/Longest-processing-time-first_scheduling
-def partition(files_info: dict[str, dict[str]], task_count: int, **kwargs) -> list[list[str]]:
+def partition(files_info: dict[str, dict[str] | str], task_count: int, **kwargs) -> list[list[str]]:
     logger = kwargs.get('logger')
-    if task_count <= 0:
-        raise ValueError("task_count must be a positive integer")
 
     for k, v in files_info.items():
         if isinstance(v, str):
@@ -81,8 +79,13 @@ def partition(files_info: dict[str, dict[str]], task_count: int, **kwargs) -> li
         groups.setdefault(info["tag"], []).append(
             (path, info["total_elapsed"], info["prepare_elapsed"]))
 
-    tag_units = [(sum(r+p for _, r, p in items)-(len(items)-1) * items[0][2],
-                  [p for p, _, _ in items]) for _, items in groups.items()]
+    tag_units = [
+        (info["total_elapsed"] + info["prepare_elapsed"],
+         [path])
+        for path, info in files_info.items()] if len(groups) < task_count else [
+        (sum(r+p for _, r, p in items)-(len(items)-1) * items[0][2],
+         [p for p, _, _ in items])
+        for _, items in groups.items()]
     tag_units.sort(key=lambda x: x[0], reverse=True)
 
     heap = [(0.0, i) for i in range(task_count)]
@@ -106,6 +109,14 @@ def partition(files_info: dict[str, dict[str]], task_count: int, **kwargs) -> li
 @with_logger
 @with_timer
 def cpv_delegate(file_patterns: tuple[str], verify_files: str, merged_result: str, task_count: int, result_dir: str, **kwargs):
+    def write_result(result_dir: str, tasklists: list[list[str]], verify_files_info: dict):
+        os.makedirs(result_dir, exist_ok=True)
+        for idx, task in enumerate(tasklists):
+            with open(os.path.join(result_dir, f'{idx}.json'), 'wb') as f:
+                f.write(orjson.dumps({
+                    'files': {file: verify_files_info[file] for file in task}
+                }))
+
     logger = kwargs.get('logger')
 
     verify_files_info: dict = orjson.loads(
@@ -131,6 +142,9 @@ def cpv_delegate(file_patterns: tuple[str], verify_files: str, merged_result: st
 
     logger.info(f'{len(file_lists)} file(s) need to be verified')
     if not file_lists:
+        write_result(result_dir,
+                     [[] for _ in range(task_count)],
+                     verify_files_info)
         return
 
     def _tag(v: dict[str]) -> str:
@@ -183,13 +197,9 @@ def cpv_delegate(file_patterns: tuple[str], verify_files: str, merged_result: st
             for k in verifiable_files
         }
 
-    tasklists = partition(files_info, task_count)
-    os.makedirs(result_dir, exist_ok=True)
-    for idx, task in enumerate(tasklists):
-        with open(os.path.join(result_dir, f'{idx}.json'), 'wb') as f:
-            f.write(orjson.dumps({
-                'files': {file: verify_files_info[file] for file in task}
-            }))
+    write_result(result_dir,
+                 partition(files_info, task_count),
+                 verify_files_info)
 
     logger.info('finished')
 
@@ -202,6 +212,8 @@ def _register_cpv_delegate(cli):
     @click.option('-t', '--task-count', type=int, help='verify tasks count', default=2)
     @click.option('-d', '--result-dir', type=click.Path(exists=False, file_okay=False), help='Directory for storing result files', default='.cp-lib/verify-list')
     def _cpv_delegate(file_pattern: str, verify_files: str, merged_result: str, task_count: int, result_dir: str):
+        if task_count <= 0:
+            raise ValueError("task_count must be a positive integer")
         cpv_delegate(file_pattern.split(),
                      verify_files,
                      merged_result,

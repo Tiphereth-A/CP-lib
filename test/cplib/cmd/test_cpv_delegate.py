@@ -115,7 +115,9 @@ class TestCpvDelegateCommands:
             cpv_delegate(('!src/_*',), str(verify_files),
                          str(merged_result), 1, str(result_dir))
 
-        assert not (result_dir / '0.json').exists()
+        delegated = json.loads(
+            (result_dir / '0.json').read_text(encoding='utf8'))
+        assert delegated == {'files': {}}
 
     def test_files_listing_without_previous_info_uses_git_ls_files(self):
         with patch(
@@ -128,8 +130,8 @@ class TestCpvDelegateCommands:
 
     def test_files_listing_with_previous_info_collects_changed_non_ancestor_files(self):
         previous_info = {
-            'src/kept.cpp': {'commit_hash': 'h1'},
-            'src/reverify.cpp': {'commit_hash': 'missing-hash'},
+            'src/kept.cpp': {'commit_hash': 'h1', 'verifications': [{'status': 'success'}]},
+            'src/reverify.cpp': {'commit_hash': 'missing-hash', 'verifications': [{'status': 'success'}]},
         }
 
         def _mock_check_output(args):
@@ -146,10 +148,10 @@ class TestCpvDelegateCommands:
 
     def test_files_listing_with_previous_info_deduplicates_hash_queries_and_results(self):
         previous_info = {
-            'src/kept-a.cpp': {'commit_hash': 'h1'},
-            'src/kept-a-2.cpp': {'commit_hash': 'h1'},
-            'src/kept-b.cpp': {'commit_hash': 'h2'},
-            'src/reverify.cpp': {'commit_hash': 'missing-hash'},
+            'src/kept-a.cpp': {'commit_hash': 'h1', 'verifications': [{'status': 'success'}]},
+            'src/kept-a-2.cpp': {'commit_hash': 'h1', 'verifications': [{'status': 'success'}]},
+            'src/kept-b.cpp': {'commit_hash': 'h2', 'verifications': [{'status': 'success'}]},
+            'src/reverify.cpp': {'commit_hash': 'missing-hash', 'verifications': [{'status': 'success'}]},
             'src/reverify-unknown.cpp': {},
         }
 
@@ -199,7 +201,7 @@ class TestCpvDelegateCommands:
 
     def test_files_listing_with_previous_info_returns_empty_if_only_ancestor_files_changed(self):
         previous_info = {
-            'src/kept.cpp': {'commit_hash': 'h1'},
+            'src/kept.cpp': {'commit_hash': 'h1', 'verifications': [{'status': 'success'}]},
         }
 
         def _mock_check_output(args):
@@ -213,10 +215,6 @@ class TestCpvDelegateCommands:
             listed = files_listing(previous_info)
 
         assert listed == []
-
-    def test_partition_validates_task_count(self):
-        with pytest.raises(ValueError, match='task_count must be a positive integer'):
-            partition({}, 0)
 
     def test_partition_rejects_negative_elapsed(self):
         files_info = {
@@ -378,3 +376,37 @@ class TestCpvDelegateCommands:
             3,
             str(result_dir),
         )
+
+    def test_register_cpv_delegate_rejects_non_positive_task_count(self, tmp_path):
+        @click.group()
+        def cli():
+            pass
+
+        _register_cpv_delegate(cli)
+
+        verify_files = tmp_path / 'verify_files.json'
+        verify_files.write_text(json.dumps({'files': {}}), encoding='utf8')
+        merged_result = tmp_path / 'merged-result.json'
+        result_dir = tmp_path / 'verify-list'
+
+        runner = CliRunner()
+        result = runner.invoke(
+            cli,
+            [
+                'delegate',
+                '-f',
+                '*',
+                '-v',
+                str(verify_files),
+                '-m',
+                str(merged_result),
+                '-t',
+                '0',
+                '-d',
+                str(result_dir),
+            ],
+        )
+
+        assert result.exit_code == 1
+        assert isinstance(result.exception, ValueError)
+        assert str(result.exception) == 'task_count must be a positive integer'

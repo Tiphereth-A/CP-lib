@@ -43,6 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - name: Install uv
         uses: astral-sh/setup-uv@v7
         with:
@@ -260,7 +262,26 @@ jobs:
         env:
           SRCDIR: .artifacts/Bundled
 
-      - name: Merge results
+      - name: Detect previous merged result artifact
+        id: previous-merged-result
+        shell: bash
+        run: |
+          PREVIOUS_RESULT_PATH="${{ steps.all-artifacts.outputs.artifacts-root }}/Previous-merged-result/merged-result.json"
+          if test -f "$PREVIOUS_RESULT_PATH"; then
+            echo "found=true" >> $GITHUB_OUTPUT
+          else
+            echo "found=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Merge results (with cached previous result)
+        if: ${{ steps.previous-merged-result.outputs.found == 'true' }}
+        uses: competitive-verifier/actions/merge-result@v2
+        with:
+          result-files: |
+            ${{ steps.all-artifacts.outputs.artifacts-root }}/Previous-merged-result/merged-result.json
+            ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
+          output-path: ${{github.workspace}}/merged-result.json
+      - name: Merge results (without cached previous result)
+        if: ${{ steps.previous-merged-result.outputs.found != 'true' }}
         uses: competitive-verifier/actions/merge-result@v2
         with:
           result-files: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
