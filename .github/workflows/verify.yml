@@ -294,7 +294,7 @@ jobs:
           write-summary: true
 
       - name: Patch merged result
-        run: uv run python cpv_patch.py -l DEBUG merged-result -m ${{github.workspace}}/merged-result.json -t set_commit_hash_if_absent
+        run: uv run python cpv_patch.py -l DEBUG merged-result -m ${{github.workspace}}/merged-result.json
       - name: Upload merged result artifact
         uses: actions/upload-artifact@v7
         with:
