@@ -1,4 +1,5 @@
 from copy import deepcopy
+from pathlib import Path
 from multipledispatch import dispatch
 from typing import Iterable
 
@@ -7,8 +8,9 @@ from libs.decorator import with_logger
 
 
 class ConfigTcgen(ConfigBase):
-    def __init__(self, conf_path: str):
-        super().__init__(conf_path, readonly=True)
+    # TODO: remove str support after all confs are migrated to Path
+    def __init__(self, conf_path: str | Path):
+        super().__init__(conf_path if isinstance(conf_path, Path) else Path(conf_path), readonly=True)
 
     def __check_categories_priorities(self, categories: list[str]):
         if not categories:

@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import re
 from libs.decorator import with_logger
 
@@ -18,14 +19,14 @@ class TextLaTeXBase:
 
 
 class PathLaTeX(TextLaTeXBase):
-    def __init__(self, path: str):
-        super().__init__(path)
-        self._str = self._str.replace('\\', '/')
+    def __init__(self, path: str | Path):
+        super().__init__(path.replace('\\', '/')
+                         if isinstance(path, str) else str(path.as_posix()))
 
 
 class NameLaTeX(TextLaTeXBase):
-    def __init__(self, path: str):
-        super().__init__(path)
+    def __init__(self, path: str | Path):
+        super().__init__(path if isinstance(path, str) else path.as_posix())
         self._str = self._str.replace(r'_', r' ')
 
 

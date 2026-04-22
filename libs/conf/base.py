@@ -1,10 +1,10 @@
-import os
+from pathlib import Path
 import yaml
 from abc import ABC
 
 
 class ConfigBase(ABC):
-    def __init__(self, conf_path: str, readonly: bool = False):
+    def __init__(self, conf_path: Path, readonly: bool = False):
         self._conf_path = conf_path
         self._config: dict = {}
         self._readonly = readonly
@@ -14,18 +14,18 @@ class ConfigBase(ABC):
         return f"{self.__class__.__name__}(path={self._conf_path}, config={self._config})"
 
     def reload(self):
-        if not os.access(self._conf_path, os.R_OK):
+        if not self._conf_path.exists():
             raise PermissionError(f"{self._conf_path} is inaccessible")
-        with open(self._conf_path, 'r', encoding='utf8') as f:
-            self._config = yaml.safe_load(f)
+        self._config = yaml.safe_load(
+            self._conf_path.read_text(encoding='utf8'))
 
     def output(self):
         if self._readonly:
             raise AssertionError(f"{self._conf_path} is readonly")
-        if not os.access(self._conf_path, os.W_OK):
-            raise PermissionError(f"{self._conf_path} is inaccessible")
-        with open(self._conf_path, 'w', encoding='utf8') as f:
-            yaml.dump(self._config, f, sort_keys=False, allow_unicode=True)
+        self._conf_path.write_text(
+            yaml.dump(self._config, sort_keys=False, allow_unicode=True),
+            encoding='utf8'
+        )
 
     def items(self, *args: str):
         result = self._config

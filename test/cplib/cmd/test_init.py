@@ -26,7 +26,8 @@ class TestLibsInit:
 
         register_main_commands(group)
         cmd_names = set(group.commands.keys())
-        assert cmd_names == {'doc', 'new', 'verify', 'fmt', 'meta', 'pack'}
+        assert cmd_names == {'bench', 'doc',
+                             'new', 'verify', 'fmt', 'meta', 'pack'}
 
     def test_register_cpv_patch_commands_registers_cmds(self):
         @click.group()

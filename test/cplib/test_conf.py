@@ -12,8 +12,8 @@ from libs.conf.tcgen import ConfigTcgen
 # ---------------------------------------------------------------------------
 
 def write_yaml(path, data):
-    with open(path, 'w', encoding='utf8') as f:
-        yaml.dump(data, f, sort_keys=False, allow_unicode=True)
+    path.write_text(yaml.dump(data, sort_keys=False,
+                    allow_unicode=True), encoding='utf8')
 
 
 # ---------------------------------------------------------------------------
@@ -24,12 +24,12 @@ def write_yaml(path, data):
 class TestConfigBase:
     def test_load_success(self, tmp_path):
         cfg_path = tmp_path / 'cfg.yml'
-        write_yaml(str(cfg_path), {'key': 'value'})
+        write_yaml(cfg_path, {'key': 'value'})
 
         class Concrete(ConfigBase):
             pass
 
-        obj = Concrete(str(cfg_path))
+        obj = Concrete(cfg_path)
         assert obj.items('key') == 'value'
 
     def test_file_not_accessible_raises(self, tmp_path):
@@ -37,39 +37,39 @@ class TestConfigBase:
             pass
 
         with pytest.raises(PermissionError):
-            Concrete(str(tmp_path / 'missing.yml'))
+            Concrete(tmp_path / 'missing.yml')
 
     def test_repr(self, tmp_path):
         cfg_path = tmp_path / 'cfg.yml'
-        write_yaml(str(cfg_path), {'a': 1})
+        write_yaml(cfg_path, {'a': 1})
 
         class Concrete(ConfigBase):
             pass
 
-        obj = Concrete(str(cfg_path))
+        obj = Concrete(cfg_path)
         assert repr(
-            obj) == f"Concrete(path={str(cfg_path)}, config={{'a': 1}})"
+            obj) == f"Concrete(path={cfg_path}, config={{'a': 1}})"
 
     def test_reload(self, tmp_path):
         cfg_path = tmp_path / 'cfg.yml'
-        write_yaml(str(cfg_path), {'x': 1})
+        write_yaml(cfg_path, {'x': 1})
 
         class Concrete(ConfigBase):
             pass
 
-        obj = Concrete(str(cfg_path))
-        write_yaml(str(cfg_path), {'x': 2})
+        obj = Concrete(cfg_path)
+        write_yaml(cfg_path, {'x': 2})
         obj.reload()
         assert obj.items('x') == 2
 
     def test_output_writes_file(self, tmp_path):
         cfg_path = tmp_path / 'cfg.yml'
-        write_yaml(str(cfg_path), {'a': 1})
+        write_yaml(cfg_path, {'a': 1})
 
         class Concrete(ConfigBase):
             pass
 
-        obj = Concrete(str(cfg_path))
+        obj = Concrete(cfg_path)
         obj._config['a'] = 99
         obj.output()
         obj.reload()
@@ -77,24 +77,24 @@ class TestConfigBase:
 
     def test_output_readonly_raises(self, tmp_path):
         cfg_path = tmp_path / 'cfg.yml'
-        write_yaml(str(cfg_path), {'a': 1})
+        write_yaml(cfg_path, {'a': 1})
 
         class Concrete(ConfigBase):
             pass
 
-        obj = Concrete(str(cfg_path), readonly=True)
+        obj = Concrete(cfg_path, readonly=True)
         with pytest.raises(AssertionError):
             obj.output()
 
     def test_output_not_writable_raises(self, tmp_path):
         import stat
         cfg_path = tmp_path / 'readonly_cfg.yml'
-        write_yaml(str(cfg_path), {'a': 1})
+        write_yaml(cfg_path, {'a': 1})
 
         class Concrete(ConfigBase):
             pass
 
-        obj = Concrete(str(cfg_path))
+        obj = Concrete(cfg_path)
         # Make the file read-only
         cfg_path.chmod(stat.S_IREAD)
         try:
@@ -105,12 +105,12 @@ class TestConfigBase:
 
     def test_items_nested(self, tmp_path):
         cfg_path = tmp_path / 'cfg.yml'
-        write_yaml(str(cfg_path), {'outer': {'inner': 42}})
+        write_yaml(cfg_path, {'outer': {'inner': 42}})
 
         class Concrete(ConfigBase):
             pass
 
-        obj = Concrete(str(cfg_path))
+        obj = Concrete(cfg_path)
         assert obj.items('outer', 'inner') == 42
 
 
@@ -124,8 +124,8 @@ class TestConfigIndex:
         if data is None:
             data = [{'gcd': 'GCD'}, {'lcm': 'LCM'}]
         path = tmp_path / 'index.yml'
-        write_yaml(str(path), data)
-        return ConfigIndex(str(path))
+        write_yaml(path, data)
+        return ConfigIndex(path)
 
     def test_get_section_list(self, tmp_path):
         idx = self._make_index(tmp_path)
@@ -139,15 +139,15 @@ class TestConfigIndex:
 
     def test_empty_config(self, tmp_path):
         path = tmp_path / 'index.yml'
-        write_yaml(str(path), None)
-        idx = ConfigIndex(str(path))
+        write_yaml(path, None)
+        idx = ConfigIndex(path)
         assert idx.get_section_list() == []
         assert idx.get_section_name() == set()
 
     def test_new_section_creates_dir(self, tmp_path):
         path = tmp_path / 'index.yml'
-        write_yaml(str(path), [])
-        idx = ConfigIndex(str(path))
+        write_yaml(path, [])
+        idx = ConfigIndex(path)
         result = idx.new_section('newsect', 'New Section')
         assert result is True
         assert (tmp_path / 'newsect').is_dir()
@@ -160,8 +160,8 @@ class TestConfigIndex:
 
     def test_new_section_persists(self, tmp_path):
         path = tmp_path / 'index.yml'
-        write_yaml(str(path), [])
-        idx = ConfigIndex(str(path))
+        write_yaml(path, [])
+        idx = ConfigIndex(path)
         idx.new_section('alpha', 'Alpha')
         idx.reload()
         assert idx.get_section_name() == {'alpha'}
@@ -279,8 +279,8 @@ class TestConfigTcgen:
             },
         }
         cfg_path = tmp_path / 'tcgen_list.yml'
-        write_yaml(str(cfg_path), data)
-        cfg = ConfigTcgen(str(cfg_path))
+        write_yaml(cfg_path, data)
+        cfg = ConfigTcgen(cfg_path)
         # list dispatch - member 'alpha' found in catA
         content = cfg.get_member_content(['catA', 'catB'], 'alpha')
         assert content['category_name'] == 'catA'
@@ -300,8 +300,8 @@ class TestConfigTcgen:
             },
         }
         cfg_path = tmp_path / 'tcgen_list_fb.yml'
-        write_yaml(str(cfg_path), data)
-        cfg = ConfigTcgen(str(cfg_path))
+        write_yaml(cfg_path, data)
+        cfg = ConfigTcgen(cfg_path)
         with pytest.raises(RuntimeError, match='invalid in categories'):
             cfg.get_member_content(['catA'], 'zzz')
 
@@ -309,8 +309,8 @@ class TestConfigTcgen:
         data = {'catA': {'priority': 0,
                          'default_content': None, 'member': {'a': None}}}
         cfg_path = tmp_path / 'tcgen_empty.yml'
-        write_yaml(str(cfg_path), data)
-        cfg = ConfigTcgen(str(cfg_path))
+        write_yaml(cfg_path, data)
+        cfg = ConfigTcgen(cfg_path)
         # empty list should return [] without error
         result = cfg.get_memberlist([])
         assert result == []
@@ -332,8 +332,8 @@ class TestConfigTcgen:
             }
         }
         cfg_path = tmp_path / 'tcgen_null.yml'
-        write_yaml(str(cfg_path), data)
-        cfg = ConfigTcgen(str(cfg_path))
+        write_yaml(cfg_path, data)
+        cfg = ConfigTcgen(cfg_path)
         # alpha: default_content is None, member_content is not None → covers line 49
         content = cfg.get_member_content('catA', 'alpha')
         assert content['category_name'] == 'catA'

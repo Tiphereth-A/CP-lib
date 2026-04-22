@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import textwrap
 import pytest
 import yaml
@@ -11,11 +12,7 @@ testcase_matrix.__test__ = False
 
 
 # Shared test config used by cppmeta_parser tests
-_REAL_CONFIG_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(__file__)),
-    'cpv_meta',
-    'config.yml',
-)
+_REAL_CONFIG_PATH = Path(__file__).parent.parent / 'cpv_meta' / 'config.yml'
 _REAL_CONFIG = ConfigTcgen(_REAL_CONFIG_PATH)
 
 # ------------------------------------------------------------------ helpers --

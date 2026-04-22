@@ -79,6 +79,9 @@ uv sync --frozen --group bundle
 
 # Verify installation
 python3 manager.py --help
+
+# Run all C++ benchmarks locally (writes .cp-lib/benchmark_result.json)
+python3 manager.py benchmark
 ```
 
 The `manager.py` script provides several commands for managing the repository, see `python manager.py --help` for details.
