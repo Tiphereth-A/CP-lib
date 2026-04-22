@@ -1,0 +1,88 @@
+name: benchmark
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/**'
+      - 'test/bench/**'
+      - '*.py'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/**'
+      - 'test/bench/**'
+      - '*.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.head_ref || 'x' }}-${{ github.workflow }}-${{ github.ref }}-benchmark
+  cancel-in-progress: true
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: '3.12'
+          version: "latest"
+      - name: Install competitive-verifier
+        run: uv sync --frozen --group verify
+      - name: Install benchmark dependencies
+        run: sudo apt-get install -y libbenchmark-dev
+
+      - name: Get benchmark commands
+        run: uv run python manager.py -l DEBUG bench --bin-dir .cp-lib/bench-bin --dry-run > commands.txt
+
+      - name: Upload benchmark bins artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: benchmark_bins
+          path: .cp-lib/bench-bin
+      - name: Upload benchmark commands artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: benchmark_commands
+          path: commands.txt
+
+  bench:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: '3.12'
+          version: "latest"
+      - name: Install benchmark dependencies
+        run: sudo apt-get install -y libbenchmark-dev
+
+      - name: Load compare.py
+        run: |
+          uv venv
+          bash .github/ci-scripts/load_compare_py.sh
+
+      - name: Download benchmark bins artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: benchmark_bins
+          path: .cp-lib/bench-bin
+      - name: Download benchmark commands artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: benchmark_commands
+      - run: |
+          chmod +x .cp-lib/bench-bin/*
+          bash < commands.txt

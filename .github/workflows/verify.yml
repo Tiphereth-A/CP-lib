@@ -132,7 +132,6 @@ jobs:
       SPLIT_SIZE: 37
     strategy:
       matrix:
-        # prettier-ignore
         index:
           [ "0",  "1",  "2",  "3",  "4",  "5",  "6",  "7",  "8",  "9",
            "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
@@ -207,48 +206,9 @@ jobs:
           name: Gcov-result-${{ matrix.index }}
           path: _gcov
 
-  benchmark:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v6
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          python-version: '3.12'
-          version: "latest"
-      - name: Install competitive-verifier
-        run: uv sync --frozen --group verify
-      - name: Install benchmark dependencies
-        run: sudo apt-get install -y libbenchmark-dev
-      - name: Add uv virtualenv binaries to PATH
-        run: echo "${{ github.workspace }}/.venv/bin" >> $GITHUB_PATH
-
-      - name: Run C++ benchmarks
-        run: uv run python manager.py -l DEBUG bench -o .cp-lib/benchmark_result.json
-      - name: Generate benchmark chart page
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          name: CP-lib C++ Benchmarks
-          tool: 'googlecpp'
-          output-file-path: .cp-lib/benchmark_result.json
-          auto-push: false
-          skip-fetch-gh-pages: true
-          gh-pages-branch: master
-          benchmark-data-dir-path: _jekyll/bench
-          summary-always: true
-
-      - name: Upload benchmark chart page artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: benchmark_chart
-          path: _jekyll/bench
-
-
   docs-and-check:
     runs-on: ubuntu-latest
-    needs: [verify, benchmark]
+    needs: [verify]
     outputs:
       upload-pages: ${{ steps.upload-pages.outcome == 'success' }}
     steps:
@@ -345,9 +305,7 @@ jobs:
           path: ${{github.workspace}}/merged-result.json
 
       - name: Patch pages doc
-        run: |
-          mv ${{ steps.all-artifacts.outputs.artifacts-root }}/benchmark_chart _jekyll/bench
-          uv run python cpv_patch.py -l DEBUG doc -s src -j _jekyll
+        run: uv run python cpv_patch.py -l DEBUG doc -s src -j _jekyll
 
       - name: Upload page src
         uses: actions/upload-artifact@v7

@@ -1,3 +1,4 @@
+import re
 import shlex
 
 import orjson
@@ -9,6 +10,8 @@ import click
 from libs.decorator import with_logger, with_timer
 from libs.util.run_command import run_command
 
+RE_COMPARISON = re.compile(r'/\*comparison\n(.*?)\*/', re.DOTALL)
+
 
 @with_logger
 @with_timer
@@ -16,18 +19,16 @@ def run_benchmarks(
     bench_dir: str,
     bin_dir: str,
     raw_dir: str,
-    output_file: str,
-    min_time: str,
+    compare_py_dir: str,
     thread_limit: int,
+    dry_run: bool,
     **kwargs,
 ):
     logger = kwargs.get('logger')
 
-    root_dir = Path(__file__).resolve().parents[2]
     bench_path = Path(bench_dir)
     bin_path = Path(bin_dir)
     raw_path = Path(raw_dir)
-    output_path = Path(output_file)
 
     sources = sorted(bench_path.rglob('*.cpp'))
     if not sources:
@@ -40,12 +41,9 @@ def run_benchmarks(
     for stale in raw_path.glob('*.json'):
         stale.unlink()
 
-    def _santize_src(src: Path) -> str:
-        return src.as_posix().removesuffix('.cpp').replace('%', r'%25').replace('/', r'%2F')
-
     params = [(src,
-               bin_path / f"{_santize_src(src)}.out",
-               raw_path / f"{_santize_src(src)}.json"
+               bin_path /
+               f"{src.as_posix().removesuffix('.cpp').replace('%', r'%25').replace('/', r'%2F')}.out"
                ) for src in sources]
 
     run_command(
@@ -54,52 +52,32 @@ def run_benchmarks(
                 src=shlex.quote(str(x[0])),
                 out=shlex.quote(str(x[1])))), {}),  params, thread_limit)
 
-    for src, exe, out in params:
-        logger.debug(f'Run {src}')
-        subprocess.run(
-            shlex.split(
-                '{exe} --benchmark_format=json --benchmark_min_time={min_time} --benchmark_out={out}'.format(
-                    exe=shlex.quote(str(exe)),
-                    min_time=min_time,
-                    out=shlex.quote(str(out)))),
-            check=True,
-            capture_output=True,
-            text=True,
-            encoding='utf-8',
-        )
+    cmds = []
 
-    files = sorted(raw_path.glob('*.json'))
-    if not files:
-        raise RuntimeError('No benchmark outputs were generated')
+    for src, exe in params:
+        comp = RE_COMPARISON.search(src.read_text(encoding='utf-8'))
+        if comp:
+            comp = comp.group(1).splitlines()
+            logger.info(f'{len(comp)} comparison(s) found in {src}')
+            for arg in comp:
+                cmd = shlex.split(
+                    'uv run python {compare_py_dir}/compare.py filters ./{exe} {arg}'.format(
+                        compare_py_dir=str(compare_py_dir),
+                        exe=shlex.quote(str(exe)),
+                        arg=arg.strip(),
+                    ))
+                if dry_run:
+                    cmds.append(cmd)
+                else:
+                    logger.info(f'\n::group::{src} {arg.strip()}\n' + subprocess.run(
+                        cmd,
+                        capture_output=True,
+                        text=True,
+                        encoding='utf-8',
+                    ).stdout+'\n::endgroup::')
 
-    merged: dict = {
-        'context': {},
-        'benchmarks': [],
-    }
-
-    for idx, file in enumerate(files):
-        payload = orjson.loads(file.read_bytes())
-        if idx == 0 and isinstance(payload.get('context'), dict):
-            merged['context'] = payload['context']
-
-        suite_name = file.stem.replace(r'%2F', '/').replace(r'%25', '%')
-        entries: list[dict] = payload.get('benchmarks', [])
-        for benchmark in entries:
-            current = dict(benchmark)
-            name = str(current.get('name', ''))
-            current['name'] = f'{suite_name}::{name}' if name else suite_name
-            bench_list = merged['benchmarks']
-            assert isinstance(bench_list, list)
-            bench_list.append(current)
-
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_bytes(orjson.dumps(merged))
-
-    bench_count = len(merged['benchmarks']) if isinstance(
-        merged['benchmarks'], list) else 0
-    logger.info(f'Merged {len(files)} benchmark files into {output_path}')
-    logger.info(f'Total benchmark entries: {bench_count}')
     logger.info('finished')
+    return cmds
 
 
 def _register_bench(cli):
@@ -107,9 +85,11 @@ def _register_bench(cli):
     @click.option('-s', '--src', 'bench_dir', type=click.Path(exists=True, file_okay=False), default='test/bench', help='Benchmark source directory')
     @click.option('--bin-dir', type=click.Path(file_okay=False), default='.cp-lib/bench-bin', help='Directory for compiled benchmark binaries')
     @click.option('--raw-dir', type=click.Path(file_okay=False), default='.cp-lib/bench-raw', help='Directory for raw benchmark json output files')
-    @click.option('-o', '--output', 'output_file', type=click.Path(dir_okay=False), default='.cp-lib/benchmark_result.json', help='Merged benchmark json output path')
-    @click.option('-m', '--min-time', type=str, default='0.01', help='Google Benchmark --benchmark_min_time value')
+    @click.option('--compare-py-dir', type=click.Path(file_okay=False), default='.cp-lib/compare', help='Directory for comparison Python scripts')
     @click.option('-l', '--thread-limit', type=int, help='limit of threads to run', default=8)
-    def _benchmark(bench_dir: str, bin_dir: str, raw_dir: str, output_file: str, min_time: str, thread_limit: int):
-        run_benchmarks(bench_dir, bin_dir, raw_dir,
-                       output_file, min_time, thread_limit)
+    @click.option('--dry-run', is_flag=True, help='Perform a dry run without executing benchmarks')
+    def _benchmark(bench_dir: str, bin_dir: str, raw_dir: str, compare_py_dir: str,  thread_limit: int, dry_run: bool):
+        cmds = run_benchmarks(bench_dir, bin_dir, raw_dir,
+                              compare_py_dir, thread_limit, dry_run)
+        if dry_run:
+            print('\n'.join(shlex.join(cmd) for cmd in cmds))

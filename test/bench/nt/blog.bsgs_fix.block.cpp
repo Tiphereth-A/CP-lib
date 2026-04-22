@@ -21,3 +21,7 @@ static void BM_int(benchmark::State& state) {
 BENCHMARK(BM_int);
 
 BENCHMARK_MAIN();
+
+/*comparison
+BM_double BM_int
+*/

@@ -23,3 +23,7 @@ static void BM_my(benchmark::State& state) {
 BENCHMARK(BM_my);
 
 BENCHMARK_MAIN();
+
+/*comparison
+BM_clib BM_my
+*/

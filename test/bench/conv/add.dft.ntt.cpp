@@ -1,3 +1,4 @@
+// modified from <https://github.com/atcoder/ac-library/blob/master/test/benchmark/convolution.cpp>
 #include <benchmark/benchmark.h>
 
 #include "../../../src/conv/add/dft/lib.hpp"
@@ -47,3 +48,8 @@ _TEST(ms);
 _TEST(ms64);
 
 BENCHMARK_MAIN();
+
+/*comparison
+CONV_same_length_ms CONV_same_length_bs CONV_same_length_ms64
+CONV_long_empty_ms CONV_long_empty_bs CONV_long_empty_ms64
+*/
