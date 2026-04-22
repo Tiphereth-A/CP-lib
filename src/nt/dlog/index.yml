@@ -2,3 +2,4 @@
 - bsgs: BSGS
 - exbsgs: 任意模数 BSGS
 - bsgs_nimber: Nimber BSGS
+- bsgs_fix: bsgs_fix

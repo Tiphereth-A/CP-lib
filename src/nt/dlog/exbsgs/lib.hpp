@@ -2,12 +2,12 @@
 
 #include "../../gl/gcd/lib.hpp"
 #include "../../inverse/lib.hpp"
-#include "../bsgs/lib.hpp"
+#include "../naive/lib.hpp"
 
 namespace tifa_libs {
 
 // solve $a^x\equiv b \pmod m$
-inline auto exbsgs(u64 a, u64 b, u64 m) NE {
+inline auto exbsgs(auto&& bsgs, u64 a, u64 b, u64 m) NE {
   std::optional<u64> ret;
   if (m < 64) {
     ret = dlog_naive(a, b, m);

@@ -15,7 +15,7 @@ BENCHMARK(BM_double);
 
 static void BM_int(benchmark::State& state) {
   for (auto _ : state) {
-    benchmark::DoNotOptimize(isqrt((u64)x * (isqrt(x) + 1) / (u64)std::bit_width(x)));
+    benchmark::DoNotOptimize(isqrt((u64)x * (isqrt(x) + 1) * 2 / ((u64)std::bit_width(x) * 3)));
   }
 }
 BENCHMARK(BM_int);
