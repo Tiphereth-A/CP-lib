@@ -2,8 +2,7 @@ import os
 
 from libs.conf import ConfigTcgen
 from libs.decorator import with_logger
-from libs.meta import testcase_matrix
-
+from libs.meta.testcase_matrix import testcase_matrix
 
 _GENTC_BEGIN = '// ---<GENTC>--- begin\n'
 _GENTC_END = '// ---<GENTC>--- end\n'
@@ -91,7 +90,7 @@ class cppmeta_parser:
         return block_begin, block_end, main_index, self._testcase_mat.get_all_cases()
 
     def _get_include_relpath(self, include_filepath: str) -> str:
-        return os.path.relpath(include_filepath, self._target_dir).replace("\\", '/')
+        return os.path.relpath(include_filepath, self._target_dir).replace('\\', '/')
 
     def _get_all_target_content(self) -> list[tuple[str, list[str]]]:
         block_begin, block_end, main_index, all_cases = self._get_all_cases()

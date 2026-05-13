@@ -1,8 +1,8 @@
 import os
 from unittest.mock import patch
 
-from click.testing import CliRunner
 import pytest
+from click.testing import CliRunner
 
 from libs.cmd.meta import generate_testcode
 

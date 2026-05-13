@@ -1,6 +1,7 @@
-from pathlib import Path
-import yaml
 from abc import ABC
+from pathlib import Path
+
+import yaml
 
 
 class ConfigBase(ABC):

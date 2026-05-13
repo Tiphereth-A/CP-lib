@@ -1,0 +1,26 @@
+repos:
+  - repo: https://github.com/PyCQA/isort
+    rev: 8.0.1
+    hooks:
+      - id: isort
+  - repo: local
+    hooks:
+      - id: replace-chinese-punctuation
+        name: Replace Chinese punctuation
+        entry: uv run python scripts/replace_chinese_punct.py
+        language: python
+        files: ^src/
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-illegal-windows-names
+      - id: detect-private-key
+      - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: forbid-submodules
+      - id: mixed-line-ending
+      - id: name-tests-test
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]

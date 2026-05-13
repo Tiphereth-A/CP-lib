@@ -1,9 +1,11 @@
 import os
+
 import click
 
 from libs.content import ContentTree
+from libs.content.latex_utils import (NameLaTeX, PathLaTeX, latex_input,
+                                      latex_section)
 from libs.decorator import with_logger, with_timer
-from libs.content.latex_utils import NameLaTeX, PathLaTeX, latex_input, latex_section
 
 
 @with_logger
@@ -54,7 +56,7 @@ def gen_tex(content_tree: ContentTree, temp_path: str, **kwargs):
 @with_logger
 @with_timer
 def gen_typst(content_tree: ContentTree, **kwargs):
-    assert False, "Not implemented yet"
+    assert False, 'Not implemented yet'
 
 
 def _register_doc(cli):

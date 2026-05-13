@@ -1,14 +1,13 @@
-from libs.cmd.doc import _register_doc
-from libs.cmd.new import _register_new
-from libs.cmd.verify import _register_verify
 from libs.cmd.bench import _register_bench
+from libs.cmd.cpv_delegate import _register_cpv_delegate
+from libs.cmd.cpv_doc import _register_cpv_doc
+from libs.cmd.cpv_merged_result import _register_cpv_merged_result
+from libs.cmd.doc import _register_doc
 from libs.cmd.fmt import _register_fmt
 from libs.cmd.meta import _register_meta
+from libs.cmd.new import _register_new
 from libs.cmd.pack import _register_pack
-
-from libs.cmd.cpv_doc import _register_cpv_doc
-from libs.cmd.cpv_delegate import _register_cpv_delegate
-from libs.cmd.cpv_merged_result import _register_cpv_merged_result
+from libs.cmd.verify import _register_verify
 
 
 def register_main_commands(cli):

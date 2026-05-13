@@ -1,7 +1,7 @@
-from copy import deepcopy
-from fnmatch import fnmatch
 import itertools
 import logging
+from copy import deepcopy
+from fnmatch import fnmatch
 from typing import Iterable
 
 from libs.conf import ConfigTcgen

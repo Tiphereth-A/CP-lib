@@ -1,11 +1,12 @@
 import json
-import click
-from click.testing import CliRunner
 from unittest.mock import patch
 
+import click
 import pytest
+from click.testing import CliRunner
 
-from libs.cmd.cpv_delegate import _register_cpv_delegate, cpv_delegate, files_listing, partition
+from libs.cmd.cpv_delegate import (_register_cpv_delegate, cpv_delegate,
+                                   files_listing, partition)
 
 
 @pytest.mark.unit

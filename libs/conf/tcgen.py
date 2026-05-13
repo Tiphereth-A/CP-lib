@@ -1,7 +1,8 @@
 from copy import deepcopy
 from pathlib import Path
-from multipledispatch import dispatch
 from typing import Iterable
+
+from multipledispatch import dispatch
 
 from libs.conf.base import ConfigBase
 from libs.decorator import with_logger

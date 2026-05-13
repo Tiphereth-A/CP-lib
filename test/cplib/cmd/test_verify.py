@@ -1,8 +1,8 @@
 import os
 from unittest.mock import MagicMock, patch
 
-from click.testing import CliRunner
 import pytest
+from click.testing import CliRunner
 
 from libs.cmd.verify import verify_codes
 

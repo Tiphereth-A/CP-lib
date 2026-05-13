@@ -485,4 +485,3 @@ info bash
 info bash 'Bash Features'
 info bash 6
 info --apropos bash
-

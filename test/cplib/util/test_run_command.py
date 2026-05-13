@@ -1,7 +1,9 @@
 import subprocess
 import time
+from unittest.mock import MagicMock, patch
+
 import pytest
-from unittest.mock import patch, MagicMock
+
 from libs.util.run_command import run_command
 
 
@@ -51,6 +53,7 @@ class TestRunCommand:
 
     def test_command_with_stderr(self):
         import sys
+
         # stderr output but returncode 0
         result = run_command(
             lambda x: ([sys.executable, '-c',
@@ -62,6 +65,7 @@ class TestRunCommand:
 
     def test_mixed_success_failure(self):
         import sys
+
         # param 0 succeeds, param 1 fails
         result = run_command(
             lambda x: ([sys.executable, '-c',
@@ -118,8 +122,8 @@ class TestRunCommand:
         assert len(called) == 1
 
     def test_post_run_raising_calledprocesserror(self):
-        import sys
         import subprocess as sp
+        import sys
 
         def make_cmd(x):
             def _post(r):
@@ -145,7 +149,7 @@ class TestRunCommand:
 
         def make_cmd(x):
             def _post(r):
-                raise ValueError("unexpected post_run error")
+                raise ValueError('unexpected post_run error')
             return ([sys.executable, '-c', 'pass'], {'post_run': _post})
 
         result = run_command(make_cmd, ['p'], thread_limit=1)

@@ -1,8 +1,8 @@
 import os
 import re
 
-from libs.decorator import with_logger
 from libs.content.latex_utils import PathLaTeX, latex_listing_code_range
+from libs.decorator import with_logger
 
 _EXT_TYPE: dict[str, str] = {
     '.md': 'markdown',
@@ -18,23 +18,23 @@ for _ext, _type in _EXT_TYPE.items():
 
 
 _TEMPLACES = {
-    "cpvdoc.md": """---
+    'cpvdoc.md': """---
 title: {name}
 documentation_of: ./{path}/lib.hpp
 ---
 """,
-    "doc.tex": """% {lib.hpp,start=3}
+    'doc.tex': """% {lib.hpp,start=3}
 % {usage.cpp,start=2}
 """,
-    "doc.typ": """// {lib.hpp,start=3}
+    'doc.typ': """// {lib.hpp,start=3}
 // {usage.cpp,start=2}
 """,
-    "lib.hpp": """#pragma once
+    'lib.hpp': """#pragma once
 
 namespace tifa_libs {
 }  // namespace tifa_libs
 """,
-    "usage.cpp": """// competitive-verifier: DISPLAY never
+    'usage.cpp': """// competitive-verifier: DISPLAY never
 // cplib.manager: PROBLEM https://example.com
 
 #include "lib.hpp"
@@ -69,27 +69,27 @@ class Section:
 
     @with_logger
     def init_files(self, **kwargs):
-        with open(os.path.join(self._dir, "cpvdoc.md"), 'w', encoding='utf8') as f:
-            f.write(_TEMPLACES["cpvdoc.md"].format(
+        with open(os.path.join(self._dir, 'cpvdoc.md'), 'w', encoding='utf8') as f:
+            f.write(_TEMPLACES['cpvdoc.md'].format(
                 name=self._name,
                 path=self._dir.replace(os.sep, '/')
             ))
-        for _type in ["lib.hpp", "doc.tex", "doc.typ", "usage.cpp"]:
+        for _type in ['lib.hpp', 'doc.tex', 'doc.typ', 'usage.cpp']:
             with open(os.path.join(self._dir, _type), 'w', encoding='utf8') as f:
                 f.write(_TEMPLACES[_type])
 
     @with_logger
     def expand_tex(self, temp_path: str, **kwargs):
         src_list = self._get_src_list()
-        custom_doc = "doc.tex" in src_list
+        custom_doc = 'doc.tex' in src_list
         if custom_doc:
-            src_list.remove("doc.tex")
+            src_list.remove('doc.tex')
 
-        result_path = os.path.join(temp_path, self._dir, "doc.tex")
+        result_path = os.path.join(temp_path, self._dir, 'doc.tex')
         os.makedirs(os.path.dirname(result_path), exist_ok=True)
         with open(result_path, 'w', encoding='utf8') as f_result:
-            content: str = _TEMPLACES["doc.tex"] if not custom_doc else open(
-                os.path.join(self._dir, "doc.tex"), 'r', encoding='utf8').read()
+            content: str = _TEMPLACES['doc.tex'] if not custom_doc else open(
+                os.path.join(self._dir, 'doc.tex'), 'r', encoding='utf8').read()
             for file in src_list:
                 pattern = re.compile(
                     r'% \{' + re.escape(file) + r'(?:,start=(-?\d+))?(?:,stop=(-?\d+))?\}')
@@ -119,4 +119,4 @@ class Section:
 
     @with_logger
     def expand_typ(self, temp_path: str, **kwargs):
-        assert False, "Not implemented yet"
+        assert False, 'Not implemented yet'

@@ -1,12 +1,12 @@
 import shlex
+from collections.abc import Iterable
+
 import click
 
-from collections.abc import Iterable
 from libs.content.section import _TYPE_EXT
-from libs.util.run_command import run_command
 from libs.decorator import with_logger, with_timer
 from libs.util.get_files_with_exts import get_files_with_exts
-
+from libs.util.run_command import run_command
 
 TYPE_LINT_COMMAND_MP: dict[str, str] = {
     'cpp': 'clang-format --Wno-error=unknown -style=file -i {src}',

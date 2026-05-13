@@ -5,7 +5,8 @@ import orjson
 import pytest
 from click.testing import CliRunner
 
-from libs.cmd.cpv_merged_result import _register_cpv_merged_result, cpv_merged_result
+from libs.cmd.cpv_merged_result import (_register_cpv_merged_result,
+                                        cpv_merged_result)
 
 
 @pytest.mark.unit

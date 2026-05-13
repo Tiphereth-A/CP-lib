@@ -1,15 +1,17 @@
 import os
+from unittest.mock import patch
+
 import pytest
 import yaml
-from unittest.mock import patch
+
 from libs.conf.base import ConfigBase
 from libs.conf.index import ConfigIndex
 from libs.conf.tcgen import ConfigTcgen
 
-
 # ---------------------------------------------------------------------------
 # helpers
 # ---------------------------------------------------------------------------
+
 
 def write_yaml(path, data):
     path.write_text(yaml.dump(data, sort_keys=False,
@@ -243,7 +245,7 @@ class TestConfigTcgen:
             priorities.setdefault(p, []).append(cat)
         groups = [v for v in priorities.values() if len(v) >= 1]
         if len(groups) < 2:
-            pytest.skip("Not enough different-priority categories")
+            pytest.skip('Not enough different-priority categories')
         cat_a = groups[0][0]
         cat_b = groups[1][0]
         if self.cfg.get_priority(cat_a) != self.cfg.get_priority(cat_b):

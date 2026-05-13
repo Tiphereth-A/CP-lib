@@ -1,6 +1,8 @@
 import os
+from unittest.mock import MagicMock, patch
+
 import pytest
-from unittest.mock import patch, MagicMock
+
 from libs.util.get_src_files import get_src_files
 
 

@@ -1,7 +1,9 @@
 import os
+
 import pytest
 import yaml
-from libs.content.section import Section, _EXT_TYPE, _TYPE_EXT, _TEMPLACES
+
+from libs.content.section import _EXT_TYPE, _TEMPLACES, _TYPE_EXT, Section
 
 
 def write_yaml(path, data):

@@ -3,12 +3,13 @@ import re
 import shlex
 import subprocess
 import sys
+from queue import Queue
+
 import click
 
-from queue import Queue
+from libs.decorator import with_logger, with_timer
 from libs.util.get_src_files import get_src_files
 from libs.util.run_command import run_command
-from libs.decorator import with_logger, with_timer
 
 RE_USAGE_MARKER = re.compile(
     r'(# *define|// *(?:competitive-verifier|cplib\.manager):) PROBLEM ')

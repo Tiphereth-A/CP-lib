@@ -1,9 +1,9 @@
 from unittest.mock import patch
 
 import click
-import libs
 import pytest
 
+import libs
 from libs.cmd import register_cpv_patch_commands, register_main_commands
 
 

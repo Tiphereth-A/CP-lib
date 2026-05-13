@@ -1,5 +1,6 @@
 import logging
 from functools import wraps
+
 from libs.decorator.result_handler import DecoratorResultHandlerBase
 from libs.util.trailing_str import trailing_str
 

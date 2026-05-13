@@ -1,10 +1,11 @@
+from unittest.mock import patch
+
 import click
 import pytest
 import yaml
 from click.testing import CliRunner
-from unittest.mock import patch
 
-from libs.cmd.cpv_doc import cpv_doc, _register_cpv_doc
+from libs.cmd.cpv_doc import _register_cpv_doc, cpv_doc
 
 
 def _write_index_md(path, yml_dict, tail='\n# tail\n'):

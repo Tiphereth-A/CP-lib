@@ -1,12 +1,14 @@
 import os
-from pathlib import Path
 import textwrap
+from pathlib import Path
+from unittest.mock import MagicMock, patch
+
 import pytest
 import yaml
-from unittest.mock import patch, MagicMock
-from libs.meta.testcase_matrix import testcase_matrix
-from libs.meta.cppmeta_parser import cppmeta_parser
+
 from libs.conf.tcgen import ConfigTcgen
+from libs.meta.cppmeta_parser import cppmeta_parser
+from libs.meta.testcase_matrix import testcase_matrix
 
 testcase_matrix.__test__ = False
 
@@ -432,7 +434,7 @@ class TestCppmetaParser:
         """)
         lines = code.splitlines(True)
         parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
-        with pytest.raises(RuntimeError, match="unknown GENTC command"):
+        with pytest.raises(RuntimeError, match='unknown GENTC command'):
             parser.get_results()
 
     def test_end_without_begin_raises(self, tmp_path):
@@ -482,7 +484,7 @@ class TestCppmetaParser:
         """)
         lines = code.splitlines(True)
         parser = cppmeta_parser('t', str(tmp_path), lines, _REAL_CONFIG)
-        with pytest.raises(RuntimeError, match="unknown GENTC command"):
+        with pytest.raises(RuntimeError, match='unknown GENTC command'):
             parser.get_results()
 
     def test_block_after_main_raises(self, tmp_path):

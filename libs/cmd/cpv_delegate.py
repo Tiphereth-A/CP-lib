@@ -1,10 +1,11 @@
 import fnmatch
 import heapq
-import orjson
 import os
 import subprocess
 from typing import Iterable
+
 import click
+import orjson
 
 from libs.decorator import with_logger, with_timer
 
@@ -76,11 +77,11 @@ def partition(files_info: dict[str, dict[str] | str], task_count: int, **kwargs)
 
     groups = {}
     for path, info in files_info.items():
-        groups.setdefault(info["tag"], []).append(
-            (path, info["total_elapsed"], info["prepare_elapsed"]))
+        groups.setdefault(info['tag'], []).append(
+            (path, info['total_elapsed'], info['prepare_elapsed']))
 
     tag_units = [
-        (info["total_elapsed"] + info["prepare_elapsed"],
+        (info['total_elapsed'] + info['prepare_elapsed'],
          [path])
         for path, info in files_info.items()] if len(groups) < task_count else [
         (sum(r+p for _, r, p in items)-(len(items)-1) * items[0][2],
@@ -151,11 +152,11 @@ def cpv_delegate(file_patterns: tuple[str], verify_files: str, merged_result: st
         match v['type']:
             case 'problem':
                 return ' '.join(('problem',
-                                 "aizu" if '.u-aizu.ac.jp/' in v['problem'] else
-                                 "libchk" if '://judge.yosupo.jp/' in v['problem'] else
-                                 "yuki" if '://yukicoder.me/' in v['problem'] else
-                                 "",
-                                 v["problem"]))
+                                 'aizu' if '.u-aizu.ac.jp/' in v['problem'] else
+                                 'libchk' if '://judge.yosupo.jp/' in v['problem'] else
+                                 'yuki' if '://yukicoder.me/' in v['problem'] else
+                                 '',
+                                 v['problem']))
             case 'local':
                 return f"{v['type']} {v['input']}"
             case 'command':
@@ -213,7 +214,7 @@ def _register_cpv_delegate(cli):
     @click.option('-d', '--result-dir', type=click.Path(exists=False, file_okay=False), help='Directory for storing result files', default='.cp-lib/verify-list')
     def _cpv_delegate(file_pattern: str, verify_files: str, merged_result: str, task_count: int, result_dir: str):
         if task_count <= 0:
-            raise ValueError("task_count must be a positive integer")
+            raise ValueError('task_count must be a positive integer')
         cpv_delegate(file_pattern.split(),
                      verify_files,
                      merged_result,

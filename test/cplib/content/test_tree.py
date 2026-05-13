@@ -1,8 +1,10 @@
 import os
+
 import pytest
 import yaml
-from libs.content.tree import ContentTree
+
 from libs.conf.index import ConfigIndex
+from libs.content.tree import ContentTree
 
 
 def write_yaml(path, data):

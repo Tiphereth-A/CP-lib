@@ -1,9 +1,11 @@
 import logging
-import pytest
 from unittest.mock import MagicMock
+
+import pytest
+
+from libs.decorator.logger import with_logger
 from libs.decorator.result_handler import DecoratorResultHandlerBase
 from libs.decorator.timer import with_timer
-from libs.decorator.logger import with_logger
 
 
 @pytest.mark.unit
@@ -80,8 +82,8 @@ class TestWithLogger:
         def greet(name, **kwargs):
             return f"Hello {name}"
 
-        result = greet("World")
-        assert result == "Hello World"
+        result = greet('World')
+        assert result == 'Hello World'
 
     def test_preserves_function_name(self):
         @with_logger

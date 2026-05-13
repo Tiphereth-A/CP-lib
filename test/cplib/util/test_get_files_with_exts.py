@@ -1,5 +1,7 @@
 import os
+
 import pytest
+
 from libs.util.get_files_with_exts import get_files_with_exts
 
 

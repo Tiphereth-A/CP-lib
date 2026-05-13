@@ -1,7 +1,7 @@
 import os
 
-from click.testing import CliRunner
 import pytest
+from click.testing import CliRunner
 
 from libs.cmd.doc import gen_tex, gen_typst
 from libs.content.tree import ContentTree

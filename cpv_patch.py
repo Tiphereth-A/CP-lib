@@ -3,7 +3,6 @@
 
 from libs import cli, register_cpv_patch_commands
 
-
 register_cpv_patch_commands(cli)
 
 if __name__ == '__main__':

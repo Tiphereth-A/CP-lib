@@ -1,8 +1,9 @@
-from libs.cmd import register_main_commands, register_cpv_patch_commands
-
 import os
+
 import click
 import coloredlogs
+
+from libs.cmd import register_cpv_patch_commands, register_main_commands
 
 
 @click.group()

@@ -1,7 +1,7 @@
 import os
 
-from click.testing import CliRunner
 import pytest
+from click.testing import CliRunner
 
 from libs.cmd.new import new_section
 from libs.content.tree import ContentTree
