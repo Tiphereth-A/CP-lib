@@ -120,6 +120,40 @@ class TestCpvDelegateCommands:
             (result_dir / '0.json').read_text(encoding='utf8'))
         assert delegated == {'files': {}}
 
+    def test_cpv_delegate_writes_empty_schedule_when_no_verifiable_files(self, tmp_path):
+        verify_files = tmp_path / 'verify_files.json'
+        merged_result = tmp_path / 'merged-result.json'
+        result_dir = tmp_path / 'verify-list'
+
+        verify_files.write_text(
+            json.dumps(
+                {
+                    'files': {
+                        'src/empty.hpp': {
+                            'dependencies': ['src/empty.hpp'],
+                            'verification': [],
+                        },
+                    }
+                }
+            ),
+            encoding='utf8',
+        )
+        merged_result.write_text(json.dumps({'files': {}}), encoding='utf8')
+
+        with patch(
+            'libs.cmd.cpv_delegate.files_listing',
+            return_value=['src/empty.hpp'],
+        ):
+            cpv_delegate(('*',), str(verify_files),
+                         str(merged_result), 2, str(result_dir))
+
+        delegated0 = json.loads(
+            (result_dir / '0.json').read_text(encoding='utf8'))
+        delegated1 = json.loads(
+            (result_dir / '1.json').read_text(encoding='utf8'))
+        assert delegated0 == {'files': {}}
+        assert delegated1 == {'files': {}}
+
     def test_files_listing_without_previous_info_uses_git_ls_files(self):
         with patch(
             'libs.cmd.cpv_delegate.subprocess.check_output',
@@ -267,7 +301,6 @@ class TestCpvDelegateCommands:
 
         assert f"'{missing_merged}' not found. Proceeding without previous info." in caplog.text
         assert 'no verifiable files remain after filtering' in caplog.text
-        assert not result_dir.exists()
 
     def test_cpv_delegate_supports_problem_and_command_tags(self, tmp_path):
         verify_files = tmp_path / 'verify_files.json'

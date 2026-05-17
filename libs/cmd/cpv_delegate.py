@@ -181,6 +181,9 @@ def cpv_delegate(file_patterns: tuple[str], verify_files: str, merged_result: st
 
     if not verifiable_files:
         logger.info('no verifiable files remain after filtering')
+        write_result(result_dir,
+                     [[] for _ in range(task_count)],
+                     verify_files_info)
         return
 
     if previous_info:
