@@ -14,8 +14,8 @@ CEXP vec<T> conv_minplus_cv(vec<T> CR a, vec<T> CR b) NE {
       m,
       [&](u32 k, u32 j1, u32 j2) NE -> bool {
         i32 i1 = (i32)k - (i32)j1, i2 = (i32)k - (i32)j2;
-        if (i2 < 0) return 1;
-        if (i1 >= (i32)n) return 0;
+        if (i2 < 0) return true;
+        if (i1 >= (i32)n) return false;
         return a[(u32)i1] + b[j1] < a[(u32)i2] + b[j2];
       });
   vec<T> c(n + m - 1);

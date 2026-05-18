@@ -1,5 +1,15 @@
 ---
-Checks:          'clang-diagnostic-*'
+Checks:
+  - -*
+  - clang-analyzer-*
+  - modernize-*
+  - -modernize-avoid-c-style-cast
+  - -modernize-use-trailing-return-type
+  - -modernize-use-nodiscard
+  - performance-*
+  - misc-*
+  - -misc-include-cleaner
+  - -misc-non-private-member-variables-in-classes
 WarningsAsErrors: ''
 HeaderFileExtensions:
   - ''
@@ -13,8 +23,8 @@ ImplementationFileExtensions:
   - cpp
   - cxx
 HeaderFilterRegex: '.*'
-ExcludeHeaderFilterRegex: ''
-FormatStyle:     none
-CheckOptions:    {}
-SystemHeaders:   false
+FormatStyle: file
+SystemHeaders: false
+ExtraArgs:
+  - -std=gnu++20
 ...

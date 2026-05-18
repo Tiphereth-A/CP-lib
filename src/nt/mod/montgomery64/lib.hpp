@@ -42,7 +42,7 @@ struct montgomery64<0> {
   }
   CEXP u64 mul_h(u64 x, u64 y) CNE { return u64((u128)x * y >> 64); }
   CEXP u64 redc_mul(u64 x, u64 y) CNE {
-    u64 res = mul_h(x, y) - mul_h(x * y * R, MOD);
+    const u64 res = mul_h(x, y) - mul_h(x * y * R, MOD);
     return res + (MOD & -(res >> 63));
   }
   CEXP u64 norm(i64 x) CNE { return u64(x + i64(MOD & u64(-(x < 0)))); }

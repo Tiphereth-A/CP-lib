@@ -104,7 +104,7 @@ struct dbitset {
   CEXP u64 find_next(u64 prev) CNE {
     if (++prev >= sz) return sz;
     size_t i = idx_word(prev);
-    if (word_t _ = data[i] & -1_u64 << idx_bit(prev); _) return i * word_width + (u32)std::countr_zero(_);
+    if (const word_t _ = data[i] & -1_u64 << idx_bit(prev); _) return i * word_width + (u32)std::countr_zero(_);
     for (++i; i < word_size(); ++i)
       if (data[i]) return i * word_width + (u32)std::countr_zero(data[i]);
     return sz;
@@ -138,7 +138,7 @@ struct dbitset {
     return ans;
   }
   CEXP bool parity() CNE {
-    bool ans = 0;
+    bool ans = false;
     for (const auto i : data) ans ^= ::tifa_libs::parity(i);
     return ans;
   }
