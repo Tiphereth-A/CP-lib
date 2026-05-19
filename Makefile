@@ -1,6 +1,8 @@
 SRCDIRS := src test/cpv test/cpv_local
-SOURCES := $(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*/*.cpp))
+rwildcard = $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))
+SOURCES := $(foreach dir,$(SRCDIRS),$(call rwildcard,$(dir)/,*.cpp))
 OBJECTS := $(SOURCES:.cpp=.o)
+FLAGS = -std=gnu++20 -O2 -Wall -Wextra -Wconversion -Wpedantic -Wparentheses -Wzero-as-null-pointer-constant -Wregister -Wvolatile -Wredundant-tags -Wmismatched-tags -Wstrict-null-sentinel -Woverloaded-virtual -Wenum-conversion -Wcomma-subscript -Wno-variadic-macros -Wno-extra-semi -Wno-useless-cast -fmax-errors=1
 
 # URL::pattern1|pattern2|...
 FONT_ARCHIVES := \
@@ -9,7 +11,7 @@ FONT_ARCHIVES := \
 	https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip::ttf/*|variable_ttf/*|woff2/*
 
 %.o: %.cpp
-	g++ -std=gnu++20 -O2 -Wall -Wextra -Wconversion -Wpedantic -Wparentheses -Wzero-as-null-pointer-constant -Wregister -Wvolatile -Wredundant-tags -Wmismatched-tags -Wstrict-null-sentinel -Woverloaded-virtual -Wenum-conversion -Wcomma-subscript -Wno-variadic-macros -Wno-extra-semi -Wno-useless-cast -fmax-errors=1 -c $< -o $@
+	g++ $(FLAGS) -c $< -o $@
 
 .PHONY: all clean download-fonts
 

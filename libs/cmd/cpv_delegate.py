@@ -40,13 +40,13 @@ def files_listing(previous_info: dict[str, dict[str]], **kwargs) -> list[str]:
 
 
 def files_filter(files: Iterable[str], patterns: tuple[str]) -> filter:
-    return filter(lambda file: any(fnmatch.fnmatch(file, pattern) for pattern in patterns if not pattern.startswith('!')) and all(not fnmatch.fnmatch(file, pattern[1:]) for pattern in patterns if pattern.startswith('!')), files)
+    return filter(lambda file: any(fnmatch.fnmatch(file, pattern) for pattern in patterns if not pattern.startswith('!')) and all(not fnmatch.fnmatch(file, pattern[1:]) for pattern in patterns if pattern.startswith('!')) and file.endswith(('.hpp', '.cpp')), files)
 
 
 @with_logger
 @with_timer
-def files_dependencies(files: set[str], dependencies: dict[str, list[str]], **kwargs) -> set[str]:
-    return files | set(dep for file in files for dep in dependencies.get(file, []))
+def files_dependencies(files: set[str], dependencies: dict[str, set[str]], **kwargs) -> set[str]:
+    return files | set(dep for file in files for dep in dependencies.get(file, set()))
 
 
 @with_logger
@@ -122,8 +122,10 @@ def cpv_delegate(file_patterns: tuple[str], verify_files: str, merged_result: st
 
     verify_files_info: dict = orjson.loads(
         open(verify_files, 'rb').read())['files']
-    dependencies = {k: v['dependencies']
-                    for k, v in verify_files_info.items()}
+    dependencies = {}
+    for k, v in verify_files_info.items():
+        for dep in v['dependencies']:
+            dependencies.setdefault(dep, set()).add(k)
 
     try:
         previous_info: dict = orjson.loads(

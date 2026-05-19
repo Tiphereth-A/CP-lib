@@ -5,6 +5,10 @@ repos:
       - id: isort
   - repo: local
     hooks:
+      - id: fix-line-endings
+        name: Fix line endings
+        entry: uv run python scripts/fix_line_endings.py
+        language: python
       - id: replace-chinese-punctuation
         name: Replace Chinese punctuation
         entry: uv run python scripts/replace_chinese_punct.py
