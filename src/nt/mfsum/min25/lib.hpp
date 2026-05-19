@@ -36,7 +36,7 @@ class min25_sieve {
     for (cu32 x : p) {
       T _ = x, pi = h[s - x + 1];
       _ = qpow(_, k);
-      u64 x2 = u64(x) * x, mx = min(hls, div_u64d(m, x2) + 1);
+      cu64 x2 = u64(x) * x, mx = min(hls, div_u64d(m, x2) + 1);
       for (u64 i = 1, ix = x; i < mx; ++i, ix += x) h[i] -= ((ix < hls ? h[ix] : h[s - div_u64d(m, ix)]) - pi) * _;
       for (u64 n = sqm; n >= x2; --n) h[s - n] -= (h[s - div_u64d(n, x)] - pi) * _;
     }

@@ -78,7 +78,7 @@ struct point {
     static_assert(std::is_floating_point_v<FP>);
     return *this /= norm();
   }
-  static CEXP u32 QUAD__[9] = {6, 7, 8, 5, 0, 1, 4, 3, 2};
+  static CEXP arr<u32, 9> QUAD__{6, 7, 8, 5, 0, 1, 4, 3, 2};
   // 4 3 2
   // 5 0 1
   // 6 7 8

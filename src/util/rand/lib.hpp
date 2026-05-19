@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../alias/others/lib.hpp"
 #include "../consts/lib.hpp"
 
 namespace tifa_libs {
@@ -16,7 +17,7 @@ class rand_gen {
   // clang-format on
   T a_, b_;
 
-  res_t x_[pm::n];
+  arr<res_t, pm::n> x_;
   u32 p_;
   CEXP void gen_() NE {
     CEXP res_t um = (~res_t()) << pm::r, lm = ~um;
@@ -48,7 +49,8 @@ class rand_gen {
   }
   CEXP T operator()() NE {
     if CEXP (std::integral<T>) {
-      res_wt r = (res_wt)b_ - (res_wt)a_ + 1, p = r * next();
+      const res_wt r = (res_wt)b_ - (res_wt)a_ + 1;
+      res_wt p = r * next();
       if (auto l = (res_t)p, _ = res_t(res_wt(-(res_t)r) % r); l < r)
         while (l < _) l = res_t(p = r * next());
       return T((res_t)(p >> pm::w) + (res_t)a_);

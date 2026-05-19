@@ -27,7 +27,7 @@ auto steiner_tree(G CR g, spnu x, vec<T> CR vw = {}, T INF = inf_v<T>) NE {
   auto bm = [&](u32 s) {
     vecb inq(n);
     while (!qw.empty()) {
-      u32 u = qw.front();
+      cu32 u = qw.front();
       qw.pop(), inq[u] = false;
       for (auto [v, w] : g[u])
         if (dp[v][s] > dp[u][s] + w + vw[v])

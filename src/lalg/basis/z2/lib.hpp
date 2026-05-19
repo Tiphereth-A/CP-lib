@@ -46,7 +46,7 @@ struct basis_z2 {
     }
     return true;
   }
-  CEXP u32 rank() CNE {
+  ND CEXP u32 rank() CNE {
     u32 res = 0;
     flt_ (u32, i, 0, (u32)basis.size()) res += basis[i][i];
     return res;

@@ -13,8 +13,8 @@ class fenwick2d {
   //! [1, row) * [1, col)
   CEXPE fenwick2d(u32 row, u32 col) NE : a(row, vec<T>(col)) { assert(row > 1 && col > 1); }
 
-  CEXP u32 row() CNE { return (u32)a.size(); }
-  CEXP u32 col() CNE { return (u32)a[0].size(); }
+  ND CEXP u32 row() CNE { return (u32)a.size(); }
+  ND CEXP u32 col() CNE { return (u32)a[0].size(); }
   //! [x, row) * [y, col), x > 0, y > 0
   CEXP void add(u32 x, u32 y, cT_(T) v) NE {
     if (!x || !y || x >= row() || y >= col()) return;

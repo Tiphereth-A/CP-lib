@@ -31,8 +31,8 @@ class st_array {
     }
     flt_ (u32, j, 1, lbn) st[j].push_back(op(st[j - 1].back(), st[j - 1][n - 1 - (1 << (j - 1))]));
   }
-  CEXP u32 height() CNE { return (u32)st.size(); }
-  CEXP u32 size() CNE { retif_((height()) [[likely]], (u32)st[0].size(), 0); }
+  ND CEXP u32 height() CNE { return (u32)st.size(); }
+  ND CEXP u32 size() CNE { retif_((height()) [[likely]], (u32)st[0].size(), 0); }
   CEXP T query(u32 l = 0) CNE { return query(l, size()); }
   //! 0-indexed, [l, r)
   CEXP T query(u32 l, u32 r) CNE {

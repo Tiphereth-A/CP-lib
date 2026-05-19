@@ -36,6 +36,7 @@ struct cvh : public polygon<FP> {
         while (m > 1 && sgn_cross(cvh[m - 2], cvh[m - 1], (*this)[i]) <= 0) --m;
       else
         while (m > 1 && sgn_cross(cvh[m - 2], cvh[m - 1], (*this)[i]) < 0) --m;
+    // NOLINTNEXTLINE(misc-const-correctness)
     for (u32 i = n - 2, t = m; ~i; cvh[m++] = (*this)[i--])
       if CEXP (strict)
         while (m > t && sgn_cross(cvh[m - 2], cvh[m - 1], (*this)[i]) <= 0) --m;
@@ -59,7 +60,8 @@ struct cvh : public polygon<FP> {
   CEXP auto diameter() CNE {
     cu32 n = this->size();
     if (n <= 1) return std::conditional_t<get_index, edge_t<FP>, FP>{};
-    u32 is = 0, js = 0;
+    cu32 is = 0;
+    u32 js = 0;
     flt_ (u32, k, 1, n)
       if ((*this)[js] < (*this)[k]) js = k;
     u32 i = is, j = js;

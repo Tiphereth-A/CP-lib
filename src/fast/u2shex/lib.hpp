@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../util/alias/num/lib.hpp"
-
+// NOLINTBEGIN(modernize-avoid-c-arrays)
 namespace tifa_libs {
 
 template <bool lower = true>
@@ -51,3 +51,4 @@ CEXP u32 u32tostrhex(u32 x, chr* s) NE {
 }
 
 }  // namespace tifa_libs
+// NOLINTEND(modernize-avoid-c-arrays)

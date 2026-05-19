@@ -24,7 +24,7 @@ class mint_2e61n1_tag : public mint_impl_::mint_tag_base {
   static CEXP raw_t mod(T x) NE { retif_((x >= 0), mod(to_uint_t<T>(x)), MOD - mod(to_uint_t<T>(-x))); }
   // clang-format on
   static CEXP raw_t mod() NE { return MOD; }
-  CEXP raw_t val() CNE { return v_; }
+  ND CEXP raw_t val() CNE { return v_; }
   CEXP raw_t& data() NE { return v_; }
 
  protected:
@@ -33,7 +33,7 @@ class mint_2e61n1_tag : public mint_impl_::mint_tag_base {
   CEXP void add(mint_2e61n1_tag CR r) NE { data() = mod(val() + r.val()); }
   CEXP void sub(mint_2e61n1_tag CR r) NE { val() < r.val() ? data() = mod(val() + MOD - r.val()) : data() -= r.val(); }
   CEXP void mul(mint_2e61n1_tag CR r) NE {
-    raw_t au = val() >> 31, ad = val() & _31, bu = r.val() >> 31, bd = r.val() & _31, _ = ad * bu + au * bd;
+    const raw_t au = val() >> 31, ad = val() & _31, bu = r.val() >> 31, bd = r.val() & _31, _ = ad * bu + au * bd;
     data() = mod(((au * bu) << 1) + ad * bd + ((_ & _30) << 31) + (_ >> 30));
   }
 };

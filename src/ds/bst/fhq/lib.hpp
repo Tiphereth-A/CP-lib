@@ -10,6 +10,7 @@ struct fhq_treap {
   static CEXP Comp compare{};
   struct TIFA {
     T val;
+    // NOLINTNEXTLINE(modernize-avoid-c-arrays)
     u32 r, sz, son[2];
   };
   rand_gen<u32> rnd;

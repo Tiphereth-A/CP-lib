@@ -15,6 +15,7 @@ namespace tifa_libs {
 #define CNE const noexcept
 #define ND [[nodiscard]]
 #define cT_(...) std::conditional_t<sizeof(__VA_ARGS__) <= sizeof(size_t) * 2, __VA_ARGS__, __VA_ARGS__ CR>
+// NOLINTNEXTLINE(misc-const-correctness)
 #define flt_(T, i, l, r, ...) for (T i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i < i##e; ++i)
 #define retif_(cond, if_true, ...) if cond return if_true __VA_OPT__(; else return __VA_ARGS__)
 #ifdef ONLINE_JUDGE

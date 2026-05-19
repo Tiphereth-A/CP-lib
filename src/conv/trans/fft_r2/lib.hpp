@@ -14,7 +14,7 @@ class fft_r2 {
  public:
   using data_t = C;
 
-  CEXP u32 size() CNE { return (u32)rev.size(); }
+  ND CEXP u32 size() CNE { return (u32)rev.size(); }
   CEXP void bzr(u32 len) NE {
     cu32 n = max(std::bit_ceil(len), 2_u32);
     if (n == size()) return;

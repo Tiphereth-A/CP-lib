@@ -23,7 +23,8 @@ inline veci kmp_nxt(strnv pattern) NE {
 inline vecu kmp(strnv pattern, strnv text) NE {
   veci nxt = kmp_nxt(pattern);
   vecu ret;
-  i32 n = (i32)pattern.size(), m = (i32)text.size(), i, j;
+  ci32 n = (i32)pattern.size(), m = (i32)text.size();
+  i32 i, j;
 #pragma GCC diagnostic ignored "-Wsign-conversion"
   for (j = -1, i = 0; i < m; ++i) {
     while (~j && pattern[j + 1] != text[i]) j = nxt[j];

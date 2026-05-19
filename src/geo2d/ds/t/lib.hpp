@@ -29,9 +29,9 @@ struct triangle {
   }
   CEXP point<FP> barycentrics(FP u, FP v, FP w) CNE { return (A * u + B * v + C * w) / (u + v + w); }
   CEXP FP area() CNE { return abs(cross(A, B, C)) / 2; }
-  CEXP bool is_acute() CNE { return is_pos(dot(A, B, C)) && is_pos(dot(B, C, A)) && is_pos(dot(C, A, B)); }
-  CEXP bool is_right() CNE { return is_zero(dot(A, B, C)) || is_zero(dot(B, C, A)) || is_zero(dot(C, A, B)); }
-  CEXP bool is_obtuse() CNE { return is_neg(dot(A, B, C)) || is_neg(dot(B, C, A)) || is_neg(dot(C, A, B)); }
+  ND CEXP bool is_acute() CNE { return is_pos(dot(A, B, C)) && is_pos(dot(B, C, A)) && is_pos(dot(C, A, B)); }
+  ND CEXP bool is_right() CNE { return is_zero(dot(A, B, C)) || is_zero(dot(B, C, A)) || is_zero(dot(C, A, B)); }
+  ND CEXP bool is_obtuse() CNE { return is_neg(dot(A, B, C)) || is_neg(dot(B, C, A)) || is_neg(dot(C, A, B)); }
 };
 
 }  // namespace tifa_libs

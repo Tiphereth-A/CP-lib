@@ -17,8 +17,8 @@ class matsp {
 
   CEXP matsp(u32 row, u32 col) NE : r(row), c(col), d(r) { assert(row > 0 && col > 0); }
 
-  CEXP u32 CR row() CNE { return r; }
-  CEXP u32 CR col() CNE { return c; }
+  ND CEXP u32 CR row() CNE { return r; }
+  ND CEXP u32 CR col() CNE { return c; }
   CEXP data_t CR data() CNE { return d; }
   CEXP data_t& data() NE { return d; }
   CEXP T& operator()(u32 r, u32 c) NE {

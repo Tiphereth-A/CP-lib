@@ -43,7 +43,7 @@ struct conv_subset {
     return a;
   }
   CEXP void prod(vec<arr_t>& A, spn<arr_t> B) CNE {
-    u32 n = (u32)A.size(), d = (u32)std::countr_zero(n);
+    cu32 n = (u32)A.size(), d = (u32)std::countr_zero(n);
     flt_ (u32, i, 0, n) {
       arr_t c;
       flt_ (u32, j, 0, d + 1)

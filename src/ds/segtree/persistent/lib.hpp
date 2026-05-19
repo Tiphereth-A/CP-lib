@@ -46,34 +46,36 @@ class persistent_segtree {
   }
   CEXP u32 kth_min_(u32 x, u32 y, u32 l, u32 r, u32 k) NE {
     if (l == r) return l;
-    if (u32 mid = l + (r - l) / 2, kk = t[t[y].ls].w - t[t[x].ls].w; k <= kk) return kth_min_(t[x].ls, t[y].ls, l, mid, k);
+    if (cu32 mid = l + (r - l) / 2, kk = t[t[y].ls].w - t[t[x].ls].w; k <= kk) return kth_min_(t[x].ls, t[y].ls, l, mid, k);
     else return kth_min_(t[x].rs, t[y].rs, mid + 1, r, k - kk);
   }
   CEXP u32 kth_max_(u32 x, u32 y, u32 l, u32 r, u32 k) NE {
     if (l == r) return l;
-    if (u32 mid = l + (r - l) / 2, kk = t[t[y].rs].w - t[t[x].rs].w; k <= kk) return kth_max_(t[x].rs, t[y].rs, mid + 1, r, k);
+    if (cu32 mid = l + (r - l) / 2, kk = t[t[y].rs].w - t[t[x].rs].w; k <= kk) return kth_max_(t[x].rs, t[y].rs, mid + 1, r, k);
     else return kth_max_(t[x].ls, t[y].ls, l, mid, k - kk);
   }
   CEXP u32 frequency_(u32 x, u32 y, u32 l, u32 r, u32 L, u32 R) NE {
     if (assert(R >= l && L <= r); L <= l && R >= r) return t[y].w - t[x].w;
-    u32 mid = l + (r - l) / 2, ret = u32(0);
+    cu32 mid = l + (r - l) / 2;
+    u32 ret = 0_u32;
     if (L <= mid) ret = frequency_(t[x].ls, t[y].rs, l, mid, L, R);
     if (R > mid) ret += frequency_(t[x].rs, t[y].rs, mid + 1, r, L, R);
     return ret;
   }
   CEXP u32 kth_min_(u32 y, u32 l, u32 r, u32 k) NE {
     if (l == r) return l;
-    if (u32 mid = l + (r - l) / 2, kk = t[t[y].ls].w; k <= kk) return kth_min_(t[y].ls, l, mid, k);
+    if (cu32 mid = l + (r - l) / 2, kk = t[t[y].ls].w; k <= kk) return kth_min_(t[y].ls, l, mid, k);
     else return kth_min_(t[y].rs, mid + 1, r, k - kk);
   }
   CEXP u32 kth_max_(u32 y, u32 l, u32 r, u32 k) NE {
     if (l == r) return l;
-    if (u32 mid = l + (r - l) / 2, kk = t[t[y].rs].w; k <= kk) return kth_max_(t[y].rs, mid + 1, r, k);
+    if (cu32 mid = l + (r - l) / 2, kk = t[t[y].rs].w; k <= kk) return kth_max_(t[y].rs, mid + 1, r, k);
     else return kth_max_(t[y].ls, l, mid, k - kk);
   }
   CEXP u32 frequency_(u32 y, u32 l, u32 r, u32 L, u32 R) NE {
     if (assert(R >= l && L <= r); L <= l && R >= r) return t[y].w;
-    u32 mid = l + (r - l) / 2, ret = u32(0);
+    cu32 mid = l + (r - l) / 2;
+    u32 ret = 0_u32;
     if (L <= mid) ret = frequency_(t[y].rs, l, mid, L, R);
     if (R > mid) ret += frequency_(t[y].rs, mid + 1, r, L, R);
     return ret;

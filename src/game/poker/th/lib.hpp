@@ -5,7 +5,7 @@
 namespace tifa_libs {
 
 // clang-format off
-enum class HAND_VALUES_THP { high_card, pair, two_pairs, three_of_a_kind, straight, flush, full_house, four_of_a_kind, straight_flush, royal_flush };
+enum class HAND_VALUES_THP : u8 { high_card, pair, two_pairs, three_of_a_kind, straight, flush, full_house, four_of_a_kind, straight_flush, royal_flush };
 // clang-format on
 
 using thpoker_values_t = std::pair<HAND_VALUES_THP, vecu>;

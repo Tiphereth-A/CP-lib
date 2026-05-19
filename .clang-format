@@ -6,11 +6,8 @@ AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortEnumsOnASingleLine: true
 ColumnLimit: 0
-ForEachMacros:
-  - FOR1_
-  - FOR2_
-  - dlxfor_
-  - flt_
+AttributeMacros: [CEXP, CEXPE, CR, CP, PC, CPC, TPN, NE, CNE, ND]
+ForEachMacros: [FOR1_, FOR2_, dlxfor_, flt_]
 IndentRequiresClause: false
 SortIncludes: CaseSensitive
 SpacesBeforeTrailingComments: 2

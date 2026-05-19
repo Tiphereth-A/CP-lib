@@ -61,6 +61,7 @@ using rbt_tag = bst_op<rbt_op_leaf>;
 namespace ostnode_impl_ {
 template <class K>
 struct ostree_node_t<rbt_impl_::rbt_tag, K> {
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   ostree_node_t *fa, *ch[2];
   K data;
   u32 sz;

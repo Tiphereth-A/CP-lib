@@ -43,7 +43,8 @@ class weighted_segtree {
   }
   ND CEXP u32 frequency_(u32 x, u32 l, u32 r, u32 L, u32 R) CNE {
     if (L <= l && R >= r) return t[x];
-    u32 mid = l + (r - l) / 2, ret = u32(0);
+    cu32 mid = l + (r - l) / 2;
+    u32 ret = 0_u32;
     if (L <= mid) ret = frequency_(x * 2, l, mid, L, R);
     if (R > mid) ret += frequency_(x * 2 + 1, mid + 1, r, L, R);
     return ret;

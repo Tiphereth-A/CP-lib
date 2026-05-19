@@ -21,7 +21,8 @@ CEXP auto kth_root(u64 a, u64 k, u64 p) NE {
     u64 q = m - 1;
     u32 s = 0;
     while (!(q % p)) q /= p, ++s;
-    u64 pe = qpow_mod(p, e, m), ans = qpow_mod(a, (mul_mod_u(pe - 1, inverse(q, pe), pe) * q + 1) / pe, m), c = 2;
+    cu64 pe = qpow_mod(p, e, m);
+    u64 ans = qpow_mod(a, (mul_mod_u(pe - 1, inverse(q, pe), pe) * q + 1) / pe, m), c = 2;
     while (qpow_mod(c, (m - 1) / p, m) == 1) ++c;
     c = qpow_mod(c, q, m);
     map<u64, u32> mp;
@@ -31,7 +32,8 @@ CEXP auto kth_root(u64 a, u64 k, u64 p) NE {
     for (u32 i = 0; i <= v; ++i, _a = mul_mod_u(_a, _m, m)) mp[_a] = i;
     _m = inverse(qpow_mod(c, qpow_mod(p, s - 1, m - 1), m), m);
     flt_ (u32, i, e, s) {
-      u64 _ = mul_mod_u(a, inverse(qpow_mod(ans, pe, m), m), m), t = qpow_mod(_, qpow_mod(p, s - 1 - i, m - 1), m);
+      cu64 _ = mul_mod_u(a, inverse(qpow_mod(ans, pe, m), m), m);
+      u64 t = qpow_mod(_, qpow_mod(p, s - 1 - i, m - 1), m);
       flt_ (u32, j, 0, v + 1) {
         if (mp.find(t) != end(mp)) {
           cu32 x = mp[t];

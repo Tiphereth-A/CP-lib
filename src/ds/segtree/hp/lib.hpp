@@ -48,7 +48,8 @@ struct segtree {
   CEXP T query(u32 l, u32 r) NE {
     if (assert(l <= r && r <= sz); l == r) return E;
     l += n, r += n;
-    for (u32 i = lbn, zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), ie = (u32)max(1, (i32)min(zl, zr)); i >= ie; --i) {
+    cu32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), ie = (u32)max(1, (i32)min(zl, zr));
+    for (u32 i = lbn; i >= ie; --i) {
       if (zl < i) pushdown(l >> i);
       if (zr < i) pushdown((r - 1) >> i);
     }
@@ -139,8 +140,8 @@ struct segtree {
   CEXP void upd_set(u32 l, u32 r, std::conditional_t<upd, cT_(F), cT_(T)> v) NE {
     if (assert(l <= r && r <= sz); l == r) return;
     l += n, r += n;
-    u32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), zm = min(zl, zr);
-    for (u32 i = lbn, ie = (u32)max(1, (i32)zm); i >= ie; --i) {
+    cu32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), zm = min(zl, zr), ie = (u32)max(1, (i32)zm);
+    for (u32 i = lbn; i >= ie; --i) {
       if (zl < i) pushdown(l >> i);
       if (zr < i) pushdown((r - 1) >> i);
     }

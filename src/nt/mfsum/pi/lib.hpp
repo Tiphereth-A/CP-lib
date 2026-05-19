@@ -33,7 +33,7 @@ CEXP u64 pi_min25(u64 n) NE {
     }
     vn = ns;
     for (u32 cx = (lim - 1) / 2, cy = ((lim / p) - 1) | 1; cy >= p; cy -= 2)
-      for (u32 cur = s[cy / 2] - cnt_p, cz = cy * p / 2; cz <= cx; --cx) s[cx] -= cur;
+      for (cu32 cur = s[cy / 2] - cnt_p, cz = cy * p / 2; cz <= cx; --cx) s[cx] -= cur;
     ++cnt_p;
   }
   l[0] += u64(vn + (cnt_p - 1) * 2) * (vn - 1) / 2;

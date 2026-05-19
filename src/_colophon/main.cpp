@@ -32,7 +32,7 @@ signed main() {
 #endif
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  int i_ = 0;
+  int i_ = 0;  // NOLINT(misc-const-correctness)
 #ifdef MCAS
   int t_ = 0;
   cin >> t_;

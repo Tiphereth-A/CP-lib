@@ -27,7 +27,7 @@ int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 t;
   std::cin >> t;
-  node u(1, 0, 0, 0, 0, 0), r(0, 1, 1, 0, 0, 0);
+  const node u(1, 0, 0, 0, 0, 0), r(0, 1, 1, 0, 0, 0);
   while (t--) {
     u32 n, a, b, c;
     std::cin >> n >> a >> b >> c;

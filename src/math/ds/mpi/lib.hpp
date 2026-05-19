@@ -97,7 +97,8 @@ struct mpi : vecu {
     if (l + 1 < s.size() && s[l] == '0' && (s[l + 1] == 'x' || s[l + 1] == 'X')) l += 2;
     assert(l < s.size());
     for (u32 r = (u32)s.size(); l < r;) {
-      u32 is = r > lgD ? r - lgD : l, x = 0;
+      cu32 is = r > lgD ? r - lgD : l;
+      u32 x = 0;
       flt_ (u32, i, is, r) x = (x << 4) | hex_to_u32_(s[i]);
       res.hbits_.push_back(x), r = is;
     }
@@ -106,8 +107,8 @@ struct mpi : vecu {
   }
 
   CEXP void set_neg(bool s) NE { neg = is_zero() ? false : s; }
-  CEXP bool is_neg() CNE { return neg; }
-  CEXP bool is_zero() CNE { return hmd_ ? hbits_.empty() : is_0(*this); }
+  ND CEXP bool is_neg() CNE { return neg; }
+  ND CEXP bool is_zero() CNE { return hmd_ ? hbits_.empty() : is_0(*this); }
   CEXP void shrink() NE {
     if (hmd_) h_shrink_(hbits_);
     else shrink_(*this);
@@ -155,9 +156,9 @@ struct mpi : vecu {
   }
   friend CEXP ptt<mpi> divmod(mpi CR l, mpi CR r) NE {
     if (l.hmd_ && r.hmd_) {
-      auto dm = h_divmod_(l.hbits_, r.hbits_);
-      bool qn = dm.first.empty() ? false : (l.neg != r.neg), rn = dm.second.empty() ? false : l.neg;
-      return {make_hex_(qn, std::move(dm.first)), make_hex_(rn, std::move(dm.second))};
+      const auto dm = h_divmod_(l.hbits_, r.hbits_);
+      const bool qn = dm.first.empty() ? false : (l.neg != r.neg), rn = dm.second.empty() ? false : l.neg;
+      return {make_hex_(qn, dm.first), make_hex_(rn, dm.second)};
     }
     auto ld = l.as_dec_(), rd = r.as_dec_();
     auto dm = udivmod(ld, rd);
@@ -187,17 +188,18 @@ struct mpi : vecu {
   }
   friend CEXP bool operator==(mpi CR l, mpi CR r) NE { return std::is_eq(l <=> r); }
 
-  CEXP strn to_str() CNE {
+  ND CEXP strn to_str() CNE {
     if (is_zero()) return "0";
     strn r;
     if (r.reserve(size() * 8 + 1); neg) r.push_back('-');
+    // NOLINTNEXTLINE(modernize-avoid-c-arrays)
     chr int_buf[11];
     auto res = std::to_chars(int_buf, int_buf + 11, back());
     r.append(int_buf, u32(res.ptr - int_buf));
     for (u32 i = (u32)size() - 2; ~i; --i) r.append(ict4::get((*this)[i] / 10000u), 4), r.append(ict4::get((*this)[i] % 10000u), 4);
     return r;
   }
-  CEXP strn to_hex_str() CNE {
+  ND CEXP strn to_hex_str() CNE {
     if (hmd_) {
       if (hbits_.empty()) return "0";
       strn res;
@@ -219,9 +221,9 @@ struct mpi : vecu {
     for (u32 i = (u32)rems.size() - 1; i; --i) res += u32_to_hex_(rems[i - 1], true);
     return res;
   }
-  CEXP mpi as_mpi() CNE { return *this; }
-  CEXP i64 to_i64() CNE { retif_((i64 res = uvec2i64(*this); neg), -res, res); }
-  CEXP i128 to_i128() CNE {
+  ND CEXP mpi as_mpi() CNE { return *this; }
+  ND CEXP i64 to_i64() CNE { retif_((ci64 res = uvec2i64(*this); neg), -res, res); }
+  ND CEXP i128 to_i128() CNE {
     i128 res = 0;
     for (u32 i = (u32)size() - 1; ~i; --i) res = res * D + (*this)[i];
     retif_((neg), -res, res);
@@ -239,7 +241,7 @@ struct mpi : vecu {
     x.hmd_ = true, x.hbits_ = std::move(bits), h_shrink_(x.hbits_), x.neg = x.hbits_.empty() ? false : n;
     return x;
   }
-  CEXP mpi as_dec_() CNE {
+  ND CEXP mpi as_dec_() CNE {
     if (!hmd_) return *this;
     mpi r;
     r.neg = neg;
@@ -306,19 +308,17 @@ struct mpi : vecu {
     if (asz != bsz) {
       if (asz < bsz) {
         if (find_if(b + asz, b_end, [](u32 x) { return x; }) != b_end) return true;
-        b_end = b + asz;
       } else {
         if (find_if(a + bsz, a_end, [](u32 x) { return x; }) != a_end) return false;
-        a_end = a + bsz;
+        asz = bsz;
       }
-      asz = usz(a_end - a);
     }
     for (usz i = asz - 1; ~i; --i)
       if (a[i] != b[i]) return a[i] < b[i];
     return false;
   }
   static CEXP bool h_lt_(vecu CR a, vecu CR b) NE {
-    usz asz = h_nz_size_(a), bsz = h_nz_size_(b);
+    cusz asz = h_nz_size_(a), bsz = h_nz_size_(b);
     if (asz != bsz) return asz < bsz;
     for (usz i = asz - 1; ~i; --i)
       if (a[i] != b[i]) return a[i] < b[i];
@@ -326,7 +326,7 @@ struct mpi : vecu {
   }
   static CEXP bool h_leq_(vecu CR a, vecu CR b) NE { return h_eq_(a, b) || h_lt_(a, b); }
   static CEXP i32 h_cmp_mag_(vecu CR a, vecu CR b) NE {
-    usz asz = h_nz_size_(a), bsz = h_nz_size_(b);
+    cusz asz = h_nz_size_(a), bsz = h_nz_size_(b);
     if (asz != bsz) {
       retif_((asz < bsz), -1, 1);
     }
@@ -339,7 +339,7 @@ struct mpi : vecu {
 
   static CEXP void h_add_(citer a, citer a_end, citer b, citer b_end, iter c, iter c_end) NE {
     if (a_end - a < b_end - b) std::swap(a, b), std::swap(a_end, b_end);
-    usz asz = usz(a_end - a), bsz = usz(b_end - b);
+    cusz asz = usz(a_end - a), bsz = usz(b_end - b);
     assert(std::cmp_less_equal(asz, c_end - c));
     u32 carry = 0;
     u64 v;
@@ -348,7 +348,7 @@ struct mpi : vecu {
     if (carry) c[asz] = carry;
   }
   static CEXP void h_add_(iter a, iter a_end, citer b, citer b_end) NE {
-    usz asz = usz(a_end - a), bsz = usz(b_end - b);
+    cusz asz = usz(a_end - a), bsz = usz(b_end - b);
     u32 carry = 0;
     u64 v;
     flt_ (usz, i, 0, bsz) a[i] = u32(v = (u64)a[i] + b[i] + carry), carry = u32(v >> 32);
@@ -361,7 +361,7 @@ struct mpi : vecu {
   }
 
   static CEXP void h_sub_(iter a, iter a_end, citer b, citer b_end) NE {
-    usz asz = usz(a_end - a), bsz = usz(b_end - b);
+    cusz asz = usz(a_end - a), bsz = usz(b_end - b);
     i32 carry = 0;
     i64 v;
     flt_ (usz, i, 0, bsz) a[i] = u32(v = (i64)a[i] - b[i] + carry), carry = i32(v >> 32);
@@ -376,7 +376,7 @@ struct mpi : vecu {
   }
 
   static CEXP void h_mul_naive_(citer a, citer a_end, citer b, citer b_end, iter c, iter c_end) NE {
-    usz asz = usz(a_end - a), bsz = usz(b_end - b);
+    cusz asz = usz(a_end - a), bsz = usz(b_end - b);
     if (!asz || !bsz) return;
     assert(usz(c_end - c) == asz + bsz);
     flt_ (usz, i, 0, asz) {
@@ -388,7 +388,7 @@ struct mpi : vecu {
   }
   static CEXP void h_mul_(citer a, citer a_end, citer b, citer b_end, iter c, iter c_end) NE {
     if (a_end - a < b_end - b) std::swap(a, b), std::swap(a_end, b_end);
-    usz asz = usz(a_end - a), bsz = usz(b_end - b);
+    cusz asz = usz(a_end - a), bsz = usz(b_end - b);
     assert(usz(c_end - c) == asz + bsz);
     if (bsz <= 128) return h_mul_naive_(a, a_end, b, b_end, c, c_end);
     usz const n = (asz + 1) >> 1;
@@ -439,7 +439,7 @@ struct mpi : vecu {
 
   static CEXP u32 h_div_naive_th_ = 64;
   static CEXP void h_divmod_naive_(citer a, citer a_end, citer b, citer b_end, iter quo, iter quo_end, iter rem, iter rem_end) NE {
-    usz asz = usz(a_end - a), bsz = usz(b_end - b);
+    cusz asz = usz(a_end - a), bsz = usz(b_end - b);
     assert(bsz > 0);
     if (bsz == 1) {
       u64 carry = 0, v;
@@ -448,7 +448,7 @@ struct mpi : vecu {
       return;
     }
     if (max(asz, bsz) <= 2) {
-      u64 a64 = h_it2u64_(a, a_end), b64 = h_it2u64_(b, b_end);
+      cu64 a64 = h_it2u64_(a, a_end), b64 = h_it2u64_(b, b_end);
       h_u642it_(a64 / b64, quo, quo_end), h_u642it_(a64 % b64, rem, rem_end);
       return;
     }
@@ -504,7 +504,7 @@ struct mpi : vecu {
   }
 
   static CEXP void h_divmod_(citer a, citer a_end, citer b, citer b_end, iter q, iter q_end, iter r, iter r_end) NE {
-    usz asz = usz(a_end - a), bsz = usz(b_end - b), rsz = usz(r_end - r);
+    cusz asz = usz(a_end - a), bsz = usz(b_end - b), rsz = usz(r_end - r);
     if (std::min(asz - bsz, bsz) <= h_div_naive_th_) return h_divmod_naive_(a, a_end, b, b_end, q, q_end, r, r_end);
     usz n;
     {
@@ -512,7 +512,7 @@ struct mpi : vecu {
       if (m > 1) m = 1_usz << (32 - std::countl_zero(u32(m - 1)));
       n = ((bsz + m - 1) / m) * m;
     }
-    int sd = (int)n - (int)bsz, ssh = std::countl_zero(*(b_end - 1));
+    csint sd = (int)n - (int)bsz, ssh = std::countl_zero(*(b_end - 1));
     vecu x(asz + (usz)sd + (std::countl_zero(*(a_end - 1)) <= ssh)), y(n), rr(n + 1), z(2 * n);
     copy(a, a_end, x.begin() + sd), copy(b, b_end, y.begin() + sd), h_lsh_(x.data() + sd, x.data() + x.size(), ssh), h_lsh_(y.data() + sd, y.data() + y.size(), ssh);
     usz const t = max(2_usz, (x.size() + n - 1) / n);
@@ -600,7 +600,7 @@ struct mpi : vecu {
   // 0 <= A < 1e16, 1 <= B < 1e16
   static CEXP ptt<vecu> udivmod_ll(vec_like CR a, vec_like CR b) NE {
     assert(a.size() <= 2 && b.size() && b.size() <= 2);
-    i64 va = uvec2i64(a), vb = uvec2i64(b);
+    ci64 va = uvec2i64(a), vb = uvec2i64(b);
     return {int2vecu(va / vb), int2vecu(va % vb)};
   }
   // 1 <= B < 1e8
@@ -654,7 +654,8 @@ struct mpi : vecu {
       vecu s = umul(z, z);
       s.insert(s.begin(), 0);
       cu32 d = min(c, 2 * k + 1);
-      vecu t{a.end() - d, a.end()}, u = umul(s, t), w(k + 1), w2 = uadd(z, z);
+      cvecu t{a.end() - d, a.end()}, w2 = uadd(z, z);
+      vecu u = umul(s, t), w(k + 1);
       u.erase(u.begin(), u.begin() + d), copy(w2, std::back_inserter(w));
       (z = usub(w, u)).erase(z.begin()), k *= 2;
     }
@@ -665,9 +666,10 @@ struct mpi : vecu {
     if (assert(!is_0(b)); b.size() <= 64) return udivmod_bf(a, b);
     if ((int)(a.size() - b.size()) <= 64) return udivmod_bf(a, b);
     cu32 norm = D / (b.back() + 1);
-    vecu x = umul(a, vecu{norm}), y = umul(b, vecu{norm});
-    u32 s = (u32)x.size(), t = (u32)y.size(), deg = s + 2 - t;
-    vecu z = inv_(y, deg), q = umul(x, z);
+    cvecu x = umul(a, vecu{norm}), y = umul(b, vecu{norm});
+    cu32 s = (u32)x.size(), t = (u32)y.size(), deg = s + 2 - t;
+    cvecu z = inv_(y, deg);
+    vecu q = umul(x, z);
     q.erase(q.begin(), q.begin() + t + deg);
     vecu yq = umul(y, vecu{q});
     while (std::is_lt(ucmp(x, yq))) q = usub(q, vecu{1}), yq = usub(yq, y);

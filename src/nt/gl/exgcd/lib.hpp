@@ -37,8 +37,8 @@ CEXP auto exgcd_b(U a, U b) NE {
     const T _ = u / (T)b;
     u -= _ * (T)b, v += _ * (T)a;
   }
-  if (T u_ = u + (T)b, v_ = v - (T)a; abs(u_) + abs(v_) <= abs(u) + abs(v)) u = u_, v = v_;
-  if (T u_ = u - (T)b, v_ = v + (T)a; abs(u_) + abs(v_) <= abs(u) + abs(v)) u = u_, v = v_;
+  if (const T u_ = u + (T)b, v_ = v - (T)a; abs(u_) + abs(v_) <= abs(u) + abs(v)) u = u_, v = v_;
+  if (const T u_ = u - (T)b, v_ = v + (T)a; abs(u_) + abs(v_) <= abs(u) + abs(v)) u = u_, v = v_;
   if CEXP (only_x) return std::make_tuple(U(y << r), u);
   else return std::make_tuple(U(y << r), u, v);
 }

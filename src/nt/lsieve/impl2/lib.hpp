@@ -18,7 +18,7 @@ class lsieve2 {
       for (auto [p, _] : pr)
         if (p > x) break;
         // p <= x == n/i ==> p*i <= n
-        else if (i % p) fr[p * i] = i;
+        else if (i % p) fr[p * i] = i;  // NOLINT(clang-analyzer-core.DivideZero)
         else {
           fr[p * i] = fr[i];
           break;

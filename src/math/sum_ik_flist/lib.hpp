@@ -31,6 +31,7 @@ CEXP T sum_i7(T n) NE {
 }
 
 template <class T>
+// NOLINTNEXTLINE(modernize-avoid-c-arrays)
 CEXP T (*sum_ik[])(T) NE = {sum_i0<T>, sum_i1<T>, sum_i2<T>, sum_i3<T>, sum_i4<T>, sum_i5<T>, sum_i6<T>, sum_i7<T>};
 
 }  // namespace tifa_libs

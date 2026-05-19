@@ -13,7 +13,7 @@ class fft_r3 {
  public:
   using data_t = eint<T>;
 
-  CEXP u32 size() CNE { return s; }
+  ND CEXP u32 size() CNE { return s; }
   CEXP void bzr(u32 len) NE {
     for (; 2 * s < len; s *= 3);
     tmp.resize(s * 3);

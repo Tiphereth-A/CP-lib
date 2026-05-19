@@ -12,15 +12,17 @@ namespace tifa_libs {
 template <class FP>
 class cvh3d {
   struct facet {
+    // NOLINTNEXTLINE(modernize-avoid-c-arrays)
     u32 n[3], id, vistime = 0;
     bool isdel = false;
     planev<FP> p;
+    // NOLINTNEXTLINE(modernize-avoid-c-arrays)
     u32 pid[3];
 
     CEXP facet() = default;
     CEXP facet(u32 id, vec<point3d<FP>> CR vp, u32 id0, u32 id1, u32 id2) NE : id(id), p(vp[id0], vp[id1], vp[id2]), pid{id0, id1, id2} {}
     CEXP facet(vec<point3d<FP>> CR vp, u32 id0, u32 id1, u32 id2) NE : facet(0, vp, id0, id1, id2) {}
-    CEXP void in(u32 n1, u32 n2, u32 n3) NE { n[0] = n1, n[1] = n2, n[2] = n3; }
+    CEXP void in(u32 n1, u32 n2, u32 n3)NE { n[0] = n1, n[1] = n2, n[2] = n3; }
   };
   u32 tm = 0, idx = 0;
   kahan<FP> suf_area = 0;
@@ -34,7 +36,7 @@ class cvh3d {
     vvecu ptsid(5);
     {
 #define v(n, i) vp[n##id[i]]
-      u32 pid[6]{1, 1, 1, 1, 1, 1};
+      arr<u32, 6> pid{1, 1, 1, 1, 1, 1};
       flt_ (u32, i, 2, (u32)vp.size()) {
         if (is_gt(vp[i].x, v(p, 0).x)) pid[0] = i;
         if (is_gt(v(p, 1).x, vp[i].x)) pid[1] = i;
@@ -43,7 +45,7 @@ class cvh3d {
         if (is_gt(vp[i].z, v(p, 4).z)) pid[4] = i;
         if (is_gt(v(p, 5).z, vp[i].z)) pid[5] = i;
       }
-      u32 sid[4]{pid[0], pid[0], pid[0], pid[0]};
+      arr<u32, 4> sid{pid[0], pid[0], pid[0], pid[0]};
       flt_ (u32, i, 0, 6)
         flt_ (u32, j, i + 1, 6)
           if (is_gt(dist3_PP(v(p, i), v(p, j)), dist3_PP(v(s, 0), v(s, 1)))) sid[0] = pid[i], sid[1] = pid[j];
@@ -79,7 +81,7 @@ class cvh3d {
       u32 ret = -2_u32;
       flt_ (u32, i, 0, 3)
         if (u32 res = f(f, faces[id].n[i], p); !res) {
-          u32 pt[2]{faces[id].pid[i], faces[id].pid[(i + 1) % 3]};
+          arr<u32, 2> pt{faces[id].pid[i], faces[id].pid[(i + 1) % 3]};
           flt_ (u32, j, 0, 2)
             if (vistime[pt[j]] != tm) vistime[pt[j]] = tm, e1[pt[j]].netid = pt[j ^ 1], e1[pt[j]].facetid = faces[id].n[i];
             else e2[pt[j]].netid = pt[j ^ 1], e2[pt[j]].facetid = faces[id].n[i];

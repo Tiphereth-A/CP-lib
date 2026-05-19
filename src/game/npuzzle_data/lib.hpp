@@ -24,7 +24,7 @@ class npuzzle_data {
   vecu node;
   strn moves;
 
-  CEXPE npuzzle_data(u32 k) NE : k(k), node(k * k), moves() { assert(k < 65535); }
+  CEXPE npuzzle_data(u32 k) NE : k{k}, node(k* k), moves() { assert(k < 65535); }
 
   ND CEXP auto CR cost() CNE { return cost_; }
   ND CEXP bool solved() CNE { return node == fin_node; }

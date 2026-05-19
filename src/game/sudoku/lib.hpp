@@ -7,7 +7,7 @@ namespace tifa_libs {
 
 CEXP v3ecu sudoku_solver(cT_(vvecu) data, bool get_all_solution = false) NE {
   cu32 n = isqrt(data.size()), n2 = (u32)data.size(), n4 = n2 * n2;
-  assert(n <= 40 && n * n == n2);
+  assert(n2 && n <= 40 && n * n == n2);
   vvecb g(n2 * n4, vecb(4 * n4));
   bool not_filled = true;
   flt_ (u32, i, 0, n2)

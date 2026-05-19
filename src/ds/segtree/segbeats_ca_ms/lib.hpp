@@ -129,9 +129,7 @@ struct segbeats_ca_ms {
   CEXP void update_(u32 l, u32 r, T x) NE {
     if (assert(l <= r); l == r) return;
     l += n, r += n;
-    u32 zl = (u32)std::countr_zero(l),
-        zr = (u32)std::countr_zero(r),
-        zm = min(zl, zr);
+    cu32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), zm = min(zl, zr);
     for (u32 i = lbn; i >= 1; i--) {
       if (((l >> i) << i) != l) pushdown(l >> i);
       if (((r >> i) << i) != r) pushdown((r - 1) >> i);
@@ -151,7 +149,8 @@ struct segbeats_ca_ms {
   CEXP auto query_(u32 l, u32 r) NE {
     if (l == r) return e<tp>();
     l += n, r += n;
-    for (u32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), i = lbn, ie = (u32)max(1, (i32)min(zl, zr)); i >= ie; --i) {
+    cu32 zl = (u32)std::countr_zero(l), zr = (u32)std::countr_zero(r), ie = (u32)max(1, (i32)min(zl, zr));
+    for (u32 i = lbn; i >= ie; --i) {
       if (zl < i) pushdown(l >> i);
       if (zr < i) pushdown((r - 1) >> i);
     }

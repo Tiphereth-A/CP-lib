@@ -5,7 +5,9 @@
 namespace tifa_libs {
 
 class code39 {
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   static CEXP u32 symbol[44]{1341, 3351, 1815, 3861, 1335, 3381, 1845, 1311, 3357, 1821, 3399, 1863, 3909, 1479, 3525, 1989, 1359, 3405, 1869, 1485, 3411, 1875, 3921, 1491, 3537, 2001, 1395, 3441, 1905, 1521, 3159, 1239, 3285, 1143, 3189, 1269, 1119, 3165, 1245, 17477, 17489, 17681, 20753, 1149};
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   static CEXP chr fullmap[] = "%U$A$B$C$D$E$F$G$H$I$J$K$L$M$N$O$P$Q$R$S$T$U$V$W$X$Y$Z%A%B%C%D%E */A/B/C/D/E/F/G/H/I/J/K/L-*.*/O0*1*2*3*4*5*6*7*8*9*/Z%F%G%H%I%J%VA*B*C*D*E*F*G*H*I*J*K*L*M*N*O*P*Q*R*S*T*U*V*W*X*Y*Z*%K%L%M%N%O%W+A+B+C+D+E+F+G+H+I+J+K+L+M+N+O+P+Q+R+S+T+U+V+W+X+Y+Z%P%Q%R%S%T";
 
   static CEXP strn expand(strnv s) NE {
@@ -35,6 +37,7 @@ class code39 {
   }
 
  public:
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   static CEXP chr alphabet[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%*";
   template <bool full = false>
   static CEXP vecu encode(strnv s) NE {

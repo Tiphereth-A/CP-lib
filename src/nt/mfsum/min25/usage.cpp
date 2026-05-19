@@ -7,12 +7,11 @@
 
 using namespace tifa_libs;
 using mint = mint_ms<1'000'000'000 + 7>;
-namespace {
 mint f(u64 p, u64 c) {
   auto _ = qpow(mint(p), c);
   return _ * (_ - 1);
 }
-}  // namespace
+
 int main() {
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u64 n;

@@ -7,9 +7,9 @@ namespace tifa_libs {
 template <u64 MOD>
 struct montgomery64 {
   static CEXP u64 R = [] {
-    u64 t = 2, iv = MOD * (t - MOD * MOD);
-    iv *= t - MOD * iv, iv *= t - MOD * iv, iv *= t - MOD * iv;
-    return iv * (t - MOD * iv);
+    u64 iv = MOD * (2 - MOD * MOD);
+    iv *= 2 - MOD * iv, iv *= 2 - MOD * iv, iv *= 2 - MOD * iv;
+    return iv * (2 - MOD * iv);
   }();
   static CEXP u64 R2 = [] {
     u64 iv = -MOD % MOD;
@@ -35,8 +35,8 @@ struct montgomery64<0> {
   CEXPE montgomery64(u64 m) NE { reset(m); }
   CEXP void reset(u64 m) NE {
     assert(!((m & 1) == 0 || m == 1 || m >> 63)), MOD = m;
-    u64 t = 2, iv = MOD * (t - MOD * MOD);
-    iv *= t - MOD * iv, iv *= t - MOD * iv, iv *= t - MOD * iv, R = iv * (t - MOD * iv), R2 = -MOD % MOD;
+    u64 iv = MOD * (2 - MOD * MOD);
+    iv *= 2 - MOD * iv, iv *= 2 - MOD * iv, iv *= 2 - MOD * iv, R = iv * (2 - MOD * iv), R2 = -MOD % MOD;
     flt_ (u32, i, 0, 64)
       if ((R2 *= 2) >= MOD) R2 -= MOD;
   }

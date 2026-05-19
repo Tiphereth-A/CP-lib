@@ -76,10 +76,10 @@ class link_cut_tree {
     pushdown_(x);
   }
   CEXP void rotate(u32 x) NE {
-    u32 y = tr[x].fa, z = tr[y].fa, ySon = which_(x), zSon = which_(y), B = tr[x].son[ySon ^ 1];
-    if (noroot_(y)) tr[z].son[zSon] = x;
-    if (tr[x].fa = z, tr[y].fa = x, tr[x].son[ySon ^ 1] = y; B) tr[B].fa = y;
-    tr[y].son[ySon] = B, update_(y);
+    cu32 y = tr[x].fa, z = tr[y].fa, y_son = which_(x), z_son = which_(y), B = tr[x].son[y_son ^ 1];
+    if (noroot_(y)) tr[z].son[z_son] = x;
+    if (tr[x].fa = z, tr[y].fa = x, tr[x].son[y_son ^ 1] = y; B) tr[B].fa = y;
+    tr[y].son[y_son] = B, update_(y);
   }
   CEXP void splay_(u32 x) NE {
     ppushdown_(x);

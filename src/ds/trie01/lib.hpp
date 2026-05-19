@@ -7,10 +7,10 @@ namespace tifa_libs {
 template <class T = i32, bool persistent = false>
 struct trie01 {
   struct TIFA {
+    // NOLINTNEXTLINE(modernize-avoid-c-arrays)
     u32 nxt[2]{0, 0};
-    T val;
-    vecu idxs;
-    TIFA() NE : val(0), idxs() {}
+    T val{0};
+    vecu idxs{};
   };
 
   ci32 MAX_DEP;

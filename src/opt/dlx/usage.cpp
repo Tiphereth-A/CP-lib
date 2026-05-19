@@ -4,7 +4,8 @@
 #include "lib.hpp"
 
 using namespace tifa_libs;
-void solve() {
+int main() {
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n, m;
   std::cin >> n >> m;
   vvecb maps(n, vecb(m));
@@ -14,11 +15,6 @@ void solve() {
     for (auto i : res.value()) std::cout << i << ' ';
   else std::cout << "No Solution!";
   std::cout << '\n';
-}
-
-int main() {
-  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  solve();
 }
 
 /*

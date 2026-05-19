@@ -27,12 +27,12 @@ class mint_ms64_tag : public mint_impl_::mint_tag_base {
   }
   static CEXP raw_t mod(uint_c auto v) NE {
     if CEXP (umost64_c<decltype(v)>) {
-      retif_((u64 x = (u64)v; x < mod()) [[likely]], core::redc_mul(x, core::R2), core::redc_mul(x % mod(), core::R2));
+      retif_((cu64 x = (u64)v; x < mod()) [[likely]], core::redc_mul(x, core::R2), core::redc_mul(x % mod(), core::R2));
     } else retif_((v < mod()) [[likely]], core::redc_mul((u64)v, core::R2), core::redc_mul((u64)(v % mod()), core::R2));
   }
   static CEXP raw_t mod() NE { return MOD; }
-  CEXP raw_t val() CNE {
-    raw_t res = -core::mulh(this->v_ * core::R, mod());
+  ND CEXP raw_t val() CNE {
+    const raw_t res = -core::mulh(this->v_ * core::R, mod());
     return res + (mod() & -(res >> 63));
   }
   CEXP raw_t& data() NE { return v_; }

@@ -5,6 +5,7 @@
 namespace tifa_libs {
 
 class base64 {
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   static CEXP chr base[66] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/.";
   // clang-format off
   static CEXP chr ibase(chr c) NE { if('a' <= c)return c - 0x47; else if('A' <= c)return c - 0x41; else if('0' <= c)return c + 0x04; else if('+' == c)return 0x3E; else if('/' == c)return 0x3F; return 0x40; }

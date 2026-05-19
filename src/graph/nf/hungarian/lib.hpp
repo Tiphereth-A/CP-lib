@@ -23,7 +23,8 @@ CEXP vec<T> hungarian(vvec<T> CR g, T INF = std::numeric_limits<T>::max()) NE {
     vecb vis(W + 1);
     while (~job[w_now]) {
       vis[w_now] = true;
-      u32 j = job[w_now], w_nxt = -1_u32;
+      cu32 j = job[w_now];
+      u32 w_nxt = -1_u32;
       T _ = INF;
       flt_ (u32, w, 0, W)
         if (!vis[w]) {

@@ -4,13 +4,16 @@ Checks:
   - clang-analyzer-*
   - modernize-*
   - -modernize-avoid-c-style-cast
+  - -modernize-use-designated-initializers
   - -modernize-use-integer-sign-comparison
   - -modernize-use-trailing-return-type
   - performance-*
   - misc-*
+  - -misc-confusable-identifiers
   - -misc-include-cleaner
   - -misc-no-recursion
   - -misc-non-private-member-variables-in-classes
+  - -misc-use-internal-linkage
 WarningsAsErrors: ''
 HeaderFileExtensions:
   - ''

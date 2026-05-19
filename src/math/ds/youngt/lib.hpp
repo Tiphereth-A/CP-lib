@@ -20,15 +20,15 @@ class Youngt {
   }
 
   // height() == len(longest non-decresing seq.)
-  CEXP u32 height() CNE { return (u32)d.size(); }
+  ND CEXP u32 height() CNE { return (u32)d.size(); }
   // width() == len(longest increasing seq.)
-  CEXP u32 width() CNE { return (u32)d[0].size(); }
-  CEXP u32 CR size() CNE { return n; }
+  ND CEXP u32 width() CNE { return (u32)d[0].size(); }
+  ND CEXP u32 CR size() CNE { return n; }
   CEXP vvecu& data() NE { return d; }
-  CEXP vvecu CR data() CNE { return d; }
+  ND CEXP vvecu CR data() CNE { return d; }
   CEXP u32& operator()(u32 h, u32 w) NE { return d[h][w]; }
   CEXP u32 CR operator()(u32 h, u32 w) CNE { return d[h][w]; }
-  CEXP u32 hook(u32 h, u32 w) CNE {
+  ND CEXP u32 hook(u32 h, u32 w) CNE {
     assert(h < height() && w < d[h].size());
     return u32(d[h].size() - w + h);
   }

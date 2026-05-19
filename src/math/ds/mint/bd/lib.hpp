@@ -31,7 +31,7 @@ class mint_bd_tag : public mint_impl_::mint_tag_base {
     else return raw_t(v % mod());
   }
   static CEXP raw_t mod() NE { return (raw_t)core.mod; }
-  CEXP raw_t val() CNE { return v_; }
+  ND CEXP raw_t val() CNE { return v_; }
   CEXP raw_t& data() NE { return v_; }
 
  protected:

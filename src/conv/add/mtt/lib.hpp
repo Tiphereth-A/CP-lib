@@ -43,9 +43,9 @@ CEXP vec<mint> conv_mtt(fft_r2<FP>& fft, vec<mint> CR l, vec<mint> CR r, u32 ans
   fft.dif(a), fft.dif(b);
   flt_ (u32, i, 0, ans_size) {
     ci64 da = (i64)(a[i].real() / (FP)n + .5) % mint::smod(),
-              db = (i64)(a[i].imag() / (FP)n + .5) % mint::smod(),
-              dc = (i64)(b[i].real() / (FP)n + .5) % mint::smod(),
-              dd = (i64)(b[i].imag() / (FP)n + .5) % mint::smod();
+         db = (i64)(a[i].imag() / (FP)n + .5) % mint::smod(),
+         dc = (i64)(b[i].real() / (FP)n + .5) % mint::smod(),
+         dd = (i64)(b[i].imag() / (FP)n + .5) % mint::smod();
     ans[i] = da + ((db + dc) << OFS) % mint::smod() + (dd << (OFS * 2)) % mint::smod();
   }
   return ans;

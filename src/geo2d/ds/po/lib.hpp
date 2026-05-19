@@ -59,7 +59,7 @@ struct polygon {
     return area2() * (FP).5;
   }
   ND CEXP bool is_convex() CNE {
-    bool flag[2] = {false, false};
+    arr<bool, 2> flag{false, false};
     cu32 n = size();
     retif_((n < 3) [[unlikely]], true);
     for (u32 i = 0, j = next(i), k = next(j); i < n; ++i, j = next(j), k = next(k)) {

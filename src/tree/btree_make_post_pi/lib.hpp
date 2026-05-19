@@ -7,7 +7,8 @@ namespace tifa_libs {
 namespace btree_make_post_pi_impl_ {
 CEXP void dfs(spnu pre, spnu in, vecu& post, u32& p, u32 l, u32 r) NE {
   if (l >= r) return;
-  u32 rt = pre[p++], m = -1_u32;
+  cu32 rt = pre[p++];
+  u32 m = -1_u32;
   flt_ (u32, i, l, r)
     if (in[i] == rt) m = i;
   dfs(pre, in, post, p, l, m), dfs(pre, in, post, p, m + 1, r), post.push_back(rt);

@@ -117,12 +117,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          version: 22
           style: file
           tidy-checks: ''
           step-summary: true
           files-changed-only: false
           ignore: test|.github
-          thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
           format-review: true
           tidy-review: true
 

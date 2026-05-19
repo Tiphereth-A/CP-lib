@@ -8,7 +8,9 @@ namespace tifa_libs {
 class fastout {
   CEXP static u32 BUF = 0x200005, INTBUF = 63;
   FILE* f_ = nullptr;
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   chr int_buf[INTBUF];
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   chr buf[BUF], *p;
   chr CPC ed = buf + BUF;
   std::chars_format fmt = std::chars_format::general;

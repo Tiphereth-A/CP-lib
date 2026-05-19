@@ -29,7 +29,7 @@ inline vecptu hopkap(u32 l, u32 r, vecptu CR e) NE {
       if (lev[i] > max_lev) lev[i] = 0;
     auto f = [&](auto&& f, u32 x) NE -> bool {
       for (; ptr[x] < adj[x].size(); ++ptr[x])
-        if (u32 y = adj[x][ptr[x]], z = pre[y]; !~z || (lev[z] == lev[x] + 1 && f(f, z))) {
+        if (cu32 y = adj[x][ptr[x]], z = pre[y]; !~z || (lev[z] == lev[x] + 1 && f(f, z))) {
           nxt[x] = y, pre[y] = x, ptr[x] = (u32)adj[x].size();
           return true;
         }

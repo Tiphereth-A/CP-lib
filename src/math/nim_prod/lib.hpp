@@ -5,6 +5,7 @@
 namespace tifa_libs {
 namespace nim_prod_impl_ {
 struct calc8 {
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   u16 dp[1 << 8][1 << 8]{};
   CEXPE calc8() NE {
     dp[0][0] = dp[0][1] = dp[1][0] = 0, dp[1][1] = 1;
@@ -30,7 +31,9 @@ struct calc16 {
   static CEXP u16 proot = 10279;
   static CEXP u32 ppoly = 92191, order = 65535;
 
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   u16 base[16]{}, exp[(1 << 18) + 100]{};
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   u32 log[1 << 16]{};
 
  private:

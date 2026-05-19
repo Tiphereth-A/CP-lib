@@ -96,7 +96,7 @@ using bst_tag = bst_op<bst_op_leaf>;
 namespace ostnode_impl_ {
 template <class K>
 struct ostree_node_t<ost_impl_::bst_tag, K> {
-  ostree_node_t *fa, *ch[2];
+  ostree_node_t *fa, *ch[2];  // NOLINT(modernize-avoid-c-arrays)
   K data;
   u32 sz;
   // @return child direction of this non-root point

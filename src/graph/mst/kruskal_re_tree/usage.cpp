@@ -26,7 +26,7 @@ int main() {
     std::cin >> x >> k, --x;
     u64 ans = k + sum_node_w[x];
     while (x != tr.root) {
-      u32 tem = x;
+      cu32 tem = x;
       for (u32 i = 20; ~i; --i)
         if (info.go[x][i] < n && ew[info.go[x][i]] <= ans) x = info.go[x][i];
       if (x == tem) break;

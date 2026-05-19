@@ -30,7 +30,7 @@ vec<u128> conv_u128(vec<T> CR l, vec<T> CR r, u32 ans_size = 0) NE {
   vec<u128> ret(ans_size);
   flt_ (u32, i, 0, ans_size) {
     cu64 n1 = d1[i].val(), n2 = d2[i].val(),
-              a = d0[i].val(), b = (n1 + m1 - a) * r01 % m1;
+         a = d0[i].val(), b = (n1 + m1 - a) * r01 % m1;
     cu128 c = ((n2 + m2 - a) * r02r12 + (m2 - b) * r12) % m2;
     ret[i] = a + b * w1 + c * w2;
   }

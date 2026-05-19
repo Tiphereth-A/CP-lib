@@ -12,6 +12,7 @@ class bsgs_fix {
 
  public:
   void init(u32 g, u64 p) NE {
+    assert(p);
     cu32 L = isqrt(this->p = p) + 1, B = isqrt(p * L * 2 / ((u64)std::bit_width(p) * 3));
     hmap<u64, u64> hmp;
     u64 s = 1;
@@ -49,7 +50,7 @@ class bsgs_fix {
   CEXP u64 operator()(u64 b) CNE {
     if (b < dlg.size()) return dlg[b];
     u64 ret;
-    if (u64 v = p / b, r = p % b; r < b - r) {
+    if (cu64 v = p / b, r = p % b; r < b - r) {
       if (ret = operator()(r) - dlg[v] + (p - 1) / 2; (i64)ret < 0) ret += p - 1;
     } else ret = operator()(b - r) + p - 1 - dlg[v + 1];
     retif_((ret >= p - 1), ret - p + 1, ret);

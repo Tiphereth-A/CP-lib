@@ -48,11 +48,11 @@ class chordal {
         if (!has_edge(s[0], s[j])) {
           if CEXP (!find_indcycle) return false;
           else {
-            u32 x = s[j], y = s[0], z = u;
+            cu32 x = s[j], y = s[0], z = u;
             vecu pre(peo.size(), -1_u32);
             std::queue<u32> q({x});
             while (!q.empty()) {
-              u32 t = q.front();
+              cu32 t = q.front();
               if (q.pop(); has_edge(t, y)) {
                 pre[y] = t;
                 ret.emplace({y});
@@ -60,7 +60,7 @@ class chordal {
                 ret->push_back(z);
                 return ret;
               }
-              for (u32 u : g[t])
+              for (cu32 u : g[t])
                 if (u != z && !has_edge(u, z) && !~pre[u]) pre[u] = t, q.push(u);
             }
           }

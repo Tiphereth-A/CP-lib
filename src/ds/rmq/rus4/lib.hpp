@@ -23,8 +23,8 @@ class rus4_st {
     }
     st.reset(ds);
   }
-  CEXP u32 CR block_size() CNE { return B; }
-  CEXP u32 CR size() CNE { return sz; }
+  ND CEXP u32 CR block_size() CNE { return B; }
+  ND CEXP u32 CR size() CNE { return sz; }
   CEXP T query(u32 l = 0) CNE { return query(l, size()); }
   //! 0-indexed, [l, r)
   CEXP T query(u32 l, u32 r) CNE {

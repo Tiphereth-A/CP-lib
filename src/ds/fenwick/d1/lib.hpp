@@ -17,7 +17,7 @@ class fenwick {
     cu32 sz = (u32)data.size();
     flt_ (u32, i, 1, sz) {
       a[i] += data[i];
-      if (u32 j = i + lowbit(i); j < sz) a[j] += a[i];
+      if (cu32 j = i + lowbit(i); j < sz) a[j] += a[i];
     }
   }
 

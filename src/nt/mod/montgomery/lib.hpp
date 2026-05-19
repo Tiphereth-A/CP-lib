@@ -7,9 +7,9 @@ namespace tifa_libs {
 template <u32 MOD>
 struct montgomery {
   static CEXP u32 MOD2 = MOD << 1, R2 = -(u64)(MOD) % MOD, R = [] {
-    u32 t = 2, iv = MOD * (t - MOD * MOD);
-    iv *= t - MOD * iv, iv *= t - MOD * iv;
-    return iv * (MOD * iv - t);
+    u32 iv = MOD * (2 - MOD * MOD);
+    iv *= 2 - MOD * iv, iv *= 2 - MOD * iv;
+    return iv * (MOD * iv - 2);
   }();
   static_assert(MOD & 1);
   static_assert(-R * MOD == 1);
@@ -26,8 +26,8 @@ struct montgomery<0> {
   CEXP void reset(u32 m) NE {
     for (assert(!(m == 1 || m >> 31)), MOD = MOD_ODD = m, OFFSET = 0; (MOD_ODD & 1) == 0; ++OFFSET, MOD_ODD /= 2);
     MASK = (1_u32 << OFFSET) - 1_u32;
-    u32 t = 2, iv = MOD_ODD * (t - MOD_ODD * MOD_ODD);
-    iv *= t - MOD_ODD * iv, iv *= t - MOD_ODD * iv, R = iv * (MOD_ODD * iv - t), R2 = u32(-u64(MOD_ODD) % MOD_ODD);
+    u32 iv = MOD_ODD * (2 - MOD_ODD * MOD_ODD);
+    iv *= 2 - MOD_ODD * iv, iv *= 2 - MOD_ODD * iv, R = iv * (MOD_ODD * iv - 2), R2 = u32(-u64(MOD_ODD) % MOD_ODD);
   }
   ND CEXP u32 norm(i32 x) CNE { return u32(x + (-(x < 0) & (i32)MOD)); }
   ND CEXP u32 reduce(u64 x) CNE {

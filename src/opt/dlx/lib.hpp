@@ -19,6 +19,7 @@ class dlx {
 #define d_(x) data[x].d
 #define row_(x) data[x].row
 #define col_(x) data[x].col
+// NOLINTNEXTLINE(misc-const-correctness)
 #define dlxfor_(i, l, dir) for (u32 ied__ = (l), i = dir##_(ied__); i != ied__; i = dir##_(i))
 
   CEXP void remove_(u32 col) NE {

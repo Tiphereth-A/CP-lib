@@ -24,7 +24,7 @@ class dsu_weighted {
     val[x] = op(val[(u32)p[x]], val[x]), p[x] = _;
     return _;
   }
-  CEXP u32 size() CNE { return (u32)p.size(); }
+  ND CEXP u32 size() CNE { return (u32)p.size(); }
   CEXP u32 size(u32 x) NE { return (u32)-p[(u32)find(x)]; }
   CEXP T CR weight(u32 x) NE {
     find(x);

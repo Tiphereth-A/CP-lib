@@ -23,7 +23,7 @@ CEXP gint<i128, -1> nfp(u64 p) NE {
     if (b * 2 > k) b -= k;
     if (d < 0) d += k;
     if (d * 2 > k) d -= k;
-    i64 xx = i64(((i128)x * b + (i128)y * d) / k), yy = i64(((i128)x * d - (i128)y * b) / k);
+    ci64 xx = i64(((i128)x * b + (i128)y * d) / k), yy = i64(((i128)x * d - (i128)y * b) / k);
     x = xx, y = yy, k = i64(((i128)x * x + (i128)y * y) / p);
   }
   return {x, y};
@@ -47,8 +47,8 @@ CEXP vec<gint<i128, -1>> nf(u64 n) NE {
     if (p % 4 == 3 && (e & 1)) return {};
   vec<G> ret{G{1}};
   for (auto CR[p, e] : pe) {
-    vec<G> now = nfpp(p, e), nxt;
-    for (auto CR g1 : ret)
+    vec<G> nxt;
+    for (cvec<G> now = nfpp(p, e); auto CR g1 : ret)
       for (auto CR g2 : now) nxt.push_back(g1 * g2);
     ret = nxt;
   }

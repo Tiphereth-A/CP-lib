@@ -4,7 +4,6 @@
 #include "lib.hpp"
 
 using namespace tifa_libs;
-const strn YN_[2] = {"No", "Yes"};
 
 int main() {
   u32 n, m;
@@ -25,7 +24,7 @@ int main() {
         odt.assign_merge(l, r, c);
         break;
       case 'B':
-        std::cout << YN_[odt.run_no_split(l, r, [&](auto itl, auto itr) {
+        std::cout << arr<strn, 2>{"No", "Yes"}[odt.run_no_split(l, r, [&](auto itl, auto itr) {
           if (itl != itr) return false;
           if (!(l != 1 && r != n)) return true;
           if (l > itl->l && r < itl->r) return false;

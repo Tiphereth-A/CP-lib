@@ -9,7 +9,7 @@ namespace tifa_libs {
 // bianl: 89 waiting 7. bianr: 12 waiting 3. pair0: pair which cannot be improved
 enum class MELDS_MJ: u8 { mian, bianl, bianr, kan, orphan, pair0, pair, bonus, chow, pung, kong };
 // clang-format on
-enum class RULE_MJ : u32 {
+enum class RULE_MJ : u8 {
   enable_kong = 1,
   enable_13terminal = 2,
   enable_7pairs = 4

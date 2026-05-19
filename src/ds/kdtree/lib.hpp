@@ -18,6 +18,7 @@ class kdtree {
   using pointer = TIFA*;
   using const_pointer = const TIFA*;
   struct TIFA {
+    // NOLINTNEXTLINE(modernize-avoid-c-arrays)
     pointer ch[2];
     T sum, val;
     point min, max, coord;

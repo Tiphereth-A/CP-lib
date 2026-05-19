@@ -9,7 +9,7 @@ int main() {
   u32 n, m;
   std::cin >> n >> m;
   fenwick_rr<i64> tr(n + 1);
-  flt_ (i64, i, 1, n, a, b = 0) std::cin >> a, tr.add((u32)i, a - b), b = a;
+  flt_ (i64, i, 1, n + 1, a, b = 0) std::cin >> a, tr.add((u32)i, a - b), b = a;
   flt_ (i64, i, 0, m, op, l, r, k) {
     std::cin >> op >> l >> r;
     if (op == 1) std::cin >> k, tr.add((u32)l, k), tr.add((u32)r + 1, -k);

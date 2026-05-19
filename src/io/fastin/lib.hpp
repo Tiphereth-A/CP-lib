@@ -28,13 +28,14 @@ struct fastin_data {
     madvise(bg, Fl.st_size + 4, MADV_SEQUENTIAL);
   }
 
-  bool iseof() CNE { return p == ed; }
+  ND bool iseof() CNE { return p == ed; }
   ~fastin_data() NE { rebind(); }
 #else
+  // NOLINTNEXTLINE(modernize-avoid-c-arrays)
   chr buf[BUF], *ed, *p;
 
   void rebind(FILE* f) NE { f_ = f, p = ed = buf; }
-  bool iseof() NE {
+  ND bool iseof() NE {
     if (p == ed) [[unlikely]]
       ed = (p = buf) + fread(buf, 1, BUF, f_);
     return p == ed;
@@ -46,7 +47,7 @@ struct fastin_data {
   fastin_data& operator=(fastin_data CR) = delete;
 };
 // clang-format off
-enum FIN_SET { FS_NEWLINE = 1, FS_SPACE = 2, FS_NEG = 4, FS_NUM = 8, FS_ALPHA = 16, FS_OTHERS = 32 };
+enum FIN_SET : u8 { FS_NEWLINE = 1, FS_SPACE = 2, FS_NEG = 4, FS_NUM = 8, FS_ALPHA = 16, FS_OTHERS = 32 };
 // clang-format on
 template <u32 charset>
 class fastin {

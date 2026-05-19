@@ -14,7 +14,7 @@ struct mahjong_card {
     return (u32)ret + 1;
   }
 
-  static CEXP mahjong_card decode(u32 code) NE { return {.rank = code % 9 + 1, .suit = valid_suit[code / 9]}; }
+  static CEXP mahjong_card decode(u32 code) NE { return {code % 9 + 1, valid_suit[code / 9]}; }
   ND CEXP u32 encode() CNE { return (u32)valid_suit.find(suit) * 9 + rank - 1; }
   ND CEXP bool valid() CNE {
     retif_((rank < 1 || rank > 9), false);
@@ -56,11 +56,11 @@ struct mahjong_card {
   chr suit;
 };
 namespace literals {
-CEXP mahjong_card operator""_mjm(unsigned long long x) NE { return {.rank = (u32)x, .suit = 'M'}; }
-CEXP mahjong_card operator""_mjp(unsigned long long x) NE { return {.rank = (u32)x, .suit = 'P'}; }
-CEXP mahjong_card operator""_mjs(unsigned long long x) NE { return {.rank = (u32)x, .suit = 'S'}; }
-CEXP mahjong_card operator""_mjz(unsigned long long x) NE { return {.rank = (u32)x, .suit = 'Z'}; }
-CEXP mahjong_card operator""_mjb(unsigned long long x) NE { return {.rank = (u32)x, .suit = 'B'}; }
+CEXP mahjong_card operator""_mjm(unsigned long long x) NE { return {(u32)x, 'M'}; }
+CEXP mahjong_card operator""_mjp(unsigned long long x) NE { return {(u32)x, 'P'}; }
+CEXP mahjong_card operator""_mjs(unsigned long long x) NE { return {(u32)x, 'S'}; }
+CEXP mahjong_card operator""_mjz(unsigned long long x) NE { return {(u32)x, 'Z'}; }
+CEXP mahjong_card operator""_mjb(unsigned long long x) NE { return {(u32)x, 'B'}; }
 }  // namespace literals
 
 }  // namespace tifa_libs

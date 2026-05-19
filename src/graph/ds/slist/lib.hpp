@@ -24,9 +24,9 @@ class slist_tag : public graph_info_impl_::graph_tag_base<Info...> {
       base_t::add_arc(u, std::forward<decltype(args)>(args)...), b.emplace_back(u, ET{std::forward<decltype(args)>(args)...}), ++h[u];
     else assert(0);
   }
-  CEXP u32 vsize() CNE { return (u32)h.size() - 1; }
-  CEXP u32 esize() CNE { return (u32)e.size(); }
-  CEXP u32 deg_out(u32 u) CNE { return h[u + 1] - h[u]; }
+  ND CEXP u32 vsize() CNE { return (u32)h.size() - 1; }
+  ND CEXP u32 esize() CNE { return (u32)e.size(); }
+  ND CEXP u32 deg_out(u32 u) CNE { return h[u + 1] - h[u]; }
   CEXP void build() NE {
     if (builded || b.empty()) [[unlikely]]
       return;
