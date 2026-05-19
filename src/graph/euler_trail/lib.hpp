@@ -54,29 +54,29 @@ CEXP auto euler_trail(u32 n, vecptu CR edges) NE {
 template <graph_c G>
 CEXP bool is_eulerian(G CR g) NE {
   retif_((!g.esize()) [[unlikely]], 1);
-  const u32 n = g.vsize();
+  cu32 n = g.vsize();
   assert(n == g.din.size());
   flt_ (u32, i, 0, n)
-    if (g.din[i] != g.dout[i]) return 0;
+    if (g.din[i] != g.dout[i]) return false;
   u32 loopv = 0, loope = 0, start = 0;
   flt_ (u32, u, 0, n) {
     if (g[u].empty()) continue;
-    bool f = 1;
+    bool f = true;
     for (start = u; auto v : g[u])
       if (u == (u32)v) ++loope;
-      else f = 0;
+      else f = false;
     loopv += f;
   }
-  if (loopv > 1 || (loopv == 1 && loope != g.esize())) return 0;
+  if (loopv > 1 || (loopv == 1 && loope != g.esize())) return false;
   vecb vis(n);
   auto f = [&](auto&& f, u32 x) NE -> void {
     for (auto v : g[x])
-      if (!vis[(u32)v]) vis[(u32)v] = 1, f(f, (u32)v);
+      if (!vis[(u32)v]) vis[(u32)v] = true, f(f, (u32)v);
   };
-  vis[start] = 1, f(f, start);
+  vis[start] = true, f(f, start);
   flt_ (u32, i, 0, n)
-    if (!vis[i] && g.din[i]) return 0;
-  return 1;
+    if (!vis[i] && g.din[i]) return false;
+  return true;
 }
 
 }  // namespace tifa_libs

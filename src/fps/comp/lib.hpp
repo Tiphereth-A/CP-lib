@@ -36,7 +36,7 @@ CEXP auto comp_fps(poly_t f, poly_t g) NE {
     flt_ (u32, i, 0, k) copy(begin(aa) + i * h * 2, begin(aa) + i * h * 2 + n + 1, begin(a) + i * h);
     return a;
   };
-  const u32 n = (u32)max(g.size(), f.size()), h = std::bit_ceil(n);
+  cu32 n = (u32)max(g.size(), f.size()), h = std::bit_ceil(n);
   poly_t b(h);
   auto _ = f[0];
   g.resize(n), f.resize(n), f[0] = 0;

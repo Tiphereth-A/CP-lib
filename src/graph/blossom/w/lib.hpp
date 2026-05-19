@@ -78,7 +78,7 @@ struct blossomw {
     set_match(xr, v), rotate(flo[u], begin(flo[u]) + pr);
   }
   CEXP void augment(u32 u, u32 v) NE {
-    while (1) {
+    while (true) {
       u32 xnv = st[match[u]];
       if (set_match(u, v); !xnv) return;
       set_match(xnv, st[par[xnv]]), u = st[par[xnv]], v = xnv;
@@ -114,7 +114,7 @@ struct blossomw {
   }
   CEXP void expand_blossom(u32 b) NE {
     for (auto t : flo[b]) set_st(t, t);
-    const u32 xr = flo_from[b][g[b][par[b]].u], pr = get_pr(b, xr);
+    cu32 xr = flo_from[b][g[b][par[b]].u], pr = get_pr(b, xr);
     for (u32 i = 0; i < pr; i += 2) {
       u32 xs = flo[b][i], xns = flo[b][i + 1];
       par[xs] = g[xns][xs].u, s[xs] = 1, s[xns] = slack[xs] = slack[xns] = 0, q_push(xns);
@@ -127,7 +127,7 @@ struct blossomw {
     st[b] = 0;
   }
   bool on_found_edge(TIFA CR e) NE {
-    const u32 u = st[e.u], v = st[e.v];
+    cu32 u = st[e.u], v = st[e.v];
     if (!~s[v]) {
       par[v] = e.u, s[v] = 1, slack[v] = 0;
       u32 nu = st[match[v]];
@@ -135,24 +135,24 @@ struct blossomw {
     } else if (!s[v]) {
       if (u32 anc = lca(u, v); !anc) {
         augment(u, v), augment(v, u);
-        return 1;
+        return true;
       } else add_blossom(u, anc, v);
     }
-    return 0;
+    return false;
   }
   bool matching(T inf) NE {
     q = std::queue<u32>();
     flt_ (u32, x, 1, nx + 1)
       if (s[x] = -1_u32, slack[x] = 0; st[x] == x && !match[x]) par[x] = s[x] = 0, q_push(x);
-    if (q.empty()) return 0;
-    while (1) {
+    if (q.empty()) return false;
+    while (true) {
       while (!q.empty()) {
-        const u32 u = q.front();
+        cu32 u = q.front();
         if (q.pop(); s[st[u]] == 1) continue;
         flt_ (u32, v, 1, n + 1)
           if (g[u][v].w > 0 && st[u] != st[v]) {
             if (!e_delta(g[u][v])) {
-              if (on_found_edge(g[u][v])) return 1;
+              if (on_found_edge(g[u][v])) return true;
             } else upd_slack(u, st[v]);
           }
       }
@@ -166,7 +166,7 @@ struct blossomw {
         }
       flt_ (u32, u, 1, n + 1) {
         if (!s[st[u]]) {
-          if (lab[u] <= d) return 0;
+          if (lab[u] <= d) return false;
           lab[u] -= d;
         } else if (s[st[u]] == 1) lab[u] += d;
       }
@@ -175,11 +175,11 @@ struct blossomw {
       q = std::queue<u32>();
       flt_ (u32, x, 1, nx + 1)
         if (st[x] == x && slack[x] && st[slack[x]] != x && !e_delta(g[slack[x]][x]))
-          if (on_found_edge(g[slack[x]][x])) return 1;
+          if (on_found_edge(g[slack[x]][x])) return true;
       flt_ (u32, b, n + 1, nx + 1)
         if (st[b] == b && s[b] == 1 && !lab[b]) expand_blossom(b);
     }
-    return 0;
+    return false;
   }
 };
 

@@ -12,7 +12,7 @@ CEXP std::common_type_t<T, U> gcd__(T u, U v) NE {
   const auto k = std::__countr_zero(u | v);
   u >>= k, v >>= k;
   do {
-    if (W _ = v >> std::__countr_zero(v); u > _) v = u - _, u = _;
+    if (W const _ = v >> std::__countr_zero(v); u > _) v = u - _, u = _;
     else v = _ - u;
   } while (v);
   return u << k;

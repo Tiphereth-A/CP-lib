@@ -13,9 +13,9 @@ struct fhq_treap {
     u32 r, sz, son[2];
   };
   rand_gen<u32> rnd;
-  vec<TIFA> data;
+  vec<TIFA> data{1};
   vecu stk;
-  u32 root;
+  u32 root{};
 
  private:
   CEXP u32 new_node(cT_(T) val) NE {
@@ -53,7 +53,7 @@ struct fhq_treap {
   }
 
  public:
-  CEXP fhq_treap() : rnd{}, data{1}, stk{}, root{} { data[0].sz = {}; }
+  CEXP fhq_treap() : rnd{}, stk{} { data[0].sz = {}; }
   CEXP void insert(cT_(T) val) NE {
     u32 tar = new_node(val);
     auto dfs = [&](auto&& f, u32& pos) NE -> void {

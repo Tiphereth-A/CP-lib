@@ -47,7 +47,7 @@ class rgcd {
   CEXP u32 operator()(u32 x, u32 y) CNE {
     if (assert(x < s.fs.size() && y < s.fs.size()); x < g_.size() && y < g_.size()) return g_[x][y];
     u32 ans = 1, _;
-    for (u32 i : {s.fs[x].a, s.fs[x].b, s.fs[x].c}) y /= (_ = i < g_.size() ? g_[i][y % i] : (y % i == 0) * (i - 1) + 1), ans *= _;
+    for (cu32 i : {s.fs[x].a, s.fs[x].b, s.fs[x].c}) y /= (_ = i < g_.size() ? g_[i][y % i] : (y % i == 0) * (i - 1) + 1), ans *= _;
     return ans;
   }
 };

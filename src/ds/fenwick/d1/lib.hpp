@@ -14,7 +14,7 @@ class fenwick {
   CEXPE fenwick(u32 sz) NE : a(sz) { assert(sz > 1); }
   //! [1, sz)
   CEXP fenwick(spn<T> data) NE : fenwick((u32)data.size()) {
-    const u32 sz = (u32)data.size();
+    cu32 sz = (u32)data.size();
     flt_ (u32, i, 1, sz) {
       a[i] += data[i];
       if (u32 j = i + lowbit(i); j < sz) a[j] += a[i];
@@ -38,11 +38,11 @@ class fenwick {
   CEXP T sum(u32 l, u32 r) NE { return sum(r) - sum(l - 1); }
   //! for weighted fenwick
   CEXP T kth_max(u32 k) NE {
-    const u32 n = std::bit_ceil(a.size());
+    cu32 n = std::bit_ceil(a.size());
     u32 now = 0;
     T s{};
     while (n)
-      if (const u32 to = now | n; to >= a.size()) continue;
+      if (cu32 to = now | n; to >= a.size()) continue;
       else if (T x = s + a[to]; x < k) now = to, s = x;
     return now + 1;
   }

@@ -27,8 +27,8 @@ class kdtree {
   };
 
   const T E;
-  const u32 B;
-  u32 cnt;
+  cu32 B;
+  u32 cnt{0};
 
   CEXP pointer newnode(cT_(point) p, cT_(T) val) {
     pointer x = alloc.allocate(1);
@@ -126,10 +126,10 @@ class kdtree {
   }
 
  public:
-  pointer root;
+  pointer root{nullptr};
 
   // threshold = $O\left(\sqrt{n\log n}\right)$
-  CEXPE kdtree(u32 rebuild_threshold, cT_(T) e = T{}) NE : E{e}, B{rebuild_threshold}, cnt{0}, root{nullptr} { assert(rebuild_threshold > 1); }
+  CEXPE kdtree(u32 rebuild_threshold, cT_(T) e = T{}) NE : E{e}, B{rebuild_threshold} { assert(rebuild_threshold > 1); }
   kdtree(kdtree CR) = delete;
   kdtree& operator=(kdtree CR) = delete;
   CEXP ~kdtree() NE { dealloc_subtree(root, alloc); }

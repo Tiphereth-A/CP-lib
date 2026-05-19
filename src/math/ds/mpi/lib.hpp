@@ -23,7 +23,7 @@ struct mpi : vecu {
             for (u32 e3 = (48 << 24); e3 < (58 << 24); e3 += (1 << 24)) num[j++] = e0 ^ e1 ^ e2 ^ e3;
       return num;
     }();
-    static auto get(u32 x) NE { return (const char*)(num.data() + x); }
+    static auto get(u32 x) NE { return (chr CP)(num.data() + x); }
   };
 
   bool neg = false, hmd_ = false;
@@ -79,7 +79,7 @@ struct mpi : vecu {
     u32 l = 0;
     if (s[0] == '-') ++l, neg = true;
     u32 _ = 0;
-    if (u32 ofs = u32(s.size() - l) & 7; ofs) {
+    if (cu32 ofs = u32(s.size() - l) & 7; ofs) {
       flt_ (u32, i, l, l + ofs) _ = _ * 10 + (s[i] & 15);
       l += ofs;
     }
@@ -121,15 +121,15 @@ struct mpi : vecu {
   friend CEXP mpi operator+(mpi CR l, mpi CR r) NE {
     if (l.hmd_ && r.hmd_) {
       if (l.neg == r.neg) return make_hex_(l.neg, h_add_(l.hbits_, r.hbits_));
-      i32 ccmp = h_cmp_mag_(l.hbits_, r.hbits_);
+      ci32 ccmp = h_cmp_mag_(l.hbits_, r.hbits_);
       if (!ccmp) return make_hex_(false, {});
       if (ccmp < 0) {
         auto c = h_sub_(r.hbits_, l.hbits_);
-        bool n = c.empty() ? false : r.neg;
+        bool const n = c.empty() ? false : r.neg;
         return make_hex_(n, std::move(c));
       }
       auto c = h_sub_(l.hbits_, r.hbits_);
-      bool n = c.empty() ? false : l.neg;
+      bool const n = c.empty() ? false : l.neg;
       return make_hex_(n, std::move(c));
     }
     auto ld = l.as_dec_(), rd = r.as_dec_();
@@ -145,12 +145,12 @@ struct mpi : vecu {
   friend CEXP mpi operator*(mpi CR l, mpi CR r) NE {
     if (l.hmd_ && r.hmd_) {
       auto c = h_mul_(l.hbits_, r.hbits_);
-      bool n = c.empty() ? false : bool(l.neg ^ r.neg);
+      bool const n = c.empty() ? false : bool(l.neg ^ r.neg);
       return make_hex_(n, std::move(c));
     }
     auto ld = l.as_dec_(), rd = r.as_dec_();
     auto c = umul(ld, rd);
-    bool n = is_0(c) ? false : (ld.neg ^ rd.neg);
+    bool const n = is_0(c) ? false : (ld.neg ^ rd.neg);
     return {n, c};
   }
   friend CEXP ptt<mpi> divmod(mpi CR l, mpi CR r) NE {
@@ -191,7 +191,7 @@ struct mpi : vecu {
     if (is_zero()) return "0";
     strn r;
     if (r.reserve(size() * 8 + 1); neg) r.push_back('-');
-    char int_buf[11];
+    chr int_buf[11];
     auto res = std::to_chars(int_buf, int_buf + 11, back());
     r.append(int_buf, u32(res.ptr - int_buf));
     for (u32 i = (u32)size() - 2; ~i; --i) r.append(ict4::get((*this)[i] / 10000u), 4), r.append(ict4::get((*this)[i] % 10000u), 4);
@@ -248,12 +248,12 @@ struct mpi : vecu {
     return r;
   }
 
-  static CEXP u32 hex_to_u32_(char c) NE { return (c & 15) + ((c & 64) >> 6) * 9; }
+  static CEXP u32 hex_to_u32_(chr c) NE { return (c & 15) + ((c & 64) >> 6) * 9; }
   static CEXP strn u32_to_hex_(u32 x, bool pad0) NE {
-    arr<char, hex_lgD> buf;
+    arr<chr, hex_lgD> buf;
     flt_ (u32, i, 0, hex_lgD) {
-      u32 d = x & 15;
-      buf[hex_lgD - 1 - i] = char(d + (d < 10 ? 48 : 55)), x >>= 4;
+      cu32 d = x & 15;
+      buf[hex_lgD - 1 - i] = chr(d + (d < 10 ? 48 : 55)), x >>= 4;
     }
     if (pad0) return {buf.begin(), buf.end()};
     u32 l = 0;
@@ -264,8 +264,8 @@ struct mpi : vecu {
     strn res;
     res.reserve(8);
     flt_ (u32, _, 0, 8) {
-      u32 d = x & 15;
-      res.push_back(char(d + (d < 10 ? 48 : 55))), x >>= 4;
+      cu32 d = x & 15;
+      res.push_back(chr(d + (d < 10 ? 48 : 55))), x >>= 4;
     }
     if (!pad0) {
       while (!res.empty() && res.back() == '0') res.pop_back();
@@ -282,7 +282,7 @@ struct mpi : vecu {
   }
 
   using iter = u32*;
-  using citer = u32 const*;
+  using citer = u32 CP;
 
   static CEXP usz h_nz_size_(vecu CR a) NE {
     usz n = a.size();
@@ -290,7 +290,7 @@ struct mpi : vecu {
     return n;
   }
   static CEXP bool h_eq_(vecu CR a, vecu CR b) NE {
-    usz asz = h_nz_size_(a);
+    usz const asz = h_nz_size_(a);
     if (asz != h_nz_size_(b)) return false;
     flt_ (usz, i, 0, asz)
       if (a[i] != b[i]) return false;
@@ -340,7 +340,7 @@ struct mpi : vecu {
   static CEXP void h_add_(citer a, citer a_end, citer b, citer b_end, iter c, iter c_end) NE {
     if (a_end - a < b_end - b) std::swap(a, b), std::swap(a_end, b_end);
     usz asz = usz(a_end - a), bsz = usz(b_end - b);
-    assert(asz <= usz(c_end - c));
+    assert(std::cmp_less_equal(asz, c_end - c));
     u32 carry = 0;
     u64 v;
     flt_ (usz, i, 0, bsz) c[i] = u32(v = (u64)a[i] + b[i] + carry), carry = u32(v >> 32);
@@ -391,7 +391,7 @@ struct mpi : vecu {
     usz asz = usz(a_end - a), bsz = usz(b_end - b);
     assert(usz(c_end - c) == asz + bsz);
     if (bsz <= 128) return h_mul_naive_(a, a_end, b, b_end, c, c_end);
-    usz n = (asz + 1) >> 1;
+    usz const n = (asz + 1) >> 1;
     if (bsz <= n) {
       h_mul_(a, a + n, b, b_end, c, c + (n + bsz));
       vecu carry(c + n, c + (n + bsz));
@@ -424,14 +424,14 @@ struct mpi : vecu {
   }
   static CEXP void h_lsh_(iter a, iter a_end, int shift) NE {
     if (!shift) return;
-    int back = 32 - shift;
+    csint back = 32 - shift;
     u32 carry = 0, v;
     flt_ (iter, it, a, a_end) v = (*it << shift) | carry, carry = (*it >> back), *it = v;
     assert(!carry);
   }
   static CEXP void h_rsh_(iter a, iter a_end, int shift) NE {
     if (!shift) return;
-    int back = 32 - shift;
+    csint back = 32 - shift;
     u32 carry = 0, v;
     for (iter it = a_end - 1; a <= it; --it) v = (*it >> shift) | carry, carry = (*it << back), *it = v;
     assert(!carry);
@@ -460,7 +460,7 @@ struct mpi : vecu {
     auto sh = std::countl_zero(*(b_end - 1));
     vecu x(asz + (std::countl_zero(*(a_end - 1)) < sh)), y(usz(b_end - b));
     copy(a, a_end, x.begin()), copy(b, b_end, y.data()), h_lsh_(x.data(), x.data() + x.size(), sh), h_lsh_(y.data(), y.data() + y.size(), sh);
-    u32 yb = y.back();
+    cu32 yb = y.back();
     vecu qv(x.size() - y.size() + 1), rv(x.end() - (int)y.size(), x.end());
     for (usz i = (u32)qv.size() - 1; ~i; --i) {
       if (rv.size() == y.size()) {
@@ -481,17 +481,17 @@ struct mpi : vecu {
   }
 
   static CEXP void h_divmod_d2n1n_(citer a, citer a_end, citer b, citer b_end, iter quo, iter quo_end, iter rem, iter rem_end) {
-    usz n = usz(b_end - b);
+    usz const n = usz(b_end - b);
     if ((n & 1) || n <= h_div_naive_th_) {
       h_divmod_naive_(a, a_end, b, b_end, quo, quo_end, rem, rem_end);
       return;
     }
-    usz half = n >> 1;
+    usz const half = n >> 1;
     vecu r1(n + half + 1);
     copy(a, a + half, r1.data()), h_divmod_d3n2n_impl_(a + half, a_end, b, b_end, quo + half, quo_end, r1.data() + half, r1.data() + r1.size()), h_divmod_d3n2n_impl_(r1.data(), r1.data() + r1.size() - 1, b, b_end, quo, quo + half, rem, rem_end);
   }
   static CEXP void h_divmod_d3n2n_impl_(citer a, citer a_end, citer b, citer b_end, iter quo, iter quo_end, iter rem, iter rem_end) {
-    usz n = usz(b_end - b) >> 1;
+    usz const n = usz(b_end - b) >> 1;
     vecu d(2 * n);
     if (h_lt_(a + (n + n), a_end, b + n, b_end)) h_divmod_d2n1n_(a + n, a_end, b + n, b_end, quo, quo_end, rem + n, rem_end), h_mul_(quo, quo_end, b, b + n, d.data(), d.data() + d.size());
     else fill(quo, quo_end, -1_u32), h_add_(a + n, a + (n + n), b + n, b_end, rem + n, rem_end), copy(b, b + n, d.data() + n), h_sub_(d.data(), d.data() + d.size(), b, b + n);
@@ -515,9 +515,9 @@ struct mpi : vecu {
     int sd = (int)n - (int)bsz, ssh = std::countl_zero(*(b_end - 1));
     vecu x(asz + (usz)sd + (std::countl_zero(*(a_end - 1)) <= ssh)), y(n), rr(n + 1), z(2 * n);
     copy(a, a_end, x.begin() + sd), copy(b, b_end, y.begin() + sd), h_lsh_(x.data() + sd, x.data() + x.size(), ssh), h_lsh_(y.data() + sd, y.data() + y.size(), ssh);
-    usz t = max(2_usz, (x.size() + n - 1) / n);
+    usz const t = max(2_usz, (x.size() + n - 1) / n);
     copy(x.data() + ((t - 2) * n), x.data() + x.size(), z.data());
-    if (usz q_ulen = usz(q_end - (q + ((t - 2) * n))); q_ulen < n) {
+    if (usz const q_ulen = usz(q_end - (q + ((t - 2) * n))); q_ulen < n) {
       vecu qq(n);
       h_divmod_d2n1n_(z.data(), z.data() + z.size(), y.data(), y.data() + y.size(), qq.data(), qq.data() + qq.size(), rr.data(), rr.data() + rr.size()), copy(qq.data(), qq.data() + q_ulen, q + ((t - 2) * n));
     } else h_divmod_d2n1n_(z.data(), z.data() + z.size(), y.data(), y.data() + y.size(), q + ((t - 2) * n), q + ((t - 1) * n), rr.data(), rr.data() + rr.size());
@@ -593,8 +593,8 @@ struct mpi : vecu {
   // 0 <= A < 1e16, 1 <= B < 1e8
   static CEXP ptt<vecu> udivmod_li(vec_like CR a, vec_like CR b) NE {
     assert(a.size() <= 2 && b.size() == 1);
-    i64 va = uvec2i64(a);
-    u32 vb = b[0];
+    ci64 va = uvec2i64(a);
+    cu32 vb = b[0];
     return {int2vecu(va / vb), int2vecu(va % vb)};
   }
   // 0 <= A < 1e16, 1 <= B < 1e16
@@ -609,7 +609,7 @@ struct mpi : vecu {
     if (a.size() <= 2) return udivmod_li(a, b);
     vecu quo(a.size());
     u64 d = 0;
-    u32 b0 = b[0];
+    cu32 b0 = b[0];
     for (u32 i = (u32)a.size() - 1; ~i; --i) d = d * D + a[i], assert(d < (u64)D * b0), quo[i] = u32(d / b0), d = d % b0;
     shrink_(quo);
     return {quo, d ? vecu{u32(d)} : vecu{}};
@@ -620,9 +620,9 @@ struct mpi : vecu {
     if (max(a.size(), b.size()) <= 2) return udivmod_ll(a, b);
     if (std::is_lt(ucmp(a, b))) return {{}, a};
     // B >= 1e8, A >= B
-    u32 norm = D / (b.back() + 1);
+    cu32 norm = D / (b.back() + 1);
     vecu x = umul(a, vecu{norm}), y = umul(b, vecu{norm});
-    u32 yb = y.back();
+    cu32 yb = y.back();
     vecu quo(x.size() - y.size() + 1), rem(x.end() - (int)y.size(), x.end());
     for (u32 i = (u32)quo.size() - 1; ~i; --i) {
       if (rem.size() == y.size()) {
@@ -653,7 +653,7 @@ struct mpi : vecu {
     while (k < deg) {
       vecu s = umul(z, z);
       s.insert(s.begin(), 0);
-      u32 d = min(c, 2 * k + 1);
+      cu32 d = min(c, 2 * k + 1);
       vecu t{a.end() - d, a.end()}, u = umul(s, t), w(k + 1), w2 = uadd(z, z);
       u.erase(u.begin(), u.begin() + d), copy(w2, std::back_inserter(w));
       (z = usub(w, u)).erase(z.begin()), k *= 2;
@@ -664,7 +664,7 @@ struct mpi : vecu {
   static CEXP ptt<vecu> udivmod(vec_like CR a, vec_like CR b) NE {
     if (assert(!is_0(b)); b.size() <= 64) return udivmod_bf(a, b);
     if ((int)(a.size() - b.size()) <= 64) return udivmod_bf(a, b);
-    u32 norm = D / (b.back() + 1);
+    cu32 norm = D / (b.back() + 1);
     vecu x = umul(a, vecu{norm}), y = umul(b, vecu{norm});
     u32 s = (u32)x.size(), t = (u32)y.size(), deg = s + 2 - t;
     vecu z = inv_(y, deg), q = umul(x, z);

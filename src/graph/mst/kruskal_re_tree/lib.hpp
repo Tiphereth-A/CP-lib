@@ -16,7 +16,7 @@ CEXP std::pair<tree<alist<void>>, vec<EW>> kruskal_re_tree(vec<edge_t<EW>> CR so
   u32 m = n - 1, cnt = n;
   for (auto [w, u, v] : sorted_a) {
     if (u = (u32)dsu.find(u), v = (u32)dsu.find(v); u != v) {
-      const u32 t = cnt++;
+      cu32 t = cnt++;
       w_[t] = w, tr.add_arc(t, u), tr.add_arc(t, v), dsu.merge(t, u), dsu.merge(t, v), --m;
     }
     if (!m) break;

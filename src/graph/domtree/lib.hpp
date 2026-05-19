@@ -7,14 +7,14 @@ namespace tifa_libs {
 
 template <graph_c G>
 class domtree {
-  u32 n, t;
+  u32 n, t{0};
   G CR g;
   G rg;
   vvecu bucket;
   vecu arr, par, rev, dsu, label;
 
   CEXP void dfs(u32 u) NE {
-    for (rev[arr[u] = label[t] = sdom[t] = dsu[t] = t] = u, ++t; u32 w : g[u]) {
+    for (rev[arr[u] = label[t] = sdom[t] = dsu[t] = t] = u, ++t; cu32 w : g[u]) {
       if (!~arr[w]) dfs(w), par[arr[w]] = arr[u];
       rg.add_arc(arr[w], arr[u]);
     }
@@ -23,7 +23,7 @@ class domtree {
     if (u == dsu[u]) {
       retif_((x), -1_u32, u);
     }
-    const u32 v = find(dsu[u], x + 1);
+    cu32 v = find(dsu[u], x + 1);
     if (!~v) return u;
     if (sdom[label[dsu[u]]] < sdom[label[u]]) label[u] = label[dsu[u]];
     retif_((dsu[u] = v; x), v, label[u]);
@@ -32,7 +32,7 @@ class domtree {
  public:
   vecu sdom, dom;
 
-  CEXPE domtree(G CR g) NE : n{g.vsize()}, t{0}, g(g), rg(n), bucket(n), arr(n, -1_u32), par(n, -1_u32), rev(n, -1_u32), dsu(n), label(n), sdom(n, -1_u32), dom(n, -1_u32) {}
+  CEXPE domtree(G CR g) NE : n{g.vsize()}, g(g), rg(n), bucket(n), arr(n, -1_u32), par(n, -1_u32), rev(n, -1_u32), dsu(n), label(n), sdom(n, -1_u32), dom(n, -1_u32) {}
 
   // @return p, parents of dominator tree, p_i = -1_u32 if not exist else parent of vertex i
   CEXP vecu get_domtree(u32 root) NE {
@@ -40,8 +40,8 @@ class domtree {
     for (u32 i = t - 1; ~i; --i) {
       for (auto w : rg[i]) sdom[i] = min(sdom[i], sdom[find((u32)w)]);
       if (i) bucket[sdom[i]].push_back(i);
-      for (u32 w : bucket[i])
-        if (u32 v = find(w); sdom[v] == sdom[w]) dom[w] = sdom[w];
+      for (cu32 w : bucket[i])
+        if (cu32 v = find(w); sdom[v] == sdom[w]) dom[w] = sdom[w];
         else dom[w] = v;
       if (i > 1) dsu[i] = par[i];
     }

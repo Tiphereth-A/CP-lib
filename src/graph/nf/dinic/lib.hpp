@@ -11,7 +11,7 @@ class dinic {
     T w;
     u32 inv;
   };
-  const u32 n;
+  cu32 n;
 
  public:
   vvec<TIFA> e;
@@ -37,7 +37,7 @@ class dinic {
     dep = vecu(n, 0), dep[s] = 1;
     std::queue<u32> q({s});
     while (!q.empty()) {
-      const u32 u = q.front();
+      cu32 u = q.front();
       for (q.pop(); auto v : e[u])
         if (!dep[v.to] && v.w) dep[v.to] = dep[u] + 1, q.push(v.to);
     }

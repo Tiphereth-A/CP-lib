@@ -13,7 +13,7 @@ class suffix_array {
 
   // s must start from 1
   CEXPE suffix_array(cT_(T) s_) NE : s(s_), sa(s.size()), rk(s.size()) {
-    const u32 n = u32(s.size() - 1);
+    cu32 n = u32(s.size() - 1);
     u32 m = 0, p;
     for (auto x : s_) m = max(m, u32(x));
     vecu oldrk(n + n + 1), id(n + 1), cnt(m + 1, 0);
@@ -39,7 +39,7 @@ class suffix_array {
   }
 
   CEXP void get_height() NE {
-    const u32 n = u32(s.size() - 1);
+    cu32 n = u32(s.size() - 1);
     height = vecu(n + 1);
     for (u32 i = 1, k = 0; i <= n; ++i) {
       if (rk[i] == 1) continue;
@@ -66,7 +66,7 @@ class suffix_array {
   CEXP u32 lower_bound(T t) CNE {
     u32 l = 1, r = u32(s.size() - 1), ret = u32(s.size());
     while (r >= l) {
-      const u32 m = l + (r - l) / 2;
+      cu32 m = l + (r - l) / 2;
       if (compare_substr(t, sa[m]) < 0) l = m + 1;
       else r = m - 1, ret = m;
     }
@@ -76,7 +76,7 @@ class suffix_array {
   CEXP u32 upper_bound(T t) CNE {
     u32 l = 1, r = u32(s.size() - 1), ret = u32(s.size());
     while (r >= l)
-      if (const u32 m = l + (r - l) / 2; compare_substr(t, sa[m]) <= 1) l = m + 1;
+      if (cu32 m = l + (r - l) / 2; compare_substr(t, sa[m]) <= 1) l = m + 1;
       else r = m - 1, ret = m;
     return ret;
   }

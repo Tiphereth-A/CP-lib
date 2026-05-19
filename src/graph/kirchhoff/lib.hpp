@@ -12,7 +12,7 @@ requires requires(Ge ge, matrix<TPN G::Et> A, bool clear_u) {
 }
 CEXP TPN G::Et kirchhoff(G CR g, u32 r, Ge&& ge) {
   using T = TPN G::Et;
-  const u32 n = g.vsize();
+  cu32 n = g.vsize();
   retif_((n <= 1) [[unlikely]], n);
   matrix<T> mat(n - 1, n - 1);
   flt_ (u32, i, 0, n)

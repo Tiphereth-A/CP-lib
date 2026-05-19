@@ -19,7 +19,7 @@ CEXP vec<FP> aunion_Cs(vec<circle<FP>> CR cs) NE {
     }
     CEXP bool operator==(arc_t CR r) CNE { return (*this <=> r) == 0; }
   };
-  const u32 n = (u32)cs.size();
+  cu32 n = (u32)cs.size();
   vvec<arc_t> arcs(n);
   auto cut = [&](circle<FP> CR ci, u32 i) NE {
     vecp<FP, int> evt;

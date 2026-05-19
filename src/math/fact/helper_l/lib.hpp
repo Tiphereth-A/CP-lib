@@ -63,7 +63,7 @@ struct factl_helper : fact_helper<TPN poly_t::val_t> {
     }
     val_t res;
     u64 q = n / SZ;
-    u32 r = n % SZ;
+    cu32 r = n % SZ;
     if (2 * r <= SZ) {
       res = f[q];
       flt_ (u32, i, 0, r) res *= n - i;

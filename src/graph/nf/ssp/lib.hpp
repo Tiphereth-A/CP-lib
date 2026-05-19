@@ -12,7 +12,7 @@ class ssp {
     W w;
     C c;
   };
-  const u32 N, S, T;
+  cu32 N, S, T;
   vec<W> flow;
   vecptu pre;
 
@@ -22,10 +22,10 @@ class ssp {
     vec<SW> dis(N, inf_v<SW>);
     vecb inq(N);
     std::queue<u32> q({S});
-    dis[S] = 0, flow[S] = W(inflow), flow[T] = 0, inq[S] = 1;
+    dis[S] = 0, flow[S] = W(inflow), flow[T] = 0, inq[S] = true;
     while (!q.empty()) {
-      const u32 u = q.front();
-      q.pop(), inq[u] = 0;
+      cu32 u = q.front();
+      q.pop(), inq[u] = false;
       flt_ (u32, i, 0, (u32)e[u].size())
         if (auto v = e[u][i]; dis[u] + v.c < dis[v.to] && v.w) {
           if (dis[v.to] = dis[u] + v.c; !inq[v.to]) q.push(v.to), inq[v.to] = 1;
@@ -50,7 +50,7 @@ class ssp {
   CEXP ssp(u32 n, u32 s, u32 t) NE : N{n}, S{s}, T{t}, flow(n), pre(n), e(n) {}
 
   CEXP void add(u32 u, u32 v, cT_(W) w, cT_(C) c) NE {
-    const u32 lu = u32(e[u].size()), lv = u32(e[v].size());
+    cu32 lu = u32(e[u].size()), lv = u32(e[v].size());
     e[u].push_back({v, lv, w, c}), e[v].push_back({u, lu, 0, -c});
   }
   template <class EW = u64, class EC = i64>

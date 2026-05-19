@@ -9,7 +9,7 @@ namespace tifa_libs {
 CEXP u64 pi_min25(u64 n) NE {
   retif_((n <= 1) [[unlikely]], 0);
   retif_((n == 2) [[unlikely]], 1);
-  const u32 lim = isqrt(n);
+  cu32 lim = isqrt(n);
   u32 vn = (lim + 1) / 2;
   vecu s(vn), r(vn);
   flt_ (u32, cx, 0, vn) s[cx] = cx;
@@ -20,15 +20,15 @@ CEXP u64 pi_min25(u64 n) NE {
   u32 cnt_p = 0;
   for (u32 p = 3; p <= lim; p += 2) {
     if (vis[p]) continue;
-    u32 p2 = p * p;
+    cu32 p2 = p * p;
     if ((u64)p2 * p2 > n) break;
     vis[p] = true;
     for (u32 cx = p2; cx <= lim; cx += p * 2) vis[cx] = true;
     u32 ns = 0;
     flt_ (u32, cx, 0, vn) {
-      u32 cur = r[cx];
+      cu32 cur = r[cx];
       if (vis[cur]) continue;
-      u64 d = (u64)cur * p;
+      cu64 d = (u64)cur * p;
       l[ns] = l[cx] - (d <= lim ? l[s[d / 2] - cnt_p] : s[(div_u64d(n, d) - 1) / 2]) + cnt_p, r[ns++] = cur;
     }
     vn = ns;
@@ -39,9 +39,9 @@ CEXP u64 pi_min25(u64 n) NE {
   l[0] += u64(vn + (cnt_p - 1) * 2) * (vn - 1) / 2;
   flt_ (u32, cx, 1, vn) l[0] -= l[cx];
   flt_ (u32, cx, 1, vn) {
-    u32 q = r[cx];
-    u64 m = n / q;
-    u32 e = s[(m / q - 1) / 2] - cnt_p;
+    cu32 q = r[cx];
+    cu64 m = n / q;
+    cu32 e = s[(m / q - 1) / 2] - cnt_p;
     if (e < cx + 1) break;
     u64 t = 0;
     flt_ (u32, cy, cx + 1, e + 1) t += s[(div_u64d(m, r[cy]) - 1) / 2];

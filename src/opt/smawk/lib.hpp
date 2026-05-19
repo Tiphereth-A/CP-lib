@@ -14,7 +14,7 @@ CEXP vecu smawk(u32 n, u32 m, Ft&& f) NE {
   auto g = [&](auto&& g, u32 u, u32 d, u32 l, u32 r) NE -> void {
     if (u == d) return;
     assert(l < r);
-    const u32 rmid = (u + d) / 2;
+    cu32 rmid = (u + d) / 2;
     u32 cm = l;
     flt_ (u32, col, l + 1, r)
       if (!f(rmid, cm, col)) cm = col;

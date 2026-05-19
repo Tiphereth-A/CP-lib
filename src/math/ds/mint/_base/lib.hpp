@@ -14,7 +14,7 @@ struct mint : tag_t {
   using raw_t = tag_t::raw_t;
   using sraw_t = to_sint_t<raw_t>;
   static CEXP sraw_t smod() NE { return (sraw_t)tag_t::mod(); }
-  CEXP sraw_t sval() CNE { return (sraw_t)tag_t::val(); }
+  ND CEXP sraw_t sval() CNE { return (sraw_t)tag_t::val(); }
   template <int_c T>
   CEXPE operator T() CNE { return (T)tag_t::val(); }
   CEXP mint& operator+=(mint CR r) NE {
@@ -32,7 +32,7 @@ struct mint : tag_t {
   CEXP mint& operator/=(mint CR r) NE { return *this = *this * r.inv(); }
   CEXP mint CR operator+() CNE { return *this; }
   CEXP mint operator-() CNE { return tag_t::template neg<mint>(); }
-  CEXP mint inv() CNE { return inverse(tag_t::val(), tag_t::mod()); }
+  ND CEXP mint inv() CNE { return inverse(tag_t::val(), tag_t::mod()); }
   friend CEXP mint operator+(mint l, mint CR r) NE { return l += r; }
   friend CEXP mint operator-(mint l, mint CR r) NE { return l -= r; }
   friend CEXP mint operator*(mint l, mint CR r) NE { return l *= r; }

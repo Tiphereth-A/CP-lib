@@ -21,9 +21,9 @@ CEXP vec<mint> conv_mtt(fft_r2<FP>& fft, vec<mint> CR l, vec<mint> CR r, u32 ans
     return ans;
   }
   fft.bzr(max({(u32)l.size(), (u32)r.size(), min(u32(l.size() + r.size() - 1), ans_size)}));
-  const u32 n = fft.size();
-  const int OFS = ((int)sizeof(decltype(mint::mod())) * 8 - std::countl_zero(mint::mod() - 1) + 1) / 2;
-  const u32 MSK = ((1u << OFS) - 1);
+  cu32 n = fft.size();
+  csint OFS = ((int)sizeof(decltype(mint::mod())) * 8 - std::countl_zero(mint::mod() - 1) + 1) / 2;
+  cu32 MSK = ((1u << OFS) - 1);
   vec<mint> ans(ans_size);
   vec<C> a(n), b(n);
   flt_ (u32, i, 0, (u32)l.size()) a[i] = {(FP)(l[i].val() & MSK), (FP)(l[i].val() >> OFS)};
@@ -42,7 +42,7 @@ CEXP vec<mint> conv_mtt(fft_r2<FP>& fft, vec<mint> CR l, vec<mint> CR r, u32 ans
   }
   fft.dif(a), fft.dif(b);
   flt_ (u32, i, 0, ans_size) {
-    const i64 da = (i64)(a[i].real() / (FP)n + .5) % mint::smod(),
+    ci64 da = (i64)(a[i].real() / (FP)n + .5) % mint::smod(),
               db = (i64)(a[i].imag() / (FP)n + .5) % mint::smod(),
               dc = (i64)(b[i].real() / (FP)n + .5) % mint::smod(),
               dd = (i64)(b[i].imag() / (FP)n + .5) % mint::smod();

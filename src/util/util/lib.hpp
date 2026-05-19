@@ -7,9 +7,13 @@ namespace tifa_libs {
 #define CEXP constexpr
 #define CEXPE constexpr explicit
 #define CR const&
+#define CP const*
+#define PC *const
+#define CPC const*const
 #define TPN typename
 #define NE noexcept
 #define CNE const noexcept
+#define ND [[nodiscard]]
 #define cT_(...) std::conditional_t<sizeof(__VA_ARGS__) <= sizeof(size_t) * 2, __VA_ARGS__, __VA_ARGS__ CR>
 #define flt_(T, i, l, r, ...) for (T i = (l), i##e = (r)__VA_OPT__(, ) __VA_ARGS__; i < i##e; ++i)
 #define retif_(cond, if_true, ...) if cond return if_true __VA_OPT__(; else return __VA_ARGS__)

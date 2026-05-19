@@ -35,8 +35,8 @@ class rand_gen {
     x_[0] = sd & gen_max();
     flt_ (res_t, i, 1, p_ = pm::n) x_[i] = ((x_[i - 1] ^ (x_[i - 1] >> (pm::w - 2))) * pm::f + i % pm::n) & gen_max();
   }
-  CEXP res_t gen_min() CNE { return 0; }
-  CEXP res_t gen_max() CNE {
+  ND CEXP res_t gen_min() CNE { return 0; }
+  ND CEXP res_t gen_max() CNE {
     if CEXP (sizeof(res_t) * 8 == pm::w) return ~res_t();
     else return ((res_t)1 << pm::w) - 1;
   }
@@ -49,7 +49,7 @@ class rand_gen {
   CEXP T operator()() NE {
     if CEXP (std::integral<T>) {
       res_wt r = (res_wt)b_ - (res_wt)a_ + 1, p = r * next();
-      if (res_t l = (res_t)p, _ = res_t(res_wt(-(res_t)r) % r); l < r)
+      if (auto l = (res_t)p, _ = res_t(res_wt(-(res_t)r) % r); l < r)
         while (l < _) l = res_t(p = r * next());
       return T((res_t)(p >> pm::w) + (res_t)a_);
     } else return T(next() / (f128)((u128)gen_max() + 1) * (b_ - a_) + a_);

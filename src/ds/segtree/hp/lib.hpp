@@ -120,14 +120,14 @@ struct segtree {
       if CEXP (mapping(val[x], f); enable_tag)
         if (x < n) compose(tag[x], f);
     } else if CEXP (val[x] = f; enable_tag)
-      if (x < n) tag[x] = ID, vset[x] = 1;
+      if (x < n) tag[x] = ID, vset[x] = true;
   }
   CEXP void pushdown(u32 x) NE {
     if CEXP (enable_tag) {
       if (vset[x]) {
         val[x * 2] = val[x * 2 + 1] = val[x];
-        if (x * 2 < n) tag[x * 2] = tag[x * 2 + 1] = ID, vset[x * 2] = vset[x * 2 + 1] = 1;
-        vset[x] = 0;
+        if (x * 2 < n) tag[x * 2] = tag[x * 2 + 1] = ID, vset[x * 2] = vset[x * 2 + 1] = true;
+        vset[x] = false;
       } else if (tag[x] != ID) {
         mapping(val[x * 2], tag[x]), mapping(val[x * 2 + 1], tag[x]);
         if (x * 2 < n) compose(tag[x * 2], tag[x]), compose(tag[x * 2 + 1], tag[x]);

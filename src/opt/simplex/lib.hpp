@@ -39,12 +39,12 @@ struct LPSolver {
   }
   CEXP bool simplex(int phase) NE {
     int x = m + phase - 1;
-    while (1) {  // if phase=1, ignore artificial variable
+    while (true) {  // if phase=1, ignore artificial variable
       int s = -1;
       flt_ (int, j, 0, n + 1)
         if (N[j] != -phase) ltj(D[x]);
       // find most negative col for nonbasic (NB) variable
-      if (D[x][s] >= -eps_v<T>) return 1;
+      if (D[x][s] >= -eps_v<T>) return true;
       // can't get better sol by increasing NB variable
       int r = -1;
       flt_ (int, i, 0, m) {
@@ -52,7 +52,7 @@ struct LPSolver {
         if (!~r || std::make_pair(D[i][n + 1] / D[i][s], B[i]) < std::make_pair(D[r][n + 1] / D[r][s], B[r])) r = i;
         // find smallest positive ratio
       }  // -> max increase in NB variable
-      if (!~r) return 0;  // objective is unbounded
+      if (!~r) return false;  // objective is unbounded
       pivot(r, s);
     }
   }

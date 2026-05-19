@@ -10,13 +10,13 @@ int main() {
   u32 n, m;
   strn s;
   std::cin >> n >> s >> m;
-  odt<char> odt;
+  odt<chr> odt;
   for (u32 l = 0, r = 0; l < n; l = r) {
     while (r < n && s[++r] == s[l]);
     odt.insert(l + 1, r, s[l]);
   }
   flt_ (u32, i, 0, m) {
-    char op, c;
+    chr op, c;
     u32 l, r;
     std::cin >> op >> l >> r;
     switch (op) {

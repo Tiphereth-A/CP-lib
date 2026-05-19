@@ -8,7 +8,7 @@ namespace tifa_libs {
 // @return indexes of the closest points
 template <class FP>
 CEXP pttu min_dis_Ps(vec<point<FP>> CR vp) NE {
-  const u32 n = (u32)vp.size();
+  cu32 n = (u32)vp.size();
   using T = std::pair<point<FP>, u32>;
   auto dis1 = [](auto p1, auto p2) NE {
     if CEXP (std::same_as<decltype(p1), point<FP>>) {

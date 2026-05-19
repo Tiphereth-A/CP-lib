@@ -12,7 +12,7 @@ CEXP auto sqrt_fps(poly_t p, u32 n = 0) NE {
   using mint = TPN poly_t::val_t;
   std::optional<poly_t> ret;
   if (!n) n = (u32)p.size();
-  const u32 cnt = u32(find_if(begin(p), begin(p) + n, [](cT_(mint) x) NE { return x.val() != 0; }) - begin(p));
+  cu32 cnt = u32(find_if(begin(p), begin(p) + n, [](cT_(mint) x) NE { return x.val() != 0; }) - begin(p));
   if (cnt == n) [[unlikely]] {
     ret.emplace(p.pre(n));
     return ret;

@@ -12,7 +12,7 @@ namespace tifa_libs {
 template <wgraph_c G, class F>
 requires(!uint_c<TPN G::Et>) && requires(F relex, u32 now, u32 to) { relex(now, to); }
 bool bellman_ford(G CR g, u32 s, F&& cb_relax, vec<TPN G::Et>& dis) NE {
-  const u32 n = g.vsize(), sn = isqrt(n);
+  cu32 n = g.vsize(), sn = isqrt(n);
   assert(dis.size() == n);
   vecb vis(n);
   vecu dep(n);
@@ -22,7 +22,7 @@ bool bellman_ford(G CR g, u32 s, F&& cb_relax, vec<TPN G::Et>& dis) NE {
   };
   dis[s] = 0, vis[s] = true, dep[s] = 1;
   while (!q.empty()) {
-    const u32 u = q.front();
+    cu32 u = q.front();
     for (q.pop_front(), upd_q(), vis[u] = false; auto [v, w] : g[u])
       if (dis[u] + w < dis[v]) {
         if (cb_relax(u, v), dis[v] = dis[u] + w; vis[v]) continue;

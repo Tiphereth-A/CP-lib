@@ -10,7 +10,7 @@ namespace tifa_libs {
 template <class FP>
 CEXP circle<FP> min_cover_C(vec<point<FP>> CR vp) NE {
   circle<FP> ret{vp.front(), 0};
-  const u32 n = (u32)vp.size();
+  cu32 n = (u32)vp.size();
   flt_ (u32, i, 1, n) {
     if (relation_CP(ret, vp[i]) != RELCP::outside) continue;
     ret = circle<FP>{vp[i], 0};

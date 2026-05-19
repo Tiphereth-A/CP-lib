@@ -7,7 +7,7 @@ namespace tifa_libs {
 
 template <tree_c G, bool need_dfn = false>
 CEXP vecu tree_top(G CR tr, std::conditional_t<need_dfn, vecu&, spnu> dfn, spnu maxson) NE {
-  u32 n = tr.vsize();
+  cu32 n = tr.vsize();
   if CEXP (need_dfn) dfn = vecu(n);
   vecu top(n, n);
   u32 cnt = 0;

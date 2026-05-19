@@ -12,7 +12,7 @@ class hash_substr_2d {
 
  public:
   CEXP void set(spn<strn> s, u32 len_c) NE {
-    const u32 n = (u32)s.size(), m = (u32)s[0].size();
+    cu32 n = (u32)s.size(), m = (u32)s[0].size();
     if (assert(0 < len_c && len_c <= m), hs.resize(n), hash = vvec<mint>(n + 1, vec<mint>(m + 1)); p.size() <= n) {
       if (p.reserve(n + 1); p.empty()) p.push_back(1);
       while (p.size() <= n) p.push_back(p.back() * base2);

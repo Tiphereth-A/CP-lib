@@ -13,14 +13,14 @@ template <class FP>
 class cvh3d {
   struct facet {
     u32 n[3], id, vistime = 0;
-    bool isdel = 0;
+    bool isdel = false;
     planev<FP> p;
     u32 pid[3];
 
     CEXP facet() = default;
     CEXP facet(u32 id, vec<point3d<FP>> CR vp, u32 id0, u32 id1, u32 id2) NE : id(id), p(vp[id0], vp[id1], vp[id2]), pid{id0, id1, id2} {}
     CEXP facet(vec<point3d<FP>> CR vp, u32 id0, u32 id1, u32 id2) NE : facet(0, vp, id0, id1, id2) {}
-    CEXP void in(u32 n1, u32 n2, u32 n3) noexcept { n[0] = n1, n[1] = n2, n[2] = n3; }
+    CEXP void in(u32 n1, u32 n2, u32 n3) NE { n[0] = n1, n[1] = n2, n[2] = n3; }
   };
   u32 tm = 0, idx = 0;
   kahan<FP> suf_area = 0;
@@ -119,7 +119,7 @@ class cvh3d {
         }
         if ((pt1 + 1) % 3 != pt2) swap(pt1, pt2);
         faces.emplace_back(vp, pt2id, pt1id, pid), faces[fnew = u32(faces.size() - 1)].id = u32(faces.size() - 1);
-        if (ptsid.push_back(vecu()), resfnew.push_back(fnew), faces[faces[fnew].n[0] = f].n[pt1] = fnew; lastf) {
+        if (ptsid.emplace_back(), resfnew.push_back(fnew), faces[faces[fnew].n[0] = f].n[pt1] = fnew; lastf) {
           if (*faces[fnew].p.v == *faces[lastf].p.u) faces[fnew].n[1] = lastf, faces[lastf].n[2] = fnew;
           else faces[fnew].n[2] = lastf, faces[lastf].n[1] = fnew;
         } else fstf = fnew;

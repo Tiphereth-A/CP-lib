@@ -20,8 +20,8 @@ CEXP u32 lcs_circ(cT_(T) a, cT_(T) b) NE {
   flt_ (u32, i, 0, (u32)b.size()) {
     if (i)
       for (u32 x = 1, y = i; x <= a.size() && y <= b_.size();) {
-        bool _ = up[x][y];
-        if (y == i) up[x][y] = 0;
+        const bool _ = up[x][y];
+        if (y == i) up[x][y] = false;
         else f(x, y);
         ++(_ == up[x][y] ? x : y);
       }

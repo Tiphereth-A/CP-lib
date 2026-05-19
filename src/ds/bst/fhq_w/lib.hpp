@@ -22,13 +22,13 @@ class fhq_treap_w {
     u32 sz;
     arr<u32, 2> son{};
     i32 rad;
-    bool rev;
-    CEXP TIFA(T W = e(), T VAL = e(), u32 SZ = 0, i32 RAD = 0, F SIGN = id()) NE : w(W), val(VAL), sign(SIGN), sz(SZ), rad(RAD), rev(0) {}
+    bool rev{false};
+    CEXP TIFA(T W = e(), T VAL = e(), u32 SZ = 0, i32 RAD = 0, F SIGN = id()) NE : w(W), val(VAL), sign(SIGN), sz(SZ), rad(RAD) {}
   };
   rand_gen<i32> gen;
   vec<TIFA> t;
   vecu sta;
-  u32 cnt;
+  u32 cnt{0};
 
   CEXP u32 newnode(T val) NE {
     u32 ret;
@@ -63,9 +63,9 @@ class fhq_treap_w {
   }
 
  public:
-  u32 root;
+  u32 root{0};
 
-  CEXPE fhq_treap_w(u32 MAX_N) NE : gen(), t(MAX_N + 1), sta(), cnt{0}, root{0} {
+  CEXPE fhq_treap_w(u32 MAX_N) NE : gen(), t(MAX_N + 1), sta() {
     if CEXP (recovery) sta.reserve(MAX_N + 1);
   }
 

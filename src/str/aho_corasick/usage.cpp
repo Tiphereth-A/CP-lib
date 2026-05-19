@@ -20,9 +20,9 @@ int main() {
   flt_ (u32, i, 0, acam.sz)
     if (!in[i]) q.push(i);
   while (!q.empty()) {
-    u32 u = q.front();
+    cu32 u = q.front();
     for (q.pop(); auto x : acam.t[u].end) ans[x] = sz[u];
-    u32 v = acam.t[u].fail;
+    cu32 v = acam.t[u].fail;
     if (sz[v] += sz[u], --in[v]; !in[v]) q.push(v);
   }
   for (auto x : ans) std::cout << x << '\n';

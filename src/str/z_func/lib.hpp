@@ -5,7 +5,7 @@
 namespace tifa_libs {
 
 CEXP vecu z_func(strnv s) NE {
-  const u32 n = (u32)s.size();
+  cu32 n = (u32)s.size();
   vecu z(n);
   for (u32 i = 1, l = 0, r = 0; i < n; ++i) {
     if (i <= r && z[i - l] < r - i + 1) z[i] = z[i - l];

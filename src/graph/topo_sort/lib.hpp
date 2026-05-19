@@ -7,7 +7,7 @@ namespace tifa_libs {
 //! return empty vector if @g is not DAG
 template <graph_c G>
 CEXP vecu topo_sort(G CR g) NE {
-  const u32 n = g.vsize();
+  cu32 n = g.vsize();
   vecb vis(n), _(n);
   vecu ans;
   auto dfs = [&](auto&& dfs, u32 i) NE -> bool {

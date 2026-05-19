@@ -19,8 +19,8 @@ struct barrett<0> {
   CEXP barrett() NE = default;
   CEXPE barrett(u64 mod, u64 b = 1) NE { reset(mod, b); }
   CEXP void reset(u64 mod_, u64 b_ = 1) NE { assert(mod_), mod = mod_, b = b_ % mod, r = (u64(((u128)b << 64) / mod)); }
-  CEXP u64 reduce(u64 a) CNE {
-    if (u64 q = u64((u128)a * r >> 64); (a = a * b - q * mod) >= mod) a -= mod;
+  ND CEXP u64 reduce(u64 a) CNE {
+    if (cu64 q = u64((u128)a * r >> 64); (a = a * b - q * mod) >= mod) a -= mod;
     return a;
   }
 };

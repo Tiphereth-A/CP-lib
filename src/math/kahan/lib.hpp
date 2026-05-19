@@ -6,10 +6,10 @@ namespace tifa_libs {
 
 template <std::floating_point FP>
 class kahan_fp {
-  FP sum, c;
+  FP sum, c{0};
 
  public:
-  CEXP kahan_fp(FP val = 0) NE : sum{val}, c{0} {}
+  CEXP kahan_fp(FP val = 0) NE : sum{val} {}
 
   CEXP kahan_fp& operator+=(FP x) NE {
     const FP y = x - c;

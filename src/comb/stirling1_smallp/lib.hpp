@@ -27,11 +27,11 @@ class stirling1 {
   template <std::signed_integral T>
   CEXP mint operator()(T m_, T n_) CNE {
     retif_((n_ < 0 || n_ > m_) [[unlikely]], 0);
-    const u32 p = mod();
-    const u64 m = (u64)m_, n = (u64)n_, i = m / p;
+    cu32 p = mod();
+    cu64 m = (u64)m_, n = (u64)n_, i = m / p;
     if (i > n) return 0;
     u64 a = (n - i) / (p - 1);
-    const u32 j = u32(m % p);
+    cu32 j = u32(m % p);
     u32 b = u32((n - i) % (p - 1));
     if (!b && j) {
       if (b += p - 1; a) --a;

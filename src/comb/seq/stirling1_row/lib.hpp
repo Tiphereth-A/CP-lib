@@ -15,7 +15,7 @@ CEXP poly gen_stirling1_row(u32 n, vec<T> CR fact, vec<T> CR ifact) NE {
   poly f{0, 1};
   retif_((n == 1) [[unlikely]], f);
   for (int i = 30 - std::countl_zero(n); ~i; --i) {
-    const u32 _ = n >> i;
+    cu32 _ = n >> i;
     (f *= tsh_fps(f, mint(_ / 2), fact, ifact)).resize(f.size() + 1);
     if (_ & 1) f = shl_fps(f, 1) + f * (_ - 1);
   }

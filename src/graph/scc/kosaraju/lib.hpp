@@ -24,7 +24,7 @@ class kosaraju {
     vecu ord;
     auto dfs = [&, this](auto&& dfs, u32 idx) NE {
       if (vis[idx]) return;
-      for (vis[idx] = 1; auto to : g[idx]) dfs(dfs, to);
+      for (vis[idx] = true; auto to : g[idx]) dfs(dfs, to);
       ord.push_back(idx);
     };
     auto rdfs = [this](auto&& rdfs, u32 idx, u32 cnt) NE {

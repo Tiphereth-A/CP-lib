@@ -84,7 +84,7 @@ class link_cut_tree {
   CEXP void splay_(u32 x) NE {
     ppushdown_(x);
     while (noroot_(x)) {
-      if (u32 fa = tr[x].fa; noroot_(fa)) {
+      if (cu32 fa = tr[x].fa; noroot_(fa)) {
         if (which_(fa) ^ which_(x)) rotate(x);
         else rotate(fa);
       }

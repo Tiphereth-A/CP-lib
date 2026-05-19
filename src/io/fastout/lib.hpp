@@ -8,16 +8,16 @@ namespace tifa_libs {
 class fastout {
   CEXP static u32 BUF = 0x200005, INTBUF = 63;
   FILE* f_ = nullptr;
-  char int_buf[INTBUF];
-  char buf[BUF], *p;
-  const char* const ed = buf + BUF;
+  chr int_buf[INTBUF];
+  chr buf[BUF], *p;
+  chr CPC ed = buf + BUF;
   std::chars_format fmt = std::chars_format::general;
   int precision = 6;
 
-  fastout& write_str(const char* n, usz len = 0) NE {
+  fastout& write_str(chr CP n, usz len = 0) NE {
     if (!len) len = strlen(n);
     usz l_;
-    const char* n_ = n;
+    chr CP n_ = n;
     while (p + len >= ed) memcpy(p, n_, l_ = usz(ed - p)), p += l_, n_ += l_, len -= l_, flush();
     return memcpy(p, n_, len), p += len, *this;
   }
@@ -35,7 +35,7 @@ class fastout {
     *(p++) = n;
     return *this;
   }
-  fastout& operator<<(const char* n) NE { return write_str(n); }
+  fastout& operator<<(chr CP n) NE { return write_str(n); }
   fastout& operator<<(strn CR str) NE { return write_str(str.data(), str.size()); }
   fastout& operator<<(strnv str) NE { return write_str(str.data(), str.size()); }
   template <class T>
@@ -50,7 +50,7 @@ class fastout {
   template <class T>
   requires(umost64_c<T> && !char_c<T>)
   fastout& operator<<(T n) NE {
-    if CEXP (std::same_as<T, bool>) return *this << (char(n | '0'));
+    if CEXP (std::same_as<T, bool>) return *this << (chr(n | '0'));
     else if CEXP (sizeof(T) < sizeof(u32)) return *this << (u32)n;
     else if (usz(p - buf) >= BUF - INTBUF) [[unlikely]] {
       auto res = std::to_chars(int_buf, int_buf + INTBUF, n);

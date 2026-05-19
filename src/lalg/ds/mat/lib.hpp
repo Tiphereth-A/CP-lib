@@ -26,9 +26,9 @@ class matrix {
     FOR2_ (i, 0, r_, j, 0, c_) (*this)(i, j) = data[i][j];
   }
 
-  CEXP u32 row() CNE { retif_((tr_), c_, r_); }
-  CEXP u32 col() CNE { retif_((tr_), r_, c_); }
-  CEXP vec<T> CR data() CNE { return d; }
+  ND CEXP u32 row() CNE { retif_((tr_), c_, r_); }
+  ND CEXP u32 col() CNE { retif_((tr_), r_, c_); }
+  ND CEXP vec<T> CR data() CNE { return d; }
   CEXP vec<T>& data() NE { return d; }
   CEXP TPN vec<T>::reference operator()(u32 r, u32 c) NE { retif_((tr_), d[c * c_ + r], d[r * c_ + c]); }
   CEXP TPN vec<T>::const_reference operator()(u32 r, u32 c) CNE { retif_((tr_), d[c * c_ + r], d[r * c_ + c]); }
@@ -47,18 +47,18 @@ class matrix {
   }
 
   friend auto& operator>>(istream_c auto& is, matrix& mat) NE {
-    const u32 r_ = mat.row(), c_ = mat.col();
+    cu32 r_ = mat.row(), c_ = mat.col();
     FOR2_ (i, 0, r_, j, 0, c_) is >> mat(i, j);
     return is;
   }
   friend auto& operator<<(ostream_c auto& os, matrix CR mat) NE {
-    const u32 r_ = mat.row(), c_ = mat.col();
+    cu32 r_ = mat.row(), c_ = mat.col();
     FOR2_ (i, 0, r_ - 1, j, 0, c_) os << mat(i, j) << " \n"[j + 1 == c_];
     os << mat(r_ - 1, 0);
     FOR1_ (j, 1, c_) os << ' ' << mat(r_ - 1, j);
     return os;
   }
-  CEXP matrix submat(u32 row_l, u32 row_r, u32 col_l, u32 col_r) CNE {
+  ND CEXP matrix submat(u32 row_l, u32 row_r, u32 col_l, u32 col_r) CNE {
     assert(row_l < row_r && row_r <= row() && col_l < col_r && col_r <= col());
     matrix ret(row_r - row_l, col_r - col_l);
     FOR2_ (i, row_l, row_r, j, col_l, col_r) ret(i - row_l, j - col_l) = (*this)(i, j);
@@ -117,7 +117,7 @@ class matrix {
     return *this;
   }
   friend CEXP matrix operator*(matrix CR l, matrix CR r) NE {
-    const u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
+    cu32 i_ = l.row(), j_ = l.col(), k_ = r.col();
     assert(j_ == r.row());
     matrix ret(i_, k_);
     FOR1_ (i, 0, i_)
@@ -128,8 +128,8 @@ class matrix {
     return ret;
   }
   CEXP matrix& operator*=(matrix CR r) NE { return *this = *this * r; }
-  CEXP vec<T> lproj(spn<T> x) CNE {
-    const u32 r_ = row(), c_ = col();
+  ND CEXP vec<T> lproj(spn<T> x) CNE {
+    cu32 r_ = row(), c_ = col();
     assert(r_ == x.size());
     vec<T> ret(c_);
     FOR1_ (j, 0, c_)

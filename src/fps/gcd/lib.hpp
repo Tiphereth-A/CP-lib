@@ -42,28 +42,28 @@ CEXP void ngcd_(matp<poly_t>& m, pttp<poly_t>& p) NE {
 }
 template <poly_c poly_t>
 CEXP auto hgcd_(pttp<poly_t> p) NE {
-  const u32 n = (u32)p.first.size(), m = (u32)p.second.size(), k = (n + 1) / 2;
+  cu32 n = (u32)p.first.size(), m = (u32)p.second.size(), k = (n + 1) / 2;
   if (m <= k) return matp<poly_t>(1, 0, 0, 1);
   auto _ = hgcd_(pttp<poly_t>{shr_strip_fps(p.first, k), shr_strip_fps(p.second, k)});
   p = _ * p;
   if (p.second.size() <= k) return _;
   ngcd_(_, p);
   if (p.second.size() <= k) return _;
-  const u32 l = (u32)p.first.size() - 1, j = 2 * k - l;
+  cu32 l = (u32)p.first.size() - 1, j = 2 * k - l;
   return hgcd_(pttp<poly_t>{shr_strip_fps(p.first, j), shr_strip_fps(p.second, j)}) * _;
 }
 template <poly_c poly_t>
 CEXP matp<poly_t> pgcd_(poly_t CR a, poly_t CR b) NE {
   pttp<poly_t> p{a, b};
   p.first.strip(), p.second.strip();
-  const u32 n = (u32)p.first.size(), m = (u32)p.second.size();
+  cu32 n = (u32)p.first.size(), m = (u32)p.second.size();
   if (n < m) {
     auto mat = pgcd_(p.second, p.first);
     swap(mat.a00, mat.a01), swap(mat.a10, mat.a11);
     return mat;
   }
   auto res = matp<poly_t>(1, 0, 0, 1);
-  while (1) {
+  while (true) {
     auto _ = hgcd_(p);
     if (p = _ * p; p.second.is_zero()) return _ * res;
     if (ngcd_(_, p); p.second.is_zero()) return _ * res;

@@ -6,7 +6,7 @@ namespace tifa_libs {
 template <u32 SZ = 26>
 class suffix_automaton {
   // super root is 0
-  u32 last;
+  u32 last{0};
   struct TIFA {
     u32 len, link;
     arr<u32, SZ> nex{};
@@ -17,11 +17,11 @@ class suffix_automaton {
   };
 
  public:
-  u32 sz;
+  u32 sz{1};
   vec<TIFA> st;
   vvecu e;
 
-  CEXP suffix_automaton() NE : last{0}, sz{1}, st(1) { st[0].len = 0, st[0].link = -1u; }
+  CEXP suffix_automaton() NE : st(1) { st[0].len = 0, st[0].link = -1u; }
 
   CEXP void extend(u32 c) NE {
     u32 cur = sz++;

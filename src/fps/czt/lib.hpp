@@ -13,7 +13,7 @@ auto czt_fps(poly_t f, TPN poly_t::val_t c, u32 m = -1_u32, TPN poly_t::val_t a 
   static rpow rp, irp;
   if (!~m) m = (u32)f.size();
   retif_((f.empty() || !m) [[unlikely]], poly_t{});
-  const u32 n = (u32)f.size();
+  cu32 n = (u32)f.size();
   if (a != 1) {
     mint x = 1;
     flt_ (u32, i, 0, n) f[i] *= x, x *= a;
@@ -23,7 +23,7 @@ auto czt_fps(poly_t f, TPN poly_t::val_t c, u32 m = -1_u32, TPN poly_t::val_t a 
     ans[0] = std::reduce(begin(f), end(f), mint{});
     return ans;
   }
-  const u32 mod = (u32)mint::mod();
+  cu32 mod = (u32)mint::mod();
   if (c.val() == irp.base()) rp.swap(irp);
   rp.reset(c.val(), mod), irp.reset(c.inv().val(), mod);
   poly_t cc(m + n), icc(max(m, n));

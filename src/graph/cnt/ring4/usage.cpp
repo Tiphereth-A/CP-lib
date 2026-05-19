@@ -27,13 +27,13 @@ int main() {
     for (auto [u, v] : edges) g.add_edge(u, v);
     alist dg(n), dgv(n);
     flt_ (u32, u, 0, n)
-      for (u32 v : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[v].size(), v) ? dg : dgv).add_arc(u, v);
+      for (cu32 v : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[v].size(), v) ? dg : dgv).add_arc(u, v);
     // 菊花图
     mint ans0 = 0;
     flt_ (u32, u, 0, n)
       if (g[u].size() >= 4) ans0 += inv24 * g[u].size() * (g[u].size() - 1) * (g[u].size() - 2) * (g[u].size() - 3);
     // 四元环
-    mint ans1 = ringcnt4_impl_::run(dg, dgv);
+    const mint ans1 = ringcnt4_impl_::run(dg, dgv);
     // 三元环+一条边
     mint ans2 = 0;
     u64 cnt2 = 0;
@@ -45,7 +45,7 @@ int main() {
     mint ans3 = 0;
     flt_ (u32, u, 0, n) {
       if (g[u].size() < 2) continue;
-      for (u32 v : g[u]) {
+      for (cu32 v : g[u]) {
         if (g[v].size() < 3) continue;
         ans3 += inv2 * (g[u].size() - 1) * (g[v].size() - 1) * (g[v].size() - 2);
       }
@@ -54,7 +54,7 @@ int main() {
     // P5
     mint ans4 = 0;
     flt_ (u32, u, 0, n) {
-      for (mint _ = 0; u32 v : g[u]) {
+      for (mint _ = 0; cu32 v : g[u]) {
         ans4 += _ * (g[v].size() - 1);
         _ += g[v].size() - 1;
       }

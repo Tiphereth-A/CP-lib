@@ -28,7 +28,7 @@ struct mahjong_hand {
   CEXP auto operator<=>(mahjong_hand CR) CNE = default;
   CEXP bool operator==(mahjong_hand CR) CNE = default;
 
-  [[nodiscard]] CEXP arr<u32, 45> get_counter() CNE {
+  ND CEXP arr<u32, 45> get_counter() CNE {
     arr<u32, 45> counter{};
     for (auto [melds, c] : waiting) switch (melds) {
         case MELDS_MJ::mian:
@@ -51,7 +51,7 @@ struct mahjong_hand {
       }
     return counter;
   }
-  CEXP bool win() CNE {
+  ND CEXP bool win() CNE {
     switch (mode) {
       case MODE_MH::pairs7_14:
       case MODE_MH::pairs7_13: return prepared.size() >= 6;
@@ -70,7 +70,7 @@ struct mahjong_hand {
     }
     assert(false);
   }
-  CEXP vecu improve_cards() CNE {
+  ND CEXP vecu improve_cards() CNE {
     if (mode == MODE_MH::terminal13_13 || mode == MODE_MH::terminal13_14) {
       vecb vis(34);
       u32 p = 34;
@@ -208,7 +208,7 @@ CEXP auto mahjong_parser(vec<mahjong_card> hand, u32 max_card_per_kind = 4) NE {
       }
       bool found = false;
       flt_ (u32, c, 0, 34) {
-        u32 cnt = counter[c];
+        cu32 cnt = counter[c];
         if (!cnt) continue;
         if (cnt >= 3) {
           guard g_pung(prepared, counter, sum_counter, c, MELDS_MJ::pung);
@@ -222,7 +222,7 @@ CEXP auto mahjong_parser(vec<mahjong_card> hand, u32 max_card_per_kind = 4) NE {
       if (found) return;
       found = false;
       flt_ (u32, c, 0, 34) {
-        u32 cnt = counter[c];
+        cu32 cnt = counter[c];
         if (!cnt) continue;
         if (cnt >= 2) {
           guard g_pair(waiting, counter, sum_counter, c, counter_bk[c] < max_card_per_kind ? MELDS_MJ::pair : MELDS_MJ::pair0);
@@ -261,7 +261,7 @@ CEXP auto mahjong_parser(vec<mahjong_card> hand, u32 max_card_per_kind = 4) NE {
         if (counter[c]) g_orphans.emplace_back(waiting, counter, sum_counter, c, MELDS_MJ::orphan);
       f(f);
     };
-    bool _ = false;
+    const bool _ = false;
     flt_ (u32, c, 0, 34)
       if (counter[c] >= 2) {
         guard g_eye(waiting, counter, sum_counter, c, counter_bk[c] < max_card_per_kind ? MELDS_MJ::pair : MELDS_MJ::pair0);
@@ -282,7 +282,7 @@ CEXP auto mahjong_parser(vec<mahjong_card> hand, u32 max_card_per_kind = 4) NE {
       std::list<guard> guards;
       flt_ (u32, i, 0, kong_tot) guards.emplace_back(base, counter, sum_counter, kongs[i], MELDS_MJ::kong);
       proceed_no_kong();
-    } while (std::next_permutation(kongs.begin(), kongs.end()));
+    } while (next_permutation(kongs).found);
   } else proceed_no_kong();
   for (auto& [_, __, waiting, prepared] : ans) sort(waiting), sort(prepared);
   return uniq(ans);

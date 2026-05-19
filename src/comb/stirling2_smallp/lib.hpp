@@ -28,11 +28,11 @@ class stirling2 {
   CEXP mint operator()(T m_, T n_) CNE {
     retif_((n_ < 0 || n_ > m_) [[unlikely]], 0);
     retif_((!m_) [[unlikely]], 1);
-    const u32 p = mod();
-    const u64 m = (u64)m_, n = (u64)n_, i = n / p;
+    cu32 p = mod();
+    cu64 m = (u64)m_, n = (u64)n_, i = n / p;
     if (m < i) return 0;
     u64 a = (m - i) / (p - 1);
-    const u32 j = u32(n % p);
+    cu32 j = u32(n % p);
     u32 b = u32((m - i) % (p - 1));
     if (!b) {
       if (b += p - 1; a) --a;

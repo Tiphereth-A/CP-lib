@@ -11,16 +11,16 @@ inline vecptu hopkap(u32 l, u32 r, vecptu CR e) NE {
   vvecu adj(l);
   vecu pre(r, -1_u32), nxt(l, -1_u32);
   for (auto [u, v] : e) adj[u].push_back(v);
-  while (1) {
+  while (true) {
     vecu lev(l), ptr(l);
     u32 max_lev = 0;
     std::queue<u32> q;
     flt_ (u32, i, 0, l)
       if (!~nxt[i]) lev[i] = 1, q.push(i);
     while (!q.empty()) {
-      u32 x = q.front();
-      for (q.pop(); u32 y : adj[x])
-        if (u32 z = pre[y]; !~z) max_lev = lev[x];
+      cu32 x = q.front();
+      for (q.pop(); cu32 y : adj[x])
+        if (cu32 z = pre[y]; !~z) max_lev = lev[x];
         else if (!lev[z]) lev[z] = lev[x] + 1, q.push(z);
       if (max_lev) break;
     }
@@ -31,9 +31,9 @@ inline vecptu hopkap(u32 l, u32 r, vecptu CR e) NE {
       for (; ptr[x] < adj[x].size(); ++ptr[x])
         if (u32 y = adj[x][ptr[x]], z = pre[y]; !~z || (lev[z] == lev[x] + 1 && f(f, z))) {
           nxt[x] = y, pre[y] = x, ptr[x] = (u32)adj[x].size();
-          return 1;
+          return true;
         }
-      return 0;
+      return false;
     };
     flt_ (u32, i, 0, l)
       if (!~nxt[i]) f(f, i);

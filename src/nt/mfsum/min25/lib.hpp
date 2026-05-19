@@ -13,7 +13,7 @@ class min25_sieve {
   u64 m, sqm, s;
   vecu p;
 
-  CEXP u64 idx(u64 n) CNE { retif_((n <= sqm), s - n, div_u64d(m, n)); }
+  ND CEXP u64 idx(u64 n) CNE { retif_((n <= sqm), s - n, div_u64d(m, n)); }
 
  public:
   // m^{3/2} in u64
@@ -25,7 +25,7 @@ class min25_sieve {
     }
   }
 
-  CEXP vec<T> sum_pk(u32 k) CNE {
+  ND CEXP vec<T> sum_pk(u32 k) CNE {
     auto sik = sum_ik<T>[k];
     retif_((!m) [[unlikely]], {});
     u64 hls = div_u64d(m, sqm);
@@ -33,7 +33,7 @@ class min25_sieve {
     vec<T> h(s);
     flt_ (u64, i, 1, hls) h[i] = sik(div_u64d(m, i)) - 1;
     flt_ (u64, i, 1, sqm + 1) h[s - i] = sik(i) - 1;
-    for (u32 x : p) {
+    for (cu32 x : p) {
       T _ = x, pi = h[s - x + 1];
       _ = qpow(_, k);
       u64 x2 = u64(x) * x, mx = min(hls, div_u64d(m, x2) + 1);
@@ -43,13 +43,13 @@ class min25_sieve {
     assert(h.size() == s);
     return h;
   }
-  CEXP T run(vec<T> fprime) CNE {
+  ND CEXP T run(vec<T> fprime) CNE {
     retif_((!m) [[unlikely]], {});
     assert(fprime.size() == s);
     T ans = fprime[idx(m)] + 1;
     auto dfs = [&, this](auto&& dfs, u32 i, u32 c, u64 prod, T now) NE -> void {
       ans += now * f(p[i], c + 1);
-      u64 lim = div_u64d(m, prod);
+      cu64 lim = div_u64d(m, prod);
       if (lim >= (u64)p[i] * p[i]) dfs(dfs, i, c + 1, p[i] * prod, now);
       now *= f(p[i], c), ans += now * (fprime[idx(lim)] - fprime[idx(p[i])]);
       u32 j = i + 1;

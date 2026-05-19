@@ -18,7 +18,7 @@ class interp_newton {
  public:
   CEXP interp_newton& insert(cT_(T) x, cT_(T) y) NE {
     p.emplace_back(x, y);
-    const u32 n = (u32)p.size();
+    cu32 n = (u32)p.size();
     if (n == 1) b.push_back(1);
     else {
       u32 m = (u32)b.size();

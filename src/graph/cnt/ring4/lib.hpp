@@ -7,7 +7,7 @@ namespace tifa_libs {
 namespace ringcnt4_impl_ {
 template <graph_c G>
 CEXP u64 run(G CR dg, G CR dgv) NE {
-  const u32 n = dg.vsize();
+  cu32 n = dg.vsize();
   u64 ans = 0;
   vecuu cnt1(n), cnt2(n);
   flt_ (u32, u, 0, n) {
@@ -32,7 +32,7 @@ CEXP u64 run(G CR dg, G CR dgv) NE {
 //! should be simple undirected graph
 template <graph_c G>
 CEXP u64 ringcnt4(G CR g) NE {
-  const u32 n = g.vsize();
+  cu32 n = g.vsize();
   G dg(n), dgv(n);
   flt_ (u32, u, 0, n)
     for (auto v : g[u]) (std::make_pair(g[u].size(), u) < std::make_pair(g[(u32)v].size(), (u32)v) ? dg : dgv).add_arc(u, (u32)v);

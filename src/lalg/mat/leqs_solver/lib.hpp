@@ -11,10 +11,10 @@ requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
 CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0&& is0, Ge&& ge) NE {
-  const u32 r_ = A.row(), c_ = A.col();
+  cu32 r_ = A.row(), c_ = A.col();
   assert(b.col() == 1 && r_ == b.row());
   matrix<T> Ab = merge_lr_mat(A, b);
-  const u32 rk = (u32)abs(ge(Ab, false));
+  cu32 rk = (u32)abs(ge(Ab, false));
   std::optional<matrix<T>> ret;
   if (rk > c_) return ret;
   if (!is0(Ab(rk - 1, c_))) {
@@ -38,7 +38,7 @@ CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0&& is0, Ge&& ge) NE {
   matrix<T> sol(c_ - rk + 1, c_);
   {
     for (u32 y = rk - 1; ~y; --y) {
-      const u32 f = idxs[y];
+      cu32 f = idxs[y];
       sol(0, f) = Ab(y, c_);
       flt_ (u32, x, f + 1, c_) sol(0, f) -= Ab(y, x) * sol(0, x);
       sol(0, f) /= Ab(y, f);
@@ -46,7 +46,7 @@ CEXP auto leqs_solver(matrix<T> CR A, matrix<T> CR b, Is0&& is0, Ge&& ge) NE {
   }
   for (u32 s = 0, _ = 0; s < c_; ++s) {
     if (used[s]) continue;
-    const u32 rid = ++_;
+    cu32 rid = ++_;
     sol(rid, s) = 1;
     for (u32 y = rk - 1; ~y; --y) {
       u32 f = idxs[y];

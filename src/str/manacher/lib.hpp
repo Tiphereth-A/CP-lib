@@ -6,7 +6,7 @@ namespace tifa_libs {
 
 CEXP vecu manacher(strnv t) NE {
   strn s{'\001', '\002'};
-  for (char c : t) (s += c) += '\002';
+  for (cchr c : t) (s += c) += '\002';
   s += '\003';
   vecu p(s.size());
   for (u32 i = 1, j = 0; i + 1 < s.size(); ++i) {

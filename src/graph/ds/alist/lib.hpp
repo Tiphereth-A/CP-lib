@@ -16,8 +16,8 @@ class alist_tag : public graph_info_impl_::graph_tag_base<Info...> {
  public:
   CEXP void build() CNE {}
   CEXP void add_arc(u32 u, auto&&... args) NE { base_t::add_arc(u, std::forward<decltype(args)>(args)...), g[u].emplace_back(std::forward<decltype(args)>(args)...); }
-  CEXP u32 vsize() CNE { return (u32)g.size(); }
-  CEXP u32 deg_out(u32 u) CNE { return (u32)g[u].size(); }
+  ND CEXP u32 vsize() CNE { return (u32)g.size(); }
+  ND CEXP u32 deg_out(u32 u) CNE { return (u32)g[u].size(); }
 
   CEXP auto CR operator[](u32 u) CNE { return g[u]; }
   CEXP auto& operator[](u32 u) NE { return g[u]; }

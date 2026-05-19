@@ -65,7 +65,7 @@ struct bst_op : leaf {
   template <tp2_ds_c pointer, class K, class Alloc, class Comp>
   CEXP pointer insert(pointer& root, const K& data, Alloc& alloc, Comp compare) NE {
     pointer now = root, p = nullptr;
-    bool dir = 0;
+    bool dir = false;
     while (now)
       if (dir = compare((p = now)->data, data), now = now->ch[dir]; !dir && !compare(data, p->data)) {
         tag_t::modify_size(p, 1);
@@ -100,7 +100,7 @@ struct ostree_node_t<ost_impl_::bst_tag, K> {
   K data;
   u32 sz;
   // @return child direction of this non-root point
-  CEXP bool child_dir() CNE { return this == fa->ch[1]; }
+  ND CEXP bool child_dir() CNE { return this == fa->ch[1]; }
 };
 }  // namespace ostnode_impl_
 namespace ost_impl_ {
@@ -118,8 +118,8 @@ requires requires(ostree_node_t<tag_t, K>*& root, ostree_node_t<tag_t, K> n, tag
 struct ostree : tag_t {
   using node_t = ostree_node_t<tag_t, K>;
   using pointer = node_t*;
-  using const_pointer = const node_t*;
-  using pointer_const = node_t* const;
+  using const_pointer = node_t CP;
+  using pointer_const = node_t PC;
 
   static CEXP Comp compare{};
   pointer root{nullptr};
@@ -128,7 +128,7 @@ struct ostree : tag_t {
   ostree(ostree CR) = delete;
   ostree& operator=(ostree CR) = delete;
   CEXP ~ostree() NE { dealloc_subtree(root, alloc); }
-  CEXP u32 size() CNE { return tag_t::size(root); }
+  ND CEXP u32 size() CNE { return tag_t::size(root); }
 
   CEXP pointer lower_bound(const K& key) CNE {
     const_pointer now = root, ans = nullptr;

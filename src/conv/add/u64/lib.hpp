@@ -7,7 +7,7 @@ namespace tifa_libs {
 
 template <class T>
 vecuu conv_u64(vec<T> CR a, vec<T> CR b, u32 ans_size = 0) NE {
-  const u32 n = (u32)a.size(), m = (u32)b.size();
+  cu32 n = (u32)a.size(), m = (u32)b.size();
   if (!ans_size) ans_size = n + m - 1;
   retif_((a.empty() && b.empty()) [[unlikely]], {});
   if (min(n, m) < CONV_NAIVE_THRESHOLD) return conv_naive<T, u64>(a, b, ans_size);

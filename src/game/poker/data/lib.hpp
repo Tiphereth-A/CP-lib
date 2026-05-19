@@ -8,13 +8,13 @@ struct poker_card {
   static CEXP strn valid_rank = "23456789TJQKA";
   static CEXP strn valid_suit = "SHDC";
 
-  static CEXP u32 rank_value(char c) NE {
+  static CEXP u32 rank_value(chr c) NE {
     auto ret = valid_rank.find(c);
     assert(ret != strn::npos);
     return (u32)ret + 2;
   }
 
-  CEXP bool valid() CNE {
+  ND CEXP bool valid() CNE {
     retif_((rank < 1 || rank > 14), false);
     return valid_suit.find(suit) != strn::npos;
   }
@@ -24,13 +24,13 @@ struct poker_card {
   }
   friend CEXP bool operator==(poker_card l, poker_card r) NE { return std::is_eq(l <=> r); }
   friend auto& operator>>(tifa_libs::istream_c auto& is, poker_card& p) NE {
-    char c;
+    chr c;
     (is >> c >> p.suit), p.rank = rank_value(c), p.suit = toupper(p.suit);
     return is;
   }
 
   u32 rank;
-  char suit;
+  chr suit;
 };
 
 }  // namespace tifa_libs

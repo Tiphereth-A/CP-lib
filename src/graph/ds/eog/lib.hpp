@@ -14,8 +14,8 @@ class eog_tag : public graph_info_impl_::graph_tag_base<Info...> {
 
     iter_(vecp<ET, u32> CR e, u32 i) NE : e(e), i(i) {}
 
-    CEXP auto begin() CNE { return iter_{e, i}; }
-    CEXP auto end() CNE { return iter_{e, -1_u32}; }
+    ND CEXP auto begin() CNE { return iter_{e, i}; }
+    ND CEXP auto end() CNE { return iter_{e, -1_u32}; }
 
     CEXP auto operator*() CNE { return e[i].first; }
     CEXP iter_& operator++() NE {
@@ -26,11 +26,11 @@ class eog_tag : public graph_info_impl_::graph_tag_base<Info...> {
   };
 
   vecu head;
-  vecp<ET, u32> e;
+  vecp<ET, u32> e{};
 
  protected:
   using val_t = T;
-  CEXPE eog_tag(u32 n) NE : base_t(n), head(n, -1_u32), e{} {}
+  CEXPE eog_tag(u32 n) NE : base_t(n), head(n, -1_u32) {}
 
  public:
   CEXP void add_arc(u32 u, auto&&... args) NE {
@@ -38,7 +38,7 @@ class eog_tag : public graph_info_impl_::graph_tag_base<Info...> {
     e.emplace_back(ET(std::forward<decltype(args)>(args)...), head[u]);
     head[u] = u32(e.size() - 1);
   }
-  CEXP u32 vsize() CNE { return (u32)head.size(); }
+  ND CEXP u32 vsize() CNE { return (u32)head.size(); }
   CEXP void build() CNE {}
   CEXP void pop_startwith(u32 u) NE { base_t::del_arc(u, e[head[u]].first.to), head[u] = e[head[u]].second; }
 

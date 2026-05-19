@@ -11,9 +11,9 @@ class gint {
  public:
   CEXP gint(cT_(T) real = T{}, cT_(T) imag = T{}) NE : r_(real), i_(imag) {}
 
-  CEXP T CR real() CNE { return r_; }
-  CEXP T CR imag() CNE { return i_; }
-  CEXP T norm() CNE { return r_ * r_ - i_ * i_ * M; }
+  ND CEXP T CR real() CNE { return r_; }
+  ND CEXP T CR imag() CNE { return i_; }
+  ND CEXP T norm() CNE { return r_ * r_ - i_ * i_ * M; }
   CEXP T& real() NE { return r_; }
   CEXP T& imag() NE { return i_; }
   CEXP void real(cT_(T) x) NE { r_ = x; }

@@ -13,10 +13,10 @@ class ex_suffix_automaton {
   };
 
  public:
-  u32 sz;
+  u32 sz{1};
   vec<TIFA> st;
 
-  CEXP ex_suffix_automaton() NE : sz{1}, st(1) { st[0].len = 0, st[0].link = -1_u32; }
+  CEXP ex_suffix_automaton() NE : st(1) { st[0].len = 0, st[0].link = -1_u32; }
 
   CEXP u32 extend(u32 last, u32 c) NE {
     if (st[last].nex[c]) {

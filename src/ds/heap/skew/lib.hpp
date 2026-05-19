@@ -11,7 +11,7 @@ class skew_heap {
     T k, lz;
     u32 l, r, idx;
     TIFA() = default;
-    TIFA(cT_(T) key, u32 i = -1_u32) noexcept : k(key), lz(0), l{-1_u32}, r{-1_u32}, idx{i} {}
+    TIFA(cT_(T) key, u32 i = -1_u32) NE : k(key), lz(0), l{-1_u32}, r{-1_u32}, idx{i} {}
   };
 
   CEXP bool comp(u32 idxl, u32 idxr) CNE { return comp_(weight(idxl), weight(idxr)); }

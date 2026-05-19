@@ -10,9 +10,9 @@ namespace tifa_libs {
 //@return max total value while total weight <= W
 template <int_c T>
 CEXP T knapsack_mixed_huge(vec<pt3<T>> a, T W) NE {
-  const u32 n = (u32)a.size();
+  cu32 n = (u32)a.size();
   assert(n < 500);
-  const u32 lim = [k = max(n, 50_u32)] { return k * k * k + 1; }();
+  cu32 lim = [k = max(n, 50_u32)] { return k * k * k + 1; }();
   vec<T> dp(lim + 1, to_uint_t<T>(-1) / 2 - 1);
   dp[0] = 0;
   for (auto& [v, w, num] : a) {

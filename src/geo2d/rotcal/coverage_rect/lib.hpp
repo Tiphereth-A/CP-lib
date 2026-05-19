@@ -11,7 +11,7 @@ enum class CVHRECT : u8 { min_area, min_circum };
 // Coverage rectangle with min circum
 template <CVHRECT type, class FP>
 CEXP polygon<FP> coverage_rect(cT_(cvh<FP>) ch) NE {
-  const u32 n = ch.size();
+  cu32 n = ch.size();
   retif_((n == 0) [[unlikely]], ch);
   if (n == 1) return {{ch[0], ch[0], ch[0], ch[0]}};
   if (n == 2) return {{ch[0], ch[0], ch[1], ch[1]}};

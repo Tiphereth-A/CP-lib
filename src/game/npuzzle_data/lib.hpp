@@ -9,7 +9,7 @@ class npuzzle_data {
   static inline vecu fin_node, fin_pos;
   static inline vvecu costs;
 
-  u32 k, p0, cost_;
+  u32 k, p0{0}, cost_{0};
 
  public:
   static inline u32 limit = UINT32_MAX;
@@ -24,27 +24,27 @@ class npuzzle_data {
   vecu node;
   strn moves;
 
-  CEXPE npuzzle_data(u32 k) noexcept : k(k), p0(0), cost_(0), node(k * k), moves() { assert(k < 65535); }
+  CEXPE npuzzle_data(u32 k) NE : k(k), node(k * k), moves() { assert(k < 65535); }
 
-  CEXP auto CR cost() CNE { return cost_; }
-  CEXP bool solved() CNE { return node == fin_node; }
-  CEXP vec<npuzzle_data> next() CNE {
-    const char lst = moves.empty() ? ' ' : moves.back();
+  ND CEXP auto CR cost() CNE { return cost_; }
+  ND CEXP bool solved() CNE { return node == fin_node; }
+  ND CEXP vec<npuzzle_data> next() CNE {
+    cchr lst = moves.empty() ? ' ' : moves.back();
     strn nxts;
     if (p0 / k && lst != 'D') nxts += 'U';
     if (p0 / k != k - 1 && lst != 'U') nxts += 'D';
     if (p0 % k && lst != 'R') nxts += 'L';
     if (p0 % k != k - 1 && lst != 'L') nxts += 'R';
     vec<npuzzle_data> ans;
-    for (char d : nxts) {
+    for (cchr d : nxts) {
       auto nxt = *this;
       if (nxt.move(d); nxt.cost_ <= limit) ans.push_back(nxt);
     }
     return ans;
   }
-  CEXP void move(char dir) NE {
+  CEXP void move(chr dir) NE {
     moves.push_back(dir), ++cost_;
-    const u32 pre = p0;
+    cu32 pre = p0;
     switch (dir) {
       case 'U': p0 -= k; break;
       case 'D': p0 += k; break;

@@ -14,7 +14,7 @@ int main() {
     --u, --v;
     g.add_edge(u, v);
   }
-  e_bcc bcc(g);
+  const e_bcc bcc(g);
   std::cout << bcc.belongs.size() << '\n';
   for (auto&& b : bcc.belongs) {
     for (std::cout << b.size() << ' '; auto x : b)

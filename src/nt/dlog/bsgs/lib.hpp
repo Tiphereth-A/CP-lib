@@ -32,7 +32,7 @@ inline auto bsgs(u64 a, u64 b, u64 m) NE {
   u64 sqrt_m = isqrt(m), s = brt.reduce(b);
   if (sqrt_m * sqrt_m < m) ++sqrt_m;
   for (u64 i = 1; i <= sqrt_m; ++i, s = brt.reduce(s)) hmp[s] = i;
-  const u64 _ = qpow_mod(a, sqrt_m, m);
+  cu64 _ = qpow_mod(a, sqrt_m, m);
   s = _, brt.reset(m, _);
   for (u64 i = 1; i <= sqrt_m; ++i, s = brt.reduce(s))
     if (hmp[s] && i * sqrt_m >= hmp[s]) {

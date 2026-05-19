@@ -27,7 +27,7 @@ struct cvh : public polygon<FP> {
   template <bool strict = true>
   CEXP cvh& init() NE {
     this->reunique();
-    const u32 n = this->size();
+    cu32 n = this->size();
     retif_((n <= 2) [[unlikely]], *this);
     vec<point<FP>> cvh(n * 2);
     u32 m = 0;
@@ -57,7 +57,7 @@ struct cvh : public polygon<FP> {
   }
   template <bool get_index = false>
   CEXP auto diameter() CNE {
-    const u32 n = this->size();
+    cu32 n = this->size();
     if (n <= 1) return std::conditional_t<get_index, edge_t<FP>, FP>{};
     u32 is = 0, js = 0;
     flt_ (u32, k, 1, n)
@@ -74,7 +74,7 @@ struct cvh : public polygon<FP> {
     return ret;
   }
   CEXP cvh& do_minkowski_sum(cvh<FP> CR r) NE {
-    const u32 n = this->size(), m = r.size();
+    cu32 n = this->size(), m = r.size();
     retif_((!m) [[unlikely]], *this);
     retif_((!n) [[unlikely]], *this = r);
     vec<point<FP>> res{(*this)[0] + r[0]};
@@ -91,7 +91,7 @@ struct cvh : public polygon<FP> {
     return *this;
   }
   CEXP cvh& do_ins_CVHhP(line<FP> CR l) NE {
-    const u32 n = this->size();
+    cu32 n = this->size();
     vec<point<FP>> cvc;
     flt_ (u32, i, 0, n) {
       point p1 = (*this)[i], p2 = (*this)[this->next(i)];

@@ -16,7 +16,7 @@ class chordal {
   // @param g simple UNDIRECTED graph
   //! g[i] MUST be sorted
   CEXPE chordal(G CR g) NE : g(g), deg(g.vsize()), peo(g.vsize()), rnk(g.vsize()) {
-    const u32 n = g.vsize();
+    cu32 n = g.vsize();
     vecu l(n * 2 + 1), r, idx(n);
     std::iota(begin(l), end(l), 0), r = l;
     auto ins = [&](u32 i, u32 j) NE { r[l[i] = l[j]] = i, r[l[j] = i] = j; };
@@ -70,22 +70,22 @@ class chordal {
     else return true;
   }
   // @return {x}, which $\{x\}+N(x)$ be a maximal clique
-  CEXP vecu maximal_cliques() CNE {
+  ND CEXP vecu maximal_cliques() CNE {
     vecu fst(peo.size(), -1_u32), n(peo.size()), res;
-    for (u32 u : peo)
+    for (cu32 u : peo)
       for (auto v : g[u])
         if (rnk[u] < rnk[(u32)v])
           if (++n[u]; !~fst[u] || rnk[(u32)v] < rnk[fst[u]]) fst[u] = (u32)v;
-    for (vecb vis(peo.size()); u32 u : peo) {
+    for (vecb vis(peo.size()); cu32 u : peo) {
       if (vis[u]) continue;
       res.push_back(u), vis[fst[u]] = n[u] > n[fst[u]];
     }
     return res;
   }
-  CEXP u32 chromatic_number() CNE { return max(deg) + 1; }
-  CEXP vecu max_independent_set() CNE {
+  ND CEXP u32 chromatic_number() CNE { return max(deg) + 1; }
+  ND CEXP vecu max_independent_set() CNE {
     vecu res;
-    for (vecb vis(peo.size()); u32 u : peo) {
+    for (vecb vis(peo.size()); cu32 u : peo) {
       if (vis[u]) continue;
       for (res.push_back(u); u32 v : g[u]) vis[v] = true;
     }

@@ -5,6 +5,7 @@
 #include "lib.hpp"
 
 using namespace tifa_libs;
+namespace {
 vecu prandom(u32 m, u32 l) {
   rand_gen<u32> gen(0, m - 1);
   gen.seed(0);  // for local testing
@@ -12,13 +13,13 @@ vecu prandom(u32 m, u32 l) {
   flt_ (u32, i, 0, l) ret[i] = gen();
   return ret;
 }
-
+}  // namespace
 int main() {
   u32 n, m, k;
   std::cin >> n >> m >> k;
   vecu a(m);
   for (auto& i : a) std::cin >> i;
-  u32 l = n + k - 1;
+  cu32 l = n + k - 1;
   vecu ans = n <= 20 ? deBruijn(n, m, l) : prandom(m, l);
   flt_ (u32, i, 0, l) std::cout << a[ans[i]];
   std::cout << '\n';

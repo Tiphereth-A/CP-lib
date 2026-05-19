@@ -10,7 +10,7 @@ namespace tifa_libs {
 template <class T>
 inline vec<T> unordered_stl_hacker(usz n) NE {
   auto get_bucket_counts = [n]() NE {
-    vec<usz> ans;
+    vecz ans;
     std::unordered_set<int> s;
     rand_gen<int> gen;
     while (s.size() < n) {
@@ -20,7 +20,7 @@ inline vec<T> unordered_stl_hacker(usz n) NE {
     return ans;
   };
 
-  vec<usz> bc = get_bucket_counts();
+  vecz bc = get_bucket_counts();
 
   if CEXP (std::is_same_v<strn, T>) {
     // Edit these if need

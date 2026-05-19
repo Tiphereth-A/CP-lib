@@ -31,7 +31,7 @@ CEXP auto tsearch(I l, I r, F&& f) NE {
     } else if ((r - l) / max({l, r, (I)1}) < eps_v<I>) return std::make_pair(l, fl);
     if (fml < fmr) r = mr, fr = fmr, mr = ml, fmr = fml, fml = f(ml = l - mr + r);
     else l = ml, fl = fml, ml = mr, fml = fmr, fmr = f(mr = r - ml + l);
-  } while (1);
+  } while (true);
 }
 
 }  // namespace tifa_libs

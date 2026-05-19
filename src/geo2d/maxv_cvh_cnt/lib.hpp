@@ -7,7 +7,7 @@ namespace tifa_libs {
 // max number of vertices in vp which forms a convex hull
 template <class FP>
 CEXP u32 maxv_cvh_cnt(vec<point<FP>> CR vp) NE {
-  const u32 n = (u32)vp.size();
+  cu32 n = (u32)vp.size();
 
   struct TIFA {
     line<FP> ln;

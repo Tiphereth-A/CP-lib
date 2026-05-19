@@ -42,10 +42,10 @@ class blossom {
     else match(k, v), match(v, k);
   }
   bool augment(u32 s) NE {
-    assert(s), white[s] = 1, first[s] = 0, label[s] = {0, 0};
+    assert(s), white[s] = true, first[s] = 0, label[s] = {0, 0};
     std::queue<u32> q({s});
     while (!q.empty()) {
-      const u32 a = q.front();
+      cu32 a = q.front();
       for (q.pop(); auto b : g[a])
         if (assert(b); white[b]) {
           u32 x = gf(a), y = gf(b), lca = 0;

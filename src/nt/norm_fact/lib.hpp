@@ -11,8 +11,8 @@ CEXP gint<i128, -1> nfp(u64 p) NE {
   if (p % 4 == 3) return {-1, -1};
   if (p == 2) return {1, 1};
   i64 x = 1;
-  while (1)
-    if (u64 z = qpow_mod(u64(++x), (p - 1) / 4, p); mul_mod_u(z, z, p) == p - 1) {
+  while (true)
+    if (cu64 z = qpow_mod(u64(++x), (p - 1) / 4, p); mul_mod_u(z, z, p) == p - 1) {
       x = (i64)z;
       break;
     }
@@ -32,7 +32,7 @@ CEXP vec<gint<i128, -1>> nfpp(u64 p, u32 e) NE {
   using G = gint<i128, -1>;
   if (p % 4 == 3) return {e & 1 ? 0 : (i64)qpow(p, e / 2)};
   if (p == 2) return {qpow(G{1, 1}, e)};
-  G _ = nfp(p);
+  const G _ = nfp(p);
   vec<G> pows(e + 1), ret(e + 1);
   pows[0] = 1;
   flt_ (u32, i, 1, e + 1) pows[i] = pows[i - 1] * _;

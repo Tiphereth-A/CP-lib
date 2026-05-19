@@ -9,7 +9,7 @@ CEXP auto fact_mint(u64 n) NE {
   using mint = TPN poly::val_t;
   retif_((n <= 1) [[unlikely]], mint(1));
   if (n >= mint::mod()) return mint(0);
-  const u32 v = 1_u32 << ((std::bit_width(n - 1) + 1) / 2);
+  cu32 v = 1_u32 << ((std::bit_width(n - 1) + 1) / 2);
   const mint iv = mint(v).inv();
   poly g{1, v + 1};
   auto ifact = gen_ifact(v, mint::mod());

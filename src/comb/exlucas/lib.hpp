@@ -10,7 +10,7 @@ namespace tifa_libs {
 // Calculate $\binom{m}{n} \bmod p$, p can be ANY INTEGER
 class exlucas {
   struct TIFA {
-    const u32 p, q;
+    cu32 p, q;
     const bool no_proot;
     u64 m_;
     vecuu facp, ifacp;
@@ -31,14 +31,14 @@ class exlucas {
       u64 res = 1;
       while (m) {
         res = res * facp[(u64)m % m_] % m_ * ifacp[(u64)n % m_] % m_ * ifacp[(u64)r % m_] % m_, m /= p, n /= p, r /= p;
-        if (i32 eps = (i32)(m - n - r); (e0 += eps) >= (i32)q) return 0;
+        if (ci32 eps = (i32)(m - n - r); (e0 += eps) >= (i32)q) return 0;
         else if (++i >= q) eq += eps;
       }
-      const u64 _ = (!no_proot && (eq & 1) ? m_ - res : res) * qpow_mod(p, (u32)e0, m_) % m_;
+      cu64 _ = (!no_proot && (eq & 1) ? m_ - res : res) * qpow_mod(p, (u32)e0, m_) % m_;
       return _;
     }
   };
-  const u32 m_;
+  cu32 m_;
   vecuu ms;
   vec<TIFA> cs;
 

@@ -4,19 +4,18 @@
 
 namespace tifa_libs {
 
-template <char BGNCH = 'a', char ENDCH = 'z' + 1>
+template <chr BGNCH = 'a', chr ENDCH = 'z' + 1>
 class trie {
   struct TIFA {
-    u32 nxt[ENDCH - BGNCH];
-    bool end;
-    TIFA() noexcept : nxt{}, end{0} {}
+    arr<u32, ENDCH - BGNCH> nxt{};
+    bool end{false};
   };
 
   vec<TIFA> data;
-  u32 sz;
+  u32 sz{0};
 
  public:
-  CEXP trie() NE : data(1), sz{0} {}
+  CEXP trie() NE : data(1) {}
 
   CEXP void insert(strnv str) NE {
     u32 p = 0;
@@ -26,9 +25,9 @@ class trie {
     }
     sz += !data[p].end, data[p].end = true;
   }
-  CEXP u32 size() CNE { return sz; }
-  CEXP u32 node_size() CNE { return (u32)data.size(); }
-  CEXP bool query(strnv str) CNE {
+  ND CEXP u32 size() CNE { return sz; }
+  ND CEXP u32 node_size() CNE { return (u32)data.size(); }
+  ND CEXP bool query(strnv str) CNE {
     u32 p = 0;
     for (u32 i = 0, c; i < str.size(); ++i) {
       if (!data[p].nxt[c = str[i] - BGNCH]) return false;

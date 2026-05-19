@@ -10,7 +10,7 @@ requires requires(Is0 is0, T t) {
   { is0(t) } -> std::same_as<bool>;
 }
 CEXP vec<T> charpoly(matrix<T> mat, Is0&& is0) NE {
-  const u32 n = mat.row();
+  cu32 n = mat.row();
   assert(n == mat.col());
   uhb(mat, std::forward<Is0>(is0));
   vvec<T> p(n + 1);

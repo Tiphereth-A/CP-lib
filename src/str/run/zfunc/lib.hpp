@@ -15,7 +15,7 @@ CEXP vec<pt3u> run_zfunc(strnv s) NE {
     auto f = [&](bool rev) NE {
       strn t(s.substr(l, r - l));
       if (rev) reverse(t), m = l + r - m;
-      const u32 len = r - l, mid = m - l;
+      cu32 len = r - l, mid = m - l;
       strn tl = t.substr(0, mid), tr = t.substr(mid, len - mid) + t;
       reverse(tl);
       auto zl = z_func(tl), zr = z_func(tr);

@@ -50,7 +50,7 @@ CEXP vec<edge_t<T>> cle(u32 n, u32 root, vec<edge_t<T>> CR arcs) NE {
   vecu vis_e(arcs.size());
   vec<edge_t<T>> res;
   for (u32 _ = (u32)idxs.size(); _--;) {
-    const u32 i = idxs[_];
+    cu32 i = idxs[_];
     if (vis_e[i]) continue;
     auto [w, u, v] = arcs[i];
     res.push_back(arcs[i]);

@@ -12,8 +12,8 @@ class hlpp {
     T w, inv;
   };
   vecu h, gap;
-  const u32 n, s, t;
-  u32 level;
+  cu32 n, s, t;
+  u32 level{0};
   vvecu B;
 
   CEXP u32 select() NE {
@@ -25,10 +25,10 @@ class hlpp {
   vvec<TIFA> e;
   vec<T> exf;
 
-  CEXP hlpp(u32 n, u32 s, u32 t) NE : n{n}, s{s}, t{t}, level{0}, B(n), e(n), exf(n + 1) {}
+  CEXP hlpp(u32 n, u32 s, u32 t) NE : n{n}, s{s}, t{t}, B(n), e(n), exf(n + 1) {}
 
   CEXP pttu add(u32 u, u32 v, T w, T rw = 0) NE {
-    const u32 lstu = (u32)e[u].size(), lstv = (u32)e[v].size();
+    cu32 lstu = (u32)e[u].size(), lstv = (u32)e[v].size();
     e[u].push_back({v, w, lstv}), e[v].push_back({u, rw, lstu});
     return {u, e[u].size() - 1};
   }
@@ -54,7 +54,7 @@ class hlpp {
     h = vecu(n, inf), h[t] = 0;
     std::queue<u32> q({t});
     while (!q.empty()) {
-      u32 u = q.front();
+      cu32 u = q.front();
       for (q.pop(); auto [to, w, lstv] : e[u])
         if (e[to][lstv].w && h[to] > h[u] + 1) h[to] = h[u] + 1, q.push(to);
     }
@@ -65,9 +65,9 @@ class hlpp {
       if (!w || (init == false && h[u] != h[to] + 1) || h[to] == inf) continue;
       T k = init ? w : min(w, exf[u]);
       if (to != s && to != t && !exf[to]) B[h[to]].push_back(to), level = max(level, h[to]);
-      if (exf[u] -= k, exf[to] += k, w -= k, e[to][lstv].w += k; !exf[u]) return 0;
+      if (exf[u] -= k, exf[to] += k, w -= k, e[to][lstv].w += k; !exf[u]) return false;
     }
-    return 1;
+    return true;
   }
   CEXP void relabel(u32 u) NE {
     for (h[u] = inf; auto [to, w, _] : e[u])

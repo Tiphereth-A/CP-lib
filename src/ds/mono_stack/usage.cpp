@@ -4,8 +4,8 @@
 #include "lib.hpp"
 
 using namespace tifa_libs;
-vecu a;
 int main() {
+  static vecu a;
   std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   std::cin >> n;

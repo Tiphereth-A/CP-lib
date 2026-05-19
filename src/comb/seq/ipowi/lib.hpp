@@ -12,13 +12,13 @@ struct ls_ipowi {
   vecuu ipowi;
 
  protected:
-  const u32 B;
+  cu32 B;
   vvecuu fp, fpb;
-  u32 pre_j, gap;
-  u64 now_r;
+  u32 pre_j{0}, gap{0};
+  u64 now_r{1};
   arr<u64, 355> p{1};  // maximal prime gaps: g_n=354 => p_n=4,302,407,359
 
-  CEXPE ls_ipowi(u32 n) NE : ipowi(n), B{isqrt(n)}, fp(B + 1, vecuu(B + 1)), fpb(B + 1, vecuu(B + 1)), pre_j{0}, gap{0}, now_r{1} {
+  CEXPE ls_ipowi(u32 n) NE : ipowi(n), B{isqrt(n)}, fp(B + 1, vecuu(B + 1)), fpb(B + 1, vecuu(B + 1)) {
     if (n) ipowi[0] = 1;
     if (n > 1) ipowi[1] = 1;
   }
@@ -36,8 +36,8 @@ struct ls_ipowi {
   }
   void coprime(u32 i, u32 j) NE {
     if (j <= pre_j) now_r = 1, pre_j = gap = 0;
-    barrett<0> brt(mod, ipowi[i]);
-    if (u32 new_gap = j - pre_j; new_gap > gap) {
+    const barrett<0> brt(mod, ipowi[i]);
+    if (cu32 new_gap = j - pre_j; new_gap > gap) {
       flt_ (u32, x, gap + 1, new_gap + 1) p[x] = brt.reduce(p[x - 1]);
       gap = new_gap;
     }

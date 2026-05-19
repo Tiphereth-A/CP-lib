@@ -16,10 +16,10 @@ struct ntt {
  private:
   static inline arr<mint, R + 1> root, iroot, inv2;
   static inline arr<mint, R - 1> rate, irate;
-  u32 sz;
+  u32 sz{};
 
  public:
-  CEXPE ntt() NE : sz{} {
+  CEXPE ntt() NE {
     if (inv2[0].val()) return;
     root[R] = qpow(G, mint::mod() >> R), iroot[R] = root[R].inv();
     for (u32 i = R - 1; ~i; --i) {
@@ -37,21 +37,21 @@ struct ntt {
     flt_ (u32, i, 0, R) inv2[i + 1] = inv2[i] * i2;
   }
 
-  CEXP u32 size() CNE { return sz; }
+  ND CEXP u32 size() CNE { return sz; }
   CEXP void bzr(u32 len = max_size) NE {
-    const u32 n = std::bit_ceil(len);
+    cu32 n = std::bit_ceil(len);
     assert(n <= max_size), sz = n;
   }
   CEXP void dif(vec<mint>& f, u32 n = 0) CNE {
     if (assert(size()); !n) n = size();
     if (f.size() < n) f.resize(n);
     assert(std::has_single_bit(n) && n <= size());
-    const u32 l = (u32)std::countr_zero(n);
+    cu32 l = (u32)std::countr_zero(n);
     flt_ (u32, i, 0, l) {
-      const u32 w = 1 << (l - 1 - i), b = 1 << i;
+      cu32 w = 1 << (l - 1 - i), b = 1 << i;
       mint z = 1;
       flt_ (u32, j, 0, b) {
-        const u32 o = j << (l - i);
+        cu32 o = j << (l - i);
         flt_ (u32, k, 0, w) {
           mint x = f[o + k], y = f[o + k + w] * z;
           f[o + k] = x + y, f[o + k + w] = x - y;
@@ -65,12 +65,12 @@ struct ntt {
     if (!n) n = size();
     if (f.size() < n) f.resize(n);
     assert(std::has_single_bit(n) && n <= size());
-    const u32 l = (u32)std::countr_zero(n);
+    cu32 l = (u32)std::countr_zero(n);
     for (u32 i = l - 1; ~i; --i) {
-      const u32 w = 1 << (l - 1 - i), b = 1 << i;
+      cu32 w = 1 << (l - 1 - i), b = 1 << i;
       mint z = 1;
       flt_ (u32, j, 0, b) {
-        const u32 o = j << (l - i);
+        cu32 o = j << (l - i);
         flt_ (u32, k, 0, w) {
           mint x = f[o + k], y = f[o + k + w];
           f[o + k] = x + y, f[o + k + w] = (x - y) * z;

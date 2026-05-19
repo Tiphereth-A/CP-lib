@@ -6,10 +6,10 @@
 namespace tifa_libs {
 
 CEXP vecu prime_seq(u32 n) NE {
-  vecb sieve(n / 3 + 1, 1);
+  vecb sieve(n / 3 + 1, true);
   for (u32 p = 5, d = 4, i = 1, sqn = isqrt(n); p <= sqn; p += d = 6 - d, ++i) {
     if (!sieve[i]) continue;
-    for (u64 q = p * p / 3, r = d * p / 3 + (d * p % 3 == 2), s = 2 * p, qe = sieve.size(); q < qe; q += r = s - r) sieve[q] = 0;
+    for (u64 q = p * p / 3, r = d * p / 3 + (d * p % 3 == 2), s = 2 * p, qe = sieve.size(); q < qe; q += r = s - r) sieve[q] = false;
   }
   vecu ret{2, 3};
   for (u32 p = 5, d = 4, i = 1; p <= n; p += d = 6 - d, ++i)

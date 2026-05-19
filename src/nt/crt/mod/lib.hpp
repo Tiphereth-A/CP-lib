@@ -6,11 +6,11 @@
 namespace tifa_libs {
 
 template <uint_c T = u64>
-CEXP auto crt_mod(vec<T> CR r, vec<T> m, u64 const mod) NE {
+CEXP auto crt_mod(vec<T> CR r, vec<T> m, cu64 mod) NE {
   static_assert(sizeof(T) >= 8);
   using S = to_sint_t<T>;
   std::optional<ptt<T>> ret;
-  const u32 l = (u32)m.size();
+  cu32 l = (u32)m.size();
   assert(r.size() == l);
   m.push_back(mod);
   vec<T> p(l + 1, 1), x(l + 1);

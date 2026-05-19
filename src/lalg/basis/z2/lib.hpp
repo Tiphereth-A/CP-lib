@@ -12,13 +12,13 @@ struct basis_z2 {
   CEXP basis_z2() NE : basis(N) {}
 
   CEXP bool insert(std::bitset<N> x) NE {
-    bool status = 0;
+    bool status = false;
     if CEXP (greedy_insert) {  // greedy
       for (u32 i = N - 1; ~i; --i)
         if (x[i]) {
           if (basis[i].none()) basis[i] = x;
           if ((x ^= basis[i]).none()) {
-            status = 1;
+            status = true;
             break;
           }
         }
@@ -31,7 +31,7 @@ struct basis_z2 {
               if (x[j]) x ^= basis[j];
             flt_ (u32, j, i + 1, (u32)basis.size())
               if (basis[j][i]) basis[j] ^= x;
-            basis[i] = x, status = 1;
+            basis[i] = x, status = true;
             break;
           }
         }
@@ -42,9 +42,9 @@ struct basis_z2 {
     for (u32 i = N - 1; ~i; --i) {
       if (!(x[i])) continue;
       if (basis[i][i]) x ^= basis[i];
-      else return 0;
+      else return false;
     }
-    return 1;
+    return true;
   }
   CEXP u32 rank() CNE {
     u32 res = 0;

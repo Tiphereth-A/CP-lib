@@ -7,23 +7,23 @@ namespace tifa_libs {
 template <class T = i32, bool persistent = false>
 struct trie01 {
   struct TIFA {
-    u32 nxt[2];
+    u32 nxt[2]{0, 0};
     T val;
     vecu idxs;
-    TIFA() noexcept : nxt{0, 0}, val(0), idxs() {}
+    TIFA() NE : val(0), idxs() {}
   };
 
-  const i32 MAX_DEP;
+  ci32 MAX_DEP;
   vec<TIFA> data;
-  u32 root;
+  u32 root{1};
 
-  CEXPE trie01(i32 max_depth = 32) NE : MAX_DEP(max_depth), data(2), root(1) {
+  CEXPE trie01(i32 max_depth = 32) NE : MAX_DEP(max_depth), data(2) {
     assert(max_depth > 0);
     data.reserve(1_u64 << (max_depth / 2));
   }
 
   CEXP void add(u64 bit, T val = 1, int idx = -1, u64 xv = 0) NE { root = add_(root, bit, idx, MAX_DEP, val, xv); }
-  CEXP u32 find(u64 bit, u64 xv = 0) CNE { return find_(root, bit, MAX_DEP, xv); }
+  ND CEXP u32 find(u64 bit, u64 xv = 0) CNE { return find_(root, bit, MAX_DEP, xv); }
   CEXP auto kth_element(T k, u64 xv = 0) CNE {
     assert(0 <= k && k < data[root].val);
     return kth_(root, k, MAX_DEP, xv);
@@ -43,7 +43,7 @@ struct trie01 {
     }
     return t;
   }
-  CEXP u32 find_(u32 t, u64 bit, int dep, u64 xv) CNE {
+  ND CEXP u32 find_(u32 t, u64 bit, int dep, u64 xv) CNE {
     if (!~dep) return t;
     const auto to = data[t].nxt[(xv ^ bit) >> dep & 1];
     retif_((to), find_(to, bit, dep - 1, xv), 0);

@@ -36,10 +36,10 @@ struct poly : vec<TPN ccore::val_t> {
     flt_ (u32, i, 1, (u32)poly.size()) os << poly[i - 1] << ' ';
     return os << poly.back();
   }
-  CEXP bool is_zero() CNE {
+  ND CEXP bool is_zero() CNE {
     for (auto&& i : *this)
-      if (i != 0) return 0;
-    return 1;
+      if (i != 0) return false;
+    return true;
   }
   CEXP val_t operator()(val_t x) CNE {
     val_t ans = 0;

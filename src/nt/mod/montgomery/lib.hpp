@@ -29,12 +29,12 @@ struct montgomery<0> {
     u32 t = 2, iv = MOD_ODD * (t - MOD_ODD * MOD_ODD);
     iv *= t - MOD_ODD * iv, iv *= t - MOD_ODD * iv, R = iv * (MOD_ODD * iv - t), R2 = u32(-u64(MOD_ODD) % MOD_ODD);
   }
-  CEXP u32 norm(i32 x) CNE { return u32(x + (-(x < 0) & (i32)MOD)); }
-  CEXP u32 reduce(u64 x) CNE {
-    u32 t = u32((x + u64((u32)x * R) * MOD_ODD) >> 32);
+  ND CEXP u32 norm(i32 x) CNE { return u32(x + (-(x < 0) & (i32)MOD)); }
+  ND CEXP u32 reduce(u64 x) CNE {
+    cu32 t = u32((x + u64((u32)x * R) * MOD_ODD) >> 32);
     return t - (MOD_ODD & -((MOD_ODD - 1 - t) >> 31));
   }
-  CEXP u32 tsf(u32 x) CNE { retif_((!OFFSET) [[likely]], reduce(u64(x) * R2), reduce(u64(x % MOD_ODD) * R2) << OFFSET | (x & MASK)); }
+  ND CEXP u32 tsf(u32 x) CNE { retif_((!OFFSET) [[likely]], reduce(u64(x) * R2), reduce(u64(x % MOD_ODD) * R2) << OFFSET | (x & MASK)); }
 };
 
 }  // namespace tifa_libs

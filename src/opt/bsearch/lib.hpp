@@ -12,7 +12,7 @@ CEXP u32 bsearch(F&& pred) NE {
   u32 ok = 0, ng = 1;
   while (pred(ng)) ng *= 2;
   while (abs(i32(ok - ng)) > 1) {
-    const u32 mid = ok + (ng - ok) / 2;
+    cu32 mid = ok + (ng - ok) / 2;
     (pred(mid) ? ok : ng) = mid;
   }
   return ok;

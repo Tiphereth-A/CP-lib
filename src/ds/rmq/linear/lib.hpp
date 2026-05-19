@@ -7,11 +7,11 @@ namespace tifa_libs {
 
 template <class T, class F>
 class rmq_linear {
-  F cmp;  // std::less<> -> min, std::greater<> -> max
+  F cmp{};  // std::less<> -> min, std::greater<> -> max
   u32 n;
   vec<T> a;
   vecu in, asc, head;
-  CEXP u32 idx(u32 l, u32 r) CNE {
+  ND CEXP u32 idx(u32 l, u32 r) CNE {
     if (u32 j = in[l] ^ in[r]) {
       if (j = asc[l] & asc[r] & -std::bit_floor(j); auto k = std::bit_floor(asc[l] ^ j)) l = head[(in[l] & -k) | k];
       if (auto k = std::bit_floor(asc[r] ^ j)) r = head[(in[r] & -k) | k];
@@ -20,7 +20,7 @@ class rmq_linear {
   }
 
  public:
-  CEXP rmq_linear(spn<T> a) NE : cmp{}, n{(u32)a.size()}, a{a.begin(), a.end()}, in(n), asc(n), head(n + 1) {
+  CEXP rmq_linear(spn<T> a) NE : n{(u32)a.size()}, a{a.begin(), a.end()}, in(n), asc(n), head(n + 1) {
     vecu st{-1_u32};
     flt_ (u32, i, 0, n + 1) {
       u32 prev = 0;

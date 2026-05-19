@@ -12,7 +12,7 @@ class trygub_num {
   void add(i64 x, int y) NE {
     d[y] += x;
     auto it = d.find(y);
-    while (1) {
+    while (true) {
       i64 t = it->second / B;
       if (!t) break;
       it->second %= B, d.insert(it, {++y, 0});

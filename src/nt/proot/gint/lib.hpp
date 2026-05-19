@@ -14,13 +14,13 @@ gint<mint, M> proot_gint() NE {
   if (m == 999292927) return {1, 8};
   if (m == 1000000007) return {1, 4};
   gint_t r = {1, 1};
-  const u64 ord = (((m + 1) & 3) ? (u64)m : (u64)m * m) - 1;
+  cu64 ord = (((m + 1) & 3) ? (u64)m : (u64)m * m) - 1;
   auto pf = pfactors(ord);
   while (true) {
-    bool ok = 1;
-    for (u64 q : pf)
+    bool ok = true;
+    for (cu64 q : pf)
       if (qpow(r, ord / q) == gint_t{1}) {
-        ok = 0;
+        ok = false;
         break;
       }
     if (ok) break;

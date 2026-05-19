@@ -9,7 +9,7 @@ int main() {
   u32 n, m;
   std::cin.get(), std::cin >> n >> m;
   fenwick2d_rr<i32> tr(n + 1, m + 1);
-  char op;
+  chr op;
   for (i32 l1, r1, l2, r2, d; std::cin >> op >> l1 >> r1 >> l2 >> r2;) {
     if (op == 'L') std::cin >> d, tr.add(l1, r1, l2 + 1, r2 + 1, d);
     else std::cout << tr.sum(l1 - 1, r1 - 1, l2, r2) << '\n';

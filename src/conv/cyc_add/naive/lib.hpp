@@ -9,7 +9,7 @@ requires(sizeof(U) <= sizeof(T))
 CEXP vec<T> convcyc_naive(vec<U> CR l, vec<U> CR r) NE {
   retif_((l.empty() || r.empty()) [[unlikely]], {});
   assert(l.size() == r.size());
-  const u32 n = (u32)l.size();
+  cu32 n = (u32)l.size();
   vec<T> ans(n);
   flt_ (u32, i, 0, n) {
     flt_ (u32, j, 0, n - i) ans[i + j] += (T)l[i] * (T)r[j];

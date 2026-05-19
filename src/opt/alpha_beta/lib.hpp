@@ -6,16 +6,16 @@
 namespace tifa_libs {
 
 template <arithm_c T>
-CEXP T alpha_beta(tree CR tr, vec<T> CR v_weight) NE {
-  auto dfs = [&](auto&& dfs, u32 u, T a, T b, bool is_max = 1) NE -> T {
-    if (tr.g[u].empty()) return v_weight[u];
+CEXP T alpha_beta(tree_c auto CR tr, vec<T> CR v_weight) NE {
+  auto dfs = [&](auto&& dfs, u32 u, T a, T b, bool is_max = true) NE -> T {
+    if (tr[u].empty()) return v_weight[u];
     if (is_max) {
-      for (auto d : tr.g)
-        if ((a = max(a, dfs(dfs, d, a, b, !is_max))) >= b) break;
+      flt_ (u32, i, 0, tr.vsize())
+        if ((a = max(a, dfs(dfs, i, a, b, !is_max))) >= b) break;
       return a;
     } else {
-      for (auto d : tr.g)
-        if ((b = min(b, dfs(dfs, d, a, b, !is_max))) <= a) break;
+      flt_ (u32, i, 0, tr.vsize())
+        if ((b = min(b, dfs(dfs, i, a, b, !is_max))) <= a) break;
       return b;
     }
   };

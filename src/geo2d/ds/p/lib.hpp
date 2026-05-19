@@ -82,7 +82,7 @@ struct point {
   // 4 3 2
   // 5 0 1
   // 6 7 8
-  CEXP u32 quad() CNE { return QUAD__[(sgn(y) + 1) * 3 + sgn(x) + 1]; }
+  ND CEXP u32 quad() CNE { return QUAD__[(sgn(y) + 1) * 3 + sgn(x) + 1]; }
   CEXP int toleft(point CR p) CNE { return sgn(*this ^ p); }
   CEXP point& do_rot(FP theta) NE {
     const FP x0 = x, y0 = y, ct = std::cos(theta), st = std::sin(theta);

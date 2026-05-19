@@ -34,15 +34,15 @@ CEXP bool any_ins_Ss(vec<line<FP>> CR ss) NE {
   for (auto CR[x, o, seg] : seq) {
     x_now = x;
     if (auto it = s.lower_bound(seg); !o) {
-      if (it != end(s) && is_ins_SL(seg, *it)) return 1;
-      if (it != begin(s) && is_ins_SL(seg, *prev(it))) return 1;
+      if (it != end(s) && is_ins_SL(seg, *it)) return true;
+      if (it != begin(s) && is_ins_SL(seg, *prev(it))) return true;
       s.insert(seg);
     } else {
-      if (next(it) != end(s) && it != begin(s) && is_ins_LL(*prev(it), *next(it))) return 1;
+      if (next(it) != end(s) && it != begin(s) && is_ins_LL(*prev(it), *next(it))) return true;
       s.erase(it);
     }
   }
-  return 0;
+  return false;
 }
 
 }  // namespace tifa_libs

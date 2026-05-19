@@ -25,7 +25,7 @@ struct polygon {
     for (auto it = begin(p.vs); it != end(p.vs) - 1; ++it) os << *it << ' ';
     return os << p.vs.back();
   }
-  CEXP u32 size() CNE { return (u32)vs.size(); }
+  ND CEXP u32 size() CNE { return (u32)vs.size(); }
   CEXP point<FP>& operator[](u32 x) NE { return vs[x]; }
   CEXP point<FP> CR operator[](u32 x) CNE { return vs[x]; }
   CEXP polygon& resort() NE {
@@ -41,8 +41,8 @@ struct polygon {
     return --it;
   }
   CEXP auto next(TPN vec<point<FP>>::const_iterator it) CNE { retif_((++it == end(vs)) [[unlikely]], begin(vs), it); }
-  CEXP u32 prev(u32 idx) CNE { retif_((idx == 0) [[unlikely]], size() - 1, idx - 1); }
-  CEXP u32 next(u32 idx) CNE { retif_((idx + 1 == size()) [[unlikely]], 0, idx + 1); }
+  ND CEXP u32 prev(u32 idx) CNE { retif_((idx == 0) [[unlikely]], size() - 1, idx - 1); }
+  ND CEXP u32 next(u32 idx) CNE { retif_((idx + 1 == size()) [[unlikely]], 0, idx + 1); }
   CEXP FP circum() CNE {
     kahan<FP> ret = dist_PP(vs.back(), vs.front());
     flt_ (u32, i, 0, size() - 1) ret += dist_PP(vs[i], vs[i + 1]);
@@ -58,9 +58,9 @@ struct polygon {
     static_assert(std::floating_point<FP>);
     return area2() * (FP).5;
   }
-  CEXP bool is_convex() CNE {
+  ND CEXP bool is_convex() CNE {
     bool flag[2] = {false, false};
-    const u32 n = size();
+    cu32 n = size();
     retif_((n < 3) [[unlikely]], true);
     for (u32 i = 0, j = next(i), k = next(j); i < n; ++i, j = next(j), k = next(k)) {
       if (auto sgn = sgn_cross(vs[i], vs[j], vs[k]); sgn) flag[(sgn + 1) / 2] = true;

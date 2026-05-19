@@ -40,10 +40,10 @@ class amat_tag : public graph_info_impl_::graph_tag_base<Info...> {
  public:
   CEXP void build() CNE {}
   CEXP void add_arc(u32 u, u32 v, cT_(ET) w = 1) NE { g[u * n_ + v] = w, base_t::add_arc(u, v); }
-  CEXP u32 vsize() CNE { return n_; }
+  ND CEXP u32 vsize() CNE { return n_; }
 
   CEXP auto CR operator[](u32 u) CNE { return iter_{g.begin() + u * n_, g.begin() + (u + 1) * n_}; }
-  CEXP auto val(u32 u, u32 v) CNE { return g[u * n_ + v]; }
+  ND CEXP auto val(u32 u, u32 v) CNE { return g[u * n_ + v]; }
   CEXP void set_val(u32 u, u32 v, cT_(ET) w) NE { g[u * n_ + v] = w; }
 };
 }  // namespace amat_impl_

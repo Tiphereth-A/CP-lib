@@ -6,7 +6,7 @@ namespace tifa_libs {
 
 template <class T>
 CEXP vec<T> berlekamp_massey(vec<T> CR a) NE {
-  const u32 n = (u32)a.size();
+  cu32 n = (u32)a.size();
   vec<T> b{1}, c{1};
   b.reserve(n + 1), c.reserve(n + 1);
   T y = 1;

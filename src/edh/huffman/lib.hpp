@@ -11,7 +11,7 @@ class huffman {
     vecu ch;
     CEXP TIFA(T weight = T{}, u32 child_cnt = 0) NE : weight(weight), ch(child_cnt) {}
   };
-  u32 cnt_w, cnt_l, ch_sz;
+  u32 cnt_w, cnt_l{}, ch_sz;
   vec<TIFA> data;
 
   template <class Res, class Op>
@@ -33,7 +33,7 @@ class huffman {
   }
 
  public:
-  CEXPE huffman(vec<T> CR weights, u32 child_sz = 2_u32) NE : cnt_w((u32)weights.size()), cnt_l(), ch_sz(child_sz), data() {
+  CEXPE huffman(vec<T> CR weights, u32 child_sz = 2_u32) NE : cnt_w((u32)weights.size()), ch_sz{child_sz}, data() {
     assert(1 < child_sz && child_sz < weights.size());
     for (T now : weights) data.emplace_back(now);
     flt_ (u32, i, 0, ((ch_sz - 1) - ((cnt_w - 1) % (ch_sz - 1))) % (ch_sz - 1)) data.emplace_back();
@@ -50,14 +50,14 @@ class huffman {
     }
   }
 
-  CEXP vec<strn> encode(strnv char_set = "01") CNE {
+  ND CEXP vec<strn> encode(strnv char_set = "01") CNE {
     assert(char_set.size() == ch_sz);
     return run<strn>([&](strn pre_code, u32 idx) NE {
       pre_code += char_set[idx];
       return pre_code;
     });
   }
-  CEXP vecu depths() CNE {
+  ND CEXP vecu depths() CNE {
     return run<u32>([](u32 pre_depth, u32) NE { return pre_depth + 1; });
   }
 };

@@ -16,11 +16,11 @@ CEXP auto mpe_fps(poly_t f, poly_t a) NE {
         t[k] = poly_t{1, -a[l]};
         return;
       }
-      const u32 m = l + (r - l) / 2;
+      cu32 m = l + (r - l) / 2;
       init_(a, k * 2, l, m), init_(a, k * 2 + 1, m + 1, r), t[k] = t[k * 2] * t[k * 2 + 1];
     }
     static CEXP poly_t mult(cT_(poly_t) f, poly_t g) NE {
-      const u32 m = (u32)g.size();
+      cu32 m = (u32)g.size();
       g.reverse(), g.conv(f);
       g = shr_fps(g, m - 1);
       g.resize(f.size());
@@ -29,7 +29,7 @@ CEXP auto mpe_fps(poly_t f, poly_t a) NE {
     CEXP void calc_(poly_t f, poly_t& res, u32 k, u32 l, u32 r) CNE {
       f.resize(r - l + 1);
       if (l == r) return void(res[l] = f[0]);
-      const u32 m = l + (r - l) / 2;
+      cu32 m = l + (r - l) / 2;
       calc_(mult(f, t[k * 2 + 1]), res, k * 2, l, m), calc_(mult(f, t[k * 2]), res, k * 2 + 1, m + 1, r);
     }
 
@@ -42,7 +42,7 @@ CEXP auto mpe_fps(poly_t f, poly_t a) NE {
     }
   };
 
-  const u32 n = (u32)f.size(), m = (u32)a.size();
+  cu32 n = (u32)f.size(), m = (u32)a.size();
   f.resize(max(n, m)), a.resize(max(n, m));
   auto _ = SegTree(a)(f);
   return _.pre(m);

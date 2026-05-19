@@ -11,7 +11,7 @@ requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
 CEXP matrix<T> adj_mat(matrix<T> mat, Is0&& is0, Ge&& ge) NE {
-  const u32 n = mat.row();
+  cu32 n = mat.row();
   assert(n == mat.col());
   rand_gen<u64> gen;
   matrix<T> m2(n + 1, n + 1);

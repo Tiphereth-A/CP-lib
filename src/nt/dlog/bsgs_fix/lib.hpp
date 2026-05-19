@@ -12,14 +12,14 @@ class bsgs_fix {
 
  public:
   void init(u32 g, u64 p) NE {
-    const u32 L = isqrt(this->p = p) + 1, B = isqrt(p * L * 2 / ((u64)std::bit_width(p) * 3));
+    cu32 L = isqrt(this->p = p) + 1, B = isqrt(p * L * 2 / ((u64)std::bit_width(p) * 3));
     hmap<u64, u64> hmp;
     u64 s = 1;
     flt_ (u32, i, 0, B) {
       if (hmp.find(s) != hmp.end()) break;
       hmp[s] = i, s = mul_mod_u(s, g, p);
     }
-    const u64 inv = qpow_mod(g, p - 1 - B, p);
+    cu64 inv = qpow_mod(g, p - 1 - B, p);
     auto calc = [&](u32 x) -> u64 {
       u64 s = x;
       flt_ (u32, i, 0, u32(p / B + 1)) {

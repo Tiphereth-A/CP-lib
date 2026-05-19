@@ -15,14 +15,14 @@ class aho_corasick {
 
  public:
   vec<TIFA> t;
-  u32 sz;
+  u32 sz{1};
 
-  CEXP aho_corasick() NE : t(1), sz{1} {}
+  CEXP aho_corasick() NE : t(1) {}
 
   CEXP void insert(strnv s, u32 id = -1u) NE {
     u32 u = 0;
     for (++t[u].tot; auto c : s) {
-      u32 a = u32(c) - BASE;
+      cu32 a = u32(c) - BASE;
       if (!t[u].nex[a]) t[u].nex[a] = sz++, t.push_back(TIFA());
       u = t[u].nex[a], ++t[u].tot;
     }
@@ -33,7 +33,7 @@ class aho_corasick {
     flt_ (u32, i, 0, SZ)
       if (t[0].nex[i]) q.push(t[0].nex[i]);
     while (!q.empty()) {
-      const u32 u = q.front();
+      cu32 u = q.front();
       q.pop();
       flt_ (u32, i, 0, SZ)
         if (t[u].nex[i]) t[t[u].nex[i]].fail = t[t[u].fail].nex[i], q.push(t[u].nex[i]);

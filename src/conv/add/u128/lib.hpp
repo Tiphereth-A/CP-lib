@@ -24,14 +24,14 @@ vec<u128> conv_u128(vec<T> CR l, vec<T> CR r, u32 ans_size = 0) NE {
   static ntt<mint0> ntt0;
   static ntt<mint1> ntt1;
   static ntt<mint2> ntt2;
-  const vec<mint0> d0 = conv_dft_um<ntt<mint0>, mint0>(ntt0, l, r, ans_size);
-  const vec<mint1> d1 = conv_dft_um<ntt<mint1>, mint1>(ntt1, l, r, ans_size);
-  const vec<mint2> d2 = conv_dft_um<ntt<mint2>, mint2>(ntt2, l, r, ans_size);
+  cvec<mint0> d0 = conv_dft_um<ntt<mint0>, mint0>(ntt0, l, r, ans_size);
+  cvec<mint1> d1 = conv_dft_um<ntt<mint1>, mint1>(ntt1, l, r, ans_size);
+  cvec<mint2> d2 = conv_dft_um<ntt<mint2>, mint2>(ntt2, l, r, ans_size);
   vec<u128> ret(ans_size);
   flt_ (u32, i, 0, ans_size) {
-    const u64 n1 = d1[i].val(), n2 = d2[i].val(),
+    cu64 n1 = d1[i].val(), n2 = d2[i].val(),
               a = d0[i].val(), b = (n1 + m1 - a) * r01 % m1;
-    const u128 c = ((n2 + m2 - a) * r02r12 + (m2 - b) * r12) % m2;
+    cu128 c = ((n2 + m2 - a) * r02r12 + (m2 - b) * r12) % m2;
     ret[i] = a + b * w1 + c * w2;
   }
   return ret;

@@ -7,7 +7,7 @@ namespace tifa_libs {
 //@return ans[i][j] = lev(a[0..i), b[0..j))
 template <common_range T>
 CEXP vvecu lev_dis(T CR a, T CR b) NE {
-  const u32 n = (u32)a.size(), m = (u32)b.size();
+  cu32 n = (u32)a.size(), m = (u32)b.size();
   vvecu ans(n + 1, vecu(m + 1));
   flt_ (u32, i, 0, n + 1) ans[i][0] = i;
   flt_ (u32, i, 0, m + 1) ans[0][i] = i;

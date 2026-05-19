@@ -6,7 +6,7 @@ namespace tifa_libs {
 
 template <class T>
 CEXP void zt_divisor(vec<T>& a, spnu pf) NE {
-  for (u32 p : pf)
+  for (cu32 p : pf)
     for (u64 k = 1; k * p < a.size(); ++k) a[k * p] += a[k];
 }
 template <class T>

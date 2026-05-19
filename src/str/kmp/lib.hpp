@@ -6,7 +6,7 @@ namespace tifa_libs {
 
 // @return nxt of pattern
 inline veci kmp_nxt(strnv pattern) NE {
-  i32 n = (i32)pattern.size();
+  ci32 n = (i32)pattern.size();
   veci nxt((u32)n);
   i32 i, j;
 #pragma GCC diagnostic ignored "-Wsign-conversion"

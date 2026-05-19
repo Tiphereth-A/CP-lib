@@ -14,7 +14,7 @@ CEXP auto exp_fpssp(poly_t CR p, vec<T> CR inv, u32 n = 0) NE {
   g[0] = 1;
   flt_ (u32, k, 0, n - 1) {
     for (auto& [j, pj] : ps) {
-      const u32 i = j - 1;
+      cu32 i = j - 1;
       if (k < i) break;
       g[k + 1] += pj * g[k - i] * j;
     }

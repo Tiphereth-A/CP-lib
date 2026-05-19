@@ -8,7 +8,7 @@ namespace tifa_libs {
 
 template <bool get_edges, wgraph_c G, class T = TPN G::Et>
 auto steiner_tree(G CR g, spnu x, vec<T> CR vw = {}, T INF = inf_v<T>) NE {
-  const u32 n = g.vsize(), k = (u32)x.size();
+  cu32 n = g.vsize(), k = (u32)x.size();
   const bool has_vweight = !vw.empty();
   if (has_vweight) assert(!uint_c<T>);
   vvec<T> dp(n, vec<T>(1 << k, INF));

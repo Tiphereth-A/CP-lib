@@ -7,7 +7,7 @@ namespace tifa_libs {
 
 template <class T>
 struct basis_r {
-  const u32 vec_len;
+  cu32 vec_len;
   vvec<T> basis;
 
   CEXPE basis_r(u32 vec_len) NE : vec_len{vec_len}, basis(vec_len, vec<T>(vec_len)) {}
@@ -15,7 +15,7 @@ struct basis_r {
   // maybe need setting a larger eps (such as 1e-4) first
   CEXP bool insert(vec<T> x) NE {
     x.resize(vec_len);
-    bool status = 0;
+    bool status = false;
     for (u32 i = (u32)basis.size() - 1; ~i; --i) {
       if (is_zero(x[i])) continue;
       if (!is_zero(basis[i][i])) {
@@ -35,7 +35,7 @@ struct basis_r {
             basis[j][i] = 0;
             flt_ (u32, k, 0, i) basis[j][k] -= x[k] * _;
           }
-        basis[i] = x, status = 1;
+        basis[i] = x, status = true;
         break;
       }
     }
@@ -48,11 +48,11 @@ struct basis_r {
         const T _ = x[i] / basis[i][i];
         x[i] = 0;
         flt_ (u32, j, 0, i) x[j] -= basis[i][j] * _;
-      } else return 0;
+      } else return false;
     }
-    return 1;
+    return true;
   }
-  CEXP u32 rank() CNE {
+  ND CEXP u32 rank() CNE {
     u32 res = 0;
     flt_ (u32, i, 0, (u32)basis.size()) res += !is_zero(basis[i][i]);
     return res;

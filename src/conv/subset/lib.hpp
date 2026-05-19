@@ -27,7 +27,7 @@ struct conv_subset {
         flt_ (u32, i, 0, w) add(a[k + w + i], a[k + i], pc[k + w + i]);
   }
   CEXP void mobius(vec<arr_t>& a) CNE {
-    const u32 n = (u32)a.size();
+    cu32 n = (u32)a.size();
     for (u32 w = n >> 1; w; w /= 2)
       for (u32 k = 0; k < n; k += w * 2)
         flt_ (u32, i, 0, w) sub(a[k + w + i], a[k + i], pc[k + w + i]);

@@ -4,11 +4,12 @@ Checks:
   - clang-analyzer-*
   - modernize-*
   - -modernize-avoid-c-style-cast
+  - -modernize-use-integer-sign-comparison
   - -modernize-use-trailing-return-type
-  - -modernize-use-nodiscard
   - performance-*
   - misc-*
   - -misc-include-cleaner
+  - -misc-no-recursion
   - -misc-non-private-member-variables-in-classes
 WarningsAsErrors: ''
 HeaderFileExtensions:

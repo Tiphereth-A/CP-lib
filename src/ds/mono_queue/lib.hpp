@@ -8,12 +8,12 @@ template <class T, class Comp = std::less<T>>
 class mono_queue {
   static CEXP Comp compare{};
 
-  const u32 k;
-  u32 i;
+  cu32 k;
+  u32 i{0};
   std::deque<std::pair<T, u32>> q;
 
  public:
-  CEXPE mono_queue(u32 k) NE : k{k}, i{0} { assert(k > 0); }
+  CEXPE mono_queue(u32 k) NE : k{k} { assert(k > 0); }
   // @return minimum of last k (at most) pushed elements
   CEXP T CR push(cT_(T) x) NE {
     if (!q.empty() && q.front().second + k == i) q.pop_front();

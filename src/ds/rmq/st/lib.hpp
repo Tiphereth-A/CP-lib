@@ -14,7 +14,7 @@ class st_array {
   CEXPE st_array(spn<T> a) NE { reset(a); }
 
   CEXP void reset(spn<T> a) NE {
-    const u32 n = (u32)a.size(), lbn = (u32)std::bit_width(n);
+    cu32 n = (u32)a.size(), lbn = (u32)std::bit_width(n);
     st = vvec<T>(lbn, vec<T>(n)), copy(a, begin(st[0]));
     flt_ (u32, j, 1, lbn)
       flt_ (u32, i, 0, n) st[j][i] = op(st[j - 1][i], st[j - 1][(u32)max(0, i32(i - (1 << (j - 1))))]);
@@ -24,7 +24,7 @@ class st_array {
       st = vvec<T>{{x}};
       return;
     }
-    const u32 n = size() + 1, lbn = (u32)std::bit_width(n);
+    cu32 n = size() + 1, lbn = (u32)std::bit_width(n);
     if (st[0].push_back(x); std::has_single_bit(n)) {
       st.emplace_back(n - 1);
       flt_ (u32, i, 0, n - 1) st.back()[i] = op(st[lbn - 2][i], st[lbn - 2][(u32)max(0, i32(i - (1 << (lbn - 2))))]);
@@ -37,7 +37,7 @@ class st_array {
   //! 0-indexed, [l, r)
   CEXP T query(u32 l, u32 r) CNE {
     assert(l < r && r <= size());
-    const u32 k = (u32)(std::bit_width(r - l) - 1);
+    cu32 k = (u32)(std::bit_width(r - l) - 1);
     return op(st[k][l + (1 << k) - 1], st[k][r - 1]);
   }
 };

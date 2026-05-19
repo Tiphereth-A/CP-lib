@@ -10,21 +10,21 @@ class radix_heap {
   static CEXP C comp{};
   arr<vecp<K, V>, B + 1> vs;
   arr<K, B + 1> ms;
-  u32 s;
-  K last;
+  u32 s{0};
+  K last{0};
 
  public:
-  CEXP radix_heap() NE : s{0}, last{0} { fill(ms, K(-1)); }
+  CEXP radix_heap() NE { fill(ms, K(-1)); }
 
-  CEXP u32 size() CNE { return s; }
-  CEXP bool empty() CNE { return !s; }
+  ND CEXP u32 size() CNE { return s; }
+  ND CEXP bool empty() CNE { return !s; }
   CEXP void emplace(K key, cT_(V) val) NE {
     const K b = (K)std::bit_width(key ^ last);
     ++s, vs[b].emplace_back(key, val), ms[b] = min(key, ms[b], comp);
   }
   CEXP std::pair<K, V> top() NE {
     if (!~ms[0]) {
-      const u32 idx = u32(find_if(ms, [](auto x) NE { return !!~x; }) - begin(ms));
+      cu32 idx = u32(find_if(ms, [](auto x) NE { return !!~x; }) - begin(ms));
       for (last = ms[idx]; auto& p : vs[idx]) {
         const K b = (K)std::bit_width(p.first ^ last);
         vs[b].emplace_back(p), ms[b] = min(p.first, ms[b], comp);

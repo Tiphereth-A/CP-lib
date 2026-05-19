@@ -11,13 +11,13 @@ class hamming {
     return m;
   }
   static CEXP auto get_nm(u64 len) NE {
-    u32 m = (u32)std::bit_width(len - 1);
+    cu32 m = (u32)std::bit_width(len - 1);
     return std::make_pair(len - m - 1, m);
   }
 
  public:
   static CEXP auto encode(dbitset CR msg) NE {
-    const u64 n = msg.size(), m = get_m(n), len = n + m + 1;
+    cu64 n = msg.size(), m = get_m(n), len = n + m + 1;
     dbitset code(len);
     flt_ (u64, i, 1, len, j = 0)
       if (!std::has_single_bit(i)) code.set(i, msg[j++]);

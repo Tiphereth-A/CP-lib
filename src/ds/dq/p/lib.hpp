@@ -175,9 +175,9 @@ CEXP void make_minmax_heap(I begin, I end, C&& comp = C{}) NE {
     if (idx == 0) return;
   }
   if (l != 4) {
-    for (u32 lidx_ngch = l / 4;;) {
-      int hib = depq_impl_::hib_(idx);
-      u32 loplim = max(lidx_ngch, (1_u32 << hib) - 1);
+    for (cu32 lidx_ngch = l / 4;;) {
+      const auto hib = depq_impl_::hib_(idx);
+      cu32 loplim = max(lidx_ngch, (1_u32 << hib) - 1);
       if (--idx; hib & 1)
         for (;; --idx) {
           if (depq_impl_::pdmax_1lvl_(begin, idx, comp); idx == loplim) break;
@@ -191,7 +191,7 @@ CEXP void make_minmax_heap(I begin, I end, C&& comp = C{}) NE {
       if (idx == lidx_ngch) break;
     }
   }
-  int hib = depq_impl_::hib_(idx);
+  const auto hib = depq_impl_::hib_(idx);
   switch (u32 loplim = (1_u32 << hib) - 1; hib & 1)
     for (;;) {
       case 0:

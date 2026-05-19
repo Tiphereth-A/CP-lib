@@ -7,7 +7,7 @@ namespace tifa_libs {
 template <class Mat, class T = TPN Mat::val_t>
 requires std::same_as<T, TPN Mat::val_t>
 CEXP void sherman_morrison(Mat& inv_A, vec<T> CR u, vec<T> CR v) NE {
-  const u32 n = inv_A.row();
+  cu32 n = inv_A.row();
   assert(n == inv_A.col());
   vec<T> x(n), y(n);
   flt_ (u32, i, 0, n)

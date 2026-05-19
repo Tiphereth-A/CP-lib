@@ -32,12 +32,12 @@ class mint_ms_tag : public mint_impl_::mint_tag_base {
     } else retif_((v < mod()) [[likely]], core::reduce(u64((raw_t)v) * core::R2), core::reduce(u64((raw_t)(v % mod())) * core::R2));
   }
   static CEXP raw_t mod() NE { return MOD_; }
-  CEXP raw_t val() CNE { return core::norm(core::reduce(v_)); }
+  ND CEXP raw_t val() CNE { return core::norm(core::reduce(v_)); }
   CEXP raw_t& data() NE { return v_; }
 
  protected:
   template <class mint>
-  CEXP auto neg() CNE {
+  ND CEXP auto neg() CNE {
     mint res;
     res.v_ = (core::MOD2 & -raw_t(v_ != 0)) - v_;
     return res;

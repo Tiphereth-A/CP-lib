@@ -6,7 +6,7 @@ namespace tifa_libs {
 
 template <class T>
 CEXP void zt_subset(vec<T>& f) NE {
-  const u32 n = (u32)f.size();
+  cu32 n = (u32)f.size();
   assert(std::has_single_bit(n));
   for (u32 i = 1; i < n; i *= 2)
     flt_ (u32, j, 0, n)
@@ -14,7 +14,7 @@ CEXP void zt_subset(vec<T>& f) NE {
 }
 template <class T>
 CEXP void mt_subset(vec<T>& f) NE {
-  const u32 n = (u32)f.size();
+  cu32 n = (u32)f.size();
   assert(std::has_single_bit(n));
   for (u32 i = 1; i < n; i *= 2)
     flt_ (u32, j, 0, n)

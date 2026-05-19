@@ -7,7 +7,7 @@ using namespace tifa_libs;
 int main() {
   u32 n, m;
   std::cin >> n >> m;
-  vec<edge_t<f64>> e(m);
+  vec<edge_td> e(m);
   for (auto& [w, u, v] : e) std::cin >> u >> v >> w;
   std::cout << std::fixed << std::setprecision(8) << min_cycle_mean(e, n + 1) << '\n';
 }

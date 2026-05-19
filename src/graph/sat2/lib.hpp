@@ -5,7 +5,7 @@
 namespace tifa_libs {
 
 class sat2 {
-  const u32 n;
+  cu32 n;
   // vecptu e;
   tarjan tj;
   vvecu g;

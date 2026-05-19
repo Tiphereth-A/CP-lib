@@ -6,7 +6,7 @@
 namespace tifa_libs {
 
 CEXP i64 lagrange_interp0(spnii v, u64 x, u64 mod, spnuu ifact) NE {
-  const u32 n = (u32)v.size();
+  cu32 n = (u32)v.size();
   retif_((assert(n); n == 1) [[unlikely]], v[0]);
   if (x < n) return v[x];
   vecuu pre(n);

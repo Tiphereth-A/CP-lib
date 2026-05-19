@@ -8,7 +8,7 @@ namespace tifa_libs {
 template <tree_c G>
 CEXP auto tree_height(G CR tr) NE {
   using T = TPN G::Et;
-  const u32 n = tr.vsize();
+  cu32 n = tr.vsize();
   vvec<T> _(n);
   flt_ (u32, i, 0, n) _[i].resize(tr[i].size(), T(-1));
   auto f = [&](auto&& f, u32 u, u32 fa) NE -> T {

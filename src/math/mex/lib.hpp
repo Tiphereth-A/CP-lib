@@ -9,6 +9,6 @@ CEXP u32 mex_uniqued(spnu x) NE {
     if (x[i] != i) return i;
   return (u32)x.size();
 }
-CEXP u32 mex(vecu x) NE { return mex_uniqued(uniq(x)); }
+CEXP u32 mex(vecu x) NE { return mex_uniqued(uniq(std::move(x))); }
 
 }  // namespace tifa_libs

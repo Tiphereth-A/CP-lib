@@ -38,9 +38,9 @@ int main() {
     vecb vis(n);
     auto f = [&](auto&& f, u32 x) -> void {
       for (auto v : g[x])
-        if (!vis[v]) vis[v] = 1, f(f, v);
+        if (!vis[v]) vis[v] = true, f(f, v);
     };
-    vis[0] = 1, f(f, 0);
+    vis[0] = true, f(f, 0);
     vecu ids(n, -1_u32), inv_ids;
     u32 cnt_ids = 0;
     flt_ (u32, i, 0, n)

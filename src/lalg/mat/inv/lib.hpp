@@ -10,7 +10,7 @@ requires requires(Is0 is0, Ge ge, T t, matrix<T> A, bool clear_u) {
   { ge(A, clear_u) } -> std::same_as<i32>;
 }
 CEXP auto inv_mat(matrix<T> CR mat, Is0&& is0, Ge&& ge) NE {
-  const u32 n = mat.row();
+  cu32 n = mat.row();
   std::optional<std::conditional_t<calc_det, std::pair<T, matrix<T>>, matrix<T>>> ret;
   if (n != mat.col()) return ret;
   matrix<T> ans(n, n);

@@ -13,7 +13,7 @@ CEXP auto ln_fpssp(poly_t CR p, vec<T> CR inv, u32 n = 0) NE {
   flt_ (u32, k, 0, n - 1) {
     for (auto& [j, pj] : ps) {
       if (k < j) break;
-      const u32 i = k - j + 1;
+      cu32 i = k - j + 1;
       g[k + 1] -= g[i] * pj * i;
     }
     if (g[k + 1] *= inv[k + 1]; k + 1 < p.size()) g[k + 1] += p[k + 1];

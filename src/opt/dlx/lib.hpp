@@ -55,7 +55,7 @@ class dlx {
   }
   CEXP void ins_row_(u32 row, spnu cols) NE {
     assert(row > 0);
-    u32 n = (u32)data.size();
+    cu32 n = (u32)data.size();
     flt_ (u32, i, 0, (u32)cols.size()) {
       data.emplace_back(n + i - 1, n + i + 1, u_(cols[i]), cols[i], row, cols[i]);
       u_(cols[i]) = d_(u_(cols[i])) = n + i;
@@ -67,7 +67,7 @@ class dlx {
 
  public:
   CEXPE dlx(cT_(vvecb) grid, bool multi_ans = false) NE : data{}, cnt_col{}, mans{multi_ans} {
-    u32 col = (u32)grid[0].size();
+    cu32 col = (u32)grid[0].size();
     assert(col > 0), cnt_col.resize(col + 1), data.reserve(col + 1);
     flt_ (u32, i, 0, col + 1) data.emplace_back(i - 1, i + 1, i, i, 0, i);
     r_(l_(0) = col) = 0;

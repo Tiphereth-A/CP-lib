@@ -6,14 +6,14 @@ namespace tifa_libs {
 namespace ringenum3_impl_ {
 template <class F, graph_c G>
 CEXP void run(G CR dg, F&& func) NE {
-  const u32 n = dg.vsize();
+  cu32 n = dg.vsize();
   vecb vis(n);
   flt_ (u32, u, 0, n) {
-    for (u32 v : dg[u]) vis[v].flip();
-    for (u32 v : dg[u])
-      for (u32 w : dg[v])
+    for (cu32 v : dg[u]) vis[v].flip();
+    for (cu32 v : dg[u])
+      for (cu32 w : dg[v])
         if (vis[w]) func(u, v, w);
-    for (u32 v : dg[u]) vis[v].flip();
+    for (cu32 v : dg[u]) vis[v].flip();
   }
 }
 }  // namespace ringenum3_impl_

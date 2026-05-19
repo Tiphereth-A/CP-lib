@@ -66,7 +66,7 @@ struct ostree_node_t<rbt_impl_::rbt_tag, K> {
   u32 sz;
   bool red;
   // @return child direction of this non-root point
-  CEXP bool child_dir() CNE { return this == fa->ch[1]; }
+  ND CEXP bool child_dir() CNE { return this == fa->ch[1]; }
 };
 }  // namespace ostnode_impl_
 

@@ -13,7 +13,7 @@ struct fastin_data {
   CEXP static u32 BUF = 0x200005;
   FILE* f_ = nullptr;
 #ifdef __linux__
-  char *bg, *ed, *p;
+  chr *bg, *ed, *p;
   struct stat Fl;
 
   void rebind(FILE* f = nullptr) NE {
@@ -23,7 +23,7 @@ struct fastin_data {
     if (!f) return;
     auto fd = fileno(f_ = f);
     fstat(fd, &Fl);
-    p = (bg = (char*)mmap(nullptr, Fl.st_size + 4, PROT_READ, MAP_PRIVATE, fd, 0));
+    p = (bg = (chr*)mmap(nullptr, Fl.st_size + 4, PROT_READ, MAP_PRIVATE, fd, 0));
     ed = bg + Fl.st_size;
     madvise(bg, Fl.st_size + 4, MADV_SEQUENTIAL);
   }
@@ -31,7 +31,7 @@ struct fastin_data {
   bool iseof() CNE { return p == ed; }
   ~fastin_data() NE { rebind(); }
 #else
-  char buf[BUF], *ed, *p;
+  chr buf[BUF], *ed, *p;
 
   void rebind(FILE* f) NE { f_ = f, p = ed = buf; }
   bool iseof() NE {
@@ -52,23 +52,23 @@ template <u32 charset>
 class fastin {
   fastin_data& data;
 
-  static CEXP bool is_cntrl(char c) NE {
+  static CEXP bool is_cntrl(chr c) NE {
     if CEXP (charset & FS_OTHERS) return iscntrl(c);
     else if CEXP (charset & FS_NEWLINE) return c < 32;
     else return false;
   }
-  static CEXP bool is_cntrls(char c) NE {
+  static CEXP bool is_cntrls(chr c) NE {
     if CEXP (charset & FS_OTHERS) return !isgraph(c);
     else if CEXP (charset & (FS_NEWLINE | FS_SPACE)) return c <= 32;
     else return false;
   }
-  static CEXP bool is_digit(char c) NE {
+  static CEXP bool is_digit(chr c) NE {
     if CEXP (charset & (FS_ALPHA | FS_OTHERS)) return isdigit(c);
     else if CEXP (!(charset & FS_NUM)) return false;
     else if CEXP (!(charset & FS_NEG)) return c > 32;
     else return c >= 48;
   }
-  static CEXP bool is_neg_digit(char c) NE {
+  static CEXP bool is_neg_digit(chr c) NE {
     if CEXP (!(charset & FS_NEG)) return is_digit(c);
     else if CEXP (charset & (FS_ALPHA | FS_OTHERS)) return c == '-' || isdigit(c);
     else return c > 32;
@@ -76,7 +76,7 @@ class fastin {
 #ifdef __linux__
   template <bool ignore_space = true>
   void read_str(strn& n) NE {
-    char* l;
+    chr* l;
     if CEXP (ignore_space) {
       skip_cntrls(), l = data.p;
       while (!is_cntrls(*data.p)) ++data.p;
@@ -103,13 +103,13 @@ class fastin {
   fastin(fastin CR) = delete;
   fastin& operator=(fastin CR) = delete;
 
-  char peek() NE {
+  chr peek() NE {
     if (data.iseof()) [[unlikely]]
       return EOF;
     return *data.p;
   }
-  char get_unchk() NE { return *data.p++; }
-  char get() NE {
+  chr get_unchk() NE { return *data.p++; }
+  chr get() NE {
     if (data.iseof()) [[unlikely]]
       return EOF;
     return get_unchk();

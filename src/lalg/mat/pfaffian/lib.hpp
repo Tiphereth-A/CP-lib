@@ -10,9 +10,9 @@ requires requires(Is0 is0, TPN Mat::val_t t) {
 }
 CEXP auto pfaffian(Mat mat, Is0 is0) NE {
   using T = TPN Mat::val_t;
-  const u32 n = mat.row();
+  cu32 n = mat.row();
   assert(n == mat.col() && !(n & 1));
-  bool neg = 0;
+  bool neg = false;
   for (u32 i = 0; i < n; i += 2) {
     u32 p = i + 1;
     flt_ (u32, j, i + 2, n)

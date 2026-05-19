@@ -40,12 +40,12 @@ struct montgomery64<0> {
     flt_ (u32, i, 0, 64)
       if ((R2 *= 2) >= MOD) R2 -= MOD;
   }
-  CEXP u64 mul_h(u64 x, u64 y) CNE { return u64((u128)x * y >> 64); }
-  CEXP u64 redc_mul(u64 x, u64 y) CNE {
-    const u64 res = mul_h(x, y) - mul_h(x * y * R, MOD);
+  ND CEXP u64 mul_h(u64 x, u64 y) CNE { return u64((u128)x * y >> 64); }
+  ND CEXP u64 redc_mul(u64 x, u64 y) CNE {
+    cu64 res = mul_h(x, y) - mul_h(x * y * R, MOD);
     return res + (MOD & -(res >> 63));
   }
-  CEXP u64 norm(i64 x) CNE { return u64(x + i64(MOD & u64(-(x < 0)))); }
+  ND CEXP u64 norm(i64 x) CNE { return u64(x + i64(MOD & u64(-(x < 0)))); }
 };
 
 }  // namespace tifa_libs

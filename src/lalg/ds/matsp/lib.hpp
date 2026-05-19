@@ -43,7 +43,7 @@ class matsp {
   }
   template <class F>
   friend CEXP matsp merge(matsp l, matsp r, F f) NE {
-    const u32 r_ = l.row(), c_ = l.col();
+    cu32 r_ = l.row(), c_ = l.col();
     assert(r_ == r.row() && c_ == r.col());
     matsp ret(r_, c_);
     flt_ (u32, i, 0, r_) {
@@ -100,7 +100,7 @@ class matsp {
   friend CEXP matsp operator-(matsp l, matsp CR r) NE { return l + (-r); }
   CEXP matsp& operator-=(matsp CR r) NE { return *this = *this - r; }
   friend CEXP matsp operator*(matsp l, matsp CR r) NE {
-    const u32 i_ = l.row(), j_ = l.col(), k_ = r.col();
+    cu32 i_ = l.row(), j_ = l.col(), k_ = r.col();
     assert(j_ == r.row());
     matsp ret(i_, k_);
     flt_ (u32, i, 0, i_) {
@@ -115,7 +115,7 @@ class matsp {
   }
   CEXP matsp& operator*=(matsp CR r) NE { return *this = *this - r; }
   CEXP vec<T> lproj(spn<T> x) CNE {
-    const u32 r_ = row(), c_ = col();
+    cu32 r_ = row(), c_ = col();
     assert(r_ == x.size());
     vec<T> ret(c_);
     flt_ (u32, i, 0, c_)

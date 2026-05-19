@@ -10,7 +10,7 @@ requires(!euclid || !std::is_floating_point_v<T>) && requires(Is0 is0, T t) {
   { is0(t) } -> std::same_as<bool>;
 }
 CEXP i32 ge_mat(matrix<T>& mat, Is0 is0, bool clear_u = true) NE {
-  const u32 R = mat.row(), C = mat.col(), rk_max = min(R, C);
+  cu32 R = mat.row(), C = mat.col(), rk_max = min(R, C);
   u32 rk = 0;
   bool neg = false;
   auto swapr = [&](u32 i, u32 c) NE {
@@ -40,7 +40,7 @@ CEXP i32 ge_mat(matrix<T>& mat, Is0 is0, bool clear_u = true) NE {
       if CEXP (std::same_as<T, bool>)
         flt_ (u32, k, c, C) mat(j, k) = !mat(j, k);
       else if CEXP (euclid) {
-        while (1) {
+        while (true) {
           if (is0(mat(j, c))) break;
           T _;
           if CEXP (mint_c<T>) _ = mat(i, c).val() / mat(j, c).val();

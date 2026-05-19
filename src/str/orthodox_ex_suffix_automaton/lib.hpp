@@ -13,10 +13,10 @@ class orthodox_ex_suffix_automaton {
   };
 
  public:
-  u32 sz;
+  u32 sz{1};
   vec<TIFA> st;
 
-  CEXP orthodox_ex_suffix_automaton() NE : sz{1} { st.push_back(TIFA()), st[0].len = 0, st[0].link = -1u; }
+  CEXP orthodox_ex_suffix_automaton() NE { st.push_back(TIFA()), st[0].len = 0, st[0].link = -1u; }
 
   CEXP u32 extend(u32 last, u32 c) NE {
     u32 cur = st[last].nex[c];
@@ -42,20 +42,20 @@ class orthodox_ex_suffix_automaton {
   }
   CEXP void insert(strnv s) NE {
     for (u32 u = 0; auto cc : s) {
-      const u32 c = (u32)cc - BASE;
+      cu32 c = (u32)cc - BASE;
       if (!st[u].nex[c]) st[u].nex[c] = sz++, st.push_back(TIFA());
       u = st[u].nex[c];
     }
   }
   void build() NE {
-    std::queue<std::pair<u32, char>> q;
+    std::queue<std::pair<u32, chr>> q;
     flt_ (u32, i, 0, SZ)
-      if (st[0].nex[i]) q.push({0, i});
+      if (st[0].nex[i]) q.emplace(0, i);
     while (q.size()) {
       auto [last, c] = q.front();
       q.pop(), last = extend(last, (u32)c);
       flt_ (u32, i, 0, SZ)
-        if (st[last].nex[i]) q.push({last, i});
+        if (st[last].nex[i]) q.emplace(last, i);
     }
   }
 };

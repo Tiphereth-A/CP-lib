@@ -32,7 +32,7 @@ class deque_with_w {
   }
   CEXP T pop_front() NE {
     if (q[0].empty()) {
-      const u32 _ = u32(q[1].size()) / 2;
+      cu32 _ = u32(q[1].size()) / 2;
       q[0] = vec<T>(q[1].rbegin() + _, q[1].rend());
       q[1] = vec<T>(end(q[1]) - _, end(q[1]));
       bf();
@@ -43,7 +43,7 @@ class deque_with_w {
   }
   CEXP T pop_back() NE {
     if (q[1].empty()) {
-      const u32 _ = u32(q[0].size()) / 2;
+      cu32 _ = u32(q[0].size()) / 2;
       q[1] = vec<T>(q[0].rbegin() + _, q[0].rend());
       q[0] = vec<T>(end(q[0]) - _, end(q[0]));
       bf();

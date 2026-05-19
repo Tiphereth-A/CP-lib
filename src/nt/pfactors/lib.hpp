@@ -14,7 +14,7 @@ CEXP u64 rho(u64 n) NE {
   e.range(1, n - 1);
   auto f = [n, r = e()](u64 x) NE { return (mul_mod_u(x, x, n) + r) % n; };
   u64 g = 1, x = 0, y = e(), yy = 0;
-  const u32 LIM = 128;
+  cu32 LIM = 128;
   for (u64 r = 1, q = 1; g == 1; r *= 2) {
     x = y;
     flt_ (u64, i, 0, r) y = f(y);
@@ -32,7 +32,7 @@ CEXP u64 rho(u64 n) NE {
 CEXP void run(u64 n, vecuu& p) NE {
   if (n < 2) return;
   if (is_prime(n)) return p.push_back(n);
-  const u64 g = rho(n);
+  cu64 g = rho(n);
   run(n / g, p), run(g, p);
 }
 }  // namespace pfactors_impl_
@@ -40,7 +40,7 @@ CEXP void run(u64 n, vecuu& p) NE {
 template <bool unique = true>
 CEXP vecuu pfactors(u64 n) NE {
   vecuu p;
-  if (u32 _ = (u32)std::countr_zero(n) & 63; _) {
+  if (cu32 _ = (u32)std::countr_zero(n) & 63; _) {
     n >>= _;
     if CEXP (unique) p.push_back(2);
     else p.assign(_, 2);
@@ -62,7 +62,7 @@ CEXP vecuu pfactors(u64 n) NE {
 CEXP vecp<u64, u32> pf_exp(u64 n) NE {
   auto p = pfactors<false>(n);
   vecp<u64, u32> ans;
-  for (u64 lst = 0; u64 i : p)
+  for (u64 lst = 0; cu64 i : p)
     if (i != lst) ans.emplace_back(lst = i, 1);
     else ++ans.back().second;
   return ans;

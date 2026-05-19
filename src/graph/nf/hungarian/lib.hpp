@@ -11,7 +11,7 @@ namespace tifa_libs {
 // Time: $O(J^2W)$
 template <class T>
 CEXP vec<T> hungarian(vvec<T> CR g, T INF = std::numeric_limits<T>::max()) NE {
-  const u32 J = (u32)g.size(), W = (u32)g[0].size();
+  cu32 J = (u32)g.size(), W = (u32)g[0].size();
   assert(J <= W);
   vecu job(W + 1, -1_u32);
   vec<T> ys(J), yt(W + 1), ret;

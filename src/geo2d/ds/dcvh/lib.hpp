@@ -10,7 +10,7 @@ template <class FP>
 class dcvh {
   // Dynamic half Convex Hull
   struct dhcvh {
-    const int sgn_;
+    csint sgn_;
     set<point<FP>> vs;
 
     CEXPE dhcvh(int sgn_ = 1) NE : sgn_(sgn_) {}

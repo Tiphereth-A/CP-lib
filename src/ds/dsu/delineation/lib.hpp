@@ -6,7 +6,7 @@
 namespace tifa_libs {
 
 CEXP vvecu dsu_delineation(dsu_c auto& dsu) NE {
-  const u32 n = dsu.size();
+  cu32 n = dsu.size();
   vvecu mp(n);
   flt_ (u32, u, 0, n) mp[(u32)dsu.find(u)].push_back(u);
   auto [l, r] = remove_if(mp, [](auto CR x) { return x.empty(); });

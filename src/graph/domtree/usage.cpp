@@ -18,7 +18,7 @@ int main() {
   tree<alist<>> tr(n);
   flt_ (u32, i, 1, n)
     if (~fa[i]) tr.add_arc(fa[i], i);
-  tree_dfs_info<tree<alist<>>, tdi_sz> dfs(tr);
+  const tree_dfs_info<tree<alist<>>, tdi_sz> dfs(tr);
   std::cout << dfs.sz << '\n';
 }
 

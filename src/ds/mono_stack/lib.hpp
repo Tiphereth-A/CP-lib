@@ -16,8 +16,8 @@ class mono_stack {
   }
   CEXP void push_nocheck(cT_(T) x) NE { s.push_back(x); }
   CEXP void push(cT_(T) x) NE { pop_greater(x), s.push_back(x); }
-  CEXP T CR top() CNE { return s.back(); }
-  CEXP u32 size() CNE { return (u32)s.size(); }
+  ND CEXP T CR top() CNE { return s.back(); }
+  ND CEXP u32 size() CNE { return (u32)s.size(); }
 };
 
 }  // namespace tifa_libs

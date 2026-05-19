@@ -12,7 +12,7 @@ requires requires(u64 x, SF f, SG g, SH h) {
   { h(x) } -> std::same_as<T>;
 }
 class du_sieve {
-  const u64 sf_max;
+  cu64 sf_max;
   SF sf;
   SG sg;
   SH sh;

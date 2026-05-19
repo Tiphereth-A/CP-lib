@@ -7,7 +7,7 @@ namespace tifa_libs {
 
 template <poly_c poly_t, class T>
 CEXP poly_t ctsh_fps(poly_t CR f, TPN poly_t::val_t c, vec<T> CR ifact, u32 m = 0) NE {
-  const u32 n = (u32)f.size(), k = n - 1;
+  cu32 n = (u32)f.size(), k = n - 1;
   using mint = TPN poly_t::val_t;
   if (!m) m = n;
   u64 t = c.val();

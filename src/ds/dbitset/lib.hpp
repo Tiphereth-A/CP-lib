@@ -30,12 +30,12 @@ struct dbitset {
     }
     if (!n) return;
     const auto pre = data.size();
-    const u32 w = idx_word(n), ofs = idx_bit(n);
+    cu32 w = idx_word(n), ofs = idx_bit(n);
     data.resize(data.size() + w);
     if (!ofs)
       for (auto i = pre - 1; ~i; --i) data[i + w] = data[i];
     else {
-      const u32 cofs = word_width - ofs;
+      cu32 cofs = word_width - ofs;
       for (auto i = pre - 1; i; --i) data[i + w] = data[i] << ofs | data[i - 1] >> cofs;
       data[w] = data[0] << ofs;
     }
@@ -47,12 +47,12 @@ struct dbitset {
       return;
     }
     if (!n) return;
-    const u32 w = idx_word(n), ofs = idx_bit(n);
-    const u32 lim = word_size() - w - 1;
+    cu32 w = idx_word(n), ofs = idx_bit(n);
+    cu32 lim = word_size() - w - 1;
     if (!ofs)
       flt_ (u32, i, 0, lim + 1) data[i] = data[i + w];
     else {
-      const u32 cofs = word_width - ofs;
+      cu32 cofs = word_width - ofs;
       flt_ (u32, i, 0, lim) data[i] = data[i + w] >> ofs | data[i + w + 1] << cofs;
       data[lim] = data.back() >> ofs;
     }
@@ -65,7 +65,7 @@ struct dbitset {
   template <class F>
   requires requires(F f) { { f() } -> std::same_as<word_t>; }
   CEXP dbitset(usz n, F&& gen) NE { set(std::forward<F>(gen), n); }
-  CEXP dbitset(strnv s, usz pos = 0, usz n = -1_usz, char zero = '0', char one = '1') NE { set(s, pos, n, zero, one); }
+  CEXP dbitset(strnv s, usz pos = 0, usz n = -1_usz, chr zero = '0', chr one = '1') NE { set(s, pos, n, zero, one); }
 
   CEXP dbitset& from_integer(int_c auto val, usz n = -1_usz) NE {
     const auto nbits = min({n, sizeof(val) * 8});
@@ -78,7 +78,7 @@ struct dbitset {
     }
     return *this;
   }
-  CEXP dbitset& set(strnv s, usz pos = 0, usz n = -1_usz, char = '0', char one = '1') NE {
+  CEXP dbitset& set(strnv s, usz pos = 0, usz n = -1_usz, chr = '0', chr one = '1') NE {
     const auto nbits = min({sz, n, s.size() - pos});
     bit_resize(nbits);
     for (usz i = nbits; i; --i)
@@ -96,12 +96,12 @@ struct dbitset {
 
   friend CEXP bool operator==(dbitset CR l, dbitset CR r) NE { return l.sz == r.sz && l.data == r.data; }
 
-  CEXP u64 find_first() CNE {
+  ND CEXP u64 find_first() CNE {
     flt_ (u32, i, 0, word_size())
       if (data[i]) return i * 64_u64 + (u32)std::countr_zero(data[i]);
     return sz;
   }
-  CEXP u64 find_next(u64 prev) CNE {
+  ND CEXP u64 find_next(u64 prev) CNE {
     if (++prev >= sz) return sz;
     size_t i = idx_word(prev);
     if (const word_t _ = data[i] & -1_u64 << idx_bit(prev); _) return i * word_width + (u32)std::countr_zero(_);
@@ -111,40 +111,40 @@ struct dbitset {
   }
 
   CEXP auto& raw() NE { return data; }
-  CEXP word_t CR getword(usz n) CNE { return data[idx_word(n)]; }
+  ND CEXP word_t CR getword(usz n) CNE { return data[idx_word(n)]; }
   CEXP word_t& getword(usz n) NE { return data[idx_word(n)]; }
   CEXP bool operator[](usz n) CNE { return getword(n) & mask_bit(n); }
 
-  CEXP bool all() CNE {
+  ND CEXP bool all() CNE {
     if (data.empty()) return false;
     flt_ (u32, i, 0, (u32)data.size() - !!idx_bit(sz))
       if (~data[i]) return false;
     if (idx_bit(sz)) return (data.back() & ~mask_outrange(sz)) == ~mask_outrange(sz);
     return true;
   }
-  CEXP bool any() CNE {
+  ND CEXP bool any() CNE {
     if (data.empty()) return false;
     for (auto i : data)
       if (i) return true;
     return false;
   }
-  CEXP bool none() CNE {
+  ND CEXP bool none() CNE {
     if (data.empty()) return false;
     return !any();
   }
-  CEXP u64 count() CNE {
+  ND CEXP u64 count() CNE {
     u64 ans = 0;
     for (const auto i : data) ans += (u32)std::popcount(i);
     return ans;
   }
-  CEXP bool parity() CNE {
+  ND CEXP bool parity() CNE {
     bool ans = false;
     for (const auto i : data) ans ^= ::tifa_libs::parity(i);
     return ans;
   }
 
-  CEXP u64 CR size() CNE { return sz; }
-  CEXP u32 word_size() CNE { return (u32)data.size(); }
+  ND CEXP u64 CR size() CNE { return sz; }
+  ND CEXP u32 word_size() CNE { return (u32)data.size(); }
   CEXP void bit_resize(usz n, bool val = false) NE {
     data.resize(word_count(sz = n), val ? -1_u64 : 0);
     if (val && !data.empty()) data.back() &= ~mask_outrange(sz);
@@ -207,14 +207,14 @@ struct dbitset {
     return *this;
   }
 
-  CEXP strn to_string(char zero = '0', char one = '1') CNE {
+  ND CEXP strn to_string(chr zero = '0', chr one = '1') CNE {
     strn ans(sz, zero);
     if (zero != one) [[likely]]
       for (auto n = find_first(); n < sz; n = find_next(n)) ans[sz - n - 1] = one;
     return ans;
   }
   template <int_c T>
-  CEXP T to_integer() CNE {
+  ND CEXP T to_integer() CNE {
     if CEXP (sizeof(T) * 8 <= word_width) {
       retif_((data.empty()) [[unlikely]], (T)0, (T)data[0]);
     } else {
@@ -222,10 +222,10 @@ struct dbitset {
       retif_((data.size() > 1), (T)data[1] << word_width | (T)data[0], (T)data[0]);
     }
   }
-  CEXP auto to_u32() CNE { return to_integer<u32>(); }
-  CEXP auto to_u64() CNE { return to_integer<u64>(); }
-  CEXP auto to_ulong() CNE { return to_integer<unsigned long>(); }
-  CEXP auto to_ullong() CNE { return to_integer<unsigned long long>(); }
+  ND CEXP auto to_u32() CNE { return to_integer<u32>(); }
+  ND CEXP auto to_u64() CNE { return to_integer<u64>(); }
+  ND CEXP auto to_ulong() CNE { return to_integer<unsigned long>(); }
+  ND CEXP auto to_ullong() CNE { return to_integer<unsigned long long>(); }
 
   friend auto& operator>>(istream_c auto& is, dbitset& b) NE {
     strn s;

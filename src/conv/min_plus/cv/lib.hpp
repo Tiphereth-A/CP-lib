@@ -8,8 +8,8 @@ namespace tifa_libs {
 //! assume b is arbitrary, aka. $b_i = b_j \iff i = j$
 template <class T>
 CEXP vec<T> conv_minplus_cv(vec<T> CR a, vec<T> CR b) NE {
-  const u32 n = (u32)a.size(), m = (u32)b.size();
-  const vecu argmin = smawk(
+  cu32 n = (u32)a.size(), m = (u32)b.size();
+  cvecu argmin = smawk(
       n + m - 1,
       m,
       [&](u32 k, u32 j1, u32 j2) NE -> bool {

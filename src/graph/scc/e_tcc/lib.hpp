@@ -14,7 +14,7 @@ struct e_tcc {
   //! g should be undirected
   template <class Et, class... Info>
   CEXP e_tcc(alist<Et, Info...> CR g) NE : dfn(g.vsize(), -1_u32), low(g.vsize()), post(g.vsize()), path(g.vsize(), -1_u32), deg(g.vsize()), dsu(g.vsize()) {
-    const u32 n = g.vsize();
+    cu32 n = g.vsize();
     u32 tot = -1_u32;
     const auto dfs = [&](auto&& f, u32 u, u32 t = -1_u32) -> void {
       u32 pc{};

@@ -16,10 +16,10 @@ class fft_r2 {
 
   CEXP u32 size() CNE { return (u32)rev.size(); }
   CEXP void bzr(u32 len) NE {
-    const u32 n = max(std::bit_ceil(len), 2_u32);
+    cu32 n = max(std::bit_ceil(len), 2_u32);
     if (n == size()) return;
     rev.resize(n, 0);
-    const u32 k = (u32)(std::bit_width(n) - 1);
+    cu32 k = (u32)(std::bit_width(n) - 1);
     flt_ (u32, i, 0, n) rev[i] = (rev[i / 2] / 2) | ((i & 1) << (k - 1));
     w.resize(n), w[0].real(1);
     flt_ (u32, i, 1, n) w[i] = {std::cos(TAU * (FP)i / (FP)n), std::sin(TAU * (FP)i / (FP)n)};

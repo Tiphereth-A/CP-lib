@@ -12,7 +12,7 @@ CEXP bool is_prime(u64 n) NE {
   if (!(n % 3) || !(n % 5) || !(n % 7)) return false;
   if (n < 121) return true;
   auto f = [n, d = (n - 1) >> std::countr_zero(n - 1)](auto&& bases) NE -> bool {
-    for (u64 i : bases) {
+    for (cu64 i : bases) {
       if (!(i % n)) continue;
       u64 t = d, y = qpow_mod(i, t, n);
       while (t != n - 1 && y != 1 && y != n - 1) y = mul_mod_u(y, y, n), t *= 2;

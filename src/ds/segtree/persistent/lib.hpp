@@ -6,7 +6,7 @@ namespace tifa_libs {
 
 class persistent_segtree {
   //! initial cnt = 1;
-  u32 n, cnt;
+  u32 n, cnt{0};
   struct TIFA {
     u32 w, ls, rs;
     CEXP TIFA(u32 W = 0, u32 LS = 0, u32 RS = 0) NE : w(W), ls(LS), rs(RS) {}
@@ -15,7 +15,7 @@ class persistent_segtree {
   vecu root;
 
  public:
-  CEXP persistent_segtree(spnu a, u32 N) NE : n{N}, cnt{0}, t(a.size() * 24, TIFA()), root(a.size()) {
+  CEXP persistent_segtree(spnu a, u32 N) NE : n{N}, t(a.size() * 24, TIFA()), root(a.size()) {
     build(root[0], 0, n - 1, a[0]);
     flt_ (u32, i, 1, (u32)a.size()) add_(root[i - 1], root[i], 0, n - 1, a[i]);
   }
@@ -35,12 +35,12 @@ class persistent_segtree {
       if (l == pos) ++t[x].w;
       return;
     }
-    u32 mid = l + (r - l) / 2;
+    cu32 mid = l + (r - l) / 2;
     build(t[x].ls, l, mid, pos), build(t[x].rs, mid + 1, r, pos), pushup(x);
   }
   CEXP void add_(u32 old_x, u32& x, u32 l, u32 r, u32 pos) NE {
     if (assert(pos >= l && pos <= r), t[x = (++cnt)] = t[old_x]; l == r) return void(++t[x].w);
-    if (u32 mid = l + (r - l) / 2; pos <= mid) add_(t[old_x].ls, t[x].ls, l, mid, pos);
+    if (cu32 mid = l + (r - l) / 2; pos <= mid) add_(t[old_x].ls, t[x].ls, l, mid, pos);
     else add_(t[old_x].rs, t[x].rs, mid + 1, r, pos);
     pushup(x);
   }

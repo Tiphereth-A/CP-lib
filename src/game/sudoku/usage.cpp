@@ -4,18 +4,14 @@
 #include "lib.hpp"
 
 using namespace tifa_libs;
-void solve() {
+int main() {
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   vvecu sdk(9, vecu(9));
   for (auto& i : sdk)
     for (auto& j : i) std::cin >> j;
   auto res = sudoku_solver(sdk)[0];
   flt_ (u32, i, 0, 9)
     flt_ (u32, j, 0, 9) std::cout << res[i][j] << " \n"[j == 8];
-}
-
-int main() {
-  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  solve();
 }
 
 /*

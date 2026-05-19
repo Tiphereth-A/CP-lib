@@ -4,12 +4,12 @@
 
 namespace tifa_libs {
 struct arc_cnt_tag : graph_info_impl_::graph_info_tag_base {
-  CEXPE arc_cnt_tag(u32) NE : ecnt{0} {}
+  CEXPE arc_cnt_tag(u32) NE {}
 
-  CEXP u32 esize() CNE { return ecnt; }
+  ND CEXP u32 esize() CNE { return ecnt; }
 
  protected:
-  u32 ecnt;
+  u32 ecnt{0};
   CEXP void add_arc(u32, u32, auto...) NE { ++ecnt; }
   CEXP void del_arc(u32, u32, auto...) NE { --ecnt; }
 };
@@ -34,7 +34,7 @@ struct degout_tag : graph_info_impl_::graph_info_tag_base {
   vecu dout;
   CEXPE degout_tag(u32 n) NE : dout(n) {}
 
-  CEXP u32 deg_out(u32 u) CNE { return dout[u]; }
+  ND CEXP u32 deg_out(u32 u) CNE { return dout[u]; }
 
  protected:
   CEXP void add_arc(u32 u, u32, auto...) NE { ++dout[u]; }

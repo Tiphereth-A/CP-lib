@@ -5,7 +5,7 @@
 
 namespace tifa_libs {
 
-CEXP u32 str2uint_si64(const char* const s) NE {
+CEXP u32 str2uint_si64(chr CPC s) NE {
   u64 _ = *((u64*)(s));
   if CEXP (std::endian::native == std::endian::big) _ = bswap(_);
   _ = (_ & 0x0F0F0F0F0F0F0F0F) * 2561 >> 8;

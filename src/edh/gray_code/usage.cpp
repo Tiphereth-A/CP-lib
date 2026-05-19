@@ -4,16 +4,12 @@
 #include "lib.hpp"
 
 using namespace tifa_libs;
-void solve() {
+int main() {
+  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
   u32 n;
   u64 k;
   std::cin >> n >> k;
   std::cout << gray_code(n, k).to_string().substr(64 - n);
-}
-
-int main() {
-  std::cin.tie(nullptr)->std::ios::sync_with_stdio(false);
-  solve();
 }
 
 /*

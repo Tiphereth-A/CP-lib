@@ -19,13 +19,13 @@ CEXP u32 calc(u32 n, vecpti hist) NE {
 }  // namespace chrom_num_impl_
 
 CEXP u32 chrom_num(graph_c auto CR g) NE {
-  const u32 n = g.vsize();
+  cu32 n = g.vsize();
   vecu adj(n), dp(1 << n);
   flt_ (u32, i, 0, n)
     for (auto to : g[i]) adj[i] |= 1 << (u32)to, adj[(u32)to] |= 1 << i;
   dp[0] = 1;
   flt_ (u32, i, 1, 1u << n) {
-    u32 k = i & (i - 1);
+    cu32 k = i & (i - 1);
     dp[i] = dp[k] + dp[k & ~adj[(u32)std::countr_zero(i)]];
   }
   veci _((1 << n) + 1);

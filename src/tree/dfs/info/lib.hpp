@@ -9,8 +9,8 @@ struct tdi_dfn {
   vecu dfn;
 
  protected:
-  u32 cnt;
-  CEXPE tdi_dfn(u32 n) NE : dfn(n), cnt{0} {}
+  u32 cnt{0};
+  CEXPE tdi_dfn(u32 n) NE : dfn(n) {}
   void init(u32 u, u32) NE { dfn[u] = cnt++; }
   void pre_dfs(u32, u32, auto) NE {}
   void post_dfs(u32, u32, auto) NE {}
@@ -62,8 +62,8 @@ struct tdi_maxdfn {
   vecu maxdfn;
 
  protected:
-  u32 cnt;
-  CEXPE tdi_maxdfn(u32 n) NE : maxdfn(n), cnt{0} {}
+  u32 cnt{0};
+  CEXPE tdi_maxdfn(u32 n) NE : maxdfn(n) {}
   void init(u32, u32) NE { ++cnt; }
   void pre_dfs(u32, u32, auto) NE {}
   void post_dfs(u32, u32, auto) NE {}
@@ -73,8 +73,8 @@ struct tdi_euler {
   vecu euler;
 
  protected:
-  u32 cnt;
-  CEXPE tdi_euler(u32 n) NE : euler(n), cnt{0} {}
+  u32 cnt{0};
+  CEXPE tdi_euler(u32 n) NE : euler(n) {}
   void init(u32 u, u32) NE { euler[cnt++] = u; }
   void pre_dfs(u32, u32, auto) NE {}
   void post_dfs(u32, u32, auto) NE {}

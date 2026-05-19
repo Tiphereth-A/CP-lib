@@ -28,7 +28,7 @@ class odt {
   CEXP void clear() NE { data.clear(); }
   //! [l, r]
   CEXP void insert(u32 l, u32 r, cT_(T) v) NE { data.emplace(l, r, v); }
-  CEXP auto find(u32 x) CNE { return std::prev(data.upper_bound(TIFA{x, 0, 0})); }
+  ND CEXP auto find(u32 x) CNE { return std::prev(data.upper_bound(TIFA{x, 0, 0})); }
   CEXP auto split(u32 x) NE {
     auto it = find(x);
     if (it->l == x) return it;
@@ -64,7 +64,7 @@ class odt {
   //! [l, r]
   // @param f: (iter_l, iter_r) -> auto
   template <class F>
-  CEXP auto run_no_split(u32 l, u32 r, F f) CNE { return f(find(l), find(r)); }
+  ND CEXP auto run_no_split(u32 l, u32 r, F f) CNE { return f(find(l), find(r)); }
 };
 
 }  // namespace tifa_libs
