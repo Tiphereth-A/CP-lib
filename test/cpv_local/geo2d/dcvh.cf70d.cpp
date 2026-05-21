@@ -19,8 +19,7 @@ int main() {
     cin >> t >> x >> y;
     if (t == 1) dcvh.insert(Point2{x, y});
     else {
-      cout << RES_YN[dcvh.contains(Point2{x, y})];
-      if (i != n) cout << '\n';
+      cout << RES_YN[dcvh.contains(Point2{x, y})] << '\n';
     }
   }
 }

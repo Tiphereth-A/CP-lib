@@ -33,8 +33,8 @@ def files_listing(previous_info: dict[str, dict[str]], **kwargs) -> list[str]:
     for h in visited:
         changed_files = subprocess.check_output(
             ['git', 'diff-tree', '--no-commit-id', '--name-only', '-r', h]).decode().splitlines()
-        result |= set(
-            file for file in changed_files if file not in ancestor_files)
+        result |= {
+            file for file in changed_files if file not in ancestor_files}
 
     return list(result)
 
@@ -46,7 +46,7 @@ def files_filter(files: Iterable[str], patterns: tuple[str]) -> filter:
 @with_logger
 @with_timer
 def files_dependencies(files: set[str], dependencies: dict[str, set[str]], **kwargs) -> set[str]:
-    return files | set(dep for file in files for dep in dependencies.get(file, set()))
+    return files | {dep for file in files for dep in dependencies.get(file, set())}
 
 
 @with_logger

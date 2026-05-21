@@ -32,7 +32,7 @@ class TestVerifyCommands:
         src = self._make_src_with_usage(str(tmp_path))
         os.makedirs('temp', exist_ok=True)
         with patch('libs.cmd.verify.run_command', return_value=[]):
-            verify_codes(src, thread_limit=2, time_limit=0.5, temp_path='temp')
+            verify_codes(src, jobs=2, time_limit=0.5, temp_path='temp')
 
     def test_verify_codes_cmd_function_exercises(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
@@ -43,7 +43,7 @@ class TestVerifyCommands:
         mock_result.stdout = ''
         mock_result.stderr = ''
         with patch('subprocess.run', return_value=mock_result):
-            verify_codes(src, thread_limit=1, time_limit=0.5, temp_path='temp')
+            verify_codes(src, jobs=1, time_limit=0.5, temp_path='temp')
 
     def test_verify_codes_logs_failures(self, tmp_path, caplog, monkeypatch):
         import logging
@@ -54,7 +54,7 @@ class TestVerifyCommands:
         with patch('libs.cmd.verify.run_command', return_value=['usage.cpp']):
             with caplog.at_level(logging.ERROR):
                 with pytest.raises(RuntimeError):
-                    verify_codes(src, thread_limit=1,
+                    verify_codes(src, jobs=1,
                                  time_limit=0.5, temp_path='temp')
         assert caplog.messages == [
             '1 file(s) failed in compilation:\n    usage.cpp']
@@ -79,7 +79,7 @@ class TestVerifyCommands:
 
         call_count = [0]
 
-        def fake_run_command(command, params, thread_limit, time_limit=None, **kw):
+        def fake_run_command(command, params, jobs, time_limit=None, **kw):
             call_count[0] += 1
             results = []
             for p in params:
@@ -87,7 +87,7 @@ class TestVerifyCommands:
             return results
 
         with patch('libs.cmd.verify.run_command', side_effect=fake_run_command):
-            verify_codes('src', thread_limit=1,
+            verify_codes('src', jobs=1,
                          time_limit=0.5, temp_path='temp')
         assert call_count[0] == 2  # compile + run
 
@@ -113,7 +113,7 @@ class TestVerifyCommands:
 
         call_count = [0]
 
-        def fake_run_command(command, params, thread_limit, time_limit=None, **kw):
+        def fake_run_command(command, params, jobs, time_limit=None, **kw):
             call_count[0] += 1
             for p in params:
                 command(p)
@@ -124,7 +124,7 @@ class TestVerifyCommands:
         with patch('libs.cmd.verify.run_command', side_effect=fake_run_command):
             with caplog.at_level(logging.ERROR):
                 with pytest.raises(RuntimeError):
-                    verify_codes('src', thread_limit=1,
+                    verify_codes('src', jobs=1,
                                  time_limit=0.5, temp_path='temp')
         error_msgs = [m for m in caplog.messages if 'failed in execution' in m]
         assert len(error_msgs) == 1
@@ -150,7 +150,7 @@ class TestVerifyCommands:
         call_count = [0]
         usage_rel = os.path.join('src', 'math', 'gcd', 'usage.cpp')
 
-        def fake_run_command(command, params, thread_limit, time_limit=None, **kw):
+        def fake_run_command(command, params, jobs, time_limit=None, **kw):
             call_count[0] += 1
             for p in params:
                 command(p)
@@ -161,7 +161,7 @@ class TestVerifyCommands:
 
         with patch('libs.cmd.verify.run_command', side_effect=fake_run_command):
             with pytest.raises(RuntimeError):
-                verify_codes('src', thread_limit=1,
+                verify_codes('src', jobs=1,
                              time_limit=0.5, temp_path='temp')
 
     def test_verify_codes_post_wrong_answer(self, tmp_path, monkeypatch):
@@ -186,7 +186,7 @@ class TestVerifyCommands:
 
         call_count = [0]
 
-        def fake_run_command(command, params, thread_limit, time_limit=None, **kw):
+        def fake_run_command(command, params, jobs, time_limit=None, **kw):
             call_count[0] += 1
             if call_count[0] == 1:
                 # compile phase: call command to populate out_src_samples
@@ -210,7 +210,7 @@ class TestVerifyCommands:
 
         with patch('libs.cmd.verify.run_command', side_effect=fake_run_command):
             with pytest.raises(RuntimeError):
-                verify_codes('src', thread_limit=1,
+                verify_codes('src', jobs=1,
                              time_limit=0.5, temp_path='temp')
 
     def test_verify_cli_registered(self, cli):
@@ -223,5 +223,5 @@ class TestVerifyCommands:
         runner = CliRunner()
         with patch('libs.cmd.verify.run_command', return_value=[]):
             result = runner.invoke(
-                cli, ['verify', '-s', 'src', '-l', '2', '-T', 'temp'])
+                cli, ['verify', '-s', 'src', '-j', '2', '-T', 'temp'])
         assert result.exit_code == 0

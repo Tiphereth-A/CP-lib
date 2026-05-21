@@ -20,7 +20,7 @@ class ConfigIndex(ConfigBase):
 
     @with_logger
     def get_section_name(self, **kwargs) -> set[str]:
-        return set(i[0] for i in self.get_section_list())
+        return {i[0] for i in self.get_section_list()}
 
     @with_logger
     def new_section(self, name: str, title: str, **kwargs) -> bool:

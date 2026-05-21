@@ -19,7 +19,7 @@ def run_benchmarks(
     bin_dir: str,
     raw_dir: str,
     compare_py_dir: str,
-    thread_limit: int,
+    jobs: int,
     dry_run: bool,
     **kwargs,
 ):
@@ -49,7 +49,7 @@ def run_benchmarks(
         lambda x: (shlex.split(
             'g++ -std=gnu++20 -O2 {src} -lbenchmark -o {out}'.format(
                 src=shlex.quote(str(x[0])),
-                out=shlex.quote(str(x[1])))), {}),  params, thread_limit)
+                out=shlex.quote(str(x[1])))), {}),  params, jobs)
 
     cmds = []
 
@@ -85,10 +85,10 @@ def _register_bench(cli):
     @click.option('--bin-dir', type=click.Path(file_okay=False), default='.cp-lib/bench-bin', help='Directory for compiled benchmark binaries')
     @click.option('--raw-dir', type=click.Path(file_okay=False), default='.cp-lib/bench-raw', help='Directory for raw benchmark json output files')
     @click.option('--compare-py-dir', type=click.Path(file_okay=False), default='.cp-lib/compare', help='Directory for comparison Python scripts')
-    @click.option('-l', '--thread-limit', type=int, help='limit of threads to run', default=8)
+    @click.option('-j', '--jobs', type=int, help='limit of jobs to run', default=8)
     @click.option('--dry-run', is_flag=True, help='Perform a dry run without executing benchmarks')
-    def _benchmark(bench_dir: str, bin_dir: str, raw_dir: str, compare_py_dir: str,  thread_limit: int, dry_run: bool):
+    def _benchmark(bench_dir: str, bin_dir: str, raw_dir: str, compare_py_dir: str,  jobs: int, dry_run: bool):
         cmds = run_benchmarks(bench_dir, bin_dir, raw_dir,
-                              compare_py_dir, thread_limit, dry_run)
+                              compare_py_dir, jobs, dry_run)
         if dry_run:
             print('\n'.join(shlex.join(cmd) for cmd in cmds))

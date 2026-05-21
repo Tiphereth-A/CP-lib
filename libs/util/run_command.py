@@ -9,7 +9,7 @@ from libs.decorator import with_logger, with_timer
 
 @with_logger
 @with_timer
-def run_command(command: Callable[[Any], tuple[list[str], dict]], params: Iterable, thread_limit: int, time_limit: float | None = None, **kwargs) -> list:
+def run_command(command: Callable[[Any], tuple[list[str], dict]], params: Iterable, jobs: int, time_limit: float | None = None, **kwargs) -> list:
     logger = kwargs.get('logger')
 
     params_queue = Queue()
@@ -81,7 +81,7 @@ def run_command(command: Callable[[Any], tuple[list[str], dict]], params: Iterab
             args=(i,),
             name=str(i)
         )
-        for i in range(thread_limit)
+        for i in range(jobs)
     ]
     threads.append(
         Thread(

@@ -1,19 +1,24 @@
 repos:
-  - repo: https://github.com/PyCQA/isort
-    rev: 8.0.1
-    hooks:
-      - id: isort
   - repo: local
     hooks:
-      - id: fix-line-endings
-        name: Fix line endings
-        entry: uv run python scripts/fix_line_endings.py
-        language: python
+      - id: format-codes
+        name: format codes
+        entry: uv run python manager.py fmt
+        language: unsupported
+        files: ^.*\.(?:cpp|hpp|tex|py)$
       - id: replace-chinese-punctuation
-        name: Replace Chinese punctuation
-        entry: uv run python scripts/replace_chinese_punct.py
-        language: python
-        files: ^src/
+        name: replace Chinese punctuation
+        entry: python scripts/replace_chinese_punct.py
+        language: unsupported
+        files: ^src/.*\.(?:cpp|hpp|tex|md|py|sh|yml)$
+  - repo: https://github.com/PyCQA/isort
+    rev: 9.0.0a3
+    hooks:
+      - id: isort
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.21.2
+    hooks:
+      - id: pyupgrade
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
@@ -22,9 +27,11 @@ repos:
       - id: detect-private-key
       - id: double-quote-string-fixer
       - id: end-of-file-fixer
+        exclude: ^test/cpv_local/_data/.*\.out$
       - id: fix-byte-order-marker
       - id: forbid-submodules
       - id: mixed-line-ending
+        args: [--fix=lf]
       - id: name-tests-test
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]

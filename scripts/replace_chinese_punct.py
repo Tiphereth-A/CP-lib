@@ -44,11 +44,7 @@ def replace_text(text: str) -> str:
 
 
 def process_file(path: pathlib.Path) -> bool:
-    try:
-        original = path.read_bytes().decode('utf-8')
-    except OSError | UnicodeDecodeError:
-        return False
-
+    original = path.read_bytes().decode('utf-8')
     updated = replace_text(original)
     if updated == original:
         return False

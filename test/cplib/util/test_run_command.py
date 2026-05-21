@@ -10,7 +10,7 @@ from libs.util.run_command import run_command
 @pytest.mark.unit
 class TestRunCommand:
     def test_empty_params(self):
-        result = run_command(lambda x: (['echo', x], {}), [], thread_limit=1)
+        result = run_command(lambda x: (['echo', x], {}), [], jobs=1)
         assert result == []
 
     def test_successful_commands(self):
@@ -18,7 +18,7 @@ class TestRunCommand:
         result = run_command(
             lambda x: ([sys.executable, '-c', f'print({x})'], {}),
             [1, 2, 3],
-            thread_limit=2
+            jobs=2
         )
         assert result == []
 
@@ -27,7 +27,7 @@ class TestRunCommand:
         result = run_command(
             lambda x: ([sys.executable, '-c', 'import sys; sys.exit(1)'], {}),
             ['bad_param'],
-            thread_limit=1
+            jobs=1
         )
         assert result == [([sys.executable, '-c',
                             'import sys; sys.exit(1)'], 'bad_param')]
@@ -38,7 +38,7 @@ class TestRunCommand:
         result = run_command(
             lambda x: ([sys.executable, '-c', f'pass'], {}),
             params,
-            thread_limit=4
+            jobs=4
         )
         assert result == []
 
@@ -47,7 +47,7 @@ class TestRunCommand:
         result = run_command(
             lambda x: ([sys.executable, '-c', 'print("hello")'], {}),
             ['p'],
-            thread_limit=1
+            jobs=1
         )
         assert result == []
 
@@ -59,7 +59,7 @@ class TestRunCommand:
             lambda x: ([sys.executable, '-c',
                        'import sys; sys.stderr.write("err\\n")'], {}),
             ['p'],
-            thread_limit=1
+            jobs=1
         )
         assert result == []
 
@@ -71,7 +71,7 @@ class TestRunCommand:
             lambda x: ([sys.executable, '-c',
                        f'import sys; sys.exit({x})'], {}),
             [0, 1],
-            thread_limit=2
+            jobs=2
         )
         assert result == [([sys.executable, '-c',
                             'import sys; sys.exit(1)'], 1)]
@@ -90,14 +90,14 @@ class TestRunCommand:
                 lambda x: ([sys.executable, '-c',
                            f'import time; time.sleep(0.05)'], {}),
                 list(range(4)),
-                thread_limit=1
+                jobs=1
             )
         # If sleep was called with 30, heartbeat line 25 was hit
         assert result == []
 
     def test_none_param_is_skipped(self):
         result = run_command(lambda x: (['echo', str(x)], {}), [
-                             None], thread_limit=1)
+                             None], jobs=1)
         assert result == []
 
     def test_time_limit_sets_timeout(self):
@@ -105,7 +105,7 @@ class TestRunCommand:
         result = run_command(
             lambda x: ([sys.executable, '-c', 'pass'], {}),
             ['p'],
-            thread_limit=1,
+            jobs=1,
             time_limit=10.0
         )
         assert result == []
@@ -117,7 +117,7 @@ class TestRunCommand:
         def make_cmd(x):
             return ([sys.executable, '-c', 'pass'], {'post_run': lambda r: called.append(r)})
 
-        result = run_command(make_cmd, ['p'], thread_limit=1)
+        result = run_command(make_cmd, ['p'], jobs=1)
         assert result == []
         assert len(called) == 1
 
@@ -130,7 +130,7 @@ class TestRunCommand:
                 raise sp.CalledProcessError(1, r.args)
             return ([sys.executable, '-c', 'pass'], {'post_run': _post})
 
-        result = run_command(make_cmd, ['p'], thread_limit=1)
+        result = run_command(make_cmd, ['p'], jobs=1)
         assert len(result) == 1
 
     def test_timeout_expired(self):
@@ -139,7 +139,7 @@ class TestRunCommand:
             lambda x: (
                 [sys.executable, '-c', 'import time; time.sleep(10)'], {}),
             ['p'],
-            thread_limit=1,
+            jobs=1,
             time_limit=0.01
         )
         assert len(result) == 1
@@ -152,7 +152,7 @@ class TestRunCommand:
                 raise ValueError('unexpected post_run error')
             return ([sys.executable, '-c', 'pass'], {'post_run': _post})
 
-        result = run_command(make_cmd, ['p'], thread_limit=1)
+        result = run_command(make_cmd, ['p'], jobs=1)
         assert len(result) == 1
 
     def test_hide_stdout_suppresses_stdout_in_log(self):
@@ -161,6 +161,6 @@ class TestRunCommand:
             lambda x: ([sys.executable, '-c', 'print("secret")'],
                        {'hide_stdout': True}),
             ['p'],
-            thread_limit=1
+            jobs=1
         )
         assert result == []

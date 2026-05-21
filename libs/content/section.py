@@ -89,7 +89,7 @@ class Section:
         os.makedirs(os.path.dirname(result_path), exist_ok=True)
         with open(result_path, 'w', encoding='utf8') as f_result:
             content: str = _TEMPLACES['doc.tex'] if not custom_doc else open(
-                os.path.join(self._dir, 'doc.tex'), 'r', encoding='utf8').read()
+                os.path.join(self._dir, 'doc.tex'), encoding='utf8').read()
             for file in src_list:
                 pattern = re.compile(
                     r'% \{' + re.escape(file) + r'(?:,start=(-?\d+))?(?:,stop=(-?\d+))?\}')

@@ -17,7 +17,7 @@ def cpv_doc(src: str, jekyll_src: str, **kwargs):
     index_md = os.path.join(jekyll_src, 'index.md')
     logger.info(f"patching {index_md}...")
 
-    with open(index_md, 'r', encoding='utf-8') as f:
+    with open(index_md, encoding='utf-8') as f:
         content = f.read()
     sections = content.split('---', 2)
     if len(sections) < 3:

@@ -20,7 +20,7 @@ def generate_testcode(src: str, target: str, **kwargs):
     all_tar_files = get_files_with_exts([target], ['.cpp'])
     for file_path in all_tar_files:
         try:
-            f = open(file_path, 'r', encoding='utf8')
+            f = open(file_path, encoding='utf8')
             first_line = f.readline()
             f.close()
             if first_line.strip() == '#define AUTO_GENERATED':
@@ -38,7 +38,7 @@ def generate_testcode(src: str, target: str, **kwargs):
             target, os.path.relpath(src_dir, src))
         filename_noext = basename.removesuffix('.cppmeta')
 
-        with open(src_file, 'r', encoding='utf8') as f:
+        with open(src_file, encoding='utf8') as f:
             code_lines = f.read().splitlines(True)
         parser = cppmeta_parser(filename_noext, dst_dir, code_lines, conf)
 

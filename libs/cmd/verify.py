@@ -18,12 +18,12 @@ RE_SAMPLE = re.compile(r'/\*sample\d*\n(.*?)={8,}\n(.*?)\*/', re.DOTALL)
 
 @with_logger
 @with_timer
-def verify_codes(src: str, thread_limit: int, time_limit: float, temp_path: str, **kwargs):
+def verify_codes(src: str, jobs: int, time_limit: float, temp_path: str, **kwargs):
     logger = kwargs.get('logger')
 
     files = list(filter(
         lambda x: x.endswith('.cpp') and os.path.getsize(x) > 0 and RE_USAGE_MARKER.search(open(
-            x, 'r').read()),
+            x).read()),
         get_src_files(src)))
 
     logger.info(f'{len(files)} file(s) found')
@@ -35,7 +35,7 @@ def verify_codes(src: str, thread_limit: int, time_limit: float, temp_path: str,
         os.makedirs(_dir, exist_ok=True)
 
         _samples: list[tuple[str, str]] = []
-        with open(x, 'r', encoding='utf-8') as f:
+        with open(x, encoding='utf-8') as f:
             _samples = [(m.group(1), m.group(2))
                         for m in RE_SAMPLE.finditer(f.read())]
 
@@ -48,9 +48,9 @@ def verify_codes(src: str, thread_limit: int, time_limit: float, temp_path: str,
                 src=shlex.quote(x),
                 out=shlex.quote(_out_file))), {})
 
-    compile_failed = run_command(_compile, files, thread_limit)
-    compile_failed_files = set(
-        i[1] for i in compile_failed) if compile_failed else set()
+    compile_failed = run_command(_compile, files, jobs)
+    compile_failed_files = {
+        i[1] for i in compile_failed} if compile_failed else set()
 
     run_cases: list[tuple[str, str, str]] = []
     for out_f, src_f, samples in out_src_samples.queue:
@@ -81,7 +81,7 @@ def verify_codes(src: str, thread_limit: int, time_limit: float, temp_path: str,
         return ([out_f], {'subprocess_args': {'input': inp}, 'post_run': _post, 'hide_stdout': True})
 
     run_failed = [i[1] for i in run_command(
-        _run, run_cases, thread_limit, time_limit)] if run_cases else []
+        _run, run_cases, jobs, time_limit)] if run_cases else []
 
     if compile_failed:
         logger.error(
@@ -98,8 +98,8 @@ def verify_codes(src: str, thread_limit: int, time_limit: float, temp_path: str,
 def _register_verify(cli):
     @cli.command('verify')
     @click.option('-s', '--src', type=click.Path(exists=True, file_okay=False), help='Source directory', default='src')
-    @click.option('-l', '--thread-limit', type=int, help='limit of threads to run', default=8)
+    @click.option('-j', '--jobs', type=int, help='limit of jobs to run', default=8)
     @click.option('-t', '--time-limit', type=float, help='limit of time to run', default=3)
     @click.option('-T', '--temp-path', type=str, help='Temporary path for compiled files', default='.cp-lib/test')
-    def _verify(src: str, thread_limit: int, time_limit: float, temp_path: str):
-        verify_codes(src, thread_limit, time_limit, temp_path)
+    def _verify(src: str, jobs: int, time_limit: float, temp_path: str):
+        verify_codes(src, jobs, time_limit, temp_path)

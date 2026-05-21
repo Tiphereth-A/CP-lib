@@ -53,6 +53,6 @@ int main() {
     if (f) continue;
     ans = std::max(ans, r);
   }
-  if (ans < 0) cout << "-1";
-  else cout << ans;
+  if (ans < 0) ans = -1;
+  cout << ans << '\n';
 }

@@ -37,7 +37,7 @@ def gen_tex(content_tree: ContentTree, temp_path: str, **kwargs):
 
         chapter_doc_path = os.path.join(*node.fullname().split('.'), 'doc.tex')
         if os.access(chapter_doc_path, os.F_OK):
-            with open(chapter_doc_path, 'r', encoding='utf8') as f:
+            with open(chapter_doc_path, encoding='utf8') as f:
                 chapter_content = f.read().replace(
                     r'% {content}', chapter_content)
 
