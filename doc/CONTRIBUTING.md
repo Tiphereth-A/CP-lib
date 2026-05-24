@@ -25,36 +25,50 @@ This section describes the purpose of each directory and important files in the 
 
 - **`src/_titlepage/`** and **`src/_colophon/`** - Special sections for notebook title page and colophon.
 
+- **`doc/`** - Repository documentation (e.g., this contributing guide).
+
 - **`test/`** - Test files for verification. Contains subdirectories:
+  - `bench/` - Benchmark codes
   - `cpv/` - Competitive-verifier tests organized by online judge (Aizu, Library Checker, Yukicoder)
   - `cpv_local/` - Local tests with custom implementations and test data
   - `cpv_local/_data/` - Test data files organized by OJ (`.in`, `.out`, `.ans`)
   - `cpv_meta/` - Test matrix template files (`.cppmeta`) for generating parameterized test variants
-  - `cplib/` - Additional test utilities
+  - `cplib/` - Unit tests for manager script
 
 ### Configuration and Management
 
-- **`tcgen.yml`** - Test matrix configuration file for generating parameterized test variants from templates.
+- **`src/index.yml`** - Top-level chapter ordering for the notebook.
+
+- **`test/cpv_meta/config.yml`** - Test matrix configuration file for generating parameterized test variants from templates.
 
 - **`libs/`** - Python library modules used by `manager.py` for managing the repository, generating content, and processing files. Contains:
-  - `cli.py` - Command-line interface
-  - `commands/` - Command implementations
-  - `classes/` - Data classes and models
-  - `configs.py`, `utils.py`, `templates.py`, etc.
+  - `cmd/` - Command implementations
+  - `conf/` - Config classes and models
+  - `content/` - Content tree and section generation utilities
+  - `decorator/` - Logging/timing decorators
+  - `meta/` - Metadata parsers and test matrix helpers
+  - `util/` - Shared utilities
 
 - **`manager.py`** - Main management script providing commands for creating new implementations, formatting code, generating notebooks, and running tests.
+
+- **`cpv_patch.py`** - Helper script for patching competitive-verifier metadata.
+
+- **`scripts/`** - One-off utility scripts for pre-commit hooks (e.g., `replace_chinese_punct.py`).
 
 - **`pyproject.toml`** - Python project configuration and dependency management.
 
 - **`uv.lock`** - Lock file for uv package manager.
 
-### Generated and Build Directories
+- **`Makefile`** - Build helpers (e.g., compiling sources for CodeQL and downloading LaTeX fonts).
 
-- **`.cp-lib/`** - Generated/processed files directory.
+### Repository Metadata
 
-- **`_minted-notebook/`** - Temporary directory for LaTeX minted package output (syntax highlighting) during PDF compilation.
+- **`README.md`** - Project overview, requirements, and usage.  
+  Note: this is a symlink, the actual file is in `.competitive-verifier/docs/index.md`
 
-- **`svg-inkscape/`** - SVG files converted to PDF format for inclusion in LaTeX documents.
+- **`LICENSE`** - Licensing terms.
+
+- **`CITATION.bib`** - Citation metadata for academic use.
 
 ### LaTeX Configuration
 
@@ -72,21 +86,17 @@ This section describes the purpose of each directory and important files in the 
   - `config.toml` - Verifier configuration
   - `docs/` - Additional documentation
 
-- **`.vscode/`** - VS Code workspace settings.
-
 - **`.latexindent.yaml`** - Configuration for LaTeX indentation and formatting.
 
 - **`.clang-format`** - Clang format configuration for C++ code style.
 
+- **`.clang-tidy`** - Clang-tidy configuration.
+
 - **`.clangd`** - Clangd configuration for C++ language server.
 
-- **`.prettierrc`** - Prettier configuration for code formatting.
+- **`.pre-commit-config.yaml`** - Pre-commit hooks configuration.
 
 - **`.gitignore`**, **`.gitattributes`** - Git configuration files.
-
-### Other Directories and Files
-
-- **`local/`** - Local files for personal use (typically not tracked in git).
 
 ## Adding New Contents
 
