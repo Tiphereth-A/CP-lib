@@ -5,7 +5,7 @@ repos:
         name: format codes
         entry: uv run python manager.py fmt
         language: unsupported
-        files: ^.*\.(?:cpp|hpp|tex|py)$
+        files: ^.*\.(?:cpp|hpp|py)$
       - id: replace-chinese-punctuation
         name: replace Chinese punctuation
         entry: python scripts/replace_chinese_punct.py
