@@ -23,7 +23,7 @@ class ex_suffix_automaton {
       u32 p = last, q = st[p].nex[c];
       if (st[p].len + 1 == st[q].len) return q;
       else {
-        u32 clone = sz++;
+        cu32 clone = sz++;
         st.push_back(TIFA()), st[clone].len = st[p].len + 1, st[clone].link = st[q].link, st[clone].nex = st[q].nex;
         while (~p && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
         return st[q].link = clone;
@@ -34,10 +34,10 @@ class ex_suffix_automaton {
     while (~p && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
     if (!~p) st[cur].link = 0;
     else {
-      u32 q = st[p].nex[c];
+      cu32 q = st[p].nex[c];
       if (st[p].len + 1 == st[q].len) st[cur].link = q;
       else {
-        u32 clone = sz++;
+        cu32 clone = sz++;
         st.push_back(TIFA()), st[clone].len = st[p].len + 1, st[clone].link = st[q].link, st[clone].nex = st[q].nex;
         while (~p && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
         st[q].link = st[cur].link = clone;

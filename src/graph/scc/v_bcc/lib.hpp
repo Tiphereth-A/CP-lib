@@ -20,10 +20,8 @@ struct v_bcc {
     u32 cnt = 0, start;
     auto tarjan = [&](auto&& f, u32 u, u32 fa) -> void {
       u32 son = 0;
-      bool ecut_flag = false;
-      low[u] = dfn[u] = ++cnt;
-      if CEXP (get_belongs) stk.push_back(u);
-      for (auto v : g[u])
+      if CEXP (low[u] = dfn[u] = ++cnt; get_belongs) stk.push_back(u);
+      for (bool ecut_flag = false; auto v : g[u])  // NOLINT(misc-const-correctness)
         if (!dfn[v]) {
           ++son, f(f, v, u), low[u] = min(low[u], low[v]);
           if CEXP (get_ecut) {

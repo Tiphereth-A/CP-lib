@@ -26,7 +26,7 @@ class segbeats_ca_msh {
   CEXP void add(u32 x, u32 l, u32 r, u32 L, u32 R, T k) NE {
     if (assert(R >= l && L <= r); L <= l && r <= R) return all_update(x, l, r, k, k, k, k, k, k);
     pushdown(x, l, r);
-    u32 mid = l + (r - l) / 2;
+    cu32 mid = l + (r - l) / 2;
     if (L <= mid) add(x * 2, l, mid, L, R, k);
     if (R > mid) add(x * 2 + 1, mid + 1, r, L, R, k);
     pushup(x);
@@ -35,7 +35,7 @@ class segbeats_ca_msh {
     if (assert(R >= l && L <= r); k <= t[x].min) return;
     if (L <= l && r <= R && k < t[x].min2) return all_update(x, l, r, k - t[x].min, 0, 0, k - t[x].min, 0, 0);
     pushdown(x, l, r);
-    u32 mid = l + (r - l) / 2;
+    cu32 mid = l + (r - l) / 2;
     if (L <= mid) chmax(x * 2, l, mid, L, R, k);
     if (R > mid) chmax(x * 2 + 1, mid + 1, r, L, R, k);
     pushup(x);
@@ -44,7 +44,7 @@ class segbeats_ca_msh {
     if (assert(R >= l && L <= r); k >= t[x].max) return;
     if (L <= l && r <= R && k > t[x].max2) return all_update(x, l, r, 0, k - t[x].max, 0, 0, k - t[x].max, 0);
     pushdown(x, l, r);
-    u32 mid = l + (r - l) / 2;
+    cu32 mid = l + (r - l) / 2;
     if (L <= mid) chmin(x * 2, l, mid, L, R, k);
     if (R > mid) chmin(x * 2 + 1, mid + 1, r, L, R, k);
     pushup(x);
@@ -52,7 +52,7 @@ class segbeats_ca_msh {
   CEXP T1 queries(u32 x, u32 l, u32 r, u32 L, u32 R) NE {
     if (assert(R >= l && L <= r); L <= l && r <= R) return t[x].sum;
     pushdown(x, l, r);
-    u32 mid = l + (r - l) / 2;
+    cu32 mid = l + (r - l) / 2;
     T1 ret = 0;
     if (L <= mid) ret = queries(x * 2, l, mid, L, R);
     if (R > mid) ret += queries(x * 2 + 1, mid + 1, r, L, R);
@@ -61,7 +61,7 @@ class segbeats_ca_msh {
   CEXP T querymax(u32 x, u32 l, u32 r, u32 L, u32 R) NE {
     if (assert(R >= l && L <= r); L <= l && r <= R) return t[x].max;
     pushdown(x, l, r);
-    u32 mid = l + (r - l) / 2;
+    cu32 mid = l + (r - l) / 2;
     T ret = -INF;
     if (L <= mid) ret = querymax(x * 2, l, mid, L, R);
     if (R > mid) ret = max(ret, querymax(x * 2 + 1, mid + 1, r, L, R));
@@ -70,7 +70,7 @@ class segbeats_ca_msh {
   CEXP T queryhismax(u32 x, u32 l, u32 r, u32 L, u32 R) NE {
     if (assert(R >= l && L <= r); L <= l && r <= R) return t[x].hismax;
     pushdown(x, l, r);
-    u32 mid = l + (r - l) / 2;
+    cu32 mid = l + (r - l) / 2;
     T ret = -INF;
     if (L <= mid) ret = queryhismax(x * 2, l, mid, L, R);
     if (R > mid) ret = max(ret, queryhismax(x * 2 + 1, mid + 1, r, L, R));
@@ -128,7 +128,7 @@ class segbeats_ca_msh {
   }
   CEXP void pushdown(u32 x, u32 l, u32 r) NE {
     if (tag[x].add1 || tag[x].add2 || tag[x].add2 || tag[x].maxadd2 || tag[x].maxadd2 || tag[x].maxadd2) {
-      u32 mid = l + (r - l) / 2;
+      cu32 mid = l + (r - l) / 2;
       T mn = min(t[x * 2].min, t[x * 2 + 1].min), mx = max(t[x * 2].max, t[x * 2 + 1].max);
       if (t[x * 2].min == mn) {
         if (t[x * 2].max == mx) all_update(x * 2, l, mid, tag[x].add1, tag[x].add2, tag[x].add3, tag[x].maxadd1, tag[x].maxadd2, tag[x].maxadd3);
@@ -151,7 +151,7 @@ class segbeats_ca_msh {
       t[x].cmin = t[x].cmax = 1;
       return;
     }
-    u32 mid = l + (r - l) / 2;
+    cu32 mid = l + (r - l) / 2;
     build(a, x * 2, l, mid), build(a, x * 2 + 1, mid + 1, r);
     pushup(x);
   }

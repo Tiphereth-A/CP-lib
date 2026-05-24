@@ -110,7 +110,7 @@ class fhq_treap_w {
     split(root, r + 1, x, z), split(x, l, x, y);
     reverse__(y), root = merge(merge(x, y), z);
   }
-  CEXP T query(u32 l, u32 r) NE {
+  ND CEXP T query(u32 l, u32 r) NE {
     u32 x, y, z;
     split(root, r + 1, x, z), split(x, l, x, y);
     T ret = t[y].w;

@@ -27,7 +27,7 @@ class knapsack_mixed {
         }
       }
   }
-  vec<T> CR result() CNE { return f; }
+  ND vec<T> CR result() CNE { return f; }
 };
 
 }  // namespace tifa_libs

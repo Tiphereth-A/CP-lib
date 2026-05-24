@@ -53,7 +53,7 @@ class suffix_array {
   // 0 :  t == s.substr
   // 1 :  t < s.substr, t is a prefix of s.substr
   // 2 :  t < s.substr, t isn't prefix of s.substr
-  CEXP i32 compare_substr(T t, u32 begs = 1, u32 begt = 1) CNE {
+  ND CEXP i32 compare_substr(T t, u32 begs = 1, u32 begt = 1) CNE {
     while (begs < s.size() && begt < t.size()) {
       if (t[begt] > s[begs]) return -1;
       if (t[begt] < s[begs]) return 2;
@@ -63,7 +63,7 @@ class suffix_array {
     retif_((begt >= t.size()), 1, -1);
   }
   // the smallest rank of suffix that is greater than or equal t
-  CEXP u32 lower_bound(T t) CNE {
+  ND CEXP u32 lower_bound(T t) CNE {
     u32 l = 1, r = u32(s.size() - 1), ret = u32(s.size());
     while (r >= l) {
       cu32 m = l + (r - l) / 2;
@@ -73,14 +73,14 @@ class suffix_array {
     return ret;
   }
   // the smallest rank of suffix that is greater than t and t isn't prefix of that
-  CEXP u32 upper_bound(T t) CNE {
+  ND CEXP u32 upper_bound(T t) CNE {
     u32 l = 1, r = u32(s.size() - 1), ret = u32(s.size());
     while (r >= l)
       if (cu32 m = l + (r - l) / 2; compare_substr(t, sa[m]) <= 1) l = m + 1;
       else r = m - 1, ret = m;
     return ret;
   }
-  CEXP u32 frequency(T t) CNE { return upper_bound(t) - lower_bound(t); }
+  ND CEXP u32 frequency(T t) CNE { return upper_bound(t) - lower_bound(t); }
 };
 
 }  // namespace tifa_libs

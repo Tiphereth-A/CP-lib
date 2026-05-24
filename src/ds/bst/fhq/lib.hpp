@@ -82,26 +82,26 @@ struct fhq_treap {
     };
     return dfs(dfs, root);
   }
-  CEXP auto find(cT_(T) val) CNE {
+  ND CEXP auto find(cT_(T) val) CNE {
     u32 pos = root;
     while (pos)
       if (val == data[pos].val) return data.cbegin() + pos;
       else pos = data[pos].son[!compare(val, data[pos].val)];
     return data.cend();
   }
-  CEXP u32 rank(cT_(T) val) CNE {
+  ND CEXP u32 rank(cT_(T) val) CNE {
     u32 pos = root, res = 0;
     while (pos)
       if (compare(data[pos].val, val)) res += data[data[pos].son[0]].sz + 1, pos = data[pos].son[1];
       else pos = data[pos].son[0];
     return res + 1;
   }
-  CEXP u32 count(cT_(T) val) CNE {
+  ND CEXP u32 count(cT_(T) val) CNE {
     u32 rk = rank(val);
     if (auto res = next(val); !res) return data[root].sz - rk + 1;
     else return rank(res.value()) - rk;
   }
-  CEXP auto kth(u32 k) CNE {
+  ND CEXP auto kth(u32 k) CNE {
     std::optional<T> ret;
     if (k < 1 || k > data[root].sz) return ret;
     u32 pos = root;
@@ -112,7 +112,7 @@ struct fhq_treap {
       } else if (_ < k) k -= _, pos = data[pos].son[1];
       else pos = data[pos].son[0];
   }
-  CEXP auto prev(cT_(T) val) CNE {
+  ND CEXP auto prev(cT_(T) val) CNE {
     u32 pos = root;
     std::optional<T> ret;
     while (pos)
@@ -120,7 +120,7 @@ struct fhq_treap {
       else ret.emplace(data[pos].val), pos = data[pos].son[1];
     return ret;
   }
-  CEXP auto next(cT_(T) val) CNE {
+  ND CEXP auto next(cT_(T) val) CNE {
     u32 pos = root;
     std::optional<T> ret;
     while (pos)
