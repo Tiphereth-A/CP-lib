@@ -11,7 +11,7 @@ class TestFmtCommands:
     def test_lint_all_codes_no_failures(self, tmp_path):
         (tmp_path / 'a.py').write_text('x=1\n')
         with patch('libs.cmd.fmt.run_command', return_value=[]) as mock_run:
-            lint_all_codes([str(tmp_path / 'a.py')], 4)
+            lint_all_codes([str(tmp_path / 'a.py')], 4, True)
             mock_run.assert_called_once()
 
     def test_lint_all_codes_with_failures_logs(self, tmp_path, caplog):
@@ -20,7 +20,7 @@ class TestFmtCommands:
         (tmp_path / 'a.py').write_text('x=1\n')
         with patch('libs.cmd.fmt.run_command', return_value=['a.py']):
             with caplog.at_level(logging.ERROR):
-                lint_all_codes([str(tmp_path / 'a.py')], 1)
+                lint_all_codes([str(tmp_path / 'a.py')], 1, True)
         assert caplog.messages == ['1 file(s) failed for py:', '  a.py']
 
     def test_fmt_cli_registered(self, cli):

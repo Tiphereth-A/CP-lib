@@ -54,7 +54,7 @@ struct poly : vec<TPN ccore::val_t> {
   }
   template <class F>
   CEXP void apply(F&& f) NE { apply_range(0, (u32)data_t::size(), std::forward<F>(f)); }
-  CEXP poly pre(u32 sz) CNE {
+  ND CEXP poly pre(u32 sz) CNE {
     if (sz <= this->size()) return {this->begin(), this->begin() + sz};
     poly _ = *this;
     _.resize(sz);

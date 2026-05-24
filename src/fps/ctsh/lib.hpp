@@ -10,7 +10,7 @@ CEXP poly_t ctsh_fps(poly_t CR f, TPN poly_t::val_t c, vec<T> CR ifact, u32 m = 
   cu32 n = (u32)f.size(), k = n - 1;
   using mint = TPN poly_t::val_t;
   if (!m) m = n;
-  u64 t = c.val();
+  cu64 t = c.val();
   if (t <= k) {
     poly_t ret(m);
     u32 ptr = 0;

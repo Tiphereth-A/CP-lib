@@ -36,7 +36,7 @@ class mint_md_tag : public mint_impl_::mint_tag_base {
 
  protected:
   template <class mint>
-  CEXP auto neg() CNE {
+  ND CEXP auto neg() CNE {
     mint res;
     if (!core.OFFSET) [[likely]] {
       res.v_ = (core.MOD_ODD & -raw_t(v_ != 0)) - v_;

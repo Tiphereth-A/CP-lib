@@ -10,7 +10,7 @@ CEXP vecu tree_top(G CR tr, std::conditional_t<need_dfn, vecu&, spnu> dfn, spnu 
   cu32 n = tr.vsize();
   if CEXP (need_dfn) dfn = vecu(n);
   vecu top(n, n);
-  u32 cnt = 0;
+  u32 cnt = 0;  // NOLINT(misc-const-correctness)
   auto f = [&](auto&& f, u32 u, u32 top_) NE -> void {
     if CEXP (need_dfn) dfn[u] = cnt++;
     if (top[u] = top_; maxson[u] == tr.vsize()) return;

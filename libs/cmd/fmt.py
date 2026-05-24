@@ -26,7 +26,7 @@ TYPE_LINT_COMMAND_MP: dict[str, FmtConfig] = {
         'clang-format --Wno-error=unknown -style=file -i {src}',
         Version('22.0.0'),
         'clang-format --version',
-        re.compile(r'^.*? clang-format version (?P<version>\d+(?:\.\d+)*) .*$')),
+        re.compile(r'^.*?clang-format version (?P<version>\d+(?:\.\d+)*) .*$')),
     # tip: use `perl -MCPAN -e shell` then `isntall YAML::Tiny`, `install File::HomeDir` to install the dependency of latexindent
     'tex': FmtConfig(
         'latexindent -c=/ -l=.latexindent.yaml -s {src} -o {src}',
@@ -64,8 +64,9 @@ def lint_all_codes(files: Iterable[str], jobs: int, force_lf: bool, **kwargs):
         logger.info(f"formatting {code_type} files...")
         conf: FmtConfig = TYPE_LINT_COMMAND_MP[code_type]
         try:
-            current_version = Version(re.match(conf.version_regex, os.popen(
-                conf.version_command).read()).group('version'))
+            version_output = os.popen(conf.version_command).read()
+            current_version = Version(conf.version_regex.match(
+                version_output).group('version'))
             if current_version < conf.min_version:
                 logger.warning(
                     f"{code_type} formatter version ({current_version}) is less than the required version ({conf.min_version}), skipping...")
@@ -74,7 +75,7 @@ def lint_all_codes(files: Iterable[str], jobs: int, force_lf: bool, **kwargs):
             logger.error(
                 f"failed to get version for {code_type} formatter: {e}")
             logger.debug(
-                f"version command output: '{os.popen(conf.version_command).read()}'")
+                f"version command output: '{version_output}'")
             raise e
 
         failed = run_command(

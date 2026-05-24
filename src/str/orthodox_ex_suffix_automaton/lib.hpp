@@ -19,17 +19,17 @@ class orthodox_ex_suffix_automaton {
   CEXP orthodox_ex_suffix_automaton() NE { st.push_back(TIFA()), st[0].len = 0, st[0].link = -1u; }
 
   CEXP u32 extend(u32 last, u32 c) NE {
-    u32 cur = st[last].nex[c];
+    cu32 cur = st[last].nex[c];
     if (st[cur].len) return cur;
     st[cur].len = st[last].len + 1;
     u32 p = st[last].link;
     while (~p && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
     if (!~p) st[cur].link = 0;
     else {
-      u32 q = st[p].nex[c];
+      cu32 q = st[p].nex[c];
       if (st[p].len + 1 == st[q].len) st[cur].link = q;
       else {
-        u32 clone = sz++;
+        cu32 clone = sz++;
         st.push_back(TIFA());
         flt_ (u32, i, 0, SZ)
           if (st[q].nex[i] && st[st[q].nex[i]].len) st[clone].nex[i] = st[q].nex[i];

@@ -7,22 +7,19 @@ namespace tifa_libs {
 namespace bostan_mori_impl_ {
 template <class ccore_t, class T>
 vec<T> coeff_(ccore_t CR core, ccore_t CR core2, vec<T>& q, u64 n, u32 d) NE {
-  static u32 len = core.size();
-  static vec<T> s(len * 2);
-  static CEXP T inv2 = (T::mod() + 1) / 2;
+  cu32 len = core.size();
+  vec<T> s(len * 2);
   if (!n) {
     vec<T> res(d);
-    T q0 = 0;
-    flt_ (u32, i, 0, len) q0 += q[i];
-    res.back() = len * q0.inv();
+    res.back() = len * std::reduce(q.begin(), q.begin() + len, T(0)).inv();
     return res;
   }
   ntt_doubling(core, q, len);
   vec<T> a(len * 2);
-  flt_ (u32, i, 0, len * 2) a[i] = q[i] * q[i ^ 1];
-  for (u32 i = 0, j = 0; i < len * 2; i += 2, ++j) a[j] = inv2 * (a[i] + a[i + 1]);
+  flt_ (u32, i, len / 2, len) a[i * 2 + 1] = a[i * 2] = q[i * 2] * q[i * 2 + 1];
+  flt_ (u32, i, 0, len) a[i] = q[i * 2] * q[i * 2 + 1];
   vec<T> w = coeff_(core, core2, a, n / 2, d);
-  flt_ (u32, i, 0, len * 2) s[i] = 0;
+  s = vec<T>(len * 2);
   for (u32 i = (n & 1) ^ 1, j = 0; j < d; ++j, i += 2) s[i] = w[j];
   core2.dif(s);
   flt_ (u32, i, 0, len * 2) s[i] *= q[i ^ 1];
@@ -48,15 +45,13 @@ CEXP auto bostan_mori(u64 n, poly_t CR p, poly_t CR q) NE {
   } else {
     auto& core = poly_t::conv_core;
     auto core2 = core;
-    u32 m = (u32)q.size();
-    core.bzr(m);
-    core2.bzr(core.size() * 2);
+    cu32 m = (u32)q.size();
+    core.bzr(m), core2.bzr(core.size() * 2);
     auto q_ = q;
-    core.dif(q_);
-    q_.resize(core2.size());
+    core.dif(q_), q_.resize(core2.size());
     auto iq = bostan_mori_impl_::coeff_(core, core2, q_, n, m - 1);
     TPN poly_t::val_t res = 0;
-    for (u32 i = 0, e = u32(iq.size() - 1); i <= e; ++i) res += p[i] * iq[e - i];
+    flt_ (u32, i, 0, iq.size()) res += p[i] * iq[iq.size() - 1 - i];
     return res;
   }
 }

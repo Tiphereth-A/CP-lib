@@ -15,6 +15,7 @@ class suffix_automaton {
     bool is_clone;  // app 3
     u32 firstpos;   // app 3
   };
+  static CEXP u8 base = 'a';
 
  public:
   u32 sz{1};
@@ -24,19 +25,19 @@ class suffix_automaton {
   CEXP suffix_automaton() NE : st(1) { st[0].len = 0, st[0].link = -1u; }
 
   CEXP void extend(u32 c) NE {
-    u32 cur = sz++;
-    st.push_back(TIFA()), st[cur].len = st[last].len + 1;
+    cu32 cur = sz++;
+    st.emplace_back(), st[cur].len = st[last].len + 1;
     st[cur].times = 1;                   // app 2
     st[cur].firstpos = st[cur].len - 1;  // app 3
     u32 p = last;
     while (~p && !st[p].nex[c]) st[p].nex[c] = cur, p = st[p].link;
     if (!~p) st[cur].link = 0;
     else {
-      u32 q = st[p].nex[c];
+      cu32 q = st[p].nex[c];
       if (st[p].len + 1 == st[q].len) st[cur].link = q;
       else {
-        u32 clone = sz++;
-        st.push_back(TIFA()), st[clone].nex = st[q].nex, st[clone].len = st[p].len + 1, st[clone].link = st[q].link;
+        cu32 clone = sz++;
+        st.emplace_back(), st[clone].nex = st[q].nex, st[clone].len = st[p].len + 1, st[clone].link = st[q].link;
         st[clone].firstpos = st[q].firstpos;  // app 3
         st[clone].is_clone = 1;               // app 3
         while (~p && st[p].nex[c] == q) st[p].nex[c] = clone, p = st[p].link;
@@ -54,10 +55,10 @@ class suffix_automaton {
   // app 0
   //! default: each character of t is lowercase English letters.
   CEXP std::pair<u32, bool> search(strn t) NE {
-    u32 u = 0, i = 0, base = u32('a');
+    u32 u = 0, i = 0;
     while (i < t.size()) {
-      if (!st[u].nex[u32(t[i]) - base]) return {i, false};
-      u = st[u].nex[u32(t[i]) - base], ++i;
+      if (!st[u].nex[u32(t[i] - base)]) return {i, false};
+      u = st[u].nex[u32(t[i] - base)], ++i;
     }
     return {u32(u), true};
   }
@@ -83,10 +84,10 @@ class suffix_automaton {
   // app 4
   //! default: each character of t is lowercase English letters.
   CEXP pttu lcs(strnv t) NE {
-    u32 v = 0, len = 0, ret = 0, end = 0, base = u32('a');
+    u32 v = 0, len = 0, ret = 0, end = 0;
     flt_ (u32, i, 0, (u32)t.size()) {
-      while (v && !st[v].nex[u32(t[i]) - base]) v = st[v].link, len = st[v].len;
-      if (st[v].nex[u32(t[i]) - base]) v = st[v].nex[u32(t[i]) - base], ++len;
+      while (v && !st[v].nex[u32(t[i] - base)]) v = st[v].link, len = st[v].len;
+      if (st[v].nex[u32(t[i] - base)]) v = st[v].nex[u32(t[i] - base)], ++len;
       if (len > ret) ret = len, end = i;
     }
     return {end - ret + 1, ret};
