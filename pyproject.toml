@@ -16,7 +16,6 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "clang>=21.1.7",
     "pre-commit>=4.6.0",
     "pycodestyle>=2.14.0",
     "pytest>=9.0.3",
