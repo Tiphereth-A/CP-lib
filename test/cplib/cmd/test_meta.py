@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from unittest.mock import patch
 
 import pytest
@@ -79,20 +80,6 @@ class TestMetaCommands:
         generate_testcode(src, 'target')
         assert os.path.exists(keep_file)
 
-    def test_generate_testcode_logs_error_when_target_file_cannot_be_read(self, tmp_path, caplog):
-        src = tmp_path / 'meta_src'
-        target = tmp_path / 'target'
-        src.mkdir()
-        target.mkdir()
-
-        with patch(
-            'libs.cmd.meta.get_files_with_exts',
-            side_effect=[[], [str(target / 'missing.cpp')]],
-        ):
-            generate_testcode(str(src), str(target))
-
-        assert 'Failed to read' in caplog.text
-
     def test_pack_cli_invocation(self, cli, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
         src = os.path.join(str(tmp_path), 'src')
@@ -118,3 +105,27 @@ class TestMetaCommands:
         runner = CliRunner()
         result = runner.invoke(cli, ['meta', '-s', src, '-t', target])
         assert result.exit_code == 0
+
+    def test_generate_testcode_logs_read_error(self, tmp_path, monkeypatch, caplog):
+        import logging
+
+        monkeypatch.chdir(tmp_path)
+        src = self._make_cppmeta(str(tmp_path))
+        os.makedirs('target')
+        bad_file = os.path.join('target', 'old.cpp')
+        with open(bad_file, 'w') as f:
+            f.write('#define AUTO_GENERATED\n')
+
+        bad_path = Path(bad_file)
+        original_open = Path.open
+
+        def _open(self, *args, **kwargs):
+            if self == bad_path:
+                raise OSError('boom')
+            return original_open(self, *args, **kwargs)
+
+        with patch('pathlib.Path.open', new=_open):
+            with caplog.at_level(logging.ERROR):
+                generate_testcode(src, 'target')
+        expected = f'Failed to read {bad_path}: boom'
+        assert caplog.messages == [expected]
