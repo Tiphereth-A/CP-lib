@@ -1,5 +1,5 @@
-import os
 import re
+from pathlib import Path
 
 from libs.content.latex_utils import PathLaTeX, latex_listing_code_range
 from libs.decorator import with_logger
@@ -56,26 +56,26 @@ output
 
 
 class Section:
-    def __init__(self, dir: str, title: str):
-        self._dir = dir
-        self._name = os.path.basename(dir)
+    def __init__(self, dir: str | Path, title: str):
+        self._dir = Path(dir)
+        self._name = self._dir.name
         self._title = title
 
     def __repr__(self) -> str:
         return f"Section(name={self._name}, title={self._title}, dir={self._dir})"
 
     def _get_src_list(self) -> set[str]:
-        return set(os.listdir(self._dir))
+        return {path.name for path in self._dir.iterdir()}
 
     @with_logger
     def init_files(self, **kwargs):
-        with open(os.path.join(self._dir, 'cpvdoc.md'), 'w', encoding='utf8') as f:
+        with (self._dir / 'cpvdoc.md').open('w', encoding='utf8') as f:
             f.write(_TEMPLACES['cpvdoc.md'].format(
                 name=self._name,
-                path=self._dir.replace(os.sep, '/')
+                path=self._dir.as_posix()
             ))
         for _type in ['lib.hpp', 'doc.tex', 'doc.typ', 'usage.cpp']:
-            with open(os.path.join(self._dir, _type), 'w', encoding='utf8') as f:
+            with (self._dir / _type).open('w', encoding='utf8') as f:
                 f.write(_TEMPLACES[_type])
 
     @with_logger
@@ -85,16 +85,16 @@ class Section:
         if custom_doc:
             src_list.remove('doc.tex')
 
-        result_path = os.path.join(temp_path, self._dir, 'doc.tex')
-        os.makedirs(os.path.dirname(result_path), exist_ok=True)
-        with open(result_path, 'w', encoding='utf8') as f_result:
-            content: str = _TEMPLACES['doc.tex'] if not custom_doc else open(
-                os.path.join(self._dir, 'doc.tex'), encoding='utf8').read()
+        result_path = Path(temp_path) / self._dir / 'doc.tex'
+        result_path.parent.mkdir(parents=True, exist_ok=True)
+        with result_path.open('w', encoding='utf8') as f_result:
+            content: str = _TEMPLACES['doc.tex'] if not custom_doc else (
+                self._dir / 'doc.tex').read_text(encoding='utf8')
             for file in src_list:
                 pattern = re.compile(
                     r'% \{' + re.escape(file) + r'(?:,start=(-?\d+))?(?:,stop=(-?\d+))?\}')
                 total_lines: int = 0
-                with open(os.path.join(self._dir, file), 'rb') as f:
+                with (self._dir / file).open('rb') as f:
                     total_lines = sum(1 for _ in f)
 
                 while True:
@@ -111,10 +111,10 @@ class Section:
                     content = content.replace(
                         match.group(0),
                         ''.join(latex_listing_code_range(
-                            PathLaTeX(os.path.join(self._dir, file)),
-                            _EXT_TYPE[os.path.splitext(file)[1]],
-                            start,
-                            stop)))
+                                PathLaTeX(self._dir / file),
+                                _EXT_TYPE[Path(file).suffix],
+                                start,
+                                stop)))
             f_result.write(content)
 
     @with_logger

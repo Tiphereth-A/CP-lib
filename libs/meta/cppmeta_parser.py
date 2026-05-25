@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from libs.conf import ConfigTcgen
 from libs.decorator import with_logger
@@ -12,9 +12,11 @@ _GENTC_COMMAND_EXCLIDE = '// ---<GENTC>--- exclude '
 
 
 class cppmeta_parser:
-    def __init__(self, cppmeta_filename_noext: str, target_dir: str, cppmeta_code_lines: list[str], config: ConfigTcgen):
+    def __init__(self, cppmeta_filename_noext: str, target_dir: str | Path, cppmeta_code_lines: list[str], config: ConfigTcgen):
         self._filename_noext = cppmeta_filename_noext
-        self._target_dir = target_dir
+        self._target_dir = Path(target_dir)
+        if not self._target_dir.is_absolute():
+            self._target_dir = (Path.cwd() / self._target_dir).resolve()
         self._code_lines = cppmeta_code_lines
         self._testcase_mat = testcase_matrix(config)
 
@@ -89,16 +91,18 @@ class cppmeta_parser:
 
         return block_begin, block_end, main_index, self._testcase_mat.get_all_cases()
 
-    def _get_include_relpath(self, include_filepath: str) -> str:
-        return os.path.relpath(include_filepath, self._target_dir).replace('\\', '/')
+    def _get_include_relpath(self, include_filepath: str | Path) -> str:
+        include_filepath = Path(include_filepath)
+        if not include_filepath.is_absolute():
+            include_filepath = (Path.cwd() / include_filepath).resolve()
+        return include_filepath.relative_to(self._target_dir, walk_up=True).as_posix()
 
     def _get_all_target_content(self) -> list[tuple[str, list[str]]]:
         block_begin, block_end, main_index, all_cases = self._get_all_cases()
         result = []
 
         for case in all_cases:
-            target_filepath = os.path.join(
-                self._target_dir,
+            target_filepath = self._target_dir / (
                 f"{self._filename_noext}.{case.get_label()}.cpp"
             )
 
@@ -134,7 +138,7 @@ class cppmeta_parser:
             # Remaining code after main
             code_lines.extend(self._code_lines[main_index + 1:])
 
-            result.append((target_filepath, code_lines))
+            result.append((str(target_filepath), code_lines))
 
         return result
 

@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 import click
 
@@ -24,28 +24,28 @@ def gen_tex(content_tree: ContentTree, temp_path: str, **kwargs):
 
         sections = node.get_config().get_section_list()
 
-        chapter_dir = os.path.join(temp_path, *node.fullname().split('.'))
+        chapter_dir = Path(temp_path, *node.fullname().split('.'))
         chapter_content = []
         for name, title in sections:
             chapter_content.extend(latex_section(
                 NameLaTeX(title),
-                PathLaTeX(os.path.join(*node.fullname().split('.')[1:], name)),
+                PathLaTeX(Path(*node.fullname().split('.')[1:], name)),
                 level))
-            child_rel = os.path.join(chapter_dir, name, 'doc.tex')
+            child_rel = chapter_dir / name / 'doc.tex'
             chapter_content.extend(latex_input(PathLaTeX(child_rel)))
         chapter_content = ''.join(chapter_content)
 
-        chapter_doc_path = os.path.join(*node.fullname().split('.'), 'doc.tex')
-        if os.access(chapter_doc_path, os.F_OK):
-            with open(chapter_doc_path, encoding='utf8') as f:
+        chapter_doc_path = Path(*node.fullname().split('.'), 'doc.tex')
+        if chapter_doc_path.exists():
+            with chapter_doc_path.open(encoding='utf8') as f:
                 chapter_content = f.read().replace(
                     r'% {content}', chapter_content)
 
         chapter_content = chapter_content.strip() + '\n'
 
-        os.makedirs(chapter_dir, exist_ok=True)
-        result_path = os.path.join(chapter_dir, 'doc.tex')
-        with open(result_path, 'w', encoding='utf8') as f:
+        chapter_dir.mkdir(parents=True, exist_ok=True)
+        result_path = chapter_dir / 'doc.tex'
+        with result_path.open('w', encoding='utf8') as f:
             f.write(chapter_content)
 
     dfs(content_tree.root, 0)

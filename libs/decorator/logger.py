@@ -2,10 +2,14 @@ import logging
 from functools import wraps
 
 from libs.decorator.result_handler import DecoratorResultHandlerBase
-from libs.util.trailing_str import trailing_str
 
 
 def with_logger(func):
+    def trailing_str(s: str, start: int = 100, end: int = 100):
+        if len(s) > start+end+5:
+            return f"{s[:start]} ... {s[-end:]}"
+        return s
+
     logger: logging.Logger = logging.getLogger(func.__name__)
     if logger.level == logging.NOTSET:
         logger.setLevel(logging.DEBUG)

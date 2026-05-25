@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from libs.conf import ConfigIndex
 from libs.content import Section
@@ -33,11 +33,10 @@ class ContentTree:
                     f"node '{self.fullname()}' is a leaf node, no config to load")
             if self._config is not None:
                 self._config.output()
-            self._config_path = os.path.join(
-                *self.fullname().split('.'), 'index.yml')
-            if not os.path.exists(self._config_path):
-                with open(self._config_path, 'w', encoding='utf8') as f:
-                    pass
+            self._config_path = Path(
+                *self.fullname().split('.')) / 'index.yml'
+            if not self._config_path.exists():
+                self._config_path.touch()
             self._config = ConfigIndex(self._config_path)
 
         @with_logger
@@ -45,7 +44,7 @@ class ContentTree:
             if self._children:
                 raise RuntimeError(
                     f"node '{self.fullname()}' is not a leaf node, no section to load")
-            self._section = Section(os.path.join(
+            self._section = Section(Path(
                 *self.fullname().split('.')), self._title)
 
         @with_logger
@@ -73,13 +72,13 @@ class ContentTree:
 
     def __init__(self, start_path: str):
         self.root: ContentTree.Node = self.Node(start_path)
-        for root, _, files in os.walk(start_path):
-            if 'index.yml' in files:
-                sections = ConfigIndex(os.path.join(
-                    root, 'index.yml')).get_section_list()
-                for name, title in sections:
-                    self.touch(os.path.join(
-                        *root.split(os.sep)[1:], name).replace(os.sep, '.'), title)
+        start_root = Path(start_path)
+        for index_path in start_root.rglob('index.yml'):
+            root_path = index_path.parent
+            sections = ConfigIndex(index_path).get_section_list()
+            for name, title in sections:
+                fullname = '.'.join((*root_path.parts[1:], name))
+                self.touch(fullname, title)
 
     @with_logger
     def touch(self, fullname: str, title: str = '', **kwargs) -> Node:

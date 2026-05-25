@@ -1,21 +1,20 @@
-import os
+from pathlib import Path
 
 
-def get_src_files(src_path: str) -> list[str]:
+def get_src_files(src_path: str | Path) -> list[str]:
     from libs.conf import ConfigIndex
 
     files: list[str] = []
-    for root, _, dir_files in os.walk(src_path):
-        if 'index.yml' not in dir_files:
-            continue
-        config = ConfigIndex(os.path.join(root, 'index.yml'))
+    src_root = Path(src_path)
+    for index_path in src_root.rglob('index.yml'):
+        root_path = index_path.parent
+        config = ConfigIndex(index_path)
         for name in config.get_section_name():
-            subdir = os.path.join(root, name)
-            if not os.path.isdir(subdir):
+            subdir = root_path / name
+            if not subdir.is_dir():
                 continue
-            if 'index.yml' not in os.listdir(subdir):
-                for filename in os.listdir(subdir):
-                    filepath = os.path.join(subdir, filename)
-                    if os.path.isfile(filepath):
-                        files.append(filepath)
+            if not (subdir / 'index.yml').exists():
+                for filepath in subdir.iterdir():
+                    if filepath.is_file():
+                        files.append(str(filepath))
     return files
