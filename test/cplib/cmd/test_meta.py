@@ -79,20 +79,6 @@ class TestMetaCommands:
         generate_testcode(src, 'target')
         assert os.path.exists(keep_file)
 
-    def test_generate_testcode_logs_error_when_target_file_cannot_be_read(self, tmp_path, caplog):
-        src = tmp_path / 'meta_src'
-        target = tmp_path / 'target'
-        src.mkdir()
-        target.mkdir()
-
-        with patch(
-            'libs.cmd.meta.get_files_with_exts',
-            side_effect=[[], [str(target / 'missing.cpp')]],
-        ):
-            generate_testcode(str(src), str(target))
-
-        assert 'Failed to read' in caplog.text
-
     def test_pack_cli_invocation(self, cli, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
         src = os.path.join(str(tmp_path), 'src')

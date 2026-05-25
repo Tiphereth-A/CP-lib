@@ -1,7 +1,7 @@
 import fnmatch
 import heapq
-import os
 import subprocess
+from pathlib import Path
 from typing import Iterable
 
 import click
@@ -111,9 +111,10 @@ def partition(files_info: dict[str, dict[str] | str], task_count: int, **kwargs)
 @with_timer
 def cpv_delegate(file_patterns: tuple[str], verify_files: str, merged_result: str, task_count: int, result_dir: str, **kwargs):
     def write_result(result_dir: str, tasklists: list[list[str]], verify_files_info: dict):
-        os.makedirs(result_dir, exist_ok=True)
+        result_dir_path = Path(result_dir)
+        result_dir_path.mkdir(parents=True, exist_ok=True)
         for idx, task in enumerate(tasklists):
-            with open(os.path.join(result_dir, f'{idx}.json'), 'wb') as f:
+            with (result_dir_path / f'{idx}.json').open('wb') as f:
                 f.write(orjson.dumps({
                     'files': {file: verify_files_info[file] for file in task}
                 }))

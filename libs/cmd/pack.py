@@ -1,5 +1,5 @@
-import os
 import shutil
+from pathlib import Path
 
 import click
 
@@ -18,9 +18,10 @@ def packing_codes(src: str, ext: str, target: str, **kwargs):
     logger.info(f"{len(files)} file(s) found")
 
     for file in files:
-        new_path = os.path.join(target, *file.split(os.sep)[1:])
-        os.makedirs(os.path.dirname(new_path), exist_ok=True)
-        shutil.copy(file, new_path)
+        file_path = Path(file)
+        new_path = Path(target).joinpath(*file_path.parts[1:])
+        new_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(file_path, new_path)
 
     logger.info('finished')
 

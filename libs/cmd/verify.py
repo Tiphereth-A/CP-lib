@@ -1,8 +1,8 @@
-import os
 import re
 import shlex
 import subprocess
 import sys
+from pathlib import Path
 from queue import Queue
 
 import click
@@ -21,32 +21,31 @@ RE_SAMPLE = re.compile(r'/\*sample\d*\n(.*?)={8,}\n(.*?)\*/', re.DOTALL)
 def verify_codes(src: str, jobs: int, time_limit: float, temp_path: str, **kwargs):
     logger = kwargs.get('logger')
 
-    files = list(filter(
-        lambda x: x.endswith('.cpp') and os.path.getsize(x) > 0 and RE_USAGE_MARKER.search(open(
-            x).read()),
-        get_src_files(src)))
+    files = list(filter(lambda x: Path(x).suffix == '.cpp' and RE_USAGE_MARKER.search(
+        Path(x).read_text(encoding='utf-8')), get_src_files(src)))
 
     logger.info(f'{len(files)} file(s) found')
 
     out_src_samples: Queue[tuple[str, list[tuple[str, str]]]] = Queue()
 
     def _compile(x):
-        _dir = os.path.join(temp_path, os.path.dirname(x))
-        os.makedirs(_dir, exist_ok=True)
+        src_path = Path(x)
+        _dir = Path(temp_path) / src_path.parent
+        _dir.mkdir(parents=True, exist_ok=True)
 
         _samples: list[tuple[str, str]] = []
-        with open(x, encoding='utf-8') as f:
+        with src_path.open(encoding='utf-8') as f:
             _samples = [(m.group(1), m.group(2))
                         for m in RE_SAMPLE.finditer(f.read())]
 
-        _out_file = os.path.join(_dir, os.path.basename(x).replace(
-            '.', '_').replace(' ', '-'))+{'win32': '.exe'}.get(sys.platform, '')
-        out_src_samples.put((_out_file, x, _samples))
+        _out_file = _dir / \
+            f"{src_path.name.replace('.', '_').replace(' ', '-')}{'.exe' if sys.platform == 'win32' else ''}"
+        out_src_samples.put((str(_out_file), x, _samples))
 
         return (shlex.split(
             'g++ -std=gnu++20 -fmax-errors=1 -ftrapv {src} -o {out}'.format(
                 src=shlex.quote(x),
-                out=shlex.quote(_out_file))), {})
+                out=shlex.quote(str(_out_file)))), {})
 
     compile_failed = run_command(_compile, files, jobs)
     compile_failed_files = {

@@ -4,7 +4,6 @@ import subprocess
 from pathlib import Path
 
 import click
-import orjson
 
 from libs.decorator import with_logger, with_timer
 from libs.util.run_command import run_command

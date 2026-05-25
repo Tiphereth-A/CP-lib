@@ -50,7 +50,7 @@ def lint_all_codes(files: Iterable[str], jobs: int, force_lf: bool, **kwargs):
     type_to_files: dict[str, list[str]] = {}
     unknown_files: list[str] = []
     for file in files:
-        ext = os.path.splitext(file)[1].lower()
+        ext = Path(file).suffix.lower()
         code_type = _EXT_TYPE.get(ext)
         if not code_type:
             unknown_files.append(file)
@@ -73,9 +73,7 @@ def lint_all_codes(files: Iterable[str], jobs: int, force_lf: bool, **kwargs):
                 continue
         except Exception as e:
             logger.error(
-                f"failed to get version for {code_type} formatter: {e}")
-            logger.debug(
-                f"version command output: '{version_output}'")
+                f"failed to get version for {code_type} formatter: {e}\nversion command output: '{version_output}'")
             raise e
 
         failed = run_command(

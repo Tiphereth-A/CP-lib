@@ -1,51 +1,53 @@
-import os
+from pathlib import Path
 
 import click
 
 from libs.conf.tcgen import ConfigTcgen
 from libs.decorator import with_logger, with_timer
 from libs.meta import cppmeta_parser
-from libs.util.get_files_with_exts import get_files_with_exts
 
 
 @with_logger
 @with_timer
 def generate_testcode(src: str, target: str, **kwargs):
     logger = kwargs.get('logger')
+    src_path = Path(src)
+    target_path = Path(target)
 
-    all_src_files = get_files_with_exts([src], ['.cppmeta'])
+    all_src_files = [filepath for filepath in src_path.glob(
+        f"**/*.cppmeta") if filepath.is_file()]
     logger.info(f"{len(all_src_files)} file(s) found")
 
     # Remove previously generated files
-    all_tar_files = get_files_with_exts([target], ['.cpp'])
+    all_tar_files = [filepath for filepath in target_path.glob(
+        f"**/*.cpp") if filepath.is_file()]
     for file_path in all_tar_files:
         try:
-            f = open(file_path, encoding='utf8')
-            first_line = f.readline()
-            f.close()
+            file_path
+            with file_path.open(encoding='utf8') as f:
+                first_line = f.readline()
             if first_line.strip() == '#define AUTO_GENERATED':
-                os.remove(file_path)
+                file_path.unlink()
         except Exception as e:
             logger.error(f"Failed to read {file_path}: {e}")
             return
 
-    conf = ConfigTcgen(os.path.join(src, 'config.yml'))
+    conf = ConfigTcgen(src_path / 'config.yml')
 
     # Generate new test files
     for src_file in all_src_files:
-        src_dir, basename = os.path.split(src_file)
-        dst_dir = os.path.join(
-            target, os.path.relpath(src_dir, src))
-        filename_noext = basename.removesuffix('.cppmeta')
+        src_dir = src_file.parent
+        dst_dir = target_path / src_dir.relative_to(src_path)
+        filename_noext = src_file.stem
 
-        with open(src_file, encoding='utf8') as f:
-            code_lines = f.read().splitlines(True)
+        code_lines = src_file.read_text(encoding='utf8').splitlines(True)
         parser = cppmeta_parser(filename_noext, dst_dir, code_lines, conf)
 
         for target_file, content in parser.get_results():
             logger.debug(f"writing to {target_file}")
-            os.makedirs(os.path.dirname(target_file), exist_ok=True)
-            with open(target_file, 'w', encoding='utf8') as tf:
+            target_file_path = Path(target_file)
+            target_file_path.parent.mkdir(parents=True, exist_ok=True)
+            with target_file_path.open('w', encoding='utf8') as tf:
                 tf.writelines(content)
 
     logger.info('finished')

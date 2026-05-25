@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 import click
 import yaml
@@ -14,10 +14,10 @@ def cpv_doc(src: str, jekyll_src: str, **kwargs):
     def _group_key(src: str, category_name: str) -> str:
         return '/'.join(category_name.split('/', 2)[0:2])+'/' if category_name.startswith(src + '/') else category_name
 
-    index_md = os.path.join(jekyll_src, 'index.md')
+    index_md = Path(jekyll_src) / 'index.md'
     logger.info(f"patching {index_md}...")
 
-    with open(index_md, encoding='utf-8') as f:
+    with index_md.open(encoding='utf-8') as f:
         content = f.read()
     sections = content.split('---', 2)
     if len(sections) < 3:
@@ -54,7 +54,7 @@ def cpv_doc(src: str, jekyll_src: str, **kwargs):
             {'name': key, 'pages': merged_categories[key]} for key in ordered_keys]
 
     new_yml = yaml.safe_dump(yml_dict, sort_keys=False)
-    with open(index_md, 'w', encoding='utf-8') as f:
+    with index_md.open('w', encoding='utf-8') as f:
         f.write(f"---\n{new_yml}---{sections[2]}")
 
     logger.info('finished')
