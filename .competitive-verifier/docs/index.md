@@ -67,6 +67,10 @@ For LaTeX compiling:
 git clone -c core.symlinks=true git@github.com:Tiphereth-A/CP-lib.git
 cd CP-lib
 
+# Install Python dev dependencies
+uv sync --frozen --group dev
+uv run pre-commit install
+
 # Install Python dependencies
 uv sync --frozen
 
